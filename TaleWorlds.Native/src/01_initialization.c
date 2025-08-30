@@ -345,6 +345,10 @@
 #define SYSTEM_ENGINE_TYPE_RENDER 4
 #define SYSTEM_ENGINE_TYPE_DEFAULT 0
 
+// 新增系统状态语义化常量
+#define SYSTEM_STATUS_ENABLED 1
+#define SYSTEM_STATUS_DISABLED 0
+
 // 系统标识符语义化常量
 #define SYSTEM_IDENTIFIER_NECS 0x6e656373
 #define SYSTEM_IDENTIFIER_ECSF 0x6563732f
@@ -2519,7 +2523,7 @@ void InitializeSystemData(void)
   system_previous_node[SYSTEM_NODE_INDEX_SIGNATURE_PRIMARY] = dataNodeSignaturePrimary;
   system_previous_node[SYSTEM_NODE_INDEX_SIGNATURE_SECONDARY] = dataNodeSignatureSecondary;
   system_previous_node[SYSTEM_NODE_INDEX_DEFAULT_FUNCTION] = &defaultInitializationFunction;
-  system_previous_node[SYSTEM_NODE_INDEX_STATUS_FLAG] = 0;
+  system_previous_node[SYSTEM_NODE_INDEX_STATUS_FLAG] = SYSTEM_ENGINE_TYPE_DEFAULT;
   system_previous_node[SYSTEM_NODE_INDEX_INITIALIZATION_FUNCTION] = system_initialization_function;
   return;
 }
@@ -2565,7 +2569,7 @@ void InitializeCoreSystemData(void)
   core_system_previous_node[SYSTEM_NODE_INDEX_SIGNATURE_PRIMARY] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
   core_system_previous_node[SYSTEM_NODE_INDEX_SIGNATURE_SECONDARY] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
   core_system_previous_node[SYSTEM_NODE_INDEX_DEFAULT_FUNCTION] = &g_system_node_audio;
-  core_system_previous_node[SYSTEM_NODE_INDEX_STATUS_FLAG] = 1;
+  core_system_previous_node[SYSTEM_NODE_INDEX_STATUS_FLAG] = SYSTEM_STATUS_ENABLED;
   core_system_previous_node[SYSTEM_NODE_INDEX_INITIALIZATION_FUNCTION] = core_system_initialization_flag;
   return;
 }
@@ -2657,7 +2661,7 @@ void InitializeMemoryNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_memory;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -2703,7 +2707,7 @@ void InitializeBufferNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_input;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -2842,7 +2846,7 @@ void InitializeRenderNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_FILE_SYSTEM_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_FILE_SYSTEM_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -2889,7 +2893,7 @@ void InitializeAudioNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_SECURITY_MODULE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -3003,7 +3007,7 @@ void InitializeEngineState(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATABASE_SYSTEM_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATABASE_SYSTEM_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -3083,7 +3087,7 @@ void InitializeRenderingSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -3299,7 +3303,7 @@ void initialize_system_phase2(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -3346,7 +3350,7 @@ void initialize_system_phase3(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -3393,7 +3397,7 @@ void initialize_system_phase4(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -3440,7 +3444,7 @@ void initialize_system_phase5(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
@@ -3487,7 +3491,7 @@ void initialize_system_phase6(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -3533,7 +3537,7 @@ void initialize_physics_engine_system(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_PHYSICS_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_PHYSICS_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -3579,7 +3583,7 @@ void initialize_network_engine_system(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CONFIG_SYSTEM_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -3626,7 +3630,7 @@ void initialize_system_phase9(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -3720,7 +3724,7 @@ void initialize_graphics_phase1(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATABASE_SYSTEM_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATABASE_SYSTEM_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -3984,7 +3988,7 @@ void InitializeMemoryNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -4031,7 +4035,7 @@ void InitializeThreadNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -4078,7 +4082,7 @@ void InitializeConfigNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -4125,7 +4129,7 @@ void InitializeStateNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
@@ -4172,7 +4176,7 @@ void InitializeBufferNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -4219,7 +4223,7 @@ void InitializeCacheNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CONFIG_SYSTEM_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -4360,7 +4364,7 @@ void InitializeStackNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -4407,7 +4411,7 @@ void InitializeSystemListNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -4454,7 +4458,7 @@ void InitializeTreeNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -4500,7 +4504,7 @@ void initialize_graphics_node_system(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
@@ -4546,7 +4550,7 @@ void initialize_map_node_system(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -4687,7 +4691,7 @@ void InitializeVectorNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -4734,7 +4738,7 @@ void InitializeMatrixNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -4781,7 +4785,7 @@ void InitializeHashNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -4828,7 +4832,7 @@ void InitializeTableNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
@@ -4875,7 +4879,7 @@ void InitializeRecordNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -4922,7 +4926,7 @@ void InitializeFieldNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATABASE_SYSTEM_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATABASE_SYSTEM_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -4969,7 +4973,7 @@ void InitializeAttributeNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CONFIG_SYSTEM_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -5110,7 +5114,7 @@ void InitializeEventNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -5157,7 +5161,7 @@ void InitializeDelegateNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -5204,7 +5208,7 @@ void InitializeCallbackNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -5251,7 +5255,7 @@ void InitializeHandlerNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
@@ -5298,7 +5302,7 @@ void InitializeListenerNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -5374,7 +5378,7 @@ void InitializeCoreSystemObject(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -5468,7 +5472,7 @@ void InitializeThreadSystemObject(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -5654,7 +5658,7 @@ void InitializeSemaphoreSystemObject(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -5701,7 +5705,7 @@ void InitializeNetworkSystemObject(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -5748,7 +5752,7 @@ void InitializeSystemObject9(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -5795,7 +5799,7 @@ void InitializeSystemObject10(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
@@ -5842,7 +5846,7 @@ void InitializeSystemObject11(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -6002,7 +6006,7 @@ void InitializeSystemObject14(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -6049,7 +6053,7 @@ void InitializeSystemObject15(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -6096,7 +6100,7 @@ void InitializeSystemObject16(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -6143,7 +6147,7 @@ void InitializeSystemObject17(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
@@ -6190,7 +6194,7 @@ void InitializeSystemObject18(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -6549,7 +6553,7 @@ void CreateNetworkSocket(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -6596,7 +6600,7 @@ void DestroyNetworkSocket(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -6643,7 +6647,7 @@ void ConnectNetworkSocket(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -6690,7 +6694,7 @@ void DisconnectNetworkSocket(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
@@ -6737,7 +6741,7 @@ void SendNetworkData(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -6878,7 +6882,7 @@ void SetNetworkTimeout(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -6925,7 +6929,7 @@ void FlushNetworkBuffer(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -6972,7 +6976,7 @@ void InitializeAudioDataNode7(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -7019,7 +7023,7 @@ void InitializeVideoDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
@@ -7066,7 +7070,7 @@ void InitializeInputDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -7167,7 +7171,7 @@ void InitializeAudioSubsystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CONFIG_SYSTEM_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -7214,7 +7218,7 @@ void InitializeVideoSubsystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_PHYSICS_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_PHYSICS_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -7261,7 +7265,7 @@ void InitializeInputSubsystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -7449,7 +7453,7 @@ void InitializeShaderSubsystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -7496,7 +7500,7 @@ void InitializePhysicsSubsystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -7543,7 +7547,7 @@ void InitializeUISubsystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -7590,7 +7594,7 @@ void InitializeSecuritySubsystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
@@ -7637,7 +7641,7 @@ void ProcessSystemStringData(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -7872,7 +7876,7 @@ void InitializeAudioSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -7919,7 +7923,7 @@ void InitializeVideoSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -7966,7 +7970,7 @@ void InitializeInputSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -8013,7 +8017,7 @@ void InitializeNetworkSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
@@ -8060,7 +8064,7 @@ void InitializeConfigSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -8107,7 +8111,7 @@ void InitializeNetworkDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_PHYSICS_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_PHYSICS_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -8154,7 +8158,7 @@ void InitializeConfigDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CONFIG_SYSTEM_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -8295,7 +8299,7 @@ void InitializePhysicsDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATABASE_SYSTEM_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATABASE_SYSTEM_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -8436,7 +8440,7 @@ void InitializeConditionResourceNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -8483,7 +8487,7 @@ void InitializeSemaphoreResourceNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -8530,7 +8534,7 @@ void InitializeEventResourceNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -8577,7 +8581,7 @@ void InitializeThreadResourceNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
@@ -8624,7 +8628,7 @@ void InitializeProcessResourceNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -8832,7 +8836,7 @@ void ProcessGraphicsTexture(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -8879,7 +8883,7 @@ void InitializeUISystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -8926,7 +8930,7 @@ void InitializeSecuritySystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -8973,7 +8977,7 @@ void InitializeAuthenticationSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
@@ -9020,7 +9024,7 @@ void InitializeResourceSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -9067,7 +9071,7 @@ void InitializeTextureSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATABASE_SYSTEM_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATABASE_SYSTEM_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -9133,7 +9137,7 @@ void InitializeSystemTimer(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = dataNodeSignaturePrimary;
   node_previous[NODE_INDEX_ENGINE_ID_2] = dataNodeSignatureSecondary;
   node_previous[NODE_INDEX_ENGINE_PTR] = &defaultInitializationFunction;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -9227,7 +9231,7 @@ void InitializeSystemProfiler(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_video;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -9274,7 +9278,7 @@ void InitializeAudioSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_memory;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -9321,7 +9325,7 @@ void InitializeVideoSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_input;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -9462,7 +9466,7 @@ void InitializeConfigSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_FILE_SYSTEM_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_FILE_SYSTEM_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -9509,7 +9513,7 @@ void InitializeAudioSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_SECURITY_MODULE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -9603,7 +9607,7 @@ void InitializeInputSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CONFIG_SYSTEM_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -9915,7 +9919,7 @@ void InitializeStringManagerSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -9962,7 +9966,7 @@ void InitializeMemoryManagerSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -10009,7 +10013,7 @@ void InitializeThreadManagerSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -10056,7 +10060,7 @@ void InitializeEventSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
@@ -10103,7 +10107,7 @@ void InitializeFilesystemSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -10244,7 +10248,7 @@ void InitializeGraphicsSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -10291,7 +10295,7 @@ void InitializeAudioManagerSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -10338,7 +10342,7 @@ void InitializeNetworkManagerSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -10385,7 +10389,7 @@ void InitializeInputManagerSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
@@ -10432,7 +10436,7 @@ void InitializeGraphicsMemory(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -10573,7 +10577,7 @@ void InitializeConditionInitNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -10620,7 +10624,7 @@ void ConfigureGraphicsShader(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -10667,7 +10671,7 @@ void InitializeAudioDataNode7(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -10714,7 +10718,7 @@ void InitializeNetworkMutex(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
@@ -10761,7 +10765,7 @@ void InitializeShaderSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -10902,7 +10906,7 @@ void InitializeSystemModule58(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -10949,7 +10953,7 @@ void InitializeRecordDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -10996,7 +11000,7 @@ void InitializeAudioDataNode8(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -11043,7 +11047,7 @@ void InitializeDataEngineNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
@@ -11090,7 +11094,7 @@ void InitializeUtilEngineNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -11137,7 +11141,7 @@ void InitializeResourceEngineNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = dataNodeSignaturePrimary;
   node_previous[NODE_INDEX_ENGINE_ID_2] = dataNodeSignatureSecondary;
   node_previous[NODE_INDEX_ENGINE_PTR] = &defaultInitializationFunction;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -11231,7 +11235,7 @@ void InitializeSecuritySystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_video;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -11278,7 +11282,7 @@ void InitializeInputEngineNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_memory;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -11325,7 +11329,7 @@ void InitializeFieldDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_input;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -11466,7 +11470,7 @@ void InitializeFontSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_FILE_SYSTEM_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_FILE_SYSTEM_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -11513,7 +11517,7 @@ void InitializeSystemDataNode30(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_SECURITY_MODULE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -11636,7 +11640,7 @@ void InitializeResourceEngineNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = dataNodeSignaturePrimary;
   node_previous[NODE_INDEX_ENGINE_ID_2] = dataNodeSignatureSecondary;
   node_previous[NODE_INDEX_ENGINE_PTR] = &defaultInitializationFunction;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -11730,7 +11734,7 @@ void InitializeSecuritySystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_video;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -11777,7 +11781,7 @@ void InitializeInputEngineNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_memory;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -11824,7 +11828,7 @@ void InitializeFieldDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_input;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -11965,7 +11969,7 @@ void InitializeFontSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_FILE_SYSTEM_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_FILE_SYSTEM_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -12012,7 +12016,7 @@ void InitializeSystemDataNode30(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_SECURITY_MODULE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -12238,7 +12242,7 @@ void InitializeSystemResources(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -12285,7 +12289,7 @@ void InitializeInputMutex(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -12332,7 +12336,7 @@ void ConfigureSystemParameters(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -12379,7 +12383,7 @@ void InitializeSystemComponents(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
@@ -12426,7 +12430,7 @@ void SetupSystemServices(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -12483,7 +12487,7 @@ void InitializeSystemProfiler(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CONFIG_SYSTEM_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -12624,7 +12628,7 @@ void InitializeInputSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -12671,7 +12675,7 @@ void InitializeNetworkSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -12718,7 +12722,7 @@ void InitializeConfigSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -12765,7 +12769,7 @@ void InitializeAudioSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
@@ -12812,7 +12816,7 @@ void InitializeVideoSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -12953,7 +12957,7 @@ void InitializeConditionDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -13000,7 +13004,7 @@ void InitializeMutexDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -13047,7 +13051,7 @@ void InitializeSemaphoreDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -13094,7 +13098,7 @@ void InitializeEventDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
@@ -13141,7 +13145,7 @@ void InitializeThreadDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -13260,7 +13264,7 @@ void InitializeAudioDataNode7(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = dataNodeSignaturePrimary;
   node_previous[NODE_INDEX_ENGINE_ID_2] = dataNodeSignatureSecondary;
   node_previous[NODE_INDEX_ENGINE_PTR] = &defaultInitializationFunction;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -13354,7 +13358,7 @@ void InitializeShaderSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_video;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -13401,7 +13405,7 @@ void InitializeFontSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_memory;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -13448,7 +13452,7 @@ void InitializeMemoryDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_input;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -13589,7 +13593,7 @@ void InitializeSystemNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_FILE_SYSTEM_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_FILE_SYSTEM_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -13636,7 +13640,7 @@ void InitializeFontDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_SECURITY_MODULE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -13910,7 +13914,7 @@ void InitializeNetworkDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = dataNodeSignaturePrimary;
   node_previous[NODE_INDEX_ENGINE_ID_2] = dataNodeSignatureSecondary;
   node_previous[NODE_INDEX_ENGINE_PTR] = &defaultInitializationFunction;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -14004,7 +14008,7 @@ void InitializeSecurityDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_video;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -14051,7 +14055,7 @@ void InitializeDatabaseDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_memory;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -14098,7 +14102,7 @@ void ProcessSystemData(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_input;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -14239,7 +14243,7 @@ void InitializeTextureDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_FILE_SYSTEM_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_FILE_SYSTEM_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -14286,7 +14290,7 @@ void InitializeAudioDataNode7(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_SECURITY_MODULE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -14474,7 +14478,7 @@ void InitializeAuthenticationSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_CONFIG_SYSTEM_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -14521,7 +14525,7 @@ void InitializeTableDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_PHYSICS_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_PHYSICS_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -14568,7 +14572,7 @@ void InitializeStringDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -14756,7 +14760,7 @@ void InitializeNetworkInitNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -14803,7 +14807,7 @@ void InitializeMutexInitNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -14850,7 +14854,7 @@ void InitializeSystemModule58(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -14897,7 +14901,7 @@ void InitializeRecordDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
@@ -14944,7 +14948,7 @@ void InitializeAudioDataNode8(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -14991,7 +14995,7 @@ void InitializeDataEngineNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATABASE_SYSTEM_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATABASE_SYSTEM_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -15480,7 +15484,7 @@ void InitializeStringManager(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -15668,7 +15672,7 @@ void InitializeShaderDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_NETWORK_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_NETWORK_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -15715,7 +15719,7 @@ void InitializeStackDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_IO_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -15762,7 +15766,7 @@ void InitializePhysicsSystem(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_DATA_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_DATA_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -15809,7 +15813,7 @@ void InitializeListDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UTIL_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
@@ -15856,7 +15860,7 @@ void InitializeTreeDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_UI_ENGINE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UI_ENGINE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -15903,7 +15907,7 @@ void ConfigureSystemHandles(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = dataNodeSignaturePrimary;
   node_previous[NODE_INDEX_ENGINE_ID_2] = dataNodeSignatureSecondary;
   node_previous[NODE_INDEX_ENGINE_PTR] = &defaultInitializationFunction;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
@@ -15997,7 +16001,7 @@ void InitializeSystemResources(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_video;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -16044,7 +16048,7 @@ void InitializeInputMutex(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_memory;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -16091,7 +16095,7 @@ void ConfigureSystemParameters(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node_input;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -16232,7 +16236,7 @@ void ConfigureSystemSettings(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_FILE_SYSTEM_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_FILE_SYSTEM_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -16279,7 +16283,7 @@ void InitializeGraphDataNode(void)
   node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_SECURITY_MODULE_1;
   node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
   node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_node;
-  node_previous[NODE_INDEX_ENGINE_TYPE] = 0;
+  node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
