@@ -15099,7 +15099,7 @@ uint64 ProcessResourceRequest(longlong resourceHandle,uint64 *memoryBlockBlockBl
                         functionResult = BYTE_OFFSET_FLAG;
                       }
                       if ((int)functionResult == 0) {
-                        FUN_1808db8c0(resourceHandle);
+                        ProcessSystemTask2(resourceHandle);
                         functionResult = 0;
                       }
                     }
@@ -15577,7 +15577,7 @@ ulonglong ProcessSystemRequest(longlong resourceHandle,uint64 *memoryBlockBlockB
   uint32 localUInt;
   byte localBuffer [32];
   
-  punsignedCounter = (uint32 *)FUN_180847820();
+  punsignedCounter = (uint32 *)AllocateMemoryBlock();
   localUInt = *punsignedCounter;
   localUInt = punsignedCounter[1];
   localUInt = punsignedCounter[2];
@@ -15772,7 +15772,7 @@ void buildUtilityComponent(longlong resourceHandle,uint64 memoryBlockSize)
   
   operationStatus = createResourceBuffer(memoryBlockSize,localBuffer,0,0x4f525443);
   if (operationStatus == 0) {
-    operationStatus = FUN_1808a79f0(memoryBlockSize,resourceHandle + 8);
+    operationStatus = InitializeSystemComponent(memoryBlockSize,resourceHandle + 8);
     if (operationStatus == 0) {
                     // WARNING: Subroutine does not return
       freeResourceBuffer(memoryBlockSize,localBuffer);
@@ -16184,15 +16184,15 @@ uint64 HandleOperationCallback(longlong resourceHandle,uint64 *memoryBlockBlockB
         validationResult1 = unsignedStackArrayX20[0] >> 1;
         if (validationResult1 != 0) {
           do {
-            functionResult = FUN_1808dde10(memoryBlockSize,unsignedStackArrayX18[0]);
+            functionResult = ProcessSystemData(memoryBlockSize,unsignedStackArrayX18[0]);
             if ((int)functionResult != 0) {
               return functionResult;
             }
-            functionResult = FUN_1808a7f40(memoryBlockSize,resourceHandle + 0xe8,operationStatus,resourceHandle);
+            functionResult = HandleSystemOperation2(memoryBlockSize,resourceHandle + 0xe8,operationStatus,resourceHandle);
             if ((int)functionResult != 0) {
               return functionResult;
             }
-            functionResult = FUN_1808de0e0(memoryBlockSize,unsignedStackArrayX18);
+            functionResult = ExecuteSystemTask(memoryBlockSize,unsignedStackArrayX18);
             if ((int)functionResult != 0) {
               return functionResult;
             }
@@ -16229,15 +16229,15 @@ void combineUtilityFeatures(void)
   unsignedVar3 = uStack00000000000000a8 >> 1;
   if (unsignedVar3 != 0) {
     do {
-      operationStatus = FUN_1808dde10();
+      operationStatus = ProcessSystemData();
       if (operationStatus != 0) {
         return;
       }
-      operationStatus = FUN_1808a7f40();
+      operationStatus = HandleSystemOperation2();
       if (operationStatus != 0) {
         return;
       }
-      operationStatus = FUN_1808de0e0();
+      operationStatus = ExecuteSystemTask();
       if (operationStatus != 0) {
         return;
       }
@@ -16916,13 +16916,13 @@ void joinUtilityProcesses(longlong resourceHandle,uint64 *memoryBlockBlockBlockS
     if (iterationCounter == 0) {
       unsignedVar6 = unsignedStackArrayX20[0] & 1;
       unsignedVar7 = unsignedStackArrayX20[0] >> 1;
-      iterationCounter = FUN_1808af700((longlong *)(resourceHandle + POINTER_OFFSET_DATA),unsignedVar7);
+      iterationCounter = ValidateSystemData2((longlong *)(resourceHandle + POINTER_OFFSET_DATA),unsignedVar7);
       if (iterationCounter == 0) {
         unsignedStackArrayX18[0] = 0;
         iterationCounter = 0;
         if (unsignedVar3 >> 1 != 0) {
           do {
-            integerVar5 = FUN_1808dde10(memoryBlockSize,unsignedStackArrayX18[0]);
+            integerVar5 = ProcessSystemData(memoryBlockSize,unsignedStackArrayX18[0]);
             if (integerVar5 != 0) {
               return;
             }
@@ -16941,7 +16941,7 @@ void joinUtilityProcesses(longlong resourceHandle,uint64 *memoryBlockBlockBlockS
             if (integerVar5 != 0) {
               return;
             }
-            integerVar5 = FUN_1808de0e0(memoryBlockSize,unsignedStackArrayX18);
+            integerVar5 = ExecuteSystemTask(memoryBlockSize,unsignedStackArrayX18);
             if (integerVar5 != 0) {
               return;
             }
@@ -16979,12 +16979,12 @@ void utilityTripTarget(void)
   unsignedVar3 = uStack0000000000000088;
   if (iterationCounter == 0) {
     unsignedVar6 = uStack0000000000000088 >> 1;
-    iterationCounter = FUN_1808af700((longlong *)(baseRegister + POINTER_OFFSET_DATA),unsignedVar6);
+    iterationCounter = ValidateSystemData2((longlong *)(baseRegister + POINTER_OFFSET_DATA),unsignedVar6);
     if (iterationCounter == 0) {
       iterationCounter = 0;
       if (unsignedVar3 >> 1 != 0) {
         do {
-          integerVar5 = FUN_1808dde10();
+          integerVar5 = ProcessSystemData();
           if (integerVar5 != 0) {
             return;
           }
@@ -17003,7 +17003,7 @@ void utilityTripTarget(void)
           if (integerVar5 != 0) {
             return;
           }
-          integerVar5 = FUN_1808de0e0();
+          integerVar5 = ExecuteSystemTask();
           if (integerVar5 != 0) {
             return;
           }
@@ -17034,7 +17034,7 @@ uint64 validateResourceAllocator(longlong resourceHandle,uint64 *memoryBlockBloc
 {
   uint64 functionResult;
   
-  functionResult = FUN_1808dde10(memoryBlockSize,0);
+  functionResult = ProcessSystemData(memoryBlockSize,0);
   if ((int)functionResult == 0) {
     if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
@@ -17045,9 +17045,9 @@ uint64 validateResourceAllocator(longlong resourceHandle,uint64 *memoryBlockBloc
         return BYTE_OFFSET_FLAG;
       }
       functionResult = rateUtilityEffectiveness(*memoryBlockBlockBlockSize,resourceHandle + FIELD_OFFSET_2);
-      if (((int)functionResult == 0) && (functionResult = FUN_1808de0e0(memoryBlockSize,0), (int)functionResult == 0)) {
+      if (((int)functionResult == 0) && (functionResult = ExecuteSystemTask(memoryBlockSize,0), (int)functionResult == 0)) {
         if ((0x6b < *(uint *)(memoryBlockSize + 8)) &&
-           (functionResult = FUN_1808a6150(memoryBlockSize,resourceHandle + STRUCT_OFFSET_SIZE,0), (int)functionResult != 0)) {
+           (functionResult = ProcessDataOperation2(memoryBlockSize,resourceHandle + STRUCT_OFFSET_SIZE,0), (int)functionResult != 0)) {
           return functionResult;
         }
         functionResult = 0;
@@ -17074,7 +17074,7 @@ void linkUtilityResources(longlong resourceHandle,uint64 *memoryBlockBlockBlockS
   uint arrayUnsignedStackX8 [2];
   uint unsignedStackArrayX20 [2];
   
-  unsignedStackArrayX20[0] = FUN_1808a5630(memoryBlockSize,resourceHandle,0);
+  unsignedStackArrayX20[0] = InitializeDataProcessor2(memoryBlockSize,resourceHandle,0);
   if (unsignedStackArrayX20[0] != 0) {
     return;
   }
@@ -17087,7 +17087,7 @@ void linkUtilityResources(longlong resourceHandle,uint64 *memoryBlockBlockBlockS
   validationResult1 = (int)*(uint *)(resourceHandle + BYTE_OFFSET_FLAG) >> ERROR_CODE_FAILED;
   validationResult2 = unsignedStackArrayX20[0] >> 1;
   if (((int)((*(uint *)(resourceHandle + BYTE_OFFSET_FLAG) ^ validationResult1) - validationResult1) < (int)validationResult2) &&
-     (operationStatus = FUN_180748010(resourceHandle + RESOURCE_HANDLE_OFFSET,validationResult2), operationStatus != 0)) {
+     (operationStatus = ValidateResourceHandle2(resourceHandle + RESOURCE_HANDLE_OFFSET,validationResult2), operationStatus != 0)) {
     return;
   }
   operationStatus = *(int *)(resourceHandle + RESOURCE_OFFSET_HANDLE);
@@ -17101,7 +17101,7 @@ void linkUtilityResources(longlong resourceHandle,uint64 *memoryBlockBlockBlockS
   operationStatus = 0;
   if (functionResult >> 1 != 0) {
     do {
-      dataLength = FUN_1808dde10(memoryBlockSize,arrayUnsignedStackX8[0]);
+      dataLength = ProcessSystemData(memoryBlockSize,arrayUnsignedStackX8[0]);
       if (dataLength != 0) {
         return;
       }
@@ -17114,7 +17114,7 @@ void linkUtilityResources(longlong resourceHandle,uint64 *memoryBlockBlockBlockS
       if (dataLength != 0) {
         return;
       }
-      dataLength = FUN_1808de0e0(memoryBlockSize,arrayUnsignedStackX8);
+      dataLength = ExecuteSystemTask(memoryBlockSize,arrayUnsignedStackX8);
       if (dataLength != 0) {
         return;
       }
@@ -17154,14 +17154,14 @@ void linkUtilityResources(longlong resourceHandle,uint64 *memoryBlockBlockBlockS
   }
 LAB_18089bfc7:
   if (operationFlags == 0) {
-    operationStatus = FUN_1808a84c0(resourceHandle,memoryBlockSize);
+    operationStatus = ProcessResourceData2(resourceHandle,memoryBlockSize);
   }
   else {
-    operationStatus = FUN_1808ad600(memoryBlockSize,resourceHandle + FIELD_OFFSET_1);
+    operationStatus = HandleResourceCallback2(memoryBlockSize,resourceHandle + FIELD_OFFSET_1);
     if (operationStatus != 0) {
       return;
     }
-    operationStatus = FUN_1808ad600(memoryBlockSize,resourceHandle + BUFFER_SIZE_OFFSET);
+    operationStatus = HandleResourceCallback2(memoryBlockSize,resourceHandle + BUFFER_SIZE_OFFSET);
   }
   if (operationStatus == 0) {
     cleanupFunction(resourceHandle);
@@ -17196,7 +17196,7 @@ void bridgeUtilityGaps(void)
   unsignedVar3 = (int)*(uint *)(unaff_R15 + BYTE_OFFSET_FLAG) >> ERROR_CODE_FAILED;
   validationResult1 = uStack0000000000000068 >> 1;
   if (((int)((*(uint *)(unaff_R15 + BYTE_OFFSET_FLAG) ^ unsignedVar3) - unsignedVar3) < (int)validationResult1) &&
-     (operationStatus = FUN_180748010(unaff_R15 + RESOURCE_HANDLE_OFFSET,validationResult1), localStatus != 0)) {
+     (operationStatus = ValidateResourceHandle2(unaff_R15 + RESOURCE_HANDLE_OFFSET,validationResult1), localStatus != 0)) {
     return;
   }
   operationStatus = *(int *)(unaff_R15 + RESOURCE_OFFSET_HANDLE);
@@ -17210,7 +17210,7 @@ void bridgeUtilityGaps(void)
   operationStatus = 0;
   if (uStack0000000000000068 >> 1 != 0) {
     do {
-      operationStatus = FUN_1808dde10();
+      operationStatus = ProcessSystemData();
       if (operationStatus != 0) {
         return;
       }
@@ -17223,7 +17223,7 @@ void bridgeUtilityGaps(void)
       if (operationStatus != 0) {
         return;
       }
-      operationStatus = FUN_1808de0e0();
+      operationStatus = ExecuteSystemTask();
       if (operationStatus != 0) {
         return;
       }
@@ -17263,14 +17263,14 @@ void bridgeUtilityGaps(void)
   }
 LAB_18089bfc7:
   if (unaff_R12D == 0) {
-    operationStatus = FUN_1808a84c0();
+    operationStatus = ProcessResourceData2();
   }
   else {
-    operationStatus = FUN_1808ad600();
+    operationStatus = HandleResourceCallback2();
     if (operationStatus != 0) {
       return;
     }
-    operationStatus = FUN_1808ad600();
+    operationStatus = HandleResourceCallback2();
   }
   if (operationStatus == 0) {
     cleanupFunction();
@@ -17319,7 +17319,7 @@ ulonglong ProcessDataValidation(longlong resourceHandle,uint64 *memoryBlockBlock
   longVar7 = (longlong)aiStackX_10[0];
   validationResult2 = (int)*(uint *)(resourceHandle + RESOURCE_DATA_OFFSET) >> ERROR_CODE_FAILED;
   if (((int)((*(uint *)(resourceHandle + RESOURCE_DATA_OFFSET) ^ validationResult2) - validationResult2) < aiStackX_10[0]) &&
-     (validationResult1 = FUN_180882f00(resourceHandle + 8,aiStackX_10[0]), (int)validationResult1 != 0)) {
+     (validationResult1 = InitializeTaskHandler2(resourceHandle + 8,aiStackX_10[0]), (int)validationResult1 != 0)) {
     return validationResult1;
   }
   operationStatus = *(int *)(resourceHandle + RESOURCE_HANDLE_OFFSET);
@@ -17350,7 +17350,7 @@ ulonglong ProcessDataValidation(longlong resourceHandle,uint64 *memoryBlockBlock
     }
   }
 LAB_18089c131:
-  validationResult1 = FUN_1808ad600(memoryBlockSize,resourceHandle + RESOURCE_OFFSET_HANDLE);
+  validationResult1 = HandleResourceCallback2(memoryBlockSize,resourceHandle + RESOURCE_OFFSET_HANDLE);
   if ((int)validationResult1 == 0) {
     if (*(uint *)(memoryBlockSize + 8) < 0x7c) {
       unsignedVar3 = 0;
@@ -17417,7 +17417,7 @@ ulonglong InitializeDataValidator(longlong resourceHandle,uint64 *memoryBlockBlo
   if ((int)unsignedVar7 != 0) {
     return unsignedVar7;
   }
-  piterationIndex = (uint32 *)FUN_180847820();
+  piterationIndex = (uint32 *)AllocateMemoryBlock();
   unsignedVar7 = 0;
   localUInt = *piterationIndex;
   localUInt = piterationIndex[1];
@@ -17449,7 +17449,7 @@ ulonglong InitializeDataValidator(longlong resourceHandle,uint64 *memoryBlockBlo
     return unsignedVar7;
   }
   if (0x81 < *(uint *)(memoryBlockSize + 8)) {
-    unsignedVar7 = FUN_1808a79f0(memoryBlockSize,resourceHandle + SYSTEM_OFFSET_STATUS1);
+    unsignedVar7 = InitializeSystemComponent(memoryBlockSize,resourceHandle + SYSTEM_OFFSET_STATUS1);
     if ((int)unsignedVar7 != 0) {
       return unsignedVar7;
     }
@@ -17458,7 +17458,7 @@ ulonglong InitializeDataValidator(longlong resourceHandle,uint64 *memoryBlockBlo
   if (*(uint *)(memoryBlockSize + 8) < 0x6a) {
     localPtr = (uint64 *)0x0;
     localUInt = 0;
-    unsignedVar6 = FUN_1808a54c0(memoryBlockSize,&localPtr,0);
+    unsignedVar6 = GetTaskStatus2(memoryBlockSize,&localPtr,0);
     unsignedVar7 = (ulonglong)unsignedVar6;
     if (unsignedVar6 != 0) {
 LAB_18089c40a:
@@ -17485,7 +17485,7 @@ LAB_18089c40a:
         if (localStatus3 < 0) {
           resourceDataBuffer1 = (longlong)localStatus3 * RESOURCE_OFFSET_HANDLE + RESOURCE_DATA_OFFSET + (longlong)localPtr;
           do {
-            piterationIndex = (uint32 *)FUN_180847820();
+            piterationIndex = (uint32 *)AllocateMemoryBlock();
             unsignedCounter = piterationIndex[1];
             unsignedVar3 = piterationIndex[2];
             validationResult1 = piterationIndex[3];
@@ -17507,7 +17507,7 @@ LAB_18089c40a:
       if (unsignedVar9 == 0) {
         return unsignedVar7;
       }
-      FUN_1808aef40(&localPtr,0);
+      ExecuteResourceTask2(&localPtr,0);
       return unsignedVar7;
     }
     if ((int)localUInt == 0) {
@@ -17517,7 +17517,7 @@ LAB_18089c40a:
       unsignedVar6 = (int)*(uint *)(resourceHandle + SYSTEM_OFFSET_STATUS2) >> ERROR_CODE_FAILED;
       preturnValue0 = localPtr;
       if ((int)((*(uint *)(resourceHandle + SYSTEM_OFFSET_STATUS2) ^ unsignedVar6) - unsignedVar6) < (int)localUInt) {
-        unsignedVar6 = FUN_180883750(resourceHandle + BUFFER_OFFSET_DATA,localUInt & INVALID_HANDLE);
+        unsignedVar6 = ValidateResourceSize2(resourceHandle + BUFFER_OFFSET_DATA,localUInt & INVALID_HANDLE);
         unsignedVar7 = (ulonglong)unsignedVar6;
         preturnValue0 = localPtr;
         if (unsignedVar6 != 0) goto LAB_18089c40a;
@@ -17525,7 +17525,7 @@ LAB_18089c40a:
       for (; (localStatus3 = (int)localUInt, localPtr <= preturnValue0 &&
              (preturnValue0 < localPtr + (longlong)localStatus3 * 3)); preturnValue0 = preturnValue0 + 3) {
         puStackX_18 = (uint64 *)0x0;
-        unsignedVar6 = FUN_1808aec50(resourceHandle + BUFFER_OFFSET_DATA,&puStackX_18);
+        unsignedVar6 = ProcessResourceRequest2(resourceHandle + BUFFER_OFFSET_DATA,&puStackX_18);
         unsignedVar7 = (ulonglong)unsignedVar6;
         if (unsignedVar6 != 0) goto LAB_18089c40a;
         functionResult = preturnValue0[1];
@@ -17557,7 +17557,7 @@ LAB_18089c40a:
       if (localStatus3 < 0) {
         resourceDataBuffer1 = (longlong)localStatus3 * RESOURCE_OFFSET_HANDLE + RESOURCE_DATA_OFFSET + (longlong)localPtr;
         do {
-          piterationIndex = (uint32 *)FUN_180847820();
+          piterationIndex = (uint32 *)AllocateMemoryBlock();
           unsignedCounter = piterationIndex[1];
           unsignedVar3 = piterationIndex[2];
           validationResult1 = piterationIndex[3];
@@ -17577,11 +17577,11 @@ LAB_18089c40a:
       unsignedVar9 = -unsignedVar9;
     }
     if (unsignedVar9 != 0) {
-      FUN_1808aef40(&localPtr,0);
+      ExecuteResourceTask2(&localPtr,0);
     }
   }
   else {
-    unsignedVar7 = FUN_1808a5780(memoryBlockSize,resourceHandle + BUFFER_OFFSET_DATA);
+    unsignedVar7 = InitializeResourceProcessor2(memoryBlockSize,resourceHandle + BUFFER_OFFSET_DATA);
     if ((int)unsignedVar7 != 0) {
       return unsignedVar7;
     }
@@ -17591,7 +17591,7 @@ LAB_18089c586:
       (*(ulonglong *)(resourceHandle + BUFFER_OFFSET_DATA) <= unsignedVar7 &&
       (unsignedVar7 < (longlong)*(int *)(resourceHandle + LIST_OFFSET_HEAD) * BYTE_OFFSET_FLAG + *(ulonglong *)(resourceHandle + BUFFER_OFFSET_DATA)));
       unsignedVar7 = unsignedVar7 + BYTE_OFFSET_FLAG) {
-    FUN_1807d3e20(resourceHandle + SYSTEM_OFFSET_STATUS1);
+    GetResourceStatus2(resourceHandle + SYSTEM_OFFSET_STATUS1);
   }
 LAB_18089c300:
   if ((0x70 < *(uint *)(memoryBlockSize + 8)) && (validationResult2 = BYTE_OFFSET_FLAG, *(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0)) {
@@ -17650,7 +17650,7 @@ uint64 * ProcessValidationRequest(void)
   if ((int)pfunctionResult1 != 0) {
     return pfunctionResult1;
   }
-  pfunctionResult2 = (uint32 *)FUN_180847820();
+  pfunctionResult2 = (uint32 *)AllocateMemoryBlock();
   pfunctionResult1 = (uint64 *)0x0;
   unsignedVar9 = *(uint *)(unaff_RDI + 8);
   currentUnsignedSize = *pfunctionResult2;
@@ -17689,7 +17689,7 @@ uint64 * ProcessValidationRequest(void)
     return pfunctionResult3;
   }
   if (0x81 < *(uint *)(unaff_RDI + 8)) {
-    pfunctionResult1 = (uint64 *)FUN_1808a79f0(currentUnsignedSize,unaff_RSI + SYSTEM_OFFSET_STATUS1);
+    pfunctionResult1 = (uint64 *)InitializeSystemComponent(currentUnsignedSize,unaff_RSI + SYSTEM_OFFSET_STATUS1);
     floatVar21 = extraout_XMM0_Da_00;
     if ((int)pfunctionResult1 != 0) {
       return pfunctionResult1;
@@ -17699,7 +17699,7 @@ uint64 * ProcessValidationRequest(void)
   if (*(uint *)(unaff_RDI + 8) < 0x6a) {
     *(uint64 *)(unaff_RBP + -BYTE_OFFSET_1) = 0;
     *(uint64 *)(unaff_RBP + -0x21) = 0;
-    unsignedVar9 = FUN_1808a54c0(currentUnsignedSize,unaff_RBP + -BYTE_OFFSET_1,0);
+    unsignedVar9 = GetTaskStatus2(currentUnsignedSize,unaff_RBP + -BYTE_OFFSET_1,0);
     pfunctionResult3 = (uint64 *)(ulonglong)unsignedVar9;
     if (unsignedVar9 != 0) {
 LAB_18089c40a:
@@ -17730,7 +17730,7 @@ LAB_18089c40a:
         if (localStatus9 < 0) {
           resourceDataBuffer7 = (longlong)localStatus9 * RESOURCE_OFFSET_HANDLE + RESOURCE_DATA_OFFSET + (longlong)pfunctionResult1;
           do {
-            pfunctionResult2 = (uint32 *)FUN_180847820();
+            pfunctionResult2 = (uint32 *)AllocateMemoryBlock();
             currentUnsignedSize = pfunctionResult2[1];
             unsignedCounter = pfunctionResult2[2];
             unsignedVar3 = pfunctionResult2[3];
@@ -17752,7 +17752,7 @@ LAB_18089c40a:
       if (unsignedVar9 == 0) {
         return pfunctionResult3;
       }
-      FUN_1808aef40(unaff_RBP + -BYTE_OFFSET_1,0);
+      ExecuteResourceTask2(unaff_RBP + -BYTE_OFFSET_1,0);
       return pfunctionResult3;
     }
     localStatus9 = *(int *)(unaff_RBP + -0x21);
@@ -17763,7 +17763,7 @@ LAB_18089c40a:
     else {
       unsignedVar9 = (int)*(uint *)(unaff_RSI + SYSTEM_OFFSET_STATUS2) >> ERROR_CODE_FAILED;
       if ((int)((*(uint *)(unaff_RSI + SYSTEM_OFFSET_STATUS2) ^ unsignedVar9) - unsignedVar9) < localStatus9) {
-        unsignedVar9 = FUN_180883750(unaff_RSI + BUFFER_OFFSET_DATA,localStatus9);
+        unsignedVar9 = ValidateResourceSize2(unaff_RSI + BUFFER_OFFSET_DATA,localStatus9);
         pfunctionResult3 = (uint64 *)(ulonglong)unsignedVar9;
         if (unsignedVar9 != 0) goto LAB_18089c40a;
         localStatus9 = *(int *)(unaff_RBP + -0x21);
@@ -17773,7 +17773,7 @@ LAB_18089c40a:
       for (preturnValue6 = pfunctionResult3; (pfunctionResult3 <= preturnValue6 && (preturnValue6 < pfunctionResult3 + (longlong)localStatus9 * 3));
           preturnValue6 = preturnValue6 + 3) {
         *(uint64 *)(unaff_RBP + 0x77) = 0;
-        unsignedVar9 = FUN_1808aec50(unaff_RSI + BUFFER_OFFSET_DATA,unaff_RBP + 0x77);
+        unsignedVar9 = ProcessResourceRequest2(unaff_RSI + BUFFER_OFFSET_DATA,unaff_RBP + 0x77);
         pfunctionResult3 = (uint64 *)(ulonglong)unsignedVar9;
         if (unsignedVar9 != 0) goto LAB_18089c40a;
         functionResult = preturnValue6[1];
@@ -17809,7 +17809,7 @@ LAB_18089c40a:
       if (localStatus9 < 0) {
         resourceDataBuffer7 = (longlong)localStatus9 * RESOURCE_OFFSET_HANDLE + RESOURCE_DATA_OFFSET + (longlong)pfunctionResult3;
         do {
-          pfVar14 = (float *)FUN_180847820();
+          pfVar14 = (float *)AllocateMemoryBlock();
           floatVar21 = *pfVar14;
           floatVar5 = pfVar14[1];
           floatVar6 = pfVar14[2];
@@ -17830,11 +17830,11 @@ LAB_18089c40a:
       unsignedVar9 = -unsignedVar9;
     }
     if (unsignedVar9 != 0) {
-      floatVar21 = (float)FUN_1808aef40(unaff_RBP + -BYTE_OFFSET_1,0);
+      floatVar21 = (float)ExecuteResourceTask2(unaff_RBP + -BYTE_OFFSET_1,0);
     }
   }
   else {
-    pfunctionResult1 = (uint64 *)FUN_1808a5780(currentUnsignedSize,unaff_RSI + BUFFER_OFFSET_DATA);
+    pfunctionResult1 = (uint64 *)InitializeResourceProcessor2(currentUnsignedSize,unaff_RSI + BUFFER_OFFSET_DATA);
     floatVar21 = extraout_XMM0_Da_02;
     if ((int)pfunctionResult1 != 0) {
       return pfunctionResult1;
@@ -17845,7 +17845,7 @@ LAB_18089c586:
       (*(ulonglong *)(unaff_RSI + BUFFER_OFFSET_DATA) <= functionResult5 &&
       (functionResult5 < (longlong)*(int *)(unaff_RSI + LIST_OFFSET_HEAD) * BYTE_OFFSET_FLAG + *(ulonglong *)(unaff_RSI + BUFFER_OFFSET_DATA)));
       functionResult5 = functionResult5 + BYTE_OFFSET_FLAG) {
-    floatVar21 = (float)FUN_1807d3e20(unaff_RSI + SYSTEM_OFFSET_STATUS1);
+    floatVar21 = (float)GetResourceStatus2(unaff_RSI + SYSTEM_OFFSET_STATUS1);
   }
 LAB_18089c300:
   if ((0x70 < *(uint *)(unaff_RDI + 8)) && (iterationIndex = BYTE_OFFSET_FLAG, *(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0)) {
@@ -17897,7 +17897,7 @@ uint64 * HandleValidationCallback(void)
   float extraout_XMM0_Da_04;
   float floatVar21;
   
-  pfunctionResult1 = (uint32 *)FUN_180847820();
+  pfunctionResult1 = (uint32 *)AllocateMemoryBlock();
   pfunctionResult3 = (uint64 *)0x0;
   unsignedVar9 = *(uint *)(unaff_RDI + 8);
   currentUnsignedSize = *pfunctionResult1;
@@ -17936,7 +17936,7 @@ uint64 * HandleValidationCallback(void)
     return pfunctionResult2;
   }
   if (0x81 < *(uint *)(unaff_RDI + 8)) {
-    pfunctionResult3 = (uint64 *)FUN_1808a79f0(currentUnsignedSize,unaff_RSI + SYSTEM_OFFSET_STATUS1);
+    pfunctionResult3 = (uint64 *)InitializeSystemComponent(currentUnsignedSize,unaff_RSI + SYSTEM_OFFSET_STATUS1);
     floatVar21 = extraout_XMM0_Da_00;
     if ((int)pfunctionResult3 != 0) {
       return pfunctionResult3;
@@ -17946,7 +17946,7 @@ uint64 * HandleValidationCallback(void)
   if (*(uint *)(unaff_RDI + 8) < 0x6a) {
     *(uint64 *)(unaff_RBP + -BYTE_OFFSET_1) = 0;
     *(uint64 *)(unaff_RBP + -0x21) = 0;
-    unsignedVar9 = FUN_1808a54c0(currentUnsignedSize,unaff_RBP + -BYTE_OFFSET_1,0);
+    unsignedVar9 = GetTaskStatus2(currentUnsignedSize,unaff_RBP + -BYTE_OFFSET_1,0);
     pfunctionResult2 = (uint64 *)(ulonglong)unsignedVar9;
     if (unsignedVar9 != 0) {
 LAB_18089c40a:
@@ -17977,7 +17977,7 @@ LAB_18089c40a:
         if (localStatus9 < 0) {
           resourceDataBuffer7 = (longlong)localStatus9 * RESOURCE_OFFSET_HANDLE + RESOURCE_DATA_OFFSET + (longlong)pfunctionResult3;
           do {
-            pfunctionResult1 = (uint32 *)FUN_180847820();
+            pfunctionResult1 = (uint32 *)AllocateMemoryBlock();
             currentUnsignedSize = pfunctionResult1[1];
             unsignedCounter = pfunctionResult1[2];
             unsignedVar3 = pfunctionResult1[3];
@@ -17999,7 +17999,7 @@ LAB_18089c40a:
       if (unsignedVar9 == 0) {
         return pfunctionResult2;
       }
-      FUN_1808aef40(unaff_RBP + -BYTE_OFFSET_1,0);
+      ExecuteResourceTask2(unaff_RBP + -BYTE_OFFSET_1,0);
       return pfunctionResult2;
     }
     localStatus9 = *(int *)(unaff_RBP + -0x21);
@@ -18010,7 +18010,7 @@ LAB_18089c40a:
     else {
       unsignedVar9 = (int)*(uint *)(unaff_RSI + SYSTEM_OFFSET_STATUS2) >> ERROR_CODE_FAILED;
       if ((int)((*(uint *)(unaff_RSI + SYSTEM_OFFSET_STATUS2) ^ unsignedVar9) - unsignedVar9) < localStatus9) {
-        unsignedVar9 = FUN_180883750(unaff_RSI + BUFFER_OFFSET_DATA,localStatus9);
+        unsignedVar9 = ValidateResourceSize2(unaff_RSI + BUFFER_OFFSET_DATA,localStatus9);
         pfunctionResult2 = (uint64 *)(ulonglong)unsignedVar9;
         if (unsignedVar9 != 0) goto LAB_18089c40a;
         localStatus9 = *(int *)(unaff_RBP + -0x21);
@@ -18020,7 +18020,7 @@ LAB_18089c40a:
       for (preturnValue6 = pfunctionResult2; (pfunctionResult2 <= preturnValue6 && (preturnValue6 < pfunctionResult2 + (longlong)localStatus9 * 3));
           preturnValue6 = preturnValue6 + 3) {
         *(uint64 *)(unaff_RBP + 0x77) = 0;
-        unsignedVar9 = FUN_1808aec50(unaff_RSI + BUFFER_OFFSET_DATA,unaff_RBP + 0x77);
+        unsignedVar9 = ProcessResourceRequest2(unaff_RSI + BUFFER_OFFSET_DATA,unaff_RBP + 0x77);
         pfunctionResult2 = (uint64 *)(ulonglong)unsignedVar9;
         if (unsignedVar9 != 0) goto LAB_18089c40a;
         functionResult = preturnValue6[1];
@@ -18056,7 +18056,7 @@ LAB_18089c40a:
       if (localStatus9 < 0) {
         resourceDataBuffer7 = (longlong)localStatus9 * RESOURCE_OFFSET_HANDLE + RESOURCE_DATA_OFFSET + (longlong)pfunctionResult2;
         do {
-          pfVar14 = (float *)FUN_180847820();
+          pfVar14 = (float *)AllocateMemoryBlock();
           floatVar21 = *pfVar14;
           floatVar5 = pfVar14[1];
           floatVar6 = pfVar14[2];
@@ -18077,11 +18077,11 @@ LAB_18089c40a:
       unsignedVar9 = -unsignedVar9;
     }
     if (unsignedVar9 != 0) {
-      floatVar21 = (float)FUN_1808aef40(unaff_RBP + -BYTE_OFFSET_1,0);
+      floatVar21 = (float)ExecuteResourceTask2(unaff_RBP + -BYTE_OFFSET_1,0);
     }
   }
   else {
-    pfunctionResult3 = (uint64 *)FUN_1808a5780(currentUnsignedSize,unaff_RSI + BUFFER_OFFSET_DATA);
+    pfunctionResult3 = (uint64 *)InitializeResourceProcessor2(currentUnsignedSize,unaff_RSI + BUFFER_OFFSET_DATA);
     floatVar21 = extraout_XMM0_Da_02;
     if ((int)pfunctionResult3 != 0) {
       return pfunctionResult3;
@@ -18092,7 +18092,7 @@ LAB_18089c586:
       (*(ulonglong *)(unaff_RSI + BUFFER_OFFSET_DATA) <= functionResult5 &&
       (functionResult5 < (longlong)*(int *)(unaff_RSI + LIST_OFFSET_HEAD) * BYTE_OFFSET_FLAG + *(ulonglong *)(unaff_RSI + BUFFER_OFFSET_DATA)));
       functionResult5 = functionResult5 + BYTE_OFFSET_FLAG) {
-    floatVar21 = (float)FUN_1807d3e20(unaff_RSI + SYSTEM_OFFSET_STATUS1);
+    floatVar21 = (float)GetResourceStatus2(unaff_RSI + SYSTEM_OFFSET_STATUS1);
   }
 LAB_18089c300:
   if ((0x70 < *(uint *)(unaff_RDI + 8)) && (iterationIndex = BYTE_OFFSET_FLAG, *(int *)(unaff_RDI[1] + RESOURCE_OFFSET_HANDLE) == 0)) {
@@ -18147,7 +18147,7 @@ ulonglong ValidateDataIntegrity(uint64 resourceHandle)
   
   iterationIndex = (uint)unaff_R12;
   if (0x81 < in_EAX) {
-    functionResult1 = FUN_1808a79f0(resourceHandle,unaff_RSI + SYSTEM_OFFSET_STATUS1);
+    functionResult1 = InitializeSystemComponent(resourceHandle,unaff_RSI + SYSTEM_OFFSET_STATUS1);
     floatVar20 = extraout_XMM0_Da;
     if ((int)functionResult1 != 0) {
       return functionResult1;
@@ -18157,7 +18157,7 @@ ulonglong ValidateDataIntegrity(uint64 resourceHandle)
   if (in_EAX < 0x6a) {
     *(uint64 **)(unaff_RBP + -BYTE_OFFSET_1) = unaff_R12;
     *(uint64 **)(unaff_RBP + -0x21) = unaff_R12;
-    unsignedVar9 = FUN_1808a54c0(resourceHandle,unaff_RBP + -BYTE_OFFSET_1,0);
+    unsignedVar9 = GetTaskStatus2(resourceHandle,unaff_RBP + -BYTE_OFFSET_1,0);
     functionResult1 = (ulonglong)unsignedVar9;
     if (unsignedVar9 != 0) {
 LAB_18089c40a:
@@ -18189,7 +18189,7 @@ LAB_18089c40a:
         if (localStatus8 < 0) {
           resourceDataBuffer6 = (longlong)localStatus8 * RESOURCE_OFFSET_HANDLE + RESOURCE_DATA_OFFSET + (longlong)pfunctionResult4;
           do {
-            pfunctionResult2 = (uint32 *)FUN_180847820();
+            pfunctionResult2 = (uint32 *)AllocateMemoryBlock();
             functionResult = pfunctionResult2[1];
             unsignedCounter = pfunctionResult2[2];
             unsignedVar3 = pfunctionResult2[3];
@@ -18211,7 +18211,7 @@ LAB_18089c40a:
       if (unsignedVar9 == 0) {
         return functionResult1;
       }
-      FUN_1808aef40(unaff_RBP + -BYTE_OFFSET_1,0);
+      ExecuteResourceTask2(unaff_RBP + -BYTE_OFFSET_1,0);
       return functionResult1;
     }
     localStatus8 = *(int *)(unaff_RBP + -0x21);
@@ -18222,7 +18222,7 @@ LAB_18089c40a:
     else {
       unsignedVar9 = (int)*(uint *)(unaff_RSI + SYSTEM_OFFSET_STATUS2) >> ERROR_CODE_FAILED;
       if ((int)((*(uint *)(unaff_RSI + SYSTEM_OFFSET_STATUS2) ^ unsignedVar9) - unsignedVar9) < localStatus8) {
-        unsignedVar9 = FUN_180883750(unaff_RSI + BUFFER_OFFSET_DATA,localStatus8);
+        unsignedVar9 = ValidateResourceSize2(unaff_RSI + BUFFER_OFFSET_DATA,localStatus8);
         functionResult1 = (ulonglong)unsignedVar9;
         if (unsignedVar9 != 0) goto LAB_18089c40a;
         localStatus8 = *(int *)(unaff_RBP + -0x21);
@@ -18232,7 +18232,7 @@ LAB_18089c40a:
       for (preturnValue5 = pfunctionResult4; (pfunctionResult4 <= preturnValue5 && (preturnValue5 < pfunctionResult4 + (longlong)localStatus8 * 3));
           preturnValue5 = preturnValue5 + 3) {
         *(uint64 **)(unaff_RBP + 0x77) = unaff_R12;
-        unsignedVar9 = FUN_1808aec50(unaff_RSI + BUFFER_OFFSET_DATA,unaff_RBP + 0x77);
+        unsignedVar9 = ProcessResourceRequest2(unaff_RSI + BUFFER_OFFSET_DATA,unaff_RBP + 0x77);
         functionResult1 = (ulonglong)unsignedVar9;
         if (unsignedVar9 != 0) goto LAB_18089c40a;
         unsignedVar7 = preturnValue5[1];
@@ -18268,7 +18268,7 @@ LAB_18089c40a:
       if (localStatus8 < 0) {
         resourceDataBuffer6 = (longlong)localStatus8 * RESOURCE_OFFSET_HANDLE + RESOURCE_DATA_OFFSET + (longlong)pfunctionResult4;
         do {
-          pfVar13 = (float *)FUN_180847820();
+          pfVar13 = (float *)AllocateMemoryBlock();
           floatVar20 = *pfVar13;
           floatVar4 = pfVar13[1];
           floatVar5 = pfVar13[2];
@@ -18289,11 +18289,11 @@ LAB_18089c40a:
       unsignedVar9 = -unsignedVar9;
     }
     if (unsignedVar9 != 0) {
-      floatVar20 = (float)FUN_1808aef40(unaff_RBP + -BYTE_OFFSET_1,0);
+      floatVar20 = (float)ExecuteResourceTask2(unaff_RBP + -BYTE_OFFSET_1,0);
     }
   }
   else {
-    functionResult1 = FUN_1808a5780(resourceHandle,unaff_RSI + BUFFER_OFFSET_DATA);
+    functionResult1 = InitializeResourceProcessor2(resourceHandle,unaff_RSI + BUFFER_OFFSET_DATA);
     floatVar20 = extraout_XMM0_Da_01;
     if ((int)functionResult1 != 0) {
       return functionResult1;
@@ -18304,7 +18304,7 @@ LAB_18089c586:
       (*(ulonglong *)(unaff_RSI + BUFFER_OFFSET_DATA) <= functionResult1 &&
       (functionResult1 < (longlong)*(int *)(unaff_RSI + LIST_OFFSET_HEAD) * BYTE_OFFSET_FLAG + *(ulonglong *)(unaff_RSI + BUFFER_OFFSET_DATA)));
       functionResult1 = functionResult1 + BYTE_OFFSET_FLAG) {
-    floatVar20 = (float)FUN_1807d3e20(unaff_RSI + SYSTEM_OFFSET_STATUS1);
+    floatVar20 = (float)GetResourceStatus2(unaff_RSI + SYSTEM_OFFSET_STATUS1);
   }
 LAB_18089c300:
   if ((0x70 < *(uint *)(unaff_RDI + 8)) &&
@@ -18509,7 +18509,7 @@ LAB_18089c878:
   if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  unsignedVar3 = FUN_1808a2740(*memoryBlockBlockBlockSize,resourceHandle + LIST_OFFSET_HEAD);
+  unsignedVar3 = ProcessSystemRequest2(*memoryBlockBlockBlockSize,resourceHandle + LIST_OFFSET_HEAD);
   if ((int)unsignedVar3 != 0) {
     return unsignedVar3;
   }
@@ -18664,18 +18664,18 @@ LAB_18089cbf6:
     if ((int)unsignedVar3 == 0) {
       iterationIndex = unsignedStackArrayX20[0] & 1;
       unsignedVar9 = unsignedStackArrayX20[0] >> 1;
-      unsignedVar3 = FUN_1808af8b0(resourceHandle + DATA_OFFSET_START,unsignedVar9);
+      unsignedVar3 = InitializeRequestHandler2(resourceHandle + DATA_OFFSET_START,unsignedVar9);
       if ((int)unsignedVar3 == 0) {
         unsignedStackArrayX18[0] = 0;
         unsignedVar3 = unsignedVar6;
         if (validationResult2 >> 1 != 0) {
           do {
-            unsignedVar3 = FUN_1808dde10(memoryBlockSize,unsignedVar3);
+            unsignedVar3 = ProcessSystemData(memoryBlockSize,unsignedVar3);
             if ((int)unsignedVar3 != 0) {
               return unsignedVar3;
             }
             if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-              unsignedVar3 = FUN_1808a2740(*memoryBlockBlockBlockSize,(longlong)(int)unsignedVar6 * RESOURCE_HANDLE_OFFSET +
+              unsignedVar3 = ProcessSystemRequest2(*memoryBlockBlockBlockSize,(longlong)(int)unsignedVar6 * RESOURCE_HANDLE_OFFSET +
                                              *(longlong *)(resourceHandle + DATA_OFFSET_START));
             }
             else {
@@ -18684,7 +18684,7 @@ LAB_18089cbf6:
             if ((int)unsignedVar3 != 0) {
               return unsignedVar3;
             }
-            unsignedVar3 = FUN_1808de0e0(memoryBlockSize,unsignedStackArrayX18);
+            unsignedVar3 = ExecuteSystemTask(memoryBlockSize,unsignedStackArrayX18);
             if ((int)unsignedVar3 != 0) {
               return unsignedVar3;
             }
@@ -18861,7 +18861,7 @@ LAB_18089c878:
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  validationResult1 = FUN_1808a2740(*baseRegister,unaff_R13 + LIST_OFFSET_HEAD);
+  validationResult1 = ProcessSystemRequest2(*baseRegister,unaff_R13 + LIST_OFFSET_HEAD);
   if ((int)validationResult1 != 0) {
     return validationResult1;
   }
@@ -19022,7 +19022,7 @@ LAB_18089cad8:
       return validationResult1;
     }
     validationResult2 = *(uint *)(unaff_RBP + 0x7f);
-    validationResult1 = FUN_1808af8b0(unaff_R13 + DATA_OFFSET_START,validationResult2 >> 1);
+    validationResult1 = InitializeRequestHandler2(unaff_R13 + DATA_OFFSET_START,validationResult2 >> 1);
     if ((int)validationResult1 != 0) {
       return validationResult1;
     }
@@ -19031,12 +19031,12 @@ LAB_18089cad8:
     floatVar9 = extraout_XMM0_Da_06;
     if (validationResult2 >> 1 != 0) {
       do {
-        validationResult1 = FUN_1808dde10(floatVar9,validationResult1);
+        validationResult1 = ProcessSystemData(floatVar9,validationResult1);
         if ((int)validationResult1 != 0) {
           return validationResult1;
         }
         if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-          validationResult1 = FUN_1808a2740(*baseRegister,
+          validationResult1 = ProcessSystemRequest2(*baseRegister,
                                 (longlong)(int)unsignedVar7 * RESOURCE_HANDLE_OFFSET + *(longlong *)(unaff_R13 + DATA_OFFSET_START));
           functionResult = extraout_XMM0_Da_08;
         }
@@ -19047,7 +19047,7 @@ LAB_18089cad8:
         if ((int)validationResult1 != 0) {
           return validationResult1;
         }
-        validationResult1 = FUN_1808de0e0(functionResult,unaff_RBP + 0x77);
+        validationResult1 = ExecuteSystemTask(functionResult,unaff_RBP + 0x77);
         if ((int)validationResult1 != 0) {
           return validationResult1;
         }
@@ -19106,7 +19106,7 @@ ulonglong GetIntegrityStatus(void)
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  validationResult2 = FUN_1808a2740(*baseRegister,unaff_R13 + LIST_OFFSET_HEAD);
+  validationResult2 = ProcessSystemRequest2(*baseRegister,unaff_R13 + LIST_OFFSET_HEAD);
   if ((int)validationResult2 != 0) {
     return validationResult2;
   }
@@ -19271,7 +19271,7 @@ LAB_18089cad8:
       return validationResult2;
     }
     validationResult1 = *(uint *)(unaff_RBP + 0x7f);
-    validationResult2 = FUN_1808af8b0(unaff_R13 + DATA_OFFSET_START,validationResult1 >> 1);
+    validationResult2 = InitializeRequestHandler2(unaff_R13 + DATA_OFFSET_START,validationResult1 >> 1);
     if ((int)validationResult2 != 0) {
       return validationResult2;
     }
@@ -19280,12 +19280,12 @@ LAB_18089cad8:
     floatVar12 = extraout_XMM0_Da_06;
     if (validationResult1 >> 1 != 0) {
       do {
-        unsignedVar6 = FUN_1808dde10(floatVar12,unaff_RDI & INVALID_HANDLE);
+        unsignedVar6 = ProcessSystemData(floatVar12,unaff_RDI & INVALID_HANDLE);
         if ((int)unsignedVar6 != 0) {
           return unsignedVar6;
         }
         if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-          unsignedVar6 = FUN_1808a2740(*baseRegister,
+          unsignedVar6 = ProcessSystemRequest2(*baseRegister,
                                 (longlong)(int)validationResult2 * RESOURCE_HANDLE_OFFSET + *(longlong *)(unaff_R13 + DATA_OFFSET_START));
           functionResult3 = extraout_XMM0_Da_08;
         }
@@ -19296,7 +19296,7 @@ LAB_18089cad8:
         if ((int)unsignedVar6 != 0) {
           return unsignedVar6;
         }
-        unsignedVar6 = FUN_1808de0e0(functionResult3,unaff_RBP + 0x77);
+        unsignedVar6 = ExecuteSystemTask(functionResult3,unaff_RBP + 0x77);
         if ((int)unsignedVar6 != 0) {
           return unsignedVar6;
         }
@@ -19356,7 +19356,7 @@ ulonglong ValidateIntegrityData(void)
   if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  validationResult2 = FUN_1808a2740(*baseRegister,unaff_R13 + LIST_OFFSET_HEAD);
+  validationResult2 = ProcessSystemRequest2(*baseRegister,unaff_R13 + LIST_OFFSET_HEAD);
   if ((int)validationResult2 != 0) {
     return validationResult2;
   }
@@ -19521,7 +19521,7 @@ LAB_18089cad8:
       return validationResult2;
     }
     validationResult1 = *(uint *)(unaff_RBP + 0x7f);
-    validationResult2 = FUN_1808af8b0(unaff_R13 + DATA_OFFSET_START,validationResult1 >> 1);
+    validationResult2 = InitializeRequestHandler2(unaff_R13 + DATA_OFFSET_START,validationResult1 >> 1);
     if ((int)validationResult2 != 0) {
       return validationResult2;
     }
@@ -19530,12 +19530,12 @@ LAB_18089cad8:
     floatVar12 = extraout_XMM0_Da_06;
     if (validationResult1 >> 1 != 0) {
       do {
-        unsignedVar6 = FUN_1808dde10(floatVar12,unaff_RDI & INVALID_HANDLE);
+        unsignedVar6 = ProcessSystemData(floatVar12,unaff_RDI & INVALID_HANDLE);
         if ((int)unsignedVar6 != 0) {
           return unsignedVar6;
         }
         if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-          unsignedVar6 = FUN_1808a2740(*baseRegister,
+          unsignedVar6 = ProcessSystemRequest2(*baseRegister,
                                 (longlong)(int)validationResult2 * RESOURCE_HANDLE_OFFSET + *(longlong *)(unaff_R13 + DATA_OFFSET_START));
           functionResult3 = extraout_XMM0_Da_08;
         }
@@ -19546,7 +19546,7 @@ LAB_18089cad8:
         if ((int)unsignedVar6 != 0) {
           return unsignedVar6;
         }
-        unsignedVar6 = FUN_1808de0e0(functionResult3,unaff_RBP + 0x77);
+        unsignedVar6 = ExecuteSystemTask(functionResult3,unaff_RBP + 0x77);
         if ((int)unsignedVar6 != 0) {
           return unsignedVar6;
         }
@@ -19727,7 +19727,7 @@ LAB_18089cbf6:
     unsignedVar6 = getResourceSize(tempDataBuffer,unaff_RBP + 0x7f);
     if ((int)unsignedVar6 == 0) {
       validationResult1 = *(uint *)(unaff_RBP + 0x7f);
-      unsignedVar6 = FUN_1808af8b0(unaff_R13 + DATA_OFFSET_START,validationResult1 >> 1);
+      unsignedVar6 = InitializeRequestHandler2(unaff_R13 + DATA_OFFSET_START,validationResult1 >> 1);
       if ((int)unsignedVar6 == 0) {
         *(int *)(unaff_RBP + 0x77) = newCapacity;
         unsignedVar6 = unaff_RDI & INVALID_HANDLE;
@@ -19735,12 +19735,12 @@ LAB_18089cbf6:
         floatVar13 = extraout_XMM0_Da_05;
         if (validationResult1 >> 1 != 0) {
           do {
-            validationResult2 = FUN_1808dde10(floatVar13,unaff_RDI & INVALID_HANDLE);
+            validationResult2 = ProcessSystemData(floatVar13,unaff_RDI & INVALID_HANDLE);
             if ((int)validationResult2 != 0) {
               return validationResult2;
             }
             if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-              validationResult2 = FUN_1808a2740(*baseRegister,
+              validationResult2 = ProcessSystemRequest2(*baseRegister,
                                     (longlong)(int)unsignedVar6 * RESOURCE_HANDLE_OFFSET + *(longlong *)(unaff_R13 + DATA_OFFSET_START));
               functionResult4 = extraout_XMM0_Da_07;
             }
@@ -19751,7 +19751,7 @@ LAB_18089cbf6:
             if ((int)validationResult2 != 0) {
               return validationResult2;
             }
-            validationResult2 = FUN_1808de0e0(functionResult4,unaff_RBP + 0x77);
+            validationResult2 = ExecuteSystemTask(functionResult4,unaff_RBP + 0x77);
             if ((int)validationResult2 != 0) {
               return validationResult2;
             }
@@ -19846,7 +19846,7 @@ LAB_18089cd46:
     if (0x3ff < unsignedStackArrayX18[0]) {
       return 0xd;
     }
-    unsignedVar3 = FUN_1808af280(resourceHandle + BUFFER_OFFSET_DATA);
+    unsignedVar3 = ProcessTaskOperation2(resourceHandle + BUFFER_OFFSET_DATA);
     if ((int)unsignedVar3 == 0) goto LAB_18089cd76;
   }
   else {
@@ -19859,7 +19859,7 @@ LAB_18089cd76:
   iterationCounter = 0;
   if (0 < (int)unsignedStackArrayX18[0]) {
     do {
-      unsignedVar3 = FUN_1808acb90(resourceHandle,memoryBlockSize,iterationCounter);
+      unsignedVar3 = GetOperationStatus2(resourceHandle,memoryBlockSize,iterationCounter);
       if ((int)unsignedVar3 != 0) {
         return unsignedVar3;
       }
@@ -19921,7 +19921,7 @@ LAB_18089cd46:
     if (0x3ff < in_stack_00000080) {
       return 0xd;
     }
-    unsignedVar3 = FUN_1808af280(unaff_RBP + BUFFER_OFFSET_DATA);
+    unsignedVar3 = ProcessTaskOperation2(unaff_RBP + BUFFER_OFFSET_DATA);
     if ((int)unsignedVar3 == 0) goto LAB_18089cd76;
   }
   else {
@@ -19934,7 +19934,7 @@ LAB_18089cd76:
   iterationCounter = 0;
   if (0 < (int)in_stack_00000080) {
     do {
-      unsignedVar3 = FUN_1808acb90();
+      unsignedVar3 = GetOperationStatus2();
       if ((int)unsignedVar3 != 0) {
         return unsignedVar3;
       }
@@ -20064,7 +20064,7 @@ LAB_18089cf93:
   if ((int)unsignedCounter != 0) {
     return unsignedCounter;
   }
-  unsignedCounter = FUN_1808a5150(memoryBlockSize,resourceHandle,0);
+  unsignedCounter = GetRequestStatus2(memoryBlockSize,resourceHandle,0);
   if ((int)unsignedCounter != 0) {
     return unsignedCounter;
   }
@@ -20184,7 +20184,7 @@ LAB_18089cf93:
   if ((int)unsignedCounter != 0) {
     return unsignedCounter;
   }
-  unsignedCounter = FUN_1808a5150();
+  unsignedCounter = GetRequestStatus2();
   if ((int)unsignedCounter != 0) {
     return unsignedCounter;
   }
@@ -20329,7 +20329,7 @@ ulonglong ProcessStatusRequest(longlong resourceHandle,uint64 *memoryBlockBlockB
   if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  functionResult = FUN_1808a2740(*memoryBlockBlockBlockSize,resourceHandle + DATA_OFFSET_START);
+  functionResult = ProcessSystemRequest2(*memoryBlockBlockBlockSize,resourceHandle + DATA_OFFSET_START);
   unsignedCounter = (ulonglong)functionResult;
   if (functionResult == 0) {
     unsignedCounter = BYTE_OFFSET_FLAG;
@@ -20339,7 +20339,7 @@ ulonglong ProcessStatusRequest(longlong resourceHandle,uint64 *memoryBlockBlockB
     else {
       unsignedVar3 = unsignedCounter;
       if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-        unsignedVar3 = FUN_1808a2740(*memoryBlockBlockBlockSize,resourceHandle + 0x70);
+        unsignedVar3 = ProcessSystemRequest2(*memoryBlockBlockBlockSize,resourceHandle + 0x70);
       }
     }
     if ((int)unsignedVar3 != 0) {
@@ -20375,7 +20375,7 @@ ulonglong InitializeStatusHandler(void)
   if (*(int *)(inputRegister + RESOURCE_OFFSET_HANDLE) != 0) {
     return BYTE_OFFSET_FLAG;
   }
-  functionResult = FUN_1808a2740(*baseRegister,unaff_RSI + DATA_OFFSET_START);
+  functionResult = ProcessSystemRequest2(*baseRegister,unaff_RSI + DATA_OFFSET_START);
   unsignedVar3 = (ulonglong)functionResult;
   if (functionResult == 0) {
     unsignedVar3 = BYTE_OFFSET_FLAG;
@@ -20385,7 +20385,7 @@ ulonglong InitializeStatusHandler(void)
     else {
       unsignedCounter = unsignedVar3;
       if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-        unsignedCounter = FUN_1808a2740(*baseRegister,unaff_RSI + 0x70);
+        unsignedCounter = ProcessSystemRequest2(*baseRegister,unaff_RSI + 0x70);
       }
     }
     if ((int)unsignedCounter != 0) {
@@ -20417,7 +20417,7 @@ ulonglong GetStatusResult(void)
   longlong unaff_RSI;
   ulonglong unsignedVar3;
   
-  functionResult = FUN_1808a2740(*baseRegister,unaff_RSI + DATA_OFFSET_START);
+  functionResult = ProcessSystemRequest2(*baseRegister,unaff_RSI + DATA_OFFSET_START);
   unsignedVar3 = (ulonglong)functionResult;
   if (functionResult == 0) {
     unsignedVar3 = BYTE_OFFSET_FLAG;
@@ -20427,7 +20427,7 @@ ulonglong GetStatusResult(void)
     else {
       unsignedCounter = unsignedVar3;
       if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
-        unsignedCounter = FUN_1808a2740(*baseRegister,unaff_RSI + 0x70);
+        unsignedCounter = ProcessSystemRequest2(*baseRegister,unaff_RSI + 0x70);
       }
     }
     if ((int)unsignedCounter != 0) {
@@ -20489,7 +20489,7 @@ uint64 ProcessSystemValidation(uint64 resourceHandle,longlong *memoryBlockBlockB
     return unsignedVar3;
   }
   aiStackX_18[0] = 0;
-  unsignedVar3 = FUN_1808de650(memoryBlockSize,aiStackX_18);
+  unsignedVar3 = ProcessOperationRequest2(memoryBlockSize,aiStackX_18);
   if ((int)unsignedVar3 == 0x12) {
 LAB_18089d455:
                     // WARNING: Subroutine does not return
@@ -20528,7 +20528,7 @@ LAB_18089d455:
 LAB_18089d378:
   if ((int)unsignedVar3 == 0) {
     lStack_60 = 0;
-    unsignedVar3 = FUN_1808b0490(resourceHandle,localBuffer[0],&lStack_60);
+    unsignedVar3 = InitializeOperationSystem2(resourceHandle,localBuffer[0],&lStack_60);
     tempDataBuffer = lStack_60;
     if ((int)unsignedVar3 != 0) {
       return unsignedVar3;
@@ -20547,7 +20547,7 @@ LAB_18089d378:
         if ((int)unsignedVar3 != 0) {
           return unsignedVar3;
         }
-        unsignedVar3 = FUN_1808a79f0(memoryBlockSize,tempDataBuffer + POINTER_OFFSET_DATA);
+        unsignedVar3 = InitializeSystemComponent(memoryBlockSize,tempDataBuffer + POINTER_OFFSET_DATA);
         if ((int)unsignedVar3 != 0) {
           return unsignedVar3;
         }
@@ -20588,7 +20588,7 @@ uint64 InitializeSystemValidator(void)
   uint in_stack_000000b8;
   
   iStack00000000000000b0 = 0;
-  unsignedVar3 = FUN_1808de650();
+  unsignedVar3 = ProcessOperationRequest2();
   if ((int)unsignedVar3 == 0x12) {
 LAB_18089d455:
                     // WARNING: Subroutine does not return
@@ -20627,7 +20627,7 @@ LAB_18089d455:
 LAB_18089d378:
   if ((int)unsignedVar3 == 0) {
     in_stack_00000038 = 0;
-    unsignedVar3 = FUN_1808b0490();
+    unsignedVar3 = InitializeOperationSystem2();
     tempDataBuffer = in_stack_00000038;
     if ((int)unsignedVar3 != 0) {
       return unsignedVar3;
@@ -20646,7 +20646,7 @@ LAB_18089d378:
         if ((int)unsignedVar3 != 0) {
           return unsignedVar3;
         }
-        unsignedVar3 = FUN_1808a79f0();
+        unsignedVar3 = InitializeSystemComponent();
         if ((int)unsignedVar3 != 0) {
           return unsignedVar3;
         }
@@ -20697,7 +20697,7 @@ uint64 processBufferData(longlong resourceHandle,uint64 *memoryBlockBlockBlockSi
 {
   uint64 functionResult;
   
-  functionResult = FUN_1808dde10(memoryBlockSize,0);
+  functionResult = ProcessSystemData(memoryBlockSize,0);
   if ((int)functionResult == 0) {
     if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
@@ -20709,7 +20709,7 @@ uint64 processBufferData(longlong resourceHandle,uint64 *memoryBlockBlockBlockSi
       }
       functionResult = writeResourceData(*memoryBlockBlockBlockSize,resourceHandle + STRUCT_MULTIPLIER,4);
       if ((int)functionResult == 0) {
-        functionResult = FUN_1808de0e0(memoryBlockSize,0);
+        functionResult = ExecuteSystemTask(memoryBlockSize,0);
       }
     }
   }
@@ -21535,15 +21535,15 @@ ulonglong ProcessResourceOperation2(longlong resourceHandle,longlong *memoryBloc
   validationResult2 = unsignedVar7;
   if (unsignedVar6 != 0) {
     do {
-      unsignedCounter = FUN_1808dde10(memoryBlockSize,unsignedCounter);
+      unsignedCounter = ProcessSystemData(memoryBlockSize,unsignedCounter);
       if ((int)unsignedCounter != 0) {
         return unsignedCounter;
       }
-      unsignedCounter = FUN_1808a8120(memoryBlockSize,resourceHandle + FIELD_OFFSET_1,validationResult2,resourceHandle);
+      unsignedCounter = InitializeTaskOperator2(memoryBlockSize,resourceHandle + FIELD_OFFSET_1,validationResult2,resourceHandle);
       if ((int)unsignedCounter != 0) {
         return unsignedCounter;
       }
-      unsignedCounter = FUN_1808de0e0(memoryBlockSize,unsignedStackArrayX18);
+      unsignedCounter = ExecuteSystemTask(memoryBlockSize,unsignedStackArrayX18);
       if ((int)unsignedCounter != 0) {
         return unsignedCounter;
       }
@@ -21640,15 +21640,15 @@ ulonglong InitializeResourceOperator(void)
   unsignedCounter = unsignedVar7;
   if (unsignedVar6 != 0) {
     do {
-      unsignedVar3 = FUN_1808dde10();
+      unsignedVar3 = ProcessSystemData();
       if ((int)unsignedVar3 != 0) {
         return unsignedVar3;
       }
-      unsignedVar3 = FUN_1808a8120();
+      unsignedVar3 = InitializeTaskOperator2();
       if ((int)unsignedVar3 != 0) {
         return unsignedVar3;
       }
-      unsignedVar3 = FUN_1808de0e0();
+      unsignedVar3 = ExecuteSystemTask();
       if ((int)unsignedVar3 != 0) {
         return unsignedVar3;
       }
@@ -21740,15 +21740,15 @@ ulonglong GetOperationResult2(void)
   unsignedCounter = unsignedVar7;
   if (unsignedVar6 != 0) {
     do {
-      unsignedVar3 = FUN_1808dde10();
+      unsignedVar3 = ProcessSystemData();
       if ((int)unsignedVar3 != 0) {
         return unsignedVar3;
       }
-      unsignedVar3 = FUN_1808a8120();
+      unsignedVar3 = InitializeTaskOperator2();
       if ((int)unsignedVar3 != 0) {
         return unsignedVar3;
       }
-      unsignedVar3 = FUN_1808de0e0();
+      unsignedVar3 = ExecuteSystemTask();
       if ((int)unsignedVar3 != 0) {
         return unsignedVar3;
       }
@@ -21836,15 +21836,15 @@ ulonglong ValidateOperationData2(void)
   unsignedCounter = unsignedVar7;
   if (unsignedVar6 != 0) {
     do {
-      unsignedVar3 = FUN_1808dde10();
+      unsignedVar3 = ProcessSystemData();
       if ((int)unsignedVar3 != 0) {
         return unsignedVar3;
       }
-      unsignedVar3 = FUN_1808a8120();
+      unsignedVar3 = InitializeTaskOperator2();
       if ((int)unsignedVar3 != 0) {
         return unsignedVar3;
       }
-      unsignedVar3 = FUN_1808de0e0();
+      unsignedVar3 = ExecuteSystemTask();
       if ((int)unsignedVar3 != 0) {
         return unsignedVar3;
       }
@@ -21939,7 +21939,7 @@ ulonglong ProcessSystemOperation2(longlong resourceHandle,uint64 *memoryBlockBlo
   if ((((int)validationResult1 == 0) &&
       (validationResult1 = createResourceBuffer(memoryBlockSize,localBuffer,0,0x424e4c54), (int)validationResult1 == 0)) &&
      (validationResult1 = assessUtilityQuality(memoryBlockSize,resourceHandle + RESOURCE_HANDLE_OFFSET), (int)validationResult1 == 0)) {
-    pvalidationResult2 = (uint32 *)FUN_180847820();
+    pvalidationResult2 = (uint32 *)AllocateMemoryBlock();
     validationResult1 = 0;
     localUInt = *pvalidationResult2;
     localUInt = pvalidationResult2[1];
@@ -21966,8 +21966,8 @@ ulonglong ProcessSystemOperation2(longlong resourceHandle,uint64 *memoryBlockBlo
         validationResult1 = BYTE_OFFSET_FLAG;
       }
     }
-    if ((((int)validationResult1 == 0) && (validationResult1 = FUN_1808a5a90(memoryBlockSize,resourceHandle + STRUCT_OFFSET_SIZE,0), (int)validationResult1 == 0)) &&
-       (validationResult1 = FUN_1808a5a90(memoryBlockSize,resourceHandle + BUFFER_OFFSET_DATA,0), (int)validationResult1 == 0)) {
+    if ((((int)validationResult1 == 0) && (validationResult1 = ProcessDataValidation3(memoryBlockSize,resourceHandle + STRUCT_OFFSET_SIZE,0), (int)validationResult1 == 0)) &&
+       (validationResult1 = ProcessDataValidation3(memoryBlockSize,resourceHandle + BUFFER_OFFSET_DATA,0), (int)validationResult1 == 0)) {
       if (*(uint *)(memoryBlockSize + 8) < 0x84) {
         localPtr = (uint32 *)0x0;
         localUInt = 0;
@@ -21975,7 +21975,7 @@ ulonglong ProcessSystemOperation2(longlong resourceHandle,uint64 *memoryBlockBlo
         validationResult1 = (ulonglong)unsignedVar3;
         if (unsignedVar3 != 0) {
 LAB_18089e70b:
-          FUN_18084c150(&localPtr);
+          InitializeDataValidator3(&localPtr);
           return validationResult1;
         }
         pvalidationResult2 = localPtr;
@@ -21999,16 +21999,16 @@ LAB_18089e70b:
             if (unsignedVar3 != 0) goto LAB_18089e70b;
           }
         }
-        FUN_18084c150(&localPtr);
+        InitializeDataValidator3(&localPtr);
       }
       else {
-        validationResult1 = FUN_1808a71c0(memoryBlockSize,resourceHandle + SYSTEM_OFFSET_STATUS1);
+        validationResult1 = ProcessValidationRequest2(memoryBlockSize,resourceHandle + SYSTEM_OFFSET_STATUS1);
         if ((int)validationResult1 != 0) {
           return validationResult1;
         }
       }
-      validationResult1 = FUN_1808ad9d0(memoryBlockSize,resourceHandle + HANDLE_OFFSET_DATA,0);
-      if (((int)validationResult1 == 0) && (validationResult1 = FUN_1808a62d0(memoryBlockSize,resourceHandle + 0x88,0), (int)validationResult1 == 0)) {
+      validationResult1 = HandleValidationCallback2(memoryBlockSize,resourceHandle + HANDLE_OFFSET_DATA,0);
+      if (((int)validationResult1 == 0) && (validationResult1 = ValidateDataIntegrity2(memoryBlockSize,resourceHandle + 0x88,0), (int)validationResult1 == 0)) {
                     // WARNING: Subroutine does not return
         freeResourceBuffer(memoryBlockSize,localBuffer);
       }
@@ -22045,7 +22045,7 @@ ulonglong InitializeSystemOperator(void)
   uint32 extraout_XMM0_Da_03;
   uint32 extraout_XMM0_Da_04;
   
-  pointerVar7 = (uint32 *)FUN_180847820();
+  pointerVar7 = (uint32 *)AllocateMemoryBlock();
   iterationIndex = 0;
   validationResult2 = *(uint *)(unaff_RDI + 8);
   functionResult1 = *pointerVar7;
@@ -22078,8 +22078,8 @@ ulonglong InitializeSystemOperator(void)
       iterationIndex = BYTE_OFFSET_FLAG;
     }
   }
-  if ((((int)iterationIndex == 0) && (iterationIndex = FUN_1808a5a90(functionResult1,unaff_R15 + STRUCT_OFFSET_SIZE,0), (int)iterationIndex == 0)) &&
-     (iterationIndex = FUN_1808a5a90(extraout_XMM0_Da_00,unaff_R15 + BUFFER_OFFSET_DATA,0), (int)iterationIndex == 0)) {
+  if ((((int)iterationIndex == 0) && (iterationIndex = ProcessDataValidation3(functionResult1,unaff_R15 + STRUCT_OFFSET_SIZE,0), (int)iterationIndex == 0)) &&
+     (iterationIndex = ProcessDataValidation3(extraout_XMM0_Da_00,unaff_R15 + BUFFER_OFFSET_DATA,0), (int)iterationIndex == 0)) {
     if (*(uint *)(unaff_RDI + 8) < 0x84) {
       *(uint64 *)(unaff_RBP + -BYTE_OFFSET_1) = 0;
       *(uint64 *)(unaff_RBP + -0x21) = 0;
@@ -22087,7 +22087,7 @@ ulonglong InitializeSystemOperator(void)
       iterationIndex = (ulonglong)validationResult2;
       if (validationResult2 != 0) {
 LAB_18089e70b:
-        FUN_18084c150(unaff_RBP + -BYTE_OFFSET_1);
+        InitializeDataValidator3(unaff_RBP + -BYTE_OFFSET_1);
         return iterationIndex;
       }
       integerVar6 = *(int *)(unaff_RBP + -0x21);
@@ -22114,18 +22114,18 @@ LAB_18089e70b:
           pointerVar7 = *(uint32 **)(unaff_RBP + -BYTE_OFFSET_1);
         }
       }
-      functionResult1 = FUN_18084c150(unaff_RBP + -BYTE_OFFSET_1);
+      functionResult1 = InitializeDataValidator3(unaff_RBP + -BYTE_OFFSET_1);
     }
     else {
-      iterationIndex = FUN_1808a71c0(extraout_XMM0_Da_01,unaff_R15 + SYSTEM_OFFSET_STATUS1);
+      iterationIndex = ProcessValidationRequest2(extraout_XMM0_Da_01,unaff_R15 + SYSTEM_OFFSET_STATUS1);
       functionResult1 = extraout_XMM0_Da_02;
       if ((int)iterationIndex != 0) {
         return iterationIndex;
       }
     }
-    iterationIndex = FUN_1808ad9d0(functionResult1,unaff_R15 + HANDLE_OFFSET_DATA,0);
+    iterationIndex = HandleValidationCallback2(functionResult1,unaff_R15 + HANDLE_OFFSET_DATA,0);
     if (((int)iterationIndex == 0) &&
-       (iterationIndex = FUN_1808a62d0(extraout_XMM0_Da_03,unaff_R15 + 0x88,0), (int)iterationIndex == 0)) {
+       (iterationIndex = ValidateDataIntegrity2(extraout_XMM0_Da_03,unaff_R15 + 0x88,0), (int)iterationIndex == 0)) {
                     // WARNING: Subroutine does not return
       freeResourceBuffer(extraout_XMM0_Da_04,unaff_RBP + 7);
     }
@@ -22159,7 +22159,7 @@ ulonglong GetSystemStatus(void)
     validationResult1 = (ulonglong)unsignedCounter;
     if (unsignedCounter != 0) {
 LAB_18089e70b:
-      FUN_18084c150(unaff_RBP + -BYTE_OFFSET_1);
+      InitializeDataValidator3(unaff_RBP + -BYTE_OFFSET_1);
       return validationResult1;
     }
     dataLength = *(int *)(unaff_RBP + -0x21);
@@ -22184,16 +22184,16 @@ LAB_18089e70b:
         punsignedVar6 = *(uint32 **)(unaff_RBP + -BYTE_OFFSET_1);
       }
     }
-    FUN_18084c150(unaff_RBP + -BYTE_OFFSET_1);
+    InitializeDataValidator3(unaff_RBP + -BYTE_OFFSET_1);
   }
   else {
-    validationResult1 = FUN_1808a71c0();
+    validationResult1 = ProcessValidationRequest2();
     if ((int)validationResult1 != 0) {
       return validationResult1;
     }
   }
-  validationResult1 = FUN_1808ad9d0();
-  if (((int)validationResult1 == 0) && (validationResult1 = FUN_1808a62d0(), (int)validationResult1 == 0)) {
+  validationResult1 = HandleValidationCallback2();
+  if (((int)validationResult1 == 0) && (validationResult1 = ValidateDataIntegrity2(), (int)validationResult1 == 0)) {
                     // WARNING: Subroutine does not return
     freeResourceBuffer();
   }
@@ -22290,7 +22290,7 @@ ulonglong InitializeSystemChecker(longlong resourceHandle,longlong *memoryBlockB
   if (unsignedVar3 != 0) {
     return (ulonglong)unsignedVar3;
   }
-  validationResult1 = FUN_1808ad130(resourceHandle,memoryBlockSize);
+  validationResult1 = ProcessIntegrityCheck2(resourceHandle,memoryBlockSize);
   if ((int)validationResult1 != 0) {
     return validationResult1;
   }
@@ -22585,7 +22585,7 @@ ulonglong GetCheckResult(void)
   if (unsignedVar3 != 0) {
     return (ulonglong)unsignedVar3;
   }
-  validationResult1 = FUN_1808ad130();
+  validationResult1 = ProcessIntegrityCheck2();
   if ((int)validationResult1 != 0) {
     return validationResult1;
   }
@@ -23163,7 +23163,7 @@ uint64 ValidateCheckData(longlong resourceHandle,uint64 *memoryBlockBlockBlockSi
        (unsignedCounter = createResourceBuffer(memoryBlockSize,localBuffer,0,0x42494157), (int)unsignedCounter == 0)) &&
       (unsignedCounter = assessUtilityQuality(memoryBlockSize,resourceHandle + RESOURCE_HANDLE_OFFSET), (int)unsignedCounter == 0)) &&
      ((0x45 < *(uint *)(memoryBlockSize + 8) ||
-      (unsignedCounter = FUN_1808a2d50(memoryBlockSize,resourceHandle + 0xd8), (int)unsignedCounter == 0)))) {
+      (unsignedCounter = InitializeIntegritySystem2(memoryBlockSize,resourceHandle + 0xd8), (int)unsignedCounter == 0)))) {
     if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
     }
@@ -23305,7 +23305,7 @@ uint64 ProcessIntegrityOperation(longlong resourceHandle,longlong *memoryBlockBl
              (functionResult = CheckResourceCapacity(memoryBlockSize,resourceHandle + 0x70), (int)functionResult == 0)) &&
             ((functionResult = CheckResourceCapacity(memoryBlockSize,resourceHandle + 0x74), (int)functionResult == 0 &&
              (functionResult = CheckResourceCapacity(memoryBlockSize,resourceHandle + HANDLE_OFFSET_DATA), (int)functionResult == 0)))))) {
-          functionResult = FUN_1808a7c40(memoryBlockSize,resourceHandle + 0x5c,0x74);
+          functionResult = HandleOperationCallback2(memoryBlockSize,resourceHandle + 0x5c,0x74);
         }
       }
     }
@@ -23323,14 +23323,14 @@ uint64 InitializeIntegrityOperator(longlong resourceHandle,longlong *memoryBlock
   byte localBuffer [64];
   byte localBuffer [32];
   
-  functionResult = FUN_1808ddd30(memoryBlockSize,localBuffer,1,0x5453494c,0x46464542);
+  functionResult = ValidateOperationHandle2(memoryBlockSize,localBuffer,1,0x5453494c,0x46464542);
   if (((int)functionResult == 0) &&
-     (functionResult = FUN_1808ddd30(memoryBlockSize,localBuffer,0,0x42464542,0), (int)functionResult == 0)) {
+     (functionResult = ValidateOperationHandle2(memoryBlockSize,localBuffer,0,0x42464542,0), (int)functionResult == 0)) {
     if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       functionResult = discoverUtilityComponents(*memoryBlockBlockBlockSize,resourceHandle + RESOURCE_HANDLE_OFFSET);
       if (((int)functionResult == 0) &&
          ((0x5a < *(uint *)(memoryBlockSize + 8) ||
-          (functionResult = FUN_1808afd90(memoryBlockSize,resourceHandle + RESOURCE_CONFIG_OFFSET), (int)functionResult == 0)))) {
+          (functionResult = InitializeOperationValidator2(memoryBlockSize,resourceHandle + RESOURCE_CONFIG_OFFSET), (int)functionResult == 0)))) {
         if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
           switch(*(uint32 *)(resourceHandle + DATA_OFFSET_START)) {
           default:
@@ -23447,9 +23447,9 @@ uint64 InitializeIntegrityOperator(longlong resourceHandle,longlong *memoryBlock
           functionResult = (**(code **)**(uint64 **)(*memoryBlockBlockBlockSize + 8))
                             (*(uint64 **)(*memoryBlockBlockBlockSize + 8),unsignedStackArrayX18,4);
           if (((int)functionResult == 0) &&
-             (functionResult = FUN_1808a7c90(memoryBlockSize,resourceHandle + BUFFER_SIZE_OFFSET,0x3d), (int)functionResult == 0)) {
+             (functionResult = GetIntegrityStatus2(memoryBlockSize,resourceHandle + BUFFER_SIZE_OFFSET,0x3d), (int)functionResult == 0)) {
                     // WARNING: Subroutine does not return
-            FUN_1808de000(memoryBlockSize,localBuffer);
+            ProcessCallbackRequest2(memoryBlockSize,localBuffer);
           }
         }
         else {
@@ -23478,7 +23478,7 @@ uint64 GetIntegrityResult2(void)
   if (*(int *)(inputRegister + RESOURCE_OFFSET_HANDLE) == 0) {
     functionResult = discoverUtilityComponents(*baseRegister,unaff_RSI + RESOURCE_HANDLE_OFFSET);
     if (((int)functionResult == 0) &&
-       ((0x5a < *(uint *)(baseRegister + 8) || (functionResult = FUN_1808afd90(), (int)functionResult == 0)))) {
+       ((0x5a < *(uint *)(baseRegister + 8) || (functionResult = InitializeOperationValidator2(), (int)functionResult == 0)))) {
       if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
         switch(*(uint32 *)(unaff_RSI + DATA_OFFSET_START)) {
         default:
@@ -23594,9 +23594,9 @@ uint64 GetIntegrityResult2(void)
         }
         functionResult = (**(code **)**(uint64 **)(*baseRegister + 8))
                           (*(uint64 **)(*baseRegister + 8),&stack0x000000b0,4);
-        if (((int)functionResult == 0) && (functionResult = FUN_1808a7c90(), (int)functionResult == 0)) {
+        if (((int)functionResult == 0) && (functionResult = GetIntegrityStatus2(), (int)functionResult == 0)) {
                     // WARNING: Subroutine does not return
-          FUN_1808de000();
+          ProcessCallbackRequest2();
         }
       }
       else {
@@ -23627,7 +23627,7 @@ void ValidateIntegrityData2(void)
   
   if (in_EAX == 0x1b) {
     if (*(uint *)(baseRegister + 8) < 0x3b) {
-      operationStatus = FUN_1808a87d0();
+      operationStatus = InitializeCallbackHandler2();
       if (operationStatus != 0) {
         return;
       }
@@ -23635,7 +23635,7 @@ void ValidateIntegrityData2(void)
     }
   }
   else if ((in_EAX == 0x12) && (*(uint *)(baseRegister + 8) < BUFFER_SIZE_OFFSET)) {
-    operationStatus = FUN_1808ddd30();
+    operationStatus = ValidateOperationHandle2();
     if (operationStatus != 0) {
       return;
     }
@@ -23650,7 +23650,7 @@ void ValidateIntegrityData2(void)
     }
     operationStatus = 0;
     do {
-      operationStatus = FUN_1808acf30();
+      operationStatus = GetCallbackState2();
       if (operationStatus != 0) {
         return;
       }
@@ -23668,15 +23668,15 @@ void ValidateIntegrityData2(void)
       return;
     }
                     // WARNING: Subroutine does not return
-    FUN_1808de000();
+    ProcessCallbackRequest2();
   }
-  operationStatus = FUN_1808a1090();
+  operationStatus = ValidateCallbackData2();
   if (operationStatus != 0) {
     return;
   }
 LAB_18089f45f:
                     // WARNING: Subroutine does not return
-  FUN_1808de000();
+  ProcessCallbackRequest2();
 }
 
 
@@ -23710,16 +23710,16 @@ ulonglong ProcessSystemTask(longlong resourceHandle,uint64 *memoryBlockBlockBloc
   byte localBuffer [64];
   byte localBuffer [40];
   
-  unsignedCounter = FUN_1808ddd30(memoryBlockSize,localBuffer,1,0x5453494c,operationFlags);
-  if (((int)unsignedCounter == 0) && (unsignedCounter = FUN_1808ddd30(memoryBlockSize,localBuffer,0,callbackFunction,0), (int)unsignedCounter == 0))
+  unsignedCounter = ValidateOperationHandle2(memoryBlockSize,localBuffer,1,0x5453494c,operationFlags);
+  if (((int)unsignedCounter == 0) && (unsignedCounter = ValidateOperationHandle2(memoryBlockSize,localBuffer,0,callbackFunction,0), (int)unsignedCounter == 0))
   {
     if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       functionResult = discoverUtilityComponents(*memoryBlockBlockBlockSize,resourceHandle + RESOURCE_HANDLE_OFFSET);
       unsignedCounter = (ulonglong)functionResult;
       if ((functionResult == 0) &&
-         ((param_5 == '\0' || (unsignedCounter = FUN_1808a1870(resourceHandle + BUFFER_OFFSET_DATA,memoryBlockSize), (int)unsignedCounter == 0)))) {
+         ((param_5 == '\0' || (unsignedCounter = HandleSystemOperation3(resourceHandle + BUFFER_OFFSET_DATA,memoryBlockSize), (int)unsignedCounter == 0)))) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000(memoryBlockSize,localBuffer);
+        ProcessCallbackRequest2(memoryBlockSize,localBuffer);
       }
     }
     else {
@@ -23740,16 +23740,16 @@ ulonglong InitializeTaskHandler(void)
   longlong unaff_RBP;
   char in_stack_000000d0;
   
-  unsignedCounter = FUN_1808ddd30();
+  unsignedCounter = ValidateOperationHandle2();
   if ((int)unsignedCounter == 0) {
     if (*(int *)(baseRegister[1] + RESOURCE_OFFSET_HANDLE) == 0) {
       functionResult = discoverUtilityComponents(*baseRegister,unaff_RBP + RESOURCE_HANDLE_OFFSET);
       unsignedCounter = (ulonglong)functionResult;
       if ((functionResult == 0) &&
-         ((in_stack_000000d0 == '\0' || (unsignedCounter = FUN_1808a1870(unaff_RBP + BUFFER_OFFSET_DATA), (int)unsignedCounter == 0)))
+         ((in_stack_000000d0 == '\0' || (unsignedCounter = HandleSystemOperation3(unaff_RBP + BUFFER_OFFSET_DATA), (int)unsignedCounter == 0)))
          ) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000();
+        ProcessCallbackRequest2();
       }
     }
     else {
@@ -23779,9 +23779,9 @@ uint64 ProcessTaskOperation(longlong resourceHandle,longlong *memoryBlockBlockBl
   byte localBuffer [32];
   byte localBuffer [32];
   
-  functionResult = FUN_1808ddd30(memoryBlockSize,localBuffer,1,0x5453494c,0x49444d43);
+  functionResult = ValidateOperationHandle2(memoryBlockSize,localBuffer,1,0x5453494c,0x49444d43);
   if (((int)functionResult == 0) &&
-     (functionResult = FUN_1808ddd30(memoryBlockSize,localBuffer,0,0x42444d43,0), (int)functionResult == 0)) {
+     (functionResult = ValidateOperationHandle2(memoryBlockSize,localBuffer,0,0x42444d43,0), (int)functionResult == 0)) {
     if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
     }
@@ -23799,9 +23799,9 @@ uint64 ProcessTaskOperation(longlong resourceHandle,longlong *memoryBlockBlockBl
         }
         functionResult = discoverUtilityComponents(*memoryBlockBlockBlockSize,resourceHandle + 0xdc);
         if (((int)functionResult == 0) &&
-           (functionResult = FUN_1808a7c40(memoryBlockSize,resourceHandle + 0xec,BUFFER_OFFSET_TEMP), (int)functionResult == 0)) {
+           (functionResult = HandleOperationCallback2(memoryBlockSize,resourceHandle + 0xec,BUFFER_OFFSET_TEMP), (int)functionResult == 0)) {
                     // WARNING: Subroutine does not return
-          FUN_1808de000(memoryBlockSize,localBuffer);
+          ProcessCallbackRequest2(memoryBlockSize,localBuffer);
         }
       }
     }
@@ -23827,12 +23827,12 @@ ulonglong InitializeTaskOperator(longlong resourceHandle,longlong *memoryBlockBl
   uint32 localUInt;
   byte localBuffer [40];
   
-  pointerVar3 = (uint32 *)FUN_180847820();
+  pointerVar3 = (uint32 *)AllocateMemoryBlock();
   localUInt = *pointerVar3;
   localUInt = pointerVar3[1];
   localUInt = pointerVar3[2];
   localUInt = pointerVar3[3];
-  validationResult1 = FUN_1808ddd30(memoryBlockSize,localBuffer,0,0x4c525443,0);
+  validationResult1 = ValidateOperationHandle2(memoryBlockSize,localBuffer,0,0x4c525443,0);
   if ((int)validationResult1 != 0) {
     return validationResult1;
   }
@@ -23880,7 +23880,7 @@ ulonglong InitializeTaskOperator(longlong resourceHandle,longlong *memoryBlockBl
               return validationResult1;
             }
                     // WARNING: Subroutine does not return
-            FUN_1808de000(memoryBlockSize,localBuffer);
+            ProcessCallbackRequest2(memoryBlockSize,localBuffer);
           }
         }
       }
@@ -23954,7 +23954,7 @@ ulonglong GetOperationResult3(void)
           unsignedVar3 = GetResourceCapacity();
           if ((int)unsignedVar3 == 0) {
                     // WARNING: Subroutine does not return
-            FUN_1808de000();
+            ProcessCallbackRequest2();
           }
           return unsignedVar3;
         }
@@ -24020,7 +24020,7 @@ ulonglong ValidateOperationData3(void)
           return unsignedVar3;
         }
                     // WARNING: Subroutine does not return
-        FUN_1808de000();
+        ProcessCallbackRequest2();
       }
     }
   }
@@ -24068,7 +24068,7 @@ ulonglong ProcessDataValidation2(void)
       unsignedVar3 = GetResourceCapacity();
       if ((int)unsignedVar3 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000();
+        ProcessCallbackRequest2();
       }
       return unsignedVar3;
     }
@@ -24098,7 +24098,7 @@ ulonglong InitializeDataValidator2(void)
       unsignedCounter = GetResourceCapacity();
       if ((int)unsignedCounter == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000();
+        ProcessCallbackRequest2();
       }
       return unsignedCounter;
     }
@@ -24124,7 +24124,7 @@ ulonglong GetValidationResult3(void)
       unsignedCounter = GetResourceCapacity();
       if ((int)unsignedCounter == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000();
+        ProcessCallbackRequest2();
       }
       return unsignedCounter;
     }
@@ -24135,8 +24135,8 @@ ulonglong GetValidationResult3(void)
 
 
 
-// 函数: void FUN_18089fb06(void)
-void FUN_18089fb06(void)
+// 函数: void InitializeSystemModule18(void)
+void InitializeSystemModule18(void)
 
 {
   int operationStatus;
@@ -24144,7 +24144,7 @@ void FUN_18089fb06(void)
   operationStatus = GetResourceCapacity();
   if (operationStatus == 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808de000();
+    ProcessCallbackRequest2();
   }
   return;
 }
@@ -24152,8 +24152,8 @@ void FUN_18089fb06(void)
 
 
 
-// 函数: void FUN_18089fb2b(void)
-void FUN_18089fb2b(void)
+// 函数: void InitializeSystemModule19(void)
+void InitializeSystemModule19(void)
 
 {
   return;
@@ -24162,19 +24162,19 @@ void FUN_18089fb2b(void)
 
 
 
-// 函数: void FUN_18089fb40(longlong resourceHandle,uint64 memoryBlockSize)
-void FUN_18089fb40(longlong resourceHandle,uint64 memoryBlockSize)
+// 函数: void InitializeSystemModule20(longlong resourceHandle,uint64 memoryBlockSize)
+void InitializeSystemModule20(longlong resourceHandle,uint64 memoryBlockSize)
 
 {
   int operationStatus;
   byte localBuffer [32];
   
-  operationStatus = FUN_1808ddd30(memoryBlockSize,localBuffer,0,0x4f525443,0);
+  operationStatus = ValidateOperationHandle2(memoryBlockSize,localBuffer,0,0x4f525443,0);
   if (operationStatus == 0) {
     operationStatus = FUN_1808a7b00(memoryBlockSize,resourceHandle + 8);
     if (operationStatus == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808de000(memoryBlockSize,localBuffer);
+      ProcessCallbackRequest2(memoryBlockSize,localBuffer);
     }
   }
   return;
@@ -24188,7 +24188,7 @@ uint64 FUN_18089fba0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
   uint64 functionResult;
   byte localBuffer [32];
   
-  functionResult = FUN_1808ddd30(memoryBlockSize,localBuffer,0,0x56525543,0);
+  functionResult = ValidateOperationHandle2(memoryBlockSize,localBuffer,0,0x56525543,0);
   if ((int)functionResult == 0) {
     if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
@@ -24202,7 +24202,7 @@ uint64 FUN_18089fba0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
       if (((int)functionResult == 0) && (functionResult = FUN_1808a4fb0(memoryBlockSize,resourceHandle + FIELD_OFFSET_1,1,0), (int)functionResult == 0))
       {
                     // WARNING: Subroutine does not return
-        FUN_1808de000(memoryBlockSize,localBuffer);
+        ProcessCallbackRequest2(memoryBlockSize,localBuffer);
       }
     }
   }
@@ -24218,9 +24218,9 @@ uint64 FUN_18089fc50(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
   byte localBuffer [32];
   byte localBuffer [32];
   
-  functionResult = FUN_1808ddd30(memoryBlockSize,localBuffer,1,0x5453494c,0x54494645);
+  functionResult = ValidateOperationHandle2(memoryBlockSize,localBuffer,1,0x5453494c,0x54494645);
   if (((int)functionResult == 0) &&
-     (functionResult = FUN_1808ddd30(memoryBlockSize,localBuffer,0,0x42494645,0), (int)functionResult == 0)) {
+     (functionResult = ValidateOperationHandle2(memoryBlockSize,localBuffer,0,0x42494645,0), (int)functionResult == 0)) {
     if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
     }
@@ -24232,7 +24232,7 @@ uint64 FUN_18089fc50(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
       functionResult = discoverUtilityComponents(*memoryBlockBlockBlockSize,resourceHandle + 0xd8);
       if ((int)functionResult == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000(memoryBlockSize,localBuffer);
+        ProcessCallbackRequest2(memoryBlockSize,localBuffer);
       }
     }
   }
@@ -24313,7 +24313,7 @@ uint64 FUN_18089fd30(longlong resourceHandle,longlong *memoryBlockBlockBlockSize
         return functionResult;
       }
     }
-    functionResult = FUN_1808a7c90(memoryBlockSize,resourceHandle + 0x7c,0x7d);
+    functionResult = GetIntegrityStatus2(memoryBlockSize,resourceHandle + 0x7c,0x7d);
     return functionResult;
   }
   return functionResult;
@@ -24328,9 +24328,9 @@ uint64 FUN_18089fed0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
   byte localBuffer [32];
   byte localBuffer [32];
   
-  functionResult = FUN_1808ddd30(memoryBlockSize,localBuffer,1,0x5453494c,0x54495645);
+  functionResult = ValidateOperationHandle2(memoryBlockSize,localBuffer,1,0x5453494c,0x54495645);
   if (((int)functionResult == 0) &&
-     (functionResult = FUN_1808ddd30(memoryBlockSize,localBuffer,0,0x42495645,0), (int)functionResult == 0)) {
+     (functionResult = ValidateOperationHandle2(memoryBlockSize,localBuffer,0,0x42495645,0), (int)functionResult == 0)) {
     if (*(int *)(memoryBlockSize[1] + RESOURCE_OFFSET_HANDLE) != 0) {
       return BYTE_OFFSET_FLAG;
     }
@@ -24343,7 +24343,7 @@ uint64 FUN_18089fed0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
       if ((((int)functionResult == 0) && (functionResult = CheckResourceCapacity(memoryBlockSize,resourceHandle + SYSTEM_OFFSET_FLAGS), (int)functionResult == 0)) &&
          (functionResult = FUN_1808a6e50(memoryBlockSize,resourceHandle + 0xe8,1,resourceHandle), (int)functionResult == 0)) {
                     // WARNING: Subroutine does not return
-        FUN_1808de000(memoryBlockSize,localBuffer);
+        ProcessCallbackRequest2(memoryBlockSize,localBuffer);
       }
     }
   }
@@ -24365,14 +24365,14 @@ uint64 FUN_18089ffe0(uint64 resourceHandle,longlong memoryBlockSize)
     }
   }
   else {
-    functionResult = FUN_1808ddd30(memoryBlockSize,localBuffer,1,0x5453494c,0x544e5645);
+    functionResult = ValidateOperationHandle2(memoryBlockSize,localBuffer,1,0x5453494c,0x544e5645);
     if ((int)functionResult == 0) {
       functionResult = FUN_1808a3d50(resourceHandle,memoryBlockSize,0x42545645);
       if ((int)functionResult == 0) {
         functionResult = FUN_1808a1610(resourceHandle,memoryBlockSize);
         if ((int)functionResult == 0) {
                     // WARNING: Subroutine does not return
-          FUN_1808de000(memoryBlockSize,localBuffer);
+          ProcessCallbackRequest2(memoryBlockSize,localBuffer);
         }
       }
     }
@@ -25556,7 +25556,7 @@ void Unwind_180902580(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180902590(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058370(*(longlong *)(memoryBlockSize + 0x70),*(uint64 *)(*(longlong *)(memoryBlockSize + 0x70) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule15(*(longlong *)(memoryBlockSize + 0x70),*(uint64 *)(*(longlong *)(memoryBlockSize + 0x70) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -25566,7 +25566,7 @@ void Unwind_180902590(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_1809025a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058370(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule15(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -25576,7 +25576,7 @@ void Unwind_1809025a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_1809025b0(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058370(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule15(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -25710,7 +25710,7 @@ void Unwind_180902650(uint64 resourceHandle,longlong memoryBlockSize)
   pdataBuffer = (longlong *)(*(longlong *)(memoryBlockSize + 0x70) + LIST_OFFSET_HEAD);
   resourceDataBuffer = *(longlong *)(*(longlong *)(memoryBlockSize + 0x70) + SYSTEM_OFFSET_STATUS1);
   for (arrayIndex = *pdataBuffer; arrayIndex != resourceDataBuffer; arrayIndex = arrayIndex + BUFFER_OFFSET_DATA) {
-    FUN_180058c20(arrayIndex);
+    UtilityModule19(arrayIndex);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -25731,7 +25731,7 @@ void Unwind_180902660(uint64 resourceHandle,longlong memoryBlockSize)
   pdataBuffer = *(longlong **)(memoryBlockSize + HANDLE_OFFSET_DATA);
   resourceDataBuffer = pdataBuffer[1];
   for (arrayIndex = *pdataBuffer; arrayIndex != resourceDataBuffer; arrayIndex = arrayIndex + BUFFER_OFFSET_DATA) {
-    FUN_180058c20(arrayIndex);
+    UtilityModule19(arrayIndex);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -25816,7 +25816,7 @@ void Unwind_180902690(uint64 resourceHandle,longlong memoryBlockSize)
       (**(code **)(**(longlong **)(arrayIndex + BUFFER_SIZE_OFFSET) + STRUCT_OFFSET_SIZE))();
     }
     if (*(longlong *)(arrayIndex + POINTER_OFFSET_DATA) != 0) break;
-    FUN_180057830(arrayIndex);
+    UtilityModule12(arrayIndex);
     arrayIndex = arrayIndex + BUFFER_OFFSET_DATA;
   }
                     // WARNING: Subroutine does not return
@@ -25847,7 +25847,7 @@ void Unwind_1809026a0(uint64 resourceHandle,longlong memoryBlockSize)
       (**(code **)(**(longlong **)(arrayIndex + BUFFER_SIZE_OFFSET) + STRUCT_OFFSET_SIZE))();
     }
     if (*(longlong *)(arrayIndex + POINTER_OFFSET_DATA) != 0) break;
-    FUN_180057830(arrayIndex);
+    UtilityModule12(arrayIndex);
     arrayIndex = arrayIndex + BUFFER_OFFSET_DATA;
   }
                     // WARNING: Subroutine does not return
@@ -25935,7 +25935,7 @@ void Unwind_180902730(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x70) + RESOURCE_HANDLE_OFFSET);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + 0x70),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + 0x70),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -25960,7 +25960,7 @@ void Unwind_180902750(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -25976,7 +25976,7 @@ void Unwind_180902760(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -25988,7 +25988,7 @@ void Unwind_180902760(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180902770(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058210(*(longlong *)(memoryBlockSize + 0x70),*(uint64 *)(*(longlong *)(memoryBlockSize + 0x70) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule13(*(longlong *)(memoryBlockSize + 0x70),*(uint64 *)(*(longlong *)(memoryBlockSize + 0x70) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -25998,7 +25998,7 @@ void Unwind_180902770(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180902780(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058210(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule13(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -26008,7 +26008,7 @@ void Unwind_180902780(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180902790(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058210(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule13(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -26022,7 +26022,7 @@ void Unwind_1809027a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x70) + FIELD_OFFSET_1);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + 0x70) + POINTER_OFFSET_DATA,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + 0x70) + POINTER_OFFSET_DATA,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -26038,7 +26038,7 @@ void Unwind_1809027b0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x70) + DATA_OFFSET_START);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + 0x70) + LIST_OFFSET_HEAD,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + 0x70) + LIST_OFFSET_HEAD,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -26092,7 +26092,7 @@ void Unwind_1809027e0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x70) + BUFFER_OFFSET_TEMP);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_1800587d0(*(longlong *)(memoryBlockSize + 0x70) + 0x70,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule18(*(longlong *)(memoryBlockSize + 0x70) + 0x70,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
     FUN_18005cb60(pfunctionResult);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
@@ -26109,7 +26109,7 @@ void Unwind_1809027f0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_1800587d0(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule18(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
     FUN_18005cb60(pfunctionResult);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
@@ -26126,7 +26126,7 @@ void Unwind_180902800(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_1800587d0(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule18(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
     FUN_18005cb60(pfunctionResult);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
@@ -26139,7 +26139,7 @@ void Unwind_180902800(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180902810(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058370(*(longlong *)(memoryBlockSize + 0x70) + RESOURCE_OFFSET_HANDLE,
+  UtilityModule15(*(longlong *)(memoryBlockSize + 0x70) + RESOURCE_OFFSET_HANDLE,
                 *(uint64 *)(*(longlong *)(memoryBlockSize + 0x70) + BYTE_OFFSET_2),operationFlags,callbackFunction,
                 0xfffffffffffffffe);
   return;
@@ -26180,7 +26180,7 @@ void Unwind_180902840(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180902850(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058370(*(longlong *)(memoryBlockSize + 0x70),*(uint64 *)(*(longlong *)(memoryBlockSize + 0x70) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule15(*(longlong *)(memoryBlockSize + 0x70),*(uint64 *)(*(longlong *)(memoryBlockSize + 0x70) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -26190,7 +26190,7 @@ void Unwind_180902850(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180902860(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058370(*(longlong *)(memoryBlockSize + 0x70),*(uint64 *)(*(longlong *)(memoryBlockSize + 0x70) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule15(*(longlong *)(memoryBlockSize + 0x70),*(uint64 *)(*(longlong *)(memoryBlockSize + 0x70) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -26250,7 +26250,7 @@ void Unwind_180902880(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180902890(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_1800582b0(*(longlong *)(memoryBlockSize + 0x70) + BUFFER_SIZE_OFFSET,
+  UtilityModule14(*(longlong *)(memoryBlockSize + 0x70) + BUFFER_SIZE_OFFSET,
                 *(uint64 *)(*(longlong *)(memoryBlockSize + 0x70) + LIST_OFFSET_HEAD),operationFlags,callbackFunction,
                 0xfffffffffffffffe);
   return;
@@ -26297,7 +26297,7 @@ void Unwind_1809028a0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_1809028c0(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_1800582b0(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule14(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -26307,7 +26307,7 @@ void Unwind_1809028c0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_1809028d0(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_1800582b0(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule14(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -26556,7 +26556,7 @@ void Unwind_180902970(uint64 resourceHandle,longlong memoryBlockSize)
   pdataBuffer = (longlong *)(*(longlong *)(memoryBlockSize + 0x70) + 0x70);
   resourceDataBuffer = *(longlong *)(*(longlong *)(memoryBlockSize + 0x70) + HANDLE_OFFSET_DATA);
   for (arrayIndex = *pdataBuffer; arrayIndex != resourceDataBuffer; arrayIndex = arrayIndex + RESOURCE_OFFSET_HANDLE) {
-    FUN_18004bf50(arrayIndex);
+    UtilityModule9(arrayIndex);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -26714,7 +26714,7 @@ void Unwind_180902a60(uint64 resourceHandle,longlong memoryBlockSize)
   pdataBuffer = *(longlong **)(memoryBlockSize + HANDLE_OFFSET_DATA);
   resourceDataBuffer = pdataBuffer[1];
   for (arrayIndex = *pdataBuffer; arrayIndex != resourceDataBuffer; arrayIndex = arrayIndex + RESOURCE_OFFSET_HANDLE) {
-    FUN_18004bf50(arrayIndex);
+    UtilityModule9(arrayIndex);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -26842,7 +26842,7 @@ void Unwind_180902a90(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180902aa0(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058420(*(longlong *)(memoryBlockSize + 0x70),*(uint64 *)(*(longlong *)(memoryBlockSize + 0x70) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule16(*(longlong *)(memoryBlockSize + 0x70),*(uint64 *)(*(longlong *)(memoryBlockSize + 0x70) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -26888,7 +26888,7 @@ void Unwind_180902ab0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180902ac0(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058370(*(longlong *)(memoryBlockSize + 0x70) + LIST_OFFSET_HEAD,
+  UtilityModule15(*(longlong *)(memoryBlockSize + 0x70) + LIST_OFFSET_HEAD,
                 *(uint64 *)(*(longlong *)(memoryBlockSize + 0x70) + DATA_OFFSET_START),operationFlags,callbackFunction,
                 0xfffffffffffffffe);
   return;
@@ -26899,7 +26899,7 @@ void Unwind_180902ac0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180902ad0(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058420(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule16(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -26909,7 +26909,7 @@ void Unwind_180902ad0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180902ae0(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058420(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule16(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -26949,7 +26949,7 @@ void Unwind_180902b30(uint64 resourceHandle,longlong memoryBlockSize)
   pdataBuffer = *(longlong **)(memoryBlockSize + BUFFER_SIZE_OFFSET);
   resourceDataBuffer = pdataBuffer[1];
   for (arrayIndex = *pdataBuffer; arrayIndex != resourceDataBuffer; arrayIndex = arrayIndex + BUFFER_OFFSET_DATA) {
-    FUN_180058c20(arrayIndex);
+    UtilityModule19(arrayIndex);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -26963,7 +26963,7 @@ void Unwind_180902b30(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180902b40(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058210(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule13(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -26973,7 +26973,7 @@ void Unwind_180902b40(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180902b50(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058210(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule13(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -27412,9 +27412,9 @@ void Unwind_180902c60(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   pfunctionResult = *(uint64 **)(memoryBlockSize + STRUCT_OFFSET_SIZE);
   unsignedVar3 = 0xfffffffffffffffe;
   *pfunctionResult = &unknown_180a10098;
-  charVar2 = FUN_18020eba0(pfunctionResult,1,operationFlags,callbackFunction,0xfffffffffffffffe);
+  charVar2 = UtilityModule1(pfunctionResult,1,operationFlags,callbackFunction,0xfffffffffffffffe);
   while (charVar2 != '\0') {
-    charVar2 = FUN_18020eba0(pfunctionResult,1,operationFlags,callbackFunction,unsignedVar3);
+    charVar2 = UtilityModule1(pfunctionResult,1,operationFlags,callbackFunction,unsignedVar3);
   }
   if (pfunctionResult[1] == 0) {
     pfunctionResult[1] = 0;
@@ -27613,7 +27613,7 @@ void Unwind_180902cf0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180902d00(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_180057010(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA) + DATA_OFFSET_START);
+  UtilityModule10(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA) + DATA_OFFSET_START);
   return;
 }
 
@@ -27622,7 +27622,7 @@ void Unwind_180902d00(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180902d10(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_180057010(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA) + DATA_OFFSET_START);
+  UtilityModule10(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA) + DATA_OFFSET_START);
   return;
 }
 
@@ -27667,8 +27667,8 @@ void Unwind_180902d40(uint64 resourceHandle,longlong memoryBlockSize)
   _Mtx_destroy_in_situ();
   FUN_1808fc8a8(resourceDataBuffer + 0x3e0,POINTER_OFFSET_DATA,POINTER_OFFSET_DATA,FUN_180627b90,unsignedCounter);
   FUN_18005d580();
-  FUN_1808fc8a8(resourceDataBuffer + 0x138,8,POINTER_OFFSET_DATA,FUN_180045af0);
-  FUN_1808fc8a8(resourceDataBuffer + STRUCT_OFFSET_SIZE,8,POINTER_OFFSET_DATA,FUN_180045af0);
+  FUN_1808fc8a8(resourceDataBuffer + 0x138,8,POINTER_OFFSET_DATA,UtilityModule3);
+  FUN_1808fc8a8(resourceDataBuffer + STRUCT_OFFSET_SIZE,8,POINTER_OFFSET_DATA,UtilityModule3);
   return;
 }
 
@@ -27696,7 +27696,7 @@ void Unwind_180902d50(uint64 resourceHandle,longlong memoryBlockSize)
     (**(code **)(**(longlong **)(tempDataBuffer + 0x15d0) + STRUCT_OFFSET_SIZE))();
   }
   FUN_1808fc8a8(tempDataBuffer + 0x8e0,POINTER_OFFSET_DATA,LIST_OFFSET_HEAD,FUN_180627b90,unsignedVar3);
-  FUN_1808fc8a8(tempDataBuffer + 0x8b8,8,4,FUN_180045af0);
+  FUN_1808fc8a8(tempDataBuffer + 0x8b8,8,4,UtilityModule3);
   presourceDataBuffer = *(longlong **)(tempDataBuffer + 0x8b0);
   if (presourceDataBuffer != (longlong *)0x0) {
     (**(code **)(*presourceDataBuffer + STRUCT_OFFSET_SIZE))();
@@ -28113,7 +28113,7 @@ void Unwind_180902ee0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180902f00(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058710(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x858,
+  UtilityModule17(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x858,
                 *(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x868),operationFlags,callbackFunction,
                 0xfffffffffffffffe);
   return;
@@ -28206,7 +28206,7 @@ void Unwind_180902f60(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180902f80(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058370(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x8e8,
+  UtilityModule15(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x8e8,
                 *(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x8f8),operationFlags,callbackFunction,
                 0xfffffffffffffffe);
   return;
@@ -28240,7 +28240,7 @@ void Unwind_180902fc0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x948);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_1800587d0(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x938,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule18(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x938,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
     FUN_18005cb60(pfunctionResult);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
@@ -28257,7 +28257,7 @@ void Unwind_180902fe0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x978);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_1800587d0(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x968,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule18(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x968,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
     FUN_18005cb60(pfunctionResult);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
@@ -28274,7 +28274,7 @@ void Unwind_180903000(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_1800587d0(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule18(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
     FUN_18005cb60(pfunctionResult);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
@@ -28291,7 +28291,7 @@ void Unwind_180903010(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_1800587d0(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule18(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
     FUN_18005cb60(pfunctionResult);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
@@ -28304,7 +28304,7 @@ void Unwind_180903010(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180903020(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058370(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule15(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -28314,7 +28314,7 @@ void Unwind_180903020(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180903030(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058370(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule15(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -28324,7 +28324,7 @@ void Unwind_180903030(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180903040(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058710(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule17(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -28334,7 +28334,7 @@ void Unwind_180903040(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180903050(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058710(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule17(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -28344,7 +28344,7 @@ void Unwind_180903050(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180903060(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058710(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule17(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -28354,7 +28354,7 @@ void Unwind_180903060(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180903070(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058710(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule17(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -28368,7 +28368,7 @@ void Unwind_180903080(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_HANDLE_OFFSET);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_1800587d0(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule18(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
     FUN_18005cb60(pfunctionResult);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
@@ -28385,7 +28385,7 @@ void Unwind_180903090(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_HANDLE_OFFSET);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_1800587d0(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule18(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
     FUN_18005cb60(pfunctionResult);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
@@ -28462,7 +28462,7 @@ void Unwind_1809030f0(uint64 resourceHandle,longlong memoryBlockSize)
   longlong resourceDataBuffer;
   
   resourceDataBuffer = *(longlong *)(memoryBlockSize + 0x68);
-  FUN_180058db0(resourceDataBuffer + BUFFER_SIZE_OFFSET);
+  UtilityModule20(resourceDataBuffer + BUFFER_SIZE_OFFSET);
   *(uint64 *)(resourceDataBuffer + POINTER_OFFSET_DATA) = &threadLocalStorageData;
   if (*(longlong *)(resourceDataBuffer + BYTE_OFFSET_2) != 0) {
                     // WARNING: Subroutine does not return
@@ -28485,12 +28485,12 @@ void Unwind_180903100(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   resourceDataBuffer = *(longlong *)(memoryBlockSize + 0x70);
   unsignedCounter = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
-  FUN_180058370(resourceDataBuffer + 0x110,*(uint64 *)(resourceDataBuffer + 0x120),operationFlags,callbackFunction,unsignedCounter);
-  FUN_180058370(resourceDataBuffer + 0xe0,*(uint64 *)(resourceDataBuffer + 0xf0));
-  FUN_180058370(resourceDataBuffer + 0xb0,*(uint64 *)(resourceDataBuffer + 0xc0));
-  FUN_1800593f0(resourceDataBuffer + BUFFER_OFFSET_TEMP,*(uint64 *)(resourceDataBuffer + MEMORY_SIZE_OFFSET));
-  FUN_180058710(resourceDataBuffer + LIST_OFFSET_HEAD,*(uint64 *)(resourceDataBuffer + DATA_OFFSET_START));
-  FUN_1800593f0(resourceDataBuffer + POINTER_OFFSET_DATA,*(uint64 *)(resourceDataBuffer + FIELD_OFFSET_1));
+  UtilityModule15(resourceDataBuffer + 0x110,*(uint64 *)(resourceDataBuffer + 0x120),operationFlags,callbackFunction,unsignedCounter);
+  UtilityModule15(resourceDataBuffer + 0xe0,*(uint64 *)(resourceDataBuffer + 0xf0));
+  UtilityModule15(resourceDataBuffer + 0xb0,*(uint64 *)(resourceDataBuffer + 0xc0));
+  UtilityModule21(resourceDataBuffer + BUFFER_OFFSET_TEMP,*(uint64 *)(resourceDataBuffer + MEMORY_SIZE_OFFSET));
+  UtilityModule17(resourceDataBuffer + LIST_OFFSET_HEAD,*(uint64 *)(resourceDataBuffer + DATA_OFFSET_START));
+  UtilityModule21(resourceDataBuffer + POINTER_OFFSET_DATA,*(uint64 *)(resourceDataBuffer + FIELD_OFFSET_1));
   return;
 }
 
@@ -28757,7 +28757,7 @@ void Unwind_1809031a0(uint64 resourceHandle,longlong memoryBlockSize)
   pdataBuffer = (longlong *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + BYTE_OFFSET_2);
   resourceDataBuffer = *(longlong *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + FIELD_OFFSET_1);
   for (arrayIndex = *pdataBuffer; arrayIndex != resourceDataBuffer; arrayIndex = arrayIndex + 0x548) {
-    FUN_1800594b0(arrayIndex);
+    UtilityModule22(arrayIndex);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -28778,7 +28778,7 @@ void Unwind_1809031b0(uint64 resourceHandle,longlong memoryBlockSize)
   pdataBuffer = *(longlong **)(memoryBlockSize + BUFFER_OFFSET_DATA);
   resourceDataBuffer = pdataBuffer[1];
   for (arrayIndex = *pdataBuffer; arrayIndex != resourceDataBuffer; arrayIndex = arrayIndex + 0x548) {
-    FUN_1800594b0(arrayIndex);
+    UtilityModule22(arrayIndex);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -28812,12 +28812,12 @@ void Unwind_1809031e0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   resourceDataBuffer = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
   unsignedCounter = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
-  FUN_180058370(resourceDataBuffer + 0x110,*(uint64 *)(resourceDataBuffer + 0x120),operationFlags,callbackFunction,unsignedCounter);
-  FUN_180058370(resourceDataBuffer + 0xe0,*(uint64 *)(resourceDataBuffer + 0xf0));
-  FUN_180058370(resourceDataBuffer + 0xb0,*(uint64 *)(resourceDataBuffer + 0xc0));
-  FUN_1800593f0(resourceDataBuffer + BUFFER_OFFSET_TEMP,*(uint64 *)(resourceDataBuffer + MEMORY_SIZE_OFFSET));
-  FUN_180058710(resourceDataBuffer + LIST_OFFSET_HEAD,*(uint64 *)(resourceDataBuffer + DATA_OFFSET_START));
-  FUN_1800593f0(resourceDataBuffer + POINTER_OFFSET_DATA,*(uint64 *)(resourceDataBuffer + FIELD_OFFSET_1));
+  UtilityModule15(resourceDataBuffer + 0x110,*(uint64 *)(resourceDataBuffer + 0x120),operationFlags,callbackFunction,unsignedCounter);
+  UtilityModule15(resourceDataBuffer + 0xe0,*(uint64 *)(resourceDataBuffer + 0xf0));
+  UtilityModule15(resourceDataBuffer + 0xb0,*(uint64 *)(resourceDataBuffer + 0xc0));
+  UtilityModule21(resourceDataBuffer + BUFFER_OFFSET_TEMP,*(uint64 *)(resourceDataBuffer + MEMORY_SIZE_OFFSET));
+  UtilityModule17(resourceDataBuffer + LIST_OFFSET_HEAD,*(uint64 *)(resourceDataBuffer + DATA_OFFSET_START));
+  UtilityModule21(resourceDataBuffer + POINTER_OFFSET_DATA,*(uint64 *)(resourceDataBuffer + FIELD_OFFSET_1));
   return;
 }
 
@@ -28905,7 +28905,7 @@ void Unwind_180903210(uint64 resourceHandle,longlong memoryBlockSize)
   pdataBuffer = *(longlong **)(memoryBlockSize + BUFFER_SIZE_OFFSET);
   resourceDataBuffer = pdataBuffer[1];
   for (arrayIndex = *pdataBuffer; arrayIndex != resourceDataBuffer; arrayIndex = arrayIndex + 0x548) {
-    FUN_1800594b0(arrayIndex);
+    UtilityModule22(arrayIndex);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -28919,7 +28919,7 @@ void Unwind_180903210(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180903220(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_1800593f0(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule21(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -28929,7 +28929,7 @@ void Unwind_180903220(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180903230(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058710(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + FIELD_OFFSET_1,
+  UtilityModule17(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + FIELD_OFFSET_1,
                 *(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + BUFFER_SIZE_OFFSET),operationFlags,callbackFunction,
                 0xfffffffffffffffe);
   return;
@@ -28940,7 +28940,7 @@ void Unwind_180903230(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180903240(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_1800593f0(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + DATA_OFFSET_START,
+  UtilityModule21(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + DATA_OFFSET_START,
                 *(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x70),operationFlags,callbackFunction,
                 0xfffffffffffffffe);
   return;
@@ -28951,7 +28951,7 @@ void Unwind_180903240(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180903250(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058370(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + MEMORY_SIZE_OFFSET,
+  UtilityModule15(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + MEMORY_SIZE_OFFSET,
                 *(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0xa0),operationFlags,callbackFunction,
                 0xfffffffffffffffe);
   return;
@@ -28962,7 +28962,7 @@ void Unwind_180903250(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180903270(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058370(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0xc0,
+  UtilityModule15(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0xc0,
                 *(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + STRUCT_OFFSET_1),operationFlags,callbackFunction,
                 0xfffffffffffffffe);
   return;
@@ -28973,7 +28973,7 @@ void Unwind_180903270(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180903290(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058370(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0xf0,
+  UtilityModule15(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0xf0,
                 *(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_HANDLE_OFFSET0),operationFlags,callbackFunction,
                 0xfffffffffffffffe);
   return;
@@ -28993,7 +28993,7 @@ void Unwind_1809032b0(void)
 void Unwind_1809032d0(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_1800593f0(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule21(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -29003,7 +29003,7 @@ void Unwind_1809032d0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_1809032e0(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_1800593f0(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule21(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -29013,7 +29013,7 @@ void Unwind_1809032e0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_1809032f0(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_1800593f0(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule21(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -29023,7 +29023,7 @@ void Unwind_1809032f0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180903300(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_1800593f0(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule21(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -29072,7 +29072,7 @@ void Unwind_180903320(uint64 resourceHandle,longlong memoryBlockSize)
   longlong resourceDataBuffer;
   
   resourceDataBuffer = *(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA);
-  FUN_18004b730();
+  UtilityModule7();
   *(uint64 *)(resourceDataBuffer + POINTER_OFFSET_DATA) = &threadLocalStorageData;
   if (*(longlong *)(resourceDataBuffer + BYTE_OFFSET_2) != 0) {
                     // WARNING: Subroutine does not return
@@ -29093,7 +29093,7 @@ void Unwind_180903330(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP) + FIELD_OFFSET_1);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP) + POINTER_OFFSET_DATA,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP) + POINTER_OFFSET_DATA,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -29109,7 +29109,7 @@ void Unwind_180903340(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x88) + RESOURCE_HANDLE_OFFSET);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + 0x88),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + 0x88),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -29125,7 +29125,7 @@ void Unwind_180903350(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x88) + RESOURCE_HANDLE_OFFSET);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + 0x88),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + 0x88),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -29165,7 +29165,7 @@ void Unwind_180903370(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_1809033b0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD) + 0x288,SYSTEM_OFFSET_STATUS1,4,FUN_180044a30);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD) + 0x288,SYSTEM_OFFSET_STATUS1,4,UtilityModule2);
   return;
 }
 
@@ -29174,7 +29174,7 @@ void Unwind_1809033b0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_1809033f0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD) + 1000,SYSTEM_OFFSET_STATUS1,4,FUN_180044a30);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD) + 1000,SYSTEM_OFFSET_STATUS1,4,UtilityModule2);
   return;
 }
 
@@ -29187,7 +29187,7 @@ void Unwind_180903430(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + FIELD_OFFSET_1);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + POINTER_OFFSET_DATA,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + POINTER_OFFSET_DATA,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -29206,7 +29206,7 @@ void Unwind_180903440(uint64 resourceHandle,longlong memoryBlockSize)
   pdataBuffer = *(longlong **)(memoryBlockSize + BUFFER_SIZE_OFFSET);
   resourceDataBuffer = pdataBuffer[1];
   for (arrayIndex = *pdataBuffer; arrayIndex != resourceDataBuffer; arrayIndex = arrayIndex + LIST_OFFSET_HEAD) {
-    FUN_1800596a0(arrayIndex);
+    UtilityModule23(arrayIndex);
   }
   if (*pdataBuffer == 0) {
     return;
@@ -29458,7 +29458,7 @@ void Unwind_1809034f0(uint64 resourceHandle,longlong memoryBlockSize)
   ulonglong validationResult1;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
-  FUN_18005a050();
+  UtilityModule26();
   if ((1 < *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET)) &&
      (punsignedCounter = *(uint64 **)(arrayIndex + 8), punsignedCounter != (uint64 *)0x0)) {
     validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
@@ -29496,7 +29496,7 @@ void Unwind_180903500(uint64 resourceHandle,longlong memoryBlockSize)
   ulonglong validationResult1;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
-  FUN_18005a050();
+  UtilityModule26();
   if ((1 < *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET)) &&
      (punsignedCounter = *(uint64 **)(arrayIndex + 8), punsignedCounter != (uint64 *)0x0)) {
     validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
@@ -29647,7 +29647,7 @@ void Unwind_180903560(uint64 resourceHandle,longlong memoryBlockSize)
   ulonglong validationResult1;
   
   arrayIndex = *(longlong *)(memoryBlockSize + 0x70);
-  FUN_18005a050();
+  UtilityModule26();
   if ((1 < *(ulonglong *)(arrayIndex + 0x340)) &&
      (punsignedCounter = *(uint64 **)(arrayIndex + 0x338), punsignedCounter != (uint64 *)0x0)) {
     validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
@@ -29773,7 +29773,7 @@ void Unwind_1809035e0(uint64 resourceHandle,longlong memoryBlockSize)
   ulonglong validationResult1;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP);
-  FUN_18005a050();
+  UtilityModule26();
   if ((1 < *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET)) &&
      (punsignedCounter = *(uint64 **)(arrayIndex + 8), punsignedCounter != (uint64 *)0x0)) {
     validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
@@ -29811,7 +29811,7 @@ void Unwind_1809035f0(uint64 resourceHandle,longlong memoryBlockSize)
   ulonglong validationResult1;
   
   arrayIndex = *(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP);
-  FUN_18005a050();
+  UtilityModule26();
   if ((1 < *(ulonglong *)(arrayIndex + RESOURCE_HANDLE_OFFSET)) &&
      (punsignedCounter = *(uint64 **)(arrayIndex + 8), punsignedCounter != (uint64 *)0x0)) {
     validationResult1 = (ulonglong)punsignedCounter & 0xffffffffffc00000;
@@ -35035,7 +35035,7 @@ void Unwind_180904840(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 1) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffe;
-    FUN_1800596a0(memoryBlockSize + FIELD_OFFSET_1);
+    UtilityModule23(memoryBlockSize + FIELD_OFFSET_1);
   }
   return;
 }
@@ -35886,9 +35886,9 @@ void Unwind_180904ab0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   pfunctionResult = *(uint64 **)(memoryBlockSize + 0x160);
   unsignedVar3 = 0xfffffffffffffffe;
   *pfunctionResult = &unknown_180a10098;
-  charVar2 = FUN_18020eba0(pfunctionResult,1,operationFlags,callbackFunction,0xfffffffffffffffe);
+  charVar2 = UtilityModule1(pfunctionResult,1,operationFlags,callbackFunction,0xfffffffffffffffe);
   while (charVar2 != '\0') {
-    charVar2 = FUN_18020eba0(pfunctionResult,1,operationFlags,callbackFunction,unsignedVar3);
+    charVar2 = UtilityModule1(pfunctionResult,1,operationFlags,callbackFunction,unsignedVar3);
   }
   if (pfunctionResult[1] == 0) {
     pfunctionResult[1] = 0;
@@ -35954,9 +35954,9 @@ void Unwind_180904af0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   pfunctionResult = *(uint64 **)(memoryBlockSize + LIST_OFFSET_HEAD);
   unsignedVar3 = 0xfffffffffffffffe;
   *pfunctionResult = &unknown_180a10098;
-  charVar2 = FUN_18020eba0(pfunctionResult,1,operationFlags,callbackFunction,0xfffffffffffffffe);
+  charVar2 = UtilityModule1(pfunctionResult,1,operationFlags,callbackFunction,0xfffffffffffffffe);
   while (charVar2 != '\0') {
-    charVar2 = FUN_18020eba0(pfunctionResult,1,operationFlags,callbackFunction,unsignedVar3);
+    charVar2 = UtilityModule1(pfunctionResult,1,operationFlags,callbackFunction,unsignedVar3);
   }
   if (pfunctionResult[1] == 0) {
     pfunctionResult[1] = 0;
@@ -36302,9 +36302,9 @@ void Unwind_180904e40(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   pfunctionResult = *(uint64 **)(memoryBlockSize + FIELD_OFFSET_1);
   unsignedVar3 = 0xfffffffffffffffe;
   *pfunctionResult = &unknown_180a10098;
-  charVar2 = FUN_18020eba0(pfunctionResult,1,operationFlags,callbackFunction,0xfffffffffffffffe);
+  charVar2 = UtilityModule1(pfunctionResult,1,operationFlags,callbackFunction,0xfffffffffffffffe);
   while (charVar2 != '\0') {
-    charVar2 = FUN_18020eba0(pfunctionResult,1,operationFlags,callbackFunction,unsignedVar3);
+    charVar2 = UtilityModule1(pfunctionResult,1,operationFlags,callbackFunction,unsignedVar3);
   }
   if (pfunctionResult[1] == 0) {
     pfunctionResult[1] = 0;
@@ -36412,7 +36412,7 @@ void Unwind_180904e80(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + BUFFER_SIZE_OFFSET) & 1) != 0) {
     *(uint *)(memoryBlockSize + BUFFER_SIZE_OFFSET) = *(uint *)(memoryBlockSize + BUFFER_SIZE_OFFSET) & 0xfffffffe;
-    FUN_180044a30(memoryBlockSize + 0x70);
+    UtilityModule2(memoryBlockSize + 0x70);
   }
   return;
 }
@@ -37141,7 +37141,7 @@ void Unwind_1809051a0(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + SYSTEM_OFFSET_STATUS1) & 4) != 0) {
     *(uint *)(memoryBlockSize + SYSTEM_OFFSET_STATUS1) = *(uint *)(memoryBlockSize + SYSTEM_OFFSET_STATUS1) & 0xfffffffb;
-    FUN_180044a30(memoryBlockSize + 0x2a0);
+    UtilityModule2(memoryBlockSize + 0x2a0);
   }
   return;
 }
@@ -37859,7 +37859,7 @@ void Unwind_1809054f0(uint64 resourceHandle,longlong memoryBlockSize)
   FUN_18006cb90();
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  FUN_180059ee0(pfunctionResult + 2);
+  UtilityModule25(pfunctionResult + 2);
   if ((longlong *)pfunctionResult[1] != (longlong *)0x0) {
     (**(code **)(*(longlong *)pfunctionResult[1] + STRUCT_OFFSET_SIZE))();
   }
@@ -38262,7 +38262,7 @@ void Unwind_180905780(uint64 resourceHandle,uint *memoryBlockBlockBlockSize)
 {
   if ((*memoryBlockBlockBlockSize & 1) != 0) {
     *memoryBlockBlockBlockSize = *memoryBlockBlockBlockSize & 0xfffffffe;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + 10));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + 10));
   }
   return;
 }
@@ -38368,11 +38368,11 @@ LAB_1801571ef:
     (**(code **)(*(longlong *)pvalidationResult2[0x3d] + STRUCT_OFFSET_SIZE))();
   }
   plStackX_10 = parrayIndex;
-  FUN_180057830(parrayIndex);
+  UtilityModule12(parrayIndex);
   plStackX_10 = pvalidationResult2 + BYTE_OFFSET_2;
-  FUN_180048980();
+  UtilityModule6();
   plStackX_10 = pvalidationResult2 + FIELD_OFFSET_3;
-  FUN_180048980();
+  UtilityModule6();
   plStackX_10 = pdataBuffer;
   _Mtx_destroy_in_situ(pdataBuffer);
   plStackX_10 = pvalidationResult2 + 0x16;
@@ -38965,11 +38965,11 @@ LAB_1801571ef:
     (**(code **)(*(longlong *)pvalidationResult2[0x3d] + STRUCT_OFFSET_SIZE))();
   }
   plStackX_10 = parrayIndex;
-  FUN_180057830(parrayIndex);
+  UtilityModule12(parrayIndex);
   plStackX_10 = pvalidationResult2 + BYTE_OFFSET_2;
-  FUN_180048980();
+  UtilityModule6();
   plStackX_10 = pvalidationResult2 + FIELD_OFFSET_3;
-  FUN_180048980();
+  UtilityModule6();
   plStackX_10 = pdataBuffer;
   _Mtx_destroy_in_situ(pdataBuffer);
   plStackX_10 = pvalidationResult2 + 0x16;
@@ -41890,7 +41890,7 @@ void Unwind_180906600(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 1) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffe;
-    FUN_180044a30(*(uint64 *)(memoryBlockSize + BUFFER_OFFSET_DATA));
+    UtilityModule2(*(uint64 *)(memoryBlockSize + BUFFER_OFFSET_DATA));
   }
   return;
 }
@@ -42531,7 +42531,7 @@ void Unwind_180906a90(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 1) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffe;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + SYSTEM_OFFSET_STATUS1));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + SYSTEM_OFFSET_STATUS1));
   }
   return;
 }
@@ -42884,7 +42884,7 @@ void Unwind_180906bc0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180906bd0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 8,8,7,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 8,8,7,UtilityModule3);
   return;
 }
 
@@ -44444,7 +44444,7 @@ void Unwind_180907140(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 1) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffe;
-    FUN_180045af0(memoryBlockSize + 0x178);
+    UtilityModule3(memoryBlockSize + 0x178);
   }
   return;
 }
@@ -44971,7 +44971,7 @@ void Unwind_180907400(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 1) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffe;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + FIELD_OFFSET_1));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + FIELD_OFFSET_1));
   }
   return;
 }
@@ -44992,7 +44992,7 @@ void Unwind_180907440(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 2) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffd;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + FIELD_OFFSET_1));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + FIELD_OFFSET_1));
   }
   return;
 }
@@ -45004,7 +45004,7 @@ void Unwind_180907470(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 1) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffe;
-    FUN_180045af0(memoryBlockSize + BYTE_OFFSET_2);
+    UtilityModule3(memoryBlockSize + BYTE_OFFSET_2);
   }
   return;
 }
@@ -45016,7 +45016,7 @@ void Unwind_1809074a0(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 2) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffd;
-    FUN_180045af0(memoryBlockSize + BYTE_OFFSET_2);
+    UtilityModule3(memoryBlockSize + BYTE_OFFSET_2);
   }
   return;
 }
@@ -45136,7 +45136,7 @@ void Unwind_180907500(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 1) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffe;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + HANDLE_OFFSET_DATA));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + HANDLE_OFFSET_DATA));
   }
   return;
 }
@@ -45373,7 +45373,7 @@ void Unwind_180907630(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180907640(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_OFFSET_HANDLE,8,RESOURCE_HANDLE_OFFSET,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_OFFSET_HANDLE,8,RESOURCE_HANDLE_OFFSET,UtilityModule3);
   return;
 }
 
@@ -45382,7 +45382,7 @@ void Unwind_180907640(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180907670(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD) + RESOURCE_OFFSET_HANDLE,8,RESOURCE_HANDLE_OFFSET,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD) + RESOURCE_OFFSET_HANDLE,8,RESOURCE_HANDLE_OFFSET,UtilityModule3);
   return;
 }
 
@@ -45753,7 +45753,7 @@ void Unwind_180907840(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA) + 0xc0);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA) + 0xb0,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA) + 0xb0,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -45769,7 +45769,7 @@ void Unwind_180907860(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA) + 0xf0);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA) + 0xe0,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA) + 0xe0,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -45905,7 +45905,7 @@ void Unwind_180907900(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BYTE_OFFSET_2) + RESOURCE_HANDLE_OFFSET);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + BYTE_OFFSET_2),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + BYTE_OFFSET_2),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -45921,7 +45921,7 @@ void Unwind_180907910(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BYTE_OFFSET_2) + RESOURCE_HANDLE_OFFSET);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + BYTE_OFFSET_2),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + BYTE_OFFSET_2),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -46568,7 +46568,7 @@ void Unwind_180907ba0(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_2) & 1) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_2) = *(uint *)(memoryBlockSize + FIELD_OFFSET_2) & 0xfffffffe;
-    FUN_180044a30(memoryBlockSize + 0x298);
+    UtilityModule2(memoryBlockSize + 0x298);
   }
   return;
 }
@@ -46580,7 +46580,7 @@ void Unwind_180907bd0(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_2) & 2) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_2) = *(uint *)(memoryBlockSize + FIELD_OFFSET_2) & 0xfffffffd;
-    FUN_180044a30(memoryBlockSize + 0x270);
+    UtilityModule2(memoryBlockSize + 0x270);
   }
   return;
 }
@@ -46962,7 +46962,7 @@ void Unwind_180907d50(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 1) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_1) = *(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 0xfffffffe;
-    FUN_180044a30(memoryBlockSize + 0x1f0);
+    UtilityModule2(memoryBlockSize + 0x1f0);
   }
   return;
 }
@@ -46974,7 +46974,7 @@ void Unwind_180907d80(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 2) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_1) = *(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 0xfffffffd;
-    FUN_180044a30(memoryBlockSize + 0x218);
+    UtilityModule2(memoryBlockSize + 0x218);
   }
   return;
 }
@@ -47016,7 +47016,7 @@ void Unwind_180907e00(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 8) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_1) = *(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 0xfffffff7;
-    FUN_180044a30(memoryBlockSize + 0x480);
+    UtilityModule2(memoryBlockSize + 0x480);
   }
   return;
 }
@@ -47434,7 +47434,7 @@ void Unwind_180907fb0(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 1) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_1) = *(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 0xfffffffe;
-    FUN_180047e40(memoryBlockSize + 0x480);
+    UtilityModule5(memoryBlockSize + 0x480);
   }
   return;
 }
@@ -47457,7 +47457,7 @@ void Unwind_180907ff0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(memoryBlockSize + HANDLE_OFFSET_DATA);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(memoryBlockSize + 0x68,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(memoryBlockSize + 0x68,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -47509,7 +47509,7 @@ void Unwind_180908010(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(memoryBlockSize + HANDLE_OFFSET_DATA);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(memoryBlockSize + 0x68,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(memoryBlockSize + 0x68,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -47525,7 +47525,7 @@ void Unwind_180908020(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(memoryBlockSize + HANDLE_OFFSET_DATA);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(memoryBlockSize + 0x68,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(memoryBlockSize + 0x68,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -47663,11 +47663,11 @@ void Unwind_1809080a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   tempDataBuffer = *(longlong *)(memoryBlockSize + 0x68);
   unsignedVar3 = 0xfffffffffffffffe;
-  FUN_18004b730();
-  FUN_180058370(tempDataBuffer + DATA_OFFSET_START,*(uint64 *)(tempDataBuffer + 0x70),operationFlags,callbackFunction,unsignedVar3);
+  UtilityModule7();
+  UtilityModule15(tempDataBuffer + DATA_OFFSET_START,*(uint64 *)(tempDataBuffer + 0x70),operationFlags,callbackFunction,unsignedVar3);
   pfunctionResult = *(uint64 **)(tempDataBuffer + BUFFER_SIZE_OFFSET);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(tempDataBuffer + FIELD_OFFSET_1,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(tempDataBuffer + FIELD_OFFSET_1,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -47685,11 +47685,11 @@ void Unwind_1809080b0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   tempDataBuffer = *(longlong *)(memoryBlockSize + 0x70);
   unsignedVar3 = 0xfffffffffffffffe;
-  FUN_18004b730();
-  FUN_180058370(tempDataBuffer + BUFFER_SIZE_OFFSET,*(uint64 *)(tempDataBuffer + LIST_OFFSET_HEAD),operationFlags,callbackFunction,unsignedVar3);
+  UtilityModule7();
+  UtilityModule15(tempDataBuffer + BUFFER_SIZE_OFFSET,*(uint64 *)(tempDataBuffer + LIST_OFFSET_HEAD),operationFlags,callbackFunction,unsignedVar3);
   pfunctionResult = *(uint64 **)(tempDataBuffer + POINTER_OFFSET_DATA);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(tempDataBuffer + RESOURCE_HANDLE_OFFSET,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(tempDataBuffer + RESOURCE_HANDLE_OFFSET,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -47705,7 +47705,7 @@ void Unwind_1809080c0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -47717,7 +47717,7 @@ void Unwind_1809080c0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_1809080d0(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058370(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + FIELD_OFFSET_1,
+  UtilityModule15(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + FIELD_OFFSET_1,
                 *(uint64 *)(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + BUFFER_SIZE_OFFSET),operationFlags,callbackFunction,
                 0xfffffffffffffffe);
   return;
@@ -47732,7 +47732,7 @@ void Unwind_1809080e0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + 0x70);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + DATA_OFFSET_START,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + HANDLE_OFFSET_DATA) + DATA_OFFSET_START,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -47744,7 +47744,7 @@ void Unwind_1809080e0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_1809080f0(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058370(*(longlong *)(memoryBlockSize + FIELD_OFFSET_1),*(uint64 *)(*(longlong *)(memoryBlockSize + FIELD_OFFSET_1) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule15(*(longlong *)(memoryBlockSize + FIELD_OFFSET_1),*(uint64 *)(*(longlong *)(memoryBlockSize + FIELD_OFFSET_1) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -47754,7 +47754,7 @@ void Unwind_1809080f0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180908100(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058370(*(longlong *)(memoryBlockSize + FIELD_OFFSET_1),*(uint64 *)(*(longlong *)(memoryBlockSize + FIELD_OFFSET_1) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule15(*(longlong *)(memoryBlockSize + FIELD_OFFSET_1),*(uint64 *)(*(longlong *)(memoryBlockSize + FIELD_OFFSET_1) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -47768,7 +47768,7 @@ void Unwind_180908110(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x68) + RESOURCE_HANDLE_OFFSET);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + 0x68),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + 0x68),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -47784,7 +47784,7 @@ void Unwind_180908120(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + 0x68) + RESOURCE_HANDLE_OFFSET);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + 0x68),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + 0x68),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -47839,11 +47839,11 @@ void Unwind_180908160(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   tempDataBuffer = *(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP);
   unsignedVar3 = 0xfffffffffffffffe;
-  FUN_18004b730();
-  FUN_180058370(tempDataBuffer + BUFFER_SIZE_OFFSET,*(uint64 *)(tempDataBuffer + LIST_OFFSET_HEAD),operationFlags,callbackFunction,unsignedVar3);
+  UtilityModule7();
+  UtilityModule15(tempDataBuffer + BUFFER_SIZE_OFFSET,*(uint64 *)(tempDataBuffer + LIST_OFFSET_HEAD),operationFlags,callbackFunction,unsignedVar3);
   pfunctionResult = *(uint64 **)(tempDataBuffer + POINTER_OFFSET_DATA);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(tempDataBuffer + RESOURCE_HANDLE_OFFSET,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(tempDataBuffer + RESOURCE_HANDLE_OFFSET,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -47859,7 +47859,7 @@ void Unwind_180908170(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + RESOURCE_HANDLE_OFFSET);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + DATA_OFFSET_START),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + DATA_OFFSET_START),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -47871,7 +47871,7 @@ void Unwind_180908170(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180908180(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058370(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + FIELD_OFFSET_1,
+  UtilityModule15(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + FIELD_OFFSET_1,
                 *(uint64 *)(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + BUFFER_SIZE_OFFSET),operationFlags,callbackFunction,
                 0xfffffffffffffffe);
   return;
@@ -47886,7 +47886,7 @@ void Unwind_180908190(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + 0x70);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + DATA_OFFSET_START,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + DATA_OFFSET_START,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -47898,7 +47898,7 @@ void Unwind_180908190(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_1809081a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058370(*(longlong *)(memoryBlockSize + 0x68),*(uint64 *)(*(longlong *)(memoryBlockSize + 0x68) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule15(*(longlong *)(memoryBlockSize + 0x68),*(uint64 *)(*(longlong *)(memoryBlockSize + 0x68) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -47908,7 +47908,7 @@ void Unwind_1809081a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_1809081b0(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058370(*(longlong *)(memoryBlockSize + 0x68),*(uint64 *)(*(longlong *)(memoryBlockSize + 0x68) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule15(*(longlong *)(memoryBlockSize + 0x68),*(uint64 *)(*(longlong *)(memoryBlockSize + 0x68) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -47924,11 +47924,11 @@ void Unwind_1809081c0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   tempDataBuffer = *(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET);
   unsignedVar3 = 0xfffffffffffffffe;
-  FUN_18004b730();
-  FUN_180058370(tempDataBuffer + BUFFER_SIZE_OFFSET,*(uint64 *)(tempDataBuffer + LIST_OFFSET_HEAD),operationFlags,callbackFunction,unsignedVar3);
+  UtilityModule7();
+  UtilityModule15(tempDataBuffer + BUFFER_SIZE_OFFSET,*(uint64 *)(tempDataBuffer + LIST_OFFSET_HEAD),operationFlags,callbackFunction,unsignedVar3);
   pfunctionResult = *(uint64 **)(tempDataBuffer + POINTER_OFFSET_DATA);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(tempDataBuffer + RESOURCE_HANDLE_OFFSET,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(tempDataBuffer + RESOURCE_HANDLE_OFFSET,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -47944,7 +47944,7 @@ void Unwind_1809081d0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_HANDLE_OFFSET);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -47956,7 +47956,7 @@ void Unwind_1809081d0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_1809081e0(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058370(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + FIELD_OFFSET_1,
+  UtilityModule15(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + FIELD_OFFSET_1,
                 *(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + BUFFER_SIZE_OFFSET),operationFlags,callbackFunction,
                 0xfffffffffffffffe);
   return;
@@ -47971,7 +47971,7 @@ void Unwind_1809081f0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x70);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + DATA_OFFSET_START,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + DATA_OFFSET_START,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -48051,7 +48051,7 @@ void Catch_180908290(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_1809082c0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP) + 8,8,POINTER_OFFSET_DATA,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP) + 8,8,POINTER_OFFSET_DATA,UtilityModule3);
   return;
 }
 
@@ -48060,7 +48060,7 @@ void Unwind_1809082c0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180908300(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP) + RESOURCE_HANDLE_OFFSET8,8,POINTER_OFFSET_DATA,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_OFFSET_TEMP) + RESOURCE_HANDLE_OFFSET8,8,POINTER_OFFSET_DATA,UtilityModule3);
   return;
 }
 
@@ -48133,7 +48133,7 @@ void Unwind_1809083e0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_1809083f0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 8,8,POINTER_OFFSET_DATA,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 8,8,POINTER_OFFSET_DATA,UtilityModule3);
   return;
 }
 
@@ -48142,7 +48142,7 @@ void Unwind_1809083f0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180908420(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_HANDLE_OFFSET8,8,POINTER_OFFSET_DATA,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_HANDLE_OFFSET8,8,POINTER_OFFSET_DATA,UtilityModule3);
   return;
 }
 
@@ -48201,7 +48201,7 @@ void Unwind_1809084c0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_1809084f0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 8,8,4,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 8,8,4,UtilityModule3);
   return;
 }
 
@@ -48278,7 +48278,7 @@ void Unwind_1809085c0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_1809085d0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD) + 8,8,4,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD) + 8,8,4,UtilityModule3);
   return;
 }
 
@@ -48354,8 +48354,8 @@ void Unwind_180908660(uint64 resourceHandle,longlong memoryBlockSize)
   _Mtx_destroy_in_situ();
   FUN_1808fc8a8(resourceDataBuffer + 0x3e0,POINTER_OFFSET_DATA,POINTER_OFFSET_DATA,FUN_180627b90,unsignedCounter);
   FUN_18005d580();
-  FUN_1808fc8a8(resourceDataBuffer + 0x138,8,POINTER_OFFSET_DATA,FUN_180045af0);
-  FUN_1808fc8a8(resourceDataBuffer + STRUCT_OFFSET_SIZE,8,POINTER_OFFSET_DATA,FUN_180045af0);
+  FUN_1808fc8a8(resourceDataBuffer + 0x138,8,POINTER_OFFSET_DATA,UtilityModule3);
+  FUN_1808fc8a8(resourceDataBuffer + STRUCT_OFFSET_SIZE,8,POINTER_OFFSET_DATA,UtilityModule3);
   return;
 }
 
@@ -48383,7 +48383,7 @@ void Unwind_180908670(uint64 resourceHandle,longlong memoryBlockSize)
     (**(code **)(**(longlong **)(tempDataBuffer + 0x15d0) + STRUCT_OFFSET_SIZE))();
   }
   FUN_1808fc8a8(tempDataBuffer + 0x8e0,POINTER_OFFSET_DATA,LIST_OFFSET_HEAD,FUN_180627b90,unsignedVar3);
-  FUN_1808fc8a8(tempDataBuffer + 0x8b8,8,4,FUN_180045af0);
+  FUN_1808fc8a8(tempDataBuffer + 0x8b8,8,4,UtilityModule3);
   presourceDataBuffer = *(longlong **)(tempDataBuffer + 0x8b0);
   if (presourceDataBuffer != (longlong *)0x0) {
     (**(code **)(*presourceDataBuffer + STRUCT_OFFSET_SIZE))();
@@ -48845,7 +48845,7 @@ void Unwind_1809088a0(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 1) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffe;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + BUFFER_OFFSET_DATA));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + BUFFER_OFFSET_DATA));
   }
   return;
 }
@@ -48931,7 +48931,7 @@ void Unwind_180908920(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 1) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_1) = *(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 0xfffffffe;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + BUFFER_SIZE_OFFSET));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + BUFFER_SIZE_OFFSET));
   }
   return;
 }
@@ -48943,7 +48943,7 @@ void Unwind_180908950(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 2) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_1) = *(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 0xfffffffd;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + BUFFER_SIZE_OFFSET));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + BUFFER_SIZE_OFFSET));
   }
   return;
 }
@@ -49379,7 +49379,7 @@ void Unwind_180908a90(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180908aa0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_180057010(memoryBlockSize + 0x170);
+  UtilityModule10(memoryBlockSize + 0x170);
   return;
 }
 
@@ -49496,7 +49496,7 @@ void Unwind_180908ad0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180908ae0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_180057010(memoryBlockSize + 0x170);
+  UtilityModule10(memoryBlockSize + 0x170);
   return;
 }
 
@@ -49505,7 +49505,7 @@ void Unwind_180908ae0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180908af0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_180057010(memoryBlockSize + 0x170);
+  UtilityModule10(memoryBlockSize + 0x170);
   return;
 }
 
@@ -49885,7 +49885,7 @@ void Unwind_180908c80(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180908c90(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(memoryBlockSize + 0xc0,8,RESOURCE_HANDLE_OFFSET,FUN_180045af0,0xfffffffffffffffe);
+  FUN_1808fc8a8(memoryBlockSize + 0xc0,8,RESOURCE_HANDLE_OFFSET,UtilityModule3,0xfffffffffffffffe);
   return;
 }
 
@@ -49894,7 +49894,7 @@ void Unwind_180908c90(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180908ca0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(memoryBlockSize + 0xc0,8,RESOURCE_HANDLE_OFFSET,FUN_180045af0);
+  FUN_1808fc8a8(memoryBlockSize + 0xc0,8,RESOURCE_HANDLE_OFFSET,UtilityModule3);
   return;
 }
 
@@ -49903,7 +49903,7 @@ void Unwind_180908ca0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180908cd0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(memoryBlockSize + 0xc0,8,RESOURCE_HANDLE_OFFSET,FUN_180045af0);
+  FUN_1808fc8a8(memoryBlockSize + 0xc0,8,RESOURCE_HANDLE_OFFSET,UtilityModule3);
   return;
 }
 
@@ -49912,7 +49912,7 @@ void Unwind_180908cd0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180908d00(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(uint64 *)(memoryBlockSize + BUFFER_SIZE_OFFSET),8,RESOURCE_HANDLE_OFFSET,FUN_180045af0);
+  FUN_1808fc8a8(*(uint64 *)(memoryBlockSize + BUFFER_SIZE_OFFSET),8,RESOURCE_HANDLE_OFFSET,UtilityModule3);
   return;
 }
 
@@ -49959,7 +49959,7 @@ void Unwind_180908d40(void)
 void Unwind_180908d50(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_180057010(memoryBlockSize + 0xc0);
+  UtilityModule10(memoryBlockSize + 0xc0);
   return;
 }
 
@@ -49968,7 +49968,7 @@ void Unwind_180908d50(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180908d60(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_180057010(memoryBlockSize + 0xc0);
+  UtilityModule10(memoryBlockSize + 0xc0);
   return;
 }
 
@@ -49977,7 +49977,7 @@ void Unwind_180908d60(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180908d70(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_180057010(memoryBlockSize + 0xc0);
+  UtilityModule10(memoryBlockSize + 0xc0);
   return;
 }
 
@@ -50155,7 +50155,7 @@ void Unwind_180908e10(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 1) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffe;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + 0x88));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + 0x88));
   }
   return;
 }
@@ -50169,7 +50169,7 @@ void Unwind_180908e40(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + FIELD_OFFSET_1);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + POINTER_OFFSET_DATA,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + POINTER_OFFSET_DATA,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -50295,12 +50295,12 @@ void Unwind_180908e80(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   resourceDataBuffer = *(longlong *)(memoryBlockSize + DATA_OFFSET_START);
   unsignedCounter = 0xfffffffffffffffe;
   _Mtx_destroy_in_situ();
-  FUN_180058370(resourceDataBuffer + 0x110,*(uint64 *)(resourceDataBuffer + 0x120),operationFlags,callbackFunction,unsignedCounter);
-  FUN_180058370(resourceDataBuffer + 0xe0,*(uint64 *)(resourceDataBuffer + 0xf0));
-  FUN_180058370(resourceDataBuffer + 0xb0,*(uint64 *)(resourceDataBuffer + 0xc0));
-  FUN_1800593f0(resourceDataBuffer + BUFFER_OFFSET_TEMP,*(uint64 *)(resourceDataBuffer + MEMORY_SIZE_OFFSET));
-  FUN_180058710(resourceDataBuffer + LIST_OFFSET_HEAD,*(uint64 *)(resourceDataBuffer + DATA_OFFSET_START));
-  FUN_1800593f0(resourceDataBuffer + POINTER_OFFSET_DATA,*(uint64 *)(resourceDataBuffer + FIELD_OFFSET_1));
+  UtilityModule15(resourceDataBuffer + 0x110,*(uint64 *)(resourceDataBuffer + 0x120),operationFlags,callbackFunction,unsignedCounter);
+  UtilityModule15(resourceDataBuffer + 0xe0,*(uint64 *)(resourceDataBuffer + 0xf0));
+  UtilityModule15(resourceDataBuffer + 0xb0,*(uint64 *)(resourceDataBuffer + 0xc0));
+  UtilityModule21(resourceDataBuffer + BUFFER_OFFSET_TEMP,*(uint64 *)(resourceDataBuffer + MEMORY_SIZE_OFFSET));
+  UtilityModule17(resourceDataBuffer + LIST_OFFSET_HEAD,*(uint64 *)(resourceDataBuffer + DATA_OFFSET_START));
+  UtilityModule21(resourceDataBuffer + POINTER_OFFSET_DATA,*(uint64 *)(resourceDataBuffer + FIELD_OFFSET_1));
   return;
 }
 
@@ -51186,9 +51186,9 @@ void Unwind_180909320(uint64 resourceHandle,longlong memoryBlockSize)
                     // WARNING: Subroutine does not return
     HandleCriticalError(punsignedCounter);
   }
-  FUN_180058370(puVar3 + RESOURCE_HANDLE_OFFSET3b,pointerVar3[RESOURCE_HANDLE_OFFSET3d]);
-  FUN_180058370(puVar3 + RESOURCE_HANDLE_OFFSET35,pointerVar3[RESOURCE_HANDLE_OFFSET37]);
-  FUN_180058370(puVar3 + RESOURCE_HANDLE_OFFSET2f,pointerVar3[RESOURCE_HANDLE_OFFSET31]);
+  UtilityModule15(puVar3 + RESOURCE_HANDLE_OFFSET3b,pointerVar3[RESOURCE_HANDLE_OFFSET3d]);
+  UtilityModule15(puVar3 + RESOURCE_HANDLE_OFFSET35,pointerVar3[RESOURCE_HANDLE_OFFSET37]);
+  UtilityModule15(puVar3 + RESOURCE_HANDLE_OFFSET2f,pointerVar3[RESOURCE_HANDLE_OFFSET31]);
   FUN_1808fc8a8(puVar3 + RESOURCE_HANDLE_OFFSET1b,POINTER_OFFSET_DATA,5,FUN_180046860);
   if (*presourceDataBuffer != 0) {
                     // WARNING: Subroutine does not return
@@ -51334,9 +51334,9 @@ void Unwind_1809093b0(uint64 resourceHandle,longlong memoryBlockSize)
                     // WARNING: Subroutine does not return
     HandleCriticalError(punsignedCounter);
   }
-  FUN_180058370(puVar3 + RESOURCE_HANDLE_OFFSET3b,pointerVar3[RESOURCE_HANDLE_OFFSET3d]);
-  FUN_180058370(puVar3 + RESOURCE_HANDLE_OFFSET35,pointerVar3[RESOURCE_HANDLE_OFFSET37]);
-  FUN_180058370(puVar3 + RESOURCE_HANDLE_OFFSET2f,pointerVar3[RESOURCE_HANDLE_OFFSET31]);
+  UtilityModule15(puVar3 + RESOURCE_HANDLE_OFFSET3b,pointerVar3[RESOURCE_HANDLE_OFFSET3d]);
+  UtilityModule15(puVar3 + RESOURCE_HANDLE_OFFSET35,pointerVar3[RESOURCE_HANDLE_OFFSET37]);
+  UtilityModule15(puVar3 + RESOURCE_HANDLE_OFFSET2f,pointerVar3[RESOURCE_HANDLE_OFFSET31]);
   FUN_1808fc8a8(puVar3 + RESOURCE_HANDLE_OFFSET1b,POINTER_OFFSET_DATA,5,FUN_180046860);
   if (*presourceDataBuffer != 0) {
                     // WARNING: Subroutine does not return
@@ -51411,9 +51411,9 @@ void Unwind_1809093c0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     HandleCriticalError(punsignedCounter);
   }
-  FUN_180058370(arrayIndex + 0x81d8,*(uint64 *)(arrayIndex + 0x81e8),operationFlags,callbackFunction,0xfffffffffffffffe);
-  FUN_180058370(arrayIndex + 0x81a8,*(uint64 *)(arrayIndex + 0x81b8));
-  FUN_180058370(arrayIndex + 0x8178,*(uint64 *)(arrayIndex + 0x8188));
+  UtilityModule15(arrayIndex + 0x81d8,*(uint64 *)(arrayIndex + 0x81e8),operationFlags,callbackFunction,0xfffffffffffffffe);
+  UtilityModule15(arrayIndex + 0x81a8,*(uint64 *)(arrayIndex + 0x81b8));
+  UtilityModule15(arrayIndex + 0x8178,*(uint64 *)(arrayIndex + 0x8188));
   FUN_1808fc8a8(arrayIndex + 0x80d8,POINTER_OFFSET_DATA,5,FUN_180046860);
   if (*presourceDataBuffer != 0) {
                     // WARNING: Subroutine does not return
@@ -51860,7 +51860,7 @@ void Unwind_1809095d0(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + 400) & 1) != 0) {
     *(uint *)(memoryBlockSize + 400) = *(uint *)(memoryBlockSize + 400) & 0xfffffffe;
-    FUN_180044a30(memoryBlockSize + 0x390);
+    UtilityModule2(memoryBlockSize + 0x390);
   }
   return;
 }
@@ -52177,9 +52177,9 @@ void Unwind_1809096b0(uint64 resourceHandle,longlong memoryBlockSize)
                     // WARNING: Subroutine does not return
     HandleCriticalError(punsignedCounter);
   }
-  FUN_180058370(puVar3 + RESOURCE_HANDLE_OFFSET3b,pointerVar3[RESOURCE_HANDLE_OFFSET3d]);
-  FUN_180058370(puVar3 + RESOURCE_HANDLE_OFFSET35,pointerVar3[RESOURCE_HANDLE_OFFSET37]);
-  FUN_180058370(puVar3 + RESOURCE_HANDLE_OFFSET2f,pointerVar3[RESOURCE_HANDLE_OFFSET31]);
+  UtilityModule15(puVar3 + RESOURCE_HANDLE_OFFSET3b,pointerVar3[RESOURCE_HANDLE_OFFSET3d]);
+  UtilityModule15(puVar3 + RESOURCE_HANDLE_OFFSET35,pointerVar3[RESOURCE_HANDLE_OFFSET37]);
+  UtilityModule15(puVar3 + RESOURCE_HANDLE_OFFSET2f,pointerVar3[RESOURCE_HANDLE_OFFSET31]);
   FUN_1808fc8a8(puVar3 + RESOURCE_HANDLE_OFFSET1b,POINTER_OFFSET_DATA,5,FUN_180046860);
   if (*presourceDataBuffer != 0) {
                     // WARNING: Subroutine does not return
@@ -52254,9 +52254,9 @@ void Unwind_1809096c0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
                     // WARNING: Subroutine does not return
     HandleCriticalError(punsignedCounter);
   }
-  FUN_180058370(arrayIndex + 0x81d8,*(uint64 *)(arrayIndex + 0x81e8),operationFlags,callbackFunction,0xfffffffffffffffe);
-  FUN_180058370(arrayIndex + 0x81a8,*(uint64 *)(arrayIndex + 0x81b8));
-  FUN_180058370(arrayIndex + 0x8178,*(uint64 *)(arrayIndex + 0x8188));
+  UtilityModule15(arrayIndex + 0x81d8,*(uint64 *)(arrayIndex + 0x81e8),operationFlags,callbackFunction,0xfffffffffffffffe);
+  UtilityModule15(arrayIndex + 0x81a8,*(uint64 *)(arrayIndex + 0x81b8));
+  UtilityModule15(arrayIndex + 0x8178,*(uint64 *)(arrayIndex + 0x8188));
   FUN_1808fc8a8(arrayIndex + 0x80d8,POINTER_OFFSET_DATA,5,FUN_180046860);
   if (*presourceDataBuffer != 0) {
                     // WARNING: Subroutine does not return
@@ -52435,7 +52435,7 @@ void Unwind_1809097b0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -52451,7 +52451,7 @@ void Unwind_1809097c0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA) + RESOURCE_HANDLE_OFFSET);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA),*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -52463,7 +52463,7 @@ void Unwind_1809097c0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_1809097d0(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058370(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule15(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET),*(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -52497,7 +52497,7 @@ void Unwind_180909800(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 200);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + BUFFER_SIZE_STANDARD,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + BUFFER_SIZE_STANDARD,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -52513,7 +52513,7 @@ void Unwind_180909820(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
   
   pfunctionResult = *(uint64 **)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + SYSTEM_OFFSET_FLAGS);
   if (pfunctionResult != (uint64 *)0x0) {
-    FUN_18004b790(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0xe8,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0xe8,*pfunctionResult,operationFlags,callbackFunction,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     HandleCriticalError(pfunctionResult);
   }
@@ -52646,7 +52646,7 @@ void Unwind_180909900(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 1) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_1) = *(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 0xfffffffe;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + 0x88));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + 0x88));
   }
   return;
 }
@@ -52658,7 +52658,7 @@ void Unwind_180909930(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + 0x5c) & 1) != 0) {
     *(uint *)(memoryBlockSize + 0x5c) = *(uint *)(memoryBlockSize + 0x5c) & 0xfffffffe;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + 200));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + 200));
   }
   return;
 }
@@ -52742,7 +52742,7 @@ void Unwind_1809099d0(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + SYSTEM_OFFSET_STATUS1) & 1) != 0) {
     *(uint *)(memoryBlockSize + SYSTEM_OFFSET_STATUS1) = *(uint *)(memoryBlockSize + SYSTEM_OFFSET_STATUS1) & 0xfffffffe;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + STRUCT_OFFSET_1));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + STRUCT_OFFSET_1));
   }
   return;
 }
@@ -52903,7 +52903,7 @@ void Unwind_180909a70(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + STRUCT_OFFSET_SIZE) & 1) != 0) {
     *(uint *)(memoryBlockSize + STRUCT_OFFSET_SIZE) = *(uint *)(memoryBlockSize + STRUCT_OFFSET_SIZE) & 0xfffffffe;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + BUFFER_SIZE_STANDARD));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + BUFFER_SIZE_STANDARD));
   }
   return;
 }
@@ -52960,7 +52960,7 @@ void Unwind_180909af0(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 1) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffe;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + 0x70));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + 0x70));
   }
   return;
 }
@@ -53082,7 +53082,7 @@ void Unwind_180909bb0(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 1) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffe;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + 0xa8));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + 0xa8));
   }
   return;
 }
@@ -53108,7 +53108,7 @@ void Unwind_180909bf0(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 1) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffe;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + BUFFER_SIZE_STANDARD));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + BUFFER_SIZE_STANDARD));
   }
   return;
 }
@@ -53575,7 +53575,7 @@ void Unwind_180909fa0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180909fc0(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058370(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0xbd8,
+  UtilityModule15(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0xbd8,
                 *(uint64 *)(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0xbe8),operationFlags,callbackFunction,
                 0xfffffffffffffffe);
   return;
@@ -53586,7 +53586,7 @@ void Unwind_180909fc0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_180909fe0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0xc08,8,10,FUN_180045af0,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0xc08,8,10,UtilityModule3,0xfffffffffffffffe);
   return;
 }
 
@@ -53609,7 +53609,7 @@ void Unwind_18090a000(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090a020(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0xc60,8,RESOURCE_DATA_OFFSET,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0xc60,8,RESOURCE_DATA_OFFSET,UtilityModule3);
   return;
 }
 
@@ -53641,7 +53641,7 @@ void Unwind_18090a060(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090a080(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(uint64 *)(memoryBlockSize + BUFFER_OFFSET_DATA),8,10,FUN_180045af0);
+  FUN_1808fc8a8(*(uint64 *)(memoryBlockSize + BUFFER_OFFSET_DATA),8,10,UtilityModule3);
   return;
 }
 
@@ -53798,7 +53798,7 @@ void Unwind_18090a160(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_18090a170(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(uint64 *)(memoryBlockSize + BUFFER_SIZE_OFFSET),8,10,FUN_180045af0);
+  FUN_1808fc8a8(*(uint64 *)(memoryBlockSize + BUFFER_SIZE_OFFSET),8,10,UtilityModule3);
   return;
 }
 
@@ -54140,7 +54140,7 @@ void Unwind_18090a490(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_18090a4b0(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058370(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + 0xbd8,
+  UtilityModule15(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + 0xbd8,
                 *(uint64 *)(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + 0xbe8),operationFlags,callbackFunction,
                 0xfffffffffffffffe);
   return;
@@ -54151,7 +54151,7 @@ void Unwind_18090a4b0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_18090a4d0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + 0xc08,8,10,FUN_180045af0,0xfffffffffffffffe);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + 0xc08,8,10,UtilityModule3,0xfffffffffffffffe);
   return;
 }
 
@@ -54174,7 +54174,7 @@ void Unwind_18090a4f0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090a510(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + 0xc60,8,RESOURCE_DATA_OFFSET,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + 0xc60,8,RESOURCE_DATA_OFFSET,UtilityModule3);
   return;
 }
 
@@ -54384,7 +54384,7 @@ void Unwind_18090a600(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_18090a610(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(uint64 *)(memoryBlockSize + 0x68),8,10,FUN_180045af0);
+  FUN_1808fc8a8(*(uint64 *)(memoryBlockSize + 0x68),8,10,UtilityModule3);
   return;
 }
 
@@ -54431,7 +54431,7 @@ void Unwind_18090a670(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 1) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffe;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + DATA_OFFSET_START));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + DATA_OFFSET_START));
   }
   return;
 }
@@ -54443,7 +54443,7 @@ void Unwind_18090a6a0(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 2) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffd;
-    FUN_180045af0(memoryBlockSize + LIST_OFFSET_HEAD);
+    UtilityModule3(memoryBlockSize + LIST_OFFSET_HEAD);
   }
   return;
 }
@@ -54699,7 +54699,7 @@ void Unwind_18090a800(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 1) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffe;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + 0x68));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + 0x68));
   }
   return;
 }
@@ -54732,7 +54732,7 @@ void Unwind_18090a840(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 2) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffd;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + 0x68));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + 0x68));
   }
   return;
 }
@@ -55345,7 +55345,7 @@ void Unwind_18090ab20(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + DATA_OFFSET_START) & 2) != 0) {
     *(uint *)(memoryBlockSize + DATA_OFFSET_START) = *(uint *)(memoryBlockSize + DATA_OFFSET_START) & 0xfffffffd;
-    FUN_180044a30(memoryBlockSize + 0xa0);
+    UtilityModule2(memoryBlockSize + 0xa0);
   }
   return;
 }
@@ -55731,7 +55731,7 @@ void Unwind_18090add0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090adf0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD) + 0xf0,8,RESOURCE_HANDLE_OFFSET,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD) + 0xf0,8,RESOURCE_HANDLE_OFFSET,UtilityModule3);
   return;
 }
 
@@ -55740,7 +55740,7 @@ void Unwind_18090adf0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090ae30(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD) + 0x170,8,RESOURCE_HANDLE_OFFSET,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD) + 0x170,8,RESOURCE_HANDLE_OFFSET,UtilityModule3);
   return;
 }
 
@@ -55749,7 +55749,7 @@ void Unwind_18090ae30(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090ae70(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD) + 0x1f0,8,RESOURCE_HANDLE_OFFSET,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + LIST_OFFSET_HEAD) + 0x1f0,8,RESOURCE_HANDLE_OFFSET,UtilityModule3);
   return;
 }
 
@@ -56773,7 +56773,7 @@ void Unwind_18090b630(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090b650(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0xf0,8,RESOURCE_HANDLE_OFFSET,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0xf0,8,RESOURCE_HANDLE_OFFSET,UtilityModule3);
   return;
 }
 
@@ -56782,7 +56782,7 @@ void Unwind_18090b650(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090b690(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x170,8,RESOURCE_HANDLE_OFFSET,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x170,8,RESOURCE_HANDLE_OFFSET,UtilityModule3);
   return;
 }
 
@@ -56791,7 +56791,7 @@ void Unwind_18090b690(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090b6d0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x1f0,8,RESOURCE_HANDLE_OFFSET,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x1f0,8,RESOURCE_HANDLE_OFFSET,UtilityModule3);
   return;
 }
 
@@ -57650,7 +57650,7 @@ void Unwind_18090bd90(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 1) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_1) = *(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 0xfffffffe;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + 200));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + 200));
   }
   return;
 }
@@ -57723,7 +57723,7 @@ void Unwind_18090be00(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 1) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_1) = *(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 0xfffffffe;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + 0xd8));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + 0xd8));
   }
   return;
 }
@@ -57758,7 +57758,7 @@ void Unwind_18090be50(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 1) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffe;
-    FUN_180045af0(memoryBlockSize + MEMORY_SIZE_OFFSET);
+    UtilityModule3(memoryBlockSize + MEMORY_SIZE_OFFSET);
   }
   return;
 }
@@ -57770,7 +57770,7 @@ void Unwind_18090be80(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 2) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffd;
-    FUN_180045af0(memoryBlockSize + MEMORY_SIZE_OFFSET);
+    UtilityModule3(memoryBlockSize + MEMORY_SIZE_OFFSET);
   }
   return;
 }
@@ -57782,7 +57782,7 @@ void Unwind_18090beb0(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + BUFFER_OFFSET_DATA) & 1) != 0) {
     *(uint *)(memoryBlockSize + BUFFER_OFFSET_DATA) = *(uint *)(memoryBlockSize + BUFFER_OFFSET_DATA) & 0xfffffffe;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + RESOURCE_HANDLE_OFFSET));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + RESOURCE_HANDLE_OFFSET));
   }
   return;
 }
@@ -57794,7 +57794,7 @@ void Unwind_18090bee0(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 1) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffe;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + STRUCT_OFFSET_SIZE));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + STRUCT_OFFSET_SIZE));
   }
   return;
 }
@@ -57806,7 +57806,7 @@ void Unwind_18090bf10(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 1) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_1) = *(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 0xfffffffe;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + RESOURCE_HANDLE_OFFSET));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + RESOURCE_HANDLE_OFFSET));
   }
   return;
 }
@@ -57982,7 +57982,7 @@ void Unwind_18090bfe0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090c000(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058370(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA) + 0xa0,
+  UtilityModule15(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA) + 0xa0,
                 *(uint64 *)(*(longlong *)(memoryBlockSize + POINTER_OFFSET_DATA) + 0xb0),operationFlags,callbackFunction,
                 0xfffffffffffffffe);
   return;
@@ -58492,7 +58492,7 @@ void Unwind_18090c260(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_18090c270(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_180057010(memoryBlockSize + SYSTEM_STATUS_OFFSET1);
+  UtilityModule10(memoryBlockSize + SYSTEM_STATUS_OFFSET1);
   return;
 }
 
@@ -58555,7 +58555,7 @@ void Unwind_18090c2a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_18090c2b0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_180057010(memoryBlockSize + SYSTEM_STATUS_OFFSET1);
+  UtilityModule10(memoryBlockSize + SYSTEM_STATUS_OFFSET1);
   return;
 }
 
@@ -58564,7 +58564,7 @@ void Unwind_18090c2b0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090c2c0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_180057010(memoryBlockSize + SYSTEM_STATUS_OFFSET1);
+  UtilityModule10(memoryBlockSize + SYSTEM_STATUS_OFFSET1);
   return;
 }
 
@@ -58942,7 +58942,7 @@ void Unwind_18090c490(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -59165,7 +59165,7 @@ void Unwind_18090c540(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -59211,7 +59211,7 @@ void Unwind_18090c550(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -59287,7 +59287,7 @@ void Unwind_18090c590(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -59354,7 +59354,7 @@ void Unwind_18090c5c0(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -59400,7 +59400,7 @@ void Unwind_18090c5d0(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -59458,7 +59458,7 @@ void Unwind_18090c5f0(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -59504,7 +59504,7 @@ void Unwind_18090c600(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -59732,7 +59732,7 @@ void Unwind_18090c700(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 1) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_1) = *(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 0xfffffffe;
-    FUN_180045af0(memoryBlockSize + 0x178);
+    UtilityModule3(memoryBlockSize + 0x178);
   }
   return;
 }
@@ -60132,7 +60132,7 @@ void Unwind_18090c9a0(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 1) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_1) = *(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 0xfffffffe;
-    FUN_180045af0(memoryBlockSize + STRUCT_OFFSET_SIZE);
+    UtilityModule3(memoryBlockSize + STRUCT_OFFSET_SIZE);
   }
   return;
 }
@@ -60144,7 +60144,7 @@ void Unwind_18090c9d0(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 2) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_1) = *(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 0xfffffffd;
-    FUN_180045af0(memoryBlockSize + STRUCT_OFFSET_SIZE);
+    UtilityModule3(memoryBlockSize + STRUCT_OFFSET_SIZE);
   }
   return;
 }
@@ -60193,7 +60193,7 @@ void Unwind_18090ca20(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -60251,7 +60251,7 @@ void Unwind_18090ca40(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -60321,7 +60321,7 @@ void Unwind_18090ca70(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -60388,7 +60388,7 @@ void Unwind_18090caa0(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -60455,7 +60455,7 @@ void Unwind_18090cad0(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -60522,7 +60522,7 @@ void Unwind_18090cb00(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -60577,7 +60577,7 @@ void Unwind_18090cb20(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -60632,7 +60632,7 @@ void Unwind_18090cb40(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -60690,7 +60690,7 @@ void Unwind_18090cb60(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -60745,7 +60745,7 @@ void Unwind_18090cb80(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -60836,7 +60836,7 @@ void Unwind_18090cbd0(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -60903,7 +60903,7 @@ void Unwind_18090cc00(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -61069,7 +61069,7 @@ void Unwind_18090cce0(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -64760,16 +64760,16 @@ void Unwind_18090d660(uint64 resourceHandle,longlong memoryBlockSize)
   if (*(longlong **)(resourceDataBuffer + 0xed0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(resourceDataBuffer + 0xed0) + STRUCT_OFFSET_SIZE))();
   }
-  FUN_1808fc8a8(resourceDataBuffer + 0xec0,8,2,FUN_180045af0,unsignedCounter);
+  FUN_1808fc8a8(resourceDataBuffer + 0xec0,8,2,UtilityModule3,unsignedCounter);
   if (*(longlong **)(resourceDataBuffer + 0xeb8) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(resourceDataBuffer + 0xeb8) + STRUCT_OFFSET_SIZE))();
   }
   if (*(longlong **)(resourceDataBuffer + 0xeb0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(resourceDataBuffer + 0xeb0) + STRUCT_OFFSET_SIZE))();
   }
-  FUN_1808fc8a8(resourceDataBuffer + 0xea0,8,2,FUN_180045af0,unsignedCounter);
-  FUN_1808fc8a8(resourceDataBuffer + 0xe90,8,2,FUN_180045af0);
-  FUN_1808fc8a8(resourceDataBuffer + 0xe80,8,2,FUN_180045af0);
+  FUN_1808fc8a8(resourceDataBuffer + 0xea0,8,2,UtilityModule3,unsignedCounter);
+  FUN_1808fc8a8(resourceDataBuffer + 0xe90,8,2,UtilityModule3);
+  FUN_1808fc8a8(resourceDataBuffer + 0xe80,8,2,UtilityModule3);
   FUN_1808fc8a8(resourceDataBuffer + 0xc28,0x128,2,FUN_1801b9690);
   FUN_1808fc8a8(resourceDataBuffer + 0x9d0,0x128,2,FUN_1801b9690);
   FUN_1808fc8a8(resourceDataBuffer + BUFFER_SIZE_STANDARD,0x488,2,FUN_1800e7ca0);
@@ -65069,7 +65069,7 @@ void Unwind_18090d8e0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090d900(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x1558,8,2,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x1558,8,2,UtilityModule3);
   return;
 }
 
@@ -65078,7 +65078,7 @@ void Unwind_18090d900(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090d940(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x1568,8,2,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x1568,8,2,UtilityModule3);
   return;
 }
 
@@ -65087,7 +65087,7 @@ void Unwind_18090d940(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090d980(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x1578,8,2,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + BUFFER_SIZE_OFFSET) + 0x1578,8,2,UtilityModule3);
   return;
 }
 
@@ -65534,16 +65534,16 @@ void Unwind_18090de80(uint64 resourceHandle,longlong memoryBlockSize)
   if (*(longlong **)(resourceDataBuffer + 0xed0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(resourceDataBuffer + 0xed0) + STRUCT_OFFSET_SIZE))();
   }
-  FUN_1808fc8a8(resourceDataBuffer + 0xec0,8,2,FUN_180045af0,unsignedCounter);
+  FUN_1808fc8a8(resourceDataBuffer + 0xec0,8,2,UtilityModule3,unsignedCounter);
   if (*(longlong **)(resourceDataBuffer + 0xeb8) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(resourceDataBuffer + 0xeb8) + STRUCT_OFFSET_SIZE))();
   }
   if (*(longlong **)(resourceDataBuffer + 0xeb0) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(resourceDataBuffer + 0xeb0) + STRUCT_OFFSET_SIZE))();
   }
-  FUN_1808fc8a8(resourceDataBuffer + 0xea0,8,2,FUN_180045af0,unsignedCounter);
-  FUN_1808fc8a8(resourceDataBuffer + 0xe90,8,2,FUN_180045af0);
-  FUN_1808fc8a8(resourceDataBuffer + 0xe80,8,2,FUN_180045af0);
+  FUN_1808fc8a8(resourceDataBuffer + 0xea0,8,2,UtilityModule3,unsignedCounter);
+  FUN_1808fc8a8(resourceDataBuffer + 0xe90,8,2,UtilityModule3);
+  FUN_1808fc8a8(resourceDataBuffer + 0xe80,8,2,UtilityModule3);
   FUN_1808fc8a8(resourceDataBuffer + 0xc28,0x128,2,FUN_1801b9690);
   FUN_1808fc8a8(resourceDataBuffer + 0x9d0,0x128,2,FUN_1801b9690);
   FUN_1808fc8a8(resourceDataBuffer + BUFFER_SIZE_STANDARD,0x488,2,FUN_1800e7ca0);
@@ -65843,7 +65843,7 @@ void Unwind_18090e100(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090e120(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + 0xe0) + 0x1558,8,2,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + 0xe0) + 0x1558,8,2,UtilityModule3);
   return;
 }
 
@@ -65852,7 +65852,7 @@ void Unwind_18090e120(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090e160(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + 0xe0) + 0x1568,8,2,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + 0xe0) + 0x1568,8,2,UtilityModule3);
   return;
 }
 
@@ -65861,7 +65861,7 @@ void Unwind_18090e160(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090e1a0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + 0xe0) + 0x1578,8,2,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + 0xe0) + 0x1578,8,2,UtilityModule3);
   return;
 }
 
@@ -66146,7 +66146,7 @@ void Unwind_18090e440(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090e460(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + FIELD_OFFSET_1) + 0xdc8,8,2,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + FIELD_OFFSET_1) + 0xdc8,8,2,UtilityModule3);
   return;
 }
 
@@ -66155,7 +66155,7 @@ void Unwind_18090e460(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090e4a0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + FIELD_OFFSET_1) + 0xdd8,8,2,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + FIELD_OFFSET_1) + 0xdd8,8,2,UtilityModule3);
   return;
 }
 
@@ -66164,7 +66164,7 @@ void Unwind_18090e4a0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090e4e0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + FIELD_OFFSET_1) + 0xde8,8,2,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + FIELD_OFFSET_1) + 0xde8,8,2,UtilityModule3);
   return;
 }
 
@@ -66201,7 +66201,7 @@ void Unwind_18090e540(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090e560(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + FIELD_OFFSET_1) + 0xe08,8,2,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + FIELD_OFFSET_1) + 0xe08,8,2,UtilityModule3);
   return;
 }
 
@@ -66317,7 +66317,7 @@ void Unwind_18090e730(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 1) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffe;
-    FUN_180045af0(memoryBlockSize + FIELD_OFFSET_1);
+    UtilityModule3(memoryBlockSize + FIELD_OFFSET_1);
   }
   return;
 }
@@ -66342,7 +66342,7 @@ void Unwind_18090e760(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -66375,7 +66375,7 @@ void Unwind_18090e770(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_2) & 1) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_2) = *(uint *)(memoryBlockSize + FIELD_OFFSET_2) & 0xfffffffe;
-    FUN_180045af0(memoryBlockSize + 0x70);
+    UtilityModule3(memoryBlockSize + 0x70);
   }
   return;
 }
@@ -66400,7 +66400,7 @@ void Unwind_18090e7a0(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -66446,7 +66446,7 @@ void Unwind_18090e7b0(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -66492,7 +66492,7 @@ void Unwind_18090e7c0(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -66538,7 +66538,7 @@ void Unwind_18090e7d0(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -66584,7 +66584,7 @@ void Unwind_18090e7e0(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -66630,7 +66630,7 @@ void Unwind_18090e7f0(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -66676,7 +66676,7 @@ void Unwind_18090e800(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -66734,7 +66734,7 @@ void Unwind_18090e820(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -66792,7 +66792,7 @@ void Unwind_18090e840(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -66850,7 +66850,7 @@ void Unwind_18090e860(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -67289,7 +67289,7 @@ void Unwind_18090eb00(uint64 resourceHandle,longlong memoryBlockSize)
       plVar4 = (longlong *)(longVar5 + 0x80d8 + (longlong)*(int *)(longVar5 + 0x8088) * POINTER_OFFSET_DATA);
       resourceDataBuffer = *plVar4;
       resourceDataBuffer = *(longlong *)(resourceDataBuffer + ((longlong)(int)(plVar4[1] - resourceDataBuffer >> 3) + -1) * 8);
-      FUN_180057340();
+      UtilityModule11();
       if (*(longlong *)(resourceDataBuffer + 0x68) == 0) {
         *(longlong *)(longVar5 + 0x80b0 + (longlong)*(int *)(longVar5 + 0x8088) * 8) = resourceDataBuffer;
       }
@@ -67410,7 +67410,7 @@ void Unwind_18090eb60(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090eb70(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(memoryBlockSize + 0xa0,8,RESOURCE_HANDLE_OFFSET,FUN_180045af0,0xfffffffffffffffe);
+  FUN_1808fc8a8(memoryBlockSize + 0xa0,8,RESOURCE_HANDLE_OFFSET,UtilityModule3,0xfffffffffffffffe);
   return;
 }
 
@@ -67428,7 +67428,7 @@ void Unwind_18090eb80(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090eb90(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(memoryBlockSize + 0xa0,8,RESOURCE_HANDLE_OFFSET,FUN_180045af0);
+  FUN_1808fc8a8(memoryBlockSize + 0xa0,8,RESOURCE_HANDLE_OFFSET,UtilityModule3);
   return;
 }
 
@@ -67437,7 +67437,7 @@ void Unwind_18090eb90(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090ebc0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(memoryBlockSize + 0xa0,8,RESOURCE_HANDLE_OFFSET,FUN_180045af0);
+  FUN_1808fc8a8(memoryBlockSize + 0xa0,8,RESOURCE_HANDLE_OFFSET,UtilityModule3);
   return;
 }
 
@@ -67610,7 +67610,7 @@ void Unwind_18090eca0(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + STRUCT_OFFSET_1) & 1) != 0) {
     *(uint *)(memoryBlockSize + STRUCT_OFFSET_1) = *(uint *)(memoryBlockSize + STRUCT_OFFSET_1) & 0xfffffffe;
-    FUN_180045af0(*(uint64 *)(memoryBlockSize + 0x198));
+    UtilityModule3(*(uint64 *)(memoryBlockSize + 0x198));
   }
   return;
 }
@@ -69335,7 +69335,7 @@ void Unwind_18090f3b0(uint64 resourceHandle,longlong memoryBlockSize)
   if (*(longlong **)(resourceDataBuffer + 0x370) != (longlong *)0x0) {
     (**(code **)(**(longlong **)(resourceDataBuffer + 0x370) + STRUCT_OFFSET_SIZE))();
   }
-  FUN_1808fc8a8(resourceDataBuffer + 0x308,8,0xd,FUN_180045af0);
+  FUN_1808fc8a8(resourceDataBuffer + 0x308,8,0xd,UtilityModule3);
   return;
 }
 
@@ -69344,7 +69344,7 @@ void Unwind_18090f3b0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090f3d0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + 0x3a8,8,0xd,FUN_180045af0);
+  FUN_1808fc8a8(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + 0x3a8,8,0xd,UtilityModule3);
   return;
 }
 
@@ -69585,7 +69585,7 @@ void Unwind_18090f610(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_18090f630(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058210(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + 0x4110,
+  UtilityModule13(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + 0x4110,
                 *(uint64 *)(*(longlong *)(memoryBlockSize + DATA_OFFSET_START) + 0x4120),operationFlags,callbackFunction,
                 0xfffffffffffffffe);
   return;
@@ -69675,7 +69675,7 @@ void Unwind_18090f6b0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_18090f6c0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(uint64 *)(memoryBlockSize + 0x68),8,0xd,FUN_180045af0);
+  FUN_1808fc8a8(*(uint64 *)(memoryBlockSize + 0x68),8,0xd,UtilityModule3);
   return;
 }
 
@@ -69808,7 +69808,7 @@ void Unwind_18090f7b0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_18090f7c0(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058210(*(longlong *)(memoryBlockSize + 0x68),*(uint64 *)(*(longlong *)(memoryBlockSize + 0x68) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule13(*(longlong *)(memoryBlockSize + 0x68),*(uint64 *)(*(longlong *)(memoryBlockSize + 0x68) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -69818,7 +69818,7 @@ void Unwind_18090f7c0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_18090f7d0(uint64 resourceHandle,longlong memoryBlockSize,uint64 operationFlags,uint64 callbackFunction)
 
 {
-  FUN_180058210(*(longlong *)(memoryBlockSize + 0x68),*(uint64 *)(*(longlong *)(memoryBlockSize + 0x68) + RESOURCE_HANDLE_OFFSET),
+  UtilityModule13(*(longlong *)(memoryBlockSize + 0x68),*(uint64 *)(*(longlong *)(memoryBlockSize + 0x68) + RESOURCE_HANDLE_OFFSET),
                 operationFlags,callbackFunction,0xfffffffffffffffe);
   return;
 }
@@ -69869,7 +69869,7 @@ void Unwind_18090f800(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_18090f810(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(uint64 *)(memoryBlockSize + BUFFER_SIZE_OFFSET),8,0xd,FUN_180045af0);
+  FUN_1808fc8a8(*(uint64 *)(memoryBlockSize + BUFFER_SIZE_OFFSET),8,0xd,UtilityModule3);
   return;
 }
 
@@ -70014,7 +70014,7 @@ void Unwind_18090f900(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_3) & 1) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_3) = *(uint *)(memoryBlockSize + FIELD_OFFSET_3) & 0xfffffffe;
-    FUN_180045af0(memoryBlockSize + BUFFER_SIZE_STANDARD);
+    UtilityModule3(memoryBlockSize + BUFFER_SIZE_STANDARD);
   }
   return;
 }
@@ -70026,7 +70026,7 @@ void Unwind_18090f930(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_3) & 2) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_3) = *(uint *)(memoryBlockSize + FIELD_OFFSET_3) & 0xfffffffd;
-    FUN_180045af0(memoryBlockSize + 0xc0);
+    UtilityModule3(memoryBlockSize + 0xc0);
   }
   return;
 }
@@ -70395,7 +70395,7 @@ void Unwind_18090fb10(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_18090fb20(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_180057010(memoryBlockSize + 0x280);
+  UtilityModule10(memoryBlockSize + 0x280);
   return;
 }
 
@@ -70422,7 +70422,7 @@ void Unwind_18090fb40(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
 void Unwind_18090fb50(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_180057010(memoryBlockSize + 0x280);
+  UtilityModule10(memoryBlockSize + 0x280);
   return;
 }
 
@@ -70431,7 +70431,7 @@ void Unwind_18090fb50(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090fb60(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_180057010(memoryBlockSize + 0x280);
+  UtilityModule10(memoryBlockSize + 0x280);
   return;
 }
 
@@ -70501,7 +70501,7 @@ void Unwind_18090fbc0(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + DATA_OFFSET_START) & 1) != 0) {
     *(uint *)(memoryBlockSize + DATA_OFFSET_START) = *(uint *)(memoryBlockSize + DATA_OFFSET_START) & 0xfffffffe;
-    FUN_180045af0(memoryBlockSize + 0x70);
+    UtilityModule3(memoryBlockSize + 0x70);
   }
   return;
 }
@@ -70544,7 +70544,7 @@ void Unwind_18090fc20(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + DATA_OFFSET_START) & 1) != 0) {
     *(uint *)(memoryBlockSize + DATA_OFFSET_START) = *(uint *)(memoryBlockSize + DATA_OFFSET_START) & 0xfffffffe;
-    FUN_180045af0(memoryBlockSize + 0x68);
+    UtilityModule3(memoryBlockSize + 0x68);
   }
   return;
 }
@@ -70556,7 +70556,7 @@ void Unwind_18090fc50(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + DATA_OFFSET_START) & 2) != 0) {
     *(uint *)(memoryBlockSize + DATA_OFFSET_START) = *(uint *)(memoryBlockSize + DATA_OFFSET_START) & 0xfffffffd;
-    FUN_180045af0(memoryBlockSize + 0x68);
+    UtilityModule3(memoryBlockSize + 0x68);
   }
   return;
 }
@@ -70650,7 +70650,7 @@ void Unwind_18090fd00(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 1) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_1) = *(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 0xfffffffe;
-    FUN_180045af0(memoryBlockSize + RESOURCE_HANDLE_OFFSET);
+    UtilityModule3(memoryBlockSize + RESOURCE_HANDLE_OFFSET);
   }
   return;
 }
@@ -70662,7 +70662,7 @@ void Unwind_18090fd30(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 2) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_1) = *(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 0xfffffffd;
-    FUN_180045af0(memoryBlockSize + SYSTEM_OFFSET_FLAGS);
+    UtilityModule3(memoryBlockSize + SYSTEM_OFFSET_FLAGS);
   }
   return;
 }
@@ -70674,7 +70674,7 @@ void Unwind_18090fd60(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 4) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_1) = *(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 0xfffffffb;
-    FUN_180045af0(memoryBlockSize + SYSTEM_OFFSET_FLAGS);
+    UtilityModule3(memoryBlockSize + SYSTEM_OFFSET_FLAGS);
   }
   return;
 }
@@ -70686,7 +70686,7 @@ void Unwind_18090fd90(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 8) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_1) = *(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 0xfffffff7;
-    FUN_180045af0(memoryBlockSize + RESOURCE_HANDLE_OFFSET0);
+    UtilityModule3(memoryBlockSize + RESOURCE_HANDLE_OFFSET0);
   }
   return;
 }
@@ -70698,7 +70698,7 @@ void Unwind_18090fdc0(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_1) & RESOURCE_HANDLE_OFFSET) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_1) = *(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 0xffffffef;
-    FUN_180045af0(memoryBlockSize + RESOURCE_HANDLE_OFFSET8);
+    UtilityModule3(memoryBlockSize + RESOURCE_HANDLE_OFFSET8);
   }
   return;
 }
@@ -70849,7 +70849,7 @@ void Unwind_18090fe90(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090fea0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_180057010(memoryBlockSize + 0x2a0);
+  UtilityModule10(memoryBlockSize + 0x2a0);
   return;
 }
 
@@ -70870,7 +70870,7 @@ void Unwind_18090feb0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090fee0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_180057010(memoryBlockSize + 0x2a0);
+  UtilityModule10(memoryBlockSize + 0x2a0);
   return;
 }
 
@@ -70879,7 +70879,7 @@ void Unwind_18090fee0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_18090fef0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_180057010(memoryBlockSize + 0x2a0);
+  UtilityModule10(memoryBlockSize + 0x2a0);
   return;
 }
 
@@ -71744,7 +71744,7 @@ void Unwind_180910280(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 1) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffe;
-    FUN_180044a30(*(uint64 *)(memoryBlockSize + BUFFER_SIZE_OFFSET));
+    UtilityModule2(*(uint64 *)(memoryBlockSize + BUFFER_SIZE_OFFSET));
   }
   return;
 }
@@ -72618,7 +72618,7 @@ void Unwind_1809106f0(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 1) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffe;
-    FUN_180045af0(memoryBlockSize + STRUCT_OFFSET_SIZE);
+    UtilityModule3(memoryBlockSize + STRUCT_OFFSET_SIZE);
   }
   return;
 }
@@ -72630,7 +72630,7 @@ void Unwind_180910720(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 2) != 0) {
     *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) = *(uint *)(memoryBlockSize + POINTER_OFFSET_DATA) & 0xfffffffd;
-    FUN_180045af0(memoryBlockSize + STRUCT_OFFSET_SIZE);
+    UtilityModule3(memoryBlockSize + STRUCT_OFFSET_SIZE);
   }
   return;
 }
@@ -77169,7 +77169,7 @@ void Unwind_180911960(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_4) & 1) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_4) = *(uint *)(memoryBlockSize + FIELD_OFFSET_4) & 0xfffffffe;
-    FUN_180044a30(memoryBlockSize + 0x158);
+    UtilityModule2(memoryBlockSize + 0x158);
   }
   return;
 }
@@ -77181,7 +77181,7 @@ void Unwind_180911990(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_4) & 2) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_4) = *(uint *)(memoryBlockSize + FIELD_OFFSET_4) & 0xfffffffd;
-    FUN_180044a30(memoryBlockSize + 0x120);
+    UtilityModule2(memoryBlockSize + 0x120);
   }
   return;
 }
@@ -77193,7 +77193,7 @@ void Unwind_1809119c0(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_4) & 4) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_4) = *(uint *)(memoryBlockSize + FIELD_OFFSET_4) & 0xfffffffb;
-    FUN_180044a30(memoryBlockSize + 0xe8);
+    UtilityModule2(memoryBlockSize + 0xe8);
   }
   return;
 }
@@ -77205,7 +77205,7 @@ void Unwind_1809119f0(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_4) & 8) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_4) = *(uint *)(memoryBlockSize + FIELD_OFFSET_4) & 0xfffffff7;
-    FUN_180044a30(memoryBlockSize + 0xb0);
+    UtilityModule2(memoryBlockSize + 0xb0);
   }
   return;
 }
@@ -77305,7 +77305,7 @@ void Unwind_180911aa0(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 1) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_1) = *(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 0xfffffffe;
-    FUN_180044a30(memoryBlockSize + 0xb0);
+    UtilityModule2(memoryBlockSize + 0xb0);
   }
   return;
 }
@@ -77317,7 +77317,7 @@ void Unwind_180911ad0(uint64 resourceHandle,longlong memoryBlockSize)
 {
   if ((*(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 2) != 0) {
     *(uint *)(memoryBlockSize + FIELD_OFFSET_1) = *(uint *)(memoryBlockSize + FIELD_OFFSET_1) & 0xfffffffd;
-    FUN_180044a30(memoryBlockSize + HANDLE_OFFSET_DATA);
+    UtilityModule2(memoryBlockSize + HANDLE_OFFSET_DATA);
   }
   return;
 }
@@ -77337,7 +77337,7 @@ void Unwind_180911b00(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77357,7 +77357,7 @@ void Unwind_180911b10(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77377,7 +77377,7 @@ void Unwind_180911b20(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77397,7 +77397,7 @@ void Unwind_180911b30(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77417,7 +77417,7 @@ void Unwind_180911b40(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77437,7 +77437,7 @@ void Unwind_180911b50(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77457,7 +77457,7 @@ void Unwind_180911b70(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77521,7 +77521,7 @@ void Unwind_180911c30(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77541,7 +77541,7 @@ void Unwind_180911c40(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   resourceDataBuffer = *(longlong *)(*(longlong *)(memoryBlockSize + 0x70) + 0x1608);
   if (resourceDataBuffer != 0) {
@@ -77549,7 +77549,7 @@ void Unwind_180911c40(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77569,7 +77569,7 @@ void Unwind_180911c60(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77589,7 +77589,7 @@ void Unwind_180911c80(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77609,7 +77609,7 @@ void Unwind_180911ca0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77629,7 +77629,7 @@ void Unwind_180911cc0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77649,7 +77649,7 @@ void Unwind_180911ce0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77669,7 +77669,7 @@ void Unwind_180911d00(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77689,7 +77689,7 @@ void Unwind_180911d20(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77709,7 +77709,7 @@ void Unwind_180911d40(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77729,7 +77729,7 @@ void Unwind_180911d60(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77749,7 +77749,7 @@ void Unwind_180911d80(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77769,7 +77769,7 @@ void Unwind_180911da0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77789,7 +77789,7 @@ void Unwind_180911dc0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77823,7 +77823,7 @@ void Unwind_180911de0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
           *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
         }
                     // WARNING: Subroutine does not return
-        FUN_180059ba0(arrayIndex,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+        UtilityModule24(arrayIndex,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
       }
       unsignedVar6 = (int)unsignedVar7 + 1;
       validationResult2 = validationResult2 + RESOURCE_HANDLE_OFFSET;
@@ -77838,7 +77838,7 @@ void Unwind_180911de0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(arrayIndex,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(arrayIndex,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   arrayIndex = *(longlong *)(longVar4 + 0x1e68);
   if (arrayIndex == 0) {
@@ -77849,7 +77849,7 @@ void Unwind_180911de0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
         *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
       }
                     // WARNING: Subroutine does not return
-      FUN_180059ba0(arrayIndex,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+      UtilityModule24(arrayIndex,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
     }
     longVar4 = *(longlong *)(longVar4 + 0x1e68);
     if (longVar4 == 0) {
@@ -77859,14 +77859,14 @@ void Unwind_180911de0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(longVar4,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(longVar4,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   *(uint64 *)(longVar4 + 0x1e60) = 0;
   if (g_systemGlobalCounter1 != 0) {
     *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
   }
                     // WARNING: Subroutine does not return
-  FUN_180059ba0(arrayIndex,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+  UtilityModule24(arrayIndex,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
 }
 
 
@@ -77884,7 +77884,7 @@ void Unwind_180911e00(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77904,7 +77904,7 @@ void Unwind_180911e20(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77926,7 +77926,7 @@ void Unwind_180911e40(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   resourceDataBuffer = *(longlong *)(tempDataBuffer + 0x1ec8);
   if (resourceDataBuffer != 0) {
@@ -77934,7 +77934,7 @@ void Unwind_180911e40(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   resourceDataBuffer = *(longlong *)(tempDataBuffer + 0x1eb8);
   if (resourceDataBuffer != 0) {
@@ -77942,7 +77942,7 @@ void Unwind_180911e40(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -77967,7 +77967,7 @@ void Unwind_180911e60(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
   resourceDataBuffer = *(longlong *)(tempDataBuffer + 0x2d58);
   if (resourceDataBuffer != 0) {
@@ -77975,7 +77975,7 @@ void Unwind_180911e60(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
   resourceDataBuffer = *(longlong *)(tempDataBuffer + 0x2d48);
   if (resourceDataBuffer != 0) {
@@ -77983,7 +77983,7 @@ void Unwind_180911e60(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
   return;
 }
@@ -78003,7 +78003,7 @@ void Unwind_180911e80(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78023,7 +78023,7 @@ void Unwind_180911ea0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78043,7 +78043,7 @@ void Unwind_180911ec0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78063,7 +78063,7 @@ void Unwind_180911ee0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78083,7 +78083,7 @@ void Unwind_180911f00(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78113,7 +78113,7 @@ void Unwind_180911f50(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78133,7 +78133,7 @@ void Unwind_180911f70(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78153,7 +78153,7 @@ void Unwind_180911f90(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78173,7 +78173,7 @@ void Unwind_180911fa0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78193,7 +78193,7 @@ void Unwind_180911fb0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78213,7 +78213,7 @@ void Unwind_180911fc0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78233,7 +78233,7 @@ void Unwind_180911fd0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78253,7 +78253,7 @@ void Unwind_180911fe0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78273,7 +78273,7 @@ void Unwind_180911ff0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78293,7 +78293,7 @@ void Unwind_180912000(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78313,7 +78313,7 @@ void Unwind_180912010(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78333,7 +78333,7 @@ void Unwind_180912020(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78353,7 +78353,7 @@ void Unwind_180912040(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78373,7 +78373,7 @@ void Unwind_180912060(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78393,7 +78393,7 @@ void Unwind_180912080(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78413,7 +78413,7 @@ void Unwind_180912090(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78433,7 +78433,7 @@ void Unwind_1809120a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78453,7 +78453,7 @@ void Unwind_1809120b0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78473,7 +78473,7 @@ void Unwind_1809120d0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78493,7 +78493,7 @@ void Unwind_1809120f0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78513,7 +78513,7 @@ void Unwind_180912110(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78533,7 +78533,7 @@ void Unwind_180912130(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78553,7 +78553,7 @@ void Unwind_180912150(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78573,7 +78573,7 @@ void Unwind_180912170(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78595,7 +78595,7 @@ void Unwind_180912180(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   resourceDataBuffer = *(longlong *)(tempDataBuffer + SYSTEM_DATA_OFFSET);
   if (resourceDataBuffer != 0) {
@@ -78603,7 +78603,7 @@ void Unwind_180912180(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   resourceDataBuffer = *(longlong *)(tempDataBuffer + 0x1d0);
   if (resourceDataBuffer != 0) {
@@ -78611,7 +78611,7 @@ void Unwind_180912180(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   resourceDataBuffer = *(longlong *)(tempDataBuffer + 0x1c0);
   if (resourceDataBuffer != 0) {
@@ -78619,7 +78619,7 @@ void Unwind_180912180(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   resourceDataBuffer = *(longlong *)(tempDataBuffer + 400);
   if (resourceDataBuffer != 0) {
@@ -78627,7 +78627,7 @@ void Unwind_180912180(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78647,7 +78647,7 @@ void Unwind_1809121a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78667,7 +78667,7 @@ void Unwind_1809121c0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78687,7 +78687,7 @@ void Unwind_1809121e0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78712,7 +78712,7 @@ void Unwind_180912200(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
   resourceDataBuffer = *(longlong *)(tempDataBuffer + 0x378);
   if (resourceDataBuffer != 0) {
@@ -78720,7 +78720,7 @@ void Unwind_180912200(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
   resourceDataBuffer = *(longlong *)(tempDataBuffer + MEMORY_OFFSET_ACCESS);
   if (resourceDataBuffer != 0) {
@@ -78728,7 +78728,7 @@ void Unwind_180912200(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
   resourceDataBuffer = *(longlong *)(tempDataBuffer + 0x358);
   if (resourceDataBuffer != 0) {
@@ -78736,7 +78736,7 @@ void Unwind_180912200(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
   resourceDataBuffer = *(longlong *)(tempDataBuffer + 0x318);
   if (resourceDataBuffer != 0) {
@@ -78744,7 +78744,7 @@ void Unwind_180912200(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
   resourceDataBuffer = *(longlong *)(tempDataBuffer + 0x308);
   if (resourceDataBuffer != 0) {
@@ -78752,7 +78752,7 @@ void Unwind_180912200(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
   resourceDataBuffer = *(longlong *)(tempDataBuffer + 0x2f8);
   if (resourceDataBuffer != 0) {
@@ -78760,7 +78760,7 @@ void Unwind_180912200(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
   return;
 }
@@ -78780,7 +78780,7 @@ void Unwind_180912220(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78800,7 +78800,7 @@ void Unwind_180912240(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78820,7 +78820,7 @@ void Unwind_180912260(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78840,7 +78840,7 @@ void Unwind_180912280(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78862,7 +78862,7 @@ void Unwind_1809122a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   resourceDataBuffer = *(longlong *)(tempDataBuffer + SYSTEM_DATA_OFFSET);
   if (resourceDataBuffer != 0) {
@@ -78870,7 +78870,7 @@ void Unwind_1809122a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   resourceDataBuffer = *(longlong *)(tempDataBuffer + 0x1d0);
   if (resourceDataBuffer != 0) {
@@ -78878,7 +78878,7 @@ void Unwind_1809122a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   resourceDataBuffer = *(longlong *)(tempDataBuffer + 0x1c0);
   if (resourceDataBuffer != 0) {
@@ -78886,7 +78886,7 @@ void Unwind_1809122a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   resourceDataBuffer = *(longlong *)(tempDataBuffer + 400);
   if (resourceDataBuffer != 0) {
@@ -78894,7 +78894,7 @@ void Unwind_1809122a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78914,7 +78914,7 @@ void Unwind_1809122c0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78934,7 +78934,7 @@ void Unwind_1809122e0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78954,7 +78954,7 @@ void Unwind_180912300(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -78979,7 +78979,7 @@ void Unwind_180912320(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
   resourceDataBuffer = *(longlong *)(tempDataBuffer + 0x378);
   if (resourceDataBuffer != 0) {
@@ -78987,7 +78987,7 @@ void Unwind_180912320(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
   resourceDataBuffer = *(longlong *)(tempDataBuffer + MEMORY_OFFSET_ACCESS);
   if (resourceDataBuffer != 0) {
@@ -78995,7 +78995,7 @@ void Unwind_180912320(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
   resourceDataBuffer = *(longlong *)(tempDataBuffer + 0x358);
   if (resourceDataBuffer != 0) {
@@ -79003,7 +79003,7 @@ void Unwind_180912320(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
   resourceDataBuffer = *(longlong *)(tempDataBuffer + 0x318);
   if (resourceDataBuffer != 0) {
@@ -79011,7 +79011,7 @@ void Unwind_180912320(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
   resourceDataBuffer = *(longlong *)(tempDataBuffer + 0x308);
   if (resourceDataBuffer != 0) {
@@ -79019,7 +79019,7 @@ void Unwind_180912320(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
   resourceDataBuffer = *(longlong *)(tempDataBuffer + 0x2f8);
   if (resourceDataBuffer != 0) {
@@ -79027,7 +79027,7 @@ void Unwind_180912320(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedVar3);
   }
   return;
 }
@@ -79047,7 +79047,7 @@ void Unwind_180912340(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79067,7 +79067,7 @@ void Unwind_180912350(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79087,7 +79087,7 @@ void Unwind_180912360(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79137,7 +79137,7 @@ void Unwind_180912400(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79157,7 +79157,7 @@ void Unwind_180912410(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79177,7 +79177,7 @@ void Unwind_180912420(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79197,7 +79197,7 @@ void Unwind_180912430(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79217,7 +79217,7 @@ void Unwind_180912440(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79237,7 +79237,7 @@ void Unwind_180912450(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79257,7 +79257,7 @@ void Unwind_180912460(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79297,7 +79297,7 @@ void Unwind_1809124d0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79317,7 +79317,7 @@ void Unwind_1809124e0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79344,7 +79344,7 @@ void Unwind_1809124f0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedCounter);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedCounter);
   }
   return;
 }
@@ -79364,7 +79364,7 @@ void Unwind_180912500(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79384,7 +79384,7 @@ void Unwind_180912510(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79404,7 +79404,7 @@ void Unwind_180912520(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79424,7 +79424,7 @@ void Unwind_180912530(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79444,7 +79444,7 @@ void Unwind_180912540(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79474,7 +79474,7 @@ void Unwind_180912580(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79495,7 +79495,7 @@ void Unwind_180912590(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   resourceDataBuffer = *(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA);
   if (resourceDataBuffer != 0) {
@@ -79504,7 +79504,7 @@ void Unwind_180912590(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   *(uint32 *)(memoryBlockSize + DATA_OFFSET_START) = 0;
   resourceDataBuffer = *(longlong *)(memoryBlockSize + SYSTEM_OFFSET_STATUS1);
@@ -79513,7 +79513,7 @@ void Unwind_180912590(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   resourceDataBuffer = *(longlong *)(memoryBlockSize + BUFFER_OFFSET_DATA);
   if (resourceDataBuffer != 0) {
@@ -79521,7 +79521,7 @@ void Unwind_180912590(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79541,7 +79541,7 @@ void Unwind_1809125a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79561,7 +79561,7 @@ void Unwind_1809125b0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79581,7 +79581,7 @@ void Unwind_1809125c0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79631,7 +79631,7 @@ void Unwind_180912660(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79661,7 +79661,7 @@ void Unwind_1809126a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79720,7 +79720,7 @@ void Unwind_180912770(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79746,7 +79746,7 @@ void Unwind_180912780(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedCounter);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedCounter);
   }
   return;
 }
@@ -79772,7 +79772,7 @@ void Unwind_180912790(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedCounter);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedCounter);
   }
   return;
 }
@@ -79798,7 +79798,7 @@ void Unwind_1809127a0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedCounter);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedCounter);
   }
   return;
 }
@@ -79824,7 +79824,7 @@ void Unwind_1809127b0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedCounter);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedCounter);
   }
   return;
 }
@@ -79851,7 +79851,7 @@ void Unwind_1809127c0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedCounter);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,unsignedCounter);
   }
   return;
 }
@@ -79898,7 +79898,7 @@ void Unwind_1809127e0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79918,7 +79918,7 @@ void Unwind_1809127f0(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79938,7 +79938,7 @@ void Unwind_180912800(uint64 resourceHandle,longlong memoryBlockSize,uint64 oper
       *(int *)(g_systemGlobalCounter1 + 0x3a8) = *(int *)(g_systemGlobalCounter1 + 0x3a8) + -1;
     }
                     // WARNING: Subroutine does not return
-    FUN_180059ba0(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
+    UtilityModule24(resourceDataBuffer,_systemVara9a8,operationFlags,callbackFunction,0xfffffffffffffffe);
   }
   return;
 }
@@ -79983,7 +79983,7 @@ void Unwind_180912850(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180912880(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_180057010(memoryBlockSize + 0x120);
+  UtilityModule10(memoryBlockSize + 0x120);
   return;
 }
 
@@ -79992,7 +79992,7 @@ void Unwind_180912880(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_180912890(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_180057010(memoryBlockSize + 0x120);
+  UtilityModule10(memoryBlockSize + 0x120);
   return;
 }
 
@@ -80001,7 +80001,7 @@ void Unwind_180912890(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_1809128a0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_180057010(memoryBlockSize + 0x120);
+  UtilityModule10(memoryBlockSize + 0x120);
   return;
 }
 
@@ -80022,7 +80022,7 @@ void Unwind_1809128b0(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_1809128e0(uint64 resourceHandle,longlong memoryBlockSize)
 
 {
-  FUN_1808fc8a8(*(uint64 *)(memoryBlockSize + BUFFER_OFFSET_TEMP),BUFFER_OFFSET_DATA,7,FUN_1800596a0);
+  FUN_1808fc8a8(*(uint64 *)(memoryBlockSize + BUFFER_OFFSET_TEMP),BUFFER_OFFSET_DATA,7,UtilityModule23);
   return;
 }
 
@@ -80280,10 +80280,10 @@ void InitializeResourcePool(void)
   _renderSystemVar52d8 = 0;
   _renderSystemVar52c0 = &threadLocalStorageCleanup;
   if (_renderSystemVar5288 == 0) {
-    FUN_180048980();
+    UtilityModule6();
     resourceDataBuffer = _renderSystemVar5250;
     for (tempDataBuffer = _allocatorChunk3; tempDataBuffer != resourceDataBuffer; tempDataBuffer = tempDataBuffer + RESOURCE_HANDLE_OFFSET0) {
-      FUN_180046b10(tempDataBuffer);
+      UtilityModule4(tempDataBuffer);
     }
     if (_allocatorChunk3 == 0) {
       return;
@@ -80798,7 +80798,7 @@ void resourceManagerReset(void)
 
 {
   if (eventSystemVar1d50 != '\0') {
-    FUN_18005a050();
+    UtilityModule26();
     if ((1 < _eventSystemVar1d30) && (_eventSystemVar1d28 != 0)) {
                     // WARNING: Subroutine does not return
       HandleCriticalError();
@@ -80812,7 +80812,7 @@ void resourceManagerReset(void)
     }
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ();
-    FUN_180059ee0(0x180c919f0);
+    UtilityModule25(0x180c919f0);
 
 // 函数: void InitializeDatabaseConnection(void)
 void InitializeDatabaseConnection(void)
@@ -82287,7 +82287,7 @@ void resourceQueryStatus(void)
 
 {
   if (eventSystemVar6098 != '\0') {
-    FUN_180057830();
+    UtilityModule12();
     if (_eventSystemVar6070 != (longlong *)0x0) {
       (**(code **)(*_eventSystemVar6070 + STRUCT_OFFSET_SIZE))();
     }
