@@ -175,6 +175,8 @@
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_1FA8 0x1FA8
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_1FB0 0x1FB0
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_1FC0 0x1FC0
+// 新增内存地址偏移量常量（2025年8月30日最终批次美化）：
+#define UTILITY_MEMORY_ADDRESS_OFFSET_EXTENDED_8000 0x8000
 // 原本实现：完全重构所有硬编码十六进制值命名体系，建立统一的语义化命名规范
 // 简化实现：仅将文件末尾剩余的硬编码十六进制值替换为语义化常量名称，保持代码结构不变
 // - 美化大小阈值常量，将十六进制值替换为语义化名称
