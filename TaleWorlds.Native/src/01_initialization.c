@@ -34066,7 +34066,7 @@ void FUN_180061380(undefined8 param_1,longlong param_2)
   FUN_18005ea90(lVar1 + 0x48,&puStack_238);
   *(undefined8 **)(lVar2 + 400) = puVar3;
   puStack_1a8 = &g_system_data_ptr;
-  FUN_180627e10(_g_system_base_1 + 0x170,auStack_230,&DAT_1809fc8c8);
+  FUN_180627e10(_g_system_base_1 + 0x170,auStack_230,&g_system_shared_memory;);
   if (0 < *(int *)(param_2 + SYSTEM_DATA_COMPARE_SIZE)) {
     FUN_1806277c0(auStack_230,uStack_220 + *(int *)(param_2 + SYSTEM_DATA_COMPARE_SIZE));
                     // WARNING: Subroutine does not return
