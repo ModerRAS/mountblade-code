@@ -19249,7 +19249,7 @@ uint64 * ProcessValidationRequest(void)
   uint32 *utility_operation_result_secondary;
   uint64 *utility_operation_result3;
   float *float_ptr;
-  ulonglong utility_operation_result5;
+  ulonglong utility_operation_result_fifth;
   uint64 *utility_return_pointer_primary;
   longlong utility_resource_data_buffer_seventh;
   longlong utility_stack_frame_pointer;
@@ -19503,7 +19503,7 @@ uint64 * HandleValidationCallback(void)
   uint64 *utility_operation_result_secondary;
   uint64 *utility_operation_result3;
   float *float_ptr;
-  ulonglong utility_operation_result5;
+  ulonglong utility_operation_result_fifth;
   uint64 *utility_return_pointer_primary;
   longlong utility_resource_data_buffer_seventh;
   longlong utility_stack_frame_pointer;
