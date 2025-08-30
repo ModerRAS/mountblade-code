@@ -2055,7 +2055,7 @@ dataValue g_memory_inline_allocator;
 dataValue g_memory_static_allocator;
 dataValue g_memory_dynamic_allocator;
 dataValue g_memory_automatic_allocator;
-dataValue g_memory_thread_local_variablellocator;
+dataValue g_memory_thread_local_allocator;
 dataValue g_memory_global_allocator;
 dataValue g_memory_extern_allocator;
 dataValue g_memory_register_allocator;
@@ -7852,8 +7852,8 @@ void utilityAnalyzeResourceData(longlong resource_handle_identifier,uint32 *memo
 
 
 
-// 函数: void set_thread_local_variabletaValue(ulonglong resource_handle_identifier)
-void set_thread_local_variabletaValue(ulonglong resource_handle_identifier)
+// 函数: void set_thread_local_data_value(ulonglong resource_handle_identifier)
+void set_thread_local_data_value(ulonglong resource_handle_identifier)
 
 {
   int utility_operation_result;
