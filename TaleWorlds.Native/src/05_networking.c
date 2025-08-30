@@ -32538,8 +32538,8 @@ void network_socket_handle(int64_t *network_socket_handle, int64_t *network_buff
     *(uint8_t *)(network_socket_context_pointer + NETWORK_DATA_OFFSET) = NETWORK_OPERATION_FAILURE;
   if ((network_socket_context_pointer == '\NETWORK_OPERATION_FAILURE') && (network_operation_status_code = (**(code **)(*network_socket_context_pointer + SESSION_CONFIG_SIZE))(), network_operation_status_code == NETWORK_OPERATION_FAILURE)) {
   float *pnetwork_frequency_calculated_tertiary;
-  uint8_t network_temp_validation_buffere8 [32];
-  uint32_t network_packet_offset_header8;
+  uint8_t network_temp_validation_buffer_small [32];
+  uint32_t network_packet_offset_header_small;
   char network_stack_security_char_array [4];
   undefined *network_stack_handler_buffer_pointer;
   float network_float_stack_buffer_primary;
@@ -33075,7 +33075,7 @@ void network_socket_handle(int64_t *network_socket_handle, uint64_t network_buff
   float network_float_stack_release [NETWORK_BUFFER_SIZE_MEDIUM];
   int64_t network_array_stack_config [NETWORK_BUFFER_SIZE_MEDIUM];
   uint8_t network_encryption_iv_buffer [NETWORK_PACKET_HEADER_SIZE];
-  uint64_t network_temp_validation_buffere8 [NETWORK_BUFFER_SIZE_MEDIUM];
+  uint64_t network_temp_validation_buffer_medium [NETWORK_BUFFER_SIZE_MEDIUM];
   undefined *network_stack_buffer_pointer_extended;
   float network_float_stack_buffer_neg_enormous;
   uint32_t network_operation_status_code_third4;
