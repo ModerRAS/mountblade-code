@@ -5808,8 +5808,8 @@ uint64_t GetNetworkSpeed(void)
   bool is_connection_secondary_active;
   uint32_t network_network_operation_status_code_third;
   uint32_t network_packet_status;
-  network_network_operation_status_code_third = 4;
-  network_packet_status = 4;
+  network_network_operation_status_code_third = NETWORK_DATA_SIZE_4;
+  network_packet_status = NETWORK_DATA_SIZE_4;
   error_detail_code = NETWORK_OPERATION_FAILURE;
   network_status_data_buffer_ptr = network_processor_main_data;
   network_network_processor_index_ptr = (uint8_t *)ZERO_OFFSET;
