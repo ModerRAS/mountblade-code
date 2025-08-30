@@ -7171,7 +7171,7 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
       }
       system_string_input_pointer = (uint *)&crypto_string_buffer;
       if (system_buffer_allocation_result < (ulong long)
-                  ((*(long long *)(mutex_attr + SYSTEM_OFFSET_PATH_SIZE) - *(long long *)(mutex_attr + SYSTEM_POINTER_OFFSET_1A)) / 0xb0)) {
+                  ((*(long long *)(mutex_attr + SYSTEM_OFFSET_PATH_SIZE) - *(long long *)(mutex_attr + SYSTEM_POINTER_OFFSET_1A)) / SYSTEM_DIVISOR_PATH_SIZE_CALCULATION)) {
         system_string_input_pointer = (uint *)(system_buffer_allocation_result + *(long long *)(mutex_attr + SYSTEM_POINTER_OFFSET_1A));
       }
       if ((*(int *)(system_initialization_result0 + SYSTEM_THREAD_LOCAL_STORAGE_OFFSET) < system_global_data_pointer_variable) &&
@@ -7190,7 +7190,7 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
       }
       system_string_input_pointer = &crypto_string_buffer;
       if (system_buffer_allocation_result < (ulong long)
-                  ((*(long long *)(system_thread_operation_flags + SYSTEM_OFFSET_PATH_SIZE) - *(long long *)(system_thread_operation_flags + SYSTEM_POINTER_OFFSET_1A)) / 0xb0)) {
+                  ((*(long long *)(system_thread_operation_flags + SYSTEM_OFFSET_PATH_SIZE) - *(long long *)(system_thread_operation_flags + SYSTEM_POINTER_OFFSET_1A)) / SYSTEM_DIVISOR_PATH_SIZE_CALCULATION)) {
         system_string_input_pointer = (void *)(system_buffer_allocation_result + *(long long *)(system_thread_operation_flags + SYSTEM_POINTER_OFFSET_1A));
       }
       if ((((SYSTEM_FLOAT_PRECISION_THRESHOLD <= ABS(*(float *)(system_string_input_pointer + SYSTEM_CONFIG_OFFSET_INIT_FLAG) - (float)system_string_input_pointer[5])) ||
@@ -7724,7 +7724,7 @@ unsigned char check_memory_bounds(void)
   system_character_scan_pointer = (char *)((ulong long)system_buffer_allocation_result + SYSTEM_OFFSET_PATH_SIZE0042ed);
   *system_character_scan_pointer = *system_character_scan_pointer + (char)system_destination_index_register + '\x04';
   out(system_buffer_allocation_result,(char)system_buffer_allocation_result);
-  system_character_scan_pointer = (char *)((ulong long)system_buffer_allocation_result - 0x12);
+  system_character_scan_pointer = (char *)((ulong long)system_buffer_allocation_result - SYSTEM_OFFSET_REGISTER_PARAM_FINAL);
   *system_character_scan_pointer = *system_character_scan_pointer + (char)system_thread_operation_flags;
   system_character_scan_pointer = (code *)swi(3);
   (*system_character_scan_pointer)();
@@ -8217,7 +8217,7 @@ unsigned long long initialize_graphics_context(unsigned long long handle_param,u
   if (-1 < system_thread_result_status) {
     system_maximum_stack_size = SYSTEM_FLOAT_MAX_VALUE;
     system_maximum_stack_size = SYSTEM_FLOAT_MAX_VALUE;
-    system_initialization_result2 = system_initialization_result1 * 0x30;
+    system_initialization_result2 = system_initialization_result1 * SYSTEM_MUTEX_BUFFER_SIZE;
     fStack_108 = system_float_variable;
     fStack_104 = system_float_variable;
     fStack_100 = system_float_variable;
@@ -8296,7 +8296,7 @@ unsigned long long initialize_graphics_context(unsigned long long handle_param,u
       fStack_144 = fStack_194;
       fStack_140 = fStack_190;
       system_maximum_stack_size = system_maximum_stack_size;
-      system_initialization_result2 = system_initialization_result2 + -0x30;
+      system_initialization_result2 = system_initialization_result2 + -SYSTEM_MUTEX_BUFFER_SIZE;
       system_initialization_result1 = system_initialization_result1 + -1;
       system_float_variable = fStack_198;
       system_float_variable = fStack_194;
@@ -10367,12 +10367,12 @@ goto section_processing_jump_label_437;
 goto section_processing_jump_label_438;
             system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
             if (system_char_variable != SYSTEM_ZERO_VALUE) {
-              system_buffer_allocation_result = 0x25;
+              system_buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_SUCCESS_6;
 goto section_processing_jump_label_439;
             }
             system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
             if (system_char_variable != SYSTEM_ZERO_VALUE) {
-              system_buffer_allocation_result = 0x26;
+              system_buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_SUCCESS_7;
 goto section_processing_jump_label_440;
             }
             system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
