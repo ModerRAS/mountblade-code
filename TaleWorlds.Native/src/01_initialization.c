@@ -63012,16 +63012,16 @@ longlong *system_memory_pool_pointer;
 // 系统初始化硬编码值语义化常量（2025年8月30日最终批次最新补充）
 // 内存布局偏移量常量
 #define SYSTEM_INIT_OFFSET_GLOBAL_7AB8        0x7ab8   // 全局偏移量7AB8
-#define SYSTEM_INIT_OFFSET_GLOBAL_560         SYSTEM_INIT_OFFSET_GLOBAL_560    // 全局偏移量560
-#define SYSTEM_INIT_OFFSET_GLOBAL_544         SYSTEM_INIT_OFFSET_GLOBAL_544    // 全局偏移量544
-#define SYSTEM_INIT_OFFSET_GLOBAL_3F4         SYSTEM_INIT_OFFSET_GLOBAL_3F4    // 全局偏移量3F4
-#define SYSTEM_INIT_OFFSET_GLOBAL_3F0         SYSTEM_INIT_OFFSET_GLOBAL_3F0    // 全局偏移量3F0
-#define SYSTEM_INIT_OFFSET_GLOBAL_3A0         SYSTEM_INIT_OFFSET_GLOBAL_3A0    // 全局偏移量3A0
-#define SYSTEM_INIT_OFFSET_STACK_3D0          SYSTEM_INIT_OFFSET_STACK_3D0    // 栈偏移量3D0
-#define SYSTEM_INIT_OFFSET_STACK_3D4          SYSTEM_INIT_OFFSET_STACK_3D4    // 栈偏移量3D4
-#define SYSTEM_INIT_OFFSET_STACK_3D5          SYSTEM_INIT_OFFSET_STACK_3D5    // 栈偏移量3D5
-#define SYSTEM_INIT_OFFSET_STACK_5B           SYSTEM_INIT_OFFSET_STACK_5B     // 栈偏移量5B
-#define SYSTEM_INIT_OFFSET_STACK_55           SYSTEM_INIT_OFFSET_STACK_55     // 栈偏移量55
+#define SYSTEM_INIT_OFFSET_GLOBAL_560         0x560    // 全局偏移量560
+#define SYSTEM_INIT_OFFSET_GLOBAL_544         0x544    // 全局偏移量544
+#define SYSTEM_INIT_OFFSET_GLOBAL_3F4         0x3f4    // 全局偏移量3F4
+#define SYSTEM_INIT_OFFSET_GLOBAL_3F0         0x3f0    // 全局偏移量3F0
+#define SYSTEM_INIT_OFFSET_GLOBAL_3A0         0x3a0    // 全局偏移量3A0
+#define SYSTEM_INIT_OFFSET_STACK_3D0          0x3d0    // 栈偏移量3D0
+#define SYSTEM_INIT_OFFSET_STACK_3D4          0x3d4    // 栈偏移量3D4
+#define SYSTEM_INIT_OFFSET_STACK_3D5          0x3d5    // 栈偏移量3D5
+#define SYSTEM_INIT_OFFSET_STACK_5B           0x5b     // 栈偏移量5B
+#define SYSTEM_INIT_OFFSET_STACK_55           0x55     // 栈偏移量55
 #define SYSTEM_INIT_OFFSET_STACK_54           SYSTEM_INIT_OFFSET_STACK_54     // 栈偏移量54
 #define SYSTEM_INIT_OFFSET_STACK_5C           SYSTEM_INIT_OFFSET_STACK_5C     // 栈偏移量5C
 #define SYSTEM_INIT_OFFSET_STACK_620          SYSTEM_INIT_OFFSET_STACK_620    // 栈偏移量620
