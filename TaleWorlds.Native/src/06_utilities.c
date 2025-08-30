@@ -47,149 +47,149 @@ dataValue g_dataStructurePreviousNode;        // 数据结构前一节点
 dataValue g_dataStructureParentNode;          // 数据结构父节点
 dataValue g_memoryAllocatorStatusFlag;        // 内存分配器状态标志
 
-// 函数: dataValueValue 注册内存处理器;
-dataValue 注册内存处理器;
+// 函数: dataValueValue g_register_memory_handler;
+dataValue g_register_memory_handler;
 dataValue g_systemCPUStatus;                  // 系统CPU状态
 dataValue g_systemMemoryStatus;               // 系统内存状态
 dataValue g_systemIOStatus;                   // 系统IO状态
 dataValue g_systemNetworkStatus;              // 系统网络状态
 
-// 函数: dataValueValue 配置内存设置;
-dataValue 配置内存设置;
+// 函数: dataValueValue g_configure_memory_settings;
+dataValue g_configure_memory_settings;
 dataValue g_errorHandlerSeverityLevel;        // 错误处理器严重程度
 dataValue g_errorHandlerCategory;              // 错误处理器类别
 dataValue g_errorHandlerRecoveryMode;         // 错误处理器恢复
 dataValue g_errorHandlerLoggingEnabled;       // 错误处理器日志
 
-// 函数: dataValueValue 验证内存配置;
+// 函数: dataValueValue g_validate_memory_config;
 // 内存配置验证函数180941630
-dataValue 验证内存配置;
-byte g_线程同步已初始化;
+dataValue g_validate_memory_config;
+byte g_g_thread_sync_initialized;
 
-// 函数: dataValueValue 初始化线程同步;
+// 函数: dataValueValue g_initialize_thread_sync;
 // 线程同步初始化函数180941650
-dataValue 初始化线程同步;
-byte g_线程同步激活;
+dataValue g_initialize_thread_sync;
+byte g_g_thread_sync_active;
 
-// 函数: dataValueValue 初始化事件处理器;
+// 函数: dataValueValue g_initialize_event_handler;
 // 事件处理初始化函数180941690
-dataValue 初始化事件处理器;
-byte g_线程同步待处理;
+dataValue g_initialize_event_handler;
+byte g_g_thread_sync_pending;
 
-// 函数: dataValueValue 初始化信号量;
+// 函数: dataValueValue g_initialize_semaphore;
 // 信号量初始化函数1809416d0
-dataValue 初始化信号量;
-byte g_信号量初始化标志;
+dataValue g_initialize_semaphore;
+byte g_g_semaphore_initialized;
 
-// 函数: dataValueValue 清理线程同步;
-dataValue 清理线程同步;
-dataValue g_线程清理数据;
-dataValue g_线程清理指针;
+// 函数: dataValueValue g_cleanup_thread_sync;
+dataValue g_cleanup_thread_sync;
+dataValue g_g_thread_cleanup_data;
+dataValue g_g_thread_cleanup_ptr;
 
-// 函数: dataValueValue 关闭系统句柄;
-dataValue 关闭系统句柄;
+// 函数: dataValueValue g_close_system_handle;
+dataValue g_close_system_handle;
 
-// 函数: dataValueValue 销毁互斥锁;
-dataValue 销毁互斥锁;
-dataValue g_互斥锁销毁句柄;
-dataValue g_互斥锁销毁上下文;
-dataValue g_互斥锁销毁回调;
-dataValue g_互斥锁销毁工作数据;
-dataValue g_互斥锁销毁工作;
+// 函数: dataValueValue g_destroy_mutex;
+dataValue g_destroy_mutex;
+dataValue g_g_mutex_destroy_handle;
+dataValue g_g_mutex_destroy_context;
+dataValue g_g_mutex_destroy_callback;
+dataValue g_g_mutex_destroy_work_data;
+dataValue g_g_mutex_destroy_work;
 
-// 函数: dataValueValue 初始化内存释放系统;          # 内存释放系统初始化函数
-dataValue 初始化内存释放系统;
-dataValue g_内存释放块大小;
-dataValue g_内存释放块数量;
-dataValue g_内存释放链表头;
-dataValue g_内存释放链表尾;
-dataValue g_内存释放对齐;
-dataValue g_内存释放标志;
-dataValue g_内存释放保留空间;
+// 函数: dataValueValue g_initialize_memory_release_system;          # 内存释放系统初始化函数
+dataValue g_initialize_memory_release_system;
+dataValue g_g_memory_release_block_size;
+dataValue g_g_memory_release_block_count;
+dataValue g_g_memory_release_list_head;
+dataValue g_g_memory_release_list_tail;
+dataValue g_g_memory_release_alignment;
+dataValue g_g_memory_release_flags;
+dataValue g_g_memory_release_reserved;
 
-// 函数: dataValueValue 初始化块分配器;          # 块分配器初始化函数
-dataValue 初始化块分配器;
-dataValue g_块分配头部;
-dataValue g_块分配指针;
-dataValue g_块分配大小;
-dataValue g_块内存对齐;
-dataValue g_块标志;
-dataValue g_块引用计数;
+// 函数: dataValueValue g_initialize_block_allocator;          # 块分配器初始化函数
+dataValue g_initialize_block_allocator;
+dataValue g_g_block_alloc_header;
+dataValue g_g_block_alloc_ptr;
+dataValue g_g_block_alloc_size;
+dataValue g_g_block_memory_alignment;
+dataValue g_g_block_flags;
+dataValue g_g_block_ref_count;
 
-// 函数: dataValueValue 释放内存块;
-dataValue 释放内存块;
-dataValue g_块释放链表指针;
-dataValue g_块释放大小;
-dataValue g_块释放偏移;
-dataValue g_块释放标志;
-dataValue g_块释放保留空间;
+// 函数: dataValueValue g_release_memory_block;
+dataValue g_release_memory_block;
+dataValue g_g_block_release_list_ptr;
+dataValue g_g_block_release_size;
+dataValue g_g_block_release_offset;
+dataValue g_g_block_release_flags;
+dataValue g_g_block_release_reserved;
 
-// 函数: dataValueValue 获取内存块大小;
-dataValue 获取内存块大小;
-dataValue g_块大小表指针;
-dataValue g_块大小最小值;
-dataValue g_块大小最大值;
-dataValue g_块大小步长;
-dataValue g_块大小计数;
+// 函数: dataValueValue g_get_memory_block_size;
+dataValue g_get_memory_block_size;
+dataValue g_g_block_size_table_ptr;
+dataValue g_g_block_size_min;
+dataValue g_g_block_size_max;
+dataValue g_g_block_size_step;
+dataValue g_g_block_size_count;
 
-// 函数: dataValueValue 初始化AI系统;          # AI系统初始化函数
-dataValue 初始化AI系统;
-dataValue g_AI系统指针;
-dataValue g_AI系统句柄;
-dataValue g_AI行为树;
-dataValue g_AI导航网格;
-dataValue g_AI寻路数据;
-dataValue g_场景管理器指针;
+// 函数: dataValueValue g_initialize_ai_system;          # AI系统初始化函数
+dataValue g_initialize_ai_system;
+dataValue g_g_ai_system_ptr;
+dataValue g_g_ai_system_handle;
+dataValue g_g_ai_behavior_tree;
+dataValue g_g_ai_navigation_mesh;
+dataValue g_g_ai_pathfinding_data;
+dataValue g_g_scene_manager_ptr;
 
-// 函数: dataValueValue 初始化场景管理器;          # 场景管理器初始化函数
-dataValue 初始化场景管理器;
-dataValue g_场景管理器句柄;
-dataValue g_场景对象池;
-dataValue g_场景光照数据;
-dataValue g_场景相机数据;
-dataValue g_场景渲染状态;
+// 函数: dataValueValue g_initialize_scene_manager;          # 场景管理器初始化函数
+dataValue g_initialize_scene_manager;
+dataValue g_g_scene_manager_handle;
+dataValue g_g_scene_object_pool;
+dataValue g_g_scene_lighting_data;
+dataValue g_g_scene_camera_data;
+dataValue g_g_scene_render_state;
 
-// 函数: dataValueValue 初始化资源管理器;
-dataValue 初始化资源管理器;
-dataValue g_资源管理器句柄;
-dataValue g_资源纹理缓存;
-dataValue g_资源网格缓冲;
-dataValue g_资源着色器缓存;
-dataValue g_资源管理器指针;
+// 函数: dataValueValue g_initialize_resource_manager;
+dataValue g_initialize_resource_manager;
+dataValue g_g_resource_manager_handle;
+dataValue g_g_resource_texture_cache;
+dataValue g_g_resource_mesh_buffer;
+dataValue g_g_resource_shader_cache;
+dataValue g_g_resource_manager_ptr;
 
-// 函数: dataValueValue 初始化脚本系统;
-dataValue 初始化脚本系统;
-dataValue g_脚本系统句柄;
-dataValue g_脚本虚拟机;
-dataValue g_脚本函数表;
-dataValue g_脚本全局数据;
-dataValue g_脚本系统指针;
+// 函数: dataValueValue g_initialize_script_system;
+dataValue g_initialize_script_system;
+dataValue g_g_script_system_handle;
+dataValue g_g_script_vm;
+dataValue g_g_script_function_table;
+dataValue g_g_script_global_data;
+dataValue g_g_script_system_ptr;
 
-// 函数: dataValueValue 初始化调试系统;
-dataValue 初始化调试系统;
-dataValue g_调试系统句柄;
-dataValue g_调试日志缓冲;
-dataValue g_调试分析器数据;
-dataValue g_调试断点;
-dataValue g_调试系统指针;
+// 函数: dataValueValue g_initialize_debug_system;
+dataValue g_initialize_debug_system;
+dataValue g_g_debug_system_handle;
+dataValue g_g_debug_log_buffer;
+dataValue g_g_debug_profiler_data;
+dataValue g_g_debug_breakpoints;
+dataValue g_g_debug_system_ptr;
 
-// 函数: dataValueValue 初始化性能监控器;
-dataValue 初始化性能监控器;
-dataValue g_性能监控器句柄;
-dataValue g_性能帧数据;
-dataValue g_性能内存统计;
-dataValue g_性能CPU指标;
-dataValue g_性能监控器指针;
+// 函数: dataValueValue g_initialize_performance_monitor;
+dataValue g_initialize_performance_monitor;
+dataValue g_g_performance_monitor_handle;
+dataValue g_g_performance_frame_data;
+dataValue g_g_performance_memory_stats;
+dataValue g_g_performance_cpu_metrics;
+dataValue g_g_performance_monitor_ptr;
 
-// 函数: dataValueValue 加载配置;
-dataValue 加载配置;
+// 函数: dataValueValue g_load_config;
+dataValue g_load_config;
 
-// 函数: dataValueValue 初始化配置系统;
-dataValue 初始化配置系统;
-dataValue g_配置系统句柄;
-dataValue g_配置系统指针;
-dataValue g_配置设置数据;
-dataValue g_配置工作指针;
+// 函数: dataValueValue g_initialize_config_system;
+dataValue g_initialize_config_system;
+dataValue g_g_config_system_handle;
+dataValue g_g_config_system_ptr;
+dataValue g_g_config_settings_data;
+dataValue g_g_config_work_ptr;
 dataValue g_配置图形设置;
 dataValue g_配置音频设置;
 dataValue g_配置输入设置;
@@ -600,7 +600,7 @@ dataValue g_aiBehaviorWorkBuffer;
 dataValue aiBehaviorWorkOffset;
 dataValue animationPlaybackTime;
 dataValue aiBehaviorWorkSize;
-dataValue g_AI导航网格;
+dataValue g_g_ai_navigation_mesh;
 dataValue g_aiNavWorkBuffer;
 dataValue g_aiNavTempOffset;
 dataValue g_aiNavTempSize;
@@ -620,9 +620,9 @@ dataValue aiBehaviorWorkOffset;
 dataValue aiBehaviorWorkSize;
 dataValue aiBehaviorWorkFlags;
 dataValue g_aiBehaviorReserved;
-dataValue g_AI行为树;
+dataValue g_g_ai_behavior_tree;
 dataValue g_aiDecisionWorkBuffer;
-dataValue g_AI寻路数据;
+dataValue g_g_ai_pathfinding_data;
 dataValue g_aiDecisionTempOffset;
 dataValue aiDecisionMaking;
 dataValue g_aiDecisionTempSize;
@@ -1122,7 +1122,7 @@ dataValue shadowProjectionMatrix;
 
 // 函数: dataValueValue resourceLoadFromDisk;
 dataValue resourceLoadFromDisk;
-dataValue g_资源纹理缓存;  /* 原: g_global_datag_system_data__g_资源纹理缓存 */
+dataValue g_g_resource_texture_cache;  /* 原: g_global_datag_system_data__g_g_resource_texture_cache */
 byte g_resourceInitFlag;
 dataValue resourceRefCount;  /* 原: g_global_datag_system_data__resourceRefCount */
 dataValue resourceMemoryUsage;  /* 原: g_global_datag_system_data__resourceMemoryUsage */
@@ -13279,7 +13279,7 @@ validate_resource_operation:
 
 
 
-uint64 FUN_180899740(uint64 resourceHandle,uint32 *memoryBlockBlockBlockSize)
+uint64 ValidateResourceHandle(uint64 resourceHandle,uint32 *memoryBlockBlockBlockSize)
 
 {
   uint64 functionResult;
@@ -13294,7 +13294,7 @@ uint64 FUN_180899740(uint64 resourceHandle,uint32 *memoryBlockBlockBlockSize)
 
 
 
-uint64 FUN_180899763(void)
+uint64 InitializeResourceValidator(void)
 
 {
   uint64 functionResult;
@@ -13346,7 +13346,7 @@ void scoreUtilityReliability(uint64 resourceHandle,longlong memoryBlockSize)
 
 
 
-uint64 FUN_1808997f0(uint64 resourceHandle,longlong *memoryBlockBlockBlockSize)
+uint64 ValidateMemoryBlock(uint64 resourceHandle,longlong *memoryBlockBlockBlockSize)
 
 {
   int operationStatus;
@@ -13389,7 +13389,7 @@ uint64 FUN_1808997f0(uint64 resourceHandle,longlong *memoryBlockBlockBlockSize)
 
 
 
-uint64 FUN_180899816(void)
+uint64 InitializeMemoryValidator(void)
 
 {
   int operationStatus;
@@ -13436,7 +13436,7 @@ void gradeUtilityStability(void)
 
 
 
-uint64 FUN_1808998a0(longlong resourceHandle,longlong *memoryBlockBlockBlockSize)
+uint64 ProcessResourceData(longlong resourceHandle,longlong *memoryBlockBlockBlockSize)
 
 {
   int operationStatus;
@@ -13995,7 +13995,7 @@ void findUtilityMatches(void)
 
 
 
-uint64 FUN_180899d90(longlong resourceHandle,longlong memoryBlockSize)
+uint64 AllocateResourceMemory(longlong resourceHandle,longlong memoryBlockSize)
 
 {
   uint64 functionResult;
@@ -14052,7 +14052,7 @@ uint64 FUN_180899d90(longlong resourceHandle,longlong memoryBlockSize)
 
 
 
-uint64 FUN_180899dc7(void)
+uint64 InitializeMemoryAllocator(void)
 
 {
   uint64 functionResult;
@@ -14438,7 +14438,7 @@ void categorizeUtilityKinds(void)
 
 
 
-uint64 FUN_18089a370(longlong resourceHandle,longlong memoryBlockSize)
+uint64 ValidateResourceSize(longlong resourceHandle,longlong memoryBlockSize)
 
 {
   short shortVar1;
@@ -14502,9 +14502,9 @@ uint64 FUN_18089a370(longlong resourceHandle,longlong memoryBlockSize)
         if (((((validationResult2 & 2) == 0) ||
              ((validationResult1 = checkResourceStatus(resourceHandle,memoryBlockSize + FIELD_OFFSET_4), (int)validationResult1 == 0 &&
               (validationResult1 = checkResourceStatus(resourceHandle,memoryBlockSize + FIELD_OFFSET_1), (int)validationResult1 == 0)))) &&
-            (((validationResult2 & 4) == 0 || (validationResult1 = FUN_180899d90(resourceHandle,memoryBlockSize + BUFFER_OFFSET_DATA), (int)validationResult1 == 0)))
+            (((validationResult2 & 4) == 0 || (validationResult1 = AllocateResourceMemory(resourceHandle,memoryBlockSize + BUFFER_OFFSET_DATA), (int)validationResult1 == 0)))
             ) && (((validationResult2 & 8) == 0 ||
-                  (validationResult1 = FUN_180899d90(resourceHandle,memoryBlockSize + 0x150), (int)validationResult1 == 0)))) {
+                  (validationResult1 = AllocateResourceMemory(resourceHandle,memoryBlockSize + 0x150), (int)validationResult1 == 0)))) {
           if ((validationResult2 & RESOURCE_HANDLE_OFFSET) != 0) {
             operationStatus = *(int *)(memoryBlockSize + 0x260);
             alocalInt[0] = operationStatus;
@@ -14528,7 +14528,7 @@ uint64 FUN_18089a370(longlong resourceHandle,longlong memoryBlockSize)
                 if ((int)validationResult1 != 0) {
                   return validationResult1;
                 }
-                if ((shortVar1 != 0) && (validationResult1 = FUN_180899d90(resourceHandle,longVar6 + RESOURCE_HANDLE_OFFSET), (int)validationResult1 != 0))
+                if ((shortVar1 != 0) && (validationResult1 = AllocateResourceMemory(resourceHandle,longVar6 + RESOURCE_HANDLE_OFFSET), (int)validationResult1 != 0))
                 {
                   return validationResult1;
                 }
@@ -14558,7 +14558,7 @@ uint64 FUN_18089a370(longlong resourceHandle,longlong memoryBlockSize)
 
 
 
-uint64 FUN_18089a51d(void)
+uint64 InitializeResourceProcessor(void)
 
 {
   short shortVar1;
@@ -14591,7 +14591,7 @@ uint64 FUN_18089a51d(void)
         if ((int)unsignedVar3 != 0) {
           return unsignedVar3;
         }
-        if ((shortVar1 != 0) && (unsignedVar3 = FUN_180899d90(), (int)unsignedVar3 != 0)) {
+        if ((shortVar1 != 0) && (unsignedVar3 = AllocateResourceMemory(), (int)unsignedVar3 != 0)) {
           return unsignedVar3;
         }
         longVar4 = longVar4 + 1;
@@ -14623,7 +14623,7 @@ void utilityWalkTarget(void)
 
 
 
-uint64 FUN_18089a690(longlong resourceHandle,uint32 *memoryBlockBlockBlockSize)
+uint64 ProcessDataBlock(longlong resourceHandle,uint32 *memoryBlockBlockBlockSize)
 
 {
   int operationStatus;
@@ -14645,7 +14645,7 @@ uint64 FUN_18089a690(longlong resourceHandle,uint32 *memoryBlockBlockBlockSize)
         dataLength = 0;
         if (0 < localStatus) {
           do {
-            unsignedCounter = FUN_18089a370(resourceHandle,(longlong)dataLength * 0x278 + *(longlong *)(memoryBlockSize + 4));
+            unsignedCounter = ValidateResourceSize(resourceHandle,(longlong)dataLength * 0x278 + *(longlong *)(memoryBlockSize + 4));
             if ((int)unsignedCounter != 0) {
               return unsignedCounter;
             }
@@ -14661,7 +14661,7 @@ uint64 FUN_18089a690(longlong resourceHandle,uint32 *memoryBlockBlockBlockSize)
 
 
 
-uint64 FUN_18089a6e8(uint64 *resourceHandle,uint64 memoryBlockSize)
+uint64 InitializeDataProcessor(uint64 *resourceHandle,uint64 memoryBlockSize)
 
 {
   int operationStatus;
@@ -14677,7 +14677,7 @@ uint64 FUN_18089a6e8(uint64 *resourceHandle,uint64 memoryBlockSize)
     dataLength = 0;
     if (0 < localStatus) {
       do {
-        unsignedCounter = FUN_18089a370();
+        unsignedCounter = ValidateResourceSize();
         if ((int)unsignedCounter != 0) {
           return unsignedCounter;
         }
@@ -14730,7 +14730,7 @@ void organizeUtilityGroups(longlong resourceHandle,uint *memoryBlockBlockBlockSi
 
 
 
-uint64 FUN_18089a7e0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
+uint64 HandleResourceOperation(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
 
 {
   uint64 functionResult;
@@ -14765,7 +14765,7 @@ uint64 FUN_18089a7e0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
 
 
 
-ulonglong FUN_18089a880(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
+ulonglong ExecuteResourceTask(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
 
 {
   ulonglong functionResult;
@@ -14871,7 +14871,7 @@ ulonglong FUN_18089a880(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
 
 
 
-ulonglong FUN_18089a8b4(void)
+ulonglong GetResourceStatus(void)
 
 {
   ulonglong functionResult;
@@ -14986,7 +14986,7 @@ void arrangeUtilitySets(void)
 
 
 
-uint64 FUN_18089a9dd(void)
+uint64 InitializeResourceSystem(void)
 
 {
   return BYTE_OFFSET_FLAG;
@@ -15034,7 +15034,7 @@ void orderUtilityLists(longlong resourceHandle,int *memoryBlockBlockBlockSize)
 
 
 
-uint64 FUN_18089aa40(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
+uint64 ProcessResourceRequest(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
 
 {
   uint64 functionResult;
@@ -15117,7 +15117,7 @@ uint64 FUN_18089aa40(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
 
 
 
-uint64 FUN_18089abe0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
+uint64 HandleResourceCallback(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
 
 {
   uint64 functionResult;
@@ -15157,7 +15157,7 @@ uint64 FUN_18089abe0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
 
 
 
-uint64 FUN_18089ac64(void)
+uint64 InitializeCallbackSystem(void)
 
 {
   longlong inputRegister;
@@ -15220,7 +15220,7 @@ void sequenceUtilityItems(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64 FUN_18089ace4(void)
+uint64 GetCallbackStatus(void)
 
 {
   float floatVar1;
@@ -15312,8 +15312,8 @@ void utilitySpringTarget(void)
 
 
 
-// 函数: void FUN_18089ae50(longlong resourceHandle,uint64 memoryBlockSize,uint32 operationFlags,uint32 callbackFunction,
-void FUN_18089ae50(longlong resourceHandle,uint64 memoryBlockSize,uint32 operationFlags,uint32 callbackFunction,
+// 函数: void ProcessAsyncOperation(longlong resourceHandle,uint64 memoryBlockSize,uint32 operationFlags,uint32 callbackFunction,
+void ProcessAsyncOperation(longlong resourceHandle,uint64 memoryBlockSize,uint32 operationFlags,uint32 callbackFunction,
                   char param_5)
 
 {
@@ -15335,7 +15335,7 @@ void FUN_18089ae50(longlong resourceHandle,uint64 memoryBlockSize,uint32 operati
 
 
 
-ulonglong FUN_18089af12(void)
+ulonglong InitializeAsyncSystem(void)
 
 {
   longlong *presourceDataBuffer;
@@ -15521,7 +15521,7 @@ handle_data_iteration:
 
 
 
-int FUN_18089b218(void)
+int CheckSystemStatus(void)
 
 {
   longlong unaff_RBP;
@@ -15537,7 +15537,7 @@ int FUN_18089b218(void)
 
 
 
-int FUN_18089b21d(void)
+int ValidateSystemState(void)
 
 {
   longlong unaff_RBP;
@@ -15564,7 +15564,7 @@ void formatUtilityContent(void)
 
 
 
-ulonglong FUN_18089b2a0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
+ulonglong ProcessSystemRequest(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
 
 {
   uint64 functionResult;
@@ -15622,7 +15622,7 @@ ulonglong FUN_18089b2a0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
 
 
 
-ulonglong FUN_18089b307(void)
+ulonglong InitializeRequestHandler(void)
 
 {
   uint64 functionResult;
@@ -15672,7 +15672,7 @@ ulonglong FUN_18089b307(void)
 
 
 
-ulonglong FUN_18089b31f(void)
+ulonglong GetRequestStatus(void)
 
 {
   uint64 functionResult;
@@ -15713,7 +15713,7 @@ ulonglong FUN_18089b31f(void)
 
 
 
-ulonglong FUN_18089b380(void)
+ulonglong HandleSystemOperation(void)
 
 {
   uint functionResult;
@@ -15783,7 +15783,7 @@ void buildUtilityComponent(longlong resourceHandle,uint64 memoryBlockSize)
 
 
 
-uint64 FUN_18089b460(longlong resourceHandle,longlong *memoryBlockBlockBlockSize)
+uint64 ProcessOperationRequest(longlong resourceHandle,longlong *memoryBlockBlockBlockSize)
 
 {
   longlong resourceDataBuffer;
@@ -15893,7 +15893,7 @@ LAB_1808a2e6d:
 
 
 
-uint64 FUN_18089b52a(void)
+uint64 InitializeOperationSystem(void)
 
 {
   longlong resourceDataBuffer;
@@ -15971,7 +15971,7 @@ LAB_1808a2e6d:
 
 
 
-uint64 FUN_18089b540(void)
+uint64 GetOperationStatus(void)
 
 {
   longlong resourceDataBuffer;
@@ -16034,7 +16034,7 @@ void constructUtilitySystem(void)
 
 
 
-uint64 FUN_18089b5a9(int resourceHandle)
+uint64 ValidateOperationHandle(int resourceHandle)
 
 {
   longlong *presourceDataBuffer;
@@ -16135,7 +16135,7 @@ LAB_1808a2e6d:
 
 
 
-uint64 FUN_18089b617(void)
+uint64 InitializeOperationValidator(void)
 
 {
   return 0;
@@ -16153,7 +16153,7 @@ void integrateUtilityModules(void)
 
 
 
-uint64 FUN_18089b630(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
+uint64 HandleOperationCallback(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
 
 {
   uint64 functionResult;
@@ -16260,7 +16260,7 @@ void mergeUtilityFunctions(void)
 
 
 
-ulonglong FUN_18089b7d0(longlong resourceHandle,longlong *memoryBlockBlockBlockSize)
+ulonglong ProcessCallbackRequest(longlong resourceHandle,longlong *memoryBlockBlockBlockSize)
 
 {
   longlong *presourceDataBuffer;
@@ -16430,7 +16430,7 @@ LAB_18089bbcc:
 
 
 
-ulonglong FUN_18089b813(void)
+ulonglong InitializeCallbackHandler(void)
 
 {
   longlong *presourceDataBuffer;
@@ -16594,7 +16594,7 @@ LAB_18089bbcc:
 
 
 
-ulonglong FUN_18089b86d(void)
+ulonglong GetCallbackState(void)
 
 {
   longlong *presourceDataBuffer;
@@ -16740,7 +16740,7 @@ LAB_18089bbcc:
 
 
 
-ulonglong FUN_18089b896(void)
+ulonglong ValidateCallbackData(void)
 
 {
   longlong *presourceDataBuffer;
@@ -17290,7 +17290,7 @@ void interfaceUtilitySystems(void)
 
 
 
-ulonglong FUN_18089c030(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
+ulonglong ProcessDataValidation(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
 
 {
   int operationStatus;
@@ -17372,7 +17372,7 @@ LAB_18089c131:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18089c190(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
+ulonglong InitializeDataValidator(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
 
 {
   uint64 functionResult;
@@ -17608,7 +17608,7 @@ LAB_18089c300:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64 * FUN_18089c1fb(void)
+uint64 * ProcessValidationRequest(void)
 
 {
   uint64 functionResult;
@@ -17863,7 +17863,7 @@ LAB_18089c300:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64 * FUN_18089c22e(void)
+uint64 * HandleValidationCallback(void)
 
 {
   uint64 functionResult;
@@ -18110,7 +18110,7 @@ LAB_18089c300:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18089c2d8(uint64 resourceHandle)
+ulonglong ValidateDataIntegrity(uint64 resourceHandle)
 
 {
   uint32 functionResult;
@@ -18351,7 +18351,7 @@ void shareUtilityResources(void)
 
 
 
-ulonglong FUN_18089c630(longlong resourceHandle,longlong *memoryBlockBlockBlockSize)
+ulonglong ProcessIntegrityCheck(longlong resourceHandle,longlong *memoryBlockBlockBlockSize)
 
 {
   longlong *presourceDataBuffer;
@@ -18703,7 +18703,7 @@ LAB_18089cbf6:
 
 
 
-ulonglong FUN_18089c69d(void)
+ulonglong InitializeIntegritySystem(void)
 
 {
   longlong *presourceDataBuffer;
@@ -19066,7 +19066,7 @@ LAB_18089cad8:
 
 
 
-ulonglong FUN_18089c86d(void)
+ulonglong GetIntegrityStatus(void)
 
 {
   longlong *presourceDataBuffer;
@@ -19315,7 +19315,7 @@ LAB_18089cad8:
 
 
 
-ulonglong FUN_18089c872(void)
+ulonglong ValidateIntegrityData(void)
 
 {
   longlong *presourceDataBuffer;
@@ -19565,7 +19565,7 @@ LAB_18089cad8:
 
 
 
-ulonglong FUN_18089c94a(float resourceHandle)
+ulonglong ProcessIntegrityRequest(float resourceHandle)
 
 {
   longlong *presourceDataBuffer;
@@ -19881,7 +19881,7 @@ LAB_18089cd76:
 
 
 
-ulonglong FUN_18089ccb9(void)
+ulonglong InitializeIntegrityHandler(void)
 
 {
   longlong *presourceDataBuffer;
@@ -19956,7 +19956,7 @@ LAB_18089cd76:
 
 
 
-uint64 FUN_18089ce03(void)
+uint64 GetIntegrityResult(void)
 
 {
   return 0;
@@ -19964,7 +19964,7 @@ uint64 FUN_18089ce03(void)
 
 
 
-uint64 FUN_18089ce16(void)
+uint64 ValidateResultData(void)
 
 {
   return 0xd;
@@ -19982,7 +19982,7 @@ void prioritizeUtilityActions(void)
 
 
 
-ulonglong FUN_18089ce30(longlong resourceHandle,longlong *memoryBlockBlockBlockSize)
+ulonglong ProcessResultRequest(longlong resourceHandle,longlong *memoryBlockBlockBlockSize)
 
 {
   longlong *presourceDataBuffer;
@@ -20104,7 +20104,7 @@ LAB_18089d07f:
 
 
 
-ulonglong FUN_18089ce60(void)
+ulonglong InitializeResultHandler(void)
 
 {
   longlong *presourceDataBuffer;
@@ -20224,7 +20224,7 @@ LAB_18089d07f:
 
 
 
-ulonglong FUN_18089cfd6(void)
+ulonglong GetResultStatus(void)
 
 {
   longlong *presourceDataBuffer;
@@ -20300,16 +20300,16 @@ void minimizeUtilityCost(longlong resourceHandle,uint64 memoryBlockSize)
 {
   int operationStatus;
   
-  operationStatus = FUN_18089ce30(resourceHandle + 0xd8);
+  operationStatus = ProcessResultRequest(resourceHandle + 0xd8);
   if (operationStatus == 0) {
-    FUN_18089b7d0(resourceHandle,memoryBlockSize);
+    ProcessCallbackRequest(resourceHandle,memoryBlockSize);
   }
   return;
 }
 
 
 
-ulonglong FUN_18089d0f0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
+ulonglong ProcessStatusRequest(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
 
 {
   uint functionResult;
@@ -20362,7 +20362,7 @@ ulonglong FUN_18089d0f0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
 
 
 
-ulonglong FUN_18089d171(void)
+ulonglong InitializeStatusHandler(void)
 
 {
   uint functionResult;
@@ -20408,7 +20408,7 @@ ulonglong FUN_18089d171(void)
 
 
 
-ulonglong FUN_18089d193(void)
+ulonglong GetStatusResult(void)
 
 {
   uint functionResult;
@@ -20471,7 +20471,7 @@ void eliminateUtilityErrors(void)
 
 
 
-uint64 FUN_18089d250(uint64 resourceHandle,longlong *memoryBlockBlockBlockSize)
+uint64 ProcessSystemValidation(uint64 resourceHandle,longlong *memoryBlockBlockBlockSize)
 
 {
   longlong *presourceDataBuffer;
@@ -20575,7 +20575,7 @@ LAB_18089d435:
 
 
 
-uint64 FUN_18089d281(void)
+uint64 InitializeSystemValidator(void)
 
 {
   longlong *presourceDataBuffer;
@@ -20684,7 +20684,7 @@ void preventUtilityFailures(void)
 
 
 
-uint64 FUN_18089d484(void)
+uint64 GetValidationResult(void)
 
 {
   return BYTE_OFFSET_FLAG;
@@ -20847,7 +20847,7 @@ void protectUtilityAssets(void)
 
 
 
-ulonglong FUN_18089dcf0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
+ulonglong ProcessValidationRequest(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
 
 {
   uint64 functionResult;
@@ -20935,7 +20935,7 @@ ulonglong FUN_18089dcf0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
 
 
 
-ulonglong FUN_18089dd54(void)
+ulonglong InitializeValidationHandler(void)
 
 {
   uint64 functionResult;
@@ -21017,7 +21017,7 @@ ulonglong FUN_18089dd54(void)
 
 
 
-ulonglong FUN_18089dd78(void)
+ulonglong GetValidationStatus(void)
 
 {
   uint64 functionResult;
@@ -21094,7 +21094,7 @@ ulonglong FUN_18089dd78(void)
 
 
 
-ulonglong FUN_18089dda2(void)
+ulonglong ValidateSystemResources(void)
 
 {
   uint64 functionResult;
@@ -21167,7 +21167,7 @@ ulonglong FUN_18089dda2(void)
 
 
 
-ulonglong FUN_18089de39(void)
+ulonglong ProcessResourceValidation(void)
 
 {
   uint64 functionResult;
@@ -21213,7 +21213,7 @@ ulonglong FUN_18089de39(void)
 
 
 
-ulonglong FUN_18089de72(void)
+ulonglong InitializeResourceValidator2(void)
 
 {
   ulonglong functionResult;
@@ -21262,7 +21262,7 @@ void secureUtilitySystems(void)
 
 
 
-uint64 FUN_18089df40(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
+uint64 HandleResourceValidation(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
 
 {
   uint64 functionResult;
@@ -21312,7 +21312,7 @@ uint64 FUN_18089df40(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
 
 
 
-uint64 FUN_18089dfc1(void)
+uint64 GetValidationResult2(void)
 
 {
   uint64 functionResult;
@@ -21356,7 +21356,7 @@ uint64 FUN_18089dfc1(void)
 
 
 
-uint64 FUN_18089dfe4(void)
+uint64 ValidateResourceData(void)
 
 {
   uint64 functionResult;
@@ -21401,7 +21401,7 @@ uint64 FUN_18089dfe4(void)
 
 
 
-uint64 FUN_18089e043(void)
+uint64 ProcessResourceCheck(void)
 
 {
   uint64 functionResult;
@@ -21442,7 +21442,7 @@ void defendUtilityNetwork(void)
 
 
 
-uint64 FUN_18089e0d0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
+uint64 InitializeResourceChecker(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
 
 {
   uint64 functionResult;
@@ -21488,7 +21488,7 @@ uint64 FUN_18089e0d0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
 
 
 
-ulonglong FUN_18089e230(longlong resourceHandle,longlong *memoryBlockBlockBlockSize)
+ulonglong ProcessResourceOperation2(longlong resourceHandle,longlong *memoryBlockBlockBlockSize)
 
 {
   longlong *presourceDataBuffer;
@@ -21605,7 +21605,7 @@ LAB_18089e447:
 
 
 
-ulonglong FUN_18089e297(void)
+ulonglong InitializeResourceOperator(void)
 
 {
   longlong *presourceDataBuffer;
@@ -21709,7 +21709,7 @@ LAB_18089e447:
 
 
 
-ulonglong FUN_18089e2be(void)
+ulonglong GetOperationResult2(void)
 
 {
   longlong *presourceDataBuffer;
@@ -21809,7 +21809,7 @@ LAB_18089e447:
 
 
 
-ulonglong FUN_18089e2e8(void)
+ulonglong ValidateOperationData2(void)
 
 {
   longlong *presourceDataBuffer;
@@ -21906,8 +21906,8 @@ LAB_18089e447:
 
 
 
-// 函数: void FUN_18089e4d7(void)
-void FUN_18089e4d7(void)
+// 函数: void InitializeOperationSystem2(void)
+void InitializeOperationSystem2(void)
 
 {
   return;
@@ -21917,7 +21917,7 @@ void FUN_18089e4d7(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18089e4f0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
+ulonglong ProcessSystemOperation2(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
 
 {
   uint32 functionResult;
@@ -22021,7 +22021,7 @@ LAB_18089e70b:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18089e558(void)
+ulonglong InitializeSystemOperator(void)
 
 {
   uint64 functionResult;
@@ -22137,7 +22137,7 @@ LAB_18089e70b:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong FUN_18089e624(void)
+ulonglong GetSystemStatus(void)
 
 {
   uint32 functionResult;
@@ -22203,8 +22203,8 @@ LAB_18089e70b:
 
 
 
-// 函数: void FUN_18089e801(void)
-void FUN_18089e801(void)
+// 函数: void ValidateSystemData(void)
+void ValidateSystemData(void)
 
 {
   return;
@@ -22213,8 +22213,8 @@ void FUN_18089e801(void)
 
 
 
-// 函数: void FUN_18089e811(void)
-void FUN_18089e811(void)
+// 函数: void ProcessSystemCheck(void)
+void ProcessSystemCheck(void)
 
 {
   return;
@@ -22222,7 +22222,7 @@ void FUN_18089e811(void)
 
 
 
-ulonglong FUN_18089e820(longlong resourceHandle,longlong *memoryBlockBlockBlockSize)
+ulonglong InitializeSystemChecker(longlong resourceHandle,longlong *memoryBlockBlockBlockSize)
 
 {
   longlong resourceDataBuffer;
@@ -22529,7 +22529,7 @@ LAB_18089ed1b:
 
 
 
-ulonglong FUN_18089e87d(void)
+ulonglong GetCheckResult(void)
 
 {
   longlong resourceDataBuffer;
@@ -22837,7 +22837,7 @@ LAB_18089ed1b:
 
 
 
-ulonglong FUN_18089e9af(uint64 resourceHandle,uint64 memoryBlockSize,ulonglong operationFlags)
+ulonglong ProcessCheckOperation(uint64 resourceHandle,uint64 memoryBlockSize,ulonglong operationFlags)
 
 {
   longlong *presourceDataBuffer;
@@ -23131,8 +23131,8 @@ LAB_18089ed1b:
 
 
 
-// 函数: void FUN_18089edaf(void)
-void FUN_18089edaf(void)
+// 函数: void InitializeCheckOperator(void)
+void InitializeCheckOperator(void)
 
 {
   return;
@@ -23141,8 +23141,8 @@ void FUN_18089edaf(void)
 
 
 
-// 函数: void FUN_18089edc7(void)
-void FUN_18089edc7(void)
+// 函数: void GetCheckStatus(void)
+void GetCheckStatus(void)
 
 {
   return;
@@ -23150,7 +23150,7 @@ void FUN_18089edc7(void)
 
 
 
-uint64 FUN_18089ede0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
+uint64 ValidateCheckData(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
 
 {
   uint64 functionResult;
@@ -23183,7 +23183,7 @@ uint64 FUN_18089ede0(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize)
 
 
 
-uint64 FUN_18089ee64(void)
+uint64 ProcessDataCheck(void)
 
 {
   uint64 functionResult;
@@ -23216,8 +23216,8 @@ uint64 FUN_18089ee64(void)
 
 
 
-// 函数: void FUN_18089ee87(void)
-void FUN_18089ee87(void)
+// 函数: void InitializeDataChecker(void)
+void InitializeDataChecker(void)
 
 {
   uint64 functionResult;
@@ -23246,8 +23246,8 @@ void FUN_18089ee87(void)
 
 
 
-// 函数: void FUN_18089eef2(void)
-void FUN_18089eef2(void)
+// 函数: void GetCheckResult2(void)
+void GetCheckResult2(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -23257,8 +23257,8 @@ void FUN_18089eef2(void)
 
 
 
-// 函数: void FUN_18089ef24(void)
-void FUN_18089ef24(void)
+// 函数: void ValidateCheckIntegrity(void)
+void ValidateCheckIntegrity(void)
 
 {
   return;
@@ -23266,7 +23266,7 @@ void FUN_18089ef24(void)
 
 
 
-uint64 FUN_18089ef40(longlong resourceHandle,longlong *memoryBlockBlockBlockSize)
+uint64 ProcessIntegrityOperation(longlong resourceHandle,longlong *memoryBlockBlockBlockSize)
 
 {
   uint64 functionResult;
@@ -23315,7 +23315,7 @@ uint64 FUN_18089ef40(longlong resourceHandle,longlong *memoryBlockBlockBlockSize
 
 
 
-uint64 FUN_18089f0b0(longlong resourceHandle,longlong *memoryBlockBlockBlockSize)
+uint64 InitializeIntegrityOperator(longlong resourceHandle,longlong *memoryBlockBlockBlockSize)
 
 {
   uint64 functionResult;
@@ -23466,7 +23466,7 @@ uint64 FUN_18089f0b0(longlong resourceHandle,longlong *memoryBlockBlockBlockSize
 
 
 
-uint64 FUN_18089f112(void)
+uint64 GetIntegrityResult2(void)
 
 {
   longlong inputRegister;
@@ -23613,8 +23613,8 @@ uint64 FUN_18089f112(void)
 
 
 
-// 函数: void FUN_18089f31e(void)
-void FUN_18089f31e(void)
+// 函数: void ValidateIntegrityData2(void)
+void ValidateIntegrityData2(void)
 
 {
   int in_EAX;
@@ -23682,8 +23682,8 @@ LAB_18089f45f:
 
 
 
-// 函数: void FUN_18089f474(void)
-void FUN_18089f474(void)
+// 函数: void ProcessDataOperation(void)
+void ProcessDataOperation(void)
 
 {
   return;
@@ -23692,8 +23692,8 @@ void FUN_18089f474(void)
 
 
 
-// 函数: void FUN_18089f47c(void)
-void FUN_18089f47c(void)
+// 函数: void InitializeDataOperator(void)
+void InitializeDataOperator(void)
 
 {
   return;
@@ -23701,7 +23701,7 @@ void FUN_18089f47c(void)
 
 
 
-ulonglong FUN_18089f530(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize,uint32 operationFlags,uint32 callbackFunction,
+ulonglong ProcessSystemTask(longlong resourceHandle,uint64 *memoryBlockBlockBlockSize,uint32 operationFlags,uint32 callbackFunction,
                        char param_5)
 
 {
@@ -23731,7 +23731,7 @@ ulonglong FUN_18089f530(longlong resourceHandle,uint64 *memoryBlockBlockBlockSiz
 
 
 
-ulonglong FUN_18089f571(void)
+ulonglong InitializeTaskHandler(void)
 
 {
   uint functionResult;
@@ -23762,8 +23762,8 @@ ulonglong FUN_18089f571(void)
 
 
 
-// 函数: void FUN_18089f7fd(void)
-void FUN_18089f7fd(void)
+// 函数: void GetTaskStatus(void)
+void GetTaskStatus(void)
 
 {
   return;
@@ -23771,7 +23771,7 @@ void FUN_18089f7fd(void)
 
 
 
-uint64 FUN_18089f830(longlong resourceHandle,longlong *memoryBlockBlockBlockSize)
+uint64 ProcessTaskOperation(longlong resourceHandle,longlong *memoryBlockBlockBlockSize)
 
 {
   uint64 functionResult;
@@ -23811,7 +23811,7 @@ uint64 FUN_18089f830(longlong resourceHandle,longlong *memoryBlockBlockBlockSize
 
 
 
-ulonglong FUN_18089f970(longlong resourceHandle,longlong *memoryBlockBlockBlockSize)
+ulonglong InitializeTaskOperator(longlong resourceHandle,longlong *memoryBlockBlockBlockSize)
 
 {
   longlong resourceDataBuffer;
@@ -23892,7 +23892,7 @@ ulonglong FUN_18089f970(longlong resourceHandle,longlong *memoryBlockBlockBlockS
 
 
 
-ulonglong FUN_18089f9b3(void)
+ulonglong GetOperationResult3(void)
 
 {
   longlong resourceDataBuffer;
@@ -23966,7 +23966,7 @@ ulonglong FUN_18089f9b3(void)
 
 
 
-ulonglong FUN_18089f9f6(void)
+ulonglong ValidateOperationData3(void)
 
 {
   longlong resourceDataBuffer;
@@ -24029,7 +24029,7 @@ ulonglong FUN_18089f9f6(void)
 
 
 
-ulonglong FUN_18089fa3c(void)
+ulonglong ProcessDataValidation2(void)
 
 {
   longlong resourceDataBuffer;
@@ -24078,7 +24078,7 @@ ulonglong FUN_18089fa3c(void)
 
 
 
-ulonglong FUN_18089fac2(void)
+ulonglong InitializeDataValidator2(void)
 
 {
   uint functionResult;
@@ -24108,7 +24108,7 @@ ulonglong FUN_18089fac2(void)
 
 
 
-ulonglong FUN_18089fad8(void)
+ulonglong GetValidationResult3(void)
 
 {
   uint functionResult;
@@ -45597,7 +45597,7 @@ void Unwind_180907770(void)
 void Unwind_180907780(void)
 
 {
-  _g_内存释放对齐 = &threadLocalStorageCleanup;
+  _g_g_memory_release_alignment = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45608,7 +45608,7 @@ void Unwind_180907780(void)
 void Unwind_180907790(void)
 
 {
-  _g_块分配大小 = &threadLocalStorageCleanup;
+  _g_g_block_alloc_size = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45619,7 +45619,7 @@ void Unwind_180907790(void)
 void Unwind_1809077a0(void)
 
 {
-  _g_块释放大小 = &threadLocalStorageCleanup;
+  _g_g_block_release_size = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45630,7 +45630,7 @@ void Unwind_1809077a0(void)
 void Unwind_1809077b0(void)
 
 {
-  _g_块大小最小值 = &threadLocalStorageCleanup;
+  _g_g_block_size_min = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45641,7 +45641,7 @@ void Unwind_1809077b0(void)
 void Unwind_1809077c0(void)
 
 {
-  _g_AI系统句柄 = &threadLocalStorageCleanup;
+  _g_g_ai_system_handle = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45652,7 +45652,7 @@ void Unwind_1809077c0(void)
 void Unwind_1809077d0(void)
 
 {
-  _g_场景管理器句柄 = &threadLocalStorageCleanup;
+  _g_g_scene_manager_handle = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45663,7 +45663,7 @@ void Unwind_1809077d0(void)
 void Unwind_1809077e0(void)
 
 {
-  _g_资源管理器句柄 = &threadLocalStorageCleanup;
+  _g_g_resource_manager_handle = &threadLocalStorageCleanup;
   return;
 }
 
@@ -45674,7 +45674,7 @@ void Unwind_1809077e0(void)
 void Unwind_1809077f0(void)
 
 {
-  _g_脚本系统句柄 = &threadLocalStorageCleanup;
+  _g_g_script_system_handle = &threadLocalStorageCleanup;
   return;
 }
 
@@ -48244,7 +48244,7 @@ void Unwind_180908570(uint64 resourceHandle,longlong memoryBlockSize)
 void Unwind_1809085a0(void)
 
 {
-  _g_调试系统句柄 = &threadLocalStorageCleanup;
+  _g_g_debug_system_handle = &threadLocalStorageCleanup;
   return;
 }
 
@@ -48255,7 +48255,7 @@ void Unwind_1809085a0(void)
 void Unwind_1809085b0(void)
 
 {
-  _g_性能监控器句柄 = &threadLocalStorageCleanup;
+  _g_g_performance_monitor_handle = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80339,8 +80339,8 @@ void g_create_memory_allocator(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void 注册内存处理器(void)
-void 注册内存处理器(void)
+// 函数: void g_register_memory_handler(void)
+void g_register_memory_handler(void)
 
 {
   _g_dataStructureRoot = &threadLocalStorageCleanup;
@@ -80352,8 +80352,8 @@ void 注册内存处理器(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void 配置内存设置(void)
-void 配置内存设置(void)
+// 函数: void g_configure_memory_settings(void)
+void g_configure_memory_settings(void)
 
 {
   _g_systemStatusFlag1 = &threadLocalStorageCleanup;
@@ -80365,8 +80365,8 @@ void 配置内存设置(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void 验证内存配置(void) # 内存验证函数
-void 验证内存配置(void) # 内存验证函数
+// 函数: void g_validate_memory_config(void) # 内存验证函数
+void g_validate_memory_config(void) # 内存验证函数
 
 {
   _g_errorHandlerState1 = &threadLocalStorageCleanup;
@@ -80492,7 +80492,7 @@ void FreeMemoryPool(void) # 数据结构初始化函数
 void AllocateMemoryChunk(void)
 
 {
-  _g_内存释放对齐 = &threadLocalStorageCleanup;
+  _g_g_memory_release_alignment = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80501,11 +80501,11 @@ void AllocateMemoryChunk(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void 释放内存块(void)
-void 释放内存块(void)
+// 函数: void g_release_memory_block(void)
+void g_release_memory_block(void)
 
 {
-  _g_块分配大小 = &threadLocalStorageCleanup;
+  _g_g_block_alloc_size = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80514,11 +80514,11 @@ void 释放内存块(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void 获取内存块大小(void)
-void 获取内存块大小(void)
+// 函数: void g_get_memory_block_size(void)
+void g_get_memory_block_size(void)
 
 {
-  _g_块释放大小 = &threadLocalStorageCleanup;
+  _g_g_block_release_size = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80531,7 +80531,7 @@ void 获取内存块大小(void)
 void InitializeGlobalDataPointer2(void)
 
 {
-  _g_块大小最小值 = &threadLocalStorageCleanup;
+  _g_g_block_size_min = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80544,7 +80544,7 @@ void InitializeGlobalDataPointer2(void)
 void InitializeGlobalDataPointer3(void)
 
 {
-  _g_AI系统句柄 = &threadLocalStorageCleanup;
+  _g_g_ai_system_handle = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80557,7 +80557,7 @@ void InitializeGlobalDataPointer3(void)
 void InitializeGlobalDataPointer4(void)
 
 {
-  _g_场景管理器句柄 = &threadLocalStorageCleanup;
+  _g_g_scene_manager_handle = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80570,7 +80570,7 @@ void InitializeGlobalDataPointer4(void)
 void InitializeResourceManager(void)
 
 {
-  _g_资源管理器句柄 = &threadLocalStorageCleanup;
+  _g_g_resource_manager_handle = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80579,11 +80579,11 @@ void InitializeResourceManager(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void 初始化脚本系统(void)
-void 初始化脚本系统(void)
+// 函数: void g_initialize_script_system(void)
+void g_initialize_script_system(void)
 
 {
-  _g_脚本系统句柄 = &threadLocalStorageCleanup;
+  _g_g_script_system_handle = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80615,11 +80615,11 @@ void systemInitializeModules(uint64 resourceHandle,uint64 memoryBlockSize,uint64
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void 初始化性能监控器(void)
-void 初始化性能监控器(void)
+// 函数: void g_initialize_performance_monitor(void)
+void g_initialize_performance_monitor(void)
 
 {
-  _g_调试系统句柄 = &threadLocalStorageCleanup;
+  _g_g_debug_system_handle = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80628,19 +80628,19 @@ void 初始化性能监控器(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void 加载配置(void)
-void 加载配置(void)
+// 函数: void g_load_config(void)
+void g_load_config(void)
 
 {
-  _g_性能监控器句柄 = &threadLocalStorageCleanup;
+  _g_g_performance_monitor_handle = &threadLocalStorageCleanup;
   return;
 }
 
 
 
 
-// 函数: void 初始化配置系统(void)
-void 初始化配置系统(void)
+// 函数: void g_initialize_config_system(void)
+void g_initialize_config_system(void)
 
 {
                     // WARNING: Could not recover jumptable at 0x0001809419d8. Too many branches
