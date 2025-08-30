@@ -1040,8 +1040,8 @@ dataValue g_config_system_accessibility_settings;           // 配置系统无�
 dataValue g_config_system_backup_settings;             // 配置系统备份设置
 dataValue g_config_system_update_settings;             // 配置系统更新设置
 dataValue g_config_system_mod_settings;              // 配置系统Mod设置
-dataValue configSystemCloudSettings;
-dataValue configSystemSocialSettings;
+dataValue g_config_system_cloud_settings;             // 配置系统云设置
+dataValue g_config_system_social_settings;            // 配置系统社交设置
 dataValue g_system_module_config_primary;
 dataValue g_system_module_config_secondary;
 dataValue g_system_module_config_tertiary;
