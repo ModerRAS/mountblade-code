@@ -20792,7 +20792,7 @@ LAB_OPERATION_SUCCESS:
       utility_iteration_counter = utility_iteration_counter + 1;
     } while (utility_iteration_counter < (int)utility_stack_resource_buffer_primary[0]);
   }
-  if (*(uint *)(resource_buffer + 8) < 0x6e) {
+  if (*(uint *)(resource_buffer + 8) < UTILITY_ITERATION_THRESHOLD_TERTIARY) {
     iteration_counter = 0;
   }
   else if (*(int *)(resource_buffer[1] + RESOURCE_HANDLE_OFFSET) == 0) {
@@ -20867,7 +20867,7 @@ LAB_OPERATION_SUCCESS:
       utility_iteration_counter = utility_iteration_counter + 1;
     } while (utility_iteration_counter < (int)stack_size_parameter);
   }
-  if (*(uint *)(utility_cpu_context + 8) < 0x6e) {
+  if (*(uint *)(utility_cpu_context + 8) < UTILITY_ITERATION_THRESHOLD_TERTIARY) {
     iteration_counter = 0;
   }
   else if (*(int *)(utility_cpu_context[1] + RESOURCE_HANDLE_OFFSET) == 0) {
@@ -24582,7 +24582,7 @@ void ValidateIntegrityData2(void)
       }
       utility_operation_status = resource_size_limit + 1;
     } while (resource_size_limit < 6);
-    if (*(uint *)(utility_register_context_base + 8) < 0x6e) {
+    if (*(uint *)(utility_register_context_base + 8) < UTILITY_ITERATION_THRESHOLD_TERTIARY) {
       UTILITY_REGISTER_EBP = 0;
     }
     else if (*(int *)(utility_register_context_base[1] + RESOURCE_HANDLE_OFFSET) == 0) {
