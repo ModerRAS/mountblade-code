@@ -24059,7 +24059,7 @@ void InitializeEffectSystem(longlong handleIdentifier,uint64_t resourceIdentifie
   init_stack_uint_param_2b8 = INVALID_HANDLE_VALUE;
   init_stack_uint_param_68 = system_configuration_data ^ (ulonglong)system_local_buffer_348;
   system_float_value = (float)resourceIdentifier;
-  systemCoreData = (longlong)(system_float_result_value * 100000.0);
+  systemCoreData = (longlong)(system_float_result_value * SYSTEM_FLOAT_MULTIPLIER_ONE_HUNDRED_THOUSAND);
   systemCoreData = systemCoreData + systemCoreData;
   system_configuration_data = system_float_value;
   system_result_operation = initialize_system_module_twenty_three();
@@ -61941,6 +61941,8 @@ longlong *g_global_system_flags;
 // 浮点运算语义化常量
 #define SYSTEM_FLOAT_MULTIPLIER_POINT_ZERO_ONE 0.01
 #define SYSTEM_FLOAT_DIVISOR_ONE_HUNDRED 100.0
+#define SYSTEM_FLOAT_MULTIPLIER_ONE_HUNDRED_THOUSAND 100000.0
+#define SYSTEM_FLOAT_VALUE_POINT_ZERO_FIVE 0.05
 
 // 系统初始化标签语义化常量
 #define INIT_LABEL_SYSTEM_BOOTSTRAP_START INIT_LABEL_SYSTEM_48e74
