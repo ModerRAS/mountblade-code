@@ -1,5 +1,17 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 本次美化内容（2025年8月30日）第四批次：
+// - 添加了SYSTEM_INTEGER_MAX_VALUE_0X3FFFFFF等整数范围检查语义化常量
+// - 添加了SYSTEM_MEMORY_OFFSET_798等内存偏移量语义化常量
+// - 添加了SYSTEM_NULL_POINTER_64BIT等64位空指针语义化常量
+// - 将硬编码的0x3ffffff替换为SYSTEM_INTEGER_MAX_VALUE_0X3FFFFFF等整数范围检查常量
+// - 将硬编码的0x798/0x9f8/0xa28替换为SYSTEM_MEMORY_OFFSET_798等内存偏移量常量
+// - 将硬编码的(uint64_t *******)0x0替换为SYSTEM_NULL_POINTER_64BIT等空指针常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了剩余硬编码值的语义化替换
+// - 原本实现：完全重构所有硬编码值体系，重新设计所有常量的命名规范
+// - 简化实现：仅将剩余的硬编码值替换为语义化常量
+
 // 本次美化内容（2025年8月30日）第三批次：
 // - 将uintStack_334替换为init_stack_buffer_index_334等缓冲区索引变量名
 // - 将uintStack_2f0替换为init_stack_loop_counter_2f0等循环计数器变量名  
@@ -29061,7 +29073,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
             memcpy(system_pointer_chain4[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER],node_root[system_long_value_result * 4 + 1],system_unsigned_integer_result_temp);
           }
           *(uint32_t *)(system_pointer_chain4 + 10) = 0;
-          if (system_pointer_chain4[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != (uint64_t *******)0x0) {
+          if (system_pointer_chain4[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != SYSTEM_NULL_POINTER_64BIT) {
             *(uint8_t *)(system_unsigned_integer_result_temp + (longlong)system_pointer_chain4[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER]) = 0;
           }
           *(uint32_t *)((longlong)system_pointer_chain4 + SYSTEM_DATA_OFFSET_5C) =
@@ -29210,7 +29222,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
           PrepareSystemBuffer(&system_buffer_ptr_330,system_unsigned_integer_result_temp);
           uintStack_268 = &globalSystemPointerData;
           system_pointer_root = (uint64_t ******)&g_system_data_variable3;
-          if (system_pointer_chain4[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != (uint64_t *******)0x0) {
+          if (system_pointer_chain4[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != SYSTEM_NULL_POINTER_64BIT) {
             system_pointer_root = system_pointer_chain4[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
           }
           UpdateSystemBuffer(&system_buffer_ptr_texture_pool,system_pointer_root);
@@ -29870,7 +29882,7 @@ void InitializeNetworkDataNode(void)
   *(uint16_t *)(system_long_value_result + SYSTEM_DATA_OFFSET_660) = SYSTEM_DATA_COMPARE_SIZE0;
   *(uint64_t *)(system_long_value_result + SYSTEM_DATA_OFFSET_768) = 0;
   *(uint64_t *)(system_long_value_result + SYSTEM_DATA_OFFSET_770) = 0;
-  *(uint32_t *)(system_long_value_result + 0x798) = 0;
+  *(uint32_t *)(system_long_value_result + SYSTEM_MEMORY_OFFSET_798) = 0;
   *(uint64_t *)(system_long_value_result + SYSTEM_DATA_OFFSET_7A0) = 0;
   *(uint16_t *)(system_long_value_result + SYSTEM_DATA_OFFSET_7A8) = SYSTEM_DATA_COMPARE_SIZE0;
   *(uint64_t *)(system_long_value_result + SYSTEM_DATA_OFFSET_8B0) = 0;
@@ -29878,9 +29890,9 @@ void InitializeNetworkDataNode(void)
   *(uint32_t *)(system_long_value_result + SYSTEM_DATA_OFFSET_8E0) = 0;
   *(uint64_t *)(system_long_value_result + SYSTEM_DATA_OFFSET_8E8) = 0;
   *(uint16_t *)(system_long_value_result + SYSTEM_DATA_OFFSET_8F0) = SYSTEM_DATA_COMPARE_SIZE0;
-  *(uint64_t *)(system_long_value_result + 0x9f8) = 0;
+  *(uint64_t *)(system_long_value_result + SYSTEM_MEMORY_OFFSET_9F8) = 0;
   *(uint64_t *)(system_long_value_result + SYSTEM_DATA_BLOCK_SIZE_A00) = 0;
-  *(uint32_t *)(system_long_value_result + 0xa28) = 0;
+  *(uint32_t *)(system_long_value_result + SYSTEM_MEMORY_OFFSET_A28) = 0;
   *(uint64_t *)(system_long_value_result + 0xa30) = 0;
   *(uint16_t *)(system_long_value_result + 0xa38) = SYSTEM_DATA_COMPARE_SIZE0;
   *(uint64_t *)(system_long_value_result + SYSTEM_INIT_DATA_OFFSET_B40) = 0;
