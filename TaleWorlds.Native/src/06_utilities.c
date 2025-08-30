@@ -4111,12 +4111,12 @@ ulonglong create_directory(longlong resourceHandleIdentifier,uint64 resourceBuff
     if ((0 < signedLocalVar) && (*(uint *)(resourceHandleIdentifier + byteOffsetFlag) < 2)) {
       arrayHandleData = 0;
       if (*(uint *)(resourceHandleIdentifier + byteOffsetFlag) == 0) {
-        lStack_50 = *(longlong *)(resourceHandleIdentifier + resourceHandleDataOffset);
+        localStackVar50 = *(longlong *)(resourceHandleIdentifier + resourceHandleDataOffset);
         localBuffer[0] = 1;
         arrayHandleData = lStack_50;
       }
       else {
-        lStack_50 = *(longlong *)(resourceHandleIdentifier + resourceHandleDataOffset);
+        localStackVar50 = *(longlong *)(resourceHandleIdentifier + resourceHandleDataOffset);
         localBuffer[0] = 2;
       }
       functionResultVar = utilityReadMemoryData(resourceBuffer,localBuffer,*(uint32 *)(resourceHandleIdentifier + POINTER_DATA_OFFSET),unsignedStackX8);
@@ -4142,7 +4142,7 @@ ulonglong create_directory(longlong resourceHandleIdentifier,uint64 resourceBuff
 int delete_file(uint32 resourceHandleIdentifier)
 
 {
-  int in_EAX;
+  int registerEAX;
   int operationStatus;
   longlong tempBuffer;
   longlong registerRDI;
@@ -4853,7 +4853,7 @@ handle_buffer_error:
 void utilityInitializeResourceComponent(int resourceHandleIdentifier,int resourceBuffer)
 
 {
-  int in_EAX;
+  int registerEAX;
   int operationStatus;
   longlong baseRegisterVar;
   longlong registerRSI;
@@ -6796,7 +6796,7 @@ int accept_network_connection(longlong resourceHandleIdentifier,longlong resourc
 int send_network_dataValue(uint64 resourceHandleIdentifier,uint64 resourceBuffer)
 
 {
-  int in_EAX;
+  int registerEAX;
   int operationStatus;
   longlong tempBuffer;
   longlong registerRDI;
@@ -8204,7 +8204,7 @@ uint64 initialize_debug_system(void)
 
 {
   longlong resourceBuffer;
-  int in_EAX;
+  int registerEAX;
   uint64 loopCounter;
   ulonglong loopCounter;
   longlong threadContextData;
@@ -8792,7 +8792,7 @@ uint64 allocate_memory_block(uint64 resourceHandleIdentifier,int resourceBuffer)
 
 {
   longlong resourceBuffer;
-  int in_EAX;
+  int registerEAX;
   int operationStatus;
   int arrayIndex;
   uint64 systemStatus;
@@ -15172,7 +15172,7 @@ uint64 GetCallbackStatus(void)
 
 {
   float floatVarfloatVar1;
-  int in_EAX;
+  int registerEAX;
   uint64 loopCounter;
   uint64 *pointerVar3;
   longlong baseRegisterVar;
@@ -15288,7 +15288,7 @@ ulonglong InitializeAsyncSystem(void)
 {
   longlong *resourceDataBufferPointer;
   uint loopCounter;
-  uint in_EAX;
+  uint registerEAX;
   uint loopCounter;
   ulonglong systemStatus;
   ulonglong validationResult;
@@ -15574,7 +15574,7 @@ ulonglong InitializeRequestHandler(void)
 
 {
   uint64 functionResultVar;
-  int in_EAX;
+  int registerEAX;
   ulonglong loopCounter;
   uint64 *baseRegisterVar;
   longlong stackFramePointer;
@@ -17124,7 +17124,7 @@ LAB_18089bfc7:
 void bridgeUtilityGaps(void)
 
 {
-  uint in_EAX;
+  uint registerEAX;
   int operationStatus;
   int operationStatus;
   uint loopCounter;
@@ -18068,7 +18068,7 @@ ulonglong ValidateDataIntegrity(uint64 resourceHandleIdentifier)
   float floatVarfloatVar5;
   float floatVarfloatVar6;
   uint64 systemFlagsData;
-  uint in_EAX;
+  uint registerEAX;
   uint iterationIndex;
   uint unsignedVar9;
   uint functionResultVar;
@@ -18656,7 +18656,7 @@ ulonglong InitializeIntegritySystem(void)
 {
   longlong *resourceDataBufferPointer;
   longlong tempBuffer;
-  int in_EAX;
+  int registerEAX;
   uint loopCounter;
   ulonglong systemStatus;
   longlong *baseRegisterVar;
@@ -20176,7 +20176,7 @@ ulonglong GetResultStatus(void)
 
 {
   longlong *resourceDataBufferPointer;
-  uint in_EAX;
+  uint registerEAX;
   uint loopCounter;
   ulonglong baseRegisterVar;
   longlong *registerRDI;
@@ -22790,7 +22790,7 @@ ulonglong ProcessCheckOperation(uint64 resourceHandleIdentifier,uint64 resourceB
 {
   longlong *resourceDataBufferPointer;
   longlong tempBuffer;
-  uint in_EAX;
+  uint registerEAX;
   uint loopCounter;
   ulonglong systemStatus;
   ulonglong validationResult;
@@ -23565,7 +23565,7 @@ uint64 GetIntegrityResult2(void)
 void ValidateIntegrityData2(void)
 
 {
-  int in_EAX;
+  int registerEAX;
   int operationStatus;
   int operationStatus;
   longlong *baseRegisterVar;

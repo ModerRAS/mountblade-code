@@ -1306,7 +1306,7 @@ int initialize_security_system(void)
   global_data_ = &data_180bf9d08;
   data_180bf9d08 = 0;
   global_data_ = 0x1e;
-  strcpy_s(&data_180bf9d08,系统配置缓冲区大小,&g_moduleString29,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9d08,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString29,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_35_init_function);
   return (init_result != 0) - 1;
 }
@@ -1318,7 +1318,7 @@ int initialize_encryption_service(void)
   global_data_ = &data_180bf9d68;
   data_180bf9d68 = 0;
   global_data_ = 0x1e;
-  strcpy_s(&data_180bf9d68,系统配置缓冲区大小,&g_moduleString30,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9d68,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString30,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_36_init_function);
   return (init_result != 0) - 1;
 }
@@ -1330,7 +1330,7 @@ int initialize_authentication_system(void)
   global_data_ = &data_180bf9dc8;
   data_180bf9dc8 = 0;
   global_data_ = 0x12;
-  strcpy_s(&data_180bf9dc8,系统配置缓冲区大小,&g_moduleString31,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9dc8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString31,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_37_init_function);
   return (init_result != 0) - 1;
 }
@@ -1342,7 +1342,7 @@ int initialize_permission_manager(void)
   global_data_ = &data_180bf9e28;
   data_180bf9e28 = 0;
   global_data_ = 0x13;
-  strcpy_s(&data_180bf9e28,系统配置缓冲区大小,&g_moduleString32,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9e28,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString32,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_38_init_function);
   return (init_result != 0) - 1;
 }
@@ -1354,7 +1354,7 @@ int initialize_session_manager(void)
   global_data_ = &data_180bf9e88;
   data_180bf9e88 = 0;
   global_data_ = 0x13;
-  strcpy_s(&data_180bf9e88,系统配置缓冲区大小,&g_moduleString33,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9e88,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString33,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_39_init_function);
   return (init_result != 0) - 1;
 }
@@ -1366,7 +1366,7 @@ int initialize_user_profile_system(void)
   global_data_ = &data_180bf9ee8;
   data_180bf9ee8 = 0;
   global_data_ = 0x16;
-  strcpy_s(&data_180bf9ee8,系统配置缓冲区大小,&g_moduleString34,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9ee8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString34,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_40_init_function);
   return (init_result != 0) - 1;
 }
@@ -1378,7 +1378,7 @@ int initialize_save_system(void)
   global_data_ = &data_180bf9f48;
   data_180bf9f48 = 0;
   global_data_ = 0x1a;
-  strcpy_s(&data_180bf9f48,系统配置缓冲区大小,&g_moduleString35,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9f48,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString35,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_41_init_function);
   return (init_result != 0) - 1;
 }
@@ -1390,7 +1390,7 @@ int initialize_achievement_system(void)
   global_data_ = &data_180bf9fa8;
   data_180bf9fa8 = 0;
   global_data_ = 0x15;
-  strcpy_s(&data_180bf9fa8,系统配置缓冲区大小,&g_moduleString36,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf9fa8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString36,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_42_init_function);
   return (init_result != 0) - 1;
 }
@@ -1402,7 +1402,7 @@ int initialize_statistics_system(void)
   global_data_ = &data_180bfa008;
   data_180bfa008 = 0;
   global_data_ = 0x13;
-  strcpy_s(&data_180bfa008,系统配置缓冲区大小,&g_moduleString37,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bfa008,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString37,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_43_init_function);
   return (init_result != 0) - 1;
 }
@@ -1414,7 +1414,7 @@ int initialize_analytics_service(void)
   global_data_ = &data_180bfa068;
   data_180bfa068 = 0;
   global_data_ = 0x13;
-  strcpy_s(&data_180bfa068,系统配置缓冲区大小,&g_moduleString38,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bfa068,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString38,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_44_init_function);
   return (init_result != 0) - 1;
 }
@@ -1426,7 +1426,7 @@ int initialize_debug_system(void)
   global_data_ = &data_180bfa0c8;
   data_180bfa0c8 = 0;
   global_data_ = 0x1b;
-  strcpy_s(&data_180bfa0c8,系统配置缓冲区大小,&g_moduleString39,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bfa0c8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString39,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_45_init_function);
   return (init_result != 0) - 1;
 }
@@ -1438,7 +1438,7 @@ int initialize_profiling_system(void)
   global_data_ = &data_180bfa128;
   data_180bfa128 = 0;
   global_data_ = 0x19;
-  strcpy_s(&data_180bfa128,系统配置缓冲区大小,&g_moduleString40,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bfa128,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString40,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_46_init_function);
   return (init_result != 0) - 1;
 }
@@ -1450,7 +1450,7 @@ int initialize_crash_handler(void)
   global_data_ = &data_180bfa188;
   data_180bfa188 = 0;
   global_data_ = 0x15;
-  strcpy_s(&data_180bfa188,系统配置缓冲区大小,&g_moduleString41,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bfa188,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString41,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_47_init_function);
   return (init_result != 0) - 1;
 }
@@ -1462,7 +1462,7 @@ int initialize_error_reporting(void)
   global_data_ = &data_180bfa1e8;
   data_180bfa1e8 = 0;
   global_data_ = 0x28;
-  strcpy_s(&data_180bfa1e8,系统配置缓冲区大小,&data_180a22fd0,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bfa1e8,SYSTEM_CONFIG_BUFFER_SIZE,&data_180a22fd0,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_48_init_function);
   return (init_result != 0) - 1;
 }
@@ -1474,7 +1474,7 @@ int initialize_update_system(void)
   global_data_ = &data_180bfa248;
   data_180bfa248 = 0;
   global_data_ = 0x23;
-  strcpy_s(&data_180bfa248,系统配置缓冲区大小,&data_180a22fa8,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bfa248,SYSTEM_CONFIG_BUFFER_SIZE,&data_180a22fa8,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_49_init_function);
   return (init_result != 0) - 1;
 }
@@ -1486,7 +1486,7 @@ int initialize_patch_manager(void)
   global_data_ = &data_180bfa2a8;
   data_180bfa2a8 = 0;
   global_data_ = 0x17;
-  strcpy_s(&data_180bfa2a8,系统配置缓冲区大小,&g_moduleString42,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bfa2a8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString42,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_50_init_function);
   return (init_result != 0) - 1;
 }
@@ -1511,43 +1511,43 @@ int initialize_health_checker(void)
 int initialize_worker_thread_pool(unsigned long long handle,unsigned long long flags,unsigned long long mutex_attr,unsigned long long mutex_type)
 {
   long long init_result;
-  _Mtx_init_in_situ(第二互斥锁地址,2,mutex_attr,mutex_type,线程池默认标志);
+  _Mtx_init_in_situ(SECOND_MUTEX_ADDR,2,mutex_attr,mutex_type,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_54_init_function);
   return (init_result != 0) - 1;
 }
   data_180bfa368 = 0;
   global_data_ = 7;
-  strcpy_s(&data_180bfa368,0x80,&g_bufferString1,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bfa368,STRING_BUFFER_SIZE_1,&g_bufferString1,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bfa400;
   data_180bfa400 = 0;
   global_data_ = 9;
-  strcpy_s(&data_180bfa400,0x80,&g_bufferString2);
+  strcpy_s(&data_180bfa400,STRING_BUFFER_SIZE_1,&g_bufferString2);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bfa498;
   data_180bfa498 = 0;
   global_data_ = 0xb;
-  strcpy_s(&data_180bfa498,0x80,&g_bufferString3);
+  strcpy_s(&data_180bfa498,STRING_BUFFER_SIZE_1,&g_bufferString3);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bfa530;
   data_180bfa530 = 0;
   global_data_ = 7;
-  strcpy_s(&data_180bfa530,0x80,&g_bufferString4);
+  strcpy_s(&data_180bfa530,STRING_BUFFER_SIZE_1,&g_bufferString4);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bfa5c8;
   data_180bfa5c8 = 0;
   global_data_ = 0xc;
-  strcpy_s(&data_180bfa5c8,0x80,&g_bufferString5);
+  strcpy_s(&data_180bfa5c8,STRING_BUFFER_SIZE_1,&g_bufferString5);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bfa660;
   data_180bfa660 = 0;
   global_data_ = 9;
-  strcpy_s(&data_180bfa660,0x80,&g_bufferString6);
+  strcpy_s(&data_180bfa660,STRING_BUFFER_SIZE_1,&g_bufferString6);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bfa6f8;
   data_180bfa6f8 = 0;
   global_data_ = 0xc;
-  strcpy_s(&data_180bfa6f8,0x80,&g_bufferString7);
+  strcpy_s(&data_180bfa6f8,STRING_BUFFER_SIZE_1,&g_bufferString7);
   init_result = execute_function(&g_systemInitFunction4);
   return (init_result != 0) - 1;
 }
@@ -1559,32 +1559,32 @@ int initialize_io_thread_pool(void)
   global_data_ = &data_180bfa798;
   data_180bfa798 = 0;
   global_data_ = 0x1b;
-  strcpy_s(&data_180bfa798,0x80,&g_bufferString8,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bfa798,STRING_BUFFER_SIZE_1,&g_bufferString8,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bfa830;
   data_180bfa830 = 0;
   global_data_ = 0x19;
-  strcpy_s(&data_180bfa830,0x80,&g_bufferString9);
+  strcpy_s(&data_180bfa830,STRING_BUFFER_SIZE_1,&g_bufferString9);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bfa8c8;
   data_180bfa8c8 = 0;
   global_data_ = 0x1f;
-  strcpy_s(&data_180bfa8c8,0x80,&g_bufferString10);
+  strcpy_s(&data_180bfa8c8,STRING_BUFFER_SIZE_1,&g_bufferString10);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bfa960;
   data_180bfa960 = 0;
   global_data_ = 0x1b;
-  strcpy_s(&data_180bfa960,0x80,&g_bufferString11);
+  strcpy_s(&data_180bfa960,STRING_BUFFER_SIZE_1,&g_bufferString11);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bfa9f8;
   data_180bfa9f8 = 0;
   global_data_ = CONFIG_PATH_BUFFER_SIZE;
-  strcpy_s(&data_180bfa9f8,0x80,&g_bufferString12);
+  strcpy_s(&data_180bfa9f8,STRING_BUFFER_SIZE_1,&g_bufferString12);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bfaa90;
   data_180bfaa90 = 0;
   global_data_ = CONFIG_PATH_BUFFER_SIZE;
-  strcpy_s(&data_180bfaa90,0x80,&g_bufferString13);
+  strcpy_s(&data_180bfaa90,STRING_BUFFER_SIZE_1,&g_bufferString13);
   init_result = execute_function(&g_systemInitFunction5);
   return (init_result != 0) - 1;
 }
@@ -1596,32 +1596,32 @@ int initialize_background_thread_pool(void)
   global_data_ = &data_180bfab28;
   data_180bfab28 = 0;
   global_data_ = 0x13;
-  strcpy_s(&data_180bfab28,0x80,&g_bufferString14,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bfab28,STRING_BUFFER_SIZE_1,&g_bufferString14,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bfabc0;
   data_180bfabc0 = 0;
   global_data_ = 0x13;
-  strcpy_s(&data_180bfabc0,0x80,&g_bufferString14);
+  strcpy_s(&data_180bfabc0,STRING_BUFFER_SIZE_1,&g_bufferString14);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bfac58;
   data_180bfac58 = 0;
   global_data_ = 0x13;
-  strcpy_s(&data_180bfac58,0x80,&g_bufferString14);
+  strcpy_s(&data_180bfac58,STRING_BUFFER_SIZE_1,&g_bufferString14);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bfacf0;
   data_180bfacf0 = 0;
   global_data_ = 0x13;
-  strcpy_s(&data_180bfacf0,0x80,&g_bufferString14);
+  strcpy_s(&data_180bfacf0,STRING_BUFFER_SIZE_1,&g_bufferString14);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bfad88;
   data_180bfad88 = 0;
   global_data_ = 0xe;
-  strcpy_s(&data_180bfad88,0x80,&g_bufferString15);
+  strcpy_s(&data_180bfad88,STRING_BUFFER_SIZE_1,&g_bufferString15);
   global_data_ = &g_memoryAllocationFlag;
   global_data_ = &data_180bfae20;
   data_180bfae20 = 0;
   global_data_ = 0xe;
-  strcpy_s(&data_180bfae20,0x80,&g_bufferString15);
+  strcpy_s(&data_180bfae20,STRING_BUFFER_SIZE_1,&g_bufferString15);
   init_result = execute_function(&g_systemInitFunction6);
   return (init_result != 0) - 1;
 }
@@ -1651,7 +1651,7 @@ int initialize_recovery_system(void)
 int initialize_priority_thread_pool(unsigned long long handle,unsigned long long flags,unsigned long long mutex_attr,unsigned long long mutex_type)
 {
   long long init_result;
-  _Mtx_init_in_situ(第三互斥锁地址,2,mutex_attr,mutex_type,线程池默认标志);
+  _Mtx_init_in_situ(THIRD_MUTEX_ADDR,2,mutex_attr,mutex_type,THREAD_POOL_DEFAULT_FLAG);
   global_data_ = &g_shared_data_buffer;
   global_data_ = &data_180c92068;
   global_data_ = 0;
@@ -1667,7 +1667,7 @@ int initialize_maintenance_service(void)
   global_data_ = &data_180bfaf08;
   data_180bfaf08 = 0;
   global_data_ = STRING_BUFFER_SIZE;
-  strcpy_s(&data_180bfaf08,系统配置缓冲区大小0,&g_largeString1,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bfaf08,SYSTEM_CONFIG_BUFFER_SIZE,&g_largeString1,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_58_init_function);
   return (init_result != 0) - 1;
 }
@@ -1679,7 +1679,7 @@ int initialize_optimization_system(void)
   global_data_ = &data_180bfb328;
   data_180bfb328 = 0;
   global_data_ = 3;
-  strcpy_s(&data_180bfb328,系统配置缓冲区大小0,&g_largeString2,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bfb328,SYSTEM_CONFIG_BUFFER_SIZE,&g_largeString2,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_59_init_function);
   return (init_result != 0) - 1;
 }
@@ -1691,13 +1691,13 @@ int initialize_performance_monitor(void)
   global_data_ = &data_180bfb748;
   data_180bfb748 = 0;
   global_data_ = 5;
-  strcpy_s(&data_180bfb748,系统配置缓冲区大小0,&g_largeString3,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bfb748,SYSTEM_CONFIG_BUFFER_SIZE,&g_largeString3,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_60_init_function);
   return (init_result != 0) - 1;
 }
   data_180bf6060 = 0;
   global_data_ = 0xd;
-  strcpy_s(&data_180bf6060,CONFIG_PATH_BUFFER_SIZE,&g_configString1,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf6060,CONFIG_PATH_BUFFER_SIZE,&g_configString1,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_61_init_function);
   return (init_result != 0) - 1;
 }
@@ -1709,13 +1709,13 @@ int initialize_load_balancer(void)
   global_data_ = &data_180bf64b0;
   data_180bf64b0 = 0;
   global_data_ = 9;
-  strcpy_s(&data_180bf64b0,CONFIG_PATH_BUFFER_SIZE,&g_configString2,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf64b0,CONFIG_PATH_BUFFER_SIZE,&g_configString2,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_62_init_function);
   return (init_result != 0) - 1;
 }
   data_180bf6510 = 0;
   global_data_ = 0xd;
-  strcpy_s(&data_180bf6510,CONFIG_PATH_BUFFER_SIZE,&g_configString1,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf6510,CONFIG_PATH_BUFFER_SIZE,&g_configString1,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_63_init_function);
   return (init_result != 0) - 1;
 }
@@ -1727,7 +1727,7 @@ int initialize_scaling_system(void)
   global_data_ = &data_180bf6570;
   data_180bf6570 = 0;
   global_data_ = 9;
-  strcpy_s(&data_180bf6570,CONFIG_PATH_BUFFER_SIZE,&g_configString2,str_len_param,线程池默认标志);
+  strcpy_s(&data_180bf6570,CONFIG_PATH_BUFFER_SIZE,&g_configString2,str_len_param,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(resource_manager_64_init_function);
   return (init_result != 0) - 1;
 }
