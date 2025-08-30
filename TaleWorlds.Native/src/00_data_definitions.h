@@ -67,13 +67,13 @@
 // - 将system_crypto_stack_buffer_large替换为system_crypto_stack_buffer_large（系统加密栈缓冲区大）
 // - 将system_thread_stack_buffer_small替换为system_thread_stack_buffer_small（系统线程栈缓冲区小）
 // - 将system_crypto_stack_buffer_medium替换为system_crypto_stack_buffer_medium（系统加密栈缓冲区中）
-// - 将stack_buffer_a0替换为system_path_stack_buffer（系统路径栈缓冲区）
-// - 将stack_buffer_180替换为system_initialization_stack_buffer（系统初始化栈缓冲区）
-// - 将stack_buffer_38替换为system_path_config_stack_buffer（系统路径配置栈缓冲区）
-// - 将stack_buffer_228替换为system_debug_stack_buffer（系统调试栈缓冲区）
-// - 将data_param_00替换为system_data_parameter_primary（系统数据参数主）
-// - 将data_param_08替换为system_data_parameter_secondary（系统数据参数次）
-// - 将data_param_10替换为system_data_parameter_third（系统数据参数第三）
+// - 将system_path_stack_buffer替换为system_path_stack_buffer（系统路径栈缓冲区）
+// - 将system_initialization_stack_buffer替换为system_initialization_stack_buffer（系统初始化栈缓冲区）
+// - 将system_path_config_stack_buffer替换为system_path_config_stack_buffer（系统路径配置栈缓冲区）
+// - 将system_debug_stack_buffer替换为system_debug_stack_buffer（系统调试栈缓冲区）
+// - 将system_data_parameter_primary替换为system_data_parameter_primary（系统数据参数主）
+// - 将system_data_parameter_secondary替换为system_data_parameter_secondary（系统数据参数次）
+// - 将system_data_parameter_third替换为system_data_parameter_third（系统数据参数第三）
 // - 将param_5替换为system_operation_parameter（系统操作参数）
 // - 将param_6替换为system_control_parameter（系统控制参数）
 // - 将in_stack_00000060替换为system_input_stack_parameter（系统输入栈参数）
@@ -118,7 +118,7 @@
 // - 新增美化内容：将变量名如 thread_result_index -> thread_result_index
 // - 新增美化内容：将变量名如 thread_stack_base_address -> thread_stack_base_address
 // - 新增美化内容：将变量名如 system_crypto_stack_buffer_medium -> crypto_stack_buffer
-// - 新增美化内容：将变量名如 stack_buffer_228 -> debug_stack_buffer
+// - 新增美化内容：将变量名如 system_debug_stack_buffer -> debug_stack_buffer
 // - 新增美化内容：将变量名如 auStack_260 -> system_stack_buffer_260
 // - 新增美化内容：将变量名如 auStack_2f8 -> crypto_operation_stack_buffer
 // - 新增美化内容：将变量名如 auStack_218 -> debug_output_stack_buffer
@@ -3753,10 +3753,10 @@ section_processing_jump_label_:
     buffer_alloc_result = *(unsigned long long *)(system_global_data_pointer + 0x138);
     *(unsigned long long *)(system_global_data_pointer + 0x138) = 0;
     thread_stack_ptr = &g_defaultDataTemplate;
-    thread_stack_ptr = stack_buffer_a0;
-    stack_buffer_a0[0] = 0;
+    thread_stack_ptr = system_path_stack_buffer;
+    system_path_stack_buffer[0] = 0;
     stack_size_max = 0x18;
-    thread_op_flags = strcpy_s(stack_buffer_a0, SYSTEM_CONFIG_BUFFER_SIZE, &systemConfigStringBuffer2);
+    thread_op_flags = strcpy_s(system_path_stack_buffer, SYSTEM_CONFIG_BUFFER_SIZE, &systemConfigStringBuffer2);
     system_ui_001(thread_op_flags,&thread_stack_ptr,buffer_alloc_result,1);
     thread_stack_ptr = &g_threadString4;
   }
@@ -3905,11 +3905,11 @@ section_processing_jump_label_:
       (**(code **)(*plStack_1c0 + 0x38))();
     }
     *(unsigned int *)(system_initialization_result6 + 8) = 0;
-    if (data_param_10 != (long long *)0x0) {
-      (**(code **)(*data_param_10 + STRING_BUFFER_SIZE))();
+    if (system_data_parameter_third != (long long *)0x0) {
+      (**(code **)(*system_data_parameter_third + STRING_BUFFER_SIZE))();
     }
-    (**(code **)(data_param_00 + path_buffer_size))(0);
-    data_param_08 = UINT64_MAX;
+    (**(code **)(system_data_parameter_primary + path_buffer_size))(0);
+    system_data_parameter_secondary = UINT64_MAX;
   }
   else if (*(int *)(system_initialization_result6 + 8) != 0) goto section_processing_jump_label_;
   *(uint *)(system_global_data_pointer + 0x1614) =
@@ -3917,9 +3917,9 @@ section_processing_jump_label_:
 section_processing_jump_label_:
   pplStack_220 = (long long **)&thread_stack_ptr;
   thread_stack_ptr = &g_memoryAllocationFlag;
-  thread_stack_ptr = stack_buffer_180;
+  thread_stack_ptr = system_initialization_stack_buffer;
   stack_size_max = 0;
-  stack_buffer_180[0] = 0;
+  system_initialization_stack_buffer[0] = 0;
   stack_size_max = 0x19;
   stack_size_max = thread_op_flags;
   pplStack_220 = (long long **)system_execution_function(system_global_data_pointer,path_buffer_size,8,3);
@@ -4023,8 +4023,8 @@ section_processing_jump_label_:
 }
     ui_system_ready = '\0';
   }
-  data_param_10 = ptr_var_4;
-  (**(code **)(data_param_00 + 0x18))(0);
+  system_data_parameter_third = ptr_var_4;
+  (**(code **)(system_data_parameter_primary + 0x18))(0);
   if (ptr_var_4 != (long long *)0x0) {
     (**(code **)(*ptr_var_4 + 8))(ptr_var_4);
   }
@@ -5125,8 +5125,8 @@ section_processing_jump_label_:
 }
         g_data_crypto_flag_tertiary = '\x01';
         thread_stack_ptr = (void *)merge_32bit_values(thread_stack_ptr._4_4_,0xc88);
-        system_execution_function(stack_buffer_228,&systemFunctionData1,&system_config_data,&systemFunctionData5);
-        OutputDebugStringA(stack_buffer_228);
+        system_execution_function(system_debug_stack_buffer,&systemFunctionData1,&system_config_data,&systemFunctionData5);
+        OutputDebugStringA(system_debug_stack_buffer);
       }
       string_input_ptr = &default_resource_string;
       if (*(void **)(handle_param + 8) != (void *)0x0) {
@@ -5580,10 +5580,10 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
   *(unsigned int *)(system_initialization_result + 0x4c) = 0;
   system_network_001(*(unsigned long long *)(system_initialization_result + STRING_BUFFER_SIZE8));
   thread_stack_ptr = &g_alternateDataTemplate;
-  thread_stack_ptr = stack_buffer_38;
-  stack_buffer_38[0] = 0;
+  thread_stack_ptr = system_path_config_stack_buffer;
+  system_path_config_stack_buffer[0] = 0;
   stack_size_max = 0x12;
-  strcpy_s(stack_buffer_38,path_buffer_size,&system_config_path);
+  strcpy_s(system_path_config_stack_buffer,path_buffer_size,&system_config_path);
   system_network_002();
   thread_stack_ptr = &g_threadString4;
   system_execute_crypto_operation(stack_size_max ^ (ulong long)auStack_78);
@@ -11999,7 +11999,7 @@ unsigned long long initialize_timer_context(unsigned long long handle_param,unsi
   OutputDebugStringW(&system_18098afa0);
   SetLastError(0);
 section_processing_jump_label_:
-  system_execute_crypto_operation(stack_size_max ^ (ulong long)stack_buffer_228);
+  system_execute_crypto_operation(stack_size_max ^ (ulong long)system_debug_stack_buffer);
 }
           thread_result_flag = thread_result_index == 1;
           SetConsoleTitleA(&system_18098b4e0);
@@ -12265,9 +12265,9 @@ section_processing_jump_label_:
   return 1;
 }
     string_concatenation_flag = '\x01';
-    wcscpy_s(stack_buffer_228,STRING_BUFFER_SIZE4,handle_param);
-    if ((string_concatenation_flag != '\0') && (wcscat_s(stack_buffer_228,STRING_BUFFER_SIZE4,thread_op_flags), string_concatenation_flag != '\0')) {
-      system_execution_function(stack_buffer_228,0);
+    wcscpy_s(system_debug_stack_buffer,STRING_BUFFER_SIZE4,handle_param);
+    if ((string_concatenation_flag != '\0') && (wcscat_s(system_debug_stack_buffer,STRING_BUFFER_SIZE4,thread_op_flags), string_concatenation_flag != '\0')) {
+      system_execution_function(system_debug_stack_buffer,0);
     }
     _set_invalid_parameter_handle_paramr(buffer_alloc_result);
   }

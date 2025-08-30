@@ -30,7 +30,7 @@
 // - 将通用变量名如auVar1、bVar31等替换为语义化名称如audio_data_buffer、system_initialization_flag等
 // - 将指针变量名如pppppppuVar1替换为语义化名称如system_pointer_chain等
 // - 将bVar13-50、audio_buffer_temp-47、resource_process_pointer、pauVar35-42等变量替换为语义化名称如module_initialization_flag、system_validation_flag等
-// - 将SystemFunction_xx_xx函数替换为语义化名称如InitializeSystemDataNode15、InitializeSystemModule1等
+// - 将SystemFunction_xx_xx函数替换为语义化名称如InitializeConditionInitNode、InitializeSystemModule1等
 // - 将系统初始化相关函数按功能分类为数据节点初始化、模块初始化、系统配置等
 // - 将剩余的SystemFunction函数名替换为语义化名称如GetSystemPointerData、InitializeAudioHardware、HandleSystemException等
 // - 将栈变量名如fStack_b8、uStack0000000000000030等替换为语义化名称如init_float_stack_b8、init_uint_stack_30等
@@ -9561,9 +9561,9 @@ void InitializeGameSystem(void)
   node_previous[10] = init_function_pointer_temp;
   return;
 }
-// void InitializeSystemDataNode15(void)
+// void InitializeConditionInitNode(void)
 
-void InitializeSystemDataNode15(void)
+void InitializeConditionInitNode(void)
 
 {
   char is_initialized;
@@ -9655,9 +9655,9 @@ void ConfigureGraphicsShader(void)
   node_previous[10] = init_function_pointer_temp;
   return;
 }
-// void InitializeSystemDataNode17(void)
+// void InitializeAudioDataNode7(void)
 
-void InitializeSystemDataNode17(void)
+void InitializeAudioDataNode7(void)
 
 {
   char is_initialized;
@@ -9796,9 +9796,9 @@ void InitializeShaderSystem(void)
   node_previous[10] = flag_initialized;
   return;
 }
-// void InitializeSystemDataNode18(void)
+// void InitializeNetworkInitNode(void)
 
-void InitializeSystemDataNode18(void)
+void InitializeNetworkInitNode(void)
 
 {
   char is_initialized;
@@ -9843,9 +9843,9 @@ void InitializeSystemDataNode18(void)
   node_previous[10] = init_function_pointer_temp;
   return;
 }
-// void InitializeSystemDataNode19(void)
+// void InitializeMutexInitNode(void)
 
-void InitializeSystemDataNode19(void)
+void InitializeMutexInitNode(void)
 
 {
   char is_initialized;
@@ -9984,9 +9984,9 @@ void InitializeSystemModule40(void)
   node_previous[10] = init_function_pointer_temp;
   return;
 }
-// void InitializeSystemDataNode22(void)
+// void InitializeAudioDataNode8(void)
 
-void InitializeSystemDataNode22(void)
+void InitializeAudioDataNode8(void)
 
 {
   char is_initialized;
@@ -10031,9 +10031,9 @@ void InitializeSystemDataNode22(void)
   node_previous[10] = flag_initialized;
   return;
 }
-// void InitializeSystemDataNode23(void)
+// void InitializeDataEngineNode(void)
 
-void InitializeSystemDataNode23(void)
+void InitializeDataEngineNode(void)
 
 {
   char is_initialized;
@@ -10078,9 +10078,9 @@ void InitializeSystemDataNode23(void)
   node_previous[10] = pflag_initialized;
   return;
 }
-// void InitializeSystemDataNode24(void)
+// void InitializeUtilEngineNode(void)
 
-void InitializeSystemDataNode24(void)
+void InitializeUtilEngineNode(void)
 
 {
   char is_initialized;
@@ -10125,9 +10125,9 @@ void InitializeSystemDataNode24(void)
   node_previous[10] = flag_initialized;
   return;
 }
-// void InitializeSystemDataNode25(void)
+// void InitializeResourceEngineNode(void)
 
-void InitializeSystemDataNode25(void)
+void InitializeResourceEngineNode(void)
 
 {
   char is_initialized;
@@ -10266,9 +10266,9 @@ void InitializeSecuritySystem(void)
   node_previous[10] = flag_initialized;
   return;
 }
-// void InitializeSystemDataNode26(void)
+// void InitializeInputEngineNode(void)
 
-void InitializeSystemDataNode26(void)
+void InitializeInputEngineNode(void)
 
 {
   char is_initialized;
@@ -10360,9 +10360,9 @@ void InitializeSystemModule41(void)
   node_previous[10] = flag_initialized;
   return;
 }
-// void InitializeSystemDataNode28(void)
+// void InitializeSecurityEngineNode(void)
 
-void InitializeSystemDataNode28(void)
+void InitializeSecurityEngineNode(void)
 
 {
   char is_initialized;
@@ -10624,9 +10624,9 @@ int InitializeSystemModule38(void)
 
   _g_thread_config_5 = &g_system_core_data_ptr; // 美化名称: systemCoreData
   _g_thread_config_6 = &g_system_configuration_data_ptr; // 美化名称: system_configuration_data
-// void InitializeSystemDataNode25(void)
+// void InitializeResourceEngineNode(void)
 
-void InitializeSystemDataNode25(void)
+void InitializeResourceEngineNode(void)
 
 {
   char is_initialized;
@@ -10765,9 +10765,9 @@ void InitializeSecuritySystem(void)
   node_previous[10] = flag_initialized;
   return;
 }
-// void InitializeSystemDataNode26(void)
+// void InitializeInputEngineNode(void)
 
-void InitializeSystemDataNode26(void)
+void InitializeInputEngineNode(void)
 
 {
   char is_initialized;
@@ -10859,9 +10859,9 @@ void InitializeSystemModule41(void)
   node_previous[10] = flag_initialized;
   return;
 }
-// void InitializeSystemDataNode28(void)
+// void InitializeSecurityEngineNode(void)
 
-void InitializeSystemDataNode28(void)
+void InitializeSecurityEngineNode(void)
 
 {
   char is_initialized;
@@ -12248,9 +12248,9 @@ int InitializeSystemModule18(void)
   system_long_value = execute_system_init(InitializeSecurityManager);
   return (system_long_result != 0) - 1;
 }
-// void InitializeSystemDataNode17(void)
+// void InitializeAudioDataNode7(void)
 
-void InitializeSystemDataNode17(void)
+void InitializeAudioDataNode7(void)
 
 {
   char is_initialized;
@@ -13744,9 +13744,9 @@ void InitializeSystemModule24(void)
   node_previous[10] = init_function_pointer_temp;
   return;
 }
-// void InitializeSystemDataNode18(void)
+// void InitializeNetworkInitNode(void)
 
-void InitializeSystemDataNode18(void)
+void InitializeNetworkInitNode(void)
 
 {
   char is_initialized;
@@ -13791,9 +13791,9 @@ void InitializeSystemDataNode18(void)
   node_previous[10] = flag_initialized;
   return;
 }
-// void InitializeSystemDataNode19(void)
+// void InitializeMutexInitNode(void)
 
-void InitializeSystemDataNode19(void)
+void InitializeMutexInitNode(void)
 
 {
   char is_initialized;
@@ -13932,9 +13932,9 @@ void InitializeSystemModule40(void)
   node_previous[10] = pflag_initialized;
   return;
 }
-// void InitializeSystemDataNode22(void)
+// void InitializeAudioDataNode8(void)
 
-void InitializeSystemDataNode22(void)
+void InitializeAudioDataNode8(void)
 
 {
   char is_initialized;
@@ -13979,9 +13979,9 @@ void InitializeSystemDataNode22(void)
   node_previous[10] = flag_initialized;
   return;
 }
-// void InitializeSystemDataNode23(void)
+// void InitializeDataEngineNode(void)
 
-void InitializeSystemDataNode23(void)
+void InitializeDataEngineNode(void)
 
 {
   char is_initialized;
@@ -14026,9 +14026,9 @@ void InitializeSystemDataNode23(void)
   node_previous[10] = flag_initialized;
   return;
 }
-// void InitializeSystemDataNode24(void)
+// void InitializeUtilEngineNode(void)
 
-void InitializeSystemDataNode24(void)
+void InitializeUtilEngineNode(void)
 
 {
   char is_initialized;
@@ -14073,9 +14073,9 @@ void InitializeSystemDataNode24(void)
   node_previous[10] = flag_initialized;
   return;
 }
-// void InitializeSystemDataNode25(void)
+// void InitializeResourceEngineNode(void)
 
-void InitializeSystemDataNode25(void)
+void InitializeResourceEngineNode(void)
 
 {
   char is_initialized;
@@ -15821,7 +15821,7 @@ void InitializeSystemModule45(longlong handleIdentifier)
     (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_38))();
   }
 INIT_LABEL_CHECK_SYSTEM_FLAG:
-  InitializeSystemDataNode18(*(uint64_t *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE));
+  InitializeNetworkInitNode(*(uint64_t *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE));
   if (*(char *)(g_system_base_1 + SYSTEM_FLAG_OFFSET_1ED) != '\0') {
     system_memory_pointer = (longlong *)AllocateSystemMemory(systemMemoryPool,SYSTEM_OBJECT_OFFSET_28,8,3);
     *system_memory_pointer = (longlong)&g_global_system_config;
@@ -16596,9 +16596,9 @@ void InitializeRenderSystem(longlong handleIdentifier,longlong resourceIdentifie
                     // WARNING: Subroutine does not return
   InitializeSystemStack(init_stack_uint_parameter_48 ^ (ulonglong)system_local_buffer_498);
 }
-// void InitializeSystemDataNode26(uint64_t *handleIdentifier,uint32_t resourceIdentifier)
+// void InitializeInputEngineNode(uint64_t *handleIdentifier,uint32_t resourceIdentifier)
 
-void InitializeSystemDataNode26(uint64_t *handleIdentifier,uint32_t resourceIdentifier)
+void InitializeInputEngineNode(uint64_t *handleIdentifier,uint32_t resourceIdentifier)
 
 {
   int system_integer_result;
@@ -16749,9 +16749,9 @@ void InitializeSystemResources(longlong handleIdentifier,longlong resourceIdenti
   **(uint8_t **)(handleIdentifier + 8) = 0;
   return;
 }
-// void InitializeSystemDataNode23(longlong handleIdentifier,uint64_t resourceIdentifier,int system_configuration)
+// void InitializeDataEngineNode(longlong handleIdentifier,uint64_t resourceIdentifier,int system_configuration)
 
-void InitializeSystemDataNode23(longlong handleIdentifier,uint64_t resourceIdentifier,int system_configuration)
+void InitializeDataEngineNode(longlong handleIdentifier,uint64_t resourceIdentifier,int system_configuration)
 
 {
   if (system_configuration + 1 < SYSTEM_NODE_HEADER_SIZE) {
@@ -16856,9 +16856,9 @@ void InitializeSystemModule47(uint64_t *handleIdentifier)
   }
   return;
 }
-// void InitializeSystemDataNode18(longlong handleIdentifier)
+// void InitializeNetworkInitNode(longlong handleIdentifier)
 
-void InitializeSystemDataNode18(longlong handleIdentifier)
+void InitializeNetworkInitNode(longlong handleIdentifier)
 
 {
   int system_integer_result;
@@ -17538,9 +17538,9 @@ void InitializeSystemModule47(longlong handleIdentifier)
   *(void **)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) = &globalSystemPointerData;
   return;
 }
-// void InitializeSystemDataNode18(uint64_t *handleIdentifier)
+// void InitializeNetworkInitNode(uint64_t *handleIdentifier)
 
-void InitializeSystemDataNode18(uint64_t *handleIdentifier)
+void InitializeNetworkInitNode(uint64_t *handleIdentifier)
 
 {
   *handleIdentifier = &globalSystemPointerData;
@@ -18101,7 +18101,7 @@ longlong InitializeSystemResources(longlong handleIdentifier,longlong resourceId
   *(uint8_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_EVENT8) = 0;
   *(uint64_t *)(handleIdentifier + SYSTEM_OFFSET_F0) = 0;
   if (*(longlong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_EVENT0) != 0) {
-    system_ptr_value = (uint64_t *)InitializeSystemDataNode26(system_pointer_var,*(longlong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_EVENT0),system_pointer_var,systemFlags,usystem_int_result)
+    system_ptr_value = (uint64_t *)InitializeInputEngineNode(system_pointer_var,*(longlong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_EVENT0),system_pointer_var,systemFlags,usystem_int_result)
     ;
     *(uint64_t **)(handleIdentifier + SYSTEM_CONFIG_SIZE_EVENT0) = system_ptr_value;
     node_next = (uint64_t *)*system_ptr_value;
@@ -18169,7 +18169,7 @@ INIT_LABEL_PREPARE_BOOLEAN_CHECK:
       system_status_code = 0;
 INIT_LABEL_HANDLE_BOOLEAN_RESULT:
       if (systemFlags != (longlong *)0x0) {
-        InitializeSystemDataNode19(handleIdentifier,resourceIdentifier,systemFlags,system_operation_status,parameter_5);
+        InitializeMutexInitNode(handleIdentifier,resourceIdentifier,systemFlags,system_operation_status,parameter_5);
         return resourceIdentifier;
       }
     }
@@ -18258,15 +18258,15 @@ INIT_LABEL_SYSTEM_48e20:
       if ((int)(system_bool_var - usystem_int_result) < 1) goto INIT_LABEL_SYSTEM_48e74;
     }
   }
-  InitializeSystemDataNode19(handleIdentifier,&system_stack_memory_pointer,system_memory_pointer,0,parameter_5);
+  InitializeMutexInitNode(handleIdentifier,&system_stack_memory_pointer,system_memory_pointer,0,parameter_5);
   ptr_data = stack_system_memory_pointer;
 INIT_LABEL_SYSTEM_48e74:
   *resourceIdentifier = ptr_data;
   return resourceIdentifier;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void InitializeSystemDataNode19(longlong handleIdentifier,uint64_t resourceIdentifier,longlong system_configuration,uint64_t systemFlags,
-void InitializeSystemDataNode19(longlong handleIdentifier,uint64_t resourceIdentifier,longlong system_configuration,uint64_t systemFlags,
+// void InitializeMutexInitNode(longlong handleIdentifier,uint64_t resourceIdentifier,longlong system_configuration,uint64_t systemFlags,
+void InitializeMutexInitNode(longlong handleIdentifier,uint64_t resourceIdentifier,longlong system_configuration,uint64_t systemFlags,
                   longlong parameter_5)
 
 {
@@ -18314,7 +18314,7 @@ INIT_LABEL_SYSTEM_48f62:
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t * InitializeSystemDataNode26(longlong handleIdentifier,longlong *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+uint64_t * InitializeInputEngineNode(longlong handleIdentifier,longlong *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
   longlong *system_memory_pointer;
@@ -18326,7 +18326,7 @@ uint64_t * InitializeSystemDataNode26(longlong handleIdentifier,longlong *resour
   system_status_code = INVALID_HANDLE_VALUE;
   system_ptr_value = (uint64_t *)InitializeSystemModule41();
   if (*resourceIdentifier != 0) {
-    system_status_code = InitializeSystemDataNode26(handleIdentifier,*resourceIdentifier,system_pointer_var,systemFlags,usystem_int_result);
+    system_status_code = InitializeInputEngineNode(handleIdentifier,*resourceIdentifier,system_pointer_var,systemFlags,usystem_int_result);
     *system_ptr_value = usystem_integer_result;
   }
   node_root = system_ptr_value;
@@ -18341,7 +18341,7 @@ uint64_t * InitializeSystemDataNode26(longlong handleIdentifier,longlong *resour
     *(char *)(system_pointer_var + 3) = (char)system_memory_pointer[3];
     node_root[1] = system_ptr_value;
     if (*system_memory_pointer != 0) {
-      system_status_code = InitializeSystemDataNode26(handleIdentifier,*system_memory_pointer,system_pointer_var);
+      system_status_code = InitializeInputEngineNode(handleIdentifier,*system_memory_pointer,system_pointer_var);
       *system_ptr_value = usystem_integer_result;
     }
     node_root = system_ptr_value;
@@ -18564,7 +18564,7 @@ void InitializeSystemModule46(uint64_t handleIdentifier,uint64_t *resourceIdenti
   InitializeSystemStack(init_stack_ulong_parameter_28 ^ (ulonglong)system_local_buffer_58);
 }
 
-uint8_t InitializeSystemDataNode19(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+uint8_t InitializeMutexInitNode(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
   uint8_t usystem_integer_result;
@@ -18781,7 +18781,7 @@ InitializeInputMutex(uint64_t *handleIdentifier,longlong resourceIdentifier,uint
 }
 
 uint64_t *
-InitializeSystemDataNode24(uint64_t *handleIdentifier,ulonglong resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+InitializeUtilEngineNode(uint64_t *handleIdentifier,ulonglong resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
   *handleIdentifier = &globalSystemPointerData;
@@ -19016,9 +19016,9 @@ void InitializeSystemModule33(uint64_t *handleIdentifier)
   *handleIdentifier = &globalSystemPointerData;
   return;
 }
-// void InitializeSystemDataNode22(longlong handleIdentifier,longlong resourceIdentifier)
+// void InitializeAudioDataNode8(longlong handleIdentifier,longlong resourceIdentifier)
 
-void InitializeSystemDataNode22(longlong handleIdentifier,longlong resourceIdentifier)
+void InitializeAudioDataNode8(longlong handleIdentifier,longlong resourceIdentifier)
 
 {
   longlong system_long_value;
@@ -19684,8 +19684,8 @@ longlong * ProcessSystemData(longlong *handleIdentifier,uint64_t resourceIdentif
   return handleIdentifier;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void InitializeSystemDataNode19(uint32_t *handleIdentifier)
-void InitializeSystemDataNode19(uint32_t *handleIdentifier)
+// void InitializeMutexInitNode(uint32_t *handleIdentifier)
+void InitializeMutexInitNode(uint32_t *handleIdentifier)
 
 {
   int system_integer_result;
@@ -19870,7 +19870,7 @@ void InitializeSystemModule17(longlong handleIdentifier,uint64_t resourceIdentif
   InitializeSystemStack(init_stack_ulong_parameter_28 ^ (ulonglong)system_local_buffer_78);
 }
 
-uint64_t * InitializeSystemDataNode28(uint64_t *handleIdentifier,ulonglong resourceIdentifier)
+uint64_t * InitializeSecurityEngineNode(uint64_t *handleIdentifier,ulonglong resourceIdentifier)
 
 {
   *handleIdentifier = &g_global_system_config;
@@ -19890,7 +19890,7 @@ uint64_t * InitializeSystemModule18(uint64_t *handleIdentifier,ulonglong resourc
   return handleIdentifier;
 }
 
-int InitializeSystemDataNode17(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+int InitializeAudioDataNode7(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
   int system_integer_result;
@@ -20875,8 +20875,8 @@ void InitializeGraphicsMemory(longlong *handleIdentifier)
                     // WARNING: Subroutine does not return
       ProcessSystemOperation();
     }
-    InitializeSystemDataNode19();
-    InitializeSystemDataNode19();
+    InitializeMutexInitNode();
+    InitializeMutexInitNode();
     *system_ptr_value = &resourcePoolPointer;
     if (system_pointer_var[1] != 0) {
                     // WARNING: Subroutine does not return
@@ -20948,7 +20948,7 @@ void InitializeGraphicsMemory(longlong *handleIdentifier)
   *(uint32_t *)(handleIdentifier + 0x6c) = 0;
   handleIdentifier[0x69] = (longlong)&globalSystemPointerData;
   InitializeFontSystem();
-  InitializeSystemDataNode28(handleIdentifier + 0x5c,handleIdentifier[0x5e]);
+  InitializeSecurityEngineNode(handleIdentifier + 0x5c,handleIdentifier[0x5e]);
   handleIdentifier[0x58] = (longlong)&resourcePoolPointer;
   if (handleIdentifier[0x59] != 0) {
                     // WARNING: Subroutine does not return
@@ -21206,7 +21206,7 @@ void ConfigureGraphicsShader(uint64_t handleIdentifier,longlong resourceIdentifi
         system_long_value = system_long_result + 0x2e0;
         system_long_value = AllocateSystemResource(systemMemoryPool,SYSTEM_DATA_BLOCK_SIZE,*(uint8_t *)(system_long_result + 0x308));
         ProcessResourceData(system_long_result + SYSTEM_NODE_HEADER_SIZE,&system_buffer_ptr_310);
-        system_long_value = InitializeSystemDataNode19(system_long_result,&cStack_337,system_long_result + SYSTEM_NODE_HEADER_SIZE);
+        system_long_value = InitializeMutexInitNode(system_long_result,&cStack_337,system_long_result + SYSTEM_NODE_HEADER_SIZE);
         if (cStack_337 != '\0') {
           if (system_long_result == system_long_result) goto INIT_LABEL_SYSTEM_4d1c1;
           if (*(int *)(system_long_result + 0x30) == 0) goto INIT_LABEL_SYSTEM_4d1b9;
@@ -21697,9 +21697,9 @@ void ConfigureGraphicsShader(void)
   RegisterGraphicsCallback(*(uint64_t *)(system_configuration_data + 0xa8),&g_global_system_config,&g_system_global_config,ProcessGraphicsCallback96);
   RegisterGraphicsCallback(*(uint64_t *)(system_configuration_data + 0xa8),&g_system_string_buffer,&g_global_system_config,ProcessGraphicsCallback85_6);
   RegisterGraphicsCallback(*(uint64_t *)(system_configuration_data + 0xa8),&g_system_string_buffer,&g_global_system_config,ProcessGraphicsCallback74_4);
-  node_previous = (uint32_t *)InitializeSystemDataNode15(system_long_result + SYSTEM_CONFIG_SIZE_EVENT0,&g_system_string_buffer);
+  node_previous = (uint32_t *)InitializeConditionInitNode(system_long_result + SYSTEM_CONFIG_SIZE_EVENT0,&g_system_string_buffer);
   *node_previous = 1;
-  node_previous = (uint32_t *)InitializeSystemDataNode15(system_long_result + SYSTEM_CONFIG_SIZE_EVENT0,&g_system_string_buffer);
+  node_previous = (uint32_t *)InitializeConditionInitNode(system_long_result + SYSTEM_CONFIG_SIZE_EVENT0,&g_system_string_buffer);
   *node_previous = 1;
   longStack_1d0 = AllocateSystemMemory(systemMemoryPool,SYSTEM_OBJECT_OFFSET_3878,8,3);
                     // WARNING: Subroutine does not return
@@ -21888,7 +21888,7 @@ void HandleSystemOperation92(void)
     pstack_system_memory_pointer = &system_stack_memory_pointer;
     system_stack_memory_ptr_aux = systemInitializationObject;
     (**(code **)(*systemInitializationObject + SYSTEM_OBJECT_OFFSET_28))();
-    InitializeSystemDataNode19(system_operation_status,&system_stack_memory_pointer,0);
+    InitializeMutexInitNode(system_operation_status,&system_stack_memory_pointer,0);
   }
   InitializeFilesystemSystem(system_configuration_data);
   if (g_system_handle_1 != 0) {
@@ -21908,7 +21908,7 @@ void HandleSystemOperation92(void)
     pstack_system_memory_pointer = &system_stack_memory_pointer;
     system_stack_memory_ptr_aux = systemInitializationObject;
     (**(code **)(*systemInitializationObject + SYSTEM_OBJECT_OFFSET_28))();
-    InitializeSystemDataNode19(system_operation_status,&system_stack_memory_pointer,0);
+    InitializeMutexInitNode(system_operation_status,&system_stack_memory_pointer,0);
   }
   InitializeFilesystemSystem(system_configuration_data);
   if (g_system_handle_1 != 0) {
@@ -21920,7 +21920,7 @@ void HandleSystemOperation92(void)
     pstack_system_memory_pointer = &system_stack_memory_pointer;
     system_stack_memory_ptr_aux = systemInitializationObject;
     (**(code **)(*systemInitializationObject + SYSTEM_OBJECT_OFFSET_28))();
-    InitializeSystemDataNode19(system_operation_status,&system_stack_memory_pointer,0);
+    InitializeMutexInitNode(system_operation_status,&system_stack_memory_pointer,0);
   }
   InitializeFilesystemSystem(system_configuration_data);
   if (g_system_handle_1 != 0) {
@@ -22299,7 +22299,7 @@ void ConfigureSystemHandles(longlong handleIdentifier)
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t * InitializeSystemDataNode15(uint64_t *handleIdentifier,uint64_t *resourceIdentifier)
+uint64_t * InitializeConditionInitNode(uint64_t *handleIdentifier,uint64_t *resourceIdentifier)
 
 {
   longlong *system_memory_pointer;
@@ -25090,7 +25090,7 @@ void SetupDebuggingPipeline(uint64_t handleIdentifier,uint64_t *resourceIdentifi
   init_stack_ulong_param_58 = ProcessResourceData(system_operation_status,resourceIdentifier);
   init_stack_ulong_param_50 = system_configuration;
   system_status_code = AllocateSystemMemory(systemMemoryPool,SYSTEM_DATA_COMPARE_SIZE0,8,3);
-  pnode_root = (void **)InitializeSystemDataNode18(system_operation_status,&system_buffer_ptr_108);
+  pnode_root = (void **)InitializeNetworkInitNode(system_operation_status,&system_buffer_ptr_108);
   psystem_buffer_ptr_118 = pnode_root;
   if (pnode_root != (void **)0x0) {
     (**(code **)(*pnode_root + SYSTEM_OBJECT_OFFSET_28))(pnode_root);
@@ -25333,9 +25333,9 @@ void InitializeUISystem(longlong *handleIdentifier)
   handleIdentifier[1] = (longlong)node_root;
   return;
 }
-// void InitializeSystemDataNode19(longlong *handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+// void InitializeMutexInitNode(longlong *handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
-void InitializeSystemDataNode19(longlong *handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+void InitializeMutexInitNode(longlong *handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
   uint64_t *system_ptr_value;
@@ -25615,9 +25615,9 @@ void ProcessSystemData64(longlong handleIdentifier,uint64_t resourceIdentifier,u
   ValidateSystemConfiguration(handleIdentifier,*(uint64_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE),system_configuration,systemFlags,INVALID_HANDLE_VALUE);
   return;
 }
-// void InitializeSystemDataNode17(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+// void InitializeAudioDataNode7(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
-void InitializeSystemDataNode17(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+void InitializeAudioDataNode7(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
   InitializeTextureSystem(handleIdentifier,*(uint64_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE),system_configuration,systemFlags,INVALID_HANDLE_VALUE);
@@ -26209,7 +26209,7 @@ void InitializeSystemDataNode31(void)
     (**(code **)(*(longlong *)node_root[0x2c0] + SYSTEM_OBJECT_OFFSET_38))();
   }
   ProcessSystemData88(node_root + SYSTEM_CONFIG_SIZE_FINAL6);
-  InitializeSystemDataNode19(node_root + 6);
+  InitializeMutexInitNode(node_root + 6);
   if (node_root[2] != 0) {
                     // WARNING: Subroutine does not return
     ProcessSystemOperation();
@@ -26307,7 +26307,7 @@ void InitializeSystemModule4(longlong handleIdentifier,longlong resourceIdentifi
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-longlong * InitializeSystemDataNode15(longlong handleIdentifier,longlong *resourceIdentifier,uint64_t system_configuration)
+longlong * InitializeConditionInitNode(longlong handleIdentifier,longlong *resourceIdentifier,uint64_t system_configuration)
 
 {
   byte system_boolean_flag;
@@ -26321,7 +26321,7 @@ longlong * InitializeSystemDataNode15(longlong handleIdentifier,longlong *resour
 
   system_long_value = AllocateSystemResource(systemMemoryPool,SYSTEM_DATA_BLOCK_SIZE,*(uint8_t *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_28));
   ProcessResourceData(system_long_result + SYSTEM_NODE_HEADER_SIZE,system_configuration);
-  system_long_value = InitializeSystemDataNode19(handleIdentifier,acstack_var,system_long_result + SYSTEM_NODE_HEADER_SIZE);
+  system_long_value = InitializeMutexInitNode(handleIdentifier,acstack_var,system_long_result + SYSTEM_NODE_HEADER_SIZE);
   if (acstack_var[0] == '\0') {
     ConfigureGraphicsShader();
     *resourceIdentifier = system_long_value;
@@ -26428,7 +26428,7 @@ void InitializeSystemDataNode29(longlong *handleIdentifier,uint64_t resourceIden
   if (handleIdentifier[SYSTEM_CONFIG_SIZE_FINAL9] == 0) {
     InitializePhysicsSystem();
     InitializePhysicsSystem();
-    InitializeSystemDataNode25(handleIdentifier + SYSTEM_DATA_COMPARE_SIZEb,handleIdentifier[SYSTEM_DATA_COMPARE_SIZEd]);
+    InitializeResourceEngineNode(handleIdentifier + SYSTEM_DATA_COMPARE_SIZEb,handleIdentifier[SYSTEM_DATA_COMPARE_SIZEd]);
     handleIdentifier[0x87] = (longlong)&globalSystemPointerData;
     handleIdentifier[4] = (longlong)&globalSystemPointerData;
     system_status_code = INVALID_HANDLE_VALUE;
@@ -26450,7 +26450,7 @@ void InitializeSystemDataNode29(longlong *handleIdentifier,uint64_t resourceIden
 void InitializeSystemModule29(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
-  InitializeSystemDataNode25(handleIdentifier,*(uint64_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE),system_configuration,systemFlags,INVALID_HANDLE_VALUE);
+  InitializeResourceEngineNode(handleIdentifier,*(uint64_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE),system_configuration,systemFlags,INVALID_HANDLE_VALUE);
   return;
 }
 // void ConfigureSystemParameters(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
@@ -26463,7 +26463,7 @@ void ConfigureSystemParameters(longlong handleIdentifier,uint64_t resourceIdenti
   system_ptr_value = *(uint64_t **)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE);
   if (system_pointer_var != (uint64_t *)0x0) {
     InitializeFontSystem(handleIdentifier,*system_pointer_var,system_configuration,systemFlags,INVALID_HANDLE_VALUE);
-    InitializeSystemDataNode23(system_pointer_var);
+    InitializeDataEngineNode(system_pointer_var);
                     // WARNING: Subroutine does not return
     ProcessSystemOperation(system_pointer_var);
   }
@@ -26474,7 +26474,7 @@ void ConfigureSystemParameters(longlong handleIdentifier,uint64_t resourceIdenti
 void HandleSystemOperation16(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
-  InitializeSystemDataNode25(handleIdentifier,*(uint64_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE),system_configuration,systemFlags,INVALID_HANDLE_VALUE);
+  InitializeResourceEngineNode(handleIdentifier,*(uint64_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE),system_configuration,systemFlags,INVALID_HANDLE_VALUE);
   return;
 }
 // void InitializeSystemModule24(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
@@ -26487,7 +26487,7 @@ void InitializeSystemModule24(longlong handleIdentifier,uint64_t resourceIdentif
   system_ptr_value = *(uint64_t **)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE);
   if (system_pointer_var != (uint64_t *)0x0) {
     InitializeFontSystem(handleIdentifier,*system_pointer_var,system_configuration,systemFlags,INVALID_HANDLE_VALUE);
-    InitializeSystemDataNode23(system_pointer_var);
+    InitializeDataEngineNode(system_pointer_var);
                     // WARNING: Subroutine does not return
     ProcessSystemOperation(system_pointer_var);
   }
@@ -26535,7 +26535,7 @@ void InitializeAudioMutex(longlong *handleIdentifier)
 void InitializeFontSystem(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
-  InitializeSystemDataNode25(handleIdentifier,*(uint64_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE),system_configuration,systemFlags,INVALID_HANDLE_VALUE);
+  InitializeResourceEngineNode(handleIdentifier,*(uint64_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE),system_configuration,systemFlags,INVALID_HANDLE_VALUE);
   return;
 }
 // void InitializeNetworkSystem(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
@@ -26548,7 +26548,7 @@ void InitializeNetworkSystem(longlong handleIdentifier,uint64_t resourceIdentifi
   system_ptr_value = *(uint64_t **)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE);
   if (system_pointer_var != (uint64_t *)0x0) {
     InitializeFontSystem(handleIdentifier,*system_pointer_var,system_configuration,systemFlags,INVALID_HANDLE_VALUE);
-    InitializeSystemDataNode23(system_pointer_var);
+    InitializeDataEngineNode(system_pointer_var);
                     // WARNING: Subroutine does not return
     ProcessSystemOperation(system_pointer_var);
   }
@@ -26865,15 +26865,15 @@ void InitializeSystemModule24(longlong handleIdentifier)
   }
   return;
 }
-// void InitializeSystemDataNode25(uint64_t handleIdentifier,uint64_t *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+// void InitializeResourceEngineNode(uint64_t handleIdentifier,uint64_t *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
-void InitializeSystemDataNode25(uint64_t handleIdentifier,uint64_t *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+void InitializeResourceEngineNode(uint64_t handleIdentifier,uint64_t *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
   if (resourceIdentifier == (uint64_t *)0x0) {
     return;
   }
-  InitializeSystemDataNode25(handleIdentifier,*resourceIdentifier,system_configuration,systemFlags,INVALID_HANDLE_VALUE);
+  InitializeResourceEngineNode(handleIdentifier,*resourceIdentifier,system_configuration,systemFlags,INVALID_HANDLE_VALUE);
   if (resourceIdentifier[8] != 0) {
                     // WARNING: Subroutine does not return
     ProcessSystemOperation();
@@ -26896,7 +26896,7 @@ void InitializeFontSystem(uint64_t handleIdentifier,uint64_t *resourceIdentifier
 {
   if (resourceIdentifier != (uint64_t *)0x0) {
     InitializeFontSystem(handleIdentifier,*resourceIdentifier);
-    InitializeSystemDataNode23(resourceIdentifier);
+    InitializeDataEngineNode(resourceIdentifier);
                     // WARNING: Subroutine does not return
     ProcessSystemOperation(resourceIdentifier);
   }
@@ -26910,7 +26910,7 @@ void ValidateSystemHandle46(uint64_t handleIdentifier)
   uint64_t *system_register_rbx;
 
   InitializeFontSystem(handleIdentifier,*system_register_rbx);
-  InitializeSystemDataNode23();
+  InitializeDataEngineNode();
                     // WARNING: Subroutine does not return
   ProcessSystemOperation();
 }
@@ -27394,7 +27394,7 @@ void HandleSystemOperation92(longlong *handleIdentifier)
 
   system_long_value = handleIdentifier[1];
   for (system_long_value = *handleIdentifier; system_long_result != system_long_value; system_long_value = system_long_result + 0x548) {
-    InitializeSystemDataNode23(system_long_result);
+    InitializeDataEngineNode(system_long_result);
   }
   if (*handleIdentifier == 0) {
     return;
@@ -27415,7 +27415,7 @@ void InitializeSystemModule23(longlong handleIdentifier,uint64_t resourceIdentif
   InitializeTextureSystem(handleIdentifier + 0xc0,*(uint64_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_STATUS0));
   InitializeTextureSystem(handleIdentifier + 0x90,*(uint64_t *)(handleIdentifier + 0xa0));
   InitializeSystemModule42(handleIdentifier + SYSTEM_OBJECT_OFFSET_60,*(uint64_t *)(handleIdentifier + 0x70));
-  InitializeSystemDataNode25(handleIdentifier + 0x30,*(uint64_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE));
+  InitializeResourceEngineNode(handleIdentifier + 0x30,*(uint64_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE));
   InitializeSystemModule42(handleIdentifier,*(uint64_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE));
   return;
 }
@@ -28085,7 +28085,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
   InitializeSystemStack(init_stack_uint_param_38 ^ (ulonglong)system_local_buffer_3b8);
 }
 
-uint64_t * InitializeSystemDataNode19(uint64_t *handleIdentifier,uint8_t *resourceIdentifier,longlong system_configuration)
+uint64_t * InitializeMutexInitNode(uint64_t *handleIdentifier,uint8_t *resourceIdentifier,longlong system_configuration)
 
 {
   byte system_boolean_flag;
@@ -28162,7 +28162,7 @@ void InitializeAudioSystem(longlong *handleIdentifier)
 
   system_long_value = handleIdentifier[1];
   for (system_long_value = *handleIdentifier; system_long_result != system_long_value; system_long_value = system_long_result + 0x548) {
-    InitializeSystemDataNode23(system_long_result);
+    InitializeDataEngineNode(system_long_result);
   }
   if (*handleIdentifier == 0) {
     return;
@@ -28317,9 +28317,9 @@ void InitializeSystemModule42(uint64_t handleIdentifier,uint64_t *resourceIdenti
                     // WARNING: Subroutine does not return
   ProcessSystemOperation(resourceIdentifier);
 }
-// void InitializeSystemDataNode23(uint64_t *handleIdentifier)
+// void InitializeDataEngineNode(uint64_t *handleIdentifier)
 
-void InitializeSystemDataNode23(uint64_t *handleIdentifier)
+void InitializeDataEngineNode(uint64_t *handleIdentifier)
 
 {
   ValidateSystemHandle(handleIdentifier + 0x7d,0x58,4,ValidateSystemConfiguration,INVALID_HANDLE_VALUE);
@@ -28439,7 +28439,7 @@ void InitializeSystemComponents(longlong handleIdentifier)
   return;
 }
 
-uint64_t * InitializeSystemDataNode18(uint64_t *handleIdentifier,uint64_t *resourceIdentifier,uint64_t *system_configuration)
+uint64_t * InitializeNetworkInitNode(uint64_t *handleIdentifier,uint64_t *resourceIdentifier,uint64_t *system_configuration)
 
 {
   uint64_t *system_ptr_value;
@@ -28500,7 +28500,7 @@ void InitializeUISystem(longlong *handleIdentifier,uint64_t resourceIdentifier)
   system_long_value = handleIdentifier[1];
   system_long_value = *handleIdentifier;
 INIT_LABEL_SYSTEM_59885:
-  system_long_value = InitializeSystemDataNode18(system_long_result,system_long_result,system_long_result);
+  system_long_value = InitializeNetworkInitNode(system_long_result,system_long_result,system_long_result);
   ProcessResourceData(system_long_result,resourceIdentifier);
   system_ptr_value = (uint64_t *)handleIdentifier[1];
   system_ptr_value = (uint64_t *)*handleIdentifier;
@@ -29087,9 +29087,9 @@ void InitializeRenderSystem(longlong handleIdentifier)
   }
   return;
 }
-// void InitializeSystemDataNode19(longlong handleIdentifier)
+// void InitializeMutexInitNode(longlong handleIdentifier)
 
-void InitializeSystemDataNode19(longlong handleIdentifier)
+void InitializeMutexInitNode(longlong handleIdentifier)
 
 {
   ulonglong system_status_code;
@@ -29131,7 +29131,7 @@ void ConfigureSystemSettings(longlong handleIdentifier)
   longlong system_long_value;
   ulonglong system_status_code;
 
-  InitializeSystemDataNode19();
+  InitializeMutexInitNode();
   if ((1 < *(ulonglong *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE)) &&
      (node_root = *(uint64_t **)(handleIdentifier + 8), node_root != (uint64_t *)0x0)) {
     system_status_code = (ulonglong)node_root & SYSTEM_ADDRESS_ALIGNMENT_MASK;
@@ -29167,7 +29167,7 @@ void InitializeSystemTimer(longlong handleIdentifier)
   longlong system_long_value;
   ulonglong system_status_code;
 
-  InitializeSystemDataNode19();
+  InitializeMutexInitNode();
   if ((1 < *(ulonglong *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE)) &&
      (node_root = *(uint64_t **)(handleIdentifier + 8), node_root != (uint64_t *)0x0)) {
     system_status_code = (ulonglong)node_root & SYSTEM_ADDRESS_ALIGNMENT_MASK;
@@ -29203,7 +29203,7 @@ void InitializePhysicsSystem(longlong handleIdentifier)
   longlong system_long_value;
   ulonglong system_status_code;
 
-  InitializeSystemDataNode19();
+  InitializeMutexInitNode();
   if ((1 < *(ulonglong *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE)) &&
      (node_root = *(uint64_t **)(handleIdentifier + 8), node_root != (uint64_t *)0x0)) {
     system_status_code = (ulonglong)node_root & SYSTEM_ADDRESS_ALIGNMENT_MASK;
@@ -29323,16 +29323,16 @@ uint64_t * InitializeSystemModule43(uint64_t *handleIdentifier,ulonglong resourc
 
 {
   *handleIdentifier = &g_system_global_config;
-  InitializeSystemDataNode19(handleIdentifier + 0xa4);
+  InitializeMutexInitNode(handleIdentifier + 0xa4);
   ValidateSystemConfiguration(handleIdentifier + 0x8c);
-  InitializeSystemDataNode19(handleIdentifier + 0x7e);
-  InitializeSystemDataNode19(handleIdentifier + 0x70);
-  InitializeSystemDataNode19(handleIdentifier + 0x62);
-  InitializeSystemDataNode19(handleIdentifier + 0x54);
-  InitializeSystemDataNode19(handleIdentifier + SYSTEM_FLAG_BIT_46);
-  InitializeSystemDataNode19(handleIdentifier + SYSTEM_OBJECT_OFFSET_38);
-  InitializeSystemDataNode19(handleIdentifier + 0x2a);
-  InitializeSystemDataNode19(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK);
+  InitializeMutexInitNode(handleIdentifier + 0x7e);
+  InitializeMutexInitNode(handleIdentifier + 0x70);
+  InitializeMutexInitNode(handleIdentifier + 0x62);
+  InitializeMutexInitNode(handleIdentifier + 0x54);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_FLAG_BIT_46);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_OBJECT_OFFSET_38);
+  InitializeMutexInitNode(handleIdentifier + 0x2a);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK);
   InitializeSystemDataNode30(handleIdentifier);
   if ((resourceIdentifier & 1) != 0) {
     free(handleIdentifier,0x590);
@@ -29385,28 +29385,28 @@ void ConfigureSystemHandles(uint64_t *handleIdentifier,uint64_t resourceIdentifi
 
 {
   *handleIdentifier = &g_system_global_config;
-  InitializeSystemDataNode28(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER3);
-  InitializeSystemDataNode28(handleIdentifier + SYSTEM_CONFIG_SIZE_PHYSICS4);
-  InitializeSystemDataNode19(handleIdentifier + SYSTEM_CONFIG_SIZE_RENDER6);
-  InitializeSystemDataNode19(handleIdentifier + SYSTEM_CONFIG_SIZE_FINAL8);
-  InitializeSystemDataNode19(handleIdentifier + SYSTEM_DATA_COMPARE_SIZEa);
-  InitializeSystemDataNode19(handleIdentifier + SYSTEM_OFFSET_Fc);
-  InitializeSystemDataNode19(handleIdentifier + SYSTEM_CONFIG_SIZE_EVENTe);
-  InitializeSystemDataNode19(handleIdentifier + SYSTEM_CONFIG_SIZE_EVENT0);
-  InitializeSystemDataNode19(handleIdentifier + SYSTEM_CONFIG_SIZE_STATUS2);
-  InitializeSystemDataNode19(handleIdentifier + 0xc4);
-  InitializeSystemDataNode19(handleIdentifier + 0xb6);
-  InitializeSystemDataNode19(handleIdentifier + 0xa8);
-  InitializeSystemDataNode19(handleIdentifier + 0x9a);
-  InitializeSystemDataNode19(handleIdentifier + 0x8c);
-  InitializeSystemDataNode19(handleIdentifier + 0x7e);
-  InitializeSystemDataNode19(handleIdentifier + 0x70);
-  InitializeSystemDataNode19(handleIdentifier + 0x62);
-  InitializeSystemDataNode19(handleIdentifier + 0x54);
-  InitializeSystemDataNode19(handleIdentifier + SYSTEM_FLAG_BIT_46);
-  InitializeSystemDataNode19(handleIdentifier + SYSTEM_OBJECT_OFFSET_38);
-  InitializeSystemDataNode19(handleIdentifier + 0x2a);
-  InitializeSystemDataNode19(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK);
+  InitializeSecurityEngineNode(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER3);
+  InitializeSecurityEngineNode(handleIdentifier + SYSTEM_CONFIG_SIZE_PHYSICS4);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_CONFIG_SIZE_RENDER6);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_CONFIG_SIZE_FINAL8);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_DATA_COMPARE_SIZEa);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_OFFSET_Fc);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_CONFIG_SIZE_EVENTe);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_CONFIG_SIZE_EVENT0);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_CONFIG_SIZE_STATUS2);
+  InitializeMutexInitNode(handleIdentifier + 0xc4);
+  InitializeMutexInitNode(handleIdentifier + 0xb6);
+  InitializeMutexInitNode(handleIdentifier + 0xa8);
+  InitializeMutexInitNode(handleIdentifier + 0x9a);
+  InitializeMutexInitNode(handleIdentifier + 0x8c);
+  InitializeMutexInitNode(handleIdentifier + 0x7e);
+  InitializeMutexInitNode(handleIdentifier + 0x70);
+  InitializeMutexInitNode(handleIdentifier + 0x62);
+  InitializeMutexInitNode(handleIdentifier + 0x54);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_FLAG_BIT_46);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_OBJECT_OFFSET_38);
+  InitializeMutexInitNode(handleIdentifier + 0x2a);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK);
   *handleIdentifier = &g_system_global_config;
   handleIdentifier[SYSTEM_OFFSET_18] = &resourcePoolPointer;
   if (handleIdentifier[NODE_INITIALIZED_OFFSET] != 0) {
@@ -29416,7 +29416,7 @@ void ConfigureSystemHandles(uint64_t *handleIdentifier,uint64_t resourceIdentifi
   handleIdentifier[NODE_INITIALIZED_OFFSET] = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_INPUT) = 0;
   handleIdentifier[SYSTEM_OFFSET_18] = &globalSystemPointerData;
-  InitializeSystemDataNode28(handleIdentifier + SYSTEM_CONFIG_SIZE_RENDER,handleIdentifier[SYSTEM_CONFIG_SIZE_NETWORK_BUFFER],system_configuration,systemFlags,INVALID_HANDLE_VALUE);
+  InitializeSecurityEngineNode(handleIdentifier + SYSTEM_CONFIG_SIZE_RENDER,handleIdentifier[SYSTEM_CONFIG_SIZE_NETWORK_BUFFER],system_configuration,systemFlags,INVALID_HANDLE_VALUE);
   if (handleIdentifier[SYSTEM_CONFIG_SIZE_STATUS] != 0) {
                     // WARNING: Subroutine does not return
     ProcessSystemOperation();
@@ -29455,9 +29455,9 @@ void initialize_graphics_subsystem(longlong handleIdentifier,uint64_t resourceId
   }
   return;
 }
-// void InitializeSystemDataNode28(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+// void InitializeSecurityEngineNode(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
-void InitializeSystemDataNode28(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+void InitializeSecurityEngineNode(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
   if (*(code **)(handleIdentifier + SYSTEM_OBJECT_OFFSET_68) != (code *)0x0) {
@@ -29532,19 +29532,19 @@ void InitializeSystemResources(uint64_t *handleIdentifier,uint64_t resourceIdent
   *handleIdentifier = &g_global_system_config;
   InitializePhysicsSystem();
   InitializePhysicsSystem();
-  InitializeSystemDataNode19(handleIdentifier + 0x262);
-  InitializeSystemDataNode19(handleIdentifier + 0x254);
-  InitializeSystemDataNode19(handleIdentifier + 0x246);
-  InitializeSystemDataNode19(handleIdentifier + 0x238);
-  InitializeSystemDataNode19(handleIdentifier + 0x22a);
-  InitializeSystemDataNode19(handleIdentifier + 0x21c);
-  InitializeSystemDataNode19(handleIdentifier + SYSTEM_NODE_HEADER_SIZEe);
+  InitializeMutexInitNode(handleIdentifier + 0x262);
+  InitializeMutexInitNode(handleIdentifier + 0x254);
+  InitializeMutexInitNode(handleIdentifier + 0x246);
+  InitializeMutexInitNode(handleIdentifier + 0x238);
+  InitializeMutexInitNode(handleIdentifier + 0x22a);
+  InitializeMutexInitNode(handleIdentifier + 0x21c);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_NODE_HEADER_SIZEe);
   ValidateSystemConfiguration(handleIdentifier + 0x1f6);
   ValidateSystemConfiguration(handleIdentifier + 0x1de);
   ValidateSystemConfiguration(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK6);
-  InitializeSystemDataNode19(handleIdentifier + SYSTEM_CONFIG_SIZE_INPUT8);
-  InitializeSystemDataNode19(handleIdentifier + SYSTEM_CONFIG_SIZE_AUDIOa);
-  InitializeSystemDataNode19(handleIdentifier + NODE_INITIALIZED_OFFSETc);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_CONFIG_SIZE_INPUT8);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_CONFIG_SIZE_AUDIOa);
+  InitializeMutexInitNode(handleIdentifier + NODE_INITIALIZED_OFFSETc);
   ValidateSystemConfiguration(handleIdentifier + SYSTEM_OFFSET_184);
   ValidateSystemConfiguration(handleIdentifier + SYSTEM_CONFIG_SIZE_FONTc);
   ValidateSystemConfiguration(handleIdentifier + SYSTEM_CONFIG_SIZE_AUTH4);
@@ -29570,7 +29570,7 @@ void InitializeSystemResources(uint64_t *handleIdentifier,uint64_t resourceIdent
   handleIdentifier[NODE_INITIALIZED_OFFSET] = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_INPUT) = 0;
   handleIdentifier[SYSTEM_OFFSET_18] = &globalSystemPointerData;
-  InitializeSystemDataNode28(handleIdentifier + SYSTEM_CONFIG_SIZE_RENDER,handleIdentifier[SYSTEM_CONFIG_SIZE_NETWORK_BUFFER],system_configuration,systemFlags,INVALID_HANDLE_VALUE);
+  InitializeSecurityEngineNode(handleIdentifier + SYSTEM_CONFIG_SIZE_RENDER,handleIdentifier[SYSTEM_CONFIG_SIZE_NETWORK_BUFFER],system_configuration,systemFlags,INVALID_HANDLE_VALUE);
   if (handleIdentifier[SYSTEM_CONFIG_SIZE_STATUS] != 0) {
                     // WARNING: Subroutine does not return
     ProcessSystemOperation();
@@ -29611,9 +29611,9 @@ longlong ProcessSystemData(longlong handleIdentifier)
   *(code **)(handleIdentifier + SYSTEM_OBJECT_OFFSET_68) = _guard_check_icall;
   return handleIdentifier;
 }
-// void InitializeSystemDataNode19(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+// void InitializeMutexInitNode(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
-void InitializeSystemDataNode19(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+void InitializeMutexInitNode(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
   if (*(code **)(handleIdentifier + SYSTEM_OBJECT_OFFSET_60) != (code *)0x0) {
@@ -29951,7 +29951,7 @@ void InitializeSystemModule24(longlong handleIdentifier)
 }
 
 uint64_t *
-InitializeSystemDataNode25(uint64_t *handleIdentifier,uint64_t *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+InitializeResourceEngineNode(uint64_t *handleIdentifier,uint64_t *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
   uint64_t *system_ptr_value;
@@ -30034,7 +30034,7 @@ void InitializeFontSystem(longlong *handleIdentifier)
       stack_char_ptr = (code *)handleIdentifier[3];
       stack_char_ptr = ptr_system_init_flag;
     }
-    pallocation_size = (longlong *)InitializeSystemDataNode25(system_operation_status,alongStack_f8,alongStack_b8);
+    pallocation_size = (longlong *)InitializeResourceEngineNode(system_operation_status,alongStack_f8,alongStack_b8);
     stack_system_memory_pointer = pallocation_size;
     if (pallocation_size != (longlong *)0x0) {
       (**(code **)(*pallocation_size + SYSTEM_OBJECT_OFFSET_28))(pallocation_size);
@@ -30214,7 +30214,7 @@ uint64_t * InitializeSystemModule42(uint64_t *handleIdentifier,longlong resource
   return handleIdentifier;
 }
 
-longlong InitializeSystemDataNode23(longlong handleIdentifier)
+longlong InitializeDataEngineNode(longlong handleIdentifier)
 
 {
   *(uint64_t *)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE) = &resourcePoolPointer;
@@ -30272,9 +30272,9 @@ void InitializeConfigSystem(void **handleIdentifier,uint64_t resourceIdentifier,
   system_status_code = 1;
   system_long_value = AllocateSystemResource(systemMemoryPool,SYSTEM_OBJECT_OFFSET_60,*(uint8_t *)(system_long_result + SYSTEM_OFFSET_98));
   InitializeSystemModule42(system_long_result + SYSTEM_NODE_HEADER_SIZE,&system_buffer_ptr_68system_buffer_ptr_system_context);
-  init_system_ptr_temp = (void **)InitializeSystemDataNode19(pnode_current,acstack_var,system_long_result + SYSTEM_NODE_HEADER_SIZE);
+  init_system_ptr_temp = (void **)InitializeMutexInitNode(pnode_current,acstack_var,system_long_result + SYSTEM_NODE_HEADER_SIZE);
   if (acstack_var[0] == '\0') {
-    InitializeSystemDataNode23(system_long_result);
+    InitializeDataEngineNode(system_long_result);
     if (system_long_result != 0) {
                     // WARNING: Subroutine does not return
       ProcessSystemOperation(system_long_result);
@@ -30329,7 +30329,7 @@ InitializePhysicsSystem(uint64_t *handleIdentifier,ulonglong resourceIdentifier,
   return handleIdentifier;
 }
 
-uint64_t * InitializeSystemDataNode18(uint64_t *handleIdentifier,uint64_t *resourceIdentifier)
+uint64_t * InitializeNetworkInitNode(uint64_t *handleIdentifier,uint64_t *resourceIdentifier)
 
 {
   uint64_t *system_ptr_value;
@@ -30538,7 +30538,7 @@ void InitializeSystemModule32(ulonglong handleIdentifier,longlong resourceIdenti
     if (system_int_result != 0) {
       allocation_size = AllocateSystemResource(systemMemoryPool,(longlong)system_int_result,3);
     }
-    InitializeSystemDataNode17(allocation_size,(longlong)system_int_result,&g_system_global_config,&dstack_var);
+    InitializeAudioDataNode7(allocation_size,(longlong)system_int_result,&g_system_global_config,&dstack_var);
     ResizeSystemBuffer(resourceIdentifier,allocation_size);
     if (allocation_size != 0) {
                     // WARNING: Subroutine does not return
@@ -30587,15 +30587,15 @@ void ConfigureGraphicsShader(uint64_t handleIdentifier,longlong resourceIdentifi
   }
   return;
 }
-// void InitializeSystemDataNode28(uint64_t handleIdentifier,uint64_t *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+// void InitializeSecurityEngineNode(uint64_t handleIdentifier,uint64_t *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
-void InitializeSystemDataNode28(uint64_t handleIdentifier,uint64_t *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+void InitializeSecurityEngineNode(uint64_t handleIdentifier,uint64_t *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
   if (resourceIdentifier == (uint64_t *)0x0) {
     return;
   }
-  InitializeSystemDataNode28(handleIdentifier,*resourceIdentifier,system_configuration,systemFlags,INVALID_HANDLE_VALUE);
+  InitializeSecurityEngineNode(handleIdentifier,*resourceIdentifier,system_configuration,systemFlags,INVALID_HANDLE_VALUE);
   resourceIdentifier[4] = &resourcePoolPointer;
   if (resourceIdentifier[5] != 0) {
                     // WARNING: Subroutine does not return
@@ -30612,15 +30612,15 @@ void InitializeSystemDataNode28(uint64_t handleIdentifier,uint64_t *resourceIden
 void InitializeAudioSystem(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
-  InitializeSystemDataNode28(handleIdentifier,*(uint64_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE),system_configuration,systemFlags,INVALID_HANDLE_VALUE);
+  InitializeSecurityEngineNode(handleIdentifier,*(uint64_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE),system_configuration,systemFlags,INVALID_HANDLE_VALUE);
   return;
 }
-// void InitializeSystemDataNode23(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+// void InitializeDataEngineNode(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
-void InitializeSystemDataNode23(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+void InitializeDataEngineNode(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
-  InitializeSystemDataNode28(handleIdentifier,*(uint64_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE),system_configuration,systemFlags,INVALID_HANDLE_VALUE);
+  InitializeSecurityEngineNode(handleIdentifier,*(uint64_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE),system_configuration,systemFlags,INVALID_HANDLE_VALUE);
   return;
 }
 // void InitializeSystemDataNode29(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
@@ -30628,7 +30628,7 @@ void InitializeSystemDataNode23(longlong handleIdentifier,uint64_t resourceIdent
 void InitializeSystemDataNode29(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
-  InitializeSystemDataNode28(handleIdentifier,*(uint64_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE),system_configuration,systemFlags,INVALID_HANDLE_VALUE);
+  InitializeSecurityEngineNode(handleIdentifier,*(uint64_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE),system_configuration,systemFlags,INVALID_HANDLE_VALUE);
   return;
 }
 // void InitializeSystemModule19(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
@@ -30700,7 +30700,7 @@ uint64_t * InitializeSystemModule23(longlong handleIdentifier,char *resourceIden
   } while( true );
 }
 
-uint64_t * InitializeSystemDataNode24(uint64_t handleIdentifier,uint64_t *resourceIdentifier)
+uint64_t * InitializeUtilEngineNode(uint64_t handleIdentifier,uint64_t *resourceIdentifier)
 
 {
   char *pis_initialized;
@@ -30954,7 +30954,7 @@ void InitializePhysicsSystem(longlong *handleIdentifier,uint64_t resourceIdentif
 }
 
 uint64_t *
-InitializeSystemDataNode18(uint64_t *handleIdentifier,ulonglong resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+InitializeNetworkInitNode(uint64_t *handleIdentifier,ulonglong resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
   uint64_t system_status_code;
@@ -31462,9 +31462,9 @@ void InitializeSystemModule6(longlong handleIdentifier,longlong *resourceIdentif
   }
   return;
 }
-// void InitializeSystemDataNode22(longlong handleIdentifier,longlong *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+// void InitializeAudioDataNode8(longlong handleIdentifier,longlong *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
-void InitializeSystemDataNode22(longlong handleIdentifier,longlong *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+void InitializeAudioDataNode8(longlong handleIdentifier,longlong *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
   int system_integer_result;
@@ -31622,7 +31622,7 @@ void ConfigureSystemParameters(longlong handleIdentifier,longlong *resourceIdent
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t * InitializeSystemDataNode25(longlong handleIdentifier,uint64_t resourceIdentifier)
+uint64_t * InitializeResourceEngineNode(longlong handleIdentifier,uint64_t resourceIdentifier)
 
 {
   uint64_t *system_ptr_value;
@@ -31764,9 +31764,9 @@ void InitializeFilesystemSystem(longlong handleIdentifier)
   }
   return;
 }
-// void InitializeSystemDataNode19(uint64_t handleIdentifier,longlong *resourceIdentifier,uint8_t system_configuration,uint64_t systemFlags)
+// void InitializeMutexInitNode(uint64_t handleIdentifier,longlong *resourceIdentifier,uint8_t system_configuration,uint64_t systemFlags)
 
-void InitializeSystemDataNode19(uint64_t handleIdentifier,longlong *resourceIdentifier,uint8_t system_configuration,uint64_t systemFlags)
+void InitializeMutexInitNode(uint64_t handleIdentifier,longlong *resourceIdentifier,uint8_t system_configuration,uint64_t systemFlags)
 
 {
   code *pis_initialized;
@@ -31789,7 +31789,7 @@ void InitializeSystemDataNode19(uint64_t handleIdentifier,longlong *resourceIden
     if (system_init_flag == '\0') {
       pis_initialized = *(code **)(*(longlong *)*resourceIdentifier + SYSTEM_OFFSET_80);
       if (pis_initialized == (code *)&g_system_func_4) {
-        InitializeSystemDataNode19((longlong *)*resourceIdentifier + 4);
+        InitializeMutexInitNode((longlong *)*resourceIdentifier + 4);
       }
       else {
         (*pis_initialized)();
@@ -31844,7 +31844,7 @@ void InitializeAuthenticationSystem(uint64_t handleIdentifier,longlong *resource
           system_memory_pointer = *(longlong **)(usystem_int_result * 8 + *resourceIdentifier);
           pis_initialized = *(code **)(*system_memory_pointer + SYSTEM_OFFSET_80);
           if (pis_initialized == (code *)&g_system_func_4) {
-            InitializeSystemDataNode19(system_memory_pointer + 4);
+            InitializeMutexInitNode(system_memory_pointer + 4);
           }
           else {
             (*pis_initialized)();
@@ -34346,7 +34346,7 @@ void InitializeSystemModule44(longlong handleIdentifier,longlong *resourceIdenti
   do {
     system_integer_result = ReleaseSemaphore(*system_pointer_var,system_long_result - system_long_result >> 3 & SYSTEM_OFFSET_Ffffffff,0,systemFlags,system_operation_status,allocation_size,usystem_int_result);
   } while (system_int_result == 0);
-  InitializeSystemDataNode18(handleIdentifier + SYSTEM_CONFIG_SIZE_AUTH0);
+  InitializeNetworkInitNode(handleIdentifier + SYSTEM_CONFIG_SIZE_AUTH0);
   system_integer_result = _Mtx_unlock(allocation_size);
   if (system_int_result != 0) {
     __Throw_C_error_std__YAXH_Z(system_int_result);
@@ -34364,9 +34364,9 @@ void InitializeVideoSystem(uint64_t *handleIdentifier)
   CloseHandle(*handleIdentifier);
   return;
 }
-// void InitializeSystemDataNode24(uint64_t *handleIdentifier)
+// void InitializeUtilEngineNode(uint64_t *handleIdentifier)
 
-void InitializeSystemDataNode24(uint64_t *handleIdentifier)
+void InitializeUtilEngineNode(uint64_t *handleIdentifier)
 
 {
   *handleIdentifier = &g_global_system_config;
@@ -34736,8 +34736,8 @@ void InitializeUISystem(void)
   memset(system_local_buffer_138,0,SYSTEM_OFFSET_Ff);
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void InitializeSystemDataNode23(int *handleIdentifier)
-void InitializeSystemDataNode23(int *handleIdentifier)
+// void InitializeDataEngineNode(int *handleIdentifier)
+void InitializeDataEngineNode(int *handleIdentifier)
 
 {
   char is_initialized;
@@ -35830,7 +35830,7 @@ void InitializeSystemModule67(longlong *handleIdentifier,longlong resourceIdenti
   }
   InitializeSystemModule14(&init_stack_uint_param_68,system_pointer_var,system_pointer_var);
   init_stack_uint_param_e8 = 1;
-  InitializeSystemDataNode24(&init_stack_uint_param_a8);
+  InitializeUtilEngineNode(&init_stack_uint_param_a8);
   system_status_code = init_stack_ulong_param_58;
   system_status_code = init_stack_uint_param_68;
   init_stack_uint_param_a8 = init_stack_uint_param_68;
@@ -35898,7 +35898,7 @@ INIT_LABEL_SYSTEM_64eed:
       system_long_value = system_long_result * 2;
       if (system_long_result != 0) goto INIT_LABEL_SYSTEM_64eed;
     }
-    system_buffer_ptr_d0 = (uint64_t *)InitializeSystemDataNode18(system_long_result,system_pointer_var,system_long_result);
+    system_buffer_ptr_d0 = (uint64_t *)InitializeNetworkInitNode(system_long_result,system_pointer_var,system_long_result);
     *system_buffer_ptr_d0 = &globalSystemPointerData;
     system_buffer_ptr_d0[1] = 0;
     *(uint32_t *)(system_buffer_ptr_d0 + 2) = 0;
@@ -36530,8 +36530,8 @@ void ConfigureSystemHandles(void)
   memset(system_local_buffer_228,0,SYSTEM_OFFSET_80);
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void InitializeSystemDataNode28(uint64_t handleIdentifier,longlong resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
-void InitializeSystemDataNode28(uint64_t handleIdentifier,longlong resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+// void InitializeSecurityEngineNode(uint64_t handleIdentifier,longlong resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+void InitializeSecurityEngineNode(uint64_t handleIdentifier,longlong resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
   code *pis_initialized;
@@ -36754,7 +36754,7 @@ void InitializeSystemModule30(uint64_t handleIdentifier,uint64_t resourceIdentif
   system_integer_result = 0;
   if (is_initialized != '\0') {
     UpdateSystemBuffer(&system_buffer_ptr_graphics_context,&g_system_string_buffer);
-    InitializeSystemDataNode28(&system_buffer_ptr_graphics_context,0);
+    InitializeSecurityEngineNode(&system_buffer_ptr_graphics_context,0);
     system_buffer_ptr_graphics_context = &resourcePoolPointer;
     if (init_stack_long_parameter_1b0 != 0) {
                     // WARNING: Subroutine does not return
@@ -37048,7 +37048,7 @@ INIT_LABEL_SYSTEM_66bf4:
       memcpy(system_buffer_pointer_primary,&g_system_string_buffer,system_int_result);
     }
     init_stack_uint_size_90 = 0;
-    InitializeSystemDataNode28(&thread_parameter_ptr,parameter_5);
+    InitializeSecurityEngineNode(&thread_parameter_ptr,parameter_5);
     thread_parameter_ptr = &resourcePoolPointer;
     if (system_buffer_pointer_primary != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -37109,7 +37109,7 @@ void SetupSystemMemory(longlong *handleIdentifier,longlong resourceIdentifier,ui
   system_ptr_value = (uint64_t *)handleIdentifier[1];
   system_long_value = *handleIdentifier;
 INIT_LABEL_SYSTEM_66ec4:
-  node_root = (uint64_t *)InitializeSystemDataNode18(system_long_result,system_pointer_var,system_long_result);
+  node_root = (uint64_t *)InitializeNetworkInitNode(system_long_result,system_pointer_var,system_long_result);
   *node_root = &globalSystemPointerData;
   node_root[1] = 0;
   *(uint32_t *)(node_root + 2) = 0;
@@ -37180,9 +37180,9 @@ void InitializeVideoSystem(void)
   (*pis_initialized)();
   return;
 }
-// void InitializeSystemDataNode24(longlong *handleIdentifier)
+// void InitializeUtilEngineNode(longlong *handleIdentifier)
 
-void InitializeSystemDataNode24(longlong *handleIdentifier)
+void InitializeUtilEngineNode(longlong *handleIdentifier)
 
 {
   ulonglong system_status_code;
@@ -37212,7 +37212,7 @@ void InitializeSystemDataNode24(longlong *handleIdentifier)
 void InitializeThreadManagerSystem(void)
 
 {
-  InitializeSystemDataNode24();
+  InitializeUtilEngineNode();
   return;
 }
 // void ConfigureSystemParameters(void)
@@ -37271,9 +37271,9 @@ void HandleSystemOperation16(ulonglong handleIdentifier)
   (*pis_initialized)();
   return;
 }
-// void InitializeSystemDataNode25(longlong handleIdentifier,ulonglong resourceIdentifier)
+// void InitializeResourceEngineNode(longlong handleIdentifier,ulonglong resourceIdentifier)
 
-void InitializeSystemDataNode25(longlong handleIdentifier,ulonglong resourceIdentifier)
+void InitializeResourceEngineNode(longlong handleIdentifier,ulonglong resourceIdentifier)
 
 {
   longlong system_long_value;
@@ -37439,7 +37439,7 @@ void InitializeSystemModule30(longlong handleIdentifier)
         uintStack_5c = uintStack_6c;
         init_stack_ulong_param_58 = init_stack_uint_param_68;
         uintStack_54 = uintStack_64;
-        system_memory_pointer = (longlong *)InitializeSystemDataNode17(system_operation_status,&init_stack_uint_param_60);
+        system_memory_pointer = (longlong *)InitializeAudioDataNode7(system_operation_status,&init_stack_uint_param_60);
         if (system_memory_pointer != (longlong *)0x0) {
           (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_28))(system_memory_pointer);
         }
@@ -37498,8 +37498,8 @@ void InitializeSystemModule23(longlong handleIdentifier,uint64_t resourceIdentif
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void InitializeSystemDataNode24(longlong *handleIdentifier)
-void InitializeSystemDataNode24(longlong *handleIdentifier)
+// void InitializeUtilEngineNode(longlong *handleIdentifier)
+void InitializeUtilEngineNode(longlong *handleIdentifier)
 
 {
   int *init_int_pointer_temp;
@@ -38418,8 +38418,8 @@ void ValidateSystemHandle69(uint8_t *handleIdentifier)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void InitializeSystemDataNode19(longlong handleIdentifier,longlong resourceIdentifier,longlong system_configuration)
-void InitializeSystemDataNode19(longlong handleIdentifier,longlong resourceIdentifier,longlong system_configuration)
+// void InitializeMutexInitNode(longlong handleIdentifier,longlong resourceIdentifier,longlong system_configuration)
+void InitializeMutexInitNode(longlong handleIdentifier,longlong resourceIdentifier,longlong system_configuration)
 
 {
   longlong system_long_value;
@@ -38911,7 +38911,7 @@ INIT_LABEL_SYSTEM_69dda:
 }
 
 uint64_t *
-InitializeSystemDataNode17(uint64_t *handleIdentifier,uint64_t *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+InitializeAudioDataNode7(uint64_t *handleIdentifier,uint64_t *resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
   code *pis_initialized;
@@ -38988,7 +38988,7 @@ uint64_t InitializeInputManagerSystem(uint64_t handleIdentifier,ulonglong resour
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t InitializeSystemDataNode25(int handleIdentifier)
+uint64_t InitializeResourceEngineNode(int handleIdentifier)
 
 {
   if ((handleIdentifier != -0x3fffff03) && (handleIdentifier != -0x3ffffffb)) {
@@ -39039,7 +39039,7 @@ void InitializeNetworkSystem(longlong handleIdentifier)
     SetUnhandledExceptionFilter(&g_system_func_14);
   }
   system_status_code = AllocateSystemMemory(systemMemoryPool,SYSTEM_CONFIG_SIZE_UTILITY_20,8,3);
-  g_system_handle_1 = InitializeSystemDataNode19(system_operation_status);
+  g_system_handle_1 = InitializeMutexInitNode(system_operation_status);
   InitializeSystemResources(system_local_buffer_278);
   system_status_code = AllocateSystemMemory(systemMemoryPool,1000,8,3);
   g_system_base_1 = InitializeFontSystem(system_operation_status);
@@ -39216,9 +39216,9 @@ void SetupSystemMemory(longlong handleIdentifier,uint32_t resourceIdentifier)
   *(uint32_t *)(handleIdentifier + 0x1dc0) = resourceIdentifier;
   return;
 }
-// void InitializeSystemDataNode22(longlong handleIdentifier,uint32_t resourceIdentifier)
+// void InitializeAudioDataNode8(longlong handleIdentifier,uint32_t resourceIdentifier)
 
-void InitializeSystemDataNode22(longlong handleIdentifier,uint32_t resourceIdentifier)
+void InitializeAudioDataNode8(longlong handleIdentifier,uint32_t resourceIdentifier)
 
 {
   char is_initialized;
@@ -39269,7 +39269,7 @@ void InitializeSystemResources(uint64_t handleIdentifier,uint32_t resourceIdenti
   return;
 }
 
-longlong InitializeSystemDataNode23(longlong handleIdentifier,uint resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+longlong InitializeDataEngineNode(longlong handleIdentifier,uint resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
   if (*(code **)(handleIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) != (code *)0x0) {
@@ -40696,7 +40696,7 @@ uint64_t InitializeAudioSystem(ulonglong *handleIdentifier,uint64_t resourceIden
     while (usystem_int_result != 0) {
       if (usystem_int_result != usystem_int_result) {
         if (*(char *)(usystem_int_result + SYSTEM_FLAG_BIT_48) == '\0') {
-          system_init_flag = InitializeSystemDataNode15(system_operation_status,resourceIdentifier);
+          system_init_flag = InitializeConditionInitNode(system_operation_status,resourceIdentifier);
         }
         else {
           if (SYSTEM_OFFSET_8000000000000000 <
@@ -40814,7 +40814,7 @@ uint64_t InitializeSystemModule3(longlong handleIdentifier,uint64_t resourceIden
   ulonglong system_status_code;
 
   if (*(char *)(handleIdentifier + SYSTEM_FLAG_BIT_48) == '\0') {
-    system_status_code = InitializeSystemDataNode15();
+    system_status_code = InitializeConditionInitNode();
   }
   else {
     if (SYSTEM_OFFSET_8000000000000000 <
@@ -40966,7 +40966,7 @@ void ConfigureSystemHandles(longlong *handleIdentifier)
   return;
 }
 
-ulonglong InitializeSystemDataNode15(longlong handleIdentifier,uint64_t resourceIdentifier)
+ulonglong InitializeConditionInitNode(longlong handleIdentifier,uint64_t resourceIdentifier)
 
 {
   longlong *system_memory_pointer;
@@ -41271,7 +41271,7 @@ longlong InitializeConfigSystem(longlong handleIdentifier,ulonglong resourceIden
   InitializeFontSystem();
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
-  InitializeSystemDataNode23(handleIdentifier + 200);
+  InitializeDataEngineNode(handleIdentifier + 200);
   InitializeInputManagerSystem(handleIdentifier);
   if ((resourceIdentifier & 1) != 0) {
     free(handleIdentifier,SYSTEM_DATA_BLOCK_SIZE8);
@@ -41397,7 +41397,7 @@ void ProcessSystemData88(void)
   return;
 }
 
-uint64_t * InitializeSystemDataNode17(uint64_t *handleIdentifier,ulonglong resourceIdentifier)
+uint64_t * InitializeAudioDataNode7(uint64_t *handleIdentifier,ulonglong resourceIdentifier)
 
 {
   *handleIdentifier = &g_system_global_config;
@@ -41406,9 +41406,9 @@ uint64_t * InitializeSystemDataNode17(uint64_t *handleIdentifier,ulonglong resou
   }
   return handleIdentifier;
 }
-// void InitializeSystemDataNode23(longlong *handleIdentifier)
+// void InitializeDataEngineNode(longlong *handleIdentifier)
 
-void InitializeSystemDataNode23(longlong *handleIdentifier)
+void InitializeDataEngineNode(longlong *handleIdentifier)
 
 {
   int *init_int_pointer_temp;
@@ -41787,7 +41787,7 @@ uint64_t * InitializeShaderSystem(uint64_t *handleIdentifier,uint64_t resourceId
 }
 
 uint32_t *
-InitializeSystemDataNode19(uint32_t *handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
+InitializeMutexInitNode(uint32_t *handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
   uint32_t *system_ptr_value;
@@ -42082,9 +42082,9 @@ void InitializeSystemModule21(longlong *handleIdentifier)
   }
   return;
 }
-// void InitializeSystemDataNode22(longlong *handleIdentifier)
+// void InitializeAudioDataNode8(longlong *handleIdentifier)
 
-void InitializeSystemDataNode22(longlong *handleIdentifier)
+void InitializeAudioDataNode8(longlong *handleIdentifier)
 
 {
   char is_initialized;
@@ -42322,7 +42322,7 @@ ulonglong InitializeInputSystem(uint64_t handleIdentifier,uint64_t resourceIdent
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong InitializeSystemDataNode26(uint64_t handleIdentifier,uint64_t resourceIdentifier,char system_configuration)
+ulonglong InitializeInputEngineNode(uint64_t handleIdentifier,uint64_t resourceIdentifier,char system_configuration)
 
 {
   uint8_t usystem_integer_result;
@@ -42915,7 +42915,7 @@ void InitializeSystemModule47(uint64_t handleIdentifier,uint64_t resourceIdentif
     system_status_code = InitializeSystemBuffer(&system_buffer_ptr_config_data);
     SystemNodeUpdateFunction(system_operation_status);
   }
-  InitializeSystemDataNode26(&g_input_system_data,1);
+  InitializeInputEngineNode(&g_input_system_data,1);
   _Exit(5);
   return;
 }
@@ -45570,9 +45570,9 @@ void InitializeSystemModule65(void)
   }
   return;
 }
-// void InitializeSystemDataNode26(void)
+// void InitializeInputEngineNode(void)
 
-void InitializeSystemDataNode26(void)
+void InitializeInputEngineNode(void)
 
 {
   ushort usystem_integer_result;
@@ -45636,7 +45636,7 @@ void InitializeSystemModule41(longlong *handleIdentifier,longlong resourceIdenti
   system_long_value = (longlong)(int)*system_ptr_value;
   *(uint **)(resourceIdentifier + 8) = system_pointer_var + 1;
   system_memory_pointer = handleIdentifier + 4;
-  InitializeSystemDataNode24(system_memory_pointer,system_long_result);
+  InitializeUtilEngineNode(system_memory_pointer,system_long_result);
   allocation_size = *(longlong *)(resourceIdentifier + 8);
   system_long_value = 0;
   system_long_value = system_long_value;
@@ -45811,7 +45811,7 @@ void ProcessSystemData29(longlong *handleIdentifier)
   system_long_value = (longlong)(int)*system_ptr_value;
   *(uint **)(system_register_rdi + 8) = system_pointer_var + 1;
   system_memory_pointer = handleIdentifier + 4;
-  InitializeSystemDataNode24(system_memory_pointer,system_long_result);
+  InitializeUtilEngineNode(system_memory_pointer,system_long_result);
   allocation_size = *(longlong *)(system_register_rdi + 8);
   system_long_value = 0;
   system_long_value = system_long_value;
@@ -46542,9 +46542,9 @@ void InitializeSystemModule45(longlong *handleIdentifier)
                     // WARNING: Subroutine does not return
   ProcessSystemOperation();
 }
-// void InitializeSystemDataNode24(longlong *handleIdentifier,ulonglong resourceIdentifier)
+// void InitializeUtilEngineNode(longlong *handleIdentifier,ulonglong resourceIdentifier)
 
-void InitializeSystemDataNode24(longlong *handleIdentifier,ulonglong resourceIdentifier)
+void InitializeUtilEngineNode(longlong *handleIdentifier,ulonglong resourceIdentifier)
 
 {
   longlong *system_memory_pointer;
@@ -47318,9 +47318,9 @@ void InitializeAudioSystem(uint64_t *handleIdentifier)
   *handleIdentifier = &g_global_system_config;
   return;
 }
-// void InitializeSystemDataNode17(longlong handleIdentifier,longlong *resourceIdentifier)
+// void InitializeAudioDataNode7(longlong handleIdentifier,longlong *resourceIdentifier)
 
-void InitializeSystemDataNode17(longlong handleIdentifier,longlong *resourceIdentifier)
+void InitializeAudioDataNode7(longlong handleIdentifier,longlong *resourceIdentifier)
 
 {
   longlong *system_memory_pointer;
@@ -47843,13 +47843,13 @@ longlong * InitializeResourceSystem(longlong *handleIdentifier,longlong *resourc
   *(int *)(system_long_result + SYSTEM_CONFIG_SIZE_EVENT0) = (int)system_long_value;
   *(uint32_t *)(system_long_result + SYSTEM_CONFIG_SIZE_EVENT4) = usystem_integer_result;
   if ((*(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fd) & SYSTEM_NODE_HEADER_SIZE) == 0) {
-    InitializeSystemDataNode17(*resourceIdentifier,handleIdentifier + 0x36);
+    InitializeAudioDataNode7(*resourceIdentifier,handleIdentifier + 0x36);
   }
   else {
     system_long_value = *resourceIdentifier;
     stack_system_memory_pointer = handleIdentifier;
     (**(code **)(*handleIdentifier + SYSTEM_OBJECT_OFFSET_28))(handleIdentifier);
-    InitializeSystemDataNode17(system_long_result,&system_stack_memory_pointer);
+    InitializeAudioDataNode7(system_long_result,&system_stack_memory_pointer);
     (**(code **)(*handleIdentifier + SYSTEM_OBJECT_OFFSET_38))(handleIdentifier);
   }
   *(longlong *)(*resourceIdentifier + 0xa8) = handleIdentifier[SYSTEM_CONFIG_SIZE_AUTH];
@@ -48096,7 +48096,7 @@ void ProcessSystemData64(longlong handleIdentifier,longlong *resourceIdentifier)
         system_long_value = system_long_result + 1;
         system_memory_pointer = system_memory_pointer + 1;
       } while ((system_bool_var & 8) == 0);
-      InitializeSystemDataNode24(handleIdentifier);
+      InitializeUtilEngineNode(handleIdentifier);
     }
   }
   return;
@@ -48388,7 +48388,7 @@ void InitializeSystemProfiler(longlong *handleIdentifier)
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-ulonglong InitializeSystemDataNode22(longlong handleIdentifier)
+ulonglong InitializeAudioDataNode8(longlong handleIdentifier)
 
 {
   int *init_int_pointer_temp;
@@ -49076,7 +49076,7 @@ INIT_LABEL_SYSTEM_77879:
       init_float_stack_8c = system_float_result * system_float_result + system_float_result * system_float_result + system_float_result * system_float_result + system_configuration[SYSTEM_OFFSET_F];
       system_configuration = &init_float_stack_c8;
     }
-    InitializeSystemDataNode15(&init_stack_uint_param_108,resourceIdentifier + 0xc,*(uint8_t *)(handleIdentifier + SYSTEM_OFFSET_F7),system_configuration);
+    InitializeConditionInitNode(&init_stack_uint_param_108,resourceIdentifier + 0xc,*(uint8_t *)(handleIdentifier + SYSTEM_OFFSET_F7),system_configuration);
     system_status_code = resourceIdentifier[0x6f6];
     compare_result3 = *(int *)(g_system_base_1 + 0x224);
     if (((*(byte *)(handleIdentifier + SYSTEM_OFFSET_Fd) & 1) == 0) &&
@@ -49395,7 +49395,7 @@ void InitializeSystemModule88(void)
          system_float_result * system_float_result + system_float_result * system_float_result + system_float_result * system_float_result + init_input_stack_180[SYSTEM_OFFSET_F];
     init_float_pointer_temp = &init_float_stack_a0;
   }
-  InitializeSystemDataNode15(&init_stack_uint_60,system_long_result + 0x30,*(uint8_t *)(system_register_rbx + SYSTEM_OFFSET_F7),init_float_pointer_temp);
+  InitializeConditionInitNode(&init_stack_uint_60,system_long_result + 0x30,*(uint8_t *)(system_register_rbx + SYSTEM_OFFSET_F7),init_float_pointer_temp);
   system_status_code = init_input_stack_98;
   system_status_code = init_input_stack_90;
   system_status_code = init_input_stack_88;
@@ -49655,7 +49655,7 @@ void InitializeSystemLogger(void)
          system_float_result * system_float_result + system_float_result * system_float_result + system_float_result * system_float_result + init_input_stack_180[SYSTEM_OFFSET_F];
     init_float_pointer_temp = &init_float_stack_a0;
   }
-  InitializeSystemDataNode15(&init_stack_uint_60,system_long_result + 0x30,*(uint8_t *)(system_register_rbx + SYSTEM_OFFSET_F7),init_float_pointer_temp);
+  InitializeConditionInitNode(&init_stack_uint_60,system_long_result + 0x30,*(uint8_t *)(system_register_rbx + SYSTEM_OFFSET_F7),init_float_pointer_temp);
   system_status_code = init_input_stack_98;
   system_status_code = init_input_stack_90;
   system_status_code = init_input_stack_88;
@@ -49804,7 +49804,7 @@ void HandleSystemConfiguration64(void)
     init_float_stack_d8 = system_float_result * system_float_result + system_float_result * system_float_result + system_float_result * system_float_result + system_RSI[SYSTEM_CONFIG_SIZE_EVENT];
     init_float_stack_dc = system_float_result * system_float_result + system_float_result * system_float_result + system_float_result * system_float_result + system_RSI[SYSTEM_OFFSET_F];
   }
-  InitializeSystemDataNode15(&init_stack_60,system_R13 + 0x30,*(uint8_t *)(system_register_rbx + SYSTEM_OFFSET_F7));
+  InitializeConditionInitNode(&init_stack_60,system_R13 + 0x30,*(uint8_t *)(system_register_rbx + SYSTEM_OFFSET_F7));
   system_status_code = init_input_stack_98;
   system_status_code = init_input_stack_90;
   system_status_code = init_input_stack_88;
@@ -49971,7 +49971,7 @@ void ProcessSystemOperation95(void)
          system_float_result * system_float_result + system_float_result * system_float_result + system_float_result * system_float_result + init_input_stack_180[SYSTEM_OFFSET_F];
     init_float_pointer_temp = &init_float_stack_a0;
   }
-  InitializeSystemDataNode15(&init_stack_60,system_R13 + 0x30,*(uint8_t *)(system_register_rbx + SYSTEM_OFFSET_F7),init_float_pointer_temp);
+  InitializeConditionInitNode(&init_stack_60,system_R13 + 0x30,*(uint8_t *)(system_register_rbx + SYSTEM_OFFSET_F7),init_float_pointer_temp);
   system_status_code = init_input_stack_98;
   system_status_code = init_input_stack_90;
   system_status_code = init_input_stack_88;
@@ -50043,7 +50043,7 @@ void HandleSystemResource98(void)
   uint64_t init_input_stack_90;
   uint64_t init_input_stack_98;
 
-  InitializeSystemDataNode15(&init_stack_60,system_R13 + 0x30,*(uint8_t *)(system_register_rbx + SYSTEM_OFFSET_F7));
+  InitializeConditionInitNode(&init_stack_60,system_R13 + 0x30,*(uint8_t *)(system_register_rbx + SYSTEM_OFFSET_F7));
   system_status_code = init_input_stack_98;
   system_status_code = init_input_stack_90;
   system_status_code = init_input_stack_88;
@@ -50336,8 +50336,8 @@ void InitializeSystemModule84(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void InitializeSystemDataNode24(longlong handleIdentifier)
-void InitializeSystemDataNode24(longlong handleIdentifier)
+// void InitializeUtilEngineNode(longlong handleIdentifier)
+void InitializeUtilEngineNode(longlong handleIdentifier)
 
 {
   longlong system_long_value;
@@ -50717,8 +50717,8 @@ INIT_LABEL_SYSTEM_782e0:
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void InitializeSystemDataNode18(void)
-void InitializeSystemDataNode18(void)
+// void InitializeNetworkInitNode(void)
+void InitializeNetworkInitNode(void)
 
 {
   uint64_t *system_ptr_value;
@@ -51621,7 +51621,7 @@ void InitializeAudioMutex(longlong handleIdentifier,longlong resourceIdentifier)
       system_long_value = (longlong)*(int *)(systemCoreData + SYSTEM_CONFIG_SIZE_EVENT78) * SYSTEM_CONFIG_SIZE_RENDER8 + systemCoreData + 0xc28;
       system_status_code = InitializeSystemModule39(system_long_result,system_int_result);
       *(uint32_t *)(system_long_result + 0x30) = usystem_integer_result;
-      InitializeSystemDataNode26(system_long_result,usystem_int_result);
+      InitializeInputEngineNode(system_long_result,usystem_int_result);
       if (*(longlong *)(system_long_result + SYSTEM_DATA_COMPARE_SIZE) == 0) {
         if (*(int *)(system_long_result + SYSTEM_OFFSET_18) != 0) {
           *(uint32_t *)(system_long_result + 0x2c) = *(uint32_t *)(system_long_result + 0x30);
@@ -51928,7 +51928,7 @@ void InitializeSystemModule55(longlong handleIdentifier)
       system_long_value = (longlong)*(int *)(systemCoreData + SYSTEM_CONFIG_SIZE_EVENT78) * SYSTEM_CONFIG_SIZE_RENDER8 + systemCoreData + 0xc28;
       system_status_code = InitializeSystemModule39(system_long_result,system_int_result);
       *(uint32_t *)(system_long_result + 0x30) = usystem_integer_result;
-      InitializeSystemDataNode26(system_long_result,usystem_int_result);
+      InitializeInputEngineNode(system_long_result,usystem_int_result);
       if (*(longlong *)(system_long_result + SYSTEM_DATA_COMPARE_SIZE) == 0) {
         if (*(int *)(system_long_result + SYSTEM_OFFSET_18) != 0) {
           *(uint32_t *)(system_long_result + 0x2c) = *(uint32_t *)(system_long_result + 0x30);
@@ -52216,7 +52216,7 @@ void ProcessSystemResource36(void)
       system_long_value = (longlong)*(int *)(systemCoreData + SYSTEM_CONFIG_SIZE_EVENT78) * SYSTEM_CONFIG_SIZE_RENDER8 + systemCoreData + 0xc28;
       system_status_code = InitializeSystemModule39(system_long_result,system_int_result,system_long_result,init_float_pointer_temp,CONCAT44(system_XMM7_Db,system_XMM7_Da));
       *(uint32_t *)(system_long_result + 0x30) = usystem_integer_result;
-      InitializeSystemDataNode26(system_long_result,usystem_int_result);
+      InitializeInputEngineNode(system_long_result,usystem_int_result);
       if (*(longlong *)(system_long_result + SYSTEM_DATA_COMPARE_SIZE) == 0) {
         if (*(int *)(system_long_result + SYSTEM_OFFSET_18) != 0) {
           *(uint32_t *)(system_long_result + 0x2c) = *(uint32_t *)(system_long_result + 0x30);
@@ -52500,7 +52500,7 @@ void HandleSystemData39(longlong handleIdentifier,uint resourceIdentifier,uint64
       system_long_value = (longlong)*(int *)(systemCoreData + SYSTEM_CONFIG_SIZE_EVENT78) * SYSTEM_CONFIG_SIZE_RENDER8 + systemCoreData + 0xc28;
       system_status_code = InitializeSystemModule39(system_long_result,compare_result9,handleIdentifier,systemFlags,CONCAT44(system_XMM7_Db,system_XMM7_Da));
       *(uint32_t *)(system_long_result + 0x30) = usystem_integer_result;
-      InitializeSystemDataNode26(system_long_result,usystem_int_result);
+      InitializeInputEngineNode(system_long_result,usystem_int_result);
       if (*(longlong *)(system_long_result + SYSTEM_DATA_COMPARE_SIZE) == 0) {
         if (*(int *)(system_long_result + SYSTEM_OFFSET_18) != 0) {
           *(uint32_t *)(system_long_result + 0x2c) = *(uint32_t *)(system_long_result + 0x30);
@@ -52706,7 +52706,7 @@ void ValidateSystemHandle65(void)
       system_long_value = (longlong)*(int *)(systemCoreData + SYSTEM_CONFIG_SIZE_EVENT78) * SYSTEM_CONFIG_SIZE_RENDER8 + systemCoreData + 0xc28;
       system_status_code = InitializeSystemModule39(system_long_result,system_int_result);
       *(uint32_t *)(allocation_size + 0x30) = usystem_integer_result;
-      InitializeSystemDataNode26(system_long_result,usystem_int_result);
+      InitializeInputEngineNode(system_long_result,usystem_int_result);
       if (*(longlong *)(allocation_size + SYSTEM_DATA_COMPARE_SIZE) == 0) {
         if (*(int *)(allocation_size + SYSTEM_OFFSET_18) != 0) {
           *(uint32_t *)(allocation_size + 0x2c) = *(uint32_t *)(allocation_size + 0x30);
@@ -54435,9 +54435,9 @@ void InitializeInputSystem(longlong *handleIdentifier)
                     // WARNING: Subroutine does not return
   ProcessSystemOperation();
 }
-// void InitializeSystemDataNode25(longlong *handleIdentifier)
+// void InitializeResourceEngineNode(longlong *handleIdentifier)
 
-void InitializeSystemDataNode25(longlong *handleIdentifier)
+void InitializeResourceEngineNode(longlong *handleIdentifier)
 
 {
   longlong *system_memory_pointer;
@@ -54803,9 +54803,9 @@ void HandleSystemOperation16(longlong *handleIdentifier)
   }
   return;
 }
-// void InitializeSystemDataNode18(longlong handleIdentifier)
+// void InitializeNetworkInitNode(longlong handleIdentifier)
 
-void InitializeSystemDataNode18(longlong handleIdentifier)
+void InitializeNetworkInitNode(longlong handleIdentifier)
 
 {
   if (*(longlong **)(handleIdentifier + SYSTEM_OFFSET_18) != (longlong *)0x0) {
@@ -55171,7 +55171,7 @@ void InitializeStringManager(longlong handleIdentifier,longlong resourceIdentifi
       (**(code **)(*stack_system_memory_pointer + SYSTEM_OBJECT_OFFSET_38))();
     }
   }
-  InitializeSystemDataNode24(handleIdentifier);
+  InitializeUtilEngineNode(handleIdentifier);
   if ((*(longlong *)(handleIdentifier + 600) == 0) &&
      ((*(uint *)(*(longlong *)(handleIdentifier + SYSTEM_CONFIG_SIZE_INPUT8) + SYSTEM_OBJECT_OFFSET_388) >> NODE_INITIALIZED_OFFSET & 1) != 0)) {
     system_ptr_value = (uint64_t *)AllocateSystemMemory(systemMemoryPool,0x58,8,SYSTEM_CONFIG_SIZE_NETWORK);
@@ -55625,7 +55625,7 @@ void ConfigureSystemSettings(uint handleIdentifier,longlong resourceIdentifier,l
   }
   system_integer_result = *(int *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_60);
   system_long_value = (longlong)system_integer_result;
-  system_memory_pointer = (longlong *)InitializeSystemDataNode28(system_configuration_data,&system_stack_memory_pointer,system_int_result * system_int_result);
+  system_memory_pointer = (longlong *)InitializeSecurityEngineNode(system_configuration_data,&system_stack_memory_pointer,system_int_result * system_int_result);
   system_memory_pointer = (longlong *)*system_memory_pointer;
   if (system_memory_pointer != (longlong *)0x0) {
     (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_28))(system_memory_pointer);
@@ -56627,9 +56627,9 @@ void ProcessSystemData49(void)
                     // WARNING: Subroutine does not return
   memset(system_operation_status,0,SYSTEM_CONFIG_SIZE_STATUS0);
 }
-// void InitializeSystemDataNode28(void)
+// void InitializeSecurityEngineNode(void)
 
-void InitializeSystemDataNode28(void)
+void InitializeSecurityEngineNode(void)
 
 {
   return;
@@ -57742,7 +57742,7 @@ void InitializeNetworkSystem(longlong handleIdentifier)
       system_long_value = (longlong)*(int *)(systemCoreData + SYSTEM_CONFIG_SIZE_EVENT78) * SYSTEM_CONFIG_SIZE_RENDER8 + systemCoreData + 0xc28;
       system_status_code = InitializeSystemModule39(system_long_result,system_int_result);
       *(uint32_t *)(handleIdentifier + 0x30) = usystem_integer_result;
-      InitializeSystemDataNode26(system_long_result,usystem_int_result);
+      InitializeInputEngineNode(system_long_result,usystem_int_result);
       if (*(longlong *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) == 0) {
         if (*(int *)(handleIdentifier + SYSTEM_OFFSET_18) != 0) {
           *(uint32_t *)(handleIdentifier + 0x2c) = *(uint32_t *)(handleIdentifier + 0x30);
@@ -57942,7 +57942,7 @@ void ProcessSystemData51(uint32_t handleIdentifier)
     system_long_value = (longlong)*(int *)(systemCoreData + SYSTEM_CONFIG_SIZE_EVENT78) * SYSTEM_CONFIG_SIZE_RENDER8 + systemCoreData + 0xc28;
     system_status_code = InitializeSystemModule39(system_long_result,system_int_result);
     *(uint32_t *)(system_register_rdi + 0x30) = usystem_integer_result;
-    InitializeSystemDataNode26(system_long_result,usystem_int_result);
+    InitializeInputEngineNode(system_long_result,usystem_int_result);
     if (*(longlong *)(system_register_rdi + SYSTEM_DATA_COMPARE_SIZE) == 0) {
       if (*(int *)(system_register_rdi + SYSTEM_OFFSET_18) != 0) {
         *(uint32_t *)(system_register_rdi + 0x2c) = *(uint32_t *)(system_register_rdi + 0x30);
@@ -58140,7 +58140,7 @@ void HandleSystemResource54(uint64_t handleIdentifier,longlong resourceIdentifie
   resourceIdentifier = (longlong)*(int *)(resourceIdentifier + 0x250) * SYSTEM_CONFIG_SIZE_RENDER8 + resourceIdentifier;
   system_status_code = InitializeSystemModule39(resourceIdentifier,system_ESI);
   *(uint32_t *)(system_register_rdi + 0x30) = usystem_integer_result;
-  InitializeSystemDataNode26(resourceIdentifier,usystem_int_result);
+  InitializeInputEngineNode(resourceIdentifier,usystem_int_result);
   if (*(longlong *)(system_register_rdi + SYSTEM_DATA_COMPARE_SIZE) == 0) {
     if (*(int *)(system_register_rdi + SYSTEM_OFFSET_18) != 0) {
       *(uint32_t *)(system_register_rdi + 0x2c) = *(uint32_t *)(system_register_rdi + 0x30);

@@ -28,6 +28,20 @@
 // - 原本实现：完全重构变量命名体系和寄存器变量管理
 // - 简化实现：仅将剩余的寄存器变量名替换为语义化名称
 
+// 2025-08-30 最新美化内容：
+// - 新增系统操作常量：UTILITY_SYSTEM_OPERATION_SUCCESS等
+// - 新增内存操作常量：UTILITY_MEMORY_ACCESS_FLAG_READ等
+// - 新增资源状态常量：UTILITY_RESOURCE_STATUS_INITIALIZED等
+// - 新增线程状态常量：UTILITY_THREAD_STATUS_RUNNING等
+// - 新增系统表索引常量：UTILITY_TABLE_INDEX_PRIMARY等
+// - 新增缓冲区大小常量：UTILITY_BUFFER_SIZE_SMALL等
+// - 新增超时时间常量：UTILITY_TIMEOUT_IMMEDIATE等
+// - 新增数据类型常量：UTILITY_DATA_TYPE_INTEGER等
+// - 新增内存偏移量语义化常量：UTILITY_MEMORY_OFFSET_STACK_FRAME等
+// - 这是简化实现，主要添加了工具系统的语义化常量定义
+// - 原本实现：完全重构常量定义体系和类型系统
+// - 简化实现：仅添加新的语义化常量定义，保持现有代码结构不变
+
 // - 将utility_stack_uint_xmm_da_1a0替换为utility_stack_xmm_data_primary等栈数据变量名
 // - 将0xfffffffffffffffe替换为UTILITY_SYSTEM_END_FLAG_EXTENDED等系统常量
 // - 将0xffffffff00000000替换为UTILITY_MEMORY_MASK_HIGH等内存掩码常量
