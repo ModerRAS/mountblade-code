@@ -380,7 +380,7 @@ undefined8 network_buffer_allocate(longlong *param_1)
   }
   *(undefined4 *)(param_1 + 1) = 0;
   if ((0 < (int)((uVar3 ^ (int)uVar3 >> 0x1f) - ((int)uVar3 >> 0x1f))) &&
-     (uVar2 = FUN_180849030(param_1,0), (int)uVar2 != 0)) {
+     (uVar2 = network_connection_init(param_1,0), (int)uVar2 != 0)) {
     return uVar2;
   }
   return 0;
@@ -418,7 +418,7 @@ void network_buffer_send_data(ulonglong *param_1,int param_2)
       iVar3 = network_status_check_extended(&lStack_140);
       if (iVar3 == 0) {
         aiStack_148[0] = 0;
-        iVar3 = FUN_18073aab0(*(undefined8 *)(lStack_140 + 0x78),aiStack_148);
+        iVar3 = network_data_send_packet(*(undefined8 *)(lStack_140 + 0x78),aiStack_148);
         if (iVar3 == 0) {
           if (aiStack_148[0] != 0x20214) {
             network_system_initialize();
@@ -448,7 +448,7 @@ LAB_1808403d0:
   }
 LAB_180840449:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
+  network_data_encrypt_decrypt(uStack_28 ^ (ulonglong)auStack_178);
 }
 
 
@@ -474,7 +474,7 @@ void network_buffer_receive_data(undefined8 param_1,ulonglong *param_2)
   if (param_2 == (ulonglong *)0x0) {
     if ((*(byte *)(network_data_reference_primary + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
+      network_data_encrypt_decrypt(uStack_28 ^ (ulonglong)auStack_178);
     }
     func_0x00018074bda0(auStack_128,0x100,0);
     puStack_158 = auStack_128;
@@ -536,7 +536,7 @@ void network_send_command_packet(undefined4 param_1,int param_2,longlong param_3
   uStack_20 = network_encryption_checksum ^ (ulonglong)auStack_88;
   if (param_3 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_20 ^ (ulonglong)auStack_88);
+    network_data_encrypt_decrypt(uStack_20 ^ (ulonglong)auStack_88);
   }
   lStack_58 = 0;
   uStack_68 = 0;
@@ -662,7 +662,7 @@ void network_cleanup_buffers(void)
   unaff_RBX[5] = 0;
   unaff_RBX[6] = 0;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000068 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000068 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -675,7 +675,7 @@ void network_reset_connection_state(void)
   ulonglong in_stack_00000068;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000068 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000068 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -950,7 +950,7 @@ LAB_180840a03:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_68);
+  network_data_encrypt_decrypt(uStack_30 ^ (ulonglong)auStack_68);
 }
 
 
@@ -1051,7 +1051,7 @@ LAB_180840bf9:
   *param_3 = iVar5;
 LAB_180840b99:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_58);
+  network_data_encrypt_decrypt(uStack_28 ^ (ulonglong)auStack_58);
 }
 
 
@@ -1109,7 +1109,7 @@ LAB_180840d1b:
   }
 LAB_180840cf0:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_168);
+  network_data_encrypt_decrypt(uStack_18 ^ (ulonglong)auStack_168);
 }
 
 
@@ -3502,7 +3502,7 @@ void FUN_180844f40(ulonglong param_1,undefined8 *param_2)
   if (param_2 == (undefined8 *)0x0) {
     if ((*(byte *)(network_data_reference_primary + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
+      network_data_encrypt_decrypt(uStack_28 ^ (ulonglong)auStack_178);
     }
     func_0x00018074bda0(auStack_128,0x100,0);
     puStack_158 = auStack_128;
@@ -3572,7 +3572,7 @@ void FUN_180845090(undefined8 param_1,longlong param_2)
       network_connection_cleanup_extended(0x1f,0xb,param_1,&UNK_1809846b0);
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_168);
+    network_data_encrypt_decrypt(uStack_28 ^ (ulonglong)auStack_168);
   }
   uStack_138 = 0;
   iVar1 = func_0x00018088c590(param_1,&lStack_130);
@@ -3623,7 +3623,7 @@ void FUN_1808451c0(undefined8 param_1,undefined8 param_2,undefined8 param_3)
     network_connection_cleanup_extended(iVar1,0xb,param_1,&UNK_180981fc0);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_168);
+  network_data_encrypt_decrypt(uStack_38 ^ (ulonglong)auStack_168);
 }
 
 
@@ -3654,7 +3654,7 @@ void FUN_18084527c(void)
   ulonglong in_stack_00000130;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000130 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000130 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -3695,7 +3695,7 @@ void FUN_1808452a0(undefined8 param_1,undefined4 *param_2,undefined8 param_3)
   }
 LAB_1808453a2:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_178);
+  network_data_encrypt_decrypt(uStack_38 ^ (ulonglong)auStack_178);
 }
 
 
@@ -3726,7 +3726,7 @@ void FUN_18084539c(void)
   ulonglong in_stack_00000140;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -3752,7 +3752,7 @@ void FUN_1808453c0(undefined8 param_1,undefined8 *param_2)
   if (param_2 == (undefined8 *)0x0) {
     if ((*(byte *)(network_data_reference_primary + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
+      network_data_encrypt_decrypt(uStack_28 ^ (ulonglong)auStack_178);
     }
     func_0x00018074bda0(auStack_128,0x100,0);
     puStack_158 = auStack_128;
@@ -3825,7 +3825,7 @@ void FUN_180845520(undefined8 param_1,undefined8 *param_2)
   }
 LAB_1808455bc:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_158);
+  network_data_encrypt_decrypt(uStack_18 ^ (ulonglong)auStack_158);
 }
 
 
@@ -3851,7 +3851,7 @@ void FUN_1808455f0(undefined8 param_1,ulonglong *param_2)
   if (param_2 == (ulonglong *)0x0) {
     if ((*(byte *)(network_data_reference_primary + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
+      network_data_encrypt_decrypt(uStack_28 ^ (ulonglong)auStack_178);
     }
     func_0x00018074bda0(auStack_128,0x100,0);
     puStack_158 = auStack_128;
@@ -3917,7 +3917,7 @@ void FUN_180845c40(undefined8 param_1,undefined8 param_2,undefined8 param_3)
     network_connection_cleanup_extended(iVar1,0xb,param_1,&UNK_180981f40);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_168);
+  network_data_encrypt_decrypt(uStack_38 ^ (ulonglong)auStack_168);
 }
 
 
@@ -3948,7 +3948,7 @@ void FUN_180845cfc(void)
   ulonglong in_stack_00000130;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000130 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000130 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -3977,7 +3977,7 @@ void FUN_180845d20(undefined8 param_1,undefined4 *param_2,ulonglong *param_3)
   if ((param_3 == (ulonglong *)0x0) || (*param_3 = 0, param_2 == (undefined4 *)0x0)) {
     if ((*(byte *)(network_data_reference_primary + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_188);
+      network_data_encrypt_decrypt(uStack_38 ^ (ulonglong)auStack_188);
     }
     iVar4 = FUN_18074bc50(auStack_138,0x100,param_2);
     iVar5 = network_buffer_process_data(auStack_138 + iVar4,0x100 - iVar4,&network_data_buffer_primary);
@@ -4047,7 +4047,7 @@ void FUN_180845ef0(ulonglong param_1,uint *param_2)
   if (param_2 == (uint *)0x0) {
     if ((*(byte *)(network_data_reference_primary + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_168);
+      network_data_encrypt_decrypt(uStack_18 ^ (ulonglong)auStack_168);
     }
     FUN_18074b930(auStack_118,0x100,0);
     puStack_148 = auStack_118;
@@ -4164,7 +4164,7 @@ void FUN_180846210(undefined8 param_1,longlong param_2,undefined4 *param_3,undef
       network_connection_cleanup_extended(0x1f,0xb,param_1,&UNK_180984690);
     }
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_198);
+    network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_198);
   }
   uStack_160 = 0;
   iVar1 = func_0x00018088c590(param_1,alStack_158);
@@ -4221,7 +4221,7 @@ void FUN_180846410(undefined8 param_1,undefined4 param_2,undefined8 param_3)
     network_connection_cleanup_extended(iVar1,0xc,param_1,&UNK_180984730);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_168);
+  network_data_encrypt_decrypt(uStack_38 ^ (ulonglong)auStack_168);
 }
 
 
@@ -4253,7 +4253,7 @@ void FUN_1808464cb(void)
   ulonglong in_stack_00000130;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000130 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000130 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -4279,7 +4279,7 @@ void FUN_1808464f0(ulonglong param_1,undefined4 *param_2)
   if (param_2 == (undefined4 *)0x0) {
     if ((*(byte *)(network_data_reference_primary + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_168);
+      network_data_encrypt_decrypt(uStack_18 ^ (ulonglong)auStack_168);
     }
     FUN_18074b930(auStack_118,0x100,0);
     puStack_148 = auStack_118;
@@ -4359,7 +4359,7 @@ void FUN_180846610(ulonglong param_1,undefined1 *param_2,int param_3,undefined4 
   }
   if ((*(byte *)(network_data_reference_primary + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_1a8);
+    network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_1a8);
   }
   iVar1 = network_buffer_process_data(auStack_148,0x100,param_2);
   iVar2 = network_buffer_process_data(auStack_148 + iVar1,0x100 - iVar1,&network_data_buffer_primary);
@@ -4406,7 +4406,7 @@ void FUN_1808467de(void)
   ulonglong in_stack_00000160;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000160 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000160 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -4432,7 +4432,7 @@ void FUN_180846810(ulonglong param_1,undefined1 *param_2)
   if (param_2 == (undefined1 *)0x0) {
     if ((*(byte *)(network_data_reference_primary + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
+      network_data_encrypt_decrypt(uStack_28 ^ (ulonglong)auStack_178);
     }
     FUN_18074be30(auStack_128,0x100,0);
     puStack_158 = auStack_128;
@@ -4526,7 +4526,7 @@ void FUN_180846a90(ulonglong param_1,undefined4 *param_2)
   if (param_2 == (undefined4 *)0x0) {
     if ((*(byte *)(network_data_reference_primary + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
+      network_data_encrypt_decrypt(uStack_28 ^ (ulonglong)auStack_178);
     }
     func_0x00018074bda0(auStack_128,0x100,0);
     puStack_158 = auStack_128;
@@ -4601,7 +4601,7 @@ void FUN_180846bc0(ulonglong param_1,uint param_2,undefined4 *param_3)
   }
   if ((*(byte *)(network_data_reference_primary + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_188);
+    network_data_encrypt_decrypt(uStack_38 ^ (ulonglong)auStack_188);
   }
   iVar1 = func_0x00018074b7d0(auStack_138,0x100,param_2);
   iVar2 = network_buffer_process_data(auStack_138 + iVar1,0x100 - iVar1,&network_data_buffer_primary);
@@ -4634,7 +4634,7 @@ void FUN_180846d30(undefined8 param_1,undefined4 *param_2)
   if (param_2 == (undefined4 *)0x0) {
     if ((*(byte *)(network_data_reference_primary + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
+      network_data_encrypt_decrypt(uStack_28 ^ (ulonglong)auStack_178);
     }
     func_0x00018074bda0(auStack_128,0x100,0);
     puStack_158 = auStack_128;
@@ -4695,7 +4695,7 @@ void FUN_180846e90(ulonglong param_1,uint *param_2)
   if (param_2 == (uint *)0x0) {
     if ((*(byte *)(network_data_reference_primary + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
+      network_data_encrypt_decrypt(uStack_28 ^ (ulonglong)auStack_178);
     }
     FUN_18074b930(auStack_128,0x100,0);
     puStack_158 = auStack_128;
@@ -4753,7 +4753,7 @@ void FUN_180846fe0(ulonglong param_1,undefined8 *param_2)
   if (param_2 == (undefined8 *)0x0) {
     if ((*(byte *)(network_data_reference_primary + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_168);
+      network_data_encrypt_decrypt(uStack_18 ^ (ulonglong)auStack_168);
     }
     func_0x00018074bda0(auStack_118,0x100,0);
     puStack_148 = auStack_118;
@@ -4801,7 +4801,7 @@ void FUN_180847110(ulonglong param_1,undefined8 *param_2)
   if (param_2 == (undefined8 *)0x0) {
     if ((*(byte *)(network_data_reference_primary + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
+      network_data_encrypt_decrypt(uStack_28 ^ (ulonglong)auStack_178);
     }
     func_0x00018074bda0(auStack_128,0x100,0);
     puStack_158 = auStack_128;
@@ -4857,7 +4857,7 @@ void FUN_180847230(undefined8 param_1,undefined8 param_2,undefined8 param_3)
     network_connection_cleanup_extended(iVar1,0xc,param_1,&UNK_180984768);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_168);
+  network_data_encrypt_decrypt(uStack_38 ^ (ulonglong)auStack_168);
 }
 
 
@@ -4888,7 +4888,7 @@ void FUN_1808472ec(void)
   ulonglong in_stack_00000130;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000130 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000130 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -4919,7 +4919,7 @@ void FUN_180847310(undefined8 param_1,undefined8 param_2,undefined8 param_3)
     network_connection_cleanup_extended(iVar1,0xb,param_1,&UNK_180982038);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_168);
+  network_data_encrypt_decrypt(uStack_38 ^ (ulonglong)auStack_168);
 }
 
 
@@ -4950,7 +4950,7 @@ void FUN_1808473cc(void)
   ulonglong in_stack_00000130;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000130 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000130 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -5064,7 +5064,7 @@ void FUN_180847550(longlong param_1,undefined8 *param_2,undefined1 param_3)
   bVar5 = (byte)(*(uint *)(param_1 + 0x34) >> 5) & 1;
   *(uint *)(param_2 + 4) = ~((bVar5 ^ 1) << 4) & ((uint)bVar5 << 4 | uVar9);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_58);
+  network_data_encrypt_decrypt(uStack_28 ^ (ulonglong)auStack_58);
 }
 
 
@@ -5111,7 +5111,7 @@ void FUN_180847690(undefined8 param_1,undefined4 param_2,undefined4 param_3,unde
   }
 LAB_1808477fa:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_188);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_188);
 }
 
 
@@ -5153,7 +5153,7 @@ void FUN_1808477f4(void)
   ulonglong in_stack_00000140;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -5200,7 +5200,7 @@ void FUN_180847890(ulonglong param_1,undefined1 *param_2)
   if (param_2 == (undefined1 *)0x0) {
     if ((*(byte *)(network_data_reference_primary + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_168);
+      network_data_encrypt_decrypt(uStack_18 ^ (ulonglong)auStack_168);
     }
     FUN_18074be30(auStack_118,0x100,0);
     puStack_148 = auStack_118;
@@ -5313,7 +5313,7 @@ LAB_180847bfb:
   *param_3 = (byte)(*(uint *)(lVar4 + 4) >> 2) & 1;
 LAB_180847c35:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_88);
+  network_data_encrypt_decrypt(uStack_30 ^ (ulonglong)auStack_88);
 }
 
 
@@ -5388,7 +5388,7 @@ LAB_180847d83:
   *param_3 = (byte)(*(uint *)(lVar4 + 4) >> 6) & 1;
 LAB_180847dc9:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_38 ^ (ulonglong)auStack_98);
 }
 
 
@@ -5414,7 +5414,7 @@ void FUN_180847df0(ulonglong param_1,undefined1 *param_2)
   if (param_2 == (undefined1 *)0x0) {
     if ((*(byte *)(network_data_reference_primary + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_168);
+      network_data_encrypt_decrypt(uStack_18 ^ (ulonglong)auStack_168);
     }
     FUN_18074be30(auStack_118,0x100,0);
     puStack_148 = auStack_118;
@@ -5522,7 +5522,7 @@ void FUN_180848090(ulonglong param_1,longlong param_2,undefined4 param_3,undefin
     uVar1 = uStack_178;
     if ((*(byte *)(network_data_reference_primary + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_1a8);
+      network_data_encrypt_decrypt(uStack_58 ^ (ulonglong)auStack_1a8);
     }
     iVar2 = network_buffer_process_data(auStack_158,0x100,param_2);
     iVar3 = network_buffer_process_data(auStack_158 + iVar2,0x100 - iVar2,&network_data_buffer_primary);
@@ -6307,7 +6307,7 @@ FUN_180848ff1:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_b8);
+  network_data_encrypt_decrypt(uStack_38 ^ (ulonglong)auStack_b8);
 }
 
 
@@ -6395,7 +6395,7 @@ FUN_180848ff1:
     *(undefined4 *)((longlong)unaff_R15 + 0xc) = uVar4;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x27) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x27) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -6448,7 +6448,7 @@ void FUN_180848f4e(void)
   unaff_R15[2] = uVar1;
   unaff_R15[3] = uVar2;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x27) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x27) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -6464,7 +6464,7 @@ void FUN_180848ff1(void)
   *unaff_R15 = 0;
   unaff_R15[1] = 0;
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x27) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x27) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -6477,14 +6477,14 @@ void FUN_18084900b(void)
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x27) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x27) ^ (ulonglong)&stack0x00000000);
 }
 
 
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-undefined8 FUN_180849030(longlong *param_1,undefined8 param_2)
+undefined8 network_connection_init(longlong *param_1,undefined8 param_2)
 
 {
   longlong lVar1;
@@ -6775,7 +6775,7 @@ void FUN_180849360(ulonglong param_1)
   }
 LAB_180849462:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_168);
+  network_data_encrypt_decrypt(uStack_18 ^ (ulonglong)auStack_168);
 }
 
 
@@ -6805,7 +6805,7 @@ void FUN_180849490(undefined8 param_1,undefined8 *param_2)
   if (param_2 == (undefined8 *)0x0) {
     if ((*(byte *)(network_data_reference_primary + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_178);
+      network_data_encrypt_decrypt(uStack_28 ^ (ulonglong)auStack_178);
     }
     func_0x00018074bda0(auStack_128,0x100,0);
     puStack_158 = auStack_128;
@@ -6880,7 +6880,7 @@ void FUN_180849600(undefined8 param_1,undefined8 param_2)
     network_connection_cleanup_extended(iVar1,0xb,param_1,&UNK_180957208);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_158);
+  network_data_encrypt_decrypt(uStack_18 ^ (ulonglong)auStack_158);
 }
 
 
@@ -6953,7 +6953,7 @@ void FUN_1808497fa(void)
   ulonglong in_stack_00000150;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000150 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000150 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -7029,7 +7029,7 @@ void FUN_18084995f(void)
   ulonglong in_stack_00000150;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000150 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000150 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -7059,7 +7059,7 @@ void FUN_180849990(undefined8 param_1,undefined4 param_2,undefined8 *param_3,und
   if (param_3 == (undefined8 *)0x0) {
     if ((*(byte *)(network_data_reference_primary + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_198);
+      network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_198);
     }
     iVar5 = func_0x00018074b7d0(auStack_148,0x100,param_2);
     iVar6 = network_buffer_process_data(auStack_148 + iVar5,0x100 - iVar5,&network_data_buffer_primary);
@@ -7191,7 +7191,7 @@ void FUN_180849d40(ulonglong param_1,longlong param_2,undefined4 param_3)
   if ((param_2 == 0) || (iVar1 = func_0x00018076b690(param_2), 0x7f < iVar1)) {
     if ((*(byte *)(network_data_reference_primary + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_1a8);
+      network_data_encrypt_decrypt(uStack_58 ^ (ulonglong)auStack_1a8);
     }
     iVar1 = network_buffer_process_data(auStack_158,0x100,param_2);
     iVar2 = network_buffer_process_data(auStack_158 + iVar1,0x100 - iVar1,&network_data_buffer_primary);
@@ -7248,7 +7248,7 @@ void FUN_180849f40(ulonglong param_1,longlong param_2,undefined4 param_3)
   if ((param_2 == 0) || (iVar1 = func_0x00018076b690(param_2), 0x7f < iVar1)) {
     if ((*(byte *)(network_data_reference_primary + 0x10) & 0x80) == 0) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_1a8);
+      network_data_encrypt_decrypt(uStack_58 ^ (ulonglong)auStack_1a8);
     }
     iVar1 = network_buffer_process_data(auStack_158,0x100,param_2);
     iVar2 = network_buffer_process_data(auStack_158 + iVar1,0x100 - iVar1,&network_data_buffer_primary);
@@ -8061,7 +8061,7 @@ void FUN_18084b2f0(undefined8 param_1)
     network_connection_cleanup_extended(iVar1,0x11,param_1,&UNK_180982e28);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_148);
+  network_data_encrypt_decrypt(uStack_18 ^ (ulonglong)auStack_148);
 }
 
 
@@ -8088,7 +8088,7 @@ void FUN_18084b380(undefined8 param_1)
     network_connection_cleanup_extended(iVar1,0xb,param_1,&UNK_1809827f8);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_148);
+  network_data_encrypt_decrypt(uStack_18 ^ (ulonglong)auStack_148);
 }
 
 
@@ -8127,7 +8127,7 @@ LAB_18084b46d:
   }
 LAB_18084b4a9:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_158);
+  network_data_encrypt_decrypt(uStack_18 ^ (ulonglong)auStack_158);
 }
 
 
@@ -8180,7 +8180,7 @@ void FUN_18084b5a0(undefined8 param_1,undefined8 *param_2,longlong *param_3)
     if (iVar1 != 0) break;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_20 ^ (ulonglong)auStack_b8);
+  network_data_encrypt_decrypt(uStack_20 ^ (ulonglong)auStack_b8);
 }
 
 
@@ -8211,7 +8211,7 @@ void FUN_18084b6c0(longlong param_1,longlong param_2)
     FUN_180847c60(lVar1,*(undefined8 *)(param_1 + 0x10),param_1 + 8);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (ulonglong)auStack_58);
+  network_data_encrypt_decrypt(uStack_10 ^ (ulonglong)auStack_58);
 }
 
 
@@ -8234,7 +8234,7 @@ void FUN_18084b760(longlong param_1,longlong param_2)
   if (1.1920929e-07 < *(float *)(param_2 + 0x94)) {
     *(undefined1 *)(param_1 + 8) = 1;
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_68);
+    network_data_encrypt_decrypt(uStack_18 ^ (ulonglong)auStack_68);
   }
   lVar2 = (**(code **)(**(longlong **)(param_1 + 0x10) + NETWORK_OFFSET_POINTER_SIZE8))
                     (*(longlong **)(param_1 + 0x10),param_2 + 0xd8,1);
@@ -8248,7 +8248,7 @@ void FUN_18084b760(longlong param_1,longlong param_2)
     *(byte *)(param_1 + 8) = *(byte *)(param_1 + 8) | abStack_48[0];
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_68);
+  network_data_encrypt_decrypt(uStack_18 ^ (ulonglong)auStack_68);
 }
 
 
@@ -8305,7 +8305,7 @@ void FUN_18084b830(longlong param_1,longlong param_2)
     puVar3 = puVar3 + 5;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (ulonglong)auStack_a8);
+  network_data_encrypt_decrypt(uStack_10 ^ (ulonglong)auStack_a8);
 }
 
 
@@ -8329,7 +8329,7 @@ void FUN_18084b955(void)
   ulonglong in_stack_00000098;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000098 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000098 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -8440,7 +8440,7 @@ LAB_18084bb6f:
   }
 LAB_18084bb9a:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_c8);
+  network_data_encrypt_decrypt(uStack_30 ^ (ulonglong)auStack_c8);
 }
 
 
@@ -8500,7 +8500,7 @@ void FUN_18084bbd0(longlong param_1,longlong param_2)
     *(undefined1 *)(param_1 + 8) = 1;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_20 ^ (ulonglong)auStack_b8);
+  network_data_encrypt_decrypt(uStack_20 ^ (ulonglong)auStack_b8);
 }
 
 
@@ -8532,7 +8532,7 @@ void FUN_18084bc0e(undefined8 param_1,longlong param_2)
     if (iVar1 != 0) break;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000098 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000098 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -8560,7 +8560,7 @@ void FUN_18084bd18(void)
   ulonglong in_stack_00000098;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000098 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000098 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -8573,7 +8573,7 @@ void FUN_18084bd22(void)
   ulonglong in_stack_00000098;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000098 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000098 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -8655,7 +8655,7 @@ void FUN_18084be00(longlong *param_1,longlong param_2,longlong *param_3)
   }
 LAB_18084bff4:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_c8);
+  network_data_encrypt_decrypt(uStack_30 ^ (ulonglong)auStack_c8);
 }
 
 
@@ -8679,7 +8679,7 @@ void FUN_18084bff2(void)
   ulonglong in_stack_00000098;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000098 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000098 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -8778,7 +8778,7 @@ FUN_180848ff1:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_b8);
+  network_data_encrypt_decrypt(uStack_38 ^ (ulonglong)auStack_b8);
 }
 
 
@@ -12165,7 +12165,7 @@ void FUN_18084dc20(undefined4 *param_1)
   FUN_1808b11b0((longlong)&uStack_1c + 2,2,&uStack_28,(longlong)&uStack_28 + 4);
   FUN_1808b11b0(&uStack_18,8,&uStack_28,(longlong)&uStack_28 + 4);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (ulonglong)auStack_48);
+  network_data_encrypt_decrypt(uStack_10 ^ (ulonglong)auStack_48);
 }
 
 
@@ -12476,7 +12476,7 @@ undefined8 FUN_18084e110(longlong *param_1,char *param_2)
   }
   uVar3 = (int)*(uint *)((longlong)param_1 + 0xc) >> 0x1f;
   if ((int)((*(uint *)((longlong)param_1 + 0xc) ^ uVar3) - uVar3) < iVar4) {
-    uVar2 = FUN_180849030(param_1,iVar4);
+    uVar2 = network_connection_init(param_1,iVar4);
     if ((int)uVar2 != 0) {
       return uVar2;
     }
@@ -13156,7 +13156,7 @@ void FUN_18084edf0(longlong param_1)
   }
 LAB_18084efc3:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_c8);
+  network_data_encrypt_decrypt(uStack_28 ^ (ulonglong)auStack_c8);
 }
 
 
@@ -13202,7 +13202,7 @@ void FUN_18084efc1(void)
   ulonglong in_stack_000000a0;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000a0 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_000000a0 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -16467,7 +16467,7 @@ LAB_1808513a8:
   }
 LAB_180851437:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_50 ^ (ulonglong)auStack_148);
+  network_data_encrypt_decrypt(uStack_50 ^ (ulonglong)auStack_148);
 }
 
 
@@ -16816,7 +16816,7 @@ LAB_1808513bf:
     FUN_18084f2d0(lVar16 + 0x30);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -8) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + -8) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -16856,7 +16856,7 @@ void FUN_180851421(void)
     FUN_18084f2d0(unaff_R13 + 0x30);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -8) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + -8) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -16869,7 +16869,7 @@ void FUN_180851432(void)
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -8) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + -8) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -17905,7 +17905,7 @@ LAB_180852a22:
   }
 FUN_180852aaa:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_50 ^ (ulonglong)auStack_338);
+  network_data_encrypt_decrypt(uStack_50 ^ (ulonglong)auStack_338);
 LAB_18085243e:
   if ((puVar12 < *(undefined8 **)(lVar6 + 0x38)) ||
      (*(undefined8 **)(lVar6 + 0x38) + (longlong)*(int *)(lVar6 + 0x40) * 2 <= puVar12))
@@ -18570,7 +18570,7 @@ LAB_180852a22:
   }
 LAB_180852a9a:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x1e8) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x1e8) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -18583,7 +18583,7 @@ void FUN_180852aaa(void)
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x1e8) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x1e8) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -19341,7 +19341,7 @@ LAB_18073d93d:
     FUN_180743d80();
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_158);
+  network_data_encrypt_decrypt(uStack_18 ^ (ulonglong)auStack_158);
 }
 
 
@@ -21465,7 +21465,7 @@ void FUN_180854f70(longlong param_1,undefined8 *param_2,longlong param_3,undefin
     param_4 = puStack_98;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_108);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_108);
 }
 
 
@@ -21515,7 +21515,7 @@ void FUN_180854fc3(void)
     in_RAX = in_stack_00000090;
   } while (unaff_R12 != unaff_RSI);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000c0 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_000000c0 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -21528,7 +21528,7 @@ void FUN_18085510b(void)
   ulonglong in_stack_000000c0;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000c0 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_000000c0 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -24507,7 +24507,7 @@ LAB_180857610:
   } while (iVar6 == 0);
 LAB_180857786:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_d8);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_d8);
 LAB_180857632:
   if ((plVar18 < *(longlong **)(lVar11 + NETWORK_OFFSET_POINTER_SIZE)) ||
      (*(longlong **)(lVar11 + NETWORK_OFFSET_POINTER_SIZE) + (longlong)*(int *)(lVar11 + 0x30) * 2 <= plVar18))
@@ -25112,7 +25112,7 @@ joined_r0x000180857d6c:
   }
 FUN_180857c7a:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_40 ^ (ulonglong)auStack_88);
+  network_data_encrypt_decrypt(uStack_40 ^ (ulonglong)auStack_88);
 }
 
 
@@ -25222,7 +25222,7 @@ joined_r0x000180857d6c:
   }
 LAB_180857c4e:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000048 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000048 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -25235,7 +25235,7 @@ void FUN_180857c7a(void)
   ulonglong in_stack_00000048;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000048 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000048 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -25331,7 +25331,7 @@ code_r0x000180857c3e:
   if (iVar2 != 0) {
 LAB_180857c4e:
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(in_stack_00000048 ^ (ulonglong)&stack0x00000000);
+    network_data_encrypt_decrypt(in_stack_00000048 ^ (ulonglong)&stack0x00000000);
   }
   goto LAB_180857d77;
 }
@@ -25346,7 +25346,7 @@ void FUN_180857de5(void)
   ulonglong in_stack_00000048;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000048 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000048 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -26939,7 +26939,7 @@ LAB_18085996b:
   }
 LAB_1808597c2:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_40 ^ (ulonglong)auStack_e8);
+  network_data_encrypt_decrypt(uStack_40 ^ (ulonglong)auStack_e8);
 }
 
 
@@ -27077,7 +27077,7 @@ void FUN_180859ba0(longlong param_1,longlong *param_2)
     FUN_1808fd200(uVar6 & 0xfffffffffffffff0,puVar2,lStack_78);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(network_encryption_checksum);
+  network_data_encrypt_decrypt(network_encryption_checksum);
 }
 
 
@@ -30821,7 +30821,7 @@ LAB_18085d2fd:
   }
 LAB_18085d424:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_b8);
+  network_data_encrypt_decrypt(uStack_38 ^ (ulonglong)auStack_b8);
 }
 
 
@@ -34102,7 +34102,7 @@ LAB_1808605ab:
   *param_3 = plVar2;
 LAB_1808605b0:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_30 ^ (ulonglong)auStack_98);
 }
 
 
@@ -34871,7 +34871,7 @@ joined_r0x000180861496:
   }
 FUN_1808616bc:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_78 ^ (ulonglong)auStack_1a8);
+  network_data_encrypt_decrypt(uStack_78 ^ (ulonglong)auStack_1a8);
 }
 
 
@@ -35550,7 +35550,7 @@ joined_r0x000180861496:
   }
 LAB_180861693:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x30) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x30) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -35563,7 +35563,7 @@ void FUN_1808616bc(void)
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x30) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x30) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -35681,7 +35681,7 @@ LAB_18086154d:
   }
 LAB_180861693:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x30) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x30) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -36894,7 +36894,7 @@ void FUN_180862000(longlong param_1,undefined8 param_2,undefined8 param_3)
   }
   FUN_180862080(param_1,lVar1,param_3);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_20 ^ (ulonglong)auStack_68);
+  network_data_encrypt_decrypt(uStack_20 ^ (ulonglong)auStack_68);
 }
 
 
@@ -37096,7 +37096,7 @@ LAB_180862261:
   }
 FUN_18086247a:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_168);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_168);
 }
 
 
@@ -37179,7 +37179,7 @@ void FUN_18086226d(longlong param_1,uint param_2,char param_3)
   }
 LAB_18086246a:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + NETWORK_OFFSET_DATA_HEADER) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + NETWORK_OFFSET_DATA_HEADER) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -37192,7 +37192,7 @@ void FUN_18086247a(void)
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + NETWORK_OFFSET_DATA_HEADER) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + NETWORK_OFFSET_DATA_HEADER) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -37560,7 +37560,7 @@ void FUN_1808629a0(longlong param_1,undefined8 param_2,char param_3)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_40 ^ (ulonglong)auStack_e8);
+  network_data_encrypt_decrypt(uStack_40 ^ (ulonglong)auStack_e8);
 }
 
 
@@ -37613,7 +37613,7 @@ void FUN_1808629e9(longlong *param_1)
     unaff_R14[4] = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -37666,7 +37666,7 @@ void FUN_1808629f1(longlong *param_1)
     unaff_R14[4] = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -37726,7 +37726,7 @@ void FUN_180862ad1(void)
     unaff_R14[4] = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -37760,7 +37760,7 @@ void FUN_180862ae8(void)
     network_system_memory_handler(*(undefined8 *)(network_data_reference_primary + 0x1a0));
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -37773,7 +37773,7 @@ void FUN_180862b96(void)
   ulonglong in_stack_000000a8;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -39135,7 +39135,7 @@ void FUN_180863c8b(ulonglong param_1,int param_2,undefined8 param_3,longlong par
   }
 LAB_180864019:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x1b0) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x1b0) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -39280,7 +39280,7 @@ void FUN_180863d75(undefined4 param_1,int param_2,undefined8 param_3)
   }
 LAB_180864019:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x1b0) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x1b0) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -39338,7 +39338,7 @@ void FUN_180863d92(void)
   }
 LAB_180864019:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x1b0) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x1b0) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -39379,7 +39379,7 @@ void FUN_180863f57(undefined8 *param_1)
   }
 LAB_180864019:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x1b0) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x1b0) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -40256,7 +40256,7 @@ void FUN_180864850(longlong param_1)
   }
 LAB_180865076:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_c8 ^ (ulonglong)auStack_168);
+  network_data_encrypt_decrypt(uStack_c8 ^ (ulonglong)auStack_168);
 }
 
 
@@ -40490,7 +40490,7 @@ void FUN_18086490d(float param_1,longlong param_2,undefined8 param_3,longlong pa
     func_0x000180853cc0(*(longlong *)(unaff_RDI + 0x2b0),unaff_XMM6_Da);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x60) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + -0x60) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -40740,7 +40740,7 @@ void FUN_1808649b0(float param_1,longlong param_2,float param_3,float param_4)
     func_0x000180853cc0(*(longlong *)(unaff_RDI + 0x2b0),CONCAT44(unaff_XMM6_Db,unaff_XMM6_Da));
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x60) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + -0x60) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -40836,7 +40836,7 @@ void FUN_180864e8c(float param_1,longlong param_2,float param_3,float param_4)
     func_0x000180853cc0(*(longlong *)(unaff_RDI + 0x2b0),CONCAT44(unaff_XMM6_Db,unaff_XMM6_Da));
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x60) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + -0x60) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -40860,7 +40860,7 @@ void FUN_180865027(float param_1)
     func_0x000180853cc0(*(longlong *)(unaff_RDI + 0x2b0),unaff_XMM6_Da);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x60) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + -0x60) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -42390,7 +42390,7 @@ void FUN_180866550(undefined8 param_1,longlong param_2)
     FUN_1808fd200(uVar3 & 0xfffffffffffffff0);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_268);
+  network_data_encrypt_decrypt(uStack_38 ^ (ulonglong)auStack_268);
 }
 
 
@@ -43942,7 +43942,7 @@ void network_buffer_set_quaternary(longlong param_1,uint param_2,undefined8 *par
     FUN_18088dbf0(*(longlong *)(alStack_68[0] + NETWORK_OFFSET_MEMORY_EXTENDED),&uStack_58);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_88);
+  network_data_encrypt_decrypt(uStack_28 ^ (ulonglong)auStack_88);
 }
 
 
@@ -44170,7 +44170,7 @@ LAB_1808683fc:
     } while ((int)uVar8 < *(int *)(param_1 + NETWORK_OFFSET_POINTER_SIZE));
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_78);
+  network_data_encrypt_decrypt(uStack_30 ^ (ulonglong)auStack_78);
 }
 
 
@@ -44242,7 +44242,7 @@ LAB_1808683fc:
     uVar6 = uVar6 + 0x18;
     if (*(int *)(unaff_RBP + NETWORK_OFFSET_POINTER_SIZE) <= unaff_R14D) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000048 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000048 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -44257,7 +44257,7 @@ void FUN_180868459(void)
   ulonglong in_stack_00000048;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000048 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000048 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -44317,7 +44317,7 @@ void FUN_180868490(longlong param_1,longlong param_2,longlong param_3)
   }
 LAB_1808685dc:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_40 ^ (ulonglong)auStack_88);
+  network_data_encrypt_decrypt(uStack_40 ^ (ulonglong)auStack_88);
 }
 
 
@@ -44725,7 +44725,7 @@ void FUN_180868a80(char param_1,undefined8 param_2,longlong *param_3,longlong *p
     if ((iVar10 < 0) || ((int)plStack_80[1] <= iVar10)) {
 LAB_180868ceb:
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_50 ^ (ulonglong)auStack_b8);
+      network_data_encrypt_decrypt(uStack_50 ^ (ulonglong)auStack_b8);
     }
     cVar8 = '\0';
     cVar9 = '\0';
@@ -45406,7 +45406,7 @@ void FUN_180869a50(longlong *param_1,undefined8 param_2)
     FUN_18084b240(param_2,auStack_38);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (ulonglong)auStack_58);
+  network_data_encrypt_decrypt(uStack_10 ^ (ulonglong)auStack_58);
 }
 
 
@@ -45430,7 +45430,7 @@ void FUN_180869ab0(longlong *param_1,undefined8 param_2)
     FUN_18084b240(param_2,auStack_38);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (ulonglong)auStack_58);
+  network_data_encrypt_decrypt(uStack_10 ^ (ulonglong)auStack_58);
 }
 
 
@@ -45514,7 +45514,7 @@ LAB_180869c72:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -45584,7 +45584,7 @@ LAB_180869c72:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -45657,7 +45657,7 @@ LAB_180869c72:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -45672,7 +45672,7 @@ void FUN_180869cdf(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -45685,7 +45685,7 @@ void FUN_180869cee(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -45769,7 +45769,7 @@ LAB_180869e72:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -45839,7 +45839,7 @@ LAB_180869e72:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -45912,7 +45912,7 @@ LAB_180869e72:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -45927,7 +45927,7 @@ void FUN_180869edf(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -45940,7 +45940,7 @@ void FUN_180869eee(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -46024,7 +46024,7 @@ LAB_18086a072:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -46094,7 +46094,7 @@ LAB_18086a072:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -46167,7 +46167,7 @@ LAB_18086a072:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -46182,7 +46182,7 @@ void FUN_18086a0df(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -46195,7 +46195,7 @@ void FUN_18086a0ee(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -46279,7 +46279,7 @@ LAB_18086a272:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -46349,7 +46349,7 @@ LAB_18086a272:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -46422,7 +46422,7 @@ LAB_18086a272:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -46437,7 +46437,7 @@ void FUN_18086a2df(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -46450,7 +46450,7 @@ void FUN_18086a2ee(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -46534,7 +46534,7 @@ LAB_18086a472:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -46604,7 +46604,7 @@ LAB_18086a472:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -46677,7 +46677,7 @@ LAB_18086a472:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -46692,7 +46692,7 @@ void FUN_18086a4df(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -46705,7 +46705,7 @@ void FUN_18086a4ee(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -46789,7 +46789,7 @@ LAB_18086a672:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -46859,7 +46859,7 @@ LAB_18086a672:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -46932,7 +46932,7 @@ LAB_18086a672:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -46947,7 +46947,7 @@ void FUN_18086a6df(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -46960,7 +46960,7 @@ void FUN_18086a6ee(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -47044,7 +47044,7 @@ LAB_18086a872:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -47114,7 +47114,7 @@ LAB_18086a872:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -47187,7 +47187,7 @@ LAB_18086a872:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -47202,7 +47202,7 @@ void FUN_18086a8df(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -47215,7 +47215,7 @@ void FUN_18086a8ee(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -47299,7 +47299,7 @@ LAB_18086aa72:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -47369,7 +47369,7 @@ LAB_18086aa72:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -47442,7 +47442,7 @@ LAB_18086aa72:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -47457,7 +47457,7 @@ void FUN_18086aadf(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -47470,7 +47470,7 @@ void FUN_18086aaee(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -47554,7 +47554,7 @@ LAB_18086ac58:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -47624,7 +47624,7 @@ LAB_18086ac58:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -47697,7 +47697,7 @@ LAB_18086ac58:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -47712,7 +47712,7 @@ void FUN_18086acbc(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -47725,7 +47725,7 @@ void FUN_18086accb(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -47809,7 +47809,7 @@ LAB_18086ae38:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -47879,7 +47879,7 @@ LAB_18086ae38:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -47952,7 +47952,7 @@ LAB_18086ae38:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -47967,7 +47967,7 @@ void FUN_18086ae9c(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -47980,7 +47980,7 @@ void FUN_18086aeab(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -48064,7 +48064,7 @@ LAB_18086b032:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -48134,7 +48134,7 @@ LAB_18086b032:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -48207,7 +48207,7 @@ LAB_18086b032:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -48222,7 +48222,7 @@ void FUN_18086b09f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -48235,7 +48235,7 @@ void FUN_18086b0ae(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -48319,7 +48319,7 @@ LAB_18086b232:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -48389,7 +48389,7 @@ LAB_18086b232:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -48462,7 +48462,7 @@ LAB_18086b232:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -48477,7 +48477,7 @@ void FUN_18086b29f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -48490,7 +48490,7 @@ void FUN_18086b2ae(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -48574,7 +48574,7 @@ LAB_18086b418:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -48644,7 +48644,7 @@ LAB_18086b418:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -48717,7 +48717,7 @@ LAB_18086b418:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -48732,7 +48732,7 @@ void FUN_18086b47c(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -48745,7 +48745,7 @@ void FUN_18086b48b(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -48829,7 +48829,7 @@ LAB_18086b612:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -48899,7 +48899,7 @@ LAB_18086b612:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -48972,7 +48972,7 @@ LAB_18086b612:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -48987,7 +48987,7 @@ void FUN_18086b67f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -49000,7 +49000,7 @@ void FUN_18086b68e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -49084,7 +49084,7 @@ LAB_18086b812:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -49154,7 +49154,7 @@ LAB_18086b812:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -49227,7 +49227,7 @@ LAB_18086b812:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -49242,7 +49242,7 @@ void FUN_18086b87f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -49255,7 +49255,7 @@ void FUN_18086b88e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -49339,7 +49339,7 @@ LAB_18086b9f8:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -49409,7 +49409,7 @@ LAB_18086b9f8:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -49482,7 +49482,7 @@ LAB_18086b9f8:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -49497,7 +49497,7 @@ void FUN_18086ba5c(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -49510,7 +49510,7 @@ void FUN_18086ba6b(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -49594,7 +49594,7 @@ LAB_18086bbf2:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -49664,7 +49664,7 @@ LAB_18086bbf2:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -49737,7 +49737,7 @@ LAB_18086bbf2:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -49752,7 +49752,7 @@ void FUN_18086bc5f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -49765,7 +49765,7 @@ void FUN_18086bc6e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -49849,7 +49849,7 @@ LAB_18086bdf2:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -49919,7 +49919,7 @@ LAB_18086bdf2:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -49992,7 +49992,7 @@ LAB_18086bdf2:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -50007,7 +50007,7 @@ void FUN_18086be5f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -50020,7 +50020,7 @@ void FUN_18086be6e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -50104,7 +50104,7 @@ LAB_18086bff2:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -50174,7 +50174,7 @@ LAB_18086bff2:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -50247,7 +50247,7 @@ LAB_18086bff2:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -50262,7 +50262,7 @@ void FUN_18086c05f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -50275,7 +50275,7 @@ void FUN_18086c06e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -50359,7 +50359,7 @@ LAB_18086c1f2:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -50429,7 +50429,7 @@ LAB_18086c1f2:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -50502,7 +50502,7 @@ LAB_18086c1f2:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -50517,7 +50517,7 @@ void FUN_18086c25f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -50530,7 +50530,7 @@ void FUN_18086c26e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -50614,7 +50614,7 @@ LAB_18086c3d8:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -50684,7 +50684,7 @@ LAB_18086c3d8:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -50757,7 +50757,7 @@ LAB_18086c3d8:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -50772,7 +50772,7 @@ void FUN_18086c43c(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -50785,7 +50785,7 @@ void FUN_18086c44b(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -50869,7 +50869,7 @@ LAB_18086c5d2:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -50939,7 +50939,7 @@ LAB_18086c5d2:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -51012,7 +51012,7 @@ LAB_18086c5d2:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -51027,7 +51027,7 @@ void FUN_18086c63f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -51040,7 +51040,7 @@ void FUN_18086c64e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -51124,7 +51124,7 @@ LAB_18086c7d2:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -51194,7 +51194,7 @@ LAB_18086c7d2:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -51267,7 +51267,7 @@ LAB_18086c7d2:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -51282,7 +51282,7 @@ void FUN_18086c83f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -51295,7 +51295,7 @@ void FUN_18086c84e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -51379,7 +51379,7 @@ LAB_18086c9d2:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -51449,7 +51449,7 @@ LAB_18086c9d2:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -51522,7 +51522,7 @@ LAB_18086c9d2:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -51537,7 +51537,7 @@ void FUN_18086ca3f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -51550,7 +51550,7 @@ void FUN_18086ca4e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -51634,7 +51634,7 @@ LAB_18086cbd2:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -51704,7 +51704,7 @@ LAB_18086cbd2:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -51777,7 +51777,7 @@ LAB_18086cbd2:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -51792,7 +51792,7 @@ void FUN_18086cc3f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -51805,7 +51805,7 @@ void FUN_18086cc4e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -51889,7 +51889,7 @@ LAB_18086cdd2:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -51959,7 +51959,7 @@ LAB_18086cdd2:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -52032,7 +52032,7 @@ LAB_18086cdd2:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -52047,7 +52047,7 @@ void FUN_18086ce3f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -52060,7 +52060,7 @@ void FUN_18086ce4e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -52144,7 +52144,7 @@ LAB_18086cfd2:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -52214,7 +52214,7 @@ LAB_18086cfd2:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -52287,7 +52287,7 @@ LAB_18086cfd2:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -52302,7 +52302,7 @@ void FUN_18086d03f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -52315,7 +52315,7 @@ void FUN_18086d04e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -52399,7 +52399,7 @@ LAB_18086d1d2:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -52469,7 +52469,7 @@ LAB_18086d1d2:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -52542,7 +52542,7 @@ LAB_18086d1d2:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -52557,7 +52557,7 @@ void FUN_18086d23f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -52570,7 +52570,7 @@ void FUN_18086d24e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -52654,7 +52654,7 @@ LAB_18086d3d2:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_98);
 }
 
 
@@ -52724,7 +52724,7 @@ LAB_18086d3d2:
     } while (iVar4 < iVar5);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -52797,7 +52797,7 @@ LAB_18086d3d2:
     unaff_R14 = puStackX_20;
     if (unaff_EDI <= unaff_ESI) {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -52812,7 +52812,7 @@ void FUN_18086d43f(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -52825,7 +52825,7 @@ void FUN_18086d44e(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -60693,7 +60693,7 @@ LAB_180876d05:
 FUN_180876d27:
   FUN_1808dc190(auStack_3e8);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_9c8);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_9c8);
 LAB_1808769aa:
   uVar15 = puVar2[0x55];
   do {
@@ -61046,7 +61046,7 @@ LAB_180876d05:
   FUN_180873cd0(unaff_RBP + -0xf);
   FUN_1808dc190(unaff_RBP + 0x9c);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(unaff_RBP[0x110] ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(unaff_RBP[0x110] ^ (ulonglong)&stack0x00000000);
 LAB_1808769aa:
   uVar12 = unaff_RSI[0x55];
   do {
@@ -61130,7 +61130,7 @@ void FUN_180876d27(void)
   
   FUN_1808dc190(unaff_RBP + 0x4e0);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x880) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x880) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -61151,7 +61151,7 @@ void FUN_180876d54(void)
   FUN_180873cd0(unaff_RBP + -0x78);
   FUN_1808dc190(unaff_RBP + 0x4e0);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x880) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x880) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -61221,7 +61221,7 @@ void network_process_connection_state(longlong param_1,longlong *param_2)
   }
 LAB_180876e6f:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (ulonglong)auStack_58);
+  network_data_encrypt_decrypt(uStack_10 ^ (ulonglong)auStack_58);
 }
 
 
@@ -61267,7 +61267,7 @@ void network_configure_socket_options(longlong param_1,longlong *param_2)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_38 ^ (ulonglong)auStack_98);
 }
 
 
@@ -61445,7 +61445,7 @@ LAB_1808770de:
   }
 LAB_18087752c:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_158);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_158);
 }
 
 
@@ -61539,7 +61539,7 @@ void FUN_180877560(longlong *param_1,longlong *param_2,longlong *param_3)
     } while (lVar9 < lVar7);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_118);
+  network_data_encrypt_decrypt(uStack_58 ^ (ulonglong)auStack_118);
 }
 
 
@@ -61602,7 +61602,7 @@ void FUN_1808775bf(longlong *param_1,undefined8 param_2,undefined8 param_3,longl
     } while (lVar8 < unaff_RBX);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000c0 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_000000c0 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -61615,7 +61615,7 @@ void FUN_180877798(void)
   ulonglong in_stack_000000c0;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000c0 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_000000c0 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -61699,7 +61699,7 @@ void network_initialize_connection_state(longlong param_1,longlong *param_2)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_40 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_40 ^ (ulonglong)auStack_98);
 }
 
 
@@ -61870,7 +61870,7 @@ LAB_180877e87:
     FUN_1808744f0(&lStack_d0);
     FUN_180744cc0(&lStack_e0);
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_158);
+    network_data_encrypt_decrypt(uStack_58 ^ (ulonglong)auStack_158);
   }
   plStack_80 = &lStack_e0;
   uStack_78 = 0xffffffffffffffff;
@@ -61973,7 +61973,7 @@ void network_validate_connection_parameters(longlong param_1,longlong *param_2)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulonglong)auStack_c8);
+  network_data_encrypt_decrypt(uStack_30 ^ (ulonglong)auStack_c8);
 }
 
 
@@ -62066,7 +62066,7 @@ void network_establish_secure_connection(longlong param_1,longlong *param_2)
   }
 LAB_18087811f:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (ulonglong)auStack_58);
+  network_data_encrypt_decrypt(uStack_10 ^ (ulonglong)auStack_58);
 }
 
 
@@ -62277,7 +62277,7 @@ LAB_180878734:
   FUN_1808745b0(alStack_90);
   FUN_180744cc0(&lStack_a0);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_40 ^ (ulonglong)auStack_118);
+  network_data_encrypt_decrypt(uStack_40 ^ (ulonglong)auStack_118);
 LAB_1808786c3:
   if ((aiStack_a8[0] != -1) &&
      (aiStack_a8[0] = *(int *)(alStack_78[0] + 0x10 + plStack_68[2]), aiStack_a8[0] != -1))
@@ -62502,7 +62502,7 @@ LAB_180878734:
   FUN_1808745b0(unaff_RBP + -0x31);
   FUN_180744cc0(unaff_RBP + -0x41);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x1f) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x1f) ^ (ulonglong)&stack0x00000000);
 LAB_1808786c3:
   plVar17 = *(longlong **)(unaff_RBP + -9);
   if (*(int *)(unaff_RBP + -0x49) != -1) {
@@ -62554,7 +62554,7 @@ void FUN_180878771(void)
   FUN_1808745b0(unaff_RBP + -0x31);
   FUN_180744cc0(unaff_RBP + -0x41);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x1f) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x1f) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -62599,7 +62599,7 @@ LAB_180878734:
     FUN_1808745b0(unaff_RBP + -0x31);
     FUN_180744cc0(unaff_RBP + -0x41);
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x1f) ^ (ulonglong)&stack0x00000000);
+    network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x1f) ^ (ulonglong)&stack0x00000000);
   }
 LAB_1808784c1:
   lVar9 = param_4[2];
@@ -63075,7 +63075,7 @@ LAB_1808788de:
   }
 FUN_18087920b:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_138);
+  network_data_encrypt_decrypt(uStack_58 ^ (ulonglong)auStack_138);
 }
 
 
@@ -63370,7 +63370,7 @@ void FUN_1808789b7(float param_1)
   }
 LAB_180879203:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x11) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + -0x11) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -63383,7 +63383,7 @@ void FUN_18087920b(void)
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x11) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + -0x11) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -63628,7 +63628,7 @@ LAB_180878d26:
   }
 LAB_180879203:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + -0x11) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + -0x11) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -63685,7 +63685,7 @@ void FUN_180879270(longlong param_1,longlong *param_2)
   *(uint *)(param_1 + 0xb8) = *(uint *)(param_1 + 0xb8) | 1;
 LAB_180879390:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_40 ^ (ulonglong)auStack_d8);
+  network_data_encrypt_decrypt(uStack_40 ^ (ulonglong)auStack_d8);
 }
 
 
@@ -64594,8 +64594,8 @@ void FUN_180879ec0(longlong *param_1)
 
 
 
-// 函数: void FUN_180879ef0(longlong *param_1)
-void FUN_180879ef0(longlong *param_1)
+// 函数: void network_error_detect_tertiary(longlong *param_1)
+void network_error_detect_tertiary(longlong *param_1)
 
 {
   undefined8 uVar1;
@@ -65132,7 +65132,7 @@ void FUN_18087a790(longlong param_1,undefined8 param_2)
     FUN_18084b240(param_2,auStack_38);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (ulonglong)auStack_58);
+  network_data_encrypt_decrypt(uStack_10 ^ (ulonglong)auStack_58);
 }
 
 
@@ -69953,7 +69953,7 @@ int FUN_18087e0b0(longlong param_1,longlong param_2,longlong param_3,longlong *p
   uStack_68 = 0;
   lStack_60 = 0;
   uStack_58 = 0;
-  iVar3 = FUN_180849030(&lStack_70,0x200);
+  iVar3 = network_connection_init(&lStack_70,0x200);
   if (iVar3 == 0) {
     if ((int)uStack_68 < 0x200) {
                     // WARNING: Subroutine does not return
@@ -69964,7 +69964,7 @@ int FUN_18087e0b0(longlong param_1,longlong param_2,longlong param_3,longlong *p
     if (uStack_58 < 0) {
       iVar3 = -uStack_58._4_4_;
     }
-    if ((iVar3 < 0x200) && (iVar3 = FUN_180849030(&lStack_60,0x200), iVar3 != 0))
+    if ((iVar3 < 0x200) && (iVar3 = network_connection_init(&lStack_60,0x200), iVar3 != 0))
     goto LAB_18087e17a;
     if ((int)uStack_58 < 0x200) {
                     // WARNING: Subroutine does not return
@@ -72727,7 +72727,7 @@ LAB_1808820ec:
 LAB_1808820fa:
   if (lVar1 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(uStack_40 ^ (ulonglong)auStack_78);
+    network_data_encrypt_decrypt(uStack_40 ^ (ulonglong)auStack_78);
   }
                     // WARNING: Subroutine does not return
   FUN_180768400(lVar1);
@@ -72817,7 +72817,7 @@ LAB_1808820ec:
 LAB_1808820fa:
   if (unaff_R15 == 0) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(param_7 ^ (ulonglong)&stack0x00000000);
+    network_data_encrypt_decrypt(param_7 ^ (ulonglong)&stack0x00000000);
   }
                     // WARNING: Subroutine does not return
   FUN_180768400();
@@ -72862,7 +72862,7 @@ code_r0x000180882143:
 LAB_1808820fa:
       if (unaff_R15 == 0) {
                     // WARNING: Subroutine does not return
-        FUN_1808fc050(in_stack_00000038 ^ (ulonglong)&stack0x00000000);
+        network_data_encrypt_decrypt(in_stack_00000038 ^ (ulonglong)&stack0x00000000);
       }
                     // WARNING: Subroutine does not return
       FUN_180768400();
@@ -73304,7 +73304,7 @@ LAB_18088254f:
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_38 ^ (ulonglong)auStack_98);
 }
 
 
@@ -73398,7 +73398,7 @@ LAB_18088254f:
     uVar6 = extraout_XMM0_Da_00;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x27) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x27) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -73411,7 +73411,7 @@ void FUN_1808825ef(void)
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x27) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x27) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -82738,7 +82738,7 @@ void FUN_18088af30(longlong param_1,undefined8 param_2,undefined1 param_3)
   }
 FUN_18088b503:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_2b8);
+  network_data_encrypt_decrypt(uStack_38 ^ (ulonglong)auStack_2b8);
 }
 
 
@@ -82907,7 +82907,7 @@ void FUN_18088afd0(void)
   }
 LAB_18088b4fb:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x180) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x180) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -82920,7 +82920,7 @@ void FUN_18088b503(void)
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x180) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x180) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -83347,7 +83347,7 @@ void FUN_18088bf80(longlong param_1,undefined8 param_2,undefined8 param_3)
       if (iVar5 < 0x40) {
         iVar5 = 0x40;
       }
-      iVar5 = FUN_180849030(lVar1,iVar5);
+      iVar5 = network_connection_init(lVar1,iVar5);
       if (iVar5 != 0) {
         return;
       }
@@ -84501,7 +84501,7 @@ void FUN_18088d510(longlong param_1)
   do {
     if (cVar2 != '\0') {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_158);
+      network_data_encrypt_decrypt(uStack_28 ^ (ulonglong)auStack_158);
     }
     *(undefined1 *)(param_1 + 0x18a) = 1;
     FUN_180768940(*(undefined8 *)(param_1 + 0x170));
@@ -84589,7 +84589,7 @@ void FUN_18088d575(void)
     }
     if (*(char *)(unaff_RDI + 0x189) != '\0') {
                     // WARNING: Subroutine does not return
-      FUN_1808fc050(in_stack_00000130 ^ (ulonglong)&stack0x00000000);
+      network_data_encrypt_decrypt(in_stack_00000130 ^ (ulonglong)&stack0x00000000);
     }
   } while( true );
 }
@@ -84604,7 +84604,7 @@ void FUN_18088d6fc(void)
   ulonglong in_stack_00000130;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000130 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000130 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -85140,7 +85140,7 @@ void FUN_18088dd60(longlong param_1,longlong *param_2)
   }
 LAB_18088de99:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_178);
+  network_data_encrypt_decrypt(uStack_38 ^ (ulonglong)auStack_178);
 }
 
 
@@ -85199,7 +85199,7 @@ void FUN_18088de97(void)
   ulonglong in_stack_00000140;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000140 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -86471,7 +86471,7 @@ void FUN_18088f1a0(undefined8 param_1,longlong param_2)
     *(undefined1 *)(param_2 + 0xf) = auStack_12[0];
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (ulonglong)auStack_98);
+  network_data_encrypt_decrypt(uStack_10 ^ (ulonglong)auStack_98);
 }
 
 
@@ -88201,7 +88201,7 @@ void FUN_1808900e0(longlong param_1,longlong param_2)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_278);
+  network_data_encrypt_decrypt(uStack_38 ^ (ulonglong)auStack_278);
 }
 
 
@@ -88250,7 +88250,7 @@ void FUN_18089011d(void)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000240 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000240 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -88263,7 +88263,7 @@ void FUN_18089022b(void)
   ulonglong in_stack_00000240;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000240 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000240 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -88282,7 +88282,7 @@ void FUN_180890246(void)
   }
   FUN_18085dbf0(&stack0x00000030);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000240 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000240 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -91095,7 +91095,7 @@ void FUN_180892410(longlong param_1,longlong param_2)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_68);
+  network_data_encrypt_decrypt(uStack_18 ^ (ulonglong)auStack_68);
 }
 
 
@@ -91118,7 +91118,7 @@ void FUN_18089246a(longlong *param_1,longlong param_2)
   plVar2 = (longlong *)(lVar1 + 0x58);
   if (((longlong *)*plVar2 == plVar2) && (*(longlong **)(lVar1 + 0x60) == plVar2)) {
                     // WARNING: Subroutine does not return
-    FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+    network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
   }
                     // WARNING: Subroutine does not return
   FUN_18088d720(*(undefined8 *)(unaff_RDI + NETWORK_OFFSET_MEMORY_EXTENDED));
@@ -91134,7 +91134,7 @@ void FUN_1808924c8(void)
   ulonglong in_stack_00000050;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000050 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -91939,7 +91939,7 @@ void FUN_180892e50(longlong param_1,undefined8 param_2)
     FUN_1808fd200(lVar2,uVar3 & 0xfffffffffffffff0);
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_30 ^ (ulonglong)alStack_58);
+  network_data_encrypt_decrypt(uStack_30 ^ (ulonglong)alStack_58);
 }
 
 
@@ -93284,7 +93284,7 @@ void FUN_180894860(longlong param_1,undefined4 *param_2,longlong *param_3)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_c8);
+  network_data_encrypt_decrypt(uStack_18 ^ (ulonglong)auStack_c8);
 }
 
 
@@ -93308,7 +93308,7 @@ void FUN_18089494e(void)
   ulonglong in_stack_000000b0;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000b0 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_000000b0 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -93369,7 +93369,7 @@ void FUN_1808949c0(longlong param_1,undefined4 *param_2,longlong *param_3)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_10 ^ (ulonglong)auStack_b8);
+  network_data_encrypt_decrypt(uStack_10 ^ (ulonglong)auStack_b8);
 }
 
 
@@ -93401,7 +93401,7 @@ void FUN_180894a07(ulonglong param_1)
   *unaff_RSI = lVar2;
 LAB_180894aca:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -93414,7 +93414,7 @@ void FUN_180894ad2(void)
   ulonglong in_stack_000000a8;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_000000a8 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -93476,7 +93476,7 @@ void FUN_180894b00(longlong param_1,undefined4 *param_2,longlong *param_3)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_c8);
+  network_data_encrypt_decrypt(uStack_18 ^ (ulonglong)auStack_c8);
 }
 
 
@@ -93508,7 +93508,7 @@ void FUN_180894bf5(void)
     *unaff_RDI = lStack0000000000000080;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_000000b0 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_000000b0 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -93786,7 +93786,7 @@ undefined8 FUN_180894fb0(longlong param_1)
   }
   *(undefined4 *)(param_1 + 0x10) = 0;
   if ((0 < (int)((uVar4 ^ (int)uVar4 >> 0x1f) - ((int)uVar4 >> 0x1f))) &&
-     (uVar3 = FUN_180849030(plVar1,0), (int)uVar3 != 0)) {
+     (uVar3 = network_connection_init(plVar1,0), (int)uVar3 != 0)) {
     return uVar3;
   }
   return 0;
@@ -94149,7 +94149,7 @@ LAB_18089555d:
   }
 FUN_180895b89:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_48 ^ (ulonglong)auStack_738);
+  network_data_encrypt_decrypt(uStack_48 ^ (ulonglong)auStack_738);
 }
 
 
@@ -94266,7 +94266,7 @@ LAB_18089555d:
   *unaff_R13 = 0;
 LAB_180895b69:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x5f0) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x5f0) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -94279,7 +94279,7 @@ void FUN_180895b89(void)
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x5f0) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x5f0) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -95772,7 +95772,7 @@ LAB_180896ce3:
   }
 FUN_1808974f4:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_328);
+  network_data_encrypt_decrypt(uStack_58 ^ (ulonglong)auStack_328);
 }
 
 
@@ -96066,7 +96066,7 @@ void FUN_180896e11(void)
   }
 LAB_1808974ec:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x1d0) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x1d0) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -96079,7 +96079,7 @@ void FUN_1808974f4(void)
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x1d0) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x1d0) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -96109,7 +96109,7 @@ void FUN_180897520(longlong *param_1,longlong *param_2)
     }
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_248);
+  network_data_encrypt_decrypt(uStack_28 ^ (ulonglong)auStack_248);
 }
 
 
@@ -96134,7 +96134,7 @@ void FUN_180897560(void)
     *(undefined1 *)(unaff_RDI + 4) = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000220 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000220 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -96153,7 +96153,7 @@ void FUN_1808975a6(void)
     *(undefined1 *)(unaff_RDI + 4) = 0;
   }
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(in_stack_00000220 ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(in_stack_00000220 ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -96400,7 +96400,7 @@ void FUN_1808975e0(longlong param_1,longlong param_2)
   }
 FUN_180897b16:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_58 ^ (ulonglong)auStack_1e8);
+  network_data_encrypt_decrypt(uStack_58 ^ (ulonglong)auStack_1e8);
 }
 
 
@@ -96662,7 +96662,7 @@ void FUN_180897644(void)
   }
 FUN_180897b0e:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(unaff_RBP[0x12] ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(unaff_RBP[0x12] ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -96906,7 +96906,7 @@ void FUN_1808976b0(void)
   }
 FUN_180897afe:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(unaff_RBP[0x12] ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(unaff_RBP[0x12] ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -97038,7 +97038,7 @@ void FUN_180897859(float param_1)
   }
 LAB_180897af6:
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -97051,7 +97051,7 @@ void FUN_180897afe(void)
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -97064,7 +97064,7 @@ void FUN_180897b0e(void)
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -97077,7 +97077,7 @@ void FUN_180897b16(void)
   longlong unaff_RBP;
   
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
+  network_data_encrypt_decrypt(*(ulonglong *)(unaff_RBP + 0x90) ^ (ulonglong)&stack0x00000000);
 }
 
 
@@ -97125,7 +97125,7 @@ void FUN_180897b40(longlong *param_1,longlong param_2,undefined4 param_3)
       if (iVar3 != 0) {
 LAB_180897ce8:
                     // WARNING: Subroutine does not return
-        FUN_1808fc050(uStack_38 ^ (ulonglong)auStack_2a8);
+        network_data_encrypt_decrypt(uStack_38 ^ (ulonglong)auStack_2a8);
       }
       uStack_24c = *(undefined4 *)(lVar1 + 0x10);
       uStack_248 = *(undefined4 *)(lVar1 + 0x14);
@@ -97189,7 +97189,7 @@ void FUN_180897d20(longlong *param_1,undefined8 param_2,undefined8 param_3,undef
   FUN_18076b930(auStack_418,0x400,param_2,&uStackX_18);
   (**(code **)(*param_1 + 8))(param_1,auStack_418);
                     // WARNING: Subroutine does not return
-  FUN_1808fc050(uStack_18 ^ (ulonglong)auStack_438);
+  network_data_encrypt_decrypt(uStack_18 ^ (ulonglong)auStack_438);
 }
 
 
@@ -97657,14 +97657,14 @@ void FUN_1808986b0(longlong param_1,undefined8 param_2)
     if (iVar3 < 0x40) {
       iVar3 = 0x40;
     }
-    iVar3 = FUN_180849030(param_1 + NETWORK_OFFSET_POINTER_SIZE,iVar3);
+    iVar3 = network_connection_init(param_1 + NETWORK_OFFSET_POINTER_SIZE,iVar3);
     if (iVar3 != 0) {
       return;
     }
   }
   uVar5 = (int)*(uint *)(param_1 + 0x34) >> 0x1f;
   if (((int)((*(uint *)(param_1 + 0x34) ^ uVar5) - uVar5) < iVar6) &&
-     (iVar3 = FUN_180849030(param_1 + NETWORK_OFFSET_POINTER_SIZE,iVar6), iVar3 != 0)) {
+     (iVar3 = network_connection_init(param_1 + NETWORK_OFFSET_POINTER_SIZE,iVar6), iVar3 != 0)) {
     return;
   }
   iVar3 = *(int *)(param_1 + 0x30);
@@ -97688,7 +97688,7 @@ undefined8 FUN_180898790(longlong *param_1,int param_2)
   
   uVar3 = (int)*(uint *)((longlong)param_1 + 0xc) >> 0x1f;
   if (((int)((*(uint *)((longlong)param_1 + 0xc) ^ uVar3) - uVar3) < param_2) &&
-     (uVar2 = FUN_180849030(param_1,param_2), (int)uVar2 != 0)) {
+     (uVar2 = network_connection_init(param_1,param_2), (int)uVar2 != 0)) {
     return uVar2;
   }
   iVar1 = (int)param_1[1];
@@ -99039,7 +99039,7 @@ undefined8 FUN_1808997f0(undefined8 param_1,longlong *param_2)
     iVar5 = aiStackX_18[0] + 1;
     uVar3 = (int)*(uint *)((longlong)param_2 + 0xc) >> 0x1f;
     if (((int)((*(uint *)((longlong)param_2 + 0xc) ^ uVar3) - uVar3) < iVar5) &&
-       (uVar2 = FUN_180849030(param_2,iVar5), (int)uVar2 != 0)) {
+       (uVar2 = network_connection_init(param_2,iVar5), (int)uVar2 != 0)) {
       return uVar2;
     }
     iVar1 = (int)param_2[1];
@@ -99076,7 +99076,7 @@ undefined8 FUN_180899816(void)
     iVar4 = in_stack_00000040 + 1;
     uVar3 = (int)*(uint *)((longlong)unaff_RBX + 0xc) >> 0x1f;
     if (((int)((*(uint *)((longlong)unaff_RBX + 0xc) ^ uVar3) - uVar3) < iVar4) &&
-       (uVar2 = FUN_180849030(), (int)uVar2 != 0)) {
+       (uVar2 = network_connection_init(), (int)uVar2 != 0)) {
       return uVar2;
     }
     iVar1 = (int)unaff_RBX[1];
@@ -102748,7 +102748,7 @@ void FUN_18089be10(longlong param_1,undefined8 *param_2,int param_3)
   lVar6 = (longlong)(int)auStackX_8[0];
   uVar4 = (int)*(uint *)(param_1 + 0x2c) >> 0x1f;
   if (((int)((*(uint *)(param_1 + 0x2c) ^ uVar4) - uVar4) < (int)auStackX_8[0]) &&
-     (iVar2 = FUN_180849030(param_1 + NETWORK_OFFSET_DATA_HEADER,auStackX_8[0]), iVar2 != 0)) {
+     (iVar2 = network_connection_init(param_1 + NETWORK_OFFSET_DATA_HEADER,auStackX_8[0]), iVar2 != 0)) {
     return;
   }
   iVar2 = *(int *)(param_1 + NETWORK_OFFSET_POINTER_SIZE);
@@ -102857,7 +102857,7 @@ void FUN_18089be41(void)
   lVar5 = (longlong)(int)in_stack_00000050;
   uVar3 = (int)*(uint *)(unaff_R15 + 0x2c) >> 0x1f;
   if (((int)((*(uint *)(unaff_R15 + 0x2c) ^ uVar3) - uVar3) < (int)in_stack_00000050) &&
-     (iVar2 = FUN_180849030(unaff_R15 + NETWORK_OFFSET_DATA_HEADER,in_stack_00000050), iVar2 != 0)) {
+     (iVar2 = network_connection_init(unaff_R15 + NETWORK_OFFSET_DATA_HEADER,in_stack_00000050), iVar2 != 0)) {
     return;
   }
   iVar2 = *(int *)(unaff_R15 + NETWORK_OFFSET_POINTER_SIZE);
