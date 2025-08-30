@@ -34327,7 +34327,7 @@ void InitializeSystemModule41(void)
 void ConfigureSystemParameters(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint32_t systemConfig,uint64_t systemFlags)
 
 {
-  InitializeSystemModule41(handleIdentifier,resourceIdentifier,0xffffffff00000000,systemConfig,systemFlags,&stack0x00000028);
+  InitializeSystemModule41(handleIdentifier,resourceIdentifier,0xffffffff00000000,systemConfig,systemFlags,&init_stack_uint_28);
   return;
 }
 // void ConfigureSystemModule17(uint64_t handleIdentifier,uint64_t resourceIdentifier,uint64_t systemConfig,uint64_t systemFlags)
