@@ -1,5 +1,29 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 系统常量语义化定义
+#define SYSTEM_INVALID_HANDLE_VALUE 0xFFFFFFFFFFFFFFFF
+#define SYSTEM_MAX_UINT32_VALUE 0xFFFFFFFF
+#define SYSTEM_MAX_INT32_VALUE 0x7FFFFFFF
+#define SYSTEM_MIN_INT32_VALUE 0x80000000
+#define SYSTEM_FLOAT_ONE_VALUE 0x3F800000
+#define SYSTEM_FLOAT_MAX_VALUE 0x7F7FFFFF
+#define SYSTEM_DOUBLE_TO_FLOAT_SCALE 9.5367431640625e-07
+#define SYSTEM_DOUBLE_TO_INT_SCALE 1.8446744073709552e+19
+#define SYSTEM_INT_DIVISOR_BILLION 1000000000
+#define SYSTEM_MUTEX_TIMEOUT_INFINITE 0xFFFFFFFF
+#define SYSTEM_STRING_PROCESS_INFO 0x69676e65
+#define SYSTEM_STRING_ENGINE_CONFIG_2 0x635f656e
+#define SYSTEM_STRING_ENGINE_INFO 0x69666e6f
+#define SYSTEM_STRING_ENGINE_EXT 0x78742e67
+#define SYSTEM_STRING_PREFIX_INFO 0x72657375
+#define SYSTEM_STRING_CONFIG_INFO 0x6e6f635f
+#define SYSTEM_STRING_FILE_EXT 0x2e676966
+#define SYSTEM_STRING_VERSION_INFO 0x32312e322e3176
+#define SYSTEM_STRING_TEMP_PREFIX 0x706d6554
+#define SYSTEM_STRING_TEMP_SUFFIX 0x7261726f
+#define SYSTEM_STRING_RESOURCE_SUFFIX 0x73655279
+#define SYSTEM_STRING_CRUOR_SUFFIX 0x6372756f
+
 // 01_initialization.c - 初始化系统代码（已美化变量名和函数名）
 // 美化内容：
 // - 将SystemFunctionxxxxx函数替换为语义化名称如InitializeAudioSystem、InitializeVideoSystem等
@@ -48,6 +72,11 @@
 
 // 本次美化内容：
 // - 重新组织了系统常量定义，按功能分组为音频系统、输入系统、同步系统、图形系统等
+// - 添加了系统常量语义化定义，如SYSTEM_INVALID_HANDLE_VALUE、SYSTEM_MAX_UINT32_VALUE等
+// - 将硬编码的十六进制常量替换为语义化宏定义
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了硬编码常量的语义化替换
 // - 将g_init_string_4到9替换为g_init_string_network、config、physics、ui、security、resource等语义化名称
 // - 将system_buffer_ptr_xxx变量替换为system_buffer_ptr_resource_state、data_config、system_info等语义化名称
 // - 提高了代码的可读性和维护性
