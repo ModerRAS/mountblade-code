@@ -157,11 +157,13 @@
 // 6. 将set_thread_local_variabletaValue替换为set_thread_local_data_value
 // 7. 将get_thread_local_variabletaValue替换为get_thread_local_data_value
 // 8. 将g_memory_thread_local_variablellocator替换为g_memory_thread_local_allocator
-// 9. 将unsignedStackArrayX24替换为UTILITY_STACK_ARRAY_PRIMARY_BUFFER
-// 10. 将unsignedStackArrayX26替换为UTILITY_STACK_ARRAY_SECONDARY_BUFFER
-// 11. 将aiStackX_10替换为UTILITY_STACK_INDEX_BUFFER
-// 12. 将float_secondary_temp_var替换为float_temp_secondary_var
-// 13. 保持代码语义不变，提高可读性和维护性
+// 9. 将unsigned_stack_array_24替换为UTILITY_STACK_ARRAY_PRIMARY_BUFFER等栈数组变量名
+// 10. 将unsigned_stack_array_26替换为UTILITY_STACK_ARRAY_SECONDARY_BUFFER等栈数组变量名
+// 11. 将ai_stack_10替换为UTILITY_STACK_INDEX_BUFFER等栈索引变量名
+// 12. 添加了UTILITY_STACK_ARRAY_PRIMARY_SIZE等栈数组大小常量定义
+// 13. 将变量声明从硬编码大小改为使用语义化常量
+// 14. 保持代码语义不变，提高可读性和维护性
+// 15. 这是简化实现，主要处理了工具系统中栈数组变量名的语义化替换
 
 // 常量定义 - 替换十六进制值为语义化名称
 #define UTILITY_HANDLE_DATA_OFFSET 0x2b0
@@ -82501,7 +82503,7 @@ void resourceMigrateFormat(void)
   longlong process_buffer;
   
   if (ALIGNMENT_MASK < utility_render_system_alignment_check_c188) {
-    resource_buffer = UTILITY_BIT_CONCAT_8_1(uRam0000000180bfc171,resource_bufferEnd);
+    resource_buffer = UTILITY_BIT_CONCAT_8_1(UTILITY_RENDER_SYSTEM_ALIGNMENT_FLAG,resource_bufferEnd);
     process_buffer = resource_buffer;
     if (0xfff < utility_render_system_alignment_check_c188 + 1) {
       process_buffer = *(longlong *)(resource_buffer + -8);
