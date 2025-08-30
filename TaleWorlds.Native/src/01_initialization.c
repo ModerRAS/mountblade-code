@@ -44724,7 +44724,7 @@ ulonglong InitializeUISystem(uint64_t handleIdentifier,uint64_t resourceIdentifi
   system_long_result_temp = system_configuration_data;
   init_stack_uint_param_30 = SYSTEM_HANDLE_INVALID;
   bStack_d8 = 0;
-  system_node_current = (uint8_t *)register0x00000020;
+  system_node_current = (uint8_t *)SYSTEM_REGISTER_VALUE_GENERAL_PURPOSE_20;
   if (((g_system_string_buffer == SYSTEM_CHAR_NULL_TERMINATOR) ||
       (system_node_current = (uint8_t *)initialize_system_module_twenty_one(resourceIdentifier), (char)system_node_current != SYSTEM_CHAR_NULL_TERMINATOR)) ||
      (system_node_current = (uint8_t *)WaitForSingleObject(inputSystemData,0), (int)system_node_current != SYSTEM_COMPARISON_ZERO)) {
