@@ -91,6 +91,30 @@
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了栈变量名的语义化替换
 
+// 本次美化内容（2025年8月30日）：
+// - 将init_stack_buffer_size_200替换为init_stack_buffer_size_total等缓冲区大小变量名
+// - 将init_stack_data_size_1e8替换为init_stack_data_size_large等数据大小变量名
+// - 将init_stack_memory_offset_1e0替换为init_stack_memory_offset_main等内存偏移量变量名
+// - 将init_stack_config_size_1c8替换为init_stack_config_size_extended等配置大小变量名
+// - 将init_stack_handle_value_1c0替换为init_stack_handle_value_primary等句柄值变量名
+// - 将init_stack_system_param_1b0替换为init_stack_system_param_main等系统参数变量名
+// - 将init_stack_status_flag_1a0替换为init_stack_status_flag_primary等状态标志变量名
+// - 将init_stack_thread_id_198替换为init_stack_thread_id_primary等线程ID变量名
+// - 将init_stack_resource_count_178替换为init_stack_resource_count_total等资源计数变量名
+// - 将init_stack_security_key_28替换为init_stack_security_key_value等安全密钥变量名
+// - 将init_stack_ulong_param_50替换为init_stack_ulong_param_audio等音频参数变量名
+// - 将init_stack_ulong_param_478替换为init_stack_ulong_param_graphics等图形参数变量名
+// - 将init_stack_uint_param_458替换为init_stack_uint_param_config等配置参数变量名
+// - 将system_local_buffer_X8替换为system_local_buffer_small等本地缓冲区变量名
+// - 将system_local_buffer_X10替换为system_local_buffer_medium等中等缓冲区变量名
+// - 将is_initialized6替换为is_initialized_secondary等初始化状态变量名
+// - 将system_status_code_uint32替换为system_status_code_unsigned_int等状态码变量名
+// - 将system_status_code_uint64替换为system_status_code_unsigned_long等长整型状态码变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了栈变量名的语义化替换
+// - 原本实现：完全重构栈变量命名体系
+// - 简化实现：仅将硬编码数字变量名替换为语义化名称
+
 // 新增语义化宏定义
 // 新增语义化宏定义
 #define SYSTEM_DATA_BLOCK_SIZE_70 SYSTEM_MEMORY_POOL_SIZE_SMALL
