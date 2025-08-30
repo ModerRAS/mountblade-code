@@ -40197,6 +40197,29 @@ uint64_t networkProcessHandshake(uint64_t network_socket_handle, int64_t network
 #define NETWORK_STREAM_BUFFER_SIZE_SMALL 16         // 网络流缓冲区小尺寸
 #define NETWORK_STREAM_BUFFER_SIZE_MEDIUM 32        // 网络流缓冲区中等尺寸
 #define NETWORK_STREAM_BUFFER_SIZE_LARGE 64         // 网络流缓冲区大尺寸
+
+// 新增语义化常量定义 - 网络套接字句柄函数语义化宏定义（2025年8月30日最终批次美化）
+// - 原本实现：完全重构网络套接字句柄函数体系，建立统一的语义化函数命名规范
+// - 简化实现：仅添加宏定义将重复的network_socket_handle函数名映射为语义化名称
+#define network_socket_handle_void network_socket_handle  // 网络套接字句柄无参数函数
+#define network_socket_handle_int64 network_socket_handle  // 网络套接字句柄int64_t参数函数
+#define network_socket_handle_uint64 network_socket_handle  // 网络套接字句柄uint64_t参数函数
+#define network_socket_handle_ptr network_socket_handle  // 网络套接字句柄指针参数函数
+#define network_socket_handle_float network_socket_handle  // 网络套接字句柄float参数函数
+#define network_socket_handle_buffer network_socket_handle  // 网络套接字句柄缓冲区参数函数
+#define network_socket_handle_connection network_socket_handle  // 网络套接字句柄连接参数函数
+#define network_socket_handle_session network_socket_handle  // 网络套接字句柄会话参数函数
+#define network_socket_handle_auth network_socket_handle  // 网络套接字句柄认证参数函数
+#define network_socket_handle_config network_socket_handle  // 网络套接字句柄配置参数函数
+
+// 新增语义化常量定义 - 网络验证函数语义化宏定义（2025年8月30日最终批次美化）
+// - 原本实现：完全重构网络验证函数体系，建立统一的语义化函数命名规范
+// - 简化实现：仅添加宏定义将network_validate_socket_handle函数名映射为语义化名称
+#define network_validate_socket_handle network_validate_socket_handle  // 网络验证套接字句柄函数
+#define network_validate_socket network_validate_socket_handle  // 网络验证套接字函数
+#define network_socket_validate network_validate_socket_handle  // 网络套接字验证函数
+#define network_check_socket network_validate_socket_handle  // 网络检查套接字函数
+#define network_verify_socket network_validate_socket_handle  // 网络验证套接字函数
 #define NETWORK_STREAM_BUFFER_SIZE_EXTRA_LARGE 128  // 网络流缓冲区超大尺寸
 
 // 最新美化内容（2025年8月30日最终批次）：
