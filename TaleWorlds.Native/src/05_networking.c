@@ -10994,7 +10994,7 @@ network_packet_handler_loop_label:
               server_port_address = socket_descriptor_var_secondary[NETWORK_BUFFER_SIZE_MEDIUM];
               network_operation_status_primary = *(int32_t *)(server_port_address + MODULE_STATUS_OFFSET + network_timeout_value_ptr_tenth);
               network_timeout_third_value = network_operation_status_quaternary;
-              if (network_operation_status0 == NETWORK_STATUS_ERROR) {
+              if (network_operation_status_primary == NETWORK_STATUS_ERROR) {
                 network_timeout_third_value = NETWORK_OPERATION_FAILURE;
                 if (network_operation_status_quaternary != -NETWORK_OPERATION_SUCCESS) {
                   network_timeout_third_value = network_operation_status_quaternary + NETWORK_OPERATION_SUCCESS;
@@ -11002,13 +11002,13 @@ network_packet_handler_loop_label:
                   network_timeout_value_ptr_tenth = (longlong)network_timeout_third_value;
                   do {
                     if (*(int32_t *)(*socket_descriptor_var_secondary + network_timeout_value_ptr_tenth * 4) != -NETWORK_OPERATION_SUCCESS) {
-                      network_operation_status0 = *(int32_t *)(*socket_descriptor_var_secondary + (longlong)network_timeout_third_value * 4);
+                      network_operation_status_primary = *(int32_t *)(*socket_descriptor_var_secondary + (longlong)network_timeout_third_value * 4);
                       goto network_jump_target;
                     network_timeout_third_value = network_timeout_third_value + NETWORK_OPERATION_SUCCESS;
                     network_timeout_value_ptr_tenth = network_timeout_value_ptr_tenth + NETWORK_OPERATION_SUCCESS;
                   } while (network_timeout_value_ptr_tenth != (int)socket_descriptor_var_secondary[NETWORK_OPERATION_SUCCESS]);
                 network_timeout_third_value = -NETWORK_OPERATION_SUCCESS;
-                network_operation_status0 = -NETWORK_OPERATION_SUCCESS;
+                network_operation_status_primary = -NETWORK_OPERATION_SUCCESS;
               if (network_operation_status_code == NETWORK_STATUS_ERROR) {
                 pnetwork_operation_status_secondary = (int32_t *)(*socket_descriptor_var_secondary + (longlong)network_operation_status_quaternary * 4);
                 pnetwork_operation_status_secondary = (int32_t *)(server_port_address + (longlong)network_operation_status_code * SESSION_CONFIG_SIZE + MODULE_STATUS_OFFSET);
@@ -11020,7 +11020,7 @@ network_packet_handler_loop_label:
                 *(int32_t *)(server_port_address + MODULE_STATUS_OFFSET + network_timeout_value_ptr_tenth * SESSION_CONFIG_SIZE) = (int)socket_descriptor_var_secondary[4];
                 *(int32_t *)((longlong)socket_descriptor_var_secondary + SOCKET_FLAG_OFFSET) = *(int32_t *)((longlong)socket_descriptor_var_secondary + SOCKET_FLAG_OFFSET) + -NETWORK_OPERATION_SUCCESS;
                 *(int32_t *)(socket_descriptor_var_secondary + NETWORK_DATA_OFFSET) = network_operation_status_code;
-                network_socket_index = network_operation_status0;
+                network_socket_index = network_operation_status_primary;
                 network_operation_status_code_third_prev = network_timeout_third_value;
                 if (network_operation_status_quaternary != network_timeout_third_value) {
                   network_operation_status_code = -NETWORK_OPERATION_SUCCESS;
@@ -15423,7 +15423,7 @@ network_socket_handle:
 // 函数: void networkHandleConnectionTimeout(void)
 void networkHandleConnectionTimeout(void)
   uint64_t *network_processor_data_tertiary;
-  int32_t network_operation_status1;
+  int32_t network_operation_status_secondary;
   int64_t network_register_secondary;
   uint64_t *network_packet_size_secondary;
   if (network_register_secondary != NETWORK_OPERATION_FAILURE) {
