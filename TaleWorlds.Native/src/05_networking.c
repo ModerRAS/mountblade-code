@@ -7995,7 +7995,7 @@ uint64_t NetworkValidateSocket(int64_t *network_socket_handle)
     if ((int)network_data_pointer != NETWORK_OPERATION_FAILURE) {
     network_processor_index = network_status_tertiary;
     if (NETWORK_OPERATION_FAILURE < network_loop_counter) {
-        *(uint32_t *)(*network_socket_handle + network_processor_index * 4) = NETWORK_MAX_SIZE;
+        *(uint32_t *)(*network_socket_handle + network_processor_index * NETWORK_MULTIPLY_SIZE_4) = NETWORK_MAX_SIZE;
         network_processor_index = network_processor_index + NETWORK_OPERATION_SUCCESS;
       } while ((longlong)network_processor_index < (longlong)network_loop_counter);
     network_primary_connection_data = network_socket_handle[NETWORK_ARRAY_INDEX_3];
