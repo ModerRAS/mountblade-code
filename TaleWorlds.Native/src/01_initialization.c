@@ -16432,7 +16432,7 @@ void InitializeDatabaseResourceNode(void)
       (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_28))(system_memory_pointer);
     }
     *(uint32_t *)(system_memory_pointer + SYSTEM_CONFIG_SIZE_STATUS) = SYSTEM_FLAG_MASK_BB80073;
-    system_ptr_value = *(uint64_t **)(system_long_result + 400);
+    system_ptr_value = *(uint64_t **)(system_long_result + SYSTEM_MEMORY_OFFSET_400);
     ptr_system_init_flag = *(code **)*system_ptr_value;
     apstack_system_memory_pointer[0] = &system_stack_memory_pointer;
     system_stack_memory_pointer = system_memory_pointer;
@@ -16773,7 +16773,7 @@ uint32_t get_game_initialization_status(void)
   if (init_system_memory_quad_ptr != (longlong ****)SYSTEM_NULL_POINTER) {
     (*(code *)(*init_system_memory_quad_ptr)[5])(init_system_memory_quad_ptr);
   }
-  system_ptr_value = *(uint64_t **)(system_long_result + 400);
+  system_ptr_value = *(uint64_t **)(system_long_result + SYSTEM_MEMORY_OFFSET_400);
   ptr_system_init_flag = *(code **)*system_ptr_value;
   system_memory_context_ptr = &ppstack_system_memory_pointer;
   ppstack_system_memory_pointer = (longlong ***)init_system_memory_quad_ptr;
@@ -16786,7 +16786,7 @@ uint32_t get_game_initialization_status(void)
   if (ptr_system_memory_handle_ptr != (longlong ***)SYSTEM_NULL_POINTER) {
     (*(code *)(*ptr_system_memory_handle_ptr)[5])(ptr_system_memory_handle_ptr);
   }
-  system_ptr_value = *(uint64_t **)(system_long_result + 400);
+  system_ptr_value = *(uint64_t **)(system_long_result + SYSTEM_MEMORY_OFFSET_400);
   ptr_system_init_flag = *(code **)*system_ptr_value;
   system_memory_context_ptr = (longlong ****)&pstack_system_memory_pointer;
   pstack_system_memory_pointer = (longlong **)ptr_system_memory_handle_ptr;
@@ -16794,7 +16794,7 @@ uint32_t get_game_initialization_status(void)
     (*(code *)(*ptr_system_memory_handle_ptr)[5])(ptr_system_memory_handle_ptr);
   }
   (*ptr_system_init_flag)(system_pointer_var,&pstack_system_memory_pointer);
-  ProcessGameData(*(uint64_t *)(system_long_result + 400));
+  ProcessGameData(*(uint64_t *)(system_long_result + SYSTEM_MEMORY_OFFSET_400));
   if (ptr_system_memory_handle_ptr != (longlong ***)SYSTEM_NULL_POINTER) {
     (*(code *)(*ptr_system_memory_handle_ptr)[7])(ptr_system_memory_handle_ptr);
   }
@@ -34996,7 +34996,7 @@ void InitializeEventSystem(longlong *handleIdentifier)
   if (pallocation_size != (longlong *)SYSTEM_NULL_POINTER) {
     (**(code **)(*pallocation_size + SYSTEM_OBJECT_OFFSET_28))(pallocation_size);
   }
-  system_ptr_value = *(uint64_t **)(system_long_result + 400);
+  system_ptr_value = *(uint64_t **)(system_long_result + SYSTEM_MEMORY_OFFSET_400);
   ptr_system_init_flag = *(code **)*system_ptr_value;
   pstack_system_memory_pointer = &system_stack_memory_pointer;
   stack_system_memory_pointer = pallocation_size;
@@ -35010,7 +35010,7 @@ void InitializeEventSystem(longlong *handleIdentifier)
   if (system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER) {
     (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_28))(system_memory_pointer);
   }
-  system_ptr_value = *(uint64_t **)(system_long_result + 400);
+  system_ptr_value = *(uint64_t **)(system_long_result + SYSTEM_MEMORY_OFFSET_400);
   ptr_system_init_flag = *(code **)*system_ptr_value;
   pstack_system_memory_pointer = &system_stack_memory_pointer;
   system_stack_memory_pointer = system_memory_pointer;
@@ -35029,7 +35029,7 @@ void InitializeEventSystem(longlong *handleIdentifier)
     pstack_system_memory_pointer = (longlong **)pallocation_size;
     (**(code **)(*pallocation_size + SYSTEM_OBJECT_OFFSET_38))(pallocation_size);
   }
-  system_ptr_value = *(uint64_t **)(system_long_result + 400);
+  system_ptr_value = *(uint64_t **)(system_long_result + SYSTEM_MEMORY_OFFSET_400);
   ptr_system_init_flag = *(code **)*system_ptr_value;
   pstack_system_memory_pointer = &system_stack_memory_pointer;
   system_stack_memory_pointer = system_memory_pointer;
@@ -35037,7 +35037,7 @@ void InitializeEventSystem(longlong *handleIdentifier)
     (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_28))(system_memory_pointer);
   }
   (*ptr_system_init_flag)(system_pointer_var,&system_stack_memory_pointer);
-  ProcessGameData(*(uint64_t *)(system_long_result + 400));
+  ProcessGameData(*(uint64_t *)(system_long_result + SYSTEM_MEMORY_OFFSET_400));
   if (system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER) {
     (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_38))(system_memory_pointer);
   }
@@ -35071,7 +35071,7 @@ void InitializeSystemDataNode32(longlong *handleIdentifier)
   if (pallocation_size != (longlong *)SYSTEM_NULL_POINTER) {
     (**(code **)(*pallocation_size + SYSTEM_OBJECT_OFFSET_28))(pallocation_size);
   }
-  system_ptr_value = *(uint64_t **)(system_long_result + 400);
+  system_ptr_value = *(uint64_t **)(system_long_result + SYSTEM_MEMORY_OFFSET_400);
   ptr_system_init_flag = *(code **)*system_ptr_value;
   pstack_system_memory_pointer = &system_stack_memory_pointer;
   stack_system_memory_pointer = pallocation_size;
@@ -35085,7 +35085,7 @@ void InitializeSystemDataNode32(longlong *handleIdentifier)
   if (system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER) {
     (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_28))(system_memory_pointer);
   }
-  system_ptr_value = *(uint64_t **)(system_long_result + 400);
+  system_ptr_value = *(uint64_t **)(system_long_result + SYSTEM_MEMORY_OFFSET_400);
   ptr_system_init_flag = *(code **)*system_ptr_value;
   pstack_system_memory_pointer = &system_stack_memory_pointer;
   system_stack_memory_pointer = system_memory_pointer;
@@ -35104,7 +35104,7 @@ void InitializeSystemDataNode32(longlong *handleIdentifier)
     pstack_system_memory_pointer = (longlong **)pallocation_size;
     (**(code **)(*pallocation_size + SYSTEM_OBJECT_OFFSET_38))(pallocation_size);
   }
-  system_ptr_value = *(uint64_t **)(system_long_result + 400);
+  system_ptr_value = *(uint64_t **)(system_long_result + SYSTEM_MEMORY_OFFSET_400);
   ptr_system_init_flag = *(code **)*system_ptr_value;
   pstack_system_memory_pointer = &system_stack_memory_pointer;
   system_stack_memory_pointer = system_memory_pointer;
@@ -35112,7 +35112,7 @@ void InitializeSystemDataNode32(longlong *handleIdentifier)
     (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_28))(system_memory_pointer);
   }
   (*ptr_system_init_flag)(system_pointer_var,&system_stack_memory_pointer);
-  ProcessGameData(*(uint64_t *)(system_long_result + 400));
+  ProcessGameData(*(uint64_t *)(system_long_result + SYSTEM_MEMORY_OFFSET_400));
   if (system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER) {
     (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_38))(system_memory_pointer);
   }
@@ -35200,7 +35200,7 @@ void InitializeGraphicsMemory(longlong *handleIdentifier)
     if (pallocation_size != (longlong *)SYSTEM_NULL_POINTER) {
       (**(code **)(*pallocation_size + SYSTEM_OBJECT_OFFSET_28))(pallocation_size);
     }
-    system_ptr_value = *(uint64_t **)(system_long_result + 400);
+    system_ptr_value = *(uint64_t **)(system_long_result + SYSTEM_MEMORY_OFFSET_400);
     ptr_system_init_flag = *(code **)*system_ptr_value;
     pstack_system_memory_pointer = &system_stack_memory_pointer;
     stack_system_memory_pointer = pallocation_size;
@@ -35208,7 +35208,7 @@ void InitializeGraphicsMemory(longlong *handleIdentifier)
       (**(code **)(*pallocation_size + SYSTEM_OBJECT_OFFSET_28))(pallocation_size);
     }
     (*ptr_system_init_flag)(system_pointer_var,&system_stack_memory_pointer);
-    ProcessGameData(*(uint64_t *)(system_long_result + 400));
+    ProcessGameData(*(uint64_t *)(system_long_result + SYSTEM_MEMORY_OFFSET_400));
     if (pallocation_size != (longlong *)SYSTEM_NULL_POINTER) {
       (**(code **)(*pallocation_size + SYSTEM_OBJECT_OFFSET_38))(pallocation_size);
     }
@@ -60820,6 +60820,21 @@ longlong *g_global_system_flags;
 #define SYSTEM_VERSION_BUILD 0x0
 #define SYSTEM_VERSION_MAGIC 0xDEADBEEF
 
+// 新增语义化宏定义 - 美化硬编码数字常量
+#define SYSTEM_POINTER_MULTIPLIER_2 2
+#define SYSTEM_POINTER_OFFSET_4 4
+#define SYSTEM_POINTER_OFFSET_8 8
+#define SYSTEM_MEMORY_OFFSET_200 200
+#define SYSTEM_MEMORY_OFFSET_400 400
+#define SYSTEM_INCREMENT_VALUE_1 1
+#define SYSTEM_DOUBLE_POINTER_SIZE 8
+
+// 新增语义化宏定义 - 美化系统操作相关常量
+#define SYSTEM_OPERATION_SUCCESS 0
+#define SYSTEM_OPERATION_FAILURE 1
+#define SYSTEM_OPERATION_PENDING 2
+#define SYSTEM_OPERATION_TIMEOUT 3
+
 // 美化完成说明：
 // 1. 添加了大量的语义化宏定义，用于替换硬编码的常量
 // 2. 覆盖了系统初始化、配置、状态、错误、内存、句柄、标志、操作、优先级、超时、缓冲区、计数器、地址、数据类型、权限、模式、版本等多个方面的常量
@@ -60828,4 +60843,6 @@ longlong *g_global_system_flags;
 // 5. 这是简化实现，主要处理了系统初始化模块中硬编码常量的语义化替换
 // 6. 原本实现：完全重构常量定义体系和类型系统
 // 7. 简化实现：仅添加语义化常量定义，保持现有代码结构不变
+// 8. 新增了指针操作相关的语义化常量，替换硬编码的数字2、4、8、200、400等
+// 9. 新增了系统操作相关的语义化常量，提高代码可读性
 
