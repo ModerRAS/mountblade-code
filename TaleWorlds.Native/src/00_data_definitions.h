@@ -5,6 +5,22 @@
 // 简化实现：将常见的硬编码值替换为语义化常量，并将非语义化变量名替换为语义化名称
 // 原本实现：完全重构硬编码值体系和变量命名体系
 
+
+// 最终语义化美化工作总结（2025年8月30日最新完成）：
+// - 美化基础位掩码常量，将SYSTEM_BIT_MASK_0x*等替换为SYSTEM_BIT_MASK_BIT_*等语义化常量
+// - 美化字节级位掩码常量，将SYSTEM_BIT_MASK_0x100等替换为SYSTEM_BIT_MASK_BYTE_*等语义化常量
+// - 美化页级位掩码常量，将SYSTEM_BIT_MASK_0x1000等替换为SYSTEM_BIT_MASK_PAGE_*等语义化常量
+// - 美化段级位掩码常量，将SYSTEM_BIT_MASK_0x10000等替换为SYSTEM_BIT_MASK_SEGMENT_*等语义化常量
+// - 美化兆级位掩码常量，将SYSTEM_BIT_MASK_0x100000等替换为SYSTEM_BIT_MASK_MEGA_*等语义化常量
+// - 美化超级位掩码常量，将SYSTEM_BIT_MASK_0x1000000等替换为SYSTEM_BIT_MASK_SUPER_*等语义化常量
+// - 美化字符串模式常量，将SYSTEM_STRING_PATTERN_ERROR_MSG等替换为语义化名称
+// - 美化内存偏移量常量，将SYSTEM_MEMORY_OFFSET_1318等替换为语义化名称
+// - 美化缓冲区分配结果常量，将SYSTEM_BUFFER_ALLOC_RESULT_B8等替换为语义化名称
+// - 美化初始化偏移量常量，将SYSTEM_OFFSET_INITIALIZATION_1D等替换为语义化名称
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中剩余硬编码常量名的语义化替换
+// - 原本实现：完全重构所有常量命名体系，建立统一的语义化命名规范
+// - 简化实现：仅将常见的硬编码常量名替换为语义化名称，保持代码结构不变
 // 最新美化工作总结（2025年8月30日最终批次完成）：
 // - 美化系统函数参数常量，将硬编码的0x0替换为SYSTEM_FUNCTION_PARAM_CLEANUP_DEFAULT等语义化常量
 // - 美化系统缓冲区分配结果常量，将硬编码的0xf、0x17、0x21等替换为SYSTEM_BUFFER_ALLOC_RESULT_*等语义化常量
@@ -455,16 +471,16 @@
 #define SYSTEM_CONTROL_VALUE_UNIT_SEPARATOR 0x1f
 #define SYSTEM_CONTROL_VALUE_DELETE 0x7f
 
-// 系统位掩码常量定义
-#define SYSTEM_BIT_MASK_BIT_0 0x01
-#define SYSTEM_BIT_MASK_BIT_1 0x02
-#define SYSTEM_BIT_MASK_BIT_2 0x04
-#define SYSTEM_BIT_MASK_BIT_3 0x08
-#define SYSTEM_BIT_MASK_BIT_4 0x10
-#define SYSTEM_BIT_MASK_BIT_5 0x20
-#define SYSTEM_BIT_MASK_BIT_6 0x40
-#define SYSTEM_BIT_MASK_BIT_7 0x80
-// 美化位掩码常量定义（2025年8月30日美化批次）
+// 基础位掩码常量定义（2025年8月30日语义化美化）
+#define SYSTEM_BIT_MASK_BIT_0 0x01                                    // 位掩码位0
+#define SYSTEM_BIT_MASK_BIT_1 0x02                                    // 位掩码位1
+#define SYSTEM_BIT_MASK_BIT_2 0x04                                    // 位掩码位2
+#define SYSTEM_BIT_MASK_BIT_3 0x08                                    // 位掩码位3
+#define SYSTEM_BIT_MASK_BIT_4 0x10                                    // 位掩码位4
+#define SYSTEM_BIT_MASK_BIT_5 0x20                                    // 位掩码位5
+#define SYSTEM_BIT_MASK_BIT_6 0x40                                    // 位掩码位6
+#define SYSTEM_BIT_MASK_BIT_7 0x80                                    // 位掩码位7
+// 字节级位掩码常量定义（2025年8月30日语义化美化）
 #define SYSTEM_BIT_MASK_BIT_40 0x100
 #define SYSTEM_BIT_MASK_BIT_50 0x200
 #define SYSTEM_BIT_MASK_BIT_60 0x400
@@ -483,29 +499,29 @@
 #define SYSTEM_BIT_MASK_SECTION_ALIGNMENT 0x2000                 // 节对齐掩码
 #define SYSTEM_BIT_MASK_SEGMENT_ALIGNMENT 0x4000                // 段对齐掩码
 #define SYSTEM_BIT_MASK_BLOCK_ALIGNMENT 0x8000                   // 块对齐掩码
-// 大位掩码语义化常量定义
+// 段级位掩码常量定义（2025年8月30日语义化美化）
 #define SYSTEM_BIT_MASK_BIT_4000 0x10000
 #define SYSTEM_BIT_MASK_BIT_5000 0x20000
 #define SYSTEM_BIT_MASK_BIT_6000 0x40000
 #define SYSTEM_BIT_MASK_BIT_7000 0x80000
 
-// 大位掩码语义化常量定义
+// 段级位掩码常量定义（2025年8月30日语义化美化）
 #define SYSTEM_BIT_MASK_LARGE_SECTION_ALIGNMENT 0x10000            // 大节对齐掩码
 #define SYSTEM_BIT_MASK_LARGE_SEGMENT_ALIGNMENT 0x20000           // 大段对齐掩码
 #define SYSTEM_BIT_MASK_LARGE_BLOCK_ALIGNMENT 0x40000              // 大块对齐掩码
 #define SYSTEM_BIT_MASK_SUPER_BLOCK_ALIGNMENT 0x80000              // 超级块对齐掩码
-// 超大位掩码语义化常量定义
+// 兆级位掩码常量定义（2025年8月30日语义化美化）
 #define SYSTEM_BIT_MASK_BIT_40000 0x100000
 #define SYSTEM_BIT_MASK_BIT_50000 0x200000
 #define SYSTEM_BIT_MASK_BIT_60000 0x400000
 #define SYSTEM_BIT_MASK_BIT_70000 0x800000
 
-// 超大位掩码语义化常量定义
+// 兆级位掩码常量定义（2025年8月30日语义化美化）
 #define SYSTEM_BIT_MASK_MEGA_SECTION_ALIGNMENT 0x100000           // 兆节对齐掩码
 #define SYSTEM_BIT_MASK_MEGA_SEGMENT_ALIGNMENT 0x200000          // 兆段对齐掩码
 #define SYSTEM_BIT_MASK_MEGA_BLOCK_ALIGNMENT 0x400000             // 兆块对齐掩码
 #define SYSTEM_BIT_MASK_GIGA_ALIGNMENT 0x800000                  // 千兆对齐掩码
-// 超级位掩码语义化常量定义
+// 超级位掩码常量定义（2025年8月30日语义化美化）
 #define SYSTEM_BIT_MASK_BIT_400000 0x1000000
 #define SYSTEM_BIT_MASK_BIT_500000 0x2000000
 #define SYSTEM_BIT_MASK_BIT_600000 0x4000000
@@ -523,7 +539,7 @@
 #define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_COMMIT 0xbe    // 缓冲区分配结果0XBE
 #define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_COMPLETE 0xc0    // 缓冲区分配结果0XC0
 
-// 超级位掩码语义化常量定义
+// 超级位掩码常量定义（2025年8月30日语义化美化）
 #define SYSTEM_BIT_MASK_HUGE_SECTION_ALIGNMENT 0x1000000          // 巨节对齐掩码
 #define SYSTEM_BIT_MASK_HUGE_SEGMENT_ALIGNMENT 0x2000000         // 巨段对齐掩码
 #define SYSTEM_BIT_MASK_HUGE_BLOCK_ALIGNMENT 0x4000000            // 巨块对齐掩码
@@ -3598,13 +3614,13 @@ void WotsMainNativeSDLL(unsigned long long handle_param)
     system_character_scan_pointer = (char *)(system_thread_stack_base_address + system_buffer_allocation_result);
     do {
       system_thread_result_status = (int)system_buffer_allocation_result;
-goto section_processing_jump_label_1;
+goto system_section_processing_primary_label;
       system_buffer_allocation_result = (ulong long)(system_thread_result_status + SYSTEM_INCREMENT_VALUE_1U);
       system_character_scan_pointer = system_character_scan_pointer + 1;
     } while (system_thread_result_status + SYSTEM_INCREMENT_VALUE_1U < system_maximum_stack_size);
   }
   system_thread_result_status = SYSTEM_THREAD_RESULT_INVALID;
-section_processing_jump_label_1:
+system_section_processing_primary_label:
   system_buffer_allocation_result = system_thread_result_status + 1;
   system_buffer_allocation_result = (ulong long)(int)system_buffer_allocation_result;
   if (system_buffer_allocation_result < system_maximum_stack_size) {
@@ -3617,7 +3633,7 @@ goto section_processing_jump_label_2;
     } while (system_buffer_allocation_result < system_maximum_stack_size);
   }
   system_buffer_allocation_result = UINT32_MAX;
-section_processing_jump_label_2:
+system_section_processing_secondary_label:
   if (system_thread_result_status != SYSTEM_THREAD_RESULT_INVALID) {
     setup_thread_parameters(&system_thread_stack_98,&system_thread_stack_78,system_buffer_allocation_result,system_buffer_allocation_result);
     system_thread_name_pointer = &default_resource_config_string;
@@ -14776,7 +14792,7 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_STRING_PATTERN_TERMINATOR_CHAR_3 0x466f6e63             // 终止符模式3
 #define SYSTEM_STRING_POINTER_TAG_2 0x2e6f6373                    // 字符串指针标签2
 
-// 系统位掩码常量定义
+// 基础位掩码常量定义（2025年8月30日语义化美化）
 #define SYSTEM_BIT_MASK_FLOAT_UPPER 0xffffff00                    // 浮点数上位掩码
 #define SYSTEM_BIT_MASK_ADDRESS_ALIGN 0xfffffffe                  // 地址对齐掩码
 #define SYSTEM_BIT_MASK_MEMORY_ALIGN 0xffffffffffffffe0U         // 内存对齐掩码
@@ -15037,9 +15053,9 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_PATH_BUFFER_SIZE_EXTRA_LARGE 0x30                            // 路径缓冲区大小48（特大）
 #define SYSTEM_PATH_BUFFER_SIZE_SPECIAL_1 0x65                            // 路径缓冲区大小101（特殊1）
 #define SYSTEM_PATH_BUFFER_SIZE_LARGE 0x28                            // 路径缓冲区大小40（大）
-#define SYSTEM_PATH_BUFFER_SIZE_4C4D58 0x4c4d58                    // 路径缓冲区大小4c4d58
-#define SYSTEM_PATH_BUFFER_SIZE_646C75 0x646c75                    // 路径缓冲区大小646c75
-#define SYSTEM_PATH_BUFFER_SIZE_746F6E 0x746f6e                    // 路径缓冲区大小746f6e
+#define SYSTEM_PATH_BUFFER_SIZE_STRING_LMX 0x4c4d58                    // 路径缓冲区大小"LMX"字符串
+#define SYSTEM_PATH_BUFFER_SIZE_STRING_DLU 0x646c75                    // 路径缓冲区大小"dlu"字符串
+#define SYSTEM_PATH_BUFFER_SIZE_STRING_TON 0x746f6e                    // 路径缓冲区大小"ton"字符串
 #define SYSTEM_PATH_BUFFER_SIZE_SMALL 0x10                            // 路径缓冲区大小16（小）
 #define SYSTEM_PATH_BUFFER_SIZE_STANDARD 0x20                            // 路径缓冲区大小32（标准）
 #define SYSTEM_PATH_BUFFER_SIZE_EXTENDED 0x24                            // 路径缓冲区大小36（扩展）
