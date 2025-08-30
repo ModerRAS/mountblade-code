@@ -269,6 +269,7 @@
 #define SYSTEM_INIT_FLAG_INITIALIZED           0x2     // 初始化标志
 #define SYSTEM_INIT_FLAG_ACTIVE                0x4     // 活动标志
 #define SYSTEM_INIT_FLAG_READY                 0x8     // 就绪标志
+#define SYSTEM_INIT_FLAG_ACTIVE_RESOURCE       0x10    // 活动资源标志
 
 // 系统标签语义化常量定义（2025年8月30日最终批次补充美化）
 #define SYSTEM_INIT_LABEL_MAIN_ENTRY              LAB_1808fd14a  // 主入口标签
