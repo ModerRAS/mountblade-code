@@ -247,6 +247,7 @@ extern char system_flag_buffer_4;
 extern char system_flag_buffer_5;
 extern char system_flag_buffer_6;
 extern char system_flag_buffer_7;
+extern char thread_data_buffer_char;
 #define MODULE_HANDLER_ADDR 0x180c95de0
 #define MODULE_CONFIG_ADDR 0x180c95fc8
 
