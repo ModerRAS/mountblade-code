@@ -5,7 +5,7 @@
 // - 添加了UTILITY_ITERATION_THRESHOLD_*等迭代阈值语义化宏定义
 // - 添加了UTILITY_STACK_OFFSET_NEG_*等栈偏移量语义化宏定义
 // - 添加了UTILITY_STACK_WRITE_SIZE_*等栈操作大小语义化宏定义
-// - 将iteration_counter < 0x6d替换为iteration_counter < UTILITY_ITERATION_THRESHOLD_PRIMARY等比较操作
+// - 将iteration_counter < UTILITY_ITERATION_THRESHOLD_PRIMARY替换为iteration_counter < UTILITY_ITERATION_THRESHOLD_PRIMARY等比较操作
 // - 将stack_frame_pointer + -0x19替换为stack_frame_pointer + UTILITY_STACK_OFFSET_NEG_19等栈操作
 // - 将writeResourceData(...,4)替换为writeResourceData(...,UTILITY_STACK_WRITE_SIZE_4)等大小参数
 // - 这是简化实现，主要处理了工具系统中硬编码值的语义化替换
@@ -18278,7 +18278,7 @@ ulonglong ProcessDataValidation(longlong resource_handle_identifier,uint64 *memo
 UTILITY_LABEL_SYSTEM_STATUS_CHECK:
   system_status_code = HandleResourceCallback2(resource_buffer,resource_handle_identifier + RESOURCE_HANDLE_OFFSET);
   if ((int)system_status_code == 0) {
-    if (*(uint *)(resource_buffer + 8) < 0x7c) {
+    if (*(uint *)(resource_buffer + 8) < UTILITY_ITERATION_THRESHOLD_OCTONARY) {
       iteration_counter = 0;
     }
     else if (*(int *)(resource_buffer[1] + RESOURCE_HANDLE_OFFSET) == 0) {
@@ -18350,7 +18350,7 @@ ulonglong InitializeDataValidator(longlong resource_handle_identifier,uint64 *me
   utility_temp_unsigned_value = putility_iteration_index[2];
   utility_temp_unsigned_value = putility_iteration_index[3];
   validation_flag = 0;
-  if (*(uint *)(resource_buffer + 8) < 0x6d) {
+  if (*(uint *)(resource_buffer + 8) < UTILITY_ITERATION_THRESHOLD_PRIMARY) {
     if (*(int *)(resource_buffer[1] + RESOURCE_HANDLE_OFFSET) == 0) {
       utility_operation_status = *memory_block_size;
       systemFlagsData = writeResourceData(utility_operation_status,&utility_temp_unsigned_value,4);
@@ -22871,7 +22871,7 @@ ulonglong ProcessSystemOperation2(longlong resource_handle_identifier,uint64 *me
     utility_temp_unsigned_value = validation_result_array[1];
     utility_temp_unsigned_value = validation_result_array[2];
     utility_temp_unsigned_value = validation_result_array[3];
-    if (*(uint *)(resource_buffer + 8) < 0x6d) {
+    if (*(uint *)(resource_buffer + 8) < UTILITY_ITERATION_THRESHOLD_PRIMARY) {
       if (*(int *)(resource_buffer[1] + RESOURCE_HANDLE_OFFSET) == 0) {
         iteration_counter = *memory_block_size;
         system_status_code = writeResourceData(iteration_counter,&utility_temp_unsigned_value,4);
