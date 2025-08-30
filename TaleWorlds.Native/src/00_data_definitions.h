@@ -8767,7 +8767,7 @@ section_processing_jump_label_:
       }
       thread_result_status = strcmp(str_len_counter,&g_system_string_memory);
       if (thread_result_status == SYSTEM_ZERO_VALUE) {
-        thread_result_status = 0x28;
+        thread_result_status = SYSTEM_THREAD_STATUS_RUNNING;
         goto section_processing_jump_label_;
       }
       thread_result_status = strcmp(str_len_counter,&g_system_string_counter);
@@ -8791,7 +8791,7 @@ section_processing_jump_label_:
     if (thread_priority_level == 0x12) {
       thread_result_status = strcmp(thread_stack_base_address,&g_system_string_id);
       if (thread_result_status == SYSTEM_ZERO_VALUE) {
-        thread_result_status = 0x58;
+        thread_result_status = SYSTEM_THREAD_STATUS_WORKING;
         goto section_processing_jump_label_;
       }
       goto section_processing_jump_label_;
@@ -8809,7 +8809,7 @@ section_processing_jump_label_:
         thread_result_status = strcmp(str_len_counter,string_input_pointer);
         if (thread_result_status == SYSTEM_ZERO_VALUE) {
 section_processing_jump_label_:
-          thread_result_status = 0xc;
+          thread_result_status = SYSTEM_THREAD_STATUS_STANDBY;
           goto section_processing_jump_label_;
         }
       }
@@ -8887,7 +8887,7 @@ section_processing_jump_label_:
             if (thread_priority_level == 0x23) {
               thread_result_status = strcmp(thread_stack_base_address,&g_system_string_data);
               if (thread_result_status == SYSTEM_ZERO_VALUE) {
-                thread_result_status = 0x28;
+                thread_result_status = SYSTEM_THREAD_STATUS_RUNNING;
                 goto section_processing_jump_label_;
               }
 section_processing_jump_label_:
