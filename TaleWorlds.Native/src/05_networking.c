@@ -106,8 +106,8 @@ undefined UNK_180986108;
 undefined UNK_18088d500;
 undefined UNK_180986170;
 
-// 函数: undefined FUN_18088ea60;
-undefined FUN_18088ea60;
+// 函数: undefined network_initialize_data_transfer;
+undefined network_initialize_data_transfer;
 undefined UNK_180986218;
 undefined UNK_180986240;
 undefined UNK_180986244;
@@ -195,8 +195,8 @@ undefined UNK_1809871b0;
 undefined UNK_180987170;
 undefined UNK_180987150;
 
-// 函数: void FUN_180840074(void)
-void FUN_180840074(void)
+// 函数: void network_system_initialize_primary(void)
+void network_system_initialize_primary(void)
 
 {
   undefined1 *puVar1;
@@ -226,8 +226,8 @@ void FUN_180840074(void)
 
 
 
-// 函数: void FUN_1808400da(void)
-void FUN_1808400da(void)
+// 函数: void network_system_initialize_secondary(void)
+void network_system_initialize_secondary(void)
 
 {
   longlong unaff_RBX;
@@ -249,7 +249,7 @@ void FUN_1808400da(void)
 // WARNING: Removing unreachable block (ram,0x000180849219)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint FUN_180840100(longlong *param_1)
+uint network_validate_system_parameters(longlong *param_1)
 
 {
   int iVar1;
@@ -42890,7 +42890,7 @@ int FUN_180866f50(undefined8 param_1,undefined4 *param_2,undefined8 *param_3)
   if (iVar1 == 0) {
     iVar1 = FUN_180866fe0(param_1,auStack_a8,3);
   }
-  FUN_180840100(auStack_18);
+  network_validate_system_parameters(auStack_18);
   return iVar1;
 }
 
@@ -81298,7 +81298,7 @@ LAB_180889e8c:
     plStack_68 = (longlong *)*puVar11;
     uStack_60 = puVar11[1];
     uVar5 = FUN_180866f50(*(undefined8 *)(param_1 + 0x80),&plStack_68,&lStack_78);
-    FUN_180840100(&lStack_78);
+    network_validate_system_parameters(&lStack_78);
     return uVar5;
   }
                     // WARNING: Subroutine does not return
@@ -81429,7 +81429,7 @@ LAB_180889e8c:
   *(undefined8 *)(unaff_RBP + -0x48) = *puVar14;
   *(undefined8 *)(unaff_RBP + -0x40) = uVar4;
   uVar6 = FUN_180866f50(uVar3,unaff_RBP + -0x48,unaff_RBP + -0x58);
-  FUN_180840100(unaff_RBP + -0x58);
+  network_validate_system_parameters(unaff_RBP + -0x58);
   return uVar6;
 }
 
@@ -81535,7 +81535,7 @@ LAB_180889e8c:
       *(undefined8 *)(unaff_RBP + -0x48) = *puVar10;
       *(undefined8 *)(unaff_RBP + -0x40) = uVar4;
       uVar6 = FUN_180866f50(uVar3,unaff_RBP + -0x48,unaff_RBP + -0x58);
-      FUN_180840100(unaff_RBP + -0x58);
+      network_validate_system_parameters(unaff_RBP + -0x58);
       return uVar6;
     }
   } while( true );
@@ -81569,7 +81569,7 @@ undefined4 FUN_180889eb2(void)
   *(undefined4 *)(unaff_RBP + -0x40) = uVar2;
   *(undefined4 *)(unaff_RBP + -0x3c) = uVar3;
   uVar4 = FUN_180866f50(uVar1,unaff_RBP + -0x48,unaff_RBP + -0x58);
-  FUN_180840100(unaff_RBP + -0x58);
+  network_validate_system_parameters(unaff_RBP + -0x58);
   return uVar4;
 }
 
@@ -81621,7 +81621,7 @@ code_r0x000180889efd:
       *(undefined8 *)(unaff_RBP + -0x48) = *puVar8;
       *(undefined8 *)(unaff_RBP + -0x40) = uVar4;
       uVar6 = FUN_180866f50(uVar3,unaff_RBP + -0x48,unaff_RBP + -0x58);
-      FUN_180840100(unaff_RBP + -0x58);
+      network_validate_system_parameters(unaff_RBP + -0x58);
       return uVar6;
     }
     do {
@@ -85817,7 +85817,7 @@ void FUN_18088e970(longlong param_1,longlong *param_2,undefined4 param_3)
 
 
 undefined8
-FUN_18088ea60(undefined8 param_1,int param_2,undefined8 param_3,longlong param_4,longlong param_5)
+network_initialize_data_transfer(undefined8 param_1,int param_2,undefined8 param_3,longlong param_4,longlong param_5)
 
 {
   undefined8 uVar1;
