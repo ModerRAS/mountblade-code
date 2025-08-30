@@ -37097,11 +37097,11 @@ uint64_t network_validate_certificate_six(int64_t network_socket_handle, uint64_
   network_operation_status_code = networkReceiveProtocolMessage(network_buffer_pointer, network_validation_temporary_bufferfer, NETWORK_OPERATION_STATUS_FAILURE, NETWORK_STATUS_CODE_56525543, NETWORK_OPERATION_STATUS_FAILURE);
       network_operation_status_code = network_validate_connectionState(*network_buffer_pointer, network_socket_handle + SOCKET_DESCRIPTOR_RESPONSE_OFFSET);
       if (((int)network_operation_status_code == NETWORK_OPERATION_STATUS_FAILURE) && (network_operation_status_code = networkGenerateKeyPair7(network_buffer_pointer, network_socket_handle + NETWORK_PACKET_DATA_PAYLOAD_OFFSET, NETWORK_OPERATION_SUCCESS, NETWORK_OPERATION_STATUS_FAILURE), (int)network_operation_status_code == NETWORK_OPERATION_STATUS_FAILURE))
-uint64_t networkValidateCertificate7(int64_t network_socket_handle, uint64_t *network_buffer_pointer)
+uint64_t network_validate_certificate_seven(int64_t network_socket_handle, uint64_t *network_buffer_pointer)
   network_operation_status_code = networkReceiveProtocolMessage(network_buffer_pointer, network_validation_temporary_bufferfer, NETWORK_OPERATION_SUCCESS, NETWORK_PROTOCOL_CLIENT, NETWORK_PARAMETER_OFFSET_NEGATIVE494645);
      (network_operation_status_code = networkReceiveProtocolMessage(network_buffer_pointer, network_validation_temporary_bufferfer, NETWORK_OPERATION_STATUS_FAILURE, NETWORK_MAGIC_BIFE, NETWORK_OPERATION_STATUS_FAILURE), (int)network_operation_status_code == NETWORK_OPERATION_STATUS_FAILURE)) {
       network_operation_status_code = network_validate_connectionState(*network_buffer_pointer, network_socket_handle + NETWORK_AUTH_VALIDATION_OFFSET);
-uint64_t networkValidateCertificate8(int64_t network_socket_handle, int64_t *network_buffer_pointer)
+uint64_t network_validate_certificate_eight(int64_t network_socket_handle, int64_t *network_buffer_pointer)
     network_connection_buffer_stack_arrayay[NETWORK_OPERATION_STATUS_FAILURE] = *(uint32_t *)(network_socket_handle + SOCKET_DATA_POINTER_OFFSET);
     network_connection_buffer_stack_arrayay[NETWORK_OPERATION_STATUS_FAILURE] = *(uint32_t *)(network_socket_handle + SOCKET_HANDLE_OFFSET);
   network_connection_buffer_stack_arrayay[NETWORK_OPERATION_STATUS_FAILURE] = *(uint32_t *)(network_socket_handle + CONNECTION_TIMEOUT_OFFSET);
