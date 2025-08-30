@@ -21803,7 +21803,7 @@ void initialize_system_module_seventeen(longlong handleIdentifier,uint64_t resou
   init_stack_data_var = systemFlags;
   system_pointer_value = (ulonglong *)GetSystemPointerData();
   init_stack_handle_id = 0;
-  system_buffer_ptr_thread_context = &flag_initialized;
+  system_buffer_ptr_thread_context = system_buffer_ptr_thread_context = &flag_initialized;system_init_status_flag;
   __stdio_common_vsprintf(*system_pointer_temp | 1,init_stack_char_buffer_48,SYSTEM_NODE_HEADER_SIZE,resourceIdentifier);
   system_long_result_temp = -1;
   do {
@@ -62148,6 +62148,7 @@ longlong *g_global_system_flags;
 #define SYSTEM_FLOAT_VALUE_NEGATIVE_1E_MINUS_06 -1e-06
 #define SYSTEM_FLOAT_VALUE_1E_MINUS_06 1e-06
 #define SYSTEM_FLOAT_VALUE_1_8446744E_PLUS_19 1.8446744e+19
+#define SYSTEM_FLOAT_VALUE_1E_PLUS_08 1e+08
 
 // 本次美化内容（2025年8月30日最终批次续）：
 // - 美化硬编码数字，将代码中的1替换为SYSTEM_INCREMENT_VALUE等语义化常量
