@@ -49084,11 +49084,11 @@ void initialize_system_data_node_thirty_two(longlong handleIdentifier,uint64_t *
                 else if (system_float_result_value <= system_float_result_value) {
                   system_temp_float_value = system_temp_float_value;
                 }
-                if ((system_float_result_value - 1.0 <= -1e-06) || (1e-06 <= system_float_result_value - 1.0)) {
+                if ((system_float_result_value - SYSTEM_FLOAT_VALUE_ONE <= -1e-06) || (1e-06 <= system_float_result_value - SYSTEM_FLOAT_VALUE_ONE)) {
                   system_temp_float_value = SQRT(system_float_result_value) * *(float *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A4);
                 }
                 else {
-                  system_temp_float_value = *(float *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A4) * 1.0;
+                  system_temp_float_value = *(float *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_2A4) * SYSTEM_FLOAT_VALUE_ONE;
                 }
               }
               system_temp_float_value = *(float *)((longlong)system_memory_pointer + SYSTEM_MEMORY_OFFSET_MEMORY_BLOCK) - system_temp_float_value;
