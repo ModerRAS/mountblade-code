@@ -10553,7 +10553,7 @@ goto section_processing_jump_label_485;
       system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
       if (system_char_variable != SYSTEM_ZERO_VALUE) {
 section_processing_jump_label_127:
-        system_buffer_allocation_result = 0x28;
+        system_buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_CONFIG_ALTERNATE;
 goto section_processing_jump_label_486;
       }
     }
