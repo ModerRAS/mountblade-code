@@ -58789,7 +58789,7 @@ uint64_t ProcessFunction79434(void)
   uint system_status_code;
   uint system_status_code;
   float system_float_value;
-  uint8_t audio_data_buffer8 [16];
+  uint8_t audio_data_buffer_math [16];
   float system_float_value;
   int in_XMM5_Da;
   float system_float_value;
@@ -58858,11 +58858,11 @@ uint64_t ProcessFunction79434(void)
         system_math_union._4_4_ = in_XMM5_Db + -1;
         system_math_union._8_4_ = in_XMM5_Dc + -1;
         system_math_union._12_4_ = in_XMM5_Dd + -1;
-        audio_data_buffer8._0_4_ = (float)system_math_union._0_4_;
-        audio_data_buffer8._4_4_ = (float)system_math_union._4_4_;
-        audio_data_buffer8._8_4_ = (float)system_math_union._8_4_;
-        audio_data_buffer8._12_4_ = (float)system_math_union._12_4_;
-        system_math_union = rcpps(system_math_union,audio_data_buffer8);
+        audio_data_buffer_math._0_4_ = (float)system_math_union._0_4_;
+        audio_data_buffer_math._4_4_ = (float)system_math_union._4_4_;
+        audio_data_buffer_math._8_4_ = (float)system_math_union._8_4_;
+        audio_data_buffer_math._12_4_ = (float)system_math_union._12_4_;
+        system_math_union = rcpps(system_math_union,audio_data_buffer_math);
         system_float_value = 0.0;
         system_float_value = 0.0;
         system_float_value = 0.0;
@@ -58883,10 +58883,10 @@ uint64_t ProcessFunction79434(void)
         system_float_value = 0.0;
         system_float_value = 0.0;
         system_float_value = 0.0;
-        system_float_value = (system_float_result + system_float_result) - system_float_result * system_float_result * audio_data_buffer8._0_4_;
-        system_float_value = (system_float_result + system_float_result) - system_float_result * system_float_result * audio_data_buffer8._4_4_;
-        system_float_value = (system_float_result + system_float_result) - system_float_result * system_float_result * audio_data_buffer8._8_4_;
-        system_float_value = (system_float_result + system_float_result) - system_float_result * system_float_result * audio_data_buffer8._12_4_;
+        system_float_value = (system_float_result + system_float_result) - system_float_result * system_float_result * audio_data_buffer_math._0_4_;
+        system_float_value = (system_float_result + system_float_result) - system_float_result * system_float_result * audio_data_buffer_math._4_4_;
+        system_float_value = (system_float_result + system_float_result) - system_float_result * system_float_result * audio_data_buffer_math._8_4_;
+        system_float_value = (system_float_result + system_float_result) - system_float_result * system_float_result * audio_data_buffer_math._12_4_;
         init_float_pointer_temp = system_register_rdi;
         system_integer_result = system_integer_result;
         do {
@@ -59016,7 +59016,7 @@ uint64_t ProcessFunction794c5(void)
   uint system_status_code;
   uint system_status_code;
   uint system_status_code;
-  uint8_t audio_data_buffer7 [16];
+  uint8_t audio_data_buffer_vector [16];
   float system_float_value;
   int in_XMM5_Da;
   float system_float_value;
@@ -59060,11 +59060,11 @@ uint64_t ProcessFunction794c5(void)
       system_vector_union._4_4_ = in_XMM5_Db + -1;
       system_vector_union._8_4_ = in_XMM5_Dc + -1;
       system_vector_union._12_4_ = in_XMM5_Dd + -1;
-      audio_data_buffer7._0_4_ = (float)system_vector_union._0_4_;
-      audio_data_buffer7._4_4_ = (float)system_vector_union._4_4_;
-      audio_data_buffer7._8_4_ = (float)system_vector_union._8_4_;
-      audio_data_buffer7._12_4_ = (float)system_vector_union._12_4_;
-      system_vector_union = rcpps(system_vector_union,audio_data_buffer7);
+      audio_data_buffer_vector._0_4_ = (float)system_vector_union._0_4_;
+      audio_data_buffer_vector._4_4_ = (float)system_vector_union._4_4_;
+      audio_data_buffer_vector._8_4_ = (float)system_vector_union._8_4_;
+      audio_data_buffer_vector._12_4_ = (float)system_vector_union._12_4_;
+      system_vector_union = rcpps(system_vector_union,audio_data_buffer_vector);
       system_float_value = 0.0;
       system_float_value = 0.0;
       system_float_value = 0.0;
@@ -59085,10 +59085,10 @@ uint64_t ProcessFunction794c5(void)
       system_float_value = 0.0;
       system_float_value = 0.0;
       system_float_value = 0.0;
-      system_float_value = (system_float_result + system_float_result) - system_float_result * system_float_result * audio_data_buffer7._0_4_;
-      system_float_value = (system_float_result + system_float_result) - system_float_result * system_float_result * audio_data_buffer7._4_4_;
-      system_float_value = (system_float_result + system_float_result) - system_float_result * system_float_result * audio_data_buffer7._8_4_;
-      system_float_value = (system_float_result + system_float_result) - system_float_result * system_float_result * audio_data_buffer7._12_4_;
+      system_float_value = (system_float_result + system_float_result) - system_float_result * system_float_result * audio_data_buffer_vector._0_4_;
+      system_float_value = (system_float_result + system_float_result) - system_float_result * system_float_result * audio_data_buffer_vector._4_4_;
+      system_float_value = (system_float_result + system_float_result) - system_float_result * system_float_result * audio_data_buffer_vector._8_4_;
+      system_float_value = (system_float_result + system_float_result) - system_float_result * system_float_result * audio_data_buffer_vector._12_4_;
       init_float_pointer_temp = system_register_rdi;
       system_integer_result = system_integer_result;
       do {
@@ -59215,7 +59215,7 @@ uint64_t ProcessFunction794dd(int handleIdentifier,uint64_t resourceIdentifier,u
   uint system_status_code;
   uint system_status_code;
   uint system_status_code;
-  uint8_t audio_data_buffer6 [16];
+  uint8_t audio_data_buffer_temp [16];
   float system_float_value;
   int in_XMM5_Da;
   float system_float_value;
@@ -59254,11 +59254,11 @@ uint64_t ProcessFunction794dd(int handleIdentifier,uint64_t resourceIdentifier,u
   audio_data_buffer9._4_4_ = in_XMM5_Db + -1;
   audio_data_buffer9._8_4_ = in_XMM5_Dc + -1;
   audio_data_buffer9._12_4_ = in_XMM5_Dd + -1;
-  audio_data_buffer6._0_4_ = (float)audio_data_buffer9._0_4_;
-  audio_data_buffer6._4_4_ = (float)audio_data_buffer9._4_4_;
-  audio_data_buffer6._8_4_ = (float)audio_data_buffer9._8_4_;
-  audio_data_buffer6._12_4_ = (float)audio_data_buffer9._12_4_;
-  audio_data_buffer9 = rcpps(audio_data_buffer9,audio_data_buffer6);
+  audio_data_buffer_temp._0_4_ = (float)audio_data_buffer9._0_4_;
+  audio_data_buffer_temp._4_4_ = (float)audio_data_buffer9._4_4_;
+  audio_data_buffer_temp._8_4_ = (float)audio_data_buffer9._8_4_;
+  audio_data_buffer_temp._12_4_ = (float)audio_data_buffer9._12_4_;
+  audio_data_buffer9 = rcpps(audio_data_buffer9,audio_data_buffer_temp);
   system_float_value = 0.0;
   system_float_value = 0.0;
   system_float_value = 0.0;
@@ -59279,10 +59279,10 @@ uint64_t ProcessFunction794dd(int handleIdentifier,uint64_t resourceIdentifier,u
   system_float_value = 0.0;
   system_float_value = 0.0;
   system_float_value = 0.0;
-  system_float_value = (system_float_result + system_float_result) - system_float_result * system_float_result * audio_data_buffer6._0_4_;
-  system_float_value = (system_float_result + system_float_result) - system_float_result * system_float_result * audio_data_buffer6._4_4_;
-  system_float_value = (system_float_result + system_float_result) - system_float_result * system_float_result * audio_data_buffer6._8_4_;
-  system_float_value = (system_float_result + system_float_result) - system_float_result * system_float_result * audio_data_buffer6._12_4_;
+  system_float_value = (system_float_result + system_float_result) - system_float_result * system_float_result * audio_data_buffer_temp._0_4_;
+  system_float_value = (system_float_result + system_float_result) - system_float_result * system_float_result * audio_data_buffer_temp._4_4_;
+  system_float_value = (system_float_result + system_float_result) - system_float_result * system_float_result * audio_data_buffer_temp._8_4_;
+  system_float_value = (system_float_result + system_float_result) - system_float_result * system_float_result * audio_data_buffer_temp._12_4_;
   init_float_pointer_temp = system_register_rdi;
   do {
     system_integer_result = handleIdentifier;
