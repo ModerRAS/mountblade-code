@@ -63,6 +63,14 @@
 #define UTILITY_SYSTEM_END_FLAG 0xffffff
 #define UTILITY_SYSTEM_END_FLAG_EXTENDED 0xfffffffffffffffe
 
+// 新增语义化宏定义 - 替换十六进制常量
+#define UTILITY_SYSTEM_TABLE_BASE 0x213438
+#define UTILITY_RESOURCE_TABLE_OFFSET 0x121c0
+#define UTILITY_RESOURCE_DATA_OFFSET 0x121e0
+#define UTILITY_MEMORY_MASK_HIGH 0xffffffff00000000
+#define UTILITY_HANDLE_CHECK_VALUE -0x3ffffffb
+#define UTILITY_RESOURCE_MASK_OFFSET -0x565dff77
+
 
 // 06_utilities.c - 473 个函数
 // 美化内容：
