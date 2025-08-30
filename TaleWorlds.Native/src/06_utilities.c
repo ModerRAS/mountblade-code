@@ -1,6 +1,13 @@
 // 06_utilities.c - 工具系统模块
 // 最终语义化美化版本（2025年8月30日最终批次最新完成）
 // 新增剩余拉丁数字后缀变量名语义化美化工作（2025年8月30日最终批次最新完成）：
+// 新增十六进制常量名语义化美化（2025年8月30日最终批次最新完成）：
+// - 美化线程本地存储偏移量常量名，将UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_1F18等替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_MEMORY_PRIMARY等语义化常量名
+// - 美化内存地址偏移量常量名，将UTILITY_MEMORY_ADDRESS_OFFSET_EXTENDED_8000替换为UTILITY_MEMORY_ADDRESS_OFFSET_EXTENDED_SYSTEM_BASE等语义化常量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了工具系统中剩余十六进制常量名的语义化替换
+// - 原本实现：完全重构工具系统所有十六进制常量命名体系，建立统一的语义化命名规范
+// - 简化实现：仅将常见的十六进制常量名替换为语义化名称，保持代码结构不变
 // - 美化线程上下文变量名，将utility_context_thread_count_tredecimal_offset等替换为utility_context_thread_count_offset_tertiary等语义化变量名
 // - 美化线程上下文变量名，将utility_context_thread_flag_tredecimal_offset等替换为utility_context_thread_flag_offset_tertiary等语义化变量名
 // - 美化线程上下文变量名，将utility_context_thread_storage_duodecimal_offset等替换为utility_context_thread_storage_offset_secondary等语义化变量名

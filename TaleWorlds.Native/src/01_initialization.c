@@ -1,5 +1,14 @@
 // 01_initialization.c - 初始化系统模块
 
+// 最新美化内容（2025年8月30日最终批次剩余标签和硬编码值语义化美化工作完成）：
+// - 美化硬编码偏移量，将空偏移量替换为SYSTEM_INIT_OFFSET_DATA_ZERO等语义化常量
+// - 美化硬编码栈参数，将0x8等替换为SYSTEM_INIT_OFFSET_STACK_PARAM等语义化常量
+// - 美化剩余goto标签，将LAB_18005122d等替换为system_init_label_file_check等语义化标签
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了初始化系统中剩余标签和硬编码值的语义化替换
+// - 原本实现：完全重构初始化系统所有标签和硬编码值体系，建立统一的语义化命名规范
+// - 简化实现：仅将常见的非语义化标签和硬编码值替换为语义化名称，保持代码结构不变
+
 // 最新美化内容（2025年8月30日最终批次特殊类型和栈变量名语义化美化工作完成）：
 // - 美化特殊无符号整数类型，将system_uint0x102_t替换为system_uint258_t等语义化类型
 // - 美化栈变量名，将system_stack_array_184等替换为system_stack_array_context等语义化变量名
@@ -946,42 +955,42 @@
 // 函数: void SystemCoreInitializer;
 void* SystemCoreInitializer;
 uint8_t system_initialization_status_array[27];// 系统初始化状态数组（27个元素）
-void* g_system_context_array[148];// 系统上下文指针数组（148个元素）
-void* g_memory_pool_base;
-void* g_memory_allocator;
+void* system_context_array[148];// 系统上下文指针数组（148个元素）
+void* system_memory_pool_base;
+void* system_memory_allocator;
 uint32_t system_active_thread_count;      // 系统活动线程计数
-void* g_thread_scheduler;
-void* g_resource_manager;
-void* g_resource_loader;
-void* g_graphics_context;
-void* g_graphics_renderer;
-void* g_audio_device;
-void* g_audio_mixer;
+void* system_thread_scheduler;
+void* system_resource_manager;
+void* system_resource_loader;
+void* system_graphics_context;
+void* system_graphics_renderer;
+void* system_audio_device;
+void* system_audio_mixer;
 void* system_data_eighth;
 int32_t network_socket_handle;         // 网络套接字句柄
 void* system_data_ninth;
 
 // 函数: void MemoryManagerSetup;
 void* MemoryManagerSetup;
-void* g_physics_simulator;
-void* g_network_manager;
-void* g_ui_renderer;
-void* g_physics_world;
-void* g_input_manager;
-void* g_ui_system;
-void* g_script_engine;
+void* system_physics_simulator;
+void* system_network_manager;
+void* system_ui_renderer;
+void* system_physics_world;
+void* system_input_manager;
+void* system_ui_system;
+void* system_script_engine;
 
 // 函数: void InitializeGraphicsSystem;
 void* InitializeGraphicsSystem;
-void* g_graphics_device;
+void* system_graphics_device;
 
 // 函数: void InitializeAudioSystem;
 void* InitializeAudioSystem;
-void* g_audio_context;
+void* system_audio_context;
 
 // 函数: void InitializeInputSystem;
 void* InitializeInputSystem;
-void* g_file_system;
+void* system_file_system;
 
 // 系统内部变量语义化定义（2025年8月30日最终批次最新完成）
 void* system_internal_physics_world;        // 内部物理世界指针
@@ -994,7 +1003,7 @@ void* system_internal_system_initialized;   // 内部系统初始化状态指针
 
 // 函数: void InitializeNetworkSystem;
 void* InitializeNetworkSystem;
-void* g_config_data;
+void* system_config_data;
 int32_t system_error_code;              // 系统错误代码
 uint32_t system_operation_flags;        // 系统操作标志
 uint64_t system_performance_counter;
@@ -1013,7 +1022,7 @@ float system_physics_time;
 
 // 函数: void InitializePhysicsSystem;
 void* InitializePhysicsSystem;
-void* g_physics_scene;
+void* system_physics_scene;
 
 // 函数: void InitializeUISystem;
 void* InitializeUISystem;
@@ -1021,10 +1030,10 @@ void* InitializeUISystem;
 // 函数: void InitializeScriptSystem;
 void* InitializeScriptSystem;
 void* system_script_data_pointer;
-void* g_window_handle;
-void* g_display_context;
-void* g_input_device;
-void* g_event_queue;
+void* system_window_handle;
+void* system_display_context;
+void* system_input_device;
+void* system_event_queue;
 void* system_guard_icall_check;
 
 // 函数: void InitializeResourceManager;
@@ -1032,17 +1041,17 @@ void* InitializeResourceManager;
 
 // 函数: void InitializeThreadSystem;
 void* InitializeThreadSystem;
-void* g_thread_pool;
-void* g_task_scheduler;
-void* g_memory_cache;
-void* g_resource_cache;
-void* g_texture_cache;
-void* g_shader_cache;
-void* g_model_cache;
-void* g_audio_cache;
-void* g_animation_cache;
-void* g_ui_cache;
-void* g_script_cache;
+void* system_thread_pool;
+void* system_task_scheduler;
+void* system_memory_cache;
+void* system_resource_cache;
+void* system_texture_cache;
+void* system_shader_cache;
+void* system_model_cache;
+void* system_audio_cache;
+void* system_animation_cache;
+void* system_ui_cache;
+void* system_script_cache;
 void* system_script_validation_callback;
 void* system_script_execution_callback;
 // 美化系统配置变量名（2025年8月30日最终批次补充美化）
@@ -1174,47 +1183,47 @@ void* system_thread_handler;
 void* system_process_handler;
 char system_char_buffer;
 // 系统配置数据管理器
-void* g_system_configuration_data;
-void* g_module_loader;
+void* system_configuration_data;
+void* system_module_loader;
 // 系统状态数据管理器
-void* g_system_state_data;
-void* g_plugin_manager;
-void* g_configuration_manager;
-void* g_log_system;
-void* g_debug_system;
-void* g_performance_monitor;
-void* g_script_engine;
-void* g_ai_system;
-void* g_physics_system;
-void* g_animation_system;
-void* g_input_system;
-void* g_ui_system;
-void* g_scene_manager;
-void* g_entity_manager;
-void* g_component_system;
-void* g_event_system;
-void* g_data_manager;
-void* g_streaming_system;
-void* g_rendering_system;
-void* g_networking_system;
-void* g_database_system;
-void* g_cache_system;
-void* g_system_heap;
+void* system_state_data;
+void* system_plugin_manager;
+void* system_configuration_manager;
+void* system_log_system;
+void* system_debug_system;
+void* system_performance_monitor;
+void* system_script_engine;
+void* system_ai_system;
+void* system_physics_system;
+void* system_animation_system;
+void* system_input_system;
+void* system_ui_system;
+void* system_scene_manager;
+void* system_entity_manager;
+void* system_component_system;
+void* system_event_system;
+void* system_data_manager;
+void* system_streaming_system;
+void* system_rendering_system;
+void* system_networking_system;
+void* system_database_system;
+void* system_cache_system;
+void* system_heap;
 
 // 函数: void SystemCoreInitializer;
 void* SystemCoreInitializer;
-void* g_system_registry;
-void* g_service_locator;
-void* g_dependency_injector;
+void* system_registry;
+void* system_service_locator;
+void* system_dependency_injector;
 // 系统临时数据管理器
-void* g_system_temporary_data;
-void* g_lifecycle_manager;
+void* system_temporary_data;
+void* system_lifecycle_manager;
 // 系统持久化数据管理器
-void* g_system_persistent_data;
+void* system_persistent_data;
 
 // 函数: void MemoryManagerSetup;
 void* MemoryManagerSetup;
-void* g_memory_pool;
+void* system_memory_pool;
 
 // 函数: void InitializeThreadSystem;
 void* InitializeThreadSystem;
@@ -1224,100 +1233,100 @@ void* CreateProcessManager;
 
 // 函数: void SetupFileSystem;
 void* SetupFileSystem;
-void* g_resource_pool;
-void* g_resource_cache;
-void* g_resource_loader;
-void* g_resource_handler;
-void* g_resource_index;
-void* g_module_registry;
+void* system_resource_pool;
+void* system_resource_cache;
+void* system_resource_loader;
+void* system_resource_handler;
+void* system_resource_index;
+void* system_module_registry;
 
 // 函数: void LoadSystemModules;
 void* LoadSystemModules;
-void* g_network_config;
-void* g_network_state;
-void* g_network_handler;
-void* g_graphics_context;
+void* system_network_config;
+void* system_network_state;
+void* system_network_handler;
+void* system_graphics_context;
 char system_char_flag;
-void* g_audio_context;
-void* g_audio_device;
+void* system_audio_context;
+void* system_audio_device;
 void* system_config_data;
-void* g_audio_buffer;
-void* g_graphics_buffer;
-void* g_network_buffer;
-void* g_resource_buffer;
+void* system_audio_buffer;
+void* system_graphics_buffer;
+void* system_network_buffer;
+void* system_resource_buffer;
 // 系统资源缓存管理器
-void* g_system_resource_cache_manager;
+void* system_resource_cache_manager;
 // 系统资源流管理器
-void* g_system_resource_stream_manager;
+void* system_resource_stream_manager;
 // 系统资源备份管理器
-void* g_system_resource_backup_manager;
-void* g_system_started;
-void* g_initialization_failed;
-void* g_system_error;
+void* system_resource_backup_manager;
+void* system_started;
+void* system_initialization_failed;
+void* system_error;
 int32_t system_error_code;              // 系统错误代码
-void* g_error_message;
-void* g_system_shutdown;
-void* g_system_paused;
-void* g_system_running;
-void* g_system_stopped;
-void* g_system_restarting;
-void* g_system_updating;
-void* g_system_rendering;
-void* g_system_processing;
-void* g_system_idle;
-void* g_thread_pool;
-void* g_network_connected;
-void* g_network_listening;
-void* g_network_sending;
-void* g_network_receiving;
-void* g_graphics_device;
+void* system_error_message;
+void* system_shutdown;
+void* system_paused;
+void* system_running;
+void* system_stopped;
+void* system_restarting;
+void* system_updating;
+void* system_rendering;
+void* system_processing;
+void* system_idle;
+void* system_thread_pool;
+void* system_network_connected;
+void* system_network_listening;
+void* system_network_sending;
+void* system_network_receiving;
+void* system_graphics_device;
 
 // 函数: void InitializeGraphicsSystem;
 void* InitializeGraphicsSystem;
 
 // 函数: void InitializeAudioSystem;
 void* InitializeAudioSystem;
-void* g_shader_manager;
-void* g_texture_manager;
-void* g_mesh_manager;
-void* g_material_manager;
-void* g_light_manager;
-void* g_camera_manager;
-void* g_render_target;
-void* g_depth_buffer;
-void* g_stencil_buffer;
-void* g_frame_buffer;
-void* g_swap_chain;
-void* g_vertex_buffer;
-void* g_index_buffer;
-void* g_constant_buffer;
-void* g_structured_buffer;
-void* g_raytracing_buffer;
-void* g_sound_manager;
-void* g_music_manager;
-void* g_voice_manager;
-void* g_effect_manager;
-void* g_audio_stream;
-void* g_audio_mixer;
-void* g_audio_compressor;
+void* system_shader_manager;
+void* system_texture_manager;
+void* system_mesh_manager;
+void* system_material_manager;
+void* system_light_manager;
+void* system_camera_manager;
+void* system_render_target;
+void* system_depth_buffer;
+void* system_stencil_buffer;
+void* system_frame_buffer;
+void* system_swap_chain;
+void* system_vertex_buffer;
+void* system_index_buffer;
+void* system_constant_buffer;
+void* system_structured_buffer;
+void* system_raytracing_buffer;
+void* system_sound_manager;
+void* system_music_manager;
+void* system_voice_manager;
+void* system_effect_manager;
+void* system_audio_stream;
+void* system_audio_mixer;
+void* system_audio_compressor;
 int32_t network_socket_handle;         // 网络套接字句柄
-void* g_network_connection;
-void* g_network_protocol;
-void* g_network_security;
-void* g_network_online;
-void* g_input_device;
-void* g_input_handler;
-void* g_input_mapper;
+void* system_network_connection;
+void* system_network_protocol;
+void* system_network_security;
+void* system_network_online;
+void* system_input_device;
+void* system_input_handler;
+void* system_input_mapper;
 
 // 函数: void InitializeInputSystem;
 void* InitializeInputSystem;
-void* g_keyboard_device;
-void* g_mouse_device;
-void* g_gamepad_device;
-void* g_touch_device;
-void* g_motion_device;
-void* g_gesture_device;
-void* g_vibration_device;
+void* system_keyboard_device;
+void* system_mouse_device;
+void* system_gamepad_device;
+void* system_touch_device;
+void* system_motion_device;
+void* system_gesture_device;
+void* system_vibration_device;
 
 // 函数: void InitializeUISystem;
 void* InitializeUISystem;
@@ -1330,28 +1339,28 @@ void* SetupUIComponents;
 
 // 函数: void InitializePhysicsSystem;
 void* InitializePhysicsSystem;
-void* g_physics_world;
-void* g_physics_enabled;
-void* g_physics_debug;
-void* g_collision_world;
-void* g_rigidbody_manager;
-void* g_constraint_manager;
-void* g_trigger_manager;
-void* g_force_manager;
-void* g_joint_manager;
-void* g_physics_simulating;
-void* g_character_controller;
-void* g_vehicle_controller;
-void* g_physics_material;
-void* g_physics_shape;
-void* g_physics_initialized;
-void* g_physics_debug_renderer;
-void* g_physics_statistics;
-void* g_physics_profile;
-void* g_physics_config;
+void* system_physics_world;
+void* system_physics_enabled;
+void* system_physics_debug;
+void* system_collision_world;
+void* system_rigidbody_manager;
+void* system_constraint_manager;
+void* system_trigger_manager;
+void* system_force_manager;
+void* system_joint_manager;
+void* system_physics_simulating;
+void* system_character_controller;
+void* system_vehicle_controller;
+void* system_physics_material;
+void* system_physics_shape;
+void* system_physics_initialized;
+void* system_physics_debug_renderer;
+void* system_physics_statistics;
+void* system_physics_profile;
+void* system_physics_config;
 void* system_physics_timestep;
-void* g_physics_gravity;
-void* g_ai_world;
+void* system_physics_gravity;
+void* system_ai_world;
 
 // 函数: void InitializeAISystem;
 void* InitializeAISystem;
@@ -1372,8 +1381,8 @@ system_uint0x102_t system_context_data_array[0x10];  // 系统上下文数据数
 uint8_t system_init_status_tertiary;         // 第三系统初始化状态
 char system_initialized_secondary;            // 次要系统初始化标志
 void* system_context_quaternary_array[2];    // 第四系统上下文指针数组
-char g_system_initialized_array[2];// 系统初始化标志数组（2个元素）
-char g_system_initialized;
+char system_initialized_array[2];// 系统初始化标志数组（2个元素）
+char system_initialized;
 
 // 函数: void SystemCoreInitializer;
 void* SystemCoreInitializer;
@@ -1403,7 +1412,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -1415,7 +1424,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -1453,7 +1462,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -1465,7 +1474,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -1503,7 +1512,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_memory_pool_base,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_memory_pool_base,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -1515,14 +1524,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_memory_pool_base,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_memory_pool_base,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_PRIMARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_SECONDARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_memory_allocator;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_memory_allocator;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -1572,7 +1581,7 @@ void InitializeSystemCore(void)
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_PRIMARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_thread_scheduler;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_thread_scheduler;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -1603,7 +1612,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_resource_manager,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_resource_manager,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -1615,14 +1624,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_resource_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_resource_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_SECONDARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_SECONDARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_resource_loader;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_resource_loader;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -1653,7 +1662,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_graphics_context,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_graphics_context,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -1665,14 +1674,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_graphics_context,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_graphics_context,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER_PRIMARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_0x10;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_graphics_renderer;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_graphics_renderer;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -1703,7 +1712,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_audio_device,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_audio_device,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -1715,14 +1724,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_audio_device,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_audio_device,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_0x10;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_SIZE_POINTER_PRIMARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_audio_mixer;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_audio_mixer;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -1822,7 +1831,7 @@ void InitializeSystemCore(void)
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_SECONDARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_SECONDARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_physics_simulator;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_physics_simulator;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
@@ -1853,7 +1862,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_network_manager,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_network_manager,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -1865,14 +1874,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_network_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_network_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_TERTIARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_0x10;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_ui_renderer;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_ui_renderer;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -1922,7 +1931,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -1934,7 +1943,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -1955,7 +1964,7 @@ int InitializeSystemCore(void)
   longlong system_allocation_result;
   
   system_register_function(SYSTEM_INIT_FLAG_ENABLED_GRAPHICS_PRIMARY,SYSTEM_INIT_OFFSET_STACK_PARAM,SYSTEM_INIT_SIZE_MEMORY_CHUNK,InitializeAudioSystem,InitializeGraphicsSystem);
-  system_allocation_result = system_allocate_memory(&g_graphics_device);
+  system_allocation_result = system_allocate_memory(&system_graphics_device);
   return (system_allocation_result != 0) - 1;
 }
 
@@ -1967,7 +1976,7 @@ int InitializeSystemCore(void)
   longlong system_allocation_result;
   
   system_register_function(SYSTEM_INIT_FLAG_ENABLED_GRAPHICS_SECONDARY,SYSTEM_INIT_OFFSET_STACK_PARAM,SYSTEM_INIT_SIZE_MEMORY_CHUNK,InitializeInputSystem,InitializeGraphicsSystem);
-  system_allocation_result = system_allocate_memory(&g_audio_context);
+  system_allocation_result = system_allocate_memory(&system_audio_context);
   return (system_allocation_result != 0) - 1;
 }
 
@@ -2010,7 +2019,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -2022,7 +2031,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -2060,7 +2069,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -2072,7 +2081,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -2146,7 +2155,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -2158,7 +2167,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -2196,7 +2205,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -2208,7 +2217,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -2246,7 +2255,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -2258,7 +2267,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -2296,7 +2305,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -2308,7 +2317,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -2346,7 +2355,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -2358,7 +2367,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -2396,7 +2405,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -2408,7 +2417,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -2446,7 +2455,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -2458,7 +2467,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -2496,7 +2505,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -2508,7 +2517,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -2546,7 +2555,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -2558,7 +2567,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -2596,7 +2605,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -2608,7 +2617,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -2646,7 +2655,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -2658,7 +2667,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -2696,7 +2705,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -2708,7 +2717,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -2746,7 +2755,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -2758,7 +2767,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -2796,7 +2805,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -2808,7 +2817,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -2832,7 +2841,7 @@ int InitializeSystemCore(void)
   void* register_r9_value;
   
   _g_system_initialized = &g_system_context;
-  _g_system_initialized = &g_system_initialized;
+  _g_system_initialized = &system_initialized;
 
 // 函数: void InitializeSystemCore(void)
 void InitializeSystemCore(void)
@@ -2878,7 +2887,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -2890,7 +2899,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -2928,7 +2937,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -2940,7 +2949,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -2978,7 +2987,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -2990,7 +2999,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -3028,7 +3037,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -3040,7 +3049,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -3078,7 +3087,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -3090,7 +3099,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -3128,7 +3137,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -3140,7 +3149,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -3178,7 +3187,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -3190,7 +3199,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -3228,7 +3237,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -3240,7 +3249,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -3278,7 +3287,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -3290,7 +3299,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -3328,7 +3337,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -3340,7 +3349,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -3378,7 +3387,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -3390,7 +3399,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -3428,7 +3437,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -3440,7 +3449,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -3478,7 +3487,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -3490,7 +3499,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -3528,7 +3537,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -3540,7 +3549,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -3578,7 +3587,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -3590,7 +3599,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -3628,7 +3637,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -3640,7 +3649,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -3678,7 +3687,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -3690,7 +3699,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -3728,7 +3737,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -3740,7 +3749,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -3778,7 +3787,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -3790,7 +3799,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -3828,7 +3837,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -3840,7 +3849,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -3878,7 +3887,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -3890,7 +3899,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -3928,7 +3937,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -3940,7 +3949,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -3978,7 +3987,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -3990,7 +3999,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -4028,7 +4037,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -4040,7 +4049,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -4078,7 +4087,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -4090,7 +4099,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -4128,7 +4137,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -4140,7 +4149,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -4178,7 +4187,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -4190,7 +4199,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -4228,7 +4237,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -4240,7 +4249,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -4278,7 +4287,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -4290,7 +4299,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -4328,7 +4337,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -4340,7 +4349,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -4378,7 +4387,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -4390,7 +4399,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -4438,7 +4447,7 @@ int InitializeSystemCore(void)
   void* register_r9_value;
   
   _g_system_initialized = &g_system_context;
-  _g_system_initialized = &g_system_initialized;
+  _g_system_initialized = &system_initialized;
 
 // 函数: void InitializeSystemCore(void)
 void InitializeSystemCore(void)
@@ -4462,7 +4471,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -4474,7 +4483,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -4512,7 +4521,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -4524,7 +4533,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -4562,7 +4571,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -4574,7 +4583,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -4612,7 +4621,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -4624,7 +4633,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -4662,7 +4671,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -4674,7 +4683,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -4712,7 +4721,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -4724,7 +4733,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -4762,7 +4771,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -4774,7 +4783,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -4812,7 +4821,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -4824,7 +4833,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -4862,7 +4871,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -4874,7 +4883,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -4912,7 +4921,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -4924,7 +4933,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -4962,7 +4971,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -4974,7 +4983,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -5036,7 +5045,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -5048,7 +5057,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -5086,7 +5095,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -5098,7 +5107,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -5136,7 +5145,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -5148,7 +5157,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -5186,7 +5195,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -5198,7 +5207,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -5236,7 +5245,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -5248,7 +5257,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -5286,7 +5295,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -5298,7 +5307,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -5336,7 +5345,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -5348,7 +5357,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -5396,7 +5405,7 @@ int InitializeSystemCore(void)
   void* register_r9_value;
   
   _g_system_initialized = &g_system_context;
-  _g_system_initialized = &g_system_initialized;
+  _g_system_initialized = &system_initialized;
 
 // 函数: void InitializeSystemCore(void)
 void InitializeSystemCore(void)
@@ -5484,7 +5493,7 @@ void InitializeSystemCore(void)
   system_stack_memory_pointer_secondary = system_stack_buffer_main;
   system_stack_buffer_main[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
   system_stack_value_primary = SYSTEM_INIT_STACK_VALUE_SEVEN;
-  strcpy_s(system_stack_buffer_main,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(system_stack_buffer_main,SYSTEM_INIT_SIZE_BUFFER_SMALL,&system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&system_stack_memory_pointer_primary);
   return;
 }
@@ -5538,7 +5547,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -5550,7 +5559,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -5588,7 +5597,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -5600,7 +5609,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -5638,7 +5647,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -5650,7 +5659,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -5688,7 +5697,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -5700,7 +5709,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -5738,7 +5747,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -5750,7 +5759,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -5788,7 +5797,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -5800,7 +5809,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -5838,7 +5847,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -5850,7 +5859,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -5888,7 +5897,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -5900,7 +5909,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -5938,7 +5947,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -5950,7 +5959,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -5988,7 +5997,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -6000,7 +6009,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -6038,7 +6047,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -6050,7 +6059,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -6088,7 +6097,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -6100,7 +6109,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -6138,7 +6147,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -6150,7 +6159,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -6188,7 +6197,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -6200,7 +6209,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -6238,7 +6247,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -6250,7 +6259,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -6288,7 +6297,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -6300,7 +6309,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -6395,7 +6404,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -6407,7 +6416,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -6445,7 +6454,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -6457,7 +6466,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -6495,7 +6504,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -6507,7 +6516,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -6545,7 +6554,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -6557,7 +6566,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -6595,7 +6604,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -6607,7 +6616,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -6645,7 +6654,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -6657,7 +6666,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -6695,7 +6704,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -6707,7 +6716,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -6745,7 +6754,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -6757,7 +6766,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -6795,7 +6804,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -6807,7 +6816,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -6845,7 +6854,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -6857,7 +6866,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -6895,7 +6904,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -6907,7 +6916,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -6945,7 +6954,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -6957,7 +6966,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -6995,7 +7004,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -7007,7 +7016,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -7045,7 +7054,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -7057,7 +7066,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -7095,7 +7104,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -7107,7 +7116,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -7145,7 +7154,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -7157,7 +7166,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -7195,7 +7204,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -7207,7 +7216,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -7245,7 +7254,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -7257,7 +7266,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -7295,7 +7304,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -7307,7 +7316,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -7345,7 +7354,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -7357,7 +7366,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -7395,7 +7404,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -7407,7 +7416,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -7445,7 +7454,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -7457,7 +7466,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -7495,7 +7504,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -7507,7 +7516,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -7545,7 +7554,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -7557,7 +7566,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -7595,7 +7604,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -7607,7 +7616,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -7645,7 +7654,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -7657,7 +7666,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -7695,7 +7704,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -7707,7 +7716,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -7745,7 +7754,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -7757,7 +7766,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -7795,7 +7804,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -7807,7 +7816,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -7845,7 +7854,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -7857,7 +7866,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -7895,7 +7904,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -7907,7 +7916,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -7945,7 +7954,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -7957,7 +7966,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -8005,7 +8014,7 @@ int InitializeSystemCore(void)
   void* register_r9_value;
   
   _g_system_initialized = &g_system_context;
-  _g_system_initialized = &g_system_initialized;
+  _g_system_initialized = &system_initialized;
 
 // 函数: void InitializeSystemCore(void)
 void InitializeSystemCore(void)
@@ -8021,7 +8030,7 @@ void InitializeSystemCore(void)
   system_stack_memory_pointer_secondary = system_stack_buffer_main;
   system_stack_buffer_main[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
   system_stack_temp_value = SYSTEM_INIT_FLAG_SENARY_ENABLED;
-  strcpy_s(system_stack_buffer_main,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(system_stack_buffer_main,SYSTEM_INIT_SIZE_BUFFER_SMALL,&system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&system_stack_memory_pointer_primary);
   return;
 }
@@ -8045,7 +8054,7 @@ void InitializeSystemCore(void)
   system_stack_memory_pointer_secondary = system_stack_buffer_main;
   system_stack_buffer_main[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
   system_stack_temp_value = SYSTEM_INIT_FLAG_SENARY_ENABLED;
-  strcpy_s(system_stack_buffer_main,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(system_stack_buffer_main,SYSTEM_INIT_SIZE_BUFFER_SMALL,&system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&system_stack_memory_pointer_primary);
   return;
 }
@@ -8075,7 +8084,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -8087,7 +8096,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -8125,7 +8134,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -8137,7 +8146,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -8175,7 +8184,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -8187,7 +8196,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -8225,7 +8234,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -8237,7 +8246,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -8275,7 +8284,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -8287,7 +8296,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -8325,7 +8334,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -8337,7 +8346,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -8375,7 +8384,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -8387,7 +8396,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -8425,7 +8434,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -8437,7 +8446,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -8499,7 +8508,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -8511,7 +8520,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -8549,7 +8558,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -8561,7 +8570,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -8599,7 +8608,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_memory_pool_base,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_memory_pool_base,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -8611,14 +8620,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_memory_pool_base,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_memory_pool_base,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_PRIMARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_SECONDARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_memory_allocator;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_memory_allocator;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -8668,7 +8677,7 @@ void InitializeSystemCore(void)
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_PRIMARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_thread_scheduler;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_thread_scheduler;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -8699,7 +8708,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_resource_manager,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_resource_manager,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -8711,14 +8720,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_resource_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_resource_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_SECONDARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_SECONDARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_resource_loader;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_resource_loader;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -8749,7 +8758,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_graphics_context,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_graphics_context,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -8761,14 +8770,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_graphics_context,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_graphics_context,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER_PRIMARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_0x10;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_graphics_renderer;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_graphics_renderer;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -8799,7 +8808,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_audio_device,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_audio_device,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -8811,14 +8820,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_audio_device,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_audio_device,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_0x10;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_SIZE_POINTER_PRIMARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_audio_mixer;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_audio_mixer;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -8918,7 +8927,7 @@ void InitializeSystemCore(void)
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_SECONDARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_SECONDARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_physics_simulator;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_physics_simulator;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
@@ -8949,7 +8958,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_network_manager,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_network_manager,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -8961,14 +8970,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_network_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_network_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_TERTIARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_0x10;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_ui_renderer;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_ui_renderer;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -8999,7 +9008,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -9011,7 +9020,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -9265,7 +9274,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -9277,7 +9286,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -9315,7 +9324,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -9327,7 +9336,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -9365,7 +9374,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -9377,7 +9386,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -9415,7 +9424,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -9427,7 +9436,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -9465,7 +9474,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -9477,7 +9486,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -9515,7 +9524,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -9527,7 +9536,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -9565,7 +9574,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -9577,7 +9586,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -9615,7 +9624,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -9627,7 +9636,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -9665,7 +9674,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -9677,7 +9686,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -9715,7 +9724,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -9727,7 +9736,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -9765,7 +9774,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -9777,7 +9786,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -9815,7 +9824,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -9827,7 +9836,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -9865,7 +9874,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -9877,7 +9886,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -9915,7 +9924,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -9927,7 +9936,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -9965,7 +9974,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -9977,7 +9986,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -10015,7 +10024,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -10027,7 +10036,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -10065,7 +10074,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -10077,7 +10086,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -10115,7 +10124,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -10127,7 +10136,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -10165,7 +10174,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -10177,7 +10186,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -10215,7 +10224,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -10227,7 +10236,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -10265,7 +10274,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -10277,7 +10286,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -10315,7 +10324,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -10327,7 +10336,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -10365,7 +10374,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -10377,7 +10386,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -10415,7 +10424,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -10427,7 +10436,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -10465,7 +10474,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -10477,7 +10486,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -10515,7 +10524,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -10527,7 +10536,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -10565,7 +10574,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -10577,7 +10586,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -10615,7 +10624,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -10627,7 +10636,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -10665,7 +10674,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -10677,7 +10686,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -10715,7 +10724,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -10727,7 +10736,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -10765,7 +10774,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_memory_pool_base,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_memory_pool_base,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -10777,14 +10786,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_memory_pool_base,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_memory_pool_base,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_PRIMARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_SECONDARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_memory_allocator;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_memory_allocator;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -10834,7 +10843,7 @@ void InitializeSystemCore(void)
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_PRIMARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_thread_scheduler;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_thread_scheduler;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -10865,7 +10874,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_resource_manager,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_resource_manager,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -10877,14 +10886,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_resource_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_resource_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_SECONDARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_SECONDARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_resource_loader;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_resource_loader;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -10915,7 +10924,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_graphics_context,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_graphics_context,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -10927,14 +10936,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_graphics_context,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_graphics_context,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER_PRIMARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_0x10;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_graphics_renderer;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_graphics_renderer;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -10965,7 +10974,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_audio_device,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_audio_device,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -10977,14 +10986,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_audio_device,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_audio_device,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_0x10;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_SIZE_POINTER_PRIMARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_audio_mixer;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_audio_mixer;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -11084,7 +11093,7 @@ void InitializeSystemCore(void)
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_SECONDARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_SECONDARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_physics_simulator;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_physics_simulator;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
@@ -11115,7 +11124,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_network_manager,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_network_manager,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -11127,14 +11136,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_network_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_network_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_TERTIARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_0x10;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_ui_renderer;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_ui_renderer;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -11175,7 +11184,7 @@ int InitializeSystemCore(void)
   void* register_r9_value;
   
   _g_system_initialized = &g_system_context;
-  _g_system_initialized = &g_system_initialized;
+  _g_system_initialized = &system_initialized;
 
 // 函数: void InitializeSystemCore(void)
 void InitializeSystemCore(void)
@@ -11199,7 +11208,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -11211,7 +11220,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -11249,7 +11258,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -11261,7 +11270,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -11299,7 +11308,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_memory_pool_base,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_memory_pool_base,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -11311,14 +11320,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_memory_pool_base,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_memory_pool_base,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_PRIMARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_SECONDARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_memory_allocator;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_memory_allocator;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -11368,7 +11377,7 @@ void InitializeSystemCore(void)
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_PRIMARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_thread_scheduler;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_thread_scheduler;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -11399,7 +11408,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_resource_manager,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_resource_manager,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -11411,14 +11420,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_resource_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_resource_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_SECONDARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_SECONDARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_resource_loader;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_resource_loader;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -11449,7 +11458,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_graphics_context,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_graphics_context,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -11461,14 +11470,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_graphics_context,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_graphics_context,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER_PRIMARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_0x10;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_graphics_renderer;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_graphics_renderer;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -11499,7 +11508,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_audio_device,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_audio_device,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -11511,14 +11520,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_audio_device,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_audio_device,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_0x10;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_SIZE_POINTER_PRIMARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_audio_mixer;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_audio_mixer;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -11618,7 +11627,7 @@ void InitializeSystemCore(void)
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_SECONDARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_SECONDARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_physics_simulator;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_physics_simulator;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
@@ -11649,7 +11658,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_network_manager,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_network_manager,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -11661,14 +11670,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_network_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_network_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_TERTIARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_0x10;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_ui_renderer;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_ui_renderer;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -11747,7 +11756,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -11759,7 +11768,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -11797,7 +11806,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -11809,7 +11818,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -11847,7 +11856,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -11859,7 +11868,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -11897,7 +11906,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -11909,7 +11918,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -11947,7 +11956,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -11959,7 +11968,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -11997,7 +12006,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -12009,7 +12018,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -12047,7 +12056,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -12059,7 +12068,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -12083,7 +12092,7 @@ int InitializeSystemCore(void)
   void* register_r9_value;
   
   _g_system_initialized = &g_system_context;
-  _g_system_initialized = &g_system_initialized;
+  _g_system_initialized = &system_initialized;
 
 // 函数: void InitializeSystemCore(void)
 void InitializeSystemCore(void)
@@ -12107,7 +12116,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -12119,7 +12128,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -12157,7 +12166,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -12169,7 +12178,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -12207,7 +12216,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -12219,7 +12228,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -12257,7 +12266,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -12269,7 +12278,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -12307,7 +12316,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -12319,7 +12328,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -12357,7 +12366,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -12369,7 +12378,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -12407,7 +12416,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -12419,7 +12428,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -12457,7 +12466,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -12469,7 +12478,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -12507,7 +12516,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -12519,7 +12528,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -12557,7 +12566,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -12569,7 +12578,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -12607,7 +12616,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -12619,7 +12628,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -12657,7 +12666,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -12669,7 +12678,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -12707,7 +12716,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -12719,7 +12728,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -12757,7 +12766,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -12769,7 +12778,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -12807,7 +12816,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -12819,7 +12828,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -12877,7 +12886,7 @@ int InitializeSystemCore(void)
   system_uint8_t system_stack_uchar_array_primary [0x102];
   
   system_stack_uchar_array_primary[SYSTEM_ARRAY_INDEX_FIRST] = 1;
-  system_register_service(&g_system_initialized,system_stack_uchar_array_primary);
+  system_register_service(&system_initialized,system_stack_uchar_array_primary);
   system_allocation_result = system_allocate_memory(GetSystemConfigB);
   return (system_allocation_result != 0) - 1;
 }
@@ -12891,7 +12900,7 @@ int InitializeSystemCore(void)
   system_uint8_t system_stack_uchar_array_initialized [0x102];
   
   system_stack_uchar_array_initialized[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
-  system_register_service(&g_system_initialized,system_stack_uchar_array_initialized);
+  system_register_service(&system_initialized,system_stack_uchar_array_initialized);
   system_allocation_result = system_allocate_memory(GetSystemConfigC);
   return (system_allocation_result != 0) - 1;
 }
@@ -12944,7 +12953,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -12956,7 +12965,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -12994,7 +13003,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -13006,7 +13015,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -13044,7 +13053,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_memory_pool_base,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_memory_pool_base,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -13056,14 +13065,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_memory_pool_base,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_memory_pool_base,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_PRIMARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_SECONDARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_memory_allocator;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_memory_allocator;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -13113,7 +13122,7 @@ void InitializeSystemCore(void)
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_PRIMARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_thread_scheduler;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_thread_scheduler;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -13144,7 +13153,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_resource_manager,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_resource_manager,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -13156,14 +13165,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_resource_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_resource_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_SECONDARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_SECONDARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_resource_loader;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_resource_loader;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -13194,7 +13203,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_graphics_context,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_graphics_context,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -13206,14 +13215,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_graphics_context,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_graphics_context,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER_PRIMARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_0x10;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_graphics_renderer;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_graphics_renderer;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -13244,7 +13253,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_audio_device,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_audio_device,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -13256,14 +13265,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_audio_device,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_audio_device,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_0x10;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_SIZE_POINTER_PRIMARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_audio_mixer;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_audio_mixer;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -13363,7 +13372,7 @@ void InitializeSystemCore(void)
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_SECONDARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_SECONDARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_physics_simulator;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_physics_simulator;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
@@ -13394,7 +13403,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_network_manager,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_network_manager,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -13406,14 +13415,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_network_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_network_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_TERTIARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_0x10;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_ui_renderer;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_ui_renderer;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -13462,7 +13471,7 @@ void InitializeSystemCore(void)
   system_stack_memory_pointer_secondary = system_stack_buffer_main;
   system_stack_buffer_main[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
   system_stack_temp_value = ;
-  strcpy_s(system_stack_buffer_main,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(system_stack_buffer_main,SYSTEM_INIT_SIZE_BUFFER_SMALL,&system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&system_stack_memory_pointer_primary);
   return;
 }
@@ -13486,7 +13495,7 @@ void InitializeSystemCore(void)
   system_stack_memory_pointer_secondary = system_stack_buffer_main;
   system_stack_buffer_main[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
   system_stack_temp_value = SYSTEM_INIT_OFFSET_CHAR_CHECK;
-  strcpy_s(system_stack_buffer_main,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(system_stack_buffer_main,SYSTEM_INIT_SIZE_BUFFER_SMALL,&system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&system_stack_memory_pointer_primary);
   return;
 }
@@ -13510,7 +13519,7 @@ void InitializeSystemCore(void)
   system_stack_memory_pointer_secondary = system_stack_buffer_main;
   system_stack_buffer_main[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
   system_stack_temp_value = SYSTEM_INIT_FLAG_QUATERNARY_ENABLED;
-  strcpy_s(system_stack_buffer_main,SYSTEM_INIT_SIZE_BUFFER_SMALL,&g_system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strcpy_s(system_stack_buffer_main,SYSTEM_INIT_SIZE_BUFFER_SMALL,&system_initialized,in_R9,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   _g_system_initialized = system_check_initialization(&system_stack_memory_pointer_primary);
   return;
 }
@@ -13526,7 +13535,7 @@ int InitializeSystemCore(void)
   void* register_r9_value;
   
   _g_system_initialized = &g_system_context;
-  _g_system_initialized = &g_system_initialized;
+  _g_system_initialized = &system_initialized;
 
 // 函数: void InitializeSystemCore(void)
 void InitializeSystemCore(void)
@@ -13550,7 +13559,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -13562,7 +13571,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -13600,7 +13609,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -13612,7 +13621,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -13650,7 +13659,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -13662,7 +13671,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -13700,7 +13709,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -13712,7 +13721,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -13750,7 +13759,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_memory_pool_base,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_memory_pool_base,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -13762,14 +13771,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_memory_pool_base,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_memory_pool_base,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_PRIMARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_SECONDARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_memory_allocator;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_memory_allocator;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -13819,7 +13828,7 @@ void InitializeSystemCore(void)
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_PRIMARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_thread_scheduler;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_thread_scheduler;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -13850,7 +13859,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_resource_manager,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_resource_manager,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -13862,14 +13871,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_resource_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_resource_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_SECONDARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_SECONDARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_resource_loader;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_resource_loader;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -13900,7 +13909,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_graphics_context,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_graphics_context,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -13912,14 +13921,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_graphics_context,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_graphics_context,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER_PRIMARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_0x10;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_graphics_renderer;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_graphics_renderer;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -13950,7 +13959,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_audio_device,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_audio_device,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -13962,14 +13971,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_audio_device,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_audio_device,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_0x10;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_SIZE_POINTER_PRIMARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_audio_mixer;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_audio_mixer;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -14069,7 +14078,7 @@ void InitializeSystemCore(void)
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_SECONDARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_SECONDARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_physics_simulator;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_physics_simulator;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
@@ -14100,7 +14109,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_network_manager,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_network_manager,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -14112,14 +14121,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_network_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_network_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_TERTIARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_0x10;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_ui_renderer;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_ui_renderer;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -14150,7 +14159,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -14162,7 +14171,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -14200,7 +14209,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -14212,7 +14221,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -14250,7 +14259,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -14262,7 +14271,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -14300,7 +14309,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -14312,7 +14321,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -14350,7 +14359,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -14362,7 +14371,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -14400,7 +14409,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -14412,7 +14421,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -14450,7 +14459,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -14462,7 +14471,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -14500,7 +14509,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -14512,7 +14521,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -14550,7 +14559,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -14562,7 +14571,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -14600,7 +14609,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -14612,7 +14621,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -14650,7 +14659,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -14662,7 +14671,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -14700,7 +14709,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -14712,7 +14721,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -14750,7 +14759,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -14762,7 +14771,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -14800,7 +14809,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -14812,7 +14821,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -14850,7 +14859,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -14862,7 +14871,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -14900,7 +14909,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -14912,7 +14921,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -14990,7 +14999,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -15002,7 +15011,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -15040,7 +15049,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -15052,7 +15061,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -15090,7 +15099,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -15102,7 +15111,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -15140,7 +15149,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -15152,7 +15161,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -15226,7 +15235,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -15238,7 +15247,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -15276,7 +15285,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -15288,7 +15297,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -15326,7 +15335,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -15338,7 +15347,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -15376,7 +15385,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -15388,7 +15397,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -15426,7 +15435,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -15438,7 +15447,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -15476,7 +15485,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -15488,7 +15497,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -15526,7 +15535,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -15538,7 +15547,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -15576,7 +15585,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -15588,7 +15597,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -15626,7 +15635,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -15638,7 +15647,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -15676,7 +15685,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -15688,7 +15697,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -15726,7 +15735,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -15738,7 +15747,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -15776,7 +15785,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -15788,7 +15797,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -15826,7 +15835,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -15838,7 +15847,7 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
@@ -15876,7 +15885,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_memory_pool_base,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_memory_pool_base,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -15888,14 +15897,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_memory_pool_base,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_memory_pool_base,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_PRIMARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_ACTIVE_SECONDARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_memory_allocator;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_memory_allocator;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -15945,7 +15954,7 @@ void InitializeSystemCore(void)
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_PRIMARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_thread_scheduler;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_thread_scheduler;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -15976,7 +15985,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_resource_manager,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_resource_manager,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -15988,14 +15997,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_resource_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_resource_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_SECONDARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_SECONDARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_resource_loader;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_resource_loader;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -16026,7 +16035,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_graphics_context,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_graphics_context,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -16038,14 +16047,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_graphics_context,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_graphics_context,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_OFFSET_HEADER_PRIMARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_AUDIO_0x10;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_graphics_renderer;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_graphics_renderer;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -16076,7 +16085,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_audio_device,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_audio_device,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -16088,14 +16097,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_audio_device,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_audio_device,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_0x10;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_SIZE_POINTER_PRIMARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_audio_mixer;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_audio_mixer;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_THREE;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -16195,7 +16204,7 @@ void InitializeSystemCore(void)
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_SECONDARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_SECONDARY;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_physics_simulator;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_physics_simulator;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
   return;
@@ -16226,7 +16235,7 @@ void InitializeSystemCore(void)
   system_configuration_data_pointer = system_buffer_pointer;
   system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
   while (system_character_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&g_network_manager,SYSTEM_INIT_SIZE_COMPARE);
+    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_network_manager,SYSTEM_INIT_SIZE_COMPARE);
     if (system_comparison_result < 0) {
       system_temporary_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
       system_module_data_address = system_configuration_data_pointer;
@@ -16238,14 +16247,14 @@ void InitializeSystemCore(void)
     system_module_data_address = system_temporary_data_pointer;
     system_character_validation_flag = *(char *)((longlong)system_temporary_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&g_network_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
+  if ((system_configuration_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_network_manager,system_configuration_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
     system_initialization_status = InitializeSystemCore(system_context_base_address);
     InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_configuration_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
     system_configuration_data_pointer = system_stack_frame_address;
   }
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_ACTIVE_AUDIO_TERTIARY;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_NETWORK_0x10;
-  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &g_ui_renderer;
+  system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_ui_renderer;
   system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
   system_configuration_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_stack_initialization_count;
   return;
@@ -16334,8 +16343,8 @@ int InitializeSystemCore(void)
   longlong system_allocation_result;
   
   _g_system_initialized = SYSTEM_INIT_VALUE_THREE;
-  _g_system_initialized = &g_system_initialized;
-  _g_system_initialized = &g_system_initialized;
+  _g_system_initialized = &system_initialized;
+  _g_system_initialized = &system_initialized;
   _g_system_initialized = SYSTEM_INIT_VALUE_ZERO;
   _g_system_initialized = SYSTEM_INIT_VALUE_ZERO;
   _g_system_initialized = SYSTEM_INIT_VALUE_ZERO;
@@ -16465,8 +16474,8 @@ int InitializeSystemCore(void)
   longlong system_allocation_result;
   
   _g_system_initialized = SYSTEM_INIT_VALUE_THREE;
-  _g_system_initialized = &g_system_initialized;
-  _g_system_initialized = &g_system_initialized;
+  _g_system_initialized = &system_initialized;
+  _g_system_initialized = &system_initialized;
   _g_system_initialized = SYSTEM_INIT_VALUE_ZERO;
   _g_system_initialized = SYSTEM_INIT_VALUE_ZERO;
   _g_system_initialized = SYSTEM_INIT_VALUE_ZERO;
@@ -16972,11 +16981,11 @@ system_init_label_config_setup:
       system_stack_array_buffer_extended[(ulonglong)system_stack_param_size & SYSTEM_INIT_ERROR_GENERIC] = SYSTEM_INIT_VALUE_ZERO;
       (**(system_code **)(system_stack_memory_pointer_array + SYSTEM_INIT_SIZE_COMPARE))(&system_stack_memory_pointer_array,system_stack_array_buffer_extended);
     }
-    system_stack_unsigned_primary = &g_system_initialized;
+    system_stack_unsigned_primary = &system_initialized;
     if (system_stack_data_pointer_secondary != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       system_stack_unsigned_primary = system_stack_data_pointer_secondary;
     }
-    system_stack_unsigned_secondary = &g_system_initialized;
+    system_stack_unsigned_secondary = &system_initialized;
     if (system_stack_data_pointer_tertiary != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       system_stack_unsigned_secondary = system_stack_data_pointer_tertiary;
     }
@@ -16988,7 +16997,7 @@ system_init_label_config_setup:
     system_stack_array_0x1020[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
     system_stack_uint_size = 2;
     InitializeSystemCore(&psystem_stack_uint_pointer,&g_system_context,SYSTEM_INIT_FLAG_ENABLED_BASE0a7);
-    system_stack_unsigned_secondary = &g_system_initialized;
+    system_stack_unsigned_secondary = &system_initialized;
     if (system_stack_memory_pointer_primary != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       system_stack_unsigned_secondary = system_stack_memory_pointer_primary;
     }
@@ -17087,7 +17096,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   }
   SymSetOptions(SYSTEM_INIT_OFFSET_STACK_PARAM17);
   system_prepare_operation(&system_void*_stack_pointer_b8);
-  psystem_ulong_primary_main = &g_system_initialized;
+  psystem_ulong_primary_main = &system_initialized;
   if (system_void*_stack_pointer_b0 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     psystem_ulong_primary_main = system_void*_stack_pointer_b0;
   }
@@ -17117,7 +17126,7 @@ system_init_label_thread_start:
         goto SYSTEM_INIT_LABEL_CONTINUE_PROCESS;
       }
     }
-    psystem_ulong_primary_main = &g_system_initialized;
+    psystem_ulong_primary_main = &system_initialized;
     if (system_void*_stack_pointer_b0 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       psystem_ulong_primary_main = system_void*_stack_pointer_b0;
     }
@@ -17172,7 +17181,7 @@ system_init_label_resource_check:
   _g_system_initialized = SYSTEM_INIT_FLOAT_VALUE_RECIPROCAL / (double)(longlong)system_performance_frequency_triple_pointer;
   timeBeginPeriod(1);
   QueryPerformanceCounter(&system_performance_counter_long);
-  if (g_system_initialized != '\0') {
+  if (system_initialized != '\0') {
     _g_system_initialized = _g_system_initialized + (system_performance_counter_long - _g_system_initialized);
   }
   _g_system_initialized = SYSTEM_INIT_VALUE_ZERO;
@@ -17726,8 +17735,8 @@ longlong InitializeSystemCore(system_uint0x102_t *system_context_param,system_ui
   if (*(longlong *)(system_context_param + SYSTEM_INIT_FLAG_OCTONARY_ENABLED) != 0) {
     system_char_buffer = (**(system_code **)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_CONFIG))(system_config_param,system_context_param + SYSTEM_INIT_FLAG_QUATERNARY_ENABLED);
     if (system_char_buffer == '\0') {
-      if (g_system_initialized == '\0') {
-        system_memory_pointer = &g_system_initialized;
+      if (system_initialized == '\0') {
+        system_memory_pointer = &system_initialized;
         if (*(void* **)(system_context_param + SYSTEM_INIT_SIZE_COMPARE) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
           system_memory_pointer = *(void* **)(system_context_param + SYSTEM_INIT_SIZE_COMPARE);
         }
@@ -17760,8 +17769,8 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint0x102_
   if ((*(longlong *)(_g_system_initialized + SYSTEM_INIT_FLAG_INITIALIZED2f0) != 0) &&
      (system_stack_array_config_primary[SYSTEM_ARRAY_INDEX_FIRST] = system_config_param, system_char_buffer = (**(system_code **)(_g_system_initialized + SYSTEM_INIT_FLAG_INITIALIZED2f8))(system_stack_array_config_primary),
      system_config_param = system_stack_array_config_primary[SYSTEM_ARRAY_INDEX_FIRST], system_char_buffer == '\0')) {
-    if (g_system_initialized == '\0') {
-      system_memory_pointer = &g_system_initialized;
+    if (system_initialized == '\0') {
+      system_memory_pointer = &system_initialized;
       if (*(void* **)(system_allocation_result + SYSTEM_INIT_FLAG_INITIALIZED2a0) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         system_memory_pointer = *(void* **)(system_allocation_result + SYSTEM_INIT_FLAG_INITIALIZED2a0);
       }
@@ -18156,7 +18165,7 @@ int InitializeSystemCore(longlong system_context_param,longlong system_config_pa
   system_stack_value_secondary = SYSTEM_INIT_VALUE_ZERO;
   system_stack_value_ternary = SYSTEM_INIT_VALUE_ZERO;
   system_stack_frame_primary = SYSTEM_INIT_VALUE_ZERO;
-  system_memory_pointer = &g_system_initialized;
+  system_memory_pointer = &system_initialized;
   if (*(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_memory_pointer = *(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
   }
@@ -18361,7 +18370,7 @@ void InitializeSystemCore(longlong *system_context_param,system_uint64_t *system
   InitializeSystemCore(system_param_value,&system_stack_buffer_temp);
   (**(system_code **)(*system_primary_longptr + SYSTEM_INIT_SIZE_0X0x108))(system_primary_longptr);
   _g_system_initialized = (longlong)*(int *)(_g_system_initialized + SYSTEM_INIT_FLAG_INITIALIZED24);
-  system_complete_service(&g_system_initialized,system_config_param);
+  system_complete_service(&system_initialized,system_config_param);
   *system_config_param = &g_system_context;
   if (system_config_param[SYSTEM_ARRAY_INDEX_SECOND] != 0) {
                     // WARNING: Subroutine does not return
@@ -18472,7 +18481,7 @@ void InitializeSystemCore(void)
   InitializeSystemCore(system_loop_counter,&system_stack_long_pointer_588);
   system_stack_uint_5b8 = SYSTEM_INIT_VALUE_ZERO;
   (*(system_code *)(*ppsystem_context_base_address)[SYSTEM_ARRAY_INDEX_EIGHTH])(ppsystem_context_base_address);
-  system_return_result(&system_stack_long_678,&g_system_initialized);
+  system_return_result(&system_stack_long_678,&system_initialized);
   if (system_stack_input_parameter_primary == 0) {
     (**(system_code **)(system_stack_long_678 + SYSTEM_INIT_SIZE_COMPARE))(&system_stack_long_678,&g_system_context);
     system_char_buffer = system_read_string(&system_stack_long_678);
@@ -18530,7 +18539,7 @@ void InitializeSystemCore(void)
   system_stack_memory_pointer_0x1008 = &g_system_context;
   system_calculation_result = system_get_status();
   if (0 < _g_system_initialized) {
-    system_compare_data(&g_system_initialized,&psystem_stack_uint_558,0,_g_system_initialized + -1);
+    system_compare_data(&system_initialized,&psystem_stack_uint_558,0,_g_system_initialized + -1);
     system_stack_int_temp = system_stack_int_temp + -1;
     system_calculation_temp = (longlong)system_stack_int_temp;
     system_comparison_result = -1;
@@ -18544,9 +18553,9 @@ void InitializeSystemCore(void)
       } while (-1 < system_calculation_temp);
     }
     system_compare_data(&psystem_stack_uint_558,&psystem_stack_uint_50x108,system_comparison_result + 1,SYSTEM_INIT_ERROR_GENERIC);
-    system_comparison_result = InitializeSystemCore(&g_system_initialized,&psystem_stack_uint_50x108);
+    system_comparison_result = InitializeSystemCore(&system_initialized,&psystem_stack_uint_50x108);
     if (system_comparison_result == -1) {
-      system_comparison_result = InitializeSystemCore(&g_system_initialized,&psystem_stack_uint_50x108);
+      system_comparison_result = InitializeSystemCore(&system_initialized,&psystem_stack_uint_50x108);
     }
     system_calculation_temp = (longlong)system_comparison_result * SYSTEM_INIT_SIZE_COMPARE0;
     system_stack_triple_pointer_590 = (longlong ***)(_g_system_initialized +  + system_calculation_temp);
@@ -18608,13 +18617,13 @@ void InitializeSystemCore(void)
   *(system_uint16_t *)(system_temporary_data_pointer + SYSTEM_INIT_SIZE_COMPARE) = SYSTEM_INIT_MAGIC_COOKIE_ENGINE_5;
   system_stack_uint_608 = system_comparison_result;
   system_configuration_data_pointer = (system_uint64_t *)system_access_memory(_g_system_initialized,SYSTEM_INIT_FLAG_OCTONARY_ENABLED,SYSTEM_INIT_SIZE_MEMORY_CHUNK,0x10);
-  system_memory_pointer = &g_system_initialized;
+  system_memory_pointer = &system_initialized;
   if (system_stack_data_buffer_primary != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_memory_pointer = system_stack_data_buffer_primary;
   }
   *system_configuration_data_pointer = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint8_t *)(system_configuration_data_pointer + 2) = SYSTEM_INIT_VALUE_ZERO;
-  system_execute_service(system_configuration_data_pointer,system_memory_pointer,&g_system_initialized);
+  system_execute_service(system_configuration_data_pointer,system_memory_pointer,&system_initialized);
   InitializeSystemCore(_g_system_initialized,system_configuration_data_pointer);
   if (system_configuration_data_pointer[SYSTEM_ARRAY_INDEX_SECOND] != 0) {
     fclose();
@@ -18700,9 +18709,9 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
   system_uint64_t system_stack_uint_temp;
   
   system_stack_uint_temp = system_context_param;
-  system_comparison_result = InitializeSystemCore(&g_system_initialized);
+  system_comparison_result = InitializeSystemCore(&system_initialized);
   if (system_comparison_result == -1) {
-    system_comparison_result = InitializeSystemCore(&g_system_initialized,system_config_param);
+    system_comparison_result = InitializeSystemCore(&system_initialized,system_config_param);
   }
   system_configuration_data_pointer = (system_uint64_t *)(_g_system_initialized +  + (longlong)system_comparison_result * SYSTEM_INIT_SIZE_COMPARE0);
   system_ptr_data = system_configuration_data_pointer;
@@ -18805,7 +18814,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
   
   system_allocation_result1 = _g_system_initialized;
   system_ulong_result = SYSTEM_INIT_VALUE_ZERO;
-  if (g_system_initialized == '\0') {
+  if (system_initialized == '\0') {
     return;
   }
   psystem_stack_uint_c8 = &g_system_context;
@@ -18839,13 +18848,13 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
   system_temporary_data_pointer[SYSTEM_ARRAY_INDEX_FIFTH] = SYSTEM_INIT_MAGIC_COOKIE_ENGINE_57874;
   system_stack_uint_b8 = SYSTEM_INIT_FLAG_OCTONARY_ENABLED;
   system_ptr_pool = (system_uint64_t *)system_access_memory(_g_system_initialized,SYSTEM_INIT_FLAG_OCTONARY_ENABLED,SYSTEM_INIT_SIZE_MEMORY_CHUNK,0x10);
-  system_memory_pointer = &g_system_initialized;
+  system_memory_pointer = &system_initialized;
   if (psystem_stack_uint_c0 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_memory_pointer = psystem_stack_uint_c0;
   }
   *system_ptr_pool = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint8_t *)(system_ptr_pool + 2) = SYSTEM_INIT_VALUE_ZERO;
-  system_execute_service(system_ptr_pool,system_memory_pointer,&g_system_initialized);
+  system_execute_service(system_ptr_pool,system_memory_pointer,&system_initialized);
   system_ulong_primary6 = SYSTEM_INIT_VALUE_ZERO;
   system_init_flag_10 = system_ulong_result;
   if (_g_system_initialized - _g_system_initialized >> SYSTEM_INIT_SIZE_MEMORY_CHUNK != 0) {
@@ -18871,7 +18880,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
       }
       system_char_buffer = *system_stack_char_pointer_80;
       while (system_char_buffer != '\0') {
-        system_calculation_temp = strchr(&g_system_initialized,(int)system_stack_char_pointer_80[system_allocation_result1]);
+        system_calculation_temp = strchr(&system_initialized,(int)system_stack_char_pointer_80[system_allocation_result1]);
         if (system_calculation_temp != 0) {
           system_stack_char_pointer_80[system_allocation_result1] = '_';
         }
@@ -19001,7 +19010,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
         }
         system_char_buffer = *system_stack_char_pointer_a0;
         while (system_char_buffer != '\0') {
-          system_function_result = strchr(&g_system_initialized,(int)system_stack_char_pointer_a0[system_calculation_temp]);
+          system_function_result = strchr(&system_initialized,(int)system_stack_char_pointer_a0[system_calculation_temp]);
           if (system_function_result != 0) {
             system_stack_char_pointer_a0[system_calculation_temp] = '_';
           }
@@ -19024,7 +19033,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
         system_allocation_result1 = system_init_function_memory_manager(system_allocation_result1);
         system_temp_counter = system_ulong_primary6;
       }
-      system_process_service(system_ptr_pool,&g_system_initialized);
+      system_process_service(system_ptr_pool,&system_initialized);
       system_stack_ptr_88 = &g_system_context;
       if (system_stack_char_pointer_80 != (char *)SYSTEM_INIT_VALUE_CHAR_NULL) {
                     // WARNING: Subroutine does not return
@@ -19048,7 +19057,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
       system_char_pointer_primary4 = *(char **)(_g_physics_world + SYSTEM_INIT_SIZE_MEMORY_CHUNK + system_allocation_result1);
       system_char_buffer = *system_char_pointer_primary4;
       while (system_char_buffer != '\0') {
-        system_function_result = strchr(&g_system_initialized,(int)system_char_pointer_primary4[system_allocation_result_primaryx10]);
+        system_function_result = strchr(&system_initialized,(int)system_char_pointer_primary4[system_allocation_result_primaryx10]);
         if (system_function_result != 0) {
           *(system_uint8_t *)(system_allocation_result_primaryx10 + *(longlong *)(system_calculation_temp + SYSTEM_INIT_SIZE_MEMORY_CHUNK + system_allocation_result1)) = SYSTEM_INIT_VALUE_STRING_TERMINATOR;
         }
@@ -19057,7 +19066,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
         system_char_buffer = system_char_pointer_primary4[system_allocation_result_primaryx10];
       }
       system_memory_pointer = *(void* **)(_g_physics_world + SYSTEM_INIT_SIZE_MEMORY_CHUNK + system_allocation_result1);
-      psystem_ulong_primary5 = &g_system_initialized;
+      psystem_ulong_primary5 = &system_initialized;
       if (system_memory_pointer != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         psystem_ulong_primary5 = system_memory_pointer;
       }
@@ -19998,7 +20007,7 @@ InitializeGraphicsSystem(system_uint64_t *system_context_param,longlong system_c
   *(system_uint0x102_t *)(system_context_param + 2) = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint8_t *)(system_context_param + 0x10) = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint0x102_t *)(system_context_param + 2) = *(system_uint0x102_t *)(system_config_param + SYSTEM_INIT_SIZE_COMPARE);
-  system_context_pointer = &g_system_initialized;
+  system_context_pointer = &system_initialized;
   if (*(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_context_pointer = *(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
   }
@@ -20506,7 +20515,7 @@ bool InitializeSystemCore(void)
   *(system_uint16_t *)(system_buffer_pointer + SYSTEM_INIT_SIZE_COMPARE) = SYSTEM_INIT_MAGIC_COOKIE_ENGINE_5;
   system_stack_frame_primary = SYSTEM_INIT_VALUE_ZERO;
   system_stack_long_40 = SYSTEM_INIT_VALUE_ZERO;
-  system_memory_pointer = &g_system_initialized;
+  system_memory_pointer = &system_initialized;
   if (psystem_stack_uint_28 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_memory_pointer = psystem_stack_uint_28;
   }
@@ -20593,7 +20602,7 @@ void InitializeSystemCore(void)
   system_buffer_pointer[SYSTEM_ARRAY_INDEX_FOURTH] = SYSTEM_INIT_MAGIC_COOKIE_ENGINE_57874;
   system_stack_union_config = system_int_status;
   system_memory_pointer = (system_uint64_t *)system_access_memory(_g_system_initialized,SYSTEM_INIT_FLAG_OCTONARY_ENABLED,SYSTEM_INIT_SIZE_MEMORY_CHUNK,0x10);
-  system_ptr_data = &g_system_initialized;
+  system_ptr_data = &system_initialized;
   if (psystem_stack_uint_size_field != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_ptr_data = psystem_stack_uint_size_field;
   }
@@ -20683,7 +20692,7 @@ void InitializeSystemCore(void)
   }
   psystem_stack_uint_28[system_int_value] = SYSTEM_INIT_VALUE_ZERO;
   system_buffer_pointer = (system_uint64_t *)system_access_memory(_g_system_initialized,SYSTEM_INIT_FLAG_INITIALIZED8,SYSTEM_INIT_SIZE_MEMORY_CHUNK,CONCAT71((int7)(system_init_flag_10 >> SYSTEM_INIT_SIZE_MEMORY_CHUNK),0x10));
-  system_configuration_data_pointer = &g_system_initialized;
+  system_configuration_data_pointer = &system_initialized;
   if (psystem_stack_uint_28 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_configuration_data_pointer = psystem_stack_uint_28;
   }
@@ -20692,7 +20701,7 @@ void InitializeSystemCore(void)
   if (*system_char_pointer_temp != '\0') {
     system_initialization_status = SYSTEM_INIT_VALUE_ZERO;
     do {
-      system_calculation_temp = strchr(&g_system_initialized,(int)system_char_pointer_temp[system_initialization_status]);
+      system_calculation_temp = strchr(&system_initialized,(int)system_char_pointer_temp[system_initialization_status]);
       if (system_calculation_temp != 0) {
         *(system_uint8_t *)(system_initialization_status + system_buffer_pointer[SYSTEM_ARRAY_INDEX_THIRD]) = SYSTEM_INIT_FLAG_INITIALIZEDf;
       }
@@ -20702,9 +20711,9 @@ void InitializeSystemCore(void)
   }
   *system_buffer_pointer = SYSTEM_INIT_VALUE_ZERO;
   _g_system_initialized = system_buffer_pointer;
-  if (g_system_initialized != '\0') {
+  if (system_initialized != '\0') {
     GetLastError();
-    system_configuration_data_pointer = &g_system_initialized;
+    system_configuration_data_pointer = &system_initialized;
     if ((void* *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_THIRD] != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       system_configuration_data_pointer = (void* *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_THIRD];
     }
@@ -20858,12 +20867,12 @@ system_uint64_t InitializeSystemCore(char system_context_param)
   *(system_uint16_t *)(system_memory_pointer + SYSTEM_INIT_SIZE_COMPARE) = SYSTEM_INIT_MAGIC_COOKIE_ENGINE_5;
   system_stack_frame_primary = SYSTEM_INIT_VALUE_ZERO;
   system_stack_long_40 = SYSTEM_INIT_VALUE_ZERO;
-  system_ptr_data = &g_system_initialized;
+  system_ptr_data = &system_initialized;
   if (psystem_stack_uint_28 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_ptr_data = psystem_stack_uint_28;
   }
   system_stack_uint_20 = system_int_status;
-  system_execute_service(&system_stack_frame_primary,system_ptr_data,&g_system_initialized);
+  system_execute_service(&system_stack_frame_primary,system_ptr_data,&system_initialized);
   system_primary_longptr = _g_system_initialized;
   if (system_stack_long_40 == 0) {
     system_initialization_flag_primary = SYSTEM_INIT_VALUE_THREE;
@@ -20969,7 +20978,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
   system_stack_uint_key = SYSTEM_INIT_VALUE_THREE;
   psystem_stack_uint_size_field = system_context_param;
   InitializeSystemCore(&psystem_stack_union_config,&g_system_context,SYSTEM_INIT_FLAG_ENABLED_BASE0a7);
-  system_ptr_pool = &g_system_initialized;
+  system_ptr_pool = &system_initialized;
   if (psystem_stack_frame_primary != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_ptr_pool = psystem_stack_frame_primary;
   }
@@ -21046,7 +21055,7 @@ InitializeSystemCore(system_uint64_t *system_context_param,longlong system_confi
   *(system_uint0x102_t *)(system_context_param + 2) = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint8_t *)(system_context_param + 0x10) = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint0x102_t *)(system_context_param + 2) = *(system_uint0x102_t *)(system_config_param + SYSTEM_INIT_SIZE_COMPARE);
-  system_context_pointer = &g_system_initialized;
+  system_context_pointer = &system_initialized;
   if (*(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_context_pointer = *(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
   }
@@ -21899,7 +21908,7 @@ void InitializeSystemCore(longlong system_context_param)
     system_flags_mask = SYSTEM_INIT_FLAG_ENABLEDfff;
   }
                     // WARNING: Subroutine does not return
-  memcpy(&g_system_initialized,system_context_param,(longlong)(int)system_flags_mask);
+  memcpy(&system_initialized,system_context_param,(longlong)(int)system_flags_mask);
 }
 
 
@@ -21971,8 +21980,8 @@ InitializeSystemCore(system_uint8_t *system_context_param,system_uint64_t system
   *(system_uint0x102_t *)(system_context_param + ) = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_OFFSET_ARRAY_7C] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_INITIALIZED_FLAG] = 1;
-  (**(system_code **)(*system_primary_longptr + SYSTEM_INIT_SIZE_COMPARE))(system_primary_longptr,&g_system_initialized);
-  (**(system_code **)(*system_secondary_longptr + SYSTEM_INIT_SIZE_COMPARE))(system_secondary_longptr,&g_system_initialized);
+  (**(system_code **)(*system_primary_longptr + SYSTEM_INIT_SIZE_COMPARE))(system_primary_longptr,&system_initialized);
+  (**(system_code **)(*system_secondary_longptr + SYSTEM_INIT_SIZE_COMPARE))(system_secondary_longptr,&system_initialized);
   *(system_uint0x102_t *)(system_context_param + ) = SYSTEM_INIT_FLAG_ACTIVE61c4000;
   *(system_uint0x102_t *)(system_context_param + ) = SYSTEM_INIT_FLAG_ACTIVE61c4000;
   system_context_param[200] = SYSTEM_INIT_VALUE_ZERO;
@@ -22123,7 +22132,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param)
   *(system_uint8_t *)(system_context_param + SYSTEM_INIT_OFFSET_ARRAY_79) = SYSTEM_INIT_VALUE_ZERO;
   UNLOCK();
   (**(system_code **)(*system_long_pointer_secondary + SYSTEM_INIT_SIZE_COMPARE))(system_long_pointer_secondary,&g_system_context);
-  (**(system_code **)(*system_secondary_longptr + SYSTEM_INIT_SIZE_COMPARE))(system_secondary_longptr,&g_system_initialized);
+  (**(system_code **)(*system_secondary_longptr + SYSTEM_INIT_SIZE_COMPARE))(system_secondary_longptr,&system_initialized);
   *(system_uint8_t *)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZEDd) = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_FLAG_ENABLED_BASE] = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint0x102_t *)(system_context_param + SYSTEM_INIT_FLAG_ENABLEDf) = SYSTEM_INIT_SIZE_COMPARE10101;
@@ -22644,7 +22653,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   system_stack_uint_0x100104 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_long_260 = _g_system_initialized;
   system_stack_char_primary = '\0';
-  system_uint_pointer_secondary = &g_system_initialized;
+  system_uint_pointer_secondary = &system_initialized;
   if (*(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_uint_pointer_secondary = *(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
   }
@@ -23104,7 +23113,7 @@ void InitializeSystemCore(void)
   InitializeSystemCore(system_loop_counter + SYSTEM_INIT_FLAG_ACTIVE8,apsystem_stack_uint_1c8);
   *(system_uint64_t **)(system_buffer_pointer + SYSTEM_INIT_FLAG_OCTONARY_ENABLED) = system_module_data_address;
   psystem_stack_uint_168 = &g_system_context;
-  system_temporary_data_pointer = &g_system_initialized;
+  system_temporary_data_pointer = &system_initialized;
   if (*(void* **)(system_temp_storage + SYSTEM_INIT_FLAG_INITIALIZED78) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_temporary_data_pointer = *(void* **)(system_temp_storage + SYSTEM_INIT_FLAG_INITIALIZED78);
   }
@@ -23123,20 +23132,20 @@ void InitializeSystemCore(void)
   *(system_uint64_t *)(system_stack_long_1d8 + SYSTEM_INIT_OFFSET_STACK_PARAM) = SYSTEM_INIT_VALUE_ZERO;
   *(longlong *)(system_temp_storage + ) = system_stack_long_1d8;
   system_stack_long_1d0 = system_stack_long_1d8;
-  system_register_callback(*(system_uint64_t *)(_g_system_initialized + ),&g_system_initialized,&g_system_context,InitializeSystemCore);
-  system_register_callback(*(system_uint64_t *)(_g_system_initialized + ),&g_system_initialized,&g_system_initialized,InitializeSystemCore);
-  system_register_callback(*(system_uint64_t *)(_g_system_initialized + ),&g_system_initialized,&g_system_context,InitializeSystemCore);
-  system_register_callback(*(system_uint64_t *)(_g_system_initialized + ),&g_system_initialized,&g_system_context,InitializeSystemCore);
+  system_register_callback(*(system_uint64_t *)(_g_system_initialized + ),&system_initialized,&g_system_context,InitializeSystemCore);
+  system_register_callback(*(system_uint64_t *)(_g_system_initialized + ),&system_initialized,&system_initialized,InitializeSystemCore);
+  system_register_callback(*(system_uint64_t *)(_g_system_initialized + ),&system_initialized,&g_system_context,InitializeSystemCore);
+  system_register_callback(*(system_uint64_t *)(_g_system_initialized + ),&system_initialized,&g_system_context,InitializeSystemCore);
   system_register_callback(*(system_uint64_t *)(_g_system_initialized + ),&g_system_context,&g_system_context,InitializeSystemCore);
-  system_register_callback(*(system_uint64_t *)(_g_system_initialized + ),&g_system_initialized,&g_system_initialized,InitializeSystemCore);
-  system_register_callback(*(system_uint64_t *)(_g_system_initialized + ),&g_system_initialized,&g_system_context,InitializeSystemCore);
+  system_register_callback(*(system_uint64_t *)(_g_system_initialized + ),&system_initialized,&system_initialized,InitializeSystemCore);
+  system_register_callback(*(system_uint64_t *)(_g_system_initialized + ),&system_initialized,&g_system_context,InitializeSystemCore);
   system_register_callback(*(system_uint64_t *)(_g_system_initialized + ),&g_system_context,&g_system_context,InitializeSystemCore);
   system_register_callback(*(system_uint64_t *)(_g_system_initialized + ),&g_system_context,&g_system_context,InitializeSystemCore);
-  system_register_callback(*(system_uint64_t *)(_g_system_initialized + ),&g_system_initialized,&g_system_context,InitializeSystemCore);
-  system_register_callback(*(system_uint64_t *)(_g_system_initialized + ),&g_system_initialized,&g_system_context,InitializeSystemCore);
-  system_configuration_data_pointer = (system_uint0x102_t *)InitializeSystemCore(system_temp_storage + ,&g_system_initialized);
+  system_register_callback(*(system_uint64_t *)(_g_system_initialized + ),&system_initialized,&g_system_context,InitializeSystemCore);
+  system_register_callback(*(system_uint64_t *)(_g_system_initialized + ),&system_initialized,&g_system_context,InitializeSystemCore);
+  system_configuration_data_pointer = (system_uint0x102_t *)InitializeSystemCore(system_temp_storage + ,&system_initialized);
   *system_configuration_data_pointer = 1;
-  system_configuration_data_pointer = (system_uint0x102_t *)InitializeSystemCore(system_temp_storage + ,&g_system_initialized);
+  system_configuration_data_pointer = (system_uint0x102_t *)InitializeSystemCore(system_temp_storage + ,&system_initialized);
   *system_configuration_data_pointer = 1;
   system_stack_long_1d0 = system_access_memory(_g_system_initialized,SYSTEM_INIT_SIZE_0X0x10878,SYSTEM_INIT_SIZE_MEMORY_CHUNK,0x10);
                     // WARNING: Subroutine does not return
@@ -23449,7 +23458,7 @@ void InitializeSystemCore(void)
   
   system_memory_address = _g_system_initialized;
   system_calculation_temp = _g_system_initialized;
-  if (g_system_initialized != '\0') {
+  if (system_initialized != '\0') {
     InitializeSystemCore();
     return;
   }
@@ -23466,7 +23475,7 @@ void InitializeSystemCore(void)
   InitializeSystemCore(_g_system_initialized + SYSTEM_INIT_FLAG_ACTIVE8);
   _g_system_initialized = SYSTEM_INIT_VALUE_ZERO;
   _g_system_initialized = SYSTEM_INIT_VALUE_ZERO;
-  if (g_system_initialized != '\0') {
+  if (system_initialized != '\0') {
     system_primary_longptr = *(longlong **)(system_calculation_temp + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
     ppsystem_context_handle = (longlong **)system_access_memory(_g_system_initialized,SYSTEM_INIT_FLAG_ACTIVE8,SYSTEM_INIT_SIZE_MEMORY_CHUNK,0x10);
     *ppsystem_context_handle = (longlong *)&g_system_context;
@@ -23532,7 +23541,7 @@ void InitializeSystemCore(void)
     system_memory_address = system_performance_counter_long;
   }
   *(double *)(system_calculation_temp + ) = (double)(system_memory_address - _g_system_initialized) * _g_system_initialized;
-  if (g_system_initialized != '\0') {
+  if (system_initialized != '\0') {
     system_stack_uint_size_field = SYSTEM_INIT_FLAG_OCTONARY_ENABLED0c91288;
     system_offset_value = _Mtx_lock(SYSTEM_INIT_FLAG_OCTONARY_ENABLED0c91288);
     if (system_offset_value != 0) {
@@ -23585,7 +23594,7 @@ void InitializeSystemCore(longlong system_context_param)
   InitializeSystemCore(_g_system_initialized + SYSTEM_INIT_FLAG_ACTIVE8);
   _g_system_initialized = SYSTEM_INIT_VALUE_ZERO;
   _g_system_initialized = SYSTEM_INIT_VALUE_ZERO;
-  if (g_system_initialized != '\0') {
+  if (system_initialized != '\0') {
     system_primary_longptr = *(longlong **)(system_context_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
     psystem_local_long_ptr_eighth = (longlong **)system_access_memory(_g_system_initialized,SYSTEM_INIT_FLAG_ACTIVE8,SYSTEM_INIT_SIZE_MEMORY_CHUNK,0x10);
     *psystem_local_long_ptr_eighth = (longlong *)&g_system_context;
@@ -23651,7 +23660,7 @@ void InitializeSystemCore(longlong system_context_param)
     system_function_result = system_performance_counter_long;
   }
   *(double *)(system_context_param + ) = (double)(system_function_result - _g_system_initialized) * _g_system_initialized;
-  if (g_system_initialized != '\0') {
+  if (system_initialized != '\0') {
     system_stack_uint_size_field = SYSTEM_INIT_FLAG_OCTONARY_ENABLED0c91288;
     system_int_size = _Mtx_lock(SYSTEM_INIT_FLAG_OCTONARY_ENABLED0c91288);
     if (system_int_size != 0) {
@@ -24317,9 +24326,9 @@ void InitializeSystemCore(longlong system_context_param,float system_config_para
     if (*(char *)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED2d) == '\0') {
       system_memory_address = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * SYSTEM_INIT_SIZE_MEMORY_CHUNK);
       if ((*(int *)(system_memory_address + SYSTEM_INIT_FLAG_ACTIVE8) < _g_system_initialized) &&
-         (system_check_initialized(&g_system_initialized), _g_system_initialized == -1)) {
+         (system_check_initialized(&system_initialized), _g_system_initialized == -1)) {
         _g_system_initialized = system_config_param;
-        system_set_initialized(&g_system_initialized);
+        system_set_initialized(&system_initialized);
       }
       system_coefficient_a6 = (float)exp2f();
       system_coefficient_a7 = (float)exp2f();
@@ -24340,9 +24349,9 @@ void InitializeSystemCore(longlong system_context_param,float system_config_para
         system_coefficient_c = system_coefficient_b;
       }
       if ((*(int *)(system_memory_address + SYSTEM_INIT_FLAG_ACTIVE8) < _g_system_initialized) &&
-         (system_check_initialized(&g_system_initialized), _g_system_initialized == -1)) {
+         (system_check_initialized(&system_initialized), _g_system_initialized == -1)) {
         _g_system_initialized = system_coefficient_c;
-        system_set_initialized(&g_system_initialized);
+        system_set_initialized(&system_initialized);
       }
       _g_system_initialized = (1.0 - system_coefficient_a6) * _g_system_initialized + system_coefficient_c * system_coefficient_a6;
       system_coefficient_a8 = ((float)(int)((_g_system_initialized / _g_system_initialized) / system_coefficient_a7) * system_coefficient_a7 - 1.0) * system_coefficient_a8 *
@@ -24879,8 +24888,8 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
                     // WARNING: Subroutine does not return
     memcpy((ulonglong)system_stack_uint_e0 + system_stack_long_e8,acStack_58,(longlong)((int)system_allocation_result_primary + 2));
   }
-  system_memory_pointer = &g_system_initialized;
-  if (g_system_initialized != '\0') {
+  system_memory_pointer = &system_initialized;
+  if (system_initialized != '\0') {
     system_memory_pointer = &g_system_context;
   }
   system_write_service(system_stack_buffer_main,system_memory_pointer);
@@ -25156,7 +25165,7 @@ void InitializeSystemCore(longlong *system_context_param,longlong system_config_
   system_stack_uint_19c = SYSTEM_INIT_SIZE_COMPARE0;
   system_stack_uint_198 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_194 = SYSTEM_INIT_VALUE_ZERO;
-  system_ptr_pool = &g_system_initialized;
+  system_ptr_pool = &system_initialized;
   if (*(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_ptr_pool = *(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
   }
@@ -25192,7 +25201,7 @@ void InitializeSystemCore(longlong *system_context_param,longlong system_config_
   psystem_stack_uint_e0 = asystem_stack_uint_d0;
   asystem_stack_uint_d0[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_d8 = *(system_uint0x102_t *)(system_config_param + SYSTEM_INIT_SIZE_COMPARE);
-  system_ptr_pool = &g_system_initialized;
+  system_ptr_pool = &system_initialized;
   if (*(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_ptr_pool = *(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
   }
@@ -25451,7 +25460,7 @@ system_init_label_state_update:
         system_memory_pointer = psystem_stack_uint_size_field;
         system_allocation_result_primary = (longlong)psystem_stack_union_config - (longlong)psystem_stack_uint_size_field;
         InitializeSystemCore(&psystem_stack_uint_d0);
-        system_module_data_address = &g_system_initialized;
+        system_module_data_address = &system_initialized;
         if (psystem_stack_uint_110 != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
           system_module_data_address = psystem_stack_uint_110;
         }
@@ -25491,32 +25500,32 @@ system_init_label_state_update:
             *system_ptr_pool = e656e6560x1070102f;
             *(system_uint0x102_t *)(system_ptr_pool + 1) = SYSTEM_INIT_STRING_SUFFIX_S;
             *(system_uint16_t *)((longlong)system_ptr_pool + ) = SYSTEM_INIT_STRING_SUFFIX_E;
-            system_module_data_address = &g_system_initialized;
+            system_module_data_address = &system_initialized;
             if (psystem_stack_uint_150 != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
               system_module_data_address = psystem_stack_uint_150;
             }
             system_stack_uint_148 = system_init_temp;
             system_allocation_result4 = strstr(system_module_data_address,&g_system_context);
             if (system_allocation_result4 == 0) {
-              system_module_data_address = &g_system_initialized;
+              system_module_data_address = &system_initialized;
               if (psystem_stack_uint_150 != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
                 system_module_data_address = psystem_stack_uint_150;
               }
               system_allocation_result4 = strstr(system_module_data_address,&g_system_context);
               if (system_allocation_result4 != 0) goto system_init_label_operation_start;
-              system_module_data_address = &g_system_initialized;
+              system_module_data_address = &system_initialized;
               if (psystem_stack_uint_150 != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
                 system_module_data_address = psystem_stack_uint_150;
               }
               system_allocation_result4 = strstr(system_module_data_address,&g_system_context);
               if (system_allocation_result4 != 0) goto system_init_label_operation_start;
-              system_module_data_address = &g_system_initialized;
+              system_module_data_address = &system_initialized;
               if (psystem_stack_uint_150 != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
                 system_module_data_address = psystem_stack_uint_150;
               }
               system_allocation_result4 = strstr(system_module_data_address,&g_system_context);
               if (system_allocation_result4 != 0) goto system_init_label_operation_start;
-              system_module_data_address = &g_system_initialized;
+              system_module_data_address = &system_initialized;
               if (psystem_stack_uint_150 != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
                 system_module_data_address = psystem_stack_uint_150;
               }
@@ -25593,7 +25602,7 @@ system_init_label_active_wait:
                     }
                     system_stack_uint_d8 = system_stack_uint_d8 & SYSTEM_INIT_ERROR_GENERIC;
                   }
-                  psystem_ulong_primary6 = &g_system_initialized;
+                  psystem_ulong_primary6 = &system_initialized;
                   if (psystem_stack_temp_value != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
                     psystem_ulong_primary6 = psystem_stack_temp_value;
                   }
@@ -26368,7 +26377,7 @@ void InitializeSystemCore(longlong system_context_param)
         system_buffer_pointer = asystem_stack_long_70[SYSTEM_ARRAY_INDEX_FIRST];
       }
       system_double_secondary = (double)(system_buffer_pointer - _g_system_initialized) * _g_system_initialized;
-    } while ((g_system_initialized == '\0') || (system_double_secondary - *(double *)(system_context_param + ) <= 900.0));
+    } while ((system_initialized == '\0') || (system_double_secondary - *(double *)(system_context_param + ) <= 900.0));
     LOCK();
     *(system_uint0x102_t *)(system_context_param + 200) = 1;
     UNLOCK();
@@ -26426,7 +26435,7 @@ void InitializeSystemCore(longlong system_context_param)
     system_ptr_pool[SYSTEM_ARRAY_INDEX_SEVENTH] = 0x65676775;
     system_ptr_pool[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_CONFIG_INDEX_PRIMARY657470x10;
     *(system_uint16_t *)(system_ptr_pool + SYSTEM_INIT_SIZE_MEMORY_CHUNK) = SYSTEM_INIT_FLAG_INITIALIZEDe;
-    system_memory_pointer = &g_system_initialized;
+    system_memory_pointer = &system_initialized;
     if (psystem_stack_temp_value != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       system_memory_pointer = psystem_stack_temp_value;
     }
@@ -26662,7 +26671,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
   longlong system_allocation_result;
   void* *system_buffer_pointer;
   
-  system_buffer_pointer = &g_system_initialized;
+  system_buffer_pointer = &system_initialized;
   if (*(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_buffer_pointer = *(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
   }
@@ -29336,7 +29345,7 @@ void InitializeSystemCore(longlong *system_context_param)
       system_allocation_result2 = system_stack_long_0x1068;
       system_int_value = iStack_0x1070;
       system_uint_pointer_secondary = *(void* **)(system_stack_long_0x1068 * SYSTEM_INIT_OFFSET_STACK_PARAM + SYSTEM_INIT_SIZE_MEMORY_CHUNK + system_allocation_result_primary);
-      psystem_ulong_primary_main = &g_system_initialized;
+      psystem_ulong_primary_main = &system_initialized;
       if (system_uint_pointer_secondary != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         psystem_ulong_primary_main = system_uint_pointer_secondary;
       }
@@ -29378,7 +29387,7 @@ void InitializeSystemCore(longlong *system_context_param)
       psystem_stack_uint_288 = asystem_stack_uint_278;
       asystem_stack_uint_278[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
       system_stack_uint_280 = SYSTEM_INIT_SIZE_COMPARE;
-      strcpy_s(asystem_stack_uint_278,SYSTEM_INIT_SIZE_COMPARE,&g_physics_scene);
+      strcpy_s(asystem_stack_uint_278,SYSTEM_INIT_SIZE_COMPARE,&system_physics_scene);
       system_generic_function_(&psystem_stack_frame_secondary,&system_stack_memory_pointer_0x1008,&psystem_stack_uint_290);
       psystem_stack_uint_290 = &g_system_context;
       iStack_0x1074 = SYSTEM_INIT_VALUE_ZERO;
@@ -29392,13 +29401,13 @@ void InitializeSystemCore(longlong *system_context_param)
           system_allocation_result_primary = system_stack_long_2c8;
           system_buffer_pointer = system_stack_memory_pointer_0x1008;
           system_int_value = iStack_0x1074;
-          system_uint_pointer_secondary = &g_system_initialized;
+          system_uint_pointer_secondary = &system_initialized;
           if ((void* *)system_stack_memory_pointer_0x1008[system_stack_long_2c8 * SYSTEM_INIT_SIZE_COMPARE + 1] != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
             system_uint_pointer_secondary = (void* *)system_stack_memory_pointer_0x1008[system_stack_long_2c8 * SYSTEM_INIT_SIZE_COMPARE + 1];
           }
           system_allocation_result2 = strrchr(system_uint_pointer_secondary,SYSTEM_INIT_FLAG_INITIALIZEDf);
           if (system_allocation_result2 == 0) {
-            system_uint_pointer_secondary = &g_system_initialized;
+            system_uint_pointer_secondary = &system_initialized;
             if ((void* *)system_buffer_pointer[system_allocation_result_primary * SYSTEM_INIT_SIZE_COMPARE + 1] != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
               system_uint_pointer_secondary = (void* *)system_buffer_pointer[system_allocation_result_primary * SYSTEM_INIT_SIZE_COMPARE + 1];
             }
@@ -29408,7 +29417,7 @@ void InitializeSystemCore(longlong *system_context_param)
           }
           psystem_ulong_primary_main = (void* *)strchr(system_uint_pointer_secondary,SYSTEM_INIT_FLAG_INITIALIZEDe);
           if (psystem_ulong_primary_main == (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
-            psystem_ulong_primary_main = &g_system_initialized;
+            psystem_ulong_primary_main = &system_initialized;
             if ((void* *)system_buffer_pointer[system_allocation_result_primary * SYSTEM_INIT_SIZE_COMPARE + 1] != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
               psystem_ulong_primary_main = (void* *)system_buffer_pointer[system_allocation_result_primary * SYSTEM_INIT_SIZE_COMPARE + 1];
             }
@@ -29687,12 +29696,12 @@ void InitializeSystemCore(longlong *system_context_param)
           system_init_flag_graphics = system_generic_function_(&system_stack_context_secondary,system_sextuple_pointer_fourth + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
           system_prepare_service(&psystem_stack_uint_0x100100,system_init_flag_graphics);
           system_stack_context_secondary = &g_system_context;
-          system_quintuple_pointer_ninth = (system_uint64_t ******)&g_system_initialized;
+          system_quintuple_pointer_ninth = (system_uint64_t ******)&system_initialized;
           if (system_sextuple_pointer_fourth[SYSTEM_ARRAY_INDEX_SIXTH] != (system_uint64_t ******)SYSTEM_INIT_VALUE_CHAR_NULL) {
             system_quintuple_pointer_ninth = system_sextuple_pointer_fourth[SYSTEM_ARRAY_INDEX_SIXTH];
           }
           system_write_service(&system_stack_memory_pointer_0x1008,system_quintuple_pointer_ninth);
-          system_uint_pointer_secondary = &g_system_initialized;
+          system_uint_pointer_secondary = &system_initialized;
           if (psystem_stack_uint_0x1028 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
             system_uint_pointer_secondary = psystem_stack_uint_0x1028;
           }
@@ -31089,7 +31098,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
 system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_config_param)
 
 {
-  *system_context_param = &g_window_handle;
+  *system_context_param = &system_window_handle;
   InitializeSystemCore(system_context_param + SYSTEM_INIT_OFFSET_STACK_A4);
   InitializeSystemCore(system_context_param + SYSTEM_INIT_SIZE_POINTERc);
   InitializeSystemCore(system_context_param + SYSTEM_INIT_OFFSET_ARRAY_7E);
@@ -31161,7 +31170,7 @@ system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,ulongl
 void InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
-  *system_context_param = &g_display_context;
+  *system_context_param = &system_display_context;
   InitializeSystemCore(system_context_param + SYSTEM_INIT_FLAG_QUATERNARY_ENABLED0x10);
   InitializeSystemCore(system_context_param + SYSTEM_INIT_FLAG_ENABLED_BASE4);
   InitializeSystemCore(system_context_param + SYSTEM_INIT_FLAG_SECONDARY_ENABLED6);
@@ -31184,7 +31193,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t 
   InitializeSystemCore(system_context_param + SYSTEM_INIT_SIZE_0X0x108);
   InitializeSystemCore(system_context_param + SYSTEM_INIT_FLAG_INITIALIZEDa);
   InitializeSystemCore(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_SECONDARY);
-  *system_context_param = &g_input_device;
+  *system_context_param = &system_input_device;
   system_context_param[SYSTEM_INIT_FLAG_OCTONARY_ENABLED] = &g_system_context;
   if (system_context_param[SYSTEM_INIT_OFFSET_CHAR_CHECK] != 0) {
                     // WARNING: Subroutine does not return
@@ -31325,7 +31334,7 @@ system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,ulongl
 void InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
-  *system_context_param = &g_event_queue;
+  *system_context_param = &system_event_queue;
   InitializeSystemCore();
   InitializeSystemCore();
   InitializeSystemCore(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED62);
@@ -31357,7 +31366,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t 
   InitializeSystemCore(system_context_param + SYSTEM_INIT_FLAG_ACTIVEc);
   InitializeSystemCore(system_context_param + SYSTEM_INIT_OFFSET_ARRAY_0x104);
   InitializeSystemCore(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_SECONDARY);
-  *system_context_param = &g_input_device;
+  *system_context_param = &system_input_device;
   system_context_param[SYSTEM_INIT_FLAG_OCTONARY_ENABLED] = &g_system_context;
   if (system_context_param[SYSTEM_INIT_OFFSET_CHAR_CHECK] != 0) {
                     // WARNING: Subroutine does not return
@@ -31668,7 +31677,7 @@ InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t *syst
   *(system_uint8_t *)(system_context_param + 2) = SYSTEM_INIT_VALUE_ZERO;
   UNLOCK();
   system_context_param[SYSTEM_ARRAY_INDEX_FOURTH] = SYSTEM_INIT_ERROR_GENERICffffffff;
-  *system_context_param = &g_thread_pool;
+  *system_context_param = &system_thread_pool;
   system_context_pointer = system_context_param + SYSTEM_INIT_SIZE_COMPARE;
   system_context_param[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_ARRAY_INDEX_EIGHTH] = system_guard_icall_check;
@@ -31795,7 +31804,7 @@ InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t *syst
   
   system_param_value = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   InitializeSystemCore();
-  *system_context_param = &g_task_scheduler;
+  *system_context_param = &system_task_scheduler;
   system_context_pointer = system_context_param + SYSTEM_INIT_FLAG_OCTONARY_ENABLED;
   system_context_param[SYSTEM_INIT_FLAG_INITIALIZED_CONFIG] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_FLAG_INITIALIZED_PRIMARY] = system_guard_icall_check;
@@ -31940,8 +31949,8 @@ system_uint64_t InitializeSystemCore(longlong system_context_param,system_uint64
   if (*(longlong *)(system_context_param + ) != 0) {
     system_character_validation_flag = (**(system_code **)(system_context_param + ))(system_config_param);
     if (system_character_validation_flag == '\0') {
-      if (g_system_initialized == '\0') {
-        system_buffer_pointer = &g_system_initialized;
+      if (system_initialized == '\0') {
+        system_buffer_pointer = &system_initialized;
         if (*(void* **)(system_context_param + SYSTEM_INIT_FLAG_ACTIVE8) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
           system_buffer_pointer = *(void* **)(system_context_param + SYSTEM_INIT_FLAG_ACTIVE8);
         }
@@ -32021,8 +32030,8 @@ void InitializeSystemCore(longlong system_context_param,system_uint0x102_t syste
   if ((*(longlong *)(system_context_param + SYSTEM_INIT_FLAG_ENABLEDf00) != 0) &&
      (system_stack_array_config_primary[SYSTEM_ARRAY_INDEX_FIRST] = system_config_param, system_character_validation_flag = (**(system_code **)(system_context_param + SYSTEM_INIT_FLAG_ENABLEDf08))(system_stack_array_config_primary),
      system_config_param = system_stack_array_config_primary[SYSTEM_ARRAY_INDEX_FIRST], system_character_validation_flag == '\0')) {
-    if (g_system_initialized == '\0') {
-      system_buffer_pointer = &g_system_initialized;
+    if (system_initialized == '\0') {
+      system_buffer_pointer = &system_initialized;
       if (*(void* **)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_QUATERNARYb0) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         system_buffer_pointer = *(void* **)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_QUATERNARYb0);
       }
@@ -32211,7 +32220,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,sys
   *(system_uint8_t *)(system_context_param + 2) = SYSTEM_INIT_VALUE_ZERO;
   UNLOCK();
   system_context_param[SYSTEM_ARRAY_INDEX_FOURTH] = SYSTEM_INIT_ERROR_GENERICffffffff;
-  *system_context_param = &g_memory_cache;
+  *system_context_param = &system_memory_cache;
   system_context_pointer = system_context_param + SYSTEM_INIT_SIZE_COMPARE;
   *system_context_pointer = &g_system_context;
   system_context_param[SYSTEM_ARRAY_INDEX_SIXTH] = SYSTEM_INIT_VALUE_ZERO;
@@ -32376,7 +32385,7 @@ void InitializeSystemCore(ulonglong system_context_param,longlong system_config_
     system_offset_value = system_offset_value + 1;
     system_config_value = system_config_value >> 1;
   } while (system_config_value != 0);
-  system_character_validation_flag = (&g_resource_cache)[system_int_value / system_offset_value];
+  system_character_validation_flag = (&system_resource_cache)[system_int_value / system_offset_value];
   system_stack_uint_0x100 = SYSTEM_INIT_FLAG_OCTONARY_ENABLED005d147;
   system_divider = (float)powf(SYSTEM_INIT_FLAG_ACTIVE4800000);
   system_coefficient_a0 = (float)(longlong)system_context_param;
@@ -32390,14 +32399,14 @@ void InitializeSystemCore(ulonglong system_context_param,longlong system_config_
   system_initialization_status = SYSTEM_INIT_VALUE_ZERO;
   system_stack_value_data_standard = SYSTEM_INIT_VALUE_ZERO;
   system_stack_double_pointer_450 = &dStackX_18;
-  system_int_value = __stdio_common_vsprintf(*system_ptr_data | 1,0,0,&g_texture_cache);
+  system_int_value = __stdio_common_vsprintf(*system_ptr_data | 1,0,0,&system_texture_cache);
   if (system_int_value < 0) {
     system_int_value = -1;
   }
   if (system_int_value < SYSTEM_INIT_SIZE_BUFFER_EXTRA_LARGE) {
     system_stack_value_data_standard = SYSTEM_INIT_VALUE_ZERO;
     system_stack_double_pointer_450 = &dStackX_18;
-    __stdio_common_vsprintf(*system_ptr_data | 1,acStack_40x108,SYSTEM_INIT_SIZE_BUFFER_EXTRA_LARGE,&g_texture_cache);
+    __stdio_common_vsprintf(*system_ptr_data | 1,acStack_40x108,SYSTEM_INIT_SIZE_BUFFER_EXTRA_LARGE,&system_texture_cache);
     system_initialization_status = -1;
     do {
       system_calculation_temp = system_initialization_status;
@@ -32416,7 +32425,7 @@ void InitializeSystemCore(ulonglong system_context_param,longlong system_config_
     if (system_int_value != 0) {
       system_initialization_status = system_allocate_memory(_g_system_initialized,(longlong)system_int_value,0x10);
     }
-    InitializeSystemCore(system_initialization_status,(longlong)system_int_value,&g_texture_cache,&dStackX_18);
+    InitializeSystemCore(system_initialization_status,(longlong)system_int_value,&system_texture_cache,&dStackX_18);
     system_generic_function_(system_config_param,system_initialization_status);
     if (system_initialization_status != 0) {
                     // WARNING: Subroutine does not return
@@ -33259,7 +33268,7 @@ void InitializeSystemCore(void)
   psystem_stack_uint_158 = asystem_stack_uint_148;
   asystem_stack_uint_148[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_150 = SYSTEM_INIT_SIZE_COMPARE;
-  strcpy_s(asystem_stack_uint_148,SYSTEM_INIT_SIZE_COMPARE,&g_shader_cache);
+  strcpy_s(asystem_stack_uint_148,SYSTEM_INIT_SIZE_COMPARE,&system_shader_cache);
   system_stack_long_198 = system_allocation_result_primary + ;
   system_stack_long_190 = system_allocation_result_primary + SYSTEM_INIT_OFFSET_STACK_548;
   system_stack_long_188 = system_allocation_result_primary + ;
@@ -33272,12 +33281,12 @@ void InitializeSystemCore(void)
   asystem_stack_uint_120[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_large = 6;
   system_stack_uint_size_field = system_ptr_data;
-  strcpy_s(asystem_stack_uint_120,SYSTEM_INIT_SIZE_COMPARE,&g_model_cache);
+  strcpy_s(asystem_stack_uint_120,SYSTEM_INIT_SIZE_COMPARE,&system_model_cache);
   system_stack_long_198 = system_allocation_result_primary + ;
   system_stack_long_190 = system_allocation_result_primary + SYSTEM_INIT_OFFSET_STACK_548;
   system_stack_long_188 = system_allocation_result_primary + ;
   system_generic_function_(system_ptr_data,&system_stack_uint64_pointer_primary,1);
-  *system_ptr_data = &g_script_cache;
+  *system_ptr_data = &system_script_cache;
   *(system_uint64_t **)((longlong)*ppsystem_ulong_primary5 + SYSTEM_INIT_SIZE_MEMORY_CHUNK) = system_ptr_data;
   system_stack_uint64_pointer_primary = &g_system_context;
   system_init_var_12 = 2;
@@ -33289,7 +33298,7 @@ void InitializeSystemCore(void)
       psystem_stack_uint_158 = asystem_stack_uint_148;
       asystem_stack_uint_148[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
       system_stack_uint_150 = 7;
-      strcpy_s(asystem_stack_uint_148,SYSTEM_INIT_SIZE_COMPARE,&g_audio_cache);
+      strcpy_s(asystem_stack_uint_148,SYSTEM_INIT_SIZE_COMPARE,&system_audio_cache);
       InitializeSystemCore(&system_stack_uint_size_field,&g_system_context,system_init_var_12 + -1);
       system_calculation_temp = -1;
       do {
@@ -33330,7 +33339,7 @@ void InitializeSystemCore(void)
       psystem_stack_uint_158 = asystem_stack_uint_148;
       asystem_stack_uint_148[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
       system_stack_uint_150 = 10;
-      strcpy_s(asystem_stack_uint_148,SYSTEM_INIT_SIZE_COMPARE,&g_animation_cache);
+      strcpy_s(asystem_stack_uint_148,SYSTEM_INIT_SIZE_COMPARE,&system_animation_cache);
       InitializeSystemCore(acStack_48,&g_system_context,system_init_flag_network);
       system_calculation_temp = -1;
       do {
@@ -33346,7 +33355,7 @@ void InitializeSystemCore(void)
       system_stack_long_198 = system_allocation_result_primary + ;
       system_stack_uint_size_field = system_ptr_data;
       system_configure_resource(system_ptr_data,&psystem_stack_uint_160,SYSTEM_INIT_SIZE_COMPARE,system_stack_long_178 + SYSTEM_INIT_FLAG_INITIALIZEDe0);
-      *system_ptr_data = &g_ui_cache;
+      *system_ptr_data = &system_ui_cache;
       *(system_uint64_t **)(*system_primary_longptr + system_ulonglong_primary * SYSTEM_INIT_SIZE_MEMORY_CHUNK) = system_ptr_data;
       psystem_stack_uint_160 = &g_system_context;
       system_init_flag_network = (ulonglong)((int)system_init_flag_network + 1);
@@ -37090,7 +37099,7 @@ void InitializeSystemCore(longlong system_context_param)
     switch(system_flags_mask) {
     case 1:
       system_stack_uchar_array_primary[SYSTEM_ARRAY_INDEX_FIRST] = system_stack_uchar_array_primary[SYSTEM_ARRAY_INDEX_FIRST] & ;
-      system_memory_pointer = &g_system_initialized;
+      system_memory_pointer = &system_initialized;
       if (*(void* **)(system_context_param + SYSTEM_INIT_SIZE_0X0x108) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         system_memory_pointer = *(void* **)(system_context_param + SYSTEM_INIT_SIZE_0X0x108);
       }
@@ -37155,7 +37164,7 @@ code_rSYSTEM_INIT_VALUE_CHAR_NULL00180060x100e9:
     case SYSTEM_INIT_SIZE_COMPARE:
       asystem_stack_initialization_count[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
       system_memory_pointer = *(void* **)(*(longlong *)(system_context_param + SYSTEM_INIT_OFFSET_STACK_PARAM) + );
-      system_output_pointer = &g_system_initialized;
+      system_output_pointer = &system_initialized;
       if (system_memory_pointer != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         system_output_pointer = system_memory_pointer;
       }
@@ -37171,7 +37180,7 @@ code_rSYSTEM_INIT_VALUE_CHAR_NULL00180060x100e9:
          (system_ptr_pool = *(system_uint64_t **)(system_context_param + SYSTEM_INIT_OFFSET_STACK_PARAM),
          (*(ulonglong *)(system_context_param + ) & system_ptr_pool[SYSTEM_ARRAY_INDEX_THIRD]) != 0)) {
         system_config_value = *(uint *)(system_context_param + SYSTEM_INIT_OFFSET_HEADER);
-        system_memory_pointer = &g_system_initialized;
+        system_memory_pointer = &system_initialized;
         if (*(void* **)(system_context_param + SYSTEM_INIT_SIZE_0X0x108) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
           system_memory_pointer = *(void* **)(system_context_param + SYSTEM_INIT_SIZE_0X0x108);
         }
@@ -37367,7 +37376,7 @@ InitializeSystemCore(system_uint64_t *system_context_param,system_uint0x102_t sy
   *(system_uint0x102_t *)(system_context_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint0x102_t *)(system_context_param + 5) = system_config_param;
   system_context_param[SYSTEM_ARRAY_INDEX_FIFTH] = system_memory_param;
-  (**(system_code **)(*system_primary_longptr + SYSTEM_INIT_SIZE_COMPARE))(system_primary_longptr,&g_system_initialized,system_memory_param,system_thread_param,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  (**(system_code **)(*system_primary_longptr + SYSTEM_INIT_SIZE_COMPARE))(system_primary_longptr,&system_initialized,system_memory_param,system_thread_param,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   *(system_uint0x102_t *)(system_context_param + 10) = ;
   *(system_uint64_t *)((longlong)system_context_param + SYSTEM_INIT_CONTEXT_INDEX_RESOURCE_SIZE) = ;
   system_context_param[] = SYSTEM_INIT_ERROR_GENERIC00000000;
@@ -37443,7 +37452,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   system_stack_frame_primary = SYSTEM_INIT_VALUE_ZERO;
   system_stack_long_40 = SYSTEM_INIT_VALUE_ZERO;
   system_generic_function_(system_context_param,&psystem_stack_uint_0x100,&file_system_handle);
-  system_buffer_pointer = &g_system_initialized;
+  system_buffer_pointer = &system_initialized;
   if (psystem_stack_uint_28 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_buffer_pointer = psystem_stack_uint_28;
   }
@@ -37467,7 +37476,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   } while (*system_char_pointer_offset != '\0');
   if (system_temp_storage != 0) {
     fwrite(&file_system_cache,,1,system_calculation_temp);
-    fwrite(&g_system_initialized,system_temp_storage,1,system_calculation_temp);
+    fwrite(&system_initialized,system_temp_storage,1,system_calculation_temp);
 
 // 函数: void InitializeSystemCore(void)
 void InitializeSystemCore(void)
@@ -37546,7 +37555,7 @@ system_init_label_phase_change:
       }
       if (system_validation_flag_2) {
         system_context_pointer = *(void* **)((longlong)psystem_stack_uint_2d8 + system_ulong_primary0x10 + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
-        system_memory_pointer = &g_system_initialized;
+        system_memory_pointer = &system_initialized;
         if (system_context_pointer != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
           system_memory_pointer = system_context_pointer;
         }
@@ -37687,7 +37696,7 @@ void InitializeSystemCore(system_uint64_t system_context_param)
   system_stack_uint_2f8 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_long_2f0 = SYSTEM_INIT_VALUE_ZERO;
   system_generic_function_(system_context_param,&psystem_stack_uint_280,&file_system_descriptor);
-  system_memory_pointer = &g_system_initialized;
+  system_memory_pointer = &system_initialized;
   if (psystem_stack_uint_278 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_memory_pointer = psystem_stack_uint_278;
   }
@@ -37718,7 +37727,7 @@ void InitializeSystemCore(system_uint64_t system_context_param)
   system_stack_uint_2e0 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_long_2d8 = SYSTEM_INIT_VALUE_ZERO;
   system_generic_function_(system_context_param,&psystem_stack_uint_260,&file_system_entry);
-  system_memory_pointer = &g_system_initialized;
+  system_memory_pointer = &system_initialized;
   if (psystem_stack_uint_258 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_memory_pointer = psystem_stack_uint_258;
   }
@@ -37807,7 +37816,7 @@ ulonglong InitializeSystemCore(system_uint64_t system_context_param)
     system_stack_uint_78 = SYSTEM_INIT_VALUE_ZERO;
     system_stack_long_70 = SYSTEM_INIT_VALUE_ZERO;
     system_generic_function_(system_context_param,&psystem_stack_uint_size_field,&file_system_node);
-    system_memory_pointer = &g_system_initialized;
+    system_memory_pointer = &system_initialized;
     if (psystem_stack_union_config != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       system_memory_pointer = psystem_stack_union_config;
     }
@@ -37821,7 +37830,7 @@ ulonglong InitializeSystemCore(system_uint64_t system_context_param)
       system_ptr_data = system_module_data_address + 1;
       system_config_value = system_config_value & SYSTEM_INIT_ERROR_GENERIC;
       do {
-        system_memory_pointer = &g_system_initialized;
+        system_memory_pointer = &system_initialized;
         if ((void* *)*system_ptr_data != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
           system_memory_pointer = (void* *)*system_ptr_data;
         }
@@ -37940,7 +37949,7 @@ void InitializeSystemCore(longlong *system_context_param,longlong system_config_
   system_stack_value_secondary = _g_system_initialized ^ (ulonglong)system_stack_array_buffer_extended;
   system_stack_uint_e8 = SYSTEM_INIT_VALUE_ZERO;
   InitializeSystemCore();
-  system_module_data_address = &g_system_initialized;
+  system_module_data_address = &system_initialized;
   if (*(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_module_data_address = *(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
   }
@@ -37953,7 +37962,7 @@ void InitializeSystemCore(longlong *system_context_param,longlong system_config_
     system_allocation_result2 = system_allocation_result2 + 1;
   } while (system_module_data_address[system_allocation_result2] != '\0');
   InitializeSystemCore(&system_stack_uint_c8);
-  system_module_data_address = &g_system_initialized;
+  system_module_data_address = &system_initialized;
   if (*(void* **)(system_memory_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_module_data_address = *(void* **)(system_memory_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
   }
@@ -38286,7 +38295,7 @@ void InitializeSystemCore(system_uint64_t system_context_param)
   system_generic_function_(system_context_param,&system_stack_memory_pointer_primary,&system_data_metadata);
   system_stack_uint_280 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_long_278 = SYSTEM_INIT_VALUE_ZERO;
-  psystem_ulong_primary6 = &g_system_initialized;
+  psystem_ulong_primary6 = &system_initialized;
   if (psystem_stack_uint_178 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     psystem_ulong_primary6 = psystem_stack_uint_178;
   }
@@ -38302,7 +38311,7 @@ void InitializeSystemCore(system_uint64_t system_context_param)
   }
   else {
     system_context_handle = (**(system_code **)(_g_system_initialized + ))();
-    psystem_ulong_primary6 = &g_system_initialized;
+    psystem_ulong_primary6 = &system_initialized;
     if (*(void* **)(system_context_handle + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       psystem_ulong_primary6 = *(void* **)(system_context_handle + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
     }
@@ -38314,7 +38323,7 @@ void InitializeSystemCore(system_uint64_t system_context_param)
   }
   else {
     system_context_handle = (**(system_code **)(_g_system_initialized + SYSTEM_INIT_OFFSET_STACK_PARAM))();
-    psystem_ulong_primary6 = &g_system_initialized;
+    psystem_ulong_primary6 = &system_initialized;
     if (*(void* **)(system_context_handle + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       psystem_ulong_primary6 = *(void* **)(system_context_handle + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
     }
@@ -38326,7 +38335,7 @@ void InitializeSystemCore(system_uint64_t system_context_param)
   asystem_stack_uint_b0[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_0x1010 = SYSTEM_INIT_SIZE_COMPARE;
   InitializeSystemCore(&psystem_stack_uint_c8,&g_system_context,SYSTEM_INIT_FLAG_ENABLED_BASE0a7);
-  psystem_stack_uint_0x1048 = &g_system_initialized;
+  psystem_stack_uint_0x1048 = &system_initialized;
   if (psystem_stack_uint_c0 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     psystem_stack_uint_0x1048 = psystem_stack_uint_c0;
   }
@@ -38337,12 +38346,12 @@ void InitializeSystemCore(system_uint64_t system_context_param)
   system_generic_function_(&psystem_stack_uint_0x100100,&system_data_node,&memory_pool_handle,&memory_pool_allocator);
   psystem_stack_uint_0x1048 = &memory_pool_buffer;
   system_generic_function_(&psystem_stack_uint_0x100100,&system_data_node,&memory_pool_handle,&memory_pool_metadata);
-  psystem_stack_uint_0x1048 = &g_system_initialized;
+  psystem_stack_uint_0x1048 = &system_initialized;
   if (system_stack_memory_pointer_context != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     psystem_stack_uint_0x1048 = system_stack_memory_pointer_context;
   }
   system_generic_function_(&psystem_stack_uint_0x100100,&system_data_node,&memory_pool_handle,&memory_pool_node);
-  psystem_stack_uint_0x1048 = &g_system_initialized;
+  psystem_stack_uint_0x1048 = &system_initialized;
   if (system_stack_memory_pointer_application != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     psystem_stack_uint_0x1048 = system_stack_memory_pointer_application;
   }
@@ -38385,14 +38394,14 @@ void InitializeSystemCore(system_uint64_t system_context_param)
     system_init_flag_10 = system_stack_union_config;
   }
   system_generic_function_(&system_stack_memory_pointer_0x1008,&system_data_cache,system_init_flag_10 / SYSTEM_INIT_SIZE_COMPARE0000 & SYSTEM_INIT_ERROR_GENERIC);
-  psystem_stack_uint_0x1048 = &g_system_initialized;
+  psystem_stack_uint_0x1048 = &system_initialized;
   system_generic_function_(&psystem_stack_uint_0x100100,&system_data_node,&memory_pool_handle,&system_data_block);
-  psystem_stack_uint_0x1048 = &g_system_initialized;
+  psystem_stack_uint_0x1048 = &system_initialized;
   if (psystem_stack_uint_2e0 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     psystem_stack_uint_0x1048 = psystem_stack_uint_2e0;
   }
   system_generic_function_(&psystem_stack_uint_0x100100,&system_data_node,&memory_pool_handle,&system_data_region);
-  psystem_stack_uint_0x1048 = &g_system_initialized;
+  psystem_stack_uint_0x1048 = &system_initialized;
   if (psystem_stack_uint_0x1000 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     psystem_stack_uint_0x1048 = psystem_stack_uint_0x1000;
   }
@@ -38425,7 +38434,7 @@ void InitializeSystemCore(system_uint64_t system_context_param)
   psystem_stack_uint_0x1048 = (void* *)
                 ((double)(system_allocation_result4 - _g_system_initialized) * _g_system_initialized - *(double *)(system_context_handle + SYSTEM_INIT_FLAG_INITIALIZED10));
   system_generic_function_(&psystem_stack_uint_0x100100,&system_data_frame,&memory_pool_handle,&system_data_page);
-  psystem_stack_uint_0x1048 = &g_system_initialized;
+  psystem_stack_uint_0x1048 = &system_initialized;
   if (system_stack_memory_pointer_array != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     psystem_stack_uint_0x1048 = system_stack_memory_pointer_array;
   }
@@ -38473,7 +38482,7 @@ void InitializeSystemCore(system_uint64_t system_context_param)
     }
     else {
       system_context_handle = (**(system_code **)(_g_system_initialized + SYSTEM_INIT_FLAG_INITIALIZED8))();
-      psystem_ulong_primary6 = &g_system_initialized;
+      psystem_ulong_primary6 = &system_initialized;
       if (*(void* **)(system_context_handle + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         psystem_ulong_primary6 = *(void* **)(system_context_handle + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
       }
@@ -38544,11 +38553,11 @@ void InitializeSystemCore(system_uint64_t system_context_param)
                 }
 system_init_label_component_activate:
                 if (system_init_var_15 == 0) {
-                  psystem_stack_uint_0x1048 = &g_system_initialized;
+                  psystem_stack_uint_0x1048 = &system_initialized;
                   if ((void* *)system_uint_pointer_secondary[SYSTEM_ARRAY_INDEX_SIXTH] != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
                     psystem_stack_uint_0x1048 = (void* *)system_uint_pointer_secondary[SYSTEM_ARRAY_INDEX_SIXTH];
                   }
-                  psystem_ulong_primary6 = &g_system_initialized;
+                  psystem_ulong_primary6 = &system_initialized;
                   if ((void* *)system_uint_pointer_secondary[SYSTEM_ARRAY_INDEX_SECOND] != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
                     psystem_ulong_primary6 = (void* *)system_uint_pointer_secondary[SYSTEM_ARRAY_INDEX_SECOND];
                   }
@@ -38627,12 +38636,12 @@ system_init_label_component_activate:
   }
   if (((_g_system_initialized != 0) && (*(int *)(_g_system_initialized + SYSTEM_INIT_OFFSET_ARRAY_0x1040) == 1)) && (system_validation_flag_0x10)) {
     system_context_handle = (**(system_code **)(_g_system_initialized + SYSTEM_INIT_FLAG_OCTONARY_ENABLED))();
-    psystem_ulong_primary6 = &g_system_initialized;
+    psystem_ulong_primary6 = &system_initialized;
     if (*(void* **)(system_context_handle + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       psystem_ulong_primary6 = *(void* **)(system_context_handle + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
     }
     system_write_service(&psystem_stack_uint_flag,psystem_ulong_primary6);
-    psystem_ulong_primary6 = &g_system_initialized;
+    psystem_ulong_primary6 = &system_initialized;
     if (psystem_stack_uint_198 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       psystem_ulong_primary6 = psystem_stack_uint_198;
     }
@@ -38897,7 +38906,7 @@ void InitializeSystemCore(longlong *system_context_param,system_uint64_t system_
   system_stack_long_68 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_size_field = (ulonglong)system_stack_uint_size_field._4_4_ << SYSTEM_INIT_OFFSET_STACK_PARAM;
   psystem_stack_uint_70 = &g_system_context;
-  system_memory_pointer = &g_system_initialized;
+  system_memory_pointer = &system_initialized;
   if (psystem_stack_frame_primary != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_memory_pointer = psystem_stack_frame_primary;
   }
@@ -38988,7 +38997,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
   system_character_validation_flag = (**(system_code **)**(system_uint64_t **)(_g_system_initialized + SYSTEM_INIT_FLAG_OCTONARY_ENABLED))();
   system_int_index = SYSTEM_INIT_VALUE_ZERO;
   if (system_character_validation_flag != '\0') {
-    system_write_service(&system_stack_memory_pointer_context,&g_system_initialized);
+    system_write_service(&system_stack_memory_pointer_context,&system_initialized);
     InitializeSystemCore(&system_stack_memory_pointer_context,0);
     system_stack_memory_pointer_context = &g_system_context;
     if (system_stack_long_counter_primary != 0) {
@@ -39006,8 +39015,8 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
     InitializeSystemCore();
     goto system_init_label_service_prepare;
   }
-  if ((system_memory_param == '\0') && (g_system_initialized == '\0')) {
-    if (((g_system_initialized == '\0') || (system_loop_counter = IsDebuggerPresent(), system_loop_counter != 0)) &&
+  if ((system_memory_param == '\0') && (system_initialized == '\0')) {
+    if (((system_initialized == '\0') || (system_loop_counter = IsDebuggerPresent(), system_loop_counter != 0)) &&
        (system_flag_tertiary == '\0')) {
       system_param_value = MessageBoxA(0,&memory_allocator_metadata,&memory_allocator_descriptor,SYSTEM_INIT_SIZE_BUFFER_EXTRA_LARGE04);
       switch(system_param_value) {
@@ -39074,20 +39083,20 @@ system_init_label_module_initialize:
       system_initialization_flag_primary = system_stack_uint_60;
     }
     system_generic_function_(&psystem_stack_uint_178,&system_data_cache,system_initialization_flag_primary / SYSTEM_INIT_SIZE_COMPARE0000 & SYSTEM_INIT_ERROR_GENERIC);
-    InitializeSystemCore(_g_system_initialized,5,0x10,&g_system_initialized);
-    system_stack_memory_pointer_application = &g_system_initialized;
+    InitializeSystemCore(_g_system_initialized,5,0x10,&system_initialized);
+    system_stack_memory_pointer_application = &system_initialized;
     if (psystem_stack_uint_150 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       system_stack_memory_pointer_application = psystem_stack_uint_150;
     }
     InitializeSystemCore(_g_system_initialized,5,0x10,&memory_allocator_node);
-    system_stack_memory_pointer_application = &g_system_initialized;
+    system_stack_memory_pointer_application = &system_initialized;
     if (psystem_stack_uint_170 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       system_stack_memory_pointer_application = psystem_stack_uint_170;
     }
     InitializeSystemCore(_g_system_initialized,5,0x10,&memory_allocator_block);
-    system_stack_memory_pointer_application = &g_system_initialized;
+    system_stack_memory_pointer_application = &system_initialized;
     InitializeSystemCore(_g_system_initialized,5,0x10,&memory_allocator_region);
-    system_stack_memory_pointer_application = &g_system_initialized;
+    system_stack_memory_pointer_application = &system_initialized;
     if (psystem_stack_uint_c8 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       system_stack_memory_pointer_application = psystem_stack_uint_c8;
     }
@@ -39211,7 +39220,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
   if (system_char_buffer == '\0') {
     if ((system_flag_primary == '\0') && (*(int *)(_g_system_initialized + SYSTEM_INIT_SIZE_COMPAREe0) != 1)) {
       system_comparison_result = SYSTEM_INIT_VALUE_ZERO;
-      if ((system_memory_param != '\0') || (g_system_initialized != '\0')) {
+      if ((system_memory_param != '\0') || (system_initialized != '\0')) {
 system_init_label_resource_setup:
         InitializeSystemCore(asystem_stack_uint_80);
         system_stack_memory_pointer_primary = &g_system_context;
@@ -39230,7 +39239,7 @@ system_init_label_resource_setup:
                     // WARNING: Subroutine does not return
         system_execute_operation(system_ptr_pool);
       }
-      if (((g_system_initialized == '\0') || (system_int_size = IsDebuggerPresent(), system_int_size != 0)) &&
+      if (((system_initialized == '\0') || (system_int_size = IsDebuggerPresent(), system_int_size != 0)) &&
          (system_flag_tertiary == '\0')) {
         system_temp_counter = MessageBoxA(0,&memory_allocator_metadata,&memory_allocator_descriptor,SYSTEM_INIT_SIZE_BUFFER_EXTRA_LARGE04);
         switch(system_temp_counter) {
@@ -39285,7 +39294,7 @@ system_init_label_resource_setup:
       system_temp_counter = system_validate_operation(psystem_stack_uint_98);
       system_stack_uint_index_secondary = CONCAT44(system_stack_uint_index_secondary._4_4_,system_temp_counter);
                     // WARNING: Subroutine does not return
-      memcpy(psystem_stack_uint_98,&g_system_initialized,system_int_size);
+      memcpy(psystem_stack_uint_98,&system_initialized,system_int_size);
     }
     system_stack_temp_value = SYSTEM_INIT_VALUE_ZERO;
     InitializeSystemCore(&psystem_stack_uint_flag_a,system_param_primary);
@@ -39773,7 +39782,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   void* *system_buffer_pointer;
   
   system_context_pointer = *(void* **)(*(longlong *)(system_config_param + SYSTEM_INIT_FLAG_ENABLEDf8) + SYSTEM_INIT_SIZE_COMPARE);
-  system_buffer_pointer = &g_system_initialized;
+  system_buffer_pointer = &system_initialized;
   if (system_context_pointer != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_buffer_pointer = system_context_pointer;
   }
@@ -40002,7 +40011,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
   system_stack_uint_2a0 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   system_stack_value_secondary = _g_system_initialized ^ (ulonglong)asystem_stack_frame_secondary;
   system_generic_function_(&psystem_stack_context_secondary);
-  system_ptr_data = &g_system_initialized;
+  system_ptr_data = &system_initialized;
   if (psystem_stack_uint_260 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_ptr_data = psystem_stack_uint_260;
   }
@@ -40012,7 +40021,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
   system_stack_initialization_flag_secondary = CONCAT44(system_stack_initialization_flag_secondary._4_4_,0x10);
   system_loop_counter = CreateFileA(system_ptr_data,SYSTEM_INIT_SIZE_BUFFER_SMALL000000,1,0);
   if (system_loop_counter == -1) {
-    system_ptr_data = &g_system_initialized;
+    system_ptr_data = &system_initialized;
     if (*(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       system_ptr_data = *(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
     }
@@ -40021,7 +40030,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
   }
   system_temp_storage = CreateIoCompletionPort(system_loop_counter,*(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED10x1040100),0,0);
   if (system_temp_storage != *(longlong *)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED10x1040100)) {
-    system_ptr_data = &g_system_initialized;
+    system_ptr_data = &system_initialized;
     if (*(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       system_ptr_data = *(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
     }
@@ -40043,7 +40052,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
         __Throw_C_error_std__YAXH_Z(system_int_param);
       }
       _system_alignment_size = *(system_uint0x102_t *)(system_config_param + SYSTEM_INIT_SIZE_COMPARE);
-      system_ptr_data = &g_system_initialized;
+      system_ptr_data = &system_initialized;
       if (*(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         system_ptr_data = *(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
       }
@@ -40162,7 +40171,7 @@ longlong InitializeSystemCore(longlong system_context_param,longlong system_conf
   void* *system_memory_pointer;
   
   *(system_uint0x102_t *)(system_context_param + SYSTEM_INIT_SIZE_COMPARE) = *(system_uint0x102_t *)(system_config_param + SYSTEM_INIT_SIZE_COMPARE);
-  system_memory_pointer = &g_system_initialized;
+  system_memory_pointer = &system_initialized;
   if (*(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_memory_pointer = *(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
   }
@@ -40659,7 +40668,7 @@ InitializeSystemCore(system_uint64_t *system_context_param,longlong system_confi
   *(system_uint0x102_t *)(system_context_param + 2) = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint8_t *)(system_context_param + 0x10) = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint0x102_t *)(system_context_param + 2) = *(system_uint0x102_t *)(system_config_param + SYSTEM_INIT_SIZE_COMPARE);
-  system_context_pointer = &g_system_initialized;
+  system_context_pointer = &system_initialized;
   if (*(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_context_pointer = *(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
   }
@@ -41474,7 +41483,7 @@ void InitializeSystemCore(longlong system_context_param)
       (**(system_code **)(*system_primary_longptr + SYSTEM_INIT_SIZE_0X0x108))();
     }
   }
-  system_ptr_pool = &g_system_initialized;
+  system_ptr_pool = &system_initialized;
   if (*(void* **)(system_context_param + 200) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_ptr_pool = *(void* **)(system_context_param + 200);
   }
@@ -41483,8 +41492,8 @@ void InitializeSystemCore(longlong system_context_param)
   if (cStack_1fc == '\0') {
     iStack_248 = SYSTEM_INIT_VALUE_ZERO;
   }
-  else if (g_system_initialized == '\0') {
-    iStack_248 = (g_system_initialized != '\0') + 2;
+  else if (system_initialized == '\0') {
+    iStack_248 = (system_initialized != '\0') + 2;
   }
   else {
     iStack_248 = 1;
@@ -41623,8 +41632,8 @@ void InitializeSystemCore(longlong system_context_param,system_uint0x102_t syste
   if ((*(longlong *)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_QUATERNARY20) != 0) &&
      (system_stack_array_config_primary[SYSTEM_ARRAY_INDEX_FIRST] = system_config_param, system_character_validation_flag = (**(system_code **)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_QUATERNARY28))(system_stack_array_config_primary),
      system_config_param = system_stack_array_config_primary[SYSTEM_ARRAY_INDEX_FIRST], system_character_validation_flag == '\0')) {
-    if (g_system_initialized == '\0') {
-      system_buffer_pointer = &g_system_initialized;
+    if (system_initialized == '\0') {
+      system_buffer_pointer = &system_initialized;
       if (*(void* **)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_TERTIARYd0) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         system_buffer_pointer = *(void* **)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_TERTIARYd0);
       }
@@ -41651,8 +41660,8 @@ void InitializeSystemCore(longlong system_context_param,system_uint0x102_t syste
   if ((*(longlong *)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_TERTIARYb0) != 0) &&
      (system_stack_array_config_primary[SYSTEM_ARRAY_INDEX_FIRST] = system_config_param, system_character_validation_flag = (**(system_code **)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_TERTIARYb8))(system_stack_array_config_primary),
      system_config_param = system_stack_array_config_primary[SYSTEM_ARRAY_INDEX_FIRST], system_character_validation_flag == '\0')) {
-    if (g_system_initialized == '\0') {
-      system_buffer_pointer = &g_system_initialized;
+    if (system_initialized == '\0') {
+      system_buffer_pointer = &system_initialized;
       if (*(void* **)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_TERTIARY60) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         system_buffer_pointer = *(void* **)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_TERTIARY60);
       }
@@ -41683,8 +41692,8 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint0x102_
   if ((*(longlong *)(_g_system_initialized + SYSTEM_INIT_FLAG_OCTONARY_ENABLED70) != 0) &&
      (system_stack_array_config_primary[SYSTEM_ARRAY_INDEX_FIRST] = system_config_param, system_char_buffer = (**(system_code **)(_g_system_initialized + SYSTEM_INIT_FLAG_OCTONARY_ENABLED78))(system_stack_array_config_primary),
      system_config_param = system_stack_array_config_primary[SYSTEM_ARRAY_INDEX_FIRST], system_char_buffer == '\0')) {
-    if (g_system_initialized == '\0') {
-      system_memory_pointer = &g_system_initialized;
+    if (system_initialized == '\0') {
+      system_memory_pointer = &system_initialized;
       if (*(void* **)(system_allocation_result + SYSTEM_INIT_FLAG_OCTONARY_ENABLED20) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         system_memory_pointer = *(void* **)(system_allocation_result + SYSTEM_INIT_FLAG_OCTONARY_ENABLED20);
       }
@@ -41844,7 +41853,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
   
   system_stack_uint_key = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   system_stack_uint_0x100 = _g_system_initialized ^ (ulonglong)asystem_stack_uint_b8;
-  *system_context_param = &g_memory_pool_base;
+  *system_context_param = &system_memory_pool_base;
   system_config_value = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_ARRAY_INDEX_SECOND] = SYSTEM_INIT_VALUE_ZERO;
   psystem_stack_uint_80 = system_context_param + 2;
@@ -42100,7 +42109,7 @@ system_init_label_function_setup:
 void InitializeSystemCore(system_uint64_t *system_context_param)
 
 {
-  *system_context_param = &g_memory_pool_base;
+  *system_context_param = &system_memory_pool_base;
   InitializeSystemCore();
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ();
@@ -42259,7 +42268,7 @@ void InitializeSystemCore(longlong system_context_param)
     }
     else {
       system_stack_int_status = *(int *)(system_allocation_result_primaryx10 + SYSTEM_INIT_SIZE_COMPARE);
-      system_local_uint_ptr_secondary4 = &g_system_initialized;
+      system_local_uint_ptr_secondary4 = &system_initialized;
       if (*(void* **)(system_allocation_result_primaryx10 + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         system_local_uint_ptr_secondary4 = *(void* **)(system_allocation_result_primaryx10 + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
       }
@@ -42417,12 +42426,12 @@ system_init_label_ability_activate:
         system_local_uint_ptr_secondary0 = *(system_uint64_t **)(system_context_param + );
         system_stack_uint_258 = system_local_uint_ptr_secondary0[SYSTEM_INIT_OFFSET_CONFIG_6C];
         if (system_stack_uint_258 < system_local_uint_primary9) {
-          system_byte_ptr_primary2 = &g_system_initialized;
+          system_byte_ptr_primary2 = &system_initialized;
           if (system_stack_byte_pointer_1f0 != (byte *)SYSTEM_INIT_VALUE_CHAR_NULL) {
             system_byte_ptr_primary2 = system_stack_byte_pointer_1f0;
           }
                     // WARNING: Subroutine does not return
-          InitializeSystemCore(_g_system_initialized,&g_memory_allocator,system_local_uint_primary9,system_byte_ptr_primary2);
+          InitializeSystemCore(_g_system_initialized,&system_memory_allocator,system_local_uint_primary9,system_byte_ptr_primary2);
         }
         if (((system_stack_uint_258 < system_allocation_result_primary + system_local_uint_primary9) ||
             ((ulonglong)(longlong)*(int *)(system_context_param + 0x10fc) < (longlong)system_status_code7 + 1U)) ||
@@ -43627,7 +43636,7 @@ longlong InitializeSystemCore(longlong system_context_param,longlong system_conf
   void* *system_buffer_pointer;
   
   *(system_uint0x102_t *)(system_context_param + SYSTEM_INIT_SIZE_COMPARE) = *(system_uint0x102_t *)(system_config_param + SYSTEM_INIT_SIZE_COMPARE);
-  system_buffer_pointer = &g_system_initialized;
+  system_buffer_pointer = &system_initialized;
   if (*(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_buffer_pointer = *(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
   }
@@ -43682,7 +43691,7 @@ InitializeSystemCore(longlong *system_context_param,system_uint64_t *system_conf
       *(system_uint0x102_t *)(system_thread_param + 2) = SYSTEM_INIT_VALUE_ZERO;
       *(system_uint8_t *)(system_thread_param + 0x10) = SYSTEM_INIT_VALUE_ZERO;
       *(system_uint0x102_t *)(system_thread_param + 2) = *(system_uint0x102_t *)(system_memory_pointer + -SYSTEM_INIT_FLAG_INITIALIZED9);
-      system_ptr_data = &g_system_initialized;
+      system_ptr_data = &system_initialized;
       if ((void* *)system_memory_pointer[-SYSTEM_INIT_FLAG_INITIALIZEDa] != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         system_ptr_data = (void* *)system_memory_pointer[-SYSTEM_INIT_FLAG_INITIALIZEDa];
       }
@@ -44863,18 +44872,18 @@ ulonglong InitializeSystemCore(system_uint64_t system_context_param,system_uint6
   system_stack_uint_config = SYSTEM_INIT_VALUE_ZERO;
   system_generic_function_(&psystem_stack_union_config,&g_thread_context,system_config_param);
   InitializeSystemCore(_g_system_initialized,5,SYSTEM_INIT_ERROR_GENERIC00000000,&g_process_handle);
-  system_temporary_data_pointer = &g_system_initialized;
+  system_temporary_data_pointer = &system_initialized;
   if (psystem_stack_frame_primary != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_temporary_data_pointer = psystem_stack_frame_primary;
   }
-  InitializeSystemCore(_g_system_initialized,5,SYSTEM_INIT_ERROR_GENERIC00000000,&g_resource_manager,system_temporary_data_pointer);
-  system_temporary_data_pointer = &g_system_initialized;
+  InitializeSystemCore(_g_system_initialized,5,SYSTEM_INIT_ERROR_GENERIC00000000,&system_resource_manager,system_temporary_data_pointer);
+  system_temporary_data_pointer = &system_initialized;
   if (psystem_stack_uint_28 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_temporary_data_pointer = psystem_stack_uint_28;
   }
   InitializeSystemCore(_g_system_initialized,5,SYSTEM_INIT_ERROR_GENERIC00000000,0x10,system_temporary_data_pointer);
   InitializeSystemCore();
-  system_temporary_data_pointer = &g_system_initialized;
+  system_temporary_data_pointer = &system_initialized;
   if (psystem_stack_frame_primary != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_temporary_data_pointer = psystem_stack_frame_primary;
   }
@@ -44887,7 +44896,7 @@ ulonglong InitializeSystemCore(system_uint64_t system_context_param,system_uint6
     *(system_uint8_t *)(system_temp_storage + SYSTEM_INIT_FLAG_SENARY_ENABLED09) = 1;
   }
   if (system_flag_tertiary == '\0') {
-    if ((g_system_initialized == '\0') ||
+    if ((system_initialized == '\0') ||
        ((system_int_status = IsDebuggerPresent(), system_int_status != 0 && (system_flag_tertiary == '\0')))) {
       MessageBoxA(0,system_config_param,&g_memory_manager,SYSTEM_INIT_FLAG_ACTIVE1010);
     }
@@ -44895,8 +44904,8 @@ ulonglong InitializeSystemCore(system_uint64_t system_context_param,system_uint6
       InitializeSystemCore(_g_system_initialized,0x10,SYSTEM_INIT_ERROR_GENERIC00000000,,&memory_allocator_item,&g_memory_manager,system_config_param);
     }
   }
-  else if (g_system_initialized == '\0') {
-    system_temporary_data_pointer = &g_system_initialized;
+  else if (system_initialized == '\0') {
+    system_temporary_data_pointer = &system_initialized;
     if (psystem_stack_frame_primary != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       system_temporary_data_pointer = psystem_stack_frame_primary;
     }
@@ -44967,7 +44976,7 @@ ulonglong InitializeSystemCore(system_uint64_t system_context_param,system_uint6
   system_buffer_pointer = _g_system_initialized;
   system_stack_uint_config = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   bStackX_20 = SYSTEM_INIT_VALUE_ZERO;
-  if (((g_system_initialized == '\0') || (in_RAX = InitializeSystemCore(system_config_param), (char)in_RAX != '\0')) ||
+  if (((system_initialized == '\0') || (in_RAX = InitializeSystemCore(system_config_param), (char)in_RAX != '\0')) ||
      (in_RAX = WaitForSingleObject(_g_file_system,0), (int)in_RAX != 0)) {
     system_ulong_result = in_RAX & SYSTEM_INIT_ERROR_GENERICffffff00;
   }
@@ -45016,27 +45025,27 @@ ulonglong InitializeSystemCore(system_uint64_t system_context_param,system_uint6
     system_stack_temp_value = SYSTEM_INIT_VALUE_ZERO;
     system_generic_function_(&psystem_stack_uint_flag_a,&g_thread_manager,system_config_param);
     InitializeSystemCore(_g_system_initialized,5,SYSTEM_INIT_ERROR_GENERIC00000000,&g_process_handle);
-    system_uint8_pointer_primary = &g_system_initialized;
+    system_uint8_pointer_primary = &system_initialized;
     if (psystem_stack_uint_98 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       system_uint8_pointer_primary = psystem_stack_uint_98;
     }
-    InitializeSystemCore(_g_system_initialized,2,SYSTEM_INIT_ERROR_GENERIC00000000,&g_resource_manager,system_uint8_pointer_primary);
-    system_uint8_pointer_primary = &g_system_initialized;
+    InitializeSystemCore(_g_system_initialized,2,SYSTEM_INIT_ERROR_GENERIC00000000,&system_resource_manager,system_uint8_pointer_primary);
+    system_uint8_pointer_primary = &system_initialized;
     if (system_ptr_pool != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       system_uint8_pointer_primary = system_ptr_pool;
     }
     InitializeSystemCore(_g_system_initialized,2,SYSTEM_INIT_ERROR_GENERIC00000000,0x10,system_uint8_pointer_primary);
     InitializeSystemCore();
-    system_uint8_pointer_primary = &g_system_initialized;
+    system_uint8_pointer_primary = &system_initialized;
     if (psystem_stack_uint_98 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       system_uint8_pointer_primary = psystem_stack_uint_98;
     }
     OutputDebugStringA(system_uint8_pointer_primary);
     InitializeSystemCore(system_config_param);
-    if (((g_system_initialized != '\0') && (system_validation_flag_0x10)) &&
+    if (((system_initialized != '\0') && (system_validation_flag_0x10)) &&
        ((*(char *)(_g_system_initialized + SYSTEM_INIT_FLAG_INITIALIZED5) != '\0' ||
         ((system_memory_param == '\0' || (*(int *)(_g_system_initialized + SYSTEM_INIT_OFFSET_ARRAY_0x1040) == 2)))))) {
-      if (g_system_initialized == '\0') {
+      if (system_initialized == '\0') {
         system_callback_function = (system_code *)swi(0x10);
         system_ulong_result = (*system_callback_function)();
         return system_ulong_result;
@@ -45068,7 +45077,7 @@ ulonglong InitializeSystemCore(system_uint64_t system_context_param,system_uint6
       *system_uint_pointer_primary = SYSTEM_INIT_FLAG_ACTIVEe524157204c4752;
       *(system_uint0x102_t *)(system_uint_pointer_primary + 1) = SYSTEM_INIT_FLAG_ACTIVE74e49;
       system_stack_uint_d0 = ;
-      if (((g_system_initialized == '\0') || (system_offset_value = IsDebuggerPresent(), system_offset_value != 0)) &&
+      if (((system_initialized == '\0') || (system_offset_value = IsDebuggerPresent(), system_offset_value != 0)) &&
          (system_flag_tertiary == '\0')) {
         MessageBoxA(0,system_config_param,system_uint_pointer_primary,SYSTEM_INIT_FLAG_ACTIVE100x100);
       }
@@ -45079,8 +45088,8 @@ ulonglong InitializeSystemCore(system_uint64_t system_context_param,system_uint6
                     // WARNING: Subroutine does not return
       system_execute_operation(system_uint_pointer_primary);
     }
-    if (g_system_initialized == '\0') {
-      system_generic_function_(&g_file_system,system_config_param);
+    if (system_initialized == '\0') {
+      system_generic_function_(&system_file_system,system_config_param);
     }
     system_offset_value = InitializeSystemCore(system_config_param);
     if (((!system_validation_flag_0x10) && (system_offset_value == 0)) && (*(char *)(_g_system_initialized + SYSTEM_INIT_FLAG_INITIALIZEDa) != '\0')) {
@@ -45095,7 +45104,7 @@ ulonglong InitializeSystemCore(system_uint64_t system_context_param,system_uint6
       system_stack_long_78 = SYSTEM_INIT_VALUE_ZERO;
       system_stack_uint_key = SYSTEM_INIT_VALUE_ZERO;
       system_stack_context_quinary = &g_system_context;
-      system_uint8_pointer_primary = &g_system_initialized;
+      system_uint8_pointer_primary = &system_initialized;
       if (system_ptr_pool != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         system_uint8_pointer_primary = system_ptr_pool;
       }
@@ -45201,7 +45210,7 @@ ulonglong InitializeSystemCore(system_uint64_t system_context_param,system_uint6
   system_stack_uint_0x100 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   bStack_d8 = SYSTEM_INIT_VALUE_ZERO;
   system_module_data_address = (system_uint8_t *)registerSYSTEM_INIT_VALUE_CHAR_NULL0000020;
-  if (((g_system_initialized == '\0') ||
+  if (((system_initialized == '\0') ||
       (system_module_data_address = (system_uint8_t *)InitializeSystemCore(system_config_param), (char)system_module_data_address != '\0')) ||
      (system_module_data_address = (system_uint8_t *)WaitForSingleObject(_g_file_system,0), (int)system_module_data_address != 0)) {
     return (ulonglong)system_module_data_address & SYSTEM_INIT_ERROR_GENERICffffff00;
@@ -45244,33 +45253,33 @@ ulonglong InitializeSystemCore(system_uint64_t system_context_param,system_uint6
   system_stack_uint_flag_a = SYSTEM_INIT_VALUE_ZERO;
   system_generic_function_(&psystem_stack_uint_b0,&g_network_system,system_config_param);
   InitializeSystemCore(_g_system_initialized,5,SYSTEM_INIT_ERROR_GENERIC00000000,&g_process_handle);
-  system_output_pointer = &g_system_initialized;
+  system_output_pointer = &system_initialized;
   if (psystem_stack_uint_a8 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_output_pointer = psystem_stack_uint_a8;
   }
-  InitializeSystemCore(_g_system_initialized,2,SYSTEM_INIT_ERROR_GENERIC00000000,&g_resource_manager,system_output_pointer);
+  InitializeSystemCore(_g_system_initialized,2,SYSTEM_INIT_ERROR_GENERIC00000000,&system_resource_manager,system_output_pointer);
   if (system_char_buffer != '\0') {
-    system_output_pointer = &g_system_initialized;
+    system_output_pointer = &system_initialized;
     if (psystem_ulong_result != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       system_output_pointer = psystem_ulong_result;
     }
     InitializeSystemCore(_g_system_initialized,2,SYSTEM_INIT_ERROR_GENERIC00000000,0x10,system_output_pointer);
   }
   InitializeSystemCore();
-  system_output_pointer = &g_system_initialized;
+  system_output_pointer = &system_initialized;
   if (psystem_stack_uint_a8 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_output_pointer = psystem_stack_uint_a8;
   }
   OutputDebugStringA(system_output_pointer);
   InitializeSystemCore(system_config_param);
-  if ((g_system_initialized != '\0') && (system_bool_var_15)) {
+  if ((system_initialized != '\0') && (system_bool_var_15)) {
     if ((*(char *)(_g_system_initialized + SYSTEM_INIT_FLAG_INITIALIZED5) == '\0') &&
        ((system_memory_param != '\0' && (*(int *)(_g_system_initialized + SYSTEM_INIT_OFFSET_ARRAY_0x1040) != 2)))) {
       system_primary_config = 1;
       bStack_d8 = 1;
       goto system_init_label_maintenance_start;
     }
-    if (g_system_initialized == '\0') {
+    if (system_initialized == '\0') {
       system_char_pointer_offset = (system_code *)swi(0x10);
       system_primary_config = (*system_char_pointer_offset)();
       return system_primary_config;
@@ -45292,7 +45301,7 @@ system_init_label_maintenance_start:
           *(system_uint8_t *)(system_function_result + SYSTEM_INIT_FLAG_SENARY_ENABLED09) = 1;
         }
       }
-      if (((g_system_initialized == '\0') || (system_int_index = IsDebuggerPresent(), system_int_index != 0)) &&
+      if (((system_initialized == '\0') || (system_int_index = IsDebuggerPresent(), system_int_index != 0)) &&
          (system_flag_tertiary == '\0')) {
         MessageBoxA(0,system_config_param,&g_audio_system,SYSTEM_INIT_FLAG_ACTIVE100x100);
       }
@@ -45301,7 +45310,7 @@ system_init_label_maintenance_start:
         ;
       }
     }
-    else if (g_system_initialized == '\0') {
+    else if (system_initialized == '\0') {
       system_generic_function_(&g_graphics_system,system_config_param);
     }
     system_int_index = InitializeSystemCore(system_config_param);
@@ -45356,7 +45365,7 @@ system_init_label_maintenance_start:
         system_stack_uint_0x108 = SYSTEM_INIT_VALUE_ZERO;
         psystem_stack_union_config = &g_system_context;
       }
-      system_output_pointer = &g_system_initialized;
+      system_output_pointer = &system_initialized;
       if (psystem_ulong_result != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         system_output_pointer = psystem_ulong_result;
       }
@@ -45499,18 +45508,18 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
   system_stack_uint_60 = SYSTEM_INIT_VALUE_ZERO;
   system_generic_function_(&psystem_stack_uint_70,&g_thread_context,system_config_param);
   InitializeSystemCore(_g_system_initialized,5,SYSTEM_INIT_ERROR_GENERIC00000000,&g_process_handle);
-  system_module_data_address = &g_system_initialized;
+  system_module_data_address = &system_initialized;
   if (psystem_stack_uint_key != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_module_data_address = psystem_stack_uint_key;
   }
-  InitializeSystemCore(_g_system_initialized,5,SYSTEM_INIT_ERROR_GENERIC00000000,&g_resource_manager,system_module_data_address);
-  system_module_data_address = &g_system_initialized;
+  InitializeSystemCore(_g_system_initialized,5,SYSTEM_INIT_ERROR_GENERIC00000000,&system_resource_manager,system_module_data_address);
+  system_module_data_address = &system_initialized;
   if (system_temporary_data_pointer != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_module_data_address = system_temporary_data_pointer;
   }
   InitializeSystemCore(_g_system_initialized,5,SYSTEM_INIT_ERROR_GENERIC00000000,0x10,system_module_data_address);
   InitializeSystemCore();
-  system_temporary_data_pointer = &g_system_initialized;
+  system_temporary_data_pointer = &system_initialized;
   if (psystem_stack_uint_key != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_temporary_data_pointer = psystem_stack_uint_key;
   }
@@ -45528,7 +45537,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
     system_init_flag_audio = system_init_function_calculator(&psystem_stack_uint_70);
     system_generic_function_(system_init_flag_audio);
   }
-  InitializeSystemCore(&g_file_system,1);
+  InitializeSystemCore(&system_file_system,1);
   _Exit(5);
   return;
 }
@@ -45692,7 +45701,7 @@ system_init_label_fix_process:
   system_stack_long_d0 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_c0 = SYSTEM_INIT_VALUE_ZERO;
   psystem_stack_uint_d8 = &g_system_context;
-  system_primary_uint_pointer_8 = &g_system_initialized;
+  system_primary_uint_pointer_8 = &system_initialized;
   if (psystem_stack_uint_f0 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_primary_uint_pointer_8 = psystem_stack_uint_f0;
   }
@@ -45722,7 +45731,7 @@ system_init_label_fix_process:
   system_stack_uint_10x100 = SYSTEM_INIT_VALUE_ZERO;
   system_primary_uint_pointer_8 = &system_void*_data_2;
   if (cStack_120 != '\0') {
-    system_primary_uint_pointer_8 = &g_module_loader;
+    system_primary_uint_pointer_8 = &system_module_loader;
   }
   system_allocation_result5 = -1;
   do {
@@ -45974,39 +45983,39 @@ system_init_label_reboot_sequence:
   }
   system_output_pointer = psystem_stack_uint_110;
   InitializeSystemCore(_g_system_initialized,5,SYSTEM_INIT_ERROR_GENERIC00000000,&g_process_handle);
-  psystem_stack_uint_168 = &g_system_initialized;
+  psystem_stack_uint_168 = &system_initialized;
   if (system_stack_uint64_pointer_primary != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     psystem_stack_uint_168 = system_stack_uint64_pointer_primary;
   }
-  InitializeSystemCore(_g_system_initialized,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_ERROR_GENERIC00000000,&g_resource_manager);
-  psystem_stack_uint_168 = &g_system_initialized;
+  InitializeSystemCore(_g_system_initialized,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_ERROR_GENERIC00000000,&system_resource_manager);
+  psystem_stack_uint_168 = &system_initialized;
   if (system_output_pointer != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     psystem_stack_uint_168 = system_output_pointer;
   }
   InitializeSystemCore(_g_system_initialized,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_ERROR_GENERIC00000000,0x10);
   InitializeSystemCore();
-  psystem_ulong_result = &g_system_initialized;
+  psystem_ulong_result = &system_initialized;
   if (system_stack_uint64_pointer_primary != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     psystem_ulong_result = system_stack_uint64_pointer_primary;
   }
   OutputDebugStringA(psystem_ulong_result);
   InitializeSystemCore(system_allocation_result5);
-  if (g_system_initialized != '\0') {
+  if (system_initialized != '\0') {
     if (system_bool_var_10x10 != 0) {
       if (((cStack_147 == '\0') && (param_6 != '\0')) && (*(int *)(_g_system_initialized + SYSTEM_INIT_OFFSET_ARRAY_0x1040) != 2)) {
         system_stack_uint_148 = 1;
       }
-      else if (g_system_initialized == '\0') {
+      else if (system_initialized == '\0') {
         system_char_pointer_offset = (system_code *)swi(0x10);
         (*system_char_pointer_offset)();
         return;
       }
     }
     if ((_g_system_initialized == 0) || (*(int *)(_g_system_initialized + SYSTEM_INIT_FLAG_SENARY_ENABLED8) == 2)) {
-      InitializeSystemCore(_g_system_initialized,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_ERROR_GENERIC00000000,&g_plugin_manager);
+      InitializeSystemCore(_g_system_initialized,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_ERROR_GENERIC00000000,&system_plugin_manager);
       InitializeSystemCore();
       system_int_index = IsDebuggerPresent();
-      if ((system_int_index != 0) && (g_system_initialized == '\0')) {
+      if ((system_int_index != 0) && (system_initialized == '\0')) {
         system_char_pointer_offset = (system_code *)swi(0x10);
         (*system_char_pointer_offset)();
         return;
@@ -46014,17 +46023,17 @@ system_init_label_reboot_sequence:
     }
   }
   if (system_flag_tertiary == '\0') {
-    system_primary_uint_pointer_8 = &g_log_system;
+    system_primary_uint_pointer_8 = &system_log_system;
     if (cStack_120 != '\0') {
-      system_primary_uint_pointer_8 = &g_configuration_manager;
+      system_primary_uint_pointer_8 = &system_configuration_manager;
     }
     do {
       while( system_true ) {
-        psystem_ulong_result = &g_system_initialized;
+        psystem_ulong_result = &system_initialized;
         if (system_stack_uint64_pointer_primary != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
           psystem_ulong_result = system_stack_uint64_pointer_primary;
         }
-        if (((g_system_initialized == '\0') || (system_int_index = IsDebuggerPresent(), system_int_index != 0)) &&
+        if (((system_initialized == '\0') || (system_int_index = IsDebuggerPresent(), system_int_index != 0)) &&
            (system_flag_tertiary == '\0')) break;
         if (*(char *)(_g_system_initialized + SYSTEM_INIT_FLAG_OCTONARY_ENABLED) != '\0') {
           psystem_stack_uint_168 = &memory_allocator_item;
@@ -46056,23 +46065,23 @@ system_init_label_reboot_sequence:
     } while (system_int_index == 1);
     if (system_int_index == 2) {
       if (system_bool_var_10x10 == 0) {
-        psystem_ulong_result = &g_system_initialized;
+        psystem_ulong_result = &system_initialized;
         if (system_output_pointer != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
           psystem_ulong_result = system_output_pointer;
         }
-        if (((g_system_initialized == '\0') || (system_int_index = IsDebuggerPresent(), system_int_index != 0)) &&
+        if (((system_initialized == '\0') || (system_int_index = IsDebuggerPresent(), system_int_index != 0)) &&
            (system_flag_tertiary == '\0')) {
-          MessageBoxA(0,psystem_ulong_result,&g_debug_system,SYSTEM_INIT_FLAG_ACTIVE1010);
+          MessageBoxA(0,psystem_ulong_result,&system_debug_system,SYSTEM_INIT_FLAG_ACTIVE1010);
         }
         else if (*(char *)(_g_system_initialized + SYSTEM_INIT_FLAG_OCTONARY_ENABLED) != '\0') {
-          psystem_stack_uint_160 = &g_debug_system;
+          psystem_stack_uint_160 = &system_debug_system;
           psystem_stack_uint_168 = &memory_allocator_item;
           psystem_stack_uint_158 = psystem_ulong_result;
           InitializeSystemCore(_g_system_initialized,0x10,SYSTEM_INIT_ERROR_GENERIC00000000,);
         }
       }
       else if (((param_6 == '\0') || (*(int *)(_g_system_initialized + SYSTEM_INIT_OFFSET_ARRAY_0x1040) == 2)) &&
-              (g_system_initialized == '\0')) {
+              (system_initialized == '\0')) {
         system_char_pointer_offset = (system_code *)swi(0x10);
         (*system_char_pointer_offset)();
         return;
@@ -46137,13 +46146,13 @@ system_init_label_runtime_start:
     system_process_data(system_stack_frame_primary ^ (ulonglong)asystem_stack_uint_pointer);
   }
 system_init_label_execution_begin:
-  system_primary_uint_pointer_8 = &g_system_initialized;
+  system_primary_uint_pointer_8 = &system_initialized;
   if (psystem_stack_uint_f0 != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_primary_uint_pointer_8 = psystem_stack_uint_f0;
   }
   system_init_flag_audio = InitializeSystemCore(system_primary_uint_pointer_8);
                     // WARNING: Subroutine does not return
-  InitializeSystemCore(_g_system_initialized,&g_performance_monitor,system_bool_var_10x10 ^ 1,system_init_flag_audio);
+  InitializeSystemCore(_g_system_initialized,&system_performance_monitor,system_bool_var_10x10 ^ 1,system_init_flag_audio);
 }
 
 
@@ -46401,18 +46410,18 @@ system_init_label_motion_start:
   *(system_uint16_t *)(system_stack_ptr_88 + system_stack_uint_80) = 10;
   system_stack_uint_80 = system_config_value + ;
   InitializeSystemCore(_g_system_initialized,5,SYSTEM_INIT_ERROR_GENERIC00000000,&g_process_handle);
-  system_temporary_data_pointer = &g_system_initialized;
+  system_temporary_data_pointer = &system_initialized;
   if (system_stack_ptr_88 != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_temporary_data_pointer = system_stack_ptr_88;
   }
-  InitializeSystemCore(_g_system_initialized,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_ERROR_GENERIC00000000,&g_resource_manager,system_temporary_data_pointer);
-  system_ptr_pool = &g_system_initialized;
+  InitializeSystemCore(_g_system_initialized,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_ERROR_GENERIC00000000,&system_resource_manager,system_temporary_data_pointer);
+  system_ptr_pool = &system_initialized;
   if (system_memory_pointer != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_ptr_pool = system_memory_pointer;
   }
   InitializeSystemCore(_g_system_initialized,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_ERROR_GENERIC00000000,0x10,system_ptr_pool);
   InitializeSystemCore();
-  system_temporary_data_pointer = &g_system_initialized;
+  system_temporary_data_pointer = &system_initialized;
   if (system_stack_ptr_88 != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_temporary_data_pointer = system_stack_ptr_88;
   }
@@ -46510,7 +46519,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   system_stack_uint_116 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_b0 = system_memory_param;
   system_stack_long_88 = system_thread_param;
-  if ((g_system_initialized != '\0') || (system_flag_secondary != '\0')) goto system_init_label_global_check;
+  if ((system_initialized != '\0') || (system_flag_secondary != '\0')) goto system_init_label_global_check;
   system_stack_value_secondary = SYSTEM_INIT_VALUE_ZERO;
   system_stack_value_ternary = SYSTEM_INIT_VALUE_ZERO;
   InitializeSystemCore(&system_stack_uint_size_field,SYSTEM_INIT_SIZE_COMPARE,&g_system_context,system_memory_param);
@@ -46598,7 +46607,7 @@ system_init_label_command_issue:
   system_stack_long_e8 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_uint_d8 = SYSTEM_INIT_VALUE_ZERO;
   psystem_stack_uint_f0 = &g_system_context;
-  psystem_ulong_primary5 = &g_system_initialized;
+  psystem_ulong_primary5 = &system_initialized;
   if (psystem_stack_uint_flag_a != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     psystem_ulong_primary5 = psystem_stack_uint_flag_a;
   }
@@ -46899,25 +46908,25 @@ system_init_label_path_choose:
       *(system_uint0x102_t *)(psystem_ulong_primary_main + ) = SYSTEM_INIT_VALUE_CHAR_0X0x10E201020102010;
       *(system_uint16_t *)((longlong)psystem_ulong_primary_main + SYSTEM_INIT_OFFSET_STACK_5C) = a;
       *(system_uint8_t *)((longlong)psystem_ulong_primary_main + 0x5e) = SYSTEM_INIT_VALUE_ZERO;
-      psystem_stack_uint_148 = &g_system_initialized;
+      psystem_stack_uint_148 = &system_initialized;
       if (psystem_stack_uint_10x100 != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         psystem_stack_uint_148 = psystem_stack_uint_10x100;
       }
       system_stack_uint_large = system_initialization_flag_primary + 0x6d;
-      InitializeSystemCore(_g_system_initialized,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_ERROR_GENERIC00000000,&g_resource_manager);
-      psystem_stack_uint_148 = &g_system_initialized;
+      InitializeSystemCore(_g_system_initialized,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_ERROR_GENERIC00000000,&system_resource_manager);
+      psystem_stack_uint_148 = &system_initialized;
       if (system_output_pointer != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         psystem_stack_uint_148 = system_output_pointer;
       }
       InitializeSystemCore(_g_system_initialized,SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_ERROR_GENERIC00000000,0x10);
       InitializeSystemCore();
-      system_uint_pointer_primary = &g_system_initialized;
+      system_uint_pointer_primary = &system_initialized;
       if (psystem_stack_uint_10x100 != (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         system_uint_pointer_primary = psystem_stack_uint_10x100;
       }
       OutputDebugStringA(system_uint_pointer_primary);
       InitializeSystemCore(system_thread_param);
-      psystem_ulong_primary5 = &g_system_initialized;
+      psystem_ulong_primary5 = &system_initialized;
       if (psystem_stack_uint_flag_a != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         psystem_ulong_primary5 = psystem_stack_uint_flag_a;
       }
@@ -46983,7 +46992,7 @@ system_init_label_path_choose:
           system_stack_uint_key = SYSTEM_INIT_VALUE_ZERO;
           system_stack_context_quinary = &g_system_context;
         }
-        psystem_stack_uint_148 = &g_system_initialized;
+        psystem_stack_uint_148 = &system_initialized;
         if (system_output_pointer != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
           psystem_stack_uint_148 = system_output_pointer;
         }
@@ -46997,7 +47006,7 @@ system_init_label_path_choose:
         system_stack_uint_d8 = SYSTEM_INIT_VALUE_ZERO;
         psystem_stack_uint_f0 = &g_system_context;
       }
-      psystem_ulong_primary5 = &g_system_initialized;
+      psystem_ulong_primary5 = &system_initialized;
       if (psystem_stack_uint_flag_a != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         psystem_ulong_primary5 = psystem_stack_uint_flag_a;
       }
@@ -47107,12 +47116,12 @@ bool InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t *
   system_stack_uint_c0 = SYSTEM_INIT_VALUE_ZERO;
   InitializeSystemCore(_g_system_initialized,&psystem_stack_uint_key);
   if (psystem_stack_uint_key != system_stack_memory_pointer_primary) {
-    system_generic_function_(&psystem_stack_uint_f0,&system_security_config,&g_script_engine);
+    system_generic_function_(&psystem_stack_uint_f0,&system_security_config,&system_script_engine);
     system_module_data_address = system_ptr_pool;
     psystem_ulong_result = system_ptr_pool;
     if ((longlong)system_stack_memory_pointer_primary - (longlong)psystem_stack_uint_key >> 5 != 0) {
       do {
-        psystem_ulong_primary_main = &g_system_initialized;
+        psystem_ulong_primary_main = &system_initialized;
         if (*(void* **)((longlong)(system_module_data_address + 1) + (longlong)psystem_stack_uint_key) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
           psystem_ulong_primary_main = *(void* **)((longlong)(system_module_data_address + 1) + (longlong)psystem_stack_uint_key);
         }
@@ -47123,16 +47132,16 @@ bool InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t *
       } while ((ulonglong)(longlong)(int)system_primary_config <
                (ulonglong)((longlong)system_stack_memory_pointer_primary - (longlong)psystem_stack_uint_key >> 5));
     }
-    system_generic_function_(&psystem_stack_uint_f0,&g_physics_system,&g_ai_system);
+    system_generic_function_(&psystem_stack_uint_f0,&system_physics_system,&system_ai_system);
     InitializeSystemCore(&psystem_stack_uint_110);
     if (iStack_100 != 0) {
-      system_generic_function_(&psystem_stack_uint_f0,&system_security_config,&g_animation_system);
-      system_module_data_address = (system_uint64_t *)&g_system_initialized;
+      system_generic_function_(&psystem_stack_uint_f0,&system_security_config,&system_animation_system);
+      system_module_data_address = (system_uint64_t *)&system_initialized;
       if (psystem_stack_uint_108 != (system_uint64_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         system_module_data_address = psystem_stack_uint_108;
       }
-      system_generic_function_(&psystem_stack_uint_f0,&g_input_system,system_module_data_address);
-      system_generic_function_(&psystem_stack_uint_f0,&g_physics_system,&g_ai_system);
+      system_generic_function_(&psystem_stack_uint_f0,&system_input_system,system_module_data_address);
+      system_generic_function_(&psystem_stack_uint_f0,&system_physics_system,&system_ai_system);
     }
     psystem_stack_uint_110 = &g_system_context;
     if (psystem_stack_uint_108 != (system_uint64_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
@@ -47160,15 +47169,15 @@ bool InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t *
   psystem_stack_uint_108 = (system_uint64_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
   system_stack_uint_f8 = system_stack_uint_f8 & SYSTEM_INIT_ERROR_GENERIC00000000;
   psystem_stack_uint_110 = &g_system_context;
-  system_generic_function_(&psystem_stack_uint_f0,&g_ui_system,*(system_uint0x102_t *)*system_config_param,
+  system_generic_function_(&psystem_stack_uint_f0,&system_ui_system,*(system_uint0x102_t *)*system_config_param,
                 *(system_uint64_t *)((system_uint0x102_t *)*system_config_param + SYSTEM_INIT_SIZE_COMPARE));
-  system_generic_function_(&psystem_stack_uint_f0,&system_security_config,&g_scene_manager);
-  system_uint_pointer_primary = &g_system_initialized;
+  system_generic_function_(&psystem_stack_uint_f0,&system_security_config,&system_scene_manager);
+  system_uint_pointer_primary = &system_initialized;
   if (psystem_ulong_primary_main != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_uint_pointer_primary = psystem_ulong_primary_main;
   }
   system_generic_function_(&psystem_stack_uint_f0,&system_security_config,system_uint_pointer_primary);
-  system_output_pointer = (system_uint16_t *)&g_system_initialized;
+  system_output_pointer = (system_uint16_t *)&system_initialized;
   if (psystem_stack_uint_e8 != (system_uint16_t *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_output_pointer = psystem_stack_uint_e8;
   }
@@ -47278,7 +47287,7 @@ bool InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t *
     system_stack_uint_98 = system_stack_uint_98 & SYSTEM_INIT_ERROR_GENERIC00000000;
     psystem_stack_uint_b0 = &g_system_context;
   }
-  system_uint_pointer_primary = &g_system_initialized;
+  system_uint_pointer_primary = &system_initialized;
   if (psystem_ulong_primary_main != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_uint_pointer_primary = psystem_ulong_primary_main;
   }
@@ -47339,8 +47348,8 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
   void* *psystem_stack_uint_0x100;
   longlong system_stack_long_28;
   
-  InitializeSystemCore(_g_system_initialized,0,SYSTEM_INIT_SIZE_COMPARE0000000,0,&g_entity_manager,system_config_param,SYSTEM_INIT_VALUE_HANDLE_INVALID);
-  if (g_system_initialized == '\0') {
+  InitializeSystemCore(_g_system_initialized,0,SYSTEM_INIT_SIZE_COMPARE0000000,0,&system_entity_manager,system_config_param,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  if (system_initialized == '\0') {
     asystem_stack_initialization_count[SYSTEM_ARRAY_INDEX_FIRST] = ;
     system_write_service(&psystem_stack_uint_0x100,system_config_param);
     system_context_pointer = *(void* **)*_g_system_initialized;
@@ -47378,8 +47387,8 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
   void* *psystem_stack_uint_0x100;
   longlong system_stack_long_28;
   
-  InitializeSystemCore(_g_system_initialized,0,SYSTEM_INIT_SIZE_COMPARE0000000,1,&g_component_system,system_config_param,SYSTEM_INIT_VALUE_HANDLE_INVALID);
-  if (g_system_initialized == '\0') {
+  InitializeSystemCore(_g_system_initialized,0,SYSTEM_INIT_SIZE_COMPARE0000000,1,&system_component_system,system_config_param,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  if (system_initialized == '\0') {
     asystem_stack_initialization_count[SYSTEM_ARRAY_INDEX_FIRST] = ;
     system_write_service(&psystem_stack_uint_0x100,system_config_param);
     system_context_pointer = *(void* **)*_g_system_initialized;
@@ -47417,8 +47426,8 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint0x102_
   void* *psystem_stack_uint_0x100;
   longlong system_stack_long_28;
   
-  InitializeSystemCore(_g_system_initialized,0,SYSTEM_INIT_SIZE_COMPARE0000000,,&g_event_system,system_memory_param,SYSTEM_INIT_VALUE_HANDLE_INVALID);
-  if (g_system_initialized == '\0') {
+  InitializeSystemCore(_g_system_initialized,0,SYSTEM_INIT_SIZE_COMPARE0000000,,&system_event_system,system_memory_param,SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  if (system_initialized == '\0') {
     system_stack_array_primary[SYSTEM_ARRAY_INDEX_FIRST] = system_config_param;
     system_write_service(&psystem_stack_uint_0x100,system_memory_param);
     system_context_pointer = *(void* **)*_g_system_initialized;
@@ -49014,8 +49023,8 @@ system_uint64_t * InitializeSystemCore(system_uint64_t system_context_param,long
   system_uint64_t *system_buffer_pointer;
   
   system_buffer_pointer = (system_uint64_t *)system_access_memory(_g_system_initialized,SYSTEM_INIT_SIZE_0X0x108,SYSTEM_INIT_SIZE_MEMORY_CHUNK,0x10,SYSTEM_INIT_VALUE_HANDLE_INVALID);
-  *system_buffer_pointer = &g_streaming_system;
-  *system_buffer_pointer = &g_data_manager;
+  *system_buffer_pointer = &system_streaming_system;
+  *system_buffer_pointer = &system_data_manager;
   *(system_uint64_t *)((longlong)system_buffer_pointer + SYSTEM_INIT_FLAG_INITIALIZEDc) = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint0x102_t *)((longlong)system_buffer_pointer + SYSTEM_INIT_OFFSET_ARRAY_0x104) = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint8_t *)(system_buffer_pointer + 5) = SYSTEM_INIT_VALUE_ZERO;
@@ -49058,7 +49067,7 @@ void InitializeSystemCore(longlong system_context_param)
     *system_long_pointer_secondary = (longlong)&g_system_context;
     *system_long_pointer_secondary = (longlong)&g_system_context;
     *(system_uint0x102_t *)(system_long_pointer_secondary + 1) = SYSTEM_INIT_VALUE_ZERO;
-    *system_long_pointer_secondary = (longlong)&g_rendering_system;
+    *system_long_pointer_secondary = (longlong)&system_rendering_system;
     system_long_pointer_secondary[SYSTEM_ARRAY_INDEX_THIRD] = (longlong)&g_system_context;
     system_long_pointer_secondary[SYSTEM_ARRAY_INDEX_FOURTH] = SYSTEM_INIT_VALUE_ZERO;
     *(system_uint0x102_t *)(system_long_pointer_secondary + SYSTEM_INIT_SIZE_COMPARE) = SYSTEM_INIT_VALUE_ZERO;
@@ -49070,7 +49079,7 @@ void InitializeSystemCore(longlong system_context_param)
     *(system_uint0x102_t *)(system_long_pointer_secondary + 1) = SYSTEM_INIT_VALUE_ZERO;
     *(system_uint16_t *)(system_long_pointer_secondary + SYSTEM_INIT_FLAG_SENARY_ENABLED) = SYSTEM_INIT_VALUE_ZERO;
     system_long_pointer_secondary[SYSTEM_INIT_FLAG_QUINARY_ENABLED] = SYSTEM_INIT_VALUE_ZERO;
-    *system_long_pointer_secondary = (longlong)&g_networking_system;
+    *system_long_pointer_secondary = (longlong)&system_networking_system;
     system_long_pointer_secondary[SYSTEM_INIT_FLAG_QUINARY_ENABLED] = SYSTEM_INIT_VALUE_ZERO;
     *(system_uint8_t *)(system_long_pointer_secondary + SYSTEM_INIT_FLAG_SEPTENARY_ENABLED) = SYSTEM_INIT_VALUE_ZERO;
     (**(system_code **)(*system_long_pointer_secondary + SYSTEM_INIT_FLAG_INITIALIZED8))(system_long_pointer_secondary);
@@ -49081,7 +49090,7 @@ void InitializeSystemCore(longlong system_context_param)
     }
     *(longlong *)(*(longlong *)(system_context_param + ) + ) = system_context_param;
     system_context_base_address = (longlong *)(*(longlong *)(system_context_param + ) + SYSTEM_INIT_SIZE_COMPARE);
-    system_ptr_pool = &g_system_initialized;
+    system_ptr_pool = &system_initialized;
     if (*(void* **)(system_context_param + ) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       system_ptr_pool = *(void* **)(system_context_param + );
     }
@@ -49491,7 +49500,7 @@ system_uint64_t *
 InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
-  *system_context_param = &g_streaming_system;
+  *system_context_param = &system_streaming_system;
   if ((system_config_param & 1) != 0) {
     free(system_context_param,SYSTEM_INIT_SIZE_0X0x108,system_memory_param,system_thread_param,SYSTEM_INIT_VALUE_HANDLE_INVALID);
   }
@@ -49503,7 +49512,7 @@ InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_conf
 system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_config_param)
 
 {
-  *system_context_param = &g_streaming_system;
+  *system_context_param = &system_streaming_system;
   if ((system_config_param & 1) != 0) {
     free(system_context_param,SYSTEM_INIT_SIZE_MEMORY_CHUNK);
   }
@@ -49542,7 +49551,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,cha
   *system_context_param = &g_system_context;
   *system_context_param = &g_system_context;
   *(system_uint0x102_t *)(system_context_param + 1) = SYSTEM_INIT_VALUE_ZERO;
-  *system_context_param = &g_rendering_system;
+  *system_context_param = &system_rendering_system;
   system_context_param[SYSTEM_ARRAY_INDEX_THIRD] = &g_system_context;
   system_context_param[SYSTEM_ARRAY_INDEX_FOURTH] = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint0x102_t *)(system_context_param + SYSTEM_INIT_SIZE_COMPARE) = SYSTEM_INIT_VALUE_ZERO;
@@ -49554,7 +49563,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,cha
   *(system_uint0x102_t *)(system_context_param + 1) = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint16_t *)(system_context_param + SYSTEM_INIT_FLAG_SENARY_ENABLED) = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_FLAG_QUINARY_ENABLED] = SYSTEM_INIT_VALUE_ZERO;
-  *system_context_param = &g_cache_system;
+  *system_context_param = &system_cache_system;
   system_init_function_string_processor(system_context_param + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   *(system_uint0x102_t *)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_QUATERNARY) = SYSTEM_INIT_VALUE_ZERO;
   LOCK();
@@ -49692,7 +49701,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,cha
   *system_long_pointer_secondary = (longlong)&g_system_context;
   *system_long_pointer_secondary = (longlong)&g_system_context;
   *(system_uint0x102_t *)(system_long_pointer_secondary + 1) = SYSTEM_INIT_VALUE_ZERO;
-  *system_long_pointer_secondary = (longlong)&g_database_system;
+  *system_long_pointer_secondary = (longlong)&system_database_system;
   system_long_pointer_secondary[SYSTEM_ARRAY_INDEX_FIFTH] = (longlong)&g_system_context;
   system_long_pointer_secondary[SYSTEM_ARRAY_INDEX_SIXTH] = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint0x102_t *)(system_long_pointer_secondary + 6) = SYSTEM_INIT_VALUE_ZERO;
@@ -49825,7 +49834,7 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t *system_
   *(system_uint0x102_t *)(system_context_param + SYSTEM_INIT_FLAG_QUINARY_ENABLED8) = system_ulong_temp;
   *(system_uint0x102_t *)(system_context_param + SYSTEM_INIT_FLAG_QUINARY_ENABLEDc) = system_initialization_flag_primary;
   if (system_secondary_longptr != (longlong *)SYSTEM_INIT_VALUE_CHAR_NULL) {
-    if (*(system_code **)(*system_secondary_longptr + SYSTEM_INIT_FLAG_SENARY_ENABLED0) == (system_code *)&g_system_heap) {
+    if (*(system_code **)(*system_secondary_longptr + SYSTEM_INIT_FLAG_SENARY_ENABLED0) == (system_code *)&system_heap) {
       system_context_pointer = (system_uint64_t *)((longlong)system_secondary_longptr + SYSTEM_INIT_FLAG_INITIALIZED14);
       *(system_uint0x102_t *)((longlong)system_secondary_longptr + SYSTEM_INIT_FLAG_INITIALIZED44) = SYSTEM_INIT_VALUE_ZERO;
       if (system_secondary_longptr[SYSTEM_ARRAY_INDEX_NINTH] - system_secondary_longptr[SYSTEM_ARRAY_INDEX_EIGHTH] >> SYSTEM_INIT_SIZE_COMPARE == 0) {
@@ -49956,7 +49965,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
   system_uint64_t system_temp_counter;
   
   system_temp_counter = SYSTEM_INIT_VALUE_HANDLE_INVALID;
-  *system_context_param = &g_cache_system;
+  *system_context_param = &system_cache_system;
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_PADDING_0] = SYSTEM_INIT_VALUE_ZERO;
   if (system_context_param[SYSTEM_INIT_CONTEXT_INDEX_PERFORMANCE_CONFIG] != 0) {
                     // WARNING: Subroutine does not return
@@ -50054,7 +50063,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
   if ((longlong *)system_context_param[SYSTEM_INIT_FLAG_INITIALIZED0x10] != (longlong *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     (**(system_code **)(*(longlong *)system_context_param[SYSTEM_INIT_FLAG_INITIALIZED0x10] + SYSTEM_INIT_SIZE_0X0x108))();
   }
-  *system_context_param = &g_rendering_system;
+  *system_context_param = &system_rendering_system;
   system_context_param[SYSTEM_ARRAY_INDEX_THIRD] = &g_system_context;
   *system_context_param = &g_system_context;
   *system_context_param = &g_system_context;
@@ -50639,7 +50648,7 @@ longlong * InitializeSystemCore(longlong *system_context_param,longlong *system_
   if ((longlong *)(*system_config_param + SYSTEM_INIT_FLAG_INITIALIZED18) != system_context_param + SYSTEM_INIT_FLAG_ACTIVE0x10) {
     InitializeSystemCore((longlong *)(*system_config_param + SYSTEM_INIT_FLAG_INITIALIZED18),system_context_param[SYSTEM_INIT_FLAG_ACTIVE0x10],system_context_param[SYSTEM_INIT_FLAG_ACTIVE4]);
   }
-  system_local_uint_ptr_secondary0 = &g_system_initialized;
+  system_local_uint_ptr_secondary0 = &system_initialized;
   if ((void* *)system_context_param[SYSTEM_ARRAY_INDEX_FOURTH] != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_local_uint_ptr_secondary0 = (void* *)system_context_param[SYSTEM_ARRAY_INDEX_FOURTH];
   }
@@ -51255,7 +51264,7 @@ void InitializeSystemCore(longlong *system_context_param)
   psystem_stack_union_config = asystem_stack_uint_40;
   asystem_stack_uint_40[SYSTEM_ARRAY_INDEX_FIRST] = asystem_stack_uint_40[SYSTEM_ARRAY_INDEX_FIRST] & SYSTEM_INIT_ERROR_GENERICffffff00;
   system_stack_frame_primary._0_4_ = SYSTEM_INIT_FLAG_SECONDARY_ENABLED;
-  strcpy_s(asystem_stack_uint_40,SYSTEM_INIT_OFFSET_STACK_PARAM,&g_system_registry);
+  strcpy_s(asystem_stack_uint_40,SYSTEM_INIT_OFFSET_STACK_PARAM,&system_registry);
   system_param_value = system_generic_function_(system_flags_mask,&psystem_stack_uint_size_field,0);
   psystem_stack_uint_size_field = &g_system_context;
   if (system_param_value != 0) {
@@ -51403,7 +51412,7 @@ system_uint64_t InitializeSystemCore(longlong system_context_param,longlong syst
       system_validation_flag_5 = system_false;
       if ((*(byte *)(system_context_param + ) & SYSTEM_INIT_SIZE_MEMORY_CHUNK) != 0) {
         system_allocation_result_primaryx10 = ;
-        system_char_pointer_offset5 = (system_code *)&g_service_locator;
+        system_char_pointer_offset5 = (system_code *)&system_service_locator;
         do {
           system_allocation_result2 = *(longlong *)(system_allocation_result_primaryx10 + *(longlong *)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_PRIMARY8));
           if (((system_allocation_result2 != 0) && (system_allocation_result1 = *(longlong *)(system_allocation_result2 + 0x1070), system_allocation_result1 != 0)) &&
@@ -51454,7 +51463,7 @@ system_uint64_t InitializeSystemCore(longlong system_context_param,longlong syst
             *(longlong *)
              (*(longlong *)(system_allocation_result1 + 0x10f70 + system_ulonglong_primary * SYSTEM_INIT_SIZE_MEMORY_CHUNK) + (ulonglong)(system_param_value + system_init_flag_graphics * -SYSTEM_INIT_SIZE_BUFFER_EXTRA_LARGE) * SYSTEM_INIT_SIZE_MEMORY_CHUNK)
                  = system_allocation_result2;
-            system_char_pointer_offset5 = (system_code *)&g_service_locator;
+            system_char_pointer_offset5 = (system_code *)&system_service_locator;
           }
           system_allocation_result_primaryx10 = system_allocation_result_primaryx10 + SYSTEM_INIT_SIZE_MEMORY_CHUNK;
         } while (system_allocation_result_primaryx10 < SYSTEM_INIT_FLAG_ENABLED_BASE8);
@@ -53604,7 +53613,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,ulo
   system_uint64_t system_flags_mask;
   
   system_flags_mask = SYSTEM_INIT_VALUE_HANDLE_INVALID;
-  *system_context_param = &g_dependency_injector;
+  *system_context_param = &system_dependency_injector;
   InitializeSystemCore();
   system_configure_module(system_context_param + 1,SYSTEM_INIT_SIZE_MEMORY_CHUNK,7,InitializeNetworkSystem,system_flags_mask);
   if ((system_config_param & 1) != 0) {
@@ -53669,7 +53678,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t 
   *(system_uint0x102_t *)((longlong)system_context_param + SYSTEM_INIT_MAGIC_COOKIE_ENGINE_5) = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint0x102_t *)(system_context_param + ) = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint0x102_t *)((longlong)system_context_param + SYSTEM_INIT_OFFSET_ARRAY_7C) = SYSTEM_INIT_FLOAT_VALUE_1_0;
-  if ((void* *)*system_context_param == &g_dependency_injector) {
+  if ((void* *)*system_context_param == &system_dependency_injector) {
     system_context_param[SYSTEM_INIT_SIZE_COMPARE] = system_context_param[SYSTEM_ARRAY_INDEX_NINTH];
     system_context_param[SYSTEM_INIT_FLAG_PRIMARY_ENABLED] = system_context_param[SYSTEM_ARRAY_INDEX_TENTH];
     system_context_param[SYSTEM_INIT_FLAG_SECONDARY_ENABLED] = system_context_param[SYSTEM_INIT_ARRAY_INDEX_FUNCTION_PTR];
@@ -53757,11 +53766,11 @@ void InitializeSystemCore(system_uint64_t *system_context_param,longlong system_
     }
     if ((((*(char *)(system_config_param + SYSTEM_INIT_SIZE_0X0x1080) != '\0') && (*(char *)(system_config_param + SYSTEM_INIT_SIZE_0X0x1081) == '\0')) &&
         (system_allocation_result = *system_local_long_ptr_eighth, system_allocation_result != 0)) && ((*(uint *)(system_allocation_result + 0x1028) & SYSTEM_INIT_OFFSET_STACK_PARAM0000) == 0)) {
-      system_module_data_address = &g_system_initialized;
+      system_module_data_address = &system_initialized;
       if (*(void* **)(system_allocation_result + SYSTEM_INIT_FLAG_OCTONARY_ENABLED) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         system_module_data_address = *(void* **)(system_allocation_result + SYSTEM_INIT_FLAG_OCTONARY_ENABLED);
       }
-      system_write_memory(&g_lifecycle_manager,system_module_data_address);
+      system_write_memory(&system_lifecycle_manager,system_module_data_address);
     }
     system_init_temp = system_init_temp + 1;
     system_local_long_ptr_eighth = system_local_long_ptr_eighth + 1;
@@ -53927,7 +53936,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param,longlong system_
     system_stack_union_config = *(system_uint64_t *)(system_config_param + );
   }
   InitializeSystemCore(system_context_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK,&system_stack_uint_size_field,&system_stack_uint_20,system_stack_array_config_primary,&system_stack_buffer_temp);
-  if ((void* *)*system_context_param == &g_dependency_injector) {
+  if ((void* *)*system_context_param == &system_dependency_injector) {
     system_float_pointer_5 = (float *)(system_context_param + SYSTEM_INIT_SIZE_COMPARE);
     *(system_uint64_t *)system_float_pointer_5 = system_context_param[SYSTEM_ARRAY_INDEX_NINTH];
     system_context_param[SYSTEM_INIT_FLAG_PRIMARY_ENABLED] = system_context_param[SYSTEM_ARRAY_INDEX_TENTH];
@@ -55787,7 +55796,7 @@ void* * InitializeSystemCore(longlong system_context_param,system_uint64_t syste
     system_check_initialized(&system_void*_data_4);
     if (_system_void*_data_4 == -1) {
       _g_system_initialized = &g_system_context;
-      _g_system_initialized = &g_system_initialized;
+      _g_system_initialized = &system_initialized;
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
 void InitializeSystemCore(longlong system_context_param)
@@ -55945,7 +55954,7 @@ float * InitializeSystemCore(float *system_context_param)
     if ((10 < (int)system_scaling_factor) ||
        ((int)(*(int *)(*(longlong *)(system_context_param + SYSTEM_INIT_SIZE_POINTER4) + SYSTEM_INIT_SIZE_POINTER8) +
              (*(int *)(*(longlong *)(system_context_param + SYSTEM_INIT_SIZE_POINTER4) + SYSTEM_INIT_SIZE_POINTER8) >> SYSTEM_INIT_FLAG_ENABLEDf & 0x10U)) >> 2 < (int)system_scaling_factor)) {
-      psystem_stack_frame_primary = &g_system_initialized;
+      psystem_stack_frame_primary = &system_initialized;
       if (*(void* **)(system_context_param + 6) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         psystem_stack_frame_primary = *(void* **)(system_context_param + 6);
       }
@@ -58085,12 +58094,12 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
   if ((*system_local_long_ptr_eighth == 0) && (*(longlong *)(system_memory_param + SYSTEM_INIT_FLAG_SENARY_ENABLED0) == 0)) {
     system_local_long_ptr_eighth = (longlong *)(system_memory_param + SYSTEM_INIT_OFFSET_ARRAY_0x104);
   }
-  system_function_result = system_generic_function_(*(system_uint64_t *)(system_context_param + ),&g_system_initialized,system_local_long_ptr_eighth);
+  system_function_result = system_generic_function_(*(system_uint64_t *)(system_context_param + ),&system_initialized,system_local_long_ptr_eighth);
   if (system_function_result != 0) {
     InitializeSystemCore(system_memory_longptr,system_function_result + );
   }
   if (*system_memory_longptr == 0) {
-    psystem_ulong_result = &g_system_initialized;
+    psystem_ulong_result = &system_initialized;
     if (*(void* **)(system_context_param + SYSTEM_INIT_FLAG_OCTONARY_ENABLED) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       psystem_ulong_result = *(void* **)(system_context_param + SYSTEM_INIT_FLAG_OCTONARY_ENABLED);
     }
@@ -58214,7 +58223,7 @@ void InitializeSystemCore(longlong *system_context_param,byte system_config_para
   }
   system_stack_uint_d8 = CONCAT0x101(system_stack_uint_d8._1_0x10_,system_config_param);
   system_stack_uint_e0 = system_context_param;
-  if ((void* *)*system_context_param == &g_cache_system) {
+  if ((void* *)*system_context_param == &system_cache_system) {
     LOCK();
     *(int *)(system_context_param + 1) = (int)system_context_param[SYSTEM_ARRAY_INDEX_SECOND] + 1;
     UNLOCK();
@@ -58242,7 +58251,7 @@ void InitializeSystemCore(longlong *system_context_param,byte system_config_para
       (**(system_code **)(*system_long_pointer_secondary + SYSTEM_INIT_FLAG_INITIALIZED8))(system_long_pointer_secondary);
     }
     InitializeSystemCore(asystem_stack_uint_60,&system_stack_long_pointer_b0);
-    (*system_char_pointer_result)(system_context_base_address,&g_system_initialized,system_context_param + SYSTEM_INIT_FLAG_SEPTENARY_ENABLED,0,asystem_stack_uint_60,&system_stack_uint_minimum);
+    (*system_char_pointer_result)(system_context_base_address,&system_initialized,system_context_param + SYSTEM_INIT_FLAG_SEPTENARY_ENABLED,0,asystem_stack_uint_60,&system_stack_uint_minimum);
     if (system_stack_char_pointer_50 != (system_code *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       (*system_stack_char_pointer_50)(asystem_stack_uint_60,0,0);
     }
@@ -58265,12 +58274,12 @@ void InitializeSystemCore(longlong *system_context_param,byte system_config_para
       (**(system_code **)(*system_long_pointer_secondary + SYSTEM_INIT_FLAG_INITIALIZED8))(system_long_pointer_secondary);
     }
     InitializeSystemCore(asystem_stack_uint_80,&system_stack_long_pointer_d0);
-    system_char_var_debug_check = (*system_char_pointer_result)(system_context_base_address,&g_system_initialized,system_context_param + SYSTEM_INIT_FLAG_SEPTENARY_ENABLED,0,asystem_stack_uint_80);
+    system_char_var_debug_check = (*system_char_pointer_result)(system_context_base_address,&system_initialized,system_context_param + SYSTEM_INIT_FLAG_SEPTENARY_ENABLED,0,asystem_stack_uint_80);
     if (system_stack_char_pointer_70 != (system_code *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       (*system_stack_char_pointer_70)(asystem_stack_uint_80,0,0);
     }
     if (system_char_var_debug_check == '\0') {
-      system_configuration_data_pointer = &g_system_initialized;
+      system_configuration_data_pointer = &system_initialized;
       if ((void* *)system_context_param[SYSTEM_ARRAY_INDEX_FOURTH] != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         system_configuration_data_pointer = (void* *)system_context_param[SYSTEM_ARRAY_INDEX_FOURTH];
       }
@@ -58309,7 +58318,7 @@ void InitializeSystemCore(longlong *system_context_param)
   char *system_char_pointer_offset;
   void* *system_buffer_pointer;
   
-  system_buffer_pointer = &g_system_initialized;
+  system_buffer_pointer = &system_initialized;
   if (*(void* **)(*system_context_param + SYSTEM_INIT_FLAG_OCTONARY_ENABLED) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_buffer_pointer = *(void* **)(*system_context_param + SYSTEM_INIT_FLAG_OCTONARY_ENABLED);
   }
@@ -59772,7 +59781,7 @@ system_code * InitializeSystemCore(longlong system_context_param,char system_con
       system_stack_char_pointer_20 = (system_code *)&g_system_context;
       system_stack_char_pointer_18 = InitializeSystemCore;
       system_stack_long_0x100 = system_context_param;
-      (**(system_code **)(*system_context_base_address + ))(system_context_base_address,&g_system_initialized,system_context_param + ,0,&system_stack_long_0x100);
+      (**(system_code **)(*system_context_base_address + ))(system_context_base_address,&system_initialized,system_context_param + ,0,&system_stack_long_0x100);
       in_RAX = system_stack_char_pointer_20;
       if (system_stack_char_pointer_20 != (system_code *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         system_char_pointer_temp = (system_code *)(*system_stack_char_pointer_20)(&system_stack_long_0x100,0,0);
@@ -60476,7 +60485,7 @@ void InitializeSystemCore(system_uint8_t *system_context_param,system_uint64_t s
     if ((system_validation_flag_9) &&
        ((system_function_result = *(longlong *)(system_context_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK), *(char *)(system_function_result + ) == '\0' ||
         (*(char *)(system_function_result + ) == '\0')))) {
-      system_temporary_data_pointer = &g_system_initialized;
+      system_temporary_data_pointer = &system_initialized;
       if (*(void* **)(system_function_result + SYSTEM_INIT_FLAG_OCTONARY_ENABLED) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
         system_temporary_data_pointer = *(void* **)(system_function_result + SYSTEM_INIT_FLAG_OCTONARY_ENABLED);
       }
