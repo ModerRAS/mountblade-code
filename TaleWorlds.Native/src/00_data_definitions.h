@@ -2595,7 +2595,7 @@ label_:
   stack_ptr_ = auStack_80;
   auStack_80[0] = 0;
   stack_var_ = STRING_BUFFER_SIZE;
-  strcpy_s(auStack_80,系统配置缓冲区大小,&systemConfigStringBuffer);
+  strcpy_s(auStack_80, SYSTEM_CONFIG_BUFFER_SIZE, &systemConfigStringBuffer);
   cVar5 = system_handle_manager_003(long_var_,&stack_ptr_);
   stack_ptr_ = &g_threadString4;
   if (cVar5 != '\0') {
@@ -2608,7 +2608,7 @@ label_:
     handle_system_error(ptr_var_);
   }
   stack_ptr_ = (unsigned char *)0x0;
-  stack_var_ = stack_var_ & 64位整数掩码;
+  stack_var_ = stack_var_ & INT64_MASK;
   stack_ptr_ = &g_threadString4;
   system_crypto_001(stack_var_ ^ (ulong long)auStack_368);
   while (byte_ptr_var_ = byte_ptr_var_ + 1, uint_var_ != 0) {
@@ -2658,7 +2658,7 @@ label_:
   system_thread_manager_004(&stack_ptr_,stack_ptr_);
   system_thread_manager_004(&stack_ptr_,ptr_var_ + 4);
   ptr_var_ = stack_ptr_;
-  if (((long long)stack_ptr_ - (long long)ptr_var_ & 0xffffffffffffffe0U) != 系统配置缓冲区大小) {
+  if (((long long)stack_ptr_ - (long long)ptr_var_ & 0xffffffffffffffe0U) != SYSTEM_CONFIG_BUFFER_SIZE) {
 label_:
     stack_ptr_ = &g_threadString2;
     if (stack_long_ != 0) {
@@ -2692,7 +2692,7 @@ label_:
   }
   system_ui_002(global_data_,&stack_ptr_,&stack_ptr_);
   long_var_ = global_data_ + 0x90;
-  long_var_ = function_(global_data_,系统配置缓冲区大小,*(unsigned char *)(global_data_ + 0xb8));
+  long_var_ = function_(global_data_, SYSTEM_CONFIG_BUFFER_SIZE,*(unsigned char *)(global_data_ + 0xb8));
   system_thread_manager_003(long_var_ + CONFIG_PATH_BUFFER_SIZE,&stack_ptr_);
   long_var_ = system_event_handler_005(long_var_,acStack_336,long_var_ + CONFIG_PATH_BUFFER_SIZE);
   if (acStack_336[0] == '\0') {
@@ -2722,11 +2722,11 @@ label_:
   system_helper_003(long_var_,long_var_,long_var_,flags7);
 }
     thread_pool_4_status_code = 1;
-    int_var_ = _Cnd_broadcast(条件变量地址);
+    int_var_ = _Cnd_broadcast(CONDITION_VARIABLE_ADDR);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
-    int_var_ = _Mtx_unlock(IO线程池互斥锁地址);
+    int_var_ = _Mtx_unlock(IO_THREAD_POOL_MUTEX_ADDR);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
@@ -2831,11 +2831,11 @@ label_:
   return;
 }
     thread_pool_4_status_code = 1;
-    int_var_ = _Cnd_broadcast(条件变量地址);
+    int_var_ = _Cnd_broadcast(CONDITION_VARIABLE_ADDR);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
-    int_var_ = _Mtx_unlock(IO线程池互斥锁地址);
+    int_var_ = _Mtx_unlock(IO_THREAD_POOL_MUTEX_ADDR);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
@@ -3036,13 +3036,13 @@ label_:
     global_data_ = (long long *)*ptr_var_;
     system_initializer_003(&systemConfigData1,0,0);
     system_config_001(&systemConfigData2);
-    stack_var_ = 系统配置缓冲区大小000000;
+    stack_var_ = SYSTEM_CONFIG_BUFFER_SIZE_000000;
     auStack_2c8[0] = FLOAT_ONE;
     stack_var_ = CONFIG_PATH_BUFFER_SIZE000;
     stack_ptr_ = &systemConfigBufferPtr;
     pplStack_328 = (long long **)&stack_var_;
     system_config_002(&systemConfigData3,4,global_data_ + 0x167c,auStack_2c8);
-    plStack_2f8 = (long long *)CONCAT44(plStack_2f8._4_4_,系统配置缓冲区大小000000);
+    plStack_2f8 = (long long *)CONCAT44(plStack_2f8._4_4_, SYSTEM_CONFIG_BUFFER_SIZE_000000);
     stack_var_ = (long long *)CONCAT44(stack_var_._4_4_,FLOAT_ONE);
     stack_var_ = CONFIG_PATH_BUFFER_SIZE000;
     stack_ptr_ = &systemConfigBufferPtr;
@@ -3065,7 +3065,7 @@ label_:
     plStack_2c0 = global_data_;
     global_data_ = (long long *)*ptr_var_;
     system_initializer_003(&systemConfigData6,0,0);
-    stack_var_ = (long long *)CONCAT44(stack_var_._4_4_,系统配置缓冲区大小000000);
+    stack_var_ = (long long *)CONCAT44(stack_var_._4_4_, SYSTEM_CONFIG_BUFFER_SIZE_000000);
     plStack_2f8 = (long long *)CONCAT44(plStack_2f8._4_4_,FLOAT_ONE);
     stack_var_ = CONFIG_PATH_BUFFER_SIZE000;
     stack_ptr_ = &systemConfigBufferPtr;
@@ -3088,7 +3088,7 @@ label_:
     plStack_2c0 = global_data_;
     global_data_ = (long long *)*ptr_var_;
     system_initializer_003(&systemConfigData7,0,0);
-    stack_var_ = (long long *)CONCAT44(stack_var_._4_4_,系统配置缓冲区大小000000);
+    stack_var_ = (long long *)CONCAT44(stack_var_._4_4_, SYSTEM_CONFIG_BUFFER_SIZE_000000);
     plStack_2f8 = (long long *)CONCAT44(plStack_2f8._4_4_,FLOAT_ONE);
     stack_var_ = CONFIG_PATH_BUFFER_SIZE000;
     stack_ptr_ = &systemConfigBufferPtr;
@@ -3194,7 +3194,7 @@ label_:
     (**(code **)(global_data_ + 0xa8))();
   }
   (**(code **)(**(long long **)(handle + 0x2b0) + 0x38))(*(long long **)(handle + 0x2b0),flags);
-  (**(code **)(**(long long **)(handle + 0x2b0) + 系统配置缓冲区大小))(*(long long **)(handle + 0x2b0),flags);
+  (**(code **)(**(long long **)(handle + 0x2b0) + SYSTEM_CONFIG_BUFFER_SIZE))(*(long long **)(handle + 0x2b0),flags);
   function_();
   if (data_180c82862 != '\0') {
     stack_ptr_ = &g_threadString2;
@@ -3322,7 +3322,7 @@ unsigned long long *
 function_(unsigned long long *handle,ulong long flags,unsigned long long mutex_attr,unsigned long long mutex_type)
 {
   unsigned long long uint_var_;
-  uint_var_ = 线程池默认标志;
+  uint_var_ = THREAD_POOL_DEFAULT_FLAG;
   *handle = &systemHandleData;
   system_cleanup_004();
   if ((flags & 1) != 0) {
@@ -3339,14 +3339,14 @@ function_(unsigned long long *handle,ulong long flags,unsigned long long mutex_a
         handle_system_error();
       }
       stack_ptr_ = (unsigned char *)0x0;
-      stack_var_ = stack_var_ & 64位整数掩码;
+      stack_var_ = stack_var_ & INT64_MASK;
       stack_ptr_ = &g_threadString4;
       stack_ptr_ = &g_threadString2;
       if (ptr_var_ != (undefined *)0x0) {
         handle_system_error(ptr_var_);
       }
       stack_ptr_ = (unsigned char *)0x0;
-      stack_var_ = stack_var_ & 64位整数掩码;
+      stack_var_ = stack_var_ & INT64_MASK;
       stack_ptr_ = &g_threadString4;
     }
   }
@@ -3401,7 +3401,7 @@ uint validate_system_mutex_lock(void)
     *(unsigned char *)(*(long long *)(*(long long *)(global_data_ + 8) + 0x140) + CONFIG_PATH_BUFFER_SIZE8) = 1;
   }
   thread_pool_2_status_code = '\0';
-  int_var_ = _Mtx_unlock(渲染线程池互斥锁地址);
+  int_var_ = _Mtx_unlock(RENDER_THREAD_POOL_MUTEX_ADDR);
   if (int_var_ != 0) {
     __Throw_C_error_std__YAXH_Z(int_var_);
   }
@@ -3459,7 +3459,7 @@ label_:
     stack_ptr_ = auStack_a0;
     auStack_a0[0] = 0;
     stack_var_ = 0x18;
-    flags4 = strcpy_s(auStack_a0,系统配置缓冲区大小,&systemConfigStringBuffer2);
+    flags4 = strcpy_s(auStack_a0, SYSTEM_CONFIG_BUFFER_SIZE, &systemConfigStringBuffer2);
     system_ui_001(flags4,&stack_ptr_,uint_var_,1);
     stack_ptr_ = &g_threadString4;
   }
@@ -4268,7 +4268,7 @@ label_:
           handle_system_error();
         }
       }
-      stack_var_ = stack_var_ & 64位整数掩码;
+      stack_var_ = stack_var_ & INT64_MASK;
       stack_ptr_ = (unsigned char *)0x0;
       stack_ptr_ = &g_threadString4;
       int_var_ = int_var_ + 1;
@@ -5916,7 +5916,7 @@ system_finalizer_007(unsigned long long handle,unsigned long long flags,unsigned
   unsigned long long uint_var_;
   undefined *stack_ptr_;
   long long stack_long_;
-  uint_var_ = 线程池默认标志;
+  uint_var_ = THREAD_POOL_DEFAULT_FLAG;
   char_ptr_var_ = *(code **)(*global_data_ + 0x70);
   uint_var_ = system_cleanup_007(&stack_ptr_);
   flags = (*char_ptr_var_)(global_data_,uint_var_,mutex_attr,mutex_type,uint_var_);
@@ -9127,7 +9127,7 @@ char * function_(unsigned int handle,unsigned long long flags,char *mutex_attr,u
     } while (long_var_ != param_5[1]);
   }
   char_ptr_var_ = (char *)0x0;
-  stack_var_ = stack_var_ & 64位整数掩码;
+  stack_var_ = stack_var_ & INT64_MASK;
   plStack_120 = (long long *)((ulong long)plStack_120 & 0xffffffff00000000);
   char_ptr_var_ = char_ptr_var_;
   if (0 < int_var_) {
@@ -9296,7 +9296,7 @@ label_:
     handle_system_error();
   }
   stack_ptr_ = (undefined *)0x0;
-  stack_var_ = stack_var_ & 64位整数掩码;
+  stack_var_ = stack_var_ & INT64_MASK;
   stack_ptr_ = &g_threadString4;
   *stack_ptr_ = &g_threadString2;
   if (stack_ptr_[1] != 0) {
@@ -9538,7 +9538,7 @@ long long process_system_configuration(long long handle,long long flags,unsigned
   char *pcStack_48;
   int stack_int_;
   unsigned long long stack_var_;
-  uint_var_ = 线程池默认标志;
+  uint_var_ = THREAD_POOL_DEFAULT_FLAG;
   char_ptr_var_ = (char *)0x0;
   function_(mutex_type);
   function_(handle,mutex_attr);
@@ -9727,7 +9727,7 @@ label_:
       handle_system_error();
     }
     stack_long_ = 0;
-    stack_var_ = stack_var_ & 64位整数掩码;
+    stack_var_ = stack_var_ & INT64_MASK;
     stack_ptr_ = &g_threadString4;
   }
   ptr_var_ = (unsigned long long *)ptr_var_[0xb];
@@ -9931,7 +9931,7 @@ long long initialize_system_resources(unsigned long long handle,unsigned long lo
   unsigned long long uint_var_;
   undefined *stack_ptr_;
   char *pcStack_28;
-  uint_var_ = 线程池默认标志;
+  uint_var_ = THREAD_POOL_DEFAULT_FLAG;
   init_result = function_();
   if (init_result == 0) {
     return 0;
@@ -10048,7 +10048,7 @@ long long validate_thread_configuration(unsigned long long handle,unsigned long 
   unsigned long long uint_var_;
   undefined *stack_ptr_;
   char *pcStack_28;
-  uint_var_ = 线程池默认标志;
+  uint_var_ = THREAD_POOL_DEFAULT_FLAG;
   long_var_ = function_();
   if (long_var_ == 0) {
     return 0;
@@ -10092,7 +10092,7 @@ long long process_thread_initialization(unsigned long long handle,unsigned long 
   unsigned long long uint_var_;
   undefined *stack_ptr_;
   char *pcStack_28;
-  uint_var_ = 线程池默认标志;
+  uint_var_ = THREAD_POOL_DEFAULT_FLAG;
   init_result = function_(handle,&unknown_180a16818);
   if (init_result == 0) {
     return 0;
@@ -10173,7 +10173,7 @@ long long setup_thread_communication(unsigned long long handle,unsigned long lon
   unsigned long long uint_var_;
   undefined *stack_ptr_;
   char *pcStack_50;
-  uint_var_ = 线程池默认标志;
+  uint_var_ = THREAD_POOL_DEFAULT_FLAG;
   long_var_ = function_();
   if (long_var_ != 0) {
     pinit_result = (long long *)(long_var_ + 8);
@@ -10438,7 +10438,7 @@ long long process_context_handle(long long *handle)
       *(float *)((long long)&stack_var_ + long_var_) = fVar22;
       *(float *)((long long)&stack_var_ + long_var_ + 4) = fVar24;
       if (flags != 0) {
-        stack_var_ = stack_var_ & 64位整数掩码;
+        stack_var_ = stack_var_ & INT64_MASK;
         if (*(long long *)(flags + 0x2908) == 0) {
           function_(flags,pfVar3,0x31b189,&stack_var_);
           fVar20 = (float)stack_var_;
@@ -10502,7 +10502,7 @@ long long process_context_handle(long long *handle)
       pfVar3 = (float *)&stack_var_;
       pfVar5 = afStack_2e8;
       do {
-        stack_var_ = stack_var_ & 64位整数掩码;
+        stack_var_ = stack_var_ & INT64_MASK;
         if (*(long long *)(flags + 0x2908) == 0) {
           function_(flags,pfVar5,0x31b189,&stack_var_);
           fVar20 = (float)stack_var_;
