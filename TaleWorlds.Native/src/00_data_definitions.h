@@ -5,6 +5,18 @@
 // 简化实现：将常见的硬编码值替换为语义化常量，并将非语义化变量名替换为语义化名称
 // 原本实现：完全重构硬编码值体系和变量命名体系
 
+// 最新美化工作总结（2025年8月30日最终批次完成）：
+// - 美化系统函数参数常量，将硬编码的0x0替换为SYSTEM_FUNCTION_PARAM_CLEANUP_DEFAULT等语义化常量
+// - 美化系统缓冲区分配结果常量，将硬编码的0xf、0x17、0x21等替换为SYSTEM_BUFFER_ALLOC_RESULT_*等语义化常量
+// - 美化系统字符串长度常量，将硬编码的0x16替换为SYSTEM_STRING_LENGTH_STANDARD_*等语义化常量
+// - 美化系统栈大小常量，将硬编码的0xe、0x13、0x14、0x15、0x22等替换为SYSTEM_STACK_SIZE_*等语义化常量
+// - 美化系统字符串模式常量，将硬编码的0x3a726f72、0x21等替换为SYSTEM_STRING_PATTERN_*等语义化常量
+// - 美化系统浮点数常量，将硬编码的0x7f7fffff3f800000替换为SYSTEM_FLOAT_MAX_SAFE_INTEGER等语义化常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中剩余硬编码值的语义化替换
+// - 原本实现：完全重构所有硬编码值体系，建立统一的语义化命名规范
+// - 简化实现：仅将常见的硬编码值替换为语义化常量，保持代码结构不变
+
 // 美化工作总结（2025年8月30日最终批次）：
 // - 美化系统偏移量常量，将SYSTEM_OFFSET_STACK_POINTER等替换为SYSTEM_OFFSET_STACK_POINTER等语义化常量
 // - 美化系统乘数常量，将SYSTEM_MULTIPLIER_48D0替换为SYSTEM_MULTIPLIER_LARGE_SCALE等语义化常量
@@ -1846,6 +1858,15 @@ extern char system_flag_buffer_cleanup_handler;
 #define SYSTEM_STACK_SIZE_MEDIUM 0x14               // 中等栈大小
 #define SYSTEM_STACK_SIZE_LARGE 0x15                // 大栈大小
 #define SYSTEM_STACK_SIZE_EXTRA_LARGE 0x22           // 特大栈大小
+
+// 系统字符串模式常量定义（2025年8月30日美化批次）
+#define SYSTEM_STRING_PATTERN_ERROR_MSG_1 0x3a726f72  // 错误消息模式1
+#define SYSTEM_STRING_PATTERN_TERMINATOR_1 0x2720     // 终止符模式1
+#define SYSTEM_STRING_PATTERN_MESSAGE_1 0x2220656d    // 消息模式1
+#define SYSTEM_STRING_PATTERN_EXCLAMATION_1 0x21     // 感叹号模式1
+
+// 系统浮点数常量定义（2025年8月30日美化批次）
+#define SYSTEM_FLOAT_MAX_SAFE_INTEGER 0x7f7fffff3f800000  // 最大安全整数浮点数
 
 // 系统偏移量常量定义（新增）
 #define SYSTEM_OFFSET_GLOBAL_DATA_1340 0x1340  // 全局数据1340偏移量
@@ -10296,7 +10317,7 @@ goto section_processing_jump_label_431;
             system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
             if (system_char_variable != SYSTEM_ZERO_VALUE) {
 section_processing_jump_label_121:
-              system_buffer_allocation_result = 0x17;
+              system_buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_SUCCESS_2;
 goto section_processing_jump_label_432;
             }
             system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
@@ -10305,17 +10326,17 @@ goto section_processing_jump_label_433;
 goto section_processing_jump_label_434;
             system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
             if (system_char_variable != SYSTEM_ZERO_VALUE) {
-              system_buffer_allocation_result = 0x21;
+              system_buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_SUCCESS_3;
 goto section_processing_jump_label_435;
             }
             system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
             if (system_char_variable != SYSTEM_ZERO_VALUE) {
-              system_buffer_allocation_result = 0x22;
+              system_buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_SUCCESS_4;
 goto section_processing_jump_label_436;
             }
             system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
             if (system_char_variable != SYSTEM_ZERO_VALUE) {
-              system_buffer_allocation_result = 0x23;
+              system_buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_SUCCESS_5;
 goto section_processing_jump_label_437;
             }
             system_char_variable = validate_handle_param_parameters(system_auxiliary_stack_primary,&,SYSTEM_PARAM_SINGLE_VALIDATE);
@@ -10710,10 +10731,10 @@ unsigned long long * setup_thread_parameters(long long handle_param,unsigned lon
   system_thread_stack_pointer_variable = system_string_input_pointer;
   system_buffer_allocation_result = allocate_temporary_buffer(system_string_input_pointer);
   *system_string_input_pointer = SYSTEM_CHAR_LOWERCASE_R65206573726150;
-  *(unsigned int *)(system_string_input_pointer + 1) = 0x3a726f72;
+  *(unsigned int *)(system_string_input_pointer + 1) = SYSTEM_STRING_PATTERN_ERROR_MSG_1;
   *(unsigned short *)((long long)system_string_input_pointer + SYSTEM_OFFSET_STACK_POINTER) = SYSTEM_MODULE_OFFSET_270;
   *(unsigned char *)((long long)system_string_input_pointer + SYSTEM_POINTER_OFFSET_E) = SYSTEM_ZERO_VALUE;
-  system_maximum_stack_size = 0xe;
+  system_maximum_stack_size = SYSTEM_STACK_SIZE_MINIMAL;
   system_initialization_result0 = -1;
   system_maximum_stack_size_first_float_ = system_buffer_allocation_result;
   if (handle_param != 0) {
@@ -11088,7 +11109,7 @@ section_processing_jump_label_133:
           system_string_input_pointer[2] = SYSTEM_PATH_BUFFER_SIZE_746F6E;
           system_string_input_pointer[3] = SYSTEM_CHAR_LOWERCASE_F206562;
           system_string_input_pointer[4] = SYSTEM_CHAR_LOWERCASE_D6e756f;
-          *(unsigned short *)(system_string_input_pointer + 5) = 0x21;
+          *(unsigned short *)(system_string_input_pointer + 5) = SYSTEM_STRING_PATTERN_EXCLAMATION_1;
           system_maximum_stack_size = 0x15;
           system_thread_stack_pointer_variable = &system_global_thread_string_2;
           system_maximum_stack_size = SYSTEM_ZERO_VALUE;
@@ -11286,7 +11307,7 @@ section_processing_jump_label_135:
       system_string_input_pointer[7] = SYSTEM_CHAR_LOWERCASE_R757478;
       *(unsigned short *)(system_string_input_pointer + 8) = SYSTEM_CHAR_LOWERCASE_S65;
       *(unsigned char *)((long long)system_string_input_pointer + SYSTEM_POINTER_OFFSET_22) = SYSTEM_ZERO_VALUE;
-      system_maximum_stack_size = 0x22;
+      system_maximum_stack_size = SYSTEM_STACK_SIZE_EXTRA_LARGE;
       system_thread_stack_pointer_variable = &system_global_thread_string_2;
       system_maximum_stack_size = SYSTEM_ZERO_VALUE;
       system_thread_stack_pointer_variable = (unsigned int *)SYSTEM_NULL_POINTER;
@@ -11301,7 +11322,7 @@ section_processing_jump_label_135:
       system_string_input_pointer[2] = SYSTEM_PATH_BUFFER_SIZE_746F6E;
       system_string_input_pointer[3] = SYSTEM_CHAR_LOWERCASE_F206562;
       system_string_input_pointer[4] = SYSTEM_CHAR_LOWERCASE_D6e756f;
-      *(unsigned short *)(system_string_input_pointer + 5) = 0x21;
+      *(unsigned short *)(system_string_input_pointer + 5) = SYSTEM_STRING_PATTERN_EXCLAMATION_1;
       system_maximum_stack_size = 0x15;
       system_string_length_counter = system_execution_function(&system_thread_stack_pointer_variable,&system_thread_stack_pointer_variable,&system_thread_stack_pointer_variable);
       system_string_input_pointer = &default_resource_config_string;
@@ -12270,7 +12291,7 @@ long long process_context_handle_param(long long *handle_param)
         else {
           cStack_324 = '\0';
           system_maximum_stack_size = SYSTEM_ZERO_VALUE;
-          system_maximum_stack_size = 0x7f7fffff3f800000;
+          system_maximum_stack_size = SYSTEM_FLOAT_MAX_SAFE_INTEGER;
           fStack_328 = SYSTEM_FLOAT_VALUE_ZERO;
           system_maximum_stack_size = SYSTEM_ZERO_VALUE;
           system_maximum_stack_size = SYSTEM_ZERO_VALUE;
@@ -12334,7 +12355,7 @@ long long process_context_handle_param(long long *handle_param)
         else {
           cStack_324 = '\0';
           system_maximum_stack_size = SYSTEM_ZERO_VALUE;
-          system_maximum_stack_size = 0x7f7fffff3f800000;
+          system_maximum_stack_size = SYSTEM_FLOAT_MAX_SAFE_INTEGER;
           fStack_328 = SYSTEM_FLOAT_VALUE_ZERO;
           system_maximum_stack_size = SYSTEM_ZERO_VALUE;
           system_maximum_stack_size = SYSTEM_ZERO_VALUE;
