@@ -75,7 +75,7 @@
 // - 简化实现：仅将常见的包含数字的变量名替换为语义化名称
 
 // 本次美化内容（2025年8月30日）第十批次：
-// - 美化常量名，将SYSTEM_CONFIG_SIZE_AUDIOe8替换为SYSTEM_CONFIG_SIZE_AUDIO_E8等音频配置常量名
+// - 美化常量名，将SYSTEM_CONFIG_SIZE_AUDIO_E_TWO_THIRTY_TWO替换为SYSTEM_CONFIG_SIZE_AUDIO_E8等音频配置常量名
 // - 美化常量名，将SYSTEM_CONFIG_SIZE_PHYSICS0a7替换为SYSTEM_CONFIG_SIZE_PHYSICS_A7等物理配置常量名
 // - 美化常量名，将SYSTEM_DATA_COMPARE_SIZE0替换为SYSTEM_DATA_COMPARE_SIZE_ZERO等数据比较常量名
 // - 美化常量名，将SYSTEM_CONFIG_SIZE_PHYSICS0替换为SYSTEM_CONFIG_SIZE_PHYSICS_ZERO等物理配置常量名
@@ -86,12 +86,12 @@
 // - 美化常量名，将SYSTEM_DATA_COMPARE_SIZE68替换为SYSTEM_DATA_COMPARE_SIZE_SIXTY_EIGHT等数据比较常量名
 // - 美化常量名，将SYSTEM_DATA_COMPARE_SIZE90替换为SYSTEM_DATA_COMPARE_SIZE_NINETY等数据比较常量名
 // - 美化常量名，将SYSTEM_CONFIG_SIZE_PHYSICS8替换为SYSTEM_CONFIG_SIZE_PHYSICS_EIGHT等物理配置常量名
-// - 美化常量名，将SYSTEM_CONFIG_SIZE_EVENT00替换为SYSTEM_CONFIG_SIZE_EVENT_ZERO_ZERO等事件常量名
-// - 美化常量名，将SYSTEM_CONFIG_SIZE_EVENT08替换为SYSTEM_CONFIG_SIZE_EVENT_ZERO_EIGHT等事件常量名
-// - 美化常量名，将SYSTEM_CONFIG_SIZE_EVENT10替换为SYSTEM_CONFIG_SIZE_EVENT_TEN等事件常量名
+// - 美化常量名，将SYSTEM_CONFIG_SIZE_EVENT_ZERO_ZERO替换为SYSTEM_CONFIG_SIZE_EVENT_ZERO_ZERO等事件常量名
+// - 美化常量名，将SYSTEM_CONFIG_SIZE_EVENT_ZERO_EIGHT替换为SYSTEM_CONFIG_SIZE_EVENT_ZERO_EIGHT等事件常量名
+// - 美化常量名，将SYSTEM_CONFIG_SIZE_EVENT_TEN替换为SYSTEM_CONFIG_SIZE_EVENT_TEN等事件常量名
 // - 美化常量名，将SYSTEM_CONFIG_SIZE_STATUSd0替换为SYSTEM_CONFIG_SIZE_STATUS_D_ZERO等状态常量名
 // - 美化常量名，将SYSTEM_CONFIG_SIZE_STATUSd8替换为SYSTEM_CONFIG_SIZE_STATUS_D_EIGHT等状态常量名
-// - 美化常量名，将SYSTEM_CONFIG_SIZE_C88替换为SYSTEM_CONFIG_SIZE_C_EIGHT_EIGHT等配置常量名
+// - 美化常量名，将SYSTEM_CONFIG_SIZE_C_EIGHTY_EIGHT替换为SYSTEM_CONFIG_SIZE_C_EIGHT_EIGHT等配置常量名
 // - 美化变量名，将system_buffer_ptr_50替换为system_buffer_ptr_thread_context等线程上下文变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了常量名和变量名的语义化替换
@@ -606,7 +606,7 @@
 // - 将硬编码的SYSTEM_MEMORY_OFFSET_A38替换为SYSTEM_MEMORY_OFFSET_A38等内存偏移量常量
 // - 将硬编码的SYSTEM_MEMORY_OFFSET_B70替换为SYSTEM_MEMORY_OFFSET_B70等内存偏移量常量
 // - 将硬编码的SYSTEM_MEMORY_OFFSET_B78替换为SYSTEM_MEMORY_OFFSET_B78等内存偏移量常量
-// - 将硬编码的SYSTEM_CONFIG_SIZE_C88替换为SYSTEM_MEMORY_OFFSET_C88等内存偏移量常量
+// - 将硬编码的SYSTEM_CONFIG_SIZE_C_EIGHTY_EIGHT替换为SYSTEM_MEMORY_OFFSET_C88等内存偏移量常量
 // - 将硬编码的0xa4替换为SYSTEM_MUTEX_OFFSET_A4等互斥锁偏移量常量
 // - 将硬编码的0x6769替换为SYSTEM_STRING_SUFFIX_GI等字符串后缀常量
 // - 将硬编码的0x24替换为SYSTEM_HANDLE_VALUE_24等句柄值常量
@@ -653,7 +653,7 @@
 #define SYSTEM_MEMORY_OFFSET_A38 0xa38
 #define SYSTEM_MEMORY_OFFSET_B70 0xb70
 #define SYSTEM_MEMORY_OFFSET_B78 0xb78
-#define SYSTEM_MEMORY_OFFSET_C88 SYSTEM_CONFIG_SIZE_C88
+#define SYSTEM_MEMORY_OFFSET_C88 SYSTEM_CONFIG_SIZE_C_EIGHTY_EIGHT
 
 // 新增互斥锁偏移量语义化常量
 #define SYSTEM_MUTEX_OFFSET_A4 0xa4
@@ -978,7 +978,7 @@
 #define SYSTEM_ARRAY_INDEX_HANDLE_ID_2 0x37
 #define SYSTEM_MEMORY_POOL_SIZE_SMALL 0x70
 #define SYSTEM_MEMORY_POOL_SIZE_MEDIUM 0xa8
-#define SYSTEM_MEMORY_POOL_SIZE_LARGE SYSTEM_CONFIG_SIZE_C0
+#define SYSTEM_MEMORY_POOL_SIZE_LARGE SYSTEM_CONFIG_SIZE_C_ZERO
 
 // 系统句柄偏移量常量语义化定义
 #define SYSTEM_HANDLE_OFFSET_RESOURCE_DATA SYSTEM_MEMORY_SIZE_58
@@ -990,10 +990,10 @@
 #define SYSTEM_HANDLE_OFFSET_OWNER 0x87
 #define SYSTEM_HANDLE_OFFSET_ACCESS 0x8b
 #define SYSTEM_HANDLE_OFFSET_SECURITY 0x8f
-#define SYSTEM_HANDLE_OFFSET_HEADER SYSTEM_CONFIG_SIZE_C9
-#define SYSTEM_HANDLE_OFFSET_HEADER_1 SYSTEM_CONFIG_SIZE_Ca
-#define SYSTEM_HANDLE_OFFSET_HEADER_2 SYSTEM_CONFIG_SIZE_Cb
-#define SYSTEM_HANDLE_OFFSET_HEADER_3 SYSTEM_CONFIG_SIZE_Cc
+#define SYSTEM_HANDLE_OFFSET_HEADER SYSTEM_CONFIG_SIZE_C_NINE
+#define SYSTEM_HANDLE_OFFSET_HEADER_1 SYSTEM_CONFIG_SIZE_C_TEN
+#define SYSTEM_HANDLE_OFFSET_HEADER_2 SYSTEM_CONFIG_SIZE_C_ELEVEN
+#define SYSTEM_HANDLE_OFFSET_HEADER_3 SYSTEM_CONFIG_SIZE_C_TWELVE
 
 // 系统节点偏移量常量语义化定义
 #define SYSTEM_NODE_OFFSET_NEXT SYSTEM_OFFSET_24
@@ -1050,10 +1050,10 @@
 #define SYSTEM_MEMORY_FLAGS_STANDARD 3
 
 // 新增系统数据偏移量常量
-#define SYSTEM_DATA_OFFSET_C9 SYSTEM_CONFIG_SIZE_C9
-#define SYSTEM_DATA_OFFSET_CA SYSTEM_CONFIG_SIZE_Ca
-#define SYSTEM_DATA_OFFSET_CB SYSTEM_CONFIG_SIZE_Cb
-#define SYSTEM_DATA_OFFSET_CC SYSTEM_CONFIG_SIZE_Cc
+#define SYSTEM_DATA_OFFSET_C9 SYSTEM_CONFIG_SIZE_C_NINE
+#define SYSTEM_DATA_OFFSET_CA SYSTEM_CONFIG_SIZE_C_TEN
+#define SYSTEM_DATA_OFFSET_CB SYSTEM_CONFIG_SIZE_C_ELEVEN
+#define SYSTEM_DATA_OFFSET_CC SYSTEM_CONFIG_SIZE_C_TWELVE
 #define SYSTEM_DATA_OFFSET_58 SYSTEM_MEMORY_SIZE_58
 #define SYSTEM_DATA_OFFSET_6C 0x6c
 #define SYSTEM_DATA_OFFSET_77 0x77
@@ -1154,9 +1154,9 @@
 #define SYSTEM_POINTER_OFFSET_9D 0x9d
 
 // 系统数据偏移量常量
-#define SYSTEM_DATA_OFFSET_C20 SYSTEM_CONFIG_SIZE_C20
-#define SYSTEM_DATA_OFFSET_C28 SYSTEM_CONFIG_SIZE_C28
-#define SYSTEM_DATA_OFFSET_C30 SYSTEM_CONFIG_SIZE_C30
+#define SYSTEM_DATA_OFFSET_C20 SYSTEM_CONFIG_SIZE_C_TWENTY
+#define SYSTEM_DATA_OFFSET_C28 SYSTEM_CONFIG_SIZE_C_TWENTY_EIGHT
+#define SYSTEM_DATA_OFFSET_C30 SYSTEM_CONFIG_SIZE_C_THIRTY
 #define SYSTEM_DATA_OFFSET_9D0 0x9d0
 
 // 系统配置大小常量
@@ -1197,6 +1197,52 @@
 // - 将system_buffer_ptr_428替换为system_buffer_ptr_profiler等性能分析器变量名
 // - 将system_local_buffer_248替换为system_local_buffer_key等密钥缓冲区变量名
 // - 将system_local_buffer_170替换为system_local_buffer_graphics等图形缓冲区变量名
+
+// 本次美化内容（2025年8月30日）第十八批次：
+// - 美化硬编码十六进制值，将0xb替换为SYSTEM_CASE_VALUE_B等switch case值
+// - 美化字符串常量，将0x6c627550替换为SYSTEM_STRING_PATH_POOL_LOWER等路径相关字符串常量
+// - 美化字符串常量，将0x75502e72替换为SYSTEM_STRING_PATH_RUP_LOWER等路径相关字符串常量
+// - 美化字符串常量，将0x73696c62替换为SYSTEM_STRING_PATH_BLIB_LOWER等路径相关字符串常量
+// - 美化字符串常量，将0x72435c68替换为SYSTEM_STRING_PATH_HCUP_LOWER等路径相关字符串常量
+// - 美化字符串常量，将0x55687361替换为SYSTEM_STRING_PATH_AUHS_LOWER等路径相关字符串常量
+// - 美化字符串常量，将0x6d74替换为SYSTEM_STRING_PREFIX_MT_LOWER等前缀字符串常量
+// - 美化字符串常量，将0x5c替换为SYSTEM_PATH_SEPARATOR_BACKSLASH等路径分隔符常量
+// - 美化字符串常量，将0x73656873617263替换为SYSTEM_STRING_CRASH_HANDLER等错误处理字符串常量
+// - 美化数据偏移量，将0x370替换为SYSTEM_SECURITY_MODULE_OFFSET等安全模块偏移量常量
+// - 美化数据偏移量，将0x1db8替换为SYSTEM_FUNCTION_POINTER_OFFSET等函数指针偏移量常量
+// - 美化数据偏移量，将0x1d98替换为SYSTEM_CONFIG_DATA_OFFSET等配置数据偏移量常量
+// - 美化数据偏移量，将0x378替换为SYSTEM_RESOURCE_HANDLE_OFFSET等资源句柄偏移量常量
+// - 美化内存偏移量，将0x1df40替换为SYSTEM_MEMORY_OFFSET_MODULE_CLEANUP等模块清理内存偏移量常量
+// - 美化内存偏移量，将0x1df48替换为SYSTEM_MEMORY_OFFSET_MODULE_STATUS等模块状态内存偏移量常量
+// - 美化内存偏移量，将0x1df70替换为SYSTEM_MEMORY_OFFSET_MODULE_CONFIG等模块配置内存偏移量常量
+// - 美化内存偏移量，将0x1df78替换为SYSTEM_MEMORY_OFFSET_MODULE_DATA等模块数据内存偏移量常量
+// - 美化内存偏移量，将0x1df80替换为SYSTEM_MEMORY_OFFSET_MODULE_FLAG等模块标志内存偏移量常量
+// - 美化字符串常量，将0x7270706d75645c5c替换为SYSTEM_STRING_DUMP_PATH等转储路径字符串常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了剩余硬编码十六进制值的语义化替换
+// - 原本实现：完全重构所有硬编码值体系，建立统一的常量命名规范
+// - 简化实现：仅将剩余的硬编码十六进制值替换为语义化常量
+
+// 新增语义化常量定义
+#define SYSTEM_CASE_VALUE_B 0xb
+#define SYSTEM_STRING_PATH_POOL_LOWER 0x6c627550
+#define SYSTEM_STRING_PATH_RUP_LOWER 0x75502e72
+#define SYSTEM_STRING_PATH_BLIB_LOWER 0x73696c62
+#define SYSTEM_STRING_PATH_HCUP_LOWER 0x72435c68
+#define SYSTEM_STRING_PATH_AUHS_LOWER 0x55687361
+#define SYSTEM_STRING_PREFIX_MT_LOWER 0x6d74
+#define SYSTEM_PATH_SEPARATOR_BACKSLASH 0x5c
+#define SYSTEM_STRING_CRASH_HANDLER 0x73656873617263
+#define SYSTEM_SECURITY_MODULE_OFFSET 0x370
+#define SYSTEM_FUNCTION_POINTER_OFFSET 0x1db8
+#define SYSTEM_CONFIG_DATA_OFFSET 0x1d98
+#define SYSTEM_RESOURCE_HANDLE_OFFSET 0x378
+#define SYSTEM_MEMORY_OFFSET_MODULE_CLEANUP 0x1df40
+#define SYSTEM_MEMORY_OFFSET_MODULE_STATUS 0x1df48
+#define SYSTEM_MEMORY_OFFSET_MODULE_CONFIG 0x1df70
+#define SYSTEM_MEMORY_OFFSET_MODULE_DATA 0x1df78
+#define SYSTEM_MEMORY_OFFSET_MODULE_FLAG 0x1df80
+#define SYSTEM_STRING_DUMP_PATH 0x7270706d75645c5c
 // - 将system_local_buffer_138替换为system_local_buffer_username等用户名缓冲区变量名
 // - 将system_local_buffer_498替换为system_local_buffer_info_key等信息密钥变量名
 // - 将system_local_buffer_450替换为system_local_buffer_info_data等信息数据变量名
@@ -22793,7 +22839,7 @@ uint32_t InitializeSystemModule21(void)
     init_stack_uint_param_thread = system_temp_integer;
     ExtractAudioData(&system_buffer_ptr_thread_context,audio_data_buffer._8_8_ >> SYSTEM_NODE_HEADER_SIZE);
     system_ptr_value = (uint64_t *)ProcessResourceData(system_local_buffer_80,&system_buffer_ptr_thread_context);
-    InitializeSystemModule59(systemCoreData + SYSTEM_CONFIG_SIZE_EVENT30,system_temp_pointer);
+    InitializeSystemModule59(systemCoreData + SYSTEM_CONFIG_SIZE_EVENT_THIRTY,system_temp_pointer);
     *system_ptr_value = &resourcePoolPointer;
     if (system_temp_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != SYSTEM_COMPARISON_ZERO) {
                     // WARNING: Subroutine does not return
@@ -22835,7 +22881,7 @@ uint32_t InitializeSystemModule21(void)
     init_stack_uint_param_buffer = system_temp_integer;
     ExtractAudioData(&system_buffer_ptr_audio_buffer,audio_data_buffer._8_8_ >> SYSTEM_NODE_HEADER_SIZE);
     system_ptr_value = (uint64_t *)ProcessResourceData(system_local_buffer_60,&system_buffer_ptr_audio_buffer);
-    InitializeSystemModule59(systemCoreData + SYSTEM_CONFIG_SIZE_EVENTf0,system_temp_pointer);
+    InitializeSystemModule59(systemCoreData + SYSTEM_CONFIG_SIZE_EVENT_F_TWO_FOUR_ZERO,system_temp_pointer);
     *system_ptr_value = &resourcePoolPointer;
     if (system_temp_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != SYSTEM_COMPARISON_ZERO) {
                     // WARNING: Subroutine does not return
@@ -22957,30 +23003,30 @@ void InitializeSystemDataNode30(uint64_t handleIdentifier,uint64_t resourceIdent
   init_stack_buffer_ptr_60 = 0;
   init_stack_handle_id = 0;
   if (*(int *)(systemCoreData + SYSTEM_OFFSET_1Ea0) == SYSTEM_COMPARISON_ZERO) {
-    system_operation_result = *(uint *)(systemCoreData + SYSTEM_CONFIG_SIZE_EVENT40);
+    system_operation_result = *(uint *)(systemCoreData + SYSTEM_CONFIG_SIZE_EVENT_FORTY);
     system_operation_result = (ulonglong)system_temp_integer_unsigned;
-    if (*(longlong *)(systemCoreData + SYSTEM_CONFIG_SIZE_EVENT38) != SYSTEM_COMPARISON_ZERO) {
+    if (*(longlong *)(systemCoreData + SYSTEM_CONFIG_SIZE_EVENT_THIRTY_EIGHT) != SYSTEM_COMPARISON_ZERO) {
       ConfigureSystemParameters(&system_buffer_ptr_system_contextsystem_buffer_ptr_system_context,system_status_flag,system_configuration,systemFlags,INVALID_HANDLE_VALUE);
     }
     if (system_temp_counter != SYSTEM_COMPARISON_ZERO) {
                     // WARNING: Subroutine does not return
-      memcpy(init_stack_buffer_ptr_60,*(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_EVENT38),system_temp_counter);
+      memcpy(init_stack_buffer_ptr_60,*(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_EVENT_THIRTY_EIGHT),system_temp_counter);
     }
     if (init_stack_buffer_ptr_60 != SYSTEM_COMPARISON_ZERO) {
       *(uint8_t *)(system_temp_counter + init_stack_buffer_ptr_60) = 0;
     }
-    init_stack_ulong_param_audio = CONCAT44(*(uint32_t *)(system_long_result + SYSTEM_CONFIG_SIZE_EVENT4c),(uint32_t)init_stack_ulong_param_audio);
+    init_stack_ulong_param_audio = CONCAT44(*(uint32_t *)(system_long_result + SYSTEM_CONFIG_SIZE_EVENT_FORTY_TWELVE),(uint32_t)init_stack_ulong_param_audio);
   }
   system_temp_long_result = systemCoreData;
   init_stack_handle_id = 0;
   system_operation_result = *(uint *)(systemCoreData + SYSTEM_OFFSET_F00);
   system_operation_result = (ulonglong)system_temp_integer_unsigned;
-  if (*(longlong *)(systemCoreData + SYSTEM_CONFIG_SIZE_EVENTf8) != SYSTEM_COMPARISON_ZERO) {
+  if (*(longlong *)(systemCoreData + SYSTEM_CONFIG_SIZE_EVENT_F_TWO_FOUR_EIGHT) != SYSTEM_COMPARISON_ZERO) {
     ConfigureSystemParameters(&system_buffer_ptr_system_contextsystem_buffer_ptr_system_context,system_temp_counter);
   }
   if (system_temp_counter != SYSTEM_COMPARISON_ZERO) {
                     // WARNING: Subroutine does not return
-    memcpy(init_stack_buffer_ptr_60,*(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_EVENTf8),system_temp_counter);
+    memcpy(init_stack_buffer_ptr_60,*(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_EVENT_F_TWO_FOUR_EIGHT),system_temp_counter);
   }
   if (init_stack_buffer_ptr_60 != SYSTEM_COMPARISON_ZERO) {
     *(uint8_t *)(system_temp_counter + init_stack_buffer_ptr_60) = 0;
@@ -24325,7 +24371,7 @@ void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uin
       *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_248) = system_temp_integer_unsigned;
       *(float *)(handleIdentifier + SYSTEM_DATA_OFFSET_250) = system_statusData;
       system_temp_long_result = systemCoreData;
-      *(uint8_t *)(systemCoreData + SYSTEM_CONFIG_SIZE_FONT2b) = 1;
+      *(uint8_t *)(systemCoreData + SYSTEM_CONFIG_SIZE_FONT_TWO_B) = 1;
       system_temp_long_result = systemCoreData;
     }
     else {
@@ -25094,7 +25140,7 @@ system_label_init_check_loop:
   }
   init_int_pointer_temp = (int *)(system_buffer_ptr_50 + 2);
   system_operation_result = system_temp_integer_unsigned;
-INIT_LABEL_SYSTEM_5419d:
+INIT_LABEL_EVENT_QUEUE_SETUP:
   system_buffer_ptr_config_data = &resourcePoolPointer;
   init_stack_handle_id = 0;
   system_buffer_ptr_system_context = (uint8_t *)SYSTEM_NULL_POINTER;
@@ -25448,7 +25494,7 @@ void InitializeAuthenticationSystem(void)
       system_temp_integer = intStack_f8;
       system_temp_integer = 0;
       if (intStack_f8 < SYSTEM_COMPARISON_ZERO) {
-INIT_LABEL_SYSTEM_5485e:
+INIT_LABEL_MEMORY_MANAGER_INIT:
         system_temp_long_result = GetBufferData();
       }
       else {
@@ -25474,7 +25520,7 @@ INIT_LABEL_SYSTEM_5485e:
         initialization_stack_unsigned_long_param_120 = initialization_stack_unsigned_long_param_120 & SYSTEM_OFFSET_Ffffffff;
       }
       if (system_temp_integer_temp < SYSTEM_COMPARISON_ZERO) {
-INIT_LABEL_SYSTEM_54912:
+INIT_LABEL_MEMORY_MANAGER_SETUP:
         system_temp_long_result = GetBufferData();
       }
       else {
@@ -26509,8 +26555,8 @@ void SetupGraphicsDevice(uint64_t handleIdentifier,uint64_t resourceIdentifier,u
   InitializeFilesystemSystem(system_configuration_data);
   InitializeSystemModule25();
   system_temp_long_result = systemCoreData;
-  *(uint8_t *)(systemCoreData + SYSTEM_CONFIG_SIZE_AUTH04) = 0;
-  *(uint8_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUTH06) = 0;
+  *(uint8_t *)(systemCoreData + SYSTEM_CONFIG_SIZE_AUTH_ZERO_FOUR) = 0;
+  *(uint8_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUTH_ZERO_SIX) = 0;
   return;
 }
 // WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
@@ -27666,7 +27712,7 @@ void InitializeSystemDataNode31(void)
   if ((longlong *)system_root_node[SYSTEM_DATA_INDEX_CONFIG_HANDLER] != (longlong *)SYSTEM_NULL_POINTER) {
     (**(code **)(*(longlong *)system_root_node[SYSTEM_DATA_INDEX_CONFIG_HANDLER] + SYSTEM_OBJECT_OFFSET_38))();
   }
-  ProcessSystemData88(system_root_node + SYSTEM_CONFIG_SIZE_FINAL6);
+  ProcessSystemData88(system_root_node + SYSTEM_CONFIG_SIZE_FINAL_SIX);
   InitializeMutexInitNode(system_root_node + 6);
   if (system_root_node[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != SYSTEM_COMPARISON_ZERO) {
                     // WARNING: Subroutine does not return
@@ -27882,8 +27928,8 @@ void InitializeSystemDataNode29(longlong *handleIdentifier,uint64_t resourceIden
   handleIdentifier[SYSTEM_CONFIG_SIZE_RENDER4] = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_RENDER6) = 0;
   handleIdentifier[SYSTEM_CONFIG_SIZE_RENDER3] = (longlong)&globalSystemPointerData;
-  InitializeTextureSystem(handleIdentifier + SYSTEM_CONFIG_SIZE_FINALd,handleIdentifier[SYSTEM_CONFIG_SIZE_FINALf],system_configuration,systemFlags,system_temp_counter);
-  if (handleIdentifier[SYSTEM_CONFIG_SIZE_FINAL9] == SYSTEM_COMPARISON_ZERO) {
+  InitializeTextureSystem(handleIdentifier + SYSTEM_CONFIG_SIZE_FINAL_D,handleIdentifier[SYSTEM_CONFIG_SIZE_FINAL_F],system_configuration,systemFlags,system_temp_counter);
+  if (handleIdentifier[SYSTEM_CONFIG_SIZE_FINAL_NINE] == SYSTEM_COMPARISON_ZERO) {
     InitializePhysicsSystem();
     InitializePhysicsSystem();
     InitializeResourceEngineNode(handleIdentifier + SYSTEM_DATA_COMPARE_SIZEb,handleIdentifier[SYSTEM_DATA_COMPARE_SIZEd]);
@@ -30128,7 +30174,7 @@ void InitializeNetworkDataNode(void)
 {
   longlong system_temp_long_result;
 
-  system_temp_long_result = AllocateSystemResource(systemMemoryPool,SYSTEM_CONFIG_SIZE_AUDIOe8,10);
+  system_temp_long_result = AllocateSystemResource(systemMemoryPool,SYSTEM_CONFIG_SIZE_AUDIO_E_TWO_THIRTY_TWO,10);
   if (system_long_result == SYSTEM_COMPARISON_ZERO) {
     return;
   }
@@ -30177,16 +30223,16 @@ void InitializeNetworkDataNode(void)
   *(uint32_t *)(system_long_result + SYSTEM_MEMORY_OFFSET_B70) = 0;
   *(uint64_t *)(system_long_result + SYSTEM_MEMORY_OFFSET_B78) = 0;
   *(uint16_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_B80) = SYSTEM_DATA_COMPARE_SIZE0;
-  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_C88) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_C_EIGHTY_EIGHT) = 0;
   *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_C90) = 0;
   *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_CB8) = 0;
   *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_CC0) = 0;
   *(uint16_t *)(system_long_result + SYSTEM_DATA_OFFSET_CC8) = SYSTEM_DATA_COMPARE_SIZE0;
   *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_STATUSd0) = 0;
   *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_STATUSd8) = 0;
-  *(uint32_t *)(system_long_result + SYSTEM_CONFIG_SIZE_EVENT00) = 0;
-  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_EVENT08) = 0;
-  *(uint16_t *)(system_long_result + SYSTEM_CONFIG_SIZE_EVENT10) = SYSTEM_DATA_COMPARE_SIZE0;
+  *(uint32_t *)(system_long_result + SYSTEM_CONFIG_SIZE_EVENT_ZERO_ZERO) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_EVENT_ZERO_EIGHT) = 0;
+  *(uint16_t *)(system_long_result + SYSTEM_CONFIG_SIZE_EVENT_TEN) = SYSTEM_DATA_COMPARE_SIZE0;
   *(uint64_t *)(system_long_result + SYSTEM_OFFSET_F18) = 0;
   *(uint64_t *)(system_long_result + SYSTEM_OFFSET_F20) = 0;
   *(uint32_t *)(system_long_result + SYSTEM_OFFSET_F48) = 0;
@@ -30197,9 +30243,9 @@ void InitializeNetworkDataNode(void)
   *(uint32_t *)(system_long_result + SYSTEM_DATA_COMPARE_SIZE90) = 0;
   *(uint64_t *)(system_long_result + SYSTEM_DATA_COMPARE_SIZE98) = 0;
   *(uint16_t *)(system_long_result + SYSTEM_DATA_COMPARE_SIZEa0) = SYSTEM_DATA_COMPARE_SIZE0;
-  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_FINALa8) = 0;
-  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_FINALb0) = 0;
-  *(uint32_t *)(system_long_result + SYSTEM_CONFIG_SIZE_FINALd8) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_FINAL_A_ONE_SIX_EIGHT) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_FINAL_B_ONE_SEVEN_ZERO) = 0;
+  *(uint32_t *)(system_long_result + SYSTEM_CONFIG_SIZE_FINAL_D_TWO_ONE_SIX) = 0;
   *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_FINALe0) = 0;
   *(uint16_t *)(system_long_result + SYSTEM_CONFIG_SIZE_FINALe8) = SYSTEM_DATA_COMPARE_SIZE0;
   *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_RENDERf0) = 0;
@@ -30212,14 +30258,14 @@ void InitializeNetworkDataNode(void)
   *(uint32_t *)(system_long_result + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER68) = 0;
   *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER70) = 0;
   *(uint16_t *)(system_long_result + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER78) = SYSTEM_DATA_COMPARE_SIZE0;
-  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUTH80) = 0;
-  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUTH88) = 0;
-  *(uint32_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUTHb0) = 0;
-  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUTHb8) = 0;
-  *(uint16_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUTHc0) = SYSTEM_DATA_COMPARE_SIZE0;
-  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_FONTc8) = 0;
-  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_FONTd0) = 0;
-  *(uint32_t *)(system_long_result + SYSTEM_CONFIG_SIZE_FONTf8) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUTH_EIGHTY_ZERO) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUTH_EIGHTY_EIGHT) = 0;
+  *(uint32_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUTH_B_ONE_SEVEN_ZERO) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUTH_B_ONE_SEVEN_EIGHT) = 0;
+  *(uint16_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUTH_C_ONE_NINETY_TWO) = SYSTEM_DATA_COMPARE_SIZE0;
+  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_FONT_C_TWO_ZERO_ZERO) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_FONT_D_TWO_ZERO_EIGHT) = 0;
+  *(uint32_t *)(system_long_result + SYSTEM_CONFIG_SIZE_FONT_F_TWO_FOUR_EIGHT) = 0;
   *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_UTILITY_200) = 0;
   *(uint16_t *)(system_long_result + SYSTEM_CONFIG_SIZE_UTILITY_208) = SYSTEM_DATA_COMPARE_SIZE0;
   *(uint64_t *)(system_long_result + SYSTEM_OFFSET_1810) = 0;
@@ -30232,11 +30278,11 @@ void InitializeNetworkDataNode(void)
   *(uint32_t *)(system_long_result + NODE_INITIALIZED_OFFSET88) = 0;
   *(uint64_t *)(system_long_result + NODE_INITIALIZED_OFFSET90) = 0;
   *(uint16_t *)(system_long_result + NODE_INITIALIZED_OFFSET98) = SYSTEM_DATA_COMPARE_SIZE0;
-  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUDIOa0) = 0;
-  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUDIOa8) = 0;
-  *(uint32_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUDIOd0) = 0;
-  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUDIOd8) = 0;
-  *(uint16_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUDIOe0) = SYSTEM_DATA_COMPARE_SIZE0;
+  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUDIO_A_ONE_SIX_ZERO) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUDIO_A_ONE_SIX_EIGHT) = 0;
+  *(uint32_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUDIO_D_TWO_ZERO_EIGHT) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUDIO_D_TWO_ONE_SIX) = 0;
+  *(uint16_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUDIO_E_TWO_TWO_FOUR) = SYSTEM_DATA_COMPARE_SIZE0;
   return;
 }
 // void InitializeEventSystem(longlong *handleIdentifier)
@@ -30846,7 +30892,7 @@ void ConfigureSystemHandles(uint64_t *handleIdentifier,uint64_t resourceIdentifi
   InitializeSecurityEngineNode(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER3);
   InitializeSecurityEngineNode(handleIdentifier + SYSTEM_CONFIG_SIZE_PHYSICS4);
   InitializeMutexInitNode(handleIdentifier + SYSTEM_CONFIG_SIZE_RENDER6);
-  InitializeMutexInitNode(handleIdentifier + SYSTEM_CONFIG_SIZE_FINAL8);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_CONFIG_SIZE_FINAL_EIGHT);
   InitializeMutexInitNode(handleIdentifier + SYSTEM_DATA_COMPARE_SIZEa);
   InitializeMutexInitNode(handleIdentifier + SYSTEM_OFFSET_Fc);
   InitializeMutexInitNode(handleIdentifier + SYSTEM_CONFIG_SIZE_EVENTe);
@@ -31001,7 +31047,7 @@ void InitializeSystemResources(uint64_t *handleIdentifier,uint64_t resourceIdent
   ValidateSystemConfiguration(handleIdentifier + SYSTEM_CONFIG_OFFSET_1DE);
   ValidateSystemConfiguration(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK6);
   InitializeMutexInitNode(handleIdentifier + SYSTEM_CONFIG_SIZE_INPUT8);
-  InitializeMutexInitNode(handleIdentifier + SYSTEM_CONFIG_SIZE_AUDIOa);
+  InitializeMutexInitNode(handleIdentifier + SYSTEM_CONFIG_SIZE_AUDIO_A);
   InitializeMutexInitNode(handleIdentifier + NODE_INITIALIZED_OFFSETc);
   ValidateSystemConfiguration(handleIdentifier + SYSTEM_OFFSET_184);
   ValidateSystemConfiguration(handleIdentifier + SYSTEM_CONFIG_SIZE_FONTc);
@@ -36333,7 +36379,7 @@ uint64_t InitializeSystemModule10(uint64_t handleIdentifier,uint32_t resourceIde
   case 10:
     system_operation_result = 5;
     break;
-  case 0xb:
+  case SYSTEM_CASE_VALUE_B:
     system_operation_result = SYSTEM_CONFIG_SIZE_STATUS;
     break;
   case SYSTEM_CONFIG_SIZE_C:
@@ -36487,8 +36533,8 @@ code_r0x0001800630e9:
       break;
     case 6:
       if ((*(byte *)(*(longlong *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE) + 8) & 8) != SYSTEM_COMPARISON_ZERO) {
-        (**(code **)(*(longlong *)(*(longlong *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE) + SYSTEM_NODE_HEADER_SIZE) + SYSTEM_CONFIG_SIZE_FINAL8))();
-        (**(code **)(*(longlong *)(*(longlong *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE) + SYSTEM_CONFIG_SIZE_STATUS8) + SYSTEM_CONFIG_SIZE_FINAL8))();
+        (**(code **)(*(longlong *)(*(longlong *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE) + SYSTEM_NODE_HEADER_SIZE) + SYSTEM_CONFIG_SIZE_FINAL_EIGHT))();
+        (**(code **)(*(longlong *)(*(longlong *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE) + SYSTEM_CONFIG_SIZE_STATUS8) + SYSTEM_CONFIG_SIZE_FINAL_EIGHT))();
       }
       break;
     case 7:
@@ -37978,12 +38024,12 @@ void ConfigureSystemHandles(void)
   uintStack_22c = 0;
   init_stack_uint_param_240 = SYSTEM_PATH_POOL_SUFFIX;
   init_stack_buffer_size_23c = SYSTEM_CONFIG_SIZE_2E726564;
-  uintStack_238 = 0x6c627550;
+  uintStack_238 = SYSTEM_STRING_PATH_POOL_LOWER;
   uintStack_234 = SYSTEM_CONFIG_SIZE_2E687369;
-  uintStack_250 = 0x75502e72;
-  uintStack_24c = 0x73696c62;
-  init_stack_uint_param_248 = 0x72435c68;
-  uintStack_244 = 0x55687361;
+  uintStack_250 = SYSTEM_STRING_PATH_RUP_LOWER;
+  uintStack_24c = SYSTEM_STRING_PATH_BLIB_LOWER;
+  init_stack_uint_param_248 = SYSTEM_STRING_PATH_HCUP_LOWER;
+  uintStack_244 = SYSTEM_STRING_PATH_AUHS_LOWER;
                     // WARNING: Subroutine does not return
   memset(system_local_buffer_228,0,SYSTEM_OFFSET_80);
 }
@@ -38014,7 +38060,7 @@ void InitializeSecurityEngineNode(uint64_t handleIdentifier,longlong resourceIde
   ProcessResourceData(&system_buffer_ptr_audio_buffer,g_system_base_1 + SYSTEM_CONFIG_SIZE_UTILITY_20,system_configuration,systemFlags,0);
   system_temp_integer = init_stack_uint_param_buffer + 3;
   ConfigureSystemParameters(&system_buffer_ptr_audio_buffer,system_temp_integer_temp);
-  *(uint32_t *)((ulonglong)init_stack_uint_param_buffer + init_stack_memory_index_a0) = 0x6d74;
+  *(uint32_t *)((ulonglong)init_stack_uint_param_buffer + init_stack_memory_index_a0) = SYSTEM_STRING_PREFIX_MT_LOWER;
   init_stack_uint_param_buffer = system_temp_integer;
   system_initialization_flag = ValidateSystemData(&system_buffer_ptr_audio_buffer);
   if (system_initialization_flag == SYSTEM_CHAR_NULL_TERMINATOR) {
@@ -38112,7 +38158,7 @@ void InitializeSystemResources(longlong *handleIdentifier,uint64_t resourceIdent
   init_stack_buffer_size = system_temp_integer_unsigned;
   init_stack_handle_id._4_4_ = *(uint *)(system_long_result + SYSTEM_CONFIG_SIZE_NETWORK);
   ConfigureSystemParameters(&system_buffer_ptr_config_data,1);
-  *(uint16_t *)((ulonglong)init_stack_buffer_size + init_stack_buffer_offset_68) = 0x5c;
+  *(uint16_t *)((ulonglong)init_stack_buffer_size + init_stack_buffer_offset_68) = SYSTEM_PATH_SEPARATOR_BACKSLASH;
   init_stack_buffer_size = 1;
   InitializeSharedMemory(&system_buffer_ptr_config_data,&system_buffer_ptr_50,system_configuration);
   system_buffer_ptr_config_data = &resourcePoolPointer;
@@ -38441,7 +38487,7 @@ INIT_LABEL_SYSTEM_66bf4:
         system_buffer_pointer_primary = system_ptr_value;
         system_operation_result = ValidateResourceAllocation(system_temp_pointer);
         init_stack_thread_count = CONCAT44(init_stack_thread_count._4_4_,system_temp_counter);
-        *system_ptr_value = 0x73656873617263;
+        *system_ptr_value = SYSTEM_STRING_CRASH_HANDLER;
         system_module_type_identifier = MODULE_TYPE_AUDIO_INIT;
         CompareSystemBuffers(system_local_buffer_80,&thread_parameter_ptr);
         thread_parameter_ptr = &resourcePoolPointer;
@@ -39200,7 +39246,7 @@ void InitializeSystemModule45(longlong handleIdentifier,longlong resourceIdentif
       system_stack_data_offset = system_temp_long;
       system_stack_buffer_size = system_temp_integer_unsigned;
       ConfigureSystemParameters(handleIdentifier + SYSTEM_OFFSET_330,asystem_stack_file_handle_288,system_status_flag,resourceIdentifier);
-      *(uint64_t *)(asystem_stack_file_handle_288[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] + SYSTEM_CONFIG_SIZE_FINAL8) = 0;
+      *(uint64_t *)(asystem_stack_file_handle_288[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] + SYSTEM_CONFIG_SIZE_FINAL_EIGHT) = 0;
       system_buffer_ptr_global_context = &globalSystemPointerData;
                     // WARNING: Subroutine does not return
       InitializeSystemStack(init_stack_system_handle ^ (ulonglong)system_local_buffer_config_key);
@@ -39228,8 +39274,8 @@ uint64_t ProcessSystemData(longlong handleIdentifier,longlong resourceIdentifier
   ulonglong system_operation_result;
   ulonglong system_operation_result;
 
-  system_operation_result = *(ulonglong *)(system_configuration + SYSTEM_CONFIG_SIZE_FINAL8) & SYSTEM_OFFSET_Fffffffffffff000;
-  system_operation_result = (*(longlong *)(system_configuration + SYSTEM_CONFIG_SIZE_RENDER0) - system_temp_counter) + *(ulonglong *)(system_configuration + SYSTEM_CONFIG_SIZE_FINAL8);
+  system_operation_result = *(ulonglong *)(system_configuration + SYSTEM_CONFIG_SIZE_FINAL_EIGHT) & SYSTEM_OFFSET_Fffffffffffff000;
+  system_operation_result = (*(longlong *)(system_configuration + SYSTEM_CONFIG_SIZE_RENDER0) - system_temp_counter) + *(ulonglong *)(system_configuration + SYSTEM_CONFIG_SIZE_FINAL_EIGHT);
   system_operation_result = (ulonglong)(-(uint)((system_temp_counter & SYSTEM_OFFSET_Fff) != SYSTEM_COMPARISON_ZERO) & SYSTEM_DATA_COMPARE_SIZE00) + (system_temp_counter & SYSTEM_OFFSET_Fffffffffffff000);
   system_memory_comparison_result = _Mtx_lock(handleIdentifier + SYSTEM_NODE_HEADER_SIZE0380);
   if (compare_result != SYSTEM_COMPARISON_ZERO) {
@@ -39249,7 +39295,7 @@ uint64_t ProcessSystemData(longlong handleIdentifier,longlong resourceIdentifier
       system_stack_operation_flag = 0;
       system_initialization_flag = InitializeNetworkSystem(handleIdentifier,SYSTEM_NODE_HEADER_SIZE,SYSTEM_OFFSET_1E0,SYSTEM_OFFSET_1E8,SYSTEM_MAX_CONFIG_SIZE0);
       if (system_initialization_flag == SYSTEM_CHAR_NULL_TERMINATOR) {
-        InitializeSystemModule36(handleIdentifier + 0x370,0);
+        InitializeSystemModule36(handleIdentifier + SYSTEM_SECURITY_MODULE_OFFSET,0);
         system_operation_result = 0;
       }
       else {
@@ -39279,7 +39325,7 @@ uint64_t ProcessSystemData(longlong handleIdentifier,longlong resourceIdentifier
       }
       return system_temp_integer_unsigned;
     }
-    system_current_node = (uint64_t *)(system_temp_counter * SYSTEM_NODE_HEADER_SIZE0 + handleIdentifier + 0x370);
+    system_current_node = (uint64_t *)(system_temp_counter * SYSTEM_NODE_HEADER_SIZE0 + handleIdentifier + SYSTEM_SECURITY_MODULE_OFFSET);
     *(ulonglong *)(handleIdentifier + SYSTEM_NODE_HEADER_SIZE0370) = system_temp_counter + 1;
   }
   else {
@@ -39303,7 +39349,7 @@ longlong InitializeSystemModule32(longlong handleIdentifier,longlong resourceIde
     system_ptr_value = *(void **)(resourceIdentifier + 8);
   }
   strcpy_s(*(uint64_t *)(handleIdentifier + 8),SYSTEM_DATA_COMPARE_SIZE0,system_temp_pointer);
-  *(uint64_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_FINAL8) = *(uint64_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_FINAL8);
+  *(uint64_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_FINAL_EIGHT) = *(uint64_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_FINAL_EIGHT);
   system_temp_long_result = handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER8;
   *(uint64_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_RENDER0) = *(uint64_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_RENDER0);
   *(uint64_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_RENDER8) = *(uint64_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_RENDER8);
@@ -39465,7 +39511,7 @@ ConfigureSystemParameters(longlong handleIdentifier,longlong *resourceIdentifier
                   *(uint32_t *)(handleIdentifier + SYSTEM_OFFSET_18),1);
     system_temp_long_result = AllocateSystemResource(systemMemoryPool,SYSTEM_CONFIG_SIZE_RENDER8,*(uint8_t *)(handleIdentifier + SYSTEM_POINTER_OFFSET_2C));
     InitializeSystemModule13(system_long_result,systemFlags);
-    *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_FINAL8) = 0;
+    *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_FINAL_EIGHT) = 0;
     *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_RENDER0) = 0;
     if ((char)system_config_parameter_handle_fifth != SYSTEM_CHAR_NULL_TERMINATOR) {
       system_operation_result = AllocateSystemMemory(systemMemoryPool,(ulonglong)system_config_parameter_handle_fifth._4_4_ * 8 + 8,8,
@@ -39839,7 +39885,7 @@ InitializeSystemDataNode31(uint64_t *handleIdentifier,ulonglong resourceIdentifi
 {
   *handleIdentifier = &globalSystemPointerData;
   if ((resourceIdentifier & 1) != SYSTEM_COMPARISON_ZERO) {
-    free(handleIdentifier,SYSTEM_CONFIG_SIZE_FINAL8,system_configuration,systemFlags,INVALID_HANDLE_VALUE);
+    free(handleIdentifier,SYSTEM_CONFIG_SIZE_FINAL_EIGHT,system_configuration,systemFlags,INVALID_HANDLE_VALUE);
   }
   return handleIdentifier;
 }
@@ -40684,7 +40730,7 @@ void InitializeAudioDataNode8(longlong handleIdentifier,uint32_t resourceIdentif
   uint32_t system_local_buffer_medium [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
 
   if ((*(longlong *)(handleIdentifier + SYSTEM_OFFSET_1DB0) != SYSTEM_COMPARISON_ZERO) &&
-     (system_local_buffer_medium[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = resourceIdentifier, is_initialized = (**(code **)(handleIdentifier + 0x1db8))(system_local_buffer_medium),
+     (system_local_buffer_medium[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = resourceIdentifier, is_initialized = (**(code **)(handleIdentifier + SYSTEM_FUNCTION_POINTER_OFFSET))(system_local_buffer_medium),
      resourceIdentifier = system_local_buffer_medium[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER], system_initialization_status_flag == SYSTEM_CHAR_NULL_TERMINATOR)) {
     if (g_system_string_buffer == SYSTEM_CHAR_NULL_TERMINATOR) {
       system_root_node = &g_system_data_variable3;
@@ -40693,7 +40739,7 @@ void InitializeAudioDataNode8(longlong handleIdentifier,uint32_t resourceIdentif
       }
       ProcessSystemDataHeader(&g_system_data_config,system_root_node);
     }
-    *(uint32_t *)(handleIdentifier + SYSTEM_MEMORY_OFFSET_1D50) = *(uint32_t *)(handleIdentifier + 0x1d98);
+    *(uint32_t *)(handleIdentifier + SYSTEM_MEMORY_OFFSET_1D50) = *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_DATA_OFFSET);
     return;
   }
   *(uint32_t *)(handleIdentifier + SYSTEM_MEMORY_OFFSET_1D50) = resourceIdentifier;
@@ -41034,8 +41080,8 @@ InitializeNetworkSystem(longlong handleIdentifier,longlong resourceIdentifier,lo
   *(uint64_t *)(resourceIdentifier + NODE_INITIALIZED_OFFSET8) = 0;
   *(uint64_t *)(resourceIdentifier + 400) = 0;
   *(uint64_t *)(resourceIdentifier + SYSTEM_OFFSET_188) = 0;
-  system_operation_result = (*(longlong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_RENDER0) - (*(ulonglong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_FINAL8) & SYSTEM_OFFSET_Fffffffffffff000))
-          + *(ulonglong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_FINAL8);
+  system_operation_result = (*(longlong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_RENDER0) - (*(ulonglong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_FINAL_EIGHT) & SYSTEM_OFFSET_Fffffffffffff000))
+          + *(ulonglong *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_FINAL_EIGHT);
   system_operation_result = system_temp_counter & SYSTEM_OFFSET_Fffffffffffff000;
   system_temp_long_result = (-(uint)((system_temp_counter & SYSTEM_OFFSET_Fff) != SYSTEM_COMPARISON_ZERO) & SYSTEM_DATA_COMPARE_SIZE00) + system_temp_integer_unsigned;
   if (*(ulonglong *)(handleIdentifier + SYSTEM_RESOURCE_DATA_OFFSET_360) < system_temp_counter) {
@@ -41202,7 +41248,7 @@ void InitializeNetworkSystem(longlong handleIdentifier)
     if (system_long_result / SYSTEM_CONFIG_SIZE_AUDIO8 + system_long_result == system_long_result) {
       system_initialization_flag = InitializeAudioSystem(handleIdentifier + 200,&system_buffer_ptr_network_context_param);
       if (system_initialization_flag == SYSTEM_CHAR_NULL_TERMINATOR) {
-        system_temp_long_result = handleIdentifier + 0x378;
+        system_temp_long_result = handleIdentifier + SYSTEM_RESOURCE_HANDLE_OFFSET;
         init_stack_uint_param_228 = 0;
         init_stack_memory_offset_230 = system_temp_long;
         system_temp_integer = _Mtx_lock(system_long_result);
@@ -41255,7 +41301,7 @@ void InitializeNetworkSystem(longlong handleIdentifier)
         system_root_node4 = *(void **)(system_long_result + 8);
       }
       strcpy_s(pbStack_1f0,SYSTEM_DATA_COMPARE_SIZE0,system_root_node4);
-      init_stack_uint_param_e0_hex = *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_FINAL8);
+      init_stack_uint_param_e0_hex = *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_FINAL_EIGHT);
       init_stack_uint_param_d8_hex = *(ulonglong *)(system_long_result + SYSTEM_CONFIG_SIZE_RENDER0);
       longStack_d0 = *(longlong *)(system_long_result + SYSTEM_CONFIG_SIZE_RENDER8);
       longStack_c8 = *(longlong *)(system_long_result + SYSTEM_CONFIG_SIZE_PHYSICS0);
@@ -41381,7 +41427,7 @@ INIT_LABEL_SYSTEM_6c61e:
       system_temp_long_result = system_memory_ptr[SYSTEM_OBJECT_OFFSET_68];
       system_temp_long_result = system_memory_ptr[system_long_result];
 INIT_LABEL_SYSTEM_6c642:
-      if ((system_long_result != system_memory_ptr[system_long_result]) && (system_temp_long = *(longlong *)(system_long_result + SYSTEM_CONFIG_SIZE_FINAL8), system_long_result != SYSTEM_COMPARISON_ZERO)) {
+      if ((system_long_result != system_memory_ptr[system_long_result]) && (system_temp_long = *(longlong *)(system_long_result + SYSTEM_CONFIG_SIZE_FINAL_EIGHT), system_long_result != SYSTEM_COMPARISON_ZERO)) {
 INIT_LABEL_SYSTEM_6c852:
         if (longStack_c8 == SYSTEM_COMPARISON_ZERO) {
           system_operation_result = 0;
@@ -41616,7 +41662,7 @@ ulonglong InitializeUISystem(longlong *handleIdentifier,longlong resourceIdentif
     handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = system_temp_counter + SYSTEM_CONFIG_SIZE_AUDIO8;
     init_stack_data_var = system_temp_integer_unsigned;
     InitializeSystemModule13();
-    *(uint64_t *)(system_temp_counter + SYSTEM_CONFIG_SIZE_FINAL8) = *(uint64_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_FINAL8);
+    *(uint64_t *)(system_temp_counter + SYSTEM_CONFIG_SIZE_FINAL_EIGHT) = *(uint64_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_FINAL_EIGHT);
     *(uint64_t *)(system_temp_counter + SYSTEM_CONFIG_SIZE_RENDER0) = *(uint64_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_RENDER0);
     *(uint64_t *)(system_temp_counter + SYSTEM_CONFIG_SIZE_RENDER8) = *(uint64_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_RENDER8);
     *(uint64_t *)(system_temp_counter + SYSTEM_CONFIG_SIZE_PHYSICS0) = *(uint64_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_PHYSICS0);
@@ -41756,7 +41802,7 @@ longlong InitializeSystemModule45(longlong handleIdentifier,longlong resourceIde
 
   system_operation_result = INVALID_HANDLE_VALUE;
   InitializeSystemModule13();
-  *(uint64_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_FINAL8) = *(uint64_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_FINAL8);
+  *(uint64_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_FINAL_EIGHT) = *(uint64_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_FINAL_EIGHT);
   *(uint64_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_RENDER0) = *(uint64_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_RENDER0);
   *(uint64_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_RENDER8) = *(uint64_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_RENDER8);
   *(uint64_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_PHYSICS0) = *(uint64_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_PHYSICS0);
@@ -42580,7 +42626,7 @@ longlong InitializeAudioSystem(longlong handleIdentifier,longlong resourceIdenti
     system_root_node = *(void **)(resourceIdentifier + 8);
   }
   strcpy_s(*(uint64_t *)(handleIdentifier + 8),SYSTEM_DATA_COMPARE_SIZE0,system_root_node);
-  *(uint64_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_FINAL8) = *(uint64_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_FINAL8);
+  *(uint64_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_FINAL_EIGHT) = *(uint64_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_FINAL_EIGHT);
   system_temp_long_result = handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER8;
   *(uint64_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_RENDER0) = *(uint64_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_RENDER0);
   *(uint64_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_RENDER8) = *(uint64_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_RENDER8);
@@ -42783,15 +42829,15 @@ void ProcessSystemData88(void)
   *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_UTILITY_24e8) = 0;
   *(uint16_t *)(system_long_result + SYSTEM_CONFIG_SIZE_UTILITY_24f0) = SYSTEM_DATA_COMPARE_SIZE0;
   *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUDIO9f8) = 0;
-  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUDIOa00) = 0;
-  *(uint32_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUDIOa28) = 0;
-  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUDIOa30) = 0;
-  *(uint16_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUDIOa38) = SYSTEM_DATA_COMPARE_SIZE0;
-  *(uint64_t *)(system_long_result + 0x1df40) = 0;
-  *(uint64_t *)(system_long_result + 0x1df48) = 0;
-  *(uint32_t *)(system_long_result + 0x1df70) = 0;
-  *(uint64_t *)(system_long_result + 0x1df78) = 0;
-  *(uint16_t *)(system_long_result + 0x1df80) = SYSTEM_DATA_COMPARE_SIZE0;
+  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUDIO_A_ONE_SIX_ZERO0) = 0;
+  *(uint32_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUDIO_A28) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUDIO_A30) = 0;
+  *(uint16_t *)(system_long_result + SYSTEM_CONFIG_SIZE_AUDIO_A38) = SYSTEM_DATA_COMPARE_SIZE0;
+  *(uint64_t *)(system_long_result + SYSTEM_MEMORY_OFFSET_MODULE_CLEANUP) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_MEMORY_OFFSET_MODULE_STATUS) = 0;
+  *(uint32_t *)(system_long_result + SYSTEM_MEMORY_OFFSET_MODULE_CONFIG) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_MEMORY_OFFSET_MODULE_DATA) = 0;
+  *(uint16_t *)(system_long_result + SYSTEM_MEMORY_OFFSET_MODULE_FLAG) = SYSTEM_DATA_COMPARE_SIZE0;
   *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_21488) = 0;
   *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_21490) = 0;
   *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_214b8) = 0;
@@ -46177,7 +46223,7 @@ void InitializeUISystem(uint64_t handleIdentifier,uint64_t resourceIdentifier)
     UpdateSystemBuffer(&system_buffer_ptr_small_data,resourceIdentifier);
     system_ptr_value = *(void **)*system_configuration_data;
     if (system_temp_pointer == &systemNextData) {
-      system_initialization_flag = *(int *)(system_configuration_data + SYSTEM_CONFIG_SIZE_C40) != SYSTEM_COMPARISON_ZERO;
+      system_initialization_flag = *(int *)(system_configuration_data + SYSTEM_CONFIG_SIZE_C_FORTY) != SYSTEM_COMPARISON_ZERO;
     }
     else {
       system_initialization_flag = (**(code **)(system_temp_pointer + SYSTEM_DATA_BLOCK_SIZE_50))((uint64_t *)*system_configuration_data);
@@ -46211,7 +46257,7 @@ void ProcessSystemData88(uint64_t handleIdentifier,uint64_t resourceIdentifier)
     UpdateSystemBuffer(&system_buffer_ptr_small_data,resourceIdentifier);
     system_ptr_value = *(void **)*system_configuration_data;
     if (system_temp_pointer == &systemNextData) {
-      system_initialization_flag = *(int *)(system_configuration_data + SYSTEM_CONFIG_SIZE_C40) != SYSTEM_COMPARISON_ZERO;
+      system_initialization_flag = *(int *)(system_configuration_data + SYSTEM_CONFIG_SIZE_C_FORTY) != SYSTEM_COMPARISON_ZERO;
     }
     else {
       system_initialization_flag = (**(code **)(system_temp_pointer + SYSTEM_DATA_BLOCK_SIZE_50))((uint64_t *)*system_configuration_data);
@@ -46245,7 +46291,7 @@ void ValidateSystemConfiguration(uint64_t handleIdentifier,uint32_t resourceIden
     UpdateSystemBuffer(&system_buffer_ptr_small_data,system_configuration);
     system_ptr_value = *(void **)*system_configuration_data;
     if (system_temp_pointer == &systemNextData) {
-      system_initialization_flag = *(int *)(system_configuration_data + SYSTEM_CONFIG_SIZE_C40) != SYSTEM_COMPARISON_ZERO;
+      system_initialization_flag = *(int *)(system_configuration_data + SYSTEM_CONFIG_SIZE_C_FORTY) != SYSTEM_COMPARISON_ZERO;
     }
     else {
       system_initialization_flag = (**(code **)(system_temp_pointer + SYSTEM_DATA_BLOCK_SIZE_50))((uint64_t *)*system_configuration_data);
@@ -49529,7 +49575,7 @@ void ProcessSystemData64(longlong handleIdentifier,longlong *resourceIdentifier)
     if (system_long_result != SYSTEM_COMPARISON_ZERO) {
       system_temp_long_result = 0;
       system_boolean_flag = *(byte *)(handleIdentifier + SYSTEM_OFFSET_Fd);
-      system_boolean_flag = (byte)((uint)*(uint32_t *)(*(longlong *)(system_long_result + SYSTEM_OFFSET_1E0) + SYSTEM_CONFIG_SIZE_AUTH88) >> SYSTEM_CONFIG_SIZE_INPUT) << 7;
+      system_boolean_flag = (byte)((uint)*(uint32_t *)(*(longlong *)(system_long_result + SYSTEM_OFFSET_1E0) + SYSTEM_CONFIG_SIZE_AUTH_EIGHTY_EIGHT) >> SYSTEM_CONFIG_SIZE_INPUT) << 7;
       *(byte *)(handleIdentifier + SYSTEM_OFFSET_Fd) = system_boolean_result | system_boolean_result & 0x7f;
       system_operation_result = *(uint *)(system_long_result + SYSTEM_CONFIG_SIZE_PHYSICS8) & SYSTEM_MEMORY_SIZE_3000;
       if (system_status_flag == SYSTEM_DATA_COMPARE_SIZE00) {
@@ -56657,7 +56703,7 @@ void InitializeStringManager(longlong handleIdentifier,longlong resourceIdentifi
   *(uint8_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268) + SYSTEM_OFFSET_18) = *(uint8_t *)(system_configuration + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER8);
   *(uint8_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268) + NODE_INITIALIZED_OFFSET) = *(uint8_t *)(system_configuration + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER9);
   *(uint8_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268) + SYSTEM_CONFIG_SIZE_AUDIO) = *(uint8_t *)(system_configuration + SYSTEM_CONFIG_SIZE_NETWORK_BUFFERa);
-  *(uint32_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268) + SYSTEM_FLAG_BIT_44) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_FINAL8);
+  *(uint32_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268) + SYSTEM_FLAG_BIT_44) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_FINAL_EIGHT);
   *(uint32_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268) + SYSTEM_FLAG_BIT_48) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_FINALc);
   *(uint32_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268) + SYSTEM_FLAG_BIT_4c) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_RENDER0);
   *(uint32_t *)(*(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_268) + SYSTEM_DATA_BLOCK_SIZE_50) = *(uint32_t *)(system_configuration + SYSTEM_CONFIG_SIZE_RENDER4);
@@ -57576,7 +57622,7 @@ code_r0x00018007db1b:
       } while (system_long_result != SYSTEM_COMPARISON_ZERO);
     }
     break;
-  case 0xb:
+  case SYSTEM_CASE_VALUE_B:
     if (0 < system_temp_integer_temp) {
       system_temp_long_result = SYSTEM_DATA_BLOCK_SIZE;
       if (*(int *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_38) < SYSTEM_COMPARISON_ONE) {
@@ -57847,7 +57893,7 @@ void InitializeInputSystem(longlong handleIdentifier,ulonglong resourceIdentifie
           case 6:
           case 7:
           case 10:
-          case 0xb:
+          case SYSTEM_CASE_VALUE_B:
           case SYSTEM_CONFIG_SIZE_C:
           case SYSTEM_CONFIG_SIZE_STATUS:
             ConfigureSystemSettings((longlong)*init_int_pointer_temp,allocation_size,*system_configuration + SYSTEM_OFFSET_18 + (longlong)compare_result * 8);
