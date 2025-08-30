@@ -9940,7 +9940,7 @@ ulonglong validate_memory_address(longlong resource_handle_identifier)
                     }
                   }
                 }
-                utility_temp_unsigned_value = utility_temp_unsigned_value & 0xffffffff00000000;
+                utility_temp_unsigned_value = utility_temp_unsigned_value & UTILITY_MEMORY_MASK_HIGH;
                 if ((int)utility_loop_counter < 0) {
                   utility_loop_counter = -utility_loop_counter;
                 }
@@ -9990,7 +9990,7 @@ process_validation_flag:
     memory_offset_data = (longlong)(local_status_validation + -1);
     if (-1 < local_status_validation + -1) {
       do {
-        utility_temp_unsigned_value = utility_temp_unsigned_value & 0xffffffff00000000;
+        utility_temp_unsigned_value = utility_temp_unsigned_value & UTILITY_MEMORY_MASK_HIGH;
         pointer_local_stack_texture = (longlong *)&g_systemDataStackBuffer;
         utility_stack_int_buffer_primary[0] = *(int *)(validation_flag + memory_offset_data * UTILITY_WORD_SIZE);
         lock_file(&pointer_local_stack_texture,*(uint64 *)(resource_handle_identifier + UTILITY_SYS_STATUS_OFFSET));
@@ -10022,7 +10022,7 @@ process_validation_flag:
         }
       }
     }
-    utility_temp_unsigned_value = utility_temp_unsigned_value & 0xffffffff00000000;
+    utility_temp_unsigned_value = utility_temp_unsigned_value & UTILITY_MEMORY_MASK_HIGH;
     if (utility_iteration_counter < 0) {
       utility_iteration_counter = -utility_iteration_counter;
     }
@@ -12269,7 +12269,7 @@ void ProcessResourceRequest(longlong *resource_handle_identifier)
       }
       utility_temp_int_result = *(int *)(resource_data_buffer_data + UTILITY_SECONDARY_BYTE_OFFSET);
       if (utility_temp_int_result != 1) {
-        utility_temp_unsigned_value = utility_temp_unsigned_value & 0xffffffff00000000;
+        utility_temp_unsigned_value = utility_temp_unsigned_value & UTILITY_MEMORY_MASK_HIGH;
         local_stack_pointer_value = (longlong *)&g_system_data_stack_manager;
         array_stack_variable_value[0] = (longlong *)CONCAT44(array_stack_variable_value[0]._4_4_,utility_temp_int_result);
         resource_count = validate_resource_access(resource_handle_identifier,&local_stack_pointer_value);
@@ -12362,7 +12362,7 @@ void ProcessResourceRequest(longlong *resource_handle_identifier)
                       (ulonglong)*(uint *)((longlong)resource_handle_identifier + UTILITY_BYTE_OFFSET_FLAG);
               threadContextData = resource_handle_identifier[2];
               local_stack_pointer_value = (longlong *)&g_system_data_io_manager;
-              utility_temp_unsigned_value = utility_temp_unsigned_value & 0xffffffff00000000;
+              utility_temp_unsigned_value = utility_temp_unsigned_value & UTILITY_MEMORY_MASK_HIGH;
               resource_handle_identifier[2] = utility_loop_counter;
               array_stack_variable_value[0] = resource_data_buffer_sixth;
               if (threadContextData != 0) {
@@ -18002,7 +18002,7 @@ UTILITY_LABEL_VALIDATION_FAILED:
           utility_loop_counter = utility_temp_unsigned_value._4_4_;
         }
       }
-      utility_temp_unsigned_value = utility_temp_unsigned_value & 0xffffffff00000000;
+      utility_temp_unsigned_value = utility_temp_unsigned_value & UTILITY_MEMORY_MASK_HIGH;
       if ((int)utility_loop_counter < 0) {
         utility_loop_counter = -utility_loop_counter;
       }
@@ -18074,7 +18074,7 @@ UTILITY_LABEL_VALIDATION_FAILED:
         utility_loop_counter = utility_temp_unsigned_value._4_4_;
       }
     }
-    utility_temp_unsigned_value = utility_temp_unsigned_value & 0xffffffff00000000;
+    utility_temp_unsigned_value = utility_temp_unsigned_value & UTILITY_MEMORY_MASK_HIGH;
     if ((int)utility_loop_counter < 0) {
       utility_loop_counter = -utility_loop_counter;
     }
@@ -51311,7 +51311,7 @@ void UtilityUnwindHandler0bCleanup(uint64 resource_handle_identifier,longlong re
   longlong utility_array_index;
   ulonglong system_status_code;
   
-  loop_counter_pointer = *(uint64 **)(*(longlong *)(resource_buffer + utility_data_offset_start) + 0x121c0);
+  loop_counter_pointer = *(uint64 **)(*(longlong *)(resource_buffer + utility_data_offset_start) + UTILITY_RESOURCE_TABLE_OFFSET);
   if (loop_counter_pointer == (uint64 *)UTILITY_NULL_POINTER) {
     return;
   }
@@ -51344,7 +51344,7 @@ void UtilityUnwindHandler0dCleanup(uint64 resource_handle_identifier,longlong re
 {
   longlong *utility_resource_data_pointer;
   
-  utility_resource_data_pointer = *(longlong **)(*(longlong *)(resource_buffer + utility_data_offset_start) + 0x121e0);
+  utility_resource_data_pointer = *(longlong **)(*(longlong *)(resource_buffer + utility_data_offset_start) + UTILITY_RESOURCE_DATA_OFFSET);
   if (utility_resource_data_pointer != (longlong *)UTILITY_NULL_POINTER) {
     (**(code **)(*utility_resource_data_pointer + UTILITY_STRUCTURE_SIZE_OFFSET))();
   }
@@ -80765,7 +80765,7 @@ void execute_game_render_function(uint64 *resource_handle_identifier,longlong re
 bool is_game_object_invalid(uint64 *resource_handle_identifier)
 
 {
-  return *(int *)*resource_handle_identifier == -0x3ffffffb;
+  return *(int *)*resource_handle_identifier == UTILITY_HANDLE_CHECK_VALUE;
 }
 
 
