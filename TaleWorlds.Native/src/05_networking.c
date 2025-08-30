@@ -24295,7 +24295,7 @@ uint64_t networkMulticastData5(uint32_t network_socket_handle)
       else if (network_operation_status_code < network_loop_counter) {
         network_operation_status_code = network_loop_counter;
       network_buffer_size_var = ValidateSocketConnection(network_socket_context_pointer + NETWORK_BUFFER_SIZE_MEDIUM, network_operation_status_code);
-    client_port_address = (longlong)(int)network_socket_context_pointer[3];
+    client_port_address = (longlong)(int)network_socket_context_pointer[NETWORK_SOCKET_INDEX_3];
     network_primary_connection_data = network_socket_context_pointer[NETWORK_BUFFER_SIZE_MEDIUM];
     network_timeout_config_pointer = (int64_t *)(network_primary_connection_data + client_port_address * SESSION_CONFIG_SIZE);
     *network_timeout_config_pointer = network_timeout_milliseconds;
