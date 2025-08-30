@@ -14810,7 +14810,7 @@ int InitializeSystemCore(void)
   _system_error_code = SYSTEM_INIT_VALUE_ZERO;
   _system_operation_flags = SYSTEM_INIT_VALUE_THREE;
   _system_performance_counter = SYSTEM_INIT_VALUE_ZERO;
-  uRam0000000180c960x1058 = SYSTEM_INIT_VALUE_ZERO;
+  system_memory_address_graphics_init = SYSTEM_INIT_VALUE_ZERO;
   _system_debug_flags = SYSTEM_INIT_VALUE_ZERO;
   _system_log_level = SYSTEM_INIT_VALUE_THREE;
   system_setup_graphics_device();
@@ -36998,7 +36998,7 @@ code_rSYSTEM_INIT_VALUE_CHAR_NULL00180060x100e9:
       if (((*(byte *)(*(longlong *)(system_context_param + SYSTEM_INIT_OFFSET_STACK_PARAM) + SYSTEM_INIT_SIZE_MEMORY_CHUNK) & 2) != 0) &&
          (iRam0000000180c912e0 = iRam0000000180c912e0 + -1, iRam0000000180c912e0 == 0)) {
         _system_cache_address = SYSTEM_INIT_VALUE_ZERO;
-        lRam0000000180c912e8 = SYSTEM_INIT_VALUE_ZERO;
+        system_memory_address_console_state = SYSTEM_INIT_VALUE_ZERO;
         LOCK();
         _system_heap_address = SYSTEM_INIT_VALUE_ZERO;
         UNLOCK();
@@ -37071,7 +37071,7 @@ code_rSYSTEM_INIT_VALUE_CHAR_NULL00180060x100e9:
       *(system_uint64_t *)(*(longlong *)(system_context_param + SYSTEM_INIT_OFFSET_STACK_PARAM) + SYSTEM_INIT_SIZE_COMPARE) = *(system_uint64_t *)(system_context_param + );
       break;
     case SYSTEM_INIT_SIZE_MEMORY_CHUNK:
-      if ((_system_cache_address != 0) && (lRam0000000180c912e8 != 0)) {
+      if ((_system_cache_address != 0) && (system_memory_address_console_state != 0)) {
         system_stack_uchar_array_primary[SYSTEM_ARRAY_INDEX_FIRST] = *(uint *)(system_context_param + );
         SetConsoleScreenBufferSize(_system_cache_address,system_stack_uchar_array_primary[SYSTEM_ARRAY_INDEX_FIRST]);
       }
@@ -39969,9 +39969,9 @@ system_uint64_t InitializeSystemCore(longlong system_context_param,longlong syst
         __Throw_C_error_std__YAXH_Z(system_comparison_result);
       }
       InitializeSystemCore(SYSTEM_INIT_OFFSET_STACK_PARAM,system_memory_param);
-      uRam00000000000001f0 = SYSTEM_INIT_VALUE_ZERO;
-      uRam00000000000001e8 = SYSTEM_INIT_VALUE_ZERO;
-      uRam00000000000001e0 = SYSTEM_INIT_VALUE_ZERO;
+      system_memory_address_file_buffer = SYSTEM_INIT_VALUE_ZERO;
+      system_memory_address_temp_buffer = SYSTEM_INIT_VALUE_ZERO;
+      system_memory_address_config_buffer = SYSTEM_INIT_VALUE_ZERO;
       system_char_buffer = InitializeSystemCore(system_context_param,SYSTEM_INIT_OFFSET_STACK_PARAM,SYSTEM_INIT_FLAG_INITIALIZED_QUATERNARY0,SYSTEM_INIT_FLAG_INITIALIZED_QUATERNARY8,SYSTEM_INIT_FLAG_ENABLEDf0);
       if (system_char_buffer == '\0') {
         InitializeSystemCore(system_context_param + 0x1070,0);
@@ -39983,13 +39983,13 @@ system_uint64_t InitializeSystemCore(longlong system_context_param,longlong syst
         _system_alignment_size = SYSTEM_INIT_VALUE_ZERO;
         LOCK();
         _system_cache_size = system_init_flag_network;
-        uRam00000000000001c8 = system_ulong_temp;
-        uRam00000000000001d0 = system_init_flag_audio;
-        uRam00000000000001d8 = system_init_flag_network;
-        lRam00000000000001f8 = system_config_param;
+        system_memory_address_ulong_temp = system_ulong_temp;
+        system_memory_address_flag_audio = system_init_flag_audio;
+        system_memory_address_flag_network = system_init_flag_network;
+        system_memory_address_config_param = system_config_param;
         *(int *)(system_config_param + SYSTEM_INIT_FLAG_SECONDARY_ENABLED0) = *(int *)(system_config_param + SYSTEM_INIT_FLAG_SECONDARY_ENABLED0) + 1;
         UNLOCK();
-        system_comparison_result = ReadFile(*(system_uint64_t *)(system_config_param + SYSTEM_INIT_FLAG_SECONDARY_ENABLED8),uRam00000000000001f0,system_init_flag_audio & SYSTEM_INIT_ERROR_GENERIC,0,
+        system_comparison_result = ReadFile(*(system_uint64_t *)(system_config_param + SYSTEM_INIT_FLAG_SECONDARY_ENABLED8),system_memory_address_file_buffer,system_init_flag_audio & SYSTEM_INIT_ERROR_GENERIC,0,
                          0);
         if (system_comparison_result != 0) {
                     // WARNING: Subroutine does not return
