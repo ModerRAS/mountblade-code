@@ -14206,8 +14206,8 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_FUNCTION_PARAM_SIZE_MEDIUM_BUFFER 0xe0                 // 中等缓冲区大小
 #define SYSTEM_FUNCTION_PARAM_SIZE_SMALL_BUFFER 0x28                  // 小缓冲区大小
 #define SYSTEM_FUNCTION_PARAM_OFFSET_STANDARD 0x0d                    // 标准偏移量
-#define SYSTEM_FUNCTION_PARAM_MULTIPLIER_STANDARD 0x48                // 标准乘数
-#define SYSTEM_FUNCTION_PARAM_MULTIPLIER_STANDARD 0xc0
+#define SYSTEM_FUNCTION_PARAM_MULTIPLIER_STANDARD_PRIMARY 0x48       // 标准乘数主
+#define SYSTEM_FUNCTION_PARAM_MULTIPLIER_STANDARD_SECONDARY 0xc0     // 标准乘数次
 #define SYSTEM_FUNCTION_PARAM_SIZE_STANDARD 0x18
 #define SYSTEM_FUNCTION_PARAM_SHIFT_4 4
 #define SYSTEM_FUNCTION_PARAM_SIZE_EXTENDED 0x19
@@ -14345,31 +14345,31 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_ARRAY_INDEX_VALUE_THIRD 3
 #define SYSTEM_ARRAY_INDEX_VALUE_FOURTH 4
 
-// 颜色处理常量
-#define SYSTEM_FLOAT_COLOR_LUMINANCE_RED 0.2126
-#define SYSTEM_FLOAT_COLOR_LUMINANCE_GREEN 0.7152
-#define SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE 0.0722
+// 颜色处理常量（2025年8月30日最终批次美化）
+#define SYSTEM_FLOAT_COLOR_WEIGHT_RED 0.2126                    // 颜色亮度计算红色权重
+#define SYSTEM_FLOAT_COLOR_WEIGHT_GREEN 0.7152                  // 颜色亮度计算绿色权重
+#define SYSTEM_FLOAT_COLOR_WEIGHT_BLUE 0.0722                   // 颜色亮度计算蓝色权重
 
-// 数学运算常量
-#define SYSTEM_FLOAT_MULTIPLIER_HALF 0.5
-#define SYSTEM_FLOAT_MULTIPLIER_DOUBLE 2.0
-#define SYSTEM_FLOAT_SQRT_APPROX_FACTOR 3.0
+// 数学运算常量（2025年8月30日最终批次美化）
+#define SYSTEM_FLOAT_MULTIPLIER_HALF_VALUE 0.5                  // 乘数0.5（一半）
+#define SYSTEM_FLOAT_MULTIPLIER_DOUBLE_VALUE 2.0                // 乘数2.0（双倍）
+#define SYSTEM_FLOAT_MULTIPLIER_TRIPLE_VALUE 3.0                 // 乘数3.0（三倍）
 
-// 角度常量
-#define SYSTEM_FLOAT_DEG_TO_RAD 0.017453292
-#define SYSTEM_FLOAT_RAD_TO_DEG 57.29578
+// 角度转换常量（2025年8月30日最终批次美化）
+#define SYSTEM_FLOAT_ANGLE_DEGREES_TO_RADIANS 0.017453292           // 角度转弧度转换因子
+#define SYSTEM_FLOAT_ANGLE_RADIANS_TO_DEGREES 57.29578              // 弧度转角度转换因子
 
-// 三角函数常量
-#define SYSTEM_FLOAT_TRIG_FACTOR 0.19634955
+// 三角函数常量（2025年8月30日最终批次美化）
+#define SYSTEM_FLOAT_TRIGONOMETRIC_FACTOR 0.19634955                // 三角函数计算因子
 
-// 调整常量
-#define SYSTEM_FLOAT_ADJUSTMENT_SMALL 0.01
+// 数值调整常量（2025年8月30日最终批次美化）
+#define SYSTEM_FLOAT_ADJUSTMENT_PRECISION_SMALL 0.01               // 小精度调整值
 
-// 扩展转换常量
-#define SYSTEM_FLOAT_CONVERSION_BYTE_TO_FLOAT_HALF SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT
-#define SYSTEM_FLOAT_CONVERSION_FACTOR_1000 SYSTEM_FLOAT_CONVERSION_FACTOR_1000
-#define SYSTEM_FLOAT_CONVERSION_THRESHOLD_12582912 SYSTEM_FLOAT_CONVERSION_THRESHOLD_12582912
-#define SYSTEM_FLOAT_CONVERSION_FACTOR_0_007843138 SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT
+// 数据转换常量（2025年8月30日最终批次美化）
+#define SYSTEM_FLOAT_CONVERSION_BYTE_TO_FLOAT_HALF_FACTOR SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT  // 字节到浮点转换因子半值
+#define SYSTEM_FLOAT_CONVERSION_SCALE_FACTOR_1000 SYSTEM_FLOAT_CONVERSION_FACTOR_1000                 // 1000缩放因子
+#define SYSTEM_FLOAT_CONVERSION_LIMIT_THRESHOLD_12582912 SYSTEM_FLOAT_CONVERSION_THRESHOLD_12582912   // 转换限制阈值
+#define SYSTEM_FLOAT_CONVERSION_NORMALIZATION_FACTOR SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT      // 归一化因子
 
 
 // 数字比较语义化常量（2025年8月30日新增）
@@ -14408,24 +14408,24 @@ void system_data_initialization_cleanup(void)
 
 // 通用常量 - 美化硬编码值（2025年8月30日最终批次）
 
-// 额外美化常量 - 美化硬编码值（2025年8月30日最终批次）
-#define SYSTEM_ELEVEN_VALUE 11            // 值11
-#define SYSTEM_TWELVE_VALUE 12            // 值12
-#define SYSTEM_THIRTEEN_VALUE 13          // 值13
-#define SYSTEM_FOURTEEN_VALUE 14          // 值14
-#define SYSTEM_FIFTEEN_VALUE 15           // 值15
-#define SYSTEM_SIXTEEN_VALUE 16           // 值16
+// 系统数值常量（2025年8月30日最终批次美化）
+#define SYSTEM_NUMERIC_VALUE_ELEVEN 11                           // 数值11
+#define SYSTEM_NUMERIC_VALUE_TWELVE 12                           // 数值12
+#define SYSTEM_NUMERIC_VALUE_THIRTEEN 13                         // 数值13
+#define SYSTEM_NUMERIC_VALUE_FOURTEEN 14                         // 数值14
+#define SYSTEM_NUMERIC_VALUE_FIFTEEN 15                          // 数值15
+#define SYSTEM_NUMERIC_VALUE_SIXTEEN 16                          // 数值16
 
-// 常用大小常量 - 美化硬编码值（2025年8月30日最终批次）
-#define SYSTEM_SIZE_SMALL_32 32           // 小尺寸32
-#define SYSTEM_SIZE_MEDIUM_64 64          // 中等尺寸64
-#define SYSTEM_SIZE_LARGE_128 128         // 大尺寸128
-#define SYSTEM_SIZE_EXTRA_LARGE_256 256   // 特大尺寸256
+// 系统尺寸常量（2025年8月30日最终批次美化）
+#define SYSTEM_SIZE_VALUE_SMALL_32 32                             // 小尺寸32字节
+#define SYSTEM_SIZE_VALUE_MEDIUM_64 64                            // 中等尺寸64字节
+#define SYSTEM_SIZE_VALUE_LARGE_128 128                           // 大尺寸128字节
+#define SYSTEM_SIZE_VALUE_EXTRA_LARGE_256 256                     // 特大尺寸256字节
 
-// 系统缓冲区大小常量 - 美化硬编码值（2025年8月30日最终批次）
-#define SYSTEM_BUFFER_SIZE_16 16          // 缓冲区大小16
-#define SYSTEM_BUFFER_SIZE_32 32          // 缓冲区大小32
-#define SYSTEM_BUFFER_SIZE_64 64          // 缓冲区大小64
+// 系统缓冲区容量常量（2025年8月30日最终批次美化）
+#define SYSTEM_BUFFER_CAPACITY_SMALL_16 16                       // 小缓冲区容量16字节
+#define SYSTEM_BUFFER_CAPACITY_MEDIUM_32 32                      // 中等缓冲区容量32字节
+#define SYSTEM_BUFFER_CAPACITY_LARGE_64 64                        // 大缓冲区容量64字节
 
 // 扩展数值常量 - 美化硬编码值（2025年8月30日最终批次）
 #define SYSTEM_SEVENTEEN_VALUE 17        // 值17
