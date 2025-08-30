@@ -3564,14 +3564,14 @@ ulonglong calculate_memory_allocation(longlong resource_handle_identifier,longlo
         if (utility_long_value_pointer == resource_data_pointer) {
           *(longlong **)(system_resource_handle_primary + utility_buffer_offset) = memory_block_pointer_value;
           cleanup_system_resources(system_resource_handle_primary,memory_block_pointer_value);
-          memory_block_pointer_value[2] = system_resource_handle_primary;
+          memory_block_pointer_value[UTILITY_ARRAY_INDEX_TERTIARY] = system_resource_handle_primary;
           validation_flag = utilityGetMemoryStatus(system_resource_handle_primary);
           if ((int)validation_flag == 0) {
             return 0;
           }
           return validation_flag;
         }
-        if ((int)memory_block_pointer_value[5] <= (int)array_handle_pointer) {
+        if ((int)memory_block_pointer_value[UTILITY_ARRAY_INDEX_SENARY] <= (int)array_handle_pointer) {
           return UTILITY_BYTE_OFFSET_FLAG;
         }
         memory_block_pointer = utility_long_value_pointer + 4;
