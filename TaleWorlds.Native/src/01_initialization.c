@@ -23438,7 +23438,7 @@ void ConfigureGraphicsShader(void)
   }
   *(float *)(system_long_result + SYSTEM_OFFSET_234) = system_float_value;
   system_float_value = SYSTEM_FLOAT_VALUE_POINT_TWO;
-  if ((0.2 <= system_float_result_value) && (system_float_value = system_float_result_value, 1.0 <= system_float_result_value)) {
+  if ((SYSTEM_FLOAT_VALUE_POINT_TWO <= system_float_result_value) && (system_float_value = system_float_result_value, SYSTEM_FLOAT_VALUE_ONE <= system_float_result_value)) {
     system_float_value = SYSTEM_FLOAT_VALUE_ONE;
   }
   *(float *)(system_long_result + SYSTEM_OFFSET_238) = system_float_value;
