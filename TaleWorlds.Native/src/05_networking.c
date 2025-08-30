@@ -10938,7 +10938,7 @@ uint64_t NetworkRemoveFromQueue(void)
       network_timeout_milliseconds = ClearErrorState(network_socket_context_pointer + NETWORK_BUFFER_SIZE_MEDIUM, network_operation_status_code_third_calc);
       if ((int)network_timeout_milliseconds != NETWORK_OPERATION_FAILURE) {
         return network_timeout_milliseconds;
-    server_port_address = (longlong)(int)network_socket_context_pointer[3];
+    server_port_address = (longlong)(int)network_socket_context_pointer[NETWORK_SOCKET_INDEX_3];
     network_processor_main_data = (uint64_t *)(network_timeout_milliseconds + server_port_address * SESSION_CONFIG_SIZE);
     *network_processor_main_data = network_buffer_size_var;
     network_processor_main_data[NETWORK_OPERATION_SUCCESS] = network_data_pointer;
@@ -22761,7 +22761,7 @@ void networkSendDataPacket3(void)
   *(uint32_t *)((longlong)network_socket_context_pointer + -4) = network_operation_status_code_third_prev;
   network_socket_context_pointer[NETWORK_OPERATION_SUCCESS] = network_socket_context_pointer;
   network_socket_context_pointer[NETWORK_BUFFER_SIZE_MEDIUM] = network_socket_context_pointer;
-  network_socket_context_pointer[3] = network_socket_context_pointer;
+  network_socket_context_pointer[NETWORK_SOCKET_INDEX_3] = network_socket_context_pointer;
   *(uint32_t *)(network_socket_context_pointer + NETWORK_DATA_OFFSET) = NETWORK_MAX_SIZE;
   *(uint32_t *)((longlong)network_socket_context_pointer + SOCKET_FLAG_OFFSET) = network_operation_status_code_third_prev;
   network_socket_context_pointer[NETWORK_ARRAY_INDEX_5] = network_socket_context_pointer;
