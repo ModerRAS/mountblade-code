@@ -14369,20 +14369,20 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_FLOAT_CONVERSION_FACTOR_0_007843138 0.007843138
 
 
-// 特殊偏移量常量 - 美化硬编码值（2025年8月30日最终批次）
+// 通用偏移量常量 - 美化硬编码值（2025年8月30日最终批次）
 // 简化实现：仅将常见的硬编码偏移量替换为语义化常量
 // 原本实现：完全重构所有偏移量常量体系
-#define SYSTEM_OFFSET_0XC 0xc              // 通用偏移量0xc
-#define SYSTEM_OFFSET_0X12 0x12            // 通用偏移量0x12
-#define SYSTEM_OFFSET_0X58 0x58            // 通用偏移量0x58
-#define SYSTEM_OFFSET_0X7C 0x7c            // 通用偏移量0x7c
-#define SYSTEM_OFFSET_0X11 0x11            // 通用偏移量0x11
-#define SYSTEM_OFFSET_0X13 0x13            // 通用偏移量0x13
-#define SYSTEM_OFFSET_0X15 0x15            // 通用偏移量0x15
+#define SYSTEM_OFFSET_STACK_POINTER 0xc              // 栈指针偏移量
+#define SYSTEM_OFFSET_FRAME_POINTER 0x12            // 帧指针偏移量
+#define SYSTEM_OFFSET_RETURN_ADDRESS 0x58            // 返回地址偏移量
+#define SYSTEM_OFFSET_LOCAL_VARIABLE 0x7c            // 局部变量偏移量
+#define SYSTEM_OFFSET_PARAMETER_1 0x11            // 第一个参数偏移量
+#define SYSTEM_OFFSET_PARAMETER_2 0x13            // 第二个参数偏移量
+#define SYSTEM_OFFSET_PARAMETER_3 0x15            // 第三个参数偏移量
 
 // 特殊值常量 - 美化硬编码值（2025年8月30日最终批次）
-#define SYSTEM_SPECIAL_VALUE_65 65         // 特殊值65
-#define SYSTEM_SPECIAL_VALUE_0X2720 0x2720  // 特殊值0x2720
+#define SYSTEM_SPECIAL_VALUE_ASCII_A 65         // ASCII字符'A'的值
+#define SYSTEM_SPECIAL_VALUE_TIMEOUT_10S 0x2720  // 10秒超时值（10000毫秒）
 
 // 通用常量 - 美化硬编码值（2025年8月30日最终批次）
 #define SYSTEM_ONE_VALUE 1                // 值1
