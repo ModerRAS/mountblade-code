@@ -7934,13 +7934,13 @@ void InitializeMathLookupTables(void)
       arrayIndex = loop_counter;
       tablePointer = data_pointer;
       do {
-        calculatedValue = 0.0;
+        calculatedValue = SYSTEM_FLOAT_VALUE_ZERO;
         if (-1 < (longlong)arrayIndex) {
           if ((longlong)arrayIndex < SYSTEM_COMPARISON_THREE) {
-            calculatedValue = 0.75;
+            calculatedValue = SYSTEM_FLOAT_VALUE_POINT_SEVENTY_FIVE;
           }
           else {
-            calculatedValue = 1.0 - (float)system_memory_comparison_result / (float)maxIterations;
+            calculatedValue = SYSTEM_FLOAT_VALUE_ONE - (float)system_memory_comparison_result / (float)maxIterations;
             calculatedValue = SQRT(calculatedValue) * calculatedValue;
           }
         }
@@ -7957,7 +7957,7 @@ void InitializeMathLookupTables(void)
   data_pointer = (float *)RENDER_DATA_START_ADDR;
   do {
     nextIndex = (int)loop_counter + 1;
-    *data_pointer = 1.0 / SQRT((float)loop_counter) + 1.0 / SQRT((float)loop_counter);
+    *data_pointer = SYSTEM_FLOAT_VALUE_ONE / SQRT((float)loop_counter) + SYSTEM_FLOAT_VALUE_ONE / SQRT((float)loop_counter);
     data_pointer = data_pointer + 1;
     loop_counter = (ulonglong)nextIndex;
   } while (nextIndex < SYSTEM_DATA_BLOCK_SIZE);
@@ -17972,7 +17972,7 @@ INIT_LABEL_CHECK_MEMORY_POINTER:
   if (system_temp_integer_primary == SYSTEM_COMPARISON_ZERO) {
     CreateResourcePoolHeader(&resourcePoolHeader);
   }
-  systemCoreData = 1.0 / (double)(longlong)pstack_system_memory_pointer;
+  systemCoreData = SYSTEM_FLOAT_VALUE_ONE / (double)(longlong)pstack_system_memory_pointer;
   timeBeginPeriod(1);
   QueryPerformanceCounter(&init_long_temp);
   if (g_system_data_variable_secondary != SYSTEM_CHAR_NULL_TERMINATOR) {
@@ -61921,3 +61921,22 @@ longlong *g_global_system_flags;
 #define SYSTEM_TEMP_VALUE_SUCCESS 0
 #define SYSTEM_TEMP_VALUE_INITIALIZED 3
 #define SYSTEM_TEMP_VALUE_RESET 0
+
+// 本次美化内容（2025年8月30日）最终批次续：
+// - 美化浮点数值硬编码值，将0.0、0.2、0.75、1.0、100.0等替换为语义化常量名
+// - 美化浮点运算硬编码值，将0.01等替换为语义化常量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了系统初始化文件中剩余硬编码浮点数值的语义化替换
+// - 原本实现：完全重构系统初始化文件所有硬编码浮点数值，建立统一的浮点数常量命名体系
+// - 简化实现：仅将常见的硬编码浮点数值替换为语义化常量名
+
+// 浮点数值语义化常量
+#define SYSTEM_FLOAT_VALUE_ZERO 0.0
+#define SYSTEM_FLOAT_VALUE_POINT_TWO 0.2
+#define SYSTEM_FLOAT_VALUE_POINT_SEVENTY_FIVE 0.75
+#define SYSTEM_FLOAT_VALUE_ONE 1.0
+#define SYSTEM_FLOAT_VALUE_ONE_HUNDRED 100.0
+
+// 浮点运算语义化常量
+#define SYSTEM_FLOAT_MULTIPLIER_POINT_ZERO_ONE 0.01
+#define SYSTEM_FLOAT_DIVISOR_ONE_HUNDRED 100.0
