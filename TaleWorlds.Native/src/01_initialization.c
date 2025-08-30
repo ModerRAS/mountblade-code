@@ -1,5 +1,16 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 最新美化内容：
+// - 将uintStack_2f8替换为init_stack_uint_offset_2f8等栈偏移量变量名
+// - 将uintStack_418替换为init_stack_uint_config_offset_418等配置偏移量变量名
+// - 将uintStack_3b8替换为init_stack_uint_thread_local_size_3b8等线程本地大小变量名
+// - 将uintStack_358替换为init_stack_uint_thread_local_size_358等线程本地大小变量名
+// - 将uintStack_20替换为init_stack_uint_parameter_20等参数变量名
+// - 将uintStack_10替换为init_stack_uint_config_value_10等配置值变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了栈变量名的语义化替换
+
 // 系统常量语义化定义
 #define SYSTEM_INVALID_HANDLE_VALUE 0xFFFFFFFFFFFFFFFF
 #define SYSTEM_MAX_UINT32_VALUE 0xFFFFFFFF
