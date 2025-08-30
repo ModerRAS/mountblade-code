@@ -101,6 +101,15 @@
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了寄存器变量名的语义化替换
 
+// 最新美化内容：
+// - 将LAB_1808fd14a等十六进制地址标签替换为INIT_LABEL_CHECK_STORAGE_VALUE等语义化名称
+// - 将ptr_ptr_ptr_ptr_ptr_long_var3等复杂指针变量名替换为system_memory_allocator_ptr等清晰名称
+// - 将is_initialized1等变量名替换为is_initialized_flag等标准化名称
+// - 将long_result等通用结果变量名替换为system_long_result等系统相关名称
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了标签名和变量名的最终语义化替换
+
 // 地址常量定义
 #define AUDIO_SYSTEM_BASE_ADDR 0x180c91700
 #define INPUT_SYSTEM_BASE_ADDR 0x180c91800
