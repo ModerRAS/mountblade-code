@@ -275,8 +275,13 @@
 #define UTILITY_RESOURCE_DATA_OFFSET_ALT 0x19
 
 // 新增语义化宏定义 - 替换寄存器变量名
-#define UTILITY_REGISTER_R10 UTILITY_REGISTER_R10
-#define UTILITY_REGISTER_ZF UTILITY_REGISTER_ZF
+#define UTILITY_REGISTER_R10 in_R10
+#define UTILITY_REGISTER_ZF in_ZF
+
+// 新增语义化宏定义 - 替换局部变量名
+#define UTILITY_LOCAL_RESOURCE_BUFFER UTILITY_LOCAL_RESOURCE_BUFFER
+#define UTILITY_LOCAL_PROCESS_BUFFER local_process_buffer
+#define UTILITY_LOCAL_SECURITY_BUFFER local_security_buffer
 
 // 新增语义化宏定义 - 替换十六进制地址变量名
 #define UTILITY_GLOBAL_MEMORY_CLEAR_FLAG uRam0000000180d499c0
@@ -4434,7 +4439,7 @@ void seek_file_position(longlong resource_handle_identifier,uint64 resource_buff
 {
   int utility_operation_status;
   uint64 utility_stack_byte_buffer_primary [4];
-  uint32 local_resource_buffer [2];
+  uint32 UTILITY_LOCAL_RESOURCE_BUFFER [2];
   uint64 fileDataOffset;
   uint32 fileHandleOffset;
   
@@ -4572,7 +4577,7 @@ ulonglong create_directory(longlong resource_handle_identifier,uint64 resource_b
   ulonglong utility_loop_counter;
   longlong utility_array_index;
   uint64 UTILITY_REGISTER_R8;
-  uint32 local_resource_buffer [2];
+  uint32 UTILITY_LOCAL_RESOURCE_BUFFER [2];
   longlong utility_stack_buffer_offset;
   int utility_temp_signed_value;
   
@@ -11854,7 +11859,7 @@ void CreateResourceInstance(longlong *resource_handle_identifier,longlong resour
   int utility_temp_int_result;
   int resource_count;
   byte local_security_buffer [32];
-  uint32 local_resource_buffer [2];
+  uint32 UTILITY_LOCAL_RESOURCE_BUFFER [2];
   data_value *local_pointer;
   uint32 utility_loop_temp_counter;
   uint32 utility_loop_temp_counter;
@@ -20898,7 +20903,7 @@ uint64 ProcessSystemValidation(uint64 resource_handle_identifier,longlong *memor
   uint64 utility_loop_counter;
   int utility_stack_resource_size_buffer [2];
   uint utility_stack_data_buffer_primary [2];
-  uint32 local_resource_buffer [2];
+  uint32 UTILITY_LOCAL_RESOURCE_BUFFER [2];
   longlong utility_local_stack_resource_offset;
   byte local_security_buffer [32];
   byte local_security_buffer [32];
@@ -24239,7 +24244,7 @@ ulonglong InitializeTaskOperator(longlong resource_handle_identifier,longlong *m
   ulonglong system_status_code;
   uint16_t utility_stack_resource_buffer_primary [4];
   uint16_t utility_stack_data_buffer_primary [4];
-  uint32 local_resource_buffer [2];
+  uint32 UTILITY_LOCAL_RESOURCE_BUFFER [2];
   uint32 utility_loop_temp_counter;
   uint32 utility_loop_temp_counter;
   uint32 utility_loop_temp_counter;

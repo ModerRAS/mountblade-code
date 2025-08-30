@@ -1724,12 +1724,12 @@ void InitializeAudioNode(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_audio_init_function;
+  init_function_pointer_temp = get_audio_init_function;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -1754,7 +1754,7 @@ void InitializeAudioNode(void)
   node_previous[7] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
   node_previous[8] = &g_system_node;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeNetworkNode(void)
@@ -1918,12 +1918,12 @@ void InitializeRenderingSystem_18002d320(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_input_init_function;
+  init_function_pointer_temp = get_input_init_function;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -1948,7 +1948,7 @@ void InitializeRenderingSystem_18002d320(void)
   node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // 初始化音频系统函数
@@ -1964,12 +1964,12 @@ void InitializeAudioSystem_18002d420(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_network_init_function;
+  init_function_pointer_temp = get_network_init_function;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -1994,7 +1994,7 @@ void InitializeAudioSystem_18002d420(void)
   node_previous[7] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 3;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 
@@ -2040,12 +2040,12 @@ void InitializeNetworkSystem_18002d5e0(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_1;
+  init_function_pointer_temp = get_resource_init_function_1;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -2070,7 +2070,7 @@ void InitializeNetworkSystem_18002d5e0(void)
   node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 1;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void initialize_system_phase1(void)
@@ -2087,12 +2087,12 @@ void initialize_system_phase1(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_2;
+  init_function_pointer_temp = get_resource_init_function_2;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -2117,7 +2117,7 @@ void initialize_system_phase1(void)
   node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void initialize_system_phase2(void)
@@ -2181,12 +2181,12 @@ void initialize_system_phase3(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_3;
+  init_function_pointer_temp = get_resource_init_function_3;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -2211,7 +2211,7 @@ void initialize_system_phase3(void)
   node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void initialize_system_phase4(void)
@@ -2369,12 +2369,12 @@ void initialize_system_phase7(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_4;
+  init_function_pointer_temp = get_resource_init_function_4;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -2399,7 +2399,7 @@ void initialize_system_phase7(void)
   node_previous[7] = SYSTEM_NODE_ID_PHYSICS_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void initialize_system_phase8(void)
@@ -2416,12 +2416,12 @@ void initialize_system_phase8(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_5;
+  init_function_pointer_temp = get_resource_init_function_5;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -2446,7 +2446,7 @@ void initialize_system_phase8(void)
   node_previous[7] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void initialize_system_phase9(void)
@@ -2463,12 +2463,12 @@ void initialize_system_phase9(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_input_init_function;
+  init_function_pointer_temp = get_input_init_function;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -2493,7 +2493,7 @@ void initialize_system_phase9(void)
   node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void initialize_system_phase10(void)
@@ -2510,12 +2510,12 @@ void initialize_system_phase10(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_network_init_function;
+  init_function_pointer_temp = get_network_init_function;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -2540,7 +2540,7 @@ void initialize_system_phase10(void)
   node_previous[7] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 3;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void initialize_graphics_phase1(void)
@@ -2604,12 +2604,12 @@ void initialize_graphics_phase2(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_6;
+  init_function_pointer_temp = get_resource_init_function_6;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -2634,7 +2634,7 @@ void initialize_graphics_phase2(void)
   node_previous[7] = SYSTEM_NODE_ID_RESOURCE_MANAGER_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void initialize_graphics_phase3(void)
@@ -2651,12 +2651,12 @@ void initialize_graphics_phase3(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_7;
+  init_function_pointer_temp = get_resource_init_function_7;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -2681,7 +2681,7 @@ void initialize_graphics_phase3(void)
   node_previous[7] = SYSTEM_NODE_ID_EVENT_HANDLER_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 3;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -2727,12 +2727,12 @@ void InitializeDataNode(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_1;
+  init_function_pointer_temp = get_resource_init_function_1;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -2757,7 +2757,7 @@ void InitializeDataNode(void)
   node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 1;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeResourceNode(void)
@@ -2774,12 +2774,12 @@ void InitializeResourceNode(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_2;
+  init_function_pointer_temp = get_resource_init_function_2;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -2804,7 +2804,7 @@ void InitializeResourceNode(void)
   node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeMemoryNode(void)
@@ -2868,12 +2868,12 @@ void InitializeThreadNode(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_3;
+  init_function_pointer_temp = get_resource_init_function_3;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -2898,7 +2898,7 @@ void InitializeThreadNode(void)
   node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeConfigNode(void)
@@ -3056,12 +3056,12 @@ void InitializeCacheNode(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_5;
+  init_function_pointer_temp = get_resource_init_function_5;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -3086,7 +3086,7 @@ void InitializeCacheNode(void)
   node_previous[7] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializePoolNode(void)
@@ -3103,12 +3103,12 @@ void InitializePoolNode(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_1;
+  init_function_pointer_temp = get_resource_init_function_1;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -3133,7 +3133,7 @@ void InitializePoolNode(void)
   node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 1;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeQueueNode(void)
@@ -3150,12 +3150,12 @@ void InitializeQueueNode(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_2;
+  init_function_pointer_temp = get_resource_init_function_2;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -3180,7 +3180,7 @@ void InitializeQueueNode(void)
   node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeStackNode(void)
@@ -3244,12 +3244,12 @@ void InitializeSystemListNode(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_3;
+  init_function_pointer_temp = get_resource_init_function_3;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -3274,7 +3274,7 @@ void InitializeSystemListNode(void)
   node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeTreeNode(void)
@@ -3432,12 +3432,12 @@ void InitializeSetNode(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_1;
+  init_function_pointer_temp = get_resource_init_function_1;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -3462,7 +3462,7 @@ void InitializeSetNode(void)
   node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 1;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeArrayNode(void)
@@ -3479,12 +3479,12 @@ void InitializeArrayNode(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_2;
+  init_function_pointer_temp = get_resource_init_function_2;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -3509,7 +3509,7 @@ void InitializeArrayNode(void)
   node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeVectorNode(void)
@@ -3573,12 +3573,12 @@ void InitializeMatrixNode(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_3;
+  init_function_pointer_temp = get_resource_init_function_3;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -3603,7 +3603,7 @@ void InitializeMatrixNode(void)
   node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeHashNode(void)
@@ -3808,12 +3808,12 @@ void InitializeAttributeNode(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_5;
+  init_function_pointer_temp = get_resource_init_function_5;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -3838,7 +3838,7 @@ void InitializeAttributeNode(void)
   node_previous[7] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializePropertyNode(void)
@@ -3855,12 +3855,12 @@ void InitializePropertyNode(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_1;
+  init_function_pointer_temp = get_resource_init_function_1;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -3885,7 +3885,7 @@ void InitializePropertyNode(void)
   node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 1;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeMethodNode(void)
@@ -3902,12 +3902,12 @@ void InitializeMethodNode(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_2;
+  init_function_pointer_temp = get_resource_init_function_2;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -3932,7 +3932,7 @@ void InitializeMethodNode(void)
   node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeEventNode(void)
@@ -3996,12 +3996,12 @@ void InitializeDelegateNode(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_3;
+  init_function_pointer_temp = get_resource_init_function_3;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -4026,7 +4026,7 @@ void InitializeDelegateNode(void)
   node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeCallbackNode(void)
@@ -4213,12 +4213,12 @@ void InitializeSystemObject1(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_input_init_function;
+  init_function_pointer_temp = get_input_init_function;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -4243,7 +4243,7 @@ void InitializeSystemObject1(void)
   node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemObject2(void)
@@ -4260,12 +4260,12 @@ void InitializeSystemObject2(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_network_init_function;
+  init_function_pointer_temp = get_network_init_function;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -4290,7 +4290,7 @@ void InitializeSystemObject2(void)
   node_previous[7] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 3;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemObject3(void)
@@ -4307,12 +4307,12 @@ void InitializeSystemObject3(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_input_init_function;
+  init_function_pointer_temp = get_input_init_function;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -4337,7 +4337,7 @@ void InitializeSystemObject3(void)
   node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemObject4(void)
@@ -4354,12 +4354,12 @@ void InitializeSystemObject4(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_network_init_function;
+  init_function_pointer_temp = get_network_init_function;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -4384,7 +4384,7 @@ void InitializeSystemObject4(void)
   node_previous[7] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 3;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemObject5(void)
@@ -4401,12 +4401,12 @@ void InitializeSystemObject5(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_1;
+  init_function_pointer_temp = get_resource_init_function_1;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -4431,7 +4431,7 @@ void InitializeSystemObject5(void)
   node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 1;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemObject6(void)
@@ -4448,12 +4448,12 @@ void InitializeSystemObject6(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_2;
+  init_function_pointer_temp = get_resource_init_function_2;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -4478,7 +4478,7 @@ void InitializeSystemObject6(void)
   node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemObject7(void)
@@ -4542,12 +4542,12 @@ void InitializeSystemObject8(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_3;
+  init_function_pointer_temp = get_resource_init_function_3;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -4572,7 +4572,7 @@ void InitializeSystemObject8(void)
   node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemObject9(void)
@@ -4749,12 +4749,12 @@ void InitializeThreadConfig2(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_1;
+  init_function_pointer_temp = get_resource_init_function_1;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -4779,7 +4779,7 @@ void InitializeThreadConfig2(void)
   node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 1;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemObject13(void)
@@ -4796,12 +4796,12 @@ void InitializeSystemObject13(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_2;
+  init_function_pointer_temp = get_resource_init_function_2;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -4826,7 +4826,7 @@ void InitializeSystemObject13(void)
   node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemObject14(void)
@@ -4890,12 +4890,12 @@ void InitializeSystemObject15(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_3;
+  init_function_pointer_temp = get_resource_init_function_3;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -4920,7 +4920,7 @@ void InitializeSystemObject15(void)
   node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemObject16(void)
@@ -5202,12 +5202,12 @@ void InitializeSystemObject25(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_6;
+  init_function_pointer_temp = get_resource_init_function_6;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -5232,7 +5232,7 @@ void InitializeSystemObject25(void)
   node_previous[7] = SYSTEM_NODE_ID_RESOURCE_MANAGER_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void EnableInputDevice(void)
@@ -5249,12 +5249,12 @@ void EnableInputDevice(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_7;
+  init_function_pointer_temp = get_resource_init_function_7;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -5279,7 +5279,7 @@ void EnableInputDevice(void)
   node_previous[7] = SYSTEM_NODE_ID_EVENT_HANDLER_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 3;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void DisableInputDevice(void)
@@ -5296,12 +5296,12 @@ void DisableInputDevice(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_1;
+  init_function_pointer_temp = get_resource_init_function_1;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -5326,7 +5326,7 @@ void DisableInputDevice(void)
   node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 1;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeNetworkSystem(void)
@@ -5343,12 +5343,12 @@ void InitializeNetworkSystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_2;
+  init_function_pointer_temp = get_resource_init_function_2;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -5373,7 +5373,7 @@ void InitializeNetworkSystem(void)
   node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void CreateNetworkSocket(void)
@@ -5437,12 +5437,12 @@ void DestroyNetworkSocket(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_3;
+  init_function_pointer_temp = get_resource_init_function_3;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -5467,7 +5467,7 @@ void DestroyNetworkSocket(void)
   node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void ConnectNetworkSocket(void)
@@ -5625,12 +5625,12 @@ void ReceiveNetworkData(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_1;
+  init_function_pointer_temp = get_resource_init_function_1;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -5655,7 +5655,7 @@ void ReceiveNetworkData(void)
   node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 1;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void GetNetworkStatus(void)
@@ -5672,12 +5672,12 @@ void GetNetworkStatus(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_2;
+  init_function_pointer_temp = get_resource_init_function_2;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -5702,7 +5702,7 @@ void GetNetworkStatus(void)
   node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void SetNetworkTimeout(void)
@@ -5766,12 +5766,12 @@ void FlushNetworkBuffer(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_3;
+  init_function_pointer_temp = get_resource_init_function_3;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -5796,7 +5796,7 @@ void FlushNetworkBuffer(void)
   node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemModule18(void)
@@ -6008,12 +6008,12 @@ void InitializeAudioSubsystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_5;
+  init_function_pointer_temp = get_resource_init_function_5;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -6038,7 +6038,7 @@ void InitializeAudioSubsystem(void)
   node_previous[7] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeVideoSubsystem(void)
@@ -6055,12 +6055,12 @@ void InitializeVideoSubsystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_4;
+  init_function_pointer_temp = get_resource_init_function_4;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -6085,7 +6085,7 @@ void InitializeVideoSubsystem(void)
   node_previous[7] = SYSTEM_NODE_ID_PHYSICS_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeInputSubsystem(void)
@@ -6102,12 +6102,12 @@ void InitializeInputSubsystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_input_init_function;
+  init_function_pointer_temp = get_input_init_function;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -6132,7 +6132,7 @@ void InitializeInputSubsystem(void)
   node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeNetworkSystem(void)
@@ -6149,12 +6149,12 @@ void InitializeNetworkSystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_network_init_function;
+  init_function_pointer_temp = get_network_init_function;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -6179,7 +6179,7 @@ void InitializeNetworkSystem(void)
   node_previous[7] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 3;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeConfigSubsystem(void)
@@ -6196,12 +6196,12 @@ void InitializeConfigSubsystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_1;
+  init_function_pointer_temp = get_resource_init_function_1;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -6226,7 +6226,7 @@ void InitializeConfigSubsystem(void)
   node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 1;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeFontSubsystem(void)
@@ -6243,12 +6243,12 @@ void InitializeFontSubsystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_2;
+  init_function_pointer_temp = get_resource_init_function_2;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -6273,7 +6273,7 @@ void InitializeFontSubsystem(void)
   node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeShaderSubsystem(void)
@@ -6337,12 +6337,12 @@ void InitializePhysicsSubsystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_3;
+  init_function_pointer_temp = get_resource_init_function_3;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -6367,7 +6367,7 @@ void InitializePhysicsSubsystem(void)
   node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeUISubsystem(void)
@@ -6525,12 +6525,12 @@ void ValidateSystemConfiguration(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_6;
+  init_function_pointer_temp = get_resource_init_function_6;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -6555,7 +6555,7 @@ void ValidateSystemConfiguration(void)
   node_previous[7] = SYSTEM_NODE_ID_RESOURCE_MANAGER_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemTimer(void)
@@ -6572,12 +6572,12 @@ void InitializeSystemTimer(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_7;
+  init_function_pointer_temp = get_resource_init_function_7;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -6602,7 +6602,7 @@ void InitializeSystemTimer(void)
   node_previous[7] = SYSTEM_NODE_ID_EVENT_HANDLER_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 3;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemLogger(void)
@@ -6619,12 +6619,12 @@ void InitializeSystemLogger(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_1;
+  init_function_pointer_temp = get_resource_init_function_1;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -6649,7 +6649,7 @@ void InitializeSystemLogger(void)
   node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 1;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemProfiler(void)
@@ -6666,12 +6666,12 @@ void InitializeSystemProfiler(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_2;
+  init_function_pointer_temp = get_resource_init_function_2;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -6696,7 +6696,7 @@ void InitializeSystemProfiler(void)
   node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeAudioSystem(void)
@@ -6760,12 +6760,12 @@ void InitializeVideoSystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_3;
+  init_function_pointer_temp = get_resource_init_function_3;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -6790,7 +6790,7 @@ void InitializeVideoSystem(void)
   node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeInputSystem(void)
@@ -6948,12 +6948,12 @@ void InitializeSystemModule42(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_4;
+  init_function_pointer_temp = get_resource_init_function_4;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -6978,7 +6978,7 @@ void InitializeSystemModule42(void)
   node_previous[7] = SYSTEM_NODE_ID_PHYSICS_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemModule43(void)
@@ -6995,12 +6995,12 @@ void InitializeSystemModule43(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_5;
+  init_function_pointer_temp = get_resource_init_function_5;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -7025,7 +7025,7 @@ void InitializeSystemModule43(void)
   node_previous[7] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemModule44(void)
@@ -7042,12 +7042,12 @@ void InitializeSystemModule44(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_6;
+  init_function_pointer_temp = get_resource_init_function_6;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -7072,7 +7072,7 @@ void InitializeSystemModule44(void)
   node_previous[7] = SYSTEM_NODE_ID_RESOURCE_MANAGER_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemModule45(void)
@@ -7089,12 +7089,12 @@ void InitializeSystemModule45(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_7;
+  init_function_pointer_temp = get_resource_init_function_7;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -7119,7 +7119,7 @@ void InitializeSystemModule45(void)
   node_previous[7] = SYSTEM_NODE_ID_EVENT_HANDLER_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 3;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemModule46(void)
@@ -7183,12 +7183,12 @@ void UtilityModule1(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_1;
+  init_function_pointer_temp = get_resource_init_function_1;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -7213,7 +7213,7 @@ void UtilityModule1(void)
   node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 1;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void UtilityModule2(void)
@@ -7230,12 +7230,12 @@ void UtilityModule2(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_2;
+  init_function_pointer_temp = get_resource_init_function_2;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -7260,7 +7260,7 @@ void UtilityModule2(void)
   node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void UtilityModule3(void)
@@ -7324,12 +7324,12 @@ void UtilityModule4(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_3;
+  init_function_pointer_temp = get_resource_init_function_3;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -7354,7 +7354,7 @@ void UtilityModule4(void)
   node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void UtilityModule5(void)
@@ -7579,12 +7579,12 @@ void InitializeShaderSystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_1;
+  init_function_pointer_temp = get_resource_init_function_1;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -7609,7 +7609,7 @@ void InitializeShaderSystem(void)
   node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 1;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializePhysicsSystem(void)
@@ -7626,12 +7626,12 @@ void InitializePhysicsSystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_2;
+  init_function_pointer_temp = get_resource_init_function_2;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -7656,7 +7656,7 @@ void InitializePhysicsSystem(void)
   node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void ProcessGraphicsTexture(void)
@@ -7720,12 +7720,12 @@ void InitializeUISystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_3;
+  init_function_pointer_temp = get_resource_init_function_3;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -7750,7 +7750,7 @@ void InitializeUISystem(void)
   node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSecuritySystem(void)
@@ -7974,12 +7974,12 @@ void InitializeSystemTimer(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = InitializeSystemNode;
+  init_function_pointer_temp = InitializeSystemNode;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -8004,7 +8004,7 @@ void InitializeSystemTimer(void)
   node_previous[7] = dataNodeSignatureSecondary;
   node_previous[8] = &defaultInitializationFunction;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemLogger(void)
@@ -8350,12 +8350,12 @@ void InitializeAudioSystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_audio_init_function;
+  init_function_pointer_temp = get_audio_init_function;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -8380,7 +8380,7 @@ void InitializeAudioSystem(void)
   node_previous[7] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
   node_previous[8] = &g_system_node;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeVideoSystem(void)
@@ -8444,12 +8444,12 @@ void InitializeInputSystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_5;
+  init_function_pointer_temp = get_resource_init_function_5;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -8474,7 +8474,7 @@ void InitializeInputSystem(void)
   node_previous[7] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -8662,12 +8662,12 @@ void InitializeResourceSystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_1;
+  init_function_pointer_temp = get_resource_init_function_1;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -8692,7 +8692,7 @@ void InitializeResourceSystem(void)
   node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 1;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeTextureSystem(void)
@@ -8709,12 +8709,12 @@ void InitializeTextureSystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_2;
+  init_function_pointer_temp = get_resource_init_function_2;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -8739,7 +8739,7 @@ void InitializeTextureSystem(void)
   node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeStringManagerSystem(void)
@@ -8803,12 +8803,12 @@ void InitializeMemoryManagerSystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_3;
+  init_function_pointer_temp = get_resource_init_function_3;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -8833,7 +8833,7 @@ void InitializeMemoryManagerSystem(void)
   node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeThreadManagerSystem(void)
@@ -8991,12 +8991,12 @@ void InitializeDatabaseSystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_1;
+  init_function_pointer_temp = get_resource_init_function_1;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -9021,7 +9021,7 @@ void InitializeDatabaseSystem(void)
   node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 1;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void SetupGraphicsDevice(void)
@@ -9038,12 +9038,12 @@ void SetupGraphicsDevice(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_2;
+  init_function_pointer_temp = get_resource_init_function_2;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -9068,7 +9068,7 @@ void SetupGraphicsDevice(void)
   node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeGraphicsSystem(void)
@@ -9132,12 +9132,12 @@ void InitializeAudioManagerSystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_3;
+  init_function_pointer_temp = get_resource_init_function_3;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -9162,7 +9162,7 @@ void InitializeAudioManagerSystem(void)
   node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeNetworkManagerSystem(void)
@@ -9320,12 +9320,12 @@ void InitializeRenderSystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_1;
+  init_function_pointer_temp = get_resource_init_function_1;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -9350,7 +9350,7 @@ void InitializeRenderSystem(void)
   node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 1;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeGameSystem(void)
@@ -9367,12 +9367,12 @@ void InitializeGameSystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_2;
+  init_function_pointer_temp = get_resource_init_function_2;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -9397,7 +9397,7 @@ void InitializeGameSystem(void)
   node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemDataNode15(void)
@@ -9461,12 +9461,12 @@ void ConfigureGraphicsShader(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_3;
+  init_function_pointer_temp = get_resource_init_function_3;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -9491,7 +9491,7 @@ void ConfigureGraphicsShader(void)
   node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemDataNode17(void)
@@ -9649,12 +9649,12 @@ void InitializeSystemDataNode18(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_1;
+  init_function_pointer_temp = get_resource_init_function_1;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -9679,7 +9679,7 @@ void InitializeSystemDataNode18(void)
   node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 1;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemDataNode19(void)
@@ -9696,12 +9696,12 @@ void InitializeSystemDataNode19(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_2;
+  init_function_pointer_temp = get_resource_init_function_2;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -9726,7 +9726,7 @@ void InitializeSystemDataNode19(void)
   node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemModule58(void)
@@ -9790,12 +9790,12 @@ void InitializeSystemModule40(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_3;
+  init_function_pointer_temp = get_resource_init_function_3;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -9820,7 +9820,7 @@ void InitializeSystemModule40(void)
   node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemDataNode22(void)
@@ -9978,12 +9978,12 @@ void InitializeSystemDataNode25(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = InitializeSystemNode;
+  init_function_pointer_temp = InitializeSystemNode;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -10008,7 +10008,7 @@ void InitializeSystemDataNode25(void)
   node_previous[7] = dataNodeSignatureSecondary;
   node_previous[8] = &defaultInitializationFunction;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void ConfigureGraphicsParameters(void)
@@ -10354,12 +10354,12 @@ void InitializeSystemDataNode30(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_audio_init_function;
+  init_function_pointer_temp = get_audio_init_function;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -10384,7 +10384,7 @@ void InitializeSystemDataNode30(void)
   node_previous[7] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
   node_previous[8] = &g_system_node;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemDataNode31(void)
@@ -10477,12 +10477,12 @@ void InitializeSystemDataNode25(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = InitializeSystemNode;
+  init_function_pointer_temp = InitializeSystemNode;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -10507,7 +10507,7 @@ void InitializeSystemDataNode25(void)
   node_previous[7] = dataNodeSignatureSecondary;
   node_previous[8] = &defaultInitializationFunction;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void ConfigureGraphicsParameters(void)
@@ -10853,12 +10853,12 @@ void InitializeSystemDataNode30(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_audio_init_function;
+  init_function_pointer_temp = get_audio_init_function;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -10883,7 +10883,7 @@ void InitializeSystemDataNode30(void)
   node_previous[7] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
   node_previous[8] = &g_system_node;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemDataNode31(void)
@@ -10985,12 +10985,12 @@ void ConfigureSystemHandles(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_1;
+  init_function_pointer_temp = get_resource_init_function_1;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -11015,7 +11015,7 @@ void ConfigureSystemHandles(void)
   node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 1;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void SetupSystemMemory(void)
@@ -11032,12 +11032,12 @@ void SetupSystemMemory(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_2;
+  init_function_pointer_temp = get_resource_init_function_2;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -11062,7 +11062,7 @@ void SetupSystemMemory(void)
   node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemResources(void)
@@ -11126,12 +11126,12 @@ void InitializeInputMutex(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_3;
+  init_function_pointer_temp = get_resource_init_function_3;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -11156,7 +11156,7 @@ void InitializeInputMutex(void)
   node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void ConfigureSystemParameters(void)
@@ -11324,12 +11324,12 @@ void InitializeSystemProfiler(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_5;
+  init_function_pointer_temp = get_resource_init_function_5;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -11354,7 +11354,7 @@ void InitializeSystemProfiler(void)
   node_previous[7] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeAudioSystem(void)
@@ -11371,12 +11371,12 @@ void InitializeAudioSystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_1;
+  init_function_pointer_temp = get_resource_init_function_1;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -11401,7 +11401,7 @@ void InitializeAudioSystem(void)
   node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 1;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeVideoSystem(void)
@@ -11418,12 +11418,12 @@ void InitializeVideoSystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_2;
+  init_function_pointer_temp = get_resource_init_function_2;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -11448,7 +11448,7 @@ void InitializeVideoSystem(void)
   node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeInputSystem(void)
@@ -11512,12 +11512,12 @@ void InitializeNetworkSystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_3;
+  init_function_pointer_temp = get_resource_init_function_3;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -11542,7 +11542,7 @@ void InitializeNetworkSystem(void)
   node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeConfigSystem(void)
@@ -11700,12 +11700,12 @@ void InitializeInputSystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_1;
+  init_function_pointer_temp = get_resource_init_function_1;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -11730,7 +11730,7 @@ void InitializeInputSystem(void)
   node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 1;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeNetworkSystem(void)
@@ -11747,12 +11747,12 @@ void InitializeNetworkSystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_2;
+  init_function_pointer_temp = get_resource_init_function_2;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -11777,7 +11777,7 @@ void InitializeNetworkSystem(void)
   node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemModule1(void)
@@ -11841,12 +11841,12 @@ void InitializeSystemModule2(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_3;
+  init_function_pointer_temp = get_resource_init_function_3;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -11871,7 +11871,7 @@ void InitializeSystemModule2(void)
   node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemModule3(void)
@@ -12101,12 +12101,12 @@ void InitializeSystemDataNode17(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = InitializeSystemNode;
+  init_function_pointer_temp = InitializeSystemNode;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -12131,7 +12131,7 @@ void InitializeSystemDataNode17(void)
   node_previous[7] = dataNodeSignatureSecondary;
   node_previous[8] = &defaultInitializationFunction;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeNetworkMutex(void)
@@ -12477,12 +12477,12 @@ void InitializeSystemModule44(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_audio_init_function;
+  init_function_pointer_temp = get_audio_init_function;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -12507,7 +12507,7 @@ void InitializeSystemModule44(void)
   node_previous[7] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
   node_previous[8] = &g_system_node;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemModule36(void)
@@ -12751,12 +12751,12 @@ void InitializeSystemModule42(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = InitializeSystemNode;
+  init_function_pointer_temp = InitializeSystemNode;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -12781,7 +12781,7 @@ void InitializeSystemModule42(void)
   node_previous[7] = dataNodeSignatureSecondary;
   node_previous[8] = &defaultInitializationFunction;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemModule35(void)
@@ -13127,12 +13127,12 @@ void InitializeSystemModule18(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_audio_init_function;
+  init_function_pointer_temp = get_audio_init_function;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -13157,7 +13157,7 @@ void InitializeSystemModule18(void)
   node_previous[7] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
   node_previous[8] = &g_system_node;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemModule19(void)
@@ -13315,12 +13315,12 @@ void InitializeAuthenticationSystem(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_5;
+  init_function_pointer_temp = get_resource_init_function_5;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -13345,7 +13345,7 @@ void InitializeAuthenticationSystem(void)
   node_previous[7] = SYSTEM_NODE_ID_CONFIG_SYSTEM_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemModule39(void)
@@ -13362,12 +13362,12 @@ void InitializeSystemModule39(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_4;
+  init_function_pointer_temp = get_resource_init_function_4;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -13392,7 +13392,7 @@ void InitializeSystemModule39(void)
   node_previous[7] = SYSTEM_NODE_ID_PHYSICS_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemModule21(void)
@@ -13409,12 +13409,12 @@ void InitializeSystemModule21(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_input_init_function;
+  init_function_pointer_temp = get_input_init_function;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -13439,7 +13439,7 @@ void InitializeSystemModule21(void)
   node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemModule43(void)
@@ -13456,12 +13456,12 @@ void InitializeSystemModule43(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_network_init_function;
+  init_function_pointer_temp = get_network_init_function;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -13486,7 +13486,7 @@ void InitializeSystemModule43(void)
   node_previous[7] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 3;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemModule23(void)
@@ -13503,12 +13503,12 @@ void InitializeSystemModule23(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_1;
+  init_function_pointer_temp = get_resource_init_function_1;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -13533,7 +13533,7 @@ void InitializeSystemModule23(void)
   node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 1;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemModule24(void)
@@ -13550,12 +13550,12 @@ void InitializeSystemModule24(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_2;
+  init_function_pointer_temp = get_resource_init_function_2;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -13580,7 +13580,7 @@ void InitializeSystemModule24(void)
   node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemDataNode18(void)
@@ -13644,12 +13644,12 @@ void InitializeSystemDataNode19(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_3;
+  init_function_pointer_temp = get_resource_init_function_3;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -13674,7 +13674,7 @@ void InitializeSystemDataNode19(void)
   node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemModule58(void)
@@ -14321,12 +14321,12 @@ void InitializeStringManager(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_input_init_function;
+  init_function_pointer_temp = get_input_init_function;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -14351,7 +14351,7 @@ void InitializeStringManager(void)
   node_previous[7] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemModule25(void)
@@ -14368,12 +14368,12 @@ void InitializeSystemModule25(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_network_init_function;
+  init_function_pointer_temp = get_network_init_function;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -14398,7 +14398,7 @@ void InitializeSystemModule25(void)
   node_previous[7] = SYSTEM_NODE_ID_VIDEO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 3;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemModule26(void)
@@ -14415,12 +14415,12 @@ void InitializeSystemModule26(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_1;
+  init_function_pointer_temp = get_resource_init_function_1;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -14445,7 +14445,7 @@ void InitializeSystemModule26(void)
   node_previous[7] = SYSTEM_NODE_ID_CORE_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 1;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemModule27(void)
@@ -14462,12 +14462,12 @@ void InitializeSystemModule27(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_2;
+  init_function_pointer_temp = get_resource_init_function_2;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -14492,7 +14492,7 @@ void InitializeSystemModule27(void)
   node_previous[7] = SYSTEM_NODE_ID_RENDER_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 4;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemModule45(void)
@@ -14556,12 +14556,12 @@ void InitializeSystemModule29(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_resource_init_function_3;
+  init_function_pointer_temp = get_resource_init_function_3;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -14586,7 +14586,7 @@ void InitializeSystemModule29(void)
   node_previous[7] = SYSTEM_NODE_ID_IO_ENGINE_2;
   node_previous[8] = &g_system_data_node_primary;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializePhysicsSystem(void)
@@ -14744,12 +14744,12 @@ void ConfigureSystemHandles(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = InitializeSystemNode;
+  init_function_pointer_temp = InitializeSystemNode;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -14774,7 +14774,7 @@ void ConfigureSystemHandles(void)
   node_previous[7] = dataNodeSignatureSecondary;
   node_previous[8] = &defaultInitializationFunction;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void SetupSystemMemory(void)
@@ -15120,12 +15120,12 @@ void InitializeSystemModule32(void)
   uint64_t *node_previous;
   uint64_t *node_next;
   uint64_t *node_new;
-  code *pcstack_var;
+  code *init_function_pointer_temp;
 
   ptr_data = (longlong *)GetSystemPointerData();
   node_root = (uint64_t *)*ptr_data;
   is_initialized = *(char *)((longlong)node_root[1] + NODE_INITIALIZED_OFFSET);
-  pcstack_var = get_audio_init_function;
+  init_function_pointer_temp = get_audio_init_function;
   node_previous = node_root;
   node_current = (uint64_t *)node_root[1];
   while (is_initialized == '\0') {
@@ -15150,7 +15150,7 @@ void InitializeSystemModule32(void)
   node_previous[7] = SYSTEM_NODE_ID_SECURITY_MODULE_2;
   node_previous[8] = &g_system_node;
   node_previous[9] = 0;
-  node_previous[10] = pcstack_var;
+  node_previous[10] = init_function_pointer_temp;
   return;
 }
 // void InitializeSystemModule33(void)
