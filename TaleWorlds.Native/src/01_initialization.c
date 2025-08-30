@@ -746,6 +746,10 @@
 #define SYSTEM_INIT_FLAG_OCTONARY_ENABLED_SYSTEM_INIT_19 0xbebaf0
 #define SYSTEM_INIT_FLAG_OCTONARY_ENABLED_SYSTEM_INIT_20 0xbebb50
 
+// 美化数据偏移量常量（新增）
+#define SYSTEM_INIT_OFFSET_DATA_ZERO 0x0
+#define SYSTEM_INIT_OFFSET_STACK_PARAM 0x8
+
 // 美化缓冲区大小常量
 #define SYSTEM_INIT_SIZE_BUFFER_EXTRA_LARGE 0x0
 
@@ -23708,7 +23712,7 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
   system_char_temp = system_generic_function_(1,SYSTEM_INIT_CONTEXT_INDEX_ARRAY_51);
   system_allocation_result2 = ;
   if (system_char_temp == '\0') {
-    if (system_char_buffer == '\0') goto LAB_18005122d;
+    if (system_char_buffer == '\0') goto system_init_label_file_check;
   }
   else {
 
