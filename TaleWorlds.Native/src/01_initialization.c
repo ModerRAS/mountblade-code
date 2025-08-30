@@ -50071,7 +50071,7 @@ void ValidateSystemHandle60(uint64_t handleIdentifier,uint64_t resourceIdentifie
   float *system_register_rdi;
   uint32_t system_register_r14d_value_value;
   float system_register_xmm0_dc_value;
-  float system_register_xmm1_dc;
+  float system_register_xmm1_dc_value;
   float system_register_xmm4_da;
   float system_register_xmm4_db;
   float in_XMM4_Dc;
