@@ -22488,7 +22488,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   system_uint0x102_t system_register_xmm0_output_secondary;
   system_uint8_t asystem_stack_uint_0x1068 [0x102];
   system_uint8_t system_stack_uint_0x1048;
-  char cStack_0x100108;
+  char system_stack_char_primary;
   char cStack_0x100107;
   char acStack_0x100106 [SYSTEM_ARRAY_INDEX_THIRD];
   uint system_stack_uint_0x100104;
@@ -22583,7 +22583,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   system_uint8_pointer_primary = (system_uint8_t *)SYSTEM_INIT_VALUE_CHAR_NULL;
   system_stack_uint_0x100104 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_long_260 = _g_system_initialized;
-  cStack_0x100108 = '\0';
+  system_stack_char_primary = '\0';
   system_uint_pointer_secondary = &g_system_initialized;
   if (*(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != (void* *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     system_uint_pointer_secondary = *(void* **)(system_config_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK);
@@ -22614,9 +22614,9 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
         system_return_result(system_context_handle + SYSTEM_INIT_OFFSET_STACK_PARAM,&psystem_stack_uint_0x1010);
         system_allocation_result0 = InitializeSystemCore(system_loop_counter0,&cStack_0x100107,system_context_handle + SYSTEM_INIT_OFFSET_STACK_PARAM);
         if (cStack_0x100107 != '\0') {
-          if (system_allocation_result0 == system_loop_counter0) goto LAB_18004d1c1;
+          if (system_allocation_result0 == system_loop_counter0) goto system_init_label_resource_next;
           if (*(int *)(system_allocation_result0 + ) == 0) goto LAB_18004d1b9;
-          if (*(int *)(system_context_handle + ) == 0) goto LAB_18004d1c1;
+          if (*(int *)(system_context_handle + ) == 0) goto system_init_label_resource_next;
           system_byte_ptr_primary5 = *(byte **)(system_allocation_result0 + SYSTEM_INIT_FLAG_INITIALIZED8);
           system_loop_counter4 = *(longlong *)(system_context_handle + SYSTEM_INIT_FLAG_INITIALIZED8) - (longlong)system_byte_ptr_primary5;
           goto LAB_18004d1a2;
