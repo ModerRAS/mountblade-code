@@ -147,7 +147,9 @@
 // - 这是简化实现，主要处理了指针变量名和音频缓冲区变量名的语义化替换
 
 // 本次美化内容：
-// - 将pcstack_var替换为init_function_pointer_temp等函数指针临时变量名
+// - 将systemNode1-5替换为g_system_node_audio、g_system_node_video等语义化名称
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
 
 // 最新美化内容：
 // - 将_g_thread_config_1-4替换为g_system_auth_context_ptr、g_system_config_context_ptr等上下文指针变量名
@@ -1474,7 +1476,7 @@ void InitializeCoreSystemData(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
   node_previous[7] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
-  node_previous[8] = &systemNode1;
+  node_previous[8] = &g_system_node_audio;
   node_previous[9] = 1;
   node_previous[10] = flag_initialized;
   return;
@@ -1520,7 +1522,7 @@ void InitializeSystemListNode(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
   node_previous[7] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
-  node_previous[8] = &systemNode2;
+  node_previous[8] = &g_system_node_video;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -1566,7 +1568,7 @@ void InitializeMemoryNode(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
   node_previous[7] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
-  node_previous[8] = &systemNode3;
+  node_previous[8] = &g_system_node_memory;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -1612,7 +1614,7 @@ void InitializeBufferNode(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
   node_previous[7] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
-  node_previous[8] = &systemNode4;
+  node_previous[8] = &g_system_node_input;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -8095,7 +8097,7 @@ void InitializeSystemLogger(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
   node_previous[7] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
-  node_previous[8] = &systemNode1;
+  node_previous[8] = &g_system_node_audio;
   node_previous[9] = 1;
   node_previous[10] = flag_initialized;
   return;
@@ -8142,7 +8144,7 @@ void InitializeSystemProfiler(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
   node_previous[7] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
-  node_previous[8] = &systemNode2;
+  node_previous[8] = &g_system_node_video;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -8189,7 +8191,7 @@ void InitializeAudioSystem(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
   node_previous[7] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
-  node_previous[8] = &systemNode3;
+  node_previous[8] = &g_system_node_memory;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -8236,7 +8238,7 @@ void InitializeVideoSystem(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
   node_previous[7] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
-  node_previous[8] = &systemNode4;
+  node_previous[8] = &g_system_node_input;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -10099,7 +10101,7 @@ void ConfigureGraphicsParameters(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
   node_previous[7] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
-  node_previous[8] = &systemNode1;
+  node_previous[8] = &g_system_node_audio;
   node_previous[9] = 1;
   node_previous[10] = flag_initialized;
   return;
@@ -10146,7 +10148,7 @@ void InitializeSecuritySystem(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
   node_previous[7] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
-  node_previous[8] = &systemNode2;
+  node_previous[8] = &g_system_node_video;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -10193,7 +10195,7 @@ void InitializeSystemDataNode26(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
   node_previous[7] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
-  node_previous[8] = &systemNode3;
+  node_previous[8] = &g_system_node_memory;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -10240,7 +10242,7 @@ void InitializeSystemModule41(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
   node_previous[7] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
-  node_previous[8] = &systemNode4;
+  node_previous[8] = &g_system_node_input;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -10598,7 +10600,7 @@ void ConfigureGraphicsParameters(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
   node_previous[7] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
-  node_previous[8] = &systemNode1;
+  node_previous[8] = &g_system_node_audio;
   node_previous[9] = 1;
   node_previous[10] = flag_initialized;
   return;
@@ -10645,7 +10647,7 @@ void InitializeSecuritySystem(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
   node_previous[7] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
-  node_previous[8] = &systemNode2;
+  node_previous[8] = &g_system_node_video;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -10692,7 +10694,7 @@ void InitializeSystemDataNode26(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
   node_previous[7] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
-  node_previous[8] = &systemNode3;
+  node_previous[8] = &g_system_node_memory;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -10739,7 +10741,7 @@ void InitializeSystemModule41(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
   node_previous[7] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
-  node_previous[8] = &systemNode4;
+  node_previous[8] = &g_system_node_input;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -12222,7 +12224,7 @@ void InitializeNetworkMutex(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
   node_previous[7] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
-  node_previous[8] = &systemNode1;
+  node_previous[8] = &g_system_node_audio;
   node_previous[9] = 1;
   node_previous[10] = flag_initialized;
   return;
@@ -12269,7 +12271,7 @@ void InitializeShaderSystem(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
   node_previous[7] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
-  node_previous[8] = &systemNode2;
+  node_previous[8] = &g_system_node_video;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -12316,7 +12318,7 @@ void InitializeFontSystem(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
   node_previous[7] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
-  node_previous[8] = &systemNode3;
+  node_previous[8] = &g_system_node_memory;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -12363,7 +12365,7 @@ void InitializeSystemModule9(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
   node_previous[7] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
-  node_previous[8] = &systemNode4;
+  node_previous[8] = &g_system_node_input;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -12872,7 +12874,7 @@ void InitializeSystemModule35(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
   node_previous[7] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
-  node_previous[8] = &systemNode1;
+  node_previous[8] = &g_system_node_audio;
   node_previous[9] = 1;
   node_previous[10] = flag_initialized;
   return;
@@ -12919,7 +12921,7 @@ void InitializeSystemModule13(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
   node_previous[7] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
-  node_previous[8] = &systemNode2;
+  node_previous[8] = &g_system_node_video;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -12966,7 +12968,7 @@ void InitializeSystemModule14(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
   node_previous[7] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
-  node_previous[8] = &systemNode3;
+  node_previous[8] = &g_system_node_memory;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -13013,7 +13015,7 @@ void ProcessSystemData(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
   node_previous[7] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
-  node_previous[8] = &systemNode4;
+  node_previous[8] = &g_system_node_input;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -14865,7 +14867,7 @@ void SetupSystemMemory(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_1;
   node_previous[7] = SYSTEM_NODE_ID_AUDIO_PROCESSOR_2;
-  node_previous[8] = &systemNode1;
+  node_previous[8] = &g_system_node_audio;
   node_previous[9] = 1;
   node_previous[10] = flag_initialized;
   return;
@@ -14912,7 +14914,7 @@ void InitializeSystemResources(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_VIDEO_DECODER_1;
   node_previous[7] = SYSTEM_NODE_ID_VIDEO_DECODER_2;
-  node_previous[8] = &systemNode2;
+  node_previous[8] = &g_system_node_video;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -14959,7 +14961,7 @@ void InitializeInputMutex(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_1;
   node_previous[7] = SYSTEM_NODE_ID_GRAPHICS_RENDERER_2;
-  node_previous[8] = &systemNode3;
+  node_previous[8] = &g_system_node_memory;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;
@@ -15006,7 +15008,7 @@ void ConfigureSystemParameters(void)
   }
   node_previous[6] = SYSTEM_NODE_ID_INPUT_HANDLER_1;
   node_previous[7] = SYSTEM_NODE_ID_INPUT_HANDLER_2;
-  node_previous[8] = &systemNode4;
+  node_previous[8] = &g_system_node_input;
   node_previous[9] = 0;
   node_previous[10] = flag_initialized;
   return;

@@ -32503,7 +32503,7 @@ void UtilityUnwind_180903d30(uint64 resource_handle_identifier,longlong resource
   *(uint32 *)(resource_buffer + 0x298) = 0;
   *(uint64 *)(resource_buffer + 0x280) = &thread_local_storage_cleanup;
   *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_260) = &thread_local_storage_data;
-  if (*(longlong *)(resource_buffer + 0x268) != 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_268) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -34097,7 +34097,7 @@ void UtilityUnwind_180904210(uint64 resource_handle_identifier,longlong resource
   *(uint32 *)(resource_buffer + 0x298) = 0;
   *(uint64 *)(resource_buffer + 0x280) = &thread_local_storage_cleanup;
   *(uint64 *)(resource_buffer + UTILITY_RESOURCE_OFFSET_260) = &thread_local_storage_data;
-  if (*(longlong *)(resource_buffer + 0x268) != 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_268) != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -44048,7 +44048,7 @@ void UtilityUtilityUnwind_180906d00(uint64 resource_handle_identifier,longlong r
   longlong utility_array_index;
   ulonglong system_status_code;
   
-  loop_counter_pointer = (uint64 *)**(ulonglong **)(resource_buffer + 0x260);
+  loop_counter_pointer = (uint64 *)**(ulonglong **)(resource_buffer + UTILITY_RESOURCE_OFFSET_260);
   if (loop_counter_pointer == (uint64 *)UTILITY_NULL_POINTER) {
     return;
   }
@@ -44084,7 +44084,7 @@ void UtilityUtilityUnwind_180906d10(uint64 resource_handle_identifier,longlong r
   longlong utility_array_index;
   ulonglong system_status_code;
   
-  loop_counter_pointer = (uint64 *)**(ulonglong **)(resource_buffer + 0x260);
+  loop_counter_pointer = (uint64 *)**(ulonglong **)(resource_buffer + UTILITY_RESOURCE_OFFSET_260);
   if (loop_counter_pointer == (uint64 *)UTILITY_NULL_POINTER) {
     return;
   }
@@ -47014,8 +47014,8 @@ void UtilityUnwindSystemPhasea4(uint64 resource_handle_identifier,longlong resou
   if (*(code **)(resource_buffer + 0x280) != (code *)UTILITY_NULL_POINTER) {
     (**(code **)(resource_buffer + 0x280))(resource_buffer + UTILITY_BUFFER_SIZE0,UTILITY_NULL_POINTER);
   }
-  if (*(code **)(resource_buffer + 0x260) != (code *)UTILITY_NULL_POINTER) {
-    (**(code **)(resource_buffer + 0x260))(resource_buffer + 0x250,UTILITY_NULL_POINTER);
+  if (*(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_260) != (code *)UTILITY_NULL_POINTER) {
+    (**(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_260))(resource_buffer + 0x250,UTILITY_NULL_POINTER);
   }
   return;
 }
@@ -47185,8 +47185,8 @@ void UtilityUnwindSystemPhaseae(uint64 resource_handle_identifier,longlong resou
 void UtilityUnwindSystemPhaseaf(uint64 resource_handle_identifier,longlong resource_buffer,uint64 resourceOperationFlags,uint64 resourceCallbackFunction)
 
 {
-  if (*(code **)(resource_buffer + 0x260) != (code *)UTILITY_NULL_POINTER) {
-    (**(code **)(resource_buffer + 0x260))(resource_buffer + 0x250,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
+  if (*(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_260) != (code *)UTILITY_NULL_POINTER) {
+    (**(code **)(resource_buffer + UTILITY_RESOURCE_OFFSET_260))(resource_buffer + 0x250,UTILITY_NULL_POINTER,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
   }
   return;
 }
@@ -52501,7 +52501,7 @@ void UtilityUnwindHandler53Cleanup(uint64 resource_handle_identifier,longlong re
 void UtilityUnwindHandler54Cleanup(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  if (*(longlong *)(resource_buffer + 0x268) != 0) {
+  if (*(longlong *)(resource_buffer + UTILITY_RESOURCE_OFFSET_268) != 0) {
     fclose();
     *(uint64 *)(resource_buffer + 0x268) = 0;
     LOCK();
@@ -58367,7 +58367,7 @@ void UtilityUtilityUnwind_18090bd40(uint64 resource_handle_identifier,longlong r
 void UtilityUtilityUnwind_18090bd50(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  *(data_value **)(resource_buffer + 0x260) = &thread_local_storage_cleanup;
+  *(data_value **)(resource_buffer + UTILITY_RESOURCE_OFFSET_260) = &thread_local_storage_cleanup;
   return;
 }
 
@@ -67592,7 +67592,7 @@ void UtilityUtilityUnwind_18090e840(uint64 resource_handle_identifier,longlong r
       }
     }
   }
-  *(data_value **)(resource_buffer + 0x260) = &thread_local_storage_cleanup;
+  *(data_value **)(resource_buffer + UTILITY_RESOURCE_OFFSET_260) = &thread_local_storage_cleanup;
   return;
 }
 
