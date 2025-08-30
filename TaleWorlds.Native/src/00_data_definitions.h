@@ -111,6 +111,13 @@
 #define SYSTEM_BUFFER_ALLOC_RESULT_MEMORY 0x18
 #define SYSTEM_BUFFER_ALLOC_RESULT_STACK 0x14
 
+// 系统栈偏移量常量
+#define SYSTEM_STACK_OFFSET_THREAD_CREATE 0x50
+#define SYSTEM_STACK_OFFSET_THREAD_HANDLE 0x58
+#define SYSTEM_STACK_OFFSET_THREAD_DATA 0x60
+#define SYSTEM_STACK_OFFSET_STRING_LENGTH 0x24
+#define SYSTEM_STACK_OFFSET_SYSTEM_FLAG 0x48
+
 // 系统字符串模式常量
 #define SYSTEM_STRING_PATTERN_1 0x666e6f63  // "conf"
 #define SYSTEM_STRING_PATTERN_2 0x3a6769    // "ig:"
@@ -3567,7 +3574,7 @@ section_processing_jump_label_:
                     string_match_found = false;
                   }
                   else {
-                    if (buffer_alloc_result != 0xb) goto section_processing_jump_label_;
+                    if (buffer_alloc_result != SYSTEM_BUFFER_ALLOC_RESULT_RESOURCE) goto section_processing_jump_label_;
                     thread_result_index = strcmp(string_input_ptr,&g_systemDataString27);
                     string_match_found = thread_result_index == SYSTEM_ZERO_VALUE;
                   }
@@ -3587,7 +3594,7 @@ section_processing_jump_label_:
                   }
                   else {
                     string_input_ptr = &default_resource_config_string;
-                    if (string_input_ptr != (unsigned char *)0x0) {
+                    if (string_input_ptr != (unsigned char *)SYSTEM_NULL_POINTER) {
                       string_input_ptr = string_input_ptr;
                     }
                     str_len_counter = strstr(string_input_ptr);
@@ -3788,7 +3795,7 @@ section_processing_jump_label_:
                       system_event_handle_paramr_main(string_input_ptr,&thread_stack_ptr,thread_op_flags);
                       stack_size_max = thread_op_flags thread_op_flags & 0xfffffffe STACK_ALIGNMENT_MASK;
                       thread_stack_ptr = &g_threadString2;
-                      if (string_input_ptr != (unsigned char *)0x0) {
+                      if (string_input_ptr != (unsigned char *)SYSTEM_NULL_POINTER) {
                         handle_param_system_error(string_input_ptr);
                       }
                       thread_stack_ptr = (unsigned char *)SYSTEM_NULL_POINTER;
@@ -3799,7 +3806,7 @@ section_processing_jump_label_:
                     }
                     else {
                       cStack_338 = '\0';
-                      if (string_input_ptr != (unsigned char *)0x0) {
+                      if (string_input_ptr != (unsigned char *)SYSTEM_NULL_POINTER) {
                         system_thread_manager_create(system_global_data_pointer + 0x28,string_input_ptr);
                       }
                       if (buffer_alloc_result != 0) {
@@ -3821,7 +3828,7 @@ section_processing_jump_label_:
         string_input_ptr = (unsigned char *)0x0;
         stack_size_max = SYSTEM_ZERO_VALUE;
         str_len_counter = thread_stack_base_address;
-        if (string_input_ptr != (unsigned char *)0x0) {
+        if (string_input_ptr != (unsigned char *)SYSTEM_NULL_POINTER) {
           *string_input_ptr = SYSTEM_ZERO_VALUE;
         }
       }
@@ -3849,7 +3856,7 @@ section_processing_jump_label_:
   (**(code **)(**(long long **)(system_global_data_pointer + 0x18) + 0x30))
             (*(long long **)(system_global_data_pointer + 0x18),system_crash_handle_paramr_flag);
   thread_stack_ptr = &g_threadString2;
-  if (string_input_ptr != (unsigned char *)0x0) {
+  if (string_input_ptr != (unsigned char *)SYSTEM_NULL_POINTER) {
     handle_param_system_error(string_input_ptr);
   }
   thread_stack_ptr = (unsigned char *)SYSTEM_NULL_POINTER;
@@ -4029,7 +4036,7 @@ section_processing_jump_label_:
       if (*(code **)(*system_global_data_pointer + 8) == (code *)&systemInitializationCheckFunction) {
         *(unsigned int *)(system_global_data_pointer + 9) = SYSTEM_ZERO_VALUE;
         string_input_ptr = (unsigned char *)psystem_initialization_result[8];
-        if (string_input_ptr != (unsigned char *)0x0) {
+        if (string_input_ptr != (unsigned char *)SYSTEM_NULL_POINTER) {
           *string_input_ptr = SYSTEM_ZERO_VALUE;
         }
         *(unsigned int *)((long long)psystem_initialization_result + 0x54) = SYSTEM_ZERO_VALUE;
@@ -4138,7 +4145,7 @@ section_processing_jump_label_:
       if (*(code **)(*system_global_data_pointer + 8) == (code *)&systemInitializationCheckFunction) {
         *(unsigned int *)(system_global_data_pointer + 9) = SYSTEM_ZERO_VALUE;
         string_input_ptr = (unsigned char *)psystem_initialization_result[8];
-        if (string_input_ptr != (unsigned char *)0x0) {
+        if (string_input_ptr != (unsigned char *)SYSTEM_NULL_POINTER) {
           *string_input_ptr = SYSTEM_ZERO_VALUE;
         }
         *(unsigned int *)((long long)psystem_initialization_result + 0x54) = SYSTEM_ZERO_VALUE;
@@ -4810,7 +4817,7 @@ section_processing_jump_label_:
     }
     *(unsigned long long *)(system_initialization_result8 + 8) = SYSTEM_ZERO_VALUE;
     string_input_ptr = *(unsigned char **)(system_global_data_pointer + 0x1a08 + (long long)(int)system_global_data_pointer * 8);
-    if (string_input_ptr != (unsigned char *)0x0) {
+    if (string_input_ptr != (unsigned char *)SYSTEM_NULL_POINTER) {
       *string_input_ptr = SYSTEM_ZERO_VALUE;
       *(unsigned long long *)(string_input_ptr + 8) = SYSTEM_ZERO_VALUE;
       *(unsigned long long *)(string_input_ptr + 0x14) = SYSTEM_ZERO_VALUE;

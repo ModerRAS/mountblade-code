@@ -20038,8 +20038,11 @@ void SendNetworkPacketEight(int64_t network_socket_handle, uint64_t *network_buf
               *(int64_t *)(network_primary_connection_data + *(int64_t *)(network_socket_handle + NETWORK_SOCKET_DATA_OFFSETf0)) = network_buffer_ptr;
               network_socket_index = *(int32_t *)(network_socket_handle + NETWORK_SOCKET_DATA_OFFSETf8);
               network_timeout_milliseconds = *(int64_t *)(network_primary_connection_data + NETWORK_PACKET_HEADER_SIZE + *(int64_t *)(network_socket_handle + NETWORK_SOCKET_DATA_OFFSETf0));
-// 函数: void SendNetworkPacket9(void)
-void SendNetworkPacket9(void)
+// 函数: void NetworkSendPacketNonary(void)
+// 网络数据包发送函数 - 发送网络数据包（简化实现）
+// 原本实现：重构整个网络数据包发送系统
+// 简化实现：仅将函数名从SendNetworkPacket9替换为NetworkSendPacketNonary
+void NetworkSendPacketNonary(void)
   network_operation_result_code = *(int32_t *)(network_socket_context_pointer + NETWORK_SOCKET_DATA_OFFSETf8);
       network_timeout_milliseconds = *(int64_t *)(network_server_address + *(int64_t *)(network_socket_context_pointer + NETWORK_SOCKET_DATA_OFFSETf0));
             network_server_address = *(int64_t *)(network_socket_context_pointer + NETWORK_SOCKET_DATA_OFFSETf0) + (longlong)network_processor_count * NETWORK_PACKET_HEADER_SIZE;
