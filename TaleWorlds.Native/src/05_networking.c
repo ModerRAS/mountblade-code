@@ -8557,7 +8557,7 @@ uint64_t NetworkSocketConfigure(int64_t *network_socket_handle, uint32_t *networ
       else if (network_operation_status_code < dataLength) {
         network_operation_status_code = dataLength;
       network_processor_index = ProcessNetworkData(network_socket_context_pointer + NETWORK_BUFFER_SIZE_MEDIUM, network_operation_status_code);
-    network_status_data_buffer_ptr = (uint64_t *)((longlong)(int)network_socket_context_pointer[3] * SOCKET_RESPONSE_OFFSET + network_socket_context_pointer[NETWORK_BUFFER_SIZE_MEDIUM]);
+    network_status_data_buffer_ptr = (uint64_t *)((longlong)(int)network_socket_context_pointer[NETWORK_SOCKET_INDEX_3] * SOCKET_RESPONSE_OFFSET + network_socket_context_pointer[NETWORK_BUFFER_SIZE_MEDIUM]);
     *network_status_data_buffer_ptr = network_operation_status_code;
     network_status_data_buffer_ptr[NETWORK_OPERATION_SUCCESS] = network_packet_size_temp;
     network_status_data_buffer_ptr[NETWORK_BUFFER_SIZE_MEDIUM] = CONCAT44(network_config_parameter_ptr._dword_4_, NETWORK_MAX_SIZE);
