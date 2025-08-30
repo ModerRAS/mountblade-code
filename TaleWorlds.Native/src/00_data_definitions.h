@@ -447,6 +447,17 @@
 #define SYSTEM_RESOURCE_ID_FONT 0xc
 #define SYSTEM_RESOURCE_ID_MODEL SYSTEM_CONSTANT_2
 #define SYSTEM_RESOURCE_ID_ANIMATION 0x17
+
+// 新增语义化常量定义 - 线程优先级和栈大小
+#define SYSTEM_THREAD_PRIORITY_HIGH 0x786  // 高线程优先级
+#define SYSTEM_STACK_SIZE_LIMIT 0xac7      // 栈大小限制
+#define SYSTEM_FLOAT_MAX_VALUE 0x7f7fffff  // 浮点数最大值
+#define SYSTEM_THREAD_RESULT_PRIMARY 0x554  // 线程结果主标识
+#define SYSTEM_THREAD_RESULT_SECONDARY 0x568 // 线程结果次标识
+#define SYSTEM_BUFFER_ALLOC_SMALL 0x248    // 小缓冲区分配大小
+#define SYSTEM_BUFFER_ALLOC_BASE 0x214     // 基础缓冲区分配大小
+#define SYSTEM_BUFFER_OFFSET_PRIMARY 0x21c // 主缓冲区偏移量
+#define SYSTEM_BUFFER_OFFSET_EXTENDED 0x41c // 扩展缓冲区偏移量
 #define SYSTEM_RESOURCE_ID_PARTICLE 0x13
 #define SYSTEM_RESOURCE_ID_CONFIG 0x14
 #define SYSTEM_RESOURCE_ID_SAVE_GAME 0x1b
@@ -5556,7 +5567,7 @@ section_processing_jump_label_:
   return;
 }
         g_data_crypto_flag = '\x01';
-        thread_priority_level = 0x786;
+        thread_priority_level = SYSTEM_THREAD_PRIORITY_HIGH;
         system_execution_function(auStack_258,&systemFunctionData1,&systemFunctionData2,&systemFunctionData3);
         OutputDebugStringA(auStack_258);
       }
@@ -5724,7 +5735,7 @@ system_handle_paramr_001:
   system_execute_crypto_operation(stack_size_max ^ (ulong long)auStack_2e8);
 }
     g_data_crypto_flag = '\x01';
-    system_execution_function(unreg_bp + -0x70,&systemFunctionData1,&systemFunctionData2,&systemFunctionData3,0x786);
+    system_execution_function(unreg_bp + -0x70,&systemFunctionData1,&systemFunctionData2,&systemFunctionData3,SYSTEM_THREAD_PRIORITY_HIGH);
     OutputDebugStringA(unreg_bp + -0x70);
   }
   buffer_alloc_result = *(ushort *)(unaffected_registerDI + 0x5c);
@@ -5747,7 +5758,7 @@ system_handle_paramr_001:
   system_execute_crypto_operation(*(ulong long *)(unreg_bp + 400) ^ (ulong long)&system_stack_zero);
 }
   g_data_crypto_flag = 1;
-  system_execution_function(unreg_bp + -0x70,&systemFunctionData1,&systemFunctionData2,&systemFunctionData3,0x786);
+  system_execution_function(unreg_bp + -0x70,&systemFunctionData1,&systemFunctionData2,&systemFunctionData3,SYSTEM_THREAD_PRIORITY_HIGH);
   OutputDebugStringA(unreg_bp + -0x70);
   buffer_alloc_result = *(ushort *)(unaffected_registerDI + 0x5c);
   float_var = *(float *)(unreg_bp + path_buffer_size0);
@@ -5846,7 +5857,7 @@ section_processing_jump_label_:
   system_execute_crypto_operation(stack_size_max ^ (ulong long)auStack_2f8);
 }
       g_data_thread_flag = '\x01';
-      stack_size_max = 0xac7;
+      stack_size_max = SYSTEM_STACK_SIZE_LIMIT;
       system_execution_function(auStack_218,&systemFunctionData1,&systemFunctionData6,&systemFunctionData5);
       OutputDebugStringA(auStack_218);
     }
@@ -7329,8 +7340,8 @@ unsigned long long initialize_graphics_context(unsigned long long handle_param,u
   buffer_alloc_result = 0;
   buffer_alloc_result = 0;
   if (-1 < thread_result_index) {
-    stack_size_max = 0x7f7fffff;
-    stack_size_max = 0x7f7fffff;
+    stack_size_max = SYSTEM_FLOAT_MAX_VALUE;
+    stack_size_max = SYSTEM_FLOAT_MAX_VALUE;
     system_initialization_result2 = system_initialization_result1 * 0x30;
     fStack_108 = float_var;
     fStack_104 = float_var;
@@ -7763,7 +7774,7 @@ section_processing_jump_label_:
 section_processing_jump_label_:
       thread_result_index = strcmp(str_len_counter,&g_file_path_data);
       if (thread_result_index == 0) {
-        thread_result_index = 0x554;
+        thread_result_index = SYSTEM_THREAD_RESULT_PRIMARY;
         goto section_processing_jump_label_;
       }
       goto section_processing_jump_label_;
@@ -11455,7 +11466,7 @@ long long process_context_handle_param(long long *handle_param)
     float_var = mutex_attr[9];
     float_var = mutex_attr[8];
     float_var = mutex_attr[10];
-    stack_size_max = 0x7f7fffff;
+    stack_size_max = SYSTEM_FLOAT_MAX_VALUE;
     pfloat_var = afStack_2e8;
     str_len_counter = path_buffer_size;
     do {
@@ -11526,7 +11537,7 @@ long long process_context_handle_param(long long *handle_param)
         fStack_370 = *(float *)(&stack_size_max + str_len_counter * 2) - *(float *)(&stack_size_max + str_len_counter * 2);
         stack_size_max = merge_32bit_values(afStack_2e8[str_len_counter * 4 + 1] - afStack_2e8[str_len_counter * 4 + 1],
                               afStack_2e8[str_len_counter * 4] - afStack_2e8[str_len_counter * 4]);
-        stack_size_max = 0x7f7fffff;
+        stack_size_max = SYSTEM_FLOAT_MAX_VALUE;
         stack_size_max = 0;
         stack_size_max = CONCAT31(stack_size_max._1_3_,handle_param1);
         system_execution_function(handle_param,afStack_2e8 + str_len_counter * 4,&stack_size_max,param_8);
