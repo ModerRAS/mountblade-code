@@ -57,16 +57,16 @@
 // 新增语义化常量定义（2025年8月30日美化批次）：
 // 新增语义化常量定义（2025年8月30日最终批次美化）
 // 系统缓冲区分配结果常量
-#define SYSTEM_BUFFER_ALLOC_RESULT_B8 0xb8
-#define SYSTEM_BUFFER_ALLOC_RESULT_BC 0xbc
-#define SYSTEM_BUFFER_ALLOC_RESULT_BD 0xbd
-#define SYSTEM_BUFFER_ALLOC_RESULT_BE 0xbe
-#define SYSTEM_BUFFER_ALLOC_RESULT_C0 0xc0
+#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_BASE 0xb8
+#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_READY 0xbc
+#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_ALLOC 0xbd
+#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_COMMIT 0xbe
+#define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_COMPLETE 0xc0
 
 // 系统初始化偏移量常量
-#define SYSTEM_OFFSET_INITIALIZATION_1D 0x1d
-#define SYSTEM_OFFSET_INITIALIZATION_1E 0x1e
-#define SYSTEM_OFFSET_INITIALIZATION_7C 0x7c
+#define SYSTEM_OFFSET_INITIALIZATION_PRIMARY 0x1d
+#define SYSTEM_OFFSET_INITIALIZATION_SECONDARY 0x1e
+#define SYSTEM_OFFSET_INITIALIZATION_STACK_RESERVED 0x7c
 
 // 系统模块偏移量常量
 #define SYSTEM_MODULE_OFFSET_PRIMARY 0x17
@@ -100,9 +100,9 @@
 #define SYSTEM_STRING_LENGTH_STANDARD 0x16
 
 // 系统字符串模式常量
-#define SYSTEM_STRING_PATTERN_ERROR_MSG 0x3a726f72
-#define SYSTEM_STRING_PATTERN_TERMINATOR 0x2720
-#define SYSTEM_STRING_PATTERN_MESSAGE 0x2220656d
+#define SYSTEM_STRING_PATTERN_ERROR_MESSAGE 0x3a726f72
+#define SYSTEM_STRING_PATTERN_TERMINATOR_CHAR 0x2720
+#define SYSTEM_STRING_PATTERN_USER_MESSAGE 0x2220656d
 #define SYSTEM_STRING_PATTERN_EXCLAMATION 0x21
 
 // 系统缓冲区大小常量
@@ -115,8 +115,8 @@
 #define SYSTEM_FLOAT_MAX_SAFE_VALUE 0x7f7fffff3f800000
 
 // 系统内存偏移量常量
-#define SYSTEM_MEMORY_OFFSET_1318 0x1318
-#define SYSTEM_MEMORY_OFFSET_1328 0x1328
+#define SYSTEM_MEMORY_OFFSET_PRIMARY_BLOCK 0x1318
+#define SYSTEM_MEMORY_OFFSET_SECONDARY_BLOCK 0x1328
 #define SYSTEM_MEMORY_OFFSET_C 0xc
 #define SYSTEM_MEMORY_OFFSET_E 0xe
 #define SYSTEM_MEMORY_OFFSET_461 0x461
@@ -456,23 +456,23 @@
 #define SYSTEM_CONTROL_VALUE_DELETE 0x7f
 
 // 系统位掩码常量定义
-#define SYSTEM_BIT_MASK_0x01 0x01
-#define SYSTEM_BIT_MASK_0x02 0x02
-#define SYSTEM_BIT_MASK_0x04 0x04
-#define SYSTEM_BIT_MASK_0x08 0x08
-#define SYSTEM_BIT_MASK_0x10 0x10
-#define SYSTEM_BIT_MASK_0x20 0x20
-#define SYSTEM_BIT_MASK_0x40 0x40
-#define SYSTEM_BIT_MASK_0x80 0x80
+#define SYSTEM_BIT_MASK_BIT_0 0x01
+#define SYSTEM_BIT_MASK_BIT_1 0x02
+#define SYSTEM_BIT_MASK_BIT_2 0x04
+#define SYSTEM_BIT_MASK_BIT_3 0x08
+#define SYSTEM_BIT_MASK_BIT_4 0x10
+#define SYSTEM_BIT_MASK_BIT_5 0x20
+#define SYSTEM_BIT_MASK_BIT_6 0x40
+#define SYSTEM_BIT_MASK_BIT_7 0x80
 // 美化位掩码常量定义（2025年8月30日美化批次）
-#define SYSTEM_BIT_MASK_0x100 0x100
-#define SYSTEM_BIT_MASK_0x200 0x200
-#define SYSTEM_BIT_MASK_0x400 0x400
-#define SYSTEM_BIT_MASK_0x800 0x800
-#define SYSTEM_BIT_MASK_0x1000 0x1000
-#define SYSTEM_BIT_MASK_0x2000 0x2000
-#define SYSTEM_BIT_MASK_0x4000 0x4000
-#define SYSTEM_BIT_MASK_0x8000 0x8000
+#define SYSTEM_BIT_MASK_BIT_40 0x100
+#define SYSTEM_BIT_MASK_BIT_50 0x200
+#define SYSTEM_BIT_MASK_BIT_60 0x400
+#define SYSTEM_BIT_MASK_BIT_70 0x800
+#define SYSTEM_BIT_MASK_BIT_400 0x1000
+#define SYSTEM_BIT_MASK_BIT_500 0x2000
+#define SYSTEM_BIT_MASK_BIT_600 0x4000
+#define SYSTEM_BIT_MASK_BIT_700 0x8000
 
 // 位掩码语义化常量定义
 #define SYSTEM_BIT_MASK_BYTE_ALIGNMENT 0x100                    // 字节对齐掩码
@@ -484,10 +484,10 @@
 #define SYSTEM_BIT_MASK_SEGMENT_ALIGNMENT 0x4000                // 段对齐掩码
 #define SYSTEM_BIT_MASK_BLOCK_ALIGNMENT 0x8000                   // 块对齐掩码
 // 大位掩码语义化常量定义
-#define SYSTEM_BIT_MASK_0x10000 0x10000
-#define SYSTEM_BIT_MASK_0x20000 0x20000
-#define SYSTEM_BIT_MASK_0x40000 0x40000
-#define SYSTEM_BIT_MASK_0x80000 0x80000
+#define SYSTEM_BIT_MASK_BIT_4000 0x10000
+#define SYSTEM_BIT_MASK_BIT_5000 0x20000
+#define SYSTEM_BIT_MASK_BIT_6000 0x40000
+#define SYSTEM_BIT_MASK_BIT_7000 0x80000
 
 // 大位掩码语义化常量定义
 #define SYSTEM_BIT_MASK_LARGE_SECTION_ALIGNMENT 0x10000            // 大节对齐掩码
@@ -495,10 +495,10 @@
 #define SYSTEM_BIT_MASK_LARGE_BLOCK_ALIGNMENT 0x40000              // 大块对齐掩码
 #define SYSTEM_BIT_MASK_SUPER_BLOCK_ALIGNMENT 0x80000              // 超级块对齐掩码
 // 超大位掩码语义化常量定义
-#define SYSTEM_BIT_MASK_0x100000 0x100000
-#define SYSTEM_BIT_MASK_0x200000 0x200000
-#define SYSTEM_BIT_MASK_0x400000 0x400000
-#define SYSTEM_BIT_MASK_0x800000 0x800000
+#define SYSTEM_BIT_MASK_BIT_40000 0x100000
+#define SYSTEM_BIT_MASK_BIT_50000 0x200000
+#define SYSTEM_BIT_MASK_BIT_60000 0x400000
+#define SYSTEM_BIT_MASK_BIT_70000 0x800000
 
 // 超大位掩码语义化常量定义
 #define SYSTEM_BIT_MASK_MEGA_SECTION_ALIGNMENT 0x100000           // 兆节对齐掩码
@@ -506,10 +506,10 @@
 #define SYSTEM_BIT_MASK_MEGA_BLOCK_ALIGNMENT 0x400000             // 兆块对齐掩码
 #define SYSTEM_BIT_MASK_GIGA_ALIGNMENT 0x800000                  // 千兆对齐掩码
 // 超级位掩码语义化常量定义
-#define SYSTEM_BIT_MASK_0x1000000 0x1000000
-#define SYSTEM_BIT_MASK_0x2000000 0x2000000
-#define SYSTEM_BIT_MASK_0x4000000 0x4000000
-#define SYSTEM_BIT_MASK_0x8000000 0x8000000
+#define SYSTEM_BIT_MASK_BIT_400000 0x1000000
+#define SYSTEM_BIT_MASK_BIT_500000 0x2000000
+#define SYSTEM_BIT_MASK_BIT_600000 0x4000000
+#define SYSTEM_BIT_MASK_BIT_700000 0x8000000
 
 // 缓冲区分配结果常量定义（2025年8月30日美化批次）
 #define SYSTEM_BUFFER_ALLOC_RESULT_MINIMAL 0x0d    // 缓冲区分配结果0X0D
@@ -1860,9 +1860,9 @@ extern char system_flag_buffer_cleanup_handler;
 #define SYSTEM_STACK_SIZE_EXTRA_LARGE 0x22           // 特大栈大小
 
 // 系统字符串模式常量定义（2025年8月30日美化批次）
-#define SYSTEM_STRING_PATTERN_ERROR_MSG_1 0x3a726f72  // 错误消息模式1
-#define SYSTEM_STRING_PATTERN_TERMINATOR_1 0x2720     // 终止符模式1
-#define SYSTEM_STRING_PATTERN_MESSAGE_1 0x2220656d    // 消息模式1
+#define SYSTEM_STRING_PATTERN_ERROR_MESSAGE_1 0x3a726f72  // 错误消息模式1
+#define SYSTEM_STRING_PATTERN_TERMINATOR_CHAR_1 0x2720     // 终止符模式1
+#define SYSTEM_STRING_PATTERN_USER_MESSAGE_1 0x2220656d    // 消息模式1
 #define SYSTEM_STRING_PATTERN_EXCLAMATION_1 0x21     // 感叹号模式1
 
 // 系统浮点数常量定义（2025年8月30日美化批次）
@@ -5345,10 +5345,10 @@ section_processing_jump_label_30:
   *(unsigned long long *)(system_initialization_result8 + SYSTEM_OFFSET_INITIALIZATION_1308) = system_buffer_allocation_result;
   system_buffer_allocation_result = *(unsigned long long *)(system_string_length_counter + SYSTEM_OFFSET_COUNTER_QUATERNARY);
   *(unsigned long long *)(system_initialization_result8 + SYSTEM_GLOBAL_DATA_OFFSET_1310) = *(unsigned long long *)(system_string_length_counter + SYSTEM_GLOBAL_DATA_OFFSET_1654);
-  *(unsigned long long *)(system_initialization_result8 + SYSTEM_MEMORY_OFFSET_1318) = system_buffer_allocation_result;
+  *(unsigned long long *)(system_initialization_result8 + SYSTEM_MEMORY_OFFSET_PRIMARY_BLOCK) = system_buffer_allocation_result;
   system_buffer_allocation_result = *(unsigned long long *)(system_string_length_counter + SYSTEM_OFFSET_COUNTER_QUINARY);
   *(unsigned long long *)(system_initialization_result8 + SYSTEM_GLOBAL_DATA_OFFSET_1320) = *(unsigned long long *)(system_string_length_counter + SYSTEM_GLOBAL_DATA_OFFSET_1664);
-  *(unsigned long long *)(system_initialization_result8 + SYSTEM_MEMORY_OFFSET_1328) = system_buffer_allocation_result;
+  *(unsigned long long *)(system_initialization_result8 + SYSTEM_MEMORY_OFFSET_SECONDARY_BLOCK) = system_buffer_allocation_result;
   system_thread_operation_flags = *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_THREAD_OPERATION_FLAGS);
   system_buffer_allocation_result = *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_DATA_INTEGRITY);
   system_buffer_allocation_result = *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_STRING_FLAG0);
@@ -10731,7 +10731,7 @@ unsigned long long * setup_thread_parameters(long long handle_param,unsigned lon
   system_thread_stack_pointer_variable = system_string_input_pointer;
   system_buffer_allocation_result = allocate_temporary_buffer(system_string_input_pointer);
   *system_string_input_pointer = SYSTEM_CHAR_LOWERCASE_R65206573726150;
-  *(unsigned int *)(system_string_input_pointer + 1) = SYSTEM_STRING_PATTERN_ERROR_MSG_1;
+  *(unsigned int *)(system_string_input_pointer + 1) = SYSTEM_STRING_PATTERN_ERROR_MESSAGE_1;
   *(unsigned short *)((long long)system_string_input_pointer + SYSTEM_OFFSET_STACK_POINTER) = SYSTEM_MODULE_OFFSET_270;
   *(unsigned char *)((long long)system_string_input_pointer + SYSTEM_POINTER_OFFSET_E) = SYSTEM_ZERO_VALUE;
   system_maximum_stack_size = SYSTEM_STACK_SIZE_MINIMAL;
@@ -14020,8 +14020,8 @@ void system_data_initialization_cleanup(void)
 // 特殊字符串模式常量
 #define SYSTEM_STRING_PATTERN_OBJECT_MSG 0x2220656d
 #define SYSTEM_STRING_PATTERN_COLON_MSG 0x3a726f72
-#define SYSTEM_STRING_PATTERN_TERMINATOR_1 0x2e6f6373
-#define SYSTEM_STRING_PATTERN_TERMINATOR_2 0x5f646563
+#define SYSTEM_STRING_PATTERN_TERMINATOR_CHAR_1 0x2e6f6373
+#define SYSTEM_STRING_PATTERN_TERMINATOR_CHAR_2 0x5f646563
 
 // 特殊位掩码常量
 #define SYSTEM_BIT_MASK_FLOAT_UPPER 0xffffff00
@@ -14771,9 +14771,9 @@ void system_data_initialization_cleanup(void)
 // 系统字符串模式常量定义
 #define SYSTEM_STRING_PATTERN_COLON_MSG 0x3a726f72               // 冒号消息模式
 #define SYSTEM_STRING_PATTERN_OBJECT_MSG 0x2220656d               // 对象消息模式
-#define SYSTEM_STRING_PATTERN_TERMINATOR_1 0x526f662f             // 终止符模式1
-#define SYSTEM_STRING_PATTERN_TERMINATOR_2 0x5f646563             // 终止符模式2
-#define SYSTEM_STRING_PATTERN_TERMINATOR_3 0x466f6e63             // 终止符模式3
+#define SYSTEM_STRING_PATTERN_TERMINATOR_CHAR_1 0x526f662f             // 终止符模式1
+#define SYSTEM_STRING_PATTERN_TERMINATOR_CHAR_2 0x5f646563             // 终止符模式2
+#define SYSTEM_STRING_PATTERN_TERMINATOR_CHAR_3 0x466f6e63             // 终止符模式3
 #define SYSTEM_STRING_POINTER_TAG_2 0x2e6f6373                    // 字符串指针标签2
 
 // 系统位掩码常量定义
