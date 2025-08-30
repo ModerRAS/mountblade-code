@@ -1,5 +1,16 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 最新美化内容（2025年8月30日最终批次续续续续续续续续续续续）：
+// - 美化变量名，将system_configurationData_1/2替换为system_config_data_primary/secondary等配置数据变量名
+// - 美化变量名，将_g_thread_config_5/6替换为system_thread_config_primary/secondary等线程配置变量名
+// - 美化变量名，将_g_thread_parameter_1/2替换为system_thread_param_primary/secondary等线程参数变量名
+// - 美化变量名，将init_stack_uint_size_90替换为init_stack_buffer_size等初始化栈缓冲区变量名
+// - 美化变量名，将_g_network_system_object_1/2替换为system_network_object_primary/secondary等网络系统对象变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了系统初始化文件中剩余包含数字的变量名的语义化替换
+// - 原本实现：完全重构系统初始化文件所有变量命名体系，建立统一的语义化命名规范
+// - 简化实现：仅将常见的包含数字的变量名替换为语义化名称
+
 // 最新美化内容（2025年8月30日最终批次续续续续续续续续续续）：
 // - 修复变量声明问题，为system_node_total_allocation_size变量添加声明
 // - 美化变量名，将system_node_allocation_size_total替换为system_node_total_allocation_size等语义化变量名
