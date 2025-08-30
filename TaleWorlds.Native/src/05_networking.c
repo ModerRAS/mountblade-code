@@ -22183,7 +22183,7 @@ networkSendDataPacket4:
   network_encrypt_content(network_module_operation_status ^ (ulonglong)network_encryption_counter8);
   network_status_code_prev = network_packet_size_ptr[NETWORK_ARRAY_INDEX_HANDSHAKE_TYPE];
     if ((network_status_code_prev < (ulonglong)network_packet_size_ptr[NETWORK_ARRAY_INDEX_HANDSHAKE_TYPE]) ||
-       ((ulonglong)((longlong)*(int32_t *)(network_packet_size_ptr + 0x56) * MODULE_STATUS_OFFSET + network_packet_size_ptr[NETWORK_ARRAY_INDEX_HANDSHAKE_TYPE]) <= network_status_code_prev)) break;
+       ((ulonglong)((longlong)*(int32_t *)(network_packet_size_ptr + NETWORK_MODULE_STATUS_OFFSET) * MODULE_STATUS_OFFSET + network_packet_size_ptr[NETWORK_ARRAY_INDEX_HANDSHAKE_TYPE]) <= network_status_code_prev)) break;
     network_character_flag = network_socket_descriptor;
     if (network_character_flag != '\x01') {
       dataLength = networkQueryStatus(network_buffer_size_byte_value,network_status_code_prev,1);

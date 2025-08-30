@@ -11325,7 +11325,7 @@ section_processing_jump_label_:
               system_char_variable = (char)*system_input_register_rax;
             }
             system_input_register_rax = (int *)CONCAT_BYTES_TO_64BIT((int7)((ulong long)system_input_register_rax >> 8),system_char_variable + system_char_variable);
-LAB_180768028_1:
+SYSTEM_LABEL_REGISTER_PROCESSING:
             system_int_param_ptr = (int *)(((ulong long)system_input_register_rax & UINT32_MAXffffff20) - 0x75);
             *system_int_param_ptr = *system_int_param_ptr + (int)handle_param;
             *(int *)(((ulong long)system_input_register_rax & UINT32_MAXffffff20) - 0x17ffffff) = (int)pthread_op_flags;
