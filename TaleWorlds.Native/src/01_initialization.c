@@ -38,6 +38,16 @@
 #define SYSTEM_STRING_EXT_TOKEN 0x78742e67
 #define SYSTEM_STRING_RESU_TOKEN 0x72657375
 #define SYSTEM_STRING_CONF_TOKEN 0x6e6f635f
+#define SYSTEM_STRING_T_CHAR 0x74
+#define SYSTEM_STRING_GIF_EXT 0x2e676966
+#define SYSTEM_STRING_PATH_TRIPLE_DOT 0x2e2f2e2e
+#define SYSTEM_STRING_PATH_DOT_SLASH 0x2f2e
+#define SYSTEM_STRING_NTS_PATH 0x2f73746e
+#define SYSTEM_STRING_INIT_PARAM_40 0xb
+#define SYSTEM_STRING_DB_EN_TOKEN 0x6420656e
+#define SYSTEM_STRING_N_DI_TOKEN 0x6e206469
+#define SYSTEM_STRING_R_TO_TOKEN 0x7220746f
+#define SYSTEM_STRING_END_TOKEN 0x65646e65
 
 // 01_initialization.c - 初始化系统代码（已美化变量名和函数名）
 
@@ -17624,7 +17634,7 @@ void InitializePhysicsSystem(void)
   node_next[1] = SYSTEM_STRING_CONFIG_TOKEN_SHORT;
   node_next[2] = SYSTEM_STRING_INFO_TOKEN;
   node_next[3] = SYSTEM_STRING_EXT_TOKEN;
-  *(uint16_t *)(node_next + 4) = 0x74;
+  *(uint16_t *)(node_next + 4) = SYSTEM_STRING_T_CHAR;
   init_stack_uint_param_608 = compare_result;
   node_previous = (uint64_t *)AllocateSystemMemory(systemMemoryPool,SYSTEM_OFFSET_18,8,3);
   system_ptr_value = &g_system_data_variable3;
@@ -19350,7 +19360,7 @@ bool InitializeSystemComponents(void)
   node_root[1] = SYSTEM_STRING_CONFIG_TOKEN_SHORT;
   node_root[2] = SYSTEM_STRING_INFO_TOKEN;
   node_root[3] = SYSTEM_STRING_EXT_TOKEN;
-  *(uint16_t *)(node_root + 4) = 0x74;
+  *(uint16_t *)(node_root + 4) = SYSTEM_STRING_T_CHAR;
   init_stack_uint_parameter_48 = 0;
   longStack_40 = 0;
   system_ptr_value = &g_system_data_variable3;
@@ -19431,8 +19441,8 @@ void InitializeSystemModule9(void)
   node_root = (uint32_t *)(system_buffer_ptr_58 + init_stack_ulong_param_50);
   *node_root = SYSTEM_STRING_RESU_TOKEN;
   node_root[1] = SYSTEM_STRING_CONF_TOKEN;
-  node_root[2] = 0x2e676966;
-  node_root[3] = 0x747874;
+  node_root[2] = SYSTEM_STRING_GIF_EXT;
+  node_root[3] = SYSTEM_STRING_TXT_TOKEN;
   init_stack_ulong_param_50 = system_integer_result;
   system_ptr_value = (uint64_t *)AllocateSystemMemory(systemMemoryPool,SYSTEM_OFFSET_18,8,3);
   system_ptr_value = &g_system_data_variable3;
@@ -19526,7 +19536,7 @@ void InitializeUISystem(void)
     do {
       system_long_value = strchr(&g_system_configuration_data_ptr,(int)ptr_system_init_flag[allocation_size]);
       if (system_long_result != 0) {
-        *(uint8_t *)(allocation_size + node_root[2]) = 0x2f;
+        *(uint8_t *)(allocation_size + node_root[2]) = SYSTEM_STRING_PATH_SEPARATOR;
       }
       allocation_size = allocation_size + 1;
       ptr_system_init_flag = (char *)node_root[2];
@@ -19625,8 +19635,8 @@ InitializeSystemProfiler(uint64_t *handleIdentifier,uint64_t resourceIdentifier,
   compare_result = system_int_result + 6;
   ConfigureSystemParameters(handleIdentifier,compare_result,system_configuration,systemFlags,1,usystem_int_result);
   system_ptr_value = (uint32_t *)((ulonglong)*(uint *)(handleIdentifier + 2) + handleIdentifier[1]);
-  *system_ptr_value = 0x2e2f2e2e;
-  *(uint16_t *)(system_pointer_var + 1) = 0x2f2e;
+  *system_ptr_value = SYSTEM_STRING_PATH_TRIPLE_DOT;
+  *(uint16_t *)(system_pointer_var + 1) = SYSTEM_STRING_PATH_DOT_SLASH;
   *(uint8_t *)((longlong)system_pointer_var + 6) = 0;
   *(int *)(handleIdentifier + 2) = compare_result;
   system_integer_result = system_int_result + 0x2a;
@@ -19636,7 +19646,7 @@ InitializeSystemProfiler(uint64_t *handleIdentifier,uint64_t resourceIdentifier,
   node_root[1] = SYSTEM_STRING_Autostatus;
   node_root[2] = SYSTEM_STRING_Atomination;
   node_root[3] = SYSTEM_STRING_Attachment;
-  *(uint32_t *)(node_root + 4) = 0x2f73746e;
+  *(uint32_t *)(node_root + 4) = SYSTEM_STRING_NTS_PATH;
   *(uint8_t *)((longlong)node_root + 0x24) = 0;
   *(int *)(handleIdentifier + 2) = system_integer_result;
   return handleIdentifier;
@@ -19678,11 +19688,11 @@ uint64_t InitializeSystemModule43(char handleIdentifier)
   system_integer_result = uintStack_20 + SYSTEM_CONFIG_SIZE_FINAL;
   ConfigureSystemParameters(&system_buffer_ptr_30,system_int_result);
   system_ptr_value = (uint32_t *)(system_buffer_ptr_28 + uintStack_20);
-  *system_ptr_value = 0x69676e65;
-  system_pointer_var[1] = 0x635f656e;
-  system_pointer_var[2] = 0x69666e6f;
-  system_pointer_var[3] = 0x78742e67;
-  *(uint16_t *)(system_pointer_var + 4) = 0x74;
+  *system_ptr_value = SYSTEM_STRING_ENGINE_TOKEN;
+  system_pointer_var[1] = SYSTEM_STRING_CONFIG_TOKEN_SHORT;
+  system_pointer_var[2] = SYSTEM_STRING_INFO_TOKEN;
+  system_pointer_var[3] = SYSTEM_STRING_EXT_TOKEN;
+  *(uint16_t *)(system_pointer_var + 4) = SYSTEM_STRING_T_CHAR;
   init_stack_uint_parameter_48 = 0;
   longStack_40 = 0;
   system_ptr_value = &g_system_data_variable3;
@@ -25096,11 +25106,11 @@ void InitializeSystemModule14(longlong handleIdentifier)
     init_stack_uint_param_88 = SYSTEM_CONFIG_SIZE_NETWORK;
     ConfigureSystemParameters(&system_buffer_ptr_98system_buffer_pointer_primary,0x3e);
     system_ptr_value = (uint32_t *)(system_buffer_ptr_small_buffer + init_stack_uint_param_88);
-    *system_ptr_value = 0x69676e65;
-    system_pointer_var[1] = 0x6420656e;
-    system_pointer_var[2] = 0x6e206469;
-    system_pointer_var[3] = 0x7220746f;
-    system_pointer_var[4] = 0x65646e65;
+    *system_ptr_value = SYSTEM_STRING_ENGINE_TOKEN;
+    system_pointer_var[1] = SYSTEM_STRING_DB_EN_TOKEN;
+    system_pointer_var[2] = SYSTEM_STRING_N_DI_TOKEN;
+    system_pointer_var[3] = SYSTEM_STRING_R_TO_TOKEN;
+    system_pointer_var[4] = SYSTEM_STRING_END_TOKEN;
     system_pointer_var[5] = SYSTEM_NODE_HEADER_SIZE612072;
     system_pointer_var[6] = 0x6d617266;
     system_pointer_var[7] = 0x6f662065;
@@ -29895,7 +29905,7 @@ void ConfigureGraphicsShader(uint64_t handleIdentifier,uint64_t resourceIdentifi
   init_stack_uint_param_38 = CONCAT44(init_stack_uint_param_38._4_4_,usystem_int_result);
   *node_root = 0x6e6f632072657355;
   *(uint32_t *)(node_root + 1) = 0x676966;
-  init_stack_uint_param_40 = 0xb;
+  init_stack_uint_param_40 = SYSTEM_CONFIG_SIZE_THREAD_LOCAL;
   InitializeSystemModule1(handleIdentifier,&system_buffer_ptr_50);
   system_buffer_ptr_50 = &resourcePoolPointer;
                     // WARNING: Subroutine does not return
@@ -35006,7 +35016,7 @@ uint64_t InitializeSystemModule10(uint64_t handleIdentifier,uint32_t resourceIde
     system_status_code = 3;
     break;
   case 7:
-    system_status_code = 0xb;
+    system_status_code = SYSTEM_CONFIG_SIZE_THREAD_LOCAL;
     break;
   case 8:
     system_status_code = 6;
@@ -42604,7 +42614,7 @@ ulonglong InitializeInputEngineNode(uint64_t handleIdentifier,uint64_t resourceI
       init_stack_uint_param_c8 = CONCAT44(init_stack_uint_param_c8._4_4_,usystem_int_result);
       *system_ptr_value = SYSTEM_FLAG_BIT_4e524157204c4752;
       *(uint32_t *)(system_pointer_var + 1) = SYSTEM_FLAG_BIT_474e49;
-      init_stack_uint_param_d0 = 0xb;
+      init_stack_uint_param_d0 = SYSTEM_CONFIG_SIZE_THREAD_LOCAL;
       if (((g_system_string_buffer == '\0') || (system_integer_result = IsDebuggerPresent(), system_int_result != 0)) &&
          (g_graphics_initialized_flag == '\0')) {
         MessageBoxA(0,resourceIdentifier,system_pointer_var,SYSTEM_FLAG_BIT_41030);
