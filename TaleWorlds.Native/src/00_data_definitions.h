@@ -6860,10 +6860,10 @@ unsigned long long process_system_request(unsigned long long *handle_param)
   unsigned char temporary_buffer_primary [16];
   int thread_result_status;
   uint buffer_allocation_result;
-  float *pfloat_var;
+  float *float_vector_data_ptr;
   ulong long buffer_allocation_result;
   ushort *string_input_pointer;
-  float *pfloat_var;
+  float *float_vector_buffer_ptr;
   ulong long buffer_allocation_result;
   byte *byte_string_input_pointer;
   float system_float_variable;
@@ -6876,9 +6876,9 @@ unsigned long long process_system_request(unsigned long long *handle_param)
   case 0:
   case 1:
     byte_string_input_pointer = (byte *)*handle_param;
-    pfloat_var = (float *)((ulong long)handle_param[1] >> 2);
-    if (0 < (int)pfloat_var) {
-      buffer_allocation_result = (ulong long)pfloat_var & UINT32_MAX;
+    float_buffer_ptr = (float *)((ulong long)handle_param[1] >> 2);
+    if (0 < (int)float_buffer_ptr) {
+      buffer_allocation_result = (ulong long)float_buffer_ptr & UINT32_MAX;
       do {
         system_float_variable = (float)byte_string_input_pointer[1] * SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT - SYSTEM_FLOAT_VALUE_ONE;
         system_float_variable = (float)*byte_string_input_pointer * SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT - SYSTEM_FLOAT_VALUE_ONE;
@@ -6901,9 +6901,9 @@ unsigned long long process_system_request(unsigned long long *handle_param)
     return 0;
   case 8:
     string_input_pointer = (ushort *)*handle_param;
-    pfloat_var = (float *)((ulong long)handle_param[1] >> 3);
-    if (0 < (int)pfloat_var) {
-      buffer_allocation_result = (ulong long)pfloat_var & UINT32_MAX;
+    float_vector_buffer_ptr = (float *)((ulong long)handle_param[1] >> 3);
+    if (0 < (int)float_array_ptr) {
+      buffer_allocation_result = (ulong long)float_array_ptr & UINT32_MAX;
       do {
         system_float_variable = (float)string_input_pointer[1] * SYSTEM_FLOAT_CONVERSION_USHORT_TO_FLOAT - SYSTEM_FLOAT_VALUE_ONE;
         system_float_variable = (float)*string_input_pointer * SYSTEM_FLOAT_CONVERSION_USHORT_TO_FLOAT - SYSTEM_FLOAT_VALUE_ONE;
@@ -6923,44 +6923,44 @@ unsigned long long process_system_request(unsigned long long *handle_param)
     }
     break;
   case SYSTEM_CONSTANT_2:
-    pfloat_var = (float *)*handle_param;
+    float_conversion_ptr = (float *)*handle_param;
     if (0 < (int)((ulong long)handle_param[1] / SYSTEM_OFFSET_PATH_ENTRY_SIZE)) {
       buffer_allocation_result = (ulong long)handle_param[1] / SYSTEM_OFFSET_PATH_ENTRY_SIZE & UINT32_MAX;
       do {
-        system_float_variable = (*pfloat_var + *pfloat_var) - SYSTEM_FLOAT_VALUE_ONE;
-        system_float_variable = (pfloat_var[1] + pfloat_var[1]) - SYSTEM_FLOAT_VALUE_ONE;
-        system_float_variable = (pfloat_var[2] + pfloat_var[2]) - SYSTEM_FLOAT_VALUE_ONE;
+        system_float_variable = (*float_conversion_ptr + *float_conversion_ptr) - SYSTEM_FLOAT_VALUE_ONE;
+        system_float_variable = (float_vector_buffer_ptr[1] + float_vector_buffer_ptr[1]) - SYSTEM_FLOAT_VALUE_ONE;
+        system_float_variable = (float_vector_buffer_ptr[2] + float_vector_buffer_ptr[2]) - SYSTEM_FLOAT_VALUE_ONE;
         system_float_variable = system_float_variable * system_float_variable + system_float_variable * system_float_variable + system_float_variable * system_float_variable;
         temporary_buffer_secondary = rsqrtss(zero_extension_float((uint)system_float_variable),zero_extension_float((uint)system_float_variable));
         system_float_variable = temporary_buffer_secondary_first_float_;
         system_float_variable = system_float_variable * SYSTEM_FLOAT_ARITHMETIC_HALF * (SYSTEM_FLOAT_SQUARE_ROOT_APPROXIMATION - system_float_variable * system_float_variable * system_float_variable);
-        *pfloat_var = (system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_ARITHMETIC_HALF;
-        pfloat_var[1] = (system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_ARITHMETIC_HALF;
-        pfloat_var[2] = (system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_ARITHMETIC_HALF;
-        pfloat_var = pfloat_var + 3;
+        *float_conversion_ptr = (system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_ARITHMETIC_HALF;
+        float_conversion_ptr[1] = (system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_ARITHMETIC_HALF;
+        float_vector_buffer_ptr[2] = (system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_ARITHMETIC_HALF;
+        float_vector_buffer_ptr = float_vector_buffer_ptr + 3;
         buffer_allocation_result = buffer_allocation_result - 1;
       } while (buffer_allocation_result != 0);
-      return CONCAT_BYTES_TO_64BIT((int7)((ulong long)pfloat_var >> 8),1);
+      return CONCAT_BYTES_TO_64BIT((int7)((ulong long)float_vector_buffer_ptr >> 8),1);
     }
     break;
   case path_buffer_size:
     buffer_allocation_result = handle_param[1];
-    pfloat_var = (float *)*handle_param;
-    pfloat_var = (float *)(buffer_allocation_result >> 4);
-    if (0 < (int)pfloat_var) {
-      buffer_allocation_result = (ulong long)pfloat_var & UINT32_MAX;
+    float_vector_ptr = (float *)*handle_param;
+    float_conversion_array_ptr = (float *)(buffer_allocation_result >> 4);
+    if (0 < (int)float_conversion_array_ptr) {
+      buffer_allocation_result = (ulong long)float_conversion_array_ptr & UINT32_MAX;
       do {
-        system_float_variable = (*pfloat_var + *pfloat_var) - SYSTEM_FLOAT_VALUE_ONE;
-        system_float_variable = (pfloat_var[1] + pfloat_var[1]) - SYSTEM_FLOAT_VALUE_ONE;
-        system_float_variable = (pfloat_var[2] + pfloat_var[2]) - SYSTEM_FLOAT_VALUE_ONE;
+        system_float_variable = (*float_conversion_array_ptr + *float_conversion_array_ptr) - SYSTEM_FLOAT_VALUE_ONE;
+        system_float_variable = (float_conversion_array_ptr[1] + float_conversion_array_ptr[1]) - SYSTEM_FLOAT_VALUE_ONE;
+        system_float_variable = (float_conversion_array_ptr[2] + float_conversion_array_ptr[2]) - SYSTEM_FLOAT_VALUE_ONE;
         system_float_variable = system_float_variable * system_float_variable + system_float_variable * system_float_variable + system_float_variable * system_float_variable;
         temporary_buffer_secondary = rsqrtss(zero_extension_float((uint)system_float_variable),zero_extension_float((uint)system_float_variable));
         system_float_variable = temporary_buffer_secondary_first_float_;
         system_float_variable = system_float_variable * SYSTEM_FLOAT_ARITHMETIC_HALF * (SYSTEM_FLOAT_SQUARE_ROOT_APPROXIMATION - system_float_variable * system_float_variable * system_float_variable);
-        *pfloat_var = (system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_ARITHMETIC_HALF;
-        pfloat_var[2] = (system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_ARITHMETIC_HALF;
-        pfloat_var[1] = (system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_ARITHMETIC_HALF;
-        pfloat_var = pfloat_var + SYSTEM_OFFSET_HANDLE_PARAM;
+        *float_conversion_array_ptr = (system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_ARITHMETIC_HALF;
+        float_conversion_array_ptr[2] = (system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_ARITHMETIC_HALF;
+        float_conversion_array_ptr[1] = (system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_ARITHMETIC_HALF;
+        float_conversion_array_ptr = float_conversion_array_ptr + SYSTEM_OFFSET_HANDLE_PARAM;
         buffer_allocation_result = buffer_allocation_result - 1;
       } while (buffer_allocation_result != 0);
       return CONCAT_BYTES_TO_64BIT((uint7)(buffer_allocation_result >> 0xc),1);
@@ -6970,7 +6970,7 @@ unsigned long long process_system_request(unsigned long long *handle_param)
     string_input_pointer = (ushort *)*handle_param;
     temporary_buffer_primary_second_long_ = SYSTEM_ZERO_VALUE;
     temporary_buffer_primary_first_long_ = handle_param[1];
-    pfloat_var = sub_long_long(zero_ext_long(floating_point_conversion_constant) * temporary_buffer_primary,0);
+    float_math_result_ptr = sub_long_long(zero_ext_long(floating_point_conversion_constant) * temporary_buffer_primary,0);
     buffer_allocation_result = (ulong long)handle_param[1] / 6;
     if (0 < (int)buffer_allocation_result) {
       buffer_allocation_result = buffer_allocation_result & UINT32_MAX;
@@ -7012,7 +7012,7 @@ unsigned long long process_system_request(unsigned long long *handle_param)
         *byte_string_input_pointer = (byte)(int)((system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_NORMALIZATION_FACTOR);
         byte_string_input_pointer[1] = (byte)(int)((system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_NORMALIZATION_FACTOR);
         buffer_allocation_result = (uint)((system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_NORMALIZATION_FACTOR);
-        pfloat_var = (float *)(ulong long)buffer_allocation_result;
+        color_float_ptr = (float *)(ulong long)buffer_allocation_result;
         byte_string_input_pointer[2] = (byte)buffer_allocation_result;
         byte_string_input_pointer = byte_string_input_pointer + 3;
         buffer_allocation_result = buffer_allocation_result - 1;
@@ -7026,18 +7026,18 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
   float *pfloat_var;
   float *pfloat_var;
   float *pfloat_var;
+  float *color_float_ptr;
   float *pfloat_var;
   float *pfloat_var;
   float *pfloat_var;
   float *pfloat_var;
   float *pfloat_var;
   float *pfloat_var;
-  float *pfloat_var;
-  float *pfloat_var;
+  float *color_float_ptr;
   float system_float_variable;
   uint buffer_allocation_result;
-  float *pfloat_var;
-  float *pfloat_var;
+  float *color_float_ptr;
+  float *color_float_ptr;
   int thread_result_status;
   int thread_result_status;
   int thread_result_status;
@@ -7045,13 +7045,13 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
   long long str_len_counter;
   double color_luminance_accumulator;
   if (*(int *)((long long)handle_param + SYSTEM_OFFSET_INITIALIZATION_FLAG) == path_buffer_size) {
-    pfloat_var = (float *)*handle_param;
+    color_float_ptr = (float *)*handle_param;
     thread_result_status = SYSTEM_ZERO_VALUE;
     color_luminance_accumulator = SYSTEM_FLOAT_VALUE_ZERO;
     str_len_counter = SYSTEM_ZERO_VALUE;
     thread_result_status = SYSTEM_ZERO_VALUE;
     thread_result_status = (int)((ulong long)handle_param[1] / SYSTEM_OFFSET_PATH_ENTRY_SIZE);
-    pfloat_var = pfloat_var;
+    color_float_ptr = color_float_ptr;
     if (3 < thread_result_status) {
       buffer_allocation_result = (thread_result_status - 4U >> 2) + 1;
       buffer_allocation_result = (ulong long)buffer_allocation_result;
@@ -7061,11 +7061,11 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
         pfloat_var = pfloat_var + 3;
         system_float_variable = *pfloat_var;
         pfloat_var = pfloat_var + 6;
-        pfloat_var = pfloat_var + 7;
-        pfloat_var = pfloat_var + 5;
-        pfloat_var = pfloat_var + 9;
-        pfloat_var = pfloat_var + 10;
-        pfloat_var = pfloat_var + SYSTEM_OFFSET_HANDLE_PARAM;
+        color_float_ptr = color_float_ptr + 7;
+        color_float_ptr = color_float_ptr + 5;
+        color_float_ptr = color_float_ptr + 9;
+        color_float_ptr = color_float_ptr + 10;
+        color_float_ptr = color_float_ptr + SYSTEM_OFFSET_HANDLE_PARAM;
         pfloat_var = pfloat_var + 1;
         pfloat_var = pfloat_var + 2;
         pfloat_var = pfloat_var + 8;
@@ -7076,19 +7076,19 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
                           (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN +
                           (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN + (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN +
                           (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN +
-                          (double)*pfloat_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT + (double)*pfloat_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT +
-                          (double)*pfloat_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT + (double)*pfloat_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT;
+                          (double)*color_float_ptr * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT + (double)*color_float_ptr * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT +
+                          (double)*color_float_ptr * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT + (double)*color_float_ptr * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT;
         buffer_allocation_result = buffer_allocation_result - 1;
       } while (buffer_allocation_result != 0);
     }
     if (thread_result_status < thread_result_status) {
-      pfloat_var = pfloat_var + 2;
+      color_float_ptr = color_float_ptr + 2;
       buffer_allocation_result = (ulong long)(uint)(thread_result_status - thread_result_status);
       str_len_counter = str_len_counter + buffer_allocation_result;
       do {
-        pfloat_var = pfloat_var + -1;
-        pfloat_var = pfloat_var + -2;
-        system_float_variable = *pfloat_var;
+        color_float_ptr = color_float_ptr + -1;
+        color_float_ptr = color_float_ptr + -2;
+        system_float_variable = *color_float_ptr;
         pfloat_var = pfloat_var + 3;
         color_luminance_accumulator = color_luminance_accumulator + (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN + (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_RED +
                           (double)system_float_variable * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT;
@@ -14902,6 +14902,7 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_NETWORK_BUFFER_SIZE 8192                            // 网络缓冲区大小
 #define SYSTEM_NETWORK_TIMEOUT 30000                               // 网络超时时间
 
+// 系统初始化常量定义（2025年8月30日美化批次）
 #define SYSTEM_OFFSET_INITIALIZATION_12F8 0x12f8                  // 初始化12F8偏移量
 #define SYSTEM_OFFSET_INITIALIZATION_1308 0x1308                  // 初始化1308偏移量
 
@@ -14911,3 +14912,7 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_OPERATION_STACK_BUFFER system_operation_stack_buffer // 操作栈缓冲区
 #define SYSTEM_STRING_INPUT_POINTER string_input_pointer            // 字符串输入指针
 #define SYSTEM_INITIALIZATION_RESULT psystem_initialization_result   // 初始化结果指针
+
+// 美化硬编码常量定义（2025年8月30日美化批次）
+#define SYSTEM_INITIALIZATION_OFFSET_PRIMARY 0x12f8              // 初始化主偏移量
+#define SYSTEM_INITIALIZATION_OFFSET_SECONDARY 0x1308             // 初始化次偏移量
