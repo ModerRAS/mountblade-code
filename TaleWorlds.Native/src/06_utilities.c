@@ -2364,11 +2364,11 @@ dataValue g_ai_behavior_work_buffer;                // AI行为工作缓冲区
 dataValue g_ai_behavior_work_offset;                // AI行为工作偏移量
 dataValue g_animation_playback_time;                 // 动画播放时间
 dataValue g_ai_behavior_work_size;                  // AI行为工作大小
-dataValue g_ai_navigation_mesh;
-dataValue g_aiNavWorkBuffer;
-dataValue g_aiNavTempOffset;
-dataValue g_aiNavTempSize;
-dataValue g_aiNavTempFlags;
+dataValue g_ai_navigation_mesh;                      // AI导航网格
+dataValue g_ai_nav_work_buffer;                      // AI导航工作缓冲区
+dataValue g_ai_nav_temp_offset;                       // AI导航临时偏移量
+dataValue g_ai_nav_temp_size;                         // AI导航临时大小
+dataValue g_ai_nav_temp_flags;                        // AI导航临时标志
 
 // 函数: resource_data InitializeDatabaseConnection;
 dataValue InitializeDatabaseConnection;

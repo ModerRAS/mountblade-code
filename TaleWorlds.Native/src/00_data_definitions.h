@@ -6169,7 +6169,7 @@ long long allocate_with_thread_op_flags(long long handle_param,uint thread_op_fl
   long long str_len_counter;
   uint *string_input_ptr;
   if ((*(int *)(*(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8) +
-               0x48) < system_global_data_pointer) && (system_crypto_004(&network_data_buffer), system_global_data_pointer == -1)) {
+               SYSTEM_THREAD_LOCAL_STORAGE_OFFSET) < system_global_data_pointer) && (system_crypto_004(&network_data_buffer), system_global_data_pointer == -1)) {
     system_memory_004(SECONDARY_MEMORY_POOL_ADDR);
     system_crypto_initializer(system_execution_function);
     system_crypto_module_initializer(&network_data_buffer);
@@ -6210,7 +6210,7 @@ long long allocate_system_buffer(unsigned long long handle_param,long long *thre
   unsigned long long *string_input_ptr;
   uint buffer_alloc_result;
   if (*(int *)(*(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8) +
-              0x48) < system_global_data_pointer) {
+              SYSTEM_THREAD_LOCAL_STORAGE_OFFSET) < system_global_data_pointer) {
     system_crypto_004(&render_data_buffer);
     if (system_global_data_pointer == -1) {
       buffer_alloc_result = system_execution_function(system_global_data_pointer,0x1c8,8,3);
