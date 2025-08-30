@@ -10689,11 +10689,11 @@ network_packet_handler_loop_label:
               network_operation_status_code = network_operation_status4;
             network_operation_status4 = network_operation_status_code_third_prev;
           } while (network_socket_index != -NETWORK_OPERATION_SUCCESS);
-  socket_descriptor_var_secondary3 = (int64_t *)ZERO_OFFSET;
+  socket_descriptor_var_secondary_backup = (int64_t *)ZERO_OFFSET;
   socket_descriptor_var_secondary = (int64_t *)(network_socket_handle + NETWORK_SOCKET_INFO_OFFSET8);
   network_timeout_config_pointer = (int64_t *)(*socket_descriptor_var_secondary + -SESSION_CONFIG_SIZE);
   if (*socket_descriptor_var_secondary == NETWORK_OPERATION_FAILURE) {
-    network_timeout_config_pointer = socket_descriptor_var_secondary3;
+    network_timeout_config_pointer = socket_descriptor_var_secondary_backup;
   timeout_config_ptr_ptr_backup = socket_descriptor_var_secondary3;
   if (network_timeout_config_pointer != (int64_t *)ZERO_OFFSET) {
     timeout_config_ptr_ptr_backup = network_timeout_config_pointer + 3;
@@ -10702,7 +10702,7 @@ network_packet_handler_loop_label:
       network_timeout_config_pointer = *(int64_t **)(network_timeout_value_ptr_tenth + CONNECTION_BUFFER_SIZE);
     network_timeout_config_pointer = timeout_config_ptr_ptr_backup + -3;
     if (timeout_config_ptr_ptr_backup == (int64_t *)ZERO_OFFSET) {
-      network_timeout_config_pointer = socket_descriptor_var_secondary3;
+      network_timeout_config_pointer = socket_descriptor_var_secondary_backup;
     network_socket_index = *(int32_t *)(*(int64_t *)(network_socket_handle + NETWORK_SOCKET_HANDLE_OFFSET) + NETWORK_PACKET_DATA_PAYLOAD_OFFSET);
     network_timeout_config_pointer_alt = timeout_config_ptr_ptr_backup;
     if (NETWORK_OPERATION_FAILURE < network_socket_index) {
@@ -14819,7 +14819,7 @@ void networkEstablishSecureConnection(int64_t network_socket_handle, uint64_t *n
                 network_primary_long_pointer = (int64_t *)(*socket_descriptor_var_secondary3 + -SESSION_CONFIG_SIZE);
                 if (*socket_descriptor_var_secondary3 == NETWORK_OPERATION_FAILURE) {
                   network_primary_long_pointer = (int64_t *)ZERO_OFFSET;
-                socket_descriptor_var_secondary3 = (int64_t *)ZERO_OFFSET;
+                socket_descriptor_var_secondary_backup = (int64_t *)ZERO_OFFSET;
                 if (network_primary_long_pointer != (int64_t *)ZERO_OFFSET) {
                   socket_descriptor_var_secondary3 = network_primary_long_pointer + 3;
               socket_descriptor_var_secondary = (int64_t *)(ulonglong)((int)socket_descriptor_var_secondary + NETWORK_OPERATION_SUCCESS);
@@ -14845,7 +14845,7 @@ void networkEstablishSecureConnection(int64_t network_socket_handle, uint64_t *n
               if (server_port_address != NETWORK_OPERATION_FAILURE) {
                 socket_descriptor_var_secondary3 = network_connection_processor_data_temp_value + NETWORK_SOCKET_BASE_OFFSET_EXTENDED7;
                 if (network_connection_processor_data_temp_value == (uint64_t *)NETWORK_MAX_SIZE_FFFFFFF08) {
-                  socket_descriptor_var_secondary3 = (int64_t *)ZERO_OFFSET;
+                  socket_descriptor_var_secondary_backup = (int64_t *)ZERO_OFFSET;
                 if (socket_descriptor_var_secondary3 != (int64_t *)ZERO_OFFSET) {
                   if (((*(int32_t *)((longlong)socket_descriptor_var_secondary3 + SOCKET_FLAG_OFFSET) != NETWORK_OPERATION_FAILURE) && ((int)socket_descriptor_var_secondary3[NETWORK_OPERATION_SUCCESS] != NETWORK_OPERATION_FAILURE)) &&
                      (network_socket_index = *(int32_t *)(*socket_descriptor_var_secondary3 +
@@ -15249,7 +15249,7 @@ void networkHandleConnectionTimeout(void)
               server_port_address_ptr = (int64_t *)(*socket_descriptor_var_secondary3 + -SESSION_CONFIG_SIZE);
               if (*socket_descriptor_var_secondary3 == NETWORK_OPERATION_FAILURE) {
                 server_port_address_ptr = (int64_t *)ZERO_OFFSET;
-              socket_descriptor_var_secondary3 = (int64_t *)ZERO_OFFSET;
+              socket_descriptor_var_secondary_backup = (int64_t *)ZERO_OFFSET;
               if (server_port_address_ptr != (int64_t *)ZERO_OFFSET) {
                 socket_descriptor_var_secondary3 = server_port_address_ptr + 3;
             socket_descriptor_var_secondary2 = (int64_t *)(ulonglong)((int)socket_descriptor_var_secondary2 + NETWORK_OPERATION_SUCCESS);
@@ -15412,7 +15412,7 @@ void networkHandleConnectionTimeout(void)
                 network_character_flag = network_socket_handle(network_socket_context_pointer + -SOCKET_HANDLE_OFFSET), network_server_address);
                 if (network_character_flag == '\NETWORK_OPERATION_FAILURE') {
                   if ((*(uint8_t *)((longlong)socket_descriptor_var_secondary_primary + NETWORK_ERROR_INVALID_OFFSET) & NETWORK_OPERATION_SUCCESS) == NETWORK_OPERATION_FAILURE) {
-                    socket_descriptor_var_secondary3 = (int64_t *)ZERO_OFFSET;
+                    socket_descriptor_var_secondary_backup = (int64_t *)ZERO_OFFSET;
                     network_operation_result_code = *(int32_t *)(*(int64_t *)(network_session_main_context + SOCKET_CONFIG_OFFSET) + NETWORK_NETWORK_ENCRYPTION_OFFSET);
                       client_port_address = *(int64_t *)(*(int64_t *)(network_session_main_context + SOCKET_CONFIG_OFFSET) + NETWORK_SOCKET_SECURITY_OFFSET);
                       timeout_config_ptr_ptr_primary = socket_descriptor_var_secondary3;
@@ -15448,7 +15448,7 @@ void networkHandleConnectionTimeout(void)
                           client_port_address = NETWORK_OPERATION_FAILURE;
                         socket_descriptor_var_secondary3 = (int64_t *)(client_port_address + SESSION_CONFIG_SIZE);
                         if (client_port_address == NETWORK_OPERATION_FAILURE) {
-                          socket_descriptor_var_secondary3 = (int64_t *)ZERO_OFFSET;
+                          socket_descriptor_var_secondary_backup = (int64_t *)ZERO_OFFSET;
                       } while (socket_descriptor_var_secondary3 != timeout_config_ptr_ptr_primary);
                     network_operation_status_code_temp_var = *(uint32_t *)((longlong)socket_descriptor_var_secondary_primary + NETWORK_ERROR_INVALID_OFFSET);
                     (**(code **)(*(int64_t *)*socket_descriptor_var_secondary2 + NETWORK_PACKET_DATA_PAYLOAD_OFFSET))
