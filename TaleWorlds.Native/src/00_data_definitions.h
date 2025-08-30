@@ -71,21 +71,21 @@
 #define SYSTEM_MODULE_OFFSET_CONTROL_2 0x2e
 
 // 系统句柄参数常量
-#define SYSTEM_HANDLE_PARAM_11 0x11
-#define SYSTEM_HANDLE_PARAM_12 0x12
-#define SYSTEM_HANDLE_PARAM_13 0x13
-#define SYSTEM_HANDLE_PARAM_15 0x15
-#define SYSTEM_HANDLE_PARAM_16 0x16
-#define SYSTEM_HANDLE_PARAM_1A 0x1a
-#define SYSTEM_HANDLE_PARAM_1B 0x1b
+#define SYSTEM_HANDLE_PARAM_PRIMARY 0x11
+#define SYSTEM_HANDLE_PARAM_SECONDARY 0x12
+#define SYSTEM_HANDLE_PARAM_TERTIARY 0x13
+#define SYSTEM_HANDLE_PARAM_EXTENDED_1 0x15
+#define SYSTEM_HANDLE_PARAM_EXTENDED_2 0x16
+#define SYSTEM_HANDLE_PARAM_CONTROL_1 0x1a
+#define SYSTEM_HANDLE_PARAM_CONTROL_2 0x1b
 
 // 系统配置偏移量常量
-#define SYSTEM_CONFIG_OFFSET_54 0x54
-#define SYSTEM_CONFIG_OFFSET_18 0x18
-#define SYSTEM_CONFIG_OFFSET_28 0x28
+#define SYSTEM_CONFIG_OFFSET_EXTENDED 0x54
+#define SYSTEM_CONFIG_OFFSET_STANDARD 0x18
+#define SYSTEM_CONFIG_OFFSET_ALTERNATE 0x28
 
 // 系统字符串长度常量
-#define SYSTEM_STRING_LENGTH_16 0x16
+#define SYSTEM_STRING_LENGTH_STANDARD 0x16
 
 // 系统字符串模式常量
 #define SYSTEM_STRING_PATTERN_ERROR_MSG 0x3a726f72
@@ -94,10 +94,10 @@
 #define SYSTEM_STRING_PATTERN_EXCLAMATION 0x21
 
 // 系统缓冲区大小常量
-#define SYSTEM_BUFFER_SIZE_13 0x13
-#define SYSTEM_BUFFER_SIZE_14 0x14
-#define SYSTEM_BUFFER_SIZE_15 0x15
-#define SYSTEM_BUFFER_SIZE_22 0x22
+#define SYSTEM_BUFFER_SIZE_MINIMAL 0x13
+#define SYSTEM_BUFFER_SIZE_SMALL 0x14
+#define SYSTEM_BUFFER_SIZE_MEDIUM 0x15
+#define SYSTEM_BUFFER_SIZE_LARGE 0x22
 
 // 系统浮点数常量
 #define SYSTEM_FLOAT_MAX_SAFE_VALUE 0x7f7fffff3f800000
@@ -11515,7 +11515,7 @@ goto section_processing_jump_label_500;
     system_thread_stack_pointer_variable = (void *)SYSTEM_NULL_POINTER;
     system_maximum_stack_size = SYSTEM_ZERO_VALUE;
     system_thread_stack_pointer_variable = &system_global_thread_string_4;
-    system_execute_crypto_operation(system_maximum_stack_size ^ (ulong long)auStack_408);
+    system_execute_crypto_operation(system_maximum_stack_size ^ (ulong long)system_stack_buffer_large_operation);
   }
   handle_param_system_error();
 }

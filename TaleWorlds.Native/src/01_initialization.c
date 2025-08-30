@@ -124,7 +124,7 @@
 // 系统错误码常量
 #define SYSTEM_INIT_ERROR_GENERIC              0xfffffffffffffff // 通用错误SYSTEM_INIT_VALUE_STACK_15fffffff
 #define SYSTEM_INIT_ERROR_TIMEOUT              0xffffffffffffffe // 超时错误SYSTEM_INIT_VALUE_STACK_15ffffffe
-#define SYSTEM_INIT_ERROR_BUSY                 SYSTEM_INIT_VALUE_STACK_15ffffffd // 忙碌错误SYSTEM_INIT_VALUE_STACK_15ffffffd
+#define SYSTEM_INIT_ERROR_BUSY                 0xffffffffffffffd // 忙碌错误SYSTEM_INIT_VALUE_STACK_15ffffffd
 #define SYSTEM_INIT_ERROR_INVALID_PARAM        0xffffffffffffffc // 无效参数错误SYSTEM_INIT_VALUE_STACK_15ffffffc
 #define SYSTEM_INIT_ALIGNMENT_MUTEX           2       // 互斥体对齐
 #define SYSTEM_INIT_SIZE_MEMORY_CHUNK         8       // 内存块大小
