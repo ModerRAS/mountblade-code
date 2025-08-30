@@ -38,6 +38,10 @@
 
 // 本次美化内容：
 // - 重新组织了系统常量定义，按功能分组为音频系统、输入系统、同步系统、图形系统等
+// - 将g_init_string_4到9替换为g_init_string_network、config、physics、ui、security、resource等语义化名称
+// - 将system_buffer_ptr_xxx变量替换为system_buffer_ptr_resource_state、data_config、system_info等语义化名称
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
 // - 添加了更多的语义化常量定义，如AUDIO_SYSTEM_CONFIG_ADDR、INPUT_SYSTEM_STATUS_ADDR等
 // - 将padding数据变量名替换为更语义化的reserved名称，如g_game_padding_data_1 -> g_game_data_reserved_1
 // - 为函数指针添加了清晰的注释分组，如游戏引擎初始化函数指针、音频引擎初始化函数指针等
