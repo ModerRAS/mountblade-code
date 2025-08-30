@@ -1473,7 +1473,7 @@
 #define SYSTEM_POWER_2_BIT_MASK 0x1000000000000000
 
 // 字符常量语义化定义
-#define SYSTEM_CHAR_NULL_TERMINATOR SYSTEM_CHAR_NULL_TERMINATOR
+#define SYSTEM_CHAR_NULL_TERMINATOR '\0'
 #define SYSTEM_CHAR_SPACE ' '
 #define SYSTEM_CHAR_TAB '\t'
 #define SYSTEM_CHAR_NEWLINE '\n'
@@ -17508,7 +17508,7 @@ uint32_t get_game_initialization_status(void)
   system_memory_context_ptr = system_memory_config_ptr;
   if (system_memory_pointer_chain_four == (longlong ****)SYSTEM_NULL_POINTER) {
     g_system_handle_1 = (longlong ****)SYSTEM_NULL_POINTER;
-    WaitForSingleObject(inputSystemData,SYSTEM_OFFSET_Ffffffff);
+    WaitForSingleObject(inputSystemData,SYSTEM_SEMAPHORE_TIMEOUT_INFINITE);
     do {
       system_integer_result = ReleaseSemaphore(inputSystemData,SYSTEM_SEMAPHORE_RELEASE_COUNT);
     } while (system_integer_result_temp == 0);
