@@ -119,10 +119,10 @@
 #define SYSTEM_INIT_FLAG_ENABLED               0x1     // 启用标志SYSTEM_INIT_VALUE_CHAR_ONE
 #define SYSTEM_INIT_FLAG_INITIALIZED           0x2     // 初始化标志
 #define SYSTEM_INIT_FLAG_ACTIVE                0x4     // 活动标志SYSTEM_INIT_OFFSET_0X4
-#define SYSTEM_INIT_FLAG_READY                 SYSTEM_INIT_OFFSET_0X8     // 就绪标志SYSTEM_INIT_OFFSET_0X8
+#define SYSTEM_INIT_FLAG_READY                 0x8     // 就绪标志SYSTEM_INIT_OFFSET_0X8
 
 // 系统错误码常量
-#define SYSTEM_INIT_ERROR_GENERIC              SYSTEM_INIT_VALUE_STACK_15fffffff // 通用错误SYSTEM_INIT_VALUE_STACK_15fffffff
+#define SYSTEM_INIT_ERROR_GENERIC              0xfffffffffffffff // 通用错误SYSTEM_INIT_VALUE_STACK_15fffffff
 #define SYSTEM_INIT_ERROR_TIMEOUT              SYSTEM_INIT_VALUE_STACK_15ffffffe // 超时错误SYSTEM_INIT_VALUE_STACK_15ffffffe
 #define SYSTEM_INIT_ERROR_BUSY                 SYSTEM_INIT_VALUE_STACK_15ffffffd // 忙碌错误SYSTEM_INIT_VALUE_STACK_15ffffffd
 #define SYSTEM_INIT_ERROR_INVALID_PARAM        SYSTEM_INIT_VALUE_STACK_15ffffffc // 无效参数错误SYSTEM_INIT_VALUE_STACK_15ffffffc
