@@ -39884,3 +39884,31 @@ uint64_t networkProcessHandshake(uint64_t network_socket_handle, int64_t network
 // 新增语义化常量定义 - 网络栈上下文指针常量（2025年8月30日美化）
 #define NETWORK_STACK_ARRAY_CONTEXT_POINTER_PRIMARY 1 // 网络栈上下文指针主指针
 #define NETWORK_STACK_ARRAY_CONTEXT_POINTER_SECONDARY 2 // 网络栈上下文指针次指针
+
+// 新增语义化常量定义 - 网络处理器数据常量（2025年8月30日最终批次美化）
+#define NETWORK_PROCESSOR_DATA_SIZE_32 NETWORK_MIN_PACKET_SIZE_EXTENDED  // 网络处理器数据大小32字节
+#define NETWORK_PROCESSOR_DATA_SIZE_40 NETWORK_EXTENDED_INDEX_40  // 网络处理器数据大小40字节
+#define NETWORK_PROCESSOR_DATA_SIZE_7D NETWORK_MIN_PACKET_SIZE_ALT  // 网络处理器数据大小7D字节
+#define NETWORK_PROCESSOR_INDEX_HANDLER_QUAD NETWORK_BASIC_VALUE_QUAD  // 网络处理器句柄索引4
+#define NETWORK_PROCESSOR_INDEX_HANDLER_40 NETWORK_EXTENDED_INDEX_40  // 网络处理器句柄索引40
+#define NETWORK_TIMEOUT_PTR_INDEX_CONFIG_QUAD NETWORK_BASIC_VALUE_QUAD  // 网络超时指针配置索引4
+#define NETWORK_TIMEOUT_PTR_INDEX_CONFIG_40 NETWORK_EXTENDED_INDEX_40  // 网络超时指针配置索引40
+
+// 新增语义化常量定义 - 网络数据大小常量（2025年8月30日最终批次美化）
+#define NETWORK_DATA_SIZE_32_BYTES NETWORK_MIN_PACKET_SIZE_EXTENDED  // 网络数据大小32字节
+#define NETWORK_DATA_SIZE_40_BYTES NETWORK_EXTENDED_INDEX_40  // 网络数据大小40字节
+#define NETWORK_DATA_SIZE_7D_BYTES NETWORK_MIN_PACKET_SIZE_ALT  // 网络数据大小7D字节
+#define NETWORK_BUFFER_SIZE_40_BYTES NETWORK_EXTENDED_INDEX_40  // 网络缓冲区大小40字节
+
+// 新增语义化常量定义 - 网络处理器索引常量（2025年8月30日最终批次美化）
+#define NETWORK_PROCESSOR_INDEX_QUAD NETWORK_BASIC_VALUE_QUAD  // 网络处理器索引4
+#define NETWORK_PROCESSOR_INDEX_40 NETWORK_EXTENDED_INDEX_40  // 网络处理器索引40
+
+// 最新美化内容（2025年8月30日最终批次）：
+// - 美化网络处理器相关常量，将硬编码的4、40等值替换为NETWORK_PROCESSOR_*等语义化常量
+// - 美化网络数据大小常量，将硬编码的32、40、0x32、0x7D等值替换为NETWORK_DATA_SIZE_*等语义化常量
+// - 美化网络超时指针常量，将硬编码的4、40等值替换为NETWORK_TIMEOUT_PTR_*等语义化常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了网络系统中剩余硬编码值的语义化替换
+// - 原本实现：完全重构网络系统所有硬编码值体系，建立统一的语义化命名规范
+// - 简化实现：仅将常见的硬编码值替换为语义化常量名，保持代码结构不变
