@@ -3038,9 +3038,8 @@ void initialize_system_phase6(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// void initialize_system_phase7(void)
-
-void initialize_system_phase7(void)
+// 初始化物理引擎系统
+void initialize_physics_engine_system(void)
 
 {
   char is_initialized;
@@ -3085,9 +3084,8 @@ void initialize_system_phase7(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// void initialize_system_phase8(void)
-
-void initialize_system_phase8(void)
+// 初始化网络引擎系统
+void initialize_network_engine_system(void)
 
 {
   char is_initialized;
