@@ -63065,12 +63065,12 @@ longlong *system_memory_pool_pointer;
 #define SYSTEM_INIT_OFFSET_STACK_A28          0xa28    // 栈偏移量A28
 #define SYSTEM_INIT_OFFSET_STACK_A30          0xa30    // 栈偏移量A30
 #define SYSTEM_INIT_OFFSET_STACK_A38          0xa38    // 栈偏移量A38
-#define SYSTEM_INIT_OFFSET_STACK_A90          SYSTEM_INIT_OFFSET_STACK_A90    // 栈偏移量A90
-#define SYSTEM_INIT_OFFSET_STACK_56           SYSTEM_INIT_OFFSET_STACK_56     // 栈偏移量56
-#define SYSTEM_INIT_OFFSET_STACK_A4           SYSTEM_INIT_OFFSET_STACK_A4     // 栈偏移量A4
-#define SYSTEM_INIT_OFFSET_STACK_62           SYSTEM_INIT_OFFSET_STACK_62     // 栈偏移量62
-#define SYSTEM_INIT_OFFSET_STACK_9A           SYSTEM_INIT_OFFSET_STACK_9A     // 栈偏移量9A
-#define SYSTEM_INIT_OFFSET_STACK_7D           SYSTEM_INIT_OFFSET_STACK_7D     // 栈偏移量7D
+#define SYSTEM_INIT_OFFSET_STACK_A90          0xa90    // 栈偏移量A90
+#define SYSTEM_INIT_OFFSET_STACK_56           0x56     // 栈偏移量56
+#define SYSTEM_INIT_OFFSET_STACK_A4           0xa4     // 栈偏移量A4
+#define SYSTEM_INIT_OFFSET_STACK_62           0x62     // 栈偏移量62
+#define SYSTEM_INIT_OFFSET_STACK_9A           0x9a     // 栈偏移量9A
+#define SYSTEM_INIT_OFFSET_STACK_7D           0x7d     // 栈偏移量7D
 
 // 魔法数字常量（引用已定义的字符串常量）
 #define SYSTEM_INIT_MAGIC_COOKIE_STRING_DEVICE_1  0x6a624f656e656353  // 设备字符串1的十六进制表示
