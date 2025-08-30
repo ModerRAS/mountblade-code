@@ -340,7 +340,7 @@
 //   * utility_memory_hash_allocator -> utility_memory_hash_allocator
 //   * utility_memory_map_allocator -> utility_memory_map_allocator
 // - 将其他变量名替换为语义化名称：
-//   * utility_register_resource_callbacks -> utility_utility_register_resource_callbacks
+//   * utility_register_resource_callbacks -> utility_register_resource_callbacks
 //   * utility_memory_handler_global -> utility_memory_handler_global
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
@@ -704,7 +704,7 @@
 // 51. 将utility_capacity_value替换为utility_capacity等容量变量名
 // 52. 将utility_resource_array_pointer替换为utility_resource_array_ptr等资源数组指针变量名
 // 53. 将utility_stack_parameter替换为utility_stack_param等栈参数变量名
-// 54. 将utility_utility_security_buffer替换为utility_security_data等安全数据变量名
+// 54. 将utility_security_buffer替换为utility_security_data等安全数据变量名
 // 55. 将resourcePointer替换为resource_ptr等资源指针变量名
 // 56. 将resourceCounter替换为resource_count等资源计数变量名
 // 57. 将validation_result_flag替换为validation_flag等验证标志变量名
@@ -5728,7 +5728,7 @@ ulonglong create_directory(longlong resource_handle_identifier,uint64 resource_b
 int delete_file(uint32 resource_handle_identifier)
 
 {
-  int utility_utility_cpu_register_accumulator;
+  int utility_cpu_register_accumulator;
   int utility_operation_status;
   longlong utility_processing_buffer;
   longlong utility_cpu_context;
@@ -5858,7 +5858,7 @@ void set_file_attributes(longlong resource_handle_identifier,longlong resource_b
   int utility_operation_status;
   longlong *array_handle_pointer;
   longlong *utility_long_ptr_buffer;
-  longlong *utility_utility_long_pointer_temp;
+  longlong *utility_long_pointer_temp;
   uint64 utility_stack_resource_data [2];
   
   utility_long_pointer_temp = (longlong *)UTILITY_NULL_POINTER;
@@ -6439,7 +6439,7 @@ handle_buffer_data_error:
 void utility_initialize_resourceComponent(int resource_handle_identifier,int resource_buffer)
 
 {
-  int utility_utility_cpu_register_accumulator;
+  int utility_cpu_register_accumulator;
   int utility_operation_status;
   longlong utility_register_context_base;
   longlong utility_cpu_context;
@@ -8382,7 +8382,7 @@ int accept_network_connection(longlong resource_handle_identifier,longlong resou
 int send_network_dataValue(uint64 resource_handle_identifier,uint64 resource_buffer)
 
 {
-  int utility_utility_cpu_register_accumulator;
+  int utility_cpu_register_accumulator;
   int utility_operation_status;
   longlong operation_buffer;
   longlong utility_cpu_context;
@@ -9790,7 +9790,7 @@ uint64 initialize_debug_system(void)
 
 {
   longlong resource_buffer;
-  int utility_utility_cpu_register_accumulator;
+  int utility_cpu_register_accumulator;
   uint64 utility_iteration_counter;
   ulonglong utility_iteration_counter;
   longlong threadContextData;
@@ -10378,7 +10378,7 @@ uint64 allocate_memory_block(uint64 resource_handle_identifier,int resource_buff
 
 {
   longlong resource_buffer;
-  int utility_utility_cpu_register_accumulator;
+  int utility_cpu_register_accumulator;
   int utility_operation_status;
   int utility_data_array_index;
   uint64 utility_system_status_code;
@@ -16758,7 +16758,7 @@ uint64 GetCallbackStatus(void)
 
 {
   float utility_temp_float_value;
-  int utility_utility_cpu_register_accumulator;
+  int utility_cpu_register_accumulator;
   uint64 utility_iteration_counter;
   uint64 *generic_data_pointer;
   longlong utility_register_context_base;
@@ -16874,7 +16874,7 @@ ulonglong InitializeAsyncSystem(void)
 {
   longlong *resource_data_pointer;
   uint utility_iteration_counter;
-  uint utility_utility_cpu_register_accumulator;
+  uint utility_cpu_register_accumulator;
   uint utility_iteration_counter;
   ulonglong utility_system_status_code;
   ulonglong validation_flag;
@@ -17160,7 +17160,7 @@ ulonglong InitializeRequestHandler(void)
 
 {
   uint64 utility_operation_status;
-  int utility_utility_cpu_register_accumulator;
+  int utility_cpu_register_accumulator;
   ulonglong utility_iteration_counter;
   uint64 *utility_register_context_base;
   longlong utility_stack_frame_pointer;
@@ -18710,7 +18710,7 @@ UTILITY_LABEL_OPERATION_COMPLETE:
 void bridgeUtilityGaps(void)
 
 {
-  uint utility_utility_cpu_register_accumulator;
+  uint utility_cpu_register_accumulator;
   int utility_operation_status;
   int utility_operation_status;
   uint utility_iteration_counter;
@@ -19654,7 +19654,7 @@ ulonglong ValidateDataIntegrity(uint64 resource_handle_identifier)
   float utility_temp_float_secondary;
   float utility_temp_float_secondary;
   uint64 systemFlagsData;
-  uint utility_utility_cpu_register_accumulator;
+  uint utility_cpu_register_accumulator;
   uint utility_iteration_index;
   uint utility_iteration_counter;
   uint utility_operation_status;
@@ -20242,7 +20242,7 @@ ulonglong InitializeIntegritySystem(void)
 {
   longlong *resource_data_pointer;
   longlong operation_buffer;
-  int utility_utility_cpu_register_accumulator;
+  int utility_cpu_register_accumulator;
   uint utility_iteration_counter;
   ulonglong utility_system_status_code;
   longlong *utility_register_context_base;
@@ -21762,7 +21762,7 @@ ulonglong GetResultStatus(void)
 
 {
   longlong *resource_data_pointer;
-  uint utility_utility_cpu_register_accumulator;
+  uint utility_cpu_register_accumulator;
   uint utility_iteration_counter;
   ulonglong utility_register_context_base;
   longlong *utility_cpu_context;
@@ -24376,7 +24376,7 @@ ulonglong ProcessCheckOperation(uint64 resource_handle_identifier,uint64 resourc
 {
   longlong *resource_data_pointer;
   longlong operation_buffer;
-  uint utility_utility_cpu_register_accumulator;
+  uint utility_cpu_register_accumulator;
   uint utility_iteration_counter;
   ulonglong utility_system_status_code;
   ulonglong validation_flag;
@@ -25151,7 +25151,7 @@ uint64 GetIntegrityResult2(void)
 void ValidateIntegrityData2(void)
 
 {
-  int utility_utility_cpu_register_accumulator;
+  int utility_cpu_register_accumulator;
   int utility_operation_status;
   int utility_operation_status;
   longlong *utility_register_context_base;
@@ -69919,7 +69919,7 @@ void UtilityUnwindSystemFunctionefe0(uint64 resource_handle_identifier,longlong 
   longlong *data_buffer;
   longlong utility_data_array_index;
   longlong threadContextData;
-  longlong *utility_utility_long_pointer_temp;
+  longlong *utility_long_pointer_temp;
   
   resource_buffer = *(longlong *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET);
   data_buffer = (longlong *)(resource_buffer + 0x300);
@@ -83478,7 +83478,7 @@ void resourceCreateBackup(void)
   int *operation_result_pointer;
   int utility_data_array_index;
   longlong threadContextData;
-  longlong *utility_utility_long_pointer_temp;
+  longlong *utility_long_pointer_temp;
   
   utility_long_pointer_temp = event_system_resource_data;
   if (event_system_resource_data != (longlong *)UTILITY_NULL_POINTER) {
@@ -83557,7 +83557,7 @@ void resourceOptimizeStorage(void)
   int *operation_result_pointer;
   int utility_data_array_index;
   longlong threadContextData;
-  longlong *utility_utility_long_pointer_temp;
+  longlong *utility_long_pointer_temp;
   
   utility_long_pointer_temp = event_system_resource_data;
   if (event_system_resource_data != (longlong *)UTILITY_NULL_POINTER) {
@@ -83636,7 +83636,7 @@ void resourceUpdateReferences(void)
   int *operation_result_pointer;
   int utility_data_array_index;
   longlong threadContextData;
-  longlong *utility_utility_long_pointer_temp;
+  longlong *utility_long_pointer_temp;
   
   utility_long_pointer_temp = event_system_resource_data;
   if (event_system_resource_data != (longlong *)UTILITY_NULL_POINTER) {
