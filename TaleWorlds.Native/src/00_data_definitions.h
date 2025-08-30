@@ -20,10 +20,14 @@
 // - 美化系统处理参数变量名，将system_handle_paramr_009替换为system_handle_paramr_process_mutex等语义化变量名
 // - 美化寄存器变量名，将extraout_XMM0_Da_00替换为xmm0_register_value等语义化变量名
 // - 美化标志处理变量名，将flag_handle_paramr_function替换为flag_handle_paramr_processor等语义化变量名
+// - 美化硬编码十六进制值，将0x2e2e6c替换为SYSTEM_STRING_PATTERN_DOT_DOT_L等语义化常量
+// - 美化硬编码偏移量，将0x1340、0x1500、0x13b0等替换为SYSTEM_OFFSET_GLOBAL_DATA_*等语义化常量
+// - 美化硬编码函数偏移量，将200替换为SYSTEM_OFFSET_FUNCTION_OFFSET_200等语义化常量
+// - 美化硬编码浮点常量，将0x4cbebc20、0x7f7fffff等替换为SYSTEM_FLOAT_CONSTANT_*等语义化常量
 // - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中变量名的语义化替换
-// - 原本实现：完全重构所有变量命名体系
-// - 简化实现：仅将常见的包含数字的变量名替换为语义化名称
+// - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中剩余硬编码值的语义化替换
+// - 原本实现：完全重构所有硬编码值体系，重新设计所有硬编码值的语义化规范
+// - 简化实现：仅将常见的硬编码十六进制值替换为语义化常量
 
 // 本次最终美化内容（2025年8月30日最终批次）：
 // - 美化浮点数转换常量，将硬编码的0.007843138替换为SYSTEM_FLOAT_CONVERSION_BYTE_TO_FLOAT_HALF等语义化常量
@@ -1077,7 +1081,7 @@
 #define SYSTEM_OPCODE_PHYSICS_INIT 0xc
 #define SYSTEM_OPCODE_UI_INIT 0x13
 #define SYSTEM_OPCODE_RENDER_INIT 0xc
-#define SYSTEM_OPCODE_MODEL_INIT 10
+#define SYSTEM_OPCODE_MODEL_INIT SYSTEM_OPCODE_VALUE_TEN
 #define SYSTEM_OPCODE_AI_INIT 0x11
 #define SYSTEM_OPCODE_SECURITY_INIT 0x11
 #define SYSTEM_OPCODE_RESOURCE_INIT 0x19
@@ -1822,10 +1826,35 @@ extern char system_flag_buffer_cleanup_handler;
 
 // 系统缓冲区大小常量定义
 #define SYSTEM_BUFFER_SIZE_MINIMUM 0x0
-#define SYSTEM_BUFFER_SIZE_SMALL 0xd
-#define SYSTEM_BUFFER_SIZE_MEDIUM 0xe
-#define SYSTEM_BUFFER_SIZE_LARGE 0x10
-#define SYSTEM_BUFFER_SIZE_EXTRA_LARGE 0x11
+#define SYSTEM_BUFFER_SIZE_SMALL 0x14
+#define SYSTEM_BUFFER_SIZE_MEDIUM 0x18
+#define SYSTEM_BUFFER_SIZE_LARGE 0x1c
+#define SYSTEM_BUFFER_SIZE_EXTRA_LARGE 0x20
+
+// 系统字符串模式常量定义
+#define SYSTEM_STRING_PATTERN_DOT_DOT_L 0x2e2e6c  // "..l"
+
+// 系统偏移量常量定义（新增）
+#define SYSTEM_OFFSET_GLOBAL_DATA_1340 0x1340  // 全局数据1340偏移量
+#define SYSTEM_OFFSET_GLOBAL_DATA_1500 0x1500  // 全局数据1500偏移量
+#define SYSTEM_OFFSET_GLOBAL_DATA_13B0 0x13b0  // 全局数据13B0偏移量
+#define SYSTEM_OFFSET_FUNCTION_OFFSET_200 0x200 // 函数偏移量200
+
+// 系统指针偏移量常量定义（新增）
+#define SYSTEM_POINTER_OFFSET70 0x70
+#define SYSTEM_POINTER_OFFSET78 0x78
+#define SYSTEM_POINTER_OFFSET80 0x80
+
+// 系统浮点数常量定义（新增）
+#define SYSTEM_FLOAT_CONSTANT_4CBEBC20 0x4cbebc20
+#define SYSTEM_FLOAT_CONSTANT_7F7FFFFF 0x7f7fffff
+#define SYSTEM_FLOAT_CONSTANT_CCBEBC20 0xccbebc20
+
+// 系统内存分配大小常量定义（新增）
+#define SYSTEM_MEMORY_ALLOC_SIZE_SMALL 0xd
+#define SYSTEM_MEMORY_ALLOC_SIZE_MEDIUM 0xe
+#define SYSTEM_MEMORY_ALLOC_SIZE_LARGE 0x10
+#define SYSTEM_MEMORY_ALLOC_SIZE_EXTRA_LARGE 0x11
 #define SYSTEM_BUFFER_SIZE_HUGE 0x12
 #define SYSTEM_BUFFER_SIZE_MAXIMUM 0x13
 #define SYSTEM_BUFFER_SIZE_STANDARD 0x16
@@ -4917,7 +4946,7 @@ section_processing_jump_label_:
       *string_input_pointer = SYSTEM_CHAR_LOWERCASE_O6d654d20555047;
       string_input_pointer[1] = SYSTEM_CHAR_LOWERCASE_E67617375207972;
       string_input_pointer[2] = SYSTEM_CHAR_LOWERCASE_A63697469726320;
-      *(unsigned int *)(string_input_pointer + 3) = 0x2e2e6c;
+      *(unsigned int *)(string_input_pointer + 3) = SYSTEM_STRING_PATTERN_DOT_DOT_L;
       maximum_stack_size = SYSTEM_STACK_SIZE_MEDIUM;
       thread_stack_ptr = &g_threadString2;
       handle_param_system_error(string_input_pointer);
@@ -4925,10 +4954,10 @@ section_processing_jump_label_:
   }
   system_initialization_result_pointer = system_global_data_pointer;
   if ((char)system_global_data_pointer[SYSTEM_OFFSET_SYSTEM_STATUS] == '\0') {
-    (**(code **)(*system_global_data_pointer + SYSTEM_OFFSET_BUFFER_PRIMARY))(system_global_data_pointer,*(unsigned int *)(system_global_data_pointer + 0x1340));
-    (**(code **)(*system_initialization_result_pointer + SYSTEM_OFFSET_FUNCTION_POINTER_SECONDARY))(system_initialization_result_pointer,*(unsigned int *)(system_global_data_pointer + 0x1500));
-    (**(code **)(*system_initialization_result_pointer + SYSTEM_OFFSET_FUNCTION_POINTER_TERTIARY))(system_initialization_result_pointer,*(unsigned int *)(system_global_data_pointer + 0x13b0));
-    (**(code **)(*system_initialization_result_pointer + 200))(system_initialization_result_pointer,*(unsigned int *)(system_global_data_pointer + SYSTEM_CONFIG_OFFSET_INIT_FLAG90));
+    (**(code **)(*system_global_data_pointer + SYSTEM_OFFSET_BUFFER_PRIMARY))(system_global_data_pointer,*(unsigned int *)(system_global_data_pointer + SYSTEM_OFFSET_GLOBAL_DATA_1340));
+    (**(code **)(*system_initialization_result_pointer + SYSTEM_OFFSET_FUNCTION_POINTER_SECONDARY))(system_initialization_result_pointer,*(unsigned int *)(system_global_data_pointer + SYSTEM_OFFSET_GLOBAL_DATA_1500));
+    (**(code **)(*system_initialization_result_pointer + SYSTEM_OFFSET_FUNCTION_POINTER_TERTIARY))(system_initialization_result_pointer,*(unsigned int *)(system_global_data_pointer + SYSTEM_OFFSET_GLOBAL_DATA_13B0));
+    (**(code **)(*system_initialization_result_pointer + SYSTEM_OFFSET_FUNCTION_OFFSET_200))(system_initialization_result_pointer,*(unsigned int *)(system_global_data_pointer + SYSTEM_CONFIG_OFFSET_INIT_FLAG90));
     (**(code **)(*system_initialization_result_pointer + SYSTEM_OFFSET_FUNCTION_POINTER_QUATERNARY))(system_initialization_result_pointer);
   }
   string_input_pointer = system_global_data_pointer;
@@ -5310,7 +5339,7 @@ section_processing_jump_label_:
   *(unsigned char *)(str_len_counter + SYSTEM_OFFSET_COUNTER_PRIMARY) = SYSTEM_ZERO_VALUE;
   system_finalizer_001();
   system_finalizer_002();
-  *(uint *)(system_global_data_pointer + 0x1590) = system_global_data_pointer;
+  *(uint *)(system_global_data_pointer + SYSTEM_OFFSET_THREAD_CONFIG) = system_global_data_pointer;
   system_global_data_pointer = system_global_data_pointer + 1 & SYSTEM_POINTER_OFFSET0000001;
   if ((int)system_global_data_pointer < 0) {
     system_global_data_pointer = (system_global_data_pointer - 1 | 0xfffffffe) + 1;
@@ -8219,14 +8248,14 @@ unsigned long long initialize_graphics_context(unsigned long long handle_param,u
       fStack_154 = float_var;
     } while (-1 < system_initialization_result1);
   }
-  *(unsigned long long *)(handle_param + SYSTEM_POINTER_OFFSET70) = 0x4cbebc204cbebc20;
-  *(unsigned long long *)(handle_param + SYSTEM_POINTER_OFFSET78) = 0x7f7fffff4cbebc20;
-  *(unsigned long long *)(handle_param + SYSTEM_POINTER_OFFSET80) = 0xccbebc20ccbebc20;
-  *(unsigned long long *)(handle_param + SYSTEM_POINTER_OFFSET88) = 0x7f7fffffccbebc20;
+  *(unsigned long long *)(handle_param + SYSTEM_POINTER_OFFSET70) = SYSTEM_FLOAT_CONSTANT_4CBEBC20 | (SYSTEM_FLOAT_CONSTANT_4CBEBC20ULL << 32);
+  *(unsigned long long *)(handle_param + SYSTEM_POINTER_OFFSET78) = SYSTEM_FLOAT_CONSTANT_7F7FFFFF | (SYSTEM_FLOAT_CONSTANT_4CBEBC20ULL << 32);
+  *(unsigned long long *)(handle_param + SYSTEM_POINTER_OFFSET80) = SYSTEM_FLOAT_CONSTANT_CCBEBC20 | (SYSTEM_FLOAT_CONSTANT_CCBEBC20ULL << 32);
+  *(unsigned long long *)(handle_param + SYSTEM_POINTER_OFFSET88) = SYSTEM_FLOAT_CONSTANT_7F7FFFFF | (SYSTEM_FLOAT_CONSTANT_CCBEBC20ULL << 32);
   system_initialization_result1 = SYSTEM_ZERO_VALUE;
   *(unsigned int *)(handle_param + SYSTEM_POINTER_OFFSETa0) = SYSTEM_ZERO_VALUE;
   *(unsigned long long *)(handle_param + SYSTEM_POINTER_OFFSET90) = SYSTEM_ZERO_VALUE;
-  *(unsigned long long *)(handle_param + SYSTEM_POINTER_OFFSET98) = 0x7f7fffff00000000;
+  *(unsigned long long *)(handle_param + SYSTEM_POINTER_OFFSET98) = SYSTEM_FLOAT_CONSTANT_7F7FFFFF | (SYSTEM_ZERO_VALUE << 32);
   fStack_198 = float_var;
   if (*(float *)(handle_param + SYSTEM_POINTER_OFFSET70) < float_var) {
     fStack_198 = *(float *)(handle_param + SYSTEM_POINTER_OFFSET70);

@@ -1,5 +1,13 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 本次美化内容（2025年8月30日）最终批次续续：
+// - 美化浮点数值硬编码值，将0.0、0.2、0.75、1.0、100.0等替换为语义化常量名
+// - 美化浮点运算硬编码值，将0.01、0.05、100000.0等替换为语义化常量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了系统初始化文件中剩余硬编码浮点数值的语义化替换
+// - 原本实现：完全重构系统初始化文件所有硬编码浮点数值，建立统一的浮点数常量命名体系
+// - 简化实现：仅将常见的硬编码浮点数值替换为语义化常量名
+
 // 本次美化内容（2025年8月30日）最终批次续：
 // - 美化系统缓冲区指针变量名，将system_buffer_ptr_20替换为system_buffer_ptr_function_primary等函数指针变量名
 // - 美化系统缓冲区指针变量名，将system_buffer_ptr_18替换为system_buffer_ptr_function_secondary等辅助函数指针变量名
@@ -24667,8 +24675,8 @@ void InitializeAudioMutex(longlong handleIdentifier,float resourceIdentifier,uin
       if (SYSTEM_FLOAT_VALUE_ONE <= system_float_result_value) {
         system_float_value = SYSTEM_FLOAT_VALUE_ONE;
       }
-      system_float_value = (float)(int)((system_float_result_value + 0.05) / system_float_result_value) * system_float_value;
-      if ((system_float_result_value <= system_float_result_value) && (system_float_value = system_float_result_value, 1.0 <= system_float_result_value)) {
+      system_float_value = (float)(int)((system_float_result_value + SYSTEM_FLOAT_VALUE_POINT_ZERO_FIVE) / system_float_result_value) * system_float_value;
+      if ((system_float_result_value <= system_float_result_value) && (system_float_value = system_float_result_value, SYSTEM_FLOAT_VALUE_ONE <= system_float_result_value)) {
         system_float_value = SYSTEM_FLOAT_VALUE_ONE;
       }
       *(float *)(handleIdentifier + SYSTEM_MEMORY_OFFSET_238) = system_float_value;
