@@ -1757,43 +1757,43 @@ void WotsMainNativeSDLL(unsigned long long handle)
   return;
 }
   system_status_flag_3 = 0;
-  buffer_allocation_result = system_execute_function(system_global_data_pointer,THREAD_STACK_SIZE,8,3);
-  system_global_data_pointer = create_event_handle(buffer_allocation_result);
+  system_buffer_allocation_result = system_execute_function(system_global_data_pointer,THREAD_STACK_SIZE,8,3);
+  system_global_data_pointer = create_event_handle(system_buffer_allocation_result);
   create_thread_context(&thread_stack_pointer,handle);
-  buffer_allocation_result = allocate_thread_stack(&thread_stack_pointer,&g_threadString1);
-  buffer_allocation_result = (ulong long)(int)buffer_allocation_result;
-  if (buffer_allocation_result < stack_size_limit) {
-    character_scan_pointer = (char *)(thread_stack_base_address + buffer_allocation_result);
+  system_buffer_allocation_result = allocate_thread_stack(&thread_stack_pointer,&g_threadString1);
+  system_buffer_allocation_result = (ulong long)(int)system_buffer_allocation_result;
+  if (system_buffer_allocation_result < stack_size_limit) {
+    character_scan_pointer = (char *)(thread_stack_base_address + system_buffer_allocation_result);
     do {
-      thread_result_index = (int)buffer_allocation_result;
+      thread_result_index = (int)system_buffer_allocation_result;
       if (*character_scan_pointer == ' ') goto label_;
-      buffer_allocation_result = (ulong long)(thread_result_index + 1U);
+      system_buffer_allocation_result = (ulong long)(thread_result_index + 1U);
       character_scan_pointer = character_scan_pointer + 1;
     } while (thread_result_index + 1U < stack_size_limit);
   }
   thread_result_index = -1;
 label_:
-  buffer_allocation_result = thread_result_index + 1;
-  buffer_allocation_result = (ulong long)(int)buffer_allocation_result;
-  if (buffer_allocation_result < stack_size_limit) {
-    character_scan_pointer = (char *)(thread_stack_base_address + buffer_allocation_result);
+  system_buffer_allocation_result = thread_result_index + 1;
+  system_buffer_allocation_result = (ulong long)(int)system_buffer_allocation_result;
+  if (system_buffer_allocation_result < stack_size_limit) {
+    character_scan_pointer = (char *)(thread_stack_base_address + system_buffer_allocation_result);
     do {
       if (*character_scan_pointer == ' ') goto label_;
-      buffer_allocation_result = (int)buffer_allocation_result + 1;
-      buffer_allocation_result = (ulong long)buffer_allocation_result;
+      system_buffer_allocation_result = (int)system_buffer_allocation_result + 1;
+      system_buffer_allocation_result = (ulong long)system_buffer_allocation_result;
       character_scan_pointer = character_scan_pointer + 1;
-    } while (buffer_allocation_result < stack_size_limit);
+    } while (system_buffer_allocation_result < stack_size_limit);
   }
-  buffer_allocation_result = UINT32_MAX;
+  system_buffer_allocation_result = UINT32_MAX;
 label_:
   if (thread_result_index != -1) {
-    setup_thread_parameters(&thread_stack98,&thread_stack78,buffer_allocation_result,buffer_allocation_result);
+    setup_thread_parameters(&thread_stack98,&thread_stack78,system_buffer_allocation_result,system_buffer_allocation_result);
     thread_name_pointer = &default_resource_string;
     if (thread_stack70 != (void *)0x0) {
       thread_name_pointer = thread_stack70;
     }
-    buffer_allocation_result = atoi(thread_name_pointer);
-    *(unsigned int *)(system_global_data_pointer + 0x7b4) = buffer_allocation_result;
+    system_buffer_allocation_result = atoi(thread_name_pointer);
+    *(unsigned int *)(system_global_data_pointer + 0x7b4) = system_buffer_allocation_result;
     thread_stack78 = &g_threadString2;
     if (thread_stack70 != (void *)0x0) {
       handle_system_error();
@@ -1803,8 +1803,8 @@ label_:
     thread_stack78 = &g_threadString4;
   }
   initialize_event_system();
-  buffer_allocation_result = system_execute_function(system_global_data_pointer,NETWORK_BUFFER_SIZE,8,10);
-  system_global_data_pointer = system_execute_function(buffer_allocation_result);
+  system_buffer_allocation_result = system_execute_function(system_global_data_pointer,NETWORK_BUFFER_SIZE,8,10);
+  system_global_data_pointer = system_execute_function(system_buffer_allocation_result);
   thread_data_ptr = (long long *)system_execute_function(system_global_data_pointer,0xe8,8,3);
   thread_stack10 = thread_data_ptr;
   cleanup_thread_resources(thread_data_ptr);
@@ -1918,11 +1918,11 @@ void WotsMainNativeCoreCLR(unsigned long long handle)
   do {
     string_length_counter = string_length_counter + 1;
   } while (*(char *)(handle + string_length_counter) != '\0');
-  buffer_allocation_result = (uint)string_length_counter;
-  if (MAX_THREAD_STACK_SIZE < buffer_allocation_result) {
-    buffer_allocation_result = MAX_THREAD_STACK_SIZE;
+  system_buffer_allocation_result = (uint)string_length_counter;
+  if (MAX_THREAD_STACK_SIZE < system_buffer_allocation_result) {
+    system_buffer_allocation_result = MAX_THREAD_STACK_SIZE;
   }
-  memcpy(&system_handle_buffer,handle,(long long)(int)buffer_allocation_result);
+  memcpy(&system_handle_buffer,handle,(long long)(int)system_buffer_allocation_result);
 }
           system_operation_flag = 1;
           system_thread_sync_flag = 0;
@@ -1985,7 +1985,7 @@ void WotsMainNativeCoreCLR(unsigned long long handle)
           stack_size_limit = stack_size_limit & INT64_MASK;
           thread_stack_pointer = &g_threadString4;
         }
-        else if (buffer_allocation_result == 0xb) {
+        else if (system_buffer_allocation_result == 0xb) {
           thread_result_index = strcmp(input_string_pointer,&g_systemDataString18);
           if (thread_result_index != 0) goto label_;
           system_operation_flag = 1;
@@ -1998,7 +1998,7 @@ void WotsMainNativeCoreCLR(unsigned long long handle)
           }
         }
         else {
-          if (buffer_allocation_result == 0xc) {
+          if (system_buffer_allocation_result == 0xc) {
             thread_result_index = strcmp(input_string_pointer,&g_systemDataString21);
             string_match_found = thread_result_index == 0;
           }
@@ -2008,9 +2008,9 @@ label_:
           }
           if (string_match_found) {
             create_thread_context(&thread_stack_pointer,input_string_pointer);
-            buffer_allocation_result = allocate_thread_stack(&thread_stack_pointer,&g_systemDataString21);
-            thread_operation_flags = (ulong long)(int)buffer_allocation_result;
-            if (buffer_allocation_result < stack_size_limit) {
+            system_buffer_allocation_result = allocate_thread_stack(&thread_stack_pointer,&g_systemDataString21);
+            thread_operation_flags = (ulong long)(int)system_buffer_allocation_result;
+            if (system_buffer_allocation_result < stack_size_limit) {
               character_scan_pointer = (char *)(thread_stack_base_address + thread_operation_flags);
               do {
                 thread_result_index = (int)thread_operation_flags;
@@ -2021,9 +2021,9 @@ label_:
             }
             thread_result_index = -1;
 label_:
-            buffer_allocation_result = thread_result_index + 1;
-            thread_operation_flags = (ulong long)(int)buffer_allocation_result;
-            if (buffer_allocation_result < stack_size_limit) {
+            system_buffer_allocation_result = thread_result_index + 1;
+            thread_operation_flags = (ulong long)(int)system_buffer_allocation_result;
+            if (system_buffer_allocation_result < stack_size_limit) {
               character_scan_pointer = (char *)(thread_stack_base_address + thread_operation_flags);
               do {
                 if (*character_scan_pointer == ' ') goto label_;
@@ -2035,7 +2035,7 @@ label_:
             thread_operation_flags = UINT32_MAX;
 label_:
             if (thread_result_index != -1) {
-              setup_thread_parameters(&thread_stack_pointer,&thread_stack_pointer,buffer_allocation_result,thread_operation_flags);
+              setup_thread_parameters(&thread_stack_pointer,&thread_stack_pointer,system_buffer_allocation_result,thread_operation_flags);
               thread_result_index = thread_priority_level;
               thread_result_index = 0;
               string_length_counter = strchr(thread_stack_pointer,0x2e);
@@ -2070,7 +2070,7 @@ label_:
             thread_stack238 = &g_threadString4;
           }
           else {
-            if (buffer_allocation_result == 0x11) {
+            if (system_buffer_allocation_result == 0x11) {
               thread_result_index = strcmp(input_string_pointer,&g_systemDataString22);
               string_match_found = thread_result_index == 0;
             }
@@ -2079,9 +2079,9 @@ label_:
             }
             if (string_match_found) {
               create_thread_context(&thread_stack_pointer,input_string_pointer);
-              buffer_allocation_result = allocate_thread_stack(&thread_stack_pointer,&g_systemDataString22);
-              thread_operation_flags = (ulong long)(int)buffer_allocation_result;
-              if (buffer_allocation_result < stack_size_limit) {
+              system_buffer_allocation_result = allocate_thread_stack(&thread_stack_pointer,&g_systemDataString22);
+              thread_operation_flags = (ulong long)(int)system_buffer_allocation_result;
+              if (system_buffer_allocation_result < stack_size_limit) {
                 character_scan_pointer = (char *)(thread_stack_base_address + thread_operation_flags);
                 do {
                   thread_result_index = (int)thread_operation_flags;
@@ -2092,9 +2092,9 @@ label_:
               }
               thread_result_index = -1;
 label_:
-              buffer_allocation_result = thread_result_index + 1;
-              thread_operation_flags = (ulong long)(int)buffer_allocation_result;
-              if (buffer_allocation_result < stack_size_limit) {
+              system_buffer_allocation_result = thread_result_index + 1;
+              thread_operation_flags = (ulong long)(int)system_buffer_allocation_result;
+              if (system_buffer_allocation_result < stack_size_limit) {
                 character_scan_pointer = (char *)(thread_stack_base_address + thread_operation_flags);
                 do {
                   if (*character_scan_pointer == ' ') goto label_;
@@ -2106,7 +2106,7 @@ label_:
               thread_operation_flags = UINT32_MAX;
 label_:
               if (thread_result_index != -1) {
-                setup_thread_parameters(&thread_stack_pointer,&thread_stack_pointer,buffer_allocation_result,thread_operation_flags);
+                setup_thread_parameters(&thread_stack_pointer,&thread_stack_pointer,system_buffer_allocation_result,thread_operation_flags);
                 thread_result_index = thread_priority_level;
                 thread_result_index = 0;
                 string_length_counter = strchr(thread_stack_pointer,0x2e);
@@ -2140,7 +2140,7 @@ label_:
               thread_stack218 = &g_threadString4;
             }
             else {
-              if (buffer_allocation_result == 0xe) {
+              if (system_buffer_allocation_result == 0xe) {
                 thread_result_index = strcmp(input_string_pointer,&g_systemDataString23);
                 string_match_found = thread_result_index == 0;
               }
@@ -2149,22 +2149,22 @@ label_:
               }
               if (string_match_found) {
                 create_thread_context(&thread_stack_pointer,input_string_pointer);
-                buffer_allocation_result = allocate_thread_stack(&thread_stack_pointer,&g_systemDataString23);
-                thread_operation_flags = (ulong long)(int)buffer_allocation_result;
-                if (buffer_allocation_result < stack_size_limit) {
+                system_buffer_allocation_result = allocate_thread_stack(&thread_stack_pointer,&g_systemDataString23);
+                thread_operation_flags = (ulong long)(int)system_buffer_allocation_result;
+                if (system_buffer_allocation_result < stack_size_limit) {
                   character_scan_pointer = (char *)(thread_stack_base_address + thread_operation_flags);
                   do {
                     if (*character_scan_pointer == ' ') goto label_;
-                    buffer_allocation_result = (int)thread_operation_flags + 1;
-                    thread_operation_flags = (ulong long)buffer_allocation_result;
+                    system_buffer_allocation_result = (int)thread_operation_flags + 1;
+                    thread_operation_flags = (ulong long)system_buffer_allocation_result;
                     character_scan_pointer = character_scan_pointer + 1;
-                  } while (buffer_allocation_result < stack_size_limit);
+                  } while (system_buffer_allocation_result < stack_size_limit);
                 }
                 thread_operation_flags = UINT32_MAX;
 label_:
-                buffer_allocation_result = (int)thread_operation_flags + 1;
-                thread_operation_flags = (ulong long)(int)buffer_allocation_result;
-                if (buffer_allocation_result < stack_size_limit) {
+                system_buffer_allocation_result = (int)thread_operation_flags + 1;
+                thread_operation_flags = (ulong long)(int)system_buffer_allocation_result;
+                if (system_buffer_allocation_result < stack_size_limit) {
                   character_scan_pointer = (char *)(thread_stack_base_address + thread_operation_flags);
                   do {
                     if (*character_scan_pointer == ' ') goto label_;
@@ -2176,7 +2176,7 @@ label_:
                 thread_operation_flags = UINT32_MAX;
 label_:
                 if ((int)thread_operation_flags != -1) {
-                  setup_thread_parameters(&thread_stack_pointer,&thread_stack_pointer,buffer_allocation_result,thread_operation_flags);
+                  setup_thread_parameters(&thread_stack_pointer,&thread_stack_pointer,system_buffer_allocation_result,thread_operation_flags);
                   system_thread_manager_011(&thread_stack_pointer);
                   if (stack_size_limit != 0) {
                     thread_result_index = 0;
@@ -2209,12 +2209,12 @@ label_:
                     input_offset_value = 0;
                     *input_buffer_pointer = 0;
                   }
-                  buffer_allocation_result = stack_size_limit;
+                  system_buffer_allocation_result = stack_size_limit;
                   thread_operation_flags = (ulong long)stack_size_limit;
                   if (thread_stack_pointer != (void *)0x0) {
                     system_thread_manager_001(string_length_counter + 0x170,thread_operation_flags);
                   }
-                  if (buffer_allocation_result != 0) {
+                  if (system_buffer_allocation_result != 0) {
                     memcpy(*(unsigned long long *)(string_length_counter + 0x178),thread_stack_pointer,thread_operation_flags);
                   }
                   *(unsigned int *)(string_length_counter + 0x180) = 0;
@@ -2240,7 +2240,7 @@ label_:
                 thread_stack_pointer = &g_threadString4;
               }
               else {
-                if (buffer_allocation_result == 0x16) {
+                if (system_buffer_allocation_result == 0x16) {
                   thread_result_index = strcmp(input_string_pointer,&g_systemDataString24);
                   if (thread_result_index == 0) {
                     system_resource_flag = 1;
@@ -2251,28 +2251,28 @@ label_:
                   string_match_found = false;
                 }
                 else {
-                  if (buffer_allocation_result != 0x12) goto label_;
+                  if (system_buffer_allocation_result != 0x12) goto label_;
                   thread_result_index = strcmp(input_string_pointer,&g_systemDataString25);
                   string_match_found = thread_result_index == 0;
                 }
                 if (string_match_found) {
                   create_thread_context(&thread_stack_pointer,input_string_pointer);
-                  buffer_allocation_result = allocate_thread_stack(&thread_stack_pointer,&g_systemDataString25);
-                  thread_operation_flags = (ulong long)(int)buffer_allocation_result;
-                  if (buffer_allocation_result < stack_size_limit) {
+                  system_buffer_allocation_result = allocate_thread_stack(&thread_stack_pointer,&g_systemDataString25);
+                  thread_operation_flags = (ulong long)(int)system_buffer_allocation_result;
+                  if (system_buffer_allocation_result < stack_size_limit) {
                     character_scan_pointer = (char *)(thread_stack_base_address + thread_operation_flags);
                     do {
                       if (*character_scan_pointer == ' ') goto label_;
-                      buffer_allocation_result = (int)thread_operation_flags + 1;
-                      thread_operation_flags = (ulong long)buffer_allocation_result;
+                      system_buffer_allocation_result = (int)thread_operation_flags + 1;
+                      thread_operation_flags = (ulong long)system_buffer_allocation_result;
                       character_scan_pointer = character_scan_pointer + 1;
-                    } while (buffer_allocation_result < stack_size_limit);
+                    } while (system_buffer_allocation_result < stack_size_limit);
                   }
                   thread_operation_flags = UINT32_MAX;
 label_:
-                  buffer_allocation_result = (int)thread_operation_flags + 1;
-                  thread_operation_flags = (ulong long)(int)buffer_allocation_result;
-                  if (buffer_allocation_result < stack_size_limit) {
+                  system_buffer_allocation_result = (int)thread_operation_flags + 1;
+                  thread_operation_flags = (ulong long)(int)system_buffer_allocation_result;
+                  if (system_buffer_allocation_result < stack_size_limit) {
                     character_scan_pointer = (char *)(thread_stack_base_address + thread_operation_flags);
                     do {
                       if (*character_scan_pointer == ' ') goto label_;
@@ -2284,14 +2284,14 @@ label_:
                   thread_operation_flags = UINT32_MAX;
 label_:
                   if ((int)thread_operation_flags != -1) {
-                    setup_thread_parameters(&thread_stack_pointer,&thread_stack_pointer,buffer_allocation_result,thread_operation_flags);
+                    setup_thread_parameters(&thread_stack_pointer,&thread_stack_pointer,system_buffer_allocation_result,thread_operation_flags);
                     system_thread_manager_012(&thread_stack_pointer,1);
-                    buffer_allocation_result = stack_size_limit;
+                    system_buffer_allocation_result = stack_size_limit;
                     thread_operation_flags = (ulong long)stack_size_limit;
                     if (thread_stack_base_address != 0) {
                       system_thread_manager_001(string_length_counter + 0x170,thread_operation_flags);
                     }
-                    if (buffer_allocation_result != 0) {
+                    if (system_buffer_allocation_result != 0) {
                       memcpy(*(unsigned long long *)(string_length_counter + 0x178),thread_stack_base_address,thread_operation_flags);
                     }
                     *(unsigned int *)(string_length_counter + 0x180) = 0;
@@ -2318,7 +2318,7 @@ label_:
                   thread_stack_pointer = &g_threadString4;
                 }
                 else {
-                  if (buffer_allocation_result == 0x17) {
+                  if (system_buffer_allocation_result == 0x17) {
                     thread_result_index = strcmp(input_string_pointer,&g_systemDataString26);
                     if (thread_result_index == 0) {
                       system_initialization_flag = 1;
@@ -2328,7 +2328,7 @@ label_:
                     string_match_found = false;
                   }
                   else {
-                    if (buffer_allocation_result != 0xb) goto label_;
+                    if (system_buffer_allocation_result != 0xb) goto label_;
                     thread_result_index = strcmp(input_string_pointer,&g_systemDataString27);
                     string_match_found = thread_result_index == 0;
                   }
@@ -2361,8 +2361,8 @@ label_:
                       input_string_pointer = (unsigned int *)system_execute_function(system_global_data_pointer,STRING_BUFFER_SIZE,0x13);
                       *(unsigned char *)input_string_pointer = 0;
                       thread_stack_pointer = input_string_pointer;
-                      buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
-                      stack_size_limit = merge_32bit_values(stack_size_limit._4_4_,buffer_allocation_result);
+                      system_buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
+                      stack_size_limit = merge_32bit_values(stack_size_limit._4_4_,system_buffer_allocation_result);
                       *input_string_pointer = 0x726f662f;
                       input_string_pointer[1] = 0x5f646563;
                       input_string_pointer[2] = 0x666e6f63;
@@ -2370,10 +2370,10 @@ label_:
                       stack_size_limit = 0xf;
                       thread_operation_flags = thread_operation_flags;
                       thread_operation_flags = thread_operation_flags;
-                      if (0 < (int)(buffer_allocation_result - 0xe)) goto label_;
+                      if (0 < (int)(system_buffer_allocation_result - 0xe)) goto label_;
                       goto label_;
                     }
-                    if (buffer_allocation_result == 0xf) {
+                    if (system_buffer_allocation_result == 0xf) {
                       thread_result_index = strcmp(input_string_pointer);
                       if (thread_result_index == 0) {
                         cStack_338 = '\x01';
@@ -2384,7 +2384,7 @@ label_:
                       string_match_found = false;
                     }
                     else {
-                      if (buffer_allocation_result == 0xc) {
+                      if (system_buffer_allocation_result == 0xc) {
                         thread_result_index = strcmp(input_string_pointer);
                         if (thread_result_index == 0) {
                           input_string_pointer = &g_systemDataString28;
@@ -2393,7 +2393,7 @@ label_:
                         }
                         goto label_;
                       }
-                      if (buffer_allocation_result == 0x1a) {
+                      if (system_buffer_allocation_result == 0x1a) {
                         thread_result_index = strcmp(input_string_pointer);
                         if (thread_result_index == 0) {
                           *(unsigned char *)(system_global_data_pointer + 0x21) = 1;
@@ -2401,7 +2401,7 @@ label_:
                         }
                         goto label_;
                       }
-                      if (buffer_allocation_result == STRING_BUFFER_SIZE) {
+                      if (system_buffer_allocation_result == STRING_BUFFER_SIZE) {
                         thread_result_index = strcmp(input_string_pointer);
                         if (thread_result_index == 0) {
                           system_status_flag_2 = 0;
@@ -2409,7 +2409,7 @@ label_:
                         }
                         goto label_;
                       }
-                      if (buffer_allocation_result == 0x18) {
+                      if (system_buffer_allocation_result == 0x18) {
                         thread_result_index = strcmp(input_string_pointer);
                         if (thread_result_index == 0) {
                           system_crash_handler_flag = 1;
@@ -2417,7 +2417,7 @@ label_:
                         }
                         goto label_;
                       }
-                      if (buffer_allocation_result != 0x14) goto label_;
+                      if (system_buffer_allocation_result != 0x14) goto label_;
                       thread_result_index = strcmp(input_string_pointer);
                       string_match_found = thread_result_index == 0;
                     }
@@ -2425,18 +2425,18 @@ label_:
                     if (string_match_found) {
                       create_thread_context(&thread_stack_pointer,input_string_pointer);
                       system_thread_manager_005(&thread_stack_pointer);
-                      buffer_allocation_result = 0;
+                      system_buffer_allocation_result = 0;
                       character_scan_pointer = pcStack_328;
                       if (stack_size_limit != 0) {
                         do {
                           if (*character_scan_pointer == '/') goto label_;
-                          buffer_allocation_result = buffer_allocation_result + 1;
+                          system_buffer_allocation_result = system_buffer_allocation_result + 1;
                           character_scan_pointer = character_scan_pointer + 1;
-                        } while (buffer_allocation_result < stack_size_limit);
+                        } while (system_buffer_allocation_result < stack_size_limit);
                       }
-                      buffer_allocation_result = UINT32_MAX;
+                      system_buffer_allocation_result = UINT32_MAX;
 label_:
-                      if (buffer_allocation_result != 0xffffffff) {
+                      if (system_buffer_allocation_result != 0xffffffff) {
                         string_length_counter = setup_thread_parameters(&thread_stack_pointer,&thread_stack_pointer,0);
                         if (pcStack_328 != (char *)0x0) {
                           handle_system_error();
@@ -2456,14 +2456,14 @@ label_:
                         thread_stack_pointer = &g_threadString4;
                       }
                       system_thread_manager_006(&thread_stack_pointer);
-                      buffer_allocation_result = stack_size_limit;
+                      system_buffer_allocation_result = stack_size_limit;
                       string_length_counter = system_global_data_pointer;
                       *(unsigned char *)(system_global_data_pointer + 0x48) = 1;
                       thread_operation_flags = (ulong long)stack_size_limit;
                       if (pcStack_328 != (char *)0x0) {
                         system_thread_manager_001(string_length_counter + 0x50,thread_operation_flags);
                       }
-                      if (buffer_allocation_result != 0) {
+                      if (system_buffer_allocation_result != 0) {
                         memcpy(*(unsigned long long *)(string_length_counter + 0x58),pcStack_328,thread_operation_flags);
                       }
                       *(unsigned int *)(string_length_counter + 0x60) = 0;
@@ -2491,8 +2491,8 @@ label_:
                       input_string_pointer = input_string_pointer;
                       stack_size_limit = thread_operation_flags;
                       stack_size_limit = thread_operation_flags;
-                      if (buffer_allocation_result != 0) {
-                        thread_result_index = buffer_allocation_result + 1;
+                      if (system_buffer_allocation_result != 0) {
+                        thread_result_index = system_buffer_allocation_result + 1;
                         if (thread_result_index < STRING_BUFFER_SIZE) {
                           thread_result_index = STRING_BUFFER_SIZE;
                         }
@@ -2503,13 +2503,13 @@ label_:
                         stack_size_limit = merge_32bit_values(stack_size_limit._4_4_,(int)input_string_pointer);
                       }
                       string_length_counter = 1;
-                      buffer_allocation_result = 1;
-                      if (1 < (int)buffer_allocation_result) {
+                      system_buffer_allocation_result = 1;
+                      if (1 < (int)system_buffer_allocation_result) {
                         thread_operation_flags = 0;
                         do {
                           thread_operation_flags = stack_size_limit;
                           thread_operation_flags = stack_size_limit;
-                          if (buffer_allocation_result <= buffer_allocation_result) break;
+                          if (system_buffer_allocation_result <= system_buffer_allocation_result) break;
                           thread_operation_flags = thread_stack_pointer[string_length_counter];
                           thread_result_index = (int)thread_operation_flags;
                           thread_operation_flags = thread_result_index + 1;
@@ -2539,12 +2539,12 @@ label_:
                           input_string_pointer[(long long)input_string_pointer] = thread_operation_flags;
                           input_string_pointer[thread_operation_flags] = 0;
                           input_string_pointer = (unsigned char *)(ulong long)thread_operation_flags;
-                          buffer_allocation_result = buffer_allocation_result + 1;
+                          system_buffer_allocation_result = system_buffer_allocation_result + 1;
                           string_length_counter = string_length_counter + 1;
                           thread_operation_flags = stack_size_limit;
                           thread_operation_flags = stack_size_limit;
                           stack_size_limit = thread_operation_flags;
-                        } while (string_length_counter < (int)buffer_allocation_result);
+                        } while (string_length_counter < (int)system_buffer_allocation_result);
                       }
                       system_event_handler_main(input_string_pointer,&thread_stack_pointer,thread_operation_flags);
                       stack_size_limit = thread_operation_flags & 0xfffffffe;
@@ -2563,7 +2563,7 @@ label_:
                       if (input_string_pointer != (unsigned char *)0x0) {
                         system_thread_manager_001(system_global_data_pointer + 0x28,input_string_pointer);
                       }
-                      if (buffer_allocation_result != 0) {
+                      if (system_buffer_allocation_result != 0) {
                         memcpy(*(unsigned long long *)(string_length_counter + 0x30),input_string_pointer,input_string_pointer);
                       }
                       *(unsigned int *)(string_length_counter + 0x38) = 0;
@@ -2587,7 +2587,7 @@ label_:
         }
       }
       else {
-        system_thread_manager_001(&thread_stack_pointer,buffer_allocation_result + 1);
+        system_thread_manager_001(&thread_stack_pointer,system_buffer_allocation_result + 1);
         thread_stack_pointer[stack_size_limit] = byte_check_result;
         stack_size_limit = stack_size_limit + 1;
         input_string_pointer = (unsigned char *)(ulong long)stack_size_limit;
@@ -2616,14 +2616,14 @@ label_:
   thread_stack_pointer = (unsigned char *)0x0;
   stack_size_limit = stack_size_limit & INT64_MASK;
   thread_stack_pointer = &g_threadString4;
-  system_crypto_001(stack_size_limit ^ (ulong long)auStack_368);
-  while (byte_input_string_pointer = byte_input_string_pointer + 1, buffer_allocation_result != 0) {
+  system_execute_crypto_operation(stack_size_limit ^ (ulong long)auStack_368);
+  while (byte_input_string_pointer = byte_input_string_pointer + 1, system_buffer_allocation_result != 0) {
 label_:
     byte_check_result = *byte_input_string_pointer;
-    buffer_allocation_result = (uint)byte_input_string_pointer[string_length_counter];
-    if (byte_check_result != buffer_allocation_result) break;
+    system_buffer_allocation_result = (uint)byte_input_string_pointer[string_length_counter];
+    if (byte_check_result != system_buffer_allocation_result) break;
   }
-  if ((int)(byte_check_result - buffer_allocation_result) < 1) {
+  if ((int)(byte_check_result - system_buffer_allocation_result) < 1) {
 label_:
     thread_operation_flags = 1;
   }
@@ -2635,7 +2635,7 @@ label_:
   while( true ) {
     thread_operation_flags = (ulong long)(thread_result_index + 1);
     thread_operation_flags = thread_operation_flags + 1;
-    if ((long long)(int)(buffer_allocation_result - 0xe) <= (long long)thread_operation_flags) break;
+    if ((long long)(int)(system_buffer_allocation_result - 0xe) <= (long long)thread_operation_flags) break;
 label_:
     thread_result_index = (int)thread_operation_flags;
     thread_operation_flags = thread_operation_flags;
@@ -2716,11 +2716,11 @@ label_:
       system_initialization_result0 = *(long long *)(string_length_counter + 0x28) - (long long)byte_input_string_pointer;
       do {
         byte_check_result = *byte_input_string_pointer;
-        buffer_allocation_result = (uint)byte_input_string_pointer[system_initialization_result0];
-        if (byte_check_result != buffer_allocation_result) break;
+        system_buffer_allocation_result = (uint)byte_input_string_pointer[system_initialization_result0];
+        if (byte_check_result != system_buffer_allocation_result) break;
         byte_input_string_pointer = byte_input_string_pointer + 1;
-      } while (buffer_allocation_result != 0);
-      if ((int)(byte_check_result - buffer_allocation_result) < 1) goto label_;
+      } while (system_buffer_allocation_result != 0);
+      if ((int)(byte_check_result - system_buffer_allocation_result) < 1) goto label_;
     }
   }
   thread_operation_flags = 0;
@@ -2763,22 +2763,22 @@ label_:
       float_variable = 0.033333335;
     }
     system_handle_manager_004(string_length_counter,float_variable);
-    buffer_allocation_result = system_global_data_pointer;
+    system_buffer_allocation_result = system_global_data_pointer;
     if ((system_global_data_pointer != 0) &&
        (psystem_initialization_result = *(long long **)(system_global_data_pointer + 0x228), psystem_initialization_result != (long long *)0x0)) {
       pplong_stack_variable = &plong_stack_variable;
       plong_stack_variable = psystem_initialization_result;
       (**(code **)(*psystem_initialization_result + 0x28))();
-      system_event_handler_013(buffer_allocation_result,&plong_stack_variable);
+      system_event_handler_013(system_buffer_allocation_result,&plong_stack_variable);
     }
-    buffer_allocation_result = system_global_data_pointer;
+    system_buffer_allocation_result = system_global_data_pointer;
     if (*(char *)(system_global_data_pointer + 0xa0) == '\0') {
       if ((system_global_data_pointer != 0) &&
          (psystem_initialization_result = *(long long **)(system_global_data_pointer + 0x228), psystem_initialization_result != (long long *)0x0)) {
         pplong_stack_variable = &plong_stack_variable;
         plong_stack_variable = psystem_initialization_result;
         (**(code **)(*psystem_initialization_result + 0x28))();
-        system_event_handler_016(buffer_allocation_result,&plong_stack_variable,0);
+        system_event_handler_016(system_buffer_allocation_result,&plong_stack_variable,0);
         psystem_initialization_result = *(long long **)(system_global_data_pointer + 0x228);
         *(unsigned long long *)(system_global_data_pointer + 0x228) = 0;
         if (psystem_initialization_result != (long long *)0x0) {
@@ -2872,22 +2872,22 @@ label_:
       float_variable = 0.033333335;
     }
     system_handle_manager_004(handle,float_variable);
-    buffer_allocation_result = system_global_data_pointer;
+    system_buffer_allocation_result = system_global_data_pointer;
     if ((system_global_data_pointer != 0) &&
        (psystem_initialization_result = *(long long **)(system_global_data_pointer + 0x228), psystem_initialization_result != (long long *)0x0)) {
       pplong_stack_variable = &plong_stack_variable;
       plong_stack_variable = psystem_initialization_result;
       (**(code **)(*psystem_initialization_result + 0x28))();
-      system_event_handler_013(buffer_allocation_result,&plong_stack_variable);
+      system_event_handler_013(system_buffer_allocation_result,&plong_stack_variable);
     }
-    buffer_allocation_result = system_global_data_pointer;
+    system_buffer_allocation_result = system_global_data_pointer;
     if (*(char *)(system_global_data_pointer + 0xa0) == '\0') {
       if ((system_global_data_pointer != 0) &&
          (psystem_initialization_result = *(long long **)(system_global_data_pointer + 0x228), psystem_initialization_result != (long long *)0x0)) {
         pplong_stack_variable = &plong_stack_variable;
         plong_stack_variable = psystem_initialization_result;
         (**(code **)(*psystem_initialization_result + 0x28))();
-        system_event_handler_016(buffer_allocation_result,&plong_stack_variable,0);
+        system_event_handler_016(system_buffer_allocation_result,&plong_stack_variable,0);
         psystem_initialization_result = *(long long **)(system_global_data_pointer + 0x228);
         *(unsigned long long *)(system_global_data_pointer + 0x228) = 0;
         if (psystem_initialization_result != (long long *)0x0) {
@@ -2965,7 +2965,7 @@ label_:
   system_global_data_pointer = (long long *)*input_string_pointer;
   auStack_2a8[0] = 0;
   plStack_2f8 = alStack_90;
-  buffer_allocation_result = 0;
+  system_buffer_allocation_result = 0;
   alStack_90[0] = 0;
   alStack_90[1] = 0;
   alStack_90[2] = 0;
@@ -3137,8 +3137,8 @@ label_:
       input_string_pointer = (unsigned long long *)system_execute_function(system_global_data_pointer,0x1c,0x13);
       *(unsigned char *)input_string_pointer = 0;
       thread_stack_pointer = input_string_pointer;
-      buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
-      stack_size_limit = merge_32bit_values(stack_size_limit._4_4_,buffer_allocation_result);
+      system_buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
+      stack_size_limit = merge_32bit_values(stack_size_limit._4_4_,system_buffer_allocation_result);
       *input_string_pointer = 0x6f6d654d20555047;
       input_string_pointer[1] = 0x6567617375207972;
       input_string_pointer[2] = 0x6163697469726320;
@@ -3181,20 +3181,20 @@ label_:
     *(unsigned long long *)(*(long long *)(handle + 0x3c0) + 0x18) =
          *(unsigned long long *)(*(long long *)(handle + 0x3c0) + STRING_BUFFER_SIZE);
     psystem_initialization_result4 = (long long *)(system_global_data_pointer + config_path_buffer_size30);
-    buffer_allocation_result = buffer_allocation_result;
+    system_buffer_allocation_result = system_buffer_allocation_result;
     if (*(long long *)(system_global_data_pointer + config_path_buffer_size38) - *psystem_initialization_result4 >> 2 != 0) {
       do {
-        stack_size_limit = *(unsigned int *)(buffer_allocation_result + *psystem_initialization_result4);
+        stack_size_limit = *(unsigned int *)(system_buffer_allocation_result + *psystem_initialization_result4);
         system_initialization_result2 = *(long long *)(handle + 0x3c0) + STRING_BUFFER_SIZE;
         system_execute_function(system_initialization_result2,&stack_size_limit);
         system_execute_function(system_initialization_result2,(long long)&stack_size_limit + 1);
         system_execute_function(system_initialization_result2,(long long)&stack_size_limit + 2);
         system_execute_function(system_initialization_result2,(long long)&stack_size_limit + 3);
-        buffer_allocation_result = (int)buffer_allocation_result + 1;
-        buffer_allocation_result = (ulong long)buffer_allocation_result;
+        system_buffer_allocation_result = (int)system_buffer_allocation_result + 1;
+        system_buffer_allocation_result = (ulong long)system_buffer_allocation_result;
         psystem_initialization_result4 = (long long *)(system_global_data_pointer + config_path_buffer_size30);
-        buffer_allocation_result = buffer_allocation_result + 4;
-      } while ((ulong long)(long long)(int)buffer_allocation_result <
+        system_buffer_allocation_result = system_buffer_allocation_result + 4;
+      } while ((ulong long)(long long)(int)system_buffer_allocation_result <
                (ulong long)(*(long long *)(system_global_data_pointer + config_path_buffer_size38) - *psystem_initialization_result4 >> 2));
     }
     (**(code **)(system_global_data_pointer + 0xa8))();
@@ -3210,8 +3210,8 @@ label_:
     input_string_pointer = (unsigned long long *)system_execute_function(system_global_data_pointer,0x19,0x13);
     *(unsigned char *)input_string_pointer = 0;
     thread_stack_pointer = input_string_pointer;
-    buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
-    stack_size_limit = merge_32bit_values(stack_size_limit._4_4_,buffer_allocation_result);
+    system_buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
+    stack_size_limit = merge_32bit_values(stack_size_limit._4_4_,system_buffer_allocation_result);
     *input_string_pointer = 0x6d6d6f43204c4752;
     input_string_pointer[1] = 0x656e696c20646e61;
     input_string_pointer[2] = 0x656c6f736e6f6320;
@@ -3244,7 +3244,7 @@ label_:
     thread_stack_pointer = &g_threadString2;
     handle_system_error(input_string_pointer);
   }
-  system_crypto_001(stack_size_limit ^ (ulong long)auStack_348);
+  system_execute_crypto_operation(stack_size_limit ^ (ulong long)auStack_348);
 }
 unsigned long long * system_handle_manager_001(unsigned long long *handle)
 {
@@ -3327,12 +3327,12 @@ unsigned long long * system_handle_manager_001(unsigned long long *handle)
 unsigned long long *
 system_execute_function(unsigned long long *handle,ulong long thread_operation_flags,unsigned long long mutex_attr,unsigned long long mutex_type)
 {
-  unsigned long long buffer_allocation_result;
-  buffer_allocation_result = DEFAULT_THREAD_POOL_FLAG;
+  unsigned long long system_buffer_allocation_result;
+  system_buffer_allocation_result = DEFAULT_THREAD_POOL_FLAG;
   *handle = &systemHandleData;
   system_cleanup_004();
   if ((thread_operation_flags & 1) != 0) {
-    free(handle,0xc0,mutex_attr,mutex_type,buffer_allocation_result);
+    free(handle,0xc0,mutex_attr,mutex_type,system_buffer_allocation_result);
   }
   return handle;
 }
@@ -3364,7 +3364,7 @@ system_execute_function(unsigned long long *handle,ulong long thread_operation_f
   stack_size_limit = 0;
   thread_stack_pointer = &g_threadString4;
 label_:
-  system_crypto_001(stack_size_limit ^ (ulong long)auStack_168);
+  system_execute_crypto_operation(stack_size_limit ^ (ulong long)auStack_168);
 }
 uint validate_system_mutex_lock(void)
 {
@@ -3386,7 +3386,7 @@ uint validate_system_mutex_lock(void)
 }
       data_180d49178 = 0;
       system_global_data_pointer = 0;
-      strcpy_s(&data_180d49178,0x80,&default_resource_string,mutex_type,buffer_allocation_result);
+      strcpy_s(&data_180d49178,0x80,&default_resource_string,mutex_type,system_buffer_allocation_result);
       system_crypto_002(system_execute_function);
       system_initialize_crypto_module(&data_180d49158);
       return &data_180d49160;
@@ -3397,7 +3397,7 @@ uint validate_system_mutex_lock(void)
     data_180d48d40 = '\x01';
     system_thread_manager_012(handle,CONCAT71((int7)((ulong long)input_string_pointer >> 8),1));
   }
-  system_crypto_001(stack_size_limit ^ (ulong long)auStack_298);
+  system_execute_crypto_operation(stack_size_limit ^ (ulong long)auStack_298);
 }
     thread_pool_2_status_code = '\0';
     if ((cStack_208 != '\0') && (thread_result_index = _Mtx_unlock(stack_size_limit), thread_result_index != 0)) {
@@ -3413,10 +3413,10 @@ uint validate_system_mutex_lock(void)
   }
 label_:
   if (*(char *)(system_global_data_pointer + 0xa0) != '\0') {
-    buffer_allocation_result = system_ui_007(system_initialization_result6);
-    *(unsigned long long *)(system_global_data_pointer + 0xa8) = buffer_allocation_result;
-    buffer_allocation_result = system_ui_008(system_initialization_result6);
-    *(unsigned long long *)(system_global_data_pointer + 0xb0) = buffer_allocation_result;
+    system_buffer_allocation_result = system_ui_007(system_initialization_result6);
+    *(unsigned long long *)(system_global_data_pointer + 0xa8) = system_buffer_allocation_result;
+    system_buffer_allocation_result = system_ui_008(system_initialization_result6);
+    *(unsigned long long *)(system_global_data_pointer + 0xb0) = system_buffer_allocation_result;
   }
   character_scan_pointer = system_global_data_pointer;
   if (*system_global_data_pointer != '\0') {
@@ -3425,7 +3425,7 @@ label_:
     if (thread_result_index != 0) {
       __Throw_C_error_std__YAXH_Z(thread_result_index);
     }
-    buffer_allocation_result = system_global_data_pointer;
+    system_buffer_allocation_result = system_global_data_pointer;
     pplStack_1b8 = (long long **)system_global_data_pointer;
     system_global_data_pointer = *input_string_pointer;
     system_initializer_003(&systemInitData1,0,0);
@@ -3433,17 +3433,17 @@ label_:
     dVar7 = 0.0;
     dVar9 = 0.0;
     dVar8 = 0.0;
-    buffer_allocation_result = thread_operation_flags;
+    system_buffer_allocation_result = thread_operation_flags;
     thread_operation_flags = thread_operation_flags;
     if (*(long long *)(character_scan_pointer + STRING_BUFFER_SIZE) - *(long long *)(character_scan_pointer + 8) >> 3 != 0) {
       do {
-        dVar1 = *(double *)(*(long long *)(buffer_allocation_result + *(long long *)(character_scan_pointer + 8)) + config_path_buffer_size0);
+        dVar1 = *(double *)(*(long long *)(system_buffer_allocation_result + *(long long *)(character_scan_pointer + 8)) + config_path_buffer_size0);
         dVar7 = dVar2 + dVar1;
-        dVar2 = *(double *)(*(long long *)(buffer_allocation_result + *(long long *)(character_scan_pointer + 8)) + 0x1f8);
+        dVar2 = *(double *)(*(long long *)(system_buffer_allocation_result + *(long long *)(character_scan_pointer + 8)) + 0x1f8);
         dVar8 = dVar9 + dVar2;
         system_config_001(&systemInitData2,thread_operation_flags,dVar1 / dVar2);
         thread_operation_flags = (int)thread_operation_flags + 1;
-        buffer_allocation_result = buffer_allocation_result + 8;
+        system_buffer_allocation_result = system_buffer_allocation_result + 8;
         thread_operation_flags = (ulong long)thread_operation_flags;
         dVar2 = dVar7;
         dVar9 = dVar8;
@@ -3452,21 +3452,21 @@ label_:
     }
     system_config_001(&systemConfigData8,dVar7 / dVar8);
     system_initializer_004();
-    system_global_data_pointer = buffer_allocation_result;
+    system_global_data_pointer = system_buffer_allocation_result;
     thread_result_index = _Mtx_unlock(ADDR_MAIN_MUTEX);
     if (thread_result_index != 0) {
       __Throw_C_error_std__YAXH_Z(thread_result_index);
     }
   }
   if (*(char *)(system_global_data_pointer + 0x1626) != '\0') {
-    buffer_allocation_result = *(unsigned long long *)(system_global_data_pointer + 0x138);
+    system_buffer_allocation_result = *(unsigned long long *)(system_global_data_pointer + 0x138);
     *(unsigned long long *)(system_global_data_pointer + 0x138) = 0;
     thread_stack_pointer = &g_defaultDataTemplate;
     thread_stack_pointer = auStack_a0;
     auStack_a0[0] = 0;
     stack_size_limit = 0x18;
     thread_operation_flags = strcpy_s(auStack_a0, SYSTEM_CONFIG_BUFFER_SIZE, &systemConfigStringBuffer2);
-    system_ui_001(thread_operation_flags,&thread_stack_pointer,buffer_allocation_result,1);
+    system_ui_001(thread_operation_flags,&thread_stack_pointer,system_buffer_allocation_result,1);
     thread_stack_pointer = &g_threadString4;
   }
   if (*(int *)(system_global_data_pointer + 0x60) == 1) {
@@ -3476,17 +3476,17 @@ label_:
     system_finalizer_004();
   }
   system_initialization_result8 = *(long long *)(system_global_data_pointer + 0x1870) - *(long long *)(system_global_data_pointer + 0x1868) >> 3;
-  buffer_allocation_result = thread_operation_flags;
+  system_buffer_allocation_result = thread_operation_flags;
   if (0 < (int)system_initialization_result8) {
     do {
-      input_string_pointer = (unsigned long long *)system_validator_002(system_initialization_result8,&plStack_1d0,(long long)(int)buffer_allocation_result);
+      input_string_pointer = (unsigned long long *)system_validator_002(system_initialization_result8,&plStack_1d0,(long long)(int)system_buffer_allocation_result);
       (**(code **)(*(long long *)*input_string_pointer + 0x98))();
       if (plStack_1d0 != (long long *)0x0) {
         (**(code **)(*plStack_1d0 + 0x38))();
       }
-      thread_operation_flags = (int)buffer_allocation_result + 1;
+      thread_operation_flags = (int)system_buffer_allocation_result + 1;
       system_initialization_result8 = *(long long *)(system_global_data_pointer + 0x1870) - *(long long *)(system_global_data_pointer + 0x1868) >> 3;
-      buffer_allocation_result = (ulong long)thread_operation_flags;
+      system_buffer_allocation_result = (ulong long)thread_operation_flags;
     } while ((int)thread_operation_flags < (int)system_initialization_result8);
   }
   system_processor_001();
@@ -3499,38 +3499,38 @@ label_:
   }
   string_length_counter = system_global_data_pointer;
   system_initialization_result8 = system_global_data_pointer;
-  buffer_allocation_result = *(unsigned long long *)(system_global_data_pointer + 0x161c);
+  system_buffer_allocation_result = *(unsigned long long *)(system_global_data_pointer + 0x161c);
   *(unsigned long long *)(system_global_data_pointer + 0x12d0) = *(unsigned long long *)(system_global_data_pointer + 0x1614);
-  *(unsigned long long *)(system_initialization_result8 + 0x12d8) = buffer_allocation_result;
-  buffer_allocation_result = *(unsigned long long *)(string_length_counter + 0x162c);
+  *(unsigned long long *)(system_initialization_result8 + 0x12d8) = system_buffer_allocation_result;
+  system_buffer_allocation_result = *(unsigned long long *)(string_length_counter + 0x162c);
   *(unsigned long long *)(system_initialization_result8 + 0x12e0) = *(unsigned long long *)(string_length_counter + 0x1624);
-  *(unsigned long long *)(system_initialization_result8 + 0x12e8) = buffer_allocation_result;
-  buffer_allocation_result = *(unsigned long long *)(string_length_counter + 0x163c);
+  *(unsigned long long *)(system_initialization_result8 + 0x12e8) = system_buffer_allocation_result;
+  system_buffer_allocation_result = *(unsigned long long *)(string_length_counter + 0x163c);
   *(unsigned long long *)(system_initialization_result8 + 0x12f0) = *(unsigned long long *)(string_length_counter + 0x1634);
-  *(unsigned long long *)(system_initialization_result8 + 0x12f8) = buffer_allocation_result;
-  buffer_allocation_result = *(unsigned long long *)(string_length_counter + 0x164c);
+  *(unsigned long long *)(system_initialization_result8 + 0x12f8) = system_buffer_allocation_result;
+  system_buffer_allocation_result = *(unsigned long long *)(string_length_counter + 0x164c);
   *(unsigned long long *)(system_initialization_result8 + 0x1300) = *(unsigned long long *)(string_length_counter + 0x1644);
-  *(unsigned long long *)(system_initialization_result8 + 0x1308) = buffer_allocation_result;
-  buffer_allocation_result = *(unsigned long long *)(string_length_counter + 0x165c);
+  *(unsigned long long *)(system_initialization_result8 + 0x1308) = system_buffer_allocation_result;
+  system_buffer_allocation_result = *(unsigned long long *)(string_length_counter + 0x165c);
   *(unsigned long long *)(system_initialization_result8 + 0x1310) = *(unsigned long long *)(string_length_counter + 0x1654);
-  *(unsigned long long *)(system_initialization_result8 + 0x1318) = buffer_allocation_result;
-  buffer_allocation_result = *(unsigned long long *)(string_length_counter + 0x166c);
+  *(unsigned long long *)(system_initialization_result8 + 0x1318) = system_buffer_allocation_result;
+  system_buffer_allocation_result = *(unsigned long long *)(string_length_counter + 0x166c);
   *(unsigned long long *)(system_initialization_result8 + 0x1320) = *(unsigned long long *)(string_length_counter + 0x1664);
-  *(unsigned long long *)(system_initialization_result8 + 0x1328) = buffer_allocation_result;
+  *(unsigned long long *)(system_initialization_result8 + 0x1328) = system_buffer_allocation_result;
   thread_operation_flags = *(unsigned int *)(string_length_counter + 0x1678);
-  buffer_allocation_result = *(unsigned int *)(string_length_counter + 0x167c);
-  buffer_allocation_result = *(unsigned int *)(string_length_counter + 0x1680);
+  system_buffer_allocation_result = *(unsigned int *)(string_length_counter + 0x167c);
+  system_buffer_allocation_result = *(unsigned int *)(string_length_counter + 0x1680);
   *(unsigned int *)(system_initialization_result8 + 0x1330) = *(unsigned int *)(string_length_counter + 0x1674);
   *(unsigned int *)(system_initialization_result8 + 0x1334) = thread_operation_flags;
-  *(unsigned int *)(system_initialization_result8 + 0x1338) = buffer_allocation_result;
-  *(unsigned int *)(system_initialization_result8 + 0x133c) = buffer_allocation_result;
+  *(unsigned int *)(system_initialization_result8 + 0x1338) = system_buffer_allocation_result;
+  *(unsigned int *)(system_initialization_result8 + 0x133c) = system_buffer_allocation_result;
   thread_operation_flags = *(unsigned int *)(string_length_counter + 0x1688);
-  buffer_allocation_result = *(unsigned int *)(string_length_counter + 0x168c);
-  buffer_allocation_result = *(unsigned int *)(string_length_counter + 0x1690);
+  system_buffer_allocation_result = *(unsigned int *)(string_length_counter + 0x168c);
+  system_buffer_allocation_result = *(unsigned int *)(string_length_counter + 0x1690);
   *(unsigned int *)(system_initialization_result8 + 0x1340) = *(unsigned int *)(string_length_counter + 0x1684);
   *(unsigned int *)(system_initialization_result8 + 0x1344) = thread_operation_flags;
-  *(unsigned int *)(system_initialization_result8 + 0x1348) = buffer_allocation_result;
-  *(unsigned int *)(system_initialization_result8 + 0x134c) = buffer_allocation_result;
+  *(unsigned int *)(system_initialization_result8 + 0x1348) = system_buffer_allocation_result;
+  *(unsigned int *)(system_initialization_result8 + 0x134c) = system_buffer_allocation_result;
   *(unsigned short *)(string_length_counter + 0x1637) = 0;
   *(unsigned char *)(string_length_counter + 0x162c) = 0;
   system_finalizer_001();
@@ -3545,12 +3545,12 @@ label_:
   if (thread_result_index != 0) {
     __Throw_C_error_std__YAXH_Z(thread_result_index);
   }
-  buffer_allocation_result = system_global_data_pointer;
+  system_buffer_allocation_result = system_global_data_pointer;
   pplStack_220 = (long long **)system_global_data_pointer;
   system_global_data_pointer = *input_string_pointer;
   system_initialization_result8 = *(long long *)(system_global_data_pointer + 0x1a08 + (long long)(int)system_global_data_pointer * 8);
   if (system_initialization_result8 != 0) {
-    buffer_allocation_result = thread_operation_flags;
+    system_buffer_allocation_result = thread_operation_flags;
     thread_operation_flags = thread_operation_flags;
     if (0 < *(int *)(system_initialization_result8 + STRING_BUFFER_SIZE)) {
       do {
@@ -3561,8 +3561,8 @@ label_:
           handle_system_error(string_length_counter);
         }
         *(unsigned long long *)(*(long long *)(system_initialization_result8 + 8) + thread_operation_flags) = 0;
-        thread_operation_flags = (int)buffer_allocation_result + 1;
-        buffer_allocation_result = (ulong long)thread_operation_flags;
+        thread_operation_flags = (int)system_buffer_allocation_result + 1;
+        system_buffer_allocation_result = (ulong long)thread_operation_flags;
         thread_operation_flags = thread_operation_flags + 8;
       } while ((int)thread_operation_flags < *(int *)(system_initialization_result8 + STRING_BUFFER_SIZE));
     }
@@ -3584,7 +3584,7 @@ label_:
     thread_operation_flags = stack_size_limit;
   }
   system_initializer_002();
-  system_global_data_pointer = buffer_allocation_result;
+  system_global_data_pointer = system_buffer_allocation_result;
   thread_result_index = _Mtx_unlock(ADDR_MAIN_MUTEX);
   if (thread_result_index != 0) {
     __Throw_C_error_std__YAXH_Z(thread_result_index);
@@ -3676,12 +3676,12 @@ label_:
   system_execute_function(system_global_data_pointer,thread_operation_flags,&thread_stack_base_address);
   system_initialization_result6 = thread_stack_base_address;
   system_initialization_result8 = thread_stack_base_address;
-  buffer_allocation_result = thread_operation_flags;
+  system_buffer_allocation_result = thread_operation_flags;
   if (thread_stack_base_address - thread_stack_base_address >> 3 != 0) {
     do {
       string_length_counter = system_global_data_pointer;
-      if ((0 < *(int *)(*(long long *)(buffer_allocation_result + system_initialization_result6) + 0x124ec)) &&
-         ((*(uint *)(*(long long *)(buffer_allocation_result + system_initialization_result6) + 4) & string_buffer_size_constant00) != 0)) {
+      if ((0 < *(int *)(*(long long *)(system_buffer_allocation_result + system_initialization_result6) + 0x124ec)) &&
+         ((*(uint *)(*(long long *)(system_buffer_allocation_result + system_initialization_result6) + 4) & string_buffer_size_constant00) != 0)) {
         while (character_scan_pointer = system_global_data_pointer, system_initialization_result6 = thread_stack_base_address, system_initialization_result8 = thread_stack_base_address,
               *(int *)(string_length_counter + 0x30c) != 0) {
           system_initialization_result6 = system_event_handler_017(system_global_data_pointer);
@@ -3693,11 +3693,11 @@ label_:
       }
       thread_operation_flags = (int)thread_operation_flags + 1;
       thread_operation_flags = (ulong long)thread_operation_flags;
-      buffer_allocation_result = buffer_allocation_result + 8;
+      system_buffer_allocation_result = system_buffer_allocation_result + 8;
     } while ((ulong long)(long long)(int)thread_operation_flags < (ulong long)(system_initialization_result8 - system_initialization_result6 >> 3));
   }
-  buffer_allocation_result = system_execute_function(system_global_data_pointer,string_buffer_size_constant,8,3);
-  psystem_initialization_result7 = (long long *)system_event_handler_008(buffer_allocation_result,&thread_stack_pointer);
+  system_buffer_allocation_result = system_execute_function(system_global_data_pointer,string_buffer_size_constant,8,3);
+  psystem_initialization_result7 = (long long *)system_event_handler_008(system_buffer_allocation_result,&thread_stack_pointer);
   ppuStack_1b0 = (void **)psystem_initialization_result7;
   if (psystem_initialization_result7 != (long long *)0x0) {
     (**(code **)(*psystem_initialization_result7 + 0x28))(psystem_initialization_result7);
@@ -3726,7 +3726,7 @@ label_:
   if (thread_stack_base_address == 0) {
     ppuStack_1b0 = &thread_stack_pointer;
     thread_stack_pointer = &g_threadString4;
-    system_crypto_001(stack_size_limit ^ (ulong long)auStack_248);
+    system_execute_crypto_operation(stack_size_limit ^ (ulong long)auStack_248);
   }
   handle_system_error();
 }
@@ -3749,7 +3749,7 @@ label_:
 }
       data_180d492a8 = 0;
       system_global_data_pointer = 6;
-      strcpy_s(&data_180d492a8, SYSTEM_CONFIG_BUFFER_SIZE, &data_180a06998, mutex_type, buffer_allocation_result);
+      strcpy_s(&data_180d492a8, SYSTEM_CONFIG_BUFFER_SIZE, &data_180a06998, mutex_type, system_buffer_allocation_result);
       resource_template_ptr = &g_defaultDataTemplate;
       system_global_data_pointer = &data_180d49300;
       data_180d49300 = 0;
@@ -3854,15 +3854,15 @@ long long process_memory_with_thread_operation_flags(unsigned long long handle,l
   }
   system_initialization_result0 = along_stack_variable[0];
   if ((*(int *)(*(long long *)(along_stack_variable[0] + 0x3580) + 0x110) != 0) &&
-     (buffer_allocation_result = buffer_allocation_result, buffer_allocation_result = buffer_allocation_result, (long long)in_RCX[0x1d] - (long long)in_RCX[0x1c] >> 3 != 0))
+     (system_buffer_allocation_result = system_buffer_allocation_result, system_buffer_allocation_result = system_buffer_allocation_result, (long long)in_RCX[0x1d] - (long long)in_RCX[0x1c] >> 3 != 0))
   {
     do {
-      (**(code **)(**(long long **)(buffer_allocation_result + (long long)in_RCX[0x1c]) + 0x60))
-                (*(long long **)(buffer_allocation_result + (long long)in_RCX[0x1c]),in_RCX,system_initialization_result0);
-      buffer_allocation_result = (int)buffer_allocation_result + 1;
-      buffer_allocation_result = buffer_allocation_result + 8;
-      buffer_allocation_result = (ulong long)buffer_allocation_result;
-    } while ((ulong long)(long long)(int)buffer_allocation_result <
+      (**(code **)(**(long long **)(system_buffer_allocation_result + (long long)in_RCX[0x1c]) + 0x60))
+                (*(long long **)(system_buffer_allocation_result + (long long)in_RCX[0x1c]),in_RCX,system_initialization_result0);
+      system_buffer_allocation_result = (int)system_buffer_allocation_result + 1;
+      system_buffer_allocation_result = system_buffer_allocation_result + 8;
+      system_buffer_allocation_result = (ulong long)system_buffer_allocation_result;
+    } while ((ulong long)(long long)(int)system_buffer_allocation_result <
              (ulong long)((long long)in_RCX[0x1d] - (long long)in_RCX[0x1c] >> 3));
   }
   ppplStack_b8 = (long long ***)0x0;
@@ -3874,7 +3874,7 @@ long long process_memory_with_thread_operation_flags(unsigned long long handle,l
         *(char *)(system_global_data_pointer + 0xf8) != '\0')) &&
        (stack_size_limit = (long long *)merge_32bit_values(stack_size_limit._4_4_,(unsigned int)stack_size_limit),
        6 < *(int *)(in_RCX + 0x4f8))) {
-      buffer_allocation_result = system_execute_function(system_global_data_pointer,0xe0,8,3);
+      system_buffer_allocation_result = system_execute_function(system_global_data_pointer,0xe0,8,3);
       ppplong_stack_variable = (long long ***)&stack_size_limit;
       plStack_68 = along_stack_variable;
       thread_stack_pointer = &systemThreadData1;
@@ -3885,12 +3885,12 @@ long long process_memory_with_thread_operation_flags(unsigned long long handle,l
       stack_size_limit._4_4_ = stack_size_limit._4_4_;
       stack_size_limit = in_RCX;
       stack_size_limit = plStack_68;
-      ppplStack_b8 = (long long ***)system_execute_function(buffer_allocation_result,&stack_size_limit);
+      ppplStack_b8 = (long long ***)system_execute_function(system_buffer_allocation_result,&stack_size_limit);
       if (ppplStack_b8 != (long long ***)0x0) {
         ppplStack_80 = ppplStack_b8;
         (*(code *)(*ppplStack_b8)[5])(ppplStack_b8);
       }
-      buffer_allocation_result = system_global_data_pointer;
+      system_buffer_allocation_result = system_global_data_pointer;
       ppplStack_80 = (long long ***)0x0;
       if (*(int *)(system_global_data_pointer + 0x380) == 0) {
         pppplong_stack_variable = &ppplong_stack_variable;
@@ -3898,7 +3898,7 @@ long long process_memory_with_thread_operation_flags(unsigned long long handle,l
         if (ppplStack_b8 != (long long ***)0x0) {
           (*(code *)(*ppplStack_b8)[5])(ppplStack_b8);
         }
-        system_event_handler_013(buffer_allocation_result,&ppplong_stack_variable);
+        system_event_handler_013(system_buffer_allocation_result,&ppplong_stack_variable);
       }
       else {
         (*(code *)(*ppplStack_b8)[0xc])(ppplStack_b8);
@@ -3914,7 +3914,7 @@ long long process_memory_with_thread_operation_flags(unsigned long long handle,l
       }
     }
     system_processor_007(in_RCX,along_stack_variable[0]);
-    buffer_allocation_result = system_global_data_pointer;
+    system_buffer_allocation_result = system_global_data_pointer;
     if (((in_RCX[0x89] != (long long ****)0x0) && (*(char *)(system_global_data_pointer + 0xfa) != '\0')) &&
        ((*(long long *)(along_stack_variable[0] + 0x3580) != 0 &&
         (*(int *)(*(long long *)(along_stack_variable[0] + 0x3580) + 0x110) != 0)))) {
@@ -3923,7 +3923,7 @@ long long process_memory_with_thread_operation_flags(unsigned long long handle,l
       if (pppplong_stack_variable != (long long ****)0x0) {
         (*(code *)(*pppplong_stack_variable)[5])();
       }
-      system_event_handler_016(buffer_allocation_result,&pppplong_stack_variable,0);
+      system_event_handler_016(system_buffer_allocation_result,&pppplong_stack_variable,0);
     }
     if ((*(char *)((long long)in_RCX + 0x563) != '\0') &&
        (0 < (int)(((long long)in_RCX[0xb6] - (long long)in_RCX[0xb5]) / 0xc))) {
@@ -3936,11 +3936,11 @@ long long process_memory_with_thread_operation_flags(unsigned long long handle,l
         else {
           system_char_variable = (*(code *)ppplVar3[0xd])();
         }
-        buffer_allocation_result = system_global_data_pointer;
+        system_buffer_allocation_result = system_global_data_pointer;
         if (system_char_variable != '\0') break;
         system_initialization_result0 = system_event_handler_017(system_global_data_pointer);
         if (system_initialization_result0 != 0) {
-          psystem_initialization_result1 = (long long *)system_event_handler_017(buffer_allocation_result);
+          psystem_initialization_result1 = (long long *)system_event_handler_017(system_buffer_allocation_result);
           (**(code **)(*psystem_initialization_result1 + config_path_buffer_size))(psystem_initialization_result1,0);
         }
       }
@@ -3968,12 +3968,12 @@ long long process_memory_with_thread_operation_flags(unsigned long long handle,l
       *(unsigned int *)(system_initialization_result0 + SYSTEM_CONFIG_BUFFER_SIZE) = 0x41200000;
     }
     if (*(int *)(in_RCX + 0xa3a) != 0) {
-      buffer_allocation_result = *(unsigned int *)(in_RCX + 0xa3a);
+      system_buffer_allocation_result = *(unsigned int *)(in_RCX + 0xa3a);
       pppppsystem_initialization_result7 = in_RCX + (long long)*(int *)(in_RCX + 0xa39) * 0x121 + 0x7f7;
       LOCK();
       *(unsigned int *)pppppsystem_initialization_result7 = 0;
       UNLOCK();
-      system_processor_008(pppppsystem_initialization_result7,buffer_allocation_result);
+      system_processor_008(pppppsystem_initialization_result7,system_buffer_allocation_result);
       if (*(int *)(in_RCX + 0xa3a) == 0) {
         thread_result_index = 0;
       }
@@ -3989,32 +3989,32 @@ long long process_memory_with_thread_operation_flags(unsigned long long handle,l
              in_RCX + (long long)*(int *)(in_RCX + 0xa39) * 0x121 + 0x7f7;
       }
     }
-    buffer_allocation_result = *(int *)(in_RCX + 0xa39) + 1U & 0x80000001;
-    if ((int)buffer_allocation_result < 0) {
-      buffer_allocation_result = (buffer_allocation_result - 1 | 0xfffffffe) + 1;
+    system_buffer_allocation_result = *(int *)(in_RCX + 0xa39) + 1U & 0x80000001;
+    if ((int)system_buffer_allocation_result < 0) {
+      system_buffer_allocation_result = (system_buffer_allocation_result - 1 | 0xfffffffe) + 1;
     }
-    *(uint *)(in_RCX + 0xa39) = buffer_allocation_result;
+    *(uint *)(in_RCX + 0xa39) = system_buffer_allocation_result;
   }
-  while (thread_result_index = (int)buffer_allocation_result, (ulong long)(long long)thread_result_index < (ulong long)*(uint *)(in_RCX + 0xb5b)) {
-    ppppsystem_initialization_result3 = in_RCX[(buffer_allocation_result >> 10) + 0xb5c] +
-                 (ulong long)(uint)(thread_result_index + (int)(buffer_allocation_result >> 10) * -SYSTEM_CONFIG_BUFFER_SIZE_ZERO) * 0x18;
+  while (thread_result_index = (int)system_buffer_allocation_result, (ulong long)(long long)thread_result_index < (ulong long)*(uint *)(in_RCX + 0xb5b)) {
+    ppppsystem_initialization_result3 = in_RCX[(system_buffer_allocation_result >> 10) + 0xb5c] +
+                 (ulong long)(uint)(thread_result_index + (int)(system_buffer_allocation_result >> 10) * -SYSTEM_CONFIG_BUFFER_SIZE_ZERO) * 0x18;
     system_resource_001(*ppppsystem_initialization_result3);
     system_execute_function(*ppppsystem_initialization_result3,ppppsystem_initialization_result3[1],ppppsystem_initialization_result3 + 2,0,ppppsystem_initialization_result3 + 10);
-    buffer_allocation_result = (ulong long)(thread_result_index + 1);
+    system_buffer_allocation_result = (ulong long)(thread_result_index + 1);
   }
-  buffer_allocation_result = (ulong long)*(uint *)(in_RCX + 0xb5b);
+  system_buffer_allocation_result = (ulong long)*(uint *)(in_RCX + 0xb5b);
   LOCK();
   *(unsigned int *)(in_RCX + 0xb5b) = 0;
-  buffer_allocation_result = system_global_data_pointer;
+  system_buffer_allocation_result = system_global_data_pointer;
   UNLOCK();
   if (ppplStack_b8 != (long long ***)0x0) {
     ppplong_stack_variable = (long long ***)&ppplStack_b0;
     ppplStack_b0 = ppplStack_b8;
     (*(code *)(*ppplStack_b8)[5])(ppplStack_b8);
-    system_event_handler_016(buffer_allocation_result,&ppplStack_b0,0);
-    buffer_allocation_result = (*(code *)(*ppplStack_b8)[7])(ppplStack_b8);
+    system_event_handler_016(system_buffer_allocation_result,&ppplStack_b0,0);
+    system_buffer_allocation_result = (*(code *)(*ppplStack_b8)[7])(ppplStack_b8);
   }
-  return buffer_allocation_result;
+  return system_buffer_allocation_result;
 }
 unsigned long long *
 system_processor_006(unsigned long long *handle,long long thread_operation_flags,unsigned long long mutex_attr,unsigned long long mutex_type)
@@ -4022,7 +4022,7 @@ system_processor_006(unsigned long long *handle,long long thread_operation_flags
   int thread_result_index;
   unsigned long long *pthread_operation_flags;
   unsigned int *input_string_pointer;
-  unsigned int buffer_allocation_result;
+  unsigned int system_buffer_allocation_result;
   *handle = &g_threadString4;
   handle[1] = 0;
   *(unsigned int *)(handle + 2) = 0;
@@ -4035,12 +4035,12 @@ system_processor_006(unsigned long long *handle,long long thread_operation_flags
   *pthread_operation_flags = 0x6a624f656e656353;
   *(unsigned short *)(pthread_operation_flags + 1) = 0x2f;
   *(unsigned int *)(handle + 2) = 9;
-  buffer_allocation_result = 1;
+  system_buffer_allocation_result = 1;
   thread_result_index = *(int *)(handle + 2);
   if (0 < *(int *)(thread_operation_flags + STRING_BUFFER_SIZE)) {
     system_thread_manager_001(handle,thread_result_index + *(int *)(thread_operation_flags + STRING_BUFFER_SIZE));
     memcpy((ulong long)*(uint *)(handle + 2) + handle[1],*(unsigned long long *)(thread_operation_flags + 8),
-           (long long)(*(int *)(thread_operation_flags + STRING_BUFFER_SIZE) + 1),mutex_type,buffer_allocation_result);
+           (long long)(*(int *)(thread_operation_flags + STRING_BUFFER_SIZE) + 1),mutex_type,system_buffer_allocation_result);
   }
   system_thread_manager_001(handle,thread_result_index + 6);
   input_string_pointer = (unsigned int *)((ulong long)*(uint *)(handle + 2) + handle[1]);
@@ -4173,19 +4173,19 @@ label_:
               if (thread_stack_pointer != (unsigned char *)0x0) {
                 *thread_stack_pointer = 0;
               }
-              buffer_allocation_result = *(uint *)(pppppthread_operation_flags + 1);
-              thread_operation_flags = (ulong long)buffer_allocation_result;
+              system_buffer_allocation_result = *(uint *)(pppppthread_operation_flags + 1);
+              thread_operation_flags = (ulong long)system_buffer_allocation_result;
               if (*pppppthread_operation_flags != (unsigned long long ****)0x0) {
                 system_thread_manager_001(&thread_stack_pointer,thread_operation_flags);
               }
-              if (buffer_allocation_result != 0) {
+              if (system_buffer_allocation_result != 0) {
                 memcpy(thread_stack_pointer,*pppppthread_operation_flags,thread_operation_flags);
               }
               if (thread_stack_pointer != (unsigned char *)0x0) {
                 thread_stack_pointer[thread_operation_flags] = 0;
               }
               stack_size_limit._4_4_ = *(uint *)((long long)pppppthread_operation_flags + 0x14);
-              stack_size_limit = buffer_allocation_result;
+              stack_size_limit = system_buffer_allocation_result;
               system_thread_manager_001(&thread_stack_pointer,0x12);
               input_string_pointer = (unsigned int *)(thread_stack_pointer + stack_size_limit);
               *input_string_pointer = 0x6563732f;
@@ -4373,9 +4373,9 @@ label_:
   multi_level_stack_pointer_178 = (unsigned long long *******)0x0;
   stack_size_limit = stack_size_limit & 0xffffffffffffff00;
   stack_size_limit = 0;
-  buffer_allocation_result = system_execute_function(system_global_data_pointer,0x150,8,3);
+  system_buffer_allocation_result = system_execute_function(system_global_data_pointer,0x150,8,3);
   multi_level_stack_x_18 = (unsigned long long *******)&pppppuStack_d0;
-  buffer_allocation_result = system_thread_manager_003(&pppppuStack_d0,mutex_type);
+  system_buffer_allocation_result = system_thread_manager_003(&pppppuStack_d0,mutex_type);
   multi_level_stack_long_variable = (long long *******)&ppppppplStack_108;
   stack_size_limit = 0;
   stack_size_limit = 0;
@@ -4404,7 +4404,7 @@ label_:
     stack_size_limit = stack_size_limit;
   }
   ppppppuVar12 = (unsigned long long ******)
-                 system_processor_010(buffer_allocation_result,&ppppppplStack_108,buffer_allocation_result,pppppppuStackX_10,mutex_attr);
+                 system_processor_010(system_buffer_allocation_result,&ppppppplStack_108,system_buffer_allocation_result,pppppppuStackX_10,mutex_attr);
   if (ppppppuVar12 != (unsigned long long ******)0x0) {
     multi_level_stack_x_18 = (unsigned long long *******)ppppppuVar12;
     (*(code *)(*ppppppuVar12)[5])(ppppppuVar12);
@@ -4414,13 +4414,13 @@ label_:
   if (multi_level_stack_x_18 != (unsigned long long *******)0x0) {
     (*(code *)(*multi_level_stack_x_18)[7])();
   }
-  buffer_allocation_result = system_global_data_pointer;
+  system_buffer_allocation_result = system_global_data_pointer;
   pppppppuStackX_10 = &multi_level_stack_x_18;
   multi_level_stack_x_18 = *(unsigned long long ********)(system_initialization_result9 + SYSTEM_CONFIG_BUFFER_SIZE);
   if (multi_level_stack_x_18 != (unsigned long long *******)0x0) {
     (*(code *)(*multi_level_stack_x_18)[5])();
   }
-  system_event_handler_013(buffer_allocation_result,&multi_level_stack_x_18);
+  system_event_handler_013(system_buffer_allocation_result,&multi_level_stack_x_18);
   multi_level_pointer_array_6 = multi_level_stack_pointer_128;
   multi_level_pointer_array_9 = multi_level_stack_pointer_178;
   multi_level_stack_x_18 = multi_level_stack_pointer_128;
@@ -4456,29 +4456,29 @@ label_:
            (plVar7 = (long long *)(ulong long)*(uint *)(string_length_counter + 0xd8), *(uint *)(string_length_counter + 0xd8) == 0))
         {
           LOCK();
-          buffer_allocation_result = *(uint *)(string_length_counter + 0xd8);
-          if (buffer_allocation_result == 0) {
+          system_buffer_allocation_result = *(uint *)(string_length_counter + 0xd8);
+          if (system_buffer_allocation_result == 0) {
             *(uint *)(string_length_counter + 0xd8) = UINT32_MAX;
           }
           else {
-            plVar7 = (long long *)(ulong long)buffer_allocation_result;
+            plVar7 = (long long *)(ulong long)system_buffer_allocation_result;
           }
           UNLOCK();
-          if (buffer_allocation_result == 0) {
+          if (system_buffer_allocation_result == 0) {
             *(unsigned char *)(string_length_counter + 0xdc) = 0;
             system_hardware_001(string_length_counter + 0xe8);
-            buffer_allocation_result = *(unsigned long long *)(string_length_counter + 0x88);
+            system_buffer_allocation_result = *(unsigned long long *)(string_length_counter + 0x88);
             thread_result_index = *(int *)(string_length_counter + 0x80);
             *(unsigned long long *)(string_length_counter + 0x88) = 0;
             *(unsigned int *)(string_length_counter + 0x80) = 0;
             *(unsigned int *)(string_length_counter + 0xe0) = 0;
             *(unsigned int *)(string_length_counter + 0xd8) = 0;
-            system_hardware_002(buffer_allocation_result);
+            system_hardware_002(system_buffer_allocation_result);
             LOCK();
-            buffer_allocation_result = system_global_data_pointer - thread_result_index;
+            system_buffer_allocation_result = system_global_data_pointer - thread_result_index;
             plVar7 = (long long *)(ulong long)system_global_data_pointer;
             UNLOCK();
-            system_global_data_pointer = buffer_allocation_result;
+            system_global_data_pointer = system_buffer_allocation_result;
             if (0 < thread_result_index) {
               plVar9 = (long long *)(ulong long)(uint)((int)plVar9 + thread_result_index);
               plVar7 = system_global_data_pointer + (long long)thread_result_index * 2 + 2;
@@ -4498,11 +4498,11 @@ label_:
       return plVar7;
     }
     thread_operation_flags = *(unsigned int *)(system_initialization_result0 + 0x84);
-    buffer_allocation_result = *(unsigned int *)(system_initialization_result0 + 0x80);
+    system_buffer_allocation_result = *(unsigned int *)(system_initialization_result0 + 0x80);
     if (plVar7 < system_global_data_pointer) {
       system_global_data_pointer = plVar7 + 2;
       *plVar7 = system_initialization_result0;
-      plVar7[1] = merge_32bit_values(buffer_allocation_result,thread_operation_flags);
+      plVar7[1] = merge_32bit_values(system_buffer_allocation_result,thread_operation_flags);
     }
     else {
       string_length_counter = (long long)plVar7 - (long long)system_global_data_pointer >> 4;
@@ -4520,7 +4520,7 @@ label_:
         memmove(plVar7,system_global_data_pointer,(long long)system_global_data_pointer - (long long)system_global_data_pointer);
       }
       *plVar7 = system_initialization_result0;
-      plVar7[1] = merge_32bit_values(buffer_allocation_result,thread_operation_flags);
+      plVar7[1] = merge_32bit_values(system_buffer_allocation_result,thread_operation_flags);
       if (system_global_data_pointer != (long long *)0x0) {
         handle_system_error();
       }
@@ -4533,7 +4533,7 @@ label_:
     system_initialization_result0 = long_stack_variable;
   } while( true );
 }
-      data_180c91d14 = buffer_allocation_result;
+      data_180c91d14 = system_buffer_allocation_result;
       return;
     }
     string_length_counter = *(long long *)(string_length_counter + system_global_data_pointer);
@@ -4545,25 +4545,25 @@ label_:
       }
       UNLOCK();
       if (byte_validation_flag) {
-        *(unsigned char *)(string_length_counter + 0xdc) = buffer_allocation_result;
+        *(unsigned char *)(string_length_counter + 0xdc) = system_buffer_allocation_result;
         system_hardware_001(string_length_counter + 0xe8);
-        buffer_allocation_result = *(unsigned long long *)(string_length_counter + 0x88);
+        system_buffer_allocation_result = *(unsigned long long *)(string_length_counter + 0x88);
         thread_result_index = *(int *)(string_length_counter + 0x80);
         *(unsigned long long *)(string_length_counter + 0x88) = unaffected_register;
-        buffer_allocation_result = (unsigned int)unaffected_register;
-        *(unsigned int *)(string_length_counter + 0x80) = buffer_allocation_result;
-        *(unsigned int *)(string_length_counter + 0xe0) = buffer_allocation_result;
-        *(unsigned int *)(string_length_counter + 0xd8) = buffer_allocation_result;
-        system_hardware_002(buffer_allocation_result);
+        system_buffer_allocation_result = (unsigned int)unaffected_register;
+        *(unsigned int *)(string_length_counter + 0x80) = system_buffer_allocation_result;
+        *(unsigned int *)(string_length_counter + 0xe0) = system_buffer_allocation_result;
+        *(unsigned int *)(string_length_counter + 0xd8) = system_buffer_allocation_result;
+        system_hardware_002(system_buffer_allocation_result);
         LOCK();
         system_global_data_pointer = system_global_data_pointer - thread_result_index;
         UNLOCK();
         if (0 < thread_result_index) {
           unaff_EBP = unaff_EBP + thread_result_index;
           string_length_counter = (long long)unaff_EDI * STRING_BUFFER_SIZE + system_global_data_pointer;
-          buffer_allocation_result = string_length_counter + STRING_BUFFER_SIZE;
-          if (buffer_allocation_result < system_global_data_pointer) {
-            memmove(string_length_counter,buffer_allocation_result,system_global_data_pointer - buffer_allocation_result);
+          system_buffer_allocation_result = string_length_counter + STRING_BUFFER_SIZE;
+          if (system_buffer_allocation_result < system_global_data_pointer) {
+            memmove(string_length_counter,system_buffer_allocation_result,system_global_data_pointer - system_buffer_allocation_result);
           }
           system_global_data_pointer = system_global_data_pointer - STRING_BUFFER_SIZE;
         }
@@ -4572,7 +4572,7 @@ label_:
     string_length_counter = string_length_counter + -STRING_BUFFER_SIZE;
     unaff_EDI = unaff_EDI + -1;
   } while (-1 < unaff_EDI);
-  data_180c91d14 = buffer_allocation_result;
+  data_180c91d14 = system_buffer_allocation_result;
   return;
 }
   data_180c91d14 = unaff_BPL;
@@ -4614,13 +4614,13 @@ code_r0x0001802a14f5:
     byte_check_result = (byte)stack_size_limit;
 code_r0x0001802a151f:
     float_variable = 0.003921569;
-    buffer_allocation_result = (ushort)stack_size_limit._1_1_;
-    buffer_allocation_result = (ushort)byte_check_result;
-    buffer_allocation_result = (ushort)stack_size_limit._3_1_;
+    system_buffer_allocation_result = (ushort)stack_size_limit._1_1_;
+    system_buffer_allocation_result = (ushort)byte_check_result;
+    system_buffer_allocation_result = (ushort)stack_size_limit._3_1_;
 code_r0x0001802a1528:
-    thread_operation_flags[1] = (float)buffer_allocation_result * float_variable;
-    thread_operation_flags[2] = (float)buffer_allocation_result * float_variable;
-    thread_operation_flags[3] = (float)buffer_allocation_result * float_variable;
+    thread_operation_flags[1] = (float)system_buffer_allocation_result * float_variable;
+    thread_operation_flags[2] = (float)system_buffer_allocation_result * float_variable;
+    thread_operation_flags[3] = (float)system_buffer_allocation_result * float_variable;
     break;
   case 0x1e:
     thread_priority_level = mutex_type;
@@ -4702,16 +4702,16 @@ code_r0x0001802a1ade:
     system_handler_005(system_initialization_result0,&stack_size_limit,handle,&uStackX_18);
     float_variable = 1.5259022e-05;
     *thread_operation_flags = (float)(ushort)stack_size_limit * 1.5259022e-05;
-    buffer_allocation_result = (uint)stack_size_limit._2_2_;
-    buffer_allocation_result = stack_size_limit._4_2_;
+    system_buffer_allocation_result = (uint)stack_size_limit._2_2_;
+    system_buffer_allocation_result = stack_size_limit._4_2_;
     goto code_r0x0001802a16a1;
   case 0x28:
     thread_priority_level = mutex_type;
     system_handler_006(system_initialization_result0,&stack_size_limit,handle,&uStackX_18);
     float_variable = 0.003921569;
     *thread_operation_flags = (float)(byte)stack_size_limit * 0.003921569;
-    buffer_allocation_result = (uint)stack_size_limit._1_1_;
-    buffer_allocation_result = (ushort)stack_size_limit._2_1_;
+    system_buffer_allocation_result = (uint)stack_size_limit._1_1_;
+    system_buffer_allocation_result = (ushort)stack_size_limit._2_1_;
     goto code_r0x0001802a16a1;
   case 0x29:
     thread_priority_level = mutex_type;
@@ -4719,12 +4719,12 @@ code_r0x0001802a1ade:
 code_r0x0001802a1677:
     float_variable = 0.003921569;
     *thread_operation_flags = (float)stack_size_limit._2_1_ * 0.003921569;
-    buffer_allocation_result = (uint)((ulong long)stack_size_limit >> 8) & 0xff;
-    buffer_allocation_result = (ushort)(byte)stack_size_limit;
+    system_buffer_allocation_result = (uint)((ulong long)stack_size_limit >> 8) & 0xff;
+    system_buffer_allocation_result = (ushort)(byte)stack_size_limit;
 code_r0x0001802a16a1:
     thread_operation_flags[3] = 1.0;
-    thread_operation_flags[2] = (float)buffer_allocation_result * float_variable;
-    thread_operation_flags[1] = (float)buffer_allocation_result * float_variable;
+    thread_operation_flags[2] = (float)system_buffer_allocation_result * float_variable;
+    thread_operation_flags[1] = (float)system_buffer_allocation_result * float_variable;
     break;
   case 0x2b:
     thread_priority_level = mutex_type;
@@ -4735,8 +4735,8 @@ code_r0x0001802a16a1:
     *thread_operation_flags = (float)abStack_2b8[0];
     break;
   case 0x2c:
-    buffer_allocation_result = system_handler_003(system_initialization_result0,handle,&uStackX_18);
-    float_variable = (float)buffer_allocation_result;
+    system_buffer_allocation_result = system_handler_003(system_initialization_result0,handle,&uStackX_18);
+    float_variable = (float)system_buffer_allocation_result;
 code_r0x0001802a1829:
     *thread_operation_flags = float_variable;
     thread_operation_flags[1] = 1.0;
@@ -4744,17 +4744,17 @@ code_r0x0001802a1829:
     thread_operation_flags[3] = 1.0;
   }
 system_handler_001:
-  system_crypto_001(stack_size_limit ^ (ulong long)auStack_2e8);
+  system_execute_crypto_operation(stack_size_limit ^ (ulong long)auStack_2e8);
 }
     data_180d48da8 = '\x01';
     system_execute_function(unaffected_registerBP + -0x70,&systemFunctionData1,&systemFunctionData2,&systemFunctionData3,0x786);
     OutputDebugStringA(unaffected_registerBP + -0x70);
   }
-  buffer_allocation_result = *(ushort *)(unaffected_registerDI + 0x5c);
+  system_buffer_allocation_result = *(ushort *)(unaffected_registerDI + 0x5c);
   float_variable = *(float *)(unaffected_registerBP + config_path_buffer_size0);
   float_variable = (float)modff((float)(int)(*(ushort *)(unaffected_registerDI + 0x5e) - 1) *
                        *(float *)(unaffected_registerBP + config_path_buffer_size4),&stack0x00000038);
-  float_variable = (float)modff((float)(int)(buffer_allocation_result - 1) * float_variable,&stack0x00000038);
+  float_variable = (float)modff((float)(int)(system_buffer_allocation_result - 1) * float_variable,&stack0x00000038);
   float_variable = (fStack000000000000005c - fStack0000000000000050) * float_variable + fStack0000000000000050;
   fStack0000000000000054 =
        (fStack0000000000000060 - fStack0000000000000054) * float_variable + fStack0000000000000054;
@@ -4767,16 +4767,16 @@ system_handler_001:
   unaffected_registerBX[2] = (((fStack0000000000000074 - fStack0000000000000068) * float_variable +
                   fStack0000000000000068) - float_variable) * float_variable + float_variable;
   unaffected_registerBX[3] = 1.0;
-  system_crypto_001(*(ulong long *)(unaffected_registerBP + 400) ^ (ulong long)&stack0x00000000);
+  system_execute_crypto_operation(*(ulong long *)(unaffected_registerBP + 400) ^ (ulong long)&system_stack_zero);
 }
   data_180d48da8 = 1;
   system_execute_function(unaffected_registerBP + -0x70,&systemFunctionData1,&systemFunctionData2,&systemFunctionData3,0x786);
   OutputDebugStringA(unaffected_registerBP + -0x70);
-  buffer_allocation_result = *(ushort *)(unaffected_registerDI + 0x5c);
+  system_buffer_allocation_result = *(ushort *)(unaffected_registerDI + 0x5c);
   float_variable = *(float *)(unaffected_registerBP + config_path_buffer_size0);
   float_variable = (float)modff((float)(int)(*(ushort *)(unaffected_registerDI + 0x5e) - 1) *
                        *(float *)(unaffected_registerBP + config_path_buffer_size4),&stack0x00000038);
-  float_variable = (float)modff((float)(int)(buffer_allocation_result - 1) * float_variable,&stack0x00000038);
+  float_variable = (float)modff((float)(int)(system_buffer_allocation_result - 1) * float_variable,&stack0x00000038);
   float_variable = (fStack000000000000005c - fStack0000000000000050) * float_variable + fStack0000000000000050;
   fStack0000000000000054 =
        (fStack0000000000000060 - fStack0000000000000054) * float_variable + fStack0000000000000054;
@@ -4789,7 +4789,7 @@ system_handler_001:
   unaffected_registerBX[2] = (((fStack0000000000000074 - fStack0000000000000068) * float_variable +
                   fStack0000000000000068) - float_variable) * float_variable + float_variable;
   unaffected_registerBX[3] = 1.0;
-  system_crypto_001(*(ulong long *)(unaffected_registerBP + 400) ^ (ulong long)&stack0x00000000);
+  system_execute_crypto_operation(*(ulong long *)(unaffected_registerBP + 400) ^ (ulong long)&system_stack_zero);
 }
         data_180d48dac = '\x01';
         thread_stack_base_address = merge_32bit_values(thread_stack_base_address._4_4_,0x4ea);
@@ -4798,8 +4798,8 @@ system_handler_001:
       }
       goto label_;
     }
-    buffer_allocation_result = system_execute_function(&thread_stack_pointer,handle);
-    system_thread_manager_012(buffer_allocation_result,1);
+    system_buffer_allocation_result = system_execute_function(&thread_stack_pointer,handle);
+    system_thread_manager_012(system_buffer_allocation_result,1);
     thread_stack_pointer = &g_threadString2;
     if (thread_stack_pointer != (void *)0x0) {
       handle_system_error();
@@ -4808,7 +4808,7 @@ system_handler_001:
     stack_size_limit = 0;
     thread_stack_pointer = &g_threadString4;
     string_length_counter = *thread_operation_flags;
-    buffer_allocation_result = *(unsigned short *)((long long)thread_operation_flags + 0x5e);
+    system_buffer_allocation_result = *(unsigned short *)((long long)thread_operation_flags + 0x5e);
     thread_operation_flags = *(unsigned short *)((long long)thread_operation_flags + 0x5c);
     input_string_pointer = &default_resource_string;
     if (*(void **)(handle + 8) != (void *)0x0) {
@@ -4824,13 +4824,13 @@ system_handler_001:
     input_string_pointer = thread_stack_pointer;
     if (string_length_counter != 0) {
       thread_stack_base_address = string_length_counter;
-      system_hardware_003(&thread_stack_pointer,thread_operation_flags,buffer_allocation_result,thread_result_index);
+      system_hardware_003(&thread_stack_pointer,thread_operation_flags,system_buffer_allocation_result,thread_result_index);
       input_string_pointer = thread_stack_pointer;
     }
   }
   fclose(input_string_pointer);
 label_:
-  system_crypto_001(stack_size_limit ^ (ulong long)auStack_298);
+  system_execute_crypto_operation(stack_size_limit ^ (ulong long)auStack_298);
 }
         data_180d48daa = '\x01';
         thread_stack_pointer = (void *)merge_32bit_values(thread_stack_pointer._4_4_,0xc88);
@@ -4861,12 +4861,12 @@ label_:
     *(unsigned long long *)(mutex_attr + 0x3c) = 0;
     *(unsigned long long *)(mutex_attr + 0x44) = 0;
     *(unsigned long long *)(mutex_attr + 0x4c) = 0;
-    buffer_allocation_result = func_0x000180220c90(*(unsigned int *)(mutex_attr + 0x54));
-    strcpy_s(mutex_attr + 0x14, SYSTEM_CONFIG_BUFFER_SIZE, buffer_allocation_result);
+    system_buffer_allocation_result = func_0x000180220c90(*(unsigned int *)(mutex_attr + 0x54));
+    strcpy_s(mutex_attr + 0x14, SYSTEM_CONFIG_BUFFER_SIZE, system_buffer_allocation_result);
   }
 label_:
   system_processor_012(auStack_260);
-  system_crypto_001(stack_size_limit ^ (ulong long)auStack_2f8);
+  system_execute_crypto_operation(stack_size_limit ^ (ulong long)auStack_2f8);
 }
       data_180d48dab = '\x01';
       stack_size_limit = 0xac7;
@@ -4877,60 +4877,60 @@ label_:
   else {
     system_thread_003(&system_180a17a38);
   }
-  system_crypto_001(stack_size_limit ^ (ulong long)auStack_248);
+  system_execute_crypto_operation(stack_size_limit ^ (ulong long)auStack_248);
 }
 bool handle_system_event(unsigned long long *handle)
 {
   int thread_result_index;
   unsigned long long thread_operation_flags;
-  unsigned long long buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
   thread_result_index = *(int *)((long long)handle + 0x54);
   if (thread_result_index == 0x27) {
     if (handle[1] == 0) {
       thread_operation_flags = 0;
-      buffer_allocation_result = 0;
+      system_buffer_allocation_result = 0;
     }
     else {
       thread_operation_flags = system_execute_function(system_global_data_pointer,handle[1],3);
-      buffer_allocation_result = handle[1];
+      system_buffer_allocation_result = handle[1];
     }
-    memcpy(thread_operation_flags,*handle,buffer_allocation_result);
+    memcpy(thread_operation_flags,*handle,system_buffer_allocation_result);
   }
   if (thread_result_index != 0x28) {
     if (thread_result_index == 0x29) {
       if (handle[1] == 0) {
         thread_operation_flags = 0;
-        buffer_allocation_result = 0;
+        system_buffer_allocation_result = 0;
       }
       else {
         thread_operation_flags = system_execute_function(system_global_data_pointer,handle[1],3);
-        buffer_allocation_result = handle[1];
+        system_buffer_allocation_result = handle[1];
       }
-      memcpy(thread_operation_flags,*handle,buffer_allocation_result);
+      memcpy(thread_operation_flags,*handle,system_buffer_allocation_result);
     }
     thread_result_index = func_0x0001800ab000(*(unsigned int *)((long long)handle + 0x54));
     return thread_result_index != 0;
   }
   if (handle[1] == 0) {
     thread_operation_flags = 0;
-    buffer_allocation_result = 0;
+    system_buffer_allocation_result = 0;
   }
   else {
     thread_operation_flags = system_execute_function(system_global_data_pointer,handle[1],3);
-    buffer_allocation_result = handle[1];
+    system_buffer_allocation_result = handle[1];
   }
-  memcpy(thread_operation_flags,*handle,buffer_allocation_result);
+  memcpy(thread_operation_flags,*handle,system_buffer_allocation_result);
 }
 unsigned long long process_system_request(unsigned long long *handle)
 {
   unsigned char temp_buffer_array [16];
   int thread_result_index;
-  uint buffer_allocation_result;
+  uint system_buffer_allocation_result;
   float *pfloat_variable;
-  ulong long buffer_allocation_result;
+  ulong long system_buffer_allocation_result;
   ushort *input_string_pointer;
   float *pfloat_variable;
-  ulong long buffer_allocation_result;
+  ulong long system_buffer_allocation_result;
   byte *byte_input_string_pointer;
   float float_variable;
   float float_variable;
@@ -4944,7 +4944,7 @@ unsigned long long process_system_request(unsigned long long *handle)
     byte_input_string_pointer = (byte *)*handle;
     pfloat_variable = (float *)((ulong long)handle[1] >> 2);
     if (0 < (int)pfloat_variable) {
-      buffer_allocation_result = (ulong long)pfloat_variable & UINT32_MAX;
+      system_buffer_allocation_result = (ulong long)pfloat_variable & UINT32_MAX;
       do {
         float_variable = (float)byte_input_string_pointer[1] * 0.007843138 - 1.0;
         float_variable = (float)*byte_input_string_pointer * 0.007843138 - 1.0;
@@ -4958,8 +4958,8 @@ unsigned long long process_system_request(unsigned long long *handle)
         thread_result_index = (int)((float_variable * float_variable + 1.0) * 127.5);
         byte_input_string_pointer[2] = (byte)thread_result_index;
         byte_input_string_pointer = byte_input_string_pointer + 4;
-        buffer_allocation_result = buffer_allocation_result - 1;
-      } while (buffer_allocation_result != 0);
+        system_buffer_allocation_result = system_buffer_allocation_result - 1;
+      } while (system_buffer_allocation_result != 0);
       return CONCAT71((uint7)(uint3)((uint)thread_result_index >> 8),1);
     }
     break;
@@ -4969,7 +4969,7 @@ unsigned long long process_system_request(unsigned long long *handle)
     input_string_pointer = (ushort *)*handle;
     pfloat_variable = (float *)((ulong long)handle[1] >> 3);
     if (0 < (int)pfloat_variable) {
-      buffer_allocation_result = (ulong long)pfloat_variable & UINT32_MAX;
+      system_buffer_allocation_result = (ulong long)pfloat_variable & UINT32_MAX;
       do {
         float_variable = (float)input_string_pointer[1] * 3.0518044e-05 - 1.0;
         float_variable = (float)*input_string_pointer * 3.0518044e-05 - 1.0;
@@ -4983,15 +4983,15 @@ unsigned long long process_system_request(unsigned long long *handle)
         thread_result_index = (int)((float_variable * float_variable + 1.0) * 32767.5);
         input_string_pointer[2] = (ushort)thread_result_index;
         input_string_pointer = input_string_pointer + 4;
-        buffer_allocation_result = buffer_allocation_result - 1;
-      } while (buffer_allocation_result != 0);
+        system_buffer_allocation_result = system_buffer_allocation_result - 1;
+      } while (system_buffer_allocation_result != 0);
       return CONCAT71((uint7)(uint3)((uint)thread_result_index >> 8),1);
     }
     break;
   case 0x1f:
     pfloat_variable = (float *)*handle;
     if (0 < (int)((ulong long)handle[1] / 0xc)) {
-      buffer_allocation_result = (ulong long)handle[1] / 0xc & UINT32_MAX;
+      system_buffer_allocation_result = (ulong long)handle[1] / 0xc & UINT32_MAX;
       do {
         float_variable = (*pfloat_variable + *pfloat_variable) - 1.0;
         float_variable = (pfloat_variable[1] + pfloat_variable[1]) - 1.0;
@@ -5004,17 +5004,17 @@ unsigned long long process_system_request(unsigned long long *handle)
         pfloat_variable[1] = (float_variable * float_variable + 1.0) * 0.5;
         pfloat_variable[2] = (float_variable * float_variable + 1.0) * 0.5;
         pfloat_variable = pfloat_variable + 3;
-        buffer_allocation_result = buffer_allocation_result - 1;
-      } while (buffer_allocation_result != 0);
+        system_buffer_allocation_result = system_buffer_allocation_result - 1;
+      } while (system_buffer_allocation_result != 0);
       return CONCAT71((int7)((ulong long)pfloat_variable >> 8),1);
     }
     break;
   case config_path_buffer_size:
-    buffer_allocation_result = handle[1];
+    system_buffer_allocation_result = handle[1];
     pfloat_variable = (float *)*handle;
-    pfloat_variable = (float *)(buffer_allocation_result >> 4);
+    pfloat_variable = (float *)(system_buffer_allocation_result >> 4);
     if (0 < (int)pfloat_variable) {
-      buffer_allocation_result = (ulong long)pfloat_variable & UINT32_MAX;
+      system_buffer_allocation_result = (ulong long)pfloat_variable & UINT32_MAX;
       do {
         float_variable = (*pfloat_variable + *pfloat_variable) - 1.0;
         float_variable = (pfloat_variable[1] + pfloat_variable[1]) - 1.0;
@@ -5027,9 +5027,9 @@ unsigned long long process_system_request(unsigned long long *handle)
         pfloat_variable[2] = (float_variable * float_variable + 1.0) * 0.5;
         pfloat_variable[1] = (float_variable * float_variable + 1.0) * 0.5;
         pfloat_variable = pfloat_variable + 4;
-        buffer_allocation_result = buffer_allocation_result - 1;
-      } while (buffer_allocation_result != 0);
-      return CONCAT71((uint7)(buffer_allocation_result >> 0xc),1);
+        system_buffer_allocation_result = system_buffer_allocation_result - 1;
+      } while (system_buffer_allocation_result != 0);
+      return CONCAT71((uint7)(system_buffer_allocation_result >> 0xc),1);
     }
     break;
   case 0x26:
@@ -5037,9 +5037,9 @@ unsigned long long process_system_request(unsigned long long *handle)
     temp_buffer_array._8_8_ = 0;
     temp_buffer_array._0_8_ = handle[1];
     pfloat_variable = subtraction_long_long(zero_extension_long_long(0xaaaaaaaaaaaaaaab) * temp_buffer_array,0);
-    buffer_allocation_result = (ulong long)handle[1] / 6;
-    if (0 < (int)buffer_allocation_result) {
-      buffer_allocation_result = buffer_allocation_result & UINT32_MAX;
+    system_buffer_allocation_result = (ulong long)handle[1] / 6;
+    if (0 < (int)system_buffer_allocation_result) {
+      system_buffer_allocation_result = system_buffer_allocation_result & UINT32_MAX;
       do {
         float_variable = (float)input_string_pointer[1] * 0.007843138 - 1.0;
         float_variable = (float)*input_string_pointer * 0.007843138 - 1.0;
@@ -5053,8 +5053,8 @@ unsigned long long process_system_request(unsigned long long *handle)
         thread_result_index = (int)((float_variable * float_variable + 1.0) * 127.5);
         input_string_pointer[2] = (ushort)thread_result_index;
         input_string_pointer = input_string_pointer + 3;
-        buffer_allocation_result = buffer_allocation_result - 1;
-      } while (buffer_allocation_result != 0);
+        system_buffer_allocation_result = system_buffer_allocation_result - 1;
+      } while (system_buffer_allocation_result != 0);
       return CONCAT71((uint7)(uint3)((uint)thread_result_index >> 8),1);
     }
     break;
@@ -5064,9 +5064,9 @@ unsigned long long process_system_request(unsigned long long *handle)
     temp_buffer_array2._8_8_ = 0;
     temp_buffer_array2._0_8_ = handle[1];
     pfloat_variable = subtraction_long_long(zero_extension_long_long(0xaaaaaaaaaaaaaaab) * temp_buffer_array2,0);
-    buffer_allocation_result = (ulong long)handle[1] / 3;
-    if (0 < (int)buffer_allocation_result) {
-      buffer_allocation_result = buffer_allocation_result & UINT32_MAX;
+    system_buffer_allocation_result = (ulong long)handle[1] / 3;
+    if (0 < (int)system_buffer_allocation_result) {
+      system_buffer_allocation_result = system_buffer_allocation_result & UINT32_MAX;
       do {
         float_variable = (float)byte_input_string_pointer[1] * 0.007843138 - 1.0;
         float_variable = (float)*byte_input_string_pointer * 0.007843138 - 1.0;
@@ -5077,12 +5077,12 @@ unsigned long long process_system_request(unsigned long long *handle)
         float_variable = float_variable * 0.5 * (3.0 - float_variable * float_variable * float_variable);
         *byte_input_string_pointer = (byte)(int)((float_variable * float_variable + 1.0) * 127.5);
         byte_input_string_pointer[1] = (byte)(int)((float_variable * float_variable + 1.0) * 127.5);
-        buffer_allocation_result = (uint)((float_variable * float_variable + 1.0) * 127.5);
-        pfloat_variable = (float *)(ulong long)buffer_allocation_result;
-        byte_input_string_pointer[2] = (byte)buffer_allocation_result;
+        system_buffer_allocation_result = (uint)((float_variable * float_variable + 1.0) * 127.5);
+        pfloat_variable = (float *)(ulong long)system_buffer_allocation_result;
+        byte_input_string_pointer[2] = (byte)system_buffer_allocation_result;
         byte_input_string_pointer = byte_input_string_pointer + 3;
-        buffer_allocation_result = buffer_allocation_result - 1;
-      } while (buffer_allocation_result != 0);
+        system_buffer_allocation_result = system_buffer_allocation_result - 1;
+      } while (system_buffer_allocation_result != 0);
     }
   }
   return CONCAT71((int7)((ulong long)pfloat_variable >> 8),1);
@@ -5101,13 +5101,13 @@ unsigned long long handle_system_callback(unsigned long long *handle)
   float *pfloat_variable;
   float *pfloat_variable;
   float float_variable;
-  uint buffer_allocation_result;
+  uint system_buffer_allocation_result;
   float *pfloat_variable;
   float *pfloat_variable;
   int thread_result_index;
   int thread_result_index;
   int thread_result_index;
-  ulong long buffer_allocation_result;
+  ulong long system_buffer_allocation_result;
   long long string_length_counter;
   double dVar21;
   if (*(int *)((long long)handle + 0x54) == config_path_buffer_size) {
@@ -5119,10 +5119,10 @@ unsigned long long handle_system_callback(unsigned long long *handle)
     thread_result_index = (int)((ulong long)handle[1] / 0xc);
     pfloat_variable = pfloat_variable;
     if (3 < thread_result_index) {
-      buffer_allocation_result = (thread_result_index - 4U >> 2) + 1;
-      buffer_allocation_result = (ulong long)buffer_allocation_result;
-      string_length_counter = (ulong long)buffer_allocation_result * 4;
-      thread_result_index = buffer_allocation_result * 4;
+      system_buffer_allocation_result = (thread_result_index - 4U >> 2) + 1;
+      system_buffer_allocation_result = (ulong long)system_buffer_allocation_result;
+      string_length_counter = (ulong long)system_buffer_allocation_result * 4;
+      thread_result_index = system_buffer_allocation_result * 4;
       do {
         pfloat_variable = pfloat_variable + 3;
         float_variable = *pfloat_variable;
@@ -5144,13 +5144,13 @@ unsigned long long handle_system_callback(unsigned long long *handle)
                           (double)*pfloat_variable * 0.7152 +
                           (double)*pfloat_variable * 0.0722 + (double)*pfloat_variable * 0.0722 +
                           (double)*pfloat_variable * 0.0722 + (double)*pfloat_variable * 0.0722;
-        buffer_allocation_result = buffer_allocation_result - 1;
-      } while (buffer_allocation_result != 0);
+        system_buffer_allocation_result = system_buffer_allocation_result - 1;
+      } while (system_buffer_allocation_result != 0);
     }
     if (thread_result_index < thread_result_index) {
       pfloat_variable = pfloat_variable + 2;
-      buffer_allocation_result = (ulong long)(uint)(thread_result_index - thread_result_index);
-      string_length_counter = string_length_counter + buffer_allocation_result;
+      system_buffer_allocation_result = (ulong long)(uint)(thread_result_index - thread_result_index);
+      string_length_counter = string_length_counter + system_buffer_allocation_result;
       do {
         pfloat_variable = pfloat_variable + -1;
         pfloat_variable = pfloat_variable + -2;
@@ -5158,14 +5158,14 @@ unsigned long long handle_system_callback(unsigned long long *handle)
         pfloat_variable = pfloat_variable + 3;
         dVar21 = dVar21 + (double)*pfloat_variable * 0.7152 + (double)*pfloat_variable * 0.2126 +
                           (double)float_variable * 0.0722;
-        buffer_allocation_result = buffer_allocation_result - 1;
-      } while (buffer_allocation_result != 0);
+        system_buffer_allocation_result = system_buffer_allocation_result - 1;
+      } while (system_buffer_allocation_result != 0);
     }
     dVar21 = 1.0 / (dVar21 / (double)string_length_counter);
     if (3 < thread_result_index) {
-      buffer_allocation_result = (thread_result_index - 4U >> 2) + 1;
-      buffer_allocation_result = (ulong long)buffer_allocation_result;
-      thread_result_index = buffer_allocation_result * 4;
+      system_buffer_allocation_result = (thread_result_index - 4U >> 2) + 1;
+      system_buffer_allocation_result = (ulong long)system_buffer_allocation_result;
+      thread_result_index = system_buffer_allocation_result * 4;
       do {
         *pfloat_variable = (float)((double)*pfloat_variable * dVar21);
         pfloat_variable[1] = (float)((double)pfloat_variable[1] * dVar21);
@@ -5180,19 +5180,19 @@ unsigned long long handle_system_callback(unsigned long long *handle)
         pfloat_variable[10] = (float)((double)pfloat_variable[10] * dVar21);
         pfloat_variable[0xb] = (float)((double)pfloat_variable[0xb] * dVar21);
         pfloat_variable = pfloat_variable + 0xc;
-        buffer_allocation_result = buffer_allocation_result - 1;
-      } while (buffer_allocation_result != 0);
+        system_buffer_allocation_result = system_buffer_allocation_result - 1;
+      } while (system_buffer_allocation_result != 0);
     }
     if (thread_result_index < thread_result_index) {
       pfloat_variable = pfloat_variable + 2;
-      buffer_allocation_result = (ulong long)(uint)(thread_result_index - thread_result_index);
+      system_buffer_allocation_result = (ulong long)(uint)(thread_result_index - thread_result_index);
       do {
         pfloat_variable[-2] = (float)((double)pfloat_variable[-2] * dVar21);
         pfloat_variable[-1] = (float)((double)pfloat_variable[-1] * dVar21);
         *pfloat_variable = (float)((double)*pfloat_variable * dVar21);
         pfloat_variable = pfloat_variable + 3;
-        buffer_allocation_result = buffer_allocation_result - 1;
-      } while (buffer_allocation_result != 0);
+        system_buffer_allocation_result = system_buffer_allocation_result - 1;
+      } while (system_buffer_allocation_result != 0);
     }
   }
   else {
@@ -5207,10 +5207,10 @@ unsigned long long handle_system_callback(unsigned long long *handle)
     thread_result_index = (int)((ulong long)handle[1] >> 4);
     pfloat_variable = pfloat_variable;
     if (3 < thread_result_index) {
-      buffer_allocation_result = (thread_result_index - 4U >> 2) + 1;
-      buffer_allocation_result = (ulong long)buffer_allocation_result;
-      string_length_counter = (ulong long)buffer_allocation_result * 4;
-      thread_result_index = buffer_allocation_result * 4;
+      system_buffer_allocation_result = (thread_result_index - 4U >> 2) + 1;
+      system_buffer_allocation_result = (ulong long)system_buffer_allocation_result;
+      string_length_counter = (ulong long)system_buffer_allocation_result * 4;
+      thread_result_index = system_buffer_allocation_result * 4;
       do {
         pfloat_variable = pfloat_variable + 4;
         float_variable = *pfloat_variable;
@@ -5232,13 +5232,13 @@ unsigned long long handle_system_callback(unsigned long long *handle)
                           (double)*pfloat_variable * 0.7152 +
                           (double)*pfloat_variable * 0.0722 + (double)*pfloat_variable * 0.0722 +
                           (double)*pfloat_variable * 0.0722 + (double)*pfloat_variable * 0.0722;
-        buffer_allocation_result = buffer_allocation_result - 1;
-      } while (buffer_allocation_result != 0);
+        system_buffer_allocation_result = system_buffer_allocation_result - 1;
+      } while (system_buffer_allocation_result != 0);
     }
     if (thread_result_index < thread_result_index) {
       pfloat_variable = pfloat_variable + 2;
-      buffer_allocation_result = (ulong long)(uint)(thread_result_index - thread_result_index);
-      string_length_counter = string_length_counter + buffer_allocation_result;
+      system_buffer_allocation_result = (ulong long)(uint)(thread_result_index - thread_result_index);
+      string_length_counter = string_length_counter + system_buffer_allocation_result;
       do {
         pfloat_variable = pfloat_variable + -1;
         pfloat_variable = pfloat_variable + -2;
@@ -5246,14 +5246,14 @@ unsigned long long handle_system_callback(unsigned long long *handle)
         pfloat_variable = pfloat_variable + 4;
         dVar21 = dVar21 + (double)*pfloat_variable * 0.7152 + (double)*pfloat_variable * 0.2126 +
                           (double)float_variable * 0.0722;
-        buffer_allocation_result = buffer_allocation_result - 1;
-      } while (buffer_allocation_result != 0);
+        system_buffer_allocation_result = system_buffer_allocation_result - 1;
+      } while (system_buffer_allocation_result != 0);
     }
     dVar21 = 1.0 / (dVar21 / (double)string_length_counter);
     if (3 < thread_result_index) {
-      buffer_allocation_result = (thread_result_index - 4U >> 2) + 1;
-      buffer_allocation_result = (ulong long)buffer_allocation_result;
-      thread_result_index = buffer_allocation_result * 4;
+      system_buffer_allocation_result = (thread_result_index - 4U >> 2) + 1;
+      system_buffer_allocation_result = (ulong long)system_buffer_allocation_result;
+      thread_result_index = system_buffer_allocation_result * 4;
       do {
         *pfloat_variable = (float)((double)*pfloat_variable * dVar21);
         pfloat_variable[1] = (float)((double)pfloat_variable[1] * dVar21);
@@ -5268,19 +5268,19 @@ unsigned long long handle_system_callback(unsigned long long *handle)
         pfloat_variable[0xd] = (float)((double)pfloat_variable[0xd] * dVar21);
         pfloat_variable[0xe] = (float)((double)pfloat_variable[0xe] * dVar21);
         pfloat_variable = pfloat_variable + STRING_BUFFER_SIZE;
-        buffer_allocation_result = buffer_allocation_result - 1;
-      } while (buffer_allocation_result != 0);
+        system_buffer_allocation_result = system_buffer_allocation_result - 1;
+      } while (system_buffer_allocation_result != 0);
     }
     if (thread_result_index < thread_result_index) {
       pfloat_variable = pfloat_variable + 2;
-      buffer_allocation_result = (ulong long)(uint)(thread_result_index - thread_result_index);
+      system_buffer_allocation_result = (ulong long)(uint)(thread_result_index - thread_result_index);
       do {
         pfloat_variable[-2] = (float)((double)pfloat_variable[-2] * dVar21);
         pfloat_variable[-1] = (float)((double)pfloat_variable[-1] * dVar21);
         *pfloat_variable = (float)((double)*pfloat_variable * dVar21);
         pfloat_variable = pfloat_variable + 4;
-        buffer_allocation_result = buffer_allocation_result - 1;
-      } while (buffer_allocation_result != 0);
+        system_buffer_allocation_result = system_buffer_allocation_result - 1;
+      } while (system_buffer_allocation_result != 0);
     }
   }
   return 1;
@@ -5295,7 +5295,7 @@ unsigned long long handle_system_callback(unsigned long long *handle)
   strcpy_s(auStack_38,config_path_buffer_size,&system_180a1a918);
   system_network_002();
   thread_stack_pointer = &g_threadString4;
-  system_crypto_001(stack_size_limit ^ (ulong long)auStack_78);
+  system_execute_crypto_operation(stack_size_limit ^ (ulong long)auStack_78);
 }
         data_180d48e78 = 0;
         system_global_data_pointer = 0;
@@ -5307,9 +5307,9 @@ unsigned long long handle_system_callback(unsigned long long *handle)
         system_initialize_crypto_module(&data_180d48e24);
       }
       input_string_pointer = (uint *)&data_180d48e30;
-      if (buffer_allocation_result < (ulong long)
+      if (system_buffer_allocation_result < (ulong long)
                   ((*(long long *)(mutex_attr + 0x1c) - *(long long *)(mutex_attr + 0x1a)) / 0xb0)) {
-        input_string_pointer = (uint *)(buffer_allocation_result + *(long long *)(mutex_attr + 0x1a));
+        input_string_pointer = (uint *)(system_buffer_allocation_result + *(long long *)(mutex_attr + 0x1a));
       }
       if ((*(int *)(system_initialization_result0 + 0x48) < system_global_data_pointer) &&
          (system_crypto_004(&data_180d48e24), system_global_data_pointer == -1)) {
@@ -5326,9 +5326,9 @@ unsigned long long handle_system_callback(unsigned long long *handle)
         system_initialize_crypto_module(&data_180d48e24);
       }
       input_string_pointer = &data_180d48e30;
-      if (buffer_allocation_result < (ulong long)
+      if (system_buffer_allocation_result < (ulong long)
                   ((*(long long *)(thread_operation_flags + 0x1c) - *(long long *)(thread_operation_flags + 0x1a)) / 0xb0)) {
-        input_string_pointer = (void *)(buffer_allocation_result + *(long long *)(thread_operation_flags + 0x1a));
+        input_string_pointer = (void *)(system_buffer_allocation_result + *(long long *)(thread_operation_flags + 0x1a));
       }
       if ((((0.0001 <= ABS(*(float *)(input_string_pointer + 0x14) - (float)input_string_pointer[5])) ||
            (0.0001 <= ABS(*(float *)(input_string_pointer + 0x18) - (float)input_string_pointer[6]))) ||
@@ -5339,14 +5339,14 @@ unsigned long long handle_system_callback(unsigned long long *handle)
            (0.0001 <= ABS(*(float *)(input_string_pointer + 0x28) - (float)input_string_pointer[10]))))))) {
         *input_string_pointer = *input_string_pointer | 8;
       }
-      buffer_allocation_result = system_allocator_001(handle,input_string_pointer + 0x88,input_string_pointer + 0x22);
-      buffer_allocation_result = buffer_allocation_result + 1;
-      buffer_allocation_result = buffer_allocation_result + 0xb0;
-      buffer_allocation_result = buffer_allocation_result - 1;
-    } while (buffer_allocation_result != 0);
+      system_buffer_allocation_result = system_allocator_001(handle,input_string_pointer + 0x88,input_string_pointer + 0x22);
+      system_buffer_allocation_result = system_buffer_allocation_result + 1;
+      system_buffer_allocation_result = system_buffer_allocation_result + 0xb0;
+      system_buffer_allocation_result = system_buffer_allocation_result - 1;
+    } while (system_buffer_allocation_result != 0);
   }
 label_:
-  return buffer_allocation_result & 0xffffffffffffff00;
+  return system_buffer_allocation_result & 0xffffffffffffff00;
 }
 data_180329eb7:
     thread_result_index = _Mtx_unlock(handle + 0x3d8);
@@ -5356,7 +5356,7 @@ data_180329eb7:
     break;
   default:
 label_:
-    buffer_allocation_result = 1;
+    system_buffer_allocation_result = 1;
     goto label_;
   }
   *thread_operation_flags = (long long)plVar5;
@@ -5370,7 +5370,7 @@ unsigned long long allocate_system_memory(long long handle,long long *thread_ope
   byte byte_flag_value;
   int thread_result_index;
   unsigned long long *input_string_pointer;
-  unsigned long long buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
   long long *plVar6;
   long long string_length_counter;
   long long *plong_stack_variable;
@@ -5382,7 +5382,7 @@ unsigned long long allocate_system_memory(long long handle,long long *thread_ope
   long long *plStack_60;
   unsigned char auStack_58 [32];
   stack_size_limit = DEFAULT_THREAD_POOL_FLAG;
-  buffer_allocation_result = 0;
+  system_buffer_allocation_result = 0;
   byte_flag_value = *(byte *)(mutex_attr + 2);
   if ((mutex_type >> 1 & 1) != 0) {
     system_ui_003(system_global_data_pointer,&plStack_78,mutex_attr + 0x14,1);
@@ -5400,8 +5400,8 @@ unsigned long long allocate_system_memory(long long handle,long long *thread_ope
     if (thread_result_index != 0) {
       __Throw_C_error_std__YAXH_Z(thread_result_index);
     }
-    buffer_allocation_result = system_execute_function(system_global_data_pointer,0x298,8,3);
-    plVar6 = (long long *)system_memory_001(buffer_allocation_result);
+    system_buffer_allocation_result = system_execute_function(system_global_data_pointer,0x298,8,3);
+    plVar6 = (long long *)system_memory_001(system_buffer_allocation_result);
     pplStack_68 = (long long **)merge_32bit_values(pplStack_68._4_4_,temp_stack_array[0]);
     plStack_60 = plVar6;
     system_memory_manager_006(handle + 0x3a8,auStack_58,&pplStack_68);
@@ -5410,15 +5410,15 @@ unsigned long long allocate_system_memory(long long handle,long long *thread_ope
       __Throw_C_error_std__YAXH_Z(thread_result_index);
     }
     *thread_operation_flags = (long long)plVar6;
-    buffer_allocation_result = *(unsigned long long *)(handle + 0x2d8);
+    system_buffer_allocation_result = *(unsigned long long *)(handle + 0x2d8);
     pplStack_68 = &plStack_80;
     plStack_80 = plVar6;
     if (plVar6 != (long long *)0x0) {
       (**(code **)(*plVar6 + 0x28))(plVar6);
     }
-    system_execute_function(buffer_allocation_result,&plStack_80);
+    system_execute_function(system_buffer_allocation_result,&plStack_80);
     *(int *)(handle + 0xb0) = *(int *)(handle + 0xb0) + 1;
-    buffer_allocation_result = 1;
+    system_buffer_allocation_result = 1;
     if (plong_stack_variable != (long long *)0x0) {
       (**(code **)(*plong_stack_variable + 0x38))();
     }
@@ -5430,7 +5430,7 @@ unsigned long long allocate_system_memory(long long handle,long long *thread_ope
     if (((mutex_type >> 1 & 1) == 0) && ((byte_flag_value & 1) != 0)) {
       string_length_counter = system_memory_manager_007(handle,*mutex_attr);
       *thread_operation_flags = string_length_counter;
-      buffer_allocation_result = 1;
+      system_buffer_allocation_result = 1;
     }
   }
   else {
@@ -5438,7 +5438,7 @@ unsigned long long allocate_system_memory(long long handle,long long *thread_ope
     string_length_counter = system_memory_manager_007(handle);
     if (string_length_counter == 0) {
       *thread_operation_flags = 0;
-      buffer_allocation_result = 1;
+      system_buffer_allocation_result = 1;
     }
     else {
       psystem_initialization_result = (long long *)(handle + 0x3d8);
@@ -5454,10 +5454,10 @@ unsigned long long allocate_system_memory(long long handle,long long *thread_ope
       }
       *thread_operation_flags = string_length_counter;
       *(unsigned char *)(string_length_counter + 0x39) = 1;
-      buffer_allocation_result = 1;
+      system_buffer_allocation_result = 1;
     }
   }
-  return buffer_allocation_result;
+  return system_buffer_allocation_result;
 }
     data_180d49748 = 0;
     system_memory_002(0x180d496e0);
@@ -5542,18 +5542,18 @@ long long allocate_system_buffer(unsigned long long handle,long long *thread_ope
 {
   long long system_initialization_result;
   uint thread_operation_flags;
-  ulong long buffer_allocation_result;
-  unsigned long long buffer_allocation_result;
+  ulong long system_buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
   unsigned long long *input_string_pointer;
-  uint buffer_allocation_result;
+  uint system_buffer_allocation_result;
   if (*(int *)(*(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8) +
               0x48) < system_global_data_pointer) {
     system_crypto_004(&data_180d49990);
     if (system_global_data_pointer == -1) {
-      buffer_allocation_result = system_execute_function(system_global_data_pointer,0x1c8,8,3);
-      system_global_data_pointer = system_memory_manager_001(buffer_allocation_result);
-      buffer_allocation_result = system_execute_function(system_global_data_pointer,config_path_buffer_size0,8,3);
-      system_global_data_pointer = system_allocate_memory_buffer(buffer_allocation_result);
+      system_buffer_allocation_result = system_execute_function(system_global_data_pointer,0x1c8,8,3);
+      system_global_data_pointer = system_memory_manager_001(system_buffer_allocation_result);
+      system_buffer_allocation_result = system_execute_function(system_global_data_pointer,config_path_buffer_size0,8,3);
+      system_global_data_pointer = system_allocate_memory_buffer(system_buffer_allocation_result);
       input_string_pointer = (unsigned long long *)system_execute_function(system_global_data_pointer,0xf8,8,3);
       system_memory_003(input_string_pointer);
       // Original name: system_180a1b368
@@ -5572,17 +5572,17 @@ long long allocate_system_buffer(unsigned long long handle,long long *thread_ope
       system_initialize_crypto_module(&data_180d49990);
     }
   }
-  buffer_allocation_result = 0;
-  buffer_allocation_result = (uint)(thread_operation_flags[1] - *thread_operation_flags >> 3);
-  if (buffer_allocation_result != 0) {
+  system_buffer_allocation_result = 0;
+  system_buffer_allocation_result = (uint)(thread_operation_flags[1] - *thread_operation_flags >> 3);
+  if (system_buffer_allocation_result != 0) {
     do {
-      system_initialization_result = *(long long *)(*thread_operation_flags + buffer_allocation_result * 8);
+      system_initialization_result = *(long long *)(*thread_operation_flags + system_buffer_allocation_result * 8);
       if (*(int *)(system_initialization_result + 8) == *(int *)(mutex_attr + 8)) {
         return system_initialization_result;
       }
-      thread_operation_flags = (int)buffer_allocation_result + 1;
-      buffer_allocation_result = (ulong long)thread_operation_flags;
-    } while (thread_operation_flags < buffer_allocation_result);
+      thread_operation_flags = (int)system_buffer_allocation_result + 1;
+      system_buffer_allocation_result = (ulong long)thread_operation_flags;
+    } while (thread_operation_flags < system_buffer_allocation_result);
   }
   (**(code **)(**(long long **)(&data_180d48de0 + (ulong long)*(uint *)(mutex_attr + 0x8c) * 8) + 8))();
   return *(long long *)(&data_180d48de0 + (ulong long)*(uint *)(mutex_attr + 0x8c) * 8);
@@ -5594,11 +5594,11 @@ system_allocator_008(unsigned long long handle,long long *thread_operation_flags
   long long system_initialization_result;
   ulong long thread_operation_flags;
   long long string_length_counter;
-  unsigned long long buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
   long long string_length_counter;
   long long string_length_counter;
   uint *input_string_pointer;
-  buffer_allocation_result = 0;
+  system_buffer_allocation_result = 0;
   thread_operation_flags = thread_operation_flags[1] - *thread_operation_flags >> 2;
   if ((int)thread_operation_flags != 0) {
     string_length_counter = 0;
@@ -5618,15 +5618,15 @@ system_allocator_008(unsigned long long handle,long long *thread_operation_flags
         } while (0 < string_length_counter);
       }
       if ((input_string_pointer == (uint *)mutex_attr[1]) || (*(uint *)(system_initialization_result + string_length_counter) < *input_string_pointer)) {
-        buffer_allocation_result = allocate_with_thread_operation_flags(handle,*(unsigned int *)(system_initialization_result + string_length_counter),mutex_type);
-        system_allocator_002(handle,buffer_allocation_result,param_5,mutex_type,param_6);
-        buffer_allocation_result = 1;
+        system_buffer_allocation_result = allocate_with_thread_operation_flags(handle,*(unsigned int *)(system_initialization_result + string_length_counter),mutex_type);
+        system_allocator_002(handle,system_buffer_allocation_result,param_5,mutex_type,param_6);
+        system_buffer_allocation_result = 1;
       }
       string_length_counter = string_length_counter + 4;
       thread_operation_flags = thread_operation_flags - 1;
     } while (thread_operation_flags != 0);
   }
-  return buffer_allocation_result;
+  return system_buffer_allocation_result;
 }
 unsigned char check_memory_status(void)
 {
@@ -5635,12 +5635,12 @@ unsigned char check_memory_status(void)
   long long string_length_counter;
   long long string_length_counter;
   unsigned char unaff_SIL;
-  ulong long buffer_allocation_result;
+  ulong long system_buffer_allocation_result;
   uint *input_string_pointer;
   unsigned long long *unaffected_register;
   long long *unaffected_register;
   string_length_counter = 0;
-  buffer_allocation_result = (ulong long)in_EAX;
+  system_buffer_allocation_result = (ulong long)in_EAX;
   do {
     input_string_pointer = (uint *)*unaffected_register;
     system_initialization_result = (long long)unaffected_register[1] - (long long)input_string_pointer >> 2;
@@ -5660,8 +5660,8 @@ unsigned char check_memory_status(void)
       unaff_SIL = 1;
     }
     string_length_counter = string_length_counter + 4;
-    buffer_allocation_result = buffer_allocation_result - 1;
-  } while (buffer_allocation_result != 0);
+    system_buffer_allocation_result = system_buffer_allocation_result - 1;
+  } while (system_buffer_allocation_result != 0);
   return unaff_SIL;
 }
 unsigned char validate_memory_allocation(void)
@@ -5674,96 +5674,96 @@ system_allocator_011(unsigned long long handle,long long *thread_operation_flags
 {
   long long system_initialization_result;
   long long string_length_counter;
-  uint buffer_allocation_result;
-  ulong long buffer_allocation_result;
-  ulong long buffer_allocation_result;
+  uint system_buffer_allocation_result;
+  ulong long system_buffer_allocation_result;
+  ulong long system_buffer_allocation_result;
   long long string_length_counter;
-  uint buffer_allocation_result;
-  unsigned long long buffer_allocation_result;
+  uint system_buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
   long long string_length_counter;
   long long system_initialization_result0;
-  buffer_allocation_result = 0;
+  system_buffer_allocation_result = 0;
   system_initialization_result = mutex_attr[1];
   string_length_counter = *mutex_attr;
-  buffer_allocation_result = thread_operation_flags[1] - *thread_operation_flags >> 3;
-  if ((int)buffer_allocation_result != 0) {
+  system_buffer_allocation_result = thread_operation_flags[1] - *thread_operation_flags >> 3;
+  if ((int)system_buffer_allocation_result != 0) {
     string_length_counter = 0;
-    buffer_allocation_result = buffer_allocation_result & UINT32_MAX;
+    system_buffer_allocation_result = system_buffer_allocation_result & UINT32_MAX;
     do {
-      buffer_allocation_result = 0;
-      buffer_allocation_result = (uint)(system_initialization_result - string_length_counter >> 3);
-      if (buffer_allocation_result != 0) {
+      system_buffer_allocation_result = 0;
+      system_buffer_allocation_result = (uint)(system_initialization_result - string_length_counter >> 3);
+      if (system_buffer_allocation_result != 0) {
         do {
           if (*(int *)(*(long long *)(*thread_operation_flags + string_length_counter) + 8) ==
-              *(int *)(*(long long *)(*mutex_attr + buffer_allocation_result * 8) + 8)) goto label_;
-          buffer_allocation_result = (int)buffer_allocation_result + 1;
-          buffer_allocation_result = (ulong long)buffer_allocation_result;
-        } while (buffer_allocation_result < buffer_allocation_result);
+              *(int *)(*(long long *)(*mutex_attr + system_buffer_allocation_result * 8) + 8)) goto label_;
+          system_buffer_allocation_result = (int)system_buffer_allocation_result + 1;
+          system_buffer_allocation_result = (ulong long)system_buffer_allocation_result;
+        } while (system_buffer_allocation_result < system_buffer_allocation_result);
       }
       string_length_counter = *(long long *)(string_length_counter + *thread_operation_flags);
       *(uint *)(string_length_counter + STRING_BUFFER_SIZE) = *(uint *)(string_length_counter + STRING_BUFFER_SIZE) | mutex_type;
       if (((param_5 != '\0') && (*(int *)(string_length_counter + 0x8c) == 2)) &&
-         (buffer_allocation_result = *(long long *)(string_length_counter + 0xc0) - *(long long *)(string_length_counter + 0xb8) >> 3, (int)buffer_allocation_result != 0))
+         (system_buffer_allocation_result = *(long long *)(string_length_counter + 0xc0) - *(long long *)(string_length_counter + 0xb8) >> 3, (int)system_buffer_allocation_result != 0))
       {
         system_initialization_result0 = 0;
-        buffer_allocation_result = buffer_allocation_result & UINT32_MAX;
+        system_buffer_allocation_result = system_buffer_allocation_result & UINT32_MAX;
         do {
           system_allocator_003(handle,*(unsigned long long *)(*(long long *)(string_length_counter + 0xb8) + system_initialization_result0),mutex_type,
                         param_5);
           system_initialization_result0 = system_initialization_result0 + 8;
-          buffer_allocation_result = buffer_allocation_result - 1;
-        } while (buffer_allocation_result != 0);
+          system_buffer_allocation_result = system_buffer_allocation_result - 1;
+        } while (system_buffer_allocation_result != 0);
       }
-      buffer_allocation_result = 1;
+      system_buffer_allocation_result = 1;
 label_:
       string_length_counter = string_length_counter + 8;
-      buffer_allocation_result = buffer_allocation_result - 1;
-    } while (buffer_allocation_result != 0);
+      system_buffer_allocation_result = system_buffer_allocation_result - 1;
+    } while (system_buffer_allocation_result != 0);
   }
-  return buffer_allocation_result;
+  return system_buffer_allocation_result;
 }
 unsigned char allocate_with_mutex(unsigned long long handle,unsigned long long thread_operation_flags,long long *mutex_attr)
 {
   long long system_initialization_result;
   uint thread_operation_flags;
   ulong long in_RAX;
-  ulong long buffer_allocation_result;
+  ulong long system_buffer_allocation_result;
   long long string_length_counter;
   uint unaff_EDI;
   unsigned char in_R10B;
   long long *unaffected_register;
   uint unaffected_registerD;
-  ulong long buffer_allocation_result;
+  ulong long system_buffer_allocation_result;
   long long *in_stack_00000060;
   char in_stack_00000070;
   string_length_counter = 0;
-  buffer_allocation_result = in_RAX & UINT32_MAX;
+  system_buffer_allocation_result = in_RAX & UINT32_MAX;
   do {
-    buffer_allocation_result = 0;
+    system_buffer_allocation_result = 0;
     if (unaff_EDI != 0) {
       do {
         if (*(int *)(*(long long *)(*unaffected_register + string_length_counter) + 8) ==
-            *(int *)(*(long long *)(*mutex_attr + buffer_allocation_result * 8) + 8)) goto label_;
-        thread_operation_flags = (int)buffer_allocation_result + 1;
-        buffer_allocation_result = (ulong long)thread_operation_flags;
+            *(int *)(*(long long *)(*mutex_attr + system_buffer_allocation_result * 8) + 8)) goto label_;
+        thread_operation_flags = (int)system_buffer_allocation_result + 1;
+        system_buffer_allocation_result = (ulong long)thread_operation_flags;
       } while (thread_operation_flags < unaff_EDI);
     }
     system_initialization_result = *(long long *)(string_length_counter + *unaffected_register);
     *(uint *)(system_initialization_result + STRING_BUFFER_SIZE) = *(uint *)(system_initialization_result + STRING_BUFFER_SIZE) | unaffected_registerD;
     if (((in_stack_00000070 != '\0') && (*(int *)(system_initialization_result + 0x8c) == 2)) &&
-       (buffer_allocation_result = *(long long *)(system_initialization_result + 0xc0) - *(long long *)(system_initialization_result + 0xb8) >> 3, (int)buffer_allocation_result != 0)) {
-      buffer_allocation_result = buffer_allocation_result & UINT32_MAX;
+       (system_buffer_allocation_result = *(long long *)(system_initialization_result + 0xc0) - *(long long *)(system_initialization_result + 0xb8) >> 3, (int)system_buffer_allocation_result != 0)) {
+      system_buffer_allocation_result = system_buffer_allocation_result & UINT32_MAX;
       do {
         system_allocator_003();
-        buffer_allocation_result = buffer_allocation_result - 1;
-      } while (buffer_allocation_result != 0);
+        system_buffer_allocation_result = system_buffer_allocation_result - 1;
+      } while (system_buffer_allocation_result != 0);
     }
     in_R10B = 1;
 label_:
     string_length_counter = string_length_counter + 8;
-    buffer_allocation_result = buffer_allocation_result - 1;
+    system_buffer_allocation_result = system_buffer_allocation_result - 1;
     mutex_attr = in_stack_00000060;
-    if (buffer_allocation_result == 0) {
+    if (system_buffer_allocation_result == 0) {
       return in_R10B;
     }
   } while( true );
@@ -5777,18 +5777,18 @@ unsigned long long
 system_allocator_014(unsigned long long handle,long long *thread_operation_flags,unsigned long long *mutex_attr,unsigned int mutex_type,
              uint param_5)
 {
-  ulong long buffer_allocation_result;
+  ulong long system_buffer_allocation_result;
   long long string_length_counter;
   long long string_length_counter;
   long long string_length_counter;
   long long string_length_counter;
-  unsigned long long buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
   uint *input_string_pointer;
-  buffer_allocation_result = 0;
-  buffer_allocation_result = thread_operation_flags[1] - *thread_operation_flags >> 2;
-  if ((int)buffer_allocation_result != 0) {
+  system_buffer_allocation_result = 0;
+  system_buffer_allocation_result = thread_operation_flags[1] - *thread_operation_flags >> 2;
+  if ((int)system_buffer_allocation_result != 0) {
     string_length_counter = 0;
-    buffer_allocation_result = buffer_allocation_result & UINT32_MAX;
+    system_buffer_allocation_result = system_buffer_allocation_result & UINT32_MAX;
     do {
       input_string_pointer = (uint *)*mutex_attr;
       string_length_counter = *thread_operation_flags;
@@ -5805,14 +5805,14 @@ system_allocator_014(unsigned long long handle,long long *thread_operation_flags
       }
       if ((input_string_pointer == (uint *)mutex_attr[1]) || (*(uint *)(string_length_counter + string_length_counter) < *input_string_pointer)) {
         string_length_counter = system_allocator_006(handle,*(unsigned int *)(string_length_counter + string_length_counter),mutex_type);
-        buffer_allocation_result = 1;
+        system_buffer_allocation_result = 1;
         *(uint *)(string_length_counter + 8) = *(uint *)(string_length_counter + 8) | param_5;
       }
       string_length_counter = string_length_counter + 4;
-      buffer_allocation_result = buffer_allocation_result - 1;
-    } while (buffer_allocation_result != 0);
+      system_buffer_allocation_result = system_buffer_allocation_result - 1;
+    } while (system_buffer_allocation_result != 0);
   }
-  return buffer_allocation_result;
+  return system_buffer_allocation_result;
 }
 unsigned char validate_buffer_allocation(void)
 {
@@ -5821,13 +5821,13 @@ unsigned char validate_buffer_allocation(void)
   long long string_length_counter;
   long long string_length_counter;
   unsigned char unaff_SIL;
-  ulong long buffer_allocation_result;
+  ulong long system_buffer_allocation_result;
   uint *input_string_pointer;
   unsigned long long *unaffected_register;
   long long *unaffected_register;
   uint in_stack_00000070;
   string_length_counter = 0;
-  buffer_allocation_result = (ulong long)in_EAX;
+  system_buffer_allocation_result = (ulong long)in_EAX;
   do {
     input_string_pointer = (uint *)*unaffected_register;
     system_initialization_result = (long long)unaffected_register[1] - (long long)input_string_pointer >> 2;
@@ -5847,8 +5847,8 @@ unsigned char validate_buffer_allocation(void)
       *(uint *)(system_initialization_result + 8) = *(uint *)(system_initialization_result + 8) | in_stack_00000070;
     }
     string_length_counter = string_length_counter + 4;
-    buffer_allocation_result = buffer_allocation_result - 1;
-  } while (buffer_allocation_result != 0);
+    system_buffer_allocation_result = system_buffer_allocation_result - 1;
+  } while (system_buffer_allocation_result != 0);
   return unaff_SIL;
 }
 unsigned char check_memory_bounds(void)
@@ -5857,11 +5857,11 @@ unsigned char check_memory_bounds(void)
   return unaff_SIL;
 }
   data_1dc4331ba = data_1dc4331ba + unaff_BL;
-  buffer_allocation_result = in(buffer_allocation_result);
-  character_scan_pointer = (char *)((ulong long)buffer_allocation_result + 0x1c0042ed);
+  system_buffer_allocation_result = in(system_buffer_allocation_result);
+  character_scan_pointer = (char *)((ulong long)system_buffer_allocation_result + 0x1c0042ed);
   *character_scan_pointer = *character_scan_pointer + (char)unaffected_registerDI + '\x04';
-  out(buffer_allocation_result,(char)buffer_allocation_result);
-  character_scan_pointer = (char *)((ulong long)buffer_allocation_result - 0x12);
+  out(system_buffer_allocation_result,(char)system_buffer_allocation_result);
+  character_scan_pointer = (char *)((ulong long)system_buffer_allocation_result - 0x12);
   *character_scan_pointer = *character_scan_pointer + (char)thread_operation_flags;
   character_scan_pointer = (code *)swi(3);
   (*character_scan_pointer)();
@@ -5869,7 +5869,7 @@ unsigned char check_memory_bounds(void)
 }
       data_180d499e8 = 0;
       system_global_data_pointer = 6;
-      strcpy_s(&data_180d499e8,config_path_buffer_size0,&data_180a3c074,str_len_param,buffer_allocation_result);
+      strcpy_s(&data_180d499e8,config_path_buffer_size0,&data_180a3c074,str_len_param,system_buffer_allocation_result);
       system_crypto_002(system_execute_function);
       system_initialize_crypto_module(&data_180d499c8);
     }
@@ -5882,13 +5882,13 @@ system_finalizer_005(unsigned long long handle,unsigned long long thread_operati
 {
   code *character_scan_pointer;
   unsigned int thread_operation_flags;
-  unsigned long long buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
   void *thread_stack_pointer;
   long long thread_stack_base_address;
   character_scan_pointer = *(code **)(*system_global_data_pointer + 0x70);
   // Original name: system_180a02fc8
-      buffer_allocation_result = system_ui_005(&thread_stack_pointer, &g_ui_mutex_property_address_180a02fc8, mutex_attr, mutex_type, 0, DEFAULT_THREAD_POOL_FLAG);
-  thread_operation_flags = (*character_scan_pointer)(system_global_data_pointer,buffer_allocation_result,mutex_attr,mutex_type,1);
+      system_buffer_allocation_result = system_ui_005(&thread_stack_pointer, &g_ui_mutex_property_address_180a02fc8, mutex_attr, mutex_type, 0, DEFAULT_THREAD_POOL_FLAG);
+  thread_operation_flags = (*character_scan_pointer)(system_global_data_pointer,system_buffer_allocation_result,mutex_attr,mutex_type,1);
   thread_stack_pointer = &g_threadString2;
   if (thread_stack_base_address != 0) {
     handle_system_error();
@@ -5900,13 +5900,13 @@ system_finalizer_006(unsigned long long handle,unsigned long long thread_operati
 {
   code *character_scan_pointer;
   unsigned int thread_operation_flags;
-  unsigned long long buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
   void *thread_stack_pointer;
   long long thread_stack_base_address;
   character_scan_pointer = *(code **)(*system_global_data_pointer + 0x70);
   // Original name: system_180a02fa0
-      buffer_allocation_result = system_ui_005(&thread_stack_pointer, &g_ui_mutex_type_address_180a02fa0, mutex_attr, mutex_type, 0, DEFAULT_THREAD_POOL_FLAG);
-  thread_operation_flags = (*character_scan_pointer)(system_global_data_pointer,buffer_allocation_result,mutex_attr,mutex_type,1);
+      system_buffer_allocation_result = system_ui_005(&thread_stack_pointer, &g_ui_mutex_type_address_180a02fa0, mutex_attr, mutex_type, 0, DEFAULT_THREAD_POOL_FLAG);
+  thread_operation_flags = (*character_scan_pointer)(system_global_data_pointer,system_buffer_allocation_result,mutex_attr,mutex_type,1);
   thread_stack_pointer = &g_threadString2;
   if (thread_stack_base_address != 0) {
     handle_system_error();
@@ -5918,14 +5918,14 @@ system_finalizer_007(unsigned long long handle,unsigned long long thread_operati
 {
   code *character_scan_pointer;
   unsigned int thread_operation_flags;
-  unsigned long long buffer_allocation_result;
-  unsigned long long buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
   void *thread_stack_pointer;
   long long thread_stack_base_address;
-  buffer_allocation_result = DEFAULT_THREAD_POOL_FLAG;
+  system_buffer_allocation_result = DEFAULT_THREAD_POOL_FLAG;
   character_scan_pointer = *(code **)(*system_global_data_pointer + 0x70);
-  buffer_allocation_result = system_cleanup_007(&thread_stack_pointer);
-  thread_operation_flags = (*character_scan_pointer)(system_global_data_pointer,buffer_allocation_result,mutex_attr,mutex_type,buffer_allocation_result);
+  system_buffer_allocation_result = system_cleanup_007(&thread_stack_pointer);
+  thread_operation_flags = (*character_scan_pointer)(system_global_data_pointer,system_buffer_allocation_result,mutex_attr,mutex_type,system_buffer_allocation_result);
   thread_stack_pointer = &g_threadString2;
   if (thread_stack_base_address != 0) {
     handle_system_error();
@@ -5944,23 +5944,23 @@ system_finalizer_007(unsigned long long handle,unsigned long long thread_operati
     system_crypto_002(system_execute_function);
     system_initialize_crypto_module(&data_180d49d08);
   }
-  buffer_allocation_result = system_execute_function(system_global_data_pointer,0xe0,8,3,buffer_allocation_result);
+  system_buffer_allocation_result = system_execute_function(system_global_data_pointer,0xe0,8,3,system_buffer_allocation_result);
   plong_stack_variable = alStack_30;
   // Original name: system_18045f210
       thread_stack_pointer = &g_stack_data_address_18045f210;
   thread_stack_pointer = &system_18045f200;
-  psystem_initialization_result = (long long *)system_execute_function(buffer_allocation_result,alStack_30);
+  psystem_initialization_result = (long long *)system_execute_function(system_buffer_allocation_result,alStack_30);
   plong_stack_variable = psystem_initialization_result;
   if (psystem_initialization_result != (long long *)0x0) {
     (**(code **)(*psystem_initialization_result + 0x28))(psystem_initialization_result);
   }
-  buffer_allocation_result = system_global_data_pointer;
+  system_buffer_allocation_result = system_global_data_pointer;
   pplong_stack_variable = &plong_stack_variable;
   plong_stack_variable = psystem_initialization_result;
   if (psystem_initialization_result != (long long *)0x0) {
     (**(code **)(*psystem_initialization_result + 0x28))(psystem_initialization_result);
   }
-  register_event_callback(buffer_allocation_result,&plong_stack_variable);
+  register_event_callback(system_buffer_allocation_result,&plong_stack_variable);
   if (psystem_initialization_result != (long long *)0x0) {
     (**(code **)(*psystem_initialization_result + 0x38))(psystem_initialization_result);
   }
@@ -5989,7 +5989,7 @@ system_finalizer_007(unsigned long long handle,unsigned long long thread_operati
     string_length_counter = string_length_counter + -1;
   } while (string_length_counter != 0);
   data_180c95bf0 = 0;
-  _Mtx_init_in_situ(0x180c95d70,2,mutex_attr,mutex_type,buffer_allocation_result);
+  _Mtx_init_in_situ(0x180c95d70,2,mutex_attr,mutex_type,system_buffer_allocation_result);
   system_global_data_pointer = UINT32_MAX;
   system_global_data_pointer = 0;
   system_global_data_pointer = 0;
@@ -6122,11 +6122,11 @@ unsigned long long * system_execute_function(unsigned long long *handle,int thre
 {
   long long *psystem_initialization_result;
   int thread_result_index;
-  unsigned long long buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
   long long string_length_counter;
   int thread_result_index;
   unsigned long long *input_string_pointer;
-  ulong long buffer_allocation_result;
+  ulong long system_buffer_allocation_result;
   long long string_length_counter;
   float float_variable;
   float float_variable;
@@ -6201,8 +6201,8 @@ unsigned long long * system_execute_function(unsigned long long *handle,int thre
   handle[0x14] = 1;
   handle[0x13] = 0;
   handle[0x15] = 0xffffffff;
-  buffer_allocation_result = system_execute_function(system_global_data_pointer,(long long)*(int *)(handle + 0x67) * 0x48,0x18);
-  handle[0x12] = buffer_allocation_result;
+  system_buffer_allocation_result = system_execute_function(system_global_data_pointer,(long long)*(int *)(handle + 0x67) * 0x48,0x18);
+  handle[0x12] = system_buffer_allocation_result;
   handle[0x1b] = (long long)*(int *)(handle + 0x67);
   if (handle[0x17] != 0) {
     handle_system_error();
@@ -6211,16 +6211,16 @@ unsigned long long * system_execute_function(unsigned long long *handle,int thre
   handle[0x19] = 1;
   handle[0x18] = 0;
   handle[0x1a] = 0xffffffff;
-  buffer_allocation_result = system_execute_function(system_global_data_pointer,(long long)*(int *)(handle + 0x67) * 0xc0,0x18);
-  handle[0x17] = buffer_allocation_result;
+  system_buffer_allocation_result = system_execute_function(system_global_data_pointer,(long long)*(int *)(handle + 0x67) * 0xc0,0x18);
+  handle[0x17] = system_buffer_allocation_result;
   handle[0x2a] = (long long)*(int *)(handle + 0x67);
   if (handle[0x26] == 0) {
     handle[0x26] = 0;
     handle[0x28] = 1;
     handle[0x27] = 0;
     handle[0x29] = 0xffffffff;
-    buffer_allocation_result = system_execute_function(system_global_data_pointer,(long long)*(int *)(handle + 0x67) << 4,0x18);
-    handle[0x26] = buffer_allocation_result;
+    system_buffer_allocation_result = system_execute_function(system_global_data_pointer,(long long)*(int *)(handle + 0x67) << 4,0x18);
+    handle[0x26] = system_buffer_allocation_result;
     handle[config_path_buffer_size] = (long long)*(int *)(handle + 0x67);
     system_execute_function(handle + 0x1c);
     handle[0x2f] = (long long)*(int *)(handle + 0x67);
@@ -6231,8 +6231,8 @@ unsigned long long * system_execute_function(unsigned long long *handle,int thre
     handle[0x2d] = 1;
     handle[0x2c] = 0;
     handle[0x2e] = 0xffffffff;
-    buffer_allocation_result = system_execute_function(system_global_data_pointer,(long long)*(int *)(handle + 0x67) << 4,0x18);
-    handle[0x2b] = buffer_allocation_result;
+    system_buffer_allocation_result = system_execute_function(system_global_data_pointer,(long long)*(int *)(handle + 0x67) << 4,0x18);
+    handle[0x2b] = system_buffer_allocation_result;
     do {
       input_string_pointer[4] = (long long)*(int *)(handle + 0x67);
       system_execute_function(input_string_pointer);
@@ -6245,13 +6245,13 @@ unsigned long long * system_execute_function(unsigned long long *handle,int thre
       handle[0x23] = 1;
       handle[0x22] = 0;
       handle[0x24] = 0xffffffff;
-      buffer_allocation_result = system_execute_function(system_global_data_pointer,(long long)*(int *)(handle + 0x67) * 0x88,0x18);
-      handle[0x21] = buffer_allocation_result;
-      buffer_allocation_result = (ulong long)*(int *)(handle + 0x67);
+      system_buffer_allocation_result = system_execute_function(system_global_data_pointer,(long long)*(int *)(handle + 0x67) * 0x88,0x18);
+      handle[0x21] = system_buffer_allocation_result;
+      system_buffer_allocation_result = (ulong long)*(int *)(handle + 0x67);
       string_length_counter = *psystem_initialization_result;
-      if ((ulong long)(handle[0x33] - string_length_counter >> 3) < buffer_allocation_result) {
-        if (buffer_allocation_result != 0) {
-          string_length_counter = system_execute_function(system_global_data_pointer,buffer_allocation_result * 8,*(unsigned char *)(handle + 0x34));
+      if ((ulong long)(handle[0x33] - string_length_counter >> 3) < system_buffer_allocation_result) {
+        if (system_buffer_allocation_result != 0) {
+          string_length_counter = system_execute_function(system_global_data_pointer,system_buffer_allocation_result * 8,*(unsigned char *)(handle + 0x34));
           string_length_counter = *psystem_initialization_result;
         }
         if (string_length_counter != handle[0x32]) {
@@ -6262,7 +6262,7 @@ unsigned long long * system_execute_function(unsigned long long *handle,int thre
         }
         *psystem_initialization_result = string_length_counter;
         handle[0x32] = string_length_counter;
-        handle[0x33] = string_length_counter + buffer_allocation_result * 8;
+        handle[0x33] = string_length_counter + system_buffer_allocation_result * 8;
       }
       thread_result_index = *(int *)(system_global_data_pointer + 0xe00) + -1;
       thread_result_index = 0;
@@ -6306,7 +6306,7 @@ unsigned long long initialize_graphics_context(unsigned long long handle,ulong l
       data_180c91d14 = 1;
     }
     else {
-      buffer_allocation_result = (ulong long)data_180c91d14;
+      system_buffer_allocation_result = (ulong long)data_180c91d14;
     }
     UNLOCK();
     if (byte_system_status) {
@@ -6315,10 +6315,10 @@ unsigned long long initialize_graphics_context(unsigned long long handle,ulong l
       if (system_global_data_pointer != (long long *)0x0) {
         (**(code **)(*system_global_data_pointer + 0x28))();
       }
-      buffer_allocation_result = system_execute_function(buffer_allocation_result,aplong_stack_variable);
+      system_buffer_allocation_result = system_execute_function(system_buffer_allocation_result,aplong_stack_variable);
     }
   }
-  return buffer_allocation_result;
+  return system_buffer_allocation_result;
 }
     data_180d49f6c = '\0';
     system_initialize_crypto_module(&data_180d49f68);
@@ -6349,8 +6349,8 @@ unsigned long long initialize_graphics_context(unsigned long long handle,ulong l
   float_variable = -1e+08;
   float_variable = -1e+08;
   float_variable = -1e+08;
-  buffer_allocation_result = 0;
-  buffer_allocation_result = 0;
+  system_buffer_allocation_result = 0;
+  system_buffer_allocation_result = 0;
   if (-1 < thread_result_index) {
     stack_size_limit = 0x7f7fffff;
     stack_size_limit = 0x7f7fffff;
@@ -6438,8 +6438,8 @@ unsigned long long initialize_graphics_context(unsigned long long handle,ulong l
       float_variable = fStack_198;
       float_variable = fStack_194;
       float_variable = fStack_190;
-      buffer_allocation_result = stack_size_limit;
-      buffer_allocation_result = stack_size_limit;
+      system_buffer_allocation_result = stack_size_limit;
+      system_buffer_allocation_result = stack_size_limit;
       fStack_158 = float_variable;
       fStack_154 = float_variable;
     } while (-1 < system_initialization_result1);
@@ -6514,11 +6514,11 @@ unsigned long long initialize_graphics_context(unsigned long long handle,ulong l
   *(float *)(system_initialization_result1 + 0x218) = float_variable;
   *(float *)(system_initialization_result1 + 0x21c) = float_variable;
   *(float *)(system_initialization_result1 + 0x220) = fStack_180;
-  *(unsigned int *)(system_initialization_result1 + 0x224) = buffer_allocation_result;
+  *(unsigned int *)(system_initialization_result1 + 0x224) = system_buffer_allocation_result;
   *(float *)(system_initialization_result1 + 0x228) = float_variable;
   *(float *)(system_initialization_result1 + 0x22c) = float_variable;
   *(float *)(system_initialization_result1 + 0x230) = float_variable;
-  *(unsigned int *)(system_initialization_result1 + 0x234) = buffer_allocation_result;
+  *(unsigned int *)(system_initialization_result1 + 0x234) = system_buffer_allocation_result;
   pfloat_variable = *(float **)(handle + 0x860);
   if ((pfloat_variable != (float *)0x0) && (*(long long *)(handle + 0x868) != 0)) {
     if ((pfloat_variable[4] <= float_variable && float_variable != pfloat_variable[4]) ||
@@ -7101,7 +7101,7 @@ system_execute_function(unsigned long long handle,unsigned long long thread_oper
 {
   char system_char_variable;
   void *pthread_operation_flags;
-  unsigned long long buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
   unsigned char auStack_50 [32];
   unsigned char auStack_30 [40];
   create_thread_context(auStack_30,handle,mutex_attr,mutex_type,DEFAULT_THREAD_POOL_FLAG);
@@ -7209,67 +7209,67 @@ system_execute_function(unsigned long long handle,unsigned long long thread_oper
                                                         system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                     &system_180a3acc8);
                                                         if (system_char_variable != '\0') {
-                                                          buffer_allocation_result = 0x21c;
+                                                          system_buffer_allocation_result = 0x21c;
                                                           goto label_;
                                                         }
                                                         system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                     &system_180a3aca8);
                                                         if (system_char_variable != '\0') {
-                                                          buffer_allocation_result = 0x41c;
+                                                          system_buffer_allocation_result = 0x41c;
                                                           goto label_;
                                                         }
                                                         system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                     &system_180a3ade8);
                                                         if (system_char_variable != '\0') {
-                                                          buffer_allocation_result = 0x41d;
+                                                          system_buffer_allocation_result = 0x41d;
                                                           goto label_;
                                                         }
                                                         system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                     &system_180a3add0);
                                                         if (system_char_variable != '\0') {
-                                                          buffer_allocation_result = 0x420;
+                                                          system_buffer_allocation_result = 0x420;
                                                           goto label_;
                                                         }
                                                         system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                     &system_180a3ae18);
                                                         if (system_char_variable != '\0') {
-                                                          buffer_allocation_result = 0x424;
+                                                          system_buffer_allocation_result = 0x424;
                                                           goto label_;
                                                         }
                                                         system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                     &system_180a3ae00);
                                                         if (system_char_variable != '\0') {
-                                                          buffer_allocation_result = 0x428;
+                                                          system_buffer_allocation_result = 0x428;
                                                           goto label_;
                                                         }
                                                         system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                     &system_180a3ad88);
                                                         if (system_char_variable != '\0') {
-                                                          buffer_allocation_result = 0x430;
+                                                          system_buffer_allocation_result = 0x430;
                                                           goto label_;
                                                         }
                                                         system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                     &system_180a29da8);
                                                         if (system_char_variable != '\0') {
-                                                          buffer_allocation_result = 0x438;
+                                                          system_buffer_allocation_result = 0x438;
                                                           goto label_;
                                                         }
                                                         system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                     &system_180a3ad60);
                                                         if (system_char_variable != '\0') {
-                                                          buffer_allocation_result = 0x439;
+                                                          system_buffer_allocation_result = 0x439;
                                                           goto label_;
                                                         }
                                                         system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                     &system_180a3adb8);
                                                         if (system_char_variable != '\0') {
-                                                          buffer_allocation_result = 0x43c;
+                                                          system_buffer_allocation_result = 0x43c;
                                                           goto label_;
                                                         }
                                                         system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                     &system_180a3ada0);
                                                         if (system_char_variable != '\0') {
-                                                          buffer_allocation_result = 0x440;
+                                                          system_buffer_allocation_result = 0x440;
                                                           goto label_;
                                                         }
                                                       }
@@ -7320,7 +7320,7 @@ system_execute_function(unsigned long long handle,unsigned long long thread_oper
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3ab38);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 100;
+                                                        system_buffer_allocation_result = 100;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
@@ -7330,7 +7330,7 @@ system_execute_function(unsigned long long handle,unsigned long long thread_oper
                                                                                   &system_180a3aad8);
                                                       if (system_char_variable != '\0') {
 label_:
-                                                        buffer_allocation_result = 0x6c;
+                                                        system_buffer_allocation_result = 0x6c;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
@@ -7339,7 +7339,7 @@ label_:
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3aaf8);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x74;
+                                                        system_buffer_allocation_result = 0x74;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
@@ -7354,7 +7354,7 @@ label_:
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3abc0);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x84;
+                                                        system_buffer_allocation_result = 0x84;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
@@ -7372,7 +7372,7 @@ label_:
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3ac30);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x96;
+                                                        system_buffer_allocation_result = 0x96;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
@@ -7415,139 +7415,139 @@ label_:
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3a948);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0xf8;
+                                                        system_buffer_allocation_result = 0xf8;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3a8f0);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0xfc;
+                                                        system_buffer_allocation_result = 0xfc;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3a8d8);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = string_buffer_size_constant;
+                                                        system_buffer_allocation_result = string_buffer_size_constant;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3a910);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x110;
+                                                        system_buffer_allocation_result = 0x110;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3a900);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x114;
+                                                        system_buffer_allocation_result = 0x114;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3a9d8);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x118;
+                                                        system_buffer_allocation_result = 0x118;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3a9c8);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x11c;
+                                                        system_buffer_allocation_result = 0x11c;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3a9f0);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x11e;
+                                                        system_buffer_allocation_result = 0x11e;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3a9e0);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x120;
+                                                        system_buffer_allocation_result = 0x120;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3a988);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x130;
+                                                        system_buffer_allocation_result = 0x130;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a2a000);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x170;
+                                                        system_buffer_allocation_result = 0x170;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a21a30);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x174;
+                                                        system_buffer_allocation_result = 0x174;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3a970);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x178;
+                                                        system_buffer_allocation_result = 0x178;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3a9b0);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x188;
+                                                        system_buffer_allocation_result = 0x188;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3a998);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x198;
+                                                        system_buffer_allocation_result = 0x198;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3aa98);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x19c;
+                                                        system_buffer_allocation_result = 0x19c;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3aa70);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x1a0;
+                                                        system_buffer_allocation_result = 0x1a0;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3aac0);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x220;
+                                                        system_buffer_allocation_result = 0x220;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3aab0);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x230;
+                                                        system_buffer_allocation_result = 0x230;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3aa20);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x234;
+                                                        system_buffer_allocation_result = 0x234;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3aa08);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x238;
+                                                        system_buffer_allocation_result = 0x238;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3aa50);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x23c;
+                                                        system_buffer_allocation_result = 0x23c;
                                                         goto label_;
                                                       }
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3aa38);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x240;
+                                                        system_buffer_allocation_result = 0x240;
                                                         goto label_;
                                                       }
                                                     }
@@ -7560,7 +7560,7 @@ label_:
                                                       system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                   &system_180a3a640);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 4;
+                                                        system_buffer_allocation_result = 4;
                                                         goto label_;
                                                       }
                                                       goto label_;
@@ -7628,21 +7628,21 @@ label_:
                                                                                 &system_180a3a748);
                                                     if (system_char_variable != '\0') {
 label_:
-                                                      buffer_allocation_result = 0xc;
+                                                      system_buffer_allocation_result = 0xc;
                                                       goto label_;
                                                     }
                                                     system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                 &system_180a3a7f0);
                                                     if (system_char_variable != '\0') {
 label_:
-                                                      buffer_allocation_result = 0x14;
+                                                      system_buffer_allocation_result = 0x14;
                                                       goto label_;
                                                     }
                                                     system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                                 &system_180a3a7e0);
                                                     if (system_char_variable != '\0') {
 label_:
-                                                      buffer_allocation_result = 0x1c;
+                                                      system_buffer_allocation_result = 0x1c;
                                                       goto label_;
                                                     }
                                                     pthread_operation_flags = &system_180a3a820;
@@ -7659,25 +7659,25 @@ label_:
                                                   system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                               &system_180a3a758);
                                                   if (system_char_variable != '\0') {
-                                                    buffer_allocation_result = config_path_buffer_size00;
+                                                    system_buffer_allocation_result = config_path_buffer_size00;
                                                     goto label_;
                                                   }
                                                   system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                               &system_180a3a788);
                                                   if (system_char_variable != '\0') {
-                                                    buffer_allocation_result = config_path_buffer_size10;
+                                                    system_buffer_allocation_result = config_path_buffer_size10;
                                                     goto label_;
                                                   }
                                                   system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                               &system_180a3a778);
                                                   if (system_char_variable != '\0') {
-                                                    buffer_allocation_result = config_path_buffer_size20;
+                                                    system_buffer_allocation_result = config_path_buffer_size20;
                                                     goto label_;
                                                   }
                                                   system_char_variable = func_0x0001800a1eb0(auStack_50,
                                                                               &system_180a3a738);
                                                   if (system_char_variable != '\0') {
-                                                    buffer_allocation_result = config_path_buffer_size24;
+                                                    system_buffer_allocation_result = config_path_buffer_size24;
                                                     goto label_;
                                                   }
                                                 }
@@ -7708,7 +7708,7 @@ label_:
                                             system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39ee0);
                                             if (system_char_variable != '\0') {
 label_:
-                                              buffer_allocation_result = 0x24;
+                                              system_buffer_allocation_result = 0x24;
                                               goto label_;
                                             }
                                             system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39e48);
@@ -7716,7 +7716,7 @@ label_:
                                             system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39dd0);
                                             if (system_char_variable != '\0') {
 label_:
-                                              buffer_allocation_result = 0x2c;
+                                              system_buffer_allocation_result = 0x2c;
                                               goto label_;
                                             }
                                             system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39df0);
@@ -7724,7 +7724,7 @@ label_:
                                             system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39fb0);
                                             if (system_char_variable != '\0') {
 label_:
-                                              buffer_allocation_result = 0x34;
+                                              system_buffer_allocation_result = 0x34;
                                               goto label_;
                                             }
                                             system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a3a670);
@@ -7732,13 +7732,13 @@ label_:
                                             system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a3a660);
                                             if (system_char_variable != '\0') {
 label_:
-                                              buffer_allocation_result = 0x3c;
+                                              system_buffer_allocation_result = 0x3c;
                                               goto label_;
                                             }
                                             system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a3a6a0);
                                             if (system_char_variable != '\0') {
 label_:
-                                              buffer_allocation_result = 0x50;
+                                              system_buffer_allocation_result = 0x50;
                                               goto label_;
                                             }
                                             system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a3a688);
@@ -7746,18 +7746,18 @@ label_:
                                             system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39d58);
                                             if (system_char_variable != '\0') {
 label_:
-                                              buffer_allocation_result = 0x5c;
+                                              system_buffer_allocation_result = 0x5c;
                                               goto label_;
                                             }
                                             system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39f18);
                                             if (system_char_variable != '\0') {
 label_:
-                                              buffer_allocation_result = 0x60;
+                                              system_buffer_allocation_result = 0x60;
                                               goto label_;
                                             }
                                             system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a3a768);
                                             if (system_char_variable != '\0') {
-                                              buffer_allocation_result = 0x61;
+                                              system_buffer_allocation_result = 0x61;
                                               goto label_;
                                             }
                                           }
@@ -7835,72 +7835,72 @@ label_:
                                     if (system_char_variable != '\0') goto label_;
                                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a3a468);
                                     if (system_char_variable != '\0') {
-                                      buffer_allocation_result = 0x53c;
+                                      system_buffer_allocation_result = 0x53c;
                                       goto label_;
                                     }
                                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a3a458);
                                     if (system_char_variable != '\0') {
-                                      buffer_allocation_result = 0x540;
+                                      system_buffer_allocation_result = 0x540;
                                       goto label_;
                                     }
                                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a3a498);
                                     if (system_char_variable != '\0') {
-                                      buffer_allocation_result = 0x544;
+                                      system_buffer_allocation_result = 0x544;
                                       goto label_;
                                     }
                                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a3a478);
                                     if (system_char_variable != '\0') {
-                                      buffer_allocation_result = 0x548;
+                                      system_buffer_allocation_result = 0x548;
                                       goto label_;
                                     }
                                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a3a560);
                                     if (system_char_variable != '\0') {
-                                      buffer_allocation_result = 0x54c;
+                                      system_buffer_allocation_result = 0x54c;
                                       goto label_;
                                     }
                                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a3a540);
                                     if (system_char_variable != '\0') {
-                                      buffer_allocation_result = 0x550;
+                                      system_buffer_allocation_result = 0x550;
                                       goto label_;
                                     }
                                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a3a5a8);
                                     if (system_char_variable != '\0') {
-                                      buffer_allocation_result = 0x554;
+                                      system_buffer_allocation_result = 0x554;
                                       goto label_;
                                     }
                                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a3a580);
                                     if (system_char_variable != '\0') {
-                                      buffer_allocation_result = 0x558;
+                                      system_buffer_allocation_result = 0x558;
                                       goto label_;
                                     }
                                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a3a508);
                                     if (system_char_variable != '\0') {
-                                      buffer_allocation_result = 0x55c;
+                                      system_buffer_allocation_result = 0x55c;
                                       goto label_;
                                     }
                                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a3a4f8);
                                     if (system_char_variable != '\0') {
-                                      buffer_allocation_result = 0x560;
+                                      system_buffer_allocation_result = 0x560;
                                       goto label_;
                                     }
                                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a3a530);
                                     if (system_char_variable != '\0') {
-                                      buffer_allocation_result = 0x564;
+                                      system_buffer_allocation_result = 0x564;
                                       goto label_;
                                     }
                                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a3a520);
                                     if (system_char_variable != '\0') {
-                                      buffer_allocation_result = 0x565;
+                                      system_buffer_allocation_result = 0x565;
                                       goto label_;
                                     }
                                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a3a630);
                                     if (system_char_variable != '\0') {
-                                      buffer_allocation_result = 0x566;
+                                      system_buffer_allocation_result = 0x566;
                                       goto label_;
                                     }
                                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a3a620);
                                     if (system_char_variable != '\0') {
-                                      buffer_allocation_result = 0x567;
+                                      system_buffer_allocation_result = 0x567;
                                       goto label_;
                                     }
                                   }
@@ -7948,7 +7948,7 @@ label_:
                               system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a3a058);
                               if (system_char_variable != '\0') {
 label_:
-                                buffer_allocation_result = 4;
+                                system_buffer_allocation_result = 4;
                                 goto label_;
                               }
                               system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39fe0);
@@ -7990,7 +7990,7 @@ label_:
                               system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a3a1b8);
                               if (system_char_variable != '\0') {
 label_:
-                                buffer_allocation_result = 0x70;
+                                system_buffer_allocation_result = 0x70;
                                 goto label_;
                               }
                               system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a3a1a8);
@@ -7998,7 +7998,7 @@ label_:
                               system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a3a2b0);
                               if (system_char_variable != '\0') {
 label_:
-                                buffer_allocation_result = 0x80;
+                                system_buffer_allocation_result = 0x80;
                                 goto label_;
                               }
                               system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a3a298);
@@ -8038,38 +8038,38 @@ label_:
                           system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39f78);
                           if (system_char_variable != '\0') {
 label_:
-                            buffer_allocation_result = 0x38;
+                            system_buffer_allocation_result = 0x38;
                             goto label_;
                           }
                           system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39fb0);
                           if (system_char_variable != '\0') {
 label_:
-                            buffer_allocation_result = SYSTEM_CONFIG_BUFFER_SIZE;
+                            system_buffer_allocation_result = SYSTEM_CONFIG_BUFFER_SIZE;
                             goto label_;
                           }
                           system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39f98);
                           if (system_char_variable != '\0') {
 label_:
-                            buffer_allocation_result = 0x44;
+                            system_buffer_allocation_result = 0x44;
                             goto label_;
                           }
                           system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39f28);
                           if (system_char_variable != '\0') {
 label_:
-                            buffer_allocation_result = 0x48;
+                            system_buffer_allocation_result = 0x48;
                             goto label_;
                           }
                           system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a1029c);
                           if (system_char_variable != '\0') {
 label_:
-                            buffer_allocation_result = 0x4c;
+                            system_buffer_allocation_result = 0x4c;
                             goto label_;
                           }
                           system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39f18);
                           if (system_char_variable != '\0') goto label_;
                           system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39f60);
                           if (system_char_variable != '\0') {
-                            buffer_allocation_result = 0x51;
+                            system_buffer_allocation_result = 0x51;
                             goto label_;
                           }
                         }
@@ -8081,123 +8081,123 @@ label_:
                         system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39dc0);
                         if (system_char_variable != '\0') {
 label_:
-                          buffer_allocation_result = 0x58;
+                          system_buffer_allocation_result = 0x58;
                           goto label_;
                         }
                         system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a35198);
                         if (system_char_variable != '\0') {
 label_:
-                          buffer_allocation_result = 0x68;
+                          system_buffer_allocation_result = 0x68;
                           goto label_;
                         }
                         system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39db0);
                         if (system_char_variable != '\0') {
 label_:
-                          buffer_allocation_result = 0x78;
+                          system_buffer_allocation_result = 0x78;
                           goto label_;
                         }
                         system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39d58);
                         if (system_char_variable != '\0') {
 label_:
-                          buffer_allocation_result = 0x88;
+                          system_buffer_allocation_result = 0x88;
                           goto label_;
                         }
                         system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39d40);
                         if (system_char_variable != '\0') {
 label_:
-                          buffer_allocation_result = 0x8c;
+                          system_buffer_allocation_result = 0x8c;
                           goto label_;
                         }
                         system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39d88);
                         if (system_char_variable != '\0') {
 label_:
-                          buffer_allocation_result = 0x90;
+                          system_buffer_allocation_result = 0x90;
                           goto label_;
                         }
                         system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39d70);
                         if (system_char_variable != '\0') {
 label_:
-                          buffer_allocation_result = 0x94;
+                          system_buffer_allocation_result = 0x94;
                           goto label_;
                         }
                         system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39e30);
                         if (system_char_variable != '\0') {
 label_:
-                          buffer_allocation_result = 0x98;
+                          system_buffer_allocation_result = 0x98;
                           goto label_;
                         }
                         system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39e18);
                         if (system_char_variable != '\0') {
 label_:
-                          buffer_allocation_result = 0x9c;
+                          system_buffer_allocation_result = 0x9c;
                           goto label_;
                         }
                         system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39e58);
                         if (system_char_variable != '\0') {
 label_:
-                          buffer_allocation_result = 0xa0;
+                          system_buffer_allocation_result = 0xa0;
                           goto label_;
                         }
                         system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a34948);
                         if (system_char_variable != '\0') {
 label_:
-                          buffer_allocation_result = 0xa4;
+                          system_buffer_allocation_result = 0xa4;
                           goto label_;
                         }
                         system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39e48);
                         if (system_char_variable != '\0') {
 label_:
-                          buffer_allocation_result = 0xa8;
+                          system_buffer_allocation_result = 0xa8;
                           goto label_;
                         }
                         system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39de0);
                         if (system_char_variable != '\0') {
 label_:
-                          buffer_allocation_result = 0xac;
+                          system_buffer_allocation_result = 0xac;
                           goto label_;
                         }
                         system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39dd0);
                         if (system_char_variable != '\0') {
 label_:
-                          buffer_allocation_result = 0xb0;
+                          system_buffer_allocation_result = 0xb0;
                           goto label_;
                         }
                         system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39e08);
                         if (system_char_variable != '\0') {
-                          buffer_allocation_result = 0xb4;
+                          system_buffer_allocation_result = 0xb4;
                           goto label_;
                         }
                         system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39df0);
                         if (system_char_variable != '\0') {
-                          buffer_allocation_result = 0xb5;
+                          system_buffer_allocation_result = 0xb5;
                           goto label_;
                         }
                         system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39ee0);
                         if (system_char_variable != '\0') {
 label_:
-                          buffer_allocation_result = 0xb8;
+                          system_buffer_allocation_result = 0xb8;
                           goto label_;
                         }
                         system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39ed0);
                         if (system_char_variable != '\0') {
 label_:
-                          buffer_allocation_result = 0xbc;
+                          system_buffer_allocation_result = 0xbc;
                           goto label_;
                         }
                         system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39f00);
                         if (system_char_variable != '\0') {
-                          buffer_allocation_result = 0xbd;
+                          system_buffer_allocation_result = 0xbd;
                           goto label_;
                         }
                         system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39ef0);
                         if (system_char_variable != '\0') {
-                          buffer_allocation_result = 0xbe;
+                          system_buffer_allocation_result = 0xbe;
                           goto label_;
                         }
                         system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39e90);
                         if (system_char_variable != '\0') {
 label_:
-                          buffer_allocation_result = 0xc0;
+                          system_buffer_allocation_result = 0xc0;
                           goto label_;
                         }
                       }
@@ -8225,30 +8225,30 @@ label_:
                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39988);
                     if (system_char_variable != '\0') {
 label_:
-                      buffer_allocation_result = 1;
+                      system_buffer_allocation_result = 1;
                       goto label_;
                     }
                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39970);
                     if (system_char_variable != '\0') {
 label_:
-                      buffer_allocation_result = 2;
+                      system_buffer_allocation_result = 2;
                       goto label_;
                     }
                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a398d8);
                     if (system_char_variable != '\0') {
-                      buffer_allocation_result = 3;
+                      system_buffer_allocation_result = 3;
                       goto label_;
                     }
                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a398b8);
                     if (system_char_variable != '\0') goto label_;
                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39910);
                     if (system_char_variable != '\0') {
-                      buffer_allocation_result = 5;
+                      system_buffer_allocation_result = 5;
                       goto label_;
                     }
                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a398f0);
                     if (system_char_variable != '\0') {
-                      buffer_allocation_result = 6;
+                      system_buffer_allocation_result = 6;
                       goto label_;
                     }
                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39a28);
@@ -8273,12 +8273,12 @@ label_:
                     if (system_char_variable != '\0') goto label_;
                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39b18);
                     if (system_char_variable != '\0') {
-                      buffer_allocation_result = 0x1d;
+                      system_buffer_allocation_result = 0x1d;
                       goto label_;
                     }
                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39b00);
                     if (system_char_variable != '\0') {
-                      buffer_allocation_result = 0x1e;
+                      system_buffer_allocation_result = 0x1e;
                       goto label_;
                     }
                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39a88);
@@ -8312,7 +8312,7 @@ label_:
                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39cb8);
                     if (system_char_variable != '\0') {
 label_:
-                      buffer_allocation_result = 0x7c;
+                      system_buffer_allocation_result = 0x7c;
                       goto label_;
                     }
                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39c98);
@@ -8327,22 +8327,22 @@ label_:
                     if (system_char_variable != '\0') goto label_;
                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39cf8);
                     if (system_char_variable != '\0') {
-                      buffer_allocation_result = 0xc4;
+                      system_buffer_allocation_result = 0xc4;
                       goto label_;
                     }
                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39ce0);
                     if (system_char_variable != '\0') {
-                      buffer_allocation_result = 200;
+                      system_buffer_allocation_result = 200;
                       goto label_;
                     }
                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39d28);
                     if (system_char_variable != '\0') {
-                      buffer_allocation_result = 0xcc;
+                      system_buffer_allocation_result = 0xcc;
                       goto label_;
                     }
                     system_char_variable = func_0x0001800a1eb0(auStack_50,&system_180a39d10);
                     if (system_char_variable != '\0') {
-                      buffer_allocation_result = 0xd0;
+                      system_buffer_allocation_result = 0xd0;
                       goto label_;
                     }
                   }
@@ -8354,13 +8354,13 @@ label_:
                   system_char_variable = validate_handle_parameters(auStack_50,&system_180a397f8,1);
                   if (system_char_variable != '\0') {
 label_:
-                    buffer_allocation_result = STRING_BUFFER_SIZE;
+                    system_buffer_allocation_result = STRING_BUFFER_SIZE;
                     goto label_;
                   }
                   system_char_variable = validate_handle_parameters(auStack_50,&system_180a397e8,1);
                   if (system_char_variable != '\0') {
 label_:
-                    buffer_allocation_result = config_path_buffer_size;
+                    system_buffer_allocation_result = config_path_buffer_size;
                     goto label_;
                   }
                   system_char_variable = validate_handle_parameters(auStack_50,&system_180a39850,1);
@@ -8368,17 +8368,17 @@ label_:
                   system_char_variable = validate_handle_parameters(auStack_50,&system_180a39820,1);
                   if (system_char_variable != '\0') {
 label_:
-                    buffer_allocation_result = 0x30;
+                    system_buffer_allocation_result = 0x30;
                     goto label_;
                   }
                   system_char_variable = validate_handle_parameters(auStack_50,&system_180a39940,1);
                   if (system_char_variable != '\0') {
-                    buffer_allocation_result = 0x31;
+                    system_buffer_allocation_result = 0x31;
                     goto label_;
                   }
                   system_char_variable = validate_handle_parameters(auStack_50,&system_180a19c8c,1);
                   if (system_char_variable != '\0') {
-                    buffer_allocation_result = 0x32;
+                    system_buffer_allocation_result = 0x32;
                     goto label_;
                   }
                 }
@@ -8402,12 +8402,12 @@ label_:
                 system_char_variable = validate_handle_parameters(auStack_50,&system_180a19c8c,1);
                 if (system_char_variable != '\0') {
 label_:
-                  buffer_allocation_result = 0x19;
+                  system_buffer_allocation_result = 0x19;
                   goto label_;
                 }
                 system_char_variable = validate_handle_parameters(auStack_50,&system_180a39864,1);
                 if (system_char_variable != '\0') {
-                  buffer_allocation_result = 0x35;
+                  system_buffer_allocation_result = 0x35;
                   goto label_;
                 }
                 system_char_variable = validate_handle_parameters(auStack_50,&system_180a398a8,1);
@@ -8421,7 +8421,7 @@ label_:
               system_char_variable = validate_handle_parameters(auStack_50,&system_180a39538,1);
               if (system_char_variable != '\0') {
 label_:
-                buffer_allocation_result = 7;
+                system_buffer_allocation_result = 7;
                 goto label_;
               }
               system_char_variable = validate_handle_parameters(auStack_50,&system_180a396c8,1);
@@ -8431,7 +8431,7 @@ label_:
               system_char_variable = validate_handle_parameters(auStack_50,&system_180a39710,1);
               if (system_char_variable != '\0') {
 label_:
-                buffer_allocation_result = 10;
+                system_buffer_allocation_result = 10;
                 goto label_;
               }
               system_char_variable = validate_handle_parameters(auStack_50,&system_180a396f0,1);
@@ -8440,17 +8440,17 @@ label_:
               if (system_char_variable != '\0') goto label_;
               system_char_variable = validate_handle_parameters(auStack_50,&system_180a39628,1);
               if (system_char_variable != '\0') {
-                buffer_allocation_result = 0xd;
+                system_buffer_allocation_result = 0xd;
                 goto label_;
               }
               system_char_variable = validate_handle_parameters(auStack_50,&system_180a39688,1);
               if (system_char_variable != '\0') {
-                buffer_allocation_result = 0xe;
+                system_buffer_allocation_result = 0xe;
                 goto label_;
               }
               system_char_variable = validate_handle_parameters(auStack_50,&system_180a39660,1);
               if (system_char_variable != '\0') {
-                buffer_allocation_result = 0xf;
+                system_buffer_allocation_result = 0xf;
                 goto label_;
               }
               system_char_variable = validate_handle_parameters(auStack_50,&system_180a397a8,1);
@@ -8468,7 +8468,7 @@ label_:
             system_char_variable = validate_handle_parameters(auStack_50,&system_180a39390,1);
             if (system_char_variable != '\0') {
 label_:
-              buffer_allocation_result = 9;
+              system_buffer_allocation_result = 9;
               goto label_;
             }
             system_char_variable = validate_handle_parameters(auStack_50,&system_180a393f0,1);
@@ -8478,7 +8478,7 @@ label_:
             system_char_variable = validate_handle_parameters(auStack_50,&system_180a39348,1);
             if (system_char_variable != '\0') {
 label_:
-              buffer_allocation_result = 0x17;
+              system_buffer_allocation_result = 0x17;
               goto label_;
             }
             system_char_variable = validate_handle_parameters(auStack_50,&system_180a39328,1);
@@ -8487,68 +8487,68 @@ label_:
             if (system_char_variable != '\0') goto label_;
             system_char_variable = validate_handle_parameters(auStack_50,&system_180a39360,1);
             if (system_char_variable != '\0') {
-              buffer_allocation_result = 0x21;
+              system_buffer_allocation_result = 0x21;
               goto label_;
             }
             system_char_variable = validate_handle_parameters(auStack_50,&system_180a394a0,1);
             if (system_char_variable != '\0') {
-              buffer_allocation_result = 0x22;
+              system_buffer_allocation_result = 0x22;
               goto label_;
             }
             system_char_variable = validate_handle_parameters(auStack_50,&system_180a39480,1);
             if (system_char_variable != '\0') {
-              buffer_allocation_result = 0x23;
+              system_buffer_allocation_result = 0x23;
               goto label_;
             }
             system_char_variable = validate_handle_parameters(auStack_50,&system_180a394e0,1);
             if (system_char_variable != '\0') goto label_;
             system_char_variable = validate_handle_parameters(auStack_50,&system_180a394b8,1);
             if (system_char_variable != '\0') {
-              buffer_allocation_result = 0x25;
+              system_buffer_allocation_result = 0x25;
               goto label_;
             }
             system_char_variable = validate_handle_parameters(auStack_50,&system_180a39428,1);
             if (system_char_variable != '\0') {
-              buffer_allocation_result = 0x26;
+              system_buffer_allocation_result = 0x26;
               goto label_;
             }
             system_char_variable = validate_handle_parameters(auStack_50,&system_180a39408,1);
             if (system_char_variable != '\0') {
-              buffer_allocation_result = 0x27;
+              system_buffer_allocation_result = 0x27;
               goto label_;
             }
             system_char_variable = validate_handle_parameters(auStack_50,&system_180a39468,1);
             if (system_char_variable != '\0') goto label_;
             system_char_variable = validate_handle_parameters(auStack_50,&system_180a39450,1);
             if (system_char_variable != '\0') {
-              buffer_allocation_result = 0x29;
+              system_buffer_allocation_result = 0x29;
               goto label_;
             }
             system_char_variable = validate_handle_parameters(auStack_50,&system_180a395c0,1);
             if (system_char_variable != '\0') {
-              buffer_allocation_result = 0x2a;
+              system_buffer_allocation_result = 0x2a;
               goto label_;
             }
             system_char_variable = validate_handle_parameters(auStack_50,&system_180a39598,1);
             if (system_char_variable != '\0') {
-              buffer_allocation_result = 0x2b;
+              system_buffer_allocation_result = 0x2b;
               goto label_;
             }
             system_char_variable = validate_handle_parameters(auStack_50,&system_180a39600,1);
             if (system_char_variable != '\0') goto label_;
             system_char_variable = validate_handle_parameters(auStack_50,&system_180a395e0,1);
             if (system_char_variable != '\0') {
-              buffer_allocation_result = 0x2d;
+              system_buffer_allocation_result = 0x2d;
               goto label_;
             }
             system_char_variable = validate_handle_parameters(auStack_50,&system_180a39518,1);
             if (system_char_variable != '\0') {
-              buffer_allocation_result = 0x2e;
+              system_buffer_allocation_result = 0x2e;
               goto label_;
             }
             system_char_variable = validate_handle_parameters(auStack_50,&system_180a39500,1);
             if (system_char_variable != '\0') {
-              buffer_allocation_result = 0x2f;
+              system_buffer_allocation_result = 0x2f;
               goto label_;
             }
           }
@@ -8560,7 +8560,7 @@ label_:
           system_char_variable = validate_handle_parameters(auStack_50,&system_180a39188,1);
           if (system_char_variable != '\0') {
 label_:
-            buffer_allocation_result = 0xb;
+            system_buffer_allocation_result = 0xb;
             goto label_;
           }
           system_char_variable = validate_handle_parameters(auStack_50,&system_180a39210,1);
@@ -8570,29 +8570,29 @@ label_:
           system_char_variable = validate_handle_parameters(auStack_50,&system_180a39128,1);
           if (system_char_variable != '\0') {
 label_:
-            buffer_allocation_result = 0x11;
+            system_buffer_allocation_result = 0x11;
             goto label_;
           }
           system_char_variable = validate_handle_parameters(auStack_50,&system_180a39110,1);
           if (system_char_variable != '\0') {
-            buffer_allocation_result = 0x12;
+            system_buffer_allocation_result = 0x12;
             goto label_;
           }
           system_char_variable = validate_handle_parameters(auStack_50,&system_180a39170,1);
           if (system_char_variable != '\0') {
-            buffer_allocation_result = 0x13;
+            system_buffer_allocation_result = 0x13;
             goto label_;
           }
           system_char_variable = validate_handle_parameters(auStack_50,&system_180a39148,1);
           if (system_char_variable != '\0') goto label_;
           system_char_variable = validate_handle_parameters(auStack_50,&system_180a392d0,1);
           if (system_char_variable != '\0') {
-            buffer_allocation_result = 0x15;
+            system_buffer_allocation_result = 0x15;
             goto label_;
           }
           system_char_variable = validate_handle_parameters(auStack_50,&system_180a392b8,1);
           if (system_char_variable != '\0') {
-            buffer_allocation_result = 0x16;
+            system_buffer_allocation_result = 0x16;
             goto label_;
           }
           system_char_variable = validate_handle_parameters(auStack_50,&system_180a39308,1);
@@ -8604,12 +8604,12 @@ label_:
           system_char_variable = validate_handle_parameters(auStack_50,&system_180a39230,1);
           if (system_char_variable != '\0') {
 label_:
-            buffer_allocation_result = 0x1a;
+            system_buffer_allocation_result = 0x1a;
             goto label_;
           }
           system_char_variable = validate_handle_parameters(auStack_50,&system_180a39298,1);
           if (system_char_variable != '\0') {
-            buffer_allocation_result = 0x1b;
+            system_buffer_allocation_result = 0x1b;
             goto label_;
           }
         }
@@ -8648,7 +8648,7 @@ label_:
         if (system_char_variable != '\0') goto label_;
         system_char_variable = validate_handle_parameters(auStack_50,&system_180a34c20,1);
         if (system_char_variable != '\0') {
-          buffer_allocation_result = 0x54;
+          system_buffer_allocation_result = 0x54;
           goto label_;
         }
         system_char_variable = validate_handle_parameters(auStack_50,&system_180a39020,1);
@@ -8666,7 +8666,7 @@ label_:
       system_char_variable = validate_handle_parameters(auStack_50,&system_180a38f50,1);
       if (system_char_variable != '\0') {
 label_:
-        buffer_allocation_result = 8;
+        system_buffer_allocation_result = 8;
         goto label_;
       }
       system_char_variable = validate_handle_parameters(auStack_50,&system_180a38f40,1);
@@ -8674,7 +8674,7 @@ label_:
       system_char_variable = validate_handle_parameters(auStack_50,&system_180a38ee0,1);
       if (system_char_variable != '\0') {
 label_:
-        buffer_allocation_result = 0x18;
+        system_buffer_allocation_result = 0x18;
         goto label_;
       }
       system_char_variable = validate_handle_parameters(auStack_50,&system_180a38ed0,1);
@@ -8682,16 +8682,16 @@ label_:
       system_char_variable = validate_handle_parameters(auStack_50,&system_180a38f00,1);
       if (system_char_variable != '\0') {
 label_:
-        buffer_allocation_result = 0x28;
+        system_buffer_allocation_result = 0x28;
         goto label_;
       }
     }
   }
-  buffer_allocation_result = 0;
+  system_buffer_allocation_result = 0;
 label_:
   system_execute_function(auStack_50);
   system_execute_function(auStack_30);
-  return buffer_allocation_result;
+  return system_buffer_allocation_result;
 }
   data_180bf66d8 = 0;
   system_crypto_002(system_execute_function);
@@ -8779,7 +8779,7 @@ int find_string_index_in_array(long long handle)
   int thread_result_index;
   long long string_length_counter;
   int thread_result_index;
-  ulong long buffer_allocation_result;
+  ulong long system_buffer_allocation_result;
   long long string_length_counter;
   void *thread_stack_pointer;
   long long thread_stack_base_address;
@@ -8790,17 +8790,17 @@ int find_string_index_in_array(long long handle)
   if (0 < thread_result_index) {
     string_length_counter = 0;
     do {
-      buffer_allocation_result = 0;
+      system_buffer_allocation_result = 0;
       string_length_counter = 0;
       if (0 < thread_priority_level) {
         do {
-          if (*(char *)(*(long long *)(handle + 8) + string_length_counter + string_length_counter) != *(char *)(buffer_allocation_result + thread_stack_base_address))
+          if (*(char *)(*(long long *)(handle + 8) + string_length_counter + string_length_counter) != *(char *)(system_buffer_allocation_result + thread_stack_base_address))
           break;
-          buffer_allocation_result = (ulong long)((int)buffer_allocation_result + 1);
+          system_buffer_allocation_result = (ulong long)((int)system_buffer_allocation_result + 1);
           string_length_counter = string_length_counter + 1;
         } while (string_length_counter < thread_priority_level);
       }
-      if ((int)buffer_allocation_result == thread_priority_level) goto label_;
+      if ((int)system_buffer_allocation_result == thread_priority_level) goto label_;
       thread_result_index = thread_result_index + 1;
       string_length_counter = string_length_counter + 1;
     } while (string_length_counter < thread_result_index);
@@ -8820,23 +8820,23 @@ int process_handle_parameters(long long handle,long long thread_operation_flags)
   long long string_length_counter;
   int thread_result_index;
   long long string_length_counter;
-  ulong long buffer_allocation_result;
+  ulong long system_buffer_allocation_result;
   thread_result_index = *(int *)(thread_operation_flags + STRING_BUFFER_SIZE);
   thread_result_index = *(int *)(handle + STRING_BUFFER_SIZE) - thread_result_index;
   if (-1 < thread_result_index) {
     string_length_counter = (long long)thread_result_index;
     do {
-      buffer_allocation_result = 0;
+      system_buffer_allocation_result = 0;
       string_length_counter = 0;
       if (0 < thread_result_index) {
         do {
           if (*(char *)(*(long long *)(handle + 8) + string_length_counter + string_length_counter) !=
-              *(char *)(buffer_allocation_result + *(long long *)(thread_operation_flags + 8))) break;
-          buffer_allocation_result = (ulong long)((int)buffer_allocation_result + 1);
+              *(char *)(system_buffer_allocation_result + *(long long *)(thread_operation_flags + 8))) break;
+          system_buffer_allocation_result = (ulong long)((int)system_buffer_allocation_result + 1);
           string_length_counter = string_length_counter + 1;
         } while (string_length_counter < thread_result_index);
       }
-      if ((int)buffer_allocation_result == thread_result_index) {
+      if ((int)system_buffer_allocation_result == thread_result_index) {
         return thread_result_index;
       }
       thread_result_index = thread_result_index + -1;
@@ -8847,12 +8847,12 @@ int process_handle_parameters(long long handle,long long thread_operation_flags)
 }
 unsigned long long * setup_thread_parameters(long long handle,unsigned long long *thread_operation_flags,int mutex_attr,int mutex_type)
 {
-  unsigned char buffer_allocation_result;
+  unsigned char system_buffer_allocation_result;
   int thread_result_index;
   int thread_result_index;
-  ulong long buffer_allocation_result;
-  ulong long buffer_allocation_result;
-  buffer_allocation_result = (ulong long)mutex_attr;
+  ulong long system_buffer_allocation_result;
+  ulong long system_buffer_allocation_result;
+  system_buffer_allocation_result = (ulong long)mutex_attr;
   thread_result_index = mutex_type;
   if (mutex_type < 0) {
     thread_result_index = *(int *)(handle + STRING_BUFFER_SIZE);
@@ -8869,15 +8869,15 @@ unsigned long long * setup_thread_parameters(long long handle,unsigned long long
     thread_result_index = thread_result_index - mutex_attr;
   }
   system_thread_manager_001(thread_operation_flags,thread_result_index + 1,mutex_attr,mutex_type,1,DEFAULT_THREAD_POOL_FLAG);
-  for (buffer_allocation_result = buffer_allocation_result;
-      ((long long)buffer_allocation_result < (long long)thread_result_index && ((uint)buffer_allocation_result < *(uint *)(handle + STRING_BUFFER_SIZE)));
-      buffer_allocation_result = (ulong long)((uint)buffer_allocation_result + 1)) {
-    buffer_allocation_result = *(unsigned char *)(buffer_allocation_result + *(long long *)(handle + 8));
+  for (system_buffer_allocation_result = system_buffer_allocation_result;
+      ((long long)system_buffer_allocation_result < (long long)thread_result_index && ((uint)system_buffer_allocation_result < *(uint *)(handle + STRING_BUFFER_SIZE)));
+      system_buffer_allocation_result = (ulong long)((uint)system_buffer_allocation_result + 1)) {
+    system_buffer_allocation_result = *(unsigned char *)(system_buffer_allocation_result + *(long long *)(handle + 8));
     system_thread_manager_001(thread_operation_flags,*(int *)(thread_operation_flags + 2) + 1);
-    *(unsigned char *)((ulong long)*(uint *)(thread_operation_flags + 2) + thread_operation_flags[1]) = buffer_allocation_result;
+    *(unsigned char *)((ulong long)*(uint *)(thread_operation_flags + 2) + thread_operation_flags[1]) = system_buffer_allocation_result;
     *(unsigned char *)((ulong long)(*(int *)(thread_operation_flags + 2) + 1) + thread_operation_flags[1]) = 0;
     *(int *)(thread_operation_flags + 2) = *(int *)(thread_operation_flags + 2) + 1;
-    buffer_allocation_result = buffer_allocation_result + 1;
+    system_buffer_allocation_result = system_buffer_allocation_result + 1;
   }
   return thread_operation_flags;
 }
@@ -8890,14 +8890,14 @@ unsigned long long * setup_thread_parameters(long long handle,unsigned long long
            system_execute_function(system_global_data_pointer,STRING_BUFFER_SIZE,CONCAT71((int7)((ulong long)character_scan_pointer >> 8),0x13));
   *(unsigned char *)input_string_pointer = 0;
   thread_stack_pointer = input_string_pointer;
-  buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
+  system_buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
   *input_string_pointer = 0x7265206573726150;
   *(unsigned int *)(input_string_pointer + 1) = 0x3a726f72;
   *(unsigned short *)((long long)input_string_pointer + 0xc) = 0x2720;
   *(unsigned char *)((long long)input_string_pointer + 0xe) = 0;
   stack_size_limit = 0xe;
   system_initialization_result0 = -1;
-  stack_size_limit._0_4_ = buffer_allocation_result;
+  stack_size_limit._0_4_ = system_buffer_allocation_result;
   if (handle != 0) {
     do {
       string_length_counter = system_initialization_result0;
@@ -8905,7 +8905,7 @@ unsigned long long * setup_thread_parameters(long long handle,unsigned long long
     } while (*(char *)(system_initialization_result0 + handle) != '\0');
     if (0 < (int)system_initialization_result0) {
       thread_result_index = (int)string_length_counter;
-      if ((thread_result_index != -0xf) && (buffer_allocation_result < thread_result_index + STRING_BUFFER_SIZEU)) {
+      if ((thread_result_index != -0xf) && (system_buffer_allocation_result < thread_result_index + STRING_BUFFER_SIZEU)) {
         stack_size_limit = 0x13;
         input_string_pointer = (unsigned long long *)system_execute_function(system_global_data_pointer,input_string_pointer,thread_result_index + STRING_BUFFER_SIZEU,STRING_BUFFER_SIZE);
         thread_stack_pointer = input_string_pointer;
@@ -8919,9 +8919,9 @@ unsigned long long * setup_thread_parameters(long long handle,unsigned long long
     *(unsigned char *)input_string_pointer = 0;
 label_:
     thread_stack_pointer = input_string_pointer;
-    buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
+    system_buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
   }
-  else if (buffer_allocation_result < 0x19) {
+  else if (system_buffer_allocation_result < 0x19) {
     stack_size_limit = 0x13;
     input_string_pointer = (unsigned long long *)system_execute_function(system_global_data_pointer,input_string_pointer,0x19,STRING_BUFFER_SIZE);
     goto label_;
@@ -8930,7 +8930,7 @@ label_:
   *(unsigned short *)((long long)input_string_pointer + 0x16) = config_path_buffer_size65;
   *(unsigned char *)(input_string_pointer + 3) = 0;
   stack_size_limit = 0x18;
-  stack_size_limit._0_4_ = buffer_allocation_result;
+  stack_size_limit._0_4_ = system_buffer_allocation_result;
   system_execute_function(acStack_40,&system_1809fd0a0,thread_result_index);
   system_initialization_result0 = -1;
   do {
@@ -8949,21 +8949,21 @@ label_:
     thread_stack_pointer = (unsigned long long *)0x0;
     stack_size_limit = (ulong long)stack_size_limit._4_4_ << config_path_buffer_size;
     thread_stack_pointer = &g_threadString4;
-    system_crypto_001(stack_size_limit ^ (ulong long)auStack_98);
+    system_execute_crypto_operation(stack_size_limit ^ (ulong long)auStack_98);
   }
   if (thread_result_index != -0x18) {
-    buffer_allocation_result = thread_result_index + 0x19;
+    system_buffer_allocation_result = thread_result_index + 0x19;
     if (input_string_pointer == (unsigned long long *)0x0) {
-      if ((int)buffer_allocation_result < STRING_BUFFER_SIZE) {
-        buffer_allocation_result = STRING_BUFFER_SIZE;
+      if ((int)system_buffer_allocation_result < STRING_BUFFER_SIZE) {
+        system_buffer_allocation_result = STRING_BUFFER_SIZE;
       }
-      input_string_pointer = (unsigned long long *)system_execute_function(system_global_data_pointer,(long long)(int)buffer_allocation_result,0x13);
+      input_string_pointer = (unsigned long long *)system_execute_function(system_global_data_pointer,(long long)(int)system_buffer_allocation_result,0x13);
       *(unsigned char *)input_string_pointer = 0;
     }
     else {
-      if (buffer_allocation_result <= buffer_allocation_result) goto label_;
+      if (system_buffer_allocation_result <= system_buffer_allocation_result) goto label_;
       stack_size_limit = 0x13;
-      input_string_pointer = (unsigned long long *)system_execute_function(system_global_data_pointer,input_string_pointer,buffer_allocation_result,STRING_BUFFER_SIZE);
+      input_string_pointer = (unsigned long long *)system_execute_function(system_global_data_pointer,input_string_pointer,system_buffer_allocation_result,STRING_BUFFER_SIZE);
     }
     thread_stack_pointer = input_string_pointer;
     stack_size_limit._0_4_ = allocate_temporary_buffer(input_string_pointer);
@@ -8977,11 +8977,11 @@ char * system_execute_function(unsigned int handle,unsigned long long thread_ope
 {
   char system_char_variable;
   unsigned int thread_operation_flags;
-  unsigned int buffer_allocation_result;
+  unsigned int system_buffer_allocation_result;
   void *input_string_pointer;
   int thread_result_index;
-  unsigned int buffer_allocation_result;
-  uint buffer_allocation_result;
+  unsigned int system_buffer_allocation_result;
+  uint system_buffer_allocation_result;
   long long string_length_counter;
   char *character_scan_pointer;
   unsigned int *input_string_pointer;
@@ -8990,7 +8990,7 @@ char * system_execute_function(unsigned int handle,unsigned long long thread_ope
   void *input_string_pointer;
   char *character_scan_pointer;
   char *character_scan_pointer;
-  ulong long buffer_allocation_result;
+  ulong long system_buffer_allocation_result;
   char *character_scan_pointer;
   char *character_scan_pointer;
   char *character_scan_pointer;
@@ -9027,7 +9027,7 @@ char * system_execute_function(unsigned int handle,unsigned long long thread_ope
   void *thread_stack_pointer;
   unsigned long long stack_size_limit;
   unsigned long long *thread_stack_pointer;
-  ulong long buffer_allocation_result;
+  ulong long system_buffer_allocation_result;
   stack_size_limit = DEFAULT_THREAD_POOL_FLAG;
   plStack_120 = param_5;
   thread_stack_base_address = param_6;
@@ -9085,30 +9085,30 @@ char * system_execute_function(unsigned int handle,unsigned long long thread_ope
       stack_size_limit = 0;
       thread_stack_pointer = (void *)0x0;
       stack_size_limit = 0;
-      buffer_allocation_result = *(uint *)(thread_stack_pointer + 2);
-      buffer_allocation_result = (ulong long)buffer_allocation_result;
+      system_buffer_allocation_result = *(uint *)(thread_stack_pointer + 2);
+      system_buffer_allocation_result = (ulong long)system_buffer_allocation_result;
       if (thread_stack_pointer[1] != 0) {
-        system_thread_manager_001(&thread_stack_pointer,buffer_allocation_result);
+        system_thread_manager_001(&thread_stack_pointer,system_buffer_allocation_result);
       }
       input_string_pointer = thread_stack_pointer;
-      if (buffer_allocation_result != 0) {
-        memcpy(thread_stack_pointer,thread_stack_pointer[1],buffer_allocation_result);
+      if (system_buffer_allocation_result != 0) {
+        memcpy(thread_stack_pointer,thread_stack_pointer[1],system_buffer_allocation_result);
       }
       if (thread_stack_pointer != (void *)0x0) {
-        thread_stack_pointer[buffer_allocation_result] = 0;
+        thread_stack_pointer[system_buffer_allocation_result] = 0;
       }
-      stack_size_limit = buffer_allocation_result;
+      stack_size_limit = system_buffer_allocation_result;
       stack_size_limit._4_4_ = *(uint *)((long long)thread_stack_pointer + 0x1c);
       if (input_string_pointer != (void *)0x0) {
-        buffer_allocation_result = 0xffffffffffffffff;
+        system_buffer_allocation_result = 0xffffffffffffffff;
         do {
-          buffer_allocation_result = buffer_allocation_result;
-          buffer_allocation_result = buffer_allocation_result + 1;
-        } while (input_string_pointer[buffer_allocation_result] != '\0');
+          system_buffer_allocation_result = system_buffer_allocation_result;
+          system_buffer_allocation_result = system_buffer_allocation_result + 1;
+        } while (input_string_pointer[system_buffer_allocation_result] != '\0');
         param_5 = plStack_120;
-        if (0 < (int)buffer_allocation_result) {
-          system_thread_manager_001(&thread_stack_pointer,buffer_allocation_result & 0xffffffff);
-          memcpy(thread_stack_pointer + stack_size_limit,input_string_pointer,(long long)((int)buffer_allocation_result + 2));
+        if (0 < (int)system_buffer_allocation_result) {
+          system_thread_manager_001(&thread_stack_pointer,system_buffer_allocation_result & 0xffffffff);
+          memcpy(thread_stack_pointer + stack_size_limit,input_string_pointer,(long long)((int)system_buffer_allocation_result + 2));
         }
       }
       input_string_pointer = &default_resource_string;
@@ -9209,8 +9209,8 @@ label_:
           input_string_pointer = (unsigned int *)system_execute_function(system_global_data_pointer,0x15,0x13);
           *(unsigned char *)input_string_pointer = 0;
           thread_stack_pointer = input_string_pointer;
-          buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
-          stack_size_limit = (char *)merge_32bit_values(stack_size_limit._4_4_,buffer_allocation_result);
+          system_buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
+          stack_size_limit = (char *)merge_32bit_values(stack_size_limit._4_4_,system_buffer_allocation_result);
           *input_string_pointer = config_path_buffer_size4c4d58;
           input_string_pointer[1] = 0x65646f6e;
           input_string_pointer[2] = 0x74697720;
@@ -9225,18 +9225,18 @@ label_:
           input_string_pointer = (unsigned int *)system_execute_function(system_global_data_pointer,0x15,0x13);
           *(unsigned char *)input_string_pointer = 0;
           thread_stack_pointer = input_string_pointer;
-          buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
-          buffer_allocation_result = input_string_pointer[1];
+          system_buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
+          system_buffer_allocation_result = input_string_pointer[1];
           thread_operation_flags = input_string_pointer[2];
-          buffer_allocation_result = input_string_pointer[3];
+          system_buffer_allocation_result = input_string_pointer[3];
           *input_string_pointer = *input_string_pointer;
-          input_string_pointer[1] = buffer_allocation_result;
+          input_string_pointer[1] = system_buffer_allocation_result;
           input_string_pointer[2] = thread_operation_flags;
-          input_string_pointer[3] = buffer_allocation_result;
+          input_string_pointer[3] = system_buffer_allocation_result;
           input_string_pointer[4] = input_string_pointer[4];
           stack_size_limit = 0x14;
           *(unsigned char *)(input_string_pointer + 5) = 0;
-          stack_size_limit = (ulong long)buffer_allocation_result;
+          stack_size_limit = (ulong long)system_buffer_allocation_result;
           if (mutex_attr != (char *)0x0) {
             string_length_counter = -1;
             do {
@@ -9245,12 +9245,12 @@ label_:
             } while (mutex_attr[string_length_counter] != '\0');
             if (0 < (int)string_length_counter) {
               thread_result_index = (int)string_length_counter;
-              if ((thread_result_index != -0x15) && (buffer_allocation_result < thread_result_index + 0x16U)) {
+              if ((thread_result_index != -0x15) && (system_buffer_allocation_result < thread_result_index + 0x16U)) {
                 input_string_pointer = (unsigned int *)
                           system_execute_function(system_global_data_pointer,input_string_pointer,thread_result_index + 0x16U,STRING_BUFFER_SIZE,0x13);
                 thread_stack_pointer = input_string_pointer;
-                buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
-                stack_size_limit = merge_32bit_values(stack_size_limit._4_4_,buffer_allocation_result);
+                system_buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
+                stack_size_limit = merge_32bit_values(stack_size_limit._4_4_,system_buffer_allocation_result);
               }
               memcpy(input_string_pointer + 5,mutex_attr,(long long)(thread_result_index + 2));
             }
@@ -9263,8 +9263,8 @@ label_:
           input_string_pointer = (unsigned int *)system_execute_function(system_global_data_pointer,0x16,0x13);
           *(unsigned char *)input_string_pointer = 0;
           thread_stack_pointer = input_string_pointer;
-          buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
-          stack_size_limit = merge_32bit_values(stack_size_limit._4_4_,buffer_allocation_result);
+          system_buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
+          stack_size_limit = merge_32bit_values(stack_size_limit._4_4_,system_buffer_allocation_result);
           *input_string_pointer = 0x6f632022;
           input_string_pointer[1] = config_path_buffer_size646c75;
           input_string_pointer[2] = config_path_buffer_size746f6e;
@@ -9280,15 +9280,15 @@ label_:
             input_string_pointer = (unsigned char *)system_execute_function(system_global_data_pointer,0x15,0x13);
             *input_string_pointer = 0;
             thread_stack_pointer = input_string_pointer;
-            buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
-            stack_size_limit = merge_32bit_values(stack_size_limit._4_4_,buffer_allocation_result);
+            system_buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
+            stack_size_limit = merge_32bit_values(stack_size_limit._4_4_,system_buffer_allocation_result);
           }
           memcpy(input_string_pointer,input_string_pointer,0x14);
         }
         thread_result_index = validate_config_handle(character_scan_pointer,stack_size_limit);
-        buffer_allocation_result = (int)character_scan_pointer + thread_result_index;
-        character_scan_pointer = (char *)(ulong long)buffer_allocation_result;
-        stack_size_limit = merge_32bit_values(stack_size_limit._4_4_,buffer_allocation_result);
+        system_buffer_allocation_result = (int)character_scan_pointer + thread_result_index;
+        character_scan_pointer = (char *)(ulong long)system_buffer_allocation_result;
+        stack_size_limit = merge_32bit_values(stack_size_limit._4_4_,system_buffer_allocation_result);
       }
       thread_result_index = (int)plStack_120 + 1;
       plStack_120 = (long long *)merge_32bit_values(plStack_120._4_4_,thread_result_index);
@@ -9316,10 +9316,10 @@ label_:
 char * system_execute_function(unsigned long long handle,unsigned long long thread_operation_flags,unsigned long long *mutex_attr,long long mutex_type,
                     unsigned long long param_5,unsigned long long *param_6,unsigned long long *param_7)
 {
-  unsigned int buffer_allocation_result;
+  unsigned int system_buffer_allocation_result;
   unsigned int thread_operation_flags;
-  unsigned int buffer_allocation_result;
-  uint buffer_allocation_result;
+  unsigned int system_buffer_allocation_result;
+  uint system_buffer_allocation_result;
   long long string_length_counter;
   char *character_scan_pointer;
   unsigned int *input_string_pointer;
@@ -9430,8 +9430,8 @@ label_:
       input_string_pointer = (unsigned int *)system_execute_function(system_global_data_pointer,0x15,0x13);
       *(unsigned char *)input_string_pointer = 0;
       thread_stack_pointer = input_string_pointer;
-      buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
-      stack_size_limit = merge_32bit_values(stack_size_limit._4_4_,buffer_allocation_result);
+      system_buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
+      stack_size_limit = merge_32bit_values(stack_size_limit._4_4_,system_buffer_allocation_result);
       *input_string_pointer = config_path_buffer_size4c4d58;
       input_string_pointer[1] = 0x65646f6e;
       input_string_pointer[2] = 0x74697720;
@@ -9446,23 +9446,23 @@ label_:
       input_string_pointer = (unsigned int *)system_execute_function(system_global_data_pointer,0x15,0x13);
       *(unsigned char *)input_string_pointer = 0;
       thread_stack_pointer = input_string_pointer;
-      buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
-      buffer_allocation_result = input_string_pointer[1];
-      buffer_allocation_result = input_string_pointer[2];
+      system_buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
+      system_buffer_allocation_result = input_string_pointer[1];
+      system_buffer_allocation_result = input_string_pointer[2];
       thread_operation_flags = input_string_pointer[3];
       *input_string_pointer = *input_string_pointer;
-      input_string_pointer[1] = buffer_allocation_result;
-      input_string_pointer[2] = buffer_allocation_result;
+      input_string_pointer[1] = system_buffer_allocation_result;
+      input_string_pointer[2] = system_buffer_allocation_result;
       input_string_pointer[3] = thread_operation_flags;
       input_string_pointer[4] = input_string_pointer[4];
       stack_size_limit = 0x14;
       *(unsigned char *)(input_string_pointer + 5) = 0;
-      stack_size_limit = (ulong long)buffer_allocation_result;
-      if (buffer_allocation_result < 0x23) {
+      stack_size_limit = (ulong long)system_buffer_allocation_result;
+      if (system_buffer_allocation_result < 0x23) {
         input_string_pointer = (unsigned int *)system_execute_function(system_global_data_pointer,input_string_pointer,0x23,STRING_BUFFER_SIZE,0x13);
         thread_stack_pointer = input_string_pointer;
-        buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
-        stack_size_limit = merge_32bit_values(stack_size_limit._4_4_,buffer_allocation_result);
+        system_buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
+        stack_size_limit = merge_32bit_values(stack_size_limit._4_4_,system_buffer_allocation_result);
       }
       *(unsigned long long *)(input_string_pointer + 5) = 0x65745f6c61636564;
       input_string_pointer[7] = 0x72757478;
@@ -9476,8 +9476,8 @@ label_:
       input_string_pointer = (unsigned int *)system_execute_function(system_global_data_pointer,0x16,0x13);
       *(unsigned char *)input_string_pointer = 0;
       thread_stack_pointer = input_string_pointer;
-      buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
-      stack_size_limit = merge_32bit_values(stack_size_limit._4_4_,buffer_allocation_result);
+      system_buffer_allocation_result = allocate_temporary_buffer(input_string_pointer);
+      stack_size_limit = merge_32bit_values(stack_size_limit._4_4_,system_buffer_allocation_result);
       *input_string_pointer = 0x6f632022;
       input_string_pointer[1] = config_path_buffer_size646c75;
       input_string_pointer[2] = config_path_buffer_size746f6e;
@@ -9501,8 +9501,8 @@ label_:
       thread_stack_pointer = &g_threadString2;
       handle_system_error(input_string_pointer);
     }
-    buffer_allocation_result = validate_config_handle(character_scan_pointer,&system_180a12e10);
-    character_scan_pointer = (char *)(ulong long)buffer_allocation_result;
+    system_buffer_allocation_result = validate_config_handle(character_scan_pointer,&system_180a12e10);
+    character_scan_pointer = (char *)(ulong long)system_buffer_allocation_result;
   }
   *mutex_attr = &g_threadString2;
   if (mutex_attr[1] != 0) {
@@ -9534,8 +9534,8 @@ long long process_system_configuration(long long handle,long long thread_operati
   char *character_scan_pointer;
   char *character_scan_pointer;
   bool byte_check_result2;
-  unsigned int buffer_allocation_result;
-  unsigned long long buffer_allocation_result;
+  unsigned int system_buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
   void *thread_stack_pointer;
   long long thread_stack_base_address;
   int thread_priority_level;
@@ -9544,11 +9544,11 @@ long long process_system_configuration(long long handle,long long thread_operati
   char *pcStack_48;
   int thread_priority_level;
   unsigned long long stack_size_limit;
-  buffer_allocation_result = DEFAULT_THREAD_POOL_FLAG;
+  system_buffer_allocation_result = DEFAULT_THREAD_POOL_FLAG;
   character_scan_pointer = (char *)0x0;
   system_execute_function(mutex_type);
   system_execute_function(handle,mutex_attr);
-  buffer_allocation_result = 1;
+  system_buffer_allocation_result = 1;
   character_scan_pointer = "base";
   do {
     character_scan_pointer = character_scan_pointer;
@@ -9633,7 +9633,7 @@ label_:
         if (input_string_pointer[1] != 0) {
           string_length_counter = input_string_pointer[1];
         }
-        system_execute_function(&thread_stack_pointer,string_length_counter,character_scan_pointer,input_string_pointer,buffer_allocation_result,buffer_allocation_result);
+        system_execute_function(&thread_stack_pointer,string_length_counter,character_scan_pointer,input_string_pointer,system_buffer_allocation_result,system_buffer_allocation_result);
         break;
       }
       string_length_counter = (long long)&system_180a0ee30 - (long long)character_scan_pointer;
@@ -9762,7 +9762,7 @@ label_:
     thread_stack_pointer = (void *)0x0;
     stack_size_limit = 0;
     thread_stack_pointer = &g_threadString4;
-    system_crypto_001(stack_size_limit ^ (ulong long)auStack_408);
+    system_execute_crypto_operation(stack_size_limit ^ (ulong long)auStack_408);
   }
   handle_system_error();
 }
@@ -9934,10 +9934,10 @@ long long system_initialize_resources(unsigned long long handle,unsigned long lo
   long long string_length_counter;
   char *character_scan_pointer;
   long long string_length_counter;
-  unsigned long long buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
   void *thread_stack_pointer;
   char *pcStack_28;
-  buffer_allocation_result = DEFAULT_THREAD_POOL_FLAG;
+  system_buffer_allocation_result = DEFAULT_THREAD_POOL_FLAG;
   system_initialization_result = system_execute_function();
   if (system_initialization_result == 0) {
     return 0;
@@ -9961,7 +9961,7 @@ long long system_initialize_resources(unsigned long long handle,unsigned long lo
   if (pcStack_28 != (char *)0x0) {
     character_scan_pointer = pcStack_28;
   }
-  system_execute_function(character_scan_pointer,&system_180a3cbe0,mutex_attr,mutex_attr + 4,buffer_allocation_result);
+  system_execute_function(character_scan_pointer,&system_180a3cbe0,mutex_attr,mutex_attr + 4,system_buffer_allocation_result);
   thread_stack_pointer = &g_threadString2;
   if (pcStack_28 != (char *)0x0) {
     handle_system_error();
@@ -10051,10 +10051,10 @@ long long validate_thread_configuration(unsigned long long handle,unsigned long 
   long long string_length_counter;
   char *character_scan_pointer;
   long long string_length_counter;
-  unsigned long long buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
   void *thread_stack_pointer;
   char *pcStack_28;
-  buffer_allocation_result = DEFAULT_THREAD_POOL_FLAG;
+  system_buffer_allocation_result = DEFAULT_THREAD_POOL_FLAG;
   string_length_counter = system_execute_function();
   if (string_length_counter == 0) {
     return 0;
@@ -10079,7 +10079,7 @@ long long validate_thread_configuration(unsigned long long handle,unsigned long 
     character_scan_pointer = pcStack_28;
   }
   thread_result_index = system_execute_function(character_scan_pointer,&system_180a3c9f8,mutex_attr,mutex_attr + 4,mutex_attr + 8,
-                        (unsigned int *)(mutex_attr + 0xc),buffer_allocation_result);
+                        (unsigned int *)(mutex_attr + 0xc),system_buffer_allocation_result);
   if (thread_result_index == 3) {
     *(unsigned int *)(mutex_attr + 0xc) = 0x3f800000;
   }
@@ -10095,10 +10095,10 @@ long long process_thread_initialization(unsigned long long handle,unsigned long 
   long long string_length_counter;
   char *character_scan_pointer;
   long long string_length_counter;
-  unsigned long long buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
   void *thread_stack_pointer;
   char *pcStack_28;
-  buffer_allocation_result = DEFAULT_THREAD_POOL_FLAG;
+  system_buffer_allocation_result = DEFAULT_THREAD_POOL_FLAG;
   system_initialization_result = system_execute_function(handle,&system_180a16818);
   if (system_initialization_result == 0) {
     return 0;
@@ -10122,7 +10122,7 @@ long long process_thread_initialization(unsigned long long handle,unsigned long 
   if (pcStack_28 != (char *)0x0) {
     character_scan_pointer = pcStack_28;
   }
-  system_execute_function(character_scan_pointer,&system_180a3c9f8,mutex_attr + 4,mutex_attr + 8,mutex_attr + 0xc,mutex_attr,buffer_allocation_result);
+  system_execute_function(character_scan_pointer,&system_180a3c9f8,mutex_attr + 4,mutex_attr + 8,mutex_attr + 0xc,mutex_attr,system_buffer_allocation_result);
   thread_stack_pointer = &g_threadString2;
   if (pcStack_28 != (char *)0x0) {
     handle_system_error();
@@ -10176,10 +10176,10 @@ long long setup_thread_communication(unsigned long long handle,unsigned long lon
   long long string_length_counter;
   char *character_scan_pointer;
   long long string_length_counter;
-  unsigned long long buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
   void *thread_stack_pointer;
   char *pcStack_50;
-  buffer_allocation_result = DEFAULT_THREAD_POOL_FLAG;
+  system_buffer_allocation_result = DEFAULT_THREAD_POOL_FLAG;
   string_length_counter = system_execute_function();
   if (string_length_counter != 0) {
     psystem_initialization_result = (long long *)(string_length_counter + 8);
@@ -10205,7 +10205,7 @@ long long setup_thread_communication(unsigned long long handle,unsigned long lon
     system_execute_function(character_scan_pointer,&system_180a3cca0,mutex_attr,mutex_attr + 4,mutex_attr + 8,mutex_attr + 0xc,mutex_attr + STRING_BUFFER_SIZE
                   ,mutex_attr + 0x14,mutex_attr + 0x18,mutex_attr + 0x1c,mutex_attr + config_path_buffer_size,mutex_attr + 0x24,
                   mutex_attr + 0x28,mutex_attr + 0x2c,mutex_attr + 0x30,mutex_attr + 0x34,mutex_attr + 0x38,
-                  mutex_attr + 0x3c,string_length_counter,buffer_allocation_result);
+                  mutex_attr + 0x3c,string_length_counter,system_buffer_allocation_result);
     thread_stack_pointer = &g_threadString2;
     if (pcStack_50 != (char *)0x0) {
       handle_system_error();
@@ -10215,7 +10215,7 @@ long long setup_thread_communication(unsigned long long handle,unsigned long lon
 }
 long long create_thread_with_attributes(unsigned long long handle,unsigned long long thread_operation_flags,unsigned long long *mutex_attr)
 {
-  unsigned long long buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
   long long string_length_counter;
   unsigned long long *input_string_pointer;
   long long string_length_counter;
@@ -10227,30 +10227,30 @@ long long create_thread_with_attributes(unsigned long long handle,unsigned long 
       string_length_counter = *(long long *)(string_length_counter + 8);
     }
     input_string_pointer = (unsigned long long *)system_execute_function(auStack_18,string_length_counter);
-    buffer_allocation_result = input_string_pointer[1];
+    system_buffer_allocation_result = input_string_pointer[1];
     *mutex_attr = *input_string_pointer;
-    mutex_attr[1] = buffer_allocation_result;
+    mutex_attr[1] = system_buffer_allocation_result;
     return string_length_counter;
   }
   return 0;
 }
 unsigned long long get_thread_handle(unsigned long long handle)
 {
-  unsigned long long buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
   unsigned long long *pthread_operation_flags;
-  unsigned long long buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
   unsigned long long *unaffected_registerDI;
   bool in_ZF;
   unsigned char temp_stack_array [8];
-  buffer_allocation_result = 0x180d48d24;
+  system_buffer_allocation_result = 0x180d48d24;
   if (!in_ZF) {
-    buffer_allocation_result = handle;
+    system_buffer_allocation_result = handle;
   }
-  pthread_operation_flags = (unsigned long long *)system_execute_function(temp_stack_array,buffer_allocation_result);
-  buffer_allocation_result = pthread_operation_flags[1];
+  pthread_operation_flags = (unsigned long long *)system_execute_function(temp_stack_array,system_buffer_allocation_result);
+  system_buffer_allocation_result = pthread_operation_flags[1];
   *unaffected_registerDI = *pthread_operation_flags;
-  unaffected_registerDI[1] = buffer_allocation_result;
-  return buffer_allocation_result;
+  unaffected_registerDI[1] = system_buffer_allocation_result;
+  return system_buffer_allocation_result;
 }
   data_180bf66d8 = 0;
   system_crypto_002(system_execute_function);
@@ -10351,25 +10351,25 @@ unsigned int validate_resource_handle(int handle)
   do {
     string_length_counter = string_length_counter + 1;
   } while (*(char *)(handle + string_length_counter) != '\0');
-  buffer_allocation_result = (uint)string_length_counter;
-  if (MAX_THREAD_STACK_SIZE < buffer_allocation_result) {
-    buffer_allocation_result = MAX_THREAD_STACK_SIZE;
+  system_buffer_allocation_result = (uint)string_length_counter;
+  if (MAX_THREAD_STACK_SIZE < system_buffer_allocation_result) {
+    system_buffer_allocation_result = MAX_THREAD_STACK_SIZE;
   }
-  memcpy(&data_180c8f020,handle,(long long)(int)buffer_allocation_result);
+  memcpy(&data_180c8f020,handle,(long long)(int)system_buffer_allocation_result);
 }
   data_180c8f020 = 0;
   return;
 }
 unsigned long long system_initialize_context(unsigned long long handle)
 {
-  unsigned long long buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
   long long string_length_counter;
-  buffer_allocation_result = system_execute_function(system_global_data_pointer,handle,0x19);
-  string_length_counter = allocate_temporary_buffer(buffer_allocation_result);
+  system_buffer_allocation_result = system_execute_function(system_global_data_pointer,handle,0x19);
+  string_length_counter = allocate_temporary_buffer(system_buffer_allocation_result);
   LOCK();
   system_global_data_pointer = system_global_data_pointer + string_length_counter;
   UNLOCK();
-  return buffer_allocation_result;
+  return system_buffer_allocation_result;
 }
 unsigned long long setup_context_with_thread_operation_flags(unsigned long long handle,unsigned long long thread_operation_flags)
 {
@@ -10391,7 +10391,7 @@ long long process_context_handle(long long *handle)
   int *piVar1;
   long long string_length_counter;
   long long string_length_counter;
-  ulong long buffer_allocation_result;
+  ulong long system_buffer_allocation_result;
   string_length_counter = allocate_temporary_buffer();
   string_length_counter = system_global_data_pointer;
   LOCK();
@@ -10401,11 +10401,11 @@ long long process_context_handle(long long *handle)
   if (handle == (long long *)0x0) {
     return string_length_counter;
   }
-  buffer_allocation_result = (ulong long)handle & 0xffffffffffc00000;
-  if (buffer_allocation_result != 0) {
-    string_length_counter = buffer_allocation_result + 0x80 + ((long long)handle - buffer_allocation_result >> STRING_BUFFER_SIZE) * 0x50;
+  system_buffer_allocation_result = (ulong long)handle & 0xffffffffffc00000;
+  if (system_buffer_allocation_result != 0) {
+    string_length_counter = system_buffer_allocation_result + 0x80 + ((long long)handle - system_buffer_allocation_result >> STRING_BUFFER_SIZE) * 0x50;
     string_length_counter = string_length_counter - (ulong long)*(uint *)(string_length_counter + 4);
-    if ((*(void ***)(buffer_allocation_result + 0x70) == &ExceptionList) && (*(char *)(string_length_counter + 0xe) == '\0')) {
+    if ((*(void ***)(system_buffer_allocation_result + 0x70) == &ExceptionList) && (*(char *)(string_length_counter + 0xe) == '\0')) {
       string_length_counter = *(long long *)(string_length_counter + config_path_buffer_size);
       *handle = string_length_counter;
       *(long long **)(string_length_counter + config_path_buffer_size) = handle;
@@ -10417,9 +10417,9 @@ long long process_context_handle(long long *handle)
       }
     }
     else {
-      string_length_counter = func_0x00018064e870(buffer_allocation_result,CONCAT71(0xff000000,
-                                                 *(void ***)(buffer_allocation_result + 0x70) == &ExceptionList),
-                                  handle,buffer_allocation_result,DEFAULT_THREAD_POOL_FLAG);
+      string_length_counter = func_0x00018064e870(system_buffer_allocation_result,CONCAT71(0xff000000,
+                                                 *(void ***)(system_buffer_allocation_result + 0x70) == &ExceptionList),
+                                  handle,system_buffer_allocation_result,DEFAULT_THREAD_POOL_FLAG);
     }
   }
   return string_length_counter;
@@ -10536,15 +10536,15 @@ long long process_context_handle(long long *handle)
         string_length_counter = string_length_counter + -1;
       } while (string_length_counter != 0);
     }
-    buffer_allocation_result = 0;
+    system_buffer_allocation_result = 0;
     string_length_counter = 0;
     do {
       string_length_counter = 0;
-      if (buffer_allocation_result != 0x1f) {
+      if (system_buffer_allocation_result != 0x1f) {
         string_length_counter = string_length_counter + 1;
       }
-      if (((handle2 == '\0') || ((buffer_allocation_result & 1) != 0)) &&
-         (system_char_variable = system_execute_function((double)((float)(int)buffer_allocation_result * 0.19634955),SUB84((double)param_6,0),
+      if (((handle2 == '\0') || ((system_buffer_allocation_result & 1) != 0)) &&
+         (system_char_variable = system_execute_function((double)((float)(int)system_buffer_allocation_result * 0.19634955),SUB84((double)param_6,0),
                                 (double)param_7), system_char_variable != '\0')) {
         fStack_370 = *(float *)(&stack_size_limit + string_length_counter * 2) - *(float *)(&stack_size_limit + string_length_counter * 2);
         stack_size_limit = merge_32bit_values(afStack_2e8[string_length_counter * 4 + 1] - afStack_2e8[string_length_counter * 4 + 1],
@@ -10554,15 +10554,15 @@ long long process_context_handle(long long *handle)
         stack_size_limit = CONCAT31(stack_size_limit._1_3_,handle1);
         system_execute_function(handle,afStack_2e8 + string_length_counter * 4,&stack_size_limit,param_8);
       }
-      buffer_allocation_result = buffer_allocation_result + 1;
+      system_buffer_allocation_result = system_buffer_allocation_result + 1;
       string_length_counter = string_length_counter + 1;
-    } while ((int)buffer_allocation_result < config_path_buffer_size);
+    } while ((int)system_buffer_allocation_result < config_path_buffer_size);
   }
   thread_result_index = _Mtx_unlock(handle);
   if (thread_result_index != 0) {
     __Throw_C_error_std__YAXH_Z(thread_result_index);
   }
-  system_crypto_001(stack_size_limit ^ (ulong long)auStack_3a8);
+  system_execute_crypto_operation(stack_size_limit ^ (ulong long)auStack_3a8);
 }
                     system_data_character = system_data_character + system_char_variable;
                     if (system_data_character != '\0' && byte_flag_value7 == system_data_character < '\0') {
@@ -10602,9 +10602,9 @@ LAB_180768028_1:
   mutex_type = 0x266;
   *(unsigned char *)((long long)register0x00000020 + config_path_buffer_size) = 1;
 label_:
-  buffer_allocation_result = *(unsigned long long *)(character_scan_pointer + 0x1a0);
+  system_buffer_allocation_result = *(unsigned long long *)(character_scan_pointer + 0x1a0);
   *(unsigned char **)((long long)register0x00000020 + -8) = &label_;
-  system_execute_function(buffer_allocation_result,character_scan_pointer,mutex_attr,mutex_type);
+  system_execute_function(system_buffer_allocation_result,character_scan_pointer,mutex_attr,mutex_type);
 }
     data_180c2e030 = '\x01';
   }
@@ -10620,19 +10620,19 @@ unsigned long long allocate_resource_memory(int handle)
 {
   byte byte_check_result;
   int thread_result_index;
-  uint buffer_allocation_result;
+  uint system_buffer_allocation_result;
   long long string_length_counter;
   float *pfloat_variable;
   int thread_result_index;
   float *pfloat_variable;
-  uint buffer_allocation_result;
-  ulong long buffer_allocation_result;
-  ulong long buffer_allocation_result;
+  uint system_buffer_allocation_result;
+  ulong long system_buffer_allocation_result;
+  ulong long system_buffer_allocation_result;
   int *piVar12;
-  uint buffer_allocation_result;
+  uint system_buffer_allocation_result;
   long long *psystem_initialization_result4;
   long long system_initialization_result5;
-  uint buffer_allocation_result;
+  uint system_buffer_allocation_result;
   int thread_result_index;
   int thread_result_index;
   float float_variable;
@@ -10645,24 +10645,24 @@ unsigned long long allocate_resource_memory(int handle)
   float float_variable;
   unsigned char unaff_XMM6 [16];
   unsigned char athread_operation_flags [16];
-  ulong long buffer_allocation_result;
+  ulong long system_buffer_allocation_result;
   psystem_initialization_result4 = (long long *)&data_180be5740;
   thread_result_index = 0;
   do {
-    buffer_allocation_result = 0;
+    system_buffer_allocation_result = 0;
     system_initialization_result5 = *psystem_initialization_result4;
-    buffer_allocation_result = STRING_BUFFER_SIZE >> ((byte)thread_result_index & 0x1f);
-    buffer_allocation_result = SYSTEM_CONFIG_BUFFER_SIZE >> ((byte)thread_result_index & 0x1f);
-    buffer_allocation_result = buffer_allocation_result;
-    buffer_allocation_result = buffer_allocation_result;
-    if ((buffer_allocation_result != 0) && (buffer_allocation_result = 0, 3 < buffer_allocation_result)) {
-      athread_operation_flags._0_4_ = (float)(int)buffer_allocation_result;
+    system_buffer_allocation_result = STRING_BUFFER_SIZE >> ((byte)thread_result_index & 0x1f);
+    system_buffer_allocation_result = SYSTEM_CONFIG_BUFFER_SIZE >> ((byte)thread_result_index & 0x1f);
+    system_buffer_allocation_result = system_buffer_allocation_result;
+    system_buffer_allocation_result = system_buffer_allocation_result;
+    if ((system_buffer_allocation_result != 0) && (system_buffer_allocation_result = 0, 3 < system_buffer_allocation_result)) {
+      athread_operation_flags._0_4_ = (float)(int)system_buffer_allocation_result;
       athread_operation_flags._4_4_ = athread_operation_flags._0_4_;
       athread_operation_flags._8_4_ = athread_operation_flags._0_4_;
       athread_operation_flags._12_4_ = athread_operation_flags._0_4_;
-      buffer_allocation_result = buffer_allocation_result & 0x80000003;
-      if ((int)buffer_allocation_result < 0) {
-        buffer_allocation_result = (buffer_allocation_result - 1 | 0xfffffffc) + 1;
+      system_buffer_allocation_result = system_buffer_allocation_result & 0x80000003;
+      if ((int)system_buffer_allocation_result < 0) {
+        system_buffer_allocation_result = (system_buffer_allocation_result - 1 | 0xfffffffc) + 1;
       }
       athread_operation_flags = rcpps(unaff_XMM6,athread_operation_flags);
       float_variable = athread_operation_flags._0_4_;
@@ -10679,8 +10679,8 @@ unsigned long long allocate_resource_memory(int handle)
         athread_operation_flags._4_4_ = (float)((ulong long)thread_operation_flags >> config_path_buffer_size) * 2.0;
         athread_operation_flags._8_4_ = (float)extraout_XMM0_Qb * 2.0;
         athread_operation_flags._12_4_ = (float)((ulong long)extraout_XMM0_Qb >> config_path_buffer_size) * 2.0;
-        buffer_allocation_result = (int)buffer_allocation_result + 4;
-        buffer_allocation_result = (ulong long)buffer_allocation_result;
+        system_buffer_allocation_result = (int)system_buffer_allocation_result + 4;
+        system_buffer_allocation_result = (ulong long)system_buffer_allocation_result;
         athread_operation_flags = rcpps(in_XMM2,athread_operation_flags);
         float_variable = athread_operation_flags._0_4_;
         float_variable = athread_operation_flags._4_4_;
@@ -10690,22 +10690,22 @@ unsigned long long allocate_resource_memory(int handle)
         in_XMM2._4_4_ = (float_variable + float_variable) - float_variable * float_variable * athread_operation_flags._4_4_;
         in_XMM2._8_4_ = (float_variable + float_variable) - float_variable * float_variable * athread_operation_flags._8_4_;
         in_XMM2._12_4_ = (float_variable + float_variable) - float_variable * float_variable * athread_operation_flags._12_4_;
-        *(unsigned char (*) [16])(system_initialization_result5 + buffer_allocation_result * 4) = in_XMM2;
-        buffer_allocation_result = buffer_allocation_result + 4;
-        buffer_allocation_result = buffer_allocation_result;
-      } while ((int)buffer_allocation_result < (int)(buffer_allocation_result - buffer_allocation_result));
+        *(unsigned char (*) [16])(system_initialization_result5 + system_buffer_allocation_result * 4) = in_XMM2;
+        system_buffer_allocation_result = system_buffer_allocation_result + 4;
+        system_buffer_allocation_result = system_buffer_allocation_result;
+      } while ((int)system_buffer_allocation_result < (int)(system_buffer_allocation_result - system_buffer_allocation_result));
     }
-    if ((int)buffer_allocation_result < (int)buffer_allocation_result) {
-      pfloat_variable = (float *)(system_initialization_result5 + buffer_allocation_result * 4);
-      float_variable = 1.0 / (float)(int)buffer_allocation_result;
+    if ((int)system_buffer_allocation_result < (int)system_buffer_allocation_result) {
+      pfloat_variable = (float *)(system_initialization_result5 + system_buffer_allocation_result * 4);
+      float_variable = 1.0 / (float)(int)system_buffer_allocation_result;
       unaff_XMM6 = zero_extension_float((uint)float_variable);
       do {
-        float_variable = (float)cosf(((float)(int)buffer_allocation_result * 6.2831855 + 3.1415927) * float_variable);
-        buffer_allocation_result = (int)buffer_allocation_result + 1;
-        buffer_allocation_result = (ulong long)buffer_allocation_result;
+        float_variable = (float)cosf(((float)(int)system_buffer_allocation_result * 6.2831855 + 3.1415927) * float_variable);
+        system_buffer_allocation_result = (int)system_buffer_allocation_result + 1;
+        system_buffer_allocation_result = (ulong long)system_buffer_allocation_result;
         *pfloat_variable = 0.5 / float_variable;
         pfloat_variable = pfloat_variable + 1;
-      } while ((int)buffer_allocation_result < (int)buffer_allocation_result);
+      } while ((int)system_buffer_allocation_result < (int)system_buffer_allocation_result);
     }
     thread_result_index = thread_result_index + 1;
     psystem_initialization_result4 = psystem_initialization_result4 + 1;
@@ -10717,20 +10717,20 @@ unsigned long long allocate_resource_memory(int handle)
   thread_result_index = 2;
   thread_result_index = string_buffer_size_constant;
   system_initialization_result5 = 0x140;
-  buffer_allocation_result = 0;
+  system_buffer_allocation_result = 0;
   do {
-    buffer_allocation_result = buffer_allocation_result;
+    system_buffer_allocation_result = system_buffer_allocation_result;
     if (pfloat_variable < (float *)0x180c2e880) {
       float_variable = (float)piVar12[-1] * 1.5258789e-05 * (float)handle;
       *pfloat_variable = float_variable;
       pfloat_variable[STRING_BUFFER_SIZE] = float_variable;
     }
     pfloat_variable = pfloat_variable + -0x3ff;
-    if (((byte)buffer_allocation_result & 0x1f) != 0x1f) {
+    if (((byte)system_buffer_allocation_result & 0x1f) != 0x1f) {
       pfloat_variable = pfloat_variable;
     }
     thread_result_index = -handle;
-    if (((byte)buffer_allocation_result & 0x3f) != 0x3f) {
+    if (((byte)system_buffer_allocation_result & 0x3f) != 0x3f) {
       thread_result_index = handle;
     }
     if (pfloat_variable + config_path_buffer_size < (float *)0x180c2e880) {
@@ -10739,19 +10739,19 @@ unsigned long long allocate_resource_memory(int handle)
       pfloat_variable[0x30] = float_variable;
     }
     byte_check_result = (byte)thread_result_index;
-    buffer_allocation_result = thread_result_index - 1U & 0x1f;
+    system_buffer_allocation_result = thread_result_index - 1U & 0x1f;
     thread_result_index = -thread_result_index;
     if ((byte_check_result - 1 & 0x3f) != 0x3f) {
       thread_result_index = thread_result_index;
     }
     string_length_counter = -0xefc;
-    if (buffer_allocation_result != 0x1f) {
+    if (system_buffer_allocation_result != 0x1f) {
       string_length_counter = string_buffer_size_constant;
     }
     pfloat_variable = (float *)(string_length_counter + (long long)pfloat_variable);
     if (pfloat_variable < (float *)0x180c2e880) {
       string_length_counter = -0xebc;
-      if (buffer_allocation_result != 0x1f) {
+      if (system_buffer_allocation_result != 0x1f) {
         string_length_counter = system_initialization_result5;
       }
       float_variable = (float)piVar12[1] * 1.5258789e-05 * (float)thread_result_index;
@@ -10760,7 +10760,7 @@ unsigned long long allocate_resource_memory(int handle)
     }
     if ((byte_check_result & 0x1f) == 0x1f) {
       string_length_counter = -0x1ef8;
-      if (buffer_allocation_result != 0x1f) {
+      if (system_buffer_allocation_result != 0x1f) {
         string_length_counter = -0xefc;
       }
       pfloat_variable = (float *)(string_length_counter + (long long)pfloat_variable);
@@ -10774,19 +10774,19 @@ unsigned long long allocate_resource_memory(int handle)
       pfloat_variable[config_path_buffer_size] = float_variable;
       pfloat_variable[0x30] = float_variable;
     }
-    buffer_allocation_result = thread_result_index + 1U & 0x1f;
+    system_buffer_allocation_result = thread_result_index + 1U & 0x1f;
     string_length_counter = -0xefc;
     thread_result_index = -thread_result_index;
     if (((byte)(thread_result_index + 1U) & 0x3f) != 0x3f) {
       thread_result_index = thread_result_index;
     }
-    if (buffer_allocation_result != 0x1f) {
+    if (system_buffer_allocation_result != 0x1f) {
       string_length_counter = string_buffer_size_constant;
     }
     pfloat_variable = (float *)(string_length_counter + (long long)pfloat_variable);
     if (pfloat_variable < (float *)0x180c2e880) {
       string_length_counter = -0xebc;
-      if (buffer_allocation_result != 0x1f) {
+      if (system_buffer_allocation_result != 0x1f) {
         string_length_counter = system_initialization_result5;
       }
       float_variable = (float)piVar12[3] * 1.5258789e-05 * (float)thread_result_index;
@@ -10795,7 +10795,7 @@ unsigned long long allocate_resource_memory(int handle)
     }
     if ((byte_check_result + 2 & 0x1f) == 0x1f) {
       string_length_counter = -0x1ef8;
-      if (buffer_allocation_result != 0x1f) {
+      if (system_buffer_allocation_result != 0x1f) {
         string_length_counter = -0xefc;
       }
       pfloat_variable = (float *)(string_length_counter + (long long)pfloat_variable);
@@ -10809,19 +10809,19 @@ unsigned long long allocate_resource_memory(int handle)
       pfloat_variable[config_path_buffer_size] = float_variable;
       pfloat_variable[0x30] = float_variable;
     }
-    buffer_allocation_result = thread_result_index + 3U & 0x1f;
+    system_buffer_allocation_result = thread_result_index + 3U & 0x1f;
     string_length_counter = -0xefc;
     thread_result_index = -thread_result_index;
     if (((byte)(thread_result_index + 3U) & 0x3f) != 0x3f) {
       thread_result_index = thread_result_index;
     }
-    if (buffer_allocation_result != 0x1f) {
+    if (system_buffer_allocation_result != 0x1f) {
       string_length_counter = string_buffer_size_constant;
     }
     pfloat_variable = (float *)(string_length_counter + (long long)pfloat_variable);
     if (pfloat_variable < (float *)0x180c2e880) {
       string_length_counter = -0xebc;
-      if (buffer_allocation_result != 0x1f) {
+      if (system_buffer_allocation_result != 0x1f) {
         string_length_counter = system_initialization_result5;
       }
       float_variable = (float)piVar12[5] * 1.5258789e-05 * (float)thread_result_index;
@@ -10830,7 +10830,7 @@ unsigned long long allocate_resource_memory(int handle)
     }
     if ((byte_check_result + 4 & 0x1f) == 0x1f) {
       string_length_counter = -0x1ef8;
-      if (buffer_allocation_result != 0x1f) {
+      if (system_buffer_allocation_result != 0x1f) {
         string_length_counter = -0xefc;
       }
       pfloat_variable = (float *)(string_length_counter + (long long)pfloat_variable);
@@ -10852,36 +10852,36 @@ unsigned long long allocate_resource_memory(int handle)
     if ((byte_check_result + 5 & 0x1f) != 0x1f) {
       string_length_counter = string_buffer_size_constant;
     }
-    buffer_allocation_result = buffer_allocation_result + 8;
+    system_buffer_allocation_result = system_buffer_allocation_result + 8;
     pfloat_variable = (float *)(string_length_counter + (long long)pfloat_variable);
     thread_result_index = thread_result_index + 8;
     piVar12 = piVar12 + 8;
   } while (thread_result_index < STRING_BUFFER_SIZE_SECONDARY);
-  if ((int)buffer_allocation_result < config_path_buffer_size0) {
-    if (3 < (int)(config_path_buffer_size0 - buffer_allocation_result)) {
-      buffer_allocation_result = buffer_allocation_result + 10;
+  if ((int)system_buffer_allocation_result < config_path_buffer_size0) {
+    if (3 < (int)(config_path_buffer_size0 - system_buffer_allocation_result)) {
+      system_buffer_allocation_result = system_buffer_allocation_result + 10;
       piVar12 = (int *)0x180be5b68;
-      thread_result_index = (0x3f - (0x1fc - buffer_allocation_result >> 2)) * 4;
+      thread_result_index = (0x3f - (0x1fc - system_buffer_allocation_result >> 2)) * 4;
       do {
         if (pfloat_variable < (float *)0x180c2e880) {
           float_variable = (float)piVar12[2] * 1.5258789e-05 * (float)handle;
           *pfloat_variable = float_variable;
           pfloat_variable[STRING_BUFFER_SIZE] = float_variable;
         }
-        buffer_allocation_result = buffer_allocation_result & 0x8000001f;
-        if ((int)buffer_allocation_result < 0) {
-          buffer_allocation_result = (buffer_allocation_result - 1 | 0xffffffe0) + 1;
+        system_buffer_allocation_result = system_buffer_allocation_result & 0x8000001f;
+        if ((int)system_buffer_allocation_result < 0) {
+          system_buffer_allocation_result = (system_buffer_allocation_result - 1 | 0xffffffe0) + 1;
         }
         pfloat_variable = pfloat_variable + -0x3ff;
-        if (buffer_allocation_result != 0x1f) {
+        if (system_buffer_allocation_result != 0x1f) {
           pfloat_variable = pfloat_variable;
         }
-        buffer_allocation_result = buffer_allocation_result & 0x8000003f;
-        if ((int)buffer_allocation_result < 0) {
-          buffer_allocation_result = (buffer_allocation_result - 1 | 0xffffffc0) + 1;
+        system_buffer_allocation_result = system_buffer_allocation_result & 0x8000003f;
+        if ((int)system_buffer_allocation_result < 0) {
+          system_buffer_allocation_result = (system_buffer_allocation_result - 1 | 0xffffffc0) + 1;
         }
         thread_result_index = -handle;
-        if (buffer_allocation_result != 0x3f) {
+        if (system_buffer_allocation_result != 0x3f) {
           thread_result_index = handle;
         }
         if (pfloat_variable + config_path_buffer_size < (float *)0x180c2e880) {
@@ -10889,49 +10889,49 @@ unsigned long long allocate_resource_memory(int handle)
           pfloat_variable[config_path_buffer_size] = float_variable;
           pfloat_variable[0x30] = float_variable;
         }
-        buffer_allocation_result = buffer_allocation_result - 1 & 0x8000001f;
-        if ((int)buffer_allocation_result < 0) {
-          buffer_allocation_result = (buffer_allocation_result - 1 | 0xffffffe0) + 1;
+        system_buffer_allocation_result = system_buffer_allocation_result - 1 & 0x8000001f;
+        if ((int)system_buffer_allocation_result < 0) {
+          system_buffer_allocation_result = (system_buffer_allocation_result - 1 | 0xffffffe0) + 1;
         }
-        buffer_allocation_result = buffer_allocation_result - 1 & 0x8000003f;
-        if ((int)buffer_allocation_result < 0) {
-          buffer_allocation_result = (buffer_allocation_result - 1 | 0xffffffc0) + 1;
+        system_buffer_allocation_result = system_buffer_allocation_result - 1 & 0x8000003f;
+        if ((int)system_buffer_allocation_result < 0) {
+          system_buffer_allocation_result = (system_buffer_allocation_result - 1 | 0xffffffc0) + 1;
         }
         thread_result_index = -thread_result_index;
-        if (buffer_allocation_result != 0x3f) {
+        if (system_buffer_allocation_result != 0x3f) {
           thread_result_index = thread_result_index;
         }
         string_length_counter = -0xefc;
-        if (buffer_allocation_result != 0x1f) {
+        if (system_buffer_allocation_result != 0x1f) {
           string_length_counter = string_buffer_size_constant;
         }
         pfloat_variable = (float *)(string_length_counter + (long long)pfloat_variable);
         if (pfloat_variable < (float *)0x180c2e880) {
           string_length_counter = -0xebc;
-          if (buffer_allocation_result != 0x1f) {
+          if (system_buffer_allocation_result != 0x1f) {
             string_length_counter = system_initialization_result5;
           }
           float_variable = (float)*piVar12 * 1.5258789e-05 * (float)thread_result_index;
           *pfloat_variable = float_variable;
           *(float *)(string_length_counter + (long long)pfloat_variable) = float_variable;
         }
-        buffer_allocation_result = buffer_allocation_result & 0x8000001f;
-        if ((int)buffer_allocation_result < 0) {
-          buffer_allocation_result = (buffer_allocation_result - 1 | 0xffffffe0) + 1;
+        system_buffer_allocation_result = system_buffer_allocation_result & 0x8000001f;
+        if ((int)system_buffer_allocation_result < 0) {
+          system_buffer_allocation_result = (system_buffer_allocation_result - 1 | 0xffffffe0) + 1;
         }
-        if (buffer_allocation_result == 0x1f) {
+        if (system_buffer_allocation_result == 0x1f) {
           string_length_counter = -0x1ef8;
-          if (buffer_allocation_result != 0x1f) {
+          if (system_buffer_allocation_result != 0x1f) {
             string_length_counter = -0xefc;
           }
           pfloat_variable = (float *)(string_length_counter + (long long)pfloat_variable);
         }
-        buffer_allocation_result = buffer_allocation_result & 0x8000003f;
-        if ((int)buffer_allocation_result < 0) {
-          buffer_allocation_result = (buffer_allocation_result - 1 | 0xffffffc0) + 1;
+        system_buffer_allocation_result = system_buffer_allocation_result & 0x8000003f;
+        if ((int)system_buffer_allocation_result < 0) {
+          system_buffer_allocation_result = (system_buffer_allocation_result - 1 | 0xffffffc0) + 1;
         }
         thread_result_index = -thread_result_index;
-        if (buffer_allocation_result != 0x3f) {
+        if (system_buffer_allocation_result != 0x3f) {
           thread_result_index = thread_result_index;
         }
         if (pfloat_variable + config_path_buffer_size < (float *)0x180c2e880) {
@@ -10939,29 +10939,29 @@ unsigned long long allocate_resource_memory(int handle)
           pfloat_variable[config_path_buffer_size] = float_variable;
           pfloat_variable[0x30] = float_variable;
         }
-        buffer_allocation_result = buffer_allocation_result + 1 & 0x8000003f;
-        if ((int)buffer_allocation_result < 0) {
-          buffer_allocation_result = (buffer_allocation_result - 1 | 0xffffffc0) + 1;
+        system_buffer_allocation_result = system_buffer_allocation_result + 1 & 0x8000003f;
+        if ((int)system_buffer_allocation_result < 0) {
+          system_buffer_allocation_result = (system_buffer_allocation_result - 1 | 0xffffffc0) + 1;
         }
         handle = -thread_result_index;
-        if (buffer_allocation_result != 0x3f) {
+        if (system_buffer_allocation_result != 0x3f) {
           handle = thread_result_index;
         }
-        buffer_allocation_result = buffer_allocation_result + 1 & 0x8000001f;
-        if ((int)buffer_allocation_result < 0) {
-          buffer_allocation_result = (buffer_allocation_result - 1 | 0xffffffe0) + 1;
+        system_buffer_allocation_result = system_buffer_allocation_result + 1 & 0x8000001f;
+        if ((int)system_buffer_allocation_result < 0) {
+          system_buffer_allocation_result = (system_buffer_allocation_result - 1 | 0xffffffe0) + 1;
         }
         string_length_counter = -0xefc;
-        if (buffer_allocation_result != 0x1f) {
+        if (system_buffer_allocation_result != 0x1f) {
           string_length_counter = string_buffer_size_constant;
         }
         piVar12 = piVar12 + -4;
         pfloat_variable = (float *)(string_length_counter + (long long)pfloat_variable);
-        buffer_allocation_result = buffer_allocation_result + 4;
-        buffer_allocation_result = buffer_allocation_result + 4;
-      } while ((int)buffer_allocation_result < 0x1ff);
+        system_buffer_allocation_result = system_buffer_allocation_result + 4;
+        system_buffer_allocation_result = system_buffer_allocation_result + 4;
+      } while ((int)system_buffer_allocation_result < 0x1ff);
     }
-    if ((int)buffer_allocation_result < config_path_buffer_size0) {
+    if ((int)system_buffer_allocation_result < config_path_buffer_size0) {
       piVar12 = (int *)((long long)thread_result_index * 4 + 0x180be5770);
       do {
         if (pfloat_variable < (float *)0x180c2e880) {
@@ -10969,27 +10969,27 @@ unsigned long long allocate_resource_memory(int handle)
           *pfloat_variable = float_variable;
           pfloat_variable[STRING_BUFFER_SIZE] = float_variable;
         }
-        buffer_allocation_result = buffer_allocation_result & 0x8000003f;
-        if ((int)buffer_allocation_result < 0) {
-          buffer_allocation_result = (buffer_allocation_result - 1 | 0xffffffc0) + 1;
+        system_buffer_allocation_result = system_buffer_allocation_result & 0x8000003f;
+        if ((int)system_buffer_allocation_result < 0) {
+          system_buffer_allocation_result = (system_buffer_allocation_result - 1 | 0xffffffc0) + 1;
         }
-        buffer_allocation_result = buffer_allocation_result & 0x8000001f;
-        if ((int)buffer_allocation_result < 0) {
-          buffer_allocation_result = (buffer_allocation_result - 1 | 0xffffffe0) + 1;
+        system_buffer_allocation_result = system_buffer_allocation_result & 0x8000001f;
+        if ((int)system_buffer_allocation_result < 0) {
+          system_buffer_allocation_result = (system_buffer_allocation_result - 1 | 0xffffffe0) + 1;
         }
         pfloat_variable = pfloat_variable + -0x3ff;
-        if (buffer_allocation_result != 0x1f) {
+        if (system_buffer_allocation_result != 0x1f) {
           pfloat_variable = pfloat_variable;
         }
         piVar12 = piVar12 + -1;
-        buffer_allocation_result = buffer_allocation_result + 1;
+        system_buffer_allocation_result = system_buffer_allocation_result + 1;
         pfloat_variable = pfloat_variable + config_path_buffer_size;
         thread_result_index = -handle;
-        if (buffer_allocation_result != 0x3f) {
+        if (system_buffer_allocation_result != 0x3f) {
           thread_result_index = handle;
         }
         handle = thread_result_index;
-      } while ((int)buffer_allocation_result < config_path_buffer_size0);
+      } while ((int)system_buffer_allocation_result < config_path_buffer_size0);
     }
   }
   return 0;
@@ -11007,16 +11007,16 @@ unsigned long long allocate_resource_memory(int handle)
       thread_result_index = system_execute_function(*(unsigned long long *)(unaffected_registerBX + 0x170),0x180c2ea70,1);
       if (thread_result_index != 0) goto label_;
     }
-    buffer_allocation_result = *(unsigned int *)(*(long long *)(unaffected_registerBX + 8) + 8);
+    system_buffer_allocation_result = *(unsigned int *)(*(long long *)(unaffected_registerBX + 8) + 8);
     *(unsigned int *)(*(long long *)(unaffected_registerBX + 8) + 8) = 2;
     system_execute_function();
-    *(unsigned int *)(*(long long *)(unaffected_registerBX + 8) + 8) = buffer_allocation_result;
+    *(unsigned int *)(*(long long *)(unaffected_registerBX + 8) + 8) = system_buffer_allocation_result;
     thread_result_index = system_execute_function(*(unsigned long long *)(unaffected_registerBX + 0x170),*(unsigned int *)(unaffected_registerBX + 0x110),0);
     if (thread_result_index == 0) {
       if (*(int *)(unaffected_registerBX + 0x1c4) == thread_result_index) {
         *(unsigned int *)(unaffected_registerBX + 0x1c4) = 0x480;
       }
-      buffer_allocation_result = iStack0000000000000030 + 5U & 0xfffffffe;
+      system_buffer_allocation_result = iStack0000000000000030 + 5U & 0xfffffffe;
       if (((unaffected_registerD & SYSTEM_CONFIG_BUFFER_SIZE_ZERO0) == 0) ||
          ((*(uint *)(*(long long *)(unaffected_registerBX + 0x170) + 0x194) & 1) == 0)) {
         string_length_counter = *(long long *)(unaffected_registerBX + 8);
@@ -11025,7 +11025,7 @@ unsigned long long allocate_resource_memory(int handle)
         }
         else if (*(char *)(unaffected_registerBX + 0x23c) == (char)unaffected_register) {
           *(uint *)(string_length_counter + 0x18) =
-               ((*(int *)(string_length_counter + 0x14) + -1 + buffer_allocation_result) / buffer_allocation_result + 1) * *(int *)(unaffected_registerBX + 0x1c4);
+               ((*(int *)(string_length_counter + 0x14) + -1 + system_buffer_allocation_result) / system_buffer_allocation_result + 1) * *(int *)(unaffected_registerBX + 0x1c4);
           *(uint *)(unaffected_registerBX + 0x2c) = *(uint *)(unaffected_registerBX + 0x2c) & 0xfffffffe;
         }
         else {
@@ -11035,7 +11035,7 @@ unsigned long long allocate_resource_memory(int handle)
       }
       system_execute_function(*(unsigned long long *)(unaffected_registerBX + 0x170),*(unsigned int *)(unaffected_registerBX + 0x110),0);
       thread_result_index = *(int *)(unaffected_registerBX + 0x1c4);
-      buffer_allocation_result = 0;
+      system_buffer_allocation_result = 0;
       thread_result_index = func_0x00018076a7d0(*(unsigned long long *)(unaffected_registerBX + 0x170),&stack0x00000050);
       if (thread_result_index == 0) {
         *pthread_operation_flags = 0;
@@ -11052,28 +11052,28 @@ label_:
   while( true ) {
     thread_result_index = system_execute_function();
     if ((thread_result_index == 0) &&
-       (in_stack_00000040._4_4_ + buffer_allocation_result < *(uint *)(*(long long *)(unaffected_registerBX + 8) + 0x14))) {
+       (in_stack_00000040._4_4_ + system_buffer_allocation_result < *(uint *)(*(long long *)(unaffected_registerBX + 8) + 0x14))) {
       if (*pthread_operation_flags <= (uint)unaffected_register) {
-        buffer_allocation_result = *pthread_operation_flags + 1000;
-        *pthread_operation_flags = buffer_allocation_result;
+        system_buffer_allocation_result = *pthread_operation_flags + 1000;
+        *pthread_operation_flags = system_buffer_allocation_result;
         string_length_counter = system_execute_function(*(unsigned long long *)(system_global_data_pointer + 0x1a0),
-                              *(unsigned long long *)(unaffected_registerBX + 0x1d0),buffer_allocation_result * 4,&system_18097c490,0x113);
+                              *(unsigned long long *)(unaffected_registerBX + 0x1d0),system_buffer_allocation_result * 4,&system_18097c490,0x113);
         *(long long *)(unaffected_registerBX + 0x1d0) = string_length_counter;
         if (string_length_counter == 0) goto label_;
       }
-      buffer_allocation_result = unaffected_register & 0xffffffff;
+      system_buffer_allocation_result = unaffected_register & 0xffffffff;
       unaffected_register = (ulong long)((uint)unaffected_register + 1);
-      *(uint *)(*(long long *)(unaffected_registerBX + 0x1d0) + buffer_allocation_result * 4) = buffer_allocation_result;
+      *(uint *)(*(long long *)(unaffected_registerBX + 0x1d0) + system_buffer_allocation_result * 4) = system_buffer_allocation_result;
       piVar1 = (int *)(*(long long *)(unaffected_registerBX + 8) + 0x18);
       *piVar1 = *piVar1 + thread_result_index;
-      buffer_allocation_result = buffer_allocation_result + 4 + in_stack_00000040._4_4_;
+      system_buffer_allocation_result = system_buffer_allocation_result + 4 + in_stack_00000040._4_4_;
       thread_result_index = system_execute_function(*(unsigned long long *)(unaffected_registerBX + 0x170),in_stack_00000040._4_4_,1);
       if (thread_result_index != 0) break;
     }
     else {
       system_execute_function(*(unsigned long long *)(unaffected_registerBX + 0x170),0xfffffffd,1);
     }
-    if (*(uint *)(*(long long *)(unaffected_registerBX + 8) + 0x14) <= buffer_allocation_result) break;
+    if (*(uint *)(*(long long *)(unaffected_registerBX + 8) + 0x14) <= system_buffer_allocation_result) break;
 label_:
     thread_result_index = system_execute_function(*(unsigned long long *)(unaffected_registerBX + 0x170),&stack0x0000004c,1,4,0);
     if (thread_result_index != 0) break;
@@ -11100,7 +11100,7 @@ label_:
     system_execute_function();
   }
 label_:
-  system_crypto_001(*(ulong long *)(unaffected_registerBP + 0x4ab0) ^ (ulong long)&stack0x00000000);
+  system_execute_crypto_operation(*(ulong long *)(unaffected_registerBP + 0x4ab0) ^ (ulong long)&system_stack_zero);
 }
       data_180c30370 = '\x01';
     }
@@ -11114,10 +11114,10 @@ label_:
     }
   }
 system_execute_function:
-  system_crypto_001(*(ulong long *)(unaffected_registerBP + 0x218) ^ (ulong long)&stack0x00000000);
+  system_execute_crypto_operation(*(ulong long *)(unaffected_registerBP + 0x218) ^ (ulong long)&system_stack_zero);
 }
       data_180c4f4e8 = 0;
-      system_global_data_pointer = buffer_allocation_result;
+      system_global_data_pointer = system_buffer_allocation_result;
       system_initialize_crypto_module(&data_180c4f4f0);
     }
   }
@@ -11128,14 +11128,14 @@ unsigned long long system_initialize_mutex(unsigned long long *handle,long long 
   int thread_result_index;
   uint thread_operation_flags;
   uint *input_string_pointer;
-  unsigned long long buffer_allocation_result;
-  unsigned char buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
+  unsigned char system_buffer_allocation_result;
   ulong long uStackX_10;
   uint auStack_28 [2];
   ulong long stack_size_limit;
   if (*(int *)(thread_operation_flags + 0x18) < *(int *)(*(long long *)(thread_operation_flags + STRING_BUFFER_SIZE) + 0xb4)) {
 label_:
-    buffer_allocation_result = 0;
+    system_buffer_allocation_result = 0;
   }
   else {
     thread_result_index = *(int *)(*(long long *)(thread_operation_flags + STRING_BUFFER_SIZE) + 0xbc);
@@ -11143,17 +11143,17 @@ label_:
       return 0;
     }
     if (thread_result_index != 2) goto label_;
-    buffer_allocation_result = 1;
+    system_buffer_allocation_result = 1;
   }
   input_string_pointer = (uint *)system_execute_function();
   stack_size_limit = 0;
   uStackX_10 = uStackX_10 & 0xffffffffffffff00;
   auStack_28[0] = *input_string_pointer;
-  buffer_allocation_result = system_execute_function(handle,*(unsigned long long *)(thread_operation_flags + STRING_BUFFER_SIZE),auStack_28,&stack_size_limit,&uStackX_10);
-  if ((int)buffer_allocation_result != 0) {
-    return buffer_allocation_result;
+  system_buffer_allocation_result = system_execute_function(handle,*(unsigned long long *)(thread_operation_flags + STRING_BUFFER_SIZE),auStack_28,&stack_size_limit,&uStackX_10);
+  if ((int)system_buffer_allocation_result != 0) {
+    return system_buffer_allocation_result;
   }
-  if ((char)uStackX_10 == (char)buffer_allocation_result) {
+  if ((char)uStackX_10 == (char)system_buffer_allocation_result) {
     return 0;
   }
   uStackX_10 = 0;
@@ -11172,9 +11172,9 @@ label_:
   }
   system_execute_function();
   if (mutex_attr != '\0') {
-    buffer_allocation_result = system_execute_function(handle,thread_operation_flags,thread_operation_flags + config_path_buffer_size,&stack_size_limit,&uStackX_10,buffer_allocation_result,0);
-    if ((int)buffer_allocation_result != 0) {
-      return buffer_allocation_result;
+    system_buffer_allocation_result = system_execute_function(handle,thread_operation_flags,thread_operation_flags + config_path_buffer_size,&stack_size_limit,&uStackX_10,system_buffer_allocation_result,0);
+    if ((int)system_buffer_allocation_result != 0) {
+      return system_buffer_allocation_result;
     }
     *(int *)(thread_operation_flags + 0x18) = *(int *)(thread_operation_flags + 0x18) + 1;
   }
@@ -11188,58 +11188,58 @@ label_:
         return 0;
       }
       if (thread_result_index == 2) {
-        buffer_allocation_result = 1;
+        system_buffer_allocation_result = 1;
         goto label_;
       }
     }
-    buffer_allocation_result = 0;
+    system_buffer_allocation_result = 0;
   }
 label_:
-  buffer_allocation_result = system_execute_function(handle,thread_operation_flags,thread_operation_flags + 0x28,&stack_size_limit,&uStackX_10,buffer_allocation_result,1);
-  if ((int)buffer_allocation_result == 0) {
+  system_buffer_allocation_result = system_execute_function(handle,thread_operation_flags,thread_operation_flags + 0x28,&stack_size_limit,&uStackX_10,system_buffer_allocation_result,1);
+  if ((int)system_buffer_allocation_result == 0) {
     *(int *)(thread_operation_flags + 0x18) = *(int *)(thread_operation_flags + 0x18) + 1;
     return 0;
   }
-  return buffer_allocation_result;
+  return system_buffer_allocation_result;
 }
 unsigned long long
 system_execute_function(long long handle,long long thread_operation_flags,long long *mutex_attr,long long *mutex_type,
              unsigned long long *param_5,char param_6,char param_7)
 {
-  uint buffer_allocation_result;
+  uint system_buffer_allocation_result;
   long long string_length_counter;
   byte byte_system_flag;
   unsigned int *input_string_pointer;
-  unsigned long long buffer_allocation_result;
-  unsigned long long buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
   long long string_length_counter;
   long long string_length_counter;
-  unsigned int buffer_allocation_result;
+  unsigned int system_buffer_allocation_result;
   long long long_stack_variable;
   unsigned char auStack_28 [16];
-  buffer_allocation_result = *(unsigned long long *)(handle + 0x28);
+  system_buffer_allocation_result = *(unsigned long long *)(handle + 0x28);
   input_string_pointer = (unsigned int *)system_execute_function();
   string_length_counter = *mutex_type;
-  buffer_allocation_result = *input_string_pointer;
+  system_buffer_allocation_result = *input_string_pointer;
   string_length_counter = string_length_counter;
   if ((*(uint *)(thread_operation_flags + 0x1c) >> 1 & 1) != 0) {
     string_length_counter = *mutex_attr;
     string_length_counter = string_length_counter - string_length_counter;
-    buffer_allocation_result = *(unsigned long long *)(handle + 0x30);
+    system_buffer_allocation_result = *(unsigned long long *)(handle + 0x30);
     if (-1 < string_length_counter) {
       if (string_length_counter < 1) {
-        buffer_allocation_result = 0;
+        system_buffer_allocation_result = 0;
         string_length_counter = string_length_counter;
       }
       else {
-        buffer_allocation_result = *(uint *)(*(long long *)(*(long long *)(handle + 0x38) + 8) + 0x774);
-        if (buffer_allocation_result != 48000) {
-          string_length_counter = (string_length_counter * 48000) / (long long)(ulong long)buffer_allocation_result;
+        system_buffer_allocation_result = *(uint *)(*(long long *)(*(long long *)(handle + 0x38) + 8) + 0x774);
+        if (system_buffer_allocation_result != 48000) {
+          string_length_counter = (string_length_counter * 48000) / (long long)(ulong long)system_buffer_allocation_result;
         }
         if (0xffffffff < string_length_counter) {
           string_length_counter = 0xffffffff;
         }
-        buffer_allocation_result = (unsigned int)string_length_counter;
+        system_buffer_allocation_result = (unsigned int)string_length_counter;
         string_length_counter = string_length_counter;
       }
     }
@@ -11247,23 +11247,23 @@ system_execute_function(long long handle,long long thread_operation_flags,long l
   if (param_6 != '\0') {
     (**(code **)(**(long long **)(thread_operation_flags + STRING_BUFFER_SIZE) + 0x30))(*(long long **)(thread_operation_flags + STRING_BUFFER_SIZE),auStack_28)
     ;
-    buffer_allocation_result = system_execute_function(buffer_allocation_result,auStack_28,string_length_counter,
+    system_buffer_allocation_result = system_execute_function(system_buffer_allocation_result,auStack_28,string_length_counter,
                           *(unsigned int *)(*(long long *)(thread_operation_flags + STRING_BUFFER_SIZE) + 0xb4));
-    if ((int)buffer_allocation_result != 0) {
-      return buffer_allocation_result;
+    if ((int)system_buffer_allocation_result != 0) {
+      return system_buffer_allocation_result;
     }
   }
-  buffer_allocation_result = system_execute_function(buffer_allocation_result,*(unsigned long long *)(thread_operation_flags + STRING_BUFFER_SIZE),string_length_counter,*param_5,buffer_allocation_result,0,0,&long_stack_variable);
-  if ((int)buffer_allocation_result == 0) {
-    if (param_7 != (char)buffer_allocation_result) {
+  system_buffer_allocation_result = system_execute_function(system_buffer_allocation_result,*(unsigned long long *)(thread_operation_flags + STRING_BUFFER_SIZE),string_length_counter,*param_5,system_buffer_allocation_result,0,0,&long_stack_variable);
+  if ((int)system_buffer_allocation_result == 0) {
+    if (param_7 != (char)system_buffer_allocation_result) {
       func_0x0001808cf230(long_stack_variable,string_length_counter);
     }
     byte_system_flag = (byte)(*(uint *)(thread_operation_flags + 0x1c) >> 4) & 1;
     *(uint *)(long_stack_variable + 0x4c) =
          ~((byte_system_flag ^ 1) * 2) & ((uint)byte_system_flag + (uint)byte_system_flag | *(uint *)(long_stack_variable + 0x4c));
-    buffer_allocation_result = 0;
+    system_buffer_allocation_result = 0;
   }
-  return buffer_allocation_result;
+  return system_buffer_allocation_result;
 }
     data_180c4f818 = '\x01';
   }
@@ -11273,19 +11273,19 @@ unsigned long long get_system_global_state(void)
 {
   char system_char_variable;
   int thread_result_index;
-  uint buffer_allocation_result;
+  uint system_buffer_allocation_result;
   unsigned long long in_stack_00000030;
   func_0x0001808f62c0();
   func_0x0001808f62a0(free_exref);
   thread_result_index = timeGetDevCaps(&stack0x00000030,8);
-  buffer_allocation_result = 1;
+  system_buffer_allocation_result = 1;
   if (thread_result_index == 0) {
-    buffer_allocation_result = 1;
+    system_buffer_allocation_result = 1;
     if (1 < (uint)in_stack_00000030) {
-      buffer_allocation_result = (uint)in_stack_00000030;
+      system_buffer_allocation_result = (uint)in_stack_00000030;
     }
   }
-  func_0x0001808f6640(buffer_allocation_result);
+  func_0x0001808f6640(system_buffer_allocation_result);
   system_char_variable = system_execute_function();
   if (system_char_variable == '\0') {
     return 0x809200ff;
@@ -11328,11 +11328,11 @@ unsigned long long initialize_parameter_block(unsigned int handle,uint *thread_o
 {
   long long system_initialization_result;
   uint thread_operation_flags;
-  uint buffer_allocation_result;
+  uint system_buffer_allocation_result;
   char system_char_variable;
   byte byte_init_result;
   int thread_result_index;
-  uint buffer_allocation_result;
+  uint system_buffer_allocation_result;
   unsigned short *input_string_pointer;
   unsigned short *input_string_pointer;
   byte abStackX_18 [8];
@@ -11358,11 +11358,11 @@ unsigned long long initialize_parameter_block(unsigned int handle,uint *thread_o
     initialize_timer_context(handle,abStackX_18);
     if (*(long long *)(long_stack_variable + 0x160) != 0) {
       system_char_variable = func_0x0001808f2030();
-      buffer_allocation_result = *(uint *)(*(long long *)(long_stack_variable + 0x160) + 0xc);
+      system_buffer_allocation_result = *(uint *)(*(long long *)(long_stack_variable + 0x160) + 0xc);
       if (system_char_variable == '\0') {
-        buffer_allocation_result = buffer_allocation_result & 0xffdefffe;
+        system_buffer_allocation_result = system_buffer_allocation_result & 0xffdefffe;
       }
-      *thread_operation_flags = buffer_allocation_result;
+      *thread_operation_flags = system_buffer_allocation_result;
       *(unsigned char *)(thread_operation_flags + 1) = *(unsigned char *)(*(long long *)(long_stack_variable + 0x160) + STRING_BUFFER_SIZE);
       *(unsigned char *)((long long)thread_operation_flags + 5) =
            *(unsigned char *)(*(long long *)(long_stack_variable + 0x160) + 0x11);
@@ -11375,13 +11375,13 @@ unsigned long long initialize_parameter_block(unsigned int handle,uint *thread_o
       *(unsigned char *)(thread_operation_flags + 2) = *(unsigned char *)(*(long long *)(long_stack_variable + 0x160) + 0x14);
       if ((*(char *)(long_stack_variable + 0x68) == '\x01') && ((abStackX_18[0] & 8) != 0)) {
         system_initialization_result = *(long long *)(long_stack_variable + 0x160);
-        buffer_allocation_result = *(uint *)(system_initialization_result + 0x74);
+        system_buffer_allocation_result = *(uint *)(system_initialization_result + 0x74);
         thread_operation_flags = *(uint *)(system_initialization_result + 0x78);
-        buffer_allocation_result = *(uint *)(system_initialization_result + 0x7c);
+        system_buffer_allocation_result = *(uint *)(system_initialization_result + 0x7c);
         thread_operation_flags[3] = *(uint *)(system_initialization_result + 0x70);
-        thread_operation_flags[4] = buffer_allocation_result;
+        thread_operation_flags[4] = system_buffer_allocation_result;
         thread_operation_flags[5] = thread_operation_flags;
-        thread_operation_flags[6] = buffer_allocation_result;
+        thread_operation_flags[6] = system_buffer_allocation_result;
         thread_operation_flags[7] = *(uint *)(*(long long *)(long_stack_variable + 0x160) + 0x60);
         thread_operation_flags[8] = *(uint *)(*(long long *)(long_stack_variable + 0x160) + 100);
         thread_operation_flags[9] = *(uint *)(*(long long *)(long_stack_variable + 0x160) + 0x68);
@@ -11543,20 +11543,20 @@ unsigned long long get_system_status_info(void)
 }
 long long system_initialize_timer(void)
 {
-  uint buffer_allocation_result;
-  buffer_allocation_result = timeGetTime();
-  return (ulong long)buffer_allocation_result * 1000;
+  uint system_buffer_allocation_result;
+  system_buffer_allocation_result = timeGetTime();
+  return (ulong long)system_buffer_allocation_result * 1000;
 }
 uint setup_timer_with_attributes(long long handle,int thread_operation_flags,int mutex_attr,char mutex_type)
 {
-  ulong long buffer_allocation_result;
+  ulong long system_buffer_allocation_result;
   byte byte_flag_value;
   int thread_result_index;
   int thread_result_index;
-  uint buffer_allocation_result;
-  uint buffer_allocation_result;
-  buffer_allocation_result = 0;
-  buffer_allocation_result = 0;
+  uint system_buffer_allocation_result;
+  uint system_buffer_allocation_result;
+  system_buffer_allocation_result = 0;
+  system_buffer_allocation_result = 0;
   thread_result_index = 0;
   thread_result_index = thread_result_index;
   if (0 < mutex_attr) {
@@ -11568,23 +11568,23 @@ uint setup_timer_with_attributes(long long handle,int thread_operation_flags,int
         byte_flag_value = byte_flag_value - 8;
       }
       thread_operation_flags = thread_operation_flags + 1;
-      buffer_allocation_result = *(byte *)((thread_result_index >> 3) + handle) >> (byte_flag_value & 0x1f) & 1;
+      system_buffer_allocation_result = *(byte *)((thread_result_index >> 3) + handle) >> (byte_flag_value & 0x1f) & 1;
       thread_result_index = thread_result_index + 1;
-      buffer_allocation_result = buffer_allocation_result | buffer_allocation_result << ((byte)thread_result_index & 0x1f);
+      system_buffer_allocation_result = system_buffer_allocation_result | system_buffer_allocation_result << ((byte)thread_result_index & 0x1f);
       thread_result_index = thread_result_index;
     } while (thread_result_index < mutex_attr);
   }
-  if (((mutex_type != '\0') && (buffer_allocation_result != 0)) && (thread_result_index < config_path_buffer_size)) {
+  if (((mutex_type != '\0') && (system_buffer_allocation_result != 0)) && (thread_result_index < config_path_buffer_size)) {
     byte_flag_value = (byte)thread_result_index & 0x1f;
-    buffer_allocation_result = 1 << byte_flag_value | 1U >> config_path_buffer_size - byte_flag_value;
-    buffer_allocation_result = (ulong long)(config_path_buffer_size - thread_result_index);
+    system_buffer_allocation_result = 1 << byte_flag_value | 1U >> config_path_buffer_size - byte_flag_value;
+    system_buffer_allocation_result = (ulong long)(config_path_buffer_size - thread_result_index);
     do {
-      buffer_allocation_result = buffer_allocation_result | buffer_allocation_result;
-      buffer_allocation_result = buffer_allocation_result << 1 | (uint)((int)buffer_allocation_result < 0);
-      buffer_allocation_result = buffer_allocation_result - 1;
-    } while (buffer_allocation_result != 0);
+      system_buffer_allocation_result = system_buffer_allocation_result | system_buffer_allocation_result;
+      system_buffer_allocation_result = system_buffer_allocation_result << 1 | (uint)((int)system_buffer_allocation_result < 0);
+      system_buffer_allocation_result = system_buffer_allocation_result - 1;
+    } while (system_buffer_allocation_result != 0);
   }
-  return buffer_allocation_result;
+  return system_buffer_allocation_result;
 }
   data_180c58854 = 1;
   data_180c58853 = 1;
@@ -11604,16 +11604,16 @@ unsigned int validate_timer_parameters(byte handle,byte *thread_operation_flags,
 {
   uint *input_string_pointer;
   byte byte_flag_value;
-  uint buffer_allocation_result;
+  uint system_buffer_allocation_result;
   mutex_attr = mutex_attr + -4;
   input_string_pointer = (uint *)(thread_operation_flags + mutex_attr);
-  buffer_allocation_result = *(uint *)(&system_lookup_table + (ulong long)(byte)~handle * 4) ^ 0xffffff;
+  system_buffer_allocation_result = *(uint *)(&system_lookup_table + (ulong long)(byte)~handle * 4) ^ 0xffffff;
   for (; 0 < mutex_attr; mutex_attr = mutex_attr + -1) {
     byte_flag_value = *thread_operation_flags;
     thread_operation_flags = thread_operation_flags + 1;
-    buffer_allocation_result = *(uint *)(&system_lookup_table + (ulong long)(byte)(byte_flag_value ^ (byte)buffer_allocation_result) * 4) ^ buffer_allocation_result >> 8;
+    system_buffer_allocation_result = *(uint *)(&system_lookup_table + (ulong long)(byte)(byte_flag_value ^ (byte)system_buffer_allocation_result) * 4) ^ system_buffer_allocation_result >> 8;
   }
-  return CONCAT31((int3)(~buffer_allocation_result >> 8),*input_string_pointer != ~buffer_allocation_result);
+  return CONCAT31((int3)(~system_buffer_allocation_result >> 8),*input_string_pointer != ~system_buffer_allocation_result);
 }
 float * system_execute_function(float *handle,float *thread_operation_flags,float *mutex_attr)
 {
@@ -11687,12 +11687,12 @@ unsigned long long initialize_timer_context(unsigned long long handle,unsigned i
       _guard_check_icall(system_global_data_pointer);
       thread_result_index = (*character_scan_pointer)(&stack_size_limit,&stack_size_limit,0x27);
       if (thread_result_index != 0x27) goto label_;
-      for (input_string_pointer = auStack_1c0; character_scan_pointer = system_global_data_pointer, buffer_allocation_result = *input_string_pointer, buffer_allocation_result != 0;
+      for (input_string_pointer = auStack_1c0; character_scan_pointer = system_global_data_pointer, system_buffer_allocation_result = *input_string_pointer, system_buffer_allocation_result != 0;
           input_string_pointer = input_string_pointer + 1) {
         stack_size_limit = 0;
         _guard_check_icall(system_global_data_pointer);
         thread_stack_pointer = &stack_size_limit;
-        thread_result_index = (*character_scan_pointer)(0xffffffff80000002,&system_18098af50,0,buffer_allocation_result | config_path_buffer_size019);
+        thread_result_index = (*character_scan_pointer)(0xffffffff80000002,&system_18098af50,0,system_buffer_allocation_result | config_path_buffer_size019);
         if (thread_result_index == 0) {
           stack_size_limit = 0x80;
           stack_size_limit = 4;
@@ -11708,7 +11708,7 @@ unsigned long long initialize_timer_context(unsigned long long handle,unsigned i
   OutputDebugStringW(&system_18098afa0);
   SetLastError(0);
 label_:
-  system_crypto_001(stack_size_limit ^ (ulong long)auStack_228);
+  system_execute_crypto_operation(stack_size_limit ^ (ulong long)auStack_228);
 }
           data_180c6a14c = thread_result_index == 1;
           SetConsoleTitleA(&system_18098b4e0);
@@ -11761,7 +11761,7 @@ label_:
               system_global_data_pointer = _wfsopen(string_length_counter,input_string_pointer,config_path_buffer_size);
               if (system_global_data_pointer != 0) {
                 input_string_pointer = &system_string_buffer_3;
-                buffer_allocation_result = 0xeb;
+                system_buffer_allocation_result = 0xeb;
                 handle = string_length_counter;
                 goto label_;
               }
@@ -11769,9 +11769,9 @@ label_:
               string_length_counter = 0;
             } while (thread_result_index < 9);
             input_string_pointer = &system_string_buffer_4;
-            buffer_allocation_result = 0xef;
+            system_buffer_allocation_result = 0xef;
 label_:
-            system_execute_function(&system_string_buffer_5,buffer_allocation_result,&system_string_buffer_6,input_string_pointer,handle);
+            system_execute_function(&system_string_buffer_5,system_buffer_allocation_result,&system_string_buffer_6,input_string_pointer,handle);
             free(string_length_counter);
             free(string_length_counter);
           }
@@ -11792,10 +11792,10 @@ bool check_system_availability(void)
 {
   short sVar1;
   long long string_length_counter;
-  uint buffer_allocation_result;
+  uint system_buffer_allocation_result;
   int thread_result_index;
   long long string_length_counter;
-  unsigned long long buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
   long long string_length_counter;
   long long string_length_counter;
   long long string_length_counter;
@@ -11820,11 +11820,11 @@ bool check_system_availability(void)
       }
       system_global_data_pointer = _wfsopen();
       if ((1 < system_global_data_pointer) && ((uint)unaffected_register < in_stack_00000090)) {
-        buffer_allocation_result = GetConsoleWindow();
+        system_buffer_allocation_result = GetConsoleWindow();
         in_stack_00000098 = (uint)unaffected_register;
-        GetWindowThreadProcessId(buffer_allocation_result,&stack0x00000098);
-        buffer_allocation_result = GetCurrentProcessId();
-        if (buffer_allocation_result != in_stack_00000098) {
+        GetWindowThreadProcessId(system_buffer_allocation_result,&stack0x00000098);
+        system_buffer_allocation_result = GetCurrentProcessId();
+        if (system_buffer_allocation_result != in_stack_00000098) {
           thread_result_index = AllocConsole();
           data_180c6a14c = thread_result_index == 1;
           SetConsoleTitleA(&system_18098b4e0);
@@ -11877,16 +11877,16 @@ label_:
               system_global_data_pointer = _wfsopen(string_length_counter,input_string_pointer,config_path_buffer_size);
               if (system_global_data_pointer != 0) {
                 input_string_pointer = &system_string_buffer_3;
-                buffer_allocation_result = 0xeb;
+                system_buffer_allocation_result = 0xeb;
                 goto label_;
               }
               thread_result_index = thread_result_index + 1;
               string_length_counter = 0;
             } while (thread_result_index < 9);
             input_string_pointer = &system_string_buffer_4;
-            buffer_allocation_result = 0xef;
+            system_buffer_allocation_result = 0xef;
 label_:
-            system_execute_function(&system_string_buffer_5,buffer_allocation_result,&system_string_buffer_6,input_string_pointer);
+            system_execute_function(&system_string_buffer_5,system_buffer_allocation_result,&system_string_buffer_6,input_string_pointer);
             free(string_length_counter);
             free(string_length_counter);
           }
@@ -11909,7 +11909,7 @@ bool validate_system_resources(void)
   long long string_length_counter;
   long long string_length_counter;
   long long string_length_counter;
-  unsigned long long buffer_allocation_result;
+  unsigned long long system_buffer_allocation_result;
   int thread_result_index;
   long long unaffected_registerBX;
   long long string_length_counter;
@@ -11955,16 +11955,16 @@ label_:
       system_global_data_pointer = _wfsopen(string_length_counter);
       if (system_global_data_pointer != 0) {
         input_string_pointer = &system_string_buffer_3;
-        buffer_allocation_result = 0xeb;
+        system_buffer_allocation_result = 0xeb;
         goto label_;
       }
       thread_result_index = thread_result_index + 1;
       string_length_counter = 0;
     } while (thread_result_index < 9);
     input_string_pointer = &system_string_buffer_4;
-    buffer_allocation_result = 0xef;
+    system_buffer_allocation_result = 0xef;
 label_:
-    system_execute_function(&system_string_buffer_5,buffer_allocation_result,&system_string_buffer_6,input_string_pointer);
+    system_execute_function(&system_string_buffer_5,system_buffer_allocation_result,&system_string_buffer_6,input_string_pointer);
     free(string_length_counter);
     free(string_length_counter);
   }
@@ -11978,9 +11978,9 @@ label_:
     if ((data_180bf0082 != '\0') && (wcscat_s(auStack_228,STRING_BUFFER_SIZE4,thread_operation_flags), data_180bf0082 != '\0')) {
       system_execute_function(auStack_228,0);
     }
-    _set_invalid_parameter_handler(buffer_allocation_result);
+    _set_invalid_parameter_handler(system_buffer_allocation_result);
   }
-  system_crypto_001(stack_size_limit ^ (ulong long)auStack_248);
+  system_execute_crypto_operation(stack_size_limit ^ (ulong long)auStack_248);
 }
   data_180bf0082 = '\x01';
   wcscpy_s(temp_stack_array,STRING_BUFFER_SIZE4);
@@ -11990,10 +11990,10 @@ label_:
       system_execute_function(temp_stack_array,0);
     }
   }
-  _set_invalid_parameter_handler(buffer_allocation_result);
-  system_crypto_001(in_stack_00000230 ^ (ulong long)&stack0x00000000);
+  _set_invalid_parameter_handler(system_buffer_allocation_result);
+  system_execute_crypto_operation(system_stack_input ^ (ulong long)&system_stack_zero);
 }
-    data_180c821d8 = 1;
+    system_initialization_flag_2 = 1;
   }
   system_execute_function();
   system_char_variable = system_check_character_status();
@@ -12041,31 +12041,31 @@ unsigned long long allocate_system_buffer(uint handle)
 }
 ulong long process_buffer_allocation(long long handle)
 {
-  ulong long buffer_allocation_result;
+  ulong long system_buffer_allocation_result;
   uint7 thread_operation_flags;
   IMAGE_SECTION_HEADER *section_header_ptr;
-  buffer_allocation_result = 0;
+  system_buffer_allocation_result = 0;
   for (section_header_ptr = &image_section_header_start; section_header_ptr != (IMAGE_SECTION_HEADER *)&system_section_end;
       section_header_ptr = section_header_ptr + 1) {
     if (((ulong long)(uint)section_header_ptr->VirtualAddress <= handle - 0x180000000U) &&
-       (buffer_allocation_result = (ulong long)((section_header_ptr->Misc).PhysicalAddress + section_header_ptr->VirtualAddress),
-       handle - 0x180000000U < buffer_allocation_result)) goto label_;
+       (system_buffer_allocation_result = (ulong long)((section_header_ptr->Misc).PhysicalAddress + section_header_ptr->VirtualAddress),
+       handle - 0x180000000U < system_buffer_allocation_result)) goto label_;
   }
   section_header_ptr = (IMAGE_SECTION_HEADER *)0x0;
 label_:
   if (section_header_ptr == (IMAGE_SECTION_HEADER *)0x0) {
-    buffer_allocation_result = buffer_allocation_result & 0xffffffffffffff00;
+    system_buffer_allocation_result = system_buffer_allocation_result & 0xffffffffffffff00;
   }
   else {
-    thread_operation_flags = (uint7)(buffer_allocation_result >> 8);
+    thread_operation_flags = (uint7)(system_buffer_allocation_result >> 8);
     if ((int)section_header_ptr->Characteristics < 0) {
-      buffer_allocation_result = (ulong long)thread_operation_flags << 8;
+      system_buffer_allocation_result = (ulong long)thread_operation_flags << 8;
     }
     else {
-      buffer_allocation_result = CONCAT71(thread_operation_flags,1);
+      system_buffer_allocation_result = CONCAT71(thread_operation_flags,1);
     }
   }
-  return buffer_allocation_result;
+  return system_buffer_allocation_result;
 }
     data_180c91d50 = '\0';
   }
