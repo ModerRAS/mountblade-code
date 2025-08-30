@@ -16915,17 +16915,17 @@ void InitializeSystemModule18(longlong handleIdentifier,uint64_t resourceIdentif
   *(uint32_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) = 0;
   return;
 }
-// void InitializeSystemModule48(void)
+// void InitializePropertyDataNode(void)
 
-void InitializeSystemModule48(void)
+void InitializePropertyDataNode(void)
 
 {
                     // WARNING: Subroutine does not return
   memcpy();
 }
-// void InitializeSystemModule49(uint8_t *handleIdentifier)
+// void InitializeMethodDataNode(uint8_t *handleIdentifier)
 
-void InitializeSystemModule49(uint8_t *handleIdentifier)
+void InitializeMethodDataNode(uint8_t *handleIdentifier)
 
 {
   longlong system_reg_rdi;
@@ -17031,17 +17031,17 @@ void InitializeSystemDataNode31(longlong handleIdentifier,uint64_t resourceIdent
   *(uint32_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) = 0;
   return;
 }
-// void InitializeSystemModule51(void)
+// void InitializeDelegateDataNode(void)
 
-void InitializeSystemModule51(void)
+void InitializeDelegateDataNode(void)
 
 {
                     // WARNING: Subroutine does not return
   memcpy();
 }
-// void InitializeSystemModule52(uint8_t *handleIdentifier)
+// void InitializeCallbackDataNode(uint8_t *handleIdentifier)
 
-void InitializeSystemModule52(uint8_t *handleIdentifier)
+void InitializeCallbackDataNode(uint8_t *handleIdentifier)
 
 {
   longlong system_reg_rdi;
@@ -17255,17 +17255,17 @@ void InitializeDataEngineNode(longlong handleIdentifier,uint64_t resourceIdentif
   *(uint32_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) = 0;
   return;
 }
-// void InitializeSystemModule50(void)
+// void InitializeEventDataNode2(void)
 
-void InitializeSystemModule50(void)
+void InitializeEventDataNode2(void)
 
 {
                     // WARNING: Subroutine does not return
   memcpy();
 }
-// void InitializeSystemModule53(uint8_t *handleIdentifier)
+// void InitializeHandlerDataNode(uint8_t *handleIdentifier)
 
-void InitializeSystemModule53(uint8_t *handleIdentifier)
+void InitializeHandlerDataNode(uint8_t *handleIdentifier)
 
 {
   longlong system_reg_rdi;
@@ -19324,17 +19324,17 @@ void InitializeShaderSystem(longlong handleIdentifier,uint64_t resourceIdentifie
   *(uint32_t *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) = 0;
   return;
 }
-// void InitializeSystemModule54(void)
+// void InitializeListenerDataNode(void)
 
-void InitializeSystemModule54(void)
+void InitializeListenerDataNode(void)
 
 {
                     // WARNING: Subroutine does not return
   memcpy();
 }
-// void InitializeSystemModule55(uint8_t *handleIdentifier)
+// void InitializeObserverDataNode(uint8_t *handleIdentifier)
 
-void InitializeSystemModule55(uint8_t *handleIdentifier)
+void InitializeObserverDataNode(uint8_t *handleIdentifier)
 
 {
   longlong system_reg_rdi;
@@ -27801,9 +27801,9 @@ void HandleSystemResource32(longlong handleIdentifier,longlong resourceIdentifie
                     // WARNING: Subroutine does not return
   memmove(system_operation_status);
 }
-// void InitializeSystemModule51(void)
+// void InitializeDelegateDataNode(void)
 
-void InitializeSystemModule51(void)
+void InitializeDelegateDataNode(void)
 
 {
   return;
