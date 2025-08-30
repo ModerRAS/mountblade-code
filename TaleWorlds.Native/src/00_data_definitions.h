@@ -590,24 +590,24 @@ int initialize_audio_resource_manager(void)
 int initialize_font_resource_manager(void)
 {
   long long initialization_result;
-  size_t string_length_parameter;
+  size_t model_resource_string_length;
   void* resource_buffer_ptr = &g_resource_data_buffer;
   void* resource_buffer_value_pointer = &resource_buffer_5;
   resource_buffer_5 = 0;
-  resource_type_5 = RESOURCE_TYPE_AUDIO;
-  strcpy_s(&resource_buffer_5, RESOURCE_BUFFER_SIZE, &model_resource_string, string_length_parameter, DEFAULT_THREAD_POOL_FLAG);
+  resource_type_5 = RESOURCE_TYPE_FONT;
+  strcpy_s(&resource_buffer_5, RESOURCE_BUFFER_SIZE, &model_resource_string, model_resource_string_length, DEFAULT_THREAD_POOL_FLAG);
   initialization_result = system_execution_function(font_resource_manager_init_function);
   return (initialization_result != 0) - 1;
 }
 int initialize_model_resource_manager(void)
 {
   long long initialization_result;
-  size_t string_length_parameter;
+  size_t animation_resource_string_length;
   void* resource_buffer_ptr = &g_resource_data_buffer;
   void* resource_buffer_value_pointer = &resource_buffer_6;
   resource_buffer_6 = 0;
-  resource_type_6 = 4;
-  strcpy_s(&resource_buffer_6, RESOURCE_BUFFER_SIZE, &animation_resource_string, string_length_parameter, DEFAULT_THREAD_POOL_FLAG);
+  resource_type_6 = RESOURCE_TYPE_MODEL;
+  strcpy_s(&resource_buffer_6, RESOURCE_BUFFER_SIZE, &animation_resource_string, animation_resource_string_length, DEFAULT_THREAD_POOL_FLAG);
   initialization_result = system_execution_function(model_resource_manager_init_function);
   return (initialization_result != 0) - 1;
 }
