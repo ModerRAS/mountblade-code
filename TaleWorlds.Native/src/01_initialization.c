@@ -54,7 +54,7 @@ undefined g_memory_usage;
 undefined g_cpu_usage;
 undefined ValidateInitialization;
 undefined system_input_processing_context;
-undefined DAT_180c96220;
+undefined system_network_init_data;
 undefined8 UNK_180c96358;
 undefined g_gpu_usage;
 undefined g_frame_rate;

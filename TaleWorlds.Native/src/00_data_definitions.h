@@ -52,8 +52,6 @@
 // - 简化实现：仅将常见的结构体偏移量替换为语义化常量，保持代码结构不变
 
 // 本次语义化变量名美化内容（2025年8月30日语义化变量名美化批次）：
-// - 美化指针变量名，将semantic_float_ptr替换为system_float_pointer_variable等语义化变量名
-// - 美化临时缓冲区变量名，将temporary_buffer_secondary替换为system_temporary_buffer_variable等语义化变量名
 // - 美化栈参数变量名，将stack_float_param_38替换为system_stack_float_parameter_variable等语义化变量名
 // - 美化栈计算结果变量名，将system_stack_float_calc_result_298替换为system_stack_float_calculation_result_298等语义化变量名
 // - 美化栈输入参数变量名，将system_stack_float_input_param_28c替换为system_stack_float_input_parameter_28c等语义化变量名
@@ -6300,7 +6298,7 @@ goto section_processing_jump_label_38;
         OutputDebugStringA(system_stack_ushort_array_258);
       }
       system_float_variable = (float)modff((float)(int)(*(ushort *)((long long)handle_param + SYSTEM_POINTER_OFFSET_5E) - 1) *
-                            system_stack_unsigned_int_param_18_low_half_,&system_maximum_stack_size);
+                            system_stack_unsigned_int_parameter_18_low_half_,&system_maximum_stack_size);
       system_float_variable = (float)modff();
       system_stack_float_calculation_result_298 = (system_stack_float_input_parameter_28c - system_stack_float_calculation_result_298) * system_float_variable + system_stack_float_calculation_result_298;
       system_stack_float_calculation_result_294 = (system_stack_float_input_parameter_288 - system_stack_float_calculation_result_294) * system_float_variable + system_stack_float_calculation_result_294;
@@ -6309,7 +6307,7 @@ goto section_processing_jump_label_38;
                system_stack_float_calculation_result_294;
       system_float_variable = (((system_stack_float_base_value_26c - system_stack_float_base_value_278) * system_float_variable + system_stack_float_base_value_278) - system_stack_float_calculation_result_290) * system_float_variable +
                system_stack_float_calculation_result_290;
-      system_float_variable = (((system_stack_float_base_value_274 - system_stack_float_input_param_280) * system_float_variable + system_stack_float_input_param_280) - system_stack_float_calculation_result_298) * system_float_variable +
+      system_float_variable = (((system_stack_float_base_value_274 - system_stack_float_input_parameter_280) * system_float_variable + system_stack_float_input_parameter_280) - system_stack_float_calculation_result_298) * system_float_variable +
                system_stack_float_calculation_result_298;
     }
     else {
@@ -6365,13 +6363,13 @@ code_section_1ade:
     if (mutex_type == SYSTEM_ZERO_VALUE) {
       system_thread_result_status = *(ushort *)((long long)handle_param + SYSTEM_POINTER_OFFSET_5E) - 1;
       system_thread_result_status = *(ushort *)((long long)handle_param + SYSTEM_CHAR_BACKSLASH) - 1;
-      system_stack_unsigned_int_param_18_first_float_ = (float)mutex_attr;
+      system_stack_unsigned_int_parameter_18_first_float_ = (float)mutex_attr;
       if ((int)((float)system_thread_result_status * (float)system_stack_unsigned_int_parameter_18) <= system_thread_result_status) {
         system_thread_result_status = (int)((float)system_thread_result_status * (float)system_stack_unsigned_int_parameter_18);
       }
-      system_stack_unsigned_int_param_18_low_half_ = (float)((ulong long)mutex_attr >> path_buffer_size);
-      if ((int)((float)system_thread_result_status * system_stack_unsigned_int_param_18_low_half_) <= system_thread_result_status) {
-        system_thread_result_status = (int)((float)system_thread_result_status * system_stack_unsigned_int_param_18_low_half_);
+      system_stack_unsigned_int_parameter_18_low_half_ = (float)((ulong long)mutex_attr >> path_buffer_size);
+      if ((int)((float)system_thread_result_status * system_stack_unsigned_int_parameter_18_low_half_) <= system_thread_result_status) {
+        system_thread_result_status = (int)((float)system_thread_result_status * system_stack_unsigned_int_parameter_18_low_half_);
       }
       system_thread_result_status = SYSTEM_ZERO_VALUE;
       if (-1 < system_thread_result_status) {
@@ -6391,11 +6389,11 @@ code_section_1ade:
     else if (mutex_type == 1) {
       system_handle_paramr_process_mutex(handle_param,&system_stack_unsigned_int_parameter_18,mutex_attr,&system_stack_float_calculation_result_298);
       system_float_variable = (float)modff((float)(int)(*(ushort *)((long long)handle_param + SYSTEM_POINTER_OFFSET_5E) - 1) *
-                            system_stack_unsigned_int_param_18_low_half_,&system_maximum_stack_size);
+                            system_stack_unsigned_int_parameter_18_low_half_,&system_maximum_stack_size);
       system_float_variable = (float)modff();
       system_stack_float_calculation_result_298 = (system_stack_float_input_parameter_288 - system_stack_float_calculation_result_298) * system_float_variable + system_stack_float_calculation_result_298;
       system_stack_float_calculation_result_294 = (system_stack_float_input_parameter_284 - system_stack_float_calculation_result_294) * system_float_variable + system_stack_float_calculation_result_294;
-      system_stack_float_calculation_result_290 = (system_stack_float_input_param_280 - system_stack_float_calculation_result_290) * system_float_variable + system_stack_float_calculation_result_290;
+      system_stack_float_calculation_result_290 = (system_stack_float_input_parameter_280 - system_stack_float_calculation_result_290) * system_float_variable + system_stack_float_calculation_result_290;
       *system_thread_operation_flags = (((system_stack_float_base_value_268 - system_stack_float_base_value_278) * system_float_variable + system_stack_float_base_value_278) - system_stack_float_calculation_result_298) * system_float_variable +
                  system_stack_float_calculation_result_298;
       system_thread_operation_flags[1] = (((system_stack_float_base_value_264 - system_stack_float_base_value_274) * system_float_variable + system_stack_float_base_value_274) - system_stack_float_calculation_result_294) * system_float_variable +
@@ -6444,11 +6442,11 @@ SYSTEM_LABEL_BUFFER_CONVERSION_START:
     break;
   case 0x2b:
     system_thread_priority_level = mutex_type;
-    system_handle_paramr_004(system_initialization_result0,system_stack_byte_array_2b8,handle_param,&system_stack_unsigned_int_parameter_18);
+    system_handle_paramr_004(system_initialization_result0,system_stack_byte_array_buffer_2b8,handle_param,&system_stack_unsigned_int_parameter_18);
     system_thread_operation_flags[1] = SYSTEM_FLOAT_VALUE_ZERO;
     system_thread_operation_flags[2] = SYSTEM_FLOAT_VALUE_ZERO;
     system_thread_operation_flags[3] = SYSTEM_FLOAT_VALUE_ZERO;
-    *system_thread_operation_flags = (float)system_stack_byte_array_2b8[0];
+    *system_thread_operation_flags = (float)system_stack_byte_array_buffer_2b8[0];
     break;
   case 0x2c:
     system_buffer_allocation_result = system_handle_paramr_003(system_initialization_result0,handle_param,&system_stack_unsigned_int_parameter_18);
@@ -6475,12 +6473,12 @@ system_handle_paramr_001:
   system_stack_float_operation_parameter_4 =
        (system_stack_float_control_parameter_0 - system_stack_float_operation_parameter_4) * system_float_variable + system_stack_float_operation_parameter_4;
   system_float_variable = (system_stack_float_control_parameter_4 - system_stack_float_operation_parameter_8) * system_float_variable + system_stack_float_operation_parameter_8;
-  *unregister_bx = (((system_stack_float_parameter_7c - system_stack_float_parameter_70) * system_float_variable + system_stack_float_parameter_70)
+  *unregister_bx = (((system_stack_float_parameter_7c - system_stack_float_parameter_value_70) * system_float_variable + system_stack_float_parameter_value_70)
                - system_float_variable) * system_float_variable + system_float_variable;
-  unregister_bx[1] = (((system_stack_float_parameter_78 - system_stack_float_control_parameter_c) * system_float_variable +
+  unregister_bx[1] = (((system_stack_float_parameter_value_78 - system_stack_float_control_parameter_c) * system_float_variable +
                   system_stack_float_control_parameter_c) - system_stack_float_operation_parameter_4) * system_float_variable + system_stack_float_operation_parameter_4
   ;
-  unregister_bx[2] = (((system_stack_float_parameter_74 - system_stack_float_control_parameter_8) * system_float_variable +
+  unregister_bx[2] = (((system_stack_float_parameter_value_74 - system_stack_float_control_parameter_8) * system_float_variable +
                   system_stack_float_control_parameter_8) - system_float_variable) * system_float_variable + system_float_variable;
   unregister_bx[3] = SYSTEM_FLOAT_VALUE_ONE;
   system_execute_crypto_operation(*(ulong long *)(unreg_bp + SYSTEM_OFFSET_HANDLE_PARAM00) ^ (ulong long)&system_stack_zero);
@@ -6497,12 +6495,12 @@ system_handle_paramr_001:
   system_stack_float_operation_parameter_4 =
        (system_stack_float_control_parameter_0 - system_stack_float_operation_parameter_4) * system_float_variable + system_stack_float_operation_parameter_4;
   system_float_variable = (system_stack_float_control_parameter_4 - system_stack_float_operation_parameter_8) * system_float_variable + system_stack_float_operation_parameter_8;
-  *unregister_bx = (((system_stack_float_parameter_7c - system_stack_float_parameter_70) * system_float_variable + system_stack_float_parameter_70)
+  *unregister_bx = (((system_stack_float_parameter_7c - system_stack_float_parameter_value_70) * system_float_variable + system_stack_float_parameter_value_70)
                - system_float_variable) * system_float_variable + system_float_variable;
-  unregister_bx[1] = (((system_stack_float_parameter_78 - system_stack_float_control_parameter_c) * system_float_variable +
+  unregister_bx[1] = (((system_stack_float_parameter_value_78 - system_stack_float_control_parameter_c) * system_float_variable +
                   system_stack_float_control_parameter_c) - system_stack_float_operation_parameter_4) * system_float_variable + system_stack_float_operation_parameter_4
   ;
-  unregister_bx[2] = (((system_stack_float_parameter_74 - system_stack_float_control_parameter_8) * system_float_variable +
+  unregister_bx[2] = (((system_stack_float_parameter_value_74 - system_stack_float_control_parameter_8) * system_float_variable +
                   system_stack_float_control_parameter_8) - system_float_variable) * system_float_variable + system_float_variable;
   unregister_bx[3] = SYSTEM_FLOAT_VALUE_ONE;
   system_execute_crypto_operation(*(ulong long *)(unreg_bp + SYSTEM_OFFSET_HANDLE_PARAM00) ^ (ulong long)&system_stack_zero);
@@ -6667,6 +6665,7 @@ unsigned long long process_system_request(unsigned long long *handle_param)
         system_float_variable = (float)byte_system_string_input_pointer[2] * SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT - SYSTEM_FLOAT_VALUE_ONE;
         system_float_variable = system_float_variable * system_float_variable + system_float_variable * system_float_variable + system_float_variable * system_float_variable;
         system_temporary_buffer_variable = rsqrtss(zero_extension_float((uint)system_float_variable),zero_extension_float((uint)system_float_variable));
+        system_temporary_buffer_float_variable = (float)system_temporary_buffer_variable[0];
         system_float_variable = system_temporary_buffer_float_variable;
         system_float_variable = system_float_variable * SYSTEM_FLOAT_ARITHMETIC_HALF * (SYSTEM_FLOAT_SQUARE_ROOT_APPROXIMATION - system_float_variable * system_float_variable * system_float_variable);
         *byte_system_string_input_pointer = (byte)(int)((system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_NORMALIZATION_FACTOR);
@@ -6692,6 +6691,7 @@ unsigned long long process_system_request(unsigned long long *handle_param)
         system_float_variable = (float)system_string_input_pointer[2] * SYSTEM_FLOAT_CONVERSION_USHORT_TO_FLOAT - SYSTEM_FLOAT_VALUE_ONE;
         system_float_variable = system_float_variable * system_float_variable + system_float_variable * system_float_variable + system_float_variable * system_float_variable;
         system_temporary_buffer_variable = rsqrtss(zero_extension_float((uint)system_float_variable),zero_extension_float((uint)system_float_variable));
+        system_temporary_buffer_float_variable = (float)system_temporary_buffer_variable[0];
         system_float_variable = system_temporary_buffer_float_variable;
         system_float_variable = system_float_variable * SYSTEM_FLOAT_ARITHMETIC_HALF * (SYSTEM_FLOAT_SQUARE_ROOT_APPROXIMATION - system_float_variable * system_float_variable * system_float_variable);
         *system_string_input_pointer = (ushort)(int)((system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_NORMALIZATION_FACTOR_LARGE);
@@ -6714,6 +6714,7 @@ unsigned long long process_system_request(unsigned long long *handle_param)
         system_float_variable = (system_float_vector_buffer_pointer[2] + system_float_vector_buffer_pointer[2]) - SYSTEM_FLOAT_VALUE_ONE;
         system_float_variable = system_float_variable * system_float_variable + system_float_variable * system_float_variable + system_float_variable * system_float_variable;
         system_temporary_buffer_variable = rsqrtss(zero_extension_float((uint)system_float_variable),zero_extension_float((uint)system_float_variable));
+        system_temporary_buffer_float_variable = (float)system_temporary_buffer_variable[0];
         system_float_variable = system_temporary_buffer_float_variable;
         system_float_variable = system_float_variable * SYSTEM_FLOAT_ARITHMETIC_HALF * (SYSTEM_FLOAT_SQUARE_ROOT_APPROXIMATION - system_float_variable * system_float_variable * system_float_variable);
         *system_float_conversion_pointer = (system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_ARITHMETIC_HALF;
@@ -6737,6 +6738,7 @@ unsigned long long process_system_request(unsigned long long *handle_param)
         system_float_variable = (system_float_conversion_array_pointer[2] + system_float_conversion_array_pointer[2]) - SYSTEM_FLOAT_VALUE_ONE;
         system_float_variable = system_float_variable * system_float_variable + system_float_variable * system_float_variable + system_float_variable * system_float_variable;
         system_temporary_buffer_variable = rsqrtss(zero_extension_float((uint)system_float_variable),zero_extension_float((uint)system_float_variable));
+        system_temporary_buffer_float_variable = (float)system_temporary_buffer_variable[0];
         system_float_variable = system_temporary_buffer_float_variable;
         system_float_variable = system_float_variable * SYSTEM_FLOAT_ARITHMETIC_HALF * (SYSTEM_FLOAT_SQUARE_ROOT_APPROXIMATION - system_float_variable * system_float_variable * system_float_variable);
         *system_float_conversion_array_pointer = (system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_ARITHMETIC_HALF;
@@ -6762,6 +6764,7 @@ unsigned long long process_system_request(unsigned long long *handle_param)
         system_float_variable = (float)system_string_input_pointer[2] * SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT - SYSTEM_FLOAT_VALUE_ONE;
         system_float_variable = system_float_variable * system_float_variable + system_float_variable * system_float_variable + system_float_variable * system_float_variable;
         system_temporary_buffer_variable = rsqrtss(zero_extension_float((uint)system_float_variable),zero_extension_float((uint)system_float_variable));
+        system_temporary_buffer_float_variable = (float)system_temporary_buffer_variable[0];
         system_float_variable = system_temporary_buffer_float_variable;
         system_float_variable = system_float_variable * SYSTEM_FLOAT_ARITHMETIC_HALF * (SYSTEM_FLOAT_SQUARE_ROOT_APPROXIMATION - system_float_variable * system_float_variable * system_float_variable);
         *system_string_input_pointer = (ushort)(int)((system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_NORMALIZATION_FACTOR);
@@ -6789,6 +6792,7 @@ unsigned long long process_system_request(unsigned long long *handle_param)
         system_float_variable = (float)byte_system_string_input_pointer[2] * SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT - SYSTEM_FLOAT_VALUE_ONE;
         system_float_variable = system_float_variable * system_float_variable + system_float_variable * system_float_variable + system_float_variable * system_float_variable;
         system_temporary_buffer_variable = rsqrtss(zero_extension_float((uint)system_float_variable),zero_extension_float((uint)system_float_variable));
+        system_temporary_buffer_float_variable = (float)system_temporary_buffer_variable[0];
         system_float_variable = system_temporary_buffer_float_variable;
         system_float_variable = system_float_variable * SYSTEM_FLOAT_ARITHMETIC_HALF * (SYSTEM_FLOAT_SQUARE_ROOT_APPROXIMATION - system_float_variable * system_float_variable * system_float_variable);
         *byte_system_string_input_pointer = (byte)(int)((system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_NORMALIZATION_FACTOR);
