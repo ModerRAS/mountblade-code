@@ -13,6 +13,9 @@
 // - 将case 0xb/0xd/0xe等替换为UTILITY_CASE_SWITCH_B/D/E等case分支常量
 // - 将case 0x13/0x15/0x16等替换为UTILITY_CASE_SWITCH_13/15/16等状态常量
 // - 修复了自引用的宏定义问题
+// - 将0x7d替换为UTILITY_INTEGRITY_CHECK_OFFSET_7D等完整性检查偏移量常量
+// - 将0x31替换为UTILITY_SIZE_THRESHOLD_31等大小阈值常量
+// - 将0x3f替换为UTILITY_SECURITY_TOKEN_MASK_3F等安全令牌掩码常量
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了工具系统中十六进制常量的语义化替换
 // - 原本实现：完全重构常量定义体系
@@ -2131,9 +2134,9 @@ dataValue g_resource_manager_config_memory;         // 资源管理器配置内�
 dataValue g_resource_manager_config_textures;        // 资源管理器配置纹理;
 dataValue g_resource_manager_config_models;          // 资源管理器配置模型;
 dataValue g_resource_manager_config_audio;          // 资源管理器配置音频;
-dataValue sceneManagerConfigLighting;
-dataValue sceneManagerConfigShadows;
-dataValue sceneManagerConfigPostProcessing;
+dataValue g_scene_manager_config_lighting;         // 场景管理器配置光照;
+dataValue g_scene_manager_config_shadows;          // 场景管理器配置阴影;
+dataValue g_scene_manager_config_post_processing;    // 场景管理器配置后处理;
 dataValue sceneManagerConfigRendering;
 dataValue materialShaderConfig;
 dataValue materialTextureConfig;
