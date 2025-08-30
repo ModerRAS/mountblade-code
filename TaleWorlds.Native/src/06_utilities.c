@@ -607,6 +607,29 @@
 #define UTILITY_UNWIND_FUNCTION_18090C1F2 utility_unwind_function_memory_handler_secondary
 #define UTILITY_UNWIND_FUNCTION_18090C232 utility_unwind_function_memory_handler_tertiary
 #define UTILITY_UNWIND_FUNCTION_18090C36B utility_unwind_function_memory_handler_quaternary
+
+// 新增语义化宏定义 - 美化十六进制常量
+#define UTILITY_HEX_OFFSET_52 0x52
+#define UTILITY_HEX_OFFSET_65 0x65
+#define UTILITY_HEX_OFFSET_88 0x88
+#define UTILITY_HEX_OFFSET_32 0x32
+#define UTILITY_HEX_OFFSET_8E 0x8e
+#define UTILITY_HEX_OFFSET_1A8 0x1a8
+
+// 新增语义化宏定义 - 美化系统状态码
+#define UTILITY_STATUS_CODE_ZERO 0
+#define UTILITY_STATUS_CODE_ONE 1
+#define UTILITY_STATUS_CODE_TWO 2
+#define UTILITY_STATUS_CODE_THREE 3
+#define UTILITY_STATUS_CODE_FIVE 5
+#define UTILITY_STATUS_CODE_SIX 6
+
+// 新增语义化宏定义 - 美化数组大小常量
+#define UTILITY_ARRAY_SIZE_SMALL 0x8e
+#define UTILITY_ARRAY_SIZE_MEDIUM 0x1a8
+
+// 新增语义化宏定义 - 美化验证阈值
+#define UTILITY_VALIDATION_THRESHOLD_50 0x32
 #define UTILITY_UNWIND_FUNCTION_18080FD4A2 utility_unwind_function_resource_handler_primary
 #define UTILITY_UNWIND_FUNCTION_18091056B utility_unwind_function_resource_handler_secondary
 #define UTILITY_UNWIND_FUNCTION_180910692 utility_unwind_function_resource_handler_tertiary
@@ -20523,7 +20546,7 @@ UTILITY_LABEL_ITERATE_ARRAY_ELEMENT:
     return utility_system_status_code;
   }
   utility_system_status_code = systemFlagsData;
-  if (UTILITY_ERROR_CODE_TIMEOUT < (int)utility_register_context_base[8] - 0x52U) goto LAB_ARRAY_PROCESS_COMPLETE;
+  if (UTILITY_ERROR_CODE_TIMEOUT < (int)utility_register_context_base[8] - UTILITY_HEX_OFFSET_52) goto LAB_ARRAY_PROCESS_COMPLETE;
   if (*(int *)(utility_register_context_base[1] + RESOURCE_HANDLE_OFFSET) != 0) {
     utility_system_status_code = UTILITY_BYTE_OFFSET_FLAG;
     goto LAB_ARRAY_PROCESS_COMPLETE;
@@ -21627,7 +21650,7 @@ LAB_PREPARE_RESOURCE_DATA:
   if ((int)utility_iteration_counter != 0) {
     return utility_iteration_counter;
   }
-  if (2 < (int)resource_buffer[8] - 0x65U) goto LAB_RESOURCE_OPERATION_COMPLETE;
+  if (2 < (int)resource_buffer[8] - UTILITY_HEX_OFFSET_65) goto LAB_RESOURCE_OPERATION_COMPLETE;
   booleanResult = false;
   if (*(int *)(resource_buffer[1] + RESOURCE_HANDLE_OFFSET) != 0) goto LAB_RESOURCE_VALIDATION_COMPLETE;
   resource_data_pointer = (longlong *)*memory_block_size;
@@ -21747,7 +21770,7 @@ LAB_PREPARE_RESOURCE_DATA:
   if ((int)utility_iteration_counter != 0) {
     return utility_iteration_counter;
   }
-  if (2 < (int)utility_cpu_context[8] - 0x65U) goto LAB_RESOURCE_OPERATION_COMPLETE;
+  if (2 < (int)utility_cpu_context[8] - UTILITY_HEX_OFFSET_65) goto LAB_RESOURCE_OPERATION_COMPLETE;
   booleanResult = false;
   if (*(int *)(utility_cpu_context[1] + RESOURCE_HANDLE_OFFSET) != 0) goto LAB_RESOURCE_VALIDATION_COMPLETE;
   resource_data_pointer = (longlong *)*utility_cpu_context;
@@ -22434,7 +22457,7 @@ ulonglong ProcessValidationRequest(longlong resource_handle_identifier,uint64 *m
       utility_iteration_counter = (ulonglong)utility_iteration_counter;
       if (utility_iteration_counter == 0) {
         if (((*(uint *)(resource_buffer + 8) < UTILITY_SIZE_THRESHOLD_8A) && (*(int *)(resource_handle_identifier + SYSTEM_FLAGS_OFFSET) == 0)) ||
-           ((*(uint *)(resource_buffer + 8) < 0x8e && (*(int *)(resource_handle_identifier + SYSTEM_FLAGS_OFFSET) == INT_MAX)))) {
+           ((*(uint *)(resource_buffer + 8) < UTILITY_ARRAY_SIZE_SMALL && (*(int *)(resource_handle_identifier + SYSTEM_FLAGS_OFFSET) == INT_MAX)))) {
           *(uint32 *)(resource_handle_identifier + SYSTEM_FLAGS_OFFSET) = STATUS_INITIALIZING;
         }
         utility_iteration_counter = ResizeResourceBuffer(resource_buffer,resource_handle_identifier + UTILITY_RESOURCE_HANDLE_OFFSET_ZERO);
@@ -22515,7 +22538,7 @@ ulonglong InitializeValidationHandler(void)
       utility_iteration_counter = (ulonglong)utility_iteration_counter;
       if (utility_iteration_counter == 0) {
         if (((*(uint *)(utility_register_context_base + 8) < 0x8a) && (*(int *)(utility_cpu_context + SYSTEM_FLAGS_OFFSET) == 0)) ||
-           ((*(uint *)(utility_register_context_base + 8) < 0x8e && (*(int *)(utility_cpu_context + SYSTEM_FLAGS_OFFSET) == INT_MAX)))) {
+           ((*(uint *)(utility_register_context_base + 8) < UTILITY_ARRAY_SIZE_SMALL && (*(int *)(utility_cpu_context + SYSTEM_FLAGS_OFFSET) == INT_MAX)))) {
           *(uint32 *)(utility_cpu_context + SYSTEM_FLAGS_OFFSET) = STATUS_INITIALIZING;
         }
         utility_iteration_counter = ResizeResourceBuffer();
@@ -22595,7 +22618,7 @@ ulonglong GetValidationStatus(void)
     utility_iteration_counter = (ulonglong)utility_iteration_counter;
     if (utility_iteration_counter == 0) {
       if (((*(uint *)(utility_register_context_base + 8) < 0x8a) && (*(int *)(utility_cpu_context + SYSTEM_FLAGS_OFFSET) == 0)) ||
-         ((*(uint *)(utility_register_context_base + 8) < 0x8e && (*(int *)(utility_cpu_context + SYSTEM_FLAGS_OFFSET) == INT_MAX)))) {
+         ((*(uint *)(utility_register_context_base + 8) < UTILITY_ARRAY_SIZE_SMALL && (*(int *)(utility_cpu_context + SYSTEM_FLAGS_OFFSET) == INT_MAX)))) {
         *(uint32 *)(utility_cpu_context + SYSTEM_FLAGS_OFFSET) = STATUS_INITIALIZING;
       }
       utility_iteration_counter = ResizeResourceBuffer();
@@ -22668,7 +22691,7 @@ ulonglong ValidateSystemResources(void)
     utility_iteration_counter = (ulonglong)utility_iteration_counter;
     if (utility_iteration_counter == 0) {
       if (((*(uint *)(utility_register_context_base + 8) < 0x8a) && (*(int *)(utility_cpu_context + SYSTEM_FLAGS_OFFSET) == 0)) ||
-         ((*(uint *)(utility_register_context_base + 8) < 0x8e && (*(int *)(utility_cpu_context + SYSTEM_FLAGS_OFFSET) == INT_MAX)))) {
+         ((*(uint *)(utility_register_context_base + 8) < UTILITY_ARRAY_SIZE_SMALL && (*(int *)(utility_cpu_context + SYSTEM_FLAGS_OFFSET) == INT_MAX)))) {
         *(uint32 *)(utility_cpu_context + SYSTEM_FLAGS_OFFSET) = STATUS_INITIALIZING;
       }
       utility_iteration_counter = ResizeResourceBuffer();
@@ -22841,7 +22864,7 @@ uint64 HandleResourceValidation(longlong resource_handle_identifier,uint64 *memo
     utility_operation_status = *memory_block_size;
     utility_iteration_counter = writeResourceData(utility_operation_status,resource_handle_identifier + ERROR_CODE_INVALID_HANDLE,4);
     if ((((int)utility_iteration_counter == 0) && (utility_iteration_counter = writeResourceData(utility_operation_status,resource_handle_identifier + UTILITY_LIST_HEAD_OFFSET,2), (int)utility_iteration_counter == 0)) &&
-       (utility_iteration_counter = writeResourceData(utility_operation_status,resource_handle_identifier + 0x52,2), (int)utility_iteration_counter == 0)) {
+       (utility_iteration_counter = writeResourceData(utility_operation_status,resource_handle_identifier + UTILITY_HEX_OFFSET_52,2), (int)utility_iteration_counter == 0)) {
       utility_iteration_counter = writeResourceData(utility_operation_status,resource_handle_identifier + UTILITY_SYSTEM_STATUS_OFFSET_2,8);
     }
     if ((int)utility_iteration_counter == 0) {
@@ -22886,7 +22909,7 @@ uint64 GetValidationResult2(void)
   utility_operation_status = *utility_register_context_base;
   utility_iteration_counter = writeResourceData(utility_operation_status,utility_cpu_context + ERROR_CODE_INVALID_HANDLE,4);
   if ((((int)utility_iteration_counter == 0) && (utility_iteration_counter = writeResourceData(utility_operation_status,utility_cpu_context + UTILITY_LIST_HEAD_OFFSET,2), (int)utility_iteration_counter == 0)) &&
-     (utility_iteration_counter = writeResourceData(utility_operation_status,utility_cpu_context + 0x52,2), (int)utility_iteration_counter == 0)) {
+     (utility_iteration_counter = writeResourceData(utility_operation_status,utility_cpu_context + UTILITY_HEX_OFFSET_52,2), (int)utility_iteration_counter == 0)) {
     utility_iteration_counter = writeResourceData(utility_operation_status,utility_cpu_context + UTILITY_SYSTEM_STATUS_OFFSET_2,8);
   }
   if ((int)utility_iteration_counter == 0) {
@@ -23149,7 +23172,7 @@ LAB_RESOURCE_DATA_VALIDATION:
     }
     if ((int)utility_iteration_counter == 0) {
       utility_iteration_counter = systemFlagsData;
-      if ((0x32 < *(uint *)(resource_buffer + 8)) && (utility_iteration_counter = UTILITY_BYTE_OFFSET_FLAG, *(int *)(resource_buffer[1] + RESOURCE_HANDLE_OFFSET) == 0)) {
+      if ((UTILITY_VALIDATION_THRESHOLD_50 < *(uint *)(resource_buffer + 8)) && (utility_iteration_counter = UTILITY_BYTE_OFFSET_FLAG, *(int *)(resource_buffer[1] + RESOURCE_HANDLE_OFFSET) == 0)) {
         utility_iteration_counter = rate_utility_effectiveness(*memory_block_size,resource_handle_identifier + UTILITY_BUFFER_SIZE_DATA_OFFSET);
         utility_iteration_counter = (ulonglong)utility_iteration_counter;
       }
@@ -23253,7 +23276,7 @@ LAB_RESOURCE_DATA_VALIDATION:
     }
     if ((int)utility_iteration_counter == 0) {
       utility_iteration_counter = systemFlagsData;
-      if ((0x32 < *(uint *)(utility_register_context_base + 8)) && (utility_iteration_counter = UTILITY_BYTE_OFFSET_FLAG, *(int *)(utility_register_context_base[1] + RESOURCE_HANDLE_OFFSET) == 0)) {
+      if ((UTILITY_VALIDATION_THRESHOLD_50 < *(uint *)(utility_register_context_base + 8)) && (utility_iteration_counter = UTILITY_BYTE_OFFSET_FLAG, *(int *)(utility_register_context_base[1] + RESOURCE_HANDLE_OFFSET) == 0)) {
         utility_system_status_code = rate_utility_effectiveness(*utility_register_context_base,utility_cpu_context + UTILITY_BUFFER_SIZE_DATA_OFFSET);
         utility_iteration_counter = (ulonglong)utility_system_status_code;
       }
@@ -23353,7 +23376,7 @@ LAB_RESOURCE_DATA_VALIDATION:
     }
     if ((int)utility_iteration_counter == 0) {
       utility_iteration_counter = systemFlagsData;
-      if ((0x32 < *(uint *)(utility_register_context_base + 8)) && (utility_iteration_counter = UTILITY_BYTE_OFFSET_FLAG, *(int *)(utility_register_context_base[1] + RESOURCE_HANDLE_OFFSET) == 0)) {
+      if ((UTILITY_VALIDATION_THRESHOLD_50 < *(uint *)(utility_register_context_base + 8)) && (utility_iteration_counter = UTILITY_BYTE_OFFSET_FLAG, *(int *)(utility_register_context_base[1] + RESOURCE_HANDLE_OFFSET) == 0)) {
         utility_system_status_code = rate_utility_effectiveness(*utility_register_context_base,utility_cpu_context + UTILITY_BUFFER_SIZE_DATA_OFFSET);
         utility_iteration_counter = (ulonglong)utility_system_status_code;
       }
@@ -23449,7 +23472,7 @@ LAB_RESOURCE_DATA_VALIDATION:
     }
     if ((int)utility_iteration_counter == 0) {
       utility_iteration_counter = systemFlagsData;
-      if ((0x32 < *(uint *)(utility_register_context_base + 8)) && (utility_iteration_counter = UTILITY_BYTE_OFFSET_FLAG, *(int *)(utility_register_context_base[1] + RESOURCE_HANDLE_OFFSET) == 0)) {
+      if ((UTILITY_VALIDATION_THRESHOLD_50 < *(uint *)(utility_register_context_base + 8)) && (utility_iteration_counter = UTILITY_BYTE_OFFSET_FLAG, *(int *)(utility_register_context_base[1] + RESOURCE_HANDLE_OFFSET) == 0)) {
         utility_system_status_code = rate_utility_effectiveness(*utility_register_context_base,utility_cpu_context + UTILITY_BUFFER_SIZE_DATA_OFFSET);
         utility_iteration_counter = (ulonglong)utility_system_status_code;
       }
@@ -23567,7 +23590,7 @@ LAB_VALIDATION_LOOP:
         }
       }
       utility_system_status_code = HandleValidationCallback2(resource_buffer,resource_handle_identifier + UTILITY_HANDLE_DATA_OFFSET,0);
-      if (((int)utility_system_status_code == 0) && (utility_system_status_code = ValidateDataIntegrity2(resource_buffer,resource_handle_identifier + 0x88,0), (int)utility_system_status_code == 0)) {
+      if (((int)utility_system_status_code == 0) && (utility_system_status_code = ValidateDataIntegrity2(resource_buffer,resource_handle_identifier + UTILITY_HEX_OFFSET_88,0), (int)utility_system_status_code == 0)) {
                     // WARNING: Subroutine does not return
         free_resource_buffer(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER);
       }
