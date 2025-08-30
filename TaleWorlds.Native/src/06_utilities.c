@@ -2078,7 +2078,7 @@ dataValue g_buffer_module_config_permissions;
 
 // 函数: resource_data g_initialize_system_module_network;
 dataValue g_initialize_system_module_network;
-dataValue networkReceiveBuffer;
+dataValue g_network_receive_buffer;                    // 网络接收缓冲区
 dataValue g_system_module_network_context_client;
 dataValue g_system_module_network_context_server;
 dataValue g_system_module_network_context_peer;
@@ -2086,7 +2086,7 @@ dataValue g_system_module_network_context_manager;
 
 // 函数: resource_data g_initialize_system_module_thread_sync;
 dataValue g_initialize_system_module_thread_sync;
-dataValue networkPacketSize;
+dataValue g_network_packet_size;                     // 网络数据包大小
 dataValue g_thread_sync_module_config_mutex;
 dataValue g_thread_sync_module_config_semaphore;
 dataValue g_thread_sync_module_config_event;
@@ -2113,15 +2113,15 @@ dataValue g_render_module_config_resolution_refresh;
 dataValue g_render_module_config_resolution_scale;
 dataValue g_device_config_module_config_primary;
 dataValue g_device_config_module_config_secondary;
-dataValue deviceConfigGraphicsSettings;
-dataValue deviceConfigAudioSettings;
-dataValue inputBufferKeyboard;
-dataValue inputBufferMouse;
-dataValue inputBufferGamepad;
-dataValue inputBufferTouch;
-dataValue audioBufferMusic;
-dataValue audioBufferSoundEffects;
-dataValue audioBufferVoice;
+dataValue g_device_config_graphics_settings;        // 设备配置图形设置
+dataValue g_device_config_audio_settings;          // 设备配置音频设置
+dataValue g_input_buffer_keyboard;                  // 输入缓冲区键盘
+dataValue g_input_buffer_mouse;                    // 输入缓冲区鼠标
+dataValue g_input_buffer_gamepad;                   // 输入缓冲区游戏手柄
+dataValue g_input_buffer_touch;                    // 输入缓冲区触摸
+dataValue g_audio_buffer_music;                    // 音频缓冲区音乐
+dataValue g_audio_buffer_sound_effects;           // 音频缓冲区音效
+dataValue g_audio_buffer_voice;                   // 音频缓冲区语音
 dataValue audioBufferAmbient;
 dataValue physicsBufferCollision;
 dataValue physicsBufferRigidBody;
