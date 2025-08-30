@@ -18901,7 +18901,7 @@ InitializeSystemModule21(uint64_t *handleIdentifier,longlong *resourceIdentifier
       systemFlags[SYSTEM_DATA_COMPARE_SIZE] = pallocation_size[SYSTEM_STACK_OFFSET_NEGATIVE_B];
       systemFlags[SYSTEM_CONFIG_SIZE_FINAL] = pallocation_size[SYSTEM_STACK_OFFSET_NEGATIVE_10];
       systemFlags[SYSTEM_CONFIG_SIZE_RENDER] = pallocation_size[SYSTEM_STACK_OFFSET_NEGATIVE_9];
-      *(int *)(systemFlags + SYSTEM_CONFIG_SIZE_PHYSICS) = (int)pallocation_size[-8];
+      *(int *)(systemFlags + SYSTEM_CONFIG_SIZE_PHYSICS) = (int)pallocation_size[SYSTEM_STACK_OFFSET_NEGATIVE_8];
       *(uint32_t *)((longlong)systemFlags + SYSTEM_INIT_DATA_OFFSET_9C) = *(uint32_t *)((longlong)pallocation_size + SYSTEM_OFFSET_3C);
       systemFlags[SYSTEM_CONFIG_SIZE_NETWORK_BUFFER] = pallocation_size[-7];
       systemFlags[SYSTEM_CONFIG_SIZE_AUTH] = pallocation_size[-6];
