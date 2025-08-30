@@ -4005,9 +4005,8 @@ void InitializeTreeNode(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// void InitializeGraphNode(void)
-
-void InitializeGraphNode(void)
+// 初始化图形节点系统
+void initialize_graphics_node_system(void)
 
 {
   char is_initialized;
@@ -4052,9 +4051,8 @@ void InitializeGraphNode(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
-// void InitializeMapNode(void)
-
-void InitializeMapNode(void)
+// 初始化地图节点系统
+void initialize_map_node_system(void)
 
 {
   char is_initialized;
@@ -5021,9 +5019,8 @@ void InitializeThreadSystemObject(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// void InitializeProcessSystemObject(void)
-
-void InitializeProcessSystemObject(void)
+// 初始化进程系统对象
+void initialize_process_system_object(void)
 
 {
   char is_initialized;
@@ -5068,9 +5065,8 @@ void InitializeProcessSystemObject(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// void InitializeEventSystemObject(void)
-
-void InitializeEventSystemObject(void)
+// 初始化事件系统对象
+void initialize_event_system_object(void)
 
 {
   char is_initialized;
