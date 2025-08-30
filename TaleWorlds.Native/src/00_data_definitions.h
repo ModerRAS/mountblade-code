@@ -12008,21 +12008,21 @@ label_:
 }
 unsigned long long allocate_system_buffer(uint handle)
 {
-  code *char_system_pointer_variable;
-  byte byte_flag_value;
-  int system_int_variable;
-  unsigned long long buffer_allocation_result;
+  code *system_code_pointer;
+  byte flag_value;
+  int system_status;
+  unsigned long long allocation_result;
   if (data_180c821d9 == '\0') {
     if (1 < handle) {
       system_execute_function(5);
-      char_system_pointer_variable = (code *)swi(3);
-      buffer_allocation_result = (*char_system_pointer_variable)();
-      return buffer_allocation_result;
+      system_code_pointer = (code *)swi(3);
+      allocation_result = (*system_code_pointer)();
+      return allocation_result;
     }
-    system_int_variable = func_0x0001808fd8d4();
-    if ((system_int_variable == 0) || (handle != 0)) {
-      byte_flag_value = SYSTEM_CONFIG_BUFFER_SIZE - ((byte)system_data_pointer & 0x3f) & 0x3f;
-      system_data_pointer = (0xffffffffffffffffU >> byte_flag_value | -1L << SYSTEM_CONFIG_BUFFER_SIZE - byte_flag_value) ^ system_data_pointer;
+    system_status = func_0x0001808fd8d4();
+    if ((system_status == 0) || (handle != 0)) {
+      flag_value = SYSTEM_CONFIG_BUFFER_SIZE - ((byte)system_data_pointer & 0x3f) & 0x3f;
+      system_data_pointer = (0xffffffffffffffffU >> flag_value | -1L << SYSTEM_CONFIG_BUFFER_SIZE - flag_value) ^ system_data_pointer;
       uRam0000000180c821e8 = system_data_pointer;
       system_data_pointer = system_data_pointer;
       system_data_pointer = system_data_pointer;
@@ -12030,8 +12030,8 @@ unsigned long long allocate_system_buffer(uint handle)
       system_data_pointer = system_data_pointer;
     }
     else {
-      system_int_variable = _initialize_onexit_table(&data_180c821e0);
-      if ((system_int_variable != 0) || (system_int_variable = _initialize_onexit_table(&data_180c821f8), system_int_variable != 0)) {
+      system_status = _initialize_onexit_table(&data_180c821e0);
+      if ((system_status != 0) || (system_status = _initialize_onexit_table(&data_180c821f8), system_status != 0)) {
         return 0;
       }
     }
