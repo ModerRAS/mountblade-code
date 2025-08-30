@@ -2413,11 +2413,11 @@ dataValue g_scene_lighting_system;                   // 场景光照系统
 
 // 函数: resource_data CreateFileSystemHandler;
 dataValue CreateFileSystemHandler;
-dataValue g_fileSystemWorkBuffer;
-dataValue g_fileSystemTempOffset;
-dataValue g_fileSystemTempSize;
-dataValue g_fileSystemTempFlags;
-dataValue sceneCameraController;
+dataValue g_file_system_work_buffer;                 // 文件系统工作缓冲区
+dataValue g_file_system_temp_offset;                 // 文件系统临时偏移量
+dataValue g_file_system_temp_size;                   // 文件系统临时大小
+dataValue g_file_system_temp_flags;                  // 文件系统临时标志
+dataValue g_scene_camera_controller;                  // 场景相机控制器
 
 // 函数: resource_data InitializeFileCache;
 dataValue InitializeFileCache;
