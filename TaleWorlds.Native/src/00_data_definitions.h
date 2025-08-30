@@ -1643,17 +1643,17 @@
 #define SYSTEM_FLAG_BUFFER_ADDR_6 0x180c8f110
 #define SYSTEM_FLAG_BUFFER_ADDR_7 0x180c8f120
 
-// 全局变量声明
-extern char system_config_buffer;
-extern char crypto_module_buffer;
-extern char crypto_string_buffer;
-extern char authentication_buffer;
-extern char network_data_buffer;
-extern char render_data_buffer;
-extern char mutex_attr_buffer;
-extern char system_mutex_buffer;
-extern char path_buffer;
-extern char string_handle_buffer;
+// 全局变量声明（2025年8月30日最终批次语义化美化）
+extern char system_global_config_buffer;                              // 系统全局配置缓冲区
+extern char crypto_module_encryption_buffer;                          // 加密模块加密缓冲区
+extern char crypto_module_string_buffer;                              // 加密模块字符串缓冲区
+extern char authentication_session_buffer;                            // 认证会话缓冲区
+extern char network_data_transfer_buffer;                             // 网络数据传输缓冲区
+extern char render_context_data_buffer;                               // 渲染上下文数据缓冲区
+extern char mutex_attribute_buffer;                                   // 互斥锁属性缓冲区
+extern char system_global_mutex_buffer;                               // 系统全局互斥锁缓冲区
+extern char filesystem_path_buffer;                                   // 文件系统路径缓冲区
+extern char string_handle_manager_buffer;                             // 字符串句柄管理器缓冲区
 extern char system_thread_data_buffer_global;
 extern char config_data_buffer;
 extern char constant_string_buffer;

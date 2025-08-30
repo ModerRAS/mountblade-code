@@ -573,8 +573,8 @@
 
 // 函数: void SystemCoreInitializer;
 void SystemCoreInitializer;
-uint8_t system_initialization_status;
-void* g_system_context;
+uint8_t system_initialization_status_array[27];// 系统初始化状态数组（27个元素）
+void* g_system_context_array[148];// 系统上下文指针数组（148个元素）
 void* g_memory_pool_base;
 void* g_memory_allocator;
 uint32_t system_active_thread_count;
@@ -1008,7 +1008,7 @@ void* g_system_context;
 void* g_system_context;
 void* g_system_context;
 void* g_system_context;
-char g_system_initialized;
+char g_system_initialized_array[2];// 系统初始化标志数组（2个元素）
 void* g_system_context;
 void* g_system_context;
 void* g_system_context;
@@ -16852,7 +16852,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   system_uint32_t system_unsigned_stack_a0;
   void* *system_void*_stack_pointer_98;
   longlong system_longlong_stack_90;
-  uint system_unsigned_stack_88;
+  uint system_unsigned_stack_buffer;
   void* *system_void*_stack_pointer_78;
   void* *system_void*_stack_pointer_70;
   system_uint32_t system_unsigned_stack_60;
