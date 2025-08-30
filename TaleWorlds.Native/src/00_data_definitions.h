@@ -202,17 +202,17 @@ void* g_global_system_data;
 void* g_system_config_data;
 
 // 系统核心组件地址定义
-// 原始名称: unknown_180a1b368 - 句柄管理器地址
+// 原始名称: system_180a1b368 - 句柄管理器地址
 void* g_handle_manager_addr_180a1b368 = (void*)0x180a1b368;
-// 原始名称: unknown_180a1b3f0 - 内存管理器地址
+// 原始名称: system_180a1b3f0 - 内存管理器地址
 void* g_memory_manager_addr_180a1b3f0 = (void*)0x180a1b3f0;
-// 原始名称: unknown_180a02fc8 - UI互斥锁属性地址
+// 原始名称: system_180a02fc8 - UI互斥锁属性地址
 void* g_ui_mutex_attr_addr_180a02fc8 = (void*)0x180a02fc8;
-// 原始名称: unknown_180a02fa0 - UI互斥锁类型地址
+// 原始名称: system_180a02fa0 - UI互斥锁类型地址
 void* g_ui_mutex_type_addr_180a02fa0 = (void*)0x180a02fa0;
-// 原始名称: unknown_18045f210 - 栈数据地址1
+// 原始名称: system_18045f210 - 栈数据地址1
 void* g_stack_data_addr_18045f210 = (void*)0x18045f210;
-// 原始名称: unknown_18045f200 - 栈数据地址2
+// 原始名称: system_18045f200 - 栈数据地址2
 void* g_stack_data_addr_18045f200 = (void*)0x18045f200;
 
 // 初始化系统配置
@@ -222,170 +222,170 @@ int initialize_system_config(void)
   int operation_count = 0;
   long long max_allowed_value = MAX_SYSTEM_VALUE;
   int system_status = SYSTEM_STATUS_SUCCESS;
-  int init_result = initialize_system(system_configuration_init_function);
-  return (init_result != 0) - 1;
+  int system_init_result = initialize_system(system_configuration_init_function);
+  return (system_init_result != 0) - 1;
 }
 // 初始化核心数据结构
 int initialize_core_data_structure(void)
 {
-  long long init_result;
+  long long system_init_result;
   void* system_buffer_ptr = &g_systemDataBuffer;
   void* core_data_ptr = &g_core_data_value;
   int data_offset = 0;
   g_core_data_value = 0;
-  init_result = initialize_system(core_data_structure_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = initialize_system(core_data_structure_init_function);
+  return (system_init_result != 0) - 1;
 }
 // 初始化网络缓冲区系统
 int initialize_network_buffer_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   void* network_buffer_ptr = &g_network_data_buffer;
   void* network_value_ptr = &network_buffer_current_value;
   int buffer_offset = 0;
   network_buffer_current_value = 0;
-  init_result = initialize_system(network_buffer_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = initialize_system(network_buffer_init_function);
+  return (system_init_result != 0) - 1;
 }
 // 初始化渲染上下文系统
 int initialize_rendering_context_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   void* render_buffer_ptr = &g_render_data_buffer;
   void* render_value_ptr = &g_render_buffer_value;
   int context_offset = 0;
   g_render_buffer_value = 0;
-  init_result = initialize_system(rendering_context_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = initialize_system(rendering_context_init_function);
+  return (system_init_result != 0) - 1;
 }
 // 初始化模块系统
 int initialize_module_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   void* module_buffer_ptr = &g_moduleDataBuffer;
   void* module_value_ptr = &g_module_data_value;
   void* null_ptr = 0;
   g_module_data_value = 0;
-  init_result = execute_function(module_system_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(module_system_init_function);
+  return (system_init_result != 0) - 1;
 }
 // 初始化输入系统
 int initialize_input_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   void* input_shared_buffer_ptr = &g_shared_data_buffer;
   void* input_value_ptr = &input_buffer_current_value;
   int buffer_offset = 0;
   input_buffer_current_value = 0;
-  init_result = execute_function(input_system_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(input_system_init_function);
+  return (system_init_result != 0) - 1;
 }
 // 初始化物理系统
 int initialize_physics_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   void* physics_shared_buffer_ptr = &g_shared_data_buffer;
   void* physics_value_ptr = &physics_buffer_current_value;
   int physics_data_offset = 0;
   physics_buffer_current_value = 0;
-  init_result = execute_function(physics_system_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(physics_system_init_function);
+  return (system_init_result != 0) - 1;
 }
 // 初始化主线程池
 int initialize_main_thread_pool(void* handle, void* flags, void* mutex_attr, int mutex_type)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long pool_flags = THREAD_POOL_DEFAULT_FLAG;
   
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(MAIN_THREAD_POOL_MUTEX_ADDR, 2, mutex_attr, mutex_type, pool_flags);
   main_thread_pool_status = SYSTEM_STATUS_SUCCESS;
-  init_result = execute_function(main_thread_pool_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(main_thread_pool_init_function);
+  return (system_init_result != 0) - 1;
 }
 // 初始化渲染线程池
 int initialize_rendering_thread_pool(void* handle, void* flags, void* mutex_attr, int mutex_type)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long pool_flags = THREAD_POOL_DEFAULT_FLAG;
   
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(RENDER_THREAD_POOL_MUTEX_ADDR, 2, mutex_attr, mutex_type, pool_flags);
   render_thread_pool_status = SYSTEM_STATUS_SUCCESS;
-  init_result = execute_function(rendering_thread_pool_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(rendering_thread_pool_init_function);
+  return (system_init_result != 0) - 1;
 }
 // 初始化网络线程池
 int initialize_network_thread_pool(void* handle, void* flags, void* mutex_attr, int mutex_type)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long pool_flags = THREAD_POOL_DEFAULT_FLAG;
   
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(NETWORK_THREAD_POOL_MUTEX_ADDR, 2, mutex_attr, mutex_type, pool_flags);
   network_thread_pool_status = SYSTEM_STATUS_SUCCESS;
-  init_result = execute_function(network_thread_pool_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(network_thread_pool_init_function);
+  return (system_init_result != 0) - 1;
 }
 // 初始化IO线程池
 int initialize_io_thread_pool(void* handle, void* flags, void* mutex_attr, int mutex_type)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long pool_flags = THREAD_POOL_DEFAULT_FLAG;
   
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(IO_THREAD_POOL_MUTEX_ADDR, 2, mutex_attr, mutex_type, pool_flags);
   io_thread_pool_status = SYSTEM_STATUS_SUCCESS;
-  init_result = execute_function(io_thread_pool_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(io_thread_pool_init_function);
+  return (system_init_result != 0) - 1;
 }
 // 初始化基础资源管理器
 int initialize_base_resource_manager(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_length;
   g_resource_string_1 = 0;
   g_resource_id_1 = 6;
   strcpy_s(&g_resource_string_1,STRING_BUFFER_SIZE,&string_source_001,str_length,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(base_resource_manager_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(base_resource_manager_init_function);
+  return (system_init_result != 0) - 1;
 }
 // 初始化纹理资源管理器
 int initialize_texture_resource_manager(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_length;
   void* resource_buffer_ptr = &g_resource_data_buffer;
   void* resource_value_ptr = &resource_buffer_1;
   resource_buffer_1 = 0;
   resource_type_1 = RESOURCE_TYPE_TEXTURE;
   strcpy_s(&resource_buffer_1, RESOURCE_BUFFER_SIZE, &string_source_002, str_length, THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(texture_resource_manager_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(texture_resource_manager_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_shader_resource_manager_1(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_length;
   void* resource_buffer_ptr = &g_resource_data_buffer;
   void* resource_value_ptr = &resource_buffer_2;
   resource_buffer_2 = 0;
   resource_type_2 = RESOURCE_TYPE_SHADER;
   strcpy_s(&resource_buffer_2, RESOURCE_BUFFER_SIZE, &string_source_003, str_length, THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(shader_resource_manager_1_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(shader_resource_manager_1_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_shader_resource_manager_2(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_length;
   void* resource_buffer_ptr = &g_resource_data_buffer;
   void* resource_value_ptr = &resource_buffer_3;
   resource_buffer_3 = 0;
   resource_type_3 = RESOURCE_TYPE_SHADER;
   strcpy_s(&resource_buffer_3, RESOURCE_BUFFER_SIZE, &string_source_004, str_length, THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(shader_resource_manager_2_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(shader_resource_manager_2_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_audio_resource_manager(void)
 {
@@ -485,7 +485,7 @@ int initialize_main_mutex(void* handle, void* flags, void* mutex_attr, int mutex
 // 初始化数据缓冲区系统
 int initialize_data_buffer_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
   g_system_config_buffer = 0;
   g_system_config_flags = FLAG_INITIALIZED;
@@ -498,1244 +498,1244 @@ int initialize_data_buffer_system(void)
   g_resource_template_ptr_2 = &g_defaultDataTemplate;
   g_shader_resource_ptr = &shader_resource_data;
   shader_resource_data = 0;
-  global_data_ = FLAG_SHADER_RESOURCE;
+  system_global_data_ = FLAG_SHADER_RESOURCE;
   strcpy_s(&shader_resource_data,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string);
-  global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &g_defaultDataTemplate;
   g_audio_resource_ptr = &audio_resource_data;
   audio_resource_data = 0;
-  global_data_ = FLAG_AUDIO_RESOURCE;
+  system_global_data_ = FLAG_AUDIO_RESOURCE;
   strcpy_s(&audio_resource_data,SYSTEM_CONFIG_BUFFER_SIZE,&g_audio_resource_string);
-  global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &g_defaultDataTemplate;
   g_font_resource_ptr = &font_resource_data;
   font_resource_data = 0;
-  global_data_ = FLAG_FONT_RESOURCE;
+  system_global_data_ = FLAG_FONT_RESOURCE;
   strcpy_s(&font_resource_data,SYSTEM_CONFIG_BUFFER_SIZE,&g_font_resource_string);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &resource_data_5;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &resource_data_5;
   resource_data_5 = 0;
-  global_data_ = FLAG_FONT_RESOURCE;
+  system_global_data_ = FLAG_FONT_RESOURCE;
   strcpy_s(&resource_data_5,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString5);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf6978;
-  data_180bf6978 = 0;
-  global_data_ = STRING_BUFFER_SIZE;
-  strcpy_s(&data_180bf6978, SYSTEM_CONFIG_BUFFER_SIZE, &g_resourceString6);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf69d0;
-  data_180bf69d0 = 0;
-  global_data_ = FLAG_MODEL_RESOURCE;
-  strcpy_s(&data_180bf69d0,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString7);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf6a28;
-  data_180bf6a28 = 0;
-  global_data_ = FLAG_SHADER_RESOURCE;
-  strcpy_s(&data_180bf6a28,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString8);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf6a80;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &resource_font_name_buffer;
+  resource_font_name_buffer = 0;
+  system_global_data_ = STRING_BUFFER_SIZE;
+  strcpy_s(&resource_font_name_buffer, SYSTEM_CONFIG_BUFFER_SIZE, &g_resourceString6);
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &resource_model_name_buffer;
+  resource_model_name_buffer = 0;
+  system_global_data_ = FLAG_MODEL_RESOURCE;
+  strcpy_s(&resource_model_name_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString7);
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &resource_animation_name_buffer;
+  resource_animation_name_buffer = 0;
+  system_global_data_ = FLAG_SHADER_RESOURCE;
+  strcpy_s(&resource_animation_name_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString8);
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf6a80;
   data_180bf6a80 = 0;
-  global_data_ = FLAG_PARTICLE_RESOURCE;
+  system_global_data_ = FLAG_PARTICLE_RESOURCE;
   strcpy_s(&data_180bf6a80,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString9);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf6ad8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf6ad8;
   data_180bf6ad8 = 0;
-  global_data_ = FLAG_CONFIG_RESOURCE;
+  system_global_data_ = FLAG_CONFIG_RESOURCE;
   strcpy_s(&data_180bf6ad8,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string0);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf6b30;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf6b30;
   data_180bf6b30 = 0;
-  global_data_ = 0;
+  system_global_data_ = 0;
   strcpy_s(&data_180bf6b30,SYSTEM_CONFIG_BUFFER_SIZE,&data_18098bc73);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf6b88;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf6b88;
   data_180bf6b88 = 0;
-  global_data_ = FLAG_SAVE_GAME_RESOURCE;
+  system_global_data_ = FLAG_SAVE_GAME_RESOURCE;
   strcpy_s(&data_180bf6b88,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string1);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf6be0;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf6be0;
   data_180bf6be0 = 0;
-  global_data_ = 7;
+  system_global_data_ = 7;
   strcpy_s(&data_180bf6be0,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string2);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf6c38;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf6c38;
   data_180bf6c38 = 0;
-  global_data_ = FLAG_STRING_MANAGER_RESOURCE;
+  system_global_data_ = FLAG_STRING_MANAGER_RESOURCE;
   strcpy_s(&data_180bf6c38,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string3);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf6c90;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf6c90;
   data_180bf6c90 = 0;
-  global_data_ = FLAG_PHYSICS_RESOURCE;
+  system_global_data_ = FLAG_PHYSICS_RESOURCE;
   strcpy_s(&data_180bf6c90,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string4);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf6ce8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf6ce8;
   data_180bf6ce8 = 0;
-  global_data_ = FLAG_PHYSICS_RESOURCE;
+  system_global_data_ = FLAG_PHYSICS_RESOURCE;
   strcpy_s(&data_180bf6ce8,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string5);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf6d40;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf6d40;
   data_180bf6d40 = 0;
-  global_data_ = FLAG_STRING_MANAGER_RESOURCE;
+  system_global_data_ = FLAG_STRING_MANAGER_RESOURCE;
   strcpy_s(&data_180bf6d40,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string6);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf6d98;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf6d98;
   data_180bf6d98 = 0;
-  global_data_ = FLAG_UI_RESOURCE;
+  system_global_data_ = FLAG_UI_RESOURCE;
   strcpy_s(&data_180bf6d98,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string7);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf6df0;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf6df0;
   data_180bf6df0 = 0;
-  global_data_ = FLAG_SCRIPT_RESOURCE;
+  system_global_data_ = FLAG_SCRIPT_RESOURCE;
   strcpy_s(&data_180bf6df0,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string8);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf6e48;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf6e48;
   data_180bf6e48 = 0;
-  global_data_ = FLAG_NETWORK_RESOURCE;
+  system_global_data_ = FLAG_NETWORK_RESOURCE;
   strcpy_s(&data_180bf6e48,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string9);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf6ea0;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf6ea0;
   data_180bf6ea0 = 0;
-  global_data_ = FLAG_STRING_MANAGER_RESOURCE;
+  system_global_data_ = FLAG_STRING_MANAGER_RESOURCE;
   strcpy_s(&data_180bf6ea0,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string0);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf6ef8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf6ef8;
   data_180bf6ef8 = 0;
-  global_data_ = STRING_BUFFER_SIZE;
+  system_global_data_ = STRING_BUFFER_SIZE;
   strcpy_s(&data_180bf6ef8,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string1);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf6f50;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf6f50;
   data_180bf6f50 = 0;
-  global_data_ = FLAG_CONFIG_RESOURCE;
+  system_global_data_ = FLAG_CONFIG_RESOURCE;
   strcpy_s(&data_180bf6f50,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string2);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf6fa8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf6fa8;
   data_180bf6fa8 = 0;
-  global_data_ = FLAG_AUTH_RESOURCE;
+  system_global_data_ = FLAG_AUTH_RESOURCE;
   strcpy_s(&data_180bf6fa8,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string3);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf7000;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf7000;
   data_180bf7000 = 0;
-  global_data_ = FLAG_SECURITY_RESOURCE;
+  system_global_data_ = FLAG_SECURITY_RESOURCE;
   strcpy_s(&data_180bf7000,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string4);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf7058;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf7058;
   data_180bf7058 = 0;
-  global_data_ = FLAG_PHYSICS_RESOURCE;
+  system_global_data_ = FLAG_PHYSICS_RESOURCE;
   strcpy_s(&data_180bf7058,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string5);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf70b0;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf70b0;
   data_180bf70b0 = 0;
-  global_data_ = FLAG_CONFIG_RESOURCE;
+  system_global_data_ = FLAG_CONFIG_RESOURCE;
   strcpy_s(&data_180bf70b0,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string6);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf7108;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf7108;
   data_180bf7108 = 0;
-  global_data_ = CONFIG_PATH_BUFFER_SIZE;
+  system_global_data_ = CONFIG_PATH_BUFFER_SIZE;
   strcpy_s(&data_180bf7108,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string7);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf7160;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf7160;
   data_180bf7160 = 0;
-  global_data_ = FLAG_NETWORK_RESOURCE;
+  system_global_data_ = FLAG_NETWORK_RESOURCE;
   strcpy_s(&data_180bf7160,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string8);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf71b8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf71b8;
   data_180bf71b8 = 0;
-  global_data_ = FLAG_SECURITY_RESOURCE;
+  system_global_data_ = FLAG_SECURITY_RESOURCE;
   strcpy_s(&data_180bf71b8,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string9);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf7210;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf7210;
   data_180bf7210 = 0;
-  global_data_ = 0xf;
+  system_global_data_ = 0xf;
   strcpy_s(&data_180bf7210,SYSTEM_CONFIG_BUFFER_SIZE,&g_audio_resource_string0);
-  init_result = execute_function(&g_systemInitFunction1);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(&g_systemInitFunction1);
+  return (system_init_result != 0) - 1;
 }
 int initialize_audio_module(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf7268;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf7268;
   data_180bf7268 = 0;
-  global_data_ = 0xb;
+  system_global_data_ = 0xb;
   strcpy_s(&data_180bf7268,SYSTEM_CONFIG_BUFFER_SIZE,&g_systemString1,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(data_buffer_system_init_callback);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(data_buffer_system_init_callback);
+  return (system_init_result != 0) - 1;
 }
 int initialize_video_module(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf72c8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf72c8;
   data_180bf72c8 = 0;
-  global_data_ = 9;
+  system_global_data_ = 9;
   strcpy_s(&data_180bf72c8,SYSTEM_CONFIG_BUFFER_SIZE,&g_systemString2,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(memory_manager_init_callback);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(memory_manager_init_callback);
+  return (system_init_result != 0) - 1;
 }
 int initialize_input_module(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf7328;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf7328;
   data_180bf7328 = 0;
-  global_data_ = 9;
+  system_global_data_ = 9;
   strcpy_s(&data_180bf7328,SYSTEM_CONFIG_BUFFER_SIZE,&g_systemString3,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(thread_manager_init_callback);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(thread_manager_init_callback);
+  return (system_init_result != 0) - 1;
 }
 int initialize_network_module(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bf7388;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bf7388;
   data_180bf7388 = 0;
-  global_data_ = 0xb;
+  system_global_data_ = 0xb;
   strcpy_s(&data_180bf7388,0x80,&g_memoryString1,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bf7420;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bf7420;
   data_180bf7420 = 0;
-  global_data_ = STRING_BUFFER_SIZE;
+  system_global_data_ = STRING_BUFFER_SIZE;
   strcpy_s(&data_180bf7420,STRING_BUFFER_SIZE_1,&g_memoryString2);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bf74b8;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bf74b8;
   data_180bf74b8 = 0;
-  global_data_ = 0xd;
+  system_global_data_ = 0xd;
   strcpy_s(&data_180bf74b8,STRING_BUFFER_SIZE_1,&g_memoryString3);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bf7550;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bf7550;
   data_180bf7550 = 0;
-  global_data_ = 0xd;
+  system_global_data_ = 0xd;
   strcpy_s(&data_180bf7550,STRING_BUFFER_SIZE_1,&g_memoryString4);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bf75e8;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bf75e8;
   data_180bf75e8 = 0;
-  global_data_ = 0xc;
+  system_global_data_ = 0xc;
   strcpy_s(&data_180bf75e8,STRING_BUFFER_SIZE_1,&g_memoryString5);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bf7680;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bf7680;
   data_180bf7680 = 0;
-  global_data_ = 0x13;
+  system_global_data_ = 0x13;
   strcpy_s(&data_180bf7680,STRING_BUFFER_SIZE_1,&g_memoryString6);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bf7718;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bf7718;
   data_180bf7718 = 0;
-  global_data_ = 10;
+  system_global_data_ = 10;
   strcpy_s(&data_180bf7718,STRING_BUFFER_SIZE_1,&g_memoryString7);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bf77b0;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bf77b0;
   data_180bf77b0 = 0;
-  global_data_ = 0xc;
+  system_global_data_ = 0xc;
   strcpy_s(&data_180bf77b0,STRING_BUFFER_SIZE_1,&g_memoryString8);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bf7848;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bf7848;
   data_180bf7848 = 0;
-  global_data_ = 0x11;
+  system_global_data_ = 0x11;
   strcpy_s(&data_180bf7848,STRING_BUFFER_SIZE_1,&g_memoryString9);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bf78e0;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bf78e0;
   data_180bf78e0 = 0;
-  global_data_ = 0x11;
+  system_global_data_ = 0x11;
   strcpy_s(&data_180bf78e0,STRING_BUFFER_SIZE_1,&g_memoryString10);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bf7978;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bf7978;
   data_180bf7978 = 0;
-  global_data_ = 0x19;
+  system_global_data_ = 0x19;
   strcpy_s(&data_180bf7978,STRING_BUFFER_SIZE_1,&g_memoryString11);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bf7a10;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bf7a10;
   data_180bf7a10 = 0;
-  global_data_ = 0x1a;
+  system_global_data_ = 0x1a;
   strcpy_s(&data_180bf7a10,STRING_BUFFER_SIZE_1,&g_memoryString12);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bf7aa8;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bf7aa8;
   data_180bf7aa8 = 0;
-  global_data_ = 0x1b;
+  system_global_data_ = 0x1b;
   strcpy_s(&data_180bf7aa8,STRING_BUFFER_SIZE_1,&g_memoryString13);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bf7b40;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bf7b40;
   data_180bf7b40 = 0;
-  global_data_ = 0xc;
+  system_global_data_ = 0xc;
   strcpy_s(&data_180bf7b40,STRING_BUFFER_SIZE_1,&g_memoryString14);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bf7bd8;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bf7bd8;
   data_180bf7bd8 = 0;
-  global_data_ = 0x11;
+  system_global_data_ = 0x11;
   strcpy_s(&data_180bf7bd8,STRING_BUFFER_SIZE_1,&g_memoryString15);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bf7c70;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bf7c70;
   data_180bf7c70 = 0;
-  global_data_ = 0x11;
+  system_global_data_ = 0x11;
   strcpy_s(&data_180bf7c70,STRING_BUFFER_SIZE_1,&g_memoryString16);
-  init_result = execute_function(&g_systemInitFunction2);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(&g_systemInitFunction2);
+  return (system_init_result != 0) - 1;
 }
   data_180bf7ea8 = 0;
-  global_data_ = 0x13;
+  system_global_data_ = 0x13;
   strcpy_s(&data_180bf7ea8,SYSTEM_CONFIG_BUFFER_SIZE,&g_systemConfigString,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf7f00;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf7f00;
   data_180bf7f00 = 0;
-  global_data_ = 0xd;
+  system_global_data_ = 0xd;
   strcpy_s(&data_180bf7f00,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf7f58;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf7f58;
   data_180bf7f58 = 0;
-  global_data_ = 0x17;
+  system_global_data_ = 0x17;
   strcpy_s(&data_180bf7f58,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf7fb0;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf7fb0;
   data_180bf7fb0 = 0;
-  global_data_ = 0xd;
+  system_global_data_ = 0xd;
   strcpy_s(&data_180bf7fb0,SYSTEM_CONFIG_BUFFER_SIZE,&g_audio_resource_string);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf8008;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf8008;
   data_180bf8008 = 0;
-  global_data_ = 0xc;
+  system_global_data_ = 0xc;
   strcpy_s(&data_180bf8008,SYSTEM_CONFIG_BUFFER_SIZE,&g_font_resource_string);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf8060;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf8060;
   data_180bf8060 = 0;
-  global_data_ = 0xc;
+  system_global_data_ = 0xc;
   strcpy_s(&data_180bf8060,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString5);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf80b8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf80b8;
   data_180bf80b8 = 0;
-  global_data_ = STRING_BUFFER_SIZE;
+  system_global_data_ = STRING_BUFFER_SIZE;
   strcpy_s(&data_180bf80b8,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString6);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf8110;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf8110;
   data_180bf8110 = 0;
-  global_data_ = 0x1f;
+  system_global_data_ = 0x1f;
   strcpy_s(&data_180bf8110,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString7);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf8168;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf8168;
   data_180bf8168 = 0;
-  global_data_ = 0x17;
+  system_global_data_ = 0x17;
   strcpy_s(&data_180bf8168,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString8);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf81c0;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf81c0;
   data_180bf81c0 = 0;
-  global_data_ = 0x13;
+  system_global_data_ = 0x13;
   strcpy_s(&data_180bf81c0,SYSTEM_CONFIG_BUFFER_SIZE,&g_resourceString9);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf8218;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf8218;
   data_180bf8218 = 0;
-  global_data_ = 0x14;
+  system_global_data_ = 0x14;
   strcpy_s(&data_180bf8218,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string0);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf8270;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf8270;
   data_180bf8270 = 0;
-  global_data_ = 0;
+  system_global_data_ = 0;
   strcpy_s(&data_180bf8270,SYSTEM_CONFIG_BUFFER_SIZE,&data_18098bc73);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf82c8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf82c8;
   data_180bf82c8 = 0;
-  global_data_ = 0x1b;
+  system_global_data_ = 0x1b;
   strcpy_s(&data_180bf82c8,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string1);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf8320;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf8320;
   data_180bf8320 = 0;
-  global_data_ = 7;
+  system_global_data_ = 7;
   strcpy_s(&data_180bf8320,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string2);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf8378;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf8378;
   data_180bf8378 = 0;
-  global_data_ = 0x19;
+  system_global_data_ = 0x19;
   strcpy_s(&data_180bf8378,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string3);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf83d0;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf83d0;
   data_180bf83d0 = 0;
-  global_data_ = 0x12;
+  system_global_data_ = 0x12;
   strcpy_s(&data_180bf83d0,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string4);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf8428;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf8428;
   data_180bf8428 = 0;
-  global_data_ = 0x12;
+  system_global_data_ = 0x12;
   strcpy_s(&data_180bf8428,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string5);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf8480;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf8480;
   data_180bf8480 = 0;
-  global_data_ = 0x19;
+  system_global_data_ = 0x19;
   strcpy_s(&data_180bf8480,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string6);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf84d8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf84d8;
   data_180bf84d8 = 0;
-  global_data_ = 0x11;
+  system_global_data_ = 0x11;
   strcpy_s(&data_180bf84d8,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string7);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf8530;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf8530;
   data_180bf8530 = 0;
-  global_data_ = 0x18;
+  system_global_data_ = 0x18;
   strcpy_s(&data_180bf8530,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string8);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf8588;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf8588;
   data_180bf8588 = 0;
-  global_data_ = 0x13;
+  system_global_data_ = 0x13;
   strcpy_s(&data_180bf8588,SYSTEM_CONFIG_BUFFER_SIZE,&g_texture_resource_string9);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf85e0;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf85e0;
   data_180bf85e0 = 0;
-  global_data_ = 0x19;
+  system_global_data_ = 0x19;
   strcpy_s(&data_180bf85e0,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string0);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf8638;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf8638;
   data_180bf8638 = 0;
-  global_data_ = STRING_BUFFER_SIZE;
+  system_global_data_ = STRING_BUFFER_SIZE;
   strcpy_s(&data_180bf8638,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string1);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf8690;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf8690;
   data_180bf8690 = 0;
-  global_data_ = 0x14;
+  system_global_data_ = 0x14;
   strcpy_s(&data_180bf8690,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string2);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf86e8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf86e8;
   data_180bf86e8 = 0;
-  global_data_ = 0xf;
+  system_global_data_ = 0xf;
   strcpy_s(&data_180bf86e8,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string3);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf8740;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf8740;
   data_180bf8740 = 0;
-  global_data_ = 0x16;
+  system_global_data_ = 0x16;
   strcpy_s(&data_180bf8740,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string4);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf8798;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf8798;
   data_180bf8798 = 0;
-  global_data_ = 0x12;
+  system_global_data_ = 0x12;
   strcpy_s(&data_180bf8798,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string5);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf87f0;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf87f0;
   data_180bf87f0 = 0;
-  global_data_ = 0x14;
+  system_global_data_ = 0x14;
   strcpy_s(&data_180bf87f0,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string6);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf8848;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf8848;
   data_180bf8848 = 0;
-  global_data_ = CONFIG_PATH_BUFFER_SIZE;
+  system_global_data_ = CONFIG_PATH_BUFFER_SIZE;
   strcpy_s(&data_180bf8848,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string7);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf88a0;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf88a0;
   data_180bf88a0 = 0;
-  global_data_ = 0x13;
+  system_global_data_ = 0x13;
   strcpy_s(&data_180bf88a0,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string8);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf88f8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf88f8;
   data_180bf88f8 = 0;
-  global_data_ = 0x16;
+  system_global_data_ = 0x16;
   strcpy_s(&data_180bf88f8,SYSTEM_CONFIG_BUFFER_SIZE,&g_shader_resource_string9);
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf8950;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf8950;
   data_180bf8950 = 0;
-  global_data_ = 0xf;
+  system_global_data_ = 0xf;
   strcpy_s(&data_180bf8950,SYSTEM_CONFIG_BUFFER_SIZE,&g_audio_resource_string0);
-  init_result = execute_function(&g_systemInitFunction3);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(&g_systemInitFunction3);
+  return (system_init_result != 0) - 1;
 }
   data_180bf90c8 = 0;
-  global_data_ = 0xd;
+  system_global_data_ = 0xd;
   strcpy_s(&data_180bf90c8,CONFIG_PATH_BUFFER_SIZE,&g_configString1,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(event_system_init_callback);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(event_system_init_callback);
+  return (system_init_result != 0) - 1;
 }
 int initialize_physics_module(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_alternateDataTemplate;
-  global_data_ = &data_180bf5ba0;
+  system_global_data_ = &g_alternateDataTemplate;
+  system_global_data_ = &data_180bf5ba0;
   data_180bf5ba0 = 0;
-  global_data_ = 9;
+  system_global_data_ = 9;
   strcpy_s(&data_180bf5ba0,CONFIG_PATH_BUFFER_SIZE,&g_configString2,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(time_system_init_callback);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(time_system_init_callback);
+  return (system_init_result != 0) - 1;
 }
   data_180bf91c8 = 0;
-  global_data_ = STRING_BUFFER_SIZE;
+  system_global_data_ = STRING_BUFFER_SIZE;
   strcpy_s(&data_180bf91c8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString1,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(file_system_init_callback);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(file_system_init_callback);
+  return (system_init_result != 0) - 1;
 }
 int initialize_ai_module(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9228;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9228;
   data_180bf9228 = 0;
-  global_data_ = 0x13;
+  system_global_data_ = 0x13;
   strcpy_s(&data_180bf9228,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString2,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(debug_system_init_callback);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(debug_system_init_callback);
+  return (system_init_result != 0) - 1;
 }
 int initialize_ui_module(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9288;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9288;
   data_180bf9288 = 0;
-  global_data_ = 0x12;
+  system_global_data_ = 0x12;
   strcpy_s(&data_180bf9288,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString3,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_7_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_7_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_scripting_module(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf92e8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf92e8;
   data_180bf92e8 = 0;
-  global_data_ = 0x12;
+  system_global_data_ = 0x12;
   strcpy_s(&data_180bf92e8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString4,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_8_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_8_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_audio_engine(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9348;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9348;
   data_180bf9348 = 0;
-  global_data_ = 0xd;
+  system_global_data_ = 0xd;
   strcpy_s(&data_180bf9348,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString5,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_9_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_9_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_video_subsystem(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf93a8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf93a8;
   data_180bf93a8 = 0;
-  global_data_ = STRING_BUFFER_SIZE;
+  system_global_data_ = STRING_BUFFER_SIZE;
   strcpy_s(&data_180bf93a8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString6,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_10_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_10_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_input_handler(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9408;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9408;
   data_180bf9408 = 0;
-  global_data_ = 0x17;
+  system_global_data_ = 0x17;
   strcpy_s(&data_180bf9408,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString7,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_11_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_11_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_network_stack(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9468;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9468;
   data_180bf9468 = 0;
-  global_data_ = STRING_BUFFER_SIZE;
+  system_global_data_ = STRING_BUFFER_SIZE;
   strcpy_s(&data_180bf9468,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString8,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_12_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_12_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_file_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf94c8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf94c8;
   data_180bf94c8 = 0;
-  global_data_ = 0xd;
+  system_global_data_ = 0xd;
   strcpy_s(&data_180bf94c8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString9,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_13_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_13_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_memory_manager(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9528;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9528;
   data_180bf9528 = 0;
-  global_data_ = 0xc;
+  system_global_data_ = 0xc;
   strcpy_s(&data_180bf9528,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString10,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_14_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_14_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_thread_manager(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9588;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9588;
   data_180bf9588 = 0;
-  global_data_ = 0x16;
+  system_global_data_ = 0x16;
   strcpy_s(&data_180bf9588,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString11,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_15_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_15_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_event_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf95e8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf95e8;
   data_180bf95e8 = 0;
-  global_data_ = 0x13;
+  system_global_data_ = 0x13;
   strcpy_s(&data_180bf95e8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString12,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_16_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_16_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_timer_service(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9648;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9648;
   data_180bf9648 = 0;
-  global_data_ = 0x14;
+  system_global_data_ = 0x14;
   strcpy_s(&data_180bf9648,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString13,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_17_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_17_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_logger_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf96a8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf96a8;
   data_180bf96a8 = 0;
-  global_data_ = 0x17;
+  system_global_data_ = 0x17;
   strcpy_s(&data_180bf96a8,SYSTEM_CONFIG_BUFFER_SIZE,&data_180a22cb0,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_18_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_18_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_config_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9708;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9708;
   data_180bf9708 = 0;
-  global_data_ = 0x17;
+  system_global_data_ = 0x17;
   strcpy_s(&data_180bf9708,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString14,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_19_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_19_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_resource_cache(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9768;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9768;
   data_180bf9768 = 0;
-  global_data_ = CONFIG_PATH_BUFFER_SIZE;
+  system_global_data_ = CONFIG_PATH_BUFFER_SIZE;
   strcpy_s(&data_180bf9768,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString15,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_20_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_20_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_asset_loader(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf97c8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf97c8;
   data_180bf97c8 = 0;
-  global_data_ = 0x13;
+  system_global_data_ = 0x13;
   strcpy_s(&data_180bf97c8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString16,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_21_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_21_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_shader_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9828;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9828;
   data_180bf9828 = 0;
-  global_data_ = 0x1e;
+  system_global_data_ = 0x1e;
   strcpy_s(&data_180bf9828,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString17,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_22_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_22_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_texture_manager(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9888;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9888;
   data_180bf9888 = 0;
-  global_data_ = 0x1b;
+  system_global_data_ = 0x1b;
   strcpy_s(&data_180bf9888,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString18,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_23_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_23_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_mesh_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf98e8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf98e8;
   data_180bf98e8 = 0;
-  global_data_ = 0x1b;
+  system_global_data_ = 0x1b;
   strcpy_s(&data_180bf98e8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString19,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_24_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_24_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_animation_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9948;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9948;
   data_180bf9948 = 0;
-  global_data_ = 0x1c;
+  system_global_data_ = 0x1c;
   strcpy_s(&data_180bf9948,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString20,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_25_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_25_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_particle_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf99a8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf99a8;
   data_180bf99a8 = 0;
-  global_data_ = 0x1d;
+  system_global_data_ = 0x1d;
   strcpy_s(&data_180bf99a8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString21,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_26_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_26_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_physics_engine(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9a08;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9a08;
   data_180bf9a08 = 0;
-  global_data_ = CONFIG_PATH_BUFFER_SIZE;
+  system_global_data_ = CONFIG_PATH_BUFFER_SIZE;
   strcpy_s(&data_180bf9a08,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString22,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_27_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_27_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_collision_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9a68;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9a68;
   data_180bf9a68 = 0;
-  global_data_ = 0x1d;
+  system_global_data_ = 0x1d;
   strcpy_s(&data_180bf9a68,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString23,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_28_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_28_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_ai_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
   g_string_manager_ptr_180bf9ab0 = &g_defaultDataTemplate;
   g_string_manager_ptr_180bf9ab8 = &g_string_buffer_180bf9ac8;
   g_string_buffer_180bf9ac8 = 0;
   g_string_manager_type_180bf9ac0 = 0x1c;
   strcpy_s(&g_string_buffer_180bf9ac8,SYSTEM_CONFIG_BUFFER_SIZE,&data_180a22d48,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_29_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_29_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_navigation_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9b28;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9b28;
   data_180bf9b28 = 0;
-  global_data_ = 0x17;
+  system_global_data_ = 0x17;
   strcpy_s(&data_180bf9b28,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString24,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_30_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_30_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_ui_framework(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9b88;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9b88;
   data_180bf9b88 = 0;
-  global_data_ = 0x1f;
+  system_global_data_ = 0x1f;
   strcpy_s(&data_180bf9b88,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString25,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_31_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_31_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_scripting_engine(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9be8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9be8;
   data_180bf9be8 = 0;
-  global_data_ = 0x21;
+  system_global_data_ = 0x21;
   strcpy_s(&data_180bf9be8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString26,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_32_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_32_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_database_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9c48;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9c48;
   data_180bf9c48 = 0;
-  global_data_ = 0x25;
+  system_global_data_ = 0x25;
   strcpy_s(&data_180bf9c48,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString27,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_33_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_33_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_network_manager(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9ca8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9ca8;
   data_180bf9ca8 = 0;
-  global_data_ = 0x23;
+  system_global_data_ = 0x23;
   strcpy_s(&data_180bf9ca8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString28,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_34_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_34_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_security_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9d08;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9d08;
   data_180bf9d08 = 0;
-  global_data_ = 0x1e;
+  system_global_data_ = 0x1e;
   strcpy_s(&data_180bf9d08,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString29,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_35_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_35_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_encryption_service(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9d68;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9d68;
   data_180bf9d68 = 0;
-  global_data_ = 0x1e;
+  system_global_data_ = 0x1e;
   strcpy_s(&data_180bf9d68,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString30,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_36_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_36_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_authentication_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9dc8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9dc8;
   data_180bf9dc8 = 0;
-  global_data_ = 0x12;
+  system_global_data_ = 0x12;
   strcpy_s(&data_180bf9dc8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString31,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_37_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_37_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_permission_manager(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9e28;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9e28;
   data_180bf9e28 = 0;
-  global_data_ = 0x13;
+  system_global_data_ = 0x13;
   strcpy_s(&data_180bf9e28,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString32,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_38_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_38_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_session_manager(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9e88;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9e88;
   data_180bf9e88 = 0;
-  global_data_ = 0x13;
+  system_global_data_ = 0x13;
   strcpy_s(&data_180bf9e88,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString33,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_39_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_39_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_user_profile_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9ee8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9ee8;
   data_180bf9ee8 = 0;
-  global_data_ = 0x16;
+  system_global_data_ = 0x16;
   strcpy_s(&data_180bf9ee8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString34,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_40_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_40_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_save_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9f48;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9f48;
   data_180bf9f48 = 0;
-  global_data_ = 0x1a;
+  system_global_data_ = 0x1a;
   strcpy_s(&data_180bf9f48,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString35,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_41_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_41_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_achievement_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bf9fa8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bf9fa8;
   data_180bf9fa8 = 0;
-  global_data_ = 0x15;
+  system_global_data_ = 0x15;
   strcpy_s(&data_180bf9fa8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString36,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_42_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_42_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_statistics_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bfa008;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bfa008;
   data_180bfa008 = 0;
-  global_data_ = 0x13;
+  system_global_data_ = 0x13;
   strcpy_s(&data_180bfa008,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString37,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_43_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_43_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_analytics_service(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bfa068;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bfa068;
   data_180bfa068 = 0;
-  global_data_ = 0x13;
+  system_global_data_ = 0x13;
   strcpy_s(&data_180bfa068,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString38,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_44_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_44_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_debug_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bfa0c8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bfa0c8;
   data_180bfa0c8 = 0;
-  global_data_ = 0x1b;
+  system_global_data_ = 0x1b;
   strcpy_s(&data_180bfa0c8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString39,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_45_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_45_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_profiling_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bfa128;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bfa128;
   data_180bfa128 = 0;
-  global_data_ = 0x19;
+  system_global_data_ = 0x19;
   strcpy_s(&data_180bfa128,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString40,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_46_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_46_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_crash_handler(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bfa188;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bfa188;
   data_180bfa188 = 0;
-  global_data_ = 0x15;
+  system_global_data_ = 0x15;
   strcpy_s(&data_180bfa188,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString41,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_47_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_47_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_error_reporting(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bfa1e8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bfa1e8;
   data_180bfa1e8 = 0;
-  global_data_ = 0x28;
+  system_global_data_ = 0x28;
   strcpy_s(&data_180bfa1e8,SYSTEM_CONFIG_BUFFER_SIZE,&data_180a22fd0,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_48_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_48_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_update_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bfa248;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bfa248;
   data_180bfa248 = 0;
-  global_data_ = 0x23;
+  system_global_data_ = 0x23;
   strcpy_s(&data_180bfa248,SYSTEM_CONFIG_BUFFER_SIZE,&data_180a22fa8,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_49_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_49_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_patch_manager(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_defaultDataTemplate;
-  global_data_ = &data_180bfa2a8;
+  system_global_data_ = &g_defaultDataTemplate;
+  system_global_data_ = &data_180bfa2a8;
   data_180bfa2a8 = 0;
-  global_data_ = 0x17;
+  system_global_data_ = 0x17;
   strcpy_s(&data_180bfa2a8,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString42,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_50_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_50_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_diagnostics_system(void)
 {
-  long long init_result;
-  init_result = execute_function(resource_manager_51_init_function);
-  return (init_result != 0) - 1;
+  long long system_init_result;
+  system_init_result = execute_function(resource_manager_51_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_monitoring_service(void)
 {
-  long long init_result;
-  init_result = execute_function(resource_manager_52_init_function);
-  return (init_result != 0) - 1;
+  long long system_init_result;
+  system_init_result = execute_function(resource_manager_52_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_health_checker(void)
 {
-  long long init_result;
-  init_result = execute_function(resource_manager_53_init_function);
-  return (init_result != 0) - 1;
+  long long system_init_result;
+  system_init_result = execute_function(resource_manager_53_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_worker_thread_pool(unsigned long long handle,unsigned long long flags,unsigned long long mutex_attr,unsigned long long mutex_type)
 {
-  long long init_result;
+  long long system_init_result;
   _Mtx_init_in_situ(SECOND_MUTEX_ADDR,2,mutex_attr,mutex_type,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_54_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_54_init_function);
+  return (system_init_result != 0) - 1;
 }
   data_180bfa368 = 0;
-  global_data_ = 7;
+  system_global_data_ = 7;
   strcpy_s(&data_180bfa368,STRING_BUFFER_SIZE_1,&g_bufferString1,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bfa400;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bfa400;
   data_180bfa400 = 0;
-  global_data_ = 9;
+  system_global_data_ = 9;
   strcpy_s(&data_180bfa400,STRING_BUFFER_SIZE_1,&g_bufferString2);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bfa498;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bfa498;
   data_180bfa498 = 0;
-  global_data_ = 0xb;
+  system_global_data_ = 0xb;
   strcpy_s(&data_180bfa498,STRING_BUFFER_SIZE_1,&g_bufferString3);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bfa530;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bfa530;
   data_180bfa530 = 0;
-  global_data_ = 7;
+  system_global_data_ = 7;
   strcpy_s(&data_180bfa530,STRING_BUFFER_SIZE_1,&g_bufferString4);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bfa5c8;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bfa5c8;
   data_180bfa5c8 = 0;
-  global_data_ = 0xc;
+  system_global_data_ = 0xc;
   strcpy_s(&data_180bfa5c8,STRING_BUFFER_SIZE_1,&g_bufferString5);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bfa660;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bfa660;
   data_180bfa660 = 0;
-  global_data_ = 9;
+  system_global_data_ = 9;
   strcpy_s(&data_180bfa660,STRING_BUFFER_SIZE_1,&g_bufferString6);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bfa6f8;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bfa6f8;
   data_180bfa6f8 = 0;
-  global_data_ = 0xc;
+  system_global_data_ = 0xc;
   strcpy_s(&data_180bfa6f8,STRING_BUFFER_SIZE_1,&g_bufferString7);
-  init_result = execute_function(&g_systemInitFunction4);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(&g_systemInitFunction4);
+  return (system_init_result != 0) - 1;
 }
 int initialize_io_thread_pool(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bfa798;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bfa798;
   data_180bfa798 = 0;
-  global_data_ = 0x1b;
+  system_global_data_ = 0x1b;
   strcpy_s(&data_180bfa798,STRING_BUFFER_SIZE_1,&g_bufferString8,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bfa830;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bfa830;
   data_180bfa830 = 0;
-  global_data_ = 0x19;
+  system_global_data_ = 0x19;
   strcpy_s(&data_180bfa830,STRING_BUFFER_SIZE_1,&g_bufferString9);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bfa8c8;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bfa8c8;
   data_180bfa8c8 = 0;
-  global_data_ = 0x1f;
+  system_global_data_ = 0x1f;
   strcpy_s(&data_180bfa8c8,STRING_BUFFER_SIZE_1,&g_bufferString10);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bfa960;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bfa960;
   data_180bfa960 = 0;
-  global_data_ = 0x1b;
+  system_global_data_ = 0x1b;
   strcpy_s(&data_180bfa960,STRING_BUFFER_SIZE_1,&g_bufferString11);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bfa9f8;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bfa9f8;
   data_180bfa9f8 = 0;
-  global_data_ = CONFIG_PATH_BUFFER_SIZE;
+  system_global_data_ = CONFIG_PATH_BUFFER_SIZE;
   strcpy_s(&data_180bfa9f8,STRING_BUFFER_SIZE_1,&g_bufferString12);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bfaa90;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bfaa90;
   data_180bfaa90 = 0;
-  global_data_ = CONFIG_PATH_BUFFER_SIZE;
+  system_global_data_ = CONFIG_PATH_BUFFER_SIZE;
   strcpy_s(&data_180bfaa90,STRING_BUFFER_SIZE_1,&g_bufferString13);
-  init_result = execute_function(&g_systemInitFunction5);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(&g_systemInitFunction5);
+  return (system_init_result != 0) - 1;
 }
 int initialize_background_thread_pool(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bfab28;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bfab28;
   data_180bfab28 = 0;
-  global_data_ = 0x13;
+  system_global_data_ = 0x13;
   strcpy_s(&data_180bfab28,STRING_BUFFER_SIZE_1,&g_bufferString14,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bfabc0;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bfabc0;
   data_180bfabc0 = 0;
-  global_data_ = 0x13;
+  system_global_data_ = 0x13;
   strcpy_s(&data_180bfabc0,STRING_BUFFER_SIZE_1,&g_bufferString14);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bfac58;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bfac58;
   data_180bfac58 = 0;
-  global_data_ = 0x13;
+  system_global_data_ = 0x13;
   strcpy_s(&data_180bfac58,STRING_BUFFER_SIZE_1,&g_bufferString14);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bfacf0;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bfacf0;
   data_180bfacf0 = 0;
-  global_data_ = 0x13;
+  system_global_data_ = 0x13;
   strcpy_s(&data_180bfacf0,STRING_BUFFER_SIZE_1,&g_bufferString14);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bfad88;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bfad88;
   data_180bfad88 = 0;
-  global_data_ = 0xe;
+  system_global_data_ = 0xe;
   strcpy_s(&data_180bfad88,STRING_BUFFER_SIZE_1,&g_bufferString15);
-  global_data_ = &g_memoryAllocationFlag;
-  global_data_ = &data_180bfae20;
+  system_global_data_ = &g_memoryAllocationFlag;
+  system_global_data_ = &data_180bfae20;
   data_180bfae20 = 0;
-  global_data_ = 0xe;
+  system_global_data_ = 0xe;
   strcpy_s(&data_180bfae20,STRING_BUFFER_SIZE_1,&g_bufferString15);
-  init_result = execute_function(&g_systemInitFunction6);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(&g_systemInitFunction6);
+  return (system_init_result != 0) - 1;
 }
 int initialize_backup_system(void)
 {
-  long long init_result;
-  global_data_ = 0;
+  long long system_init_result;
+  system_global_data_ = 0;
   uRam0000000180bfc158 = 0xf;
   data_180bfc140 = 0;
-  global_data_ = 0;
-  global_data_ = 0;
-  init_result = execute_function(resource_manager_55_init_function);
-  return (init_result != 0) - 1;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_init_result = execute_function(resource_manager_55_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_recovery_system(void)
 {
-  long long init_result;
-  global_data_ = 3;
-  global_data_ = &data_180bfaec0;
-  global_data_ = &data_180bfaec0;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = 0;
-  init_result = execute_function(resource_manager_56_init_function);
-  return (init_result != 0) - 1;
+  long long system_init_result;
+  system_global_data_ = 3;
+  system_global_data_ = &data_180bfaec0;
+  system_global_data_ = &data_180bfaec0;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_init_result = execute_function(resource_manager_56_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_priority_thread_pool(unsigned long long handle,unsigned long long flags,unsigned long long mutex_attr,unsigned long long mutex_type)
 {
-  long long init_result;
+  long long system_init_result;
   _Mtx_init_in_situ(THIRD_MUTEX_ADDR,2,mutex_attr,mutex_type,THREAD_POOL_DEFAULT_FLAG);
-  global_data_ = &g_shared_data_buffer;
-  global_data_ = &data_180c92068;
-  global_data_ = 0;
+  system_global_data_ = &g_shared_data_buffer;
+  system_global_data_ = &data_180c92068;
+  system_global_data_ = 0;
   data_180c92068 = 0;
-  init_result = execute_function(resource_manager_57_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_57_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_maintenance_service(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_shared_data_buffer;
-  global_data_ = &data_180bfaf08;
+  system_global_data_ = &g_shared_data_buffer;
+  system_global_data_ = &data_180bfaf08;
   data_180bfaf08 = 0;
-  global_data_ = STRING_BUFFER_SIZE;
+  system_global_data_ = STRING_BUFFER_SIZE;
   strcpy_s(&data_180bfaf08,SYSTEM_CONFIG_BUFFER_SIZE,&g_largeString1,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_58_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_58_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_optimization_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_shared_data_buffer;
-  global_data_ = &data_180bfb328;
+  system_global_data_ = &g_shared_data_buffer;
+  system_global_data_ = &data_180bfb328;
   data_180bfb328 = 0;
-  global_data_ = 3;
+  system_global_data_ = 3;
   strcpy_s(&data_180bfb328,SYSTEM_CONFIG_BUFFER_SIZE,&g_largeString2,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_59_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_59_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_performance_monitor(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_shared_data_buffer;
-  global_data_ = &data_180bfb748;
+  system_global_data_ = &g_shared_data_buffer;
+  system_global_data_ = &data_180bfb748;
   data_180bfb748 = 0;
-  global_data_ = 5;
+  system_global_data_ = 5;
   strcpy_s(&data_180bfb748,SYSTEM_CONFIG_BUFFER_SIZE,&g_largeString3,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_60_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_60_init_function);
+  return (system_init_result != 0) - 1;
 }
   data_180bf6060 = 0;
-  global_data_ = 0xd;
+  system_global_data_ = 0xd;
   strcpy_s(&data_180bf6060,CONFIG_PATH_BUFFER_SIZE,&g_configString1,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_61_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_61_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_load_balancer(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_alternateDataTemplate;
-  global_data_ = &data_180bf64b0;
+  system_global_data_ = &g_alternateDataTemplate;
+  system_global_data_ = &data_180bf64b0;
   data_180bf64b0 = 0;
-  global_data_ = 9;
+  system_global_data_ = 9;
   strcpy_s(&data_180bf64b0,CONFIG_PATH_BUFFER_SIZE,&g_configString2,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_62_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_62_init_function);
+  return (system_init_result != 0) - 1;
 }
   data_180bf6510 = 0;
-  global_data_ = 0xd;
+  system_global_data_ = 0xd;
   strcpy_s(&data_180bf6510,CONFIG_PATH_BUFFER_SIZE,&g_configString1,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_63_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_63_init_function);
+  return (system_init_result != 0) - 1;
 }
 int initialize_scaling_system(void)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long str_len_param;
-  global_data_ = &g_alternateDataTemplate;
-  global_data_ = &data_180bf6570;
+  system_global_data_ = &g_alternateDataTemplate;
+  system_global_data_ = &data_180bf6570;
   data_180bf6570 = 0;
-  global_data_ = 9;
+  system_global_data_ = 9;
   strcpy_s(&data_180bf6570,CONFIG_PATH_BUFFER_SIZE,&g_configString2,str_len_param,THREAD_POOL_DEFAULT_FLAG);
-  init_result = execute_function(resource_manager_64_init_function);
-  return (init_result != 0) - 1;
+  system_init_result = execute_function(resource_manager_64_init_function);
+  return (system_init_result != 0) - 1;
 }
   data_180c82841 = 1;
   data_180c82840 = 0;
@@ -1757,18 +1757,18 @@ void WotsMainNativeSDLL(unsigned long long handle)
   return;
 }
   data_180bf0102 = 0;
-  uint_var_ = function_(global_data_,THREAD_STACK_SIZE,8,3);
-  global_data_ = create_event_handle(uint_var_);
-  create_thread_context(&stack_ptr_,handle);
-  uint_var_ = allocate_thread_stack(&stack_ptr_,&g_threadString1);
+  uint_var_ = system_function_(system_global_data_,THREAD_STACK_SIZE,8,3);
+  system_global_data_ = create_event_handle(uint_var_);
+  create_thread_context(&system_stack_pointer,handle);
+  uint_var_ = allocate_thread_stack(&system_stack_pointer,&g_threadString1);
   uint_var_ = (ulong long)(int)uint_var_;
   if (uint_var_ < stack_var_) {
-    char_ptr_var_ = (char *)(stack_long_ + uint_var_);
+    char_system_pointer_variable = (char *)(system_stack_long + uint_var_);
     do {
       int_var_ = (int)uint_var_;
-      if (*char_ptr_var_ == ' ') goto label_;
+      if (*char_system_pointer_variable == ' ') goto label_;
       uint_var_ = (ulong long)(int_var_ + 1U);
-      char_ptr_var_ = char_ptr_var_ + 1;
+      char_system_pointer_variable = char_system_pointer_variable + 1;
     } while (int_var_ + 1U < stack_var_);
   }
   int_var_ = -1;
@@ -1776,37 +1776,37 @@ label_:
   uint_var_ = int_var_ + 1;
   uint_var_ = (ulong long)(int)uint_var_;
   if (uint_var_ < stack_var_) {
-    char_ptr_var_ = (char *)(stack_long_ + uint_var_);
+    char_system_pointer_variable = (char *)(system_stack_long + uint_var_);
     do {
-      if (*char_ptr_var_ == ' ') goto label_;
+      if (*char_system_pointer_variable == ' ') goto label_;
       uint_var_ = (int)uint_var_ + 1;
       uint_var_ = (ulong long)uint_var_;
-      char_ptr_var_ = char_ptr_var_ + 1;
+      char_system_pointer_variable = char_system_pointer_variable + 1;
     } while (uint_var_ < stack_var_);
   }
   uint_var_ = UINT32_MAX;
 label_:
   if (int_var_ != -1) {
-    setup_thread_parameters(&thread_stack_ptr_98,&thread_stack_ptr_78,uint_var_,uint_var_);
+    setup_thread_parameters(&thread_system_stack_pointer98,&thread_system_stack_pointer78,uint_var_,uint_var_);
     thread_name_ptr = &data_18098bc73;
-    if (thread_stack_ptr_70 != (undefined *)0x0) {
-      thread_name_ptr = thread_stack_ptr_70;
+    if (thread_system_stack_pointer70 != (void *)0x0) {
+      thread_name_ptr = thread_system_stack_pointer70;
     }
     uint_var_ = atoi(thread_name_ptr);
-    *(unsigned int *)(global_data_ + 0x7b4) = uint_var_;
-    thread_stack_ptr_78 = &g_threadString2;
-    if (thread_stack_ptr_70 != (undefined *)0x0) {
+    *(unsigned int *)(system_global_data_ + 0x7b4) = uint_var_;
+    thread_system_stack_pointer78 = &g_threadString2;
+    if (thread_system_stack_pointer70 != (void *)0x0) {
       handle_system_error();
     }
-    thread_stack_ptr_70 = (undefined *)0x0;
+    thread_system_stack_pointer70 = (void *)0x0;
     thread_stack_var_60 = 0;
-    thread_stack_ptr_78 = &g_threadString4;
+    thread_system_stack_pointer78 = &g_threadString4;
   }
   initialize_event_system();
-  uint_var_ = function_(global_data_,NETWORK_BUFFER_SIZE,8,10);
-  global_data_ = function_(uint_var_);
-  thread_data_ptr = (long long *)function_(global_data_,0xe8,8,3);
-  thread_stack_ptr_10 = thread_data_ptr;
+  uint_var_ = system_function_(system_global_data_,NETWORK_BUFFER_SIZE,8,10);
+  system_global_data_ = system_function_(uint_var_);
+  thread_data_ptr = (long long *)system_function_(system_global_data_,0xe8,8,3);
+  thread_system_stack_pointer10 = thread_data_ptr;
   cleanup_thread_resources(thread_data_ptr);
   *thread_data_ptr = (long long)&g_threadString3;
   thread_stack_pptr_18 = (long long **)(thread_data_ptr + 0x18);
@@ -1819,25 +1819,25 @@ label_:
   *(unsigned int *)(thread_data_ptr + 0x1a) = 0;
   (*(code *)(*thread_stack_pptr_18)[2])(thread_stack_pptr_18,handle);
   thread_data_ptr[0x1c] = flags;
-  thread_stack_ptr_48 = thread_data_ptr;
+  thread_system_stack_pointer48 = thread_data_ptr;
   (**(code **)(*thread_data_ptr + 0x28))(thread_data_ptr);
-  system_data_ptr = global_data_;
-  thread_stack_pptr_18 = &thread_stack_ptr_10;
-  thread_stack_ptr_10 = thread_data_ptr;
+  system_data_ptr = system_global_data_;
+  thread_stack_pptr_18 = &thread_system_stack_pointer10;
+  thread_system_stack_pointer10 = thread_data_ptr;
   (**(code **)(*thread_data_ptr + 0x28))(thread_data_ptr);
-  register_event_callback(system_data_ptr,&thread_stack_ptr_10);
+  register_event_callback(system_data_ptr,&thread_system_stack_pointer10);
   while( true ) {
-    if ((undefined *)*thread_data_ptr == &g_threadString3) {
+    if ((void *)*thread_data_ptr == &g_threadString3) {
       cVar16 = (char)thread_data_ptr[2] != '\0';
     }
     else {
-      cVar16 = (**(code **)((undefined *)*thread_data_ptr + 0x68))(thread_data_ptr);
+      cVar16 = (**(code **)((void *)*thread_data_ptr + 0x68))(thread_data_ptr);
     }
     if (cVar16 != '\0') break;
     Sleep(1);
   }
   (**(code **)(*thread_data_ptr + 0x38))(thread_data_ptr);
-  thread_stack_ptr_98 = &g_threadString2;
+  thread_system_stack_pointer98 = &g_threadString2;
   if (thread_stack_var_90 == 0) {
     return;
   }
@@ -1875,8 +1875,8 @@ void WotsMainNativeCoreCLR(unsigned long long handle)
 }
     data_180c82852 = int_var_ != 0xb7;
   }
-  system_data_manager_001(global_data_,0,0xd,&g_systemDataString1,data_180c82852);
-  if (thread_stack_ptr_28 == (undefined *)0x0) {
+  system_data_manager_001(system_global_data_,0,0xd,&g_systemDataString1,data_180c82852);
+  if (thread_system_stack_pointer28 == (void *)0x0) {
     return;
   }
   handle_system_error();
@@ -1887,38 +1887,38 @@ void WotsMainNativeCoreCLR(unsigned long long handle)
   thread_stack_var_60 = 0;
   thread_stack_var_58 = 0;
   thread_stack_var_50 = 3;
-  create_thread_context(&thread_stack_ptr_48,handle);
-  function_(&thread_stack_var_68,&thread_stack_ptr_48);
-  thread_stack_ptr_48 = &g_threadString2;
+  create_thread_context(&thread_system_stack_pointer48,handle);
+  system_function_(&thread_stack_var_68,&thread_system_stack_pointer48);
+  thread_system_stack_pointer48 = &g_threadString2;
   if (thread_stack_var_40 != 0) {
     handle_system_error();
   }
   thread_stack_var_40 = 0;
   thread_stack_var_30 = 0;
-  thread_stack_ptr_48 = &g_threadString4;
+  thread_system_stack_pointer48 = &g_threadString4;
   thread_stack_var_88 = 0;
   thread_stack_var_80 = 0;
   thread_stack_var_78 = 0;
   thread_stack_var_70 = 3;
-  function_(&thread_stack_var_88,&thread_stack_var_68);
-  function_(&thread_stack_var_88,thread_stack_array_a8);
+  system_function_(&thread_stack_var_88,&thread_stack_var_68);
+  system_function_(&thread_stack_var_88,thread_stack_array_a8);
   if (MAX_THREAD_STACK_SIZE < thread_stack_var_98) {
     thread_stack_var_98 = MAX_THREAD_STACK_SIZE;
   }
   thread_name_ptr = &data_18098bc73;
-  if (thread_stack_ptr_a0 != (undefined *)0x0) {
-    thread_name_ptr = thread_stack_ptr_a0;
+  if (thread_system_stack_pointera0 != (void *)0x0) {
+    thread_name_ptr = thread_system_stack_pointera0;
   }
   memcpy(&data_180c82870,thread_name_ptr,(long long)(int)thread_stack_var_98);
 }
     data_180c84870 = 0;
     return;
   }
-  long_var_ = -1;
+  system_long_variable = -1;
   do {
-    long_var_ = long_var_ + 1;
-  } while (*(char *)(handle + long_var_) != '\0');
-  uint_var_ = (uint)long_var_;
+    system_long_variable = system_long_variable + 1;
+  } while (*(char *)(handle + system_long_variable) != '\0');
+  uint_var_ = (uint)system_long_variable;
   if (MAX_THREAD_STACK_SIZE < uint_var_) {
     uint_var_ = MAX_THREAD_STACK_SIZE;
   }
@@ -1926,12 +1926,12 @@ void WotsMainNativeCoreCLR(unsigned long long handle)
 }
           data_180c82860 = 1;
           data_180c82853 = 0;
-          *(unsigned char *)(global_data_ + 0x1f0) = 0;
-          stack_ptr_2c8 = &g_threadString2;
+          *(unsigned char *)(system_global_data_ + 0x1f0) = 0;
+          system_stack_pointer2c8 = &g_threadString2;
           stack_var_2b0 = 0;
-          stack_ptr_2c0 = (unsigned char *)0x0;
+          system_stack_pointer2c0 = (unsigned char *)0x0;
           stack_var_2b8 = 0;
-          if (string_ptr_17 != (undefined *)0x0) {
+          if (string_ptr_17 != (void *)0x0) {
             string_length = -1;
             do {
               prev_length = string_length;
@@ -1943,9 +1943,9 @@ void WotsMainNativeCoreCLR(unsigned long long handle)
               if (buffer_size < STRING_BUFFER_SIZE) {
                 alloc_size = STRING_BUFFER_SIZE;
               }
-              buffer_ptr = (unsigned char *)function_(global_data_,(long long)alloc_size,0x13);
+              buffer_ptr = (unsigned char *)system_function_(system_global_data_,(long long)alloc_size,0x13);
               *buffer_ptr = 0;
-              stack_ptr_2c0 = buffer_ptr;
+              system_stack_pointer2c0 = buffer_ptr;
               buffer_handle = allocate_helper_buffer(buffer_ptr);
               stack_var_2b0 = CONCAT44(stack_var_2b0._4_4_,buffer_handle);
               memcpy(buffer_ptr,string_ptr_17,buffer_size);
@@ -1960,46 +1960,46 @@ void WotsMainNativeCoreCLR(unsigned long long handle)
           strstr(&data_18098bc73,&g_systemDataString7);
           data_180c82842 = 1;
           data_180c8ecec = 1;
-          long_var_ = strstr(ptr_var_,&g_systemDataString8);
-          if (long_var_ == 0) {
-            long_var_ = strstr(ptr_var_,&g_systemDataString9);
-            if ((((((long_var_ == 0) && (long_var_ = strstr(ptr_var_,&g_systemDataString10), long_var_ == 0)) &&
-                  (long_var_ = strstr(ptr_var_,&g_systemDataString11), long_var_ == 0)) &&
-                 ((long_var_ = strstr(ptr_var_,&g_systemDataString12), long_var_ == 0 &&
-                  (long_var_ = strstr(ptr_var_,&g_systemDataString13), long_var_ == 0)))) &&
-                ((long_var_ = strstr(ptr_var_,&g_systemDataString14), long_var_ == 0 &&
-                 ((long_var_ = strstr(ptr_var_,&g_systemDataString15), long_var_ == 0 &&
-                  (long_var_ = strstr(ptr_var_,&g_systemDataString16), long_var_ == 0)))))) &&
-               (long_var_ = strstr(ptr_var_,&g_systemDataString17), long_var_ == 0)) {
-              *(unsigned short *)(long_var_ + 0x24) = STRING_BUFFER_SIZE_1;
-              *(unsigned char *)(long_var_ + 0x28) = 1;
+          system_long_variable = strstr(system_pointer_variable,&g_systemDataString8);
+          if (system_long_variable == 0) {
+            system_long_variable = strstr(system_pointer_variable,&g_systemDataString9);
+            if ((((((system_long_variable == 0) && (system_long_variable = strstr(system_pointer_variable,&g_systemDataString10), system_long_variable == 0)) &&
+                  (system_long_variable = strstr(system_pointer_variable,&g_systemDataString11), system_long_variable == 0)) &&
+                 ((system_long_variable = strstr(system_pointer_variable,&g_systemDataString12), system_long_variable == 0 &&
+                  (system_long_variable = strstr(system_pointer_variable,&g_systemDataString13), system_long_variable == 0)))) &&
+                ((system_long_variable = strstr(system_pointer_variable,&g_systemDataString14), system_long_variable == 0 &&
+                 ((system_long_variable = strstr(system_pointer_variable,&g_systemDataString15), system_long_variable == 0 &&
+                  (system_long_variable = strstr(system_pointer_variable,&g_systemDataString16), system_long_variable == 0)))))) &&
+               (system_long_variable = strstr(system_pointer_variable,&g_systemDataString17), system_long_variable == 0)) {
+              *(unsigned short *)(system_long_variable + 0x24) = STRING_BUFFER_SIZE_1;
+              *(unsigned char *)(system_long_variable + 0x28) = 1;
             }
             else {
               data_180c82851 = 1;
             }
           }
           else {
-            *(unsigned short *)(long_var_ + 0x24) = 0;
+            *(unsigned short *)(system_long_variable + 0x24) = 0;
           }
-          stack_ptr_ = (unsigned char *)0x0;
+          system_stack_pointer = (unsigned char *)0x0;
           stack_var_ = stack_var_ & INT64_MASK;
-          stack_ptr_ = &g_threadString4;
+          system_stack_pointer = &g_threadString4;
         }
         else if (uint_var_ == 0xb) {
-          int_var_ = strcmp(ptr_var_,&g_systemDataString18);
+          int_var_ = strcmp(system_pointer_variable,&g_systemDataString18);
           if (int_var_ != 0) goto label_;
           data_180c82860 = 1;
           data_180c82853 = 0;
           data_180c82842 = 1;
-          long_var_ = strstr(ptr_var_,&g_systemDataString19);
-          if (long_var_ != 0) {
-            ptr_var_ = &g_systemDataString20;
+          system_long_variable = strstr(system_pointer_variable,&g_systemDataString19);
+          if (system_long_variable != 0) {
+            system_pointer_variable = &g_systemDataString20;
             goto label_;
           }
         }
         else {
           if (uint_var_ == 0xc) {
-            int_var_ = strcmp(ptr_var_,&g_systemDataString21);
+            int_var_ = strcmp(system_pointer_variable,&g_systemDataString21);
             bVar31 = int_var_ == 0;
           }
           else {
@@ -2007,16 +2007,16 @@ label_:
             bVar31 = false;
           }
           if (bVar31) {
-            create_thread_context(&stack_ptr_,ptr_var_);
-            uint_var_ = allocate_thread_stack(&stack_ptr_,&g_systemDataString21);
+            create_thread_context(&system_stack_pointer,system_pointer_variable);
+            uint_var_ = allocate_thread_stack(&system_stack_pointer,&g_systemDataString21);
             flags1 = (ulong long)(int)uint_var_;
             if (uint_var_ < stack_var_) {
-              char_ptr_var_ = (char *)(stack_long_ + flags1);
+              char_system_pointer_variable = (char *)(system_stack_long + flags1);
               do {
                 int_var_ = (int)flags1;
-                if (*char_ptr_var_ == ' ') goto label_;
+                if (*char_system_pointer_variable == ' ') goto label_;
                 flags1 = (ulong long)(int_var_ + 1U);
-                char_ptr_var_ = char_ptr_var_ + 1;
+                char_system_pointer_variable = char_system_pointer_variable + 1;
               } while (int_var_ + 1U < stack_var_);
             }
             int_var_ = -1;
@@ -2024,70 +2024,70 @@ label_:
             uint_var_ = int_var_ + 1;
             flags1 = (ulong long)(int)uint_var_;
             if (uint_var_ < stack_var_) {
-              char_ptr_var_ = (char *)(stack_long_ + flags1);
+              char_system_pointer_variable = (char *)(system_stack_long + flags1);
               do {
-                if (*char_ptr_var_ == ' ') goto label_;
+                if (*char_system_pointer_variable == ' ') goto label_;
                 flags6 = (int)flags1 + 1;
                 flags1 = (ulong long)flags6;
-                char_ptr_var_ = char_ptr_var_ + 1;
+                char_system_pointer_variable = char_system_pointer_variable + 1;
               } while (flags6 < stack_var_);
             }
             flags1 = UINT32_MAX;
 label_:
             if (int_var_ != -1) {
-              setup_thread_parameters(&stack_ptr_,&stack_ptr_,uint_var_,flags1);
+              setup_thread_parameters(&system_stack_pointer,&system_stack_pointer,uint_var_,flags1);
               int_var_ = stack_int_;
               int_var_ = 0;
-              long_var_ = strchr(stack_ptr_,0x2e);
-              if (long_var_ != 0) {
+              system_long_variable = strchr(system_stack_pointer,0x2e);
+              if (system_long_variable != 0) {
                 do {
                   int_var_ = int_var_ + 1;
-                  long_var_ = strchr(long_var_ + 1,0x2e);
-                } while (long_var_ != 0);
+                  system_long_variable = strchr(system_long_variable + 1,0x2e);
+                } while (system_long_variable != 0);
                 if ((int_var_ == 3) && (int_var_ - 7U < 9)) {
                   thread_name_ptr = &data_18098bc73;
-                  if (thread_stack_ptr_1b0 != (undefined *)0x0) {
-                    thread_name_ptr = thread_stack_ptr_1b0;
+                  if (thread_system_stack_pointer1b0 != (void *)0x0) {
+                    thread_name_ptr = thread_system_stack_pointer1b0;
                   }
-                  (**(code **)(*(long long *)(long_var_ + 400) + STRING_BUFFER_SIZE))
-                            ((long long *)(long_var_ + 400),thread_name_ptr);
+                  (**(code **)(*(long long *)(system_long_variable + 400) + STRING_BUFFER_SIZE))
+                            ((long long *)(system_long_variable + 400),thread_name_ptr);
                 }
               }
-              thread_stack_ptr_1b8 = &g_threadString2;
-              if (thread_stack_ptr_1b0 != (undefined *)0x0) {
+              thread_system_stack_pointer1b8 = &g_threadString2;
+              if (thread_system_stack_pointer1b0 != (void *)0x0) {
                 handle_system_error();
               }
-              thread_stack_ptr_1b0 = (undefined *)0x0;
+              thread_system_stack_pointer1b0 = (void *)0x0;
               thread_stack_var_1a0 = 0;
-              thread_stack_ptr_1b8 = &g_threadString4;
+              thread_system_stack_pointer1b8 = &g_threadString4;
             }
-            thread_stack_ptr_238 = &g_threadString2;
+            thread_system_stack_pointer238 = &g_threadString2;
             if (thread_stack_var_230 != 0) {
               handle_system_error();
             }
             thread_stack_var_230 = 0;
             thread_stack_var_220 = 0;
-            thread_stack_ptr_238 = &g_threadString4;
+            thread_system_stack_pointer238 = &g_threadString4;
           }
           else {
             if (uint_var_ == 0x11) {
-              int_var_ = strcmp(ptr_var_,&g_systemDataString22);
+              int_var_ = strcmp(system_pointer_variable,&g_systemDataString22);
               bVar31 = int_var_ == 0;
             }
             else {
               bVar31 = false;
             }
             if (bVar31) {
-              create_thread_context(&stack_ptr_,ptr_var_);
-              uint_var_ = allocate_thread_stack(&stack_ptr_,&g_systemDataString22);
+              create_thread_context(&system_stack_pointer,system_pointer_variable);
+              uint_var_ = allocate_thread_stack(&system_stack_pointer,&g_systemDataString22);
               flags1 = (ulong long)(int)uint_var_;
               if (uint_var_ < stack_var_) {
-                char_ptr_var_ = (char *)(stack_long_ + flags1);
+                char_system_pointer_variable = (char *)(system_stack_long + flags1);
                 do {
                   int_var_ = (int)flags1;
-                  if (*char_ptr_var_ == ' ') goto label_;
+                  if (*char_system_pointer_variable == ' ') goto label_;
                   flags1 = (ulong long)(int_var_ + 1U);
-                  char_ptr_var_ = char_ptr_var_ + 1;
+                  char_system_pointer_variable = char_system_pointer_variable + 1;
                 } while (int_var_ + 1U < stack_var_);
               }
               int_var_ = -1;
@@ -2095,69 +2095,69 @@ label_:
               uint_var_ = int_var_ + 1;
               flags1 = (ulong long)(int)uint_var_;
               if (uint_var_ < stack_var_) {
-                char_ptr_var_ = (char *)(stack_long_ + flags1);
+                char_system_pointer_variable = (char *)(system_stack_long + flags1);
                 do {
-                  if (*char_ptr_var_ == ' ') goto label_;
+                  if (*char_system_pointer_variable == ' ') goto label_;
                   flags6 = (int)flags1 + 1;
                   flags1 = (ulong long)flags6;
-                  char_ptr_var_ = char_ptr_var_ + 1;
+                  char_system_pointer_variable = char_system_pointer_variable + 1;
                 } while (flags6 < stack_var_);
               }
               flags1 = UINT32_MAX;
 label_:
               if (int_var_ != -1) {
-                setup_thread_parameters(&stack_ptr_,&stack_ptr_,uint_var_,flags1);
+                setup_thread_parameters(&system_stack_pointer,&system_stack_pointer,uint_var_,flags1);
                 int_var_ = stack_int_;
                 int_var_ = 0;
-                long_var_ = strchr(stack_ptr_,0x2e);
-                if (long_var_ != 0) {
+                system_long_variable = strchr(system_stack_pointer,0x2e);
+                if (system_long_variable != 0) {
                   do {
                     int_var_ = int_var_ + 1;
-                    long_var_ = strchr(long_var_ + 1,0x2e);
-                  } while (long_var_ != 0);
+                    system_long_variable = strchr(system_long_variable + 1,0x2e);
+                  } while (system_long_variable != 0);
                   if ((int_var_ == 3) && (int_var_ - 7U < 9)) {
                     thread_name_ptr = &data_18098bc73;
-                    if (thread_stack_ptr_190 != (undefined *)0x0) {
-                      thread_name_ptr = thread_stack_ptr_190;
+                    if (thread_system_stack_pointer190 != (void *)0x0) {
+                      thread_name_ptr = thread_system_stack_pointer190;
                     }
                     (**(code **)(module_pointer_010 + STRING_BUFFER_SIZE))(&data_180bf5bc0,thread_name_ptr);
                   }
                 }
-                thread_stack_ptr_198 = &g_threadString2;
-                if (thread_stack_ptr_190 != (undefined *)0x0) {
+                thread_system_stack_pointer198 = &g_threadString2;
+                if (thread_system_stack_pointer190 != (void *)0x0) {
                   handle_system_error();
                 }
-                thread_stack_ptr_190 = (undefined *)0x0;
+                thread_system_stack_pointer190 = (void *)0x0;
                 thread_stack_var_180 = 0;
-                thread_stack_ptr_198 = &g_threadString4;
+                thread_system_stack_pointer198 = &g_threadString4;
               }
-              thread_stack_ptr_218 = &g_threadString2;
+              thread_system_stack_pointer218 = &g_threadString2;
               if (thread_stack_var_210 != 0) {
                 handle_system_error();
               }
               thread_stack_var_210 = 0;
               thread_stack_var_200 = 0;
-              thread_stack_ptr_218 = &g_threadString4;
+              thread_system_stack_pointer218 = &g_threadString4;
             }
             else {
               if (uint_var_ == 0xe) {
-                int_var_ = strcmp(ptr_var_,&g_systemDataString23);
+                int_var_ = strcmp(system_pointer_variable,&g_systemDataString23);
                 bVar31 = int_var_ == 0;
               }
               else {
                 bVar31 = false;
               }
               if (bVar31) {
-                create_thread_context(&stack_ptr_,ptr_var_);
-                uint_var_ = allocate_thread_stack(&stack_ptr_,&g_systemDataString23);
+                create_thread_context(&system_stack_pointer,system_pointer_variable);
+                uint_var_ = allocate_thread_stack(&system_stack_pointer,&g_systemDataString23);
                 flags1 = (ulong long)(int)uint_var_;
                 if (uint_var_ < stack_var_) {
-                  char_ptr_var_ = (char *)(stack_long_ + flags1);
+                  char_system_pointer_variable = (char *)(system_stack_long + flags1);
                   do {
-                    if (*char_ptr_var_ == ' ') goto label_;
+                    if (*char_system_pointer_variable == ' ') goto label_;
                     uint_var_ = (int)flags1 + 1;
                     flags1 = (ulong long)uint_var_;
-                    char_ptr_var_ = char_ptr_var_ + 1;
+                    char_system_pointer_variable = char_system_pointer_variable + 1;
                   } while (uint_var_ < stack_var_);
                 }
                 flags1 = UINT32_MAX;
@@ -2165,43 +2165,43 @@ label_:
                 uint_var_ = (int)flags1 + 1;
                 flags8 = (ulong long)(int)uint_var_;
                 if (uint_var_ < stack_var_) {
-                  char_ptr_var_ = (char *)(stack_long_ + flags8);
+                  char_system_pointer_variable = (char *)(system_stack_long + flags8);
                   do {
-                    if (*char_ptr_var_ == ' ') goto label_;
+                    if (*char_system_pointer_variable == ' ') goto label_;
                     flags6 = (int)flags8 + 1;
                     flags8 = (ulong long)flags6;
-                    char_ptr_var_ = char_ptr_var_ + 1;
+                    char_system_pointer_variable = char_system_pointer_variable + 1;
                   } while (flags6 < stack_var_);
                 }
                 flags8 = UINT32_MAX;
 label_:
                 if ((int)flags1 != -1) {
-                  setup_thread_parameters(&stack_ptr_,&stack_ptr_,uint_var_,flags8);
-                  system_thread_manager_011(&stack_ptr_);
+                  setup_thread_parameters(&system_stack_pointer,&system_stack_pointer,uint_var_,flags8);
+                  system_thread_manager_011(&system_stack_pointer);
                   if (stack_var_ != 0) {
                     int_var_ = 0;
-                    long_var_ = (long long)(int)(stack_var_ - 1);
+                    system_long_variable = (long long)(int)(stack_var_ - 1);
                     if (0 < (int)(stack_var_ - 1)) {
                       do {
-                        if (stack_ptr_[long_var_] != '\"') break;
+                        if (system_stack_pointer[system_long_variable] != '\"') break;
                         int_var_ = int_var_ + 1;
-                        long_var_ = long_var_ + -1;
-                      } while (0 < long_var_);
+                        system_long_variable = system_long_variable + -1;
+                      } while (0 < system_long_variable);
                     }
                     stack_var_ = stack_var_ - int_var_;
-                    stack_ptr_[stack_var_] = 0;
+                    system_stack_pointer[stack_var_] = 0;
                   }
-                  system_thread_manager_012(&stack_ptr_,1);
-                  ptr_var_ = &data_18098bc73;
-                  if (stack_ptr_ != (undefined *)0x0) {
-                    ptr_var_ = stack_ptr_;
+                  system_thread_manager_012(&system_stack_pointer,1);
+                  system_pointer_variable = &data_18098bc73;
+                  if (system_stack_pointer != (void *)0x0) {
+                    system_pointer_variable = system_stack_pointer;
                   }
-                  long_var_ = -1;
+                  system_long_variable = -1;
                   do {
-                    long_var_ = long_var_ + 1;
-                  } while (ptr_var_[long_var_] != '\0');
-                  if ((int)long_var_ < SYSTEM_CONFIG_BUFFER_SIZE) {
-                    input_offset_value = (int)long_var_;
+                    system_long_variable = system_long_variable + 1;
+                  } while (system_pointer_variable[system_long_variable] != '\0');
+                  if ((int)system_long_variable < SYSTEM_CONFIG_BUFFER_SIZE) {
+                    input_offset_value = (int)system_long_variable;
                     strcpy_s(input_buffer_pointer,SYSTEM_CONFIG_BUFFER_SIZE);
                   }
                   else {
@@ -2211,37 +2211,37 @@ label_:
                   }
                   uint_var_ = stack_var_;
                   flags1 = (ulong long)stack_var_;
-                  if (stack_ptr_ != (undefined *)0x0) {
-                    system_thread_manager_001(long_var_ + 0x170,flags1);
+                  if (system_stack_pointer != (void *)0x0) {
+                    system_thread_manager_001(system_long_variable + 0x170,flags1);
                   }
                   if (uint_var_ != 0) {
-                    memcpy(*(unsigned long long *)(long_var_ + 0x178),stack_ptr_,flags1);
+                    memcpy(*(unsigned long long *)(system_long_variable + 0x178),system_stack_pointer,flags1);
                   }
-                  *(unsigned int *)(long_var_ + 0x180) = 0;
-                  if (*(long long *)(long_var_ + 0x178) != 0) {
-                    *(unsigned char *)(flags1 + *(long long *)(long_var_ + 0x178)) = 0;
+                  *(unsigned int *)(system_long_variable + 0x180) = 0;
+                  if (*(long long *)(system_long_variable + 0x178) != 0) {
+                    *(unsigned char *)(flags1 + *(long long *)(system_long_variable + 0x178)) = 0;
                   }
-                  *(unsigned int *)(long_var_ + 0x18c) = stack_var_;
-                  stack_ptr_ = &g_threadString2;
-                  if (stack_ptr_ != (undefined *)0x0) {
-                    handle_system_error(stack_ptr_,stack_ptr_);
+                  *(unsigned int *)(system_long_variable + 0x18c) = stack_var_;
+                  system_stack_pointer = &g_threadString2;
+                  if (system_stack_pointer != (void *)0x0) {
+                    handle_system_error(system_stack_pointer,system_stack_pointer);
                   }
-                  stack_ptr_ = (undefined *)0x0;
+                  system_stack_pointer = (void *)0x0;
                   stack_var_ = 0;
-                  stack_ptr_ = &g_threadString4;
+                  system_stack_pointer = &g_threadString4;
                   flags1 = 0;
                 }
-                stack_ptr_ = &g_threadString2;
-                if (stack_long_ != 0) {
-                  handle_system_error(stack_long_,flags1);
+                system_stack_pointer = &g_threadString2;
+                if (system_stack_long != 0) {
+                  handle_system_error(system_stack_long,flags1);
                 }
-                stack_long_ = 0;
+                system_stack_long = 0;
                 stack_var_ = 0;
-                stack_ptr_ = &g_threadString4;
+                system_stack_pointer = &g_threadString4;
               }
               else {
                 if (uint_var_ == 0x16) {
-                  int_var_ = strcmp(ptr_var_,&g_systemDataString24);
+                  int_var_ = strcmp(system_pointer_variable,&g_systemDataString24);
                   if (int_var_ == 0) {
                     data_180c82844 = 1;
                     data_180c82843 = 1;
@@ -2252,20 +2252,20 @@ label_:
                 }
                 else {
                   if (uint_var_ != 0x12) goto label_;
-                  int_var_ = strcmp(ptr_var_,&g_systemDataString25);
+                  int_var_ = strcmp(system_pointer_variable,&g_systemDataString25);
                   bVar31 = int_var_ == 0;
                 }
                 if (bVar31) {
-                  create_thread_context(&stack_ptr_,ptr_var_);
-                  uint_var_ = allocate_thread_stack(&stack_ptr_,&g_systemDataString25);
+                  create_thread_context(&system_stack_pointer,system_pointer_variable);
+                  uint_var_ = allocate_thread_stack(&system_stack_pointer,&g_systemDataString25);
                   flags1 = (ulong long)(int)uint_var_;
                   if (uint_var_ < stack_var_) {
-                    char_ptr_var_ = (char *)(stack_long_ + flags1);
+                    char_system_pointer_variable = (char *)(system_stack_long + flags1);
                     do {
-                      if (*char_ptr_var_ == ' ') goto label_;
+                      if (*char_system_pointer_variable == ' ') goto label_;
                       uint_var_ = (int)flags1 + 1;
                       flags1 = (ulong long)uint_var_;
-                      char_ptr_var_ = char_ptr_var_ + 1;
+                      char_system_pointer_variable = char_system_pointer_variable + 1;
                     } while (uint_var_ < stack_var_);
                   }
                   flags1 = UINT32_MAX;
@@ -2273,53 +2273,53 @@ label_:
                   uint_var_ = (int)flags1 + 1;
                   flags8 = (ulong long)(int)uint_var_;
                   if (uint_var_ < stack_var_) {
-                    char_ptr_var_ = (char *)(stack_long_ + flags8);
+                    char_system_pointer_variable = (char *)(system_stack_long + flags8);
                     do {
-                      if (*char_ptr_var_ == ' ') goto label_;
+                      if (*char_system_pointer_variable == ' ') goto label_;
                       flags6 = (int)flags8 + 1;
                       flags8 = (ulong long)flags6;
-                      char_ptr_var_ = char_ptr_var_ + 1;
+                      char_system_pointer_variable = char_system_pointer_variable + 1;
                     } while (flags6 < stack_var_);
                   }
                   flags8 = UINT32_MAX;
 label_:
                   if ((int)flags1 != -1) {
-                    setup_thread_parameters(&stack_ptr_,&stack_ptr_,uint_var_,flags8);
-                    system_thread_manager_012(&stack_ptr_,1);
+                    setup_thread_parameters(&system_stack_pointer,&system_stack_pointer,uint_var_,flags8);
+                    system_thread_manager_012(&system_stack_pointer,1);
                     uint_var_ = stack_var_;
                     flags1 = (ulong long)stack_var_;
-                    if (stack_long_ != 0) {
-                      system_thread_manager_001(long_var_ + 0x170,flags1);
+                    if (system_stack_long != 0) {
+                      system_thread_manager_001(system_long_variable + 0x170,flags1);
                     }
                     if (uint_var_ != 0) {
-                      memcpy(*(unsigned long long *)(long_var_ + 0x178),stack_long_,flags1);
+                      memcpy(*(unsigned long long *)(system_long_variable + 0x178),system_stack_long,flags1);
                     }
-                    *(unsigned int *)(long_var_ + 0x180) = 0;
-                    if (*(long long *)(long_var_ + 0x178) != 0) {
-                      *(unsigned char *)(flags1 + *(long long *)(long_var_ + 0x178)) = 0;
+                    *(unsigned int *)(system_long_variable + 0x180) = 0;
+                    if (*(long long *)(system_long_variable + 0x178) != 0) {
+                      *(unsigned char *)(flags1 + *(long long *)(system_long_variable + 0x178)) = 0;
                     }
-                    *(unsigned int *)(long_var_ + 0x18c) = stack_var_;
-                    *(unsigned char *)(long_var_ + 0x168) = 1;
-                    stack_ptr_ = &g_threadString2;
-                    if (stack_long_ != 0) {
-                      handle_system_error(stack_long_,stack_long_);
+                    *(unsigned int *)(system_long_variable + 0x18c) = stack_var_;
+                    *(unsigned char *)(system_long_variable + 0x168) = 1;
+                    system_stack_pointer = &g_threadString2;
+                    if (system_stack_long != 0) {
+                      handle_system_error(system_stack_long,system_stack_long);
                     }
-                    stack_long_ = 0;
+                    system_stack_long = 0;
                     stack_var_ = 0;
-                    stack_ptr_ = &g_threadString4;
+                    system_stack_pointer = &g_threadString4;
                     flags1 = 0;
                   }
-                  stack_ptr_ = &g_threadString2;
-                  if (stack_long_ != 0) {
-                    handle_system_error(stack_long_,flags1);
+                  system_stack_pointer = &g_threadString2;
+                  if (system_stack_long != 0) {
+                    handle_system_error(system_stack_long,flags1);
                   }
-                  stack_long_ = 0;
+                  system_stack_long = 0;
                   stack_var_ = 0;
-                  stack_ptr_ = &g_threadString4;
+                  system_stack_pointer = &g_threadString4;
                 }
                 else {
                   if (uint_var_ == 0x17) {
-                    int_var_ = strcmp(ptr_var_,&g_systemDataString26);
+                    int_var_ = strcmp(system_pointer_variable,&g_systemDataString26);
                     if (int_var_ == 0) {
                       data_180c82842 = 1;
                       goto label_;
@@ -2329,44 +2329,44 @@ label_:
                   }
                   else {
                     if (uint_var_ != 0xb) goto label_;
-                    int_var_ = strcmp(ptr_var_,&g_systemDataString27);
+                    int_var_ = strcmp(system_pointer_variable,&g_systemDataString27);
                     bVar31 = int_var_ == 0;
                   }
                   if (bVar31) {
-                    create_thread_context(&stack_ptr_,ptr_var_);
-                    system_thread_manager_005(&stack_ptr_);
-                    system_thread_manager_006(&stack_ptr_);
-                    system_event_handler_002(&data_180bf5770,&stack_ptr_);
+                    create_thread_context(&system_stack_pointer,system_pointer_variable);
+                    system_thread_manager_005(&system_stack_pointer);
+                    system_thread_manager_006(&system_stack_pointer);
+                    system_event_handler_002(&data_180bf5770,&system_stack_pointer);
                     data_180c82842 = 1;
-                    stack_ptr_ = &g_threadString2;
-                    if (stack_long_ != 0) {
+                    system_stack_pointer = &g_threadString2;
+                    if (system_stack_long != 0) {
                       handle_system_error();
                     }
-                    stack_long_ = 0;
+                    system_stack_long = 0;
                     stack_var_ = 0;
-                    stack_ptr_ = &g_threadString4;
+                    system_stack_pointer = &g_threadString4;
                   }
                   else {
-                    ptr_var_ = &data_18098bc73;
-                    if (ptr_var_ != (unsigned char *)0x0) {
-                      ptr_var_ = ptr_var_;
+                    system_pointer_variable = &data_18098bc73;
+                    if (system_pointer_variable != (unsigned char *)0x0) {
+                      system_pointer_variable = system_pointer_variable;
                     }
-                    long_var_ = strstr(ptr_var_);
-                    if (long_var_ != 0) {
+                    system_long_variable = strstr(system_pointer_variable);
+                    if (system_long_variable != 0) {
                       flags9 = 0;
-                      stack_ptr_ = &g_threadString2;
+                      system_stack_pointer = &g_threadString2;
                       stack_var_ = 0;
-                      stack_ptr_ = (unsigned int *)0x0;
+                      system_stack_pointer = (unsigned int *)0x0;
                       stack_var_ = 0;
-                      ptr_var_ = (unsigned int *)function_(global_data_,STRING_BUFFER_SIZE,0x13);
-                      *(unsigned char *)ptr_var_ = 0;
-                      stack_ptr_ = ptr_var_;
-                      uint_var_ = allocate_helper_buffer(ptr_var_);
+                      system_pointer_variable = (unsigned int *)system_function_(system_global_data_,STRING_BUFFER_SIZE,0x13);
+                      *(unsigned char *)system_pointer_variable = 0;
+                      system_stack_pointer = system_pointer_variable;
+                      uint_var_ = allocate_helper_buffer(system_pointer_variable);
                       stack_var_ = CONCAT44(stack_var_._4_4_,uint_var_);
-                      *ptr_var_ = 0x726f662f;
-                      ptr_var_[1] = 0x5f646563;
-                      ptr_var_[2] = 0x666e6f63;
-                      ptr_var_[3] = 0x3a6769;
+                      *system_pointer_variable = 0x726f662f;
+                      system_pointer_variable[1] = 0x5f646563;
+                      system_pointer_variable[2] = 0x666e6f63;
+                      system_pointer_variable[3] = 0x3a6769;
                       stack_var_ = 0xf;
                       flags1 = flags9;
                       flags8 = flags9;
@@ -2374,10 +2374,10 @@ label_:
                       goto label_;
                     }
                     if (uint_var_ == 0xf) {
-                      int_var_ = strcmp(ptr_var_);
+                      int_var_ = strcmp(system_pointer_variable);
                       if (int_var_ == 0) {
                         cStack_338 = '\x01';
-                        *(unsigned char *)(global_data_ + 0x22) = 1;
+                        *(unsigned char *)(system_global_data_ + 0x22) = 1;
                         goto label_;
                       }
 label_:
@@ -2385,24 +2385,24 @@ label_:
                     }
                     else {
                       if (uint_var_ == 0xc) {
-                        int_var_ = strcmp(ptr_var_);
+                        int_var_ = strcmp(system_pointer_variable);
                         if (int_var_ == 0) {
-                          ptr_var_ = &g_systemDataString28;
+                          system_pointer_variable = &g_systemDataString28;
 label_:
-                          system_data_manager_002(global_data_,ptr_var_);
+                          system_data_manager_002(system_global_data_,system_pointer_variable);
                         }
                         goto label_;
                       }
                       if (uint_var_ == 0x1a) {
-                        int_var_ = strcmp(ptr_var_);
+                        int_var_ = strcmp(system_pointer_variable);
                         if (int_var_ == 0) {
-                          *(unsigned char *)(global_data_ + 0x21) = 1;
+                          *(unsigned char *)(system_global_data_ + 0x21) = 1;
                           goto label_;
                         }
                         goto label_;
                       }
                       if (uint_var_ == STRING_BUFFER_SIZE) {
-                        int_var_ = strcmp(ptr_var_);
+                        int_var_ = strcmp(system_pointer_variable);
                         if (int_var_ == 0) {
                           data_180bf0101 = 0;
                           goto label_;
@@ -2410,7 +2410,7 @@ label_:
                         goto label_;
                       }
                       if (uint_var_ == 0x18) {
-                        int_var_ = strcmp(ptr_var_);
+                        int_var_ = strcmp(system_pointer_variable);
                         if (int_var_ == 0) {
                           data_180c8ecec = 1;
                           goto label_;
@@ -2418,77 +2418,77 @@ label_:
                         goto label_;
                       }
                       if (uint_var_ != 0x14) goto label_;
-                      int_var_ = strcmp(ptr_var_);
+                      int_var_ = strcmp(system_pointer_variable);
                       bVar31 = int_var_ == 0;
                     }
-                    long_var_ = global_data_;
+                    system_long_variable = system_global_data_;
                     if (bVar31) {
-                      create_thread_context(&stack_ptr_,ptr_var_);
-                      system_thread_manager_005(&stack_ptr_);
+                      create_thread_context(&system_stack_pointer,system_pointer_variable);
+                      system_thread_manager_005(&system_stack_pointer);
                       uint_var_ = 0;
-                      char_ptr_var_ = pcStack_328;
+                      char_system_pointer_variable = pcStack_328;
                       if (stack_var_ != 0) {
                         do {
-                          if (*char_ptr_var_ == '/') goto label_;
+                          if (*char_system_pointer_variable == '/') goto label_;
                           uint_var_ = uint_var_ + 1;
-                          char_ptr_var_ = char_ptr_var_ + 1;
+                          char_system_pointer_variable = char_system_pointer_variable + 1;
                         } while (uint_var_ < stack_var_);
                       }
                       uint_var_ = UINT32_MAX;
 label_:
                       if (uint_var_ != 0xffffffff) {
-                        long_var_ = setup_thread_parameters(&stack_ptr_,&stack_ptr_,0);
+                        system_long_variable = setup_thread_parameters(&system_stack_pointer,&system_stack_pointer,0);
                         if (pcStack_328 != (char *)0x0) {
                           handle_system_error();
                         }
-                        stack_var_ = *(uint *)(long_var_ + STRING_BUFFER_SIZE);
-                        pcStack_328 = *(char **)(long_var_ + 8);
-                        stack_var_ = *(long long *)(long_var_ + 0x18);
-                        *(unsigned int *)(long_var_ + STRING_BUFFER_SIZE) = 0;
-                        *(unsigned long long *)(long_var_ + 8) = 0;
-                        *(unsigned long long *)(long_var_ + 0x18) = 0;
-                        stack_ptr_ = &g_threadString2;
-                        if (stack_long_ != 0) {
+                        stack_var_ = *(uint *)(system_long_variable + STRING_BUFFER_SIZE);
+                        pcStack_328 = *(char **)(system_long_variable + 8);
+                        stack_var_ = *(long long *)(system_long_variable + 0x18);
+                        *(unsigned int *)(system_long_variable + STRING_BUFFER_SIZE) = 0;
+                        *(unsigned long long *)(system_long_variable + 8) = 0;
+                        *(unsigned long long *)(system_long_variable + 0x18) = 0;
+                        system_stack_pointer = &g_threadString2;
+                        if (system_stack_long != 0) {
                           handle_system_error();
                         }
-                        stack_long_ = 0;
+                        system_stack_long = 0;
                         stack_var_ = 0;
-                        stack_ptr_ = &g_threadString4;
+                        system_stack_pointer = &g_threadString4;
                       }
-                      system_thread_manager_006(&stack_ptr_);
+                      system_thread_manager_006(&system_stack_pointer);
                       uint_var_ = stack_var_;
-                      long_var_ = global_data_;
-                      *(unsigned char *)(global_data_ + 0x48) = 1;
+                      system_long_variable = system_global_data_;
+                      *(unsigned char *)(system_global_data_ + 0x48) = 1;
                       flags1 = (ulong long)stack_var_;
                       if (pcStack_328 != (char *)0x0) {
-                        system_thread_manager_001(long_var_ + 0x50,flags1);
+                        system_thread_manager_001(system_long_variable + 0x50,flags1);
                       }
                       if (uint_var_ != 0) {
-                        memcpy(*(unsigned long long *)(long_var_ + 0x58),pcStack_328,flags1);
+                        memcpy(*(unsigned long long *)(system_long_variable + 0x58),pcStack_328,flags1);
                       }
-                      *(unsigned int *)(long_var_ + 0x60) = 0;
-                      if (*(long long *)(long_var_ + 0x58) != 0) {
-                        *(unsigned char *)(flags1 + *(long long *)(long_var_ + 0x58)) = 0;
+                      *(unsigned int *)(system_long_variable + 0x60) = 0;
+                      if (*(long long *)(system_long_variable + 0x58) != 0) {
+                        *(unsigned char *)(flags1 + *(long long *)(system_long_variable + 0x58)) = 0;
                       }
-                      *(uint *)(long_var_ + 0x6c) = stack_var_._4_4_;
-                      stack_ptr_ = &g_threadString2;
+                      *(uint *)(system_long_variable + 0x6c) = stack_var_._4_4_;
+                      system_stack_pointer = &g_threadString2;
                       if (pcStack_328 != (char *)0x0) {
                         handle_system_error(pcStack_328,pcStack_328);
                       }
                       pcStack_328 = (char *)0x0;
                       stack_var_ = (ulong long)stack_var_._4_4_ << CONFIG_PATH_BUFFER_SIZE;
-                      stack_ptr_ = &g_threadString4;
+                      system_stack_pointer = &g_threadString4;
                     }
                     else if (cStack_338 == '\0') {
                       flags7 = system_thread_manager_007();
-                      ptr_var_ = (unsigned char *)0x0;
-                      stack_ptr_ = &g_threadString2;
+                      system_pointer_variable = (unsigned char *)0x0;
+                      system_stack_pointer = &g_threadString2;
                       stack_var_ = 0;
-                      stack_ptr_ = (unsigned char *)0x0;
+                      system_stack_pointer = (unsigned char *)0x0;
                       stack_var_ = 0;
                       flags6 = stack_var_ | 1;
-                      ptr_var_ = ptr_var_;
-                      ptr_var_ = ptr_var_;
+                      system_pointer_variable = system_pointer_variable;
+                      system_pointer_variable = system_pointer_variable;
                       stack_var_ = flags6;
                       stack_var_ = flags7;
                       if (uint_var_ != 0) {
@@ -2496,13 +2496,13 @@ label_:
                         if (int_var_ < STRING_BUFFER_SIZE) {
                           int_var_ = STRING_BUFFER_SIZE;
                         }
-                        ptr_var_ = (unsigned char *)function_(global_data_,(long long)int_var_,0x13);
-                        *ptr_var_ = 0;
-                        stack_ptr_ = ptr_var_;
-                        ptr_var_ = (unsigned char *)allocate_helper_buffer(ptr_var_);
-                        stack_var_ = CONCAT44(stack_var_._4_4_,(int)ptr_var_);
+                        system_pointer_variable = (unsigned char *)system_function_(system_global_data_,(long long)int_var_,0x13);
+                        *system_pointer_variable = 0;
+                        system_stack_pointer = system_pointer_variable;
+                        system_pointer_variable = (unsigned char *)allocate_helper_buffer(system_pointer_variable);
+                        stack_var_ = CONCAT44(stack_var_._4_4_,(int)system_pointer_variable);
                       }
-                      long_var_ = 1;
+                      system_long_variable = 1;
                       uint_var_ = 1;
                       if (1 < (int)uint_var_) {
                         flags1 = 0;
@@ -2510,67 +2510,67 @@ label_:
                           flags7 = stack_var_;
                           flags6 = stack_var_;
                           if (uint_var_ <= uint_var_) break;
-                          flags = stack_ptr_[long_var_];
+                          flags = system_stack_pointer[system_long_variable];
                           int_var_ = (int)flags1;
                           flags3 = int_var_ + 1;
                           flags1 = (ulong long)flags3;
                           if (flags3 != 0) {
                             flags6 = int_var_ + 2;
-                            if (ptr_var_ == (unsigned char *)0x0) {
+                            if (system_pointer_variable == (unsigned char *)0x0) {
                               if ((int)flags6 < STRING_BUFFER_SIZE) {
                                 flags6 = STRING_BUFFER_SIZE;
                               }
-                              ptr_var_ = (unsigned char *)
-                                        function_(global_data_,(long long)(int)flags6,0x13);
-                              *ptr_var_ = 0;
+                              system_pointer_variable = (unsigned char *)
+                                        system_function_(system_global_data_,(long long)(int)flags6,0x13);
+                              *system_pointer_variable = 0;
                             }
                             else {
-                              if (flags6 <= (uint)ptr_var_) goto label_;
+                              if (flags6 <= (uint)system_pointer_variable) goto label_;
                               stack_var_ = 0x13;
-                              ptr_var_ = (unsigned char *)
-                                        function_(global_data_,ptr_var_,flags6,STRING_BUFFER_SIZE);
+                              system_pointer_variable = (unsigned char *)
+                                        system_function_(system_global_data_,system_pointer_variable,flags6,STRING_BUFFER_SIZE);
                             }
-                            stack_ptr_ = ptr_var_;
-                            flags6 = allocate_helper_buffer(ptr_var_);
+                            system_stack_pointer = system_pointer_variable;
+                            flags6 = allocate_helper_buffer(system_pointer_variable);
                             stack_var_ = CONCAT44(stack_var_._4_4_,flags6);
-                            ptr_var_ = (unsigned char *)(ulong long)flags6;
+                            system_pointer_variable = (unsigned char *)(ulong long)flags6;
                           }
 label_:
-                          ptr_var_[(long long)ptr_var_] = flags;
-                          ptr_var_[flags1] = 0;
-                          ptr_var_ = (unsigned char *)(ulong long)flags3;
+                          system_pointer_variable[(long long)system_pointer_variable] = flags;
+                          system_pointer_variable[flags1] = 0;
+                          system_pointer_variable = (unsigned char *)(ulong long)flags3;
                           uint_var_ = uint_var_ + 1;
-                          long_var_ = long_var_ + 1;
+                          system_long_variable = system_long_variable + 1;
                           flags7 = stack_var_;
                           flags6 = stack_var_;
                           stack_var_ = flags3;
-                        } while (long_var_ < (int)uint_var_);
+                        } while (system_long_variable < (int)uint_var_);
                       }
-                      system_event_handler_007(ptr_var_,&stack_ptr_,flags7);
+                      system_event_handler_007(system_pointer_variable,&system_stack_pointer,flags7);
                       stack_var_ = flags6 & 0xfffffffe;
-                      stack_ptr_ = &g_threadString2;
-                      if (ptr_var_ != (unsigned char *)0x0) {
-                        handle_system_error(ptr_var_);
+                      system_stack_pointer = &g_threadString2;
+                      if (system_pointer_variable != (unsigned char *)0x0) {
+                        handle_system_error(system_pointer_variable);
                       }
-                      stack_ptr_ = (unsigned char *)0x0;
+                      system_stack_pointer = (unsigned char *)0x0;
                       stack_var_ = stack_var_ & INT64_MASK;
-                      stack_ptr_ = &g_threadString4;
-                      ptr_var_ = stack_ptr_;
-                      ptr_var_ = stack_ptr_;
+                      system_stack_pointer = &g_threadString4;
+                      system_pointer_variable = system_stack_pointer;
+                      system_pointer_variable = system_stack_pointer;
                     }
                     else {
                       cStack_338 = '\0';
-                      if (ptr_var_ != (unsigned char *)0x0) {
-                        system_thread_manager_001(global_data_ + 0x28,ptr_var_);
+                      if (system_pointer_variable != (unsigned char *)0x0) {
+                        system_thread_manager_001(system_global_data_ + 0x28,system_pointer_variable);
                       }
                       if (uint_var_ != 0) {
-                        memcpy(*(unsigned long long *)(long_var_ + 0x30),ptr_var_,ptr_var_);
+                        memcpy(*(unsigned long long *)(system_long_variable + 0x30),system_pointer_variable,system_pointer_variable);
                       }
-                      *(unsigned int *)(long_var_ + 0x38) = 0;
-                      if (*(long long *)(long_var_ + 0x30) != 0) {
-                        ptr_var_[*(long long *)(long_var_ + 0x30)] = 0;
+                      *(unsigned int *)(system_long_variable + 0x38) = 0;
+                      if (*(long long *)(system_long_variable + 0x30) != 0) {
+                        system_pointer_variable[*(long long *)(system_long_variable + 0x30)] = 0;
                       }
-                      *(unsigned int *)(long_var_ + 0x44) = stack_var_._4_4_;
+                      *(unsigned int *)(system_long_variable + 0x44) = stack_var_._4_4_;
                     }
                   }
                 }
@@ -2579,48 +2579,48 @@ label_:
           }
         }
 label_:
-        ptr_var_ = (unsigned char *)0x0;
+        system_pointer_variable = (unsigned char *)0x0;
         stack_var_ = 0;
-        long_var_ = stack_long_;
-        if (ptr_var_ != (unsigned char *)0x0) {
-          *ptr_var_ = 0;
+        system_long_variable = system_stack_long;
+        if (system_pointer_variable != (unsigned char *)0x0) {
+          *system_pointer_variable = 0;
         }
       }
       else {
-        system_thread_manager_001(&stack_ptr_,uint_var_ + 1);
-        stack_ptr_[stack_var_] = bVar1;
+        system_thread_manager_001(&system_stack_pointer,uint_var_ + 1);
+        system_stack_pointer[stack_var_] = bVar1;
         stack_var_ = stack_var_ + 1;
-        ptr_var_ = (unsigned char *)(ulong long)stack_var_;
-        ptr_var_[(long long)stack_ptr_] = 0;
-        ptr_var_ = stack_ptr_;
+        system_pointer_variable = (unsigned char *)(ulong long)stack_var_;
+        system_pointer_variable[(long long)system_stack_pointer] = 0;
+        system_pointer_variable = system_stack_pointer;
       }
       stack_var_ = stack_var_ + 1;
     } while (stack_var_ < stack_var_);
   }
-  stack_ptr_ = &g_defaultDataTemplate;
-  stack_ptr_ = auStack_80;
+  system_stack_pointer = &g_defaultDataTemplate;
+  system_stack_pointer = auStack_80;
   auStack_80[0] = 0;
   stack_var_ = STRING_BUFFER_SIZE;
   strcpy_s(auStack_80, SYSTEM_CONFIG_BUFFER_SIZE, &systemConfigStringBuffer);
-  cVar5 = system_handle_manager_003(long_var_,&stack_ptr_);
-  stack_ptr_ = &g_threadString4;
+  cVar5 = system_handle_manager_003(system_long_variable,&system_stack_pointer);
+  system_stack_pointer = &g_threadString4;
   if (cVar5 != '\0') {
-    *(unsigned int *)(long_var_ + CONFIG_PATH_BUFFER_SIZE) = 1;
+    *(unsigned int *)(system_long_variable + CONFIG_PATH_BUFFER_SIZE) = 1;
   }
-  (**(code **)(**(long long **)(global_data_ + 0x18) + 0x30))
-            (*(long long **)(global_data_ + 0x18),data_180c8ecec);
-  stack_ptr_ = &g_threadString2;
-  if (ptr_var_ != (unsigned char *)0x0) {
-    handle_system_error(ptr_var_);
+  (**(code **)(**(long long **)(system_global_data_ + 0x18) + 0x30))
+            (*(long long **)(system_global_data_ + 0x18),data_180c8ecec);
+  system_stack_pointer = &g_threadString2;
+  if (system_pointer_variable != (unsigned char *)0x0) {
+    handle_system_error(system_pointer_variable);
   }
-  stack_ptr_ = (unsigned char *)0x0;
+  system_stack_pointer = (unsigned char *)0x0;
   stack_var_ = stack_var_ & INT64_MASK;
-  stack_ptr_ = &g_threadString4;
+  system_stack_pointer = &g_threadString4;
   system_crypto_001(stack_var_ ^ (ulong long)auStack_368);
-  while (byte_ptr_var_ = byte_ptr_var_ + 1, uint_var_ != 0) {
+  while (byte_system_pointer_variable = byte_system_pointer_variable + 1, uint_var_ != 0) {
 label_:
-    bVar1 = *byte_ptr_var_;
-    uint_var_ = (uint)byte_ptr_var_[long_var_];
+    bVar1 = *byte_system_pointer_variable;
+    uint_var_ = (uint)byte_system_pointer_variable[system_long_variable];
     if (bVar1 != uint_var_) break;
   }
   if ((int)(bVar1 - uint_var_) < 1) {
@@ -2631,7 +2631,7 @@ label_:
 label_:
     flags7 = 0;
   }
-  system_helper_003(long_var_,init_result0,long_var_,flags7);
+  system_helper_003(system_long_variable,system_init_result0,system_long_variable,flags7);
   while( true ) {
     flags8 = (ulong long)(int_var_ + 1);
     flags1 = flags1 + 1;
@@ -2642,7 +2642,7 @@ label_:
     flags5 = flags9;
     do {
       flags6 = (uint)flags5;
-      if (ptr_var_[flags8 + flags1] != *(char *)(flags5 + (long long)ptr_var_)) break;
+      if (system_pointer_variable[flags8 + flags1] != *(char *)(flags5 + (long long)system_pointer_variable)) break;
       flags6 = flags6 + 1;
       flags5 = (ulong long)flags6;
       flags8 = flags8 + 1;
@@ -2652,80 +2652,80 @@ label_:
 label_:
   int_var_ = -1;
 label_:
-  setup_thread_parameters(&stack_ptr_,&stack_ptr_,int_var_ + 0xf,ptr_var_);
-  stack_ptr_ = (unsigned long long *)0x0;
-  stack_ptr_ = (unsigned long long *)0x0;
+  setup_thread_parameters(&system_stack_pointer,&system_stack_pointer,int_var_ + 0xf,system_pointer_variable);
+  system_stack_pointer = (unsigned long long *)0x0;
+  system_stack_pointer = (unsigned long long *)0x0;
   stack_var_ = 0;
   stack_var_ = 3;
-  if (stack_long_ != 0) {
-    system_event_handler_003(&stack_ptr_,&stack_ptr_,&systemEventHandlerConfig);
+  if (system_stack_long != 0) {
+    system_event_handler_003(&system_stack_pointer,&system_stack_pointer,&systemEventHandlerConfig);
   }
-  ptr_var_ = stack_ptr_;
-  system_thread_manager_004(&stack_ptr_,stack_ptr_);
-  system_thread_manager_004(&stack_ptr_,ptr_var_ + 4);
-  ptr_var_ = stack_ptr_;
-  if (((long long)stack_ptr_ - (long long)ptr_var_ & 0xffffffffffffffe0U) != SYSTEM_CONFIG_BUFFER_SIZE) {
+  system_pointer_variable = system_stack_pointer;
+  system_thread_manager_004(&system_stack_pointer,system_stack_pointer);
+  system_thread_manager_004(&system_stack_pointer,system_pointer_variable + 4);
+  system_pointer_variable = system_stack_pointer;
+  if (((long long)system_stack_pointer - (long long)system_pointer_variable & 0xffffffffffffffe0U) != SYSTEM_CONFIG_BUFFER_SIZE) {
 label_:
-    stack_ptr_ = &g_threadString2;
-    if (stack_long_ != 0) {
+    system_stack_pointer = &g_threadString2;
+    if (system_stack_long != 0) {
       handle_system_error();
     }
-    stack_long_ = 0;
+    system_stack_long = 0;
     stack_var_ = 0;
-    stack_ptr_ = &g_threadString4;
-    stack_ptr_ = &g_threadString2;
-    if (stack_long_ != 0) {
+    system_stack_pointer = &g_threadString4;
+    system_stack_pointer = &g_threadString2;
+    if (system_stack_long != 0) {
       handle_system_error();
     }
-    stack_long_ = 0;
+    system_stack_long = 0;
     stack_var_ = 0;
-    stack_ptr_ = &g_threadString4;
-    for (pflags2 = ptr_var_; pflags2 != ptr_var_; pflags2 = pflags2 + 4) {
+    system_stack_pointer = &g_threadString4;
+    for (pflags2 = system_pointer_variable; pflags2 != system_pointer_variable; pflags2 = pflags2 + 4) {
       (**(code **)*pflags2)(pflags2,0);
     }
-    if (ptr_var_ != (unsigned long long *)0x0) {
-      handle_system_error(ptr_var_);
+    if (system_pointer_variable != (unsigned long long *)0x0) {
+      handle_system_error(system_pointer_variable);
     }
-    stack_ptr_ = &g_threadString2;
-    if (stack_long_ != 0) {
+    system_stack_pointer = &g_threadString2;
+    if (system_stack_long != 0) {
       handle_system_error();
     }
-    stack_long_ = 0;
+    system_stack_long = 0;
     stack_var_ = 0;
-    stack_ptr_ = &g_threadString4;
-    stack_ptr_ = &g_threadString2;
-    handle_system_error(ptr_var_);
+    system_stack_pointer = &g_threadString4;
+    system_stack_pointer = &g_threadString2;
+    handle_system_error(system_pointer_variable);
   }
-  system_ui_002(global_data_,&stack_ptr_,&stack_ptr_);
-  long_var_ = global_data_ + 0x90;
-  long_var_ = function_(global_data_, SYSTEM_CONFIG_BUFFER_SIZE,*(unsigned char *)(global_data_ + 0xb8));
-  system_thread_manager_003(long_var_ + CONFIG_PATH_BUFFER_SIZE,&stack_ptr_);
-  long_var_ = system_event_handler_005(long_var_,acStack_336,long_var_ + CONFIG_PATH_BUFFER_SIZE);
+  system_ui_002(system_global_data_,&system_stack_pointer,&system_stack_pointer);
+  system_long_variable = system_global_data_ + 0x90;
+  system_long_variable = system_function_(system_global_data_, SYSTEM_CONFIG_BUFFER_SIZE,*(unsigned char *)(system_global_data_ + 0xb8));
+  system_thread_manager_003(system_long_variable + CONFIG_PATH_BUFFER_SIZE,&system_stack_pointer);
+  system_long_variable = system_event_handler_005(system_long_variable,acStack_336,system_long_variable + CONFIG_PATH_BUFFER_SIZE);
   if (acStack_336[0] == '\0') {
-    system_event_handler_009(extraout_XMM0_Da_00,long_var_);
+    system_event_handler_009(extraout_XMM0_Da_00,system_long_variable);
     goto label_;
   }
-  if (long_var_ != long_var_) {
-    if (*(int *)(long_var_ + 0x30) == 0) {
+  if (system_long_variable != system_long_variable) {
+    if (*(int *)(system_long_variable + 0x30) == 0) {
 label_:
       flags7 = 1;
       goto label_;
     }
-    if (*(int *)(long_var_ + 0x30) != 0) {
-      byte_ptr_var_ = *(byte **)(long_var_ + 0x28);
-      init_result0 = *(long long *)(long_var_ + 0x28) - (long long)byte_ptr_var_;
+    if (*(int *)(system_long_variable + 0x30) != 0) {
+      byte_system_pointer_variable = *(byte **)(system_long_variable + 0x28);
+      system_init_result0 = *(long long *)(system_long_variable + 0x28) - (long long)byte_system_pointer_variable;
       do {
-        bVar1 = *byte_ptr_var_;
-        uint_var_ = (uint)byte_ptr_var_[init_result0];
+        bVar1 = *byte_system_pointer_variable;
+        uint_var_ = (uint)byte_system_pointer_variable[system_init_result0];
         if (bVar1 != uint_var_) break;
-        byte_ptr_var_ = byte_ptr_var_ + 1;
+        byte_system_pointer_variable = byte_system_pointer_variable + 1;
       } while (uint_var_ != 0);
       if ((int)(bVar1 - uint_var_) < 1) goto label_;
     }
   }
   flags7 = 0;
 label_:
-  system_helper_003(long_var_,long_var_,long_var_,flags7);
+  system_helper_003(system_long_variable,system_long_variable,system_long_variable,flags7);
 }
     thread_pool_4_status_code = 1;
     int_var_ = _Cnd_broadcast(CONDITION_VARIABLE_ADDR);
@@ -2738,100 +2738,100 @@ label_:
     }
     system_cleanup_001(ADDR_CLEANUP_FUNC);
   }
-  *(unsigned int *)(global_data_ + 4) = 0;
-  if (*(char *)(long_var_ + 0x1ee) == '\0') {
-    (**(code **)(**(long long **)(long_var_ + 0x2b0) + 0xe0))();
-    *(int *)(long_var_ + 0x224) = *(int *)(long_var_ + 0x224) + 1;
-    if (*(int *)(global_data_ + 0xe0) == 0) {
-      if (*(char *)(long_var_ + 0x264) == '\0') {
+  *(unsigned int *)(system_global_data_ + 4) = 0;
+  if (*(char *)(system_long_variable + 0x1ee) == '\0') {
+    (**(code **)(**(long long **)(system_long_variable + 0x2b0) + 0xe0))();
+    *(int *)(system_long_variable + 0x224) = *(int *)(system_long_variable + 0x224) + 1;
+    if (*(int *)(system_global_data_ + 0xe0) == 0) {
+      if (*(char *)(system_long_variable + 0x264) == '\0') {
         int_var_ = 10;
-        if (10 < *(int *)(global_data_ + 0xbd0)) {
-          int_var_ = *(int *)(global_data_ + 0xbd0);
+        if (10 < *(int *)(system_global_data_ + 0xbd0)) {
+          int_var_ = *(int *)(system_global_data_ + 0xbd0);
         }
-        fVar14 = (float)*(double *)(long_var_ + CONFIG_PATH_BUFFER_SIZE8);
-        if (1.0 / (float)int_var_ <= (float)*(double *)(long_var_ + CONFIG_PATH_BUFFER_SIZE8)) {
+        fVar14 = (float)*(double *)(system_long_variable + CONFIG_PATH_BUFFER_SIZE8);
+        if (1.0 / (float)int_var_ <= (float)*(double *)(system_long_variable + CONFIG_PATH_BUFFER_SIZE8)) {
           fVar14 = 1.0 / (float)int_var_;
         }
       }
       else {
-        fVar14 = *(float *)(long_var_ + 0x268);
+        fVar14 = *(float *)(system_long_variable + 0x268);
       }
-      *(float *)(long_var_ + 0x220) = fVar14;
+      *(float *)(system_long_variable + 0x220) = fVar14;
     }
     else {
-      *(unsigned int *)(long_var_ + 0x220) = FLOAT_PI_OVER_4;
+      *(unsigned int *)(system_long_variable + 0x220) = FLOAT_PI_OVER_4;
       fVar14 = 0.033333335;
     }
-    system_handle_manager_004(long_var_,fVar14);
-    uint_var_ = global_data_;
-    if ((global_data_ != 0) &&
-       (pinit_result = *(long long **)(global_data_ + 0x228), pinit_result != (long long *)0x0)) {
+    system_handle_manager_004(system_long_variable,fVar14);
+    uint_var_ = system_global_data_;
+    if ((system_global_data_ != 0) &&
+       (psystem_init_result = *(long long **)(system_global_data_ + 0x228), psystem_init_result != (long long *)0x0)) {
       pplStackX_8 = &plStackX_10;
-      plStackX_10 = pinit_result;
-      (**(code **)(*pinit_result + 0x28))();
+      plStackX_10 = psystem_init_result;
+      (**(code **)(*psystem_init_result + 0x28))();
       system_event_handler_013(uint_var_,&plStackX_10);
     }
-    uint_var_ = global_data_;
-    if (*(char *)(global_data_ + 0xa0) == '\0') {
-      if ((global_data_ != 0) &&
-         (pinit_result = *(long long **)(global_data_ + 0x228), pinit_result != (long long *)0x0)) {
+    uint_var_ = system_global_data_;
+    if (*(char *)(system_global_data_ + 0xa0) == '\0') {
+      if ((system_global_data_ != 0) &&
+         (psystem_init_result = *(long long **)(system_global_data_ + 0x228), psystem_init_result != (long long *)0x0)) {
         pplStackX_8 = &plStackX_18;
-        plStackX_18 = pinit_result;
-        (**(code **)(*pinit_result + 0x28))();
+        plStackX_18 = psystem_init_result;
+        (**(code **)(*psystem_init_result + 0x28))();
         system_event_handler_016(uint_var_,&plStackX_18,0);
-        pinit_result = *(long long **)(global_data_ + 0x228);
-        *(unsigned long long *)(global_data_ + 0x228) = 0;
-        if (pinit_result != (long long *)0x0) {
-          (**(code **)(*pinit_result + 0x38))();
+        psystem_init_result = *(long long **)(system_global_data_ + 0x228);
+        *(unsigned long long *)(system_global_data_ + 0x228) = 0;
+        if (psystem_init_result != (long long *)0x0) {
+          (**(code **)(*psystem_init_result + 0x38))();
         }
       }
-      func_0x00018005c480(global_data_);
-      pinit_result = global_data_;
-      if (*(code **)(*global_data_ + 8) == (code *)&systemInitializationCheckFunction) {
-        *(unsigned int *)(global_data_ + 9) = 0;
-        ptr_var_ = (unsigned char *)pinit_result[8];
-        if (ptr_var_ != (unsigned char *)0x0) {
-          *ptr_var_ = 0;
+      func_0x00018005c480(system_global_data_);
+      psystem_init_result = system_global_data_;
+      if (*(code **)(*system_global_data_ + 8) == (code *)&systemInitializationCheckFunction) {
+        *(unsigned int *)(system_global_data_ + 9) = 0;
+        system_pointer_variable = (unsigned char *)psystem_init_result[8];
+        if (system_pointer_variable != (unsigned char *)0x0) {
+          *system_pointer_variable = 0;
         }
-        *(unsigned int *)((long long)pinit_result + 0x54) = 0;
+        *(unsigned int *)((long long)psystem_init_result + 0x54) = 0;
       }
       else {
-        (**(code **)(*global_data_ + 8))();
+        (**(code **)(*system_global_data_ + 8))();
       }
     }
     else {
-      if (*(char *)(long_var_ + 0x22c) != '\0') {
+      if (*(char *)(system_long_variable + 0x22c) != '\0') {
         system_event_handler_001();
       }
-      *(unsigned int *)(long_var_ + 0x228) = *(unsigned int *)(long_var_ + 0x224);
+      *(unsigned int *)(system_long_variable + 0x228) = *(unsigned int *)(system_long_variable + 0x224);
       system_graphics_001();
       system_graphics_002();
     }
-    QueryPerformanceCounter(&stack_long_);
-    dVar15 = (double)stack_long_ * global_data_;
-    global_data_ = global_data_ + 1;
-    dVar16 = dVar15 - global_data_;
+    QueryPerformanceCounter(&system_stack_long);
+    dVar15 = (double)system_stack_long * system_global_data_;
+    system_global_data_ = system_global_data_ + 1;
+    dVar16 = dVar15 - system_global_data_;
     if (1.0 < dVar16) {
-      *(float *)(long_var_ + 500) = (float)((double)global_data_ / dVar16);
-      global_data_ = 0;
-      global_data_ = dVar15;
-      *(float *)(long_var_ + 0x1f8) = (float)(1000.0 / *(double *)(long_var_ + 0x70));
+      *(float *)(system_long_variable + 500) = (float)((double)system_global_data_ / dVar16);
+      system_global_data_ = 0;
+      system_global_data_ = dVar15;
+      *(float *)(system_long_variable + 0x1f8) = (float)(1000.0 / *(double *)(system_long_variable + 0x70));
     }
-    if (0.0 < *(double *)(global_data_ + 0x1510)) {
-      system_handle_manager_005(long_var_,(float)*(double *)(global_data_ + 0x1510));
+    if (0.0 < *(double *)(system_global_data_ + 0x1510)) {
+      system_handle_manager_005(system_long_variable,(float)*(double *)(system_global_data_ + 0x1510));
     }
-    if (*(char *)(long_var_ + 0x1ee) == '\0') {
-      fVar14 = *(float *)(long_var_ + CONFIG_PATH_BUFFER_SIZE0);
-      dVar15 = *(double *)(long_var_ + 0x218);
+    if (*(char *)(system_long_variable + 0x1ee) == '\0') {
+      fVar14 = *(float *)(system_long_variable + CONFIG_PATH_BUFFER_SIZE0);
+      dVar15 = *(double *)(system_long_variable + 0x218);
       do {
-        QueryPerformanceCounter(&stack_long_);
-      } while ((double)stack_long_ * global_data_ < (double)fVar14 + dVar15);
-      QueryPerformanceCounter(&stack_long_);
-      long_var_ = stack_long_ - global_data_;
-      global_data_ = stack_long_;
-      *(double *)(long_var_ + CONFIG_PATH_BUFFER_SIZE8) = (double)long_var_ * global_data_;
-      QueryPerformanceCounter(&stack_long_);
-      *(double *)(long_var_ + 0x218) = (double)stack_long_ * global_data_;
+        QueryPerformanceCounter(&system_stack_long);
+      } while ((double)system_stack_long * system_global_data_ < (double)fVar14 + dVar15);
+      QueryPerformanceCounter(&system_stack_long);
+      system_long_variable = system_stack_long - system_global_data_;
+      system_global_data_ = system_stack_long;
+      *(double *)(system_long_variable + CONFIG_PATH_BUFFER_SIZE8) = (double)system_long_variable * system_global_data_;
+      QueryPerformanceCounter(&system_stack_long);
+      *(double *)(system_long_variable + 0x218) = (double)system_stack_long * system_global_data_;
     }
   }
   return;
@@ -2847,15 +2847,15 @@ label_:
     }
     system_cleanup_001(ADDR_CLEANUP_FUNC);
   }
-  *(unsigned int *)(global_data_ + 4) = 0;
+  *(unsigned int *)(system_global_data_ + 4) = 0;
   if (*(char *)(handle + 0x1ee) == '\0') {
     (**(code **)(**(long long **)(handle + 0x2b0) + 0xe0))();
     *(int *)(handle + 0x224) = *(int *)(handle + 0x224) + 1;
-    if (*(int *)(global_data_ + 0xe0) == 0) {
+    if (*(int *)(system_global_data_ + 0xe0) == 0) {
       if (*(char *)(handle + 0x264) == '\0') {
         int_var_ = 10;
-        if (10 < *(int *)(global_data_ + 0xbd0)) {
-          int_var_ = *(int *)(global_data_ + 0xbd0);
+        if (10 < *(int *)(system_global_data_ + 0xbd0)) {
+          int_var_ = *(int *)(system_global_data_ + 0xbd0);
         }
         fVar13 = (float)*(double *)(handle + CONFIG_PATH_BUFFER_SIZE8);
         if (1.0 / (float)int_var_ <= (float)*(double *)(handle + CONFIG_PATH_BUFFER_SIZE8)) {
@@ -2872,40 +2872,40 @@ label_:
       fVar13 = 0.033333335;
     }
     system_handle_manager_004(handle,fVar13);
-    uint_var_ = global_data_;
-    if ((global_data_ != 0) &&
-       (pinit_result = *(long long **)(global_data_ + 0x228), pinit_result != (long long *)0x0)) {
+    uint_var_ = system_global_data_;
+    if ((system_global_data_ != 0) &&
+       (psystem_init_result = *(long long **)(system_global_data_ + 0x228), psystem_init_result != (long long *)0x0)) {
       pplStackX_8 = &plStackX_10;
-      plStackX_10 = pinit_result;
-      (**(code **)(*pinit_result + 0x28))();
+      plStackX_10 = psystem_init_result;
+      (**(code **)(*psystem_init_result + 0x28))();
       system_event_handler_013(uint_var_,&plStackX_10);
     }
-    uint_var_ = global_data_;
-    if (*(char *)(global_data_ + 0xa0) == '\0') {
-      if ((global_data_ != 0) &&
-         (pinit_result = *(long long **)(global_data_ + 0x228), pinit_result != (long long *)0x0)) {
+    uint_var_ = system_global_data_;
+    if (*(char *)(system_global_data_ + 0xa0) == '\0') {
+      if ((system_global_data_ != 0) &&
+         (psystem_init_result = *(long long **)(system_global_data_ + 0x228), psystem_init_result != (long long *)0x0)) {
         pplStackX_8 = &plStackX_18;
-        plStackX_18 = pinit_result;
-        (**(code **)(*pinit_result + 0x28))();
+        plStackX_18 = psystem_init_result;
+        (**(code **)(*psystem_init_result + 0x28))();
         system_event_handler_016(uint_var_,&plStackX_18,0);
-        pinit_result = *(long long **)(global_data_ + 0x228);
-        *(unsigned long long *)(global_data_ + 0x228) = 0;
-        if (pinit_result != (long long *)0x0) {
-          (**(code **)(*pinit_result + 0x38))();
+        psystem_init_result = *(long long **)(system_global_data_ + 0x228);
+        *(unsigned long long *)(system_global_data_ + 0x228) = 0;
+        if (psystem_init_result != (long long *)0x0) {
+          (**(code **)(*psystem_init_result + 0x38))();
         }
       }
-      func_0x00018005c480(global_data_);
-      pinit_result = global_data_;
-      if (*(code **)(*global_data_ + 8) == (code *)&systemInitializationCheckFunction) {
-        *(unsigned int *)(global_data_ + 9) = 0;
-        ptr_var_ = (unsigned char *)pinit_result[8];
-        if (ptr_var_ != (unsigned char *)0x0) {
-          *ptr_var_ = 0;
+      func_0x00018005c480(system_global_data_);
+      psystem_init_result = system_global_data_;
+      if (*(code **)(*system_global_data_ + 8) == (code *)&systemInitializationCheckFunction) {
+        *(unsigned int *)(system_global_data_ + 9) = 0;
+        system_pointer_variable = (unsigned char *)psystem_init_result[8];
+        if (system_pointer_variable != (unsigned char *)0x0) {
+          *system_pointer_variable = 0;
         }
-        *(unsigned int *)((long long)pinit_result + 0x54) = 0;
+        *(unsigned int *)((long long)psystem_init_result + 0x54) = 0;
       }
       else {
-        (**(code **)(*global_data_ + 8))();
+        (**(code **)(*system_global_data_ + 8))();
       }
     }
     else {
@@ -2916,53 +2916,53 @@ label_:
       system_graphics_001();
       system_graphics_002();
     }
-    QueryPerformanceCounter(&stack_long_);
-    dVar14 = (double)stack_long_ * global_data_;
-    global_data_ = global_data_ + 1;
-    dVar15 = dVar14 - global_data_;
+    QueryPerformanceCounter(&system_stack_long);
+    dVar14 = (double)system_stack_long * system_global_data_;
+    system_global_data_ = system_global_data_ + 1;
+    dVar15 = dVar14 - system_global_data_;
     if (1.0 < dVar15) {
-      *(float *)(handle + 500) = (float)((double)global_data_ / dVar15);
-      global_data_ = 0;
-      global_data_ = dVar14;
+      *(float *)(handle + 500) = (float)((double)system_global_data_ / dVar15);
+      system_global_data_ = 0;
+      system_global_data_ = dVar14;
       *(float *)(handle + 0x1f8) = (float)(1000.0 / *(double *)(handle + 0x70));
     }
-    if (0.0 < *(double *)(global_data_ + 0x1510)) {
-      system_handle_manager_005(handle,(float)*(double *)(global_data_ + 0x1510));
+    if (0.0 < *(double *)(system_global_data_ + 0x1510)) {
+      system_handle_manager_005(handle,(float)*(double *)(system_global_data_ + 0x1510));
     }
     if (*(char *)(handle + 0x1ee) == '\0') {
       fVar13 = *(float *)(handle + CONFIG_PATH_BUFFER_SIZE0);
       dVar14 = *(double *)(handle + 0x218);
       do {
-        QueryPerformanceCounter(&stack_long_);
-      } while ((double)stack_long_ * global_data_ < (double)fVar13 + dVar14);
-      QueryPerformanceCounter(&stack_long_);
-      long_var_ = stack_long_ - global_data_;
-      global_data_ = stack_long_;
-      *(double *)(handle + CONFIG_PATH_BUFFER_SIZE8) = (double)long_var_ * global_data_;
-      QueryPerformanceCounter(&stack_long_);
-      *(double *)(handle + 0x218) = (double)stack_long_ * global_data_;
+        QueryPerformanceCounter(&system_stack_long);
+      } while ((double)system_stack_long * system_global_data_ < (double)fVar13 + dVar14);
+      QueryPerformanceCounter(&system_stack_long);
+      system_long_variable = system_stack_long - system_global_data_;
+      system_global_data_ = system_stack_long;
+      *(double *)(handle + CONFIG_PATH_BUFFER_SIZE8) = (double)system_long_variable * system_global_data_;
+      QueryPerformanceCounter(&system_stack_long);
+      *(double *)(handle + 0x218) = (double)system_stack_long * system_global_data_;
     }
   }
   return;
 }
     data_180c82862 = data_180c82862 == '\0';
   }
-  long_var_ = 0xe0;
-  ptr_var_ = global_data_;
+  system_long_variable = 0xe0;
+  system_pointer_variable = system_global_data_;
   do {
-    ptr_var_ = ptr_var_ + 0x18;
-    *ptr_var_ = 1;
-    long_var_ = long_var_ + -1;
-  } while (long_var_ != 0);
+    system_pointer_variable = system_pointer_variable + 0x18;
+    *system_pointer_variable = 1;
+    system_long_variable = system_long_variable + -1;
+  } while (system_long_variable != 0);
 label_:
-  ptr_var_ = (unsigned long long *)global_data_[1];
+  system_pointer_variable = (unsigned long long *)system_global_data_[1];
   int_var_ = _Mtx_lock(ADDR_MAIN_MUTEX);
   if (int_var_ != 0) {
     __Throw_C_error_std__YAXH_Z(int_var_);
   }
-  pinit_result4 = global_data_;
-  stack_var_ = global_data_;
-  global_data_ = (long long *)*ptr_var_;
+  psystem_init_result4 = system_global_data_;
+  stack_var_ = system_global_data_;
+  system_global_data_ = (long long *)*system_pointer_variable;
   auStack_2a8[0] = 0;
   plStack_2f8 = alStack_90;
   uint_var_ = 0;
@@ -2970,279 +2970,279 @@ label_:
   alStack_90[1] = 0;
   alStack_90[2] = 0;
   stack_var_ = 3;
-  function_(auStack_2a8);
-  system_handle_manager_002((long long)global_data_ * 0x238 + global_data_ + 0x1598,auStack_2a8);
+  system_function_(auStack_2a8);
+  system_handle_manager_002((long long)system_global_data_ * 0x238 + system_global_data_ + 0x1598,auStack_2a8);
   plStack_2f8 = alStack_90;
   if (alStack_90[0] != 0) {
     handle_system_error();
   }
-  global_data_ = pinit_result4;
+  system_global_data_ = psystem_init_result4;
   int_var_ = _Mtx_unlock(ADDR_MAIN_MUTEX);
   if (int_var_ != 0) {
     __Throw_C_error_std__YAXH_Z(int_var_);
   }
-  pinit_result4 = (long long *)*global_data_;
+  psystem_init_result4 = (long long *)*system_global_data_;
   int_var_ = _Mtx_lock(ADDR_MAIN_MUTEX);
   if (int_var_ != 0) {
     __Throw_C_error_std__YAXH_Z(int_var_);
   }
-  pinit_result = global_data_;
-  stack_var_ = global_data_;
-  global_data_ = (long long *)*pinit_result4;
+  psystem_init_result = system_global_data_;
+  stack_var_ = system_global_data_;
+  system_global_data_ = (long long *)*psystem_init_result4;
   auStack_2a8[0] = 0;
   plStack_2f8 = alStack_90;
   alStack_90[0] = 0;
   alStack_90[1] = 0;
   alStack_90[2] = 0;
   stack_var_ = 3;
-  function_(auStack_2a8);
-  function_(auStack_2a8);
-  *(float *)((long long)global_data_ + 0x18) = global_data_;
+  system_function_(auStack_2a8);
+  system_function_(auStack_2a8);
+  *(float *)((long long)system_global_data_ + 0x18) = system_global_data_;
   system_initializer_001();
-  long_var_ = (long long)global_data_;
-  ptr_var_ = global_data_;
-  ptr_var_ = global_data_;
-  if (*(char *)(global_data_ + 7) != '\0') {
-    if ((((*(char *)(global_data_ + 0xe) != '\0') ||
-         (*(char *)((long long)global_data_ + 0x38c) != '\0')) ||
-        (*(char *)((long long)global_data_ + 0x38d) != '\0')) ||
-       (*(char *)((long long)global_data_ + 0x38e) != '\0')) {
-      global_data_[0x1518] = 1;
-      ptr_var_[0x1530] = 1;
-      ptr_var_[0x1590] = 1;
-      ptr_var_[0x15a8] = 1;
-      ptr_var_[0x1710] = 1;
+  system_long_variable = (long long)system_global_data_;
+  system_pointer_variable = system_global_data_;
+  system_pointer_variable = system_global_data_;
+  if (*(char *)(system_global_data_ + 7) != '\0') {
+    if ((((*(char *)(system_global_data_ + 0xe) != '\0') ||
+         (*(char *)((long long)system_global_data_ + 0x38c) != '\0')) ||
+        (*(char *)((long long)system_global_data_ + 0x38d) != '\0')) ||
+       (*(char *)((long long)system_global_data_ + 0x38e) != '\0')) {
+      system_global_data_[0x1518] = 1;
+      system_pointer_variable[0x1530] = 1;
+      system_pointer_variable[0x1590] = 1;
+      system_pointer_variable[0x15a8] = 1;
+      system_pointer_variable[0x1710] = 1;
     }
-    if (((*(char *)((long long)ptr_var_ + 0x71) != '\0') || (*(char *)(long_var_ + 0x38d) != '\0')) ||
-       (*(char *)(long_var_ + 0x38e) != '\0')) {
+    if (((*(char *)((long long)system_pointer_variable + 0x71) != '\0') || (*(char *)(system_long_variable + 0x38d) != '\0')) ||
+       (*(char *)(system_long_variable + 0x38e) != '\0')) {
       do {
-        ptr_var_ = ptr_var_ + 0x18;
-        *ptr_var_ = 1;
-        init_result2 = init_result2 + -1;
-      } while (init_result2 != 0);
+        system_pointer_variable = system_pointer_variable + 0x18;
+        *system_pointer_variable = 1;
+        system_init_result2 = system_init_result2 + -1;
+      } while (system_init_result2 != 0);
     }
   }
   plStack_2f8 = alStack_90;
   if (alStack_90[0] != 0) {
     handle_system_error();
   }
-  global_data_ = pinit_result;
+  system_global_data_ = psystem_init_result;
   int_var_ = _Mtx_unlock(ADDR_MAIN_MUTEX);
   if (int_var_ != 0) {
     __Throw_C_error_std__YAXH_Z(int_var_);
   }
-  if (*(int *)(global_data_ + 0x161c) == 0x11) {
-    ptr_var_ = (unsigned long long *)*global_data_;
+  if (*(int *)(system_global_data_ + 0x161c) == 0x11) {
+    system_pointer_variable = (unsigned long long *)*system_global_data_;
     int_var_ = _Mtx_lock(ADDR_MAIN_MUTEX);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
-    pinit_result4 = global_data_;
-    plStack_2c0 = global_data_;
-    global_data_ = (long long *)*ptr_var_;
+    psystem_init_result4 = system_global_data_;
+    plStack_2c0 = system_global_data_;
+    system_global_data_ = (long long *)*system_pointer_variable;
     system_initializer_003(&systemConfigData1,0,0);
     system_config_001(&systemConfigData2);
     stack_var_ = SYSTEM_CONFIG_BUFFER_SIZE_000000;
     auStack_2c8[0] = FLOAT_ONE;
     stack_var_ = CONFIG_PATH_BUFFER_SIZE000;
-    stack_ptr_ = &systemConfigBufferPtr;
+    system_stack_pointer = &systemConfigBufferPtr;
     pplStack_328 = (long long **)&stack_var_;
-    system_config_002(&systemConfigData3,4,global_data_ + 0x167c,auStack_2c8);
+    system_config_002(&systemConfigData3,4,system_global_data_ + 0x167c,auStack_2c8);
     plStack_2f8 = (long long *)CONCAT44(plStack_2f8._4_4_, SYSTEM_CONFIG_BUFFER_SIZE_000000);
     stack_var_ = (long long *)CONCAT44(stack_var_._4_4_,FLOAT_ONE);
     stack_var_ = CONFIG_PATH_BUFFER_SIZE000;
-    stack_ptr_ = &systemConfigBufferPtr;
+    system_stack_pointer = &systemConfigBufferPtr;
     pplStack_328 = &plStack_2f8;
-    system_config_002(&systemConfigData4,4,global_data_ + 0x1680,&stack_var_);
+    system_config_002(&systemConfigData4,4,system_global_data_ + 0x1680,&stack_var_);
     system_initializer_004();
-    global_data_ = pinit_result4;
+    system_global_data_ = psystem_init_result4;
     int_var_ = _Mtx_unlock(ADDR_MAIN_MUTEX);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
   }
-  if (*(int *)(global_data_ + 0x161c) == 0xc) {
-    ptr_var_ = (unsigned long long *)*global_data_;
+  if (*(int *)(system_global_data_ + 0x161c) == 0xc) {
+    system_pointer_variable = (unsigned long long *)*system_global_data_;
     int_var_ = _Mtx_lock(ADDR_MAIN_MUTEX);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
-    pinit_result4 = global_data_;
-    plStack_2c0 = global_data_;
-    global_data_ = (long long *)*ptr_var_;
+    psystem_init_result4 = system_global_data_;
+    plStack_2c0 = system_global_data_;
+    system_global_data_ = (long long *)*system_pointer_variable;
     system_initializer_003(&systemConfigData6,0,0);
     stack_var_ = (long long *)CONCAT44(stack_var_._4_4_, SYSTEM_CONFIG_BUFFER_SIZE_000000);
     plStack_2f8 = (long long *)CONCAT44(plStack_2f8._4_4_,FLOAT_ONE);
     stack_var_ = CONFIG_PATH_BUFFER_SIZE000;
-    stack_ptr_ = &systemConfigBufferPtr;
+    system_stack_pointer = &systemConfigBufferPtr;
     pplStack_328 = (long long **)&stack_var_;
-    system_config_002(&systemConfigData5,4,global_data_ + 0x1688,&plStack_2f8);
+    system_config_002(&systemConfigData5,4,system_global_data_ + 0x1688,&plStack_2f8);
     system_initializer_004();
-    global_data_ = pinit_result4;
+    system_global_data_ = psystem_init_result4;
     int_var_ = _Mtx_unlock(ADDR_MAIN_MUTEX);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
   }
-  if (*(int *)(global_data_ + 0x161c) == 0xd) {
-    ptr_var_ = (unsigned long long *)*global_data_;
+  if (*(int *)(system_global_data_ + 0x161c) == 0xd) {
+    system_pointer_variable = (unsigned long long *)*system_global_data_;
     int_var_ = _Mtx_lock(ADDR_MAIN_MUTEX);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
-    pinit_result4 = global_data_;
-    plStack_2c0 = global_data_;
-    global_data_ = (long long *)*ptr_var_;
+    psystem_init_result4 = system_global_data_;
+    plStack_2c0 = system_global_data_;
+    system_global_data_ = (long long *)*system_pointer_variable;
     system_initializer_003(&systemConfigData7,0,0);
     stack_var_ = (long long *)CONCAT44(stack_var_._4_4_, SYSTEM_CONFIG_BUFFER_SIZE_000000);
     plStack_2f8 = (long long *)CONCAT44(plStack_2f8._4_4_,FLOAT_ONE);
     stack_var_ = CONFIG_PATH_BUFFER_SIZE000;
-    stack_ptr_ = &systemConfigBufferPtr;
+    system_stack_pointer = &systemConfigBufferPtr;
     pplStack_328 = (long long **)&stack_var_;
-    system_config_002(&systemConfigData5,4,global_data_ + 0x168c,&plStack_2f8);
-    if (*(float *)(global_data_ + 0x168c) == 0.0) {
-      *(unsigned int *)(global_data_ + 0x168c) = FLOAT_ONE;
+    system_config_002(&systemConfigData5,4,system_global_data_ + 0x168c,&plStack_2f8);
+    if (*(float *)(system_global_data_ + 0x168c) == 0.0) {
+      *(unsigned int *)(system_global_data_ + 0x168c) = FLOAT_ONE;
     }
     system_initializer_004();
-    global_data_ = pinit_result4;
+    system_global_data_ = psystem_init_result4;
     int_var_ = _Mtx_unlock(ADDR_MAIN_MUTEX);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
   }
-  ptr_var_ = (unsigned long long *)*global_data_;
-  if (ptr_var_ != (unsigned long long *)0x0) {
-    if ((undefined *)*ptr_var_ == &systemValidationFunction) {
-      NVGSDK_Poll(ptr_var_[1]);
+  system_pointer_variable = (unsigned long long *)*system_global_data_;
+  if (system_pointer_variable != (unsigned long long *)0x0) {
+    if ((void *)*system_pointer_variable == &systemValidationFunction) {
+      NVGSDK_Poll(system_pointer_variable[1]);
     }
     else {
-      (**(code **)((undefined *)*ptr_var_ + 8))();
+      (**(code **)((void *)*system_pointer_variable + 8))();
     }
   }
-  *global_data_ = fVar15;
-  long_var_ = (long long)*(int *)(global_data_ + 0x1d40) * 0xd0;
-  init_result2 = *(long long *)(long_var_ + 0xb0 + *(long long *)(global_data_ + 0x1d20));
-  fVar17 = (float)init_result2;
-  if (init_result2 < 0) {
+  *system_global_data_ = fVar15;
+  system_long_variable = (long long)*(int *)(system_global_data_ + 0x1d40) * 0xd0;
+  system_init_result2 = *(long long *)(system_long_variable + 0xb0 + *(long long *)(system_global_data_ + 0x1d20));
+  fVar17 = (float)system_init_result2;
+  if (system_init_result2 < 0) {
     fVar17 = fVar17 + 1.8446744e+19;
   }
-  if (fVar17 * 8.5830686e-07 < (float)*(int *)(global_data_ + 4)) {
-    *(float *)(global_data_ + STRING_BUFFER_SIZE) = fVar15 + *(float *)(global_data_ + STRING_BUFFER_SIZE);
-    fVar15 = (float)fmodf(long_var_,FLOAT_ONE);
+  if (fVar17 * 8.5830686e-07 < (float)*(int *)(system_global_data_ + 4)) {
+    *(float *)(system_global_data_ + STRING_BUFFER_SIZE) = fVar15 + *(float *)(system_global_data_ + STRING_BUFFER_SIZE);
+    fVar15 = (float)fmodf(system_long_variable,FLOAT_ONE);
     if (0.5 < fVar15) {
-      stack_ptr_ = &g_threadString2;
+      system_stack_pointer = &g_threadString2;
       stack_var_ = 0;
-      stack_ptr_ = (unsigned long long *)0x0;
+      system_stack_pointer = (unsigned long long *)0x0;
       stack_var_ = 0;
-      ptr_var_ = (unsigned long long *)function_(global_data_,0x1c,0x13);
-      *(unsigned char *)ptr_var_ = 0;
-      stack_ptr_ = ptr_var_;
-      uint_var_ = allocate_helper_buffer(ptr_var_);
+      system_pointer_variable = (unsigned long long *)system_function_(system_global_data_,0x1c,0x13);
+      *(unsigned char *)system_pointer_variable = 0;
+      system_stack_pointer = system_pointer_variable;
+      uint_var_ = allocate_helper_buffer(system_pointer_variable);
       stack_var_ = CONCAT44(stack_var_._4_4_,uint_var_);
-      *ptr_var_ = 0x6f6d654d20555047;
-      ptr_var_[1] = 0x6567617375207972;
-      ptr_var_[2] = 0x6163697469726320;
-      *(unsigned int *)(ptr_var_ + 3) = 0x2e2e6c;
+      *system_pointer_variable = 0x6f6d654d20555047;
+      system_pointer_variable[1] = 0x6567617375207972;
+      system_pointer_variable[2] = 0x6163697469726320;
+      *(unsigned int *)(system_pointer_variable + 3) = 0x2e2e6c;
       stack_var_ = 0x1b;
-      stack_ptr_ = &g_threadString2;
-      handle_system_error(ptr_var_);
+      system_stack_pointer = &g_threadString2;
+      handle_system_error(system_pointer_variable);
     }
   }
-  pinit_result4 = global_data_;
-  if ((char)global_data_[0x42] == '\0') {
-    (**(code **)(*global_data_ + 0xb0))(global_data_,*(unsigned int *)(global_data_ + 0x1340));
-    (**(code **)(*pinit_result4 + 0xb8))(pinit_result4,*(unsigned int *)(global_data_ + 0x1500));
-    (**(code **)(*pinit_result4 + 0xc0))(pinit_result4,*(unsigned int *)(global_data_ + 0x13b0));
-    (**(code **)(*pinit_result4 + 200))(pinit_result4,*(unsigned int *)(global_data_ + 0x1490));
-    (**(code **)(*pinit_result4 + 0x50))(pinit_result4);
+  psystem_init_result4 = system_global_data_;
+  if ((char)system_global_data_[0x42] == '\0') {
+    (**(code **)(*system_global_data_ + 0xb0))(system_global_data_,*(unsigned int *)(system_global_data_ + 0x1340));
+    (**(code **)(*psystem_init_result4 + 0xb8))(psystem_init_result4,*(unsigned int *)(system_global_data_ + 0x1500));
+    (**(code **)(*psystem_init_result4 + 0xc0))(psystem_init_result4,*(unsigned int *)(system_global_data_ + 0x13b0));
+    (**(code **)(*psystem_init_result4 + 200))(psystem_init_result4,*(unsigned int *)(system_global_data_ + 0x1490));
+    (**(code **)(*psystem_init_result4 + 0x50))(psystem_init_result4);
   }
-  ptr_var_ = global_data_;
-  pinit_result4 = *(long long **)(global_data_ + 0x17ec);
-  *global_data_ = 0;
-  stack_var_._0_4_ = SUB84(pinit_result4,0);
-  *(unsigned int *)(ptr_var_ + 1) = (unsigned int)stack_var_;
-  stack_var_._4_4_ = (unsigned int)((ulong long)pinit_result4 >> CONFIG_PATH_BUFFER_SIZE);
-  *(unsigned int *)((long long)ptr_var_ + 0xc) = stack_var_._4_4_;
-  *(unsigned int *)(ptr_var_ + 8) = 0;
-  stack_var_ = pinit_result4;
+  system_pointer_variable = system_global_data_;
+  psystem_init_result4 = *(long long **)(system_global_data_ + 0x17ec);
+  *system_global_data_ = 0;
+  stack_var_._0_4_ = SUB84(psystem_init_result4,0);
+  *(unsigned int *)(system_pointer_variable + 1) = (unsigned int)stack_var_;
+  stack_var_._4_4_ = (unsigned int)((ulong long)psystem_init_result4 >> CONFIG_PATH_BUFFER_SIZE);
+  *(unsigned int *)((long long)system_pointer_variable + 0xc) = stack_var_._4_4_;
+  *(unsigned int *)(system_pointer_variable + 8) = 0;
+  stack_var_ = psystem_init_result4;
   system_finalizer_001();
   system_finalizer_002();
-  if (((*(int *)(handle + 0x340) != 0) && (global_data_ != (long long *)0x0)) &&
-     (cVar2 = (**(code **)(*global_data_ + 0x28))(), cVar2 != '\0')) {
-    (**(code **)(global_data_ + 0x98))();
+  if (((*(int *)(handle + 0x340) != 0) && (system_global_data_ != (long long *)0x0)) &&
+     (cVar2 = (**(code **)(*system_global_data_ + 0x28))(), cVar2 != '\0')) {
+    (**(code **)(system_global_data_ + 0x98))();
   }
   (**(code **)(**(long long **)(handle + 0x2b0) + 0x30))(*(long long **)(handle + 0x2b0),flags);
-  if (((*(int *)(handle + 0x340) != 0) && (global_data_ != (long long *)0x0)) &&
-     (cVar2 = (**(code **)(*global_data_ + 0x28))(), cVar2 != '\0')) {
-    (*(code *)global_data_[7])();
+  if (((*(int *)(handle + 0x340) != 0) && (system_global_data_ != (long long *)0x0)) &&
+     (cVar2 = (**(code **)(*system_global_data_ + 0x28))(), cVar2 != '\0')) {
+    (*(code *)system_global_data_[7])();
   }
-  if (((*(int *)(handle + 0x340) != 0) && (global_data_ != (long long *)0x0)) &&
-     (cVar2 = (**(code **)(*global_data_ + 0x28))(), cVar2 != '\0')) {
+  if (((*(int *)(handle + 0x340) != 0) && (system_global_data_ != (long long *)0x0)) &&
+     (cVar2 = (**(code **)(*system_global_data_ + 0x28))(), cVar2 != '\0')) {
     *(unsigned long long *)(*(long long *)(handle + 0x3c0) + 0x18) =
          *(unsigned long long *)(*(long long *)(handle + 0x3c0) + STRING_BUFFER_SIZE);
-    pinit_result4 = (long long *)(global_data_ + CONFIG_PATH_BUFFER_SIZE30);
+    psystem_init_result4 = (long long *)(system_global_data_ + CONFIG_PATH_BUFFER_SIZE30);
     uint_var_ = uint_var_;
-    if (*(long long *)(global_data_ + CONFIG_PATH_BUFFER_SIZE38) - *pinit_result4 >> 2 != 0) {
+    if (*(long long *)(system_global_data_ + CONFIG_PATH_BUFFER_SIZE38) - *psystem_init_result4 >> 2 != 0) {
       do {
-        stack_var_ = *(unsigned int *)(uint_var_ + *pinit_result4);
-        init_result2 = *(long long *)(handle + 0x3c0) + STRING_BUFFER_SIZE;
-        function_(init_result2,&stack_var_);
-        function_(init_result2,(long long)&stack_var_ + 1);
-        function_(init_result2,(long long)&stack_var_ + 2);
-        function_(init_result2,(long long)&stack_var_ + 3);
+        stack_var_ = *(unsigned int *)(uint_var_ + *psystem_init_result4);
+        system_init_result2 = *(long long *)(handle + 0x3c0) + STRING_BUFFER_SIZE;
+        system_function_(system_init_result2,&stack_var_);
+        system_function_(system_init_result2,(long long)&stack_var_ + 1);
+        system_function_(system_init_result2,(long long)&stack_var_ + 2);
+        system_function_(system_init_result2,(long long)&stack_var_ + 3);
         uint_var_ = (int)uint_var_ + 1;
         uint_var_ = (ulong long)uint_var_;
-        pinit_result4 = (long long *)(global_data_ + CONFIG_PATH_BUFFER_SIZE30);
+        psystem_init_result4 = (long long *)(system_global_data_ + CONFIG_PATH_BUFFER_SIZE30);
         uint_var_ = uint_var_ + 4;
       } while ((ulong long)(long long)(int)uint_var_ <
-               (ulong long)(*(long long *)(global_data_ + CONFIG_PATH_BUFFER_SIZE38) - *pinit_result4 >> 2));
+               (ulong long)(*(long long *)(system_global_data_ + CONFIG_PATH_BUFFER_SIZE38) - *psystem_init_result4 >> 2));
     }
-    (**(code **)(global_data_ + 0xa8))();
+    (**(code **)(system_global_data_ + 0xa8))();
   }
   (**(code **)(**(long long **)(handle + 0x2b0) + 0x38))(*(long long **)(handle + 0x2b0),flags);
   (**(code **)(**(long long **)(handle + 0x2b0) + SYSTEM_CONFIG_BUFFER_SIZE))(*(long long **)(handle + 0x2b0),flags);
-  function_();
+  system_function_();
   if (data_180c82862 != '\0') {
-    stack_ptr_ = &g_threadString2;
+    system_stack_pointer = &g_threadString2;
     stack_var_ = 0;
-    stack_ptr_ = (unsigned long long *)0x0;
+    system_stack_pointer = (unsigned long long *)0x0;
     stack_var_ = 0;
-    ptr_var_ = (unsigned long long *)function_(global_data_,0x19,0x13);
-    *(unsigned char *)ptr_var_ = 0;
-    stack_ptr_ = ptr_var_;
-    uint_var_ = allocate_helper_buffer(ptr_var_);
+    system_pointer_variable = (unsigned long long *)system_function_(system_global_data_,0x19,0x13);
+    *(unsigned char *)system_pointer_variable = 0;
+    system_stack_pointer = system_pointer_variable;
+    uint_var_ = allocate_helper_buffer(system_pointer_variable);
     stack_var_ = CONCAT44(stack_var_._4_4_,uint_var_);
-    *ptr_var_ = 0x6d6d6f43204c4752;
-    ptr_var_[1] = 0x656e696c20646e61;
-    ptr_var_[2] = 0x656c6f736e6f6320;
-    *(unsigned char *)(ptr_var_ + 3) = 0;
-    init_result2 = global_data_;
+    *system_pointer_variable = 0x6d6d6f43204c4752;
+    system_pointer_variable[1] = 0x656e696c20646e61;
+    system_pointer_variable[2] = 0x656c6f736e6f6320;
+    *(unsigned char *)(system_pointer_variable + 3) = 0;
+    system_init_result2 = system_global_data_;
     stack_var_ = 0x18;
-    ptr_var_ = (unsigned long long *)*global_data_;
+    system_pointer_variable = (unsigned long long *)*system_global_data_;
     int_var_ = _Mtx_lock(ADDR_MAIN_MUTEX);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
-    pinit_result4 = global_data_;
-    plStack_2c0 = global_data_;
-    global_data_ = (long long *)*ptr_var_;
+    psystem_init_result4 = system_global_data_;
+    plStack_2c0 = system_global_data_;
+    system_global_data_ = (long long *)*system_pointer_variable;
     plStack_2f8 = (long long *)0x0;
     stack_var_ = (long long *)0x0;
     pplStack_328 = (long long **)&cStack_300;
-    system_processor_002(init_result2,&stack_ptr_,&plStack_2f8,&stack_var_);
-    if (*(char *)(init_result2 + 0x60) != '\0') {
-      system_processor_003(init_result2,&plStack_2f8,&stack_var_,acStack_2ff);
+    system_processor_002(system_init_result2,&system_stack_pointer,&plStack_2f8,&stack_var_);
+    if (*(char *)(system_init_result2 + 0x60) != '\0') {
+      system_processor_003(system_init_result2,&plStack_2f8,&stack_var_,acStack_2ff);
     }
     if ((cStack_300 == '\0') && (acStack_2ff[0] == '\0')) {
-      *(unsigned char *)(init_result2 + 0x60) = 0;
+      *(unsigned char *)(system_init_result2 + 0x60) = 0;
     }
-    global_data_ = pinit_result4;
+    system_global_data_ = psystem_init_result4;
     int_var_ = _Mtx_unlock(ADDR_MAIN_MUTEX);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
-    stack_ptr_ = &g_threadString2;
-    handle_system_error(ptr_var_);
+    system_stack_pointer = &g_threadString2;
+    handle_system_error(system_pointer_variable);
   }
   system_crypto_001(stack_var_ ^ (ulong long)auStack_348);
 }
@@ -3258,32 +3258,32 @@ unsigned long long * system_handle_manager_001(unsigned long long *handle)
     data_180c84870 = 0;
   }
   do {
-    long_var_ = long_var_ + 1;
-    char_ptr_var_ = (char *)(long_var_ + ADDR_STRING_OFFSET);
-    long_var_ = long_var_;
-  } while (*char_ptr_var_ != '\0');
-  if (long_var_ != 0) {
-    fwrite(&data_1809fcc18,1,1,long_var_);
-    fwrite(&data_180c82870,long_var_,1,long_var_);
+    system_long_variable = system_long_variable + 1;
+    char_system_pointer_variable = (char *)(system_long_variable + ADDR_STRING_OFFSET);
+    system_long_variable = system_long_variable;
+  } while (*char_system_pointer_variable != '\0');
+  if (system_long_variable != 0) {
+    fwrite(&data_1809fcc18,1,1,system_long_variable);
+    fwrite(&data_180c82870,system_long_variable,1,system_long_variable);
     system_cleanup_010(0);
   }
-  if (long_var_ != 0) {
-    fclose(long_var_);
-    stack_long_ = 0;
+  if (system_long_variable != 0) {
+    fclose(system_long_variable);
+    system_stack_long = 0;
     LOCK();
-    global_data_ = global_data_ + -1;
+    system_global_data_ = system_global_data_ + -1;
     UNLOCK();
-    long_var_ = 0;
+    system_long_variable = 0;
   }
-  stack_ptr_ = &g_threadString2;
-  if (stack_ptr_ == (undefined *)0x0) {
-    stack_ptr_ = (undefined *)0x0;
+  system_stack_pointer = &g_threadString2;
+  if (system_stack_pointer == (void *)0x0) {
+    system_stack_pointer = (void *)0x0;
     stack_var_ = 0;
-    stack_ptr_ = &g_threadString4;
-    if (long_var_ != 0) {
-      fclose(long_var_);
+    system_stack_pointer = &g_threadString4;
+    if (system_long_variable != 0) {
+      fclose(system_long_variable);
       LOCK();
-      global_data_ = global_data_ + -1;
+      system_global_data_ = system_global_data_ + -1;
       UNLOCK();
     }
     return;
@@ -3291,41 +3291,41 @@ unsigned long long * system_handle_manager_001(unsigned long long *handle)
   handle_system_error();
 }
   data_180c8ecee = 1;
-  system_event_handler_015(global_data_);
+  system_event_handler_015(system_global_data_);
   system_cleanup_002();
   system_cleanup_008(0);
   if (data_180c82853 != '\0') {
     LOCK();
-    *(unsigned int *)(*(long long *)(global_data_ + 0x48) + 0xcc) = 0;
+    *(unsigned int *)(*(long long *)(system_global_data_ + 0x48) + 0xcc) = 0;
     UNLOCK();
   }
-  function_();
+  system_function_();
   if ((data_180c82860 == '\0') &&
-     (pinit_result = *(long long **)(global_data_ + 0x18), pinit_result != (long long *)0x0)) {
-    cVar3 = (**(code **)*pinit_result)(pinit_result);
+     (psystem_init_result = *(long long **)(system_global_data_ + 0x18), psystem_init_result != (long long *)0x0)) {
+    cVar3 = (**(code **)*psystem_init_result)(psystem_init_result);
     if (cVar3 != '\0') {
-      (**(code **)(*pinit_result + 0x28))(pinit_result);
+      (**(code **)(*psystem_init_result + 0x28))(psystem_init_result);
     }
   }
   system_cleanup_009();
-  long_var_ = global_data_;
-  if (global_data_ != 0) {
-    system_cleanup_011(global_data_);
-    handle_system_error(long_var_);
+  system_long_variable = system_global_data_;
+  if (system_global_data_ != 0) {
+    system_cleanup_011(system_global_data_);
+    handle_system_error(system_long_variable);
   }
-  global_data_ = 0;
-  system_thread_manager_008(global_data_);
-  long_var_ = global_data_;
-  if (global_data_ != 0) {
-    system_thread_manager_008(global_data_);
+  system_global_data_ = 0;
+  system_thread_manager_008(system_global_data_);
+  system_long_variable = system_global_data_;
+  if (system_global_data_ != 0) {
+    system_thread_manager_008(system_global_data_);
     _Mtx_destroy_in_situ();
-    handle_system_error(long_var_);
+    handle_system_error(system_long_variable);
   }
-  global_data_ = 0;
+  system_global_data_ = 0;
   return;
 }
 unsigned long long *
-function_(unsigned long long *handle,ulong long flags,unsigned long long mutex_attr,unsigned long long mutex_type)
+system_function_(unsigned long long *handle,ulong long flags,unsigned long long mutex_attr,unsigned long long mutex_type)
 {
   unsigned long long uint_var_;
   uint_var_ = THREAD_POOL_DEFAULT_FLAG;
@@ -3338,31 +3338,31 @@ function_(unsigned long long *handle,ulong long flags,unsigned long long mutex_a
 }
       data_180c82850 = '\x01';
       do {
-        int_var_ = ReleaseSemaphore(global_data_,1);
+        int_var_ = ReleaseSemaphore(system_global_data_,1);
       } while (int_var_ == 0);
-      stack_ptr_ = &g_threadString2;
-      if (stack_ptr_ != (unsigned char *)0x0) {
+      system_stack_pointer = &g_threadString2;
+      if (system_stack_pointer != (unsigned char *)0x0) {
         handle_system_error();
       }
-      stack_ptr_ = (unsigned char *)0x0;
+      system_stack_pointer = (unsigned char *)0x0;
       stack_var_ = stack_var_ & INT64_MASK;
-      stack_ptr_ = &g_threadString4;
-      stack_ptr_ = &g_threadString2;
-      if (ptr_var_ != (undefined *)0x0) {
-        handle_system_error(ptr_var_);
+      system_stack_pointer = &g_threadString4;
+      system_stack_pointer = &g_threadString2;
+      if (system_pointer_variable != (void *)0x0) {
+        handle_system_error(system_pointer_variable);
       }
-      stack_ptr_ = (unsigned char *)0x0;
+      system_stack_pointer = (unsigned char *)0x0;
       stack_var_ = stack_var_ & INT64_MASK;
-      stack_ptr_ = &g_threadString4;
+      system_stack_pointer = &g_threadString4;
     }
   }
-  stack_ptr_ = &g_threadString2;
-  if (stack_ptr_ != (undefined *)0x0) {
+  system_stack_pointer = &g_threadString2;
+  if (system_stack_pointer != (void *)0x0) {
     handle_system_error();
   }
-  stack_ptr_ = (undefined *)0x0;
+  system_stack_pointer = (void *)0x0;
   stack_var_ = 0;
-  stack_ptr_ = &g_threadString4;
+  system_stack_pointer = &g_threadString4;
 label_:
   system_crypto_001(stack_var_ ^ (ulong long)auStack_168);
 }
@@ -3370,14 +3370,14 @@ uint validate_system_mutex_lock(void)
 {
   uint in_EAX;
   int int_var_;
-  long long long_var_;
-  if (global_data_ != 0) {
-    long_var_ = global_data_ + 0x110;
-    int_var_ = _Mtx_lock(long_var_);
+  long long system_long_variable;
+  if (system_global_data_ != 0) {
+    system_long_variable = system_global_data_ + 0x110;
+    int_var_ = _Mtx_lock(system_long_variable);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
-    in_EAX = _Mtx_unlock(long_var_);
+    in_EAX = _Mtx_unlock(system_long_variable);
     if (in_EAX != 0) {
       in_EAX = __Throw_C_error_std__YAXH_Z(in_EAX);
     }
@@ -3385,9 +3385,9 @@ uint validate_system_mutex_lock(void)
   return in_EAX & 0xffffff00;
 }
       data_180d49178 = 0;
-      global_data_ = 0;
+      system_global_data_ = 0;
       strcpy_s(&data_180d49178,0x80,&data_18098bc73,mutex_type,uint_var_);
-      system_crypto_002(function_);
+      system_crypto_002(system_function_);
       system_crypto_003(&data_180d49158);
       return &data_180d49160;
     }
@@ -3395,7 +3395,7 @@ uint validate_system_mutex_lock(void)
   return &data_180d49160;
 }
     data_180d48d40 = '\x01';
-    system_thread_manager_012(handle,CONCAT71((int7)((ulong long)ptr_var_ >> 8),1));
+    system_thread_manager_012(handle,CONCAT71((int7)((ulong long)system_pointer_variable >> 8),1));
   }
   system_crypto_001(stack_var_ ^ (ulong long)auStack_298);
 }
@@ -3404,7 +3404,7 @@ uint validate_system_mutex_lock(void)
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
     if (cVar23 != '\0') goto label_;
-    *(unsigned char *)(*(long long *)(*(long long *)(global_data_ + 8) + 0x140) + CONFIG_PATH_BUFFER_SIZE8) = 1;
+    *(unsigned char *)(*(long long *)(*(long long *)(system_global_data_ + 8) + 0x140) + CONFIG_PATH_BUFFER_SIZE8) = 1;
   }
   thread_pool_2_status_code = '\0';
   int_var_ = _Mtx_unlock(RENDER_THREAD_POOL_MUTEX_ADDR);
@@ -3412,22 +3412,22 @@ uint validate_system_mutex_lock(void)
     __Throw_C_error_std__YAXH_Z(int_var_);
   }
 label_:
-  if (*(char *)(global_data_ + 0xa0) != '\0') {
-    uint_var_ = system_ui_007(init_result6);
-    *(unsigned long long *)(global_data_ + 0xa8) = uint_var_;
-    uint_var_ = system_ui_008(init_result6);
-    *(unsigned long long *)(global_data_ + 0xb0) = uint_var_;
+  if (*(char *)(system_global_data_ + 0xa0) != '\0') {
+    uint_var_ = system_ui_007(system_init_result6);
+    *(unsigned long long *)(system_global_data_ + 0xa8) = uint_var_;
+    uint_var_ = system_ui_008(system_init_result6);
+    *(unsigned long long *)(system_global_data_ + 0xb0) = uint_var_;
   }
-  char_ptr_var_ = global_data_;
-  if (*global_data_ != '\0') {
-    ptr_var_ = (unsigned long long *)*global_data_;
+  char_system_pointer_variable = system_global_data_;
+  if (*system_global_data_ != '\0') {
+    system_pointer_variable = (unsigned long long *)*system_global_data_;
     int_var_ = _Mtx_lock(ADDR_MAIN_MUTEX);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
-    uint_var_ = global_data_;
-    pplStack_1b8 = (long long **)global_data_;
-    global_data_ = *ptr_var_;
+    uint_var_ = system_global_data_;
+    pplStack_1b8 = (long long **)system_global_data_;
+    system_global_data_ = *system_pointer_variable;
     system_initializer_003(&systemInitData1,0,0);
     dVar2 = 0.0;
     dVar7 = 0.0;
@@ -3435,11 +3435,11 @@ label_:
     dVar8 = 0.0;
     uint_var_ = flags0;
     flags2 = flags0;
-    if (*(long long *)(char_ptr_var_ + STRING_BUFFER_SIZE) - *(long long *)(char_ptr_var_ + 8) >> 3 != 0) {
+    if (*(long long *)(char_system_pointer_variable + STRING_BUFFER_SIZE) - *(long long *)(char_system_pointer_variable + 8) >> 3 != 0) {
       do {
-        dVar1 = *(double *)(*(long long *)(uint_var_ + *(long long *)(char_ptr_var_ + 8)) + CONFIG_PATH_BUFFER_SIZE0);
+        dVar1 = *(double *)(*(long long *)(uint_var_ + *(long long *)(char_system_pointer_variable + 8)) + CONFIG_PATH_BUFFER_SIZE0);
         dVar7 = dVar2 + dVar1;
-        dVar2 = *(double *)(*(long long *)(uint_var_ + *(long long *)(char_ptr_var_ + 8)) + 0x1f8);
+        dVar2 = *(double *)(*(long long *)(uint_var_ + *(long long *)(char_system_pointer_variable + 8)) + 0x1f8);
         dVar8 = dVar9 + dVar2;
         system_config_001(&systemInitData2,flags2,dVar1 / dVar2);
         flags1 = (int)flags2 + 1;
@@ -3448,190 +3448,190 @@ label_:
         dVar2 = dVar7;
         dVar9 = dVar8;
       } while ((ulong long)(long long)(int)flags1 <
-               (ulong long)(*(long long *)(char_ptr_var_ + STRING_BUFFER_SIZE) - *(long long *)(char_ptr_var_ + 8) >> 3));
+               (ulong long)(*(long long *)(char_system_pointer_variable + STRING_BUFFER_SIZE) - *(long long *)(char_system_pointer_variable + 8) >> 3));
     }
     system_config_001(&systemConfigData8,dVar7 / dVar8);
     system_initializer_004();
-    global_data_ = uint_var_;
+    system_global_data_ = uint_var_;
     int_var_ = _Mtx_unlock(ADDR_MAIN_MUTEX);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
   }
-  if (*(char *)(global_data_ + 0x1626) != '\0') {
-    uint_var_ = *(unsigned long long *)(global_data_ + 0x138);
-    *(unsigned long long *)(global_data_ + 0x138) = 0;
-    stack_ptr_ = &g_defaultDataTemplate;
-    stack_ptr_ = auStack_a0;
+  if (*(char *)(system_global_data_ + 0x1626) != '\0') {
+    uint_var_ = *(unsigned long long *)(system_global_data_ + 0x138);
+    *(unsigned long long *)(system_global_data_ + 0x138) = 0;
+    system_stack_pointer = &g_defaultDataTemplate;
+    system_stack_pointer = auStack_a0;
     auStack_a0[0] = 0;
     stack_var_ = 0x18;
     flags4 = strcpy_s(auStack_a0, SYSTEM_CONFIG_BUFFER_SIZE, &systemConfigStringBuffer2);
-    system_ui_001(flags4,&stack_ptr_,uint_var_,1);
-    stack_ptr_ = &g_threadString4;
+    system_ui_001(flags4,&system_stack_pointer,uint_var_,1);
+    system_stack_pointer = &g_threadString4;
   }
-  if (*(int *)(global_data_ + 0x60) == 1) {
+  if (*(int *)(system_global_data_ + 0x60) == 1) {
     system_finalizer_003();
   }
-  else if (*(int *)(global_data_ + 0x60) == 2) {
+  else if (*(int *)(system_global_data_ + 0x60) == 2) {
     system_finalizer_004();
   }
-  init_result8 = *(long long *)(global_data_ + 0x1870) - *(long long *)(global_data_ + 0x1868) >> 3;
+  system_init_result8 = *(long long *)(system_global_data_ + 0x1870) - *(long long *)(system_global_data_ + 0x1868) >> 3;
   uint_var_ = flags0;
-  if (0 < (int)init_result8) {
+  if (0 < (int)system_init_result8) {
     do {
-      ptr_var_ = (unsigned long long *)system_validator_002(init_result8,&plStack_1d0,(long long)(int)uint_var_);
-      (**(code **)(*(long long *)*ptr_var_ + 0x98))();
+      system_pointer_variable = (unsigned long long *)system_validator_002(system_init_result8,&plStack_1d0,(long long)(int)uint_var_);
+      (**(code **)(*(long long *)*system_pointer_variable + 0x98))();
       if (plStack_1d0 != (long long *)0x0) {
         (**(code **)(*plStack_1d0 + 0x38))();
       }
       flags1 = (int)uint_var_ + 1;
-      init_result8 = *(long long *)(global_data_ + 0x1870) - *(long long *)(global_data_ + 0x1868) >> 3;
+      system_init_result8 = *(long long *)(system_global_data_ + 0x1870) - *(long long *)(system_global_data_ + 0x1868) >> 3;
       uint_var_ = (ulong long)flags1;
-    } while ((int)flags1 < (int)init_result8);
+    } while ((int)flags1 < (int)system_init_result8);
   }
   system_processor_001();
   func_0x00018024f7f0();
-  flags4 = func_0x0001800e2850(init_result6);
+  flags4 = func_0x0001800e2850(system_init_result6);
   system_ui_004(flags4,1,0);
-  if (*(char *)(init_result6 + 0xf18) != '\0') {
-    system_ui_009(init_result6);
-    *(unsigned char *)(init_result6 + 0xf18) = 0;
+  if (*(char *)(system_init_result6 + 0xf18) != '\0') {
+    system_ui_009(system_init_result6);
+    *(unsigned char *)(system_init_result6 + 0xf18) = 0;
   }
-  long_var_ = global_data_;
-  init_result8 = global_data_;
-  uint_var_ = *(unsigned long long *)(global_data_ + 0x161c);
-  *(unsigned long long *)(global_data_ + 0x12d0) = *(unsigned long long *)(global_data_ + 0x1614);
-  *(unsigned long long *)(init_result8 + 0x12d8) = uint_var_;
-  uint_var_ = *(unsigned long long *)(long_var_ + 0x162c);
-  *(unsigned long long *)(init_result8 + 0x12e0) = *(unsigned long long *)(long_var_ + 0x1624);
-  *(unsigned long long *)(init_result8 + 0x12e8) = uint_var_;
-  uint_var_ = *(unsigned long long *)(long_var_ + 0x163c);
-  *(unsigned long long *)(init_result8 + 0x12f0) = *(unsigned long long *)(long_var_ + 0x1634);
-  *(unsigned long long *)(init_result8 + 0x12f8) = uint_var_;
-  uint_var_ = *(unsigned long long *)(long_var_ + 0x164c);
-  *(unsigned long long *)(init_result8 + 0x1300) = *(unsigned long long *)(long_var_ + 0x1644);
-  *(unsigned long long *)(init_result8 + 0x1308) = uint_var_;
-  uint_var_ = *(unsigned long long *)(long_var_ + 0x165c);
-  *(unsigned long long *)(init_result8 + 0x1310) = *(unsigned long long *)(long_var_ + 0x1654);
-  *(unsigned long long *)(init_result8 + 0x1318) = uint_var_;
-  uint_var_ = *(unsigned long long *)(long_var_ + 0x166c);
-  *(unsigned long long *)(init_result8 + 0x1320) = *(unsigned long long *)(long_var_ + 0x1664);
-  *(unsigned long long *)(init_result8 + 0x1328) = uint_var_;
-  flags4 = *(unsigned int *)(long_var_ + 0x1678);
-  uint_var_ = *(unsigned int *)(long_var_ + 0x167c);
-  uint_var_ = *(unsigned int *)(long_var_ + 0x1680);
-  *(unsigned int *)(init_result8 + 0x1330) = *(unsigned int *)(long_var_ + 0x1674);
-  *(unsigned int *)(init_result8 + 0x1334) = flags4;
-  *(unsigned int *)(init_result8 + 0x1338) = uint_var_;
-  *(unsigned int *)(init_result8 + 0x133c) = uint_var_;
-  flags4 = *(unsigned int *)(long_var_ + 0x1688);
-  uint_var_ = *(unsigned int *)(long_var_ + 0x168c);
-  uint_var_ = *(unsigned int *)(long_var_ + 0x1690);
-  *(unsigned int *)(init_result8 + 0x1340) = *(unsigned int *)(long_var_ + 0x1684);
-  *(unsigned int *)(init_result8 + 0x1344) = flags4;
-  *(unsigned int *)(init_result8 + 0x1348) = uint_var_;
-  *(unsigned int *)(init_result8 + 0x134c) = uint_var_;
-  *(unsigned short *)(long_var_ + 0x1637) = 0;
-  *(unsigned char *)(long_var_ + 0x162c) = 0;
+  system_long_variable = system_global_data_;
+  system_init_result8 = system_global_data_;
+  uint_var_ = *(unsigned long long *)(system_global_data_ + 0x161c);
+  *(unsigned long long *)(system_global_data_ + 0x12d0) = *(unsigned long long *)(system_global_data_ + 0x1614);
+  *(unsigned long long *)(system_init_result8 + 0x12d8) = uint_var_;
+  uint_var_ = *(unsigned long long *)(system_long_variable + 0x162c);
+  *(unsigned long long *)(system_init_result8 + 0x12e0) = *(unsigned long long *)(system_long_variable + 0x1624);
+  *(unsigned long long *)(system_init_result8 + 0x12e8) = uint_var_;
+  uint_var_ = *(unsigned long long *)(system_long_variable + 0x163c);
+  *(unsigned long long *)(system_init_result8 + 0x12f0) = *(unsigned long long *)(system_long_variable + 0x1634);
+  *(unsigned long long *)(system_init_result8 + 0x12f8) = uint_var_;
+  uint_var_ = *(unsigned long long *)(system_long_variable + 0x164c);
+  *(unsigned long long *)(system_init_result8 + 0x1300) = *(unsigned long long *)(system_long_variable + 0x1644);
+  *(unsigned long long *)(system_init_result8 + 0x1308) = uint_var_;
+  uint_var_ = *(unsigned long long *)(system_long_variable + 0x165c);
+  *(unsigned long long *)(system_init_result8 + 0x1310) = *(unsigned long long *)(system_long_variable + 0x1654);
+  *(unsigned long long *)(system_init_result8 + 0x1318) = uint_var_;
+  uint_var_ = *(unsigned long long *)(system_long_variable + 0x166c);
+  *(unsigned long long *)(system_init_result8 + 0x1320) = *(unsigned long long *)(system_long_variable + 0x1664);
+  *(unsigned long long *)(system_init_result8 + 0x1328) = uint_var_;
+  flags4 = *(unsigned int *)(system_long_variable + 0x1678);
+  uint_var_ = *(unsigned int *)(system_long_variable + 0x167c);
+  uint_var_ = *(unsigned int *)(system_long_variable + 0x1680);
+  *(unsigned int *)(system_init_result8 + 0x1330) = *(unsigned int *)(system_long_variable + 0x1674);
+  *(unsigned int *)(system_init_result8 + 0x1334) = flags4;
+  *(unsigned int *)(system_init_result8 + 0x1338) = uint_var_;
+  *(unsigned int *)(system_init_result8 + 0x133c) = uint_var_;
+  flags4 = *(unsigned int *)(system_long_variable + 0x1688);
+  uint_var_ = *(unsigned int *)(system_long_variable + 0x168c);
+  uint_var_ = *(unsigned int *)(system_long_variable + 0x1690);
+  *(unsigned int *)(system_init_result8 + 0x1340) = *(unsigned int *)(system_long_variable + 0x1684);
+  *(unsigned int *)(system_init_result8 + 0x1344) = flags4;
+  *(unsigned int *)(system_init_result8 + 0x1348) = uint_var_;
+  *(unsigned int *)(system_init_result8 + 0x134c) = uint_var_;
+  *(unsigned short *)(system_long_variable + 0x1637) = 0;
+  *(unsigned char *)(system_long_variable + 0x162c) = 0;
   system_finalizer_001();
   system_finalizer_002();
-  *(uint *)(global_data_ + 0x1590) = global_data_;
-  global_data_ = global_data_ + 1 & 0x80000001;
-  if ((int)global_data_ < 0) {
-    global_data_ = (global_data_ - 1 | 0xfffffffe) + 1;
+  *(uint *)(system_global_data_ + 0x1590) = system_global_data_;
+  system_global_data_ = system_global_data_ + 1 & 0x80000001;
+  if ((int)system_global_data_ < 0) {
+    system_global_data_ = (system_global_data_ - 1 | 0xfffffffe) + 1;
   }
-  ptr_var_ = (unsigned long long *)*global_data_;
+  system_pointer_variable = (unsigned long long *)*system_global_data_;
   int_var_ = _Mtx_lock(ADDR_MAIN_MUTEX);
   if (int_var_ != 0) {
     __Throw_C_error_std__YAXH_Z(int_var_);
   }
-  uint_var_ = global_data_;
-  pplStack_220 = (long long **)global_data_;
-  global_data_ = *ptr_var_;
-  init_result8 = *(long long *)(global_data_ + 0x1a08 + (long long)(int)global_data_ * 8);
-  if (init_result8 != 0) {
+  uint_var_ = system_global_data_;
+  pplStack_220 = (long long **)system_global_data_;
+  system_global_data_ = *system_pointer_variable;
+  system_init_result8 = *(long long *)(system_global_data_ + 0x1a08 + (long long)(int)system_global_data_ * 8);
+  if (system_init_result8 != 0) {
     uint_var_ = flags0;
     flags2 = flags0;
-    if (0 < *(int *)(init_result8 + STRING_BUFFER_SIZE)) {
+    if (0 < *(int *)(system_init_result8 + STRING_BUFFER_SIZE)) {
       do {
-        system_network_003(*(unsigned long long *)(flags2 + *(long long *)(init_result8 + 8)));
-        long_var_ = *(long long *)(*(long long *)(init_result8 + 8) + flags2);
-        if (long_var_ != 0) {
-          function_(long_var_);
-          handle_system_error(long_var_);
+        system_network_003(*(unsigned long long *)(flags2 + *(long long *)(system_init_result8 + 8)));
+        system_long_variable = *(long long *)(*(long long *)(system_init_result8 + 8) + flags2);
+        if (system_long_variable != 0) {
+          system_function_(system_long_variable);
+          handle_system_error(system_long_variable);
         }
-        *(unsigned long long *)(*(long long *)(init_result8 + 8) + flags2) = 0;
+        *(unsigned long long *)(*(long long *)(system_init_result8 + 8) + flags2) = 0;
         flags1 = (int)uint_var_ + 1;
         uint_var_ = (ulong long)flags1;
         flags2 = flags2 + 8;
-      } while ((int)flags1 < *(int *)(init_result8 + STRING_BUFFER_SIZE));
+      } while ((int)flags1 < *(int *)(system_init_result8 + STRING_BUFFER_SIZE));
     }
-    if (*(long long *)(init_result8 + 8) != 0) {
+    if (*(long long *)(system_init_result8 + 8) != 0) {
       handle_system_error();
     }
-    *(unsigned long long *)(init_result8 + 8) = 0;
-    ptr_var_ = *(unsigned char **)(global_data_ + 0x1a08 + (long long)(int)global_data_ * 8);
-    if (ptr_var_ != (unsigned char *)0x0) {
-      *ptr_var_ = 0;
-      *(unsigned long long *)(ptr_var_ + 8) = 0;
-      *(unsigned long long *)(ptr_var_ + 0x14) = 0;
-      *(unsigned int *)(ptr_var_ + STRING_BUFFER_SIZE) = 0;
-      *(unsigned long long *)(ptr_var_ + 0x24) = 0;
-      *(unsigned long long *)(ptr_var_ + 0x1c) = 0;
+    *(unsigned long long *)(system_init_result8 + 8) = 0;
+    system_pointer_variable = *(unsigned char **)(system_global_data_ + 0x1a08 + (long long)(int)system_global_data_ * 8);
+    if (system_pointer_variable != (unsigned char *)0x0) {
+      *system_pointer_variable = 0;
+      *(unsigned long long *)(system_pointer_variable + 8) = 0;
+      *(unsigned long long *)(system_pointer_variable + 0x14) = 0;
+      *(unsigned int *)(system_pointer_variable + STRING_BUFFER_SIZE) = 0;
+      *(unsigned long long *)(system_pointer_variable + 0x24) = 0;
+      *(unsigned long long *)(system_pointer_variable + 0x1c) = 0;
       handle_system_error();
     }
-    *(unsigned long long *)(global_data_ + 0x1a08 + (long long)(int)global_data_ * 8) = 0;
+    *(unsigned long long *)(system_global_data_ + 0x1a08 + (long long)(int)system_global_data_ * 8) = 0;
     flags = stack_var_;
   }
   system_initializer_002();
-  global_data_ = uint_var_;
+  system_global_data_ = uint_var_;
   int_var_ = _Mtx_unlock(ADDR_MAIN_MUTEX);
   if (int_var_ != 0) {
     __Throw_C_error_std__YAXH_Z(int_var_);
   }
-  if (*(int *)(init_result6 + 8) == 2) {
-    *(unsigned char *)(*(long long *)(init_result6 + STRING_BUFFER_SIZE) + 0xc0) = 0;
+  if (*(int *)(system_init_result6 + 8) == 2) {
+    *(unsigned char *)(*(long long *)(system_init_result6 + STRING_BUFFER_SIZE) + 0xc0) = 0;
     while( true ) {
-      ptr_var_ = (undefined *)**(unsigned long long **)(init_result6 + STRING_BUFFER_SIZE);
-      if (ptr_var_ == &systemValidationData1) {
-        cVar23 = *(char *)(*(unsigned long long **)(init_result6 + STRING_BUFFER_SIZE) + 2) != '\0';
+      system_pointer_variable = (void *)**(unsigned long long **)(system_init_result6 + STRING_BUFFER_SIZE);
+      if (system_pointer_variable == &systemValidationData1) {
+        cVar23 = *(char *)(*(unsigned long long **)(system_init_result6 + STRING_BUFFER_SIZE) + 2) != '\0';
       }
       else {
-        cVar23 = (**(code **)(ptr_var_ + 0x68))();
+        cVar23 = (**(code **)(system_pointer_variable + 0x68))();
       }
       if (cVar23 != '\0') break;
-      ptr_var_ = (undefined *)**(unsigned long long **)(init_result6 + STRING_BUFFER_SIZE);
-      if (ptr_var_ == &systemValidationData1) {
-        system_cleanup_005(*(unsigned long long **)(init_result6 + STRING_BUFFER_SIZE) + 4);
+      system_pointer_variable = (void *)**(unsigned long long **)(system_init_result6 + STRING_BUFFER_SIZE);
+      if (system_pointer_variable == &systemValidationData1) {
+        system_cleanup_005(*(unsigned long long **)(system_init_result6 + STRING_BUFFER_SIZE) + 4);
       }
       else {
-        (**(code **)(ptr_var_ + 0x80))();
+        (**(code **)(system_pointer_variable + 0x80))();
       }
     }
-    plStack_1c0 = *(long long **)(init_result6 + STRING_BUFFER_SIZE);
-    *(unsigned long long *)(init_result6 + STRING_BUFFER_SIZE) = 0;
+    plStack_1c0 = *(long long **)(system_init_result6 + STRING_BUFFER_SIZE);
+    *(unsigned long long *)(system_init_result6 + STRING_BUFFER_SIZE) = 0;
     if (plStack_1c0 != (long long *)0x0) {
       (**(code **)(*plStack_1c0 + 0x38))();
     }
-    *(unsigned int *)(init_result6 + 8) = 0;
+    *(unsigned int *)(system_init_result6 + 8) = 0;
     if (_data_00000010 != (long long *)0x0) {
       (**(code **)(*_data_00000010 + STRING_BUFFER_SIZE))();
     }
     (**(code **)(_data_00000000 + CONFIG_PATH_BUFFER_SIZE))(0);
     _data_00000008 = UINT64_MAX;
   }
-  else if (*(int *)(init_result6 + 8) != 0) goto label_;
-  *(uint *)(global_data_ + 0x1614) =
-       (*(int *)(global_data_ + 0x1614) + 1U) % *(uint *)(global_data_ + 0x1d4c);
+  else if (*(int *)(system_init_result6 + 8) != 0) goto label_;
+  *(uint *)(system_global_data_ + 0x1614) =
+       (*(int *)(system_global_data_ + 0x1614) + 1U) % *(uint *)(system_global_data_ + 0x1d4c);
 label_:
-  pplStack_220 = (long long **)&stack_ptr_;
-  stack_ptr_ = &g_memoryAllocationFlag;
-  stack_ptr_ = auStack_180;
+  pplStack_220 = (long long **)&system_stack_pointer;
+  system_stack_pointer = &g_memoryAllocationFlag;
+  system_stack_pointer = auStack_180;
   stack_var_ = 0;
   auStack_180[0] = 0;
   stack_var_ = 0x19;
   stack_var_ = flags;
-  pplStack_220 = (long long **)function_(global_data_,CONFIG_PATH_BUFFER_SIZE,8,3);
+  pplStack_220 = (long long **)system_function_(system_global_data_,CONFIG_PATH_BUFFER_SIZE,8,3);
   *pplStack_220 = (long long *)&g_threadString4;
   pplStack_220[1] = (long long *)0x0;
   *(unsigned int *)(pplStack_220 + 2) = 0;
@@ -3639,93 +3639,93 @@ label_:
   pplStack_220[3] = (long long *)0x0;
   pplStack_220[1] = (long long *)0x0;
   *(unsigned int *)(pplStack_220 + 2) = 0;
-  pinit_result7 = global_data_;
+  psystem_init_result7 = system_global_data_;
   stack_var_ = 0;
   flags4 = *(unsigned int *)(pplStack_220 + 3);
-  *(int *)(pplStack_220 + 3) = (int)global_data_[10];
-  *(unsigned int *)(pinit_result7 + 10) = flags4;
-  init_result6 = (long long)pplStack_220[1];
-  pplStack_220[1] = (long long *)pinit_result7[8];
-  pinit_result7[8] = init_result6;
+  *(int *)(pplStack_220 + 3) = (int)system_global_data_[10];
+  *(unsigned int *)(psystem_init_result7 + 10) = flags4;
+  system_init_result6 = (long long)pplStack_220[1];
+  pplStack_220[1] = (long long *)psystem_init_result7[8];
+  psystem_init_result7[8] = system_init_result6;
   flags4 = *(unsigned int *)(pplStack_220 + 2);
-  *(int *)(pplStack_220 + 2) = (int)pinit_result7[9];
-  *(unsigned int *)(pinit_result7 + 9) = flags4;
+  *(int *)(pplStack_220 + 2) = (int)psystem_init_result7[9];
+  *(unsigned int *)(psystem_init_result7 + 9) = flags4;
   flags4 = *(unsigned int *)((long long)pplStack_220 + 0x1c);
-  *(unsigned int *)((long long)pplStack_220 + 0x1c) = *(unsigned int *)((long long)pinit_result7 + 0x54);
-  *(unsigned int *)((long long)pinit_result7 + 0x54) = flags4;
-  stack_ptr_ = pplStack_220;
-  if (*(code **)(*pinit_result7 + 8) == (code *)&unknown_180639070) {
-    *(unsigned int *)(pinit_result7 + 9) = 0;
-    if ((unsigned char *)pinit_result7[8] != (unsigned char *)0x0) {
-      *(unsigned char *)pinit_result7[8] = 0;
+  *(unsigned int *)((long long)pplStack_220 + 0x1c) = *(unsigned int *)((long long)psystem_init_result7 + 0x54);
+  *(unsigned int *)((long long)psystem_init_result7 + 0x54) = flags4;
+  system_stack_pointer = pplStack_220;
+  if (*(code **)(*psystem_init_result7 + 8) == (code *)&system_180639070) {
+    *(unsigned int *)(psystem_init_result7 + 9) = 0;
+    if ((unsigned char *)psystem_init_result7[8] != (unsigned char *)0x0) {
+      *(unsigned char *)psystem_init_result7[8] = 0;
     }
-    *(unsigned int *)((long long)pinit_result7 + 0x54) = 0;
+    *(unsigned int *)((long long)psystem_init_result7 + 0x54) = 0;
   }
   else {
-    (**(code **)(*pinit_result7 + 8))(pinit_result7);
+    (**(code **)(*psystem_init_result7 + 8))(psystem_init_result7);
   }
-  if (0x960 < *(int *)(stack_ptr_ + 2)) {
-    *(unsigned int *)(stack_ptr_ + 2) = 0x960;
-    *(unsigned char *)(stack_ptr_[1] + 0x960) = 0;
+  if (0x960 < *(int *)(system_stack_pointer + 2)) {
+    *(unsigned int *)(system_stack_pointer + 2) = 0x960;
+    *(unsigned char *)(system_stack_pointer[1] + 0x960) = 0;
   }
   stack_var_ = 0;
-  stack_long_ = 0;
-  stack_long_ = 0;
+  system_stack_long = 0;
+  system_stack_long = 0;
   stack_var_ = 0;
   stack_var_ = 3;
-  function_(global_data_,flags,&stack_long_);
-  init_result6 = stack_long_;
-  init_result8 = stack_long_;
+  system_function_(system_global_data_,flags,&system_stack_long);
+  system_init_result6 = system_stack_long;
+  system_init_result8 = system_stack_long;
   uint_var_ = flags0;
-  if (stack_long_ - stack_long_ >> 3 != 0) {
+  if (system_stack_long - system_stack_long >> 3 != 0) {
     do {
-      long_var_ = global_data_;
-      if ((0 < *(int *)(*(long long *)(uint_var_ + init_result6) + 0x124ec)) &&
-         ((*(uint *)(*(long long *)(uint_var_ + init_result6) + 4) & STRING_BUFFER_SIZE000) != 0)) {
-        while (char_ptr_var_ = global_data_, init_result6 = stack_long_, init_result8 = stack_long_,
-              *(int *)(long_var_ + 0x30c) != 0) {
-          init_result6 = system_event_handler_017(global_data_);
-          if (init_result6 != 0) {
-            pinit_result7 = (long long *)system_event_handler_017(char_ptr_var_);
-            (**(code **)(*pinit_result7 + CONFIG_PATH_BUFFER_SIZE))(pinit_result7,0);
+      system_long_variable = system_global_data_;
+      if ((0 < *(int *)(*(long long *)(uint_var_ + system_init_result6) + 0x124ec)) &&
+         ((*(uint *)(*(long long *)(uint_var_ + system_init_result6) + 4) & STRING_BUFFER_SIZE000) != 0)) {
+        while (char_system_pointer_variable = system_global_data_, system_init_result6 = system_stack_long, system_init_result8 = system_stack_long,
+              *(int *)(system_long_variable + 0x30c) != 0) {
+          system_init_result6 = system_event_handler_017(system_global_data_);
+          if (system_init_result6 != 0) {
+            psystem_init_result7 = (long long *)system_event_handler_017(char_system_pointer_variable);
+            (**(code **)(*psystem_init_result7 + CONFIG_PATH_BUFFER_SIZE))(psystem_init_result7,0);
           }
         }
       }
       flags1 = (int)flags0 + 1;
       flags0 = (ulong long)flags1;
       uint_var_ = uint_var_ + 8;
-    } while ((ulong long)(long long)(int)flags1 < (ulong long)(init_result8 - init_result6 >> 3));
+    } while ((ulong long)(long long)(int)flags1 < (ulong long)(system_init_result8 - system_init_result6 >> 3));
   }
-  uint_var_ = function_(global_data_,STRING_BUFFER_SIZE0,8,3);
-  pinit_result7 = (long long *)system_event_handler_008(uint_var_,&stack_ptr_);
-  ppuStack_1b0 = (undefined **)pinit_result7;
-  if (pinit_result7 != (long long *)0x0) {
-    (**(code **)(*pinit_result7 + 0x28))(pinit_result7);
+  uint_var_ = system_function_(system_global_data_,STRING_BUFFER_SIZE0,8,3);
+  psystem_init_result7 = (long long *)system_event_handler_008(uint_var_,&system_stack_pointer);
+  ppuStack_1b0 = (void **)psystem_init_result7;
+  if (psystem_init_result7 != (long long *)0x0) {
+    (**(code **)(*psystem_init_result7 + 0x28))(psystem_init_result7);
   }
-  char_ptr_var_ = global_data_;
+  char_system_pointer_variable = system_global_data_;
   pplStack_220 = &plStack_228;
-  plStack_228 = pinit_result7;
-  if (pinit_result7 != (long long *)0x0) {
-    (**(code **)(*pinit_result7 + 0x28))(pinit_result7);
+  plStack_228 = psystem_init_result7;
+  if (psystem_init_result7 != (long long *)0x0) {
+    (**(code **)(*psystem_init_result7 + 0x28))(psystem_init_result7);
   }
   pplStack_1b8 = &plStack_228;
-  ptr_var_ = *(unsigned long long **)(*(long long *)(char_ptr_var_ + 8) + 8);
-  char_ptr_var_ = *(code **)*ptr_var_;
+  system_pointer_variable = *(unsigned long long **)(*(long long *)(char_system_pointer_variable + 8) + 8);
+  char_system_pointer_variable = *(code **)*system_pointer_variable;
   pplStack_220 = &plStack_218;
   plStack_218 = plStack_228;
   if (plStack_228 != (long long *)0x0) {
     (**(code **)(*plStack_228 + 0x28))();
   }
-  (*char_ptr_var_)(ptr_var_,&plStack_218);
+  (*char_system_pointer_variable)(system_pointer_variable,&plStack_218);
   if (plStack_228 != (long long *)0x0) {
     (**(code **)(*plStack_228 + 0x38))();
   }
-  if (pinit_result7 != (long long *)0x0) {
-    (**(code **)(*pinit_result7 + 0x38))(pinit_result7);
+  if (psystem_init_result7 != (long long *)0x0) {
+    (**(code **)(*psystem_init_result7 + 0x38))(psystem_init_result7);
   }
-  if (stack_long_ == 0) {
-    ppuStack_1b0 = &stack_ptr_;
-    stack_ptr_ = &g_threadString4;
+  if (system_stack_long == 0) {
+    ppuStack_1b0 = &system_stack_pointer;
+    system_stack_pointer = &g_threadString4;
     system_crypto_001(stack_var_ ^ (ulong long)auStack_248);
   }
   handle_system_error();
@@ -3738,32 +3738,32 @@ label_:
     (**(code **)(*plVar4 + 8))(plVar4);
   }
   pflags = *(unsigned long long **)(*handle + 0x18);
-  char_ptr_var_ = *(code **)*pflags;
+  char_system_pointer_variable = *(code **)*pflags;
   pplStackX_10 = &plStackX_8;
   plStackX_8 = *(long long **)(*handle + STRING_BUFFER_SIZE);
   if (plStackX_8 != (long long *)0x0) {
     (**(code **)(*plStackX_8 + 0x28))();
   }
-  (*char_ptr_var_)(pflags,&plStackX_8);
+  (*char_system_pointer_variable)(pflags,&plStackX_8);
   return;
 }
       data_180d492a8 = 0;
-      global_data_ = 6;
+      system_global_data_ = 6;
       strcpy_s(&data_180d492a8, SYSTEM_CONFIG_BUFFER_SIZE, &data_180a06998, mutex_type, uint_var_);
-      global_data_ = &g_defaultDataTemplate;
-      global_data_ = &data_180d49300;
+      system_global_data_ = &g_defaultDataTemplate;
+      system_global_data_ = &data_180d49300;
       data_180d49300 = 0;
-      global_data_ = 4;
+      system_global_data_ = 4;
       strcpy_s(&data_180d49300, SYSTEM_CONFIG_BUFFER_SIZE, &data_180a06990);
-      global_data_ = &g_defaultDataTemplate;
-      global_data_ = &data_180d49358;
+      system_global_data_ = &g_defaultDataTemplate;
+      system_global_data_ = &data_180d49358;
       data_180d49358 = 0;
-      global_data_ = 6;
+      system_global_data_ = 6;
       strcpy_s(&data_180d49358, SYSTEM_CONFIG_BUFFER_SIZE, &data_180a069a8);
-      global_data_ = &g_defaultDataTemplate;
-      global_data_ = &data_180d493b0;
+      system_global_data_ = &g_defaultDataTemplate;
+      system_global_data_ = &data_180d493b0;
       data_180d493b0 = 0;
-      global_data_ = 6;
+      system_global_data_ = 6;
       strcpy_s(&data_180d493b0, SYSTEM_CONFIG_BUFFER_SIZE, &data_180a069a0);
       system_crypto_002(&systemCryptoData1);
       system_crypto_003(&data_180d49288);
@@ -3786,65 +3786,65 @@ label_:
 }
 long long process_memory_block(long long handle,long long flags,long long mutex_attr)
 {
-  unsigned long long *ptr_var_;
+  unsigned long long *system_pointer_variable;
   unsigned long long *pflags;
-  long long long_var_;
-  long long long_var_;
-  long_var_ = flags - handle >> 5;
-  if (0 < long_var_) {
-    long_var_ = mutex_attr - flags;
-    mutex_attr = mutex_attr + long_var_ * -CONFIG_PATH_BUFFER_SIZE;
+  long long system_long_variable;
+  long long system_long_variable;
+  system_long_variable = flags - handle >> 5;
+  if (0 < system_long_variable) {
+    system_long_variable = mutex_attr - flags;
+    mutex_attr = mutex_attr + system_long_variable * -CONFIG_PATH_BUFFER_SIZE;
     pflags = (unsigned long long *)(flags + 8);
     do {
-      ptr_var_ = pflags + -4;
-      if (*(long long *)(long_var_ + -CONFIG_PATH_BUFFER_SIZE + (long long)pflags) != 0) {
+      system_pointer_variable = pflags + -4;
+      if (*(long long *)(system_long_variable + -CONFIG_PATH_BUFFER_SIZE + (long long)pflags) != 0) {
         handle_system_error();
       }
-      *(unsigned long long *)(long_var_ + STRING_BUFFER_SIZE + (long long)ptr_var_) = 0;
-      long_var_ = long_var_ + -1;
-      *(unsigned long long *)(long_var_ + (long long)ptr_var_) = 0;
-      *(unsigned int *)(long_var_ + 8 + (long long)ptr_var_) = 0;
-      *(unsigned int *)(long_var_ + 8 + (long long)ptr_var_) = *(unsigned int *)(pflags + -3);
-      *(unsigned long long *)(long_var_ + (long long)ptr_var_) = *ptr_var_;
-      *(unsigned int *)(long_var_ + 0x14 + (long long)ptr_var_) = *(unsigned int *)((long long)pflags + -0xc);
-      *(unsigned int *)(long_var_ + STRING_BUFFER_SIZE + (long long)ptr_var_) = *(unsigned int *)(pflags + -2);
+      *(unsigned long long *)(system_long_variable + STRING_BUFFER_SIZE + (long long)system_pointer_variable) = 0;
+      system_long_variable = system_long_variable + -1;
+      *(unsigned long long *)(system_long_variable + (long long)system_pointer_variable) = 0;
+      *(unsigned int *)(system_long_variable + 8 + (long long)system_pointer_variable) = 0;
+      *(unsigned int *)(system_long_variable + 8 + (long long)system_pointer_variable) = *(unsigned int *)(pflags + -3);
+      *(unsigned long long *)(system_long_variable + (long long)system_pointer_variable) = *system_pointer_variable;
+      *(unsigned int *)(system_long_variable + 0x14 + (long long)system_pointer_variable) = *(unsigned int *)((long long)pflags + -0xc);
+      *(unsigned int *)(system_long_variable + STRING_BUFFER_SIZE + (long long)system_pointer_variable) = *(unsigned int *)(pflags + -2);
       *(unsigned int *)(pflags + -3) = 0;
-      *ptr_var_ = 0;
+      *system_pointer_variable = 0;
       pflags[-2] = 0;
-      pflags = ptr_var_;
-    } while (0 < long_var_);
+      pflags = system_pointer_variable;
+    } while (0 < system_long_variable);
   }
   return mutex_attr;
 }
 long long process_memory_with_flags(unsigned long long handle,long long flags,long long mutex_attr)
 {
-  unsigned long long *ptr_var_;
-  long long long_var_;
-  unsigned long long *ptr_var_;
+  unsigned long long *system_pointer_variable;
+  long long system_long_variable;
+  unsigned long long *system_pointer_variable;
   long long unaff_RBP;
   long long unaff_RDI;
   mutex_attr = mutex_attr - flags;
-  long_var_ = unaff_RDI * -CONFIG_PATH_BUFFER_SIZE;
-  ptr_var_ = (unsigned long long *)(flags + 8);
+  system_long_variable = unaff_RDI * -CONFIG_PATH_BUFFER_SIZE;
+  system_pointer_variable = (unsigned long long *)(flags + 8);
   do {
-    ptr_var_ = ptr_var_ + -4;
-    if (*(long long *)(mutex_attr + -CONFIG_PATH_BUFFER_SIZE + (long long)ptr_var_) != 0) {
+    system_pointer_variable = system_pointer_variable + -4;
+    if (*(long long *)(mutex_attr + -CONFIG_PATH_BUFFER_SIZE + (long long)system_pointer_variable) != 0) {
       handle_system_error();
     }
-    *(unsigned long long *)(mutex_attr + STRING_BUFFER_SIZE + (long long)ptr_var_) = 0;
+    *(unsigned long long *)(mutex_attr + STRING_BUFFER_SIZE + (long long)system_pointer_variable) = 0;
     unaff_RDI = unaff_RDI + -1;
-    *(unsigned long long *)(mutex_attr + (long long)ptr_var_) = 0;
-    *(unsigned int *)(mutex_attr + 8 + (long long)ptr_var_) = 0;
-    *(unsigned int *)(mutex_attr + 8 + (long long)ptr_var_) = *(unsigned int *)(ptr_var_ + -3);
-    *(unsigned long long *)(mutex_attr + (long long)ptr_var_) = *ptr_var_;
-    *(unsigned int *)(mutex_attr + 0x14 + (long long)ptr_var_) = *(unsigned int *)((long long)ptr_var_ + -0xc);
-    *(unsigned int *)(mutex_attr + STRING_BUFFER_SIZE + (long long)ptr_var_) = *(unsigned int *)(ptr_var_ + -2);
-    *(unsigned int *)(ptr_var_ + -3) = 0;
-    *ptr_var_ = 0;
-    ptr_var_[-2] = 0;
-    ptr_var_ = ptr_var_;
+    *(unsigned long long *)(mutex_attr + (long long)system_pointer_variable) = 0;
+    *(unsigned int *)(mutex_attr + 8 + (long long)system_pointer_variable) = 0;
+    *(unsigned int *)(mutex_attr + 8 + (long long)system_pointer_variable) = *(unsigned int *)(system_pointer_variable + -3);
+    *(unsigned long long *)(mutex_attr + (long long)system_pointer_variable) = *system_pointer_variable;
+    *(unsigned int *)(mutex_attr + 0x14 + (long long)system_pointer_variable) = *(unsigned int *)((long long)system_pointer_variable + -0xc);
+    *(unsigned int *)(mutex_attr + STRING_BUFFER_SIZE + (long long)system_pointer_variable) = *(unsigned int *)(system_pointer_variable + -2);
+    *(unsigned int *)(system_pointer_variable + -3) = 0;
+    *system_pointer_variable = 0;
+    system_pointer_variable[-2] = 0;
+    system_pointer_variable = system_pointer_variable;
   } while (0 < unaff_RDI);
-  return unaff_RBP + long_var_;
+  return unaff_RBP + system_long_variable;
 }
       data_180d48d64 = data_180d48d64 == '\0';
     }
@@ -3852,13 +3852,13 @@ long long process_memory_with_flags(unsigned long long handle,long long flags,lo
       (*(code *)(*in_RCX[0xc170])[9])(in_RCX[0xc170],alStackX_10[0] + 0x120);
     }
   }
-  init_result0 = alStackX_10[0];
+  system_init_result0 = alStackX_10[0];
   if ((*(int *)(*(long long *)(alStackX_10[0] + 0x3580) + 0x110) != 0) &&
      (uint_var_ = uint_var_, uint_var_ = uint_var_, (long long)in_RCX[0x1d] - (long long)in_RCX[0x1c] >> 3 != 0))
   {
     do {
       (**(code **)(**(long long **)(uint_var_ + (long long)in_RCX[0x1c]) + 0x60))
-                (*(long long **)(uint_var_ + (long long)in_RCX[0x1c]),in_RCX,init_result0);
+                (*(long long **)(uint_var_ + (long long)in_RCX[0x1c]),in_RCX,system_init_result0);
       uint_var_ = (int)uint_var_ + 1;
       uint_var_ = uint_var_ + 8;
       uint_var_ = (ulong long)uint_var_;
@@ -3871,28 +3871,28 @@ long long process_memory_with_flags(unsigned long long handle,long long flags,lo
     stack_var_ = (long long *)CONCAT44(stack_var_._4_4_,(unsigned int)stack_var_);
     if ((((*(byte *)(alStackX_10[0] + 0x1bd8) & CONFIG_PATH_BUFFER_SIZE) != 0) &&
         (stack_var_ = (long long *)CONCAT44(stack_var_._4_4_,(unsigned int)stack_var_),
-        *(char *)(global_data_ + 0xf8) != '\0')) &&
+        *(char *)(system_global_data_ + 0xf8) != '\0')) &&
        (stack_var_ = (long long *)CONCAT44(stack_var_._4_4_,(unsigned int)stack_var_),
        6 < *(int *)(in_RCX + 0x4f8))) {
-      uint_var_ = function_(global_data_,0xe0,8,3);
+      uint_var_ = system_function_(system_global_data_,0xe0,8,3);
       ppplStackX_8 = (long long ***)&stack_var_;
       plStack_68 = alStackX_10;
-      stack_ptr_ = &systemThreadData1;
-      stack_ptr_ = &systemThreadData2;
+      system_stack_pointer = &systemThreadData1;
+      system_stack_pointer = &systemThreadData2;
       stack_var_._0_4_ = SUB84(in_RCX,0);
       stack_var_._4_4_ = (unsigned int)((ulong long)in_RCX >> CONFIG_PATH_BUFFER_SIZE);
       stack_var_._0_4_ = (unsigned int)stack_var_;
       stack_var_._4_4_ = stack_var_._4_4_;
       stack_var_ = in_RCX;
       stack_var_ = plStack_68;
-      ppplStack_b8 = (long long ***)function_(uint_var_,&stack_var_);
+      ppplStack_b8 = (long long ***)system_function_(uint_var_,&stack_var_);
       if (ppplStack_b8 != (long long ***)0x0) {
         ppplStack_80 = ppplStack_b8;
         (*(code *)(*ppplStack_b8)[5])(ppplStack_b8);
       }
-      uint_var_ = global_data_;
+      uint_var_ = system_global_data_;
       ppplStack_80 = (long long ***)0x0;
-      if (*(int *)(global_data_ + 0x380) == 0) {
+      if (*(int *)(system_global_data_ + 0x380) == 0) {
         pppplStackX_20 = &ppplStackX_8;
         ppplStackX_8 = ppplStack_b8;
         if (ppplStack_b8 != (long long ***)0x0) {
@@ -3914,8 +3914,8 @@ long long process_memory_with_flags(unsigned long long handle,long long flags,lo
       }
     }
     system_processor_007(in_RCX,alStackX_10[0]);
-    uint_var_ = global_data_;
-    if (((in_RCX[0x89] != (long long ****)0x0) && (*(char *)(global_data_ + 0xfa) != '\0')) &&
+    uint_var_ = system_global_data_;
+    if (((in_RCX[0x89] != (long long ****)0x0) && (*(char *)(system_global_data_ + 0xfa) != '\0')) &&
        ((*(long long *)(alStackX_10[0] + 0x3580) != 0 &&
         (*(int *)(*(long long *)(alStackX_10[0] + 0x3580) + 0x110) != 0)))) {
       stack_var_ = &pppplStackX_20;
@@ -3936,44 +3936,44 @@ long long process_memory_with_flags(unsigned long long handle,long long flags,lo
         else {
           cVar6 = (*(code *)ppplVar3[0xd])();
         }
-        uint_var_ = global_data_;
+        uint_var_ = system_global_data_;
         if (cVar6 != '\0') break;
-        init_result0 = system_event_handler_017(global_data_);
-        if (init_result0 != 0) {
-          pinit_result1 = (long long *)system_event_handler_017(uint_var_);
-          (**(code **)(*pinit_result1 + CONFIG_PATH_BUFFER_SIZE))(pinit_result1,0);
+        system_init_result0 = system_event_handler_017(system_global_data_);
+        if (system_init_result0 != 0) {
+          psystem_init_result1 = (long long *)system_event_handler_017(uint_var_);
+          (**(code **)(*psystem_init_result1 + CONFIG_PATH_BUFFER_SIZE))(psystem_init_result1,0);
         }
       }
     }
-    init_result0 = alStackX_10[0];
-    pinit_result1 = *(long long **)(*(long long *)(alStackX_10[0] + 0x3580) + 0x630);
-    if (pinit_result1 != (long long *)0x0) {
-      plStack_78 = pinit_result1;
-      (**(code **)(*pinit_result1 + 0x28))(pinit_result1);
+    system_init_result0 = alStackX_10[0];
+    psystem_init_result1 = *(long long **)(*(long long *)(alStackX_10[0] + 0x3580) + 0x630);
+    if (psystem_init_result1 != (long long *)0x0) {
+      plStack_78 = psystem_init_result1;
+      (**(code **)(*psystem_init_result1 + 0x28))(psystem_init_result1);
     }
-    plStack_78 = *(long long **)(init_result0 + 0x12498);
-    *(long long **)(init_result0 + 0x12498) = pinit_result1;
+    plStack_78 = *(long long **)(system_init_result0 + 0x12498);
+    *(long long **)(system_init_result0 + 0x12498) = psystem_init_result1;
     if (plStack_78 != (long long *)0x0) {
       (**(code **)(*plStack_78 + 0x38))();
     }
-    ppppinit_result3 = in_RCX[99];
-    if (ppppinit_result3 != (long long ****)0x0) {
-      (*(code *)(*ppppinit_result3)[0x1f])(ppppinit_result3,alStackX_10[0]);
+    ppppsystem_init_result3 = in_RCX[99];
+    if (ppppsystem_init_result3 != (long long ****)0x0) {
+      (*(code *)(*ppppsystem_init_result3)[0x1f])(ppppsystem_init_result3,alStackX_10[0]);
     }
     if (in_RCX[0x22] != (long long ****)0x0) {
       (*(code *)in_RCX[0x23])(alStackX_10[0]);
     }
     if ((*(char *)(in_RCX + 0xb74) != '\0') &&
-       (init_result0 = *(long long *)(*(long long *)(alStackX_10[0] + 0x3580) + 0x530), init_result0 != 0)) {
-      *(unsigned int *)(init_result0 + SYSTEM_CONFIG_BUFFER_SIZE) = 0x41200000;
+       (system_init_result0 = *(long long *)(*(long long *)(alStackX_10[0] + 0x3580) + 0x530), system_init_result0 != 0)) {
+      *(unsigned int *)(system_init_result0 + SYSTEM_CONFIG_BUFFER_SIZE) = 0x41200000;
     }
     if (*(int *)(in_RCX + 0xa3a) != 0) {
       uint_var_ = *(unsigned int *)(in_RCX + 0xa3a);
-      pppppinit_result7 = in_RCX + (long long)*(int *)(in_RCX + 0xa39) * 0x121 + 0x7f7;
+      pppppsystem_init_result7 = in_RCX + (long long)*(int *)(in_RCX + 0xa39) * 0x121 + 0x7f7;
       LOCK();
-      *(unsigned int *)pppppinit_result7 = 0;
+      *(unsigned int *)pppppsystem_init_result7 = 0;
       UNLOCK();
-      system_processor_008(pppppinit_result7,uint_var_);
+      system_processor_008(pppppsystem_init_result7,uint_var_);
       if (*(int *)(in_RCX + 0xa3a) == 0) {
         int_var_ = 0;
       }
@@ -3981,11 +3981,11 @@ long long process_memory_with_flags(unsigned long long handle,long long flags,lo
         int_var_ = (*(int *)(in_RCX + 0xa3a) - 1U >> 0xc) + 1;
       }
       if (int_var_ != 0) {
-        memcpy(pppppinit_result7[1], in_RCX[0xa3b], CONFIG_PATH_BUFFER_SIZE_000);
+        memcpy(pppppsystem_init_result7[1], in_RCX[0xa3b], CONFIG_PATH_BUFFER_SIZE_000);
       }
-      init_result0 = *(long long *)(*(long long *)(alStackX_10[0] + 0x3580) + 0x118);
-      if (init_result0 != 0) {
-        *(long long ******)(init_result0 + 0x98c8) =
+      system_init_result0 = *(long long *)(*(long long *)(alStackX_10[0] + 0x3580) + 0x118);
+      if (system_init_result0 != 0) {
+        *(long long ******)(system_init_result0 + 0x98c8) =
              in_RCX + (long long)*(int *)(in_RCX + 0xa39) * 0x121 + 0x7f7;
       }
     }
@@ -3996,16 +3996,16 @@ long long process_memory_with_flags(unsigned long long handle,long long flags,lo
     *(uint *)(in_RCX + 0xa39) = uint_var_;
   }
   while (int_var_ = (int)uint_var_, (ulong long)(long long)int_var_ < (ulong long)*(uint *)(in_RCX + 0xb5b)) {
-    ppppinit_result3 = in_RCX[(uint_var_ >> 10) + 0xb5c] +
+    ppppsystem_init_result3 = in_RCX[(uint_var_ >> 10) + 0xb5c] +
                  (ulong long)(uint)(int_var_ + (int)(uint_var_ >> 10) * -SYSTEM_CONFIG_BUFFER_SIZE_0) * 0x18;
-    system_resource_001(*ppppinit_result3);
-    function_(*ppppinit_result3,ppppinit_result3[1],ppppinit_result3 + 2,0,ppppinit_result3 + 10);
+    system_resource_001(*ppppsystem_init_result3);
+    system_function_(*ppppsystem_init_result3,ppppsystem_init_result3[1],ppppsystem_init_result3 + 2,0,ppppsystem_init_result3 + 10);
     uint_var_ = (ulong long)(int_var_ + 1);
   }
   uint_var_ = (ulong long)*(uint *)(in_RCX + 0xb5b);
   LOCK();
   *(unsigned int *)(in_RCX + 0xb5b) = 0;
-  uint_var_ = global_data_;
+  uint_var_ = system_global_data_;
   UNLOCK();
   if (ppplStack_b8 != (long long ***)0x0) {
     ppplStackX_8 = (long long ***)&ppplStack_b0;
@@ -4021,7 +4021,7 @@ system_processor_006(unsigned long long *handle,long long flags,unsigned long lo
 {
   int int_var_;
   unsigned long long *pflags;
-  unsigned int *ptr_var_;
+  unsigned int *system_pointer_variable;
   unsigned int uint_var_;
   *handle = &g_threadString4;
   handle[1] = 0;
@@ -4043,10 +4043,10 @@ system_processor_006(unsigned long long *handle,long long flags,unsigned long lo
            (long long)(*(int *)(flags + STRING_BUFFER_SIZE) + 1),mutex_type,uint_var_);
   }
   system_thread_manager_001(handle,int_var_ + 6);
-  ptr_var_ = (unsigned int *)((ulong long)*(uint *)(handle + 2) + handle[1]);
-  *ptr_var_ = 0x6563732f;
-  *(unsigned short *)(ptr_var_ + 1) = 0x656e;
-  *(unsigned char *)((long long)ptr_var_ + 6) = 0;
+  system_pointer_variable = (unsigned int *)((ulong long)*(uint *)(handle + 2) + handle[1]);
+  *system_pointer_variable = 0x6563732f;
+  *(unsigned short *)(system_pointer_variable + 1) = 0x656e;
+  *(unsigned char *)((long long)system_pointer_variable + 6) = 0;
   *(int *)(handle + 2) = int_var_ + 6;
   system_thread_manager_001(handle,int_var_ + 0xd);
   *(unsigned long long *)((ulong long)*(uint *)(handle + 2) + handle[1]) = 0x656e656373782e;
@@ -4064,45 +4064,45 @@ system_processor_006(unsigned long long *handle,long long flags,unsigned long lo
   stack_var_ = 0;
   stack_var_ = 0;
   stack_var_ = 3;
-  long_var_ = *(long long *)(*pinit_result3 + 0x890) - *(long long *)(*pinit_result3 + 0x888) >> 5;
-  stack_long_ = long_var_;
+  system_long_variable = *(long long *)(*psystem_init_result3 + 0x890) - *(long long *)(*psystem_init_result3 + 0x888) >> 5;
+  system_stack_long = system_long_variable;
   ppppppplStackX_8 = (long long *******)((ulong long)ppppppplStackX_8 & INT64_MASK);
-  if (0 < (int)long_var_) {
+  if (0 < (int)system_long_variable) {
     do {
       if (int_var_ < 0) {
 label_:
-        init_result9 = system_thread_manager_007();
+        system_init_result9 = system_thread_manager_007();
       }
       else {
-        init_result9 = *(long long *)(*pinit_result3 + 0x888);
-        if ((ulong long)(*(long long *)(*pinit_result3 + 0x890) - init_result9 >> 5) <=
+        system_init_result9 = *(long long *)(*psystem_init_result3 + 0x888);
+        if ((ulong long)(*(long long *)(*psystem_init_result3 + 0x890) - system_init_result9 >> 5) <=
             (ulong long)(long long)int_var_) goto label_;
-        init_result9 = (long long)int_var_ * CONFIG_PATH_BUFFER_SIZE + init_result9;
+        system_init_result9 = (long long)int_var_ * CONFIG_PATH_BUFFER_SIZE + system_init_result9;
       }
-      stack_ptr_ = &g_threadString2;
+      system_stack_pointer = &g_threadString2;
       stack_var_ = 0;
-      stack_ptr_ = (unsigned char *)0x0;
+      system_stack_pointer = (unsigned char *)0x0;
       stack_var_ = 0;
-      system_thread_manager_001(&stack_ptr_,*(unsigned int *)(init_result9 + STRING_BUFFER_SIZE));
-      if (*(int *)(init_result9 + STRING_BUFFER_SIZE) != 0) {
-        memcpy(stack_ptr_,*(unsigned long long *)(init_result9 + 8),*(int *)(init_result9 + STRING_BUFFER_SIZE) + 1);
+      system_thread_manager_001(&system_stack_pointer,*(unsigned int *)(system_init_result9 + STRING_BUFFER_SIZE));
+      if (*(int *)(system_init_result9 + STRING_BUFFER_SIZE) != 0) {
+        memcpy(system_stack_pointer,*(unsigned long long *)(system_init_result9 + 8),*(int *)(system_init_result9 + STRING_BUFFER_SIZE) + 1);
       }
-      if (*(long long *)(init_result9 + 8) != 0) {
+      if (*(long long *)(system_init_result9 + 8) != 0) {
         stack_var_ = 0;
-        if (stack_ptr_ != (unsigned char *)0x0) {
-          *stack_ptr_ = 0;
+        if (system_stack_pointer != (unsigned char *)0x0) {
+          *system_stack_pointer = 0;
         }
         stack_var_ = stack_var_ & UINT32_MAX;
       }
       int_var_ = stack_var_ + 8;
-      system_thread_manager_001(&stack_ptr_,int_var_);
-      *(unsigned long long *)(stack_ptr_ + stack_var_) = 0x6a624f656e656353;
-      *(unsigned char *)((long long)(stack_ptr_ + stack_var_) + 8) = 0;
+      system_thread_manager_001(&system_stack_pointer,int_var_);
+      *(unsigned long long *)(system_stack_pointer + stack_var_) = 0x6a624f656e656353;
+      *(unsigned char *)((long long)(system_stack_pointer + stack_var_) + 8) = 0;
       stack_var_ = int_var_;
-      cVar5 = system_thread_001(&stack_ptr_);
+      cVar5 = system_thread_001(&system_stack_pointer);
       if (cVar5 == '\0') {
-        stack_ptr_ = &g_threadString2;
-        if (stack_ptr_ != (unsigned char *)0x0) {
+        system_stack_pointer = &g_threadString2;
+        if (system_stack_pointer != (unsigned char *)0x0) {
           handle_system_error();
         }
       }
@@ -4111,11 +4111,11 @@ label_:
         pppppuStack_c8 = (unsigned long long *****)0x0;
         stack_var_ = 0;
         stack_var_ = 3;
-        function_(&stack_ptr_,&pppppuStack_d0);
+        system_function_(&system_stack_pointer,&pppppuStack_d0);
         pppppflags6 = pppppuStack_c8;
         pppppflags3 = pppppuStack_d0;
-        init_result9 = (long long)pppppuStack_c8 - (long long)pppppuStack_d0;
-        ppppppuVar12 = (unsigned long long ******)function_(global_data_,CONFIG_PATH_BUFFER_SIZE,8,3);
+        system_init_result9 = (long long)pppppuStack_c8 - (long long)pppppuStack_d0;
+        ppppppuVar12 = (unsigned long long ******)system_function_(system_global_data_,CONFIG_PATH_BUFFER_SIZE,8,3);
         ppppppuStack_d8 = ppppppuVar12;
         *ppppppuVar12 = (unsigned long long *****)0x0;
         ppppppuVar12[1] = (unsigned long long *****)0x0;
@@ -4134,71 +4134,71 @@ label_:
         }
         if (((unsigned long long ********)pppppppuVar6 == &pppppppuStack_188) ||
            (int_var_ < *(int *)(pppppppuVar6 + 4))) {
-          ptr_var_ = (unsigned long long *)function_(&pppppppuStack_188,auStack_90);
-          pppppppuVar6 = (unsigned long long *******)*ptr_var_;
+          system_pointer_variable = (unsigned long long *)system_function_(&pppppppuStack_188,auStack_90);
+          pppppppuVar6 = (unsigned long long *******)*system_pointer_variable;
         }
         pppppppuVar6[5] = ppppppuVar12;
-        int_var_ = (int)(init_result9 >> 5);
-        init_result9 = (long long)int_var_;
+        int_var_ = (int)(system_init_result9 >> 5);
+        system_init_result9 = (long long)int_var_;
         pppppflags5 = pppppflags3;
         if (0 < int_var_) {
           pppppflags2 = pppppflags3 + 1;
           do {
-            stack_ptr_ = &g_threadString2;
+            system_stack_pointer = &g_threadString2;
             stack_var_._0_4_ = 0;
             stack_var_._4_4_ = 0;
-            stack_ptr_ = (unsigned char *)0x0;
+            system_stack_pointer = (unsigned char *)0x0;
             stack_var_ = 0;
-            system_thread_manager_001(&stack_ptr_,*(unsigned int *)(pppppflags2 + 1));
+            system_thread_manager_001(&system_stack_pointer,*(unsigned int *)(pppppflags2 + 1));
             if (*(int *)(pppppflags2 + 1) != 0) {
-              memcpy(stack_ptr_,*pppppflags2,*(int *)(pppppflags2 + 1) + 1);
+              memcpy(system_stack_pointer,*pppppflags2,*(int *)(pppppflags2 + 1) + 1);
             }
             if (*pppppflags2 != (unsigned long long ****)0x0) {
               stack_var_ = 0;
-              if (stack_ptr_ != (unsigned char *)0x0) {
-                *stack_ptr_ = 0;
+              if (system_stack_pointer != (unsigned char *)0x0) {
+                *system_stack_pointer = 0;
               }
               stack_var_._4_4_ = 0;
             }
             int_var_ = stack_var_ + 0xd;
-            system_thread_manager_001(&stack_ptr_,int_var_);
-            ptr_var_ = (unsigned long long *)(stack_ptr_ + stack_var_);
-            *ptr_var_ = 0x782e656e6563732f;
-            *(unsigned int *)(ptr_var_ + 1) = 0x6e656373;
-            *(unsigned short *)((long long)ptr_var_ + 0xc) = 0x65;
+            system_thread_manager_001(&system_stack_pointer,int_var_);
+            system_pointer_variable = (unsigned long long *)(system_stack_pointer + stack_var_);
+            *system_pointer_variable = 0x782e656e6563732f;
+            *(unsigned int *)(system_pointer_variable + 1) = 0x6e656373;
+            *(unsigned short *)((long long)system_pointer_variable + 0xc) = 0x65;
             stack_var_ = int_var_;
-            cVar5 = system_thread_002(&stack_ptr_);
+            cVar5 = system_thread_002(&system_stack_pointer);
             if (cVar5 == '\0') {
               stack_var_ = 0;
-              if (stack_ptr_ != (unsigned char *)0x0) {
-                *stack_ptr_ = 0;
+              if (system_stack_pointer != (unsigned char *)0x0) {
+                *system_stack_pointer = 0;
               }
               uint_var_ = *(uint *)(pppppflags2 + 1);
               flags0 = (ulong long)uint_var_;
               if (*pppppflags2 != (unsigned long long ****)0x0) {
-                system_thread_manager_001(&stack_ptr_,flags0);
+                system_thread_manager_001(&system_stack_pointer,flags0);
               }
               if (uint_var_ != 0) {
-                memcpy(stack_ptr_,*pppppflags2,flags0);
+                memcpy(system_stack_pointer,*pppppflags2,flags0);
               }
-              if (stack_ptr_ != (unsigned char *)0x0) {
-                stack_ptr_[flags0] = 0;
+              if (system_stack_pointer != (unsigned char *)0x0) {
+                system_stack_pointer[flags0] = 0;
               }
               stack_var_._4_4_ = *(uint *)((long long)pppppflags2 + 0x14);
               stack_var_ = uint_var_;
-              system_thread_manager_001(&stack_ptr_,0x12);
-              ptr_var_ = (unsigned int *)(stack_ptr_ + stack_var_);
-              *ptr_var_ = 0x6563732f;
-              ptr_var_[1] = 0x782e656e;
-              ptr_var_[2] = 0x2e6f6373;
-              ptr_var_[3] = 0x65637378;
-              *(unsigned short *)(ptr_var_ + 4) = 0x656e;
-              *(unsigned char *)((long long)ptr_var_ + 0x12) = 0;
+              system_thread_manager_001(&system_stack_pointer,0x12);
+              system_pointer_variable = (unsigned int *)(system_stack_pointer + stack_var_);
+              *system_pointer_variable = 0x6563732f;
+              system_pointer_variable[1] = 0x782e656e;
+              system_pointer_variable[2] = 0x2e6f6373;
+              system_pointer_variable[3] = 0x65637378;
+              *(unsigned short *)(system_pointer_variable + 4) = 0x656e;
+              *(unsigned char *)((long long)system_pointer_variable + 0x12) = 0;
               stack_var_ = 0x12;
-              cVar5 = system_thread_002(&stack_ptr_);
+              cVar5 = system_thread_002(&system_stack_pointer);
               if (cVar5 != '\0') goto label_;
-              stack_ptr_ = &g_threadString2;
-              if (stack_ptr_ != (unsigned char *)0x0) {
+              system_stack_pointer = &g_threadString2;
+              if (system_stack_pointer != (unsigned char *)0x0) {
                 handle_system_error();
               }
             }
@@ -4217,8 +4217,8 @@ label_:
               }
               if (((unsigned long long ********)pppppppuVar6 == &pppppppuStack_188) ||
                  (int_var_ < *(int *)(pppppppuVar6 + 4))) {
-                ptr_var_ = (unsigned long long *)function_(&pppppppuStack_188,&ppppppuStack_a0);
-                pppppppuVar6 = (unsigned long long *******)*ptr_var_;
+                system_pointer_variable = (unsigned long long *)system_function_(&pppppppuStack_188,&ppppppuStack_a0);
+                pppppppuVar6 = (unsigned long long *******)*system_pointer_variable;
               }
               ppppppuVar12 = pppppppuVar6[5];
               ppppppflags = (unsigned long long ******)ppppppuVar12[1];
@@ -4234,9 +4234,9 @@ label_:
                 ppppppuStack_d8 = ppppppflags;
                 system_thread_manager_001(ppppppflags,stack_var_);
                 if (stack_var_ != 0) {
-                  memcpy(ppppppflags[1],stack_ptr_,stack_var_ + 1);
+                  memcpy(ppppppflags[1],system_stack_pointer,stack_var_ + 1);
                 }
-                if (stack_ptr_ != (unsigned char *)0x0) {
+                if (system_stack_pointer != (unsigned char *)0x0) {
                   *(unsigned int *)(ppppppflags + 2) = 0;
                   if (ppppppflags[1] != (unsigned long long *****)0x0) {
                     *(unsigned char *)ppppppflags[1] = 0;
@@ -4245,23 +4245,23 @@ label_:
                 }
               }
               else {
-                system_event_handler_006(ppppppuVar12,&stack_ptr_);
+                system_event_handler_006(ppppppuVar12,&system_stack_pointer);
               }
-              stack_ptr_ = &g_threadString2;
-              if (stack_ptr_ != (unsigned char *)0x0) {
+              system_stack_pointer = &g_threadString2;
+              if (system_stack_pointer != (unsigned char *)0x0) {
                 handle_system_error();
               }
             }
             stack_var_ = (ulong long)stack_var_._4_4_ << CONFIG_PATH_BUFFER_SIZE;
-            stack_ptr_ = (unsigned char *)0x0;
-            stack_ptr_ = &g_threadString4;
+            system_stack_pointer = (unsigned char *)0x0;
+            system_stack_pointer = &g_threadString4;
             pppppflags2 = pppppflags2 + 4;
-            init_result9 = init_result9 + -1;
+            system_init_result9 = system_init_result9 + -1;
             pppppflags3 = pppppuStack_d0;
             pppppflags6 = pppppuStack_c8;
             pppppflags5 = pppppuStack_d0;
-            long_var_ = stack_long_;
-          } while (init_result9 != 0);
+            system_long_variable = system_stack_long;
+          } while (system_init_result9 != 0);
         }
         for (; pppppflags3 != pppppflags6; pppppflags3 = pppppflags3 + 4) {
           (*(code *)**pppppflags3)(pppppflags3,0);
@@ -4269,21 +4269,21 @@ label_:
         if (pppppflags5 != (unsigned long long *****)0x0) {
           handle_system_error(pppppflags5);
         }
-        stack_ptr_ = &g_threadString2;
-        if (stack_ptr_ != (unsigned char *)0x0) {
+        system_stack_pointer = &g_threadString2;
+        if (system_stack_pointer != (unsigned char *)0x0) {
           handle_system_error();
         }
       }
       stack_var_ = stack_var_ & INT64_MASK;
-      stack_ptr_ = (unsigned char *)0x0;
-      stack_ptr_ = &g_threadString4;
+      system_stack_pointer = (unsigned char *)0x0;
+      system_stack_pointer = &g_threadString4;
       int_var_ = int_var_ + 1;
       ppppppplStackX_8 = (long long *******)CONCAT44(ppppppplStackX_8._4_4_,int_var_);
-      pinit_result3 = global_data_;
+      psystem_init_result3 = system_global_data_;
       mutex_attr = pppppppuStackX_18;
-      init_result9 = stack_long_;
+      system_init_result9 = system_stack_long;
       mutex_type = uStackX_20;
-    } while (int_var_ < (int)long_var_);
+    } while (int_var_ < (int)system_long_variable);
   }
   stack_var_ = 3;
   pppppppuStack_138 = &pppppppuStack_138;
@@ -4311,8 +4311,8 @@ label_:
       }
       if (((unsigned long long ********)pppppppuVar8 == &pppppppuStack_138) ||
          (*(int *)pppppppuVar6 < *(int *)(pppppppuVar8 + 4))) {
-        ptr_var_ = (unsigned long long *)function_(&pppppppuStack_138,&pppppppuStackX_18);
-        pppppppuVar8 = (unsigned long long *******)*ptr_var_;
+        system_pointer_variable = (unsigned long long *)system_function_(&pppppppuStack_138,&pppppppuStackX_18);
+        pppppppuVar8 = (unsigned long long *******)*system_pointer_variable;
       }
       if (pppppppuVar8 + 5 != pppppppuVar16) {
         system_event_handler_004(pppppppuVar8 + 5,*pppppppuVar16,pppppppuVar16[1]);
@@ -4332,8 +4332,8 @@ label_:
       }
       if (((unsigned long long ********)pppppppuVar8 == &pppppppuStack_188) ||
          (*(int *)pppppppuVar6 < *(int *)(pppppppuVar8 + 4))) {
-        ptr_var_ = (unsigned long long *)function_(&pppppppuStack_188,&ppppppplStackX_8);
-        pppppppuVar8 = (unsigned long long *******)*ptr_var_;
+        system_pointer_variable = (unsigned long long *)system_function_(&pppppppuStack_188,&ppppppplStackX_8);
+        pppppppuVar8 = (unsigned long long *******)*system_pointer_variable;
       }
       ppppppuVar12 = pppppppuVar8[5];
       ppppppuStack_a0 = ppppppuVar12;
@@ -4356,8 +4356,8 @@ label_:
       }
       if (((unsigned long long ********)pppppppuVar8 == &pppppppuStack_188) ||
          (*(int *)pppppppuVar6 < *(int *)(pppppppuVar8 + 4))) {
-        ptr_var_ = (unsigned long long *)function_(&pppppppuStack_188,&ppppppuStack_d8);
-        pppppppuVar8 = (unsigned long long *******)*ptr_var_;
+        system_pointer_variable = (unsigned long long *)system_function_(&pppppppuStack_188,&ppppppuStack_d8);
+        pppppppuVar8 = (unsigned long long *******)*system_pointer_variable;
       }
       pppppppuVar8[5] = (unsigned long long ******)0x0;
       pppppppuVar9 = (unsigned long long *******)func_0x00018066bd70(pppppppuVar9);
@@ -4365,7 +4365,7 @@ label_:
   }
   pppppppuVar9 = pppppppuStack_178;
   if (pppppppuStack_178 != (unsigned long long *******)0x0) {
-    function_(&pppppppuStack_188,*pppppppuStack_178);
+    system_function_(&pppppppuStack_188,*pppppppuStack_178);
     handle_system_error(pppppppuVar9);
   }
   pppppppuStack_188 = &pppppppuStack_188;
@@ -4373,7 +4373,7 @@ label_:
   pppppppuStack_178 = (unsigned long long *******)0x0;
   stack_var_ = stack_var_ & 0xffffffffffffff00;
   stack_var_ = 0;
-  uint_var_ = function_(global_data_,0x150,8,3);
+  uint_var_ = system_function_(system_global_data_,0x150,8,3);
   pppppppuStackX_18 = (unsigned long long *******)&pppppuStack_d0;
   uint_var_ = system_thread_manager_003(&pppppuStack_d0,mutex_type);
   ppppppplStackX_8 = (long long *******)&ppppppplStack_108;
@@ -4409,14 +4409,14 @@ label_:
     pppppppuStackX_18 = (unsigned long long *******)ppppppuVar12;
     (*(code *)(*ppppppuVar12)[5])(ppppppuVar12);
   }
-  pppppppuStackX_18 = *(unsigned long long ********)(init_result9 + SYSTEM_CONFIG_BUFFER_SIZE);
-  *(unsigned long long *******)(init_result9 + SYSTEM_CONFIG_BUFFER_SIZE) = ppppppuVar12;
+  pppppppuStackX_18 = *(unsigned long long ********)(system_init_result9 + SYSTEM_CONFIG_BUFFER_SIZE);
+  *(unsigned long long *******)(system_init_result9 + SYSTEM_CONFIG_BUFFER_SIZE) = ppppppuVar12;
   if (pppppppuStackX_18 != (unsigned long long *******)0x0) {
     (*(code *)(*pppppppuStackX_18)[7])();
   }
-  uint_var_ = global_data_;
+  uint_var_ = system_global_data_;
   pppppppuStackX_10 = &pppppppuStackX_18;
-  pppppppuStackX_18 = *(unsigned long long ********)(init_result9 + SYSTEM_CONFIG_BUFFER_SIZE);
+  pppppppuStackX_18 = *(unsigned long long ********)(system_init_result9 + SYSTEM_CONFIG_BUFFER_SIZE);
   if (pppppppuStackX_18 != (unsigned long long *******)0x0) {
     (*(code *)(*pppppppuStackX_18)[5])();
   }
@@ -4426,11 +4426,11 @@ label_:
   pppppppuStackX_18 = pppppppuStack_128;
   if (pppppppuStack_128 == (unsigned long long *******)0x0) {
     if (pppppppuStack_178 != (unsigned long long *******)0x0) {
-      function_(&pppppppuStack_188,*pppppppuStack_178);
+      system_function_(&pppppppuStack_188,*pppppppuStack_178);
       handle_system_error(pppppppuVar9);
     }
-    stack_ptr_ = &g_threadString2;
-    if (stack_ptr_ == (undefined *)0x0) {
+    system_stack_pointer = &g_threadString2;
+    if (system_stack_pointer == (void *)0x0) {
       return;
     }
     handle_system_error();
@@ -4444,132 +4444,132 @@ label_:
         data_180c91d14 = 0;
         return plVar7;
       }
-      init_result0 = (long long)int_var_ << 4;
+      system_init_result0 = (long long)int_var_ << 4;
       do {
         if ((int)(fVar12 - 12582912.0) <= (int)plVar9) {
           data_180c91d14 = 0;
           return plVar7;
         }
-        long_var_ = *(long long *)(init_result0 + (long long)global_data_);
-        plVar7 = (long long *)(ulong long)*(uint *)(long_var_ + 0xe0);
-        if ((*(uint *)(long_var_ + 0xe0) == 2) &&
-           (plVar7 = (long long *)(ulong long)*(uint *)(long_var_ + 0xd8), *(uint *)(long_var_ + 0xd8) == 0))
+        system_long_variable = *(long long *)(system_init_result0 + (long long)system_global_data_);
+        plVar7 = (long long *)(ulong long)*(uint *)(system_long_variable + 0xe0);
+        if ((*(uint *)(system_long_variable + 0xe0) == 2) &&
+           (plVar7 = (long long *)(ulong long)*(uint *)(system_long_variable + 0xd8), *(uint *)(system_long_variable + 0xd8) == 0))
         {
           LOCK();
-          uint_var_ = *(uint *)(long_var_ + 0xd8);
+          uint_var_ = *(uint *)(system_long_variable + 0xd8);
           if (uint_var_ == 0) {
-            *(uint *)(long_var_ + 0xd8) = UINT32_MAX;
+            *(uint *)(system_long_variable + 0xd8) = UINT32_MAX;
           }
           else {
             plVar7 = (long long *)(ulong long)uint_var_;
           }
           UNLOCK();
           if (uint_var_ == 0) {
-            *(unsigned char *)(long_var_ + 0xdc) = 0;
-            system_hardware_001(long_var_ + 0xe8);
-            uint_var_ = *(unsigned long long *)(long_var_ + 0x88);
-            int_var_ = *(int *)(long_var_ + 0x80);
-            *(unsigned long long *)(long_var_ + 0x88) = 0;
-            *(unsigned int *)(long_var_ + 0x80) = 0;
-            *(unsigned int *)(long_var_ + 0xe0) = 0;
-            *(unsigned int *)(long_var_ + 0xd8) = 0;
+            *(unsigned char *)(system_long_variable + 0xdc) = 0;
+            system_hardware_001(system_long_variable + 0xe8);
+            uint_var_ = *(unsigned long long *)(system_long_variable + 0x88);
+            int_var_ = *(int *)(system_long_variable + 0x80);
+            *(unsigned long long *)(system_long_variable + 0x88) = 0;
+            *(unsigned int *)(system_long_variable + 0x80) = 0;
+            *(unsigned int *)(system_long_variable + 0xe0) = 0;
+            *(unsigned int *)(system_long_variable + 0xd8) = 0;
             system_hardware_002(uint_var_);
             LOCK();
-            uint_var_ = global_data_ - int_var_;
-            plVar7 = (long long *)(ulong long)global_data_;
+            uint_var_ = system_global_data_ - int_var_;
+            plVar7 = (long long *)(ulong long)system_global_data_;
             UNLOCK();
-            global_data_ = uint_var_;
+            system_global_data_ = uint_var_;
             if (0 < int_var_) {
               plVar9 = (long long *)(ulong long)(uint)((int)plVar9 + int_var_);
-              plVar7 = global_data_ + (long long)int_var_ * 2 + 2;
-              if (plVar7 < global_data_) {
-                memmove(global_data_ + (long long)int_var_ * 2,plVar7,
-                        (long long)global_data_ - (long long)plVar7);
+              plVar7 = system_global_data_ + (long long)int_var_ * 2 + 2;
+              if (plVar7 < system_global_data_) {
+                memmove(system_global_data_ + (long long)int_var_ * 2,plVar7,
+                        (long long)system_global_data_ - (long long)plVar7);
               }
-              plVar7 = global_data_ + -2;
-              global_data_ = plVar7;
+              plVar7 = system_global_data_ + -2;
+              system_global_data_ = plVar7;
             }
           }
         }
-        init_result0 = init_result0 + -STRING_BUFFER_SIZE;
+        system_init_result0 = system_init_result0 + -STRING_BUFFER_SIZE;
         int_var_ = int_var_ + -1;
       } while (-1 < int_var_);
       data_180c91d14 = 0;
       return plVar7;
     }
-    flags = *(unsigned int *)(init_result0 + 0x84);
-    uint_var_ = *(unsigned int *)(init_result0 + 0x80);
-    if (plVar7 < global_data_) {
-      global_data_ = plVar7 + 2;
-      *plVar7 = init_result0;
+    flags = *(unsigned int *)(system_init_result0 + 0x84);
+    uint_var_ = *(unsigned int *)(system_init_result0 + 0x80);
+    if (plVar7 < system_global_data_) {
+      system_global_data_ = plVar7 + 2;
+      *plVar7 = system_init_result0;
       plVar7[1] = CONCAT44(uint_var_,flags);
     }
     else {
-      long_var_ = (long long)plVar7 - (long long)global_data_ >> 4;
-      if (long_var_ == 0) {
-        long_var_ = 1;
+      system_long_variable = (long long)plVar7 - (long long)system_global_data_ >> 4;
+      if (system_long_variable == 0) {
+        system_long_variable = 1;
 label_:
-        plVar7 = (long long *)function_(global_data_,long_var_ << 4,data_180c91d08);
+        plVar7 = (long long *)system_function_(system_global_data_,system_long_variable << 4,data_180c91d08);
       }
       else {
-        long_var_ = long_var_ * 2;
+        system_long_variable = system_long_variable * 2;
         plVar7 = plVar9;
-        if (long_var_ != 0) goto label_;
+        if (system_long_variable != 0) goto label_;
       }
-      if (global_data_ != global_data_) {
-        memmove(plVar7,global_data_,(long long)global_data_ - (long long)global_data_);
+      if (system_global_data_ != system_global_data_) {
+        memmove(plVar7,system_global_data_,(long long)system_global_data_ - (long long)system_global_data_);
       }
-      *plVar7 = init_result0;
+      *plVar7 = system_init_result0;
       plVar7[1] = CONCAT44(uint_var_,flags);
-      if (global_data_ != (long long *)0x0) {
+      if (system_global_data_ != (long long *)0x0) {
         handle_system_error();
       }
-      global_data_ = plVar7 + long_var_ * 2;
-      global_data_ = plVar7;
-      global_data_ = plVar7 + 2;
+      system_global_data_ = plVar7 + system_long_variable * 2;
+      system_global_data_ = plVar7;
+      system_global_data_ = plVar7 + 2;
     }
     cVar6 = system_validator_001(0x180c919f0,&lStackX_20);
-    plVar7 = global_data_;
-    init_result0 = lStackX_20;
+    plVar7 = system_global_data_;
+    system_init_result0 = lStackX_20;
   } while( true );
 }
       data_180c91d14 = uint_var_;
       return;
     }
-    long_var_ = *(long long *)(long_var_ + global_data_);
-    if ((*(int *)(long_var_ + 0xe0) == 2) && (*(int *)(long_var_ + 0xd8) == 0)) {
+    system_long_variable = *(long long *)(system_long_variable + system_global_data_);
+    if ((*(int *)(system_long_variable + 0xe0) == 2) && (*(int *)(system_long_variable + 0xd8) == 0)) {
       LOCK();
-      bVar8 = *(int *)(long_var_ + 0xd8) == 0;
+      bVar8 = *(int *)(system_long_variable + 0xd8) == 0;
       if (bVar8) {
-        *(int *)(long_var_ + 0xd8) = -1;
+        *(int *)(system_long_variable + 0xd8) = -1;
       }
       UNLOCK();
       if (bVar8) {
-        *(unsigned char *)(long_var_ + 0xdc) = uint_var_;
-        system_hardware_001(long_var_ + 0xe8);
-        uint_var_ = *(unsigned long long *)(long_var_ + 0x88);
-        int_var_ = *(int *)(long_var_ + 0x80);
-        *(unsigned long long *)(long_var_ + 0x88) = unaff_R12;
+        *(unsigned char *)(system_long_variable + 0xdc) = uint_var_;
+        system_hardware_001(system_long_variable + 0xe8);
+        uint_var_ = *(unsigned long long *)(system_long_variable + 0x88);
+        int_var_ = *(int *)(system_long_variable + 0x80);
+        *(unsigned long long *)(system_long_variable + 0x88) = unaff_R12;
         uint_var_ = (unsigned int)unaff_R12;
-        *(unsigned int *)(long_var_ + 0x80) = uint_var_;
-        *(unsigned int *)(long_var_ + 0xe0) = uint_var_;
-        *(unsigned int *)(long_var_ + 0xd8) = uint_var_;
+        *(unsigned int *)(system_long_variable + 0x80) = uint_var_;
+        *(unsigned int *)(system_long_variable + 0xe0) = uint_var_;
+        *(unsigned int *)(system_long_variable + 0xd8) = uint_var_;
         system_hardware_002(uint_var_);
         LOCK();
-        global_data_ = global_data_ - int_var_;
+        system_global_data_ = system_global_data_ - int_var_;
         UNLOCK();
         if (0 < int_var_) {
           unaff_EBP = unaff_EBP + int_var_;
-          long_var_ = (long long)unaff_EDI * STRING_BUFFER_SIZE + global_data_;
-          uint_var_ = long_var_ + STRING_BUFFER_SIZE;
-          if (uint_var_ < global_data_) {
-            memmove(long_var_,uint_var_,global_data_ - uint_var_);
+          system_long_variable = (long long)unaff_EDI * STRING_BUFFER_SIZE + system_global_data_;
+          uint_var_ = system_long_variable + STRING_BUFFER_SIZE;
+          if (uint_var_ < system_global_data_) {
+            memmove(system_long_variable,uint_var_,system_global_data_ - uint_var_);
           }
-          global_data_ = global_data_ - STRING_BUFFER_SIZE;
+          system_global_data_ = system_global_data_ - STRING_BUFFER_SIZE;
         }
       }
     }
-    long_var_ = long_var_ + -STRING_BUFFER_SIZE;
+    system_long_variable = system_long_variable + -STRING_BUFFER_SIZE;
     unaff_EDI = unaff_EDI + -1;
   } while (-1 < unaff_EDI);
   data_180c91d14 = uint_var_;
@@ -4580,7 +4580,7 @@ label_:
 }
         data_180d48da8 = '\x01';
         stack_int_ = 0x786;
-        function_(auStack_258,&systemFunctionData1,&systemFunctionData2,&systemFunctionData3);
+        system_function_(auStack_258,&systemFunctionData1,&systemFunctionData2,&systemFunctionData3);
         OutputDebugStringA(auStack_258);
       }
       fVar14 = (float)modff((float)(int)(*(ushort *)((long long)handle + 0x5e) - 1) *
@@ -4608,7 +4608,7 @@ label_:
     break;
   case 0x16:
     stack_int_ = mutex_type;
-    system_handler_007(init_result0,&stack_var_,handle,&uStackX_18);
+    system_handler_007(system_init_result0,&stack_var_,handle,&uStackX_18);
 code_r0x0001802a14f5:
     *flags = (float)stack_var_._2_1_ * 0.003921569;
     bVar1 = (byte)stack_var_;
@@ -4624,11 +4624,11 @@ code_r0x0001802a1528:
     break;
   case 0x1e:
     stack_int_ = mutex_type;
-    ptr_var_ = (unsigned short *)system_handler_008(init_result0,&stack_var_,handle,&uStackX_18);
-    fVar16 = (float)func_0x0001800adf40(ptr_var_[2]);
-    fVar17 = (float)func_0x0001800adf40(ptr_var_[1]);
-    fVar14 = (float)func_0x0001800adf40(*ptr_var_);
-    fVar15 = (float)func_0x0001800adf40(ptr_var_[3]);
+    system_pointer_variable = (unsigned short *)system_handler_008(system_init_result0,&stack_var_,handle,&uStackX_18);
+    fVar16 = (float)func_0x0001800adf40(system_pointer_variable[2]);
+    fVar17 = (float)func_0x0001800adf40(system_pointer_variable[1]);
+    fVar14 = (float)func_0x0001800adf40(*system_pointer_variable);
+    fVar15 = (float)func_0x0001800adf40(system_pointer_variable[3]);
     flags[3] = fVar15;
     *flags = fVar14;
     flags[1] = fVar17;
@@ -4636,7 +4636,7 @@ code_r0x0001802a1528:
     break;
   case CONFIG_PATH_BUFFER_SIZE:
     stack_int_ = mutex_type;
-    system_handler_002(init_result0,&stack_var_,handle,&uStackX_18);
+    system_handler_002(system_init_result0,&stack_var_,handle,&uStackX_18);
     *flags = (float)stack_var_;
     flags[2] = (float)stack_var_;
 code_r0x0001802a1ad1:
@@ -4665,11 +4665,11 @@ code_r0x0001802a1ade:
       if (-1 < int_var_) {
         int_var_ = int_var_;
       }
-      ptr_var_ = (unsigned long long *)
+      system_pointer_variable = (unsigned long long *)
                ((long long)(int)(int_var_ * (uint)*(ushort *)((long long)handle + 0x5c) + int_var_) * STRING_BUFFER_SIZE
                + *handle);
-      flags = ptr_var_[1];
-      *(unsigned long long *)flags = *ptr_var_;
+      flags = system_pointer_variable[1];
+      *(unsigned long long *)flags = *system_pointer_variable;
       *(unsigned long long *)(flags + 2) = flags;
     }
     else if (mutex_type == 1) {
@@ -4699,7 +4699,7 @@ code_r0x0001802a1ade:
     break;
   case 0x27:
     stack_int_ = mutex_type;
-    system_handler_005(init_result0,&stack_var_,handle,&uStackX_18);
+    system_handler_005(system_init_result0,&stack_var_,handle,&uStackX_18);
     fVar16 = 1.5259022e-05;
     *flags = (float)(ushort)stack_var_ * 1.5259022e-05;
     uint_var_ = (uint)stack_var_._2_2_;
@@ -4707,7 +4707,7 @@ code_r0x0001802a1ade:
     goto code_r0x0001802a16a1;
   case 0x28:
     stack_int_ = mutex_type;
-    system_handler_006(init_result0,&stack_var_,handle,&uStackX_18);
+    system_handler_006(system_init_result0,&stack_var_,handle,&uStackX_18);
     fVar16 = 0.003921569;
     *flags = (float)(byte)stack_var_ * 0.003921569;
     uint_var_ = (uint)stack_var_._1_1_;
@@ -4715,7 +4715,7 @@ code_r0x0001802a1ade:
     goto code_r0x0001802a16a1;
   case 0x29:
     stack_int_ = mutex_type;
-    system_handler_006(init_result0,&stack_var_,handle,&uStackX_18);
+    system_handler_006(system_init_result0,&stack_var_,handle,&uStackX_18);
 code_r0x0001802a1677:
     fVar16 = 0.003921569;
     *flags = (float)stack_var_._2_1_ * 0.003921569;
@@ -4728,14 +4728,14 @@ code_r0x0001802a16a1:
     break;
   case 0x2b:
     stack_int_ = mutex_type;
-    system_handler_004(init_result0,abStack_2b8,handle,&uStackX_18);
+    system_handler_004(system_init_result0,abStack_2b8,handle,&uStackX_18);
     flags[1] = 0.0;
     flags[2] = 0.0;
     flags[3] = 0.0;
     *flags = (float)abStack_2b8[0];
     break;
   case 0x2c:
-    uint_var_ = system_handler_003(init_result0,handle,&uStackX_18);
+    uint_var_ = system_handler_003(system_init_result0,handle,&uStackX_18);
     fVar16 = (float)uint_var_;
 code_r0x0001802a1829:
     *flags = fVar16;
@@ -4747,7 +4747,7 @@ system_handler_001:
   system_crypto_001(stack_var_ ^ (ulong long)auStack_2e8);
 }
     data_180d48da8 = '\x01';
-    function_(unaff_RBP + -0x70,&systemFunctionData1,&systemFunctionData2,&systemFunctionData3,0x786);
+    system_function_(unaff_RBP + -0x70,&systemFunctionData1,&systemFunctionData2,&systemFunctionData3,0x786);
     OutputDebugStringA(unaff_RBP + -0x70);
   }
   uint_var_ = *(ushort *)(unaff_RDI + 0x5c);
@@ -4770,7 +4770,7 @@ system_handler_001:
   system_crypto_001(*(ulong long *)(unaff_RBP + 400) ^ (ulong long)&stack0x00000000);
 }
   data_180d48da8 = 1;
-  function_(unaff_RBP + -0x70,&systemFunctionData1,&systemFunctionData2,&systemFunctionData3,0x786);
+  system_function_(unaff_RBP + -0x70,&systemFunctionData1,&systemFunctionData2,&systemFunctionData3,0x786);
   OutputDebugStringA(unaff_RBP + -0x70);
   uint_var_ = *(ushort *)(unaff_RDI + 0x5c);
   fVar3 = *(float *)(unaff_RBP + CONFIG_PATH_BUFFER_SIZE0);
@@ -4792,65 +4792,65 @@ system_handler_001:
   system_crypto_001(*(ulong long *)(unaff_RBP + 400) ^ (ulong long)&stack0x00000000);
 }
         data_180d48dac = '\x01';
-        stack_long_ = CONCAT44(stack_long_._4_4_,0x4ea);
-        function_(auStack_238,&systemFunctionData1,&systemFunctionData4,&systemFunctionData5);
+        system_stack_long = CONCAT44(system_stack_long._4_4_,0x4ea);
+        system_function_(auStack_238,&systemFunctionData1,&systemFunctionData4,&systemFunctionData5);
         OutputDebugStringA(auStack_238);
       }
       goto label_;
     }
-    uint_var_ = function_(&stack_ptr_,handle);
+    uint_var_ = system_function_(&system_stack_pointer,handle);
     system_thread_manager_012(uint_var_,1);
-    stack_ptr_ = &g_threadString2;
-    if (stack_ptr_ != (undefined *)0x0) {
+    system_stack_pointer = &g_threadString2;
+    if (system_stack_pointer != (void *)0x0) {
       handle_system_error();
     }
-    stack_ptr_ = (undefined *)0x0;
+    system_stack_pointer = (void *)0x0;
     stack_var_ = 0;
-    stack_ptr_ = &g_threadString4;
-    long_var_ = *flags;
+    system_stack_pointer = &g_threadString4;
+    system_long_variable = *flags;
     uint_var_ = *(unsigned short *)((long long)flags + 0x5e);
     flags = *(unsigned short *)((long long)flags + 0x5c);
-    ptr_var_ = &data_18098bc73;
-    if (*(undefined **)(handle + 8) != (undefined *)0x0) {
-      ptr_var_ = *(undefined **)(handle + 8);
+    system_pointer_variable = &data_18098bc73;
+    if (*(void **)(handle + 8) != (void *)0x0) {
+      system_pointer_variable = *(void **)(handle + 8);
     }
-    int_var_ = fopen_s(&stack_ptr_,ptr_var_,&fileOpenModeString);
-    stack_ptr_ = stack_ptr_;
+    int_var_ = fopen_s(&system_stack_pointer,system_pointer_variable,&fileOpenModeString);
+    system_stack_pointer = system_stack_pointer;
     if (int_var_ != 0) {
-      stack_ptr_ = (undefined *)0x0;
+      system_stack_pointer = (void *)0x0;
     }
-    stack_ptr_ = &fileHandleData;
-    if (stack_ptr_ == (undefined *)0x0) goto label_;
-    ptr_var_ = stack_ptr_;
-    if (long_var_ != 0) {
-      stack_long_ = long_var_;
-      system_hardware_003(&stack_ptr_,flags,uint_var_,int_var_);
-      ptr_var_ = stack_ptr_;
+    system_stack_pointer = &fileHandleData;
+    if (system_stack_pointer == (void *)0x0) goto label_;
+    system_pointer_variable = system_stack_pointer;
+    if (system_long_variable != 0) {
+      system_stack_long = system_long_variable;
+      system_hardware_003(&system_stack_pointer,flags,uint_var_,int_var_);
+      system_pointer_variable = system_stack_pointer;
     }
   }
-  fclose(ptr_var_);
+  fclose(system_pointer_variable);
 label_:
   system_crypto_001(stack_var_ ^ (ulong long)auStack_298);
 }
         data_180d48daa = '\x01';
-        stack_ptr_ = (undefined *)CONCAT44(stack_ptr_._4_4_,0xc88);
-        function_(auStack_228,&systemFunctionData1,&unknown_180a17a68,&systemFunctionData5);
+        system_stack_pointer = (void *)CONCAT44(system_stack_pointer._4_4_,0xc88);
+        system_function_(auStack_228,&systemFunctionData1,&system_180a17a68,&systemFunctionData5);
         OutputDebugStringA(auStack_228);
       }
-      ptr_var_ = &data_18098bc73;
-      if (*(undefined **)(handle + 8) != (undefined *)0x0) {
-        ptr_var_ = *(undefined **)(handle + 8);
+      system_pointer_variable = &data_18098bc73;
+      if (*(void **)(handle + 8) != (void *)0x0) {
+        system_pointer_variable = *(void **)(handle + 8);
       }
-      system_data_manager_002(global_data_,&systemDataManagerData,ptr_var_);
+      system_data_manager_002(system_global_data_,&systemDataManagerData,system_pointer_variable);
     }
   }
   cVar3 = handle_system_event(mutex_attr);
   if (cVar3 == '\0') {
-    ptr_var_ = &data_18098bc73;
-    if (*(undefined **)(handle + 8) != (undefined *)0x0) {
-      ptr_var_ = *(undefined **)(handle + 8);
+    system_pointer_variable = &data_18098bc73;
+    if (*(void **)(handle + 8) != (void *)0x0) {
+      system_pointer_variable = *(void **)(handle + 8);
     }
-    system_thread_003(&systemThreadData3,ptr_var_);
+    system_thread_003(&systemThreadData3,system_pointer_variable);
   }
   else {
     *(unsigned long long *)(mutex_attr + 0x14) = 0;
@@ -4870,12 +4870,12 @@ label_:
 }
       data_180d48dab = '\x01';
       stack_var_ = 0xac7;
-      function_(auStack_218,&systemFunctionData1,&systemFunctionData6,&systemFunctionData5);
+      system_function_(auStack_218,&systemFunctionData1,&systemFunctionData6,&systemFunctionData5);
       OutputDebugStringA(auStack_218);
     }
   }
   else {
-    system_thread_003(&unknown_180a17a38);
+    system_thread_003(&system_180a17a38);
   }
   system_crypto_001(stack_var_ ^ (ulong long)auStack_248);
 }
@@ -4891,7 +4891,7 @@ bool handle_system_event(unsigned long long *handle)
       uint_var_ = 0;
     }
     else {
-      flags = function_(global_data_,handle[1],3);
+      flags = system_function_(system_global_data_,handle[1],3);
       uint_var_ = handle[1];
     }
     memcpy(flags,*handle,uint_var_);
@@ -4903,7 +4903,7 @@ bool handle_system_event(unsigned long long *handle)
         uint_var_ = 0;
       }
       else {
-        flags = function_(global_data_,handle[1],3);
+        flags = system_function_(system_global_data_,handle[1],3);
         uint_var_ = handle[1];
       }
       memcpy(flags,*handle,uint_var_);
@@ -4916,7 +4916,7 @@ bool handle_system_event(unsigned long long *handle)
     uint_var_ = 0;
   }
   else {
-    flags = function_(global_data_,handle[1],3);
+    flags = system_function_(system_global_data_,handle[1],3);
     uint_var_ = handle[1];
   }
   memcpy(flags,*handle,uint_var_);
@@ -4928,10 +4928,10 @@ unsigned long long process_system_request(unsigned long long *handle)
   uint uint_var_;
   float *pfVar4;
   ulong long uint_var_;
-  ushort *ptr_var_;
+  ushort *system_pointer_variable;
   float *pfVar7;
   ulong long uint_var_;
-  byte *byte_ptr_var_;
+  byte *byte_system_pointer_variable;
   float fVar10;
   float fVar11;
   unsigned char auVar12 [16];
@@ -4941,23 +4941,23 @@ unsigned long long process_system_request(unsigned long long *handle)
   switch(*(int *)((long long)handle + 0x54) + -1) {
   case 0:
   case 1:
-    byte_ptr_var_ = (byte *)*handle;
+    byte_system_pointer_variable = (byte *)*handle;
     pfVar4 = (float *)((ulong long)handle[1] >> 2);
     if (0 < (int)pfVar4) {
       uint_var_ = (ulong long)pfVar4 & UINT32_MAX;
       do {
-        fVar14 = (float)byte_ptr_var_[1] * 0.007843138 - 1.0;
-        fVar13 = (float)*byte_ptr_var_ * 0.007843138 - 1.0;
-        fVar15 = (float)byte_ptr_var_[2] * 0.007843138 - 1.0;
+        fVar14 = (float)byte_system_pointer_variable[1] * 0.007843138 - 1.0;
+        fVar13 = (float)*byte_system_pointer_variable * 0.007843138 - 1.0;
+        fVar15 = (float)byte_system_pointer_variable[2] * 0.007843138 - 1.0;
         fVar10 = fVar13 * fVar13 + fVar14 * fVar14 + fVar15 * fVar15;
         auVar12 = rsqrtss(ZEXT416((uint)fVar10),ZEXT416((uint)fVar10));
         fVar11 = auVar12._0_4_;
         fVar10 = fVar11 * 0.5 * (3.0 - fVar10 * fVar11 * fVar11);
-        *byte_ptr_var_ = (byte)(int)((fVar10 * fVar13 + 1.0) * 127.5);
-        byte_ptr_var_[1] = (byte)(int)((fVar10 * fVar14 + 1.0) * 127.5);
+        *byte_system_pointer_variable = (byte)(int)((fVar10 * fVar13 + 1.0) * 127.5);
+        byte_system_pointer_variable[1] = (byte)(int)((fVar10 * fVar14 + 1.0) * 127.5);
         int_var_ = (int)((fVar10 * fVar15 + 1.0) * 127.5);
-        byte_ptr_var_[2] = (byte)int_var_;
-        byte_ptr_var_ = byte_ptr_var_ + 4;
+        byte_system_pointer_variable[2] = (byte)int_var_;
+        byte_system_pointer_variable = byte_system_pointer_variable + 4;
         uint_var_ = uint_var_ - 1;
       } while (uint_var_ != 0);
       return CONCAT71((uint7)(uint3)((uint)int_var_ >> 8),1);
@@ -4966,23 +4966,23 @@ unsigned long long process_system_request(unsigned long long *handle)
   default:
     return 0;
   case 8:
-    ptr_var_ = (ushort *)*handle;
+    system_pointer_variable = (ushort *)*handle;
     pfVar4 = (float *)((ulong long)handle[1] >> 3);
     if (0 < (int)pfVar4) {
       uint_var_ = (ulong long)pfVar4 & UINT32_MAX;
       do {
-        fVar14 = (float)ptr_var_[1] * 3.0518044e-05 - 1.0;
-        fVar13 = (float)*ptr_var_ * 3.0518044e-05 - 1.0;
-        fVar15 = (float)ptr_var_[2] * 3.0518044e-05 - 1.0;
+        fVar14 = (float)system_pointer_variable[1] * 3.0518044e-05 - 1.0;
+        fVar13 = (float)*system_pointer_variable * 3.0518044e-05 - 1.0;
+        fVar15 = (float)system_pointer_variable[2] * 3.0518044e-05 - 1.0;
         fVar10 = fVar13 * fVar13 + fVar14 * fVar14 + fVar15 * fVar15;
         auVar12 = rsqrtss(ZEXT416((uint)fVar10),ZEXT416((uint)fVar10));
         fVar11 = auVar12._0_4_;
         fVar10 = fVar11 * 0.5 * (3.0 - fVar10 * fVar11 * fVar11);
-        *ptr_var_ = (ushort)(int)((fVar10 * fVar13 + 1.0) * 32767.5);
-        ptr_var_[1] = (ushort)(int)((fVar10 * fVar14 + 1.0) * 32767.5);
+        *system_pointer_variable = (ushort)(int)((fVar10 * fVar13 + 1.0) * 32767.5);
+        system_pointer_variable[1] = (ushort)(int)((fVar10 * fVar14 + 1.0) * 32767.5);
         int_var_ = (int)((fVar10 * fVar15 + 1.0) * 32767.5);
-        ptr_var_[2] = (ushort)int_var_;
-        ptr_var_ = ptr_var_ + 4;
+        system_pointer_variable[2] = (ushort)int_var_;
+        system_pointer_variable = system_pointer_variable + 4;
         uint_var_ = uint_var_ - 1;
       } while (uint_var_ != 0);
       return CONCAT71((uint7)(uint3)((uint)int_var_ >> 8),1);
@@ -5033,7 +5033,7 @@ unsigned long long process_system_request(unsigned long long *handle)
     }
     break;
   case 0x26:
-    ptr_var_ = (ushort *)*handle;
+    system_pointer_variable = (ushort *)*handle;
     auVar1._8_8_ = 0;
     auVar1._0_8_ = handle[1];
     pfVar4 = SUB168(ZEXT816(0xaaaaaaaaaaaaaaab) * auVar1,0);
@@ -5041,18 +5041,18 @@ unsigned long long process_system_request(unsigned long long *handle)
     if (0 < (int)uint_var_) {
       uint_var_ = uint_var_ & UINT32_MAX;
       do {
-        fVar14 = (float)ptr_var_[1] * 0.007843138 - 1.0;
-        fVar13 = (float)*ptr_var_ * 0.007843138 - 1.0;
-        fVar15 = (float)ptr_var_[2] * 0.007843138 - 1.0;
+        fVar14 = (float)system_pointer_variable[1] * 0.007843138 - 1.0;
+        fVar13 = (float)*system_pointer_variable * 0.007843138 - 1.0;
+        fVar15 = (float)system_pointer_variable[2] * 0.007843138 - 1.0;
         fVar10 = fVar13 * fVar13 + fVar14 * fVar14 + fVar15 * fVar15;
         auVar12 = rsqrtss(ZEXT416((uint)fVar10),ZEXT416((uint)fVar10));
         fVar11 = auVar12._0_4_;
         fVar10 = fVar11 * 0.5 * (3.0 - fVar10 * fVar11 * fVar11);
-        *ptr_var_ = (ushort)(int)((fVar13 * fVar10 + 1.0) * 127.5);
-        ptr_var_[1] = (ushort)(int)((fVar14 * fVar10 + 1.0) * 127.5);
+        *system_pointer_variable = (ushort)(int)((fVar13 * fVar10 + 1.0) * 127.5);
+        system_pointer_variable[1] = (ushort)(int)((fVar14 * fVar10 + 1.0) * 127.5);
         int_var_ = (int)((fVar15 * fVar10 + 1.0) * 127.5);
-        ptr_var_[2] = (ushort)int_var_;
-        ptr_var_ = ptr_var_ + 3;
+        system_pointer_variable[2] = (ushort)int_var_;
+        system_pointer_variable = system_pointer_variable + 3;
         uint_var_ = uint_var_ - 1;
       } while (uint_var_ != 0);
       return CONCAT71((uint7)(uint3)((uint)int_var_ >> 8),1);
@@ -5060,7 +5060,7 @@ unsigned long long process_system_request(unsigned long long *handle)
     break;
   case 0x27:
   case 0x28:
-    byte_ptr_var_ = (byte *)*handle;
+    byte_system_pointer_variable = (byte *)*handle;
     auVar12._8_8_ = 0;
     auVar12._0_8_ = handle[1];
     pfVar4 = SUB168(ZEXT816(0xaaaaaaaaaaaaaaab) * auVar12,0);
@@ -5068,19 +5068,19 @@ unsigned long long process_system_request(unsigned long long *handle)
     if (0 < (int)uint_var_) {
       uint_var_ = uint_var_ & UINT32_MAX;
       do {
-        fVar14 = (float)byte_ptr_var_[1] * 0.007843138 - 1.0;
-        fVar13 = (float)*byte_ptr_var_ * 0.007843138 - 1.0;
-        fVar15 = (float)byte_ptr_var_[2] * 0.007843138 - 1.0;
+        fVar14 = (float)byte_system_pointer_variable[1] * 0.007843138 - 1.0;
+        fVar13 = (float)*byte_system_pointer_variable * 0.007843138 - 1.0;
+        fVar15 = (float)byte_system_pointer_variable[2] * 0.007843138 - 1.0;
         fVar10 = fVar13 * fVar13 + fVar14 * fVar14 + fVar15 * fVar15;
         auVar12 = rsqrtss(ZEXT416((uint)fVar10),ZEXT416((uint)fVar10));
         fVar11 = auVar12._0_4_;
         fVar10 = fVar11 * 0.5 * (3.0 - fVar10 * fVar11 * fVar11);
-        *byte_ptr_var_ = (byte)(int)((fVar10 * fVar13 + 1.0) * 127.5);
-        byte_ptr_var_[1] = (byte)(int)((fVar10 * fVar14 + 1.0) * 127.5);
+        *byte_system_pointer_variable = (byte)(int)((fVar10 * fVar13 + 1.0) * 127.5);
+        byte_system_pointer_variable[1] = (byte)(int)((fVar10 * fVar14 + 1.0) * 127.5);
         uint_var_ = (uint)((fVar10 * fVar15 + 1.0) * 127.5);
         pfVar4 = (float *)(ulong long)uint_var_;
-        byte_ptr_var_[2] = (byte)uint_var_;
-        byte_ptr_var_ = byte_ptr_var_ + 3;
+        byte_system_pointer_variable[2] = (byte)uint_var_;
+        byte_system_pointer_variable = byte_system_pointer_variable + 3;
         uint_var_ = uint_var_ - 1;
       } while (uint_var_ != 0);
     }
@@ -5108,20 +5108,20 @@ unsigned long long handle_system_callback(unsigned long long *handle)
   int int_var_;
   int int_var_;
   ulong long uint_var_;
-  long long long_var_;
+  long long system_long_variable;
   double dVar21;
   if (*(int *)((long long)handle + 0x54) == CONFIG_PATH_BUFFER_SIZE) {
     pfVar14 = (float *)*handle;
     int_var_ = 0;
     dVar21 = 0.0;
-    long_var_ = 0;
+    system_long_variable = 0;
     int_var_ = 0;
     int_var_ = (int)((ulong long)handle[1] / 0xc);
     pfVar15 = pfVar14;
     if (3 < int_var_) {
       uint_var_ = (int_var_ - 4U >> 2) + 1;
       uint_var_ = (ulong long)uint_var_;
-      long_var_ = (ulong long)uint_var_ * 4;
+      system_long_variable = (ulong long)uint_var_ * 4;
       int_var_ = uint_var_ * 4;
       do {
         pfVar1 = pfVar15 + 3;
@@ -5150,7 +5150,7 @@ unsigned long long handle_system_callback(unsigned long long *handle)
     if (int_var_ < int_var_) {
       pfVar15 = pfVar15 + 2;
       uint_var_ = (ulong long)(uint)(int_var_ - int_var_);
-      long_var_ = long_var_ + uint_var_;
+      system_long_variable = system_long_variable + uint_var_;
       do {
         pfVar1 = pfVar15 + -1;
         pfVar2 = pfVar15 + -2;
@@ -5161,7 +5161,7 @@ unsigned long long handle_system_callback(unsigned long long *handle)
         uint_var_ = uint_var_ - 1;
       } while (uint_var_ != 0);
     }
-    dVar21 = 1.0 / (dVar21 / (double)long_var_);
+    dVar21 = 1.0 / (dVar21 / (double)system_long_variable);
     if (3 < int_var_) {
       uint_var_ = (int_var_ - 4U >> 2) + 1;
       uint_var_ = (ulong long)uint_var_;
@@ -5202,14 +5202,14 @@ unsigned long long handle_system_callback(unsigned long long *handle)
     int_var_ = 0;
     pfVar14 = (float *)*handle;
     dVar21 = 0.0;
-    long_var_ = 0;
+    system_long_variable = 0;
     int_var_ = 0;
     int_var_ = (int)((ulong long)handle[1] >> 4);
     pfVar15 = pfVar14;
     if (3 < int_var_) {
       uint_var_ = (int_var_ - 4U >> 2) + 1;
       uint_var_ = (ulong long)uint_var_;
-      long_var_ = (ulong long)uint_var_ * 4;
+      system_long_variable = (ulong long)uint_var_ * 4;
       int_var_ = uint_var_ * 4;
       do {
         pfVar1 = pfVar15 + 4;
@@ -5238,7 +5238,7 @@ unsigned long long handle_system_callback(unsigned long long *handle)
     if (int_var_ < int_var_) {
       pfVar15 = pfVar15 + 2;
       uint_var_ = (ulong long)(uint)(int_var_ - int_var_);
-      long_var_ = long_var_ + uint_var_;
+      system_long_variable = system_long_variable + uint_var_;
       do {
         pfVar1 = pfVar15 + -1;
         pfVar2 = pfVar15 + -2;
@@ -5249,7 +5249,7 @@ unsigned long long handle_system_callback(unsigned long long *handle)
         uint_var_ = uint_var_ - 1;
       } while (uint_var_ != 0);
     }
-    dVar21 = 1.0 / (dVar21 / (double)long_var_);
+    dVar21 = 1.0 / (dVar21 / (double)system_long_variable);
     if (3 < int_var_) {
       uint_var_ = (int_var_ - 4U >> 2) + 1;
       uint_var_ = (ulong long)uint_var_;
@@ -5286,60 +5286,60 @@ unsigned long long handle_system_callback(unsigned long long *handle)
   return 1;
 }
   data_180c8aa6a = 0;
-  *(unsigned int *)(init_result + 0x4c) = 0;
-  system_network_001(*(unsigned long long *)(init_result + STRING_BUFFER_SIZE8));
-  stack_ptr_ = &g_alternateDataTemplate;
-  stack_ptr_ = auStack_38;
+  *(unsigned int *)(system_init_result + 0x4c) = 0;
+  system_network_001(*(unsigned long long *)(system_init_result + STRING_BUFFER_SIZE8));
+  system_stack_pointer = &g_alternateDataTemplate;
+  system_stack_pointer = auStack_38;
   auStack_38[0] = 0;
   stack_var_ = 0x12;
-  strcpy_s(auStack_38,CONFIG_PATH_BUFFER_SIZE,&unknown_180a1a918);
+  strcpy_s(auStack_38,CONFIG_PATH_BUFFER_SIZE,&system_180a1a918);
   system_network_002();
-  stack_ptr_ = &g_threadString4;
+  system_stack_pointer = &g_threadString4;
   system_crypto_001(stack_var_ ^ (ulong long)auStack_78);
 }
         data_180d48e78 = 0;
-        global_data_ = 0;
-        global_data_ = 0;
+        system_global_data_ = 0;
+        system_global_data_ = 0;
         uRam0000000180d48ec8 = 0;
-        global_data_ = 3;
-        global_data_ = 0;
-        system_crypto_002(&unknown_180941dc0);
+        system_global_data_ = 3;
+        system_global_data_ = 0;
+        system_crypto_002(&system_180941dc0);
         system_crypto_003(&data_180d48e24);
       }
-      ptr_var_ = (uint *)&data_180d48e30;
+      system_pointer_variable = (uint *)&data_180d48e30;
       if (uint_var_ < (ulong long)
                   ((*(long long *)(mutex_attr + 0x1c) - *(long long *)(mutex_attr + 0x1a)) / 0xb0)) {
-        ptr_var_ = (uint *)(uint_var_ + *(long long *)(mutex_attr + 0x1a));
+        system_pointer_variable = (uint *)(uint_var_ + *(long long *)(mutex_attr + 0x1a));
       }
-      if ((*(int *)(init_result0 + 0x48) < global_data_) &&
-         (system_crypto_004(&data_180d48e24), global_data_ == -1)) {
-        global_data_ = &g_defaultDataTemplate;
-        global_data_ = &data_180d48e78;
-        global_data_ = 0;
+      if ((*(int *)(system_init_result0 + 0x48) < system_global_data_) &&
+         (system_crypto_004(&data_180d48e24), system_global_data_ == -1)) {
+        system_global_data_ = &g_defaultDataTemplate;
+        system_global_data_ = &data_180d48e78;
+        system_global_data_ = 0;
         data_180d48e78 = 0;
-        global_data_ = 0;
-        global_data_ = 0;
+        system_global_data_ = 0;
+        system_global_data_ = 0;
         uRam0000000180d48ec8 = 0;
-        global_data_ = 3;
-        global_data_ = 0;
-        system_crypto_002(&unknown_180941dc0);
+        system_global_data_ = 3;
+        system_global_data_ = 0;
+        system_crypto_002(&system_180941dc0);
         system_crypto_003(&data_180d48e24);
       }
-      ptr_var_ = &data_180d48e30;
+      system_pointer_variable = &data_180d48e30;
       if (uint_var_ < (ulong long)
                   ((*(long long *)(flags + 0x1c) - *(long long *)(flags + 0x1a)) / 0xb0)) {
-        ptr_var_ = (undefined *)(uint_var_ + *(long long *)(flags + 0x1a));
+        system_pointer_variable = (void *)(uint_var_ + *(long long *)(flags + 0x1a));
       }
-      if ((((0.0001 <= ABS(*(float *)(ptr_var_ + 0x14) - (float)ptr_var_[5])) ||
-           (0.0001 <= ABS(*(float *)(ptr_var_ + 0x18) - (float)ptr_var_[6]))) ||
-          (0.0001 <= ABS(*(float *)(ptr_var_ + 0x1c) - (float)ptr_var_[7]))) ||
-         (((0.0001 <= ABS(*(float *)(ptr_var_ + STRING_BUFFER_SIZE) - (float)ptr_var_[4]) ||
-           (0.0001 <= ABS(*(float *)(ptr_var_ + CONFIG_PATH_BUFFER_SIZE) - (float)ptr_var_[8]))) ||
-          ((0.0001 <= ABS(*(float *)(ptr_var_ + 0x24) - (float)ptr_var_[9]) ||
-           (0.0001 <= ABS(*(float *)(ptr_var_ + 0x28) - (float)ptr_var_[10]))))))) {
-        *ptr_var_ = *ptr_var_ | 8;
+      if ((((0.0001 <= ABS(*(float *)(system_pointer_variable + 0x14) - (float)system_pointer_variable[5])) ||
+           (0.0001 <= ABS(*(float *)(system_pointer_variable + 0x18) - (float)system_pointer_variable[6]))) ||
+          (0.0001 <= ABS(*(float *)(system_pointer_variable + 0x1c) - (float)system_pointer_variable[7]))) ||
+         (((0.0001 <= ABS(*(float *)(system_pointer_variable + STRING_BUFFER_SIZE) - (float)system_pointer_variable[4]) ||
+           (0.0001 <= ABS(*(float *)(system_pointer_variable + CONFIG_PATH_BUFFER_SIZE) - (float)system_pointer_variable[8]))) ||
+          ((0.0001 <= ABS(*(float *)(system_pointer_variable + 0x24) - (float)system_pointer_variable[9]) ||
+           (0.0001 <= ABS(*(float *)(system_pointer_variable + 0x28) - (float)system_pointer_variable[10]))))))) {
+        *system_pointer_variable = *system_pointer_variable | 8;
       }
-      uint_var_ = system_allocator_001(handle,ptr_var_ + 0x88,ptr_var_ + 0x22);
+      uint_var_ = system_allocator_001(handle,system_pointer_variable + 0x88,system_pointer_variable + 0x22);
       uint_var_ = uint_var_ + 1;
       uint_var_ = uint_var_ + 0xb0;
       uint_var_ = uint_var_ - 1;
@@ -5366,13 +5366,13 @@ code_r0x000180329ed1:
 }
 unsigned long long allocate_system_memory(long long handle,long long *flags,unsigned int *mutex_attr,uint mutex_type)
 {
-  long long *pinit_result;
+  long long *psystem_init_result;
   byte bVar2;
   int int_var_;
-  unsigned long long *ptr_var_;
+  unsigned long long *system_pointer_variable;
   unsigned long long uint_var_;
   long long *plVar6;
-  long long long_var_;
+  long long system_long_variable;
   long long *plStackX_18;
   unsigned int auStackX_20 [2];
   long long *plStack_80;
@@ -5385,27 +5385,27 @@ unsigned long long allocate_system_memory(long long handle,long long *flags,unsi
   uint_var_ = 0;
   bVar2 = *(byte *)(mutex_attr + 2);
   if ((mutex_type >> 1 & 1) != 0) {
-    system_ui_003(global_data_,&plStack_78,mutex_attr + 0x14,1);
-    ptr_var_ = (unsigned long long *)system_ui_006();
-    system_resource_002(*ptr_var_,&plStackX_18);
+    system_ui_003(system_global_data_,&plStack_78,mutex_attr + 0x14,1);
+    system_pointer_variable = (unsigned long long *)system_ui_006();
+    system_resource_002(*system_pointer_variable,&plStackX_18);
     if (plStack_80 != (long long *)0x0) {
       (**(code **)(*plStack_80 + 0x38))();
     }
     system_resource_003(plStackX_18,&plStack_78);
     *(uint *)(plStackX_18 + CONFIG_PATH_BUFFER_SIZE) = *(uint *)(plStackX_18 + CONFIG_PATH_BUFFER_SIZE) | SYSTEM_CONFIG_BUFFER_SIZE_000000;
     auStackX_20[0] = *mutex_attr;
-    pinit_result = (long long *)(handle + 0x3d8);
-    plStack_80 = pinit_result;
-    int_var_ = _Mtx_lock(pinit_result);
+    psystem_init_result = (long long *)(handle + 0x3d8);
+    plStack_80 = psystem_init_result;
+    int_var_ = _Mtx_lock(psystem_init_result);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
-    uint_var_ = function_(global_data_,0x298,8,3);
+    uint_var_ = system_function_(system_global_data_,0x298,8,3);
     plVar6 = (long long *)system_memory_001(uint_var_);
     pplStack_68 = (long long **)CONCAT44(pplStack_68._4_4_,auStackX_20[0]);
     plStack_60 = plVar6;
     system_memory_manager_006(handle + 0x3a8,auStack_58,&pplStack_68);
-    int_var_ = _Mtx_unlock(pinit_result);
+    int_var_ = _Mtx_unlock(psystem_init_result);
     if (int_var_ != 0) {
       __Throw_C_error_std__YAXH_Z(int_var_);
     }
@@ -5416,7 +5416,7 @@ unsigned long long allocate_system_memory(long long handle,long long *flags,unsi
     if (plVar6 != (long long *)0x0) {
       (**(code **)(*plVar6 + 0x28))(plVar6);
     }
-    function_(uint_var_,&plStack_80);
+    system_function_(uint_var_,&plStack_80);
     *(int *)(handle + 0xb0) = *(int *)(handle + 0xb0) + 1;
     uint_var_ = 1;
     if (plStackX_18 != (long long *)0x0) {
@@ -5428,32 +5428,32 @@ unsigned long long allocate_system_memory(long long handle,long long *flags,unsi
   }
   if ((mutex_type >> 2 & 1) == 0) {
     if (((mutex_type >> 1 & 1) == 0) && ((bVar2 & 1) != 0)) {
-      long_var_ = system_memory_manager_007(handle,*mutex_attr);
-      *flags = long_var_;
+      system_long_variable = system_memory_manager_007(handle,*mutex_attr);
+      *flags = system_long_variable;
       uint_var_ = 1;
     }
   }
   else {
     auStackX_20[0] = *mutex_attr;
-    long_var_ = system_memory_manager_007(handle);
-    if (long_var_ == 0) {
+    system_long_variable = system_memory_manager_007(handle);
+    if (system_long_variable == 0) {
       *flags = 0;
       uint_var_ = 1;
     }
     else {
-      pinit_result = (long long *)(handle + 0x3d8);
-      plStackX_18 = pinit_result;
-      int_var_ = _Mtx_lock(pinit_result);
+      psystem_init_result = (long long *)(handle + 0x3d8);
+      plStackX_18 = psystem_init_result;
+      int_var_ = _Mtx_lock(psystem_init_result);
       if (int_var_ != 0) {
         __Throw_C_error_std__YAXH_Z(int_var_);
       }
       system_memory_manager_008(handle + 0x3a8,auStackX_20);
-      int_var_ = _Mtx_unlock(pinit_result);
+      int_var_ = _Mtx_unlock(psystem_init_result);
       if (int_var_ != 0) {
         __Throw_C_error_std__YAXH_Z(int_var_);
       }
-      *flags = long_var_;
-      *(unsigned char *)(long_var_ + 0x39) = 1;
+      *flags = system_long_variable;
+      *(unsigned char *)(system_long_variable + 0x39) = 1;
       uint_var_ = 1;
     }
   }
@@ -5461,7 +5461,7 @@ unsigned long long allocate_system_memory(long long handle,long long *flags,unsi
 }
     data_180d49748 = 0;
     system_memory_002(0x180d496e0);
-    system_crypto_002(function_);
+    system_crypto_002(system_function_);
     system_crypto_003(&data_180d496d0);
   }
   int_var_ = _Mtx_lock(handle + 0x6e8);
@@ -5469,70 +5469,70 @@ unsigned long long allocate_system_memory(long long handle,long long *flags,unsi
     __Throw_C_error_std__YAXH_Z(int_var_);
   }
   if ((ulong long)mutex_attr <= *(ulong long *)(handle + 0x160)) {
-    for (ptr_var_ = *(uint **)(*(long long *)(handle + 0x6c0) +
+    for (system_pointer_variable = *(uint **)(*(long long *)(handle + 0x6c0) +
                             ((ulong long)flags % (ulong long)*(uint *)(handle + 0x6c8)) * 8);
-        ptr_var_ != (uint *)0x0; ptr_var_ = *(uint **)(ptr_var_ + 4)) {
-      if (flags == *ptr_var_) goto label_;
+        system_pointer_variable != (uint *)0x0; system_pointer_variable = *(uint **)(system_pointer_variable + 4)) {
+      if (flags == *system_pointer_variable) goto label_;
     }
-    ptr_var_ = *(uint **)(*(long long *)(handle + 0x6c0) + *(long long *)(handle + 0x6c8) * 8);
+    system_pointer_variable = *(uint **)(*(long long *)(handle + 0x6c0) + *(long long *)(handle + 0x6c8) * 8);
 label_:
-    long_var_ = *(long long *)(ptr_var_ + 2);
-    init_result = *(long long *)(long_var_ + 8);
-    for (ptr_var_ = *(uint **)(init_result + ((ulong long)mutex_attr % (ulong long)*(uint *)(long_var_ + STRING_BUFFER_SIZE)) * 8);
-        ptr_var_ != (uint *)0x0; ptr_var_ = *(uint **)(ptr_var_ + 4)) {
-      if (mutex_attr == *ptr_var_) {
-        long_var_ = *(long long *)(long_var_ + STRING_BUFFER_SIZE);
+    system_long_variable = *(long long *)(system_pointer_variable + 2);
+    system_init_result = *(long long *)(system_long_variable + 8);
+    for (system_pointer_variable = *(uint **)(system_init_result + ((ulong long)mutex_attr % (ulong long)*(uint *)(system_long_variable + STRING_BUFFER_SIZE)) * 8);
+        system_pointer_variable != (uint *)0x0; system_pointer_variable = *(uint **)(system_pointer_variable + 4)) {
+      if (mutex_attr == *system_pointer_variable) {
+        system_long_variable = *(long long *)(system_long_variable + STRING_BUFFER_SIZE);
         goto label_;
       }
     }
-    long_var_ = *(long long *)(long_var_ + STRING_BUFFER_SIZE);
-    ptr_var_ = *(uint **)(init_result + long_var_ * 8);
+    system_long_variable = *(long long *)(system_long_variable + STRING_BUFFER_SIZE);
+    system_pointer_variable = *(uint **)(system_init_result + system_long_variable * 8);
 label_:
-    if ((ptr_var_ != *(uint **)(init_result + long_var_ * 8)) && (long_var_ = *(long long *)(ptr_var_ + 2), long_var_ != 0)
+    if ((system_pointer_variable != *(uint **)(system_init_result + system_long_variable * 8)) && (system_long_variable = *(long long *)(system_pointer_variable + 2), system_long_variable != 0)
        ) goto label_;
   }
   system_memory_002(0x180d496e0);
-  long_var_ = 0x180d496e0;
+  system_long_variable = 0x180d496e0;
 label_:
   int_var_ = _Mtx_unlock(handle + 0x6e8);
   if (int_var_ != 0) {
     __Throw_C_error_std__YAXH_Z(int_var_);
   }
-  return long_var_;
+  return system_long_variable;
 }
 long long allocate_with_flags(long long handle,uint flags,uint mutex_attr)
 {
-  long long init_result;
-  long long long_var_;
-  uint *ptr_var_;
+  long long system_init_result;
+  long long system_long_variable;
+  uint *system_pointer_variable;
   if ((*(int *)(*(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8) +
-               0x48) < global_data_) && (system_crypto_004(&data_180d497d0), global_data_ == -1)) {
+               0x48) < system_global_data_) && (system_crypto_004(&data_180d497d0), system_global_data_ == -1)) {
     system_memory_004(0x180d497e0);
-    system_crypto_002(function_);
+    system_crypto_002(system_function_);
     system_crypto_003(&data_180d497d0);
   }
   if ((ulong long)mutex_attr <= *(ulong long *)(handle + 0x160)) {
-    for (ptr_var_ = *(uint **)(*(long long *)(handle + 0x9f8) +
+    for (system_pointer_variable = *(uint **)(*(long long *)(handle + 0x9f8) +
                             ((ulong long)flags % (ulong long)*(uint *)(handle + 0xa00)) * 8);
-        ptr_var_ != (uint *)0x0; ptr_var_ = *(uint **)(ptr_var_ + 4)) {
-      if (flags == *ptr_var_) goto label_;
+        system_pointer_variable != (uint *)0x0; system_pointer_variable = *(uint **)(system_pointer_variable + 4)) {
+      if (flags == *system_pointer_variable) goto label_;
     }
-    ptr_var_ = *(uint **)(*(long long *)(handle + 0x9f8) + *(long long *)(handle + 0xa00) * 8);
+    system_pointer_variable = *(uint **)(*(long long *)(handle + 0x9f8) + *(long long *)(handle + 0xa00) * 8);
 label_:
-    long_var_ = *(long long *)(ptr_var_ + 2);
-    init_result = *(long long *)(long_var_ + 8);
-    for (ptr_var_ = *(uint **)(init_result + ((ulong long)mutex_attr % (ulong long)*(uint *)(long_var_ + STRING_BUFFER_SIZE)) * 8);
-        ptr_var_ != (uint *)0x0; ptr_var_ = *(uint **)(ptr_var_ + 4)) {
-      if (mutex_attr == *ptr_var_) {
-        long_var_ = *(long long *)(long_var_ + STRING_BUFFER_SIZE);
+    system_long_variable = *(long long *)(system_pointer_variable + 2);
+    system_init_result = *(long long *)(system_long_variable + 8);
+    for (system_pointer_variable = *(uint **)(system_init_result + ((ulong long)mutex_attr % (ulong long)*(uint *)(system_long_variable + STRING_BUFFER_SIZE)) * 8);
+        system_pointer_variable != (uint *)0x0; system_pointer_variable = *(uint **)(system_pointer_variable + 4)) {
+      if (mutex_attr == *system_pointer_variable) {
+        system_long_variable = *(long long *)(system_long_variable + STRING_BUFFER_SIZE);
         goto label_;
       }
     }
-    long_var_ = *(long long *)(long_var_ + STRING_BUFFER_SIZE);
-    ptr_var_ = *(uint **)(init_result + long_var_ * 8);
+    system_long_variable = *(long long *)(system_long_variable + STRING_BUFFER_SIZE);
+    system_pointer_variable = *(uint **)(system_init_result + system_long_variable * 8);
 label_:
-    if ((ptr_var_ != *(uint **)(init_result + long_var_ * 8)) && (*(long long *)(ptr_var_ + 2) != 0)) {
-      return *(long long *)(ptr_var_ + 2);
+    if ((system_pointer_variable != *(uint **)(system_init_result + system_long_variable * 8)) && (*(long long *)(system_pointer_variable + 2) != 0)) {
+      return *(long long *)(system_pointer_variable + 2);
     }
   }
   system_memory_005(0x180d497e0);
@@ -5540,35 +5540,35 @@ label_:
 }
 long long allocate_system_buffer(unsigned long long handle,long long *flags,long long mutex_attr)
 {
-  long long init_result;
+  long long system_init_result;
   uint flags;
   ulong long uint_var_;
   unsigned long long uint_var_;
-  unsigned long long *ptr_var_;
+  unsigned long long *system_pointer_variable;
   uint uint_var_;
   if (*(int *)(*(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8) +
-              0x48) < global_data_) {
+              0x48) < system_global_data_) {
     system_crypto_004(&data_180d49990);
-    if (global_data_ == -1) {
-      uint_var_ = function_(global_data_,0x1c8,8,3);
-      global_data_ = system_memory_manager_001(uint_var_);
-      uint_var_ = function_(global_data_,CONFIG_PATH_BUFFER_SIZE0,8,3);
-      global_data_ = system_memory_manager_002(uint_var_);
-      ptr_var_ = (unsigned long long *)function_(global_data_,0xf8,8,3);
-      system_memory_003(ptr_var_);
-      // Original name: unknown_180a1b368
-      *ptr_var_ = &g_handle_manager_address_180a1b368;
-      system_memory_manager_004(ptr_var_);
-      global_data_ = ptr_var_;
-      global_data_ = function_();
-      ptr_var_ = (unsigned long long *)function_(global_data_,0xb0,8,3);
-      system_memory_003(ptr_var_);
-      // Original name: unknown_180a1b3f0
-      *ptr_var_ = &g_memory_manager_address_180a1b3f0;
-      global_data_ = ptr_var_;
-      global_data_ = system_memory_manager_005();
-      global_data_ = (*global_data_)(&data_180c918c0);
-      global_data_ = 0;
+    if (system_global_data_ == -1) {
+      uint_var_ = system_function_(system_global_data_,0x1c8,8,3);
+      system_global_data_ = system_memory_manager_001(uint_var_);
+      uint_var_ = system_function_(system_global_data_,CONFIG_PATH_BUFFER_SIZE0,8,3);
+      system_global_data_ = system_memory_manager_002(uint_var_);
+      system_pointer_variable = (unsigned long long *)system_function_(system_global_data_,0xf8,8,3);
+      system_memory_003(system_pointer_variable);
+      // Original name: system_180a1b368
+      *system_pointer_variable = &g_handle_manager_address_180a1b368;
+      system_memory_manager_004(system_pointer_variable);
+      system_global_data_ = system_pointer_variable;
+      system_global_data_ = system_function_();
+      system_pointer_variable = (unsigned long long *)system_function_(system_global_data_,0xb0,8,3);
+      system_memory_003(system_pointer_variable);
+      // Original name: system_180a1b3f0
+      *system_pointer_variable = &g_memory_manager_address_180a1b3f0;
+      system_global_data_ = system_pointer_variable;
+      system_global_data_ = system_memory_manager_005();
+      system_global_data_ = (*system_global_data_)(&data_180c918c0);
+      system_global_data_ = 0;
       system_crypto_003(&data_180d49990);
     }
   }
@@ -5576,9 +5576,9 @@ long long allocate_system_buffer(unsigned long long handle,long long *flags,long
   uint_var_ = (uint)(flags[1] - *flags >> 3);
   if (uint_var_ != 0) {
     do {
-      init_result = *(long long *)(*flags + uint_var_ * 8);
-      if (*(int *)(init_result + 8) == *(int *)(mutex_attr + 8)) {
-        return init_result;
+      system_init_result = *(long long *)(*flags + uint_var_ * 8);
+      if (*(int *)(system_init_result + 8) == *(int *)(mutex_attr + 8)) {
+        return system_init_result;
       }
       flags = (int)uint_var_ + 1;
       uint_var_ = (ulong long)flags;
@@ -5591,38 +5591,38 @@ unsigned long long
 system_allocator_008(unsigned long long handle,long long *flags,unsigned long long *mutex_attr,unsigned int mutex_type,
              unsigned int param_5,unsigned char param_6)
 {
-  long long init_result;
+  long long system_init_result;
   ulong long flags;
-  long long long_var_;
+  long long system_long_variable;
   unsigned long long uint_var_;
-  long long long_var_;
-  long long long_var_;
-  uint *ptr_var_;
+  long long system_long_variable;
+  long long system_long_variable;
+  uint *system_pointer_variable;
   uint_var_ = 0;
   flags = flags[1] - *flags >> 2;
   if ((int)flags != 0) {
-    long_var_ = 0;
+    system_long_variable = 0;
     flags = flags & UINT32_MAX;
     do {
-      ptr_var_ = (uint *)*mutex_attr;
-      init_result = *flags;
-      long_var_ = (long long)mutex_attr[1] - (long long)ptr_var_ >> 2;
-      if (0 < long_var_) {
+      system_pointer_variable = (uint *)*mutex_attr;
+      system_init_result = *flags;
+      system_long_variable = (long long)mutex_attr[1] - (long long)system_pointer_variable >> 2;
+      if (0 < system_long_variable) {
         do {
-          long_var_ = long_var_ >> 1;
-          if (ptr_var_[long_var_] < *(uint *)(init_result + long_var_)) {
-            ptr_var_ = ptr_var_ + long_var_ + 1;
-            long_var_ = long_var_ + (-1 - long_var_);
+          system_long_variable = system_long_variable >> 1;
+          if (system_pointer_variable[system_long_variable] < *(uint *)(system_init_result + system_long_variable)) {
+            system_pointer_variable = system_pointer_variable + system_long_variable + 1;
+            system_long_variable = system_long_variable + (-1 - system_long_variable);
           }
-          long_var_ = long_var_;
-        } while (0 < long_var_);
+          system_long_variable = system_long_variable;
+        } while (0 < system_long_variable);
       }
-      if ((ptr_var_ == (uint *)mutex_attr[1]) || (*(uint *)(init_result + long_var_) < *ptr_var_)) {
-        uint_var_ = allocate_with_flags(handle,*(unsigned int *)(init_result + long_var_),mutex_type);
+      if ((system_pointer_variable == (uint *)mutex_attr[1]) || (*(uint *)(system_init_result + system_long_variable) < *system_pointer_variable)) {
+        uint_var_ = allocate_with_flags(handle,*(unsigned int *)(system_init_result + system_long_variable),mutex_type);
         system_allocator_002(handle,uint_var_,param_5,mutex_type,param_6);
         uint_var_ = 1;
       }
-      long_var_ = long_var_ + 4;
+      system_long_variable = system_long_variable + 4;
       flags = flags - 1;
     } while (flags != 0);
   }
@@ -5631,35 +5631,35 @@ system_allocator_008(unsigned long long handle,long long *flags,unsigned long lo
 unsigned char check_memory_status(void)
 {
   uint in_EAX;
-  long long init_result;
-  long long long_var_;
-  long long long_var_;
+  long long system_init_result;
+  long long system_long_variable;
+  long long system_long_variable;
   unsigned char unaff_SIL;
   ulong long uint_var_;
-  uint *ptr_var_;
+  uint *system_pointer_variable;
   unsigned long long *unaff_R14;
   long long *unaff_R15;
-  long_var_ = 0;
+  system_long_variable = 0;
   uint_var_ = (ulong long)in_EAX;
   do {
-    ptr_var_ = (uint *)*unaff_R14;
-    init_result = (long long)unaff_R14[1] - (long long)ptr_var_ >> 2;
-    if (0 < init_result) {
+    system_pointer_variable = (uint *)*unaff_R14;
+    system_init_result = (long long)unaff_R14[1] - (long long)system_pointer_variable >> 2;
+    if (0 < system_init_result) {
       do {
-        long_var_ = init_result >> 1;
-        if (ptr_var_[long_var_] < *(uint *)(*unaff_R15 + long_var_)) {
-          ptr_var_ = ptr_var_ + long_var_ + 1;
-          long_var_ = init_result + (-1 - long_var_);
+        system_long_variable = system_init_result >> 1;
+        if (system_pointer_variable[system_long_variable] < *(uint *)(*unaff_R15 + system_long_variable)) {
+          system_pointer_variable = system_pointer_variable + system_long_variable + 1;
+          system_long_variable = system_init_result + (-1 - system_long_variable);
         }
-        init_result = long_var_;
-      } while (0 < long_var_);
+        system_init_result = system_long_variable;
+      } while (0 < system_long_variable);
     }
-    if ((ptr_var_ == (uint *)unaff_R14[1]) || (*(uint *)(*unaff_R15 + long_var_) < *ptr_var_)) {
+    if ((system_pointer_variable == (uint *)unaff_R14[1]) || (*(uint *)(*unaff_R15 + system_long_variable) < *system_pointer_variable)) {
       allocate_with_flags();
       system_allocator_002();
       unaff_SIL = 1;
     }
-    long_var_ = long_var_ + 4;
+    system_long_variable = system_long_variable + 4;
     uint_var_ = uint_var_ - 1;
   } while (uint_var_ != 0);
   return unaff_SIL;
@@ -5672,51 +5672,51 @@ unsigned char validate_memory_allocation(void)
 unsigned long long
 system_allocator_011(unsigned long long handle,long long *flags,long long *mutex_attr,uint mutex_type,char param_5)
 {
-  long long init_result;
-  long long long_var_;
+  long long system_init_result;
+  long long system_long_variable;
   uint uint_var_;
   ulong long uint_var_;
   ulong long uint_var_;
-  long long long_var_;
+  long long system_long_variable;
   uint uint_var_;
   unsigned long long uint_var_;
-  long long long_var_;
-  long long init_result0;
+  long long system_long_variable;
+  long long system_init_result0;
   uint_var_ = 0;
-  init_result = mutex_attr[1];
-  long_var_ = *mutex_attr;
+  system_init_result = mutex_attr[1];
+  system_long_variable = *mutex_attr;
   uint_var_ = flags[1] - *flags >> 3;
   if ((int)uint_var_ != 0) {
-    long_var_ = 0;
+    system_long_variable = 0;
     uint_var_ = uint_var_ & UINT32_MAX;
     do {
       uint_var_ = 0;
-      uint_var_ = (uint)(init_result - long_var_ >> 3);
+      uint_var_ = (uint)(system_init_result - system_long_variable >> 3);
       if (uint_var_ != 0) {
         do {
-          if (*(int *)(*(long long *)(*flags + long_var_) + 8) ==
+          if (*(int *)(*(long long *)(*flags + system_long_variable) + 8) ==
               *(int *)(*(long long *)(*mutex_attr + uint_var_ * 8) + 8)) goto label_;
           uint_var_ = (int)uint_var_ + 1;
           uint_var_ = (ulong long)uint_var_;
         } while (uint_var_ < uint_var_);
       }
-      long_var_ = *(long long *)(long_var_ + *flags);
-      *(uint *)(long_var_ + STRING_BUFFER_SIZE) = *(uint *)(long_var_ + STRING_BUFFER_SIZE) | mutex_type;
-      if (((param_5 != '\0') && (*(int *)(long_var_ + 0x8c) == 2)) &&
-         (uint_var_ = *(long long *)(long_var_ + 0xc0) - *(long long *)(long_var_ + 0xb8) >> 3, (int)uint_var_ != 0))
+      system_long_variable = *(long long *)(system_long_variable + *flags);
+      *(uint *)(system_long_variable + STRING_BUFFER_SIZE) = *(uint *)(system_long_variable + STRING_BUFFER_SIZE) | mutex_type;
+      if (((param_5 != '\0') && (*(int *)(system_long_variable + 0x8c) == 2)) &&
+         (uint_var_ = *(long long *)(system_long_variable + 0xc0) - *(long long *)(system_long_variable + 0xb8) >> 3, (int)uint_var_ != 0))
       {
-        init_result0 = 0;
+        system_init_result0 = 0;
         uint_var_ = uint_var_ & UINT32_MAX;
         do {
-          system_allocator_003(handle,*(unsigned long long *)(*(long long *)(long_var_ + 0xb8) + init_result0),mutex_type,
+          system_allocator_003(handle,*(unsigned long long *)(*(long long *)(system_long_variable + 0xb8) + system_init_result0),mutex_type,
                         param_5);
-          init_result0 = init_result0 + 8;
+          system_init_result0 = system_init_result0 + 8;
           uint_var_ = uint_var_ - 1;
         } while (uint_var_ != 0);
       }
       uint_var_ = 1;
 label_:
-      long_var_ = long_var_ + 8;
+      system_long_variable = system_long_variable + 8;
       uint_var_ = uint_var_ - 1;
     } while (uint_var_ != 0);
   }
@@ -5724,11 +5724,11 @@ label_:
 }
 unsigned char allocate_with_mutex(unsigned long long handle,unsigned long long flags,long long *mutex_attr)
 {
-  long long init_result;
+  long long system_init_result;
   uint flags;
   ulong long in_RAX;
   ulong long uint_var_;
-  long long long_var_;
+  long long system_long_variable;
   uint unaff_EDI;
   unsigned char in_R10B;
   long long *unaff_R13;
@@ -5736,22 +5736,22 @@ unsigned char allocate_with_mutex(unsigned long long handle,unsigned long long f
   ulong long uint_var_;
   long long *in_stack_00000060;
   char in_stack_00000070;
-  long_var_ = 0;
+  system_long_variable = 0;
   uint_var_ = in_RAX & UINT32_MAX;
   do {
     uint_var_ = 0;
     if (unaff_EDI != 0) {
       do {
-        if (*(int *)(*(long long *)(*unaff_R13 + long_var_) + 8) ==
+        if (*(int *)(*(long long *)(*unaff_R13 + system_long_variable) + 8) ==
             *(int *)(*(long long *)(*mutex_attr + uint_var_ * 8) + 8)) goto label_;
         flags = (int)uint_var_ + 1;
         uint_var_ = (ulong long)flags;
       } while (flags < unaff_EDI);
     }
-    init_result = *(long long *)(long_var_ + *unaff_R13);
-    *(uint *)(init_result + STRING_BUFFER_SIZE) = *(uint *)(init_result + STRING_BUFFER_SIZE) | unaff_R14D;
-    if (((in_stack_00000070 != '\0') && (*(int *)(init_result + 0x8c) == 2)) &&
-       (uint_var_ = *(long long *)(init_result + 0xc0) - *(long long *)(init_result + 0xb8) >> 3, (int)uint_var_ != 0)) {
+    system_init_result = *(long long *)(system_long_variable + *unaff_R13);
+    *(uint *)(system_init_result + STRING_BUFFER_SIZE) = *(uint *)(system_init_result + STRING_BUFFER_SIZE) | unaff_R14D;
+    if (((in_stack_00000070 != '\0') && (*(int *)(system_init_result + 0x8c) == 2)) &&
+       (uint_var_ = *(long long *)(system_init_result + 0xc0) - *(long long *)(system_init_result + 0xb8) >> 3, (int)uint_var_ != 0)) {
       uint_var_ = uint_var_ & UINT32_MAX;
       do {
         system_allocator_003();
@@ -5760,7 +5760,7 @@ unsigned char allocate_with_mutex(unsigned long long handle,unsigned long long f
     }
     in_R10B = 1;
 label_:
-    long_var_ = long_var_ + 8;
+    system_long_variable = system_long_variable + 8;
     uint_var_ = uint_var_ - 1;
     mutex_attr = in_stack_00000060;
     if (uint_var_ == 0) {
@@ -5778,37 +5778,37 @@ system_allocator_014(unsigned long long handle,long long *flags,unsigned long lo
              uint param_5)
 {
   ulong long uint_var_;
-  long long long_var_;
-  long long long_var_;
-  long long long_var_;
-  long long long_var_;
+  long long system_long_variable;
+  long long system_long_variable;
+  long long system_long_variable;
+  long long system_long_variable;
   unsigned long long uint_var_;
-  uint *ptr_var_;
+  uint *system_pointer_variable;
   uint_var_ = 0;
   uint_var_ = flags[1] - *flags >> 2;
   if ((int)uint_var_ != 0) {
-    long_var_ = 0;
+    system_long_variable = 0;
     uint_var_ = uint_var_ & UINT32_MAX;
     do {
-      ptr_var_ = (uint *)*mutex_attr;
-      long_var_ = *flags;
-      long_var_ = (long long)mutex_attr[1] - (long long)ptr_var_ >> 2;
-      if (0 < long_var_) {
+      system_pointer_variable = (uint *)*mutex_attr;
+      system_long_variable = *flags;
+      system_long_variable = (long long)mutex_attr[1] - (long long)system_pointer_variable >> 2;
+      if (0 < system_long_variable) {
         do {
-          long_var_ = long_var_ >> 1;
-          if (ptr_var_[long_var_] < *(uint *)(long_var_ + long_var_)) {
-            ptr_var_ = ptr_var_ + long_var_ + 1;
-            long_var_ = long_var_ + (-1 - long_var_);
+          system_long_variable = system_long_variable >> 1;
+          if (system_pointer_variable[system_long_variable] < *(uint *)(system_long_variable + system_long_variable)) {
+            system_pointer_variable = system_pointer_variable + system_long_variable + 1;
+            system_long_variable = system_long_variable + (-1 - system_long_variable);
           }
-          long_var_ = long_var_;
-        } while (0 < long_var_);
+          system_long_variable = system_long_variable;
+        } while (0 < system_long_variable);
       }
-      if ((ptr_var_ == (uint *)mutex_attr[1]) || (*(uint *)(long_var_ + long_var_) < *ptr_var_)) {
-        long_var_ = system_allocator_006(handle,*(unsigned int *)(long_var_ + long_var_),mutex_type);
+      if ((system_pointer_variable == (uint *)mutex_attr[1]) || (*(uint *)(system_long_variable + system_long_variable) < *system_pointer_variable)) {
+        system_long_variable = system_allocator_006(handle,*(unsigned int *)(system_long_variable + system_long_variable),mutex_type);
         uint_var_ = 1;
-        *(uint *)(long_var_ + 8) = *(uint *)(long_var_ + 8) | param_5;
+        *(uint *)(system_long_variable + 8) = *(uint *)(system_long_variable + 8) | param_5;
       }
-      long_var_ = long_var_ + 4;
+      system_long_variable = system_long_variable + 4;
       uint_var_ = uint_var_ - 1;
     } while (uint_var_ != 0);
   }
@@ -5817,36 +5817,36 @@ system_allocator_014(unsigned long long handle,long long *flags,unsigned long lo
 unsigned char validate_buffer_allocation(void)
 {
   uint in_EAX;
-  long long init_result;
-  long long long_var_;
-  long long long_var_;
+  long long system_init_result;
+  long long system_long_variable;
+  long long system_long_variable;
   unsigned char unaff_SIL;
   ulong long uint_var_;
-  uint *ptr_var_;
+  uint *system_pointer_variable;
   unsigned long long *unaff_R14;
   long long *unaff_R15;
   uint in_stack_00000070;
-  long_var_ = 0;
+  system_long_variable = 0;
   uint_var_ = (ulong long)in_EAX;
   do {
-    ptr_var_ = (uint *)*unaff_R14;
-    init_result = (long long)unaff_R14[1] - (long long)ptr_var_ >> 2;
-    if (0 < init_result) {
+    system_pointer_variable = (uint *)*unaff_R14;
+    system_init_result = (long long)unaff_R14[1] - (long long)system_pointer_variable >> 2;
+    if (0 < system_init_result) {
       do {
-        long_var_ = init_result >> 1;
-        if (ptr_var_[long_var_] < *(uint *)(*unaff_R15 + long_var_)) {
-          ptr_var_ = ptr_var_ + long_var_ + 1;
-          long_var_ = init_result + (-1 - long_var_);
+        system_long_variable = system_init_result >> 1;
+        if (system_pointer_variable[system_long_variable] < *(uint *)(*unaff_R15 + system_long_variable)) {
+          system_pointer_variable = system_pointer_variable + system_long_variable + 1;
+          system_long_variable = system_init_result + (-1 - system_long_variable);
         }
-        init_result = long_var_;
-      } while (0 < long_var_);
+        system_init_result = system_long_variable;
+      } while (0 < system_long_variable);
     }
-    if ((ptr_var_ == (uint *)unaff_R14[1]) || (*(uint *)(*unaff_R15 + long_var_) < *ptr_var_)) {
-      init_result = system_allocator_006();
+    if ((system_pointer_variable == (uint *)unaff_R14[1]) || (*(uint *)(*unaff_R15 + system_long_variable) < *system_pointer_variable)) {
+      system_init_result = system_allocator_006();
       unaff_SIL = 1;
-      *(uint *)(init_result + 8) = *(uint *)(init_result + 8) | in_stack_00000070;
+      *(uint *)(system_init_result + 8) = *(uint *)(system_init_result + 8) | in_stack_00000070;
     }
-    long_var_ = long_var_ + 4;
+    system_long_variable = system_long_variable + 4;
     uint_var_ = uint_var_ - 1;
   } while (uint_var_ != 0);
   return unaff_SIL;
@@ -5858,39 +5858,39 @@ unsigned char check_memory_bounds(void)
 }
   data_1dc4331ba = data_1dc4331ba + unaff_BL;
   uint_var_ = in(uint_var_);
-  char_ptr_var_ = (char *)((ulong long)uint_var_ + 0x1c0042ed);
-  *char_ptr_var_ = *char_ptr_var_ + (char)unaff_RDI + '\x04';
+  char_system_pointer_variable = (char *)((ulong long)uint_var_ + 0x1c0042ed);
+  *char_system_pointer_variable = *char_system_pointer_variable + (char)unaff_RDI + '\x04';
   out(uint_var_,(char)uint_var_);
-  char_ptr_var_ = (char *)((ulong long)uint_var_ - 0x12);
-  *char_ptr_var_ = *char_ptr_var_ + (char)flags;
-  char_ptr_var_ = (code *)swi(3);
-  (*char_ptr_var_)();
+  char_system_pointer_variable = (char *)((ulong long)uint_var_ - 0x12);
+  *char_system_pointer_variable = *char_system_pointer_variable + (char)flags;
+  char_system_pointer_variable = (code *)swi(3);
+  (*char_system_pointer_variable)();
   return;
 }
       data_180d499e8 = 0;
-      global_data_ = 6;
+      system_global_data_ = 6;
       strcpy_s(&data_180d499e8,CONFIG_PATH_BUFFER_SIZE0,&data_180a3c074,str_len_param,uint_var_);
-      system_crypto_002(function_);
+      system_crypto_002(system_function_);
       system_crypto_003(&data_180d499c8);
     }
   }
-  (**(code **)(*global_data_ + 0x70))(global_data_,&data_180d499d0);
+  (**(code **)(*system_global_data_ + 0x70))(system_global_data_,&data_180d499d0);
   return;
 }
 unsigned int
 system_finalizer_005(unsigned long long handle,unsigned long long flags,unsigned long long mutex_attr,unsigned long long mutex_type)
 {
-  code *char_ptr_var_;
+  code *char_system_pointer_variable;
   unsigned int flags;
   unsigned long long uint_var_;
-  undefined *stack_ptr_;
-  long long stack_long_;
-  char_ptr_var_ = *(code **)(*global_data_ + 0x70);
-  // Original name: unknown_180a02fc8
-      uint_var_ = system_ui_005(&stack_ptr_, &g_ui_mutex_property_address_180a02fc8, mutex_attr, mutex_type, 0, THREAD_POOL_DEFAULT_FLAG);
-  flags = (*char_ptr_var_)(global_data_,uint_var_,mutex_attr,mutex_type,1);
-  stack_ptr_ = &g_threadString2;
-  if (stack_long_ != 0) {
+  void *system_stack_pointer;
+  long long system_stack_long;
+  char_system_pointer_variable = *(code **)(*system_global_data_ + 0x70);
+  // Original name: system_180a02fc8
+      uint_var_ = system_ui_005(&system_stack_pointer, &g_ui_mutex_property_address_180a02fc8, mutex_attr, mutex_type, 0, THREAD_POOL_DEFAULT_FLAG);
+  flags = (*char_system_pointer_variable)(system_global_data_,uint_var_,mutex_attr,mutex_type,1);
+  system_stack_pointer = &g_threadString2;
+  if (system_stack_long != 0) {
     handle_system_error();
   }
   return flags;
@@ -5898,17 +5898,17 @@ system_finalizer_005(unsigned long long handle,unsigned long long flags,unsigned
 unsigned int
 system_finalizer_006(unsigned long long handle,unsigned long long flags,unsigned long long mutex_attr,unsigned long long mutex_type)
 {
-  code *char_ptr_var_;
+  code *char_system_pointer_variable;
   unsigned int flags;
   unsigned long long uint_var_;
-  undefined *stack_ptr_;
-  long long stack_long_;
-  char_ptr_var_ = *(code **)(*global_data_ + 0x70);
-  // Original name: unknown_180a02fa0
-      uint_var_ = system_ui_005(&stack_ptr_, &g_ui_mutex_type_address_180a02fa0, mutex_attr, mutex_type, 0, THREAD_POOL_DEFAULT_FLAG);
-  flags = (*char_ptr_var_)(global_data_,uint_var_,mutex_attr,mutex_type,1);
-  stack_ptr_ = &g_threadString2;
-  if (stack_long_ != 0) {
+  void *system_stack_pointer;
+  long long system_stack_long;
+  char_system_pointer_variable = *(code **)(*system_global_data_ + 0x70);
+  // Original name: system_180a02fa0
+      uint_var_ = system_ui_005(&system_stack_pointer, &g_ui_mutex_type_address_180a02fa0, mutex_attr, mutex_type, 0, THREAD_POOL_DEFAULT_FLAG);
+  flags = (*char_system_pointer_variable)(system_global_data_,uint_var_,mutex_attr,mutex_type,1);
+  system_stack_pointer = &g_threadString2;
+  if (system_stack_long != 0) {
     handle_system_error();
   }
   return flags;
@@ -5916,190 +5916,190 @@ system_finalizer_006(unsigned long long handle,unsigned long long flags,unsigned
 unsigned int
 system_finalizer_007(unsigned long long handle,unsigned long long flags,unsigned long long mutex_attr,unsigned long long mutex_type)
 {
-  code *char_ptr_var_;
+  code *char_system_pointer_variable;
   unsigned int flags;
   unsigned long long uint_var_;
   unsigned long long uint_var_;
-  undefined *stack_ptr_;
-  long long stack_long_;
+  void *system_stack_pointer;
+  long long system_stack_long;
   uint_var_ = THREAD_POOL_DEFAULT_FLAG;
-  char_ptr_var_ = *(code **)(*global_data_ + 0x70);
-  uint_var_ = system_cleanup_007(&stack_ptr_);
-  flags = (*char_ptr_var_)(global_data_,uint_var_,mutex_attr,mutex_type,uint_var_);
-  stack_ptr_ = &g_threadString2;
-  if (stack_long_ != 0) {
+  char_system_pointer_variable = *(code **)(*system_global_data_ + 0x70);
+  uint_var_ = system_cleanup_007(&system_stack_pointer);
+  flags = (*char_system_pointer_variable)(system_global_data_,uint_var_,mutex_attr,mutex_type,uint_var_);
+  system_stack_pointer = &g_threadString2;
+  if (system_stack_long != 0) {
     handle_system_error();
   }
   return flags;
 }
     data_180d49c08 = 0;
     if (handle != 0) {
-      long_var_ = -1;
+      system_long_variable = -1;
       do {
-        long_var_ = long_var_ + 1;
-      } while (*(char *)(handle + long_var_) != '\0');
-      global_data_ = (unsigned int)long_var_;
+        system_long_variable = system_long_variable + 1;
+      } while (*(char *)(handle + system_long_variable) != '\0');
+      system_global_data_ = (unsigned int)system_long_variable;
       strcpy_s(&data_180d49c08,STRING_BUFFER_SIZE0,handle);
     }
-    system_crypto_002(function_);
+    system_crypto_002(system_function_);
     system_crypto_003(&data_180d49d08);
   }
-  uint_var_ = function_(global_data_,0xe0,8,3,uint_var_);
+  uint_var_ = system_function_(system_global_data_,0xe0,8,3,uint_var_);
   plStackX_10 = alStack_30;
-  // Original name: unknown_18045f210
-      stack_ptr_ = &g_stack_data_address_18045f210;
-  stack_ptr_ = &unknown_18045f200;
-  pinit_result = (long long *)function_(uint_var_,alStack_30);
-  plStackX_18 = pinit_result;
-  if (pinit_result != (long long *)0x0) {
-    (**(code **)(*pinit_result + 0x28))(pinit_result);
+  // Original name: system_18045f210
+      system_stack_pointer = &g_stack_data_address_18045f210;
+  system_stack_pointer = &system_18045f200;
+  psystem_init_result = (long long *)system_function_(uint_var_,alStack_30);
+  plStackX_18 = psystem_init_result;
+  if (psystem_init_result != (long long *)0x0) {
+    (**(code **)(*psystem_init_result + 0x28))(psystem_init_result);
   }
-  uint_var_ = global_data_;
+  uint_var_ = system_global_data_;
   pplStackX_20 = &plStackX_10;
-  plStackX_10 = pinit_result;
-  if (pinit_result != (long long *)0x0) {
-    (**(code **)(*pinit_result + 0x28))(pinit_result);
+  plStackX_10 = psystem_init_result;
+  if (psystem_init_result != (long long *)0x0) {
+    (**(code **)(*psystem_init_result + 0x28))(psystem_init_result);
   }
   register_event_callback(uint_var_,&plStackX_10);
-  if (pinit_result != (long long *)0x0) {
-    (**(code **)(*pinit_result + 0x38))(pinit_result);
+  if (psystem_init_result != (long long *)0x0) {
+    (**(code **)(*psystem_init_result + 0x38))(psystem_init_result);
   }
   return;
 }
   data_180c95f28 = 1;
-  global_data_ = STRING_BUFFER_SIZE0;
-  global_data_ = &g_threadString2;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = &g_threadString2;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = 0;
+  system_global_data_ = STRING_BUFFER_SIZE0;
+  system_global_data_ = &g_threadString2;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = &g_threadString2;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
   data_180c92588 = 1;
-  global_data_ = 0;
-  global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
   system_finalizer_009();
-  init_result = 0x180c95bf8;
-  long_var_ = 0x17;
+  system_init_result = 0x180c95bf8;
+  system_long_variable = 0x17;
   do {
-    func_0x00018013d940(init_result);
-    init_result = init_result + STRING_BUFFER_SIZE;
-    long_var_ = long_var_ + -1;
-  } while (long_var_ != 0);
+    func_0x00018013d940(system_init_result);
+    system_init_result = system_init_result + STRING_BUFFER_SIZE;
+    system_long_variable = system_long_variable + -1;
+  } while (system_long_variable != 0);
   data_180c95bf0 = 0;
   _Mtx_init_in_situ(0x180c95d70,2,mutex_attr,mutex_type,uint_var_);
-  global_data_ = UINT32_MAX;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = 0xffdc;
+  system_global_data_ = UINT32_MAX;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 0xffdc;
   data_180c95dd8 = 1;
   system_finalizer_008(&data_180c924d0);
-  global_data_ = 3;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = 0;
-  data_180c95fe8 = 1;
-  global_data_ = 0;
-  global_data_ = 0;
-  data_180c96140 = 1;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = 3;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = 3;
-  data_180c96100 = 1;
-  function_(0x180c95de0);
-  data_180c96210 = 1;
-  global_data_ = 3;
-  global_data_ = SYSTEM_CONFIG_BUFFER_SIZE_000000;
-  global_data_ = 0x3f800000;
-  global_data_ = 0;
-  global_data_ = 1;
-  global_data_ = &data_180be0000;
-  global_data_ = 0;
-  data_180c961d8 = 1;
-  global_data_ = 0;
-  global_data_ = 3;
-  global_data_ = 0;
-  uRam0000000180c961b8 = 0;
-  global_data_ = 0;
-  data_180c961a0 = 1;
-  global_data_ = 3;
-  global_data_ = SYSTEM_CONFIG_BUFFER_SIZE_000000;
-  global_data_ = 0x3f800000;
-  global_data_ = 0;
-  global_data_ = 1;
-  global_data_ = &data_180be0000;
-  global_data_ = 4;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = 3;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = 0;
-  data_180c96068 = 1;
-  global_data_ = 0;
-  data_180c96048 = 1;
-  global_data_ = 0;
-  data_180c96028 = 1;
-  global_data_ = 0;
-  data_180c96008 = 1;
-  global_data_ = 0;
-  data_180c95fc0 = 1;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = 3;
-  uRam0000000180c95f98 = 0;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = 3;
-  uRam0000000180c95f78 = 0;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = 4;
-  global_data_ = SYSTEM_CONFIG_BUFFER_SIZE_000000;
-  global_data_ = 0x3f800000;
-  global_data_ = 0;
-  global_data_ = 1;
-  global_data_ = &data_180be0000;
-  data_180c95ef0 = 1;
-  global_data_ = 3;
-  global_data_ = 0;
-  global_data_ = 0;
-  global_data_ = 0;
-  data_180c95ec8 = 1;
+  system_global_data_ = 3;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  network_system_initialized = 1;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  render_system_initialized = 1;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 3;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 3;
+  audio_system_initialized = 1;
+  system_function_(0x180c95de0);
+  input_system_initialized = 1;
+  system_global_data_ = 3;
+  system_global_data_ = SYSTEM_CONFIG_BUFFER_SIZE_000000;
+  system_global_data_ = 0x3f800000;
+  system_global_data_ = 0;
+  system_global_data_ = 1;
+  system_global_data_ = &data_180be0000;
+  system_global_data_ = 0;
+  physics_system_initialized = 1;
+  system_global_data_ = 0;
+  system_global_data_ = 3;
+  system_global_data_ = 0;
+  thread_pool_backup_flag = 0;
+  system_global_data_ = 0;
+  ui_system_initialized = 1;
+  system_global_data_ = 3;
+  system_global_data_ = SYSTEM_CONFIG_BUFFER_SIZE_000000;
+  system_global_data_ = 0x3f800000;
+  system_global_data_ = 0;
+  system_global_data_ = 1;
+  system_global_data_ = &data_180be0000;
+  system_global_data_ = 4;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 3;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  module_system_initialized = 1;
+  system_global_data_ = 0;
+  thread_pool_initialized = 1;
+  system_global_data_ = 0;
+  memory_system_initialized = 1;
+  system_global_data_ = 0;
+  config_system_initialized = 1;
+  system_global_data_ = 0;
+  resource_system_initialized = 1;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 3;
+  network_system_backup_flag = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 3;
+  render_system_backup_flag = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 4;
+  system_global_data_ = SYSTEM_CONFIG_BUFFER_SIZE_000000;
+  system_global_data_ = 0x3f800000;
+  system_global_data_ = 0;
+  system_global_data_ = 1;
+  system_global_data_ = &data_180be0000;
+  script_system_initialized = 1;
+  system_global_data_ = 3;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  system_global_data_ = 0;
+  security_system_initialized = 1;
   data_180c96098 = 1;
-  global_data_ = 0;
+  system_global_data_ = 0;
   data_180c960b8 = 1;
   return;
 }
-    data_180c82845 = '\x01';
-    long_var_ = system_thread_manager_004(&stack_ptr_,global_data_ + 0x2c0);
-    ptr_var_ = &data_18098bc73;
-    if (*(undefined **)(long_var_ + 8) != (undefined *)0x0) {
-      ptr_var_ = *(undefined **)(long_var_ + 8);
+    thread_system_flag = '\x01';
+    system_long_variable = system_thread_manager_004(&system_stack_pointer,system_global_data_ + 0x2c0);
+    system_pointer_variable = &data_18098bc73;
+    if (*(void **)(system_long_variable + 8) != (void *)0x0) {
+      system_pointer_variable = *(void **)(system_long_variable + 8);
     }
-    (**(code **)(init_result + 0x330))(*(unsigned int *)(global_data_ + STRING_BUFFER_SIZE),ptr_var_);
-    stack_ptr_ = &g_threadString2;
-    if (stack_long_ != 0) {
+    (**(code **)(system_init_result + 0x330))(*(unsigned int *)(system_global_data_ + STRING_BUFFER_SIZE),system_pointer_variable);
+    system_stack_pointer = &g_threadString2;
+    if (system_stack_long != 0) {
       handle_system_error();
     }
-    stack_long_ = 0;
+    system_stack_long = 0;
     stack_var_ = 0;
-    stack_ptr_ = &g_threadString4;
+    system_stack_pointer = &g_threadString4;
   }
   plVar2 = (long long *)*handle;
   if (plVar2 != (long long *)0x0) {
@@ -6111,23 +6111,23 @@ system_finalizer_007(unsigned long long handle,unsigned long long flags,unsigned
       (**(code **)(*plStackX_8 + 0x38))();
     }
   }
-  *(float *)(global_data_ + CONFIG_PATH_BUFFER_SIZE0) = 1.0 / (float)(int)handle[1];
-  stack_ptr_ = &g_threadString2;
-  if (stack_ptr_ != (undefined *)0x0) {
+  *(float *)(system_global_data_ + CONFIG_PATH_BUFFER_SIZE0) = 1.0 / (float)(int)handle[1];
+  system_stack_pointer = &g_threadString2;
+  if (system_stack_pointer != (void *)0x0) {
     handle_system_error();
   }
   return;
 }
-unsigned long long * function_(unsigned long long *handle,int flags)
+unsigned long long * system_function_(unsigned long long *handle,int flags)
 {
-  long long *pinit_result;
+  long long *psystem_init_result;
   int int_var_;
   unsigned long long uint_var_;
-  long long long_var_;
+  long long system_long_variable;
   int int_var_;
-  unsigned long long *ptr_var_;
+  unsigned long long *system_pointer_variable;
   ulong long uint_var_;
-  long long long_var_;
+  long long system_long_variable;
   float fVar9;
   float fVar10;
   float fVar11;
@@ -6135,13 +6135,13 @@ unsigned long long * function_(unsigned long long *handle,int flags)
   float fVar13;
   float fVar14;
   float fVar15;
-  *handle = &unknown_180a1a2f0;
-  long_var_ = 0;
+  *handle = &system_180a1a2f0;
+  system_long_variable = 0;
   handle[1] = 0;
   handle[2] = 0;
   handle[3] = 0;
   *(unsigned int *)(handle + 4) = 3;
-  *handle = &unknown_180a2fc20;
+  *handle = &system_180a2fc20;
   handle[0xd] = 0;
   handle[0xe] = 0;
   handle[0xf] = 0;
@@ -6177,14 +6177,14 @@ unsigned long long * function_(unsigned long long *handle,int flags)
   handle[0x2d] = 0;
   handle[0x2e] = 0;
   handle[0x2f] = 0;
-  pinit_result = handle + 0x31;
-  *pinit_result = 0;
+  psystem_init_result = handle + 0x31;
+  *psystem_init_result = 0;
   handle[0x32] = 0;
   handle[0x33] = 0;
   *(unsigned int *)(handle + 0x34) = 3;
-  ptr_var_ = handle + 0x35;
-  long_var_ = 8;
-  function_(ptr_var_,0x28,8,&unknown_1804ce1a0,function_);
+  system_pointer_variable = handle + 0x35;
+  system_long_variable = 8;
+  system_function_(system_pointer_variable,0x28,8,&system_1804ce1a0,system_function_);
   _Mtx_init_in_situ(handle + 0x5d, STRING_BUFFER_SIZE_2);
   int_var_ = func_0x0001804ca2d0(&data_180c95fc8);
   if (flags < int_var_) {
@@ -6192,7 +6192,7 @@ unsigned long long * function_(unsigned long long *handle,int flags)
   }
   *(int *)(handle + 0x67) = int_var_;
   handle[0x11] = (long long)int_var_;
-  function_(handle + 0xd);
+  system_function_(handle + 0xd);
   handle[0x16] = (long long)*(int *)(handle + 0x67);
   if (handle[0x12] != 0) {
     handle_system_error();
@@ -6201,7 +6201,7 @@ unsigned long long * function_(unsigned long long *handle,int flags)
   handle[0x14] = 1;
   handle[0x13] = 0;
   handle[0x15] = 0xffffffff;
-  uint_var_ = function_(global_data_,(long long)*(int *)(handle + 0x67) * 0x48,0x18);
+  uint_var_ = system_function_(system_global_data_,(long long)*(int *)(handle + 0x67) * 0x48,0x18);
   handle[0x12] = uint_var_;
   handle[0x1b] = (long long)*(int *)(handle + 0x67);
   if (handle[0x17] != 0) {
@@ -6211,7 +6211,7 @@ unsigned long long * function_(unsigned long long *handle,int flags)
   handle[0x19] = 1;
   handle[0x18] = 0;
   handle[0x1a] = 0xffffffff;
-  uint_var_ = function_(global_data_,(long long)*(int *)(handle + 0x67) * 0xc0,0x18);
+  uint_var_ = system_function_(system_global_data_,(long long)*(int *)(handle + 0x67) * 0xc0,0x18);
   handle[0x17] = uint_var_;
   handle[0x2a] = (long long)*(int *)(handle + 0x67);
   if (handle[0x26] == 0) {
@@ -6219,10 +6219,10 @@ unsigned long long * function_(unsigned long long *handle,int flags)
     handle[0x28] = 1;
     handle[0x27] = 0;
     handle[0x29] = 0xffffffff;
-    uint_var_ = function_(global_data_,(long long)*(int *)(handle + 0x67) << 4,0x18);
+    uint_var_ = system_function_(system_global_data_,(long long)*(int *)(handle + 0x67) << 4,0x18);
     handle[0x26] = uint_var_;
     handle[CONFIG_PATH_BUFFER_SIZE] = (long long)*(int *)(handle + 0x67);
-    function_(handle + 0x1c);
+    system_function_(handle + 0x1c);
     handle[0x2f] = (long long)*(int *)(handle + 0x67);
     if (handle[0x2b] != 0) {
       handle_system_error();
@@ -6231,40 +6231,40 @@ unsigned long long * function_(unsigned long long *handle,int flags)
     handle[0x2d] = 1;
     handle[0x2c] = 0;
     handle[0x2e] = 0xffffffff;
-    uint_var_ = function_(global_data_,(long long)*(int *)(handle + 0x67) << 4,0x18);
+    uint_var_ = system_function_(system_global_data_,(long long)*(int *)(handle + 0x67) << 4,0x18);
     handle[0x2b] = uint_var_;
     do {
-      ptr_var_[4] = (long long)*(int *)(handle + 0x67);
-      function_(ptr_var_);
-      ptr_var_ = ptr_var_ + 5;
-      long_var_ = long_var_ + -1;
-    } while (long_var_ != 0);
+      system_pointer_variable[4] = (long long)*(int *)(handle + 0x67);
+      system_function_(system_pointer_variable);
+      system_pointer_variable = system_pointer_variable + 5;
+      system_long_variable = system_long_variable + -1;
+    } while (system_long_variable != 0);
     handle[0x25] = (long long)*(int *)(handle + 0x67);
     if (handle[0x21] == 0) {
       handle[0x21] = 0;
       handle[0x23] = 1;
       handle[0x22] = 0;
       handle[0x24] = 0xffffffff;
-      uint_var_ = function_(global_data_,(long long)*(int *)(handle + 0x67) * 0x88,0x18);
+      uint_var_ = system_function_(system_global_data_,(long long)*(int *)(handle + 0x67) * 0x88,0x18);
       handle[0x21] = uint_var_;
       uint_var_ = (ulong long)*(int *)(handle + 0x67);
-      long_var_ = *pinit_result;
-      if ((ulong long)(handle[0x33] - long_var_ >> 3) < uint_var_) {
+      system_long_variable = *psystem_init_result;
+      if ((ulong long)(handle[0x33] - system_long_variable >> 3) < uint_var_) {
         if (uint_var_ != 0) {
-          long_var_ = function_(global_data_,uint_var_ * 8,*(unsigned char *)(handle + 0x34));
-          long_var_ = *pinit_result;
+          system_long_variable = system_function_(system_global_data_,uint_var_ * 8,*(unsigned char *)(handle + 0x34));
+          system_long_variable = *psystem_init_result;
         }
-        if (long_var_ != handle[0x32]) {
-          memmove(long_var_,long_var_,handle[0x32] - long_var_);
+        if (system_long_variable != handle[0x32]) {
+          memmove(system_long_variable,system_long_variable,handle[0x32] - system_long_variable);
         }
-        if (long_var_ != 0) {
+        if (system_long_variable != 0) {
           handle_system_error();
         }
-        *pinit_result = long_var_;
-        handle[0x32] = long_var_;
-        handle[0x33] = long_var_ + uint_var_ * 8;
+        *psystem_init_result = system_long_variable;
+        handle[0x32] = system_long_variable;
+        handle[0x33] = system_long_variable + uint_var_ * 8;
       }
-      int_var_ = *(int *)(global_data_ + 0xe00) + -1;
+      int_var_ = *(int *)(system_global_data_ + 0xe00) + -1;
       int_var_ = 0;
       if ((-1 < int_var_) && (int_var_ = int_var_, 3 < int_var_)) {
         int_var_ = 3;
@@ -6297,7 +6297,7 @@ unsigned long long * function_(unsigned long long *handle,int flags)
 }
 unsigned long long initialize_graphics_context(unsigned long long handle,ulong long flags)
 {
-  function_();
+  system_function_();
   if ((flags & 1) != 0) {
     free(handle,0x360);
   }
@@ -6311,11 +6311,11 @@ unsigned long long initialize_graphics_context(unsigned long long handle,ulong l
     UNLOCK();
     if (bVar9) {
       applStackX_8[0] = aplStackX_18;
-      aplStackX_18[0] = global_data_;
-      if (global_data_ != (long long *)0x0) {
-        (**(code **)(*global_data_ + 0x28))();
+      aplStackX_18[0] = system_global_data_;
+      if (system_global_data_ != (long long *)0x0) {
+        (**(code **)(*system_global_data_ + 0x28))();
       }
-      uint_var_ = function_(uint_var_,aplStackX_18);
+      uint_var_ = system_function_(uint_var_,aplStackX_18);
     }
   }
   return uint_var_;
@@ -6324,11 +6324,11 @@ unsigned long long initialize_graphics_context(unsigned long long handle,ulong l
     system_crypto_003(&data_180d49f68);
   }
   flags = *(unsigned long long *)(*(long long *)(*(long long *)(handle + 0x8a8) + 0x260) + CONFIG_PATH_BUFFER_SIZE8);
-  ptr_var_ = (unsigned int *)function_(flags,0,flags);
-  stack_var_ = *ptr_var_;
-  stack_var_ = ptr_var_[1];
-  stack_var_ = ptr_var_[2];
-  stack_var_ = ptr_var_[3];
+  system_pointer_variable = (unsigned int *)system_function_(flags,0,flags);
+  stack_var_ = *system_pointer_variable;
+  stack_var_ = system_pointer_variable[1];
+  stack_var_ = system_pointer_variable[2];
+  stack_var_ = system_pointer_variable[3];
   fVar4 = *(float *)(flags + SYSTEM_CONFIG_BUFFER_SIZE_0);
   fVar5 = *(float *)(flags + SYSTEM_CONFIG_BUFFER_SIZE_4);
   fVar6 = *(float *)(flags + SYSTEM_CONFIG_BUFFER_SIZE_8);
@@ -6345,7 +6345,7 @@ unsigned long long initialize_graphics_context(unsigned long long handle,ulong l
   fStack_140 = -1e+08;
   stack_var_ = 0;
   int_var_ = *(char *)(handle + 0x858) + -1;
-  init_result1 = (long long)int_var_;
+  system_init_result1 = (long long)int_var_;
   fVar14 = -1e+08;
   fVar15 = -1e+08;
   fVar16 = -1e+08;
@@ -6354,18 +6354,18 @@ unsigned long long initialize_graphics_context(unsigned long long handle,ulong l
   if (-1 < int_var_) {
     stack_var_ = 0x7f7fffff;
     stack_var_ = 0x7f7fffff;
-    init_result2 = init_result1 * 0x30;
+    system_init_result2 = system_init_result1 * 0x30;
     fStack_108 = fVar4;
     fStack_104 = fVar5;
     fStack_100 = fVar6;
     do {
-      init_result0 = *(long long *)(handle + 0x850) + init_result2;
-      cVar1 = *(char *)(init_result0 + 0x2c);
-      ptr_var_ = (unsigned int *)function_(flags,cVar1,flags);
-      stack_var_ = *ptr_var_;
-      stack_var_ = ptr_var_[1];
-      stack_var_ = ptr_var_[2];
-      stack_var_ = ptr_var_[3];
+      system_init_result0 = *(long long *)(handle + 0x850) + system_init_result2;
+      cVar1 = *(char *)(system_init_result0 + 0x2c);
+      system_pointer_variable = (unsigned int *)system_function_(flags,cVar1,flags);
+      stack_var_ = *system_pointer_variable;
+      stack_var_ = system_pointer_variable[1];
+      stack_var_ = system_pointer_variable[2];
+      stack_var_ = system_pointer_variable[3];
       pfVar9 = (float *)(flags + ((long long)cVar1 + SYSTEM_CONFIG_BUFFER_SIZE) * STRING_BUFFER_SIZE);
       fVar18 = *pfVar9;
       fVar13 = pfVar9[1];
@@ -6374,17 +6374,17 @@ unsigned long long initialize_graphics_context(unsigned long long handle,ulong l
       fStack_d8 = fVar18;
       fStack_d4 = fVar13;
       fStack_d0 = fVar14;
-      pfVar9 = (float *)function_(&stack_var_,auStack_c8,init_result0);
+      pfVar9 = (float *)system_function_(&stack_var_,auStack_c8,system_init_result0);
       fStack_170 = (fVar14 + pfVar9[2]) - fVar6;
       fStack_174 = (fVar13 + pfVar9[1]) - fVar5;
       fStack_178 = (fVar18 + *pfVar9) - fVar4;
-      function_(&stack_var_,&fStack_138,&fStack_178);
-      pfVar9 = (float *)function_(&stack_var_,auStack_b8,init_result0 + STRING_BUFFER_SIZE);
+      system_function_(&stack_var_,&fStack_138,&fStack_178);
+      pfVar9 = (float *)system_function_(&stack_var_,auStack_b8,system_init_result0 + STRING_BUFFER_SIZE);
       fStack_160 = (fVar14 + pfVar9[2]) - fVar6;
       fStack_164 = (fVar13 + pfVar9[1]) - fVar5;
       fStack_168 = (fVar18 + *pfVar9) - fVar4;
-      function_(&stack_var_,&fStack_128,&fStack_168);
-      fVar14 = *(float *)(init_result0 + 0x24);
+      system_function_(&stack_var_,&fStack_128,&fStack_168);
+      fVar14 = *(float *)(system_init_result0 + 0x24);
       fVar18 = fStack_128;
       fStack_198 = fStack_138;
       if (fStack_138 < fStack_128) {
@@ -6433,8 +6433,8 @@ unsigned long long initialize_graphics_context(unsigned long long handle,ulong l
       fStack_144 = fStack_194;
       fStack_140 = fStack_190;
       stack_var_ = stack_var_;
-      init_result2 = init_result2 + -0x30;
-      init_result1 = init_result1 + -1;
+      system_init_result2 = system_init_result2 + -0x30;
+      system_init_result1 = system_init_result1 + -1;
       fVar14 = fStack_198;
       fVar15 = fStack_194;
       fVar16 = fStack_190;
@@ -6442,13 +6442,13 @@ unsigned long long initialize_graphics_context(unsigned long long handle,ulong l
       uint_var_ = stack_var_;
       fStack_158 = fVar18;
       fStack_154 = fVar13;
-    } while (-1 < init_result1);
+    } while (-1 < system_init_result1);
   }
   *(unsigned long long *)(handle + 0x870) = 0x4cbebc204cbebc20;
   *(unsigned long long *)(handle + 0x878) = 0x7f7fffff4cbebc20;
   *(unsigned long long *)(handle + 0x880) = 0xccbebc20ccbebc20;
   *(unsigned long long *)(handle + 0x888) = 0x7f7fffffccbebc20;
-  init_result1 = 0;
+  system_init_result1 = 0;
   *(unsigned int *)(handle + 0x8a0) = 0;
   *(unsigned long long *)(handle + 0x890) = 0;
   *(unsigned long long *)(handle + 0x898) = 0x7f7fffff00000000;
@@ -6509,16 +6509,16 @@ unsigned long long initialize_graphics_context(unsigned long long handle,ulong l
   *(ulong long *)(handle + 0x880) = CONCAT44(fStack_194,fStack_198);
   *(ulong long *)(handle + 0x888) = CONCAT44(stack_var_,fStack_190);
   if (*(long long *)(handle + 0x8a8) != 0) {
-    init_result1 = *(long long *)(*(long long *)(handle + 0x8a8) + 0x260);
+    system_init_result1 = *(long long *)(*(long long *)(handle + 0x8a8) + 0x260);
   }
-  *(float *)(init_result1 + 0x218) = fVar18;
-  *(float *)(init_result1 + 0x21c) = fVar13;
-  *(float *)(init_result1 + 0x220) = fStack_180;
-  *(unsigned int *)(init_result1 + 0x224) = uint_var_;
-  *(float *)(init_result1 + 0x228) = fVar14;
-  *(float *)(init_result1 + 0x22c) = fVar15;
-  *(float *)(init_result1 + 0x230) = fVar16;
-  *(unsigned int *)(init_result1 + 0x234) = uint_var_;
+  *(float *)(system_init_result1 + 0x218) = fVar18;
+  *(float *)(system_init_result1 + 0x21c) = fVar13;
+  *(float *)(system_init_result1 + 0x220) = fStack_180;
+  *(unsigned int *)(system_init_result1 + 0x224) = uint_var_;
+  *(float *)(system_init_result1 + 0x228) = fVar14;
+  *(float *)(system_init_result1 + 0x22c) = fVar15;
+  *(float *)(system_init_result1 + 0x230) = fVar16;
+  *(unsigned int *)(system_init_result1 + 0x234) = uint_var_;
   pfVar9 = *(float **)(handle + 0x860);
   if ((pfVar9 != (float *)0x0) && (*(long long *)(handle + 0x868) != 0)) {
     if ((pfVar9[4] <= fVar14 && fVar14 != pfVar9[4]) ||
@@ -6674,60 +6674,60 @@ unsigned long long initialize_graphics_context(unsigned long long handle,ulong l
   return;
 }
         data_180d49f98 = 0;
-        global_data_ = 8;
-        strcpy_s(&data_180d49f98, SYSTEM_CONFIG_BUFFER_SIZE, &unknown_180a353b8);
-        system_crypto_002(function_);
+        system_global_data_ = 8;
+        strcpy_s(&data_180d49f98, SYSTEM_CONFIG_BUFFER_SIZE, &system_180a353b8);
+        system_crypto_002(system_function_);
         system_crypto_003(&data_180d49f70);
       }
     }
-    (*UNRECOVERED_JUMPTABLE)(global_data_,&data_180d49f80);
+    (*UNRECOVERED_JUMPTABLE)(system_global_data_,&data_180d49f80);
     return;
   }
   if (-1 < handle) {
-    if (handle < (int)((global_data_ - global_data_) / 0x68)) {
-      (*UNRECOVERED_JUMPTABLE)(global_data_,(long long)handle * 0x68 + global_data_);
+    if (handle < (int)((system_global_data_ - system_global_data_) / 0x68)) {
+      (*UNRECOVERED_JUMPTABLE)(system_global_data_,(long long)handle * 0x68 + system_global_data_);
       return;
     }
   }
   if (*(int *)(*(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8) +
-              0x48) < global_data_) {
+              0x48) < system_global_data_) {
     system_crypto_004(&data_180d49fd8);
-    if (global_data_ == -1) {
-      global_data_ = &g_defaultDataTemplate;
-      global_data_ = &data_180d49ff8;
+    if (system_global_data_ == -1) {
+      system_global_data_ = &g_defaultDataTemplate;
+      system_global_data_ = &data_180d49ff8;
       data_180d49ff8 = 0;
-      global_data_ = 0;
+      system_global_data_ = 0;
       strcpy_s(&data_180d49ff8, SYSTEM_CONFIG_BUFFER_SIZE, &data_18098bc73);
-      system_crypto_002(function_);
+      system_crypto_002(system_function_);
       system_crypto_003(&data_180d49fd8);
     }
   }
-  (*UNRECOVERED_JUMPTABLE)(global_data_,&data_180d49fe0);
+  (*UNRECOVERED_JUMPTABLE)(system_global_data_,&data_180d49fe0);
   return;
 }
 // 处理配置参数验证函数
 int validate_config_parameters(unsigned long long handle,unsigned long long flags,unsigned long long mutex_attr,unsigned long long mutex_type)
 {
   int int_var_;
-  long long long_var_;
-  long long long_var_;
-  undefined *ptr_var_;
-  undefined *stack_ptr_;
-  long long stack_long_;
+  long long system_long_variable;
+  long long system_long_variable;
+  void *system_pointer_variable;
+  void *system_stack_pointer;
+  long long system_stack_long;
   int stack_int_;
-  create_thread_context(&stack_ptr_,handle,mutex_attr,mutex_type,THREAD_POOL_DEFAULT_FLAG);
-  long_var_ = stack_long_;
+  create_thread_context(&system_stack_pointer,handle,mutex_attr,mutex_type,THREAD_POOL_DEFAULT_FLAG);
+  system_long_variable = system_stack_long;
   if (stack_int_ == STRING_BUFFER_SIZE) {
-    int_var_ = strcmp(stack_long_,&g_empty_string_const);
+    int_var_ = strcmp(system_stack_long,&g_empty_string_const);
     if (int_var_ == 0) goto label_;
-    int_var_ = strcmp(long_var_,&g_null_string_const);
+    int_var_ = strcmp(system_long_variable,&g_null_string_const);
     if (int_var_ == 0) {
       int_var_ = 100;
       goto label_;
     }
-    ptr_var_ = &g_string_buffer_ptr;
+    system_pointer_variable = &g_string_buffer_ptr;
 label_:
-    int_var_ = strcmp(long_var_,ptr_var_);
+    int_var_ = strcmp(system_long_variable,system_pointer_variable);
     if (int_var_ != 0) {
 label_:
       int_var_ = 0;
@@ -6736,55 +6736,55 @@ label_:
   }
   else {
     if (stack_int_ == 0x15) {
-      int_var_ = strcmp(stack_long_,&unknown_180a389d8g_config_path_string);
+      int_var_ = strcmp(system_stack_long,&system_180a389d8g_config_path_string);
       if (int_var_ == 0) {
         int_var_ = 0x30;
         goto label_;
       }
 label_:
-      int_var_ = strcmp(long_var_,&unknown_180a38aa8g_system_path_string);
+      int_var_ = strcmp(system_long_variable,&system_180a38aa8g_system_path_string);
       if (int_var_ == 0) {
         int_var_ = 0xb0;
         goto label_;
       }
 label_:
-      int_var_ = strcmp(long_var_,&unknown_180a38ac0g_temp_path_string);
+      int_var_ = strcmp(system_long_variable,&system_180a38ac0g_temp_path_string);
       if (int_var_ == 0) {
         int_var_ = 0xd4;
         goto label_;
       }
 label_:
-      ptr_var_ = &unknown_180a38ba0;
+      system_pointer_variable = &system_180a38ba0;
       goto label_;
     }
     if (stack_int_ == 0x1b) {
-      ptr_var_ = &unknown_180a38a20;
+      system_pointer_variable = &system_180a38a20;
       goto label_;
     }
     if (stack_int_ == 0xd) {
-      int_var_ = strcmp(stack_long_,&unknown_180a38978);
+      int_var_ = strcmp(system_stack_long,&system_180a38978);
       if (int_var_ == 0) {
         int_var_ = 4;
         goto label_;
       }
 label_:
-      ptr_var_ = &unknown_180a38c98;
+      system_pointer_variable = &system_180a38c98;
       goto label_;
     }
     if (stack_int_ == 0x1a) {
-      int_var_ = strcmp(stack_long_,&unknown_180a38958g_log_path_string);
+      int_var_ = strcmp(system_stack_long,&system_180a38958g_log_path_string);
       if (int_var_ == 0) {
         int_var_ = 0x1c;
         goto label_;
       }
 label_:
-      int_var_ = strcmp(long_var_,&unknown_180a38c08);
+      int_var_ = strcmp(system_long_variable,&system_180a38c08);
       if (int_var_ == 0) {
         int_var_ = 0x18;
         goto label_;
       }
 label_:
-      int_var_ = strcmp(long_var_,&unknown_180a38ea0);
+      int_var_ = strcmp(system_long_variable,&system_180a38ea0);
       if (int_var_ == 0) {
         int_var_ = 0x554;
         goto label_;
@@ -6792,7 +6792,7 @@ label_:
       goto label_;
     }
     if (stack_int_ == CONFIG_PATH_BUFFER_SIZE) {
-      int_var_ = strcmp(stack_long_,&unknown_180a389b0g_save_path_string);
+      int_var_ = strcmp(system_stack_long,&system_180a389b0g_save_path_string);
       if (int_var_ == 0) {
         int_var_ = 0x30;
         goto label_;
@@ -6800,7 +6800,7 @@ label_:
       goto label_;
     }
     if (stack_int_ == 0x24) {
-      int_var_ = strcmp(stack_long_,&unknown_180a38988);
+      int_var_ = strcmp(system_stack_long,&system_180a38988);
       if (int_var_ == 0) {
         int_var_ = 0x12;
         goto label_;
@@ -6809,13 +6809,13 @@ label_:
     }
     if (stack_int_ == 0x15) goto label_;
     if (stack_int_ == 0x1f) {
-      int_var_ = strcmp(stack_long_,&unknown_180a38a88g_data_path_string);
+      int_var_ = strcmp(system_stack_long,&system_180a38a88g_data_path_string);
       if (int_var_ == 0) {
         int_var_ = 0x48;
         goto label_;
       }
 label_:
-      int_var_ = strcmp(long_var_,&unknown_180a38d38);
+      int_var_ = strcmp(system_long_variable,&system_180a38d38);
       if (int_var_ == 0) {
         int_var_ = 1;
         goto label_;
@@ -6823,45 +6823,45 @@ label_:
       goto label_;
     }
     if (stack_int_ == 10) {
-      int_var_ = strcmp(stack_long_,&unknown_180a38ad8);
+      int_var_ = strcmp(system_stack_long,&system_180a38ad8);
       if (int_var_ == 0) {
         int_var_ = 8;
         goto label_;
       }
 label_:
-      int_var_ = strcmp(long_var_,&unknown_180a38a78);
+      int_var_ = strcmp(system_long_variable,&system_180a38a78);
       if (int_var_ == 0) {
         int_var_ = 4;
         goto label_;
       }
 label_:
-      ptr_var_ = &unknown_180a38ec0;
+      system_pointer_variable = &system_180a38ec0;
       goto label_;
     }
     if (stack_int_ == 0x15) goto label_;
     if (stack_int_ == 0x16) {
-      int_var_ = strcmp(stack_long_,&unknown_180a38a48);
+      int_var_ = strcmp(system_stack_long,&system_180a38a48);
       if (int_var_ == 0) {
         int_var_ = 0x14;
         goto label_;
       }
 label_:
-      int_var_ = strcmp(long_var_,&unknown_180a38b48);
+      int_var_ = strcmp(system_long_variable,&system_180a38b48);
       if (int_var_ == 0) {
         int_var_ = 0x568;
         goto label_;
       }
-      int_var_ = strcmp(long_var_,&unknown_180a38c40);
+      int_var_ = strcmp(system_long_variable,&system_180a38c40);
       if (int_var_ == 0) {
         int_var_ = STRING_BUFFER_SIZE;
         goto label_;
       }
-      int_var_ = strcmp(long_var_,&unknown_180a38ca8);
+      int_var_ = strcmp(system_long_variable,&system_180a38ca8);
       if (int_var_ == 0) {
         int_var_ = 0x28;
         goto label_;
       }
-      int_var_ = strcmp(long_var_,&unknown_180a38e38);
+      int_var_ = strcmp(system_long_variable,&system_180a38e38);
       if (int_var_ == 0) {
         int_var_ = SYSTEM_CONFIG_BUFFER_SIZE;
         goto label_;
@@ -6869,18 +6869,18 @@ label_:
       goto label_;
     }
     if (stack_int_ == 4) {
-      long_var_ = 0;
+      system_long_variable = 0;
       do {
-        long_var_ = long_var_ + 1;
-        if (*(char *)(stack_long_ + long_var_) != (&unknown_180a38a3c)[long_var_]) goto label_;
-        long_var_ = long_var_;
-      } while (long_var_ != 5);
+        system_long_variable = system_long_variable + 1;
+        if (*(char *)(system_stack_long + system_long_variable) != (&system_180a38a3c)[system_long_variable]) goto label_;
+        system_long_variable = system_long_variable;
+      } while (system_long_variable != 5);
       int_var_ = 200;
       goto label_;
     }
     if (stack_int_ == 10) goto label_;
     if (stack_int_ == 0x12) {
-      int_var_ = strcmp(stack_long_,&unknown_180a38a60);
+      int_var_ = strcmp(system_stack_long,&system_180a38a60);
       if (int_var_ == 0) {
         int_var_ = 0x58;
         goto label_;
@@ -6889,15 +6889,15 @@ label_:
     }
     if (stack_int_ != 0x13) {
       if (stack_int_ == 0x17) {
-        int_var_ = strcmp(stack_long_,&unknown_180a38bb8);
+        int_var_ = strcmp(system_stack_long,&system_180a38bb8);
         if (int_var_ == 0) {
           int_var_ = 1;
           goto label_;
         }
 label_:
-        ptr_var_ = &unknown_180a38e78;
+        system_pointer_variable = &system_180a38e78;
 label_:
-        int_var_ = strcmp(long_var_,ptr_var_);
+        int_var_ = strcmp(system_long_variable,system_pointer_variable);
         if (int_var_ == 0) {
 label_:
           int_var_ = 0xc;
@@ -6907,14 +6907,14 @@ label_:
       else {
         if (stack_int_ == 0x15) goto label_;
         if (stack_int_ == 0x26) {
-          int_var_ = strcmp(stack_long_,&unknown_180a38b20);
+          int_var_ = strcmp(system_stack_long,&system_180a38b20);
           if (int_var_ == 0) {
             int_var_ = 0xa8;
             goto label_;
           }
         }
         else if (stack_int_ == 0x34) {
-          int_var_ = strcmp(stack_long_,&unknown_180a38ae8);
+          int_var_ = strcmp(system_stack_long,&system_180a38ae8);
           if (int_var_ == 0) {
             int_var_ = 0x14;
             goto label_;
@@ -6924,39 +6924,39 @@ label_:
           if (stack_int_ != 0xf) {
             if (stack_int_ == 0x16) goto label_;
             if (stack_int_ == 0x18) {
-              int_var_ = strcmp(stack_long_,&unknown_180a38c78);
-              if ((int_var_ == 0) || (int_var_ = strcmp(long_var_,&unknown_180a38c58), int_var_ == 0))
+              int_var_ = strcmp(system_stack_long,&system_180a38c78);
+              if ((int_var_ == 0) || (int_var_ = strcmp(system_long_variable,&system_180a38c58), int_var_ == 0))
               goto label_;
-              int_var_ = strcmp(long_var_,&unknown_180a38be8);
+              int_var_ = strcmp(system_long_variable,&system_180a38be8);
               if (int_var_ != 0) {
-                ptr_var_ = &unknown_180a38d98;
+                system_pointer_variable = &system_180a38d98;
                 goto label_;
               }
               goto label_;
             }
             if (stack_int_ == 7) {
-              long_var_ = 0;
+              system_long_variable = 0;
               do {
-                long_var_ = long_var_;
-                if (*(char *)(stack_long_ + long_var_) != (&unknown_180a38be0)[long_var_]) goto label_;
-                long_var_ = long_var_ + 1;
-              } while (long_var_ + 1 != 8);
-              int_var_ = (int)long_var_ + -6;
+                system_long_variable = system_long_variable;
+                if (*(char *)(system_stack_long + system_long_variable) != (&system_180a38be0)[system_long_variable]) goto label_;
+                system_long_variable = system_long_variable + 1;
+              } while (system_long_variable + 1 != 8);
+              int_var_ = (int)system_long_variable + -6;
               goto label_;
             }
             if (stack_int_ == 0xc) {
-              int_var_ = strcmp(stack_long_,&unknown_180a38bd0);
+              int_var_ = strcmp(system_stack_long,&system_180a38bd0);
               if (int_var_ == 0) {
                 int_var_ = 0x68;
                 goto label_;
               }
 label_:
-              int_var_ = strcmp(long_var_,&unknown_180a38e50);
+              int_var_ = strcmp(system_long_variable,&system_180a38e50);
               if (int_var_ == 0) {
                 int_var_ = 4;
                 goto label_;
               }
-              int_var_ = strcmp(long_var_,&unknown_180a38f30);
+              int_var_ = strcmp(system_long_variable,&system_180a38f30);
               if (int_var_ == 0) {
                 int_var_ = 8;
                 goto label_;
@@ -6966,23 +6966,23 @@ label_:
             if (stack_int_ == 0x1a) goto label_;
             if (stack_int_ == 3) {
               int_var_ = 4;
-              long_var_ = 0;
+              system_long_variable = 0;
               do {
-                long_var_ = long_var_ + 1;
-                if (*(char *)(stack_long_ + long_var_) != (&unknown_180a29944)[long_var_]) goto label_;
-                long_var_ = long_var_;
-              } while (long_var_ != 4);
+                system_long_variable = system_long_variable + 1;
+                if (*(char *)(system_stack_long + system_long_variable) != (&system_180a29944)[system_long_variable]) goto label_;
+                system_long_variable = system_long_variable;
+              } while (system_long_variable != 4);
               goto label_;
             }
             if (stack_int_ == 0xf) goto label_;
             if (stack_int_ == 0x23) {
-              int_var_ = strcmp(stack_long_,&unknown_180a38d58);
+              int_var_ = strcmp(system_stack_long,&system_180a38d58);
               if (int_var_ == 0) {
                 int_var_ = 0x28;
                 goto label_;
               }
 label_:
-              int_var_ = strcmp(long_var_,&unknown_180a38cc0);
+              int_var_ = strcmp(system_long_variable,&system_180a38cc0);
               if (int_var_ == 0) {
                 int_var_ = 0x18;
                 goto label_;
@@ -6992,25 +6992,25 @@ label_:
             if (stack_int_ == 0x1f) goto label_;
             if (stack_int_ == 0xd) goto label_;
             if (stack_int_ == 0x21) {
-              ptr_var_ = &unknown_180a38ce8;
+              system_pointer_variable = &system_180a38ce8;
               goto label_;
             }
             if (stack_int_ == 0x23) goto label_;
             if (stack_int_ == 0xf) goto label_;
             if (stack_int_ == 0xb) {
-              int_var_ = strcmp(stack_long_,&unknown_180a38dd8);
+              int_var_ = strcmp(system_stack_long,&system_180a38dd8);
               if (int_var_ == 0) {
                 int_var_ = 0x248;
                 goto label_;
               }
 label_:
-              int_var_ = strcmp(long_var_,&unknown_180a38dc8);
+              int_var_ = strcmp(system_long_variable,&system_180a38dc8);
               if (int_var_ == 0) {
                 int_var_ = 4;
                 goto label_;
               }
 label_:
-              int_var_ = strcmp(long_var_,&unknown_180a38e90);
+              int_var_ = strcmp(system_long_variable,&system_180a38e90);
               if (int_var_ == 0) {
                 int_var_ = 4;
                 goto label_;
@@ -7018,14 +7018,14 @@ label_:
             }
             else {
               if (stack_int_ == 0x11) {
-                int_var_ = strcmp(stack_long_,&unknown_180a38e10);
+                int_var_ = strcmp(system_stack_long,&system_180a38e10);
                 if (int_var_ == 0) goto label_;
-                int_var_ = strcmp(long_var_,&unknown_180a38df8);
+                int_var_ = strcmp(system_long_variable,&system_180a38df8);
                 if (int_var_ == 0) {
                   int_var_ = 0xa0;
                   goto label_;
                 }
-                ptr_var_ = &unknown_180a38d80;
+                system_pointer_variable = &system_180a38d80;
                 goto label_;
               }
               if (stack_int_ == 0xb) goto label_;
@@ -7037,32 +7037,32 @@ label_:
               if (stack_int_ != 0xb) {
                 if (stack_int_ == 0xc) goto label_;
                 if (stack_int_ != 0x19) goto label_;
-                ptr_var_ = &unknown_180a38f10;
+                system_pointer_variable = &system_180a38f10;
                 goto label_;
               }
             }
-            ptr_var_ = &unknown_180a38e28;
+            system_pointer_variable = &system_180a38e28;
             goto label_;
           }
-          int_var_ = strcmp(stack_long_,&unknown_180a38b60);
+          int_var_ = strcmp(system_stack_long,&system_180a38b60);
           if (int_var_ == 0) {
             int_var_ = 0x214;
             goto label_;
           }
 label_:
-          int_var_ = strcmp(long_var_,&unknown_180a38d10);
+          int_var_ = strcmp(system_long_variable,&system_180a38d10);
           if (int_var_ == 0) {
             int_var_ = CONFIG_PATH_BUFFER_SIZE28;
             goto label_;
           }
 label_:
-          int_var_ = strcmp(long_var_,&unknown_180a38de8);
+          int_var_ = strcmp(system_long_variable,&system_180a38de8);
           if (int_var_ == 0) {
             int_var_ = 4;
             goto label_;
           }
 label_:
-          int_var_ = strcmp(long_var_,&unknown_180a38db8);
+          int_var_ = strcmp(system_long_variable,&system_180a38db8);
           if (int_var_ == 0) {
             int_var_ = 0x50;
             goto label_;
@@ -7071,203 +7071,203 @@ label_:
       }
       goto label_;
     }
-    int_var_ = strcmp(stack_long_,&unknown_180a38b88);
+    int_var_ = strcmp(system_stack_long,&system_180a38b88);
     if (int_var_ == 0) {
       int_var_ = 1;
       goto label_;
     }
-    int_var_ = strcmp(long_var_,&unknown_180a38b70);
+    int_var_ = strcmp(system_long_variable,&system_180a38b70);
     if (int_var_ == 0) {
       int_var_ = 3;
       goto label_;
     }
-    int_var_ = strcmp(long_var_,&unknown_180a38d20);
+    int_var_ = strcmp(system_long_variable,&system_180a38d20);
     if (int_var_ != 0) {
-      ptr_var_ = &unknown_180a38e60;
+      system_pointer_variable = &system_180a38e60;
       goto label_;
     }
   }
 label_:
   int_var_ = 4;
 label_:
-  stack_ptr_ = &g_threadString2;
-  if (stack_long_ == 0) {
+  system_stack_pointer = &g_threadString2;
+  if (system_stack_long == 0) {
     return int_var_;
   }
   handle_system_error();
 }
 unsigned long long
-function_(unsigned long long handle,unsigned long long flags,unsigned char mutex_attr,unsigned long long mutex_type)
+system_function_(unsigned long long handle,unsigned long long flags,unsigned char mutex_attr,unsigned long long mutex_type)
 {
   char cVar1;
-  undefined *pflags;
+  void *pflags;
   unsigned long long uint_var_;
   unsigned char auStack_50 [32];
   unsigned char auStack_30 [40];
   create_thread_context(auStack_30,handle,mutex_attr,mutex_type,THREAD_POOL_DEFAULT_FLAG);
   create_thread_context(auStack_50,flags);
-  cVar1 = validate_handle_parameters(auStack_30,&unknown_180a389d8g_config_path_string,1);
+  cVar1 = validate_handle_parameters(auStack_30,&system_180a389d8g_config_path_string,1);
   if (cVar1 == '\0') {
-    cVar1 = validate_handle_parameters(auStack_30,&unknown_180a38a08,1);
+    cVar1 = validate_handle_parameters(auStack_30,&system_180a38a08,1);
     if (cVar1 == '\0') {
-      cVar1 = validate_handle_parameters(auStack_30,&unknown_180a38958g_log_path_string,1);
+      cVar1 = validate_handle_parameters(auStack_30,&system_180a38958g_log_path_string,1);
       if (cVar1 == '\0') {
-        cVar1 = validate_handle_parameters(auStack_30,&unknown_180a389b0g_save_path_string,1);
+        cVar1 = validate_handle_parameters(auStack_30,&system_180a389b0g_save_path_string,1);
         if (cVar1 == '\0') {
-          cVar1 = validate_handle_parameters(auStack_30,&unknown_180a38988,1);
+          cVar1 = validate_handle_parameters(auStack_30,&system_180a38988,1);
           if (cVar1 == '\0') {
-            cVar1 = validate_handle_parameters(auStack_30,&unknown_180a38aa8g_system_path_string,1);
+            cVar1 = validate_handle_parameters(auStack_30,&system_180a38aa8g_system_path_string,1);
             if (cVar1 == '\0') {
-              cVar1 = validate_handle_parameters(auStack_30,&unknown_180a38a88g_data_path_string,1);
+              cVar1 = validate_handle_parameters(auStack_30,&system_180a38a88g_data_path_string,1);
               if (cVar1 == '\0') {
-                cVar1 = validate_handle_parameters(auStack_30,&unknown_180a38ac0g_temp_path_string,1);
+                cVar1 = validate_handle_parameters(auStack_30,&system_180a38ac0g_temp_path_string,1);
                 if (cVar1 == '\0') {
-                  cVar1 = func_0x0001800a1eb0(auStack_30,&unknown_180a38a48);
+                  cVar1 = func_0x0001800a1eb0(auStack_30,&system_180a38a48);
                   if (cVar1 == '\0') {
-                    cVar1 = func_0x0001800a1eb0(auStack_30,&unknown_180a38a3c);
+                    cVar1 = func_0x0001800a1eb0(auStack_30,&system_180a38a3c);
                     if (cVar1 == '\0') {
-                      cVar1 = func_0x0001800a1eb0(auStack_30,&unknown_180a38a60);
+                      cVar1 = func_0x0001800a1eb0(auStack_30,&system_180a38a60);
                       if (cVar1 == '\0') {
-                        cVar1 = func_0x0001800a1eb0(auStack_30,&unknown_180a38b70);
+                        cVar1 = func_0x0001800a1eb0(auStack_30,&system_180a38b70);
                         if (cVar1 == '\0') {
-                          cVar1 = func_0x0001800a1eb0(auStack_30,&unknown_180a38b20);
+                          cVar1 = func_0x0001800a1eb0(auStack_30,&system_180a38b20);
                           if (cVar1 == '\0') {
-                            cVar1 = func_0x0001800a1eb0(auStack_30,&unknown_180a38ae8);
+                            cVar1 = func_0x0001800a1eb0(auStack_30,&system_180a38ae8);
                             if (cVar1 == '\0') {
-                              cVar1 = func_0x0001800a1eb0(auStack_30,&unknown_180a38b60);
+                              cVar1 = func_0x0001800a1eb0(auStack_30,&system_180a38b60);
                               if (cVar1 == '\0') {
-                                cVar1 = func_0x0001800a1eb0(auStack_30,&unknown_180a38b48);
+                                cVar1 = func_0x0001800a1eb0(auStack_30,&system_180a38b48);
                                 if (cVar1 == '\0') {
-                                  cVar1 = func_0x0001800a1eb0(auStack_30,&unknown_180a38c40);
+                                  cVar1 = func_0x0001800a1eb0(auStack_30,&system_180a38c40);
                                   if (cVar1 == '\0') {
-                                    cVar1 = func_0x0001800a1eb0(auStack_30,&unknown_180a38c78);
+                                    cVar1 = func_0x0001800a1eb0(auStack_30,&system_180a38c78);
                                     if (cVar1 == '\0') {
-                                      cVar1 = func_0x0001800a1eb0(auStack_30,&unknown_180a38c58);
+                                      cVar1 = func_0x0001800a1eb0(auStack_30,&system_180a38c58);
                                       if (cVar1 == '\0') {
-                                        cVar1 = func_0x0001800a1eb0(auStack_30,&unknown_180a38bd0);
+                                        cVar1 = func_0x0001800a1eb0(auStack_30,&system_180a38bd0);
                                         if (cVar1 == '\0') {
-                                          cVar1 = func_0x0001800a1eb0(auStack_30,&unknown_180a38c08);
+                                          cVar1 = func_0x0001800a1eb0(auStack_30,&system_180a38c08);
                                           if (cVar1 == '\0') {
-                                            cVar1 = func_0x0001800a1eb0(auStack_30,&unknown_180a29944);
+                                            cVar1 = func_0x0001800a1eb0(auStack_30,&system_180a29944);
                                             if (cVar1 == '\0') {
-                                              cVar1 = func_0x0001800a1eb0(auStack_30,&unknown_180a38d10)
+                                              cVar1 = func_0x0001800a1eb0(auStack_30,&system_180a38d10)
                                               ;
                                               if (cVar1 == '\0') {
                                                 cVar1 = func_0x0001800a1eb0(auStack_30,
-                                                                            &unknown_180a38d58);
+                                                                            &system_180a38d58);
                                                 if (cVar1 == '\0') {
                                                   cVar1 = func_0x0001800a1eb0(auStack_30,
-                                                                              &unknown_180a38ca8);
+                                                                              &system_180a38ca8);
                                                   if (cVar1 == '\0') {
                                                     cVar1 = func_0x0001800a1eb0(auStack_30,
-                                                                                &unknown_180a38ce8);
+                                                                                &system_180a38ce8);
                                                     if (cVar1 == '\0') {
                                                       cVar1 = func_0x0001800a1eb0(auStack_30,
-                                                                                  &unknown_180a38cc0);
+                                                                                  &system_180a38cc0);
                                                       if (cVar1 != '\0') goto label_;
                                                       cVar1 = func_0x0001800a1eb0(auStack_30,
-                                                                                  &unknown_180a38dd8);
+                                                                                  &system_180a38dd8);
                                                       if (cVar1 == '\0') {
                                                         cVar1 = func_0x0001800a1eb0(auStack_30,
-                                                                                    &unknown_180a38df8);
+                                                                                    &system_180a38df8);
                                                         if (cVar1 == '\0') {
                                                           cVar1 = func_0x0001800a1eb0(auStack_30,
-                                                                                      &unknown_180a38db8
+                                                                                      &system_180a38db8
                                                                                      );
                                                           if (cVar1 == '\0') {
                                                             cVar1 = func_0x0001800a1eb0(auStack_30,
                                                                                         &
-                                                  unknown_180a38e78);
+                                                  system_180a38e78);
                                                   if (cVar1 == '\0') {
                                                     cVar1 = func_0x0001800a1eb0(auStack_30,
-                                                                                &unknown_180a38ea0);
+                                                                                &system_180a38ea0);
                                                     if (cVar1 != '\0') {
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3ac00);
+                                                                                  &system_180a3ac00);
                                                       if (cVar1 == '\0') {
                                                         cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                    &unknown_180a3acf8);
+                                                                                    &system_180a3acf8);
                                                         if (cVar1 != '\0') goto label_;
                                                         cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                    &unknown_180a3acd8);
+                                                                                    &system_180a3acd8);
                                                         if (cVar1 != '\0') goto label_;
                                                         cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                    &unknown_180a3ad30);
+                                                                                    &system_180a3ad30);
                                                         if (cVar1 != '\0') goto label_;
                                                         cVar1 = func_0x0001800a1eb0(auStack_50,
                                                                                     &data_180a06a48);
                                                         if (cVar1 != '\0') goto label_;
                                                         cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                    &unknown_180a3ad18);
+                                                                                    &system_180a3ad18);
                                                         if (cVar1 != '\0') goto label_;
                                                         cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                    &unknown_180a3ac90);
+                                                                                    &system_180a3ac90);
                                                         if (cVar1 != '\0') goto label_;
                                                         cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                    &unknown_180a3ac80);
+                                                                                    &system_180a3ac80);
                                                         if (cVar1 != '\0') goto label_;
                                                         cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                    &unknown_180a3acc8);
+                                                                                    &system_180a3acc8);
                                                         if (cVar1 != '\0') {
                                                           uint_var_ = 0x21c;
                                                           goto label_;
                                                         }
                                                         cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                    &unknown_180a3aca8);
+                                                                                    &system_180a3aca8);
                                                         if (cVar1 != '\0') {
                                                           uint_var_ = 0x41c;
                                                           goto label_;
                                                         }
                                                         cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                    &unknown_180a3ade8);
+                                                                                    &system_180a3ade8);
                                                         if (cVar1 != '\0') {
                                                           uint_var_ = 0x41d;
                                                           goto label_;
                                                         }
                                                         cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                    &unknown_180a3add0);
+                                                                                    &system_180a3add0);
                                                         if (cVar1 != '\0') {
                                                           uint_var_ = 0x420;
                                                           goto label_;
                                                         }
                                                         cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                    &unknown_180a3ae18);
+                                                                                    &system_180a3ae18);
                                                         if (cVar1 != '\0') {
                                                           uint_var_ = 0x424;
                                                           goto label_;
                                                         }
                                                         cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                    &unknown_180a3ae00);
+                                                                                    &system_180a3ae00);
                                                         if (cVar1 != '\0') {
                                                           uint_var_ = 0x428;
                                                           goto label_;
                                                         }
                                                         cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                    &unknown_180a3ad88);
+                                                                                    &system_180a3ad88);
                                                         if (cVar1 != '\0') {
                                                           uint_var_ = 0x430;
                                                           goto label_;
                                                         }
                                                         cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                    &unknown_180a29da8);
+                                                                                    &system_180a29da8);
                                                         if (cVar1 != '\0') {
                                                           uint_var_ = 0x438;
                                                           goto label_;
                                                         }
                                                         cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                    &unknown_180a3ad60);
+                                                                                    &system_180a3ad60);
                                                         if (cVar1 != '\0') {
                                                           uint_var_ = 0x439;
                                                           goto label_;
                                                         }
                                                         cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                    &unknown_180a3adb8);
+                                                                                    &system_180a3adb8);
                                                         if (cVar1 != '\0') {
                                                           uint_var_ = 0x43c;
                                                           goto label_;
                                                         }
                                                         cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                    &unknown_180a3ada0);
+                                                                                    &system_180a3ada0);
                                                         if (cVar1 != '\0') {
                                                           uint_var_ = 0x440;
                                                           goto label_;
@@ -7277,12 +7277,12 @@ function_(unsigned long long handle,unsigned long long flags,unsigned char mutex
                                                   }
                                                   else {
                                                     cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                &unknown_180a3abe0);
+                                                                                &system_180a3abe0);
                                                     if (cVar1 == '\0') {
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a1029c);
+                                                                                  &system_180a1029c);
                                                       if (cVar1 == '\0') {
-                                                        pflags = &unknown_180a3ac10;
+                                                        pflags = &system_180a3ac10;
                                                         goto label_;
                                                       }
                                                       goto label_;
@@ -7291,261 +7291,261 @@ function_(unsigned long long handle,unsigned long long flags,unsigned char mutex
                                                   }
                                                   else {
                                                     cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                &unknown_180a3ac48);
+                                                                                &system_180a3ac48);
                                                     if (cVar1 == '\0') {
-                                                      pflags = &unknown_180a3abe8;
+                                                      pflags = &system_180a3abe8;
                                                       goto label_;
                                                     }
                                                   }
                                                   }
                                                   else {
                                                     cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                &unknown_180a3a960);
+                                                                                &system_180a3a960);
                                                     if (cVar1 == '\0') {
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3ab28);
+                                                                                  &system_180a3ab28);
                                                       if (cVar1 != '\0') goto label_;
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a39f78);
+                                                                                  &system_180a39f78);
                                                       if (cVar1 != '\0') goto label_;
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3ab18);
+                                                                                  &system_180a3ab18);
                                                       if (cVar1 != '\0') goto label_;
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a39fb0);
+                                                                                  &system_180a39fb0);
                                                       if (cVar1 != '\0') goto label_;
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3ab50);
+                                                                                  &system_180a3ab50);
                                                       if (cVar1 != '\0') goto label_;
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3ab38);
+                                                                                  &system_180a3ab38);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 100;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3aae8);
+                                                                                  &system_180a3aae8);
                                                       if (cVar1 != '\0') goto label_;
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3aad8);
+                                                                                  &system_180a3aad8);
                                                       if (cVar1 != '\0') {
 label_:
                                                         uint_var_ = 0x6c;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3ab08);
+                                                                                  &system_180a3ab08);
                                                       if (cVar1 != '\0') goto label_;
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3aaf8);
+                                                                                  &system_180a3aaf8);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0x74;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3abb0);
+                                                                                  &system_180a3abb0);
                                                       if (cVar1 != '\0') goto label_;
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3aba0);
+                                                                                  &system_180a3aba0);
                                                       if (cVar1 != '\0') goto label_;
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3abd0);
+                                                                                  &system_180a3abd0);
                                                       if (cVar1 != '\0') goto label_;
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3abc0);
+                                                                                  &system_180a3abc0);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0x84;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3ab70);
+                                                                                  &system_180a3ab70);
                                                       if (cVar1 != '\0') goto label_;
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3ab60);
+                                                                                  &system_180a3ab60);
                                                       if (cVar1 != '\0') goto label_;
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3ab90);
+                                                                                  &system_180a3ab90);
                                                       if (cVar1 != '\0') goto label_;
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3ab80);
+                                                                                  &system_180a3ab80);
                                                       if (cVar1 != '\0') goto label_;
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3ac30);
+                                                                                  &system_180a3ac30);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0x96;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3ac18);
+                                                                                  &system_180a3ac18);
                                                       if (cVar1 != '\0') goto label_;
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3ac68);
+                                                                                  &system_180a3ac68);
                                                       if (cVar1 != '\0') goto label_;
                                                     }
                                                   }
                                                   }
                                                   else {
                                                     cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                &unknown_180a3a8b0);
+                                                                                &system_180a3a8b0);
                                                     if (cVar1 == '\0') {
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3a850);
+                                                                                  &system_180a3a850);
                                                       if (cVar1 != '\0') goto label_;
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3a830);
+                                                                                  &system_180a3a830);
                                                       if (cVar1 != '\0') goto label_;
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3a870);
+                                                                                  &system_180a3a870);
                                                       if (cVar1 != '\0') goto label_;
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3a860);
+                                                                                  &system_180a3a860);
                                                       if (cVar1 != '\0') goto label_;
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a04be8);
+                                                                                  &system_180a04be8);
                                                       if (cVar1 != '\0') goto label_;
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3a938);
+                                                                                  &system_180a3a938);
                                                       if (cVar1 != '\0') goto label_;
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3a920);
+                                                                                  &system_180a3a920);
                                                       if (cVar1 != '\0') goto label_;
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3a960);
+                                                                                  &system_180a3a960);
                                                       if (cVar1 != '\0') goto label_;
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3a948);
+                                                                                  &system_180a3a948);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0xf8;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3a8f0);
+                                                                                  &system_180a3a8f0);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0xfc;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3a8d8);
+                                                                                  &system_180a3a8d8);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = STRING_BUFFER_SIZE0;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3a910);
+                                                                                  &system_180a3a910);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0x110;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3a900);
+                                                                                  &system_180a3a900);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0x114;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3a9d8);
+                                                                                  &system_180a3a9d8);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0x118;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3a9c8);
+                                                                                  &system_180a3a9c8);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0x11c;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3a9f0);
+                                                                                  &system_180a3a9f0);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0x11e;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3a9e0);
+                                                                                  &system_180a3a9e0);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0x120;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3a988);
+                                                                                  &system_180a3a988);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0x130;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a2a000);
+                                                                                  &system_180a2a000);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0x170;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a21a30);
+                                                                                  &system_180a21a30);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0x174;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3a970);
+                                                                                  &system_180a3a970);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0x178;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3a9b0);
+                                                                                  &system_180a3a9b0);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0x188;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3a998);
+                                                                                  &system_180a3a998);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0x198;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3aa98);
+                                                                                  &system_180a3aa98);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0x19c;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3aa70);
+                                                                                  &system_180a3aa70);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0x1a0;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3aac0);
+                                                                                  &system_180a3aac0);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0x220;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3aab0);
+                                                                                  &system_180a3aab0);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0x230;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3aa20);
+                                                                                  &system_180a3aa20);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0x234;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3aa08);
+                                                                                  &system_180a3aa08);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0x238;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3aa50);
+                                                                                  &system_180a3aa50);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0x23c;
                                                         goto label_;
                                                       }
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3aa38);
+                                                                                  &system_180a3aa38);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 0x240;
                                                         goto label_;
@@ -7555,10 +7555,10 @@ label_:
                                                   }
                                                   else {
                                                     cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                &unknown_180a3a650);
+                                                                                &system_180a3a650);
                                                     if (cVar1 == '\0') {
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3a640);
+                                                                                  &system_180a3a640);
                                                       if (cVar1 != '\0') {
                                                         uint_var_ = 4;
                                                         goto label_;
@@ -7569,42 +7569,42 @@ label_:
                                                   }
                                                   else {
                                                     cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                &unknown_180a3a800);
+                                                                                &system_180a3a800);
                                                     if (cVar1 == '\0') {
                                                       cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                  &unknown_180a3a7a8);
+                                                                                  &system_180a3a7a8);
                                                       if (cVar1 == '\0') {
                                                         cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                    &unknown_180a3a798);
+                                                                                    &system_180a3a798);
                                                         if (cVar1 != '\0') goto label_;
                                                         cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                    &unknown_180a3a7d0);
+                                                                                    &system_180a3a7d0);
                                                         if (cVar1 == '\0') {
                                                           cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                      &unknown_180a3a7b8
+                                                                                      &system_180a3a7b8
                                                                                      );
                                                           if (cVar1 != '\0') goto label_;
                                                           cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                      &unknown_180a3a898
+                                                                                      &system_180a3a898
                                                                                      );
                                                           if (cVar1 == '\0') {
                                                             cVar1 = func_0x0001800a1eb0(auStack_50,
                                                                                         &
-                                                  unknown_180a3a880);
+                                                  system_180a3a880);
                                                   if (cVar1 != '\0') goto label_;
                                                   cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                              &unknown_180a3a8c0);
+                                                                              &system_180a3a8c0);
                                                   if (cVar1 != '\0') goto label_;
                                                   cVar1 = func_0x0001800a1eb0(auStack_50,
                                                                               &data_180a0ba58);
                                                   if (cVar1 != '\0') goto label_;
                                                   cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                              &unknown_180a3a5a8);
+                                                                              &system_180a3a5a8);
                                                   if (cVar1 == '\0') {
                                                     cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                &unknown_180a2e2bc);
+                                                                                &system_180a2e2bc);
                                                     if (cVar1 != '\0') goto label_;
-                                                    pflags = &unknown_180a2e9e0;
+                                                    pflags = &system_180a2e9e0;
                                                     goto label_;
                                                   }
                                                   goto label_;
@@ -7619,33 +7619,33 @@ label_:
                                                 }
                                                 else {
                                                   cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                              &unknown_180a3a720);
+                                                                              &system_180a3a720);
                                                   if (cVar1 == '\0') {
                                                     cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                &unknown_180a3a754);
+                                                                                &system_180a3a754);
                                                     if (cVar1 != '\0') goto label_;
                                                     cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                &unknown_180a3a748);
+                                                                                &system_180a3a748);
                                                     if (cVar1 != '\0') {
 label_:
                                                       uint_var_ = 0xc;
                                                       goto label_;
                                                     }
                                                     cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                &unknown_180a3a7f0);
+                                                                                &system_180a3a7f0);
                                                     if (cVar1 != '\0') {
 label_:
                                                       uint_var_ = 0x14;
                                                       goto label_;
                                                     }
                                                     cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                                &unknown_180a3a7e0);
+                                                                                &system_180a3a7e0);
                                                     if (cVar1 != '\0') {
 label_:
                                                       uint_var_ = 0x1c;
                                                       goto label_;
                                                     }
-                                                    pflags = &unknown_180a3a820;
+                                                    pflags = &system_180a3a820;
 label_:
                                                     cVar1 = func_0x0001800a1eb0(auStack_50,pflags);
                                                     if (cVar1 != '\0') goto label_;
@@ -7654,28 +7654,28 @@ label_:
                                               }
                                               else {
                                                 cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                            &unknown_180a1a470);
+                                                                            &system_180a1a470);
                                                 if (cVar1 == '\0') {
                                                   cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                              &unknown_180a3a758);
+                                                                              &system_180a3a758);
                                                   if (cVar1 != '\0') {
                                                     uint_var_ = CONFIG_PATH_BUFFER_SIZE00;
                                                     goto label_;
                                                   }
                                                   cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                              &unknown_180a3a788);
+                                                                              &system_180a3a788);
                                                   if (cVar1 != '\0') {
                                                     uint_var_ = CONFIG_PATH_BUFFER_SIZE10;
                                                     goto label_;
                                                   }
                                                   cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                              &unknown_180a3a778);
+                                                                              &system_180a3a778);
                                                   if (cVar1 != '\0') {
                                                     uint_var_ = CONFIG_PATH_BUFFER_SIZE20;
                                                     goto label_;
                                                   }
                                                   cVar1 = func_0x0001800a1eb0(auStack_50,
-                                                                              &unknown_180a3a738);
+                                                                              &system_180a3a738);
                                                   if (cVar1 != '\0') {
                                                     uint_var_ = CONFIG_PATH_BUFFER_SIZE24;
                                                     goto label_;
@@ -7686,12 +7686,12 @@ label_:
                                           }
                                           else {
 label_:
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a650);
+                                            cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a650);
                                             if (cVar1 == '\0') {
-                                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a640)
+                                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a640)
                                               ;
                                               if (cVar1 == '\0') {
-                                                pflags = &unknown_180a3a5c0;
+                                                pflags = &system_180a3a5c0;
                                                 goto label_;
                                               }
                                               goto label_;
@@ -7699,63 +7699,63 @@ label_:
                                           }
                                         }
                                         else {
-                                          cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a6c0);
+                                          cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a6c0);
                                           if (cVar1 == '\0') {
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a708);
+                                            cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a708);
                                             if (cVar1 != '\0') goto label_;
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a6f8);
+                                            cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a6f8);
                                             if (cVar1 != '\0') goto label_;
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39ee0);
+                                            cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39ee0);
                                             if (cVar1 != '\0') {
 label_:
                                               uint_var_ = 0x24;
                                               goto label_;
                                             }
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39e48);
+                                            cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39e48);
                                             if (cVar1 != '\0') goto label_;
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39dd0);
+                                            cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39dd0);
                                             if (cVar1 != '\0') {
 label_:
                                               uint_var_ = 0x2c;
                                               goto label_;
                                             }
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39df0);
+                                            cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39df0);
                                             if (cVar1 != '\0') goto label_;
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39fb0);
+                                            cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39fb0);
                                             if (cVar1 != '\0') {
 label_:
                                               uint_var_ = 0x34;
                                               goto label_;
                                             }
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a670);
+                                            cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a670);
                                             if (cVar1 != '\0') goto label_;
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a660);
+                                            cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a660);
                                             if (cVar1 != '\0') {
 label_:
                                               uint_var_ = 0x3c;
                                               goto label_;
                                             }
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a6a0);
+                                            cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a6a0);
                                             if (cVar1 != '\0') {
 label_:
                                               uint_var_ = 0x50;
                                               goto label_;
                                             }
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a688);
+                                            cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a688);
                                             if (cVar1 != '\0') goto label_;
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39d58);
+                                            cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39d58);
                                             if (cVar1 != '\0') {
 label_:
                                               uint_var_ = 0x5c;
                                               goto label_;
                                             }
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39f18);
+                                            cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39f18);
                                             if (cVar1 != '\0') {
 label_:
                                               uint_var_ = 0x60;
                                               goto label_;
                                             }
-                                            cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a768);
+                                            cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a768);
                                             if (cVar1 != '\0') {
                                               uint_var_ = 0x61;
                                               goto label_;
@@ -7764,12 +7764,12 @@ label_:
                                         }
                                       }
                                       else {
-                                        cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a650);
+                                        cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a650);
                                         if (cVar1 == '\0') {
-                                          cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a640);
+                                          cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a640);
                                           if (cVar1 == '\0') {
 label_:
-                                            pflags = &unknown_180a3a5c0;
+                                            pflags = &system_180a3a5c0;
                                             goto label_;
                                           }
                                           goto label_;
@@ -7777,11 +7777,11 @@ label_:
                                       }
                                     }
                                     else {
-                                      cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a600);
+                                      cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a600);
                                       if (cVar1 == '\0') {
-                                        cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a5e0);
+                                        cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a5e0);
                                         if (cVar1 != '\0') goto label_;
-                                        pflags = &unknown_180a3a6e0;
+                                        pflags = &system_180a3a6e0;
 label_:
                                         cVar1 = func_0x0001800a1eb0(auStack_50,pflags);
                                         if (cVar1 != '\0') goto label_;
@@ -7789,116 +7789,116 @@ label_:
                                     }
                                   }
                                   else {
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a650);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a650);
                                     if (cVar1 == '\0') {
-                                      cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a640);
+                                      cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a640);
                                       if (cVar1 != '\0') goto label_;
-                                      cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a5d0);
+                                      cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a5d0);
                                       if (cVar1 != '\0') goto label_;
-                                      cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a5c0);
+                                      cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a5c0);
                                       if (cVar1 != '\0') goto label_;
                                     }
                                   }
                                 }
                                 else {
-                                  cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a2f8);
+                                  cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a2f8);
                                   if (cVar1 == '\0') {
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a2e8);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a2e8);
                                     if (cVar1 != '\0') goto label_;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a310);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a310);
                                     if (cVar1 != '\0') goto label_;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a300);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a300);
                                     if (cVar1 != '\0') goto label_;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a418);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a418);
                                     if (cVar1 != '\0') goto label_;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a408);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a408);
                                     if (cVar1 != '\0') goto label_;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a440);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a440);
                                     if (cVar1 != '\0') goto label_;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a428);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a428);
                                     if (cVar1 != '\0') goto label_;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a3d0);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a3d0);
                                     if (cVar1 != '\0') goto label_;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a3c0);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a3c0);
                                     if (cVar1 != '\0') goto label_;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a3f8);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a3f8);
                                     if (cVar1 != '\0') goto label_;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a3e8);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a3e8);
                                     if (cVar1 != '\0') goto label_;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a4c0);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a4c0);
                                     if (cVar1 != '\0') goto label_;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a4a8);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a4a8);
                                     if (cVar1 != '\0') goto label_;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a4e0);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a4e0);
                                     if (cVar1 != '\0') goto label_;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a4d0);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a4d0);
                                     if (cVar1 != '\0') goto label_;
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a468);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a468);
                                     if (cVar1 != '\0') {
                                       uint_var_ = 0x53c;
                                       goto label_;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a458);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a458);
                                     if (cVar1 != '\0') {
                                       uint_var_ = 0x540;
                                       goto label_;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a498);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a498);
                                     if (cVar1 != '\0') {
                                       uint_var_ = 0x544;
                                       goto label_;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a478);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a478);
                                     if (cVar1 != '\0') {
                                       uint_var_ = 0x548;
                                       goto label_;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a560);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a560);
                                     if (cVar1 != '\0') {
                                       uint_var_ = 0x54c;
                                       goto label_;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a540);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a540);
                                     if (cVar1 != '\0') {
                                       uint_var_ = 0x550;
                                       goto label_;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a5a8);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a5a8);
                                     if (cVar1 != '\0') {
                                       uint_var_ = 0x554;
                                       goto label_;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a580);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a580);
                                     if (cVar1 != '\0') {
                                       uint_var_ = 0x558;
                                       goto label_;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a508);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a508);
                                     if (cVar1 != '\0') {
                                       uint_var_ = 0x55c;
                                       goto label_;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a4f8);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a4f8);
                                     if (cVar1 != '\0') {
                                       uint_var_ = 0x560;
                                       goto label_;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a530);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a530);
                                     if (cVar1 != '\0') {
                                       uint_var_ = 0x564;
                                       goto label_;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a520);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a520);
                                     if (cVar1 != '\0') {
                                       uint_var_ = 0x565;
                                       goto label_;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a630);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a630);
                                     if (cVar1 != '\0') {
                                       uint_var_ = 0x566;
                                       goto label_;
                                     }
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a620);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a620);
                                     if (cVar1 != '\0') {
                                       uint_var_ = 0x567;
                                       goto label_;
@@ -7907,31 +7907,31 @@ label_:
                                 }
                               }
                               else {
-                                cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a2e1d8);
+                                cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a2e1d8);
                                 if (cVar1 == '\0') {
-                                  cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a2e1e8);
+                                  cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a2e1e8);
                                   if (cVar1 != '\0') goto label_;
-                                  cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a2e158);
+                                  cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a2e158);
                                   if (cVar1 != '\0') goto label_;
-                                  cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a2e150);
+                                  cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a2e150);
                                   if (cVar1 != '\0') goto label_;
-                                  cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a0696c);
+                                  cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a0696c);
                                   if (cVar1 != '\0') goto label_;
-                                  cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a0ae28);
+                                  cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a0ae28);
                                   if (cVar1 != '\0') goto label_;
                                 }
                               }
                             }
                             else {
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a260);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a260);
                               if (cVar1 == '\0') {
-                                cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a348);
+                                cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a348);
                                 if (cVar1 == '\0') {
-                                  cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a320);
+                                  cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a320);
                                   if (cVar1 == '\0') {
-                                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a398);
+                                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a398);
                                     if (cVar1 == '\0') {
-                                      pflags = &unknown_180a3a370;
+                                      pflags = &system_180a3a370;
                                       goto label_;
                                     }
                                     goto label_;
@@ -7943,131 +7943,131 @@ label_:
                             }
                           }
                           else {
-                            cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a068);
+                            cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a068);
                             if (cVar1 == '\0') {
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a058);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a058);
                               if (cVar1 != '\0') {
 label_:
                                 uint_var_ = 4;
                                 goto label_;
                               }
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39fe0);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39fe0);
                               if (cVar1 != '\0') goto label_;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39fc0);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39fc0);
                               if (cVar1 != '\0') goto label_;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a018);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a018);
                               if (cVar1 != '\0') goto label_;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39ff8);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39ff8);
                               if (cVar1 != '\0') goto label_;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a118);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a118);
                               if (cVar1 != '\0') goto label_;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a0f0);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a0f0);
                               if (cVar1 != '\0') goto label_;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a158);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a158);
                               if (cVar1 != '\0') goto label_;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a140);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a140);
                               if (cVar1 != '\0') goto label_;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a098);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a098);
                               if (cVar1 != '\0') goto label_;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a078);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a078);
                               if (cVar1 != '\0') goto label_;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a0d0);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a0d0);
                               if (cVar1 != '\0') goto label_;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a0b8);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a0b8);
                               if (cVar1 != '\0') goto label_;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a1e8);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a1e8);
                               if (cVar1 != '\0') goto label_;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a1c8);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a1c8);
                               if (cVar1 != '\0') goto label_;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a220);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a220);
                               if (cVar1 != '\0') goto label_;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a208);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a208);
                               if (cVar1 != '\0') goto label_;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a188);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a188);
                               if (cVar1 != '\0') goto label_;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a178);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a178);
                               if (cVar1 != '\0') goto label_;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a1b8);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a1b8);
                               if (cVar1 != '\0') {
 label_:
                                 uint_var_ = 0x70;
                                 goto label_;
                               }
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a1a8);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a1a8);
                               if (cVar1 != '\0') goto label_;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a2b0);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a2b0);
                               if (cVar1 != '\0') {
 label_:
                                 uint_var_ = 0x80;
                                 goto label_;
                               }
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a298);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a298);
                               if (cVar1 != '\0') goto label_;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a2d8);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a2d8);
                               if (cVar1 != '\0') goto label_;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a2c0);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a2c0);
                               if (cVar1 != '\0') goto label_;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a250);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a250);
                               if (cVar1 != '\0') goto label_;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a240);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a240);
                               if (cVar1 != '\0') goto label_;
-                              cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a278);
+                              cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a278);
                               if (cVar1 != '\0') goto label_;
                             }
                           }
                         }
                         else {
-                          cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39f50);
+                          cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39f50);
                           if (cVar1 == '\0') {
-                            cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a048);
+                            cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a048);
                             if (cVar1 != '\0') goto label_;
-                            cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a3a038);
+                            cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a3a038);
                             if (cVar1 != '\0') goto label_;
                           }
                         }
                       }
                       else {
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39e78);
+                        cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39e78);
                         if (cVar1 == '\0') {
-                          cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39eb8);
+                          cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39eb8);
                           if (cVar1 != '\0') goto label_;
-                          cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39ea8);
+                          cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39ea8);
                           if (cVar1 != '\0') goto label_;
-                          cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39f88);
+                          cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39f88);
                           if (cVar1 != '\0') goto label_;
-                          cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39f78);
+                          cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39f78);
                           if (cVar1 != '\0') {
 label_:
                             uint_var_ = 0x38;
                             goto label_;
                           }
-                          cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39fb0);
+                          cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39fb0);
                           if (cVar1 != '\0') {
 label_:
                             uint_var_ = SYSTEM_CONFIG_BUFFER_SIZE;
                             goto label_;
                           }
-                          cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39f98);
+                          cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39f98);
                           if (cVar1 != '\0') {
 label_:
                             uint_var_ = 0x44;
                             goto label_;
                           }
-                          cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39f28);
+                          cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39f28);
                           if (cVar1 != '\0') {
 label_:
                             uint_var_ = 0x48;
                             goto label_;
                           }
-                          cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a1029c);
+                          cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a1029c);
                           if (cVar1 != '\0') {
 label_:
                             uint_var_ = 0x4c;
                             goto label_;
                           }
-                          cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39f18);
+                          cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39f18);
                           if (cVar1 != '\0') goto label_;
-                          cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39f60);
+                          cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39f60);
                           if (cVar1 != '\0') {
                             uint_var_ = 0x51;
                             goto label_;
@@ -8076,125 +8076,125 @@ label_:
                       }
                     }
                     else {
-                      cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39d98);
+                      cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39d98);
                       if (cVar1 == '\0') {
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39dc0);
+                        cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39dc0);
                         if (cVar1 != '\0') {
 label_:
                           uint_var_ = 0x58;
                           goto label_;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a35198);
+                        cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a35198);
                         if (cVar1 != '\0') {
 label_:
                           uint_var_ = 0x68;
                           goto label_;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39db0);
+                        cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39db0);
                         if (cVar1 != '\0') {
 label_:
                           uint_var_ = 0x78;
                           goto label_;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39d58);
+                        cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39d58);
                         if (cVar1 != '\0') {
 label_:
                           uint_var_ = 0x88;
                           goto label_;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39d40);
+                        cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39d40);
                         if (cVar1 != '\0') {
 label_:
                           uint_var_ = 0x8c;
                           goto label_;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39d88);
+                        cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39d88);
                         if (cVar1 != '\0') {
 label_:
                           uint_var_ = 0x90;
                           goto label_;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39d70);
+                        cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39d70);
                         if (cVar1 != '\0') {
 label_:
                           uint_var_ = 0x94;
                           goto label_;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39e30);
+                        cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39e30);
                         if (cVar1 != '\0') {
 label_:
                           uint_var_ = 0x98;
                           goto label_;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39e18);
+                        cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39e18);
                         if (cVar1 != '\0') {
 label_:
                           uint_var_ = 0x9c;
                           goto label_;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39e58);
+                        cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39e58);
                         if (cVar1 != '\0') {
 label_:
                           uint_var_ = 0xa0;
                           goto label_;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a34948);
+                        cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a34948);
                         if (cVar1 != '\0') {
 label_:
                           uint_var_ = 0xa4;
                           goto label_;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39e48);
+                        cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39e48);
                         if (cVar1 != '\0') {
 label_:
                           uint_var_ = 0xa8;
                           goto label_;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39de0);
+                        cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39de0);
                         if (cVar1 != '\0') {
 label_:
                           uint_var_ = 0xac;
                           goto label_;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39dd0);
+                        cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39dd0);
                         if (cVar1 != '\0') {
 label_:
                           uint_var_ = 0xb0;
                           goto label_;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39e08);
+                        cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39e08);
                         if (cVar1 != '\0') {
                           uint_var_ = 0xb4;
                           goto label_;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39df0);
+                        cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39df0);
                         if (cVar1 != '\0') {
                           uint_var_ = 0xb5;
                           goto label_;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39ee0);
+                        cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39ee0);
                         if (cVar1 != '\0') {
 label_:
                           uint_var_ = 0xb8;
                           goto label_;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39ed0);
+                        cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39ed0);
                         if (cVar1 != '\0') {
 label_:
                           uint_var_ = 0xbc;
                           goto label_;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39f00);
+                        cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39f00);
                         if (cVar1 != '\0') {
                           uint_var_ = 0xbd;
                           goto label_;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39ef0);
+                        cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39ef0);
                         if (cVar1 != '\0') {
                           uint_var_ = 0xbe;
                           goto label_;
                         }
-                        cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39e90);
+                        cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39e90);
                         if (cVar1 != '\0') {
 label_:
                           uint_var_ = 0xc0;
@@ -8204,15 +8204,15 @@ label_:
                     }
                   }
                   else {
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39cd0);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39cd0);
                     if (cVar1 == '\0') {
-                      cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39ccc);
+                      cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39ccc);
                       if (cVar1 != '\0') goto label_;
-                      cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39cd8);
+                      cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39cd8);
                       if (cVar1 != '\0') goto label_;
-                      cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39cd4);
+                      cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39cd4);
                       if (cVar1 != '\0') goto label_;
-                      pflags = &unknown_180a39da8;
+                      pflags = &system_180a39da8;
 label_:
                       cVar1 = func_0x0001800a1eb0(auStack_50,pflags);
                       if (cVar1 != '\0') goto label_;
@@ -8220,127 +8220,127 @@ label_:
                   }
                 }
                 else {
-                  cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39920,1);
+                  cVar1 = validate_handle_parameters(auStack_50,&system_180a39920,1);
                   if (cVar1 == '\0') {
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39988);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39988);
                     if (cVar1 != '\0') {
 label_:
                       uint_var_ = 1;
                       goto label_;
                     }
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39970);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39970);
                     if (cVar1 != '\0') {
 label_:
                       uint_var_ = 2;
                       goto label_;
                     }
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a398d8);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a398d8);
                     if (cVar1 != '\0') {
                       uint_var_ = 3;
                       goto label_;
                     }
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a398b8);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a398b8);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39910);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39910);
                     if (cVar1 != '\0') {
                       uint_var_ = 5;
                       goto label_;
                     }
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a398f0);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a398f0);
                     if (cVar1 != '\0') {
                       uint_var_ = 6;
                       goto label_;
                     }
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39a28);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39a28);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39a18);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39a18);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39a60);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39a60);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39a40);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39a40);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a399c0);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a399c0);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a399a8);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a399a8);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a399f0);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a399f0);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a399e0);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a399e0);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39af0);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39af0);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39ad8);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39ad8);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39b18);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39b18);
                     if (cVar1 != '\0') {
                       uint_var_ = 0x1d;
                       goto label_;
                     }
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39b00);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39b00);
                     if (cVar1 != '\0') {
                       uint_var_ = 0x1e;
                       goto label_;
                     }
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39a88);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39a88);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39a70);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39a70);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39ab8);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39ab8);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39aa0);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39aa0);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39ba0);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39ba0);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39b88);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39b88);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39bd8);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39bd8);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39bc0);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39bc0);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39b48);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39b48);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39b30);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39b30);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39b78);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39b78);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39b68);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39b68);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39c80);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39c80);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39c60);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39c60);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39cb8);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39cb8);
                     if (cVar1 != '\0') {
 label_:
                       uint_var_ = 0x7c;
                       goto label_;
                     }
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39c98);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39c98);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39c10);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39c10);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39bf0);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39bf0);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39c50);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39c50);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39c30);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39c30);
                     if (cVar1 != '\0') goto label_;
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39cf8);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39cf8);
                     if (cVar1 != '\0') {
                       uint_var_ = 0xc4;
                       goto label_;
                     }
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39ce0);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39ce0);
                     if (cVar1 != '\0') {
                       uint_var_ = 200;
                       goto label_;
                     }
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39d28);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39d28);
                     if (cVar1 != '\0') {
                       uint_var_ = 0xcc;
                       goto label_;
                     }
-                    cVar1 = func_0x0001800a1eb0(auStack_50,&unknown_180a39d10);
+                    cVar1 = func_0x0001800a1eb0(auStack_50,&system_180a39d10);
                     if (cVar1 != '\0') {
                       uint_var_ = 0xd0;
                       goto label_;
@@ -8349,34 +8349,34 @@ label_:
                 }
               }
               else {
-                cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39888,1);
+                cVar1 = validate_handle_parameters(auStack_50,&system_180a39888,1);
                 if (cVar1 == '\0') {
-                  cVar1 = validate_handle_parameters(auStack_50,&unknown_180a397f8,1);
+                  cVar1 = validate_handle_parameters(auStack_50,&system_180a397f8,1);
                   if (cVar1 != '\0') {
 label_:
                     uint_var_ = STRING_BUFFER_SIZE;
                     goto label_;
                   }
-                  cVar1 = validate_handle_parameters(auStack_50,&unknown_180a397e8,1);
+                  cVar1 = validate_handle_parameters(auStack_50,&system_180a397e8,1);
                   if (cVar1 != '\0') {
 label_:
                     uint_var_ = CONFIG_PATH_BUFFER_SIZE;
                     goto label_;
                   }
-                  cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39850,1);
+                  cVar1 = validate_handle_parameters(auStack_50,&system_180a39850,1);
                   if (cVar1 != '\0') goto label_;
-                  cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39820,1);
+                  cVar1 = validate_handle_parameters(auStack_50,&system_180a39820,1);
                   if (cVar1 != '\0') {
 label_:
                     uint_var_ = 0x30;
                     goto label_;
                   }
-                  cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39940,1);
+                  cVar1 = validate_handle_parameters(auStack_50,&system_180a39940,1);
                   if (cVar1 != '\0') {
                     uint_var_ = 0x31;
                     goto label_;
                   }
-                  cVar1 = validate_handle_parameters(auStack_50,&unknown_180a19c8c,1);
+                  cVar1 = validate_handle_parameters(auStack_50,&system_180a19c8c,1);
                   if (cVar1 != '\0') {
                     uint_var_ = 0x32;
                     goto label_;
@@ -8385,168 +8385,168 @@ label_:
               }
             }
             else {
-              cVar1 = validate_handle_parameters(auStack_50,&unknown_180a397d8,1);
+              cVar1 = validate_handle_parameters(auStack_50,&system_180a397d8,1);
               if (cVar1 == '\0') {
-                cVar1 = validate_handle_parameters(auStack_50,&unknown_180a397c8,1);
+                cVar1 = validate_handle_parameters(auStack_50,&system_180a397c8,1);
                 if (cVar1 != '\0') goto label_;
-                cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39740,1);
+                cVar1 = validate_handle_parameters(auStack_50,&system_180a39740,1);
                 if (cVar1 != '\0') goto label_;
-                cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39728,1);
+                cVar1 = validate_handle_parameters(auStack_50,&system_180a39728,1);
                 if (cVar1 != '\0') goto label_;
-                cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39768,1);
+                cVar1 = validate_handle_parameters(auStack_50,&system_180a39768,1);
                 if (cVar1 != '\0') goto label_;
-                cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39758,1);
+                cVar1 = validate_handle_parameters(auStack_50,&system_180a39758,1);
                 if (cVar1 != '\0') goto label_;
-                cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39870,1);
+                cVar1 = validate_handle_parameters(auStack_50,&system_180a39870,1);
                 if (cVar1 != '\0') goto label_;
-                cVar1 = validate_handle_parameters(auStack_50,&unknown_180a19c8c,1);
+                cVar1 = validate_handle_parameters(auStack_50,&system_180a19c8c,1);
                 if (cVar1 != '\0') {
 label_:
                   uint_var_ = 0x19;
                   goto label_;
                 }
-                cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39864,1);
+                cVar1 = validate_handle_parameters(auStack_50,&system_180a39864,1);
                 if (cVar1 != '\0') {
                   uint_var_ = 0x35;
                   goto label_;
                 }
-                cVar1 = validate_handle_parameters(auStack_50,&unknown_180a398a8,1);
+                cVar1 = validate_handle_parameters(auStack_50,&system_180a398a8,1);
                 if (cVar1 != '\0') goto label_;
               }
             }
           }
           else {
-            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39568,1);
+            cVar1 = validate_handle_parameters(auStack_50,&system_180a39568,1);
             if (cVar1 == '\0') {
-              cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39538,1);
+              cVar1 = validate_handle_parameters(auStack_50,&system_180a39538,1);
               if (cVar1 != '\0') {
 label_:
                 uint_var_ = 7;
                 goto label_;
               }
-              cVar1 = validate_handle_parameters(auStack_50,&unknown_180a396c8,1);
+              cVar1 = validate_handle_parameters(auStack_50,&system_180a396c8,1);
               if (cVar1 != '\0') goto label_;
-              cVar1 = validate_handle_parameters(auStack_50,&unknown_180a396b0,1);
+              cVar1 = validate_handle_parameters(auStack_50,&system_180a396b0,1);
               if (cVar1 != '\0') goto label_;
-              cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39710,1);
+              cVar1 = validate_handle_parameters(auStack_50,&system_180a39710,1);
               if (cVar1 != '\0') {
 label_:
                 uint_var_ = 10;
                 goto label_;
               }
-              cVar1 = validate_handle_parameters(auStack_50,&unknown_180a396f0,1);
+              cVar1 = validate_handle_parameters(auStack_50,&system_180a396f0,1);
               if (cVar1 != '\0') goto label_;
-              cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39640,1);
+              cVar1 = validate_handle_parameters(auStack_50,&system_180a39640,1);
               if (cVar1 != '\0') goto label_;
-              cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39628,1);
+              cVar1 = validate_handle_parameters(auStack_50,&system_180a39628,1);
               if (cVar1 != '\0') {
                 uint_var_ = 0xd;
                 goto label_;
               }
-              cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39688,1);
+              cVar1 = validate_handle_parameters(auStack_50,&system_180a39688,1);
               if (cVar1 != '\0') {
                 uint_var_ = 0xe;
                 goto label_;
               }
-              cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39660,1);
+              cVar1 = validate_handle_parameters(auStack_50,&system_180a39660,1);
               if (cVar1 != '\0') {
                 uint_var_ = 0xf;
                 goto label_;
               }
-              cVar1 = validate_handle_parameters(auStack_50,&unknown_180a397a8,1);
+              cVar1 = validate_handle_parameters(auStack_50,&system_180a397a8,1);
               if (cVar1 != '\0') goto label_;
-              cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39788,1);
+              cVar1 = validate_handle_parameters(auStack_50,&system_180a39788,1);
               if (cVar1 != '\0') goto label_;
             }
           }
         }
         else {
-          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39270,1);
+          cVar1 = validate_handle_parameters(auStack_50,&system_180a39270,1);
           if (cVar1 == '\0') {
-            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a393a8,1);
+            cVar1 = validate_handle_parameters(auStack_50,&system_180a393a8,1);
             if (cVar1 != '\0') goto label_;
-            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39390,1);
+            cVar1 = validate_handle_parameters(auStack_50,&system_180a39390,1);
             if (cVar1 != '\0') {
 label_:
               uint_var_ = 9;
               goto label_;
             }
-            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a393f0,1);
+            cVar1 = validate_handle_parameters(auStack_50,&system_180a393f0,1);
             if (cVar1 != '\0') goto label_;
-            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a393d0,1);
+            cVar1 = validate_handle_parameters(auStack_50,&system_180a393d0,1);
             if (cVar1 != '\0') goto label_;
-            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39348,1);
+            cVar1 = validate_handle_parameters(auStack_50,&system_180a39348,1);
             if (cVar1 != '\0') {
 label_:
               uint_var_ = 0x17;
               goto label_;
             }
-            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39328,1);
+            cVar1 = validate_handle_parameters(auStack_50,&system_180a39328,1);
             if (cVar1 != '\0') goto label_;
-            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39378,1);
+            cVar1 = validate_handle_parameters(auStack_50,&system_180a39378,1);
             if (cVar1 != '\0') goto label_;
-            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39360,1);
+            cVar1 = validate_handle_parameters(auStack_50,&system_180a39360,1);
             if (cVar1 != '\0') {
               uint_var_ = 0x21;
               goto label_;
             }
-            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a394a0,1);
+            cVar1 = validate_handle_parameters(auStack_50,&system_180a394a0,1);
             if (cVar1 != '\0') {
               uint_var_ = 0x22;
               goto label_;
             }
-            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39480,1);
+            cVar1 = validate_handle_parameters(auStack_50,&system_180a39480,1);
             if (cVar1 != '\0') {
               uint_var_ = 0x23;
               goto label_;
             }
-            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a394e0,1);
+            cVar1 = validate_handle_parameters(auStack_50,&system_180a394e0,1);
             if (cVar1 != '\0') goto label_;
-            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a394b8,1);
+            cVar1 = validate_handle_parameters(auStack_50,&system_180a394b8,1);
             if (cVar1 != '\0') {
               uint_var_ = 0x25;
               goto label_;
             }
-            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39428,1);
+            cVar1 = validate_handle_parameters(auStack_50,&system_180a39428,1);
             if (cVar1 != '\0') {
               uint_var_ = 0x26;
               goto label_;
             }
-            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39408,1);
+            cVar1 = validate_handle_parameters(auStack_50,&system_180a39408,1);
             if (cVar1 != '\0') {
               uint_var_ = 0x27;
               goto label_;
             }
-            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39468,1);
+            cVar1 = validate_handle_parameters(auStack_50,&system_180a39468,1);
             if (cVar1 != '\0') goto label_;
-            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39450,1);
+            cVar1 = validate_handle_parameters(auStack_50,&system_180a39450,1);
             if (cVar1 != '\0') {
               uint_var_ = 0x29;
               goto label_;
             }
-            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a395c0,1);
+            cVar1 = validate_handle_parameters(auStack_50,&system_180a395c0,1);
             if (cVar1 != '\0') {
               uint_var_ = 0x2a;
               goto label_;
             }
-            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39598,1);
+            cVar1 = validate_handle_parameters(auStack_50,&system_180a39598,1);
             if (cVar1 != '\0') {
               uint_var_ = 0x2b;
               goto label_;
             }
-            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39600,1);
+            cVar1 = validate_handle_parameters(auStack_50,&system_180a39600,1);
             if (cVar1 != '\0') goto label_;
-            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a395e0,1);
+            cVar1 = validate_handle_parameters(auStack_50,&system_180a395e0,1);
             if (cVar1 != '\0') {
               uint_var_ = 0x2d;
               goto label_;
             }
-            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39518,1);
+            cVar1 = validate_handle_parameters(auStack_50,&system_180a39518,1);
             if (cVar1 != '\0') {
               uint_var_ = 0x2e;
               goto label_;
             }
-            cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39500,1);
+            cVar1 = validate_handle_parameters(auStack_50,&system_180a39500,1);
             if (cVar1 != '\0') {
               uint_var_ = 0x2f;
               goto label_;
@@ -8555,59 +8555,59 @@ label_:
         }
       }
       else {
-        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a391b8,1);
+        cVar1 = validate_handle_parameters(auStack_50,&system_180a391b8,1);
         if (cVar1 == '\0') {
-          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39188,1);
+          cVar1 = validate_handle_parameters(auStack_50,&system_180a39188,1);
           if (cVar1 != '\0') {
 label_:
             uint_var_ = 0xb;
             goto label_;
           }
-          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39210,1);
+          cVar1 = validate_handle_parameters(auStack_50,&system_180a39210,1);
           if (cVar1 != '\0') goto label_;
-          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a391e8,1);
+          cVar1 = validate_handle_parameters(auStack_50,&system_180a391e8,1);
           if (cVar1 != '\0') goto label_;
-          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39128,1);
+          cVar1 = validate_handle_parameters(auStack_50,&system_180a39128,1);
           if (cVar1 != '\0') {
 label_:
             uint_var_ = 0x11;
             goto label_;
           }
-          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39110,1);
+          cVar1 = validate_handle_parameters(auStack_50,&system_180a39110,1);
           if (cVar1 != '\0') {
             uint_var_ = 0x12;
             goto label_;
           }
-          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39170,1);
+          cVar1 = validate_handle_parameters(auStack_50,&system_180a39170,1);
           if (cVar1 != '\0') {
             uint_var_ = 0x13;
             goto label_;
           }
-          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39148,1);
+          cVar1 = validate_handle_parameters(auStack_50,&system_180a39148,1);
           if (cVar1 != '\0') goto label_;
-          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a392d0,1);
+          cVar1 = validate_handle_parameters(auStack_50,&system_180a392d0,1);
           if (cVar1 != '\0') {
             uint_var_ = 0x15;
             goto label_;
           }
-          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a392b8,1);
+          cVar1 = validate_handle_parameters(auStack_50,&system_180a392b8,1);
           if (cVar1 != '\0') {
             uint_var_ = 0x16;
             goto label_;
           }
-          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39308,1);
+          cVar1 = validate_handle_parameters(auStack_50,&system_180a39308,1);
           if (cVar1 != '\0') goto label_;
-          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a392e8,1);
+          cVar1 = validate_handle_parameters(auStack_50,&system_180a392e8,1);
           if (cVar1 != '\0') goto label_;
-          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39250,1);
+          cVar1 = validate_handle_parameters(auStack_50,&system_180a39250,1);
           if (cVar1 != '\0') goto label_;
-          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39230,1);
+          cVar1 = validate_handle_parameters(auStack_50,&system_180a39230,1);
           if (cVar1 != '\0') {
 label_:
             uint_var_ = 0x1a;
             goto label_;
           }
-          cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39298,1);
+          cVar1 = validate_handle_parameters(auStack_50,&system_180a39298,1);
           if (cVar1 != '\0') {
             uint_var_ = 0x1b;
             goto label_;
@@ -8616,70 +8616,70 @@ label_:
       }
     }
     else {
-      cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38ef0,1);
+      cVar1 = validate_handle_parameters(auStack_50,&system_180a38ef0,1);
       if (cVar1 == '\0') {
-        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38fd8,1);
+        cVar1 = validate_handle_parameters(auStack_50,&system_180a38fd8,1);
         if (cVar1 != '\0') goto label_;
-        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a1029c,1);
+        cVar1 = validate_handle_parameters(auStack_50,&system_180a1029c,1);
         if (cVar1 != '\0') goto label_;
-        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38fc0,1);
+        cVar1 = validate_handle_parameters(auStack_50,&system_180a38fc0,1);
         if (cVar1 != '\0') goto label_;
-        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39008,1);
+        cVar1 = validate_handle_parameters(auStack_50,&system_180a39008,1);
         if (cVar1 != '\0') goto label_;
-        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38ff0,1);
+        cVar1 = validate_handle_parameters(auStack_50,&system_180a38ff0,1);
         if (cVar1 != '\0') goto label_;
-        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38f78,1);
+        cVar1 = validate_handle_parameters(auStack_50,&system_180a38f78,1);
         if (cVar1 != '\0') goto label_;
-        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38f60,1);
+        cVar1 = validate_handle_parameters(auStack_50,&system_180a38f60,1);
         if (cVar1 != '\0') goto label_;
-        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38fa8,1);
+        cVar1 = validate_handle_parameters(auStack_50,&system_180a38fa8,1);
         if (cVar1 != '\0') goto label_;
-        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38f90,1);
+        cVar1 = validate_handle_parameters(auStack_50,&system_180a38f90,1);
         if (cVar1 != '\0') goto label_;
-        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a390b8,1);
+        cVar1 = validate_handle_parameters(auStack_50,&system_180a390b8,1);
         if (cVar1 != '\0') goto label_;
-        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39090,1);
+        cVar1 = validate_handle_parameters(auStack_50,&system_180a39090,1);
         if (cVar1 != '\0') goto label_;
-        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a390f0,1);
+        cVar1 = validate_handle_parameters(auStack_50,&system_180a390f0,1);
         if (cVar1 != '\0') goto label_;
-        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a390d0,1);
+        cVar1 = validate_handle_parameters(auStack_50,&system_180a390d0,1);
         if (cVar1 != '\0') goto label_;
-        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39030,1);
+        cVar1 = validate_handle_parameters(auStack_50,&system_180a39030,1);
         if (cVar1 != '\0') goto label_;
-        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a34c20,1);
+        cVar1 = validate_handle_parameters(auStack_50,&system_180a34c20,1);
         if (cVar1 != '\0') {
           uint_var_ = 0x54;
           goto label_;
         }
-        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39020,1);
+        cVar1 = validate_handle_parameters(auStack_50,&system_180a39020,1);
         if (cVar1 != '\0') goto label_;
-        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39078,1);
+        cVar1 = validate_handle_parameters(auStack_50,&system_180a39078,1);
         if (cVar1 != '\0') goto label_;
-        cVar1 = validate_handle_parameters(auStack_50,&unknown_180a39058,1);
+        cVar1 = validate_handle_parameters(auStack_50,&system_180a39058,1);
         if (cVar1 != '\0') goto label_;
       }
     }
   }
   else {
-    cVar1 = validate_handle_parameters(auStack_50,&unknown_180a0ee38,1);
+    cVar1 = validate_handle_parameters(auStack_50,&system_180a0ee38,1);
     if (cVar1 == '\0') {
-      cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38f50,1);
+      cVar1 = validate_handle_parameters(auStack_50,&system_180a38f50,1);
       if (cVar1 != '\0') {
 label_:
         uint_var_ = 8;
         goto label_;
       }
-      cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38f40,1);
+      cVar1 = validate_handle_parameters(auStack_50,&system_180a38f40,1);
       if (cVar1 != '\0') goto label_;
-      cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38ee0,1);
+      cVar1 = validate_handle_parameters(auStack_50,&system_180a38ee0,1);
       if (cVar1 != '\0') {
 label_:
         uint_var_ = 0x18;
         goto label_;
       }
-      cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38ed0,1);
+      cVar1 = validate_handle_parameters(auStack_50,&system_180a38ed0,1);
       if (cVar1 != '\0') goto label_;
-      cVar1 = validate_handle_parameters(auStack_50,&unknown_180a38f00,1);
+      cVar1 = validate_handle_parameters(auStack_50,&system_180a38f00,1);
       if (cVar1 != '\0') {
 label_:
         uint_var_ = 0x28;
@@ -8689,78 +8689,78 @@ label_:
   }
   uint_var_ = 0;
 label_:
-  function_(auStack_50);
-  function_(auStack_30);
+  system_function_(auStack_50);
+  system_function_(auStack_30);
   return uint_var_;
 }
   data_180bf66d8 = 0;
-  system_crypto_002(function_);
-  function_(&unknown_18064ffc0);
-  long_var_ = 0;
-  global_data_ = function_;
+  system_crypto_002(system_function_);
+  system_function_(&system_18064ffc0);
+  system_long_variable = 0;
+  system_global_data_ = system_function_;
   pflags = (unsigned int *)&data_180bfbd80;
-  long_var_ = 0x16;
+  system_long_variable = 0x16;
   do {
     if (pflags[1] == 0) {
-      function_(pflags);
+      system_function_(pflags);
     }
-    if (long_var_ != 2) {
-      function_(&unknown_180a3db60,*(unsigned long long *)(pflags + 4),*pflags);
+    if (system_long_variable != 2) {
+      system_function_(&system_180a3db60,*(unsigned long long *)(pflags + 4),*pflags);
     }
-    long_var_ = long_var_ + 1;
+    system_long_variable = system_long_variable + 1;
     pflags = pflags + 6;
-    long_var_ = long_var_ + -1;
-  } while (long_var_ != 0);
-  if (global_data_ == 0) {
-    function_(&data_180bfbf60);
+    system_long_variable = system_long_variable + -1;
+  } while (system_long_variable != 0);
+  if (system_global_data_ == 0) {
+    system_function_(&data_180bfbf60);
   }
-  global_data_ = (long long)global_data_;
-  if (global_data_ == 0) {
-    function_(&data_180bfbf78);
+  system_global_data_ = (long long)system_global_data_;
+  if (system_global_data_ == 0) {
+    system_function_(&data_180bfbf78);
   }
-  global_data_ = (long long)global_data_;
-  function_();
+  system_global_data_ = (long long)system_global_data_;
+  system_function_();
   if (data_180c8efc8 != '\0') {
-    function_(&unknown_180a3d970);
+    system_function_(&system_180a3d970);
   }
   return;
 }
 double calculate_system_performance(void)
 {
-  long long init_result;
+  long long system_init_result;
   long long alStackX_8 [4];
-  init_result = global_data_;
-  if (global_data_ == 0) {
+  system_init_result = system_global_data_;
+  if (system_global_data_ == 0) {
     QueryPerformanceCounter(alStackX_8);
-    init_result = alStackX_8[0];
+    system_init_result = alStackX_8[0];
   }
-  return (double)(init_result - global_data_) * global_data_;
+  return (double)(system_init_result - system_global_data_) * system_global_data_;
 }
 bool validate_handle_parameters(long long handle,long long flags,char mutex_attr)
 {
   char cVar1;
   char cVar2;
   int int_var_;
-  long long long_var_;
-  char *char_ptr_var_;
-  long_var_ = -1;
+  long long system_long_variable;
+  char *char_system_pointer_variable;
+  system_long_variable = -1;
   do {
-    long_var_ = long_var_ + 1;
-  } while (*(char *)(flags + long_var_) != '\0');
+    system_long_variable = system_long_variable + 1;
+  } while (*(char *)(flags + system_long_variable) != '\0');
   int_var_ = *(int *)(handle + STRING_BUFFER_SIZE);
-  if (int_var_ == (int)long_var_) {
+  if (int_var_ == (int)system_long_variable) {
     if (int_var_ != 0) {
-      char_ptr_var_ = *(char **)(handle + 8);
+      char_system_pointer_variable = *(char **)(handle + 8);
       if (mutex_attr == '\0') {
-        int_var_ = _stricmp(char_ptr_var_,flags);
+        int_var_ = _stricmp(char_system_pointer_variable,flags);
         return int_var_ == 0;
       }
-      flags = flags - (long long)char_ptr_var_;
+      flags = flags - (long long)char_system_pointer_variable;
       do {
-        cVar1 = *char_ptr_var_;
-        cVar2 = char_ptr_var_[flags];
+        cVar1 = *char_system_pointer_variable;
+        cVar2 = char_system_pointer_variable[flags];
         if (cVar1 != cVar2) break;
-        char_ptr_var_ = char_ptr_var_ + 1;
+        char_system_pointer_variable = char_system_pointer_variable + 1;
       } while (cVar2 != '\0');
       return cVar1 == cVar2;
     }
@@ -8768,7 +8768,7 @@ bool validate_handle_parameters(long long handle,long long flags,char mutex_attr
   else if (int_var_ != 0) {
     return false;
   }
-  if ((int)long_var_ != 0) {
+  if ((int)system_long_variable != 0) {
     return false;
   }
   return true;
@@ -8777,38 +8777,38 @@ bool validate_handle_parameters(long long handle,long long flags,char mutex_attr
 int find_string_index_in_array(long long handle)
 {
   int int_var_;
-  long long long_var_;
+  long long system_long_variable;
   int int_var_;
   ulong long uint_var_;
-  long long long_var_;
-  undefined *stack_ptr_;
-  long long stack_long_;
+  long long system_long_variable;
+  void *system_stack_pointer;
+  long long system_stack_long;
   int stack_int_;
-  create_thread_context(&stack_ptr_);
+  create_thread_context(&system_stack_pointer);
   int_var_ = (*(int *)(handle + STRING_BUFFER_SIZE) - stack_int_) + 1;
   int_var_ = 0;
   if (0 < int_var_) {
-    long_var_ = 0;
+    system_long_variable = 0;
     do {
       uint_var_ = 0;
-      long_var_ = 0;
+      system_long_variable = 0;
       if (0 < stack_int_) {
         do {
-          if (*(char *)(*(long long *)(handle + 8) + long_var_ + long_var_) != *(char *)(uint_var_ + stack_long_))
+          if (*(char *)(*(long long *)(handle + 8) + system_long_variable + system_long_variable) != *(char *)(uint_var_ + system_stack_long))
           break;
           uint_var_ = (ulong long)((int)uint_var_ + 1);
-          long_var_ = long_var_ + 1;
-        } while (long_var_ < stack_int_);
+          system_long_variable = system_long_variable + 1;
+        } while (system_long_variable < stack_int_);
       }
       if ((int)uint_var_ == stack_int_) goto label_;
       int_var_ = int_var_ + 1;
-      long_var_ = long_var_ + 1;
-    } while (long_var_ < int_var_);
+      system_long_variable = system_long_variable + 1;
+    } while (system_long_variable < int_var_);
   }
   int_var_ = -1;
 label_:
-  stack_ptr_ = &g_threadString2;
-  if (stack_long_ != 0) {
+  system_stack_pointer = &g_threadString2;
+  if (system_stack_long != 0) {
     handle_system_error();
   }
   return int_var_;
@@ -8817,31 +8817,31 @@ label_:
 int process_handle_parameters(long long handle,long long flags)
 {
   int int_var_;
-  long long long_var_;
+  long long system_long_variable;
   int int_var_;
-  long long long_var_;
+  long long system_long_variable;
   ulong long uint_var_;
   int_var_ = *(int *)(flags + STRING_BUFFER_SIZE);
   int_var_ = *(int *)(handle + STRING_BUFFER_SIZE) - int_var_;
   if (-1 < int_var_) {
-    long_var_ = (long long)int_var_;
+    system_long_variable = (long long)int_var_;
     do {
       uint_var_ = 0;
-      long_var_ = 0;
+      system_long_variable = 0;
       if (0 < int_var_) {
         do {
-          if (*(char *)(*(long long *)(handle + 8) + long_var_ + long_var_) !=
+          if (*(char *)(*(long long *)(handle + 8) + system_long_variable + system_long_variable) !=
               *(char *)(uint_var_ + *(long long *)(flags + 8))) break;
           uint_var_ = (ulong long)((int)uint_var_ + 1);
-          long_var_ = long_var_ + 1;
-        } while (long_var_ < int_var_);
+          system_long_variable = system_long_variable + 1;
+        } while (system_long_variable < int_var_);
       }
       if ((int)uint_var_ == int_var_) {
         return int_var_;
       }
       int_var_ = int_var_ + -1;
-      long_var_ = long_var_ + -1;
-    } while (-1 < long_var_);
+      system_long_variable = system_long_variable + -1;
+    } while (-1 < system_long_variable);
   }
   return -1;
 }
@@ -8882,627 +8882,627 @@ unsigned long long * setup_thread_parameters(long long handle,unsigned long long
   return flags;
 }
   data_180c95fea = 1;
-  stack_ptr_ = &g_threadString2;
+  system_stack_pointer = &g_threadString2;
   stack_var_ = 0;
-  stack_ptr_ = (unsigned long long *)0x0;
+  system_stack_pointer = (unsigned long long *)0x0;
   stack_var_ = 0;
-  ptr_var_ = (unsigned long long *)
-           function_(global_data_,STRING_BUFFER_SIZE,CONCAT71((int7)((ulong long)char_ptr_var_ >> 8),0x13));
-  *(unsigned char *)ptr_var_ = 0;
-  stack_ptr_ = ptr_var_;
-  uint_var_ = allocate_helper_buffer(ptr_var_);
-  *ptr_var_ = 0x7265206573726150;
-  *(unsigned int *)(ptr_var_ + 1) = 0x3a726f72;
-  *(unsigned short *)((long long)ptr_var_ + 0xc) = 0x2720;
-  *(unsigned char *)((long long)ptr_var_ + 0xe) = 0;
+  system_pointer_variable = (unsigned long long *)
+           system_function_(system_global_data_,STRING_BUFFER_SIZE,CONCAT71((int7)((ulong long)char_system_pointer_variable >> 8),0x13));
+  *(unsigned char *)system_pointer_variable = 0;
+  system_stack_pointer = system_pointer_variable;
+  uint_var_ = allocate_helper_buffer(system_pointer_variable);
+  *system_pointer_variable = 0x7265206573726150;
+  *(unsigned int *)(system_pointer_variable + 1) = 0x3a726f72;
+  *(unsigned short *)((long long)system_pointer_variable + 0xc) = 0x2720;
+  *(unsigned char *)((long long)system_pointer_variable + 0xe) = 0;
   stack_var_ = 0xe;
-  init_result0 = -1;
+  system_init_result0 = -1;
   stack_var_._0_4_ = uint_var_;
   if (handle != 0) {
     do {
-      long_var_ = init_result0;
-      init_result0 = long_var_ + 1;
-    } while (*(char *)(init_result0 + handle) != '\0');
-    if (0 < (int)init_result0) {
-      int_var_ = (int)long_var_;
+      system_long_variable = system_init_result0;
+      system_init_result0 = system_long_variable + 1;
+    } while (*(char *)(system_init_result0 + handle) != '\0');
+    if (0 < (int)system_init_result0) {
+      int_var_ = (int)system_long_variable;
       if ((int_var_ != -0xf) && (uint_var_ < int_var_ + STRING_BUFFER_SIZEU)) {
         stack_var_ = 0x13;
-        ptr_var_ = (unsigned long long *)function_(global_data_,ptr_var_,int_var_ + STRING_BUFFER_SIZEU,STRING_BUFFER_SIZE);
-        stack_ptr_ = ptr_var_;
-        stack_var_._0_4_ = allocate_helper_buffer(ptr_var_);
+        system_pointer_variable = (unsigned long long *)system_function_(system_global_data_,system_pointer_variable,int_var_ + STRING_BUFFER_SIZEU,STRING_BUFFER_SIZE);
+        system_stack_pointer = system_pointer_variable;
+        stack_var_._0_4_ = allocate_helper_buffer(system_pointer_variable);
       }
-      memcpy((unsigned char *)((long long)ptr_var_ + 0xe),handle,(long long)(int_var_ + 2));
+      memcpy((unsigned char *)((long long)system_pointer_variable + 0xe),handle,(long long)(int_var_ + 2));
     }
   }
-  if (ptr_var_ == (unsigned long long *)0x0) {
-    ptr_var_ = (unsigned long long *)function_(global_data_,0x19,0x13);
-    *(unsigned char *)ptr_var_ = 0;
+  if (system_pointer_variable == (unsigned long long *)0x0) {
+    system_pointer_variable = (unsigned long long *)system_function_(system_global_data_,0x19,0x13);
+    *(unsigned char *)system_pointer_variable = 0;
 label_:
-    stack_ptr_ = ptr_var_;
-    uint_var_ = allocate_helper_buffer(ptr_var_);
+    system_stack_pointer = system_pointer_variable;
+    uint_var_ = allocate_helper_buffer(system_pointer_variable);
   }
   else if (uint_var_ < 0x19) {
     stack_var_ = 0x13;
-    ptr_var_ = (unsigned long long *)function_(global_data_,ptr_var_,0x19,STRING_BUFFER_SIZE);
+    system_pointer_variable = (unsigned long long *)system_function_(system_global_data_,system_pointer_variable,0x19,STRING_BUFFER_SIZE);
     goto label_;
   }
-  *(unsigned long long *)((long long)ptr_var_ + 0xe) = 0x6e696c2074612027;
-  *(unsigned short *)((long long)ptr_var_ + 0x16) = CONFIG_PATH_BUFFER_SIZE65;
-  *(unsigned char *)(ptr_var_ + 3) = 0;
+  *(unsigned long long *)((long long)system_pointer_variable + 0xe) = 0x6e696c2074612027;
+  *(unsigned short *)((long long)system_pointer_variable + 0x16) = CONFIG_PATH_BUFFER_SIZE65;
+  *(unsigned char *)(system_pointer_variable + 3) = 0;
   stack_var_ = 0x18;
   stack_var_._0_4_ = uint_var_;
-  function_(acStack_40,&unknown_1809fd0a0,int_var_);
-  init_result0 = -1;
+  system_function_(acStack_40,&system_1809fd0a0,int_var_);
+  system_init_result0 = -1;
   do {
-    long_var_ = init_result0;
-    init_result0 = long_var_ + 1;
-  } while (acStack_40[long_var_ + 1] != '\0');
-  int_var_ = (int)(long_var_ + 1);
+    system_long_variable = system_init_result0;
+    system_init_result0 = system_long_variable + 1;
+  } while (acStack_40[system_long_variable + 1] != '\0');
+  int_var_ = (int)(system_long_variable + 1);
   if (int_var_ < 1) {
     if (data_180c8eced != '\0') {
       _Exit(5);
     }
-    stack_ptr_ = &g_threadString2;
-    if (ptr_var_ != (unsigned long long *)0x0) {
-      handle_system_error(ptr_var_);
+    system_stack_pointer = &g_threadString2;
+    if (system_pointer_variable != (unsigned long long *)0x0) {
+      handle_system_error(system_pointer_variable);
     }
-    stack_ptr_ = (unsigned long long *)0x0;
+    system_stack_pointer = (unsigned long long *)0x0;
     stack_var_ = (ulong long)stack_var_._4_4_ << CONFIG_PATH_BUFFER_SIZE;
-    stack_ptr_ = &g_threadString4;
+    system_stack_pointer = &g_threadString4;
     system_crypto_001(stack_var_ ^ (ulong long)auStack_98);
   }
   if (int_var_ != -0x18) {
     uint_var_ = int_var_ + 0x19;
-    if (ptr_var_ == (unsigned long long *)0x0) {
+    if (system_pointer_variable == (unsigned long long *)0x0) {
       if ((int)uint_var_ < STRING_BUFFER_SIZE) {
         uint_var_ = STRING_BUFFER_SIZE;
       }
-      ptr_var_ = (unsigned long long *)function_(global_data_,(long long)(int)uint_var_,0x13);
-      *(unsigned char *)ptr_var_ = 0;
+      system_pointer_variable = (unsigned long long *)system_function_(system_global_data_,(long long)(int)uint_var_,0x13);
+      *(unsigned char *)system_pointer_variable = 0;
     }
     else {
       if (uint_var_ <= uint_var_) goto label_;
       stack_var_ = 0x13;
-      ptr_var_ = (unsigned long long *)function_(global_data_,ptr_var_,uint_var_,STRING_BUFFER_SIZE);
+      system_pointer_variable = (unsigned long long *)system_function_(system_global_data_,system_pointer_variable,uint_var_,STRING_BUFFER_SIZE);
     }
-    stack_ptr_ = ptr_var_;
-    stack_var_._0_4_ = allocate_helper_buffer(ptr_var_);
+    system_stack_pointer = system_pointer_variable;
+    stack_var_._0_4_ = allocate_helper_buffer(system_pointer_variable);
   }
 label_:
-  memcpy(ptr_var_ + 3,acStack_40,(long long)((int)long_var_ + 2));
+  memcpy(system_pointer_variable + 3,acStack_40,(long long)((int)system_long_variable + 2));
 }
-char * function_(unsigned int handle,unsigned long long flags,char *mutex_attr,unsigned long long mutex_type,
+char * system_function_(unsigned int handle,unsigned long long flags,char *mutex_attr,unsigned long long mutex_type,
                     long long *param_5,long long param_6,ulong long param_7,unsigned long long *param_8,
                     int *param_9,unsigned long long *handle0)
 {
   char cVar1;
   unsigned int flags;
   unsigned int uint_var_;
-  undefined *ptr_var_;
+  void *system_pointer_variable;
   int int_var_;
   unsigned int uint_var_;
   uint uint_var_;
-  long long long_var_;
-  char *char_ptr_var_;
-  unsigned int *ptr_var_;
-  unsigned int *ptr_var_;
-  unsigned char *ptr_var_;
-  undefined *ptr_var_;
-  char *char_ptr_var_;
-  char *char_ptr_var_;
+  long long system_long_variable;
+  char *char_system_pointer_variable;
+  unsigned int *system_pointer_variable;
+  unsigned int *system_pointer_variable;
+  unsigned char *system_pointer_variable;
+  void *system_pointer_variable;
+  char *char_system_pointer_variable;
+  char *char_system_pointer_variable;
   ulong long uint_var_;
-  char *char_ptr_var_;
-  char *char_ptr_var_;
-  char *char_ptr_var_;
-  long long long_var_;
-  char *char_ptr_var_;
-  undefined *stack_ptr_;
-  undefined *stack_ptr_;
+  char *char_system_pointer_variable;
+  char *char_system_pointer_variable;
+  char *char_system_pointer_variable;
+  long long system_long_variable;
+  char *char_system_pointer_variable;
+  void *system_stack_pointer;
+  void *system_stack_pointer;
   uint stack_var_;
   unsigned long long stack_var_;
   long long *plStack_120;
-  undefined *stack_ptr_;
-  undefined *stack_ptr_;
+  void *system_stack_pointer;
+  void *system_stack_pointer;
   unsigned int stack_var_;
   ulong long stack_var_;
-  undefined *stack_ptr_;
-  unsigned int *stack_ptr_;
+  void *system_stack_pointer;
+  unsigned int *system_stack_pointer;
   unsigned int stack_var_;
   unsigned long long stack_var_;
   ulong long stack_var_;
-  long long stack_long_;
-  unsigned long long *stack_ptr_;
-  undefined *stack_ptr_;
-  unsigned int *stack_ptr_;
+  long long system_stack_long;
+  unsigned long long *system_stack_pointer;
+  void *system_stack_pointer;
+  unsigned int *system_stack_pointer;
   unsigned int stack_var_;
   ulong long stack_var_;
-  unsigned long long *stack_ptr_;
-  undefined *stack_ptr_;
-  unsigned int *stack_ptr_;
+  unsigned long long *system_stack_pointer;
+  void *system_stack_pointer;
+  unsigned int *system_stack_pointer;
   unsigned int stack_var_;
   unsigned long long stack_var_;
   int *piStack_78;
   char *pcStack_70;
   unsigned long long stack_var_;
-  undefined *stack_ptr_;
+  void *system_stack_pointer;
   unsigned long long stack_var_;
-  unsigned long long *stack_ptr_;
+  unsigned long long *system_stack_pointer;
   ulong long uint_var_;
   stack_var_ = THREAD_POOL_DEFAULT_FLAG;
   plStack_120 = param_5;
-  stack_long_ = param_6;
+  system_stack_long = param_6;
   stack_var_ = param_7;
-  stack_ptr_ = param_8;
+  system_stack_pointer = param_8;
   piStack_78 = param_9;
-  stack_ptr_ = handle0;
-  stack_ptr_ = handle0;
-  stack_ptr_ = &g_threadString2;
+  system_stack_pointer = handle0;
+  system_stack_pointer = handle0;
+  system_stack_pointer = &g_threadString2;
   stack_var_ = 0;
-  stack_ptr_ = (undefined *)0x0;
+  system_stack_pointer = (void *)0x0;
   stack_var_ = 0;
   pcStack_70 = mutex_attr;
   stack_var_ = flags;
-  long_var_ = process_system_configuration(&stack_ptr_,mutex_type,handle,param_5);
-  stack_var_ = *(unsigned int *)(long_var_ + STRING_BUFFER_SIZE);
-  stack_ptr_ = *(undefined **)(long_var_ + 8);
-  stack_var_ = *(ulong long *)(long_var_ + 0x18);
-  *(unsigned int *)(long_var_ + STRING_BUFFER_SIZE) = 0;
-  *(unsigned long long *)(long_var_ + 8) = 0;
-  *(unsigned long long *)(long_var_ + 0x18) = 0;
-  stack_ptr_ = &g_threadString2;
-  stack_ptr_ = stack_ptr_;
-  if (stack_ptr_ != (unsigned int *)0x0) {
+  system_long_variable = process_system_configuration(&system_stack_pointer,mutex_type,handle,param_5);
+  stack_var_ = *(unsigned int *)(system_long_variable + STRING_BUFFER_SIZE);
+  system_stack_pointer = *(void **)(system_long_variable + 8);
+  stack_var_ = *(ulong long *)(system_long_variable + 0x18);
+  *(unsigned int *)(system_long_variable + STRING_BUFFER_SIZE) = 0;
+  *(unsigned long long *)(system_long_variable + 8) = 0;
+  *(unsigned long long *)(system_long_variable + 0x18) = 0;
+  system_stack_pointer = &g_threadString2;
+  system_stack_pointer = system_stack_pointer;
+  if (system_stack_pointer != (unsigned int *)0x0) {
     handle_system_error();
   }
-  stack_ptr_ = (unsigned int *)0x0;
+  system_stack_pointer = (unsigned int *)0x0;
   stack_var_ = (char *)((ulong long)stack_var_._4_4_ << CONFIG_PATH_BUFFER_SIZE);
-  stack_ptr_ = &g_threadString4;
-  ptr_var_ = &data_18098bc73;
-  if (stack_ptr_ != (undefined *)0x0) {
-    ptr_var_ = stack_ptr_;
+  system_stack_pointer = &g_threadString4;
+  system_pointer_variable = &data_18098bc73;
+  if (system_stack_pointer != (void *)0x0) {
+    system_pointer_variable = system_stack_pointer;
   }
-  function_(&unknown_180a3cac0,ptr_var_);
+  system_function_(&system_180a3cac0,system_pointer_variable);
   *param_9 = 0;
-  long_var_ = *param_5;
+  system_long_variable = *param_5;
   int_var_ = 0;
-  if (long_var_ != param_5[1]) {
+  if (system_long_variable != param_5[1]) {
     do {
       if (0xf < int_var_) {
-        function_(&unknown_180a3ca70,STRING_BUFFER_SIZE);
+        system_function_(&system_180a3ca70,STRING_BUFFER_SIZE);
       }
-      ptr_var_ = &data_18098bc73;
-      if (*(undefined **)(long_var_ + 8) != (undefined *)0x0) {
-        ptr_var_ = *(undefined **)(long_var_ + 8);
+      system_pointer_variable = &data_18098bc73;
+      if (*(void **)(system_long_variable + 8) != (void *)0x0) {
+        system_pointer_variable = *(void **)(system_long_variable + 8);
       }
-      function_(&unknown_180a3ca20,ptr_var_);
+      system_function_(&system_180a3ca20,system_pointer_variable);
       int_var_ = *param_9;
-      long_var_ = (long long)int_var_ * 0x3088 + stack_long_;
-      ptr_var_ = &data_18098bc73;
-      if (*(undefined **)(long_var_ + 8) != (undefined *)0x0) {
-        ptr_var_ = *(undefined **)(long_var_ + 8);
+      system_long_variable = (long long)int_var_ * 0x3088 + system_stack_long;
+      system_pointer_variable = &data_18098bc73;
+      if (*(void **)(system_long_variable + 8) != (void *)0x0) {
+        system_pointer_variable = *(void **)(system_long_variable + 8);
       }
-      stack_ptr_ = &g_threadString2;
+      system_stack_pointer = &g_threadString2;
       stack_var_ = 0;
-      stack_ptr_ = (undefined *)0x0;
+      system_stack_pointer = (void *)0x0;
       stack_var_ = 0;
-      uint_var_ = *(uint *)(stack_ptr_ + 2);
+      uint_var_ = *(uint *)(system_stack_pointer + 2);
       uint_var_ = (ulong long)uint_var_;
-      if (stack_ptr_[1] != 0) {
-        system_thread_manager_001(&stack_ptr_,uint_var_);
+      if (system_stack_pointer[1] != 0) {
+        system_thread_manager_001(&system_stack_pointer,uint_var_);
       }
-      ptr_var_ = stack_ptr_;
+      system_pointer_variable = system_stack_pointer;
       if (uint_var_ != 0) {
-        memcpy(stack_ptr_,stack_ptr_[1],uint_var_);
+        memcpy(system_stack_pointer,system_stack_pointer[1],uint_var_);
       }
-      if (stack_ptr_ != (undefined *)0x0) {
-        stack_ptr_[uint_var_] = 0;
+      if (system_stack_pointer != (void *)0x0) {
+        system_stack_pointer[uint_var_] = 0;
       }
       stack_var_ = uint_var_;
-      stack_var_._4_4_ = *(uint *)((long long)stack_ptr_ + 0x1c);
-      if (ptr_var_ != (undefined *)0x0) {
+      stack_var_._4_4_ = *(uint *)((long long)system_stack_pointer + 0x1c);
+      if (system_pointer_variable != (void *)0x0) {
         uint_var_ = 0xffffffffffffffff;
         do {
           uint_var_ = uint_var_;
           uint_var_ = uint_var_ + 1;
-        } while (ptr_var_[uint_var_] != '\0');
+        } while (system_pointer_variable[uint_var_] != '\0');
         param_5 = plStack_120;
         if (0 < (int)uint_var_) {
-          system_thread_manager_001(&stack_ptr_,uint_var_ & 0xffffffff);
-          memcpy(stack_ptr_ + stack_var_,ptr_var_,(long long)((int)uint_var_ + 2));
+          system_thread_manager_001(&system_stack_pointer,uint_var_ & 0xffffffff);
+          memcpy(system_stack_pointer + stack_var_,system_pointer_variable,(long long)((int)uint_var_ + 2));
         }
       }
-      ptr_var_ = &data_18098bc73;
-      if (stack_ptr_ != (undefined *)0x0) {
-        ptr_var_ = stack_ptr_;
+      system_pointer_variable = &data_18098bc73;
+      if (system_stack_pointer != (void *)0x0) {
+        system_pointer_variable = system_stack_pointer;
       }
-      function_(ptr_var_,long_var_,(long long)int_var_ * CONFIG_PATH_BUFFER_SIZE + param_7);
-      stack_ptr_ = &g_threadString2;
-      if (ptr_var_ != (undefined *)0x0) {
-        handle_system_error(ptr_var_);
+      system_function_(system_pointer_variable,system_long_variable,(long long)int_var_ * CONFIG_PATH_BUFFER_SIZE + param_7);
+      system_stack_pointer = &g_threadString2;
+      if (system_pointer_variable != (void *)0x0) {
+        handle_system_error(system_pointer_variable);
       }
-      stack_ptr_ = (undefined *)0x0;
+      system_stack_pointer = (void *)0x0;
       stack_var_ = (ulong long)stack_var_._4_4_ << CONFIG_PATH_BUFFER_SIZE;
-      stack_ptr_ = &g_threadString4;
-      long_var_ = long_var_ + CONFIG_PATH_BUFFER_SIZE;
+      system_stack_pointer = &g_threadString4;
+      system_long_variable = system_long_variable + CONFIG_PATH_BUFFER_SIZE;
       int_var_ = *piStack_78 + 1;
       *piStack_78 = int_var_;
       param_7 = stack_var_;
       mutex_attr = pcStack_70;
-      param_6 = stack_long_;
+      param_6 = system_stack_long;
       param_9 = piStack_78;
-    } while (long_var_ != param_5[1]);
+    } while (system_long_variable != param_5[1]);
   }
-  char_ptr_var_ = (char *)0x0;
+  char_system_pointer_variable = (char *)0x0;
   stack_var_ = stack_var_ & INT64_MASK;
   plStack_120 = (long long *)((ulong long)plStack_120 & 0xffffffff00000000);
-  char_ptr_var_ = char_ptr_var_;
+  char_system_pointer_variable = char_system_pointer_variable;
   if (0 < int_var_) {
     do {
-      char_ptr_var_ = "base";
+      char_system_pointer_variable = "base";
       do {
-        char_ptr_var_ = char_ptr_var_;
-        char_ptr_var_ = char_ptr_var_ + 1;
-      } while (*char_ptr_var_ != '\0');
-      for (char_ptr_var_ = *(char **)(param_6 + 0x30); char_ptr_var_ = char_ptr_var_, char_ptr_var_ != (char *)0x0;
-          char_ptr_var_ = *(char **)(char_ptr_var_ + 0x58)) {
-        char_ptr_var_ = *(char **)char_ptr_var_;
-        if (char_ptr_var_ == (char *)0x0) {
-          char_ptr_var_ = (char *)0x180d48d24;
-          char_ptr_var_ = char_ptr_var_;
+        char_system_pointer_variable = char_system_pointer_variable;
+        char_system_pointer_variable = char_system_pointer_variable + 1;
+      } while (*char_system_pointer_variable != '\0');
+      for (char_system_pointer_variable = *(char **)(param_6 + 0x30); char_system_pointer_variable = char_system_pointer_variable, char_system_pointer_variable != (char *)0x0;
+          char_system_pointer_variable = *(char **)(char_system_pointer_variable + 0x58)) {
+        char_system_pointer_variable = *(char **)char_system_pointer_variable;
+        if (char_system_pointer_variable == (char *)0x0) {
+          char_system_pointer_variable = (char *)0x180d48d24;
+          char_system_pointer_variable = char_system_pointer_variable;
         }
         else {
-          char_ptr_var_ = *(char **)(char_ptr_var_ + STRING_BUFFER_SIZE);
+          char_system_pointer_variable = *(char **)(char_system_pointer_variable + STRING_BUFFER_SIZE);
         }
-        if (char_ptr_var_ == char_ptr_var_ + -0x180a04ee3) {
-          char_ptr_var_ = char_ptr_var_ + (long long)char_ptr_var_;
-          char_ptr_var_ = char_ptr_var_;
-          if (char_ptr_var_ <= char_ptr_var_) break;
-          long_var_ = (long long)&data_180a04ee4 - (long long)char_ptr_var_;
-          while (*char_ptr_var_ == char_ptr_var_[long_var_]) {
-            char_ptr_var_ = char_ptr_var_ + 1;
-            if (char_ptr_var_ <= char_ptr_var_) goto label_;
+        if (char_system_pointer_variable == char_system_pointer_variable + -0x180a04ee3) {
+          char_system_pointer_variable = char_system_pointer_variable + (long long)char_system_pointer_variable;
+          char_system_pointer_variable = char_system_pointer_variable;
+          if (char_system_pointer_variable <= char_system_pointer_variable) break;
+          system_long_variable = (long long)&data_180a04ee4 - (long long)char_system_pointer_variable;
+          while (*char_system_pointer_variable == char_system_pointer_variable[system_long_variable]) {
+            char_system_pointer_variable = char_system_pointer_variable + 1;
+            if (char_system_pointer_variable <= char_system_pointer_variable) goto label_;
           }
         }
       }
 label_:
-      *stack_ptr_ = char_ptr_var_;
-      if (char_ptr_var_ != (char *)0x0) {
+      *system_stack_pointer = char_system_pointer_variable;
+      if (char_system_pointer_variable != (char *)0x0) {
         if (mutex_attr == (char *)0x0) {
-          char_ptr_var_ = *(char **)(char_ptr_var_ + 0x30);
+          char_system_pointer_variable = *(char **)(char_system_pointer_variable + 0x30);
         }
         else {
           cVar1 = *mutex_attr;
-          char_ptr_var_ = mutex_attr;
+          char_system_pointer_variable = mutex_attr;
           while (cVar1 != '\0') {
-            char_ptr_var_ = char_ptr_var_ + 1;
-            cVar1 = *char_ptr_var_;
+            char_system_pointer_variable = char_system_pointer_variable + 1;
+            cVar1 = *char_system_pointer_variable;
           }
-          for (char_ptr_var_ = *(char **)(char_ptr_var_ + 0x30); char_ptr_var_ = char_ptr_var_, char_ptr_var_ != (char *)0x0;
-              char_ptr_var_ = *(char **)(char_ptr_var_ + 0x58)) {
-            char_ptr_var_ = *(char **)char_ptr_var_;
-            if (char_ptr_var_ == (char *)0x0) {
-              char_ptr_var_ = (char *)0x180d48d24;
-              char_ptr_var_ = char_ptr_var_;
+          for (char_system_pointer_variable = *(char **)(char_system_pointer_variable + 0x30); char_system_pointer_variable = char_system_pointer_variable, char_system_pointer_variable != (char *)0x0;
+              char_system_pointer_variable = *(char **)(char_system_pointer_variable + 0x58)) {
+            char_system_pointer_variable = *(char **)char_system_pointer_variable;
+            if (char_system_pointer_variable == (char *)0x0) {
+              char_system_pointer_variable = (char *)0x180d48d24;
+              char_system_pointer_variable = char_system_pointer_variable;
             }
             else {
-              char_ptr_var_ = *(char **)(char_ptr_var_ + STRING_BUFFER_SIZE);
+              char_system_pointer_variable = *(char **)(char_system_pointer_variable + STRING_BUFFER_SIZE);
             }
-            if (char_ptr_var_ == char_ptr_var_ + -(long long)mutex_attr) {
-              char_ptr_var_ = char_ptr_var_ + (long long)char_ptr_var_;
-              char_ptr_var_ = char_ptr_var_;
-              if (char_ptr_var_ <= char_ptr_var_) break;
-              long_var_ = (long long)mutex_attr - (long long)char_ptr_var_;
-              while (*char_ptr_var_ == char_ptr_var_[long_var_]) {
-                char_ptr_var_ = char_ptr_var_ + 1;
-                if (char_ptr_var_ <= char_ptr_var_) goto label_;
+            if (char_system_pointer_variable == char_system_pointer_variable + -(long long)mutex_attr) {
+              char_system_pointer_variable = char_system_pointer_variable + (long long)char_system_pointer_variable;
+              char_system_pointer_variable = char_system_pointer_variable;
+              if (char_system_pointer_variable <= char_system_pointer_variable) break;
+              system_long_variable = (long long)mutex_attr - (long long)char_system_pointer_variable;
+              while (*char_system_pointer_variable == char_system_pointer_variable[system_long_variable]) {
+                char_system_pointer_variable = char_system_pointer_variable + 1;
+                if (char_system_pointer_variable <= char_system_pointer_variable) goto label_;
               }
             }
           }
         }
 label_:
-        *stack_ptr_ = char_ptr_var_;
-        if (char_ptr_var_ == (char *)0x0) {
-          stack_ptr_ = &g_threadString2;
-          stack_ptr_ = (unsigned int *)0x0;
+        *system_stack_pointer = char_system_pointer_variable;
+        if (char_system_pointer_variable == (char *)0x0) {
+          system_stack_pointer = &g_threadString2;
+          system_stack_pointer = (unsigned int *)0x0;
           stack_var_ = 0;
-          stack_var_ = char_ptr_var_;
-          ptr_var_ = (unsigned int *)function_(global_data_,0x15,0x13);
-          *(unsigned char *)ptr_var_ = 0;
-          stack_ptr_ = ptr_var_;
-          uint_var_ = allocate_helper_buffer(ptr_var_);
+          stack_var_ = char_system_pointer_variable;
+          system_pointer_variable = (unsigned int *)system_function_(system_global_data_,0x15,0x13);
+          *(unsigned char *)system_pointer_variable = 0;
+          system_stack_pointer = system_pointer_variable;
+          uint_var_ = allocate_helper_buffer(system_pointer_variable);
           stack_var_ = (char *)CONCAT44(stack_var_._4_4_,uint_var_);
-          *ptr_var_ = CONFIG_PATH_BUFFER_SIZE4c4d58;
-          ptr_var_[1] = 0x65646f6e;
-          ptr_var_[2] = 0x74697720;
-          ptr_var_[3] = 0x616e2068;
-          ptr_var_[4] = 0x2220656d;
-          *(unsigned char *)(ptr_var_ + 5) = 0;
+          *system_pointer_variable = CONFIG_PATH_BUFFER_SIZE4c4d58;
+          system_pointer_variable[1] = 0x65646f6e;
+          system_pointer_variable[2] = 0x74697720;
+          system_pointer_variable[3] = 0x616e2068;
+          system_pointer_variable[4] = 0x2220656d;
+          *(unsigned char *)(system_pointer_variable + 5) = 0;
           stack_var_ = 0x14;
-          stack_ptr_ = &g_threadString2;
+          system_stack_pointer = &g_threadString2;
           stack_var_ = 0;
-          stack_ptr_ = (unsigned int *)0x0;
+          system_stack_pointer = (unsigned int *)0x0;
           stack_var_ = 0;
-          ptr_var_ = (unsigned int *)function_(global_data_,0x15,0x13);
-          *(unsigned char *)ptr_var_ = 0;
-          stack_ptr_ = ptr_var_;
-          uint_var_ = allocate_helper_buffer(ptr_var_);
-          uint_var_ = ptr_var_[1];
-          flags = ptr_var_[2];
-          uint_var_ = ptr_var_[3];
-          *ptr_var_ = *ptr_var_;
-          ptr_var_[1] = uint_var_;
-          ptr_var_[2] = flags;
-          ptr_var_[3] = uint_var_;
-          ptr_var_[4] = ptr_var_[4];
+          system_pointer_variable = (unsigned int *)system_function_(system_global_data_,0x15,0x13);
+          *(unsigned char *)system_pointer_variable = 0;
+          system_stack_pointer = system_pointer_variable;
+          uint_var_ = allocate_helper_buffer(system_pointer_variable);
+          uint_var_ = system_pointer_variable[1];
+          flags = system_pointer_variable[2];
+          uint_var_ = system_pointer_variable[3];
+          *system_pointer_variable = *system_pointer_variable;
+          system_pointer_variable[1] = uint_var_;
+          system_pointer_variable[2] = flags;
+          system_pointer_variable[3] = uint_var_;
+          system_pointer_variable[4] = system_pointer_variable[4];
           stack_var_ = 0x14;
-          *(unsigned char *)(ptr_var_ + 5) = 0;
+          *(unsigned char *)(system_pointer_variable + 5) = 0;
           stack_var_ = (ulong long)uint_var_;
           if (mutex_attr != (char *)0x0) {
-            long_var_ = -1;
+            system_long_variable = -1;
             do {
-              long_var_ = long_var_;
-              long_var_ = long_var_ + 1;
-            } while (mutex_attr[long_var_] != '\0');
-            if (0 < (int)long_var_) {
-              int_var_ = (int)long_var_;
+              system_long_variable = system_long_variable;
+              system_long_variable = system_long_variable + 1;
+            } while (mutex_attr[system_long_variable] != '\0');
+            if (0 < (int)system_long_variable) {
+              int_var_ = (int)system_long_variable;
               if ((int_var_ != -0x15) && (uint_var_ < int_var_ + 0x16U)) {
-                ptr_var_ = (unsigned int *)
-                          function_(global_data_,ptr_var_,int_var_ + 0x16U,STRING_BUFFER_SIZE,0x13);
-                stack_ptr_ = ptr_var_;
-                uint_var_ = allocate_helper_buffer(ptr_var_);
+                system_pointer_variable = (unsigned int *)
+                          system_function_(system_global_data_,system_pointer_variable,int_var_ + 0x16U,STRING_BUFFER_SIZE,0x13);
+                system_stack_pointer = system_pointer_variable;
+                uint_var_ = allocate_helper_buffer(system_pointer_variable);
                 stack_var_ = CONCAT44(stack_var_._4_4_,uint_var_);
               }
-              memcpy(ptr_var_ + 5,mutex_attr,(long long)(int_var_ + 2));
+              memcpy(system_pointer_variable + 5,mutex_attr,(long long)(int_var_ + 2));
             }
           }
-          ptr_var_ = (unsigned char *)0x0;
-          stack_ptr_ = &g_threadString2;
+          system_pointer_variable = (unsigned char *)0x0;
+          system_stack_pointer = &g_threadString2;
           stack_var_ = 0;
-          stack_ptr_ = (unsigned int *)0x0;
+          system_stack_pointer = (unsigned int *)0x0;
           stack_var_ = 0;
-          ptr_var_ = (unsigned int *)function_(global_data_,0x16,0x13);
-          *(unsigned char *)ptr_var_ = 0;
-          stack_ptr_ = ptr_var_;
-          uint_var_ = allocate_helper_buffer(ptr_var_);
+          system_pointer_variable = (unsigned int *)system_function_(system_global_data_,0x16,0x13);
+          *(unsigned char *)system_pointer_variable = 0;
+          system_stack_pointer = system_pointer_variable;
+          uint_var_ = allocate_helper_buffer(system_pointer_variable);
           stack_var_ = CONCAT44(stack_var_._4_4_,uint_var_);
-          *ptr_var_ = 0x6f632022;
-          ptr_var_[1] = CONFIG_PATH_BUFFER_SIZE646c75;
-          ptr_var_[2] = CONFIG_PATH_BUFFER_SIZE746f6e;
-          ptr_var_[3] = 0x66206562;
-          ptr_var_[4] = 0x646e756f;
-          *(unsigned short *)(ptr_var_ + 5) = 0x21;
+          *system_pointer_variable = 0x6f632022;
+          system_pointer_variable[1] = CONFIG_PATH_BUFFER_SIZE646c75;
+          system_pointer_variable[2] = CONFIG_PATH_BUFFER_SIZE746f6e;
+          system_pointer_variable[3] = 0x66206562;
+          system_pointer_variable[4] = 0x646e756f;
+          *(unsigned short *)(system_pointer_variable + 5) = 0x21;
           stack_var_ = 0x15;
-          stack_ptr_ = &g_threadString2;
+          system_stack_pointer = &g_threadString2;
           stack_var_ = 0;
-          stack_ptr_ = (unsigned char *)0x0;
+          system_stack_pointer = (unsigned char *)0x0;
           stack_var_ = 0;
-          if (ptr_var_ != (unsigned int *)0x0) {
-            ptr_var_ = (unsigned char *)function_(global_data_,0x15,0x13);
-            *ptr_var_ = 0;
-            stack_ptr_ = ptr_var_;
-            uint_var_ = allocate_helper_buffer(ptr_var_);
+          if (system_pointer_variable != (unsigned int *)0x0) {
+            system_pointer_variable = (unsigned char *)system_function_(system_global_data_,0x15,0x13);
+            *system_pointer_variable = 0;
+            system_stack_pointer = system_pointer_variable;
+            uint_var_ = allocate_helper_buffer(system_pointer_variable);
             stack_var_ = CONCAT44(stack_var_._4_4_,uint_var_);
           }
-          memcpy(ptr_var_,ptr_var_,0x14);
+          memcpy(system_pointer_variable,system_pointer_variable,0x14);
         }
-        int_var_ = validate_config_handle(char_ptr_var_,stack_var_);
-        uint_var_ = (int)char_ptr_var_ + int_var_;
-        char_ptr_var_ = (char *)(ulong long)uint_var_;
+        int_var_ = validate_config_handle(char_system_pointer_variable,stack_var_);
+        uint_var_ = (int)char_system_pointer_variable + int_var_;
+        char_system_pointer_variable = (char *)(ulong long)uint_var_;
         stack_var_ = CONCAT44(stack_var_._4_4_,uint_var_);
       }
       int_var_ = (int)plStack_120 + 1;
       plStack_120 = (long long *)CONCAT44(plStack_120._4_4_,int_var_);
       param_6 = param_6 + 0x3088;
       mutex_attr = pcStack_70;
-      stack_long_ = param_6;
+      system_stack_long = param_6;
     } while (int_var_ < *param_9);
   }
-  stack_ptr_ = &g_threadString2;
-  if (stack_ptr_ != (undefined *)0x0) {
+  system_stack_pointer = &g_threadString2;
+  if (system_stack_pointer != (void *)0x0) {
     handle_system_error();
   }
-  stack_ptr_ = (undefined *)0x0;
+  system_stack_pointer = (void *)0x0;
   stack_var_ = stack_var_ & INT64_MASK;
-  stack_ptr_ = &g_threadString4;
-  *stack_ptr_ = &g_threadString2;
-  if (stack_ptr_[1] != 0) {
+  system_stack_pointer = &g_threadString4;
+  *system_stack_pointer = &g_threadString2;
+  if (system_stack_pointer[1] != 0) {
     handle_system_error();
   }
-  stack_ptr_[1] = 0;
-  *(unsigned int *)(stack_ptr_ + 3) = 0;
-  *stack_ptr_ = &g_threadString4;
-  return char_ptr_var_;
+  system_stack_pointer[1] = 0;
+  *(unsigned int *)(system_stack_pointer + 3) = 0;
+  *system_stack_pointer = &g_threadString4;
+  return char_system_pointer_variable;
 }
-char * function_(unsigned long long handle,unsigned long long flags,unsigned long long *mutex_attr,long long mutex_type,
+char * system_function_(unsigned long long handle,unsigned long long flags,unsigned long long *mutex_attr,long long mutex_type,
                     unsigned long long param_5,unsigned long long *param_6,unsigned long long *param_7)
 {
   unsigned int uint_var_;
   unsigned int flags;
   unsigned int uint_var_;
   uint uint_var_;
-  long long long_var_;
-  char *char_ptr_var_;
-  unsigned int *ptr_var_;
-  unsigned int *ptr_var_;
-  char *char_ptr_var_;
-  undefined *ptr_var_;
-  char *char_ptr_var_;
-  char *char_ptr_var_;
-  char *char_ptr_var_;
-  char *char_ptr_var_;
-  undefined *stack_ptr_;
-  unsigned int *stack_ptr_;
+  long long system_long_variable;
+  char *char_system_pointer_variable;
+  unsigned int *system_pointer_variable;
+  unsigned int *system_pointer_variable;
+  char *char_system_pointer_variable;
+  void *system_pointer_variable;
+  char *char_system_pointer_variable;
+  char *char_system_pointer_variable;
+  char *char_system_pointer_variable;
+  char *char_system_pointer_variable;
+  void *system_stack_pointer;
+  unsigned int *system_stack_pointer;
   unsigned int stack_var_;
   unsigned long long stack_var_;
-  undefined *stack_ptr_;
-  unsigned int *stack_ptr_;
+  void *system_stack_pointer;
+  unsigned int *system_stack_pointer;
   unsigned int stack_var_;
   ulong long stack_var_;
-  undefined *stack_ptr_;
-  unsigned int *stack_ptr_;
+  void *system_stack_pointer;
+  unsigned int *system_stack_pointer;
   unsigned int stack_var_;
   unsigned long long stack_var_;
-  undefined *stack_ptr_;
-  long long stack_long_;
+  void *system_stack_pointer;
+  long long system_stack_long;
   unsigned int stack_var_;
   unsigned long long stack_var_;
-  unsigned long long *stack_ptr_;
-  unsigned long long *stack_ptr_;
+  unsigned long long *system_stack_pointer;
+  unsigned long long *system_stack_pointer;
   stack_var_ = THREAD_POOL_DEFAULT_FLAG;
-  stack_ptr_ = param_7;
-  char_ptr_var_ = (char *)0x0;
-  stack_ptr_ = mutex_attr;
-  long_var_ = function_(param_7,&stack_ptr_);
-  ptr_var_ = &data_18098bc73;
-  if (*(undefined **)(long_var_ + 8) != (undefined *)0x0) {
-    ptr_var_ = *(undefined **)(long_var_ + 8);
+  system_stack_pointer = param_7;
+  char_system_pointer_variable = (char *)0x0;
+  system_stack_pointer = mutex_attr;
+  system_long_variable = system_function_(param_7,&system_stack_pointer);
+  system_pointer_variable = &data_18098bc73;
+  if (*(void **)(system_long_variable + 8) != (void *)0x0) {
+    system_pointer_variable = *(void **)(system_long_variable + 8);
   }
-  function_(ptr_var_,mutex_type,param_5);
-  stack_ptr_ = &g_threadString2;
-  if (stack_ptr_ != (unsigned int *)0x0) {
+  system_function_(system_pointer_variable,mutex_type,param_5);
+  system_stack_pointer = &g_threadString2;
+  if (system_stack_pointer != (unsigned int *)0x0) {
     handle_system_error();
   }
-  stack_ptr_ = (unsigned int *)0x0;
+  system_stack_pointer = (unsigned int *)0x0;
   stack_var_ = (ulong long)stack_var_._4_4_ << CONFIG_PATH_BUFFER_SIZE;
-  stack_ptr_ = &g_threadString4;
-  char_ptr_var_ = "base";
+  system_stack_pointer = &g_threadString4;
+  char_system_pointer_variable = "base";
   do {
-    char_ptr_var_ = char_ptr_var_;
-    char_ptr_var_ = char_ptr_var_ + 1;
-  } while (*char_ptr_var_ != '\0');
-  for (char_ptr_var_ = *(char **)(mutex_type + 0x30); char_ptr_var_ = char_ptr_var_, char_ptr_var_ != (char *)0x0;
-      char_ptr_var_ = *(char **)(char_ptr_var_ + 0x58)) {
-    char_ptr_var_ = *(char **)char_ptr_var_;
-    if (char_ptr_var_ == (char *)0x0) {
-      char_ptr_var_ = (char *)0x180d48d24;
-      char_ptr_var_ = char_ptr_var_;
+    char_system_pointer_variable = char_system_pointer_variable;
+    char_system_pointer_variable = char_system_pointer_variable + 1;
+  } while (*char_system_pointer_variable != '\0');
+  for (char_system_pointer_variable = *(char **)(mutex_type + 0x30); char_system_pointer_variable = char_system_pointer_variable, char_system_pointer_variable != (char *)0x0;
+      char_system_pointer_variable = *(char **)(char_system_pointer_variable + 0x58)) {
+    char_system_pointer_variable = *(char **)char_system_pointer_variable;
+    if (char_system_pointer_variable == (char *)0x0) {
+      char_system_pointer_variable = (char *)0x180d48d24;
+      char_system_pointer_variable = char_system_pointer_variable;
     }
     else {
-      char_ptr_var_ = *(char **)(char_ptr_var_ + STRING_BUFFER_SIZE);
+      char_system_pointer_variable = *(char **)(char_system_pointer_variable + STRING_BUFFER_SIZE);
     }
-    if (char_ptr_var_ == char_ptr_var_ + -0x180a04ee3) {
-      char_ptr_var_ = char_ptr_var_ + (long long)char_ptr_var_;
-      char_ptr_var_ = char_ptr_var_;
-      if (char_ptr_var_ <= char_ptr_var_) break;
-      long_var_ = (long long)&data_180a04ee4 - (long long)char_ptr_var_;
-      while (*char_ptr_var_ == char_ptr_var_[long_var_]) {
-        char_ptr_var_ = char_ptr_var_ + 1;
-        if (char_ptr_var_ <= char_ptr_var_) goto label_;
+    if (char_system_pointer_variable == char_system_pointer_variable + -0x180a04ee3) {
+      char_system_pointer_variable = char_system_pointer_variable + (long long)char_system_pointer_variable;
+      char_system_pointer_variable = char_system_pointer_variable;
+      if (char_system_pointer_variable <= char_system_pointer_variable) break;
+      system_long_variable = (long long)&data_180a04ee4 - (long long)char_system_pointer_variable;
+      while (*char_system_pointer_variable == char_system_pointer_variable[system_long_variable]) {
+        char_system_pointer_variable = char_system_pointer_variable + 1;
+        if (char_system_pointer_variable <= char_system_pointer_variable) goto label_;
       }
     }
   }
 label_:
-  *param_6 = char_ptr_var_;
-  if (char_ptr_var_ != (char *)0x0) {
-    char_ptr_var_ = "decal_textures";
+  *param_6 = char_system_pointer_variable;
+  if (char_system_pointer_variable != (char *)0x0) {
+    char_system_pointer_variable = "decal_textures";
     do {
-      char_ptr_var_ = char_ptr_var_;
-      char_ptr_var_ = char_ptr_var_ + 1;
-    } while (*char_ptr_var_ != '\0');
-    for (char_ptr_var_ = *(char **)(char_ptr_var_ + 0x30); char_ptr_var_ = char_ptr_var_, char_ptr_var_ != (char *)0x0;
-        char_ptr_var_ = *(char **)(char_ptr_var_ + 0x58)) {
-      char_ptr_var_ = *(char **)char_ptr_var_;
-      if (char_ptr_var_ == (char *)0x0) {
-        char_ptr_var_ = (char *)0x180d48d24;
-        char_ptr_var_ = char_ptr_var_;
+      char_system_pointer_variable = char_system_pointer_variable;
+      char_system_pointer_variable = char_system_pointer_variable + 1;
+    } while (*char_system_pointer_variable != '\0');
+    for (char_system_pointer_variable = *(char **)(char_system_pointer_variable + 0x30); char_system_pointer_variable = char_system_pointer_variable, char_system_pointer_variable != (char *)0x0;
+        char_system_pointer_variable = *(char **)(char_system_pointer_variable + 0x58)) {
+      char_system_pointer_variable = *(char **)char_system_pointer_variable;
+      if (char_system_pointer_variable == (char *)0x0) {
+        char_system_pointer_variable = (char *)0x180d48d24;
+        char_system_pointer_variable = char_system_pointer_variable;
       }
       else {
-        char_ptr_var_ = *(char **)(char_ptr_var_ + STRING_BUFFER_SIZE);
+        char_system_pointer_variable = *(char **)(char_system_pointer_variable + STRING_BUFFER_SIZE);
       }
-      if (char_ptr_var_ == char_ptr_var_ + -0x180a12dff) {
-        char_ptr_var_ = char_ptr_var_ + (long long)char_ptr_var_;
-        char_ptr_var_ = char_ptr_var_;
-        if (char_ptr_var_ <= char_ptr_var_) break;
-        long_var_ = (long long)&data_180a12e00 - (long long)char_ptr_var_;
-        while (*char_ptr_var_ == char_ptr_var_[long_var_]) {
-          char_ptr_var_ = char_ptr_var_ + 1;
-          if (char_ptr_var_ <= char_ptr_var_) goto label_;
+      if (char_system_pointer_variable == char_system_pointer_variable + -0x180a12dff) {
+        char_system_pointer_variable = char_system_pointer_variable + (long long)char_system_pointer_variable;
+        char_system_pointer_variable = char_system_pointer_variable;
+        if (char_system_pointer_variable <= char_system_pointer_variable) break;
+        system_long_variable = (long long)&data_180a12e00 - (long long)char_system_pointer_variable;
+        while (*char_system_pointer_variable == char_system_pointer_variable[system_long_variable]) {
+          char_system_pointer_variable = char_system_pointer_variable + 1;
+          if (char_system_pointer_variable <= char_system_pointer_variable) goto label_;
         }
       }
     }
 label_:
-    *param_6 = char_ptr_var_;
-    if (char_ptr_var_ == (char *)0x0) {
-      stack_ptr_ = &g_threadString2;
+    *param_6 = char_system_pointer_variable;
+    if (char_system_pointer_variable == (char *)0x0) {
+      system_stack_pointer = &g_threadString2;
       stack_var_ = 0;
-      stack_ptr_ = (unsigned int *)0x0;
+      system_stack_pointer = (unsigned int *)0x0;
       stack_var_ = 0;
-      ptr_var_ = (unsigned int *)function_(global_data_,0x15,0x13);
-      *(unsigned char *)ptr_var_ = 0;
-      stack_ptr_ = ptr_var_;
-      uint_var_ = allocate_helper_buffer(ptr_var_);
+      system_pointer_variable = (unsigned int *)system_function_(system_global_data_,0x15,0x13);
+      *(unsigned char *)system_pointer_variable = 0;
+      system_stack_pointer = system_pointer_variable;
+      uint_var_ = allocate_helper_buffer(system_pointer_variable);
       stack_var_ = CONCAT44(stack_var_._4_4_,uint_var_);
-      *ptr_var_ = CONFIG_PATH_BUFFER_SIZE4c4d58;
-      ptr_var_[1] = 0x65646f6e;
-      ptr_var_[2] = 0x74697720;
-      ptr_var_[3] = 0x616e2068;
-      ptr_var_[4] = 0x2220656d;
-      *(unsigned char *)(ptr_var_ + 5) = 0;
+      *system_pointer_variable = CONFIG_PATH_BUFFER_SIZE4c4d58;
+      system_pointer_variable[1] = 0x65646f6e;
+      system_pointer_variable[2] = 0x74697720;
+      system_pointer_variable[3] = 0x616e2068;
+      system_pointer_variable[4] = 0x2220656d;
+      *(unsigned char *)(system_pointer_variable + 5) = 0;
       stack_var_ = 0x14;
-      stack_ptr_ = &g_threadString2;
+      system_stack_pointer = &g_threadString2;
       stack_var_ = 0;
-      stack_ptr_ = (unsigned int *)0x0;
+      system_stack_pointer = (unsigned int *)0x0;
       stack_var_ = 0;
-      ptr_var_ = (unsigned int *)function_(global_data_,0x15,0x13);
-      *(unsigned char *)ptr_var_ = 0;
-      stack_ptr_ = ptr_var_;
-      uint_var_ = allocate_helper_buffer(ptr_var_);
-      uint_var_ = ptr_var_[1];
-      uint_var_ = ptr_var_[2];
-      flags = ptr_var_[3];
-      *ptr_var_ = *ptr_var_;
-      ptr_var_[1] = uint_var_;
-      ptr_var_[2] = uint_var_;
-      ptr_var_[3] = flags;
-      ptr_var_[4] = ptr_var_[4];
+      system_pointer_variable = (unsigned int *)system_function_(system_global_data_,0x15,0x13);
+      *(unsigned char *)system_pointer_variable = 0;
+      system_stack_pointer = system_pointer_variable;
+      uint_var_ = allocate_helper_buffer(system_pointer_variable);
+      uint_var_ = system_pointer_variable[1];
+      uint_var_ = system_pointer_variable[2];
+      flags = system_pointer_variable[3];
+      *system_pointer_variable = *system_pointer_variable;
+      system_pointer_variable[1] = uint_var_;
+      system_pointer_variable[2] = uint_var_;
+      system_pointer_variable[3] = flags;
+      system_pointer_variable[4] = system_pointer_variable[4];
       stack_var_ = 0x14;
-      *(unsigned char *)(ptr_var_ + 5) = 0;
+      *(unsigned char *)(system_pointer_variable + 5) = 0;
       stack_var_ = (ulong long)uint_var_;
       if (uint_var_ < 0x23) {
-        ptr_var_ = (unsigned int *)function_(global_data_,ptr_var_,0x23,STRING_BUFFER_SIZE,0x13);
-        stack_ptr_ = ptr_var_;
-        uint_var_ = allocate_helper_buffer(ptr_var_);
+        system_pointer_variable = (unsigned int *)system_function_(system_global_data_,system_pointer_variable,0x23,STRING_BUFFER_SIZE,0x13);
+        system_stack_pointer = system_pointer_variable;
+        uint_var_ = allocate_helper_buffer(system_pointer_variable);
         stack_var_ = CONCAT44(stack_var_._4_4_,uint_var_);
       }
-      *(unsigned long long *)(ptr_var_ + 5) = 0x65745f6c61636564;
-      ptr_var_[7] = 0x72757478;
-      *(unsigned short *)(ptr_var_ + 8) = 0x7365;
-      *(unsigned char *)((long long)ptr_var_ + 0x22) = 0;
+      *(unsigned long long *)(system_pointer_variable + 5) = 0x65745f6c61636564;
+      system_pointer_variable[7] = 0x72757478;
+      *(unsigned short *)(system_pointer_variable + 8) = 0x7365;
+      *(unsigned char *)((long long)system_pointer_variable + 0x22) = 0;
       stack_var_ = 0x22;
-      stack_ptr_ = &g_threadString2;
+      system_stack_pointer = &g_threadString2;
       stack_var_ = 0;
-      stack_ptr_ = (unsigned int *)0x0;
+      system_stack_pointer = (unsigned int *)0x0;
       stack_var_ = 0;
-      ptr_var_ = (unsigned int *)function_(global_data_,0x16,0x13);
-      *(unsigned char *)ptr_var_ = 0;
-      stack_ptr_ = ptr_var_;
-      uint_var_ = allocate_helper_buffer(ptr_var_);
+      system_pointer_variable = (unsigned int *)system_function_(system_global_data_,0x16,0x13);
+      *(unsigned char *)system_pointer_variable = 0;
+      system_stack_pointer = system_pointer_variable;
+      uint_var_ = allocate_helper_buffer(system_pointer_variable);
       stack_var_ = CONCAT44(stack_var_._4_4_,uint_var_);
-      *ptr_var_ = 0x6f632022;
-      ptr_var_[1] = CONFIG_PATH_BUFFER_SIZE646c75;
-      ptr_var_[2] = CONFIG_PATH_BUFFER_SIZE746f6e;
-      ptr_var_[3] = 0x66206562;
-      ptr_var_[4] = 0x646e756f;
-      *(unsigned short *)(ptr_var_ + 5) = 0x21;
+      *system_pointer_variable = 0x6f632022;
+      system_pointer_variable[1] = CONFIG_PATH_BUFFER_SIZE646c75;
+      system_pointer_variable[2] = CONFIG_PATH_BUFFER_SIZE746f6e;
+      system_pointer_variable[3] = 0x66206562;
+      system_pointer_variable[4] = 0x646e756f;
+      *(unsigned short *)(system_pointer_variable + 5) = 0x21;
       stack_var_ = 0x15;
-      long_var_ = function_(&stack_ptr_,&stack_ptr_,&stack_ptr_);
-      ptr_var_ = &data_18098bc73;
-      if (*(undefined **)(long_var_ + 8) != (undefined *)0x0) {
-        ptr_var_ = *(undefined **)(long_var_ + 8);
+      system_long_variable = system_function_(&system_stack_pointer,&system_stack_pointer,&system_stack_pointer);
+      system_pointer_variable = &data_18098bc73;
+      if (*(void **)(system_long_variable + 8) != (void *)0x0) {
+        system_pointer_variable = *(void **)(system_long_variable + 8);
       }
-      system_thread_003(ptr_var_);
-      stack_ptr_ = &g_threadString2;
-      if (stack_long_ != 0) {
+      system_thread_003(system_pointer_variable);
+      system_stack_pointer = &g_threadString2;
+      if (system_stack_long != 0) {
         handle_system_error();
       }
-      stack_long_ = 0;
+      system_stack_long = 0;
       stack_var_ = 0;
-      stack_ptr_ = &g_threadString4;
-      stack_ptr_ = &g_threadString2;
-      handle_system_error(ptr_var_);
+      system_stack_pointer = &g_threadString4;
+      system_stack_pointer = &g_threadString2;
+      handle_system_error(system_pointer_variable);
     }
-    uint_var_ = validate_config_handle(char_ptr_var_,&unknown_180a12e10);
-    char_ptr_var_ = (char *)(ulong long)uint_var_;
+    uint_var_ = validate_config_handle(char_system_pointer_variable,&system_180a12e10);
+    char_system_pointer_variable = (char *)(ulong long)uint_var_;
   }
   *mutex_attr = &g_threadString2;
   if (mutex_attr[1] != 0) {
@@ -9518,128 +9518,128 @@ label_:
   param_7[1] = 0;
   *(unsigned int *)(param_7 + 3) = 0;
   *param_7 = &g_threadString4;
-  return char_ptr_var_;
+  return char_system_pointer_variable;
 }
 long long process_system_configuration(long long handle,long long flags,unsigned int mutex_attr,long long mutex_type)
 {
   char cVar1;
   char cVar2;
-  char *char_ptr_var_;
-  char *char_ptr_var_;
-  char *char_ptr_var_;
-  long long long_var_;
-  unsigned long long *ptr_var_;
-  char *char_ptr_var_;
-  unsigned long long *ptr_var_;
-  char *char_ptr_var_;
-  char *char_ptr_var_;
+  char *char_system_pointer_variable;
+  char *char_system_pointer_variable;
+  char *char_system_pointer_variable;
+  long long system_long_variable;
+  unsigned long long *system_pointer_variable;
+  char *char_system_pointer_variable;
+  unsigned long long *system_pointer_variable;
+  char *char_system_pointer_variable;
+  char *char_system_pointer_variable;
   bool bVar12;
   unsigned int uint_var_;
   unsigned long long uint_var_;
-  undefined *stack_ptr_;
-  long long stack_long_;
+  void *system_stack_pointer;
+  long long system_stack_long;
   int stack_int_;
   ulong long stack_var_;
-  undefined *stack_ptr_;
+  void *system_stack_pointer;
   char *pcStack_48;
   int stack_int_;
   unsigned long long stack_var_;
   uint_var_ = THREAD_POOL_DEFAULT_FLAG;
-  char_ptr_var_ = (char *)0x0;
-  function_(mutex_type);
-  function_(handle,mutex_attr);
+  char_system_pointer_variable = (char *)0x0;
+  system_function_(mutex_type);
+  system_function_(handle,mutex_attr);
   uint_var_ = 1;
-  char_ptr_var_ = "base";
+  char_system_pointer_variable = "base";
   do {
-    char_ptr_var_ = char_ptr_var_;
-    char_ptr_var_ = char_ptr_var_ + 1;
-  } while (*char_ptr_var_ != '\0');
-  for (char_ptr_var_ = *(char **)(flags + 0x30); char_ptr_var_ = char_ptr_var_, char_ptr_var_ != (char *)0x0;
-      char_ptr_var_ = *(char **)(char_ptr_var_ + 0x58)) {
-    char_ptr_var_ = *(char **)char_ptr_var_;
-    if (char_ptr_var_ == (char *)0x0) {
-      char_ptr_var_ = (char *)0x180d48d24;
-      char_ptr_var_ = char_ptr_var_;
+    char_system_pointer_variable = char_system_pointer_variable;
+    char_system_pointer_variable = char_system_pointer_variable + 1;
+  } while (*char_system_pointer_variable != '\0');
+  for (char_system_pointer_variable = *(char **)(flags + 0x30); char_system_pointer_variable = char_system_pointer_variable, char_system_pointer_variable != (char *)0x0;
+      char_system_pointer_variable = *(char **)(char_system_pointer_variable + 0x58)) {
+    char_system_pointer_variable = *(char **)char_system_pointer_variable;
+    if (char_system_pointer_variable == (char *)0x0) {
+      char_system_pointer_variable = (char *)0x180d48d24;
+      char_system_pointer_variable = char_system_pointer_variable;
     }
     else {
-      char_ptr_var_ = *(char **)(char_ptr_var_ + STRING_BUFFER_SIZE);
+      char_system_pointer_variable = *(char **)(char_system_pointer_variable + STRING_BUFFER_SIZE);
     }
-    if (char_ptr_var_ == char_ptr_var_ + -0x180a04ee3) {
-      char_ptr_var_ = char_ptr_var_ + (long long)char_ptr_var_;
-      char_ptr_var_ = char_ptr_var_;
-      if (char_ptr_var_ <= char_ptr_var_) break;
-      long_var_ = (long long)&data_180a04ee4 - (long long)char_ptr_var_;
-      while (*char_ptr_var_ == char_ptr_var_[long_var_]) {
-        char_ptr_var_ = char_ptr_var_ + 1;
-        if (char_ptr_var_ <= char_ptr_var_) goto label_;
+    if (char_system_pointer_variable == char_system_pointer_variable + -0x180a04ee3) {
+      char_system_pointer_variable = char_system_pointer_variable + (long long)char_system_pointer_variable;
+      char_system_pointer_variable = char_system_pointer_variable;
+      if (char_system_pointer_variable <= char_system_pointer_variable) break;
+      system_long_variable = (long long)&data_180a04ee4 - (long long)char_system_pointer_variable;
+      while (*char_system_pointer_variable == char_system_pointer_variable[system_long_variable]) {
+        char_system_pointer_variable = char_system_pointer_variable + 1;
+        if (char_system_pointer_variable <= char_system_pointer_variable) goto label_;
       }
     }
   }
 label_:
-  char_ptr_var_ = "file";
+  char_system_pointer_variable = "file";
   do {
-    char_ptr_var_ = char_ptr_var_;
-    char_ptr_var_ = char_ptr_var_ + 1;
-  } while (*char_ptr_var_ != '\0');
-  ptr_var_ = *(unsigned long long **)(char_ptr_var_ + 0x30);
+    char_system_pointer_variable = char_system_pointer_variable;
+    char_system_pointer_variable = char_system_pointer_variable + 1;
+  } while (*char_system_pointer_variable != '\0');
+  system_pointer_variable = *(unsigned long long **)(char_system_pointer_variable + 0x30);
   do {
-    if (ptr_var_ == (unsigned long long *)0x0) {
+    if (system_pointer_variable == (unsigned long long *)0x0) {
       return handle;
     }
-    char_ptr_var_ = (char *)*ptr_var_;
-    if (char_ptr_var_ == (char *)0x0) {
-      char_ptr_var_ = (char *)0x180d48d24;
-      char_ptr_var_ = char_ptr_var_;
+    char_system_pointer_variable = (char *)*system_pointer_variable;
+    if (char_system_pointer_variable == (char *)0x0) {
+      char_system_pointer_variable = (char *)0x180d48d24;
+      char_system_pointer_variable = char_system_pointer_variable;
     }
     else {
-      char_ptr_var_ = (char *)ptr_var_[2];
+      char_system_pointer_variable = (char *)system_pointer_variable[2];
     }
-    if (char_ptr_var_ == char_ptr_var_ + -0x180a0794b) {
-      char_ptr_var_ = char_ptr_var_ + (long long)char_ptr_var_;
-      if (char_ptr_var_ <= char_ptr_var_) break;
-      long_var_ = (long long)&unknown_180a0794c - (long long)char_ptr_var_;
-      while (*char_ptr_var_ == char_ptr_var_[long_var_]) {
-        char_ptr_var_ = char_ptr_var_ + 1;
-        if (char_ptr_var_ <= char_ptr_var_) goto label_;
+    if (char_system_pointer_variable == char_system_pointer_variable + -0x180a0794b) {
+      char_system_pointer_variable = char_system_pointer_variable + (long long)char_system_pointer_variable;
+      if (char_system_pointer_variable <= char_system_pointer_variable) break;
+      system_long_variable = (long long)&system_180a0794c - (long long)char_system_pointer_variable;
+      while (*char_system_pointer_variable == char_system_pointer_variable[system_long_variable]) {
+        char_system_pointer_variable = char_system_pointer_variable + 1;
+        if (char_system_pointer_variable <= char_system_pointer_variable) goto label_;
       }
     }
-    ptr_var_ = (unsigned long long *)ptr_var_[0xb];
+    system_pointer_variable = (unsigned long long *)system_pointer_variable[0xb];
   } while( true );
 label_:
-  stack_ptr_ = &g_threadString2;
+  system_stack_pointer = &g_threadString2;
   stack_var_ = 0;
   pcStack_48 = (char *)0x0;
   stack_int_ = 0;
-  char_ptr_var_ = "type";
+  char_system_pointer_variable = "type";
   do {
-    char_ptr_var_ = char_ptr_var_;
-    char_ptr_var_ = char_ptr_var_ + 1;
-  } while (*char_ptr_var_ != '\0');
-  for (ptr_var_ = (unsigned long long *)ptr_var_[8]; ptr_var_ != (unsigned long long *)0x0;
-      ptr_var_ = (unsigned long long *)ptr_var_[6]) {
-    char_ptr_var_ = (char *)*ptr_var_;
-    if (char_ptr_var_ == (char *)0x0) {
-      char_ptr_var_ = (char *)0x180d48d24;
-      char_ptr_var_ = char_ptr_var_;
+    char_system_pointer_variable = char_system_pointer_variable;
+    char_system_pointer_variable = char_system_pointer_variable + 1;
+  } while (*char_system_pointer_variable != '\0');
+  for (system_pointer_variable = (unsigned long long *)system_pointer_variable[8]; system_pointer_variable != (unsigned long long *)0x0;
+      system_pointer_variable = (unsigned long long *)system_pointer_variable[6]) {
+    char_system_pointer_variable = (char *)*system_pointer_variable;
+    if (char_system_pointer_variable == (char *)0x0) {
+      char_system_pointer_variable = (char *)0x180d48d24;
+      char_system_pointer_variable = char_system_pointer_variable;
     }
     else {
-      char_ptr_var_ = (char *)ptr_var_[2];
+      char_system_pointer_variable = (char *)system_pointer_variable[2];
     }
-    if (char_ptr_var_ == char_ptr_var_ + -0x180a0ee2f) {
-      char_ptr_var_ = char_ptr_var_ + (long long)char_ptr_var_;
-      if (char_ptr_var_ <= char_ptr_var_) {
+    if (char_system_pointer_variable == char_system_pointer_variable + -0x180a0ee2f) {
+      char_system_pointer_variable = char_system_pointer_variable + (long long)char_system_pointer_variable;
+      if (char_system_pointer_variable <= char_system_pointer_variable) {
 label_:
-        long_var_ = 0x180d48d24;
-        if (ptr_var_[1] != 0) {
-          long_var_ = ptr_var_[1];
+        system_long_variable = 0x180d48d24;
+        if (system_pointer_variable[1] != 0) {
+          system_long_variable = system_pointer_variable[1];
         }
-        function_(&stack_ptr_,long_var_,char_ptr_var_,ptr_var_,uint_var_,uint_var_);
+        system_function_(&system_stack_pointer,system_long_variable,char_system_pointer_variable,system_pointer_variable,uint_var_,uint_var_);
         break;
       }
-      long_var_ = (long long)&unknown_180a0ee30 - (long long)char_ptr_var_;
-      while (*char_ptr_var_ == char_ptr_var_[long_var_]) {
-        char_ptr_var_ = char_ptr_var_ + 1;
-        if (char_ptr_var_ <= char_ptr_var_) goto label_;
+      system_long_variable = (long long)&system_180a0ee30 - (long long)char_system_pointer_variable;
+      while (*char_system_pointer_variable == char_system_pointer_variable[system_long_variable]) {
+        char_system_pointer_variable = char_system_pointer_variable + 1;
+        if (char_system_pointer_variable <= char_system_pointer_variable) goto label_;
       }
     }
   }
@@ -9650,12 +9650,12 @@ label_:
       bVar12 = true;
     }
     else {
-      char_ptr_var_ = pcStack_48;
+      char_system_pointer_variable = pcStack_48;
       do {
-        cVar1 = *char_ptr_var_;
-        cVar2 = char_ptr_var_[*(long long *)(handle + 8) - (long long)pcStack_48];
+        cVar1 = *char_system_pointer_variable;
+        cVar2 = char_system_pointer_variable[*(long long *)(handle + 8) - (long long)pcStack_48];
         if (cVar1 != cVar2) break;
-        char_ptr_var_ = char_ptr_var_ + 1;
+        char_system_pointer_variable = char_system_pointer_variable + 1;
       } while (cVar2 != '\0');
       bVar12 = cVar1 == cVar2;
     }
@@ -9666,169 +9666,169 @@ label_:
     bVar12 = false;
   }
   if (bVar12) {
-    stack_ptr_ = &g_threadString2;
+    system_stack_pointer = &g_threadString2;
     stack_var_ = 0;
-    stack_long_ = 0;
+    system_stack_long = 0;
     stack_int_ = 0;
-    char_ptr_var_ = "name";
+    char_system_pointer_variable = "name";
     do {
-      char_ptr_var_ = char_ptr_var_;
-      char_ptr_var_ = char_ptr_var_ + 1;
-    } while (*char_ptr_var_ != '\0');
-    for (ptr_var_ = (unsigned long long *)ptr_var_[8]; ptr_var_ != (unsigned long long *)0x0;
-        ptr_var_ = (unsigned long long *)ptr_var_[6]) {
-      char_ptr_var_ = (char *)*ptr_var_;
-      if (char_ptr_var_ == (char *)0x0) {
-        char_ptr_var_ = (char *)0x180d48d24;
-        char_ptr_var_ = char_ptr_var_;
+      char_system_pointer_variable = char_system_pointer_variable;
+      char_system_pointer_variable = char_system_pointer_variable + 1;
+    } while (*char_system_pointer_variable != '\0');
+    for (system_pointer_variable = (unsigned long long *)system_pointer_variable[8]; system_pointer_variable != (unsigned long long *)0x0;
+        system_pointer_variable = (unsigned long long *)system_pointer_variable[6]) {
+      char_system_pointer_variable = (char *)*system_pointer_variable;
+      if (char_system_pointer_variable == (char *)0x0) {
+        char_system_pointer_variable = (char *)0x180d48d24;
+        char_system_pointer_variable = char_system_pointer_variable;
       }
       else {
-        char_ptr_var_ = (char *)ptr_var_[2];
+        char_system_pointer_variable = (char *)system_pointer_variable[2];
       }
-      if (char_ptr_var_ == char_ptr_var_ + -0x180a03a83) {
-        char_ptr_var_ = char_ptr_var_ + (long long)char_ptr_var_;
-        if (char_ptr_var_ <= char_ptr_var_) {
+      if (char_system_pointer_variable == char_system_pointer_variable + -0x180a03a83) {
+        char_system_pointer_variable = char_system_pointer_variable + (long long)char_system_pointer_variable;
+        if (char_system_pointer_variable <= char_system_pointer_variable) {
 label_:
-          long_var_ = 0x180d48d24;
-          if (ptr_var_[1] != 0) {
-            long_var_ = ptr_var_[1];
+          system_long_variable = 0x180d48d24;
+          if (system_pointer_variable[1] != 0) {
+            system_long_variable = system_pointer_variable[1];
           }
-          function_(&stack_ptr_,long_var_);
+          system_function_(&system_stack_pointer,system_long_variable);
           break;
         }
-        long_var_ = (long long)&data_180a03a84 - (long long)char_ptr_var_;
-        while (*char_ptr_var_ == char_ptr_var_[long_var_]) {
-          char_ptr_var_ = char_ptr_var_ + 1;
-          if (char_ptr_var_ <= char_ptr_var_) goto label_;
+        system_long_variable = (long long)&data_180a03a84 - (long long)char_system_pointer_variable;
+        while (*char_system_pointer_variable == char_system_pointer_variable[system_long_variable]) {
+          char_system_pointer_variable = char_system_pointer_variable + 1;
+          if (char_system_pointer_variable <= char_system_pointer_variable) goto label_;
         }
       }
     }
-    ptr_var_ = *(unsigned long long **)(mutex_type + 8);
-    if (ptr_var_ < *(unsigned long long **)(mutex_type + STRING_BUFFER_SIZE)) {
-      *(unsigned long long **)(mutex_type + 8) = ptr_var_ + 4;
-      *ptr_var_ = &g_threadString4;
-      ptr_var_[1] = 0;
-      *(unsigned int *)(ptr_var_ + 2) = 0;
-      *ptr_var_ = &g_threadString2;
-      ptr_var_[3] = 0;
-      ptr_var_[1] = 0;
-      *(unsigned int *)(ptr_var_ + 2) = 0;
-      system_thread_manager_001(ptr_var_,stack_int_);
+    system_pointer_variable = *(unsigned long long **)(mutex_type + 8);
+    if (system_pointer_variable < *(unsigned long long **)(mutex_type + STRING_BUFFER_SIZE)) {
+      *(unsigned long long **)(mutex_type + 8) = system_pointer_variable + 4;
+      *system_pointer_variable = &g_threadString4;
+      system_pointer_variable[1] = 0;
+      *(unsigned int *)(system_pointer_variable + 2) = 0;
+      *system_pointer_variable = &g_threadString2;
+      system_pointer_variable[3] = 0;
+      system_pointer_variable[1] = 0;
+      *(unsigned int *)(system_pointer_variable + 2) = 0;
+      system_thread_manager_001(system_pointer_variable,stack_int_);
       if (stack_int_ != 0) {
-        memcpy(ptr_var_[1],stack_long_,stack_int_ + 1);
+        memcpy(system_pointer_variable[1],system_stack_long,stack_int_ + 1);
       }
-      if (stack_long_ != 0) {
-        *(unsigned int *)(ptr_var_ + 2) = 0;
-        if ((unsigned char *)ptr_var_[1] != (unsigned char *)0x0) {
-          *(unsigned char *)ptr_var_[1] = 0;
+      if (system_stack_long != 0) {
+        *(unsigned int *)(system_pointer_variable + 2) = 0;
+        if ((unsigned char *)system_pointer_variable[1] != (unsigned char *)0x0) {
+          *(unsigned char *)system_pointer_variable[1] = 0;
         }
-        *(unsigned int *)((long long)ptr_var_ + 0x1c) = 0;
+        *(unsigned int *)((long long)system_pointer_variable + 0x1c) = 0;
       }
     }
     else {
-      system_event_handler_006(mutex_type,&stack_ptr_);
+      system_event_handler_006(mutex_type,&system_stack_pointer);
     }
-    stack_ptr_ = &g_threadString2;
-    if (stack_long_ != 0) {
+    system_stack_pointer = &g_threadString2;
+    if (system_stack_long != 0) {
       handle_system_error();
     }
-    stack_long_ = 0;
+    system_stack_long = 0;
     stack_var_ = stack_var_ & INT64_MASK;
-    stack_ptr_ = &g_threadString4;
+    system_stack_pointer = &g_threadString4;
   }
-  ptr_var_ = (unsigned long long *)ptr_var_[0xb];
-  stack_ptr_ = &g_threadString2;
+  system_pointer_variable = (unsigned long long *)system_pointer_variable[0xb];
+  system_stack_pointer = &g_threadString2;
   if (pcStack_48 != (char *)0x0) {
     handle_system_error();
   }
-  if (ptr_var_ == (unsigned long long *)0x0) {
+  if (system_pointer_variable == (unsigned long long *)0x0) {
     return handle;
   }
   goto label_;
 }
   data_180c95fea = 0;
   if (cVar1 != '\0') {
-    system_thread_003(&unknown_180a3cc28,handle);
+    system_thread_003(&system_180a3cc28,handle);
   }
-  if (long_var_ != -1) {
+  if (system_long_variable != -1) {
     LOCK();
-    global_data_ = global_data_ + -1;
+    system_global_data_ = system_global_data_ + -1;
     UNLOCK();
     CloseHandle(alStack_3d0[0]);
     alStack_3d0[0] = -1;
   }
-  stack_ptr_ = &g_threadString2;
-  if (stack_ptr_ == (undefined *)0x0) {
-    stack_ptr_ = (undefined *)0x0;
+  system_stack_pointer = &g_threadString2;
+  if (system_stack_pointer == (void *)0x0) {
+    system_stack_pointer = (void *)0x0;
     stack_var_ = 0;
-    stack_ptr_ = &g_threadString4;
+    system_stack_pointer = &g_threadString4;
     system_crypto_001(stack_var_ ^ (ulong long)auStack_408);
   }
   handle_system_error();
 }
 int validate_config_handle(unsigned long long handle,char *flags)
 {
-  char *char_ptr_var_;
+  char *char_system_pointer_variable;
   char cVar2;
-  unsigned long long *ptr_var_;
-  char *char_ptr_var_;
-  long long long_var_;
-  char *char_ptr_var_;
+  unsigned long long *system_pointer_variable;
+  char *char_system_pointer_variable;
+  long long system_long_variable;
+  char *char_system_pointer_variable;
   int int_var_;
-  ptr_var_ = (unsigned long long *)function_(handle,flags,0);
+  system_pointer_variable = (unsigned long long *)system_function_(handle,flags,0);
   int_var_ = 0;
-  if (ptr_var_ == (unsigned long long *)0x0) {
+  if (system_pointer_variable == (unsigned long long *)0x0) {
     return 0;
   }
   while (int_var_ = int_var_ + 1, flags == (char *)0x0) {
-    ptr_var_ = (unsigned long long *)ptr_var_[0xb];
+    system_pointer_variable = (unsigned long long *)system_pointer_variable[0xb];
 label_:
-    if (ptr_var_ == (unsigned long long *)0x0) {
+    if (system_pointer_variable == (unsigned long long *)0x0) {
       return int_var_;
     }
   }
   cVar2 = *flags;
-  char_ptr_var_ = flags;
+  char_system_pointer_variable = flags;
   while (cVar2 != '\0') {
-    char_ptr_var_ = char_ptr_var_ + 1;
-    cVar2 = *char_ptr_var_;
+    char_system_pointer_variable = char_system_pointer_variable + 1;
+    cVar2 = *char_system_pointer_variable;
   }
-  ptr_var_ = (unsigned long long *)ptr_var_[0xb];
-  if (ptr_var_ == (unsigned long long *)0x0) {
+  system_pointer_variable = (unsigned long long *)system_pointer_variable[0xb];
+  if (system_pointer_variable == (unsigned long long *)0x0) {
     return int_var_;
   }
   do {
-    char_ptr_var_ = (char *)*ptr_var_;
-    if (char_ptr_var_ == (char *)0x0) {
-      long_var_ = 0;
-      char_ptr_var_ = (char *)0x180d48d24;
+    char_system_pointer_variable = (char *)*system_pointer_variable;
+    if (char_system_pointer_variable == (char *)0x0) {
+      system_long_variable = 0;
+      char_system_pointer_variable = (char *)0x180d48d24;
     }
     else {
-      long_var_ = ptr_var_[2];
+      system_long_variable = system_pointer_variable[2];
     }
-    if (long_var_ == (long long)char_ptr_var_ - (long long)flags) {
-      char_ptr_var_ = char_ptr_var_ + long_var_;
-      if (char_ptr_var_ <= char_ptr_var_) goto label_;
-      long_var_ = (long long)flags - (long long)char_ptr_var_;
-      while (*char_ptr_var_ == char_ptr_var_[long_var_]) {
-        char_ptr_var_ = char_ptr_var_ + 1;
-        if (char_ptr_var_ <= char_ptr_var_) goto label_;
+    if (system_long_variable == (long long)char_system_pointer_variable - (long long)flags) {
+      char_system_pointer_variable = char_system_pointer_variable + system_long_variable;
+      if (char_system_pointer_variable <= char_system_pointer_variable) goto label_;
+      system_long_variable = (long long)flags - (long long)char_system_pointer_variable;
+      while (*char_system_pointer_variable == char_system_pointer_variable[system_long_variable]) {
+        char_system_pointer_variable = char_system_pointer_variable + 1;
+        if (char_system_pointer_variable <= char_system_pointer_variable) goto label_;
       }
     }
-    ptr_var_ = (unsigned long long *)ptr_var_[0xb];
-    if (ptr_var_ == (unsigned long long *)0x0) {
+    system_pointer_variable = (unsigned long long *)system_pointer_variable[0xb];
+    if (system_pointer_variable == (unsigned long long *)0x0) {
       return int_var_;
     }
   } while( true );
 }
 int process_config_with_mutex(unsigned long long handle,unsigned long long flags,unsigned long long *mutex_attr)
 {
-  char *char_ptr_var_;
+  char *char_system_pointer_variable;
   char cVar2;
-  char *char_ptr_var_;
+  char *char_system_pointer_variable;
   char *unaff_RBX;
-  long long long_var_;
-  char *char_ptr_var_;
+  long long system_long_variable;
+  char *char_system_pointer_variable;
   int in_R11D;
   while (in_R11D = in_R11D + 1, unaff_RBX == (char *)0x0) {
     mutex_attr = (unsigned long long *)mutex_attr[0xb];
@@ -9838,31 +9838,31 @@ label_:
     }
   }
   cVar2 = *unaff_RBX;
-  char_ptr_var_ = unaff_RBX;
+  char_system_pointer_variable = unaff_RBX;
   while (cVar2 != '\0') {
-    char_ptr_var_ = char_ptr_var_ + 1;
-    cVar2 = *char_ptr_var_;
+    char_system_pointer_variable = char_system_pointer_variable + 1;
+    cVar2 = *char_system_pointer_variable;
   }
   mutex_attr = (unsigned long long *)mutex_attr[0xb];
   if (mutex_attr == (unsigned long long *)0x0) {
     return in_R11D;
   }
   do {
-    char_ptr_var_ = (char *)*mutex_attr;
-    if (char_ptr_var_ == (char *)0x0) {
-      long_var_ = 0;
-      char_ptr_var_ = (char *)0x180d48d24;
+    char_system_pointer_variable = (char *)*mutex_attr;
+    if (char_system_pointer_variable == (char *)0x0) {
+      system_long_variable = 0;
+      char_system_pointer_variable = (char *)0x180d48d24;
     }
     else {
-      long_var_ = mutex_attr[2];
+      system_long_variable = mutex_attr[2];
     }
-    if (long_var_ == (long long)char_ptr_var_ - (long long)unaff_RBX) {
-      char_ptr_var_ = char_ptr_var_ + long_var_;
-      if (char_ptr_var_ <= char_ptr_var_) goto label_;
-      long_var_ = (long long)unaff_RBX - (long long)char_ptr_var_;
-      while (*char_ptr_var_ == char_ptr_var_[long_var_]) {
-        char_ptr_var_ = char_ptr_var_ + 1;
-        if (char_ptr_var_ <= char_ptr_var_) goto label_;
+    if (system_long_variable == (long long)char_system_pointer_variable - (long long)unaff_RBX) {
+      char_system_pointer_variable = char_system_pointer_variable + system_long_variable;
+      if (char_system_pointer_variable <= char_system_pointer_variable) goto label_;
+      system_long_variable = (long long)unaff_RBX - (long long)char_system_pointer_variable;
+      while (*char_system_pointer_variable == char_system_pointer_variable[system_long_variable]) {
+        char_system_pointer_variable = char_system_pointer_variable + 1;
+        if (char_system_pointer_variable <= char_system_pointer_variable) goto label_;
       }
     }
     mutex_attr = (unsigned long long *)mutex_attr[0xb];
@@ -9873,13 +9873,13 @@ label_:
 }
 int validate_mutex_attributes(unsigned long long handle,unsigned long long flags,unsigned long long *mutex_attr)
 {
-  char *char_ptr_var_;
+  char *char_system_pointer_variable;
   char cVar2;
-  char *char_ptr_var_;
+  char *char_system_pointer_variable;
   char *unaff_RBX;
   char *unaff_RDI;
-  long long long_var_;
-  char *char_ptr_var_;
+  long long system_long_variable;
+  char *char_system_pointer_variable;
   int in_R11D;
   do {
     mutex_attr = (unsigned long long *)mutex_attr[0xb];
@@ -9890,10 +9890,10 @@ label_:
     in_R11D = in_R11D + 1;
   } while (unaff_RBX == (char *)0x0);
   cVar2 = *unaff_RBX;
-  char_ptr_var_ = unaff_RBX;
+  char_system_pointer_variable = unaff_RBX;
   while (cVar2 != '\0') {
-    char_ptr_var_ = char_ptr_var_ + 1;
-    cVar2 = *char_ptr_var_;
+    char_system_pointer_variable = char_system_pointer_variable + 1;
+    cVar2 = *char_system_pointer_variable;
   }
   mutex_attr = (unsigned long long *)mutex_attr[0xb];
   if (mutex_attr == (unsigned long long *)0x0) {
@@ -9901,20 +9901,20 @@ label_:
   }
   do {
     if ((char *)*mutex_attr == (char *)0x0) {
-      long_var_ = 0;
-      char_ptr_var_ = unaff_RDI;
+      system_long_variable = 0;
+      char_system_pointer_variable = unaff_RDI;
     }
     else {
-      long_var_ = mutex_attr[2];
-      char_ptr_var_ = (char *)*mutex_attr;
+      system_long_variable = mutex_attr[2];
+      char_system_pointer_variable = (char *)*mutex_attr;
     }
-    if (long_var_ == (long long)char_ptr_var_ - (long long)unaff_RBX) {
-      char_ptr_var_ = char_ptr_var_ + long_var_;
-      if (char_ptr_var_ <= char_ptr_var_) goto label_;
-      long_var_ = (long long)unaff_RBX - (long long)char_ptr_var_;
-      while (*char_ptr_var_ == char_ptr_var_[long_var_]) {
-        char_ptr_var_ = char_ptr_var_ + 1;
-        if (char_ptr_var_ <= char_ptr_var_) goto label_;
+    if (system_long_variable == (long long)char_system_pointer_variable - (long long)unaff_RBX) {
+      char_system_pointer_variable = char_system_pointer_variable + system_long_variable;
+      if (char_system_pointer_variable <= char_system_pointer_variable) goto label_;
+      system_long_variable = (long long)unaff_RBX - (long long)char_system_pointer_variable;
+      while (*char_system_pointer_variable == char_system_pointer_variable[system_long_variable]) {
+        char_system_pointer_variable = char_system_pointer_variable + 1;
+        if (char_system_pointer_variable <= char_system_pointer_variable) goto label_;
       }
     }
     mutex_attr = (unsigned long long *)mutex_attr[0xb];
@@ -9930,307 +9930,307 @@ unsigned int get_system_status_code(void)
 }
 long long initialize_system_resources(unsigned long long handle,unsigned long long flags,long long mutex_attr)
 {
-  long long init_result;
-  long long long_var_;
-  char *char_ptr_var_;
-  long long long_var_;
+  long long system_init_result;
+  long long system_long_variable;
+  char *char_system_pointer_variable;
+  long long system_long_variable;
   unsigned long long uint_var_;
-  undefined *stack_ptr_;
+  void *system_stack_pointer;
   char *pcStack_28;
   uint_var_ = THREAD_POOL_DEFAULT_FLAG;
-  init_result = function_();
-  if (init_result == 0) {
+  system_init_result = system_function_();
+  if (system_init_result == 0) {
     return 0;
   }
-  long_var_ = 0x180d48d24;
-  if (*(long long *)(init_result + 8) != 0) {
-    long_var_ = *(long long *)(init_result + 8);
+  system_long_variable = 0x180d48d24;
+  if (*(long long *)(system_init_result + 8) != 0) {
+    system_long_variable = *(long long *)(system_init_result + 8);
   }
-  create_thread_context(&stack_ptr_,long_var_);
+  create_thread_context(&system_stack_pointer,system_long_variable);
   if (*pcStack_28 != '\0') {
-    init_result = 0;
+    system_init_result = 0;
     do {
-      long_var_ = strchr(&unknown_180a3cc48,(int)pcStack_28[init_result]);
-      if (long_var_ != 0) {
-        pcStack_28[init_result] = ' ';
+      system_long_variable = strchr(&system_180a3cc48,(int)pcStack_28[system_init_result]);
+      if (system_long_variable != 0) {
+        pcStack_28[system_init_result] = ' ';
       }
-      init_result = init_result + 1;
-    } while (pcStack_28[init_result] != '\0');
+      system_init_result = system_init_result + 1;
+    } while (pcStack_28[system_init_result] != '\0');
   }
-  char_ptr_var_ = "";
+  char_system_pointer_variable = "";
   if (pcStack_28 != (char *)0x0) {
-    char_ptr_var_ = pcStack_28;
+    char_system_pointer_variable = pcStack_28;
   }
-  function_(char_ptr_var_,&unknown_180a3cbe0,mutex_attr,mutex_attr + 4,uint_var_);
-  stack_ptr_ = &g_threadString2;
+  system_function_(char_system_pointer_variable,&system_180a3cbe0,mutex_attr,mutex_attr + 4,uint_var_);
+  system_stack_pointer = &g_threadString2;
   if (pcStack_28 != (char *)0x0) {
     handle_system_error();
   }
-  return long_var_;
+  return system_long_variable;
 }
 long long allocate_thread_resources(unsigned long long handle,unsigned long long flags,long long mutex_attr)
 {
-  long long init_result;
-  long long long_var_;
-  char *char_ptr_var_;
-  long long long_var_;
-  undefined *stack_ptr_;
+  long long system_init_result;
+  long long system_long_variable;
+  char *char_system_pointer_variable;
+  long long system_long_variable;
+  void *system_stack_pointer;
   char *pcStack_28;
-  init_result = function_();
-  if (init_result == 0) {
+  system_init_result = system_function_();
+  if (system_init_result == 0) {
     return 0;
   }
-  long_var_ = 0x180d48d24;
-  if (*(long long *)(init_result + 8) != 0) {
-    long_var_ = *(long long *)(init_result + 8);
+  system_long_variable = 0x180d48d24;
+  if (*(long long *)(system_init_result + 8) != 0) {
+    system_long_variable = *(long long *)(system_init_result + 8);
   }
-  create_thread_context(&stack_ptr_,long_var_);
+  create_thread_context(&system_stack_pointer,system_long_variable);
   if (*pcStack_28 != '\0') {
-    init_result = 0;
+    system_init_result = 0;
     do {
-      long_var_ = strchr(&unknown_180a3c9ec,(int)pcStack_28[init_result]);
-      if (long_var_ != 0) {
-        pcStack_28[init_result] = ' ';
+      system_long_variable = strchr(&system_180a3c9ec,(int)pcStack_28[system_init_result]);
+      if (system_long_variable != 0) {
+        pcStack_28[system_init_result] = ' ';
       }
-      init_result = init_result + 1;
-    } while (pcStack_28[init_result] != '\0');
+      system_init_result = system_init_result + 1;
+    } while (pcStack_28[system_init_result] != '\0');
   }
-  char_ptr_var_ = "";
+  char_system_pointer_variable = "";
   if (pcStack_28 != (char *)0x0) {
-    char_ptr_var_ = pcStack_28;
+    char_system_pointer_variable = pcStack_28;
   }
-  function_(char_ptr_var_,&unknown_180a3cc0c,mutex_attr,mutex_attr + 4,mutex_attr + 8);
-  stack_ptr_ = &g_threadString2;
+  system_function_(char_system_pointer_variable,&system_180a3cc0c,mutex_attr,mutex_attr + 4,mutex_attr + 8);
+  system_stack_pointer = &g_threadString2;
   if (pcStack_28 != (char *)0x0) {
     handle_system_error();
   }
-  return long_var_;
+  return system_long_variable;
 }
 long long initialize_thread_pool_resources(unsigned long long handle,unsigned long long flags,long long mutex_attr,unsigned long long mutex_type)
 {
-  long long init_result;
-  long long long_var_;
-  char *char_ptr_var_;
-  long long long_var_;
-  undefined *stack_ptr_;
+  long long system_init_result;
+  long long system_long_variable;
+  char *char_system_pointer_variable;
+  long long system_long_variable;
+  void *system_stack_pointer;
   char *pcStack_28;
-  init_result = function_(handle,&unknown_180a0696c,mutex_attr,mutex_type,THREAD_POOL_DEFAULT_FLAG);
-  if (init_result == 0) {
+  system_init_result = system_function_(handle,&system_180a0696c,mutex_attr,mutex_type,THREAD_POOL_DEFAULT_FLAG);
+  if (system_init_result == 0) {
     return 0;
   }
-  long_var_ = 0x180d48d24;
-  if (*(long long *)(init_result + 8) != 0) {
-    long_var_ = *(long long *)(init_result + 8);
+  system_long_variable = 0x180d48d24;
+  if (*(long long *)(system_init_result + 8) != 0) {
+    system_long_variable = *(long long *)(system_init_result + 8);
   }
-  create_thread_context(&stack_ptr_,long_var_);
+  create_thread_context(&system_stack_pointer,system_long_variable);
   if (*pcStack_28 != '\0') {
-    init_result = 0;
+    system_init_result = 0;
     do {
-      long_var_ = strchr(&unknown_180a3cc04,(int)pcStack_28[init_result]);
-      if (long_var_ != 0) {
-        pcStack_28[init_result] = ' ';
+      system_long_variable = strchr(&system_180a3cc04,(int)pcStack_28[system_init_result]);
+      if (system_long_variable != 0) {
+        pcStack_28[system_init_result] = ' ';
       }
-      init_result = init_result + 1;
-    } while (pcStack_28[init_result] != '\0');
+      system_init_result = system_init_result + 1;
+    } while (pcStack_28[system_init_result] != '\0');
   }
-  char_ptr_var_ = "";
+  char_system_pointer_variable = "";
   if (pcStack_28 != (char *)0x0) {
-    char_ptr_var_ = pcStack_28;
+    char_system_pointer_variable = pcStack_28;
   }
-  function_(char_ptr_var_,&unknown_180a3cc1c,mutex_attr,mutex_attr + 4);
-  stack_ptr_ = &g_threadString2;
+  system_function_(char_system_pointer_variable,&system_180a3cc1c,mutex_attr,mutex_attr + 4);
+  system_stack_pointer = &g_threadString2;
   if (pcStack_28 != (char *)0x0) {
     handle_system_error();
   }
-  return long_var_;
+  return system_long_variable;
 }
 long long validate_thread_configuration(unsigned long long handle,unsigned long long flags,long long mutex_attr)
 {
   int int_var_;
-  long long long_var_;
-  long long long_var_;
-  char *char_ptr_var_;
-  long long long_var_;
+  long long system_long_variable;
+  long long system_long_variable;
+  char *char_system_pointer_variable;
+  long long system_long_variable;
   unsigned long long uint_var_;
-  undefined *stack_ptr_;
+  void *system_stack_pointer;
   char *pcStack_28;
   uint_var_ = THREAD_POOL_DEFAULT_FLAG;
-  long_var_ = function_();
-  if (long_var_ == 0) {
+  system_long_variable = system_function_();
+  if (system_long_variable == 0) {
     return 0;
   }
-  long_var_ = 0x180d48d24;
-  if (*(long long *)(long_var_ + 8) != 0) {
-    long_var_ = *(long long *)(long_var_ + 8);
+  system_long_variable = 0x180d48d24;
+  if (*(long long *)(system_long_variable + 8) != 0) {
+    system_long_variable = *(long long *)(system_long_variable + 8);
   }
-  create_thread_context(&stack_ptr_,long_var_);
+  create_thread_context(&system_stack_pointer,system_long_variable);
   if (*pcStack_28 != '\0') {
-    long_var_ = 0;
+    system_long_variable = 0;
     do {
-      long_var_ = strchr(&unknown_180a3c9ec,(int)pcStack_28[long_var_]);
-      if (long_var_ != 0) {
-        pcStack_28[long_var_] = ' ';
+      system_long_variable = strchr(&system_180a3c9ec,(int)pcStack_28[system_long_variable]);
+      if (system_long_variable != 0) {
+        pcStack_28[system_long_variable] = ' ';
       }
-      long_var_ = long_var_ + 1;
-    } while (pcStack_28[long_var_] != '\0');
+      system_long_variable = system_long_variable + 1;
+    } while (pcStack_28[system_long_variable] != '\0');
   }
-  char_ptr_var_ = "";
+  char_system_pointer_variable = "";
   if (pcStack_28 != (char *)0x0) {
-    char_ptr_var_ = pcStack_28;
+    char_system_pointer_variable = pcStack_28;
   }
-  int_var_ = function_(char_ptr_var_,&unknown_180a3c9f8,mutex_attr,mutex_attr + 4,mutex_attr + 8,
+  int_var_ = system_function_(char_system_pointer_variable,&system_180a3c9f8,mutex_attr,mutex_attr + 4,mutex_attr + 8,
                         (unsigned int *)(mutex_attr + 0xc),uint_var_);
   if (int_var_ == 3) {
     *(unsigned int *)(mutex_attr + 0xc) = 0x3f800000;
   }
-  stack_ptr_ = &g_threadString2;
+  system_stack_pointer = &g_threadString2;
   if (pcStack_28 != (char *)0x0) {
     handle_system_error();
   }
-  return long_var_;
+  return system_long_variable;
 }
 long long process_thread_initialization(unsigned long long handle,unsigned long long flags,long long mutex_attr)
 {
-  long long init_result;
-  long long long_var_;
-  char *char_ptr_var_;
-  long long long_var_;
+  long long system_init_result;
+  long long system_long_variable;
+  char *char_system_pointer_variable;
+  long long system_long_variable;
   unsigned long long uint_var_;
-  undefined *stack_ptr_;
+  void *system_stack_pointer;
   char *pcStack_28;
   uint_var_ = THREAD_POOL_DEFAULT_FLAG;
-  init_result = function_(handle,&unknown_180a16818);
-  if (init_result == 0) {
+  system_init_result = system_function_(handle,&system_180a16818);
+  if (system_init_result == 0) {
     return 0;
   }
-  long_var_ = 0x180d48d24;
-  if (*(long long *)(init_result + 8) != 0) {
-    long_var_ = *(long long *)(init_result + 8);
+  system_long_variable = 0x180d48d24;
+  if (*(long long *)(system_init_result + 8) != 0) {
+    system_long_variable = *(long long *)(system_init_result + 8);
   }
-  create_thread_context(&stack_ptr_,long_var_);
+  create_thread_context(&system_stack_pointer,system_long_variable);
   if (*pcStack_28 != '\0') {
-    init_result = 0;
+    system_init_result = 0;
     do {
-      long_var_ = strchr(&unknown_180a3cc04,(int)pcStack_28[init_result]);
-      if (long_var_ != 0) {
-        pcStack_28[init_result] = ' ';
+      system_long_variable = strchr(&system_180a3cc04,(int)pcStack_28[system_init_result]);
+      if (system_long_variable != 0) {
+        pcStack_28[system_init_result] = ' ';
       }
-      init_result = init_result + 1;
-    } while (pcStack_28[init_result] != '\0');
+      system_init_result = system_init_result + 1;
+    } while (pcStack_28[system_init_result] != '\0');
   }
-  char_ptr_var_ = "";
+  char_system_pointer_variable = "";
   if (pcStack_28 != (char *)0x0) {
-    char_ptr_var_ = pcStack_28;
+    char_system_pointer_variable = pcStack_28;
   }
-  function_(char_ptr_var_,&unknown_180a3c9f8,mutex_attr + 4,mutex_attr + 8,mutex_attr + 0xc,mutex_attr,uint_var_);
-  stack_ptr_ = &g_threadString2;
+  system_function_(char_system_pointer_variable,&system_180a3c9f8,mutex_attr + 4,mutex_attr + 8,mutex_attr + 0xc,mutex_attr,uint_var_);
+  system_stack_pointer = &g_threadString2;
   if (pcStack_28 != (char *)0x0) {
     handle_system_error();
   }
-  return long_var_;
+  return system_long_variable;
 }
 long long initialize_thread_synchronization(unsigned long long handle,unsigned long long flags,long long mutex_attr)
 {
-  long long *pinit_result;
-  long long long_var_;
-  long long long_var_;
-  char *char_ptr_var_;
-  long long long_var_;
-  undefined *stack_ptr_;
+  long long *psystem_init_result;
+  long long system_long_variable;
+  long long system_long_variable;
+  char *char_system_pointer_variable;
+  long long system_long_variable;
+  void *system_stack_pointer;
   char *pcStack_28;
-  long_var_ = function_();
-  if (long_var_ != 0) {
-    pinit_result = (long long *)(long_var_ + 8);
-    long_var_ = 0x180d48d24;
-    if (*pinit_result != 0) {
-      long_var_ = *pinit_result;
+  system_long_variable = system_function_();
+  if (system_long_variable != 0) {
+    psystem_init_result = (long long *)(system_long_variable + 8);
+    system_long_variable = 0x180d48d24;
+    if (*psystem_init_result != 0) {
+      system_long_variable = *psystem_init_result;
     }
-    create_thread_context(&stack_ptr_,long_var_);
+    create_thread_context(&system_stack_pointer,system_long_variable);
     if (*pcStack_28 != '\0') {
-      long_var_ = 0;
+      system_long_variable = 0;
       do {
-        long_var_ = strchr(&unknown_180a3cc04,(int)pcStack_28[long_var_]);
-        if (long_var_ != 0) {
-          pcStack_28[long_var_] = ' ';
+        system_long_variable = strchr(&system_180a3cc04,(int)pcStack_28[system_long_variable]);
+        if (system_long_variable != 0) {
+          pcStack_28[system_long_variable] = ' ';
         }
-        long_var_ = long_var_ + 1;
-      } while (pcStack_28[long_var_] != '\0');
+        system_long_variable = system_long_variable + 1;
+      } while (pcStack_28[system_long_variable] != '\0');
     }
-    char_ptr_var_ = "";
+    char_system_pointer_variable = "";
     if (pcStack_28 != (char *)0x0) {
-      char_ptr_var_ = pcStack_28;
+      char_system_pointer_variable = pcStack_28;
     }
-    function_(char_ptr_var_,&unknown_180a3ccc8,mutex_attr,mutex_attr + 4,mutex_attr + 8,mutex_attr + STRING_BUFFER_SIZE,
+    system_function_(char_system_pointer_variable,&system_180a3ccc8,mutex_attr,mutex_attr + 4,mutex_attr + 8,mutex_attr + STRING_BUFFER_SIZE,
                   mutex_attr + 0x14,mutex_attr + 0x18,mutex_attr + CONFIG_PATH_BUFFER_SIZE,mutex_attr + 0x24,mutex_attr + 0x28);
-    stack_ptr_ = &g_threadString2;
+    system_stack_pointer = &g_threadString2;
     if (pcStack_28 != (char *)0x0) {
       handle_system_error();
     }
   }
-  return long_var_;
+  return system_long_variable;
 }
 long long setup_thread_communication(unsigned long long handle,unsigned long long flags,long long mutex_attr)
 {
-  long long *pinit_result;
-  long long long_var_;
-  long long long_var_;
-  char *char_ptr_var_;
-  long long long_var_;
+  long long *psystem_init_result;
+  long long system_long_variable;
+  long long system_long_variable;
+  char *char_system_pointer_variable;
+  long long system_long_variable;
   unsigned long long uint_var_;
-  undefined *stack_ptr_;
+  void *system_stack_pointer;
   char *pcStack_50;
   uint_var_ = THREAD_POOL_DEFAULT_FLAG;
-  long_var_ = function_();
-  if (long_var_ != 0) {
-    pinit_result = (long long *)(long_var_ + 8);
-    long_var_ = 0x180d48d24;
-    if (*pinit_result != 0) {
-      long_var_ = *pinit_result;
+  system_long_variable = system_function_();
+  if (system_long_variable != 0) {
+    psystem_init_result = (long long *)(system_long_variable + 8);
+    system_long_variable = 0x180d48d24;
+    if (*psystem_init_result != 0) {
+      system_long_variable = *psystem_init_result;
     }
-    create_thread_context(&stack_ptr_,long_var_);
+    create_thread_context(&system_stack_pointer,system_long_variable);
     if (*pcStack_50 != '\0') {
-      long_var_ = 0;
+      system_long_variable = 0;
       do {
-        long_var_ = strchr(&unknown_180a3cc04,(int)pcStack_50[long_var_]);
-        if (long_var_ != 0) {
-          pcStack_50[long_var_] = ' ';
+        system_long_variable = strchr(&system_180a3cc04,(int)pcStack_50[system_long_variable]);
+        if (system_long_variable != 0) {
+          pcStack_50[system_long_variable] = ' ';
         }
-        long_var_ = long_var_ + 1;
-      } while (pcStack_50[long_var_] != '\0');
+        system_long_variable = system_long_variable + 1;
+      } while (pcStack_50[system_long_variable] != '\0');
     }
-    char_ptr_var_ = "";
+    char_system_pointer_variable = "";
     if (pcStack_50 != (char *)0x0) {
-      char_ptr_var_ = pcStack_50;
+      char_system_pointer_variable = pcStack_50;
     }
-    function_(char_ptr_var_,&unknown_180a3cca0,mutex_attr,mutex_attr + 4,mutex_attr + 8,mutex_attr + 0xc,mutex_attr + STRING_BUFFER_SIZE
+    system_function_(char_system_pointer_variable,&system_180a3cca0,mutex_attr,mutex_attr + 4,mutex_attr + 8,mutex_attr + 0xc,mutex_attr + STRING_BUFFER_SIZE
                   ,mutex_attr + 0x14,mutex_attr + 0x18,mutex_attr + 0x1c,mutex_attr + CONFIG_PATH_BUFFER_SIZE,mutex_attr + 0x24,
                   mutex_attr + 0x28,mutex_attr + 0x2c,mutex_attr + 0x30,mutex_attr + 0x34,mutex_attr + 0x38,
-                  mutex_attr + 0x3c,long_var_,uint_var_);
-    stack_ptr_ = &g_threadString2;
+                  mutex_attr + 0x3c,system_long_variable,uint_var_);
+    system_stack_pointer = &g_threadString2;
     if (pcStack_50 != (char *)0x0) {
       handle_system_error();
     }
   }
-  return long_var_;
+  return system_long_variable;
 }
 long long create_thread_with_attributes(unsigned long long handle,unsigned long long flags,unsigned long long *mutex_attr)
 {
   unsigned long long uint_var_;
-  long long long_var_;
-  unsigned long long *ptr_var_;
-  long long long_var_;
+  long long system_long_variable;
+  unsigned long long *system_pointer_variable;
+  long long system_long_variable;
   unsigned char auStack_18 [16];
-  long_var_ = function_();
-  if (long_var_ != 0) {
-    long_var_ = 0x180d48d24;
-    if (*(long long *)(long_var_ + 8) != 0) {
-      long_var_ = *(long long *)(long_var_ + 8);
+  system_long_variable = system_function_();
+  if (system_long_variable != 0) {
+    system_long_variable = 0x180d48d24;
+    if (*(long long *)(system_long_variable + 8) != 0) {
+      system_long_variable = *(long long *)(system_long_variable + 8);
     }
-    ptr_var_ = (unsigned long long *)function_(auStack_18,long_var_);
-    uint_var_ = ptr_var_[1];
-    *mutex_attr = *ptr_var_;
+    system_pointer_variable = (unsigned long long *)system_function_(auStack_18,system_long_variable);
+    uint_var_ = system_pointer_variable[1];
+    *mutex_attr = *system_pointer_variable;
     mutex_attr[1] = uint_var_;
-    return long_var_;
+    return system_long_variable;
   }
   return 0;
 }
@@ -10246,112 +10246,112 @@ unsigned long long get_thread_handle(unsigned long long handle)
   if (!in_ZF) {
     uint_var_ = handle;
   }
-  pflags = (unsigned long long *)function_(auStackX_20,uint_var_);
+  pflags = (unsigned long long *)system_function_(auStackX_20,uint_var_);
   uint_var_ = pflags[1];
   *unaff_RDI = *pflags;
   unaff_RDI[1] = uint_var_;
   return uint_var_;
 }
   data_180bf66d8 = 0;
-  system_crypto_002(function_);
-  function_(&unknown_18064ffc0);
-  long_var_ = 0;
-  global_data_ = function_;
-  ptr_var_ = (unsigned int *)&data_180bfbd80;
-  long_var_ = 0x16;
+  system_crypto_002(system_function_);
+  system_function_(&system_18064ffc0);
+  system_long_variable = 0;
+  system_global_data_ = system_function_;
+  system_pointer_variable = (unsigned int *)&data_180bfbd80;
+  system_long_variable = 0x16;
   do {
-    if (ptr_var_[1] == 0) {
-      function_(ptr_var_);
+    if (system_pointer_variable[1] == 0) {
+      system_function_(system_pointer_variable);
     }
-    if (long_var_ != 2) {
-      function_(&unknown_180a3db60,*(unsigned long long *)(ptr_var_ + 4),*ptr_var_);
+    if (system_long_variable != 2) {
+      system_function_(&system_180a3db60,*(unsigned long long *)(system_pointer_variable + 4),*system_pointer_variable);
     }
-    long_var_ = long_var_ + 1;
-    ptr_var_ = ptr_var_ + 6;
-    long_var_ = long_var_ + -1;
-  } while (long_var_ != 0);
-  if (global_data_ == 0) {
-    function_(&data_180bfbf60);
+    system_long_variable = system_long_variable + 1;
+    system_pointer_variable = system_pointer_variable + 6;
+    system_long_variable = system_long_variable + -1;
+  } while (system_long_variable != 0);
+  if (system_global_data_ == 0) {
+    system_function_(&data_180bfbf60);
   }
-  global_data_ = (long long)global_data_;
-  if (global_data_ == 0) {
-    function_(&data_180bfbf78);
+  system_global_data_ = (long long)system_global_data_;
+  if (system_global_data_ == 0) {
+    system_function_(&data_180bfbf78);
   }
-  global_data_ = (long long)global_data_;
-  function_();
+  system_global_data_ = (long long)system_global_data_;
+  system_function_();
   if (data_180c8efc8 != '\0') {
-    function_(&unknown_180a3d970);
+    system_function_(&system_180a3d970);
   }
   return;
 }
   data_180c8ecef = 1;
   if (data_180d49130 == '\0') {
     data_180d49130 = '\x01';
-    flags = FlsAlloc(&unknown_18064f970);
-    global_data_ = flags;
+    flags = FlsAlloc(&system_18064f970);
+    system_global_data_ = flags;
     *(unsigned long long *)
      (*(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8) + STRING_BUFFER_SIZE) =
          0x180bf4000;
     FlsSetValue(flags);
   }
-  function_(&unknown_180a3d988,&ExceptionList);
-  init_result = cpuid_Extended_Feature_Enumeration_info(7);
-  data_180c8f000 = (byte)(*(uint *)(init_result + 8) >> 4) & 1;
+  system_function_(&system_180a3d988,&ExceptionList);
+  system_init_result = cpuid_Extended_Feature_Enumeration_info(7);
+  data_180c8f000 = (byte)(*(uint *)(system_init_result + 8) >> 4) & 1;
   GetSystemInfo(auStack_40);
   if (stack_var_ != 0) {
-    global_data_ = (ulong long)stack_var_;
+    system_global_data_ = (ulong long)stack_var_;
   }
-  function_();
-  function_(&unknown_180a3d940,0);
-  function_();
-  plVar3 = (long long *)function_();
-  if ((undefined *)(*plVar3 + 0x3d8) == &data_180c8ed80) {
+  system_function_();
+  system_function_(&system_180a3d940,0);
+  system_function_();
+  plVar3 = (long long *)system_function_();
+  if ((void *)(*plVar3 + 0x3d8) == &data_180c8ed80) {
     memset(&data_180c8ed80,0,0x240);
   }
-  memset((undefined *)(*plVar3 + 0x3d8),0,0x240);
+  memset((void *)(*plVar3 + 0x3d8),0,0x240);
 }
   data_180d49131 = 1;
-  FlsSetValue(global_data_,0);
-  FlsFree(global_data_);
-  function_(*(unsigned long long *)
+  FlsSetValue(system_global_data_,0);
+  FlsFree(system_global_data_);
+  system_function_(*(unsigned long long *)
                  (*(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8) +
                  STRING_BUFFER_SIZE),1);
-  if (global_data_ == 0) {
-    function_(&data_180bfbd98);
+  if (system_global_data_ == 0) {
+    system_function_(&data_180bfbd98);
   }
-  if (global_data_ == 0) {
-    if (global_data_ == 0) {
-      function_(&data_180bfbdb0);
+  if (system_global_data_ == 0) {
+    if (system_global_data_ == 0) {
+      system_function_(&data_180bfbdb0);
     }
-    if (global_data_ == 0) goto label_;
+    if (system_global_data_ == 0) goto label_;
   }
-  pinit_result = (long long *)function_();
-  pflags = (undefined *)(*pinit_result + 0x3d8);
+  psystem_init_result = (long long *)system_function_();
+  pflags = (void *)(*psystem_init_result + 0x3d8);
   if (pflags != &data_180c8ed80) {
-    function_();
+    system_function_();
     memset(pflags,0,0x240);
   }
-  function_();
+  system_function_();
 label_:
-  function_(&unknown_180a3d958,global_data_);
+  system_function_(&system_180a3d958,system_global_data_);
   data_180bf66d8 = 1;
   return;
 }
 unsigned int validate_resource_handle(int handle)
 {
   if (*(int *)(&data_180bfbd84 + (long long)handle * 0x18) == 0) {
-    function_(&data_180bfbd80 + (long long)handle * 0x18);
+    system_function_(&data_180bfbd80 + (long long)handle * 0x18);
   }
   return *(unsigned int *)(&data_180bfbd80 + (long long)handle * 0x18);
 }
     data_180c8f020 = 0;
     return;
   }
-  long_var_ = -1;
+  system_long_variable = -1;
   do {
-    long_var_ = long_var_ + 1;
-  } while (*(char *)(handle + long_var_) != '\0');
-  uint_var_ = (uint)long_var_;
+    system_long_variable = system_long_variable + 1;
+  } while (*(char *)(handle + system_long_variable) != '\0');
+  uint_var_ = (uint)system_long_variable;
   if (MAX_THREAD_STACK_SIZE < uint_var_) {
     uint_var_ = MAX_THREAD_STACK_SIZE;
   }
@@ -10363,90 +10363,90 @@ unsigned int validate_resource_handle(int handle)
 unsigned long long initialize_system_context(unsigned long long handle)
 {
   unsigned long long uint_var_;
-  long long long_var_;
-  uint_var_ = function_(global_data_,handle,0x19);
-  long_var_ = allocate_helper_buffer(uint_var_);
+  long long system_long_variable;
+  uint_var_ = system_function_(system_global_data_,handle,0x19);
+  system_long_variable = allocate_helper_buffer(uint_var_);
   LOCK();
-  global_data_ = global_data_ + long_var_;
+  system_global_data_ = system_global_data_ + system_long_variable;
   UNLOCK();
   return uint_var_;
 }
 unsigned long long setup_context_with_flags(unsigned long long handle,unsigned long long flags)
 {
-  long long init_result;
+  long long system_init_result;
   unsigned long long flags;
-  init_result = allocate_helper_buffer();
-  flags = function_(global_data_,handle,flags,0x19);
+  system_init_result = allocate_helper_buffer();
+  flags = system_function_(system_global_data_,handle,flags,0x19);
   LOCK();
-  global_data_ = global_data_ - init_result;
+  system_global_data_ = system_global_data_ - system_init_result;
   UNLOCK();
-  init_result = allocate_helper_buffer(flags);
+  system_init_result = allocate_helper_buffer(flags);
   LOCK();
-  global_data_ = global_data_ + init_result;
+  system_global_data_ = system_global_data_ + system_init_result;
   UNLOCK();
   return flags;
 }
 long long process_context_handle(long long *handle)
 {
   int *piVar1;
-  long long long_var_;
-  long long long_var_;
+  long long system_long_variable;
+  long long system_long_variable;
   ulong long uint_var_;
-  long_var_ = allocate_helper_buffer();
-  long_var_ = global_data_;
+  system_long_variable = allocate_helper_buffer();
+  system_long_variable = system_global_data_;
   LOCK();
-  long_var_ = global_data_ - long_var_;
-  global_data_ = long_var_;
+  system_long_variable = system_global_data_ - system_long_variable;
+  system_global_data_ = system_long_variable;
   UNLOCK();
   if (handle == (long long *)0x0) {
-    return long_var_;
+    return system_long_variable;
   }
   uint_var_ = (ulong long)handle & 0xffffffffffc00000;
   if (uint_var_ != 0) {
-    long_var_ = uint_var_ + 0x80 + ((long long)handle - uint_var_ >> STRING_BUFFER_SIZE) * 0x50;
-    long_var_ = long_var_ - (ulong long)*(uint *)(long_var_ + 4);
-    if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(long_var_ + 0xe) == '\0')) {
-      long_var_ = *(long long *)(long_var_ + CONFIG_PATH_BUFFER_SIZE);
-      *handle = long_var_;
-      *(long long **)(long_var_ + CONFIG_PATH_BUFFER_SIZE) = handle;
-      piVar1 = (int *)(long_var_ + 0x18);
+    system_long_variable = uint_var_ + 0x80 + ((long long)handle - uint_var_ >> STRING_BUFFER_SIZE) * 0x50;
+    system_long_variable = system_long_variable - (ulong long)*(uint *)(system_long_variable + 4);
+    if ((*(void ***)(uint_var_ + 0x70) == &ExceptionList) && (*(char *)(system_long_variable + 0xe) == '\0')) {
+      system_long_variable = *(long long *)(system_long_variable + CONFIG_PATH_BUFFER_SIZE);
+      *handle = system_long_variable;
+      *(long long **)(system_long_variable + CONFIG_PATH_BUFFER_SIZE) = handle;
+      piVar1 = (int *)(system_long_variable + 0x18);
       *piVar1 = *piVar1 + -1;
       if (*piVar1 == 0) {
-        long_var_ = function_();
-        return long_var_;
+        system_long_variable = system_function_();
+        return system_long_variable;
       }
     }
     else {
-      long_var_ = func_0x00018064e870(uint_var_,CONCAT71(0xff000000,
+      system_long_variable = func_0x00018064e870(uint_var_,CONCAT71(0xff000000,
                                                  *(void ***)(uint_var_ + 0x70) == &ExceptionList),
                                   handle,uint_var_,THREAD_POOL_DEFAULT_FLAG);
     }
   }
-  return long_var_;
+  return system_long_variable;
 }
       data_180d4913c = '\x01';
       handle = stack_var_;
     }
     pfVar3 = afStack_2e8;
-    long_var_ = 0;
-    long_var_ = CONFIG_PATH_BUFFER_SIZE;
-    long_var_ = CONFIG_PATH_BUFFER_SIZE;
+    system_long_variable = 0;
+    system_long_variable = CONFIG_PATH_BUFFER_SIZE;
+    system_long_variable = CONFIG_PATH_BUFFER_SIZE;
     do {
-      fVar28 = param_5 * *(float *)(long_var_ + 0x180d4a0a8);
-      fVar24 = param_5 * *(float *)(long_var_ + 0x180d4a0a4);
-      fVar30 = param_5 * *(float *)(long_var_ + 0x180d4a0a0);
+      fVar28 = param_5 * *(float *)(system_long_variable + 0x180d4a0a8);
+      fVar24 = param_5 * *(float *)(system_long_variable + 0x180d4a0a4);
+      fVar30 = param_5 * *(float *)(system_long_variable + 0x180d4a0a0);
       fVar20 = fVar30 * *mutex_attr + fVar24 * mutex_attr[4] + fVar28 * mutex_attr[8] + mutex_attr[0xc];
       fVar21 = fVar30 * mutex_attr[1] + fVar24 * mutex_attr[5] + fVar28 * mutex_attr[9] + mutex_attr[0xd];
       fVar22 = fVar30 * mutex_attr[2] + fVar24 * mutex_attr[6] + fVar28 * mutex_attr[10] + mutex_attr[0xe];
       fVar24 = fVar30 * mutex_attr[3] + fVar24 * mutex_attr[7] + fVar28 * mutex_attr[0xb] + mutex_attr[0xf];
-      *(float *)((long long)afStack_2e8 + long_var_) = fVar20;
-      *(float *)((long long)afStack_2e8 + long_var_ + 4) = fVar21;
-      *(float *)((long long)&stack_var_ + long_var_) = fVar22;
-      *(float *)((long long)&stack_var_ + long_var_ + 4) = fVar24;
+      *(float *)((long long)afStack_2e8 + system_long_variable) = fVar20;
+      *(float *)((long long)afStack_2e8 + system_long_variable + 4) = fVar21;
+      *(float *)((long long)&stack_var_ + system_long_variable) = fVar22;
+      *(float *)((long long)&stack_var_ + system_long_variable + 4) = fVar24;
       if (flags != 0) {
         stack_var_ = stack_var_ & INT64_MASK;
         if (*(long long *)(flags + 0x2908) == 0) {
-          function_(flags,pfVar3,0x31b189,&stack_var_);
+          system_function_(flags,pfVar3,0x31b189,&stack_var_);
           fVar20 = (float)stack_var_;
         }
         else {
@@ -10460,18 +10460,18 @@ long long process_context_handle(long long *handle)
           stack_var_ = CONCAT44(fVar24,fVar22);
           stack_var_ = CONCAT31(stack_var_._1_3_,1);
           stack_var_ = 0;
-          function_(flags,&stack_var_,0,auStack_358);
+          system_function_(flags,&stack_var_,0,auStack_358);
           fVar20 = fStack_328;
           if (cStack_324 == '\0') {
             fVar20 = 0.0;
           }
         }
-        *(float *)((long long)&stack_var_ + long_var_) = fVar20 + 0.01;
+        *(float *)((long long)&stack_var_ + system_long_variable) = fVar20 + 0.01;
       }
       pfVar3 = pfVar3 + 4;
-      long_var_ = long_var_ + STRING_BUFFER_SIZE;
-      long_var_ = long_var_ + -1;
-    } while (long_var_ != 0);
+      system_long_variable = system_long_variable + STRING_BUFFER_SIZE;
+      system_long_variable = system_long_variable + -1;
+    } while (system_long_variable != 0);
     fVar20 = mutex_attr[0xe];
     fVar21 = mutex_attr[0xd];
     fVar22 = mutex_attr[0xc];
@@ -10480,7 +10480,7 @@ long long process_context_handle(long long *handle)
     fVar30 = mutex_attr[10];
     stack_var_ = 0x7f7fffff;
     pfVar3 = afStack_2e8;
-    long_var_ = CONFIG_PATH_BUFFER_SIZE;
+    system_long_variable = CONFIG_PATH_BUFFER_SIZE;
     do {
       fVar26 = pfVar3[2] - fVar20;
       fVar27 = pfVar3[1] - fVar21;
@@ -10502,15 +10502,15 @@ long long process_context_handle(long long *handle)
       pfVar3[2] = fStack_370;
       pfVar3[3] = 3.4028235e+38;
       pfVar3 = pfVar3 + 4;
-      long_var_ = long_var_ + -1;
-    } while (long_var_ != 0);
+      system_long_variable = system_long_variable + -1;
+    } while (system_long_variable != 0);
     if (flags != 0) {
       pfVar3 = (float *)&stack_var_;
       pfVar5 = afStack_2e8;
       do {
         stack_var_ = stack_var_ & INT64_MASK;
         if (*(long long *)(flags + 0x2908) == 0) {
-          function_(flags,pfVar5,0x31b189,&stack_var_);
+          system_function_(flags,pfVar5,0x31b189,&stack_var_);
           fVar20 = (float)stack_var_;
         }
         else {
@@ -10524,7 +10524,7 @@ long long process_context_handle(long long *handle)
           stack_var_ = *(unsigned long long *)pfVar3;
           stack_var_ = CONCAT31(stack_var_._1_3_,1);
           stack_var_ = 0;
-          function_(flags,&stack_var_,0,auStack_358);
+          system_function_(flags,&stack_var_,0,auStack_358);
           fVar20 = fStack_328;
           if (cStack_324 == '\0') {
             fVar20 = 0.0;
@@ -10533,29 +10533,29 @@ long long process_context_handle(long long *handle)
         *pfVar3 = fVar20 + 0.01;
         pfVar5 = pfVar5 + 4;
         pfVar3 = pfVar3 + 4;
-        long_var_ = long_var_ + -1;
-      } while (long_var_ != 0);
+        system_long_variable = system_long_variable + -1;
+      } while (system_long_variable != 0);
     }
     uint_var_ = 0;
-    long_var_ = 0;
+    system_long_variable = 0;
     do {
-      long_var_ = 0;
+      system_long_variable = 0;
       if (uint_var_ != 0x1f) {
-        long_var_ = long_var_ + 1;
+        system_long_variable = system_long_variable + 1;
       }
       if (((handle2 == '\0') || ((uint_var_ & 1) != 0)) &&
-         (cVar1 = function_((double)((float)(int)uint_var_ * 0.19634955),SUB84((double)param_6,0),
+         (cVar1 = system_function_((double)((float)(int)uint_var_ * 0.19634955),SUB84((double)param_6,0),
                                 (double)param_7), cVar1 != '\0')) {
-        fStack_370 = *(float *)(&stack_var_ + long_var_ * 2) - *(float *)(&stack_var_ + long_var_ * 2);
-        stack_var_ = CONCAT44(afStack_2e8[long_var_ * 4 + 1] - afStack_2e8[long_var_ * 4 + 1],
-                              afStack_2e8[long_var_ * 4] - afStack_2e8[long_var_ * 4]);
+        fStack_370 = *(float *)(&stack_var_ + system_long_variable * 2) - *(float *)(&stack_var_ + system_long_variable * 2);
+        stack_var_ = CONCAT44(afStack_2e8[system_long_variable * 4 + 1] - afStack_2e8[system_long_variable * 4 + 1],
+                              afStack_2e8[system_long_variable * 4] - afStack_2e8[system_long_variable * 4]);
         stack_var_ = 0x7f7fffff;
         stack_var_ = 0;
         stack_var_ = CONCAT31(stack_var_._1_3_,handle1);
-        function_(handle,afStack_2e8 + long_var_ * 4,&stack_var_,param_8);
+        system_function_(handle,afStack_2e8 + system_long_variable * 4,&stack_var_,param_8);
       }
       uint_var_ = uint_var_ + 1;
-      long_var_ = long_var_ + 1;
+      system_long_variable = system_long_variable + 1;
     } while ((int)uint_var_ < CONFIG_PATH_BUFFER_SIZE);
   }
   int_var_ = _Mtx_unlock(handle);
@@ -10576,8 +10576,8 @@ long long process_context_handle(long long *handle)
                     goto label_;
                   }
                 }
-                pflags6 = ptr_var_;
-                *(undefined **)((long long)pflags6 + -8) = &unknown_18076804b;
+                pflags6 = system_pointer_variable;
+                *(void **)((long long)pflags6 + -8) = &system_18076804b;
                 (*unaff_RDI)();
                 *(unsigned long long *)((long long)pflags6 + -8) = 0x180768051;
                 CoUninitialize();
@@ -10602,9 +10602,9 @@ LAB_180768028_1:
   mutex_type = 0x266;
   *(unsigned char *)((long long)register0x00000020 + CONFIG_PATH_BUFFER_SIZE) = 1;
 label_:
-  uint_var_ = *(unsigned long long *)(char_ptr_var_ + 0x1a0);
+  uint_var_ = *(unsigned long long *)(char_system_pointer_variable + 0x1a0);
   *(unsigned char **)((long long)register0x00000020 + -8) = &label_;
-  function_(uint_var_,char_ptr_var_,mutex_attr,mutex_type);
+  system_function_(uint_var_,char_system_pointer_variable,mutex_attr,mutex_type);
 }
     data_180c2e030 = '\x01';
   }
@@ -10621,7 +10621,7 @@ unsigned long long allocate_resource_memory(int handle)
   byte bVar1;
   int int_var_;
   uint uint_var_;
-  long long long_var_;
+  long long system_long_variable;
   float *pfVar5;
   int int_var_;
   float *pfVar7;
@@ -10630,8 +10630,8 @@ unsigned long long allocate_resource_memory(int handle)
   ulong long uint_var_;
   int *piVar12;
   uint uint_var_;
-  long long *pinit_result4;
-  long long init_result5;
+  long long *psystem_init_result4;
+  long long system_init_result5;
   uint uint_var_;
   int int_var_;
   int int_var_;
@@ -10646,11 +10646,11 @@ unsigned long long allocate_resource_memory(int handle)
   unsigned char unaff_XMM6 [16];
   unsigned char aflags5 [16];
   ulong long uint_var_;
-  pinit_result4 = (long long *)&data_180be5740;
+  psystem_init_result4 = (long long *)&data_180be5740;
   int_var_ = 0;
   do {
     uint_var_ = 0;
-    init_result5 = *pinit_result4;
+    system_init_result5 = *psystem_init_result4;
     uint_var_ = STRING_BUFFER_SIZE >> ((byte)int_var_ & 0x1f);
     uint_var_ = SYSTEM_CONFIG_BUFFER_SIZE >> ((byte)int_var_ & 0x1f);
     uint_var_ = uint_var_;
@@ -10690,13 +10690,13 @@ unsigned long long allocate_resource_memory(int handle)
         in_XMM2._4_4_ = (fVar19 + fVar19) - fVar19 * fVar19 * aflags5._4_4_;
         in_XMM2._8_4_ = (fVar22 + fVar22) - fVar22 * fVar22 * aflags5._8_4_;
         in_XMM2._12_4_ = (fVar23 + fVar23) - fVar23 * fVar23 * aflags5._12_4_;
-        *(unsigned char (*) [16])(init_result5 + uint_var_ * 4) = in_XMM2;
+        *(unsigned char (*) [16])(system_init_result5 + uint_var_ * 4) = in_XMM2;
         uint_var_ = uint_var_ + 4;
         uint_var_ = uint_var_;
       } while ((int)uint_var_ < (int)(uint_var_ - uint_var_));
     }
     if ((int)uint_var_ < (int)uint_var_) {
-      pfVar7 = (float *)(init_result5 + uint_var_ * 4);
+      pfVar7 = (float *)(system_init_result5 + uint_var_ * 4);
       fVar24 = 1.0 / (float)(int)uint_var_;
       unaff_XMM6 = ZEXT416((uint)fVar24);
       do {
@@ -10708,15 +10708,15 @@ unsigned long long allocate_resource_memory(int handle)
       } while ((int)uint_var_ < (int)uint_var_);
     }
     int_var_ = int_var_ + 1;
-    pinit_result4 = pinit_result4 + 1;
+    psystem_init_result4 = psystem_init_result4 + 1;
   } while (int_var_ < 5);
   piVar12 = (int *)0x180be5774;
   pfVar7 = (float *)0x180c2e040;
-  global_data_ = 0x180c2e040;
+  system_global_data_ = 0x180c2e040;
   handle = -handle;
   int_var_ = 2;
   int_var_ = STRING_BUFFER_SIZE0;
-  init_result5 = 0x140;
+  system_init_result5 = 0x140;
   uint_var_ = 0;
   do {
     uint_var_ = uint_var_;
@@ -10744,26 +10744,26 @@ unsigned long long allocate_resource_memory(int handle)
     if ((bVar1 - 1 & 0x3f) != 0x3f) {
       int_var_ = int_var_;
     }
-    long_var_ = -0xefc;
+    system_long_variable = -0xefc;
     if (uint_var_ != 0x1f) {
-      long_var_ = STRING_BUFFER_SIZE0;
+      system_long_variable = STRING_BUFFER_SIZE0;
     }
-    pfVar7 = (float *)(long_var_ + (long long)pfVar5);
+    pfVar7 = (float *)(system_long_variable + (long long)pfVar5);
     if (pfVar7 < (float *)0x180c2e880) {
-      long_var_ = -0xebc;
+      system_long_variable = -0xebc;
       if (uint_var_ != 0x1f) {
-        long_var_ = init_result5;
+        system_long_variable = system_init_result5;
       }
       fVar24 = (float)piVar12[1] * 1.5258789e-05 * (float)int_var_;
       *pfVar7 = fVar24;
-      *(float *)(long_var_ + (long long)pfVar5) = fVar24;
+      *(float *)(system_long_variable + (long long)pfVar5) = fVar24;
     }
     if ((bVar1 & 0x1f) == 0x1f) {
-      long_var_ = -0x1ef8;
+      system_long_variable = -0x1ef8;
       if (uint_var_ != 0x1f) {
-        long_var_ = -0xefc;
+        system_long_variable = -0xefc;
       }
-      pfVar7 = (float *)(long_var_ + (long long)pfVar5);
+      pfVar7 = (float *)(system_long_variable + (long long)pfVar5);
     }
     int_var_ = -int_var_;
     if ((bVar1 & 0x3f) != 0x3f) {
@@ -10775,30 +10775,30 @@ unsigned long long allocate_resource_memory(int handle)
       pfVar7[0x30] = fVar24;
     }
     uint_var_ = int_var_ + 1U & 0x1f;
-    long_var_ = -0xefc;
+    system_long_variable = -0xefc;
     int_var_ = -int_var_;
     if (((byte)(int_var_ + 1U) & 0x3f) != 0x3f) {
       int_var_ = int_var_;
     }
     if (uint_var_ != 0x1f) {
-      long_var_ = STRING_BUFFER_SIZE0;
+      system_long_variable = STRING_BUFFER_SIZE0;
     }
-    pfVar5 = (float *)(long_var_ + (long long)pfVar7);
+    pfVar5 = (float *)(system_long_variable + (long long)pfVar7);
     if (pfVar5 < (float *)0x180c2e880) {
-      long_var_ = -0xebc;
+      system_long_variable = -0xebc;
       if (uint_var_ != 0x1f) {
-        long_var_ = init_result5;
+        system_long_variable = system_init_result5;
       }
       fVar24 = (float)piVar12[3] * 1.5258789e-05 * (float)int_var_;
       *pfVar5 = fVar24;
-      *(float *)(long_var_ + (long long)pfVar7) = fVar24;
+      *(float *)(system_long_variable + (long long)pfVar7) = fVar24;
     }
     if ((bVar1 + 2 & 0x1f) == 0x1f) {
-      long_var_ = -0x1ef8;
+      system_long_variable = -0x1ef8;
       if (uint_var_ != 0x1f) {
-        long_var_ = -0xefc;
+        system_long_variable = -0xefc;
       }
-      pfVar5 = (float *)(long_var_ + (long long)pfVar7);
+      pfVar5 = (float *)(system_long_variable + (long long)pfVar7);
     }
     int_var_ = -int_var_;
     if ((bVar1 + 2 & 0x3f) != 0x3f) {
@@ -10810,30 +10810,30 @@ unsigned long long allocate_resource_memory(int handle)
       pfVar5[0x30] = fVar24;
     }
     uint_var_ = int_var_ + 3U & 0x1f;
-    long_var_ = -0xefc;
+    system_long_variable = -0xefc;
     int_var_ = -int_var_;
     if (((byte)(int_var_ + 3U) & 0x3f) != 0x3f) {
       int_var_ = int_var_;
     }
     if (uint_var_ != 0x1f) {
-      long_var_ = STRING_BUFFER_SIZE0;
+      system_long_variable = STRING_BUFFER_SIZE0;
     }
-    pfVar7 = (float *)(long_var_ + (long long)pfVar5);
+    pfVar7 = (float *)(system_long_variable + (long long)pfVar5);
     if (pfVar7 < (float *)0x180c2e880) {
-      long_var_ = -0xebc;
+      system_long_variable = -0xebc;
       if (uint_var_ != 0x1f) {
-        long_var_ = init_result5;
+        system_long_variable = system_init_result5;
       }
       fVar24 = (float)piVar12[5] * 1.5258789e-05 * (float)int_var_;
       *pfVar7 = fVar24;
-      *(float *)(long_var_ + (long long)pfVar5) = fVar24;
+      *(float *)(system_long_variable + (long long)pfVar5) = fVar24;
     }
     if ((bVar1 + 4 & 0x1f) == 0x1f) {
-      long_var_ = -0x1ef8;
+      system_long_variable = -0x1ef8;
       if (uint_var_ != 0x1f) {
-        long_var_ = -0xefc;
+        system_long_variable = -0xefc;
       }
-      pfVar7 = (float *)(long_var_ + (long long)pfVar5);
+      pfVar7 = (float *)(system_long_variable + (long long)pfVar5);
     }
     int_var_ = -int_var_;
     if ((bVar1 + 4 & 0x3f) != 0x3f) {
@@ -10848,12 +10848,12 @@ unsigned long long allocate_resource_memory(int handle)
     if ((bVar1 + 5 & 0x3f) != 0x3f) {
       handle = int_var_;
     }
-    long_var_ = -0xefc;
+    system_long_variable = -0xefc;
     if ((bVar1 + 5 & 0x1f) != 0x1f) {
-      long_var_ = STRING_BUFFER_SIZE0;
+      system_long_variable = STRING_BUFFER_SIZE0;
     }
     uint_var_ = uint_var_ + 8;
-    pfVar7 = (float *)(long_var_ + (long long)pfVar7);
+    pfVar7 = (float *)(system_long_variable + (long long)pfVar7);
     int_var_ = int_var_ + 8;
     piVar12 = piVar12 + 8;
   } while (int_var_ < STRING_BUFFER_SIZE_2);
@@ -10901,30 +10901,30 @@ unsigned long long allocate_resource_memory(int handle)
         if (uint_var_ != 0x3f) {
           int_var_ = int_var_;
         }
-        long_var_ = -0xefc;
+        system_long_variable = -0xefc;
         if (uint_var_ != 0x1f) {
-          long_var_ = STRING_BUFFER_SIZE0;
+          system_long_variable = STRING_BUFFER_SIZE0;
         }
-        pfVar7 = (float *)(long_var_ + (long long)pfVar5);
+        pfVar7 = (float *)(system_long_variable + (long long)pfVar5);
         if (pfVar7 < (float *)0x180c2e880) {
-          long_var_ = -0xebc;
+          system_long_variable = -0xebc;
           if (uint_var_ != 0x1f) {
-            long_var_ = init_result5;
+            system_long_variable = system_init_result5;
           }
           fVar24 = (float)*piVar12 * 1.5258789e-05 * (float)int_var_;
           *pfVar7 = fVar24;
-          *(float *)(long_var_ + (long long)pfVar5) = fVar24;
+          *(float *)(system_long_variable + (long long)pfVar5) = fVar24;
         }
         uint_var_ = uint_var_ & 0x8000001f;
         if ((int)uint_var_ < 0) {
           uint_var_ = (uint_var_ - 1 | 0xffffffe0) + 1;
         }
         if (uint_var_ == 0x1f) {
-          long_var_ = -0x1ef8;
+          system_long_variable = -0x1ef8;
           if (uint_var_ != 0x1f) {
-            long_var_ = -0xefc;
+            system_long_variable = -0xefc;
           }
-          pfVar7 = (float *)(long_var_ + (long long)pfVar5);
+          pfVar7 = (float *)(system_long_variable + (long long)pfVar5);
         }
         uint_var_ = uint_var_ & 0x8000003f;
         if ((int)uint_var_ < 0) {
@@ -10951,12 +10951,12 @@ unsigned long long allocate_resource_memory(int handle)
         if ((int)uint_var_ < 0) {
           uint_var_ = (uint_var_ - 1 | 0xffffffe0) + 1;
         }
-        long_var_ = -0xefc;
+        system_long_variable = -0xefc;
         if (uint_var_ != 0x1f) {
-          long_var_ = STRING_BUFFER_SIZE0;
+          system_long_variable = STRING_BUFFER_SIZE0;
         }
         piVar12 = piVar12 + -4;
-        pfVar7 = (float *)(long_var_ + (long long)pfVar7);
+        pfVar7 = (float *)(system_long_variable + (long long)pfVar7);
         uint_var_ = uint_var_ + 4;
         uint_var_ = uint_var_ + 4;
       } while ((int)uint_var_ < 0x1ff);
@@ -10996,22 +10996,22 @@ unsigned long long allocate_resource_memory(int handle)
 }
       data_180c2e030 = '\x01';
     }
-    int_var_ = function_(*(unsigned long long *)(unaff_RBX + 0x170),*(unsigned int *)(unaff_RBX + 0x110),0);
+    int_var_ = system_function_(*(unsigned long long *)(unaff_RBX + 0x170),*(unsigned int *)(unaff_RBX + 0x110),0);
     if ((int_var_ != 0) ||
-       (int_var_ = function_(*(unsigned long long *)(unaff_RBX + 0x170),0x180c2ea70,1,
+       (int_var_ = system_function_(*(unsigned long long *)(unaff_RBX + 0x170),0x180c2ea70,1,
                               iStack0000000000000030 + 4), int_var_ != 0)) goto label_;
     pflags = (uint *)(unaff_RBX + 0x1cc);
-    int_var_ = function_();
+    int_var_ = system_function_();
     if (int_var_ == 0) {
       *(int *)(unaff_RBX + 0x110) = *(int *)(unaff_RBX + 0x110) + iStack0000000000000030 + 4;
-      int_var_ = function_(*(unsigned long long *)(unaff_RBX + 0x170),0x180c2ea70,1);
+      int_var_ = system_function_(*(unsigned long long *)(unaff_RBX + 0x170),0x180c2ea70,1);
       if (int_var_ != 0) goto label_;
     }
     uint_var_ = *(unsigned int *)(*(long long *)(unaff_RBX + 8) + 8);
     *(unsigned int *)(*(long long *)(unaff_RBX + 8) + 8) = 2;
-    function_();
+    system_function_();
     *(unsigned int *)(*(long long *)(unaff_RBX + 8) + 8) = uint_var_;
-    int_var_ = function_(*(unsigned long long *)(unaff_RBX + 0x170),*(unsigned int *)(unaff_RBX + 0x110),0);
+    int_var_ = system_function_(*(unsigned long long *)(unaff_RBX + 0x170),*(unsigned int *)(unaff_RBX + 0x110),0);
     if (int_var_ == 0) {
       if (*(int *)(unaff_RBX + 0x1c4) == int_var_) {
         *(unsigned int *)(unaff_RBX + 0x1c4) = 0x480;
@@ -11019,21 +11019,21 @@ unsigned long long allocate_resource_memory(int handle)
       uint_var_ = iStack0000000000000030 + 5U & 0xfffffffe;
       if (((unaff_R12D & SYSTEM_CONFIG_BUFFER_SIZE_00) == 0) ||
          ((*(uint *)(*(long long *)(unaff_RBX + 0x170) + 0x194) & 1) == 0)) {
-        long_var_ = *(long long *)(unaff_RBX + 8);
-        if (*(int *)(long_var_ + 0x14) == -1) {
-          *(unsigned int *)(long_var_ + 0x18) = 0xffffffff;
+        system_long_variable = *(long long *)(unaff_RBX + 8);
+        if (*(int *)(system_long_variable + 0x14) == -1) {
+          *(unsigned int *)(system_long_variable + 0x18) = 0xffffffff;
         }
         else if (*(char *)(unaff_RBX + 0x23c) == (char)unaff_R15) {
-          *(uint *)(long_var_ + 0x18) =
-               ((*(int *)(long_var_ + 0x14) + -1 + uint_var_) / uint_var_ + 1) * *(int *)(unaff_RBX + 0x1c4);
+          *(uint *)(system_long_variable + 0x18) =
+               ((*(int *)(system_long_variable + 0x14) + -1 + uint_var_) / uint_var_ + 1) * *(int *)(unaff_RBX + 0x1c4);
           *(uint *)(unaff_RBX + 0x2c) = *(uint *)(unaff_RBX + 0x2c) & 0xfffffffe;
         }
         else {
-          *(uint *)(long_var_ + 0x18) = *pflags * 0x480;
+          *(uint *)(system_long_variable + 0x18) = *pflags * 0x480;
         }
         goto label_;
       }
-      function_(*(unsigned long long *)(unaff_RBX + 0x170),*(unsigned int *)(unaff_RBX + 0x110),0);
+      system_function_(*(unsigned long long *)(unaff_RBX + 0x170),*(unsigned int *)(unaff_RBX + 0x110),0);
       int_var_ = *(int *)(unaff_RBX + 0x1c4);
       uint_var_ = 0;
       int_var_ = func_0x00018076a7d0(*(unsigned long long *)(unaff_RBX + 0x170),&stack0x00000050);
@@ -11050,16 +11050,16 @@ label_:
   *(ulong long *)(unaff_RBX + 0x178) = unaff_R15;
   goto label_;
   while( true ) {
-    int_var_ = function_();
+    int_var_ = system_function_();
     if ((int_var_ == 0) &&
        (in_stack_00000040._4_4_ + uint_var_ < *(uint *)(*(long long *)(unaff_RBX + 8) + 0x14))) {
       if (*pflags <= (uint)unaff_R15) {
         uint_var_ = *pflags + 1000;
         *pflags = uint_var_;
-        long_var_ = function_(*(unsigned long long *)(global_data_ + 0x1a0),
-                              *(unsigned long long *)(unaff_RBX + 0x1d0),uint_var_ * 4,&unknown_18097c490,0x113);
-        *(long long *)(unaff_RBX + 0x1d0) = long_var_;
-        if (long_var_ == 0) goto label_;
+        system_long_variable = system_function_(*(unsigned long long *)(system_global_data_ + 0x1a0),
+                              *(unsigned long long *)(unaff_RBX + 0x1d0),uint_var_ * 4,&system_18097c490,0x113);
+        *(long long *)(unaff_RBX + 0x1d0) = system_long_variable;
+        if (system_long_variable == 0) goto label_;
       }
       uint_var_ = unaff_R15 & 0xffffffff;
       unaff_R15 = (ulong long)((uint)unaff_R15 + 1);
@@ -11067,19 +11067,19 @@ label_:
       piVar1 = (int *)(*(long long *)(unaff_RBX + 8) + 0x18);
       *piVar1 = *piVar1 + int_var_;
       uint_var_ = uint_var_ + 4 + in_stack_00000040._4_4_;
-      int_var_ = function_(*(unsigned long long *)(unaff_RBX + 0x170),in_stack_00000040._4_4_,1);
+      int_var_ = system_function_(*(unsigned long long *)(unaff_RBX + 0x170),in_stack_00000040._4_4_,1);
       if (int_var_ != 0) break;
     }
     else {
-      function_(*(unsigned long long *)(unaff_RBX + 0x170),0xfffffffd,1);
+      system_function_(*(unsigned long long *)(unaff_RBX + 0x170),0xfffffffd,1);
     }
     if (*(uint *)(*(long long *)(unaff_RBX + 8) + 0x14) <= uint_var_) break;
 label_:
-    int_var_ = function_(*(unsigned long long *)(unaff_RBX + 0x170),&stack0x0000004c,1,4,0);
+    int_var_ = system_function_(*(unsigned long long *)(unaff_RBX + 0x170),&stack0x0000004c,1,4,0);
     if (int_var_ != 0) break;
   }
 label_:
-  int_var_ = function_(*(unsigned long long *)(unaff_RBX + 0x170),in_stack_00000050,0);
+  int_var_ = system_function_(*(unsigned long long *)(unaff_RBX + 0x170),in_stack_00000050,0);
   if (int_var_ == 0) {
     *pflags = (uint)unaff_R15;
     unaff_R15 = 0;
@@ -11091,13 +11091,13 @@ label_:
       }
     }
     if ((*(long long *)(unaff_RBX + 0x1d0) != 0) && ((unaff_R12D & SYSTEM_CONFIG_BUFFER_SIZE_00) == 0)) {
-      function_(*(unsigned long long *)(global_data_ + 0x1a0),*(long long *)(unaff_RBX + 0x1d0),
-                    &unknown_18097c490,0x282,1);
+      system_function_(*(unsigned long long *)(system_global_data_ + 0x1a0),*(long long *)(unaff_RBX + 0x1d0),
+                    &system_18097c490,0x282,1);
     }
     *(ulong long *)(unaff_RBX + 0x178) = unaff_R15;
     *(unsigned int *)(*(long long *)(unaff_RBX + 8) + 8) = 2;
     *(unsigned int *)(*(long long *)(unaff_RBX + 8) + 0x1c) = 0x480;
-    function_();
+    system_function_();
   }
 label_:
   system_crypto_001(*(ulong long *)(unaff_RBP + 0x4ab0) ^ (ulong long)&stack0x00000000);
@@ -11108,16 +11108,16 @@ label_:
         (int_var_ = (**(code **)(**(long long **)(unaff_RDI + 0x170) + STRING_BUFFER_SIZE))
                            (*(long long **)(unaff_RDI + 0x170),(long long)&stack0x00000040 + 4),
         int_var_ == 0)) &&
-       (int_var_ = function_(*(unsigned long long *)(unaff_RDI + 0x170),*(unsigned int *)(unaff_RDI + 0x110),
+       (int_var_ = system_function_(*(unsigned long long *)(unaff_RDI + 0x170),*(unsigned int *)(unaff_RDI + 0x110),
                               0), int_var_ == 0)) {
       memset(unaff_RDI + 0x178,0,0x330);
     }
   }
-function_:
+system_function_:
   system_crypto_001(*(ulong long *)(unaff_RBP + 0x218) ^ (ulong long)&stack0x00000000);
 }
       data_180c4f4e8 = 0;
-      global_data_ = uint_var_;
+      system_global_data_ = uint_var_;
       system_crypto_003(&data_180c4f4f0);
     }
   }
@@ -11127,7 +11127,7 @@ unsigned long long initialize_system_mutex(unsigned long long *handle,long long 
 {
   int int_var_;
   uint flags;
-  uint *ptr_var_;
+  uint *system_pointer_variable;
   unsigned long long uint_var_;
   unsigned char uint_var_;
   ulong long uStackX_10;
@@ -11145,11 +11145,11 @@ label_:
     if (int_var_ != 2) goto label_;
     uint_var_ = 1;
   }
-  ptr_var_ = (uint *)function_();
+  system_pointer_variable = (uint *)system_function_();
   stack_var_ = 0;
   uStackX_10 = uStackX_10 & 0xffffffffffffff00;
-  auStack_28[0] = *ptr_var_;
-  uint_var_ = function_(handle,*(unsigned long long *)(flags + STRING_BUFFER_SIZE),auStack_28,&stack_var_,&uStackX_10);
+  auStack_28[0] = *system_pointer_variable;
+  uint_var_ = system_function_(handle,*(unsigned long long *)(flags + STRING_BUFFER_SIZE),auStack_28,&stack_var_,&uStackX_10);
   if ((int)uint_var_ != 0) {
     return uint_var_;
   }
@@ -11157,9 +11157,9 @@ label_:
     return 0;
   }
   uStackX_10 = 0;
-  ptr_var_ = (uint *)function_();
+  system_pointer_variable = (uint *)system_function_();
   flags = *(uint *)((long long)handle + 0xc);
-  if (((flags != *ptr_var_) && (*(uint *)(handle + 4) <= flags)) &&
+  if (((flags != *system_pointer_variable) && (*(uint *)(handle + 4) <= flags)) &&
      (flags < *(uint *)((long long)handle + 0x24))) {
     if (flags == auStack_28[0]) {
       return 0x1c;
@@ -11170,9 +11170,9 @@ label_:
       uStackX_10 = stack_var_ + 1;
     }
   }
-  function_();
+  system_function_();
   if (mutex_attr != '\0') {
-    uint_var_ = function_(handle,flags,flags + CONFIG_PATH_BUFFER_SIZE,&stack_var_,&uStackX_10,uint_var_,0);
+    uint_var_ = system_function_(handle,flags,flags + CONFIG_PATH_BUFFER_SIZE,&stack_var_,&uStackX_10,uint_var_,0);
     if ((int)uint_var_ != 0) {
       return uint_var_;
     }
@@ -11195,7 +11195,7 @@ label_:
     uint_var_ = 0;
   }
 label_:
-  uint_var_ = function_(handle,flags,flags + 0x28,&stack_var_,&uStackX_10,uint_var_,1);
+  uint_var_ = system_function_(handle,flags,flags + 0x28,&stack_var_,&uStackX_10,uint_var_,1);
   if ((int)uint_var_ == 0) {
     *(int *)(flags + 0x18) = *(int *)(flags + 0x18) + 1;
     return 0;
@@ -11203,60 +11203,60 @@ label_:
   return uint_var_;
 }
 unsigned long long
-function_(long long handle,long long flags,long long *mutex_attr,long long *mutex_type,
+system_function_(long long handle,long long flags,long long *mutex_attr,long long *mutex_type,
              unsigned long long *param_5,char param_6,char param_7)
 {
   uint uint_var_;
-  long long long_var_;
+  long long system_long_variable;
   byte bVar3;
-  unsigned int *ptr_var_;
+  unsigned int *system_pointer_variable;
   unsigned long long uint_var_;
   unsigned long long uint_var_;
-  long long long_var_;
-  long long long_var_;
+  long long system_long_variable;
+  long long system_long_variable;
   unsigned int uint_var_;
   long long lStackX_8;
   unsigned char auStack_28 [16];
   uint_var_ = *(unsigned long long *)(handle + 0x28);
-  ptr_var_ = (unsigned int *)function_();
-  long_var_ = *mutex_type;
-  uint_var_ = *ptr_var_;
-  long_var_ = long_var_;
+  system_pointer_variable = (unsigned int *)system_function_();
+  system_long_variable = *mutex_type;
+  uint_var_ = *system_pointer_variable;
+  system_long_variable = system_long_variable;
   if ((*(uint *)(flags + 0x1c) >> 1 & 1) != 0) {
-    long_var_ = *mutex_attr;
-    long_var_ = long_var_ - long_var_;
+    system_long_variable = *mutex_attr;
+    system_long_variable = system_long_variable - system_long_variable;
     uint_var_ = *(unsigned long long *)(handle + 0x30);
-    if (-1 < long_var_) {
-      if (long_var_ < 1) {
+    if (-1 < system_long_variable) {
+      if (system_long_variable < 1) {
         uint_var_ = 0;
-        long_var_ = long_var_;
+        system_long_variable = system_long_variable;
       }
       else {
         uint_var_ = *(uint *)(*(long long *)(*(long long *)(handle + 0x38) + 8) + 0x774);
         if (uint_var_ != 48000) {
-          long_var_ = (long_var_ * 48000) / (long long)(ulong long)uint_var_;
+          system_long_variable = (system_long_variable * 48000) / (long long)(ulong long)uint_var_;
         }
-        if (0xffffffff < long_var_) {
-          long_var_ = 0xffffffff;
+        if (0xffffffff < system_long_variable) {
+          system_long_variable = 0xffffffff;
         }
-        uint_var_ = (unsigned int)long_var_;
-        long_var_ = long_var_;
+        uint_var_ = (unsigned int)system_long_variable;
+        system_long_variable = system_long_variable;
       }
     }
   }
   if (param_6 != '\0') {
     (**(code **)(**(long long **)(flags + STRING_BUFFER_SIZE) + 0x30))(*(long long **)(flags + STRING_BUFFER_SIZE),auStack_28)
     ;
-    uint_var_ = function_(uint_var_,auStack_28,long_var_,
+    uint_var_ = system_function_(uint_var_,auStack_28,system_long_variable,
                           *(unsigned int *)(*(long long *)(flags + STRING_BUFFER_SIZE) + 0xb4));
     if ((int)uint_var_ != 0) {
       return uint_var_;
     }
   }
-  uint_var_ = function_(uint_var_,*(unsigned long long *)(flags + STRING_BUFFER_SIZE),long_var_,*param_5,uint_var_,0,0,&lStackX_8);
+  uint_var_ = system_function_(uint_var_,*(unsigned long long *)(flags + STRING_BUFFER_SIZE),system_long_variable,*param_5,uint_var_,0,0,&lStackX_8);
   if ((int)uint_var_ == 0) {
     if (param_7 != (char)uint_var_) {
-      func_0x0001808cf230(lStackX_8,long_var_);
+      func_0x0001808cf230(lStackX_8,system_long_variable);
     }
     bVar3 = (byte)(*(uint *)(flags + 0x1c) >> 4) & 1;
     *(uint *)(lStackX_8 + 0x4c) =
@@ -11286,7 +11286,7 @@ unsigned long long get_system_global_state(void)
     }
   }
   func_0x0001808f6640(uint_var_);
-  cVar1 = function_();
+  cVar1 = system_function_();
   if (cVar1 == '\0') {
     return 0x809200ff;
   }
@@ -11308,11 +11308,11 @@ unsigned int validate_system_parameters(int handle,int flags,int mutex_attr)
   if (((flags != 0) || (mutex_attr != 0)) || (3 < handle - 1U)) {
     return 0x80920001;
   }
-  int_var_ = function_();
+  int_var_ = system_function_();
   if (int_var_ != 0) {
     return 0x809200ff;
   }
-  int_var_ = function_(handle,auStack_18);
+  int_var_ = system_function_(handle,auStack_18);
   if (int_var_ < 0) {
     flags = 0x809200ff;
     if (int_var_ == -0x7ffeffff) {
@@ -11326,15 +11326,15 @@ unsigned int validate_system_parameters(int handle,int flags,int mutex_attr)
 }
 unsigned long long initialize_parameter_block(unsigned int handle,uint *flags)
 {
-  long long init_result;
+  long long system_init_result;
   uint flags;
   uint uint_var_;
   char cVar4;
   byte bVar5;
   int int_var_;
   uint uint_var_;
-  unsigned short *ptr_var_;
-  unsigned short *ptr_var_;
+  unsigned short *system_pointer_variable;
+  unsigned short *system_pointer_variable;
   byte abStackX_18 [8];
   long long lStackX_20;
   if (data_180c4f818 == '\0') {
@@ -11343,7 +11343,7 @@ unsigned long long initialize_parameter_block(unsigned int handle,uint *flags)
   if (flags == (uint *)0x0) {
     return 0x80920001;
   }
-  int_var_ = function_();
+  int_var_ = system_function_();
   if (int_var_ != 0) {
     return 0x809200ff;
   }
@@ -11352,7 +11352,7 @@ unsigned long long initialize_parameter_block(unsigned int handle,uint *flags)
     func_0x0001808f6ce0();
     return 0x80920003;
   }
-  function_(flags);
+  system_function_(flags);
   int_var_ = func_0x0001808f0760(handle,&lStackX_20);
   if (int_var_ == 0) {
     initialize_timer_context(handle,abStackX_18);
@@ -11374,11 +11374,11 @@ unsigned long long initialize_parameter_block(unsigned int handle,uint *flags)
            *(unsigned char *)(*(long long *)(lStackX_20 + 0x160) + 0x15);
       *(unsigned char *)(flags + 2) = *(unsigned char *)(*(long long *)(lStackX_20 + 0x160) + 0x14);
       if ((*(char *)(lStackX_20 + 0x68) == '\x01') && ((abStackX_18[0] & 8) != 0)) {
-        init_result = *(long long *)(lStackX_20 + 0x160);
-        uint_var_ = *(uint *)(init_result + 0x74);
-        flags = *(uint *)(init_result + 0x78);
-        uint_var_ = *(uint *)(init_result + 0x7c);
-        flags[3] = *(uint *)(init_result + 0x70);
+        system_init_result = *(long long *)(lStackX_20 + 0x160);
+        uint_var_ = *(uint *)(system_init_result + 0x74);
+        flags = *(uint *)(system_init_result + 0x78);
+        uint_var_ = *(uint *)(system_init_result + 0x7c);
+        flags[3] = *(uint *)(system_init_result + 0x70);
         flags[4] = uint_var_;
         flags[5] = flags;
         flags[6] = uint_var_;
@@ -11397,24 +11397,24 @@ unsigned long long initialize_parameter_block(unsigned int handle,uint *flags)
       *(unsigned char *)(flags + 0x13) = 1;
       *(unsigned char *)(flags + 0x1a) = *(unsigned char *)(lStackX_20 + 1);
       *(unsigned long long *)(flags + 0x14) = **(unsigned long long **)(lStackX_20 + 0x160);
-      init_result = *(long long *)(lStackX_20 + 0x160);
-      bVar5 = *(byte *)(init_result + 0x19);
-      if (2 < *(byte *)(init_result + 0x19)) {
+      system_init_result = *(long long *)(lStackX_20 + 0x160);
+      bVar5 = *(byte *)(system_init_result + 0x19);
+      if (2 < *(byte *)(system_init_result + 0x19)) {
         bVar5 = 2;
       }
       int_var_ = 0;
       *(byte *)(flags + 0xd) = bVar5;
-      if (*(char *)(init_result + 0x19) != '\0') {
-        ptr_var_ = (unsigned short *)((long long)flags + 0x3e);
-        ptr_var_ = (unsigned short *)(init_result + 0x1e);
+      if (*(char *)(system_init_result + 0x19) != '\0') {
+        system_pointer_variable = (unsigned short *)((long long)flags + 0x3e);
+        system_pointer_variable = (unsigned short *)(system_init_result + 0x1e);
         do {
           int_var_ = int_var_ + 1;
-          ptr_var_[-1] = ptr_var_[-1];
-          *ptr_var_ = *ptr_var_;
-          *(unsigned char *)(ptr_var_ + 1) = *(unsigned char *)(ptr_var_ + -2);
-          ptr_var_ = ptr_var_ + 4;
-          ptr_var_ = ptr_var_ + 3;
-        } while (int_var_ < (int)(uint)*(byte *)(init_result + 0x19));
+          system_pointer_variable[-1] = system_pointer_variable[-1];
+          *system_pointer_variable = *system_pointer_variable;
+          *(unsigned char *)(system_pointer_variable + 1) = *(unsigned char *)(system_pointer_variable + -2);
+          system_pointer_variable = system_pointer_variable + 4;
+          system_pointer_variable = system_pointer_variable + 3;
+        } while (int_var_ < (int)(uint)*(byte *)(system_init_result + 0x19));
       }
     }
   }
@@ -11425,14 +11425,14 @@ int process_parameter_validation(unsigned int handle,byte *flags)
 {
   char cVar1;
   int int_var_;
-  long long long_var_;
+  long long system_long_variable;
   if (data_180c4f818 == '\0') {
     return -0x7f6dfffb;
   }
   if (flags == (byte *)0x0) {
     return -0x7f6dffff;
   }
-  int_var_ = function_();
+  int_var_ = system_function_();
   if (int_var_ != 0) {
     return -0x7f6dff01;
   }
@@ -11441,21 +11441,21 @@ int process_parameter_validation(unsigned int handle,byte *flags)
     func_0x0001808f6ce0();
     return -0x7f6dfffd;
   }
-  long_var_ = func_0x0001808f0dd0(handle,0);
-  if (long_var_ != 0) {
-    cVar1 = func_0x0001808f0e30(*(unsigned short *)(long_var_ + 2),*(unsigned short *)(long_var_ + 4));
+  system_long_variable = func_0x0001808f0dd0(handle,0);
+  if (system_long_variable != 0) {
+    cVar1 = func_0x0001808f0e30(*(unsigned short *)(system_long_variable + 2),*(unsigned short *)(system_long_variable + 4));
     if ((((cVar1 == '\0') && (*flags < 0xd)) && (flags[1] < 0xd)) && (flags[2] < 0xd)) {
       func_0x0001808f6ce0();
       return -0x7f6dfffa;
     }
-    int_var_ = function_(handle,flags);
+    int_var_ = system_function_(handle,flags);
     if (-1 < int_var_) {
-      *(byte *)(long_var_ + 0x23e8) = *flags;
-      *(byte *)(long_var_ + 0x23e9) = flags[1];
-      *(byte *)(long_var_ + 0x23ea) = flags[2];
-      *(byte *)(long_var_ + 0x23ec) = *flags;
-      *(byte *)(long_var_ + 0x23ed) = flags[1];
-      *(byte *)(long_var_ + 0x23ee) = flags[2];
+      *(byte *)(system_long_variable + 0x23e8) = *flags;
+      *(byte *)(system_long_variable + 0x23e9) = flags[1];
+      *(byte *)(system_long_variable + 0x23ea) = flags[2];
+      *(byte *)(system_long_variable + 0x23ec) = *flags;
+      *(byte *)(system_long_variable + 0x23ed) = flags[1];
+      *(byte *)(system_long_variable + 0x23ee) = flags[2];
       func_0x0001808f6ce0();
       return int_var_;
     }
@@ -11467,24 +11467,24 @@ int check_system_readiness(void)
 {
   char cVar1;
   int int_var_;
-  long long long_var_;
+  long long system_long_variable;
   byte *unaff_RBX;
   unsigned int unaff_ESI;
-  long_var_ = func_0x0001808f0dd0(unaff_ESI);
-  if (long_var_ != 0) {
-    cVar1 = func_0x0001808f0e30(*(unsigned short *)(long_var_ + 2),*(unsigned short *)(long_var_ + 4));
+  system_long_variable = func_0x0001808f0dd0(unaff_ESI);
+  if (system_long_variable != 0) {
+    cVar1 = func_0x0001808f0e30(*(unsigned short *)(system_long_variable + 2),*(unsigned short *)(system_long_variable + 4));
     if ((((cVar1 == '\0') && (*unaff_RBX < 0xd)) && (unaff_RBX[1] < 0xd)) && (unaff_RBX[2] < 0xd)) {
       func_0x0001808f6ce0();
       return -0x7f6dfffa;
     }
-    int_var_ = function_(unaff_ESI);
+    int_var_ = system_function_(unaff_ESI);
     if (-1 < int_var_) {
-      *(byte *)(long_var_ + 0x23e8) = *unaff_RBX;
-      *(byte *)(long_var_ + 0x23e9) = unaff_RBX[1];
-      *(byte *)(long_var_ + 0x23ea) = unaff_RBX[2];
-      *(byte *)(long_var_ + 0x23ec) = *unaff_RBX;
-      *(byte *)(long_var_ + 0x23ed) = unaff_RBX[1];
-      *(byte *)(long_var_ + 0x23ee) = unaff_RBX[2];
+      *(byte *)(system_long_variable + 0x23e8) = *unaff_RBX;
+      *(byte *)(system_long_variable + 0x23e9) = unaff_RBX[1];
+      *(byte *)(system_long_variable + 0x23ea) = unaff_RBX[2];
+      *(byte *)(system_long_variable + 0x23ec) = *unaff_RBX;
+      *(byte *)(system_long_variable + 0x23ed) = unaff_RBX[1];
+      *(byte *)(system_long_variable + 0x23ee) = unaff_RBX[2];
       func_0x0001808f6ce0();
       return int_var_;
     }
@@ -11498,7 +11498,7 @@ int validate_system_state(void)
   unsigned char *unaff_RBX;
   unsigned int unaff_ESI;
   long long unaff_RDI;
-  int_var_ = function_(unaff_ESI);
+  int_var_ = system_function_(unaff_ESI);
   if (-1 < int_var_) {
     *(unsigned char *)(unaff_RDI + 0x23e8) = *unaff_RBX;
     *(unsigned char *)(unaff_RDI + 0x23e9) = unaff_RBX[1];
@@ -11519,13 +11519,13 @@ unsigned long long get_system_status_info(void)
 }
           data_180c58840 = bVar1;
           *flags = int_var_;
-          *(int *)(long_var_ + STRING_BUFFER_SIZE) = int_var_;
-          *(int *)(long_var_ + 0x18) = int_var_;
-          func_0x0001808f0b40(long_var_);
+          *(int *)(system_long_variable + STRING_BUFFER_SIZE) = int_var_;
+          *(int *)(system_long_variable + 0x18) = int_var_;
+          func_0x0001808f0b40(system_long_variable);
           return 0;
         }
-        long_var_ = long_var_ + 0x2408;
-      } while (long_var_ < 0x180c58840);
+        system_long_variable = system_long_variable + 0x2408;
+      } while (system_long_variable < 0x180c58840);
       return 0x8001002d;
     }
   }
@@ -11590,9 +11590,9 @@ uint setup_timer_with_attributes(long long handle,int flags,int mutex_attr,char 
   data_180c58853 = 1;
   data_180c58855 = 1;
   data_180c58850 = 1;
-  global_data_ = _beginthread(function_,0,0);
-  if ((global_data_ != -1) &&
-     (global_data_ = _beginthread(function_,0,0), global_data_ != -1)) {
+  system_global_data_ = _beginthread(system_function_,0,0);
+  if ((system_global_data_ != -1) &&
+     (system_global_data_ = _beginthread(system_function_,0,0), system_global_data_ != -1)) {
     return 1;
   }
   return 0;
@@ -11602,20 +11602,20 @@ uint setup_timer_with_attributes(long long handle,int flags,int mutex_attr,char 
 }
 unsigned int validate_timer_parameters(byte handle,byte *flags,int mutex_attr)
 {
-  uint *ptr_var_;
+  uint *system_pointer_variable;
   byte bVar2;
   uint uint_var_;
   mutex_attr = mutex_attr + -4;
-  ptr_var_ = (uint *)(flags + mutex_attr);
-  uint_var_ = *(uint *)(&unknown_18098a100 + (ulong long)(byte)~handle * 4) ^ 0xffffff;
+  system_pointer_variable = (uint *)(flags + mutex_attr);
+  uint_var_ = *(uint *)(&system_18098a100 + (ulong long)(byte)~handle * 4) ^ 0xffffff;
   for (; 0 < mutex_attr; mutex_attr = mutex_attr + -1) {
     bVar2 = *flags;
     flags = flags + 1;
-    uint_var_ = *(uint *)(&unknown_18098a100 + (ulong long)(byte)(bVar2 ^ (byte)uint_var_) * 4) ^ uint_var_ >> 8;
+    uint_var_ = *(uint *)(&system_18098a100 + (ulong long)(byte)(bVar2 ^ (byte)uint_var_) * 4) ^ uint_var_ >> 8;
   }
-  return CONCAT31((int3)(~uint_var_ >> 8),*ptr_var_ != ~uint_var_);
+  return CONCAT31((int3)(~uint_var_ >> 8),*system_pointer_variable != ~uint_var_);
 }
-float * function_(float *handle,float *flags,float *mutex_attr)
+float * system_function_(float *handle,float *flags,float *mutex_attr)
 {
   float fVar1;
   float fVar2;
@@ -11641,38 +11641,38 @@ float * function_(float *handle,float *flags,float *mutex_attr)
 }
 unsigned long long initialize_timer_context(unsigned long long handle,unsigned int *flags)
 {
-  long long init_result;
-  init_result = func_0x0001808f0dd0(handle,0);
-  if (init_result != 0) {
-    *flags = *(unsigned int *)(init_result + 100);
+  long long system_init_result;
+  system_init_result = func_0x0001808f0dd0(handle,0);
+  if (system_init_result != 0) {
+    *flags = *(unsigned int *)(system_init_result + 100);
     return 0;
   }
   return 0x8001002d;
 }
       data_180bf0080 = '\0';
-      if (global_data_ == 0) {
-        long_var_ = function_(&unknown_18098ab30);
-        if (long_var_ != 0) {
-          long_var_ = LoadLibraryExW(long_var_,0,0);
+      if (system_global_data_ == 0) {
+        system_long_variable = system_function_(&system_18098ab30);
+        if (system_long_variable != 0) {
+          system_long_variable = LoadLibraryExW(system_long_variable,0,0);
         }
-        LocalFree(long_var_);
-        global_data_ = long_var_;
-        if (long_var_ == 0) goto label_;
+        LocalFree(system_long_variable);
+        system_global_data_ = system_long_variable;
+        if (system_long_variable == 0) goto label_;
       }
-      if ((((global_data_ == (code *)0x0) &&
-           (global_data_ = (code *)GetProcAddress(global_data_,&unknown_18098aef8),
-           global_data_ == (code *)0x0)) ||
-          ((global_data_ == 0 &&
-           (global_data_ = GetProcAddress(global_data_,&unknown_18098af08), global_data_ == 0))))
-         || ((global_data_ == 0 &&
-             (global_data_ = GetProcAddress(global_data_,&unknown_18098af18), global_data_ == 0)))
+      if ((((system_global_data_ == (code *)0x0) &&
+           (system_global_data_ = (code *)GetProcAddress(system_global_data_,&system_18098aef8),
+           system_global_data_ == (code *)0x0)) ||
+          ((system_global_data_ == 0 &&
+           (system_global_data_ = GetProcAddress(system_global_data_,&system_18098af08), system_global_data_ == 0))))
+         || ((system_global_data_ == 0 &&
+             (system_global_data_ = GetProcAddress(system_global_data_,&system_18098af18), system_global_data_ == 0)))
          ) goto label_;
-      if ((global_data_ == 0) &&
-         (global_data_ = function_(&unknown_18098af28,0), global_data_ != 0)) {
-        global_data_ = (code *)GetProcAddress(global_data_,&unknown_18098af40);
+      if ((system_global_data_ == 0) &&
+         (system_global_data_ = system_function_(&system_18098af28,0), system_global_data_ != 0)) {
+        system_global_data_ = (code *)GetProcAddress(system_global_data_,&system_18098af40);
       }
-      char_ptr_var_ = global_data_;
-      if (global_data_ == (code *)0x0) goto label_;
+      char_system_pointer_variable = system_global_data_;
+      if (system_global_data_ == (code *)0x0) goto label_;
       stack_var_ = 0;
       stack_var_ = 0;
       stack_var_ = 0;
@@ -11684,15 +11684,15 @@ unsigned long long initialize_timer_context(unsigned long long handle,unsigned i
       stack_var_ = 0;
       stack_var_ = 0;
       stack_var_ = 0;
-      _guard_check_icall(global_data_);
-      int_var_ = (*char_ptr_var_)(&stack_var_,&stack_var_,0x27);
+      _guard_check_icall(system_global_data_);
+      int_var_ = (*char_system_pointer_variable)(&stack_var_,&stack_var_,0x27);
       if (int_var_ != 0x27) goto label_;
-      for (ptr_var_ = auStack_1c0; char_ptr_var_ = global_data_, uint_var_ = *ptr_var_, uint_var_ != 0;
-          ptr_var_ = ptr_var_ + 1) {
+      for (system_pointer_variable = auStack_1c0; char_system_pointer_variable = system_global_data_, uint_var_ = *system_pointer_variable, uint_var_ != 0;
+          system_pointer_variable = system_pointer_variable + 1) {
         stack_var_ = 0;
-        _guard_check_icall(global_data_);
-        stack_ptr_ = &stack_var_;
-        int_var_ = (*char_ptr_var_)(0xffffffff80000002,&unknown_18098af50,0,uint_var_ | CONFIG_PATH_BUFFER_SIZE019);
+        _guard_check_icall(system_global_data_);
+        system_stack_pointer = &stack_var_;
+        int_var_ = (*char_system_pointer_variable)(0xffffffff80000002,&system_18098af50,0,uint_var_ | CONFIG_PATH_BUFFER_SIZE019);
         if (int_var_ == 0) {
           stack_var_ = 0x80;
           stack_var_ = 4;
@@ -11705,81 +11705,81 @@ unsigned long long initialize_timer_context(unsigned long long handle,unsigned i
       goto label_;
     }
   }
-  OutputDebugStringW(&unknown_18098afa0);
+  OutputDebugStringW(&system_18098afa0);
   SetLastError(0);
 label_:
   system_crypto_001(stack_var_ ^ (ulong long)auStack_228);
 }
           data_180c6a14c = int_var_ == 1;
-          SetConsoleTitleA(&unknown_18098b4e0);
+          SetConsoleTitleA(&system_18098b4e0);
         }
       }
       data_180c6a14d = data_180c6a14c == '\0';
-      if (global_data_ == 0) {
-        long_var_ = _wfsopen(handle,&unknown_18098b51c,SYSTEM_CONFIG_BUFFER_SIZE);
-        if (long_var_ == 0) {
-          function_(&unknown_18098b490,0xc1,&unknown_18098b470,&unknown_18098b520,handle);
+      if (system_global_data_ == 0) {
+        system_long_variable = _wfsopen(handle,&system_18098b51c,SYSTEM_CONFIG_BUFFER_SIZE);
+        if (system_long_variable == 0) {
+          system_function_(&system_18098b490,0xc1,&system_18098b470,&system_18098b520,handle);
           bVar10 = false;
         }
         else {
-          fclose(long_var_);
-          function_(&unknown_18098b490,200,&unknown_18098b470,&unknown_18098b580,handle);
-          long_var_ = _wcsdup(handle);
-          long_var_ = -1;
-          if (long_var_ != 0) {
+          fclose(system_long_variable);
+          system_function_(&system_18098b490,200,&system_18098b470,&system_18098b580,handle);
+          system_long_variable = _wcsdup(handle);
+          system_long_variable = -1;
+          if (system_long_variable != 0) {
             do {
-              long_var_ = long_var_;
-              long_var_ = long_var_ + 1;
-            } while (*(short *)(handle + 2 + long_var_ * 2) != 0);
-            long_var_ = long_var_;
+              system_long_variable = system_long_variable;
+              system_long_variable = system_long_variable + 1;
+            } while (*(short *)(handle + 2 + system_long_variable * 2) != 0);
+            system_long_variable = system_long_variable;
             while( true ) {
-              long_var_ = 0;
-              if (((long_var_ == 0) || (sVar1 = *(short *)(long_var_ + long_var_ * 2), long_var_ = 0, sVar1 == 0x2f)
-                  ) || (long_var_ = 0, sVar1 == 0x5c)) goto label_;
+              system_long_variable = 0;
+              if (((system_long_variable == 0) || (sVar1 = *(short *)(system_long_variable + system_long_variable * 2), system_long_variable = 0, sVar1 == 0x2f)
+                  ) || (system_long_variable = 0, sVar1 == 0x5c)) goto label_;
               if (sVar1 == 0x2e) break;
-              long_var_ = long_var_ + -1;
+              system_long_variable = system_long_variable + -1;
             }
-            *(unsigned short *)(long_var_ + long_var_ * 2) = 0;
-            long_var_ = long_var_ + 2 + long_var_ * 2;
+            *(unsigned short *)(system_long_variable + system_long_variable * 2) = 0;
+            system_long_variable = system_long_variable + 2 + system_long_variable * 2;
 label_:
-            long_var_ = long_var_ + 9;
-            long_var_ = malloc(long_var_ * 2);
-            if (long_var_ == 0) {
-              free(long_var_);
+            system_long_variable = system_long_variable + 9;
+            system_long_variable = malloc(system_long_variable * 2);
+            if (system_long_variable == 0) {
+              free(system_long_variable);
               return false;
             }
             int_var_ = 1;
-            long_var_ = global_data_;
+            system_long_variable = system_global_data_;
             do {
-              global_data_ = long_var_;
-              if (long_var_ == 0) {
-                function_(long_var_,long_var_,&unknown_18098b5f8,long_var_,int_var_);
+              system_global_data_ = system_long_variable;
+              if (system_long_variable == 0) {
+                system_function_(system_long_variable,system_long_variable,&system_18098b5f8,system_long_variable,int_var_);
               }
               else {
-                function_(long_var_,long_var_,&unknown_18098b5d8,long_var_,int_var_,long_var_);
+                system_function_(system_long_variable,system_long_variable,&system_18098b5d8,system_long_variable,int_var_,system_long_variable);
               }
-              global_data_ = _wfsopen(long_var_,ptr_var_,CONFIG_PATH_BUFFER_SIZE);
-              if (global_data_ != 0) {
-                ptr_var_ = &unknown_18098b610;
+              system_global_data_ = _wfsopen(system_long_variable,system_pointer_variable,CONFIG_PATH_BUFFER_SIZE);
+              if (system_global_data_ != 0) {
+                system_pointer_variable = &system_18098b610;
                 uint_var_ = 0xeb;
-                handle = long_var_;
+                handle = system_long_variable;
                 goto label_;
               }
               int_var_ = int_var_ + 1;
-              long_var_ = 0;
+              system_long_variable = 0;
             } while (int_var_ < 9);
-            ptr_var_ = &unknown_18098b640;
+            system_pointer_variable = &system_18098b640;
             uint_var_ = 0xef;
 label_:
-            function_(&unknown_18098b490,uint_var_,&unknown_18098b470,ptr_var_,handle);
-            free(long_var_);
-            free(long_var_);
+            system_function_(&system_18098b490,uint_var_,&system_18098b470,system_pointer_variable,handle);
+            free(system_long_variable);
+            free(system_long_variable);
           }
-          bVar10 = global_data_ != 0;
+          bVar10 = system_global_data_ != 0;
         }
       }
       else {
-        function_(&unknown_18098b490,0xb4,&unknown_18098b470,&unknown_18098b4e8,handle);
+        system_function_(&system_18098b490,0xb4,&system_18098b470,&system_18098b4e8,handle);
         bVar10 = true;
       }
       return bVar10;
@@ -11791,35 +11791,35 @@ label_:
 bool check_system_availability(void)
 {
   short sVar1;
-  long long long_var_;
+  long long system_long_variable;
   uint uint_var_;
   int int_var_;
-  long long long_var_;
+  long long system_long_variable;
   unsigned long long uint_var_;
-  long long long_var_;
-  long long long_var_;
-  long long long_var_;
+  long long system_long_variable;
+  long long system_long_variable;
+  long long system_long_variable;
   char unaff_SIL;
   long long unaff_RDI;
   short sVar10;
   long long unaff_R12;
-  undefined *ptr_var_;
+  void *system_pointer_variable;
   bool bVar12;
   uint in_stack_00000090;
   uint in_stack_00000098;
   if (unaff_RDI != 0) {
-    long_var_ = -1;
+    system_long_variable = -1;
     do {
-      long_var_ = long_var_ + 1;
+      system_long_variable = system_long_variable + 1;
       sVar10 = (short)unaff_R12;
-    } while (*(short *)(unaff_RDI + long_var_ * 2) != sVar10);
-    if (long_var_ != 0) {
-      ptr_var_ = &unknown_18098b464;
+    } while (*(short *)(unaff_RDI + system_long_variable * 2) != sVar10);
+    if (system_long_variable != 0) {
+      system_pointer_variable = &system_18098b464;
       if (unaff_SIL != '\0') {
-        ptr_var_ = &unknown_18098b45c;
+        system_pointer_variable = &system_18098b45c;
       }
-      global_data_ = _wfsopen();
-      if ((1 < global_data_) && ((uint)unaff_R12 < in_stack_00000090)) {
+      system_global_data_ = _wfsopen();
+      if ((1 < system_global_data_) && ((uint)unaff_R12 < in_stack_00000090)) {
         uint_var_ = GetConsoleWindow();
         in_stack_00000098 = (uint)unaff_R12;
         GetWindowThreadProcessId(uint_var_,&stack0x00000098);
@@ -11827,74 +11827,74 @@ bool check_system_availability(void)
         if (uint_var_ != in_stack_00000098) {
           int_var_ = AllocConsole();
           data_180c6a14c = int_var_ == 1;
-          SetConsoleTitleA(&unknown_18098b4e0);
+          SetConsoleTitleA(&system_18098b4e0);
         }
       }
       data_180c6a14d = data_180c6a14c == (char)unaff_R12;
-      if (global_data_ == unaff_R12) {
-        long_var_ = _wfsopen();
-        if (long_var_ == 0) {
-          function_(&unknown_18098b490,0xc1,&unknown_18098b470,&unknown_18098b520);
+      if (system_global_data_ == unaff_R12) {
+        system_long_variable = _wfsopen();
+        if (system_long_variable == 0) {
+          system_function_(&system_18098b490,0xc1,&system_18098b470,&system_18098b520);
           bVar12 = false;
         }
         else {
-          fclose(long_var_);
-          function_(&unknown_18098b490,200,&unknown_18098b470,&unknown_18098b580);
-          long_var_ = _wcsdup();
-          long_var_ = -1;
-          if (long_var_ != 0) {
+          fclose(system_long_variable);
+          system_function_(&system_18098b490,200,&system_18098b470,&system_18098b580);
+          system_long_variable = _wcsdup();
+          system_long_variable = -1;
+          if (system_long_variable != 0) {
             do {
-              long_var_ = long_var_;
-              long_var_ = long_var_ + 1;
-              long_var_ = long_var_;
-            } while (*(short *)(unaff_RDI + 2 + long_var_ * 2) != sVar10);
+              system_long_variable = system_long_variable;
+              system_long_variable = system_long_variable + 1;
+              system_long_variable = system_long_variable;
+            } while (*(short *)(unaff_RDI + 2 + system_long_variable * 2) != sVar10);
             while( true ) {
-              long_var_ = unaff_R12;
-              if (((long_var_ == 0) || (sVar1 = *(short *)(long_var_ + long_var_ * 2), sVar1 == 0x2f)) ||
+              system_long_variable = unaff_R12;
+              if (((system_long_variable == 0) || (sVar1 = *(short *)(system_long_variable + system_long_variable * 2), sVar1 == 0x2f)) ||
                  (sVar1 == 0x5c)) goto label_;
               if (sVar1 == 0x2e) break;
-              long_var_ = long_var_ + -1;
+              system_long_variable = system_long_variable + -1;
             }
-            *(short *)(long_var_ + long_var_ * 2) = sVar10;
-            long_var_ = long_var_ + 2 + long_var_ * 2;
+            *(short *)(system_long_variable + system_long_variable * 2) = sVar10;
+            system_long_variable = system_long_variable + 2 + system_long_variable * 2;
 label_:
-            long_var_ = long_var_ + 9;
-            long_var_ = malloc(long_var_ * 2);
-            if (long_var_ == 0) {
-              free(long_var_);
+            system_long_variable = system_long_variable + 9;
+            system_long_variable = malloc(system_long_variable * 2);
+            if (system_long_variable == 0) {
+              free(system_long_variable);
               return false;
             }
             int_var_ = 1;
-            long_var_ = global_data_;
+            system_long_variable = system_global_data_;
             do {
-              global_data_ = long_var_;
-              if (long_var_ == 0) {
-                function_(long_var_,long_var_,&unknown_18098b5f8,long_var_,int_var_);
+              system_global_data_ = system_long_variable;
+              if (system_long_variable == 0) {
+                system_function_(system_long_variable,system_long_variable,&system_18098b5f8,system_long_variable,int_var_);
               }
               else {
-                function_(long_var_,long_var_,&unknown_18098b5d8,long_var_,int_var_);
+                system_function_(system_long_variable,system_long_variable,&system_18098b5d8,system_long_variable,int_var_);
               }
-              global_data_ = _wfsopen(long_var_,ptr_var_,CONFIG_PATH_BUFFER_SIZE);
-              if (global_data_ != 0) {
-                ptr_var_ = &unknown_18098b610;
+              system_global_data_ = _wfsopen(system_long_variable,system_pointer_variable,CONFIG_PATH_BUFFER_SIZE);
+              if (system_global_data_ != 0) {
+                system_pointer_variable = &system_18098b610;
                 uint_var_ = 0xeb;
                 goto label_;
               }
               int_var_ = int_var_ + 1;
-              long_var_ = 0;
+              system_long_variable = 0;
             } while (int_var_ < 9);
-            ptr_var_ = &unknown_18098b640;
+            system_pointer_variable = &system_18098b640;
             uint_var_ = 0xef;
 label_:
-            function_(&unknown_18098b490,uint_var_,&unknown_18098b470,ptr_var_);
-            free(long_var_);
-            free(long_var_);
+            system_function_(&system_18098b490,uint_var_,&system_18098b470,system_pointer_variable);
+            free(system_long_variable);
+            free(system_long_variable);
           }
-          bVar12 = global_data_ != unaff_R12;
+          bVar12 = system_global_data_ != unaff_R12;
         }
       }
       else {
-        function_(&unknown_18098b490,0xb4,&unknown_18098b470,&unknown_18098b4e8);
+        system_function_(&system_18098b490,0xb4,&system_18098b470,&system_18098b4e8);
         bVar12 = true;
       }
       return bVar12;
@@ -11906,69 +11906,69 @@ label_:
 bool validate_system_resources(void)
 {
   short sVar1;
-  long long long_var_;
-  long long long_var_;
-  long long long_var_;
+  long long system_long_variable;
+  long long system_long_variable;
+  long long system_long_variable;
   unsigned long long uint_var_;
   int int_var_;
   long long unaff_RBX;
-  long long long_var_;
+  long long system_long_variable;
   long long unaff_RDI;
-  undefined *ptr_var_;
+  void *system_pointer_variable;
   long long unaff_R12;
-  long long long_var_;
+  long long system_long_variable;
   fclose();
-  function_(&unknown_18098b490,200,&unknown_18098b470,&unknown_18098b580);
-  long_var_ = _wcsdup();
-  if (long_var_ != 0) {
+  system_function_(&system_18098b490,200,&system_18098b470,&system_18098b580);
+  system_long_variable = _wcsdup();
+  if (system_long_variable != 0) {
     do {
-      long_var_ = unaff_RBX;
-      unaff_RBX = long_var_ + 1;
-      long_var_ = long_var_;
-    } while (*(short *)(unaff_RDI + 2 + long_var_ * 2) != (short)unaff_R12);
+      system_long_variable = unaff_RBX;
+      unaff_RBX = system_long_variable + 1;
+      system_long_variable = system_long_variable;
+    } while (*(short *)(unaff_RDI + 2 + system_long_variable * 2) != (short)unaff_R12);
     while( true ) {
-      long_var_ = unaff_R12;
-      if (((long_var_ == 0) || (sVar1 = *(short *)(long_var_ + long_var_ * 2), sVar1 == 0x2f)) ||
+      system_long_variable = unaff_R12;
+      if (((system_long_variable == 0) || (sVar1 = *(short *)(system_long_variable + system_long_variable * 2), sVar1 == 0x2f)) ||
          (sVar1 == 0x5c)) goto label_;
       if (sVar1 == 0x2e) break;
-      long_var_ = long_var_ + -1;
+      system_long_variable = system_long_variable + -1;
     }
-    *(short *)(long_var_ + long_var_ * 2) = (short)unaff_R12;
-    long_var_ = long_var_ + 2 + long_var_ * 2;
+    *(short *)(system_long_variable + system_long_variable * 2) = (short)unaff_R12;
+    system_long_variable = system_long_variable + 2 + system_long_variable * 2;
 label_:
-    long_var_ = long_var_ + 9;
-    long_var_ = malloc(long_var_ * 2);
-    if (long_var_ == 0) {
-      free(long_var_);
+    system_long_variable = system_long_variable + 9;
+    system_long_variable = malloc(system_long_variable * 2);
+    if (system_long_variable == 0) {
+      free(system_long_variable);
       return false;
     }
     int_var_ = 1;
-    long_var_ = global_data_;
+    system_long_variable = system_global_data_;
     do {
-      global_data_ = long_var_;
-      if (long_var_ == 0) {
-        function_(long_var_,long_var_,&unknown_18098b5f8,long_var_,int_var_);
+      system_global_data_ = system_long_variable;
+      if (system_long_variable == 0) {
+        system_function_(system_long_variable,system_long_variable,&system_18098b5f8,system_long_variable,int_var_);
       }
       else {
-        function_(long_var_,long_var_,&unknown_18098b5d8,long_var_,int_var_);
+        system_function_(system_long_variable,system_long_variable,&system_18098b5d8,system_long_variable,int_var_);
       }
-      global_data_ = _wfsopen(long_var_);
-      if (global_data_ != 0) {
-        ptr_var_ = &unknown_18098b610;
+      system_global_data_ = _wfsopen(system_long_variable);
+      if (system_global_data_ != 0) {
+        system_pointer_variable = &system_18098b610;
         uint_var_ = 0xeb;
         goto label_;
       }
       int_var_ = int_var_ + 1;
-      long_var_ = 0;
+      system_long_variable = 0;
     } while (int_var_ < 9);
-    ptr_var_ = &unknown_18098b640;
+    system_pointer_variable = &system_18098b640;
     uint_var_ = 0xef;
 label_:
-    function_(&unknown_18098b490,uint_var_,&unknown_18098b470,ptr_var_);
-    free(long_var_);
-    free(long_var_);
+    system_function_(&system_18098b490,uint_var_,&system_18098b470,system_pointer_variable);
+    free(system_long_variable);
+    free(system_long_variable);
   }
-  return global_data_ != unaff_R12;
+  return system_global_data_ != unaff_R12;
 }
   data_180c6a14d = data_180c6a14c == unaff_R12B;
   return 1;
@@ -11976,7 +11976,7 @@ label_:
     data_180bf0082 = '\x01';
     wcscpy_s(auStack_228,STRING_BUFFER_SIZE4,handle);
     if ((data_180bf0082 != '\0') && (wcscat_s(auStack_228,STRING_BUFFER_SIZE4,flags), data_180bf0082 != '\0')) {
-      function_(auStack_228,0);
+      system_function_(auStack_228,0);
     }
     _set_invalid_parameter_handler(uint_var_);
   }
@@ -11987,7 +11987,7 @@ label_:
   if (data_180bf0082 != '\0') {
     wcscat_s(auStackX_20,STRING_BUFFER_SIZE4);
     if (data_180bf0082 != '\0') {
-      function_(auStackX_20,0);
+      system_function_(auStackX_20,0);
     }
   }
   _set_invalid_parameter_handler(uint_var_);
@@ -11995,7 +11995,7 @@ label_:
 }
     data_180c821d8 = 1;
   }
-  function_();
+  system_function_();
   cVar1 = func_0x0001800467e0();
   if (cVar1 != '\0') {
     cVar1 = func_0x0001800467e0();
@@ -12008,26 +12008,26 @@ label_:
 }
 unsigned long long allocate_system_buffer(uint handle)
 {
-  code *char_ptr_var_;
+  code *char_system_pointer_variable;
   byte bVar2;
   int int_var_;
   unsigned long long uint_var_;
   if (data_180c821d9 == '\0') {
     if (1 < handle) {
-      function_(5);
-      char_ptr_var_ = (code *)swi(3);
-      uint_var_ = (*char_ptr_var_)();
+      system_function_(5);
+      char_system_pointer_variable = (code *)swi(3);
+      uint_var_ = (*char_system_pointer_variable)();
       return uint_var_;
     }
     int_var_ = func_0x0001808fd8d4();
     if ((int_var_ == 0) || (handle != 0)) {
-      bVar2 = SYSTEM_CONFIG_BUFFER_SIZE - ((byte)global_data_ & 0x3f) & 0x3f;
-      global_data_ = (0xffffffffffffffffU >> bVar2 | -1L << SYSTEM_CONFIG_BUFFER_SIZE - bVar2) ^ global_data_;
-      uRam0000000180c821e8 = global_data_;
-      global_data_ = global_data_;
-      global_data_ = global_data_;
-      uRam0000000180c82200 = global_data_;
-      global_data_ = global_data_;
+      bVar2 = SYSTEM_CONFIG_BUFFER_SIZE - ((byte)system_global_data_ & 0x3f) & 0x3f;
+      system_global_data_ = (0xffffffffffffffffU >> bVar2 | -1L << SYSTEM_CONFIG_BUFFER_SIZE - bVar2) ^ system_global_data_;
+      uRam0000000180c821e8 = system_global_data_;
+      system_global_data_ = system_global_data_;
+      system_global_data_ = system_global_data_;
+      uRam0000000180c82200 = system_global_data_;
+      system_global_data_ = system_global_data_;
     }
     else {
       int_var_ = _initialize_onexit_table(&data_180c821e0);
@@ -12045,7 +12045,7 @@ ulong long process_buffer_allocation(long long handle)
   uint7 flags;
   IMAGE_SECTION_HEADER *pIVar3;
   uint_var_ = 0;
-  for (pIVar3 = &IMAGE_SECTION_HEADER_1800002a0; pIVar3 != (IMAGE_SECTION_HEADER *)&unknown_1800003e0;
+  for (pIVar3 = &IMAGE_SECTION_HEADER_1800002a0; pIVar3 != (IMAGE_SECTION_HEADER *)&system_1800003e0;
       pIVar3 = pIVar3 + 1) {
     if (((ulong long)(uint)pIVar3->VirtualAddress <= handle - 0x180000000U) &&
        (uint_var_ = (ulong long)((pIVar3->Misc).PhysicalAddress + pIVar3->VirtualAddress),
@@ -12077,23 +12077,23 @@ label_:
   data_180bfc170 = 0;
   return;
 }
-    data_180c95ef0 = '\0';
+    script_system_initialized = '\0';
   }
   return;
 }
-    data_180c96008 = '\0';
+    config_system_initialized = '\0';
   }
   return;
 }
-    data_180c96028 = '\0';
+    memory_system_initialized = '\0';
   }
   return;
 }
-    data_180c96048 = '\0';
+    thread_pool_initialized = '\0';
   }
   return;
 }
-    data_180c96068 = '\0';
+    module_system_initialized = '\0';
   }
   return;
 }
@@ -12105,15 +12105,15 @@ label_:
   }
   return;
 }
-    data_180c96100 = '\0';
+    audio_system_initialized = '\0';
   }
   return;
 }
-    data_180c96140 = '\0';
+    render_system_initialized = '\0';
   }
   return;
 }
-    data_180c961d8 = '\0';
+    physics_system_initialized = '\0';
   }
   return;
 }
@@ -12121,11 +12121,11 @@ label_:
   }
   return;
 }
-    data_180c95fe8 = '\0';
+    network_system_initialized = '\0';
   }
   return;
 }
-    data_180c96210 = '\0';
+    input_system_initialized = '\0';
   }
   return;
 }
