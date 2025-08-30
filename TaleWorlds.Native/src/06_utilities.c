@@ -4054,7 +4054,7 @@ void utility_handle_resource_cleanup(void)
   
   if (*(longlong *)(utility_register_input_value + 8) != 0) {
     utility_stack_buffer_ptr = &utility_stack_buffer_local;
-    utility_utility_iteration_counter = 0;
+    utility_iteration_counter = 0;
     utility_stack_buffer_count = 0;
     utility_stack_buffer_mask = SECURITY_TOKEN_MASK;
     utility_operation_status = allocate_system_memory(*(uint64 *)(utility_register_context_base + UTILITY_MEMORY_SIZE_OFFSET),*(longlong *)(utility_register_input_value + 8),
@@ -4069,9 +4069,9 @@ void utility_handle_resource_cleanup(void)
                     // WARNING: Subroutine does not return
             utility_free_memory(utility_memory_block_handle,1); # 内存块释放函数
           }
-          utility_utility_iteration_counter = utility_utility_iteration_counter + 1;
+          utility_iteration_counter = utility_iteration_counter + 1;
           utility_data_array_index = utility_data_array_index + 8;
-        } while (utility_utility_iteration_counter < utility_stack_buffer_count);
+        } while (utility_iteration_counter < utility_stack_buffer_count);
       }
       free_memory_buffer(&utility_stack_buffer_primary);
     }
@@ -4220,7 +4220,7 @@ ulonglong utility_calculate_memory_allocation(longlong resource_handle_identifie
   longlong *resource_data_pointer;
   longlong *data_buffer;
   longlong *array_handle_pointer;
-  int utility_utility_iteration_counter_primary;
+  int utility_iteration_counter_primary;
   uint validation_flag;
   ulonglong validation_flag;
   longlong *memory_block_pointer;
@@ -4231,16 +4231,16 @@ ulonglong utility_calculate_memory_allocation(longlong resource_handle_identifie
   longlong utility_stack_memory_temp;
   
   validation_flag = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_HANDLE_OFFSET),&utility_stack_memory_temp);
-  utility_utility_iteration_counter = (int)validation_flag;
-  if (utility_utility_iteration_counter == 0) {
+  utility_iteration_counter_primary = (int)validation_flag;
+  if (utility_iteration_counter_primary == 0) {
     resource_data_buffer_initial_ptr = (longlong *)UTILITY_NULL_POINTER;
     memory_block_pointer_value = resource_data_buffer_initial_ptr;
     if (utility_stack_memory_temp != 0) {
       memory_block_pointer_value = (longlong *)(utility_stack_memory_temp + -8);
     }
     validation_flag = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),&utility_stack_memory_temp);
-    utility_utility_iteration_counter = (int)validation_flag;
-    if (utility_utility_iteration_counter == 0) {
+    utility_iteration_counter_primary = (int)validation_flag;
+    if (utility_iteration_counter_primary == 0) {
       system_resource_handle_primary = 0;
       validation_flag = utilityEncryptMemoryData(*(uint64 *)(resource_buffer + UTILITY_MEMORY_SIZE_OFFSET),*(longlong *)(utility_stack_memory_temp + 8) + RESOURCE_UTILITY_HANDLE_DATA_OFFSET,
                             &system_resource_handle_primary);
