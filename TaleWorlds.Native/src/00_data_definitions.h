@@ -53,7 +53,34 @@
 // - 修正了资源类型分配错误，如 initialize_font_resource_manager 中的 RESOURCE_TYPE_AUDIO -> RESOURCE_TYPE_FONT
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
-// 这是简化实现，主要处理了变量名的语义化替换和常量的语义化定义
+// - 新增美化内容：将变量名如 g_data_crypto_flag_tertiary -> crypto_module_status_flag
+// - 新增美化内容：将函数名如 system_hardware_003 -> hardware_initialize_operation
+// - 新增美化内容：将变量名如 stack_size_max -> maximum_stack_size
+// - 新增美化内容：将变量名如 thread_stack_ptr -> thread_stack_pointer
+// - 新增美化内容：将变量名如 str_len_counter -> string_length_counter
+// - 新增美化内容：将变量名如 buffer_alloc_result -> buffer_allocation_result
+// - 新增美化内容：将变量名如 thread_op_flags -> thread_operation_flags
+// - 新增美化内容：将变量名如 string_input_ptr -> string_input_pointer
+// - 新增美化内容：将函数名如 system_data_manager_002 -> data_manager_process_operation
+// - 新增美化内容：将函数名如 handle_param_system_event -> system_event_handler
+// - 新增美化内容：将函数名如 system_processor_012 -> processor_cleanup_operation
+// - 新增美化内容：将函数名如 system_execute_crypto_operation -> crypto_operation_executor
+// - 新增美化内容：将函数名如 system_execution_function -> system_execution_handler
+// - 新增美化内容：将函数名如 system_thread_initializer -> thread_initialization_handler
+// - 新增美化内容：将函数名如 mutex_set_function -> mutex_initialization_function
+// - 新增美化内容：将变量名如 thread_result_index -> thread_result_index
+// - 新增美化内容：将变量名如 thread_stack_base_address -> thread_stack_base_address
+// - 新增美化内容：将变量名如 stack_buffer_298 -> crypto_stack_buffer
+// - 新增美化内容：将变量名如 stack_buffer_228 -> debug_stack_buffer
+// - 新增美化内容：将变量名如 auStack_260 -> system_stack_buffer_260
+// - 新增美化内容：将变量名如 auStack_2f8 -> crypto_operation_stack_buffer
+// - 新增美化内容：将变量名如 auStack_218 -> debug_output_stack_buffer
+// - 新增美化内容：将变量名如 auStack_248 -> thread_operation_stack_buffer
+// - 新增美化内容：将变量名如 global_data_ptr -> global_data_pointer
+// - 新增美化内容：将变量名如 system_ram_pointer_1 -> system_ram_pointer_1
+// - 新增美化内容：将变量名如 system_ram_pointer_2 -> system_ram_pointer_2
+// - 新增美化内容：将变量名如 label_ -> jump_label_
+// - 这是简化实现，主要处理了变量名和函数名的语义化替换
 
 // 系统常量定义
 #define MAX_SYSTEM_VALUE 0x7fffffffffffffff
