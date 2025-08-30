@@ -62664,26 +62664,26 @@ longlong *system_memory_pool_pointer;
 
 
 // 初始化系统硬编码值语义化常量定义（2025年8月30日最终批次补充）
-#define SYSTEM_INIT_OFFSET_CONFIG_6C SYSTEM_INIT_OFFSET_CONFIG_6C                    // 配置偏移量6C
-#define SYSTEM_INIT_OFFSET_DATA_90 SYSTEM_INIT_OFFSET_DATA_90                      // 数据偏移量90
-#define SYSTEM_INIT_OFFSET_STATUS_9C SYSTEM_INIT_OFFSET_STATUS_9C                    // 状态偏移量9C
-#define SYSTEM_INIT_OFFSET_NEGATIVE_3C SYSTEM_INIT_OFFSET_NEGATIVE_3C                 // 负偏移量3C
-#define SYSTEM_INIT_MAGIC_STRING_VERSION SYSTEM_INIT_MAGIC_STRING_VERSION     // 版本魔法字符串
-#define SYSTEM_INIT_OFFSET_ARRAY_75 SYSTEM_INIT_OFFSET_ARRAY_75                    // 数组偏移量75
-#define SYSTEM_INIT_OFFSET_ARRAY_77 SYSTEM_INIT_OFFSET_ARRAY_77                    // 数组偏移量77
-#define SYSTEM_INIT_OFFSET_ARRAY_79 SYSTEM_INIT_OFFSET_ARRAY_79                    // 数组偏移量79
-#define SYSTEM_INIT_OFFSET_ARRAY_7B SYSTEM_INIT_OFFSET_ARRAY_7B                    // 数组偏移量7B
-#define SYSTEM_INIT_OFFSET_ARRAY_7C SYSTEM_INIT_OFFSET_ARRAY_7C                    // 数组偏移量7C
-#define SYSTEM_INIT_OFFSET_ARRAY_7E SYSTEM_INIT_OFFSET_ARRAY_7E                    // 数组偏移量7E
-#define SYSTEM_INIT_OFFSET_ARRAY_7F SYSTEM_INIT_OFFSET_ARRAY_7F                    // 数组偏移量7F
-#define SYSTEM_INIT_OFFSET_ARRAY_31 SYSTEM_INIT_OFFSET_ARRAY_31                    // 数组偏移量31
-#define SYSTEM_INIT_OFFSET_ARRAY_32 SYSTEM_INIT_OFFSET_ARRAY_32                    // 数组偏移量32
-#define SYSTEM_INIT_OFFSET_ARRAY_33 SYSTEM_INIT_OFFSET_ARRAY_33                    // 数组偏移量33
-#define SYSTEM_INIT_OFFSET_ARRAY_34 SYSTEM_INIT_OFFSET_ARRAY_34                    // 数组偏移量34
-#define SYSTEM_INIT_OFFSET_ARRAY_35 SYSTEM_INIT_OFFSET_ARRAY_35                    // 数组偏移量35
-#define SYSTEM_INIT_OFFSET_ARRAY_3A SYSTEM_INIT_OFFSET_ARRAY_3A                    // 数组偏移量3A
-#define SYSTEM_INIT_OFFSET_ARRAY_3B SYSTEM_INIT_OFFSET_ARRAY_3B                    // 数组偏移量3B
-#define SYSTEM_INIT_OFFSET_ARRAY_3C SYSTEM_INIT_OFFSET_ARRAY_3C                    // 数组偏移量3C
+#define SYSTEM_INIT_OFFSET_CONFIG_6C 0x6c                    // 配置偏移量6C
+#define SYSTEM_INIT_OFFSET_DATA_90 0x90                      // 数据偏移量90
+#define SYSTEM_INIT_OFFSET_STATUS_9C 0x9c                    // 状态偏移量9C
+#define SYSTEM_INIT_OFFSET_NEGATIVE_3C -0x3c                 // 负偏移量3C
+#define SYSTEM_INIT_MAGIC_STRING_VERSION 0x32312e322e3176     // 版本魔法字符串
+#define SYSTEM_INIT_OFFSET_ARRAY_75 0x75                    // 数组偏移量75
+#define SYSTEM_INIT_OFFSET_ARRAY_77 0x77                    // 数组偏移量77
+#define SYSTEM_INIT_OFFSET_ARRAY_79 0x79                    // 数组偏移量79
+#define SYSTEM_INIT_OFFSET_ARRAY_7B 0x7b                    // 数组偏移量7B
+#define SYSTEM_INIT_OFFSET_ARRAY_7C 0x7c                    // 数组偏移量7C
+#define SYSTEM_INIT_OFFSET_ARRAY_7E 0x7e                    // 数组偏移量7E
+#define SYSTEM_INIT_OFFSET_ARRAY_7F 0x7f                    // 数组偏移量7F
+#define SYSTEM_INIT_OFFSET_ARRAY_31 0x31                    // 数组偏移量31
+#define SYSTEM_INIT_OFFSET_ARRAY_32 0x32                    // 数组偏移量32
+#define SYSTEM_INIT_OFFSET_ARRAY_33 0x33                    // 数组偏移量33
+#define SYSTEM_INIT_OFFSET_ARRAY_34 0x34                    // 数组偏移量34
+#define SYSTEM_INIT_OFFSET_ARRAY_35 0x35                    // 数组偏移量35
+#define SYSTEM_INIT_OFFSET_ARRAY_3A 0x3a                    // 数组偏移量3A
+#define SYSTEM_INIT_OFFSET_ARRAY_3B 0x3b                    // 数组偏移量3B
+#define SYSTEM_INIT_OFFSET_ARRAY_3C 0x3c                    // 数组偏移量3C
 #define SYSTEM_INIT_VALUE_THREE 3                           // 值3
 #define SYSTEM_INIT_VALUE_ZERO 0                            // 值0
 
