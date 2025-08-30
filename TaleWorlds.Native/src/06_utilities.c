@@ -131,9 +131,9 @@
 #define UTILITY_REGISTER_INPUT_VALUE_OFFSET 0x8
 
 // 新增语义化宏定义 - 美化栈内存临时变量名
-#define UTILITY_STACK_MEMORY_TEMP UTILITY_STACK_MEMORY_TEMP
-#define UTILITY_STACK_PARAM UTILITY_STACK_PARAM
-#define UTILITY_REGISTER_INPUT_VALUE UTILITY_REGISTER_INPUT_VALUE
+#define UTILITY_STACK_MEMORY_TEMP utility_stack_memory_temp
+#define UTILITY_STACK_PARAM utility_stack_param
+#define UTILITY_REGISTER_INPUT_VALUE utility_register_input_value
 
 // 新增语义化宏定义 - 美化栈偏移量常量
 #define UTILITY_STACK_OFFSET_SMALL 0x10
@@ -600,9 +600,9 @@
 #define UTILITY_ITERATION_LIMIT_TERTIARY 0x36
 
 // 新增系统表基址语义化宏定义
-#define UTILITY_SYSTEM_TABLE_BASE_ADDR UTILITY_SYSTEM_TABLE_BASE
-#define UTILITY_RESOURCE_TABLE_OFFSET_ADDR UTILITY_RESOURCE_TABLE_OFFSET
-#define UTILITY_RESOURCE_DATA_OFFSET_ADDR UTILITY_RESOURCE_DATA_OFFSET
+#define UTILITY_SYSTEM_TABLE_BASE_ADDR utility_system_table_base_addr
+#define UTILITY_RESOURCE_TABLE_OFFSET_ADDR utility_resource_table_offset_addr
+#define UTILITY_RESOURCE_DATA_OFFSET_ADDR utility_resource_data_offset_addr
 
 // 新增内存掩码语义化宏定义
 #define UTILITY_MEMORY_HIGH_MASK 0xffffffff00000000
@@ -1107,6 +1107,12 @@
 
 // 新增语义化宏定义 - 替换工具系统指针变量名
 #define UTILITY_RESOURCE_POINTER_PRIMARY 0x4000
+
+// 新增语义化宏定义 - 替换硬编码数字常量
+#define UTILITY_CALLBACK_FUNCTION_OFFSET 4000
+#define UTILITY_RESOURCE_DATA_OFFSET_F90 0xf90
+#define UTILITY_RESOURCE_DATA_OFFSET_F70 0xf70
+#define UTILITY_ARRAY_INDEX_OFFSET_88 0x88
 #define UTILITY_NULL_POINTER 0x0
 
 // 新增语义化宏定义 - 替换系统操作常量
@@ -19752,7 +19758,7 @@ ulonglong ValidateDataIntegrity(uint64 resource_handle_identifier)
   float *float_ptr;
   uint64 *utility_operation_result_quaternary;
   uint64 *return_value;
-  longlong resourceDataBuffer6;
+  longlong utility_resource_data_buffer_sixth;
   longlong utility_stack_frame_pointer;
   longlong utility_cpu_context;
   uint64 *utility_cpu_context;
@@ -23445,7 +23451,7 @@ ulonglong ValidateOperationData2(void)
   uint validation_flag;
   ulonglong systemFlagsData;
   uint resourceSecurityParam;
-  uint stackContextUIntB8;
+  uint utility_stack_context_uint_b8;
   
   systemFlagsData = 0;
   stackContextUIntB8 = 0;
