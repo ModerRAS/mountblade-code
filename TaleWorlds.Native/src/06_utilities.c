@@ -2321,14 +2321,14 @@ dataValue g_render_blend_work_buffer;                // 渲染混合工作缓冲
 dataValue g_render_blend_work_offset;                // 渲染混合工作偏移量
 dataValue g_render_blend_work_size;                  // 渲染混合工作大小
 dataValue g_render_blend_work_flags;                 // 渲染混合工作标志
-dataValue animationSystemState;
-dataValue g_aiNavigationWorkBuffer;
-dataValue animationClipData;
-dataValue aiNavigationWorkOffset;
-dataValue animationBlendTree;
-dataValue aiNavigationWorkSize;
-dataValue animationStateMachine;
-dataValue aiNavigationWorkFlags;
+dataValue g_animation_system_state;                  // 动画系统状态
+dataValue g_ai_navigation_work_buffer;               // AI导航工作缓冲区
+dataValue g_animation_clip_data;                     // 动画剪辑数据
+dataValue g_ai_navigation_work_offset;               // AI导航工作偏移量
+dataValue g_animation_blend_tree;                     // 动画混合树
+dataValue g_ai_navigation_work_size;                 // AI导航工作大小
+dataValue g_animation_state_machine;                 // 动画状态机
+dataValue g_ai_navigation_work_flags;                // AI导航工作标志
 dataValue g_aiBehaviorWorkBuffer;
 dataValue aiBehaviorWorkOffset;
 dataValue animationPlaybackTime;

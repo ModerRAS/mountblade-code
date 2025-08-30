@@ -1991,14 +1991,14 @@ void InitializeSystemData(void)
 
   system_data_pointer = (longlong *)GetSystemDataBase();
   system_root_node = (uint64_t *)*system_data_pointer;
-  system_initialized_flag = *(char *)((longlong)system_root_node[NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
+  system_initialized_flag = *(char *)((longlong)system_root_node[SYSTEM_NODE_INDEX_ROOT_NEXT] + NODE_INITIALIZED_OFFSET);
   system_initialization_function = InitializeGameData;
   system_previous_node = system_root_node;
-  system_current_node = (uint64_t *)system_root_node[NODE_INDEX_ROOT_NEXT];
+  system_current_node = (uint64_t *)system_root_node[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (system_initialized_flag == '\0') {
     memory_compare_result = memcmp(system_current_node + 4,&gameDataDefaultPattern,SYSTEM_DATA_COMPARE_SIZE);
     if (memory_compare_result < 0) {
-      system_next_node = (uint64_t *)system_current_node[2];
+      system_next_node = (uint64_t *)system_current_node[SYSTEM_NODE_INDEX_CURRENT_PREV];
       system_current_node = system_previous_node;
     }
     else {
@@ -2013,11 +2013,11 @@ void InitializeSystemData(void)
     InsertSystemNode(system_data_pointer,&system_new_node,system_previous_node,node_allocation_size + SYSTEM_NODE_HEADER_SIZE,node_allocation_size);
     system_previous_node = system_new_node;
   }
-  system_previous_node[6] = dataNodeSignaturePrimary;
-  system_previous_node[7] = dataNodeSignatureSecondary;
-  system_previous_node[8] = &defaultInitializationFunction;
-  system_previous_node[9] = 0;
-  system_previous_node[10] = system_initialization_function;
+  system_previous_node[SYSTEM_NODE_INDEX_SIGNATURE_PRIMARY] = dataNodeSignaturePrimary;
+  system_previous_node[SYSTEM_NODE_INDEX_SIGNATURE_SECONDARY] = dataNodeSignatureSecondary;
+  system_previous_node[SYSTEM_NODE_INDEX_DEFAULT_FUNCTION] = &defaultInitializationFunction;
+  system_previous_node[SYSTEM_NODE_INDEX_STATUS_FLAG] = 0;
+  system_previous_node[SYSTEM_NODE_INDEX_INITIALIZATION_FUNCTION] = system_initialization_function;
   return;
 }
 // 初始化系统数据结构
