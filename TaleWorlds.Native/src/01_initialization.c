@@ -6453,9 +6453,9 @@ void FlushNetworkBuffer(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// void InitializeSystemModule18(void)
+// void InitializeAudioDataNode7(void)
 
-void InitializeSystemModule18(void)
+void InitializeAudioDataNode7(void)
 
 {
   char is_initialized;
@@ -6500,9 +6500,9 @@ void InitializeSystemModule18(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// void InitializeSystemModule19(void)
+// void InitializeVideoDataNode(void)
 
-void InitializeSystemModule19(void)
+void InitializeVideoDataNode(void)
 
 {
   char is_initialized;
@@ -6547,9 +6547,9 @@ void InitializeSystemModule19(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
-// void InitializeSystemModule20(void)
+// void InitializeInputDataNode(void)
 
-void InitializeSystemModule20(void)
+void InitializeInputDataNode(void)
 
 {
   char is_initialized;
@@ -7588,9 +7588,9 @@ void InitializeConfigSystem(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// void InitializeSystemModule42(void)
+// void InitializeNetworkDataNode(void)
 
-void InitializeSystemModule42(void)
+void InitializeNetworkDataNode(void)
 
 {
   char is_initialized;
@@ -7635,9 +7635,9 @@ void InitializeSystemModule42(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// void InitializeSystemModule43(void)
+// void InitializeConfigDataNode(void)
 
-void InitializeSystemModule43(void)
+void InitializeConfigDataNode(void)
 
 {
   char is_initialized;
@@ -7682,9 +7682,9 @@ void InitializeSystemModule43(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// void InitializeSystemModule44(void)
+// void InitializeFontDataNode(void)
 
-void InitializeSystemModule44(void)
+void InitializeFontDataNode(void)
 
 {
   char is_initialized;
@@ -7729,9 +7729,9 @@ void InitializeSystemModule44(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// void InitializeSystemModule45(void)
+// void InitializeShaderDataNode(void)
 
-void InitializeSystemModule45(void)
+void InitializeShaderDataNode(void)
 
 {
   char is_initialized;
@@ -7776,9 +7776,9 @@ void InitializeSystemModule45(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// void InitializeSystemModule46(void)
+// void InitializePhysicsDataNode(void)
 
-void InitializeSystemModule46(void)
+void InitializePhysicsDataNode(void)
 
 {
   char is_initialized;
@@ -12434,9 +12434,9 @@ void InitializeNetworkSystem(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// void InitializeSystemModule1(void)
+// void InitializeConditionDataNode(void)
 
-void InitializeSystemModule1(void)
+void InitializeConditionDataNode(void)
 
 {
   char is_initialized;
@@ -12481,9 +12481,9 @@ void InitializeSystemModule1(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// void InitializeSystemModule2(void)
+// void InitializeMutexDataNode(void)
 
-void InitializeSystemModule2(void)
+void InitializeMutexDataNode(void)
 
 {
   char is_initialized;
@@ -12528,9 +12528,9 @@ void InitializeSystemModule2(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// void InitializeSystemModule3(void)
+// void InitializeSemaphoreDataNode(void)
 
-void InitializeSystemModule3(void)
+void InitializeSemaphoreDataNode(void)
 
 {
   char is_initialized;
@@ -12575,9 +12575,9 @@ void InitializeSystemModule3(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// void InitializeSystemModule4(void)
+// void InitializeEventDataNode(void)
 
-void InitializeSystemModule4(void)
+void InitializeEventDataNode(void)
 
 {
   char is_initialized;
@@ -12622,9 +12622,9 @@ void InitializeSystemModule4(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
-// void InitializeSystemModule59(void)
+// void InitializeThreadDataNode(void)
 
-void InitializeSystemModule59(void)
+void InitializeThreadDataNode(void)
 
 {
   char is_initialized;
@@ -12670,8 +12670,8 @@ void InitializeSystemModule59(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void InitializeSystemModule6(void)
-void InitializeSystemModule6(void)
+// void InitializeProcessDataNode(void)
+void InitializeProcessDataNode(void)
 
 {
   uint64_t system_parameter;
@@ -12929,9 +12929,9 @@ void InitializeFontSystem(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// void InitializeSystemModule9(void)
+// void InitializeMemoryDataNode(void)
 
-void InitializeSystemModule9(void)
+void InitializeMemoryDataNode(void)
 
 {
   char is_initialized;
@@ -13023,9 +13023,9 @@ void InitializeSystemModule38(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// void InitializeSystemModule10(void)
+// void InitializeFileDataNode(void)
 
-void InitializeSystemModule10(void)
+void InitializeFileDataNode(void)
 
 {
   char is_initialized;
@@ -13117,9 +13117,9 @@ void InitializeSystemNode(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// void InitializeSystemModule44(void)
+// void InitializeFontDataNode(void)
 
-void InitializeSystemModule44(void)
+void InitializeFontDataNode(void)
 
 {
   char is_initialized;
@@ -13250,8 +13250,8 @@ void InitializeSystemComponents(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void InitializeSystemModule3(void)
-void InitializeSystemModule3(void)
+// void InitializeSemaphoreDataNode(void)
+void InitializeSemaphoreDataNode(void)
 
 {
   uint64_t system_parameter;
@@ -13297,9 +13297,9 @@ int InitializeSystemDataNode32(void)
 
   _g_network_system_config_1 = &g_system_data_main; // 原始名称: system_configuration_data
   _g_network_system_config_2 = &g_system_string_buffer; // 原始名称: systemCoreData
-// void InitializeSystemModule59(void)
+// void InitializeThreadDataNode(void)
 
-void InitializeSystemModule59(void)
+void InitializeThreadDataNode(void)
 
 {
   char is_initialized;
@@ -13344,9 +13344,9 @@ void InitializeSystemModule59(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// void InitializeSystemModule6(void)
+// void InitializeProcessDataNode(void)
 
-void InitializeSystemModule6(void)
+void InitializeProcessDataNode(void)
 
 {
   char is_initialized;
@@ -13391,9 +13391,9 @@ void InitializeSystemModule6(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// void InitializeSystemModule42(void)
+// void InitializeNetworkDataNode(void)
 
-void InitializeSystemModule42(void)
+void InitializeNetworkDataNode(void)
 
 {
   char is_initialized;
@@ -13485,9 +13485,9 @@ void InitializeSystemModule35(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// void InitializeSystemModule13(void)
+// void InitializeSecurityDataNode(void)
 
-void InitializeSystemModule13(void)
+void InitializeSecurityDataNode(void)
 
 {
   char is_initialized;
@@ -13532,9 +13532,9 @@ void InitializeSystemModule13(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// void InitializeSystemModule14(void)
+// void InitializeDatabaseDataNode(void)
 
-void InitializeSystemModule14(void)
+void InitializeDatabaseDataNode(void)
 
 {
   char is_initialized;
@@ -13673,9 +13673,9 @@ void InitializeSystemModule37(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// void InitializeSystemModule16(void)
+// void InitializeGraphicsDataNode(void)
 
-void InitializeSystemModule16(void)
+void InitializeGraphicsDataNode(void)
 
 {
   char is_initialized;
@@ -13720,9 +13720,9 @@ void InitializeSystemModule16(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// void InitializeSystemModule17(void)
+// void InitializeTextureDataNode(void)
 
-void InitializeSystemModule17(void)
+void InitializeTextureDataNode(void)
 
 {
   char is_initialized;
@@ -13767,9 +13767,9 @@ void InitializeSystemModule17(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// void InitializeSystemModule18(void)
+// void InitializeAudioDataNode7(void)
 
-void InitializeSystemModule18(void)
+void InitializeAudioDataNode7(void)
 
 {
   char is_initialized;
@@ -13814,9 +13814,9 @@ void InitializeSystemModule18(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// void InitializeSystemModule19(void)
+// void InitializeVideoDataNode(void)
 
-void InitializeSystemModule19(void)
+void InitializeVideoDataNode(void)
 
 {
   char is_initialized;
@@ -14049,9 +14049,9 @@ void InitializeSystemModule39(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// void InitializeSystemModule21(void)
+// void InitializeStringDataNode(void)
 
-void InitializeSystemModule21(void)
+void InitializeStringDataNode(void)
 
 {
   char is_initialized;
@@ -14096,9 +14096,9 @@ void InitializeSystemModule21(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// void InitializeSystemModule43(void)
+// void InitializeConfigDataNode(void)
 
-void InitializeSystemModule43(void)
+void InitializeConfigDataNode(void)
 
 {
   char is_initialized;
@@ -14143,9 +14143,9 @@ void InitializeSystemModule43(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// void InitializeSystemModule23(void)
+// void InitializeResourceDataNode(void)
 
-void InitializeSystemModule23(void)
+void InitializeResourceDataNode(void)
 
 {
   char is_initialized;
@@ -14190,9 +14190,9 @@ void InitializeSystemModule23(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// void InitializeSystemModule24(void)
+// void InitializeBufferDataNode(void)
 
-void InitializeSystemModule24(void)
+void InitializeBufferDataNode(void)
 
 {
   char is_initialized;
@@ -14650,9 +14650,9 @@ int InitializeSystemDataNode32(void)
 
   g_system_state_ptr = &g_system_data_main;
   g_system_config_ptr = &g_system_debug_data;
-// void InitializeSystemModule59(void)
+// void InitializeThreadDataNode(void)
 
-void InitializeSystemModule59(void)
+void InitializeThreadDataNode(void)
 
 {
   char is_initialized;
@@ -14697,9 +14697,9 @@ void InitializeSystemModule59(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// void InitializeSystemModule6(void)
+// void InitializeProcessDataNode(void)
 
-void InitializeSystemModule6(void)
+void InitializeProcessDataNode(void)
 
 {
   char is_initialized;
@@ -15008,9 +15008,9 @@ void InitializeStringManager(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// void InitializeSystemModule25(void)
+// void InitializeCacheDataNode(void)
 
-void InitializeSystemModule25(void)
+void InitializeCacheDataNode(void)
 
 {
   char is_initialized;
@@ -15055,9 +15055,9 @@ void InitializeSystemModule25(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// void InitializeSystemModule26(void)
+// void InitializePoolDataNode(void)
 
-void InitializeSystemModule26(void)
+void InitializePoolDataNode(void)
 
 {
   char is_initialized;
@@ -15102,9 +15102,9 @@ void InitializeSystemModule26(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// void InitializeSystemModule27(void)
+// void InitializeQueueDataNode(void)
 
-void InitializeSystemModule27(void)
+void InitializeQueueDataNode(void)
 
 {
   char is_initialized;
@@ -15149,9 +15149,9 @@ void InitializeSystemModule27(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// void InitializeSystemModule45(void)
+// void InitializeShaderDataNode(void)
 
-void InitializeSystemModule45(void)
+void InitializeShaderDataNode(void)
 
 {
   char is_initialized;
@@ -15196,9 +15196,9 @@ void InitializeSystemModule45(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// void InitializeSystemModule29(void)
+// void InitializeStackDataNode(void)
 
-void InitializeSystemModule29(void)
+void InitializeStackDataNode(void)
 
 {
   char is_initialized;
@@ -15290,9 +15290,9 @@ void InitializePhysicsSystem(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// void InitializeSystemModule30(void)
+// void InitializeListDataNode(void)
 
-void InitializeSystemModule30(void)
+void InitializeListDataNode(void)
 
 {
   char is_initialized;
@@ -15337,9 +15337,9 @@ void InitializeSystemModule30(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
-// void InitializeSystemModule31(void)
+// void InitializeTreeDataNode(void)
 
-void InitializeSystemModule31(void)
+void InitializeTreeDataNode(void)
 
 {
   char is_initialized;
@@ -15760,9 +15760,9 @@ void ConfigureSystemSettings(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// void InitializeSystemModule32(void)
+// void InitializeGraphDataNode(void)
 
-void InitializeSystemModule32(void)
+void InitializeGraphDataNode(void)
 
 {
   char is_initialized;
@@ -15807,9 +15807,9 @@ void InitializeSystemModule32(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// void InitializeSystemModule33(void)
+// void InitializeMapDataNode(void)
 
-void InitializeSystemModule33(void)
+void InitializeMapDataNode(void)
 
 {
   char is_initialized;
@@ -15855,8 +15855,8 @@ void InitializeSystemModule33(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void InitializeSystemModule34(void)
-void InitializeSystemModule34(void)
+// void InitializeSetDataNode(void)
+void InitializeSetDataNode(void)
 
 {
   uint64_t system_parameter;
@@ -16208,8 +16208,8 @@ void InitializeInputSystem(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void InitializeSystemModule42(void)
-void InitializeSystemModule42(void)
+// void InitializeNetworkDataNode(void)
+void InitializeNetworkDataNode(void)
 
 {
   int system_integer_result;
@@ -16934,9 +16934,9 @@ void InitializeSystemModule49(uint8_t *handleIdentifier)
   *(uint32_t *)(system_reg_rdi + SYSTEM_DATA_COMPARE_SIZE) = 0;
   return;
 }
-// void InitializeSystemModule43(void)
+// void InitializeConfigDataNode(void)
 
-void InitializeSystemModule43(void)
+void InitializeConfigDataNode(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -19739,8 +19739,8 @@ bool InitializeSystemComponents(void)
   return system_boolean_flag;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void InitializeSystemModule9(void)
-void InitializeSystemModule9(void)
+// void InitializeMemoryDataNode(void)
+void InitializeMemoryDataNode(void)
 
 {
   char is_initialized;
@@ -22454,8 +22454,8 @@ void HandleSystemOperation92(void)
   ConfigureSystemModule17(g_system_context_1,&g_global_system_config);
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void InitializeSystemModule46(void)
-void InitializeSystemModule46(void)
+// void InitializePhysicsDataNode(void)
+void InitializePhysicsDataNode(void)
 
 {
   longlong *system_memory_pointer;
@@ -25768,9 +25768,9 @@ void HandleSystemData39(longlong handleIdentifier)
   system_reg_rdi[2] = (longlong)(system_reg_rdi + SYSTEM_OBJECT_OFFSET_603);
   return;
 }
-// void InitializeSystemModule45(void)
+// void InitializeShaderDataNode(void)
 
-void InitializeSystemModule45(void)
+void InitializeShaderDataNode(void)
 
 {
   longlong system_RSI;
@@ -26048,9 +26048,9 @@ void ProcessSystemResource22(longlong handleIdentifier,ulonglong resourceIdentif
   system_register_rbx[1] = system_long_value;
   return;
 }
-// void InitializeSystemModule44(void)
+// void InitializeFontDataNode(void)
 
-void InitializeSystemModule44(void)
+void InitializeFontDataNode(void)
 
 {
   longlong system_register_rbx;
@@ -29157,8 +29157,8 @@ void InitializeUISystem(uint64_t *handleIdentifier)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void InitializeSystemModule42(void)
-void InitializeSystemModule42(void)
+// void InitializeNetworkDataNode(void)
+void InitializeNetworkDataNode(void)
 
 {
   longlong system_long_value;
@@ -38135,9 +38135,9 @@ void ConfigureSystemSettings(uint64_t *handleIdentifier)
                     // WARNING: Subroutine does not return
   memset(system_buffer_ptr_data_array,0,SYSTEM_NODE_HEADER_SIZE0000);
 }
-// void InitializeSystemModule44(void)
+// void InitializeFontDataNode(void)
 
-void InitializeSystemModule44(void)
+void InitializeFontDataNode(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -58078,9 +58078,9 @@ INIT_LABEL_SYSTEM_7f7cf:
   handleIdentifier[2] = *(longlong *)(*handleIdentifier + SYSTEM_DATA_OFFSET_210);
   return;
 }
-// void InitializeSystemModule2(void)
+// void InitializeMutexDataNode(void)
 
-void InitializeSystemModule2(void)
+void InitializeMutexDataNode(void)
 
 {
   InitializeSystemDataNode30();
