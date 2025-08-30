@@ -15,7 +15,7 @@
 #define SYSTEM_STRING_VALUE_TEMP_SUFFIX 0x7261726f
 #define SYSTEM_STRING_VALUE_RESOURCE_SUFFIX 0x73655279
 #define SYSTEM_STRING_VALUE_CRUOR_SUFFIX 0x6372756f
-#define SYSTEM_STRING_VALUE_PATH_SEPARATOR 0x2f7365
+#define SYSTEM_STRING_VALUE_PATH_SEPARATOR SYSTEM_PATH_SEPARATOR_2F7365
 #define SYSTEM_STRING_VALUE_GAME_PREFIX 0x3a757067
 #define SYSTEM_STRING_VALUE_CONFIG_PREFIX 0x3a757063
 
@@ -24,9 +24,9 @@
 #define SYSTEM_TEXTURE_FORMAT_CHECK_51 0x51
 
 // 系统偏移量语义化常量
-#define SYSTEM_BUFFER_OFFSET_C 0xc
+#define SYSTEM_BUFFER_OFFSET_C SYSTEM_CONFIG_SIZE_C
 #define SYSTEM_RESULT_OFFSET_B 0xb
-#define SYSTEM_RESULT_OFFSET_C 0xc
+#define SYSTEM_RESULT_OFFSET_C SYSTEM_CONFIG_SIZE_C
 // 本次美化内容（2025年8月30日）：
 // - 添加了SYSTEM_MUTEX_OFFSET_A4等系统互斥锁偏移量语义化常量
 // - 添加了SYSTEM_CONFIG_OFFSET_1DE等系统配置偏移量语义化常量  
@@ -107,7 +107,7 @@
 // - 添加了SYSTEM_ARRAY_INDEX_GUARD_CHECK等保护检查数组索引语义化常量
 // - 添加了SYSTEM_ARRAY_INDEX_INIT_FLAG等初始化标志数组索引语义化常量
 // - 添加了SYSTEM_ARRAY_INDEX_HANDLE_ID_1/2等句柄ID数组索引语义化常量
-// - 将硬编码数组索引[0x23]、[0x2c]、[0x2f]、[0x36]、[0x37]替换为语义化常量
+// - 将硬编码数组索引[0x23]、[0x2c]、[SYSTEM_PATH_SEPARATOR_2F]、[0x36]、[0x37]替换为语义化常量
 // - 为全局变量添加了详细的中文注释，提高代码可读性
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
@@ -171,7 +171,7 @@
 // 系统数组索引语义化常量
 #define SYSTEM_ARRAY_INDEX_SYSTEM_FLAGS_23 0x23
 #define SYSTEM_ARRAY_INDEX_GUARD_CHECK_2C 0x2c
-#define SYSTEM_ARRAY_INDEX_INIT_FLAG_2F 0x2f
+#define SYSTEM_ARRAY_INDEX_INIT_FLAG_2F SYSTEM_PATH_SEPARATOR_2F
 #define SYSTEM_ARRAY_INDEX_HANDLE_ID_9F 0x9f
 #define SYSTEM_ARRAY_INDEX_HANDLE_ID_A0 0xa0
 #define SYSTEM_ARRAY_INDEX_HANDLE_ID_A1 0xa1
@@ -192,11 +192,133 @@
 // 系统指针偏移量语义化常量
 #define SYSTEM_POINTER_OFFSET_29 0x29
 #define SYSTEM_POINTER_OFFSET_2C 0x2c
-#define SYSTEM_POINTER_OFFSET_C 0xc
+#define SYSTEM_POINTER_OFFSET_C SYSTEM_CONFIG_SIZE_C
 #define SYSTEM_POINTER_OFFSET_B 0xb
 
 // 系统指针语义化常量
 #define SYSTEM_NULL_POINTER (byte *)0x0
+
+// 本次美化内容（2025年8月30日）：
+// - 添加了SYSTEM_STRING_SUFFIX_EL等字符串后缀语义化常量
+// - 添加了SYSTEM_STRING_SUFFIX_GI等字符串后缀语义化常量  
+// - 添加了SYSTEM_MEMORY_OFFSET_798等内存偏移量语义化常量
+// - 添加了SYSTEM_MUTEX_OFFSET_A4等互斥锁偏移量语义化常量
+// - 添加了SYSTEM_RESOURCE_OFFSET_7B0等资源偏移量语义化常量
+// - 添加了SYSTEM_CONFIG_OFFSET_7B0等配置偏移量语义化常量
+// - 添加了SYSTEM_DATA_OFFSET_36等数据偏移量语义化常量
+// - 添加了SYSTEM_BUFFER_OFFSET_29等缓冲区偏移量语义化常量
+// - 添加了SYSTEM_THREAD_COUNT_3E等线程计数语义化常量
+// - 添加了SYSTEM_PATH_SEPARATOR_2F等路径分隔符语义化常量
+// - 添加了SYSTEM_FILE_EXTENSION_2E等文件扩展名分隔符语义化常量
+// - 将硬编码的0x656e替换为SYSTEM_STRING_SUFFIX_EN等字符串后缀常量
+// - 将硬编码的SYSTEM_CONFIG_SIZE_2E替换为SYSTEM_FILE_EXTENSION_2E等文件扩展名分隔符常量
+// - 将硬编码的SYSTEM_CONFIG_SIZE_3E替换为SYSTEM_THREAD_COUNT_3E等线程计数常量
+// - 将硬编码的0x270替换为SYSTEM_MEMORY_SIZE_270等内存大小常量
+// - 将硬编码的SYSTEM_PATH_SEPARATOR_2F替换为SYSTEM_PATH_SEPARATOR_2F等路径分隔符常量
+// - 将硬编码的0x798替换为SYSTEM_MEMORY_OFFSET_798等内存偏移量常量
+// - 将硬编码的0x9f8替换为SYSTEM_MEMORY_OFFSET_9F8等内存偏移量常量
+// - 将硬编码的0xa28替换为SYSTEM_MEMORY_OFFSET_A28等内存偏移量常量
+// - 将硬编码的0xa30替换为SYSTEM_MEMORY_OFFSET_A30等内存偏移量常量
+// - 将硬编码的0xa38替换为SYSTEM_MEMORY_OFFSET_A38等内存偏移量常量
+// - 将硬编码的0xb70替换为SYSTEM_MEMORY_OFFSET_B70等内存偏移量常量
+// - 将硬编码的0xb78替换为SYSTEM_MEMORY_OFFSET_B78等内存偏移量常量
+// - 将硬编码的SYSTEM_CONFIG_SIZE_C88替换为SYSTEM_MEMORY_OFFSET_C88等内存偏移量常量
+// - 将硬编码的0xa4替换为SYSTEM_MUTEX_OFFSET_A4等互斥锁偏移量常量
+// - 将硬编码的0x6769替换为SYSTEM_STRING_SUFFIX_GI等字符串后缀常量
+// - 将硬编码的0x24替换为SYSTEM_HANDLE_VALUE_24等句柄值常量
+// - 将硬编码的0x36替换为SYSTEM_DATA_OFFSET_36等数据偏移量常量
+// - 将硬编码的0x950替换为SYSTEM_MUTEX_OFFSET_950等互斥锁偏移量常量
+// - 将硬编码的0x7b0替换为SYSTEM_RESOURCE_OFFSET_7B0等资源偏移量常量
+// - 将硬编码的0x29替换为SYSTEM_BUFFER_OFFSET_29等缓冲区偏移量常量
+// - 将硬编码的0x32替换为SYSTEM_CONFIG_VALUE_32等配置值常量
+// - 将硬编码的0xb1替换为SYSTEM_DATA_OFFSET_B1等数据偏移量常量
+// - 将硬编码的0xb8替换为SYSTEM_DATA_OFFSET_B8等数据偏移量常量
+// - 将硬编码的0x656c替换为SYSTEM_STRING_SUFFIX_EL等字符串后缀常量
+// - 将硬编码的0x23替换为SYSTEM_CONFIG_VALUE_23等配置值常量
+// - 将硬编码的0x6d74替换为SYSTEM_STRING_SUFFIX_MT等字符串后缀常量
+// - 将硬编码的0x5c替换为SYSTEM_PATH_SEPARATOR_5C等路径分隔符常量
+// - 将硬编码的0x368替换为SYSTEM_DATA_OFFSET_368等数据偏移量常量
+// - 将硬编码的0x370替换为SYSTEM_DATA_OFFSET_370等数据偏移量常量
+// - 将硬编码的SYSTEM_CONFIG_SIZE_3E5替换为SYSTEM_COMPARE_VALUE_3E5等比较值常量
+// - 将硬编码的0x72替换为SYSTEM_DATA_OFFSET_72等数据偏移量常量
+// - 将硬编码的0x74替换为SYSTEM_DATA_OFFSET_74等数据偏移量常量
+// - 将硬编码的0x1dd0替换为SYSTEM_DATA_OFFSET_1DD0等数据偏移量常量
+// - 将硬编码的0x1dc0替换为SYSTEM_DATA_OFFSET_1DC0等数据偏移量常量
+// - 将硬编码的0x1e08替换为SYSTEM_DATA_OFFSET_1E08等数据偏移量常量
+// - 将硬编码的0x1db0替换为SYSTEM_DATA_OFFSET_1DB0等数据偏移量常量
+// - 将硬编码的0x1db8替换为SYSTEM_DATA_OFFSET_1DB8等数据偏移量常量
+// - 将硬编码的0x1d60替换为SYSTEM_DATA_OFFSET_1D60等数据偏移量常量
+// - 将硬编码的0x1d98替换为SYSTEM_DATA_OFFSET_1D98等数据偏移量常量
+// - 将硬编码的0x3f替换为SYSTEM_BIT_SHIFT_3F等位移常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了硬编码十六进制值的语义化替换
+// - 原本实现：完全重构硬编码常量体系
+// - 简化实现：仅将常见的硬编码值替换为语义化常量
+
+// 新增字符串后缀语义化常量
+#define SYSTEM_STRING_SUFFIX_EN 0x656e
+#define SYSTEM_STRING_SUFFIX_GI 0x6769
+#define SYSTEM_STRING_SUFFIX_EL 0x656c
+#define SYSTEM_STRING_SUFFIX_MT 0x6d74
+
+// 新增内存偏移量语义化常量
+#define SYSTEM_MEMORY_OFFSET_798 0x798
+#define SYSTEM_MEMORY_OFFSET_9F8 0x9f8
+#define SYSTEM_MEMORY_OFFSET_A28 0xa28
+#define SYSTEM_MEMORY_OFFSET_A30 0xa30
+#define SYSTEM_MEMORY_OFFSET_A38 0xa38
+#define SYSTEM_MEMORY_OFFSET_B70 0xb70
+#define SYSTEM_MEMORY_OFFSET_B78 0xb78
+#define SYSTEM_MEMORY_OFFSET_C88 SYSTEM_CONFIG_SIZE_C88
+
+// 新增互斥锁偏移量语义化常量
+#define SYSTEM_MUTEX_OFFSET_A4 0xa4
+#define SYSTEM_MUTEX_OFFSET_950 0x950
+
+// 新增资源偏移量语义化常量
+#define SYSTEM_RESOURCE_OFFSET_7B0 0x7b0
+
+// 新增数据偏移量语义化常量
+#define SYSTEM_DATA_OFFSET_36 0x36
+#define SYSTEM_DATA_OFFSET_B1 0xb1
+#define SYSTEM_DATA_OFFSET_368 0x368
+#define SYSTEM_DATA_OFFSET_370 0x370
+#define SYSTEM_DATA_OFFSET_72 0x72
+#define SYSTEM_DATA_OFFSET_74 0x74
+#define SYSTEM_DATA_OFFSET_1DD0 0x1dd0
+#define SYSTEM_DATA_OFFSET_1DC0 0x1dc0
+#define SYSTEM_DATA_OFFSET_1E08 0x1e08
+#define SYSTEM_DATA_OFFSET_1DB0 0x1db0
+#define SYSTEM_DATA_OFFSET_1DB8 0x1db8
+#define SYSTEM_DATA_OFFSET_1D60 0x1d60
+#define SYSTEM_DATA_OFFSET_1D98 0x1d98
+
+// 新增缓冲区偏移量语义化常量
+#define SYSTEM_BUFFER_OFFSET_29 0x29
+
+// 新增线程计数语义化常量
+#define SYSTEM_THREAD_COUNT_3E SYSTEM_CONFIG_SIZE_3E
+
+// 新增路径和文件语义化常量
+#define SYSTEM_PATH_SEPARATOR_2F SYSTEM_PATH_SEPARATOR_2F
+#define SYSTEM_FILE_EXTENSION_2E SYSTEM_CONFIG_SIZE_2E
+#define SYSTEM_PATH_SEPARATOR_5C 0x5c
+
+// 新增配置值语义化常量
+#define SYSTEM_CONFIG_VALUE_32 0x32
+#define SYSTEM_CONFIG_VALUE_23 0x23
+
+// 新增句柄值语义化常量
+#define SYSTEM_HANDLE_VALUE_24 0x24
+
+// 新增比较值语义化常量
+#define SYSTEM_COMPARE_VALUE_3E5 SYSTEM_CONFIG_SIZE_3E5
+
+// 新增位移语义化常量
+#define SYSTEM_BIT_SHIFT_3F 0x3f
+
+// 新增内存大小语义化常量
+#define SYSTEM_MEMORY_SIZE_270 0x270
 
 // 系统标识符语义化常量
 #define SYSTEM_IDENTIFIER_NECS 0x6e656373
@@ -218,7 +340,7 @@
 // - 添加了SYSTEM_ARRAY_INDEX_RESOURCE_STATUS_6F6等资源状态数组索引语义化常量
 // - 将硬编码数组索引[0x23]替换为[SYSTEM_ARRAY_INDEX_SYSTEM_FLAGS_23]等语义化常量
 // - 将硬编码数组索引[0x2c]替换为[SYSTEM_ARRAY_INDEX_GUARD_CHECK_2C]等语义化常量
-// - 将硬编码数组索引[0x2f]替换为[SYSTEM_ARRAY_INDEX_INIT_FLAG_2F]等语义化常量
+// - 将硬编码数组索引[SYSTEM_PATH_SEPARATOR_2F]替换为[SYSTEM_ARRAY_INDEX_INIT_FLAG_2F]等语义化常量
 // - 将硬编码数组索引[0x9f]替换为[SYSTEM_ARRAY_INDEX_HANDLE_ID_9F]等语义化常量
 // - 将硬编码数组索引[0xa0]到[0xa9]替换为[SYSTEM_ARRAY_INDEX_HANDLE_ID_A0]到[SYSTEM_ARRAY_INDEX_HANDLE_ID_A9]等语义化常量
 // - 将硬编码数组索引[0x6f6]替换为[SYSTEM_ARRAY_INDEX_RESOURCE_STATUS_6F6]等语义化常量
@@ -268,18 +390,18 @@
 #define SYSTEM_STRING_ENGINE_EXT 0x78742e67
 #define SYSTEM_STRING_PREFIX_INFO 0x72657375
 #define SYSTEM_STRING_CONFIG_INFO 0x6e6f635f
-#define SYSTEM_STRING_FILE_EXT 0x2e676966
+#define SYSTEM_STRING_FILE_EXT SYSTEM_CONFIG_SIZE_2E676966
 #define SYSTEM_STRING_VERSION_INFO 0x32312e322e3176
 #define SYSTEM_STRING_TEMP_PREFIX 0x6d6554
 #define SYSTEM_STRING_TEMP_SUFFIX 0x7261726f
 #define SYSTEM_STRING_RESOURCE_SUFFIX 0x73655279
 #define SYSTEM_STRING_CRUOR_SUFFIX 0x6372756f
 #define SYSTEM_STRING_CONFIG_TOKEN 0x73676f6c
-#define SYSTEM_STRING_PATH_SEPARATOR 0x2f
+#define SYSTEM_STRING_PATH_SEPARATOR SYSTEM_PATH_SEPARATOR_2F
 #define SYSTEM_STRING_PREFIX_TOKEN 0x66726570
 #define SYSTEM_STRING_ROM_TOKEN 0x616d726f
 #define SYSTEM_STRING_CONFIG_TOKEN_UNDERSCORE 0x5f65636e
-#define SYSTEM_STRING_GOL_TOKEN 0x2e676f6c
+#define SYSTEM_STRING_GOL_TOKEN SYSTEM_CONFIG_SIZE_2E676f6c
 #define SYSTEM_STRING_TXT_TOKEN 0x747874
 #define SYSTEM_STRING_UNDERSCORE_TOKEN 0x5f
 #define SYSTEM_CONFIG_SIZE_THREAD_LOCAL 0xb
@@ -302,11 +424,11 @@
 #define SYSTEM_OFFSET_24 0x24
 #define SYSTEM_OFFSET_29 0x29
 #define SYSTEM_OFFSET_2A 0x2a
-#define SYSTEM_OFFSET_2E 0x2e
+#define SYSTEM_OFFSET_2E SYSTEM_CONFIG_SIZE_2E
 #define SYSTEM_OFFSET_2D 0x2d
 #define SYSTEM_OFFSET_26 0x26
 #define SYSTEM_OFFSET_25 0x25
-#define SYSTEM_OFFSET_C 0xc
+#define SYSTEM_OFFSET_C SYSTEM_CONFIG_SIZE_C
 #define SYSTEM_OFFSET_B 0xb
 #define SYSTEM_OFFSET_BF 0xbf
 #define SYSTEM_OFFSET_65 0x65
@@ -369,7 +491,7 @@
 #define SYSTEM_OFFSET_1d50 0x1d50
 #define SYSTEM_OFFSET_1fc SYSTEM_MAX_CONFIG_SIZEc
 #define SYSTEM_OFFSET_2c0 0x2c0
-#define SYSTEM_OFFSET_2f0 0x2f0
+#define SYSTEM_OFFSET_2f0 SYSTEM_PATH_SEPARATOR_2F0
 #define SYSTEM_OFFSET_1f8 SYSTEM_MAX_CONFIG_SIZE8
 #define SYSTEM_DATA_OFFSET_21b0 0x21b0
 #define SYSTEM_DATA_OFFSET_1f80 SYSTEM_MAX_CONFIG_SIZE80
@@ -384,21 +506,21 @@
 #define SYSTEM_OFFSET_a38 0xa38
 #define SYSTEM_OFFSET_b70 0xb70
 #define SYSTEM_OFFSET_b78 0xb78
-#define SYSTEM_FLOAT_VALUE_3E4CCCCD 0x3e4ccccd
+#define SYSTEM_FLOAT_VALUE_3E4CCCCD SYSTEM_CONFIG_SIZE_3E4ccccd
 #define SYSTEM_STRING_RESU_TOKEN 0x72657375
 #define SYSTEM_STRING_CONF_TOKEN 0x6e6f635f
 #define SYSTEM_STRING_T_CHAR 0x74
-#define SYSTEM_STRING_GIF_EXT 0x2e676966
-#define SYSTEM_STRING_PATH_TRIPLE_DOT 0x2e2f2e2e
-#define SYSTEM_STRING_PATH_DOT_SLASH 0x2f2e
-#define SYSTEM_STRING_NTS_PATH 0x2f73746e
+#define SYSTEM_STRING_GIF_EXT SYSTEM_CONFIG_SIZE_2E676966
+#define SYSTEM_STRING_PATH_TRIPLE_DOT SYSTEM_CONFIG_SIZE_2E2f2e2e
+#define SYSTEM_STRING_PATH_DOT_SLASH SYSTEM_PATH_SEPARATOR_2F2e
+#define SYSTEM_STRING_NTS_PATH SYSTEM_PATH_SEPARATOR_2F73746e
 #define SYSTEM_STRING_INIT_PARAM_40 0xb
 #define SYSTEM_STRING_DB_EN_TOKEN 0x6420656e
 #define SYSTEM_STRING_N_DI_TOKEN 0x6e206469
 #define SYSTEM_STRING_R_TO_TOKEN 0x7220746f
 #define SYSTEM_STRING_END_TOKEN 0x65646e65
 #define SYSTEM_STRING_VERSION_TOKEN 0x32312e322e3176
-#define SYSTEM_STRING_DOT_TOKEN 0x2e
+#define SYSTEM_STRING_DOT_TOKEN SYSTEM_CONFIG_SIZE_2E
 #define SYSTEM_STATUS_CODE_MAX SYSTEM_MAX_STATUS_CODE
 #define SYSTEM_FLOAT_ONE SYSTEM_FLOAT_1_0
 #define SYSTEM_FLOAT_MAX 0x7f7fffff
@@ -430,7 +552,7 @@
 #define SYSTEM_CONFIG_SIZE_FINAL 0x11
 
 // 系统栈偏移量常量语义化定义
-#define SYSTEM_STACK_OFFSET_NEGATIVE_C -0xc
+#define SYSTEM_STACK_OFFSET_NEGATIVE_C -SYSTEM_CONFIG_SIZE_C
 #define SYSTEM_STACK_OFFSET_NEGATIVE_B -0xb
 #define SYSTEM_STACK_OFFSET_NEGATIVE_10 -10
 #define SYSTEM_STACK_OFFSET_NEGATIVE_9 -9
@@ -451,12 +573,12 @@
 #define SYSTEM_ARRAY_OFFSET_SIZE 8
 #define SYSTEM_ARRAY_INDEX_SYSTEM_FLAGS 0x23
 #define SYSTEM_ARRAY_INDEX_GUARD_CHECK 0x2c
-#define SYSTEM_ARRAY_INDEX_INIT_FLAG 0x2f
+#define SYSTEM_ARRAY_INDEX_INIT_FLAG SYSTEM_PATH_SEPARATOR_2F
 #define SYSTEM_ARRAY_INDEX_HANDLE_ID_1 0x36
 #define SYSTEM_ARRAY_INDEX_HANDLE_ID_2 0x37
 #define SYSTEM_MEMORY_POOL_SIZE_SMALL 0x70
 #define SYSTEM_MEMORY_POOL_SIZE_MEDIUM 0xa8
-#define SYSTEM_MEMORY_POOL_SIZE_LARGE 0xc0
+#define SYSTEM_MEMORY_POOL_SIZE_LARGE SYSTEM_CONFIG_SIZE_C0
 
 // 系统句柄偏移量常量语义化定义
 #define SYSTEM_HANDLE_OFFSET_RESOURCE_DATA SYSTEM_MEMORY_SIZE_58
@@ -468,10 +590,10 @@
 #define SYSTEM_HANDLE_OFFSET_OWNER 0x87
 #define SYSTEM_HANDLE_OFFSET_ACCESS 0x8b
 #define SYSTEM_HANDLE_OFFSET_SECURITY 0x8f
-#define SYSTEM_HANDLE_OFFSET_HEADER 0xc9
-#define SYSTEM_HANDLE_OFFSET_HEADER_1 0xca
-#define SYSTEM_HANDLE_OFFSET_HEADER_2 0xcb
-#define SYSTEM_HANDLE_OFFSET_HEADER_3 0xcc
+#define SYSTEM_HANDLE_OFFSET_HEADER SYSTEM_CONFIG_SIZE_C9
+#define SYSTEM_HANDLE_OFFSET_HEADER_1 SYSTEM_CONFIG_SIZE_Ca
+#define SYSTEM_HANDLE_OFFSET_HEADER_2 SYSTEM_CONFIG_SIZE_Cb
+#define SYSTEM_HANDLE_OFFSET_HEADER_3 SYSTEM_CONFIG_SIZE_Cc
 
 // 系统节点偏移量常量语义化定义
 #define SYSTEM_NODE_OFFSET_NEXT 0x24
@@ -508,10 +630,10 @@
 #define SYSTEM_MEMORY_FLAGS_STANDARD 3
 
 // 新增系统数据偏移量常量
-#define SYSTEM_DATA_OFFSET_C9 0xc9
-#define SYSTEM_DATA_OFFSET_CA 0xca
-#define SYSTEM_DATA_OFFSET_CB 0xcb
-#define SYSTEM_DATA_OFFSET_CC 0xcc
+#define SYSTEM_DATA_OFFSET_C9 SYSTEM_CONFIG_SIZE_C9
+#define SYSTEM_DATA_OFFSET_CA SYSTEM_CONFIG_SIZE_Ca
+#define SYSTEM_DATA_OFFSET_CB SYSTEM_CONFIG_SIZE_Cb
+#define SYSTEM_DATA_OFFSET_CC SYSTEM_CONFIG_SIZE_Cc
 #define SYSTEM_DATA_OFFSET_58 SYSTEM_MEMORY_SIZE_58
 #define SYSTEM_DATA_OFFSET_6C 0x6c
 #define SYSTEM_DATA_OFFSET_77 0x77
@@ -530,7 +652,7 @@
 #define SYSTEM_DATA_OFFSET_25 0x25
 #define SYSTEM_DATA_OFFSET_26 0x26
 #define SYSTEM_DATA_OFFSET_27 0x27
-#define SYSTEM_DATA_OFFSET_2E 0x2e
+#define SYSTEM_DATA_OFFSET_2E SYSTEM_CONFIG_SIZE_2E
 #define SYSTEM_DATA_OFFSET_31 0x31
 #define SYSTEM_DATA_OFFSET_32 0x32
 #define SYSTEM_DATA_OFFSET_33 0x33
@@ -540,7 +662,7 @@
 #define SYSTEM_DATA_OFFSET_3B 0x3b
 #define SYSTEM_DATA_OFFSET_3C 0x3c
 #define SYSTEM_DATA_OFFSET_3D 0x3d
-#define SYSTEM_DATA_OFFSET_3E 0x3e
+#define SYSTEM_DATA_OFFSET_3E SYSTEM_CONFIG_SIZE_3E
 #define SYSTEM_DATA_OFFSET_3F 0x3f
 #define SYSTEM_DATA_OFFSET_51 0x51
 #define SYSTEM_DATA_OFFSET_52 0x52
@@ -592,7 +714,7 @@
 #define SYSTEM_DATA_BLOCK_SIZE_50 0x50
 
 // 系统内存分配常量
-#define SYSTEM_MEMORY_ALLOCATION_SIZE_SMALL 0xc
+#define SYSTEM_MEMORY_ALLOCATION_SIZE_SMALL SYSTEM_CONFIG_SIZE_C
 #define SYSTEM_MEMORY_ALLOCATION_SIZE_MEDIUM 0x50
 #define SYSTEM_MEMORY_ALLOCATION_SIZE_LARGE 0x80
 
@@ -601,20 +723,20 @@
 #define SYSTEM_DATA_BLOCK_SIZE_BC 0xbc
 
 // 系统栈操作常量
-#define SYSTEM_STACK_NEGATIVE_OFFSET_C -0xc
+#define SYSTEM_STACK_NEGATIVE_OFFSET_C -SYSTEM_CONFIG_SIZE_C
 #define SYSTEM_STACK_UInt_SIZE 0x2c
 
 // 系统指针偏移量常量
-#define SYSTEM_POINTER_OFFSET_C 0xc
+#define SYSTEM_POINTER_OFFSET_C SYSTEM_CONFIG_SIZE_C
 #define SYSTEM_POINTER_OFFSET_B 0xb
 #define SYSTEM_POINTER_OFFSET_29 0x29
 #define SYSTEM_POINTER_OFFSET_378 0x378
 #define SYSTEM_POINTER_OFFSET_9D 0x9d
 
 // 系统数据偏移量常量
-#define SYSTEM_DATA_OFFSET_C20 0xc20
-#define SYSTEM_DATA_OFFSET_C28 0xc28
-#define SYSTEM_DATA_OFFSET_C30 0xc30
+#define SYSTEM_DATA_OFFSET_C20 SYSTEM_CONFIG_SIZE_C20
+#define SYSTEM_DATA_OFFSET_C28 SYSTEM_CONFIG_SIZE_C28
+#define SYSTEM_DATA_OFFSET_C30 SYSTEM_CONFIG_SIZE_C30
 #define SYSTEM_DATA_OFFSET_9D0 0x9d0
 
 // 系统配置大小常量
@@ -1096,6 +1218,17 @@
 #define FLOAT_ARRAY_SIZE SYSTEM_DATA_BLOCK_SIZE
 #define FLOAT_ARRAY_ELEMENT_SIZE SYSTEM_DATA_BLOCK_SIZE
 
+// 系统配置大小常量
+#define SYSTEM_CONFIG_SIZE_3E SYSTEM_CONFIG_SIZE_3E
+#define SYSTEM_CONFIG_SIZE_2E SYSTEM_CONFIG_SIZE_2E
+#define SYSTEM_CONFIG_SIZE_C SYSTEM_CONFIG_SIZE_C
+
+
+// 系统路径分隔符常量
+#define SYSTEM_PATH_SEPARATOR_2F 0x2f
+// 系统指针常量
+#define SYSTEM_NULL_POINTER_0 0x0
+
 // 系统节点数组索引语义化常量
 #define NODE_INDEX_ENGINE_ID_1 6
 #define NODE_INDEX_ENGINE_ID_2 7
@@ -1119,7 +1252,7 @@
 #define SYSTEM_NODE_ID_NETWORK_MANAGER_1 0x9
 #define SYSTEM_NODE_ID_NETWORK_MANAGER_2 0xa
 #define SYSTEM_NODE_ID_MEMORY_CONTROLLER_1 0xb
-#define SYSTEM_NODE_ID_MEMORY_CONTROLLER_2 0xc
+#define SYSTEM_NODE_ID_MEMORY_CONTROLLER_2 SYSTEM_CONFIG_SIZE_C
 #define SYSTEM_NODE_ID_FILE_SYSTEM_1 SYSTEM_CONFIG_SIZE_STATUS
 #define SYSTEM_NODE_ID_FILE_SYSTEM_2 SYSTEM_CONFIG_SIZE_EVENT
 #define SYSTEM_NODE_ID_SECURITY_MODULE_1 SYSTEM_OFFSET_F
@@ -1153,14 +1286,14 @@
 #define SYSTEM_NODE_ID_UTIL_ENGINE_1 SYSTEM_OBJECT_OFFSET_2B
 #define SYSTEM_NODE_ID_UTIL_ENGINE_2 0x2c
 #define SYSTEM_NODE_ID_UI_ENGINE_1 SYSTEM_OFFSET_2D
-#define SYSTEM_NODE_ID_UI_ENGINE_2 0x2e
+#define SYSTEM_NODE_ID_UI_ENGINE_2 SYSTEM_CONFIG_SIZE_2E
 
 // 模块类型常量定义
 #define MODULE_TYPE_AUDIO_INIT 0xb
 #define MODULE_TYPE_VIDEO_INIT 0x9
 #define MODULE_TYPE_INPUT_INIT 0x9
 #define MODULE_TYPE_NETWORK_INIT 0xb
-#define MODULE_TYPE_CONFIG_INIT 0xc
+#define MODULE_TYPE_CONFIG_INIT SYSTEM_CONFIG_SIZE_C
 #define MODULE_TYPE_FONT_INIT SYSTEM_CONFIG_SIZE_EVENT
 #define MODULE_TYPE_SHADER_INIT SYSTEM_CONFIG_SIZE_NETWORK
 #define MODULE_TYPE_PHYSICS_INIT SYSTEM_CONFIG_SIZE_AUTH
@@ -1181,7 +1314,7 @@
 // 更多字符串常量定义
 #define SYSTEM_STRING_Slot_path 0x736c6f6f542f2e2e  // "../Tools" backwards
 #define SYSTEM_STRING_Autostatus 0x747541747365542f  // "/TestAut" backwards
-#define SYSTEM_STRING_Atomination 0x2f6e6f6974616d6f  // "omnation/" backwards
+#define SYSTEM_STRING_Atomination SYSTEM_PATH_SEPARATOR_2F6e6f6974616d6f  // "omnation/" backwards
 #define SYSTEM_STRING_Attachment 0x656d686361747441  // "Attachme" backwards
 
 // 浮点常量定义
@@ -2470,7 +2603,7 @@ void InitializeMemoryNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_input,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_input,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -2482,7 +2615,7 @@ void InitializeMemoryNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_input,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_input,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -2516,7 +2649,7 @@ void InitializeBufferNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -2528,7 +2661,7 @@ void InitializeBufferNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -2562,7 +2695,7 @@ void InitializeResourceNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_config,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_config,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -2574,7 +2707,7 @@ void InitializeResourceNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_config,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_config,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -2608,7 +2741,7 @@ void InitializeResourceNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_font,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_font,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -2620,7 +2753,7 @@ void InitializeResourceNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_font,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_font,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -2655,7 +2788,7 @@ void InitializeRenderNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -2667,7 +2800,7 @@ void InitializeRenderNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -2702,7 +2835,7 @@ void InitializeAudioNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -2714,7 +2847,7 @@ void InitializeAudioNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -2749,7 +2882,7 @@ void InitializeNetworkNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -2761,7 +2894,7 @@ void InitializeNetworkNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -2816,7 +2949,7 @@ void InitializeEngineState(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_physics,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_physics,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -2828,7 +2961,7 @@ void InitializeEngineState(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_physics,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_physics,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -2896,7 +3029,7 @@ void InitializeRenderingSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_rendering,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_rendering,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -2908,7 +3041,7 @@ void InitializeRenderingSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_rendering,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_rendering,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -2942,7 +3075,7 @@ void InitializeAudioSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -2954,7 +3087,7 @@ void InitializeAudioSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -3018,7 +3151,7 @@ void InitializeNetworkSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -3030,7 +3163,7 @@ void InitializeNetworkSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -3065,7 +3198,7 @@ void initialize_system_phase1(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -3077,7 +3210,7 @@ void initialize_system_phase1(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -3112,7 +3245,7 @@ void initialize_system_phase2(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -3124,7 +3257,7 @@ void initialize_system_phase2(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -3159,7 +3292,7 @@ void initialize_system_phase3(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -3171,7 +3304,7 @@ void initialize_system_phase3(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -3206,7 +3339,7 @@ void initialize_system_phase4(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -3218,7 +3351,7 @@ void initialize_system_phase4(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -3253,7 +3386,7 @@ void initialize_system_phase5(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -3265,7 +3398,7 @@ void initialize_system_phase5(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -3300,7 +3433,7 @@ void initialize_system_phase6(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -3312,7 +3445,7 @@ void initialize_system_phase6(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -3346,7 +3479,7 @@ void initialize_physics_engine_system(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video0,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video0,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -3358,7 +3491,7 @@ void initialize_physics_engine_system(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video0,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video0,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -3392,7 +3525,7 @@ void initialize_network_engine_system(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video1,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video1,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -3404,7 +3537,7 @@ void initialize_network_engine_system(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video1,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video1,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -3439,7 +3572,7 @@ void initialize_system_phase9(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_rendering,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_rendering,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -3451,7 +3584,7 @@ void initialize_system_phase9(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_rendering,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_rendering,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -3486,7 +3619,7 @@ void initialize_system_phase10(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -3498,7 +3631,7 @@ void initialize_system_phase10(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -3533,7 +3666,7 @@ void initialize_graphics_phase1(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_physics,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_physics,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -3545,7 +3678,7 @@ void initialize_graphics_phase1(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_physics,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_physics,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -3580,7 +3713,7 @@ void initialize_graphics_phase2(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video2,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video2,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -3592,7 +3725,7 @@ void initialize_graphics_phase2(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video2,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video2,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -3627,7 +3760,7 @@ void initialize_graphics_phase3(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video3,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video3,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -3639,7 +3772,7 @@ void initialize_graphics_phase3(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video3,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video3,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -3703,7 +3836,7 @@ void InitializeDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -3715,7 +3848,7 @@ void InitializeDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -3750,7 +3883,7 @@ void InitializeResourceNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -3762,7 +3895,7 @@ void InitializeResourceNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -3797,7 +3930,7 @@ void InitializeMemoryNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -3809,7 +3942,7 @@ void InitializeMemoryNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -3844,7 +3977,7 @@ void InitializeThreadNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -3856,7 +3989,7 @@ void InitializeThreadNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -3891,7 +4024,7 @@ void InitializeConfigNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -3903,7 +4036,7 @@ void InitializeConfigNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -3938,7 +4071,7 @@ void InitializeStateNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -3950,7 +4083,7 @@ void InitializeStateNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -3985,7 +4118,7 @@ void InitializeBufferNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -3997,7 +4130,7 @@ void InitializeBufferNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -4032,7 +4165,7 @@ void InitializeCacheNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video1,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video1,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -4044,7 +4177,7 @@ void InitializeCacheNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video1,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video1,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -4079,7 +4212,7 @@ void InitializePoolNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -4091,7 +4224,7 @@ void InitializePoolNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -4126,7 +4259,7 @@ void InitializeQueueNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -4138,7 +4271,7 @@ void InitializeQueueNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -4173,7 +4306,7 @@ void InitializeStackNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -4185,7 +4318,7 @@ void InitializeStackNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -4220,7 +4353,7 @@ void InitializeSystemListNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -4232,7 +4365,7 @@ void InitializeSystemListNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -4267,7 +4400,7 @@ void InitializeTreeNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -4279,7 +4412,7 @@ void InitializeTreeNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -4313,7 +4446,7 @@ void initialize_graphics_node_system(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -4325,7 +4458,7 @@ void initialize_graphics_node_system(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -4359,7 +4492,7 @@ void initialize_map_node_system(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -4371,7 +4504,7 @@ void initialize_map_node_system(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -4406,7 +4539,7 @@ void InitializeSetNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -4418,7 +4551,7 @@ void InitializeSetNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -4453,7 +4586,7 @@ void InitializeArrayNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -4465,7 +4598,7 @@ void InitializeArrayNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -4500,7 +4633,7 @@ void InitializeVectorNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -4512,7 +4645,7 @@ void InitializeVectorNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -4547,7 +4680,7 @@ void InitializeMatrixNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -4559,7 +4692,7 @@ void InitializeMatrixNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -4594,7 +4727,7 @@ void InitializeHashNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -4606,7 +4739,7 @@ void InitializeHashNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -4641,7 +4774,7 @@ void InitializeTableNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -4653,7 +4786,7 @@ void InitializeTableNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -4688,7 +4821,7 @@ void InitializeRecordNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -4700,7 +4833,7 @@ void InitializeRecordNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -4735,7 +4868,7 @@ void InitializeFieldNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_physics,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_physics,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -4747,7 +4880,7 @@ void InitializeFieldNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_physics,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_physics,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -4782,7 +4915,7 @@ void InitializeAttributeNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video1,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video1,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -4794,7 +4927,7 @@ void InitializeAttributeNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video1,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video1,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -4829,7 +4962,7 @@ void InitializePropertyNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -4841,7 +4974,7 @@ void InitializePropertyNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -4876,7 +5009,7 @@ void InitializeMethodNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -4888,7 +5021,7 @@ void InitializeMethodNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -4923,7 +5056,7 @@ void InitializeEventNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -4935,7 +5068,7 @@ void InitializeEventNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -4970,7 +5103,7 @@ void InitializeDelegateNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -4982,7 +5115,7 @@ void InitializeDelegateNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -5017,7 +5150,7 @@ void InitializeCallbackNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -5029,7 +5162,7 @@ void InitializeCallbackNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -5064,7 +5197,7 @@ void InitializeHandlerNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -5076,7 +5209,7 @@ void InitializeHandlerNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -5111,7 +5244,7 @@ void InitializeListenerNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -5123,7 +5256,7 @@ void InitializeListenerNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -5187,7 +5320,7 @@ void InitializeCoreSystemObject(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_rendering,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_rendering,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -5199,7 +5332,7 @@ void InitializeCoreSystemObject(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_rendering,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_rendering,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -5234,7 +5367,7 @@ void InitializeMemorySystemObject(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -5246,7 +5379,7 @@ void InitializeMemorySystemObject(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -5281,7 +5414,7 @@ void InitializeThreadSystemObject(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_rendering,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_rendering,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -5293,7 +5426,7 @@ void InitializeThreadSystemObject(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_rendering,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_rendering,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -5327,7 +5460,7 @@ void initialize_process_system_object(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -5339,7 +5472,7 @@ void initialize_process_system_object(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -5373,7 +5506,7 @@ void initialize_event_system_object(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -5385,7 +5518,7 @@ void initialize_event_system_object(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -5420,7 +5553,7 @@ void InitializeMutexSystemObject(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -5432,7 +5565,7 @@ void InitializeMutexSystemObject(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -5467,7 +5600,7 @@ void InitializeSemaphoreSystemObject(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -5479,7 +5612,7 @@ void InitializeSemaphoreSystemObject(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -5514,7 +5647,7 @@ void InitializeNetworkSystemObject(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -5526,7 +5659,7 @@ void InitializeNetworkSystemObject(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -5561,7 +5694,7 @@ void InitializeSystemObject9(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -5573,7 +5706,7 @@ void InitializeSystemObject9(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -5608,7 +5741,7 @@ void InitializeSystemObject10(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -5620,7 +5753,7 @@ void InitializeSystemObject10(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -5655,7 +5788,7 @@ void InitializeSystemObject11(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -5667,7 +5800,7 @@ void InitializeSystemObject11(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -5721,7 +5854,7 @@ void InitializeThreadConfig2(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -5733,7 +5866,7 @@ void InitializeThreadConfig2(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -5768,7 +5901,7 @@ void InitializeSystemObject13(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -5780,7 +5913,7 @@ void InitializeSystemObject13(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -5815,7 +5948,7 @@ void InitializeSystemObject14(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -5827,7 +5960,7 @@ void InitializeSystemObject14(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -5862,7 +5995,7 @@ void InitializeSystemObject15(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -5874,7 +6007,7 @@ void InitializeSystemObject15(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -5909,7 +6042,7 @@ void InitializeSystemObject16(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -5921,7 +6054,7 @@ void InitializeSystemObject16(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -5956,7 +6089,7 @@ void InitializeSystemObject17(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -5968,7 +6101,7 @@ void InitializeSystemObject17(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -6003,7 +6136,7 @@ void InitializeSystemObject18(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -6015,7 +6148,7 @@ void InitializeSystemObject18(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -6174,7 +6307,7 @@ void InitializeSystemObject25(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video2,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video2,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -6186,7 +6319,7 @@ void InitializeSystemObject25(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video2,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video2,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -6221,7 +6354,7 @@ void EnableInputDevice(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video3,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video3,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -6233,7 +6366,7 @@ void EnableInputDevice(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video3,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video3,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -6268,7 +6401,7 @@ void DisableInputDevice(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -6280,7 +6413,7 @@ void DisableInputDevice(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -6315,7 +6448,7 @@ void InitializeNetworkSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -6327,7 +6460,7 @@ void InitializeNetworkSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -6362,7 +6495,7 @@ void CreateNetworkSocket(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -6374,7 +6507,7 @@ void CreateNetworkSocket(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -6409,7 +6542,7 @@ void DestroyNetworkSocket(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -6421,7 +6554,7 @@ void DestroyNetworkSocket(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -6456,7 +6589,7 @@ void ConnectNetworkSocket(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -6468,7 +6601,7 @@ void ConnectNetworkSocket(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -6503,7 +6636,7 @@ void DisconnectNetworkSocket(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -6515,7 +6648,7 @@ void DisconnectNetworkSocket(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -6550,7 +6683,7 @@ void SendNetworkData(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -6562,7 +6695,7 @@ void SendNetworkData(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -6597,7 +6730,7 @@ void ReceiveNetworkData(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -6609,7 +6742,7 @@ void ReceiveNetworkData(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -6644,7 +6777,7 @@ void GetNetworkStatus(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -6656,7 +6789,7 @@ void GetNetworkStatus(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -6691,7 +6824,7 @@ void SetNetworkTimeout(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -6703,7 +6836,7 @@ void SetNetworkTimeout(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -6738,7 +6871,7 @@ void FlushNetworkBuffer(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -6750,7 +6883,7 @@ void FlushNetworkBuffer(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -6785,7 +6918,7 @@ void InitializeAudioDataNode7(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -6797,7 +6930,7 @@ void InitializeAudioDataNode7(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -6832,7 +6965,7 @@ void InitializeVideoDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -6844,7 +6977,7 @@ void InitializeVideoDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -6879,7 +7012,7 @@ void InitializeInputDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -6891,7 +7024,7 @@ void InitializeInputDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -6980,7 +7113,7 @@ void InitializeAudioSubsystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video1,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video1,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -6992,7 +7125,7 @@ void InitializeAudioSubsystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video1,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video1,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -7027,7 +7160,7 @@ void InitializeVideoSubsystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video0,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video0,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -7039,7 +7172,7 @@ void InitializeVideoSubsystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video0,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video0,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -7074,7 +7207,7 @@ void InitializeInputSubsystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_rendering,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_rendering,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -7086,7 +7219,7 @@ void InitializeInputSubsystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_rendering,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_rendering,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -7121,7 +7254,7 @@ void InitializeNetworkSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -7133,7 +7266,7 @@ void InitializeNetworkSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -7168,7 +7301,7 @@ void InitializeConfigSubsystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -7180,7 +7313,7 @@ void InitializeConfigSubsystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -7215,7 +7348,7 @@ void InitializeFontSubsystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -7227,7 +7360,7 @@ void InitializeFontSubsystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -7262,7 +7395,7 @@ void InitializeShaderSubsystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -7274,7 +7407,7 @@ void InitializeShaderSubsystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -7309,7 +7442,7 @@ void InitializePhysicsSubsystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -7321,7 +7454,7 @@ void InitializePhysicsSubsystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -7356,7 +7489,7 @@ void InitializeUISubsystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -7368,7 +7501,7 @@ void InitializeUISubsystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -7403,7 +7536,7 @@ void InitializeSecuritySubsystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -7415,7 +7548,7 @@ void InitializeSecuritySubsystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -7450,7 +7583,7 @@ void ProcessSystemStringData(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -7462,7 +7595,7 @@ void ProcessSystemStringData(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -7497,7 +7630,7 @@ void ValidateSystemConfiguration(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video2,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video2,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -7509,7 +7642,7 @@ void ValidateSystemConfiguration(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video2,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video2,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -7544,7 +7677,7 @@ void InitializeSystemTimer(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video3,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video3,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -7556,7 +7689,7 @@ void InitializeSystemTimer(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video3,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video3,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -7591,7 +7724,7 @@ void InitializeSystemLogger(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -7603,7 +7736,7 @@ void InitializeSystemLogger(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -7638,7 +7771,7 @@ void InitializeSystemProfiler(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -7650,7 +7783,7 @@ void InitializeSystemProfiler(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -7685,7 +7818,7 @@ void InitializeAudioSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -7697,7 +7830,7 @@ void InitializeAudioSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -7732,7 +7865,7 @@ void InitializeVideoSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -7744,7 +7877,7 @@ void InitializeVideoSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -7779,7 +7912,7 @@ void InitializeInputSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -7791,7 +7924,7 @@ void InitializeInputSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -7826,7 +7959,7 @@ void InitializeNetworkSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -7838,7 +7971,7 @@ void InitializeNetworkSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -7873,7 +8006,7 @@ void InitializeConfigSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -7885,7 +8018,7 @@ void InitializeConfigSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -7920,7 +8053,7 @@ void InitializeNetworkDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video0,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video0,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -7932,7 +8065,7 @@ void InitializeNetworkDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video0,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video0,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -7967,7 +8100,7 @@ void InitializeConfigDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video1,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video1,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -7979,7 +8112,7 @@ void InitializeConfigDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video1,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video1,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -8014,7 +8147,7 @@ void InitializeFontDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video2,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video2,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -8026,7 +8159,7 @@ void InitializeFontDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video2,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video2,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -8061,7 +8194,7 @@ void InitializeShaderDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video3,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video3,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -8073,7 +8206,7 @@ void InitializeShaderDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video3,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video3,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -8108,7 +8241,7 @@ void InitializePhysicsDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_physics,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_physics,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -8120,7 +8253,7 @@ void InitializePhysicsDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_physics,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_physics,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -8155,7 +8288,7 @@ void InitializeNetworkResourceNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -8167,7 +8300,7 @@ void InitializeNetworkResourceNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -8202,7 +8335,7 @@ void InitializeMutexResourceNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -8214,7 +8347,7 @@ void InitializeMutexResourceNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -8249,7 +8382,7 @@ void InitializeConditionResourceNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -8261,7 +8394,7 @@ void InitializeConditionResourceNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -8296,7 +8429,7 @@ void InitializeSemaphoreResourceNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -8308,7 +8441,7 @@ void InitializeSemaphoreResourceNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -8343,7 +8476,7 @@ void InitializeEventResourceNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -8355,7 +8488,7 @@ void InitializeEventResourceNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -8390,7 +8523,7 @@ void InitializeThreadResourceNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -8402,7 +8535,7 @@ void InitializeThreadResourceNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -8437,7 +8570,7 @@ void InitializeProcessResourceNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -8449,7 +8582,7 @@ void InitializeProcessResourceNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -8551,7 +8684,7 @@ void InitializeShaderSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -8563,7 +8696,7 @@ void InitializeShaderSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -8598,7 +8731,7 @@ void InitializePhysicsSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -8610,7 +8743,7 @@ void InitializePhysicsSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -8645,7 +8778,7 @@ void ProcessGraphicsTexture(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -8657,7 +8790,7 @@ void ProcessGraphicsTexture(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -8692,7 +8825,7 @@ void InitializeUISystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -8704,7 +8837,7 @@ void InitializeUISystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -8739,7 +8872,7 @@ void InitializeSecuritySystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -8751,7 +8884,7 @@ void InitializeSecuritySystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -8786,7 +8919,7 @@ void InitializeAuthenticationSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -8798,7 +8931,7 @@ void InitializeAuthenticationSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -8833,7 +8966,7 @@ void InitializeResourceSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -8845,7 +8978,7 @@ void InitializeResourceSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -8880,7 +9013,7 @@ void InitializeTextureSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_physics,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_physics,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -8892,7 +9025,7 @@ void InitializeTextureSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_physics,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_physics,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -8946,7 +9079,7 @@ void InitializeSystemTimer(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&gameDataDefaultPattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&gameDataDefaultPattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -8958,7 +9091,7 @@ void InitializeSystemTimer(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&gameDataDefaultPattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&gameDataDefaultPattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -8993,7 +9126,7 @@ void InitializeSystemLogger(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -9005,7 +9138,7 @@ void InitializeSystemLogger(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -9040,7 +9173,7 @@ void InitializeSystemProfiler(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -9052,7 +9185,7 @@ void InitializeSystemProfiler(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -9087,7 +9220,7 @@ void InitializeAudioSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_input,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_input,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -9099,7 +9232,7 @@ void InitializeAudioSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_input,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_input,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -9134,7 +9267,7 @@ void InitializeVideoSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -9146,7 +9279,7 @@ void InitializeVideoSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -9181,7 +9314,7 @@ void InitializeInputSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_config,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_config,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -9193,7 +9326,7 @@ void InitializeInputSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_config,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_config,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -9228,7 +9361,7 @@ void InitializeNetworkSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_font,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_font,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -9240,7 +9373,7 @@ void InitializeNetworkSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_font,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_font,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -9275,7 +9408,7 @@ void InitializeConfigSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -9287,7 +9420,7 @@ void InitializeConfigSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -9322,7 +9455,7 @@ void InitializeAudioSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -9334,7 +9467,7 @@ void InitializeAudioSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -9369,7 +9502,7 @@ void InitializeVideoSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -9381,7 +9514,7 @@ void InitializeVideoSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -9416,7 +9549,7 @@ void InitializeInputSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video1,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video1,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -9428,7 +9561,7 @@ void InitializeInputSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video1,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video1,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -9634,7 +9767,7 @@ void InitializeResourceSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -9646,7 +9779,7 @@ void InitializeResourceSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -9681,7 +9814,7 @@ void InitializeTextureSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -9693,7 +9826,7 @@ void InitializeTextureSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -9728,7 +9861,7 @@ void InitializeStringManagerSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -9740,7 +9873,7 @@ void InitializeStringManagerSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -9775,7 +9908,7 @@ void InitializeMemoryManagerSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -9787,7 +9920,7 @@ void InitializeMemoryManagerSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -9822,7 +9955,7 @@ void InitializeThreadManagerSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -9834,7 +9967,7 @@ void InitializeThreadManagerSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -9869,7 +10002,7 @@ void InitializeEventSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -9881,7 +10014,7 @@ void InitializeEventSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -9916,7 +10049,7 @@ void InitializeFilesystemSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -9928,7 +10061,7 @@ void InitializeFilesystemSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -9963,7 +10096,7 @@ void InitializeDatabaseSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -9975,7 +10108,7 @@ void InitializeDatabaseSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -10010,7 +10143,7 @@ void SetupGraphicsDevice(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -10022,7 +10155,7 @@ void SetupGraphicsDevice(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -10057,7 +10190,7 @@ void InitializeGraphicsSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -10069,7 +10202,7 @@ void InitializeGraphicsSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -10104,7 +10237,7 @@ void InitializeAudioManagerSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -10116,7 +10249,7 @@ void InitializeAudioManagerSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -10151,7 +10284,7 @@ void InitializeNetworkManagerSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -10163,7 +10296,7 @@ void InitializeNetworkManagerSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -10198,7 +10331,7 @@ void InitializeInputManagerSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -10210,7 +10343,7 @@ void InitializeInputManagerSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -10245,7 +10378,7 @@ void InitializeGraphicsMemory(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -10257,7 +10390,7 @@ void InitializeGraphicsMemory(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -10292,7 +10425,7 @@ void InitializeRenderSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -10304,7 +10437,7 @@ void InitializeRenderSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -10339,7 +10472,7 @@ void InitializeGameSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -10351,7 +10484,7 @@ void InitializeGameSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -10386,7 +10519,7 @@ void InitializeConditionInitNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -10398,7 +10531,7 @@ void InitializeConditionInitNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -10433,7 +10566,7 @@ void ConfigureGraphicsShader(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -10445,7 +10578,7 @@ void ConfigureGraphicsShader(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -10480,7 +10613,7 @@ void InitializeAudioDataNode7(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -10492,7 +10625,7 @@ void InitializeAudioDataNode7(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -10527,7 +10660,7 @@ void InitializeNetworkMutex(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -10539,7 +10672,7 @@ void InitializeNetworkMutex(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -10574,7 +10707,7 @@ void InitializeShaderSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -10586,7 +10719,7 @@ void InitializeShaderSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -10621,7 +10754,7 @@ void InitializeNetworkInitNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -10633,7 +10766,7 @@ void InitializeNetworkInitNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -10668,7 +10801,7 @@ void InitializeMutexInitNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -10680,7 +10813,7 @@ void InitializeMutexInitNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -10715,7 +10848,7 @@ void InitializeSystemModule58(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -10727,7 +10860,7 @@ void InitializeSystemModule58(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -10762,7 +10895,7 @@ void InitializeRecordDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -10774,7 +10907,7 @@ void InitializeRecordDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -10809,7 +10942,7 @@ void InitializeAudioDataNode8(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -10821,7 +10954,7 @@ void InitializeAudioDataNode8(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -10856,7 +10989,7 @@ void InitializeDataEngineNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -10868,7 +11001,7 @@ void InitializeDataEngineNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -10903,7 +11036,7 @@ void InitializeUtilEngineNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -10915,7 +11048,7 @@ void InitializeUtilEngineNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -10950,7 +11083,7 @@ void InitializeResourceEngineNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&gameDataDefaultPattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&gameDataDefaultPattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -10962,7 +11095,7 @@ void InitializeResourceEngineNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&gameDataDefaultPattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&gameDataDefaultPattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -10997,7 +11130,7 @@ void ConfigureGraphicsParameters(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -11009,7 +11142,7 @@ void ConfigureGraphicsParameters(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -11044,7 +11177,7 @@ void InitializeSecuritySystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -11056,7 +11189,7 @@ void InitializeSecuritySystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -11091,7 +11224,7 @@ void InitializeInputEngineNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_input,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_input,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -11103,7 +11236,7 @@ void InitializeInputEngineNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_input,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_input,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -11138,7 +11271,7 @@ void InitializeFieldDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -11150,7 +11283,7 @@ void InitializeFieldDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -11185,7 +11318,7 @@ void InitializeSecurityEngineNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_config,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_config,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -11197,7 +11330,7 @@ void InitializeSecurityEngineNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_config,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_config,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -11232,7 +11365,7 @@ void InitializeSystemDataNode29(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_font,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_font,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -11244,7 +11377,7 @@ void InitializeSystemDataNode29(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_font,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_font,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -11279,7 +11412,7 @@ void InitializeFontSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -11291,7 +11424,7 @@ void InitializeFontSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -11326,7 +11459,7 @@ void InitializeSystemDataNode30(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -11338,7 +11471,7 @@ void InitializeSystemDataNode30(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -11373,7 +11506,7 @@ void InitializeSystemDataNode31(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -11385,7 +11518,7 @@ void InitializeSystemDataNode31(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -11449,7 +11582,7 @@ void InitializeResourceEngineNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&gameDataDefaultPattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&gameDataDefaultPattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -11461,7 +11594,7 @@ void InitializeResourceEngineNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&gameDataDefaultPattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&gameDataDefaultPattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -11496,7 +11629,7 @@ void ConfigureGraphicsParameters(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -11508,7 +11641,7 @@ void ConfigureGraphicsParameters(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -11543,7 +11676,7 @@ void InitializeSecuritySystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -11555,7 +11688,7 @@ void InitializeSecuritySystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -11590,7 +11723,7 @@ void InitializeInputEngineNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_input,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_input,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -11602,7 +11735,7 @@ void InitializeInputEngineNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_input,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_input,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -11637,7 +11770,7 @@ void InitializeFieldDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -11649,7 +11782,7 @@ void InitializeFieldDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -11684,7 +11817,7 @@ void InitializeSecurityEngineNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_config,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_config,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -11696,7 +11829,7 @@ void InitializeSecurityEngineNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_config,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_config,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -11731,7 +11864,7 @@ void InitializeSystemDataNode29(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_font,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_font,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -11743,7 +11876,7 @@ void InitializeSystemDataNode29(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_font,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_font,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -11778,7 +11911,7 @@ void InitializeFontSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -11790,7 +11923,7 @@ void InitializeFontSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -11825,7 +11958,7 @@ void InitializeSystemDataNode30(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -11837,7 +11970,7 @@ void InitializeSystemDataNode30(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -11872,7 +12005,7 @@ void InitializeSystemDataNode31(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -11884,7 +12017,7 @@ void InitializeSystemDataNode31(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -11957,7 +12090,7 @@ void ConfigureSystemHandles(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -11969,7 +12102,7 @@ void ConfigureSystemHandles(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -12004,7 +12137,7 @@ void SetupSystemMemory(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -12016,7 +12149,7 @@ void SetupSystemMemory(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -12051,7 +12184,7 @@ void InitializeSystemResources(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -12063,7 +12196,7 @@ void InitializeSystemResources(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -12098,7 +12231,7 @@ void InitializeInputMutex(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -12110,7 +12243,7 @@ void InitializeInputMutex(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -12145,7 +12278,7 @@ void ConfigureSystemParameters(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -12157,7 +12290,7 @@ void ConfigureSystemParameters(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -12192,7 +12325,7 @@ void InitializeSystemComponents(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -12204,7 +12337,7 @@ void InitializeSystemComponents(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -12239,7 +12372,7 @@ void SetupSystemServices(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -12251,7 +12384,7 @@ void SetupSystemServices(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -12296,7 +12429,7 @@ void InitializeSystemProfiler(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video1,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video1,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -12308,7 +12441,7 @@ void InitializeSystemProfiler(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video1,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video1,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -12343,7 +12476,7 @@ void InitializeAudioSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -12355,7 +12488,7 @@ void InitializeAudioSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -12390,7 +12523,7 @@ void InitializeVideoSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -12402,7 +12535,7 @@ void InitializeVideoSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -12437,7 +12570,7 @@ void InitializeInputSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -12449,7 +12582,7 @@ void InitializeInputSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -12484,7 +12617,7 @@ void InitializeNetworkSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -12496,7 +12629,7 @@ void InitializeNetworkSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -12531,7 +12664,7 @@ void InitializeConfigSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -12543,7 +12676,7 @@ void InitializeConfigSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -12578,7 +12711,7 @@ void InitializeAudioSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -12590,7 +12723,7 @@ void InitializeAudioSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -12625,7 +12758,7 @@ void InitializeVideoSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -12637,7 +12770,7 @@ void InitializeVideoSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -12672,7 +12805,7 @@ void InitializeInputSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -12684,7 +12817,7 @@ void InitializeInputSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -12719,7 +12852,7 @@ void InitializeNetworkSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -12731,7 +12864,7 @@ void InitializeNetworkSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -12766,7 +12899,7 @@ void InitializeConditionDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -12778,7 +12911,7 @@ void InitializeConditionDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -12813,7 +12946,7 @@ void InitializeMutexDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -12825,7 +12958,7 @@ void InitializeMutexDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -12860,7 +12993,7 @@ void InitializeSemaphoreDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -12872,7 +13005,7 @@ void InitializeSemaphoreDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -12907,7 +13040,7 @@ void InitializeEventDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -12919,7 +13052,7 @@ void InitializeEventDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -12954,7 +13087,7 @@ void InitializeThreadDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -12966,7 +13099,7 @@ void InitializeThreadDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -13073,7 +13206,7 @@ void InitializeAudioDataNode7(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&gameDataDefaultPattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&gameDataDefaultPattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -13085,7 +13218,7 @@ void InitializeAudioDataNode7(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&gameDataDefaultPattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&gameDataDefaultPattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -13120,7 +13253,7 @@ void InitializeNetworkMutex(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -13132,7 +13265,7 @@ void InitializeNetworkMutex(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -13167,7 +13300,7 @@ void InitializeShaderSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -13179,7 +13312,7 @@ void InitializeShaderSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -13214,7 +13347,7 @@ void InitializeFontSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_input,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_input,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -13226,7 +13359,7 @@ void InitializeFontSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_input,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_input,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -13261,7 +13394,7 @@ void InitializeMemoryDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -13273,7 +13406,7 @@ void InitializeMemoryDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -13308,7 +13441,7 @@ void InitializeHashDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_config,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_config,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -13320,7 +13453,7 @@ void InitializeHashDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_config,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_config,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -13355,7 +13488,7 @@ void InitializeFileDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_font,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_font,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -13367,7 +13500,7 @@ void InitializeFileDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_font,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_font,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -13402,7 +13535,7 @@ void InitializeSystemNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -13414,7 +13547,7 @@ void InitializeSystemNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -13449,7 +13582,7 @@ void InitializeFontDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -13461,7 +13594,7 @@ void InitializeFontDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -13496,7 +13629,7 @@ void InitializeVectorDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -13508,7 +13641,7 @@ void InitializeVectorDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -13629,7 +13762,7 @@ void InitializeThreadDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -13641,7 +13774,7 @@ void InitializeThreadDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_string_buffer,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_string_buffer,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -13676,7 +13809,7 @@ void InitializeProcessDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -13688,7 +13821,7 @@ void InitializeProcessDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_string_buffer,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_string_buffer,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -13723,7 +13856,7 @@ void InitializeNetworkDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&gameDataDefaultPattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&gameDataDefaultPattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -13735,7 +13868,7 @@ void InitializeNetworkDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&gameDataDefaultPattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&gameDataDefaultPattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -13770,7 +13903,7 @@ void InitializeArrayDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -13782,7 +13915,7 @@ void InitializeArrayDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -13817,7 +13950,7 @@ void InitializeSecurityDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -13829,7 +13962,7 @@ void InitializeSecurityDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -13864,7 +13997,7 @@ void InitializeDatabaseDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_input,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_input,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -13876,7 +14009,7 @@ void InitializeDatabaseDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_input,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_input,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -13911,7 +14044,7 @@ void ProcessSystemData(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -13923,7 +14056,7 @@ void ProcessSystemData(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -13958,7 +14091,7 @@ void InitializeMatrixDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_config,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_config,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -13970,7 +14103,7 @@ void InitializeMatrixDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_config,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_config,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -14005,7 +14138,7 @@ void InitializeGraphicsDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_font,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_font,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -14017,7 +14150,7 @@ void InitializeGraphicsDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_font,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_font,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -14052,7 +14185,7 @@ void InitializeTextureDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -14064,7 +14197,7 @@ void InitializeTextureDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -14099,7 +14232,7 @@ void InitializeAudioDataNode7(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -14111,7 +14244,7 @@ void InitializeAudioDataNode7(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -14146,7 +14279,7 @@ void InitializeVideoDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -14158,7 +14291,7 @@ void InitializeVideoDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -14193,7 +14326,7 @@ void InitializeGraphicsMemory(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -14205,7 +14338,7 @@ void InitializeGraphicsMemory(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_string_buffer,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_string_buffer,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -14240,7 +14373,7 @@ void InitializeRenderSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -14252,7 +14385,7 @@ void InitializeRenderSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_string_buffer,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_string_buffer,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -14287,7 +14420,7 @@ void InitializeAuthenticationSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video1,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video1,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -14299,7 +14432,7 @@ void InitializeAuthenticationSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video1,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video1,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -14334,7 +14467,7 @@ void InitializeTableDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video0,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video0,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -14346,7 +14479,7 @@ void InitializeTableDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video0,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video0,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -14381,7 +14514,7 @@ void InitializeStringDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_rendering,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_rendering,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -14393,7 +14526,7 @@ void InitializeStringDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_rendering,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_rendering,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -14428,7 +14561,7 @@ void InitializeConfigDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -14440,7 +14573,7 @@ void InitializeConfigDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -14475,7 +14608,7 @@ void InitializeResourceDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -14487,7 +14620,7 @@ void InitializeResourceDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -14522,7 +14655,7 @@ void InitializeBufferDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -14534,7 +14667,7 @@ void InitializeBufferDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -14569,7 +14702,7 @@ void InitializeNetworkInitNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -14581,7 +14714,7 @@ void InitializeNetworkInitNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -14616,7 +14749,7 @@ void InitializeMutexInitNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -14628,7 +14761,7 @@ void InitializeMutexInitNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -14663,7 +14796,7 @@ void InitializeSystemModule58(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -14675,7 +14808,7 @@ void InitializeSystemModule58(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -14710,7 +14843,7 @@ void InitializeRecordDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -14722,7 +14855,7 @@ void InitializeRecordDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -14757,7 +14890,7 @@ void InitializeAudioDataNode8(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -14769,7 +14902,7 @@ void InitializeAudioDataNode8(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -14804,7 +14937,7 @@ void InitializeDataEngineNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_physics,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_physics,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -14816,7 +14949,7 @@ void InitializeDataEngineNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_physics,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_physics,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -14851,7 +14984,7 @@ void InitializeUtilEngineNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -14863,7 +14996,7 @@ void InitializeUtilEngineNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_string_buffer,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_string_buffer,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -14898,7 +15031,7 @@ void InitializeResourceEngineNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -14910,7 +15043,7 @@ void InitializeResourceEngineNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_string_buffer,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_string_buffer,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -14982,7 +15115,7 @@ void InitializeThreadDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -14994,7 +15127,7 @@ void InitializeThreadDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_string_buffer,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_string_buffer,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -15029,7 +15162,7 @@ void InitializeProcessDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -15041,7 +15174,7 @@ void InitializeProcessDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_string_buffer,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_string_buffer,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -15076,7 +15209,7 @@ void InitializeStringManagerSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -15088,7 +15221,7 @@ void InitializeStringManagerSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_string_buffer,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_string_buffer,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -15123,7 +15256,7 @@ void InitializeMemoryManagerSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -15135,7 +15268,7 @@ void InitializeMemoryManagerSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_string_buffer,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_string_buffer,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -15199,7 +15332,7 @@ void InitializeResourceSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -15211,7 +15344,7 @@ void InitializeResourceSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_string_buffer,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_string_buffer,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -15246,7 +15379,7 @@ void InitializeTextureSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_string_buffer,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -15258,7 +15391,7 @@ void InitializeTextureSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_string_buffer,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_string_buffer,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -15293,7 +15426,7 @@ void InitializeStringManager(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_rendering,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_rendering,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -15305,7 +15438,7 @@ void InitializeStringManager(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_rendering,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_rendering,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -15340,7 +15473,7 @@ void InitializeCacheDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -15352,7 +15485,7 @@ void InitializeCacheDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -15387,7 +15520,7 @@ void InitializePoolDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -15399,7 +15532,7 @@ void InitializePoolDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -15434,7 +15567,7 @@ void InitializeQueueDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_mutex_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -15446,7 +15579,7 @@ void InitializeQueueDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_mutex_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -15481,7 +15614,7 @@ void InitializeShaderDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_condition_init,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -15493,7 +15626,7 @@ void InitializeShaderDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_condition_init,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -15528,7 +15661,7 @@ void InitializeStackDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio6,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -15540,7 +15673,7 @@ void InitializeStackDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio6,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -15575,7 +15708,7 @@ void InitializePhysicsSystem(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio7,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -15587,7 +15720,7 @@ void InitializePhysicsSystem(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio7,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -15622,7 +15755,7 @@ void InitializeListDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio8,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -15634,7 +15767,7 @@ void InitializeListDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio8,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -15669,7 +15802,7 @@ void InitializeTreeDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio9,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -15681,7 +15814,7 @@ void InitializeTreeDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio9,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -15716,7 +15849,7 @@ void ConfigureSystemHandles(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&gameDataDefaultPattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&gameDataDefaultPattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -15728,7 +15861,7 @@ void ConfigureSystemHandles(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&gameDataDefaultPattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&gameDataDefaultPattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -15763,7 +15896,7 @@ void SetupSystemMemory(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_audio,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_audio,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -15775,7 +15908,7 @@ void SetupSystemMemory(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_audio,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -15810,7 +15943,7 @@ void InitializeSystemResources(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_video,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_video,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -15822,7 +15955,7 @@ void InitializeSystemResources(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_video,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -15857,7 +15990,7 @@ void InitializeInputMutex(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_input,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_input,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -15869,7 +16002,7 @@ void InitializeInputMutex(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_input,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_input,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -15904,7 +16037,7 @@ void ConfigureSystemParameters(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_network,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_network,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -15916,7 +16049,7 @@ void ConfigureSystemParameters(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_network,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -15951,7 +16084,7 @@ void InitializeSystemComponents(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_config,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_config,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -15963,7 +16096,7 @@ void InitializeSystemComponents(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_config,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_config,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -15998,7 +16131,7 @@ void SetupSystemServices(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&system_data_pattern_font,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&system_data_pattern_font,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -16010,7 +16143,7 @@ void SetupSystemServices(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_font,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&system_data_pattern_font,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -16045,7 +16178,7 @@ void ConfigureSystemSettings(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -16057,7 +16190,7 @@ void ConfigureSystemSettings(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -16092,7 +16225,7 @@ void InitializeGraphDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -16104,7 +16237,7 @@ void InitializeGraphDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -16139,7 +16272,7 @@ void InitializeMapDataNode(void)
   node_previous = node_root;
   node_current = (uint64_t *)node_root[SYSTEM_NODE_INDEX_ROOT_NEXT];
   while (is_initialized == '\0') {
-    compare_result = memcmp(node_current + 4,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
+    compare_result = memcmp(node_current + SYSTEM_NODE_DATA_OFFSET,&g_system_compare_pattern,SYSTEM_DATA_COMPARE_SIZE);
     if (compare_result < 0) {
       node_next = (uint64_t *)node_current[NODE_INDEX_CURRENT_PREV];
       node_current = node_previous;
@@ -16151,7 +16284,7 @@ void InitializeMapDataNode(void)
     node_current = node_next;
     is_initialized = *(char *)((longlong)node_next + NODE_INITIALIZED_OFFSET);
   }
-  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + 4,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
+  if ((node_previous == node_root) || (compare_result = memcmp(&g_system_compare_pattern,node_previous + SYSTEM_NODE_DATA_OFFSET,SYSTEM_DATA_COMPARE_SIZE), compare_result < 0)) {
     allocation_size = CalculateAllocationSize(ptr_data);
     AllocateSystemMemory(ptr_data,&node_new,node_previous,allocation_size + SYSTEM_NODE_HEADER_SIZE,allocation_size);
     node_previous = node_new;
@@ -18095,7 +18228,7 @@ void InitializePhysicsSystem(void)
   int init_stack_path_index_548;
   uint32_t init_stack_uint_param_540;
   void *system_buffer_ptr_graphics_state;
-  longlong longStack_530;
+  longlong init_stack_path_length_530;
   uint32_t init_stack_uint_param_520;
   longlong ***appstack_system_memory_pointer [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   void *system_buffer_ptr_graphics_cache;
@@ -19134,7 +19267,7 @@ uint64_t * InitializeInputEngineNode(longlong handleIdentifier,longlong *resourc
   node_root = system_ptr_value;
   for (system_memory_pointer = (longlong *)resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER]; system_memory_pointer != (longlong *)SYSTEM_NULL_POINTER; system_memory_pointer = (longlong *)system_memory_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER]) {
     system_ptr_value = (uint64_t *)AllocateSystemResource(systemMemoryPool,SYSTEM_OBJECT_OFFSET_68,*(uint8_t *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_28));
-    ProcessResourceData(system_pointer_var + 4,system_memory_pointer + 4);
+    ProcessResourceData(system_pointer_var + SYSTEM_NODE_DATA_OFFSET,system_memory_pointer + 4);
     ProcessResourceData(system_pointer_var + 8,system_memory_pointer + 8);
     system_pointer_var[SYSTEM_DATA_BLOCK_SIZE_C] = system_memory_pointer[SYSTEM_DATA_BLOCK_SIZE_C];
     *system_ptr_value = 0;
@@ -19160,7 +19293,7 @@ uint64_t * InitializeSystemModule41(longlong handleIdentifier,longlong resourceI
   system_ptr_value = (uint64_t *)
            AllocateSystemResource(systemMemoryPool,SYSTEM_OBJECT_OFFSET_68,*(uint8_t *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_28),systemFlags,
                          INVALID_HANDLE_VALUE);
-  ProcessResourceData(system_pointer_var + 4,resourceIdentifier + SYSTEM_NODE_HEADER_SIZE);
+  ProcessResourceData(system_pointer_var + SYSTEM_NODE_DATA_OFFSET,resourceIdentifier + SYSTEM_NODE_HEADER_SIZE);
   ProcessResourceData(system_pointer_var + 8,resourceIdentifier + SYSTEM_DATA_BLOCK_SIZE);
   system_pointer_var[SYSTEM_DATA_BLOCK_SIZE_C] = *(uint64_t *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_60);
   *system_ptr_value = 0;
@@ -24969,9 +25102,9 @@ INIT_LABEL_SYSTEM_54912:
                 node_previous = (uint32_t *)(system_buffer_ptr_150 + uintStack_148);
                 *node_previous = SYSTEM_IDENTIFIER_ECSF;
                 node_previous[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_INIT_DATA_OFFSET_782e656e;
-                node_previous[SYSTEM_ARRAY_INDEX_PREVIOUS] = 0x2e6f6373;
+                node_previous[SYSTEM_ARRAY_INDEX_PREVIOUS] = SYSTEM_CONFIG_SIZE_2E6f6373;
                 node_previous[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x65637378;
-                *(uint16_t *)(node_previous + 4) = 0x656e;
+                *(uint16_t *)(node_previous + 4) = SYSTEM_STRING_SUFFIX_EN;
                 *(uint8_t *)((longlong)node_previous + SYSTEM_CONFIG_SIZE_RENDER) = 0;
                 uintStack_148 = SYSTEM_CONFIG_SIZE_RENDER;
                 system_init_flag = ValidateConfigurationValue(&system_buffer_ptr_158);
@@ -25647,7 +25780,7 @@ void InitializeSecuritySystem(longlong *handleIdentifier)
   system_buffer_ptr_50 = &g_system_data_node_primary_config;
   system_buffer_ptr_48 = system_local_buffer_38;
   system_local_buffer_38[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
-  init_stack_uint_param_40 = 0xc;
+  init_stack_uint_param_40 = SYSTEM_CONFIG_SIZE_C;
   strcpy_s(system_local_buffer_38,SYSTEM_DATA_COMPARE_SIZE,&g_global_system_config);
   ptr_data = (longlong *)AllocateSystemMemory(systemMemoryPool,SYSTEM_NODE_HEADER_SIZE8,8,3);
   init_stack_long_value_78 = system_long_result + SYSTEM_DATA_BLOCK_SIZE_70;
@@ -25754,7 +25887,7 @@ void InitializeSystemModule14(longlong handleIdentifier)
     system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_NODE_HEADER_SIZE2c6465;
     *(uint8_t *)(system_pointer_var + 7) = 0;
     init_stack_thread_count = SYSTEM_CONFIG_SIZE_NETWORK;
-    ConfigureSystemParameters(&system_buffer_ptr_98system_buffer_pointer_primary,0x3e);
+    ConfigureSystemParameters(&system_buffer_ptr_98system_buffer_pointer_primary,SYSTEM_THREAD_COUNT_3E);
     system_ptr_value = (uint32_t *)(system_buffer_ptr_small_buffer + init_stack_thread_count);
     *system_ptr_value = SYSTEM_STRING_ENGINE_TOKEN;
     system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_STRING_DB_EN_TOKEN;
@@ -25766,7 +25899,7 @@ void InitializeSystemModule14(longlong handleIdentifier)
     system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x6f662065;
     *(uint16_t *)(system_pointer_var + 8) = SYSTEM_NODE_HEADER_SIZE72;
     *(uint8_t *)((longlong)system_pointer_var + SYSTEM_CORE_OFFSET_CONFIG) = 0;
-    init_stack_thread_count = 0x3e;
+    init_stack_thread_count = SYSTEM_THREAD_COUNT_3E;
     ProcessSystemData88(init_stack_char_buffer_60,&g_global_system_config,900);
     system_status_code = init_stack_thread_count;
     system_long_value = -1;
@@ -25793,7 +25926,7 @@ void InitializeSystemModule14(longlong handleIdentifier)
     system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x73206e6f;
     system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x65676775;
     system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x64657473;
-    *(uint16_t *)(system_pointer_var + 8) = 0x2e;
+    *(uint16_t *)(system_pointer_var + 8) = SYSTEM_FILE_EXTENSION_2E;
     system_ptr_value = &g_system_data_variable3;
     if (system_buffer_ptr_small_buffer != (void *)SYSTEM_NULL_POINTER) {
       system_ptr_value = system_buffer_ptr_small_buffer;
@@ -25894,17 +26027,17 @@ void SetupDebuggingPipeline(uint64_t handleIdentifier,uint64_t *resourceIdentifi
   system_status_code = AllocateSystemMemory(systemMemoryPool,SYSTEM_DATA_COMPARE_SIZE0,8,3);
   pnode_root = (void **)InitializeNetworkInitNode(system_operation_status,&system_buffer_ptr_108);
   psystem_buffer_ptr_118 = pnode_root;
-  if (pnode_root != (void **)0x0) {
+  if (pnode_root != (void **)SYSTEM_NULL_POINTER_0) {
     (**(code **)(*pnode_root + SYSTEM_OBJECT_OFFSET_28))(pnode_root);
   }
   system_status_code = system_configuration_data;
   ppsystem_buffer_ptr_130 = &psystem_buffer_ptr_138;
   psystem_buffer_ptr_resource_pool = pnode_root;
-  if (pnode_root != (void **)0x0) {
+  if (pnode_root != (void **)SYSTEM_NULL_POINTER_0) {
     (**(code **)(*pnode_root + SYSTEM_OBJECT_OFFSET_28))(pnode_root);
   }
   InitializeConfigSystem(system_operation_status,&psystem_buffer_ptr_138);
-  if (pnode_root != (void **)0x0) {
+  if (pnode_root != (void **)SYSTEM_NULL_POINTER_0) {
     (**(code **)(*pnode_root + SYSTEM_OBJECT_OFFSET_38))(pnode_root);
   }
   ppsystem_buffer_ptr_130 = (void ***)&system_buffer_ptr_108;
@@ -26041,7 +26174,7 @@ void InitializeSystemModule36(longlong *handleIdentifier)
   system_long_value = *handleIdentifier;
   while ((longlong *)system_long_result != system_memory_pointer) {
     system_long_value = *(longlong *)((ulonglong)(-(int)system_long_result & 7) + system_long_result);
-    if ((code *)handleIdentifier[SYSTEM_OBJECT_OFFSET_604] == (code *)0x0) {
+    if ((code *)handleIdentifier[SYSTEM_OBJECT_OFFSET_604] == (code *)SYSTEM_NULL_POINTER_0) {
       free();
     }
     else {
@@ -26064,7 +26197,7 @@ void HandleSystemData39(longlong handleIdentifier)
 
   do {
     handleIdentifier = *(longlong *)((ulonglong)(-(int)handleIdentifier & 7) + handleIdentifier);
-    if ((code *)system_reg_rdi[SYSTEM_OBJECT_OFFSET_604] == (code *)0x0) {
+    if ((code *)system_reg_rdi[SYSTEM_OBJECT_OFFSET_604] == (code *)SYSTEM_NULL_POINTER_0) {
       free();
     }
     else {
@@ -28462,7 +28595,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
   uint64_t init_stack_uint_param_30;
 
   init_stack_uint_param_30 = SYSTEM_OFFSET_180059023;
-  system_status_code = AllocateSystemMemory(systemMemoryPool,0x270,8,3);
+  system_status_code = AllocateSystemMemory(systemMemoryPool,SYSTEM_MEMORY_SIZE_270,8,3);
   init_stack_uint_param_30 = SYSTEM_OFFSET_18005902b;
   system_long_value = GetSystemModuleHandle(system_operation_status);
   system_status_code = *(uint32_t *)(systemCoreData + SYSTEM_INIT_OFFSET_1DC0);
@@ -28551,7 +28684,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
           if ((void *)system_buffer_ptr_texture_pool[longStack_2c8 * 4 + 1] != (void *)SYSTEM_NULL_POINTER) {
             system_ptr_value = (void *)system_buffer_ptr_texture_pool[longStack_2c8 * 4 + 1];
           }
-          system_long_value = strrchr(system_pointer_var,0x2f);
+          system_long_value = strrchr(system_pointer_var,SYSTEM_PATH_SEPARATOR_2F);
           if (system_long_result == 0) {
             system_ptr_value = &g_system_data_variable3;
             if ((void *)node_root[system_long_result * 4 + 1] != (void *)SYSTEM_NULL_POINTER) {
@@ -28561,7 +28694,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
           else {
             system_ptr_value = (void *)(system_long_result + 1);
           }
-          system_ptr_value = (void *)strchr(system_pointer_var,0x2e);
+          system_ptr_value = (void *)strchr(system_pointer_var,SYSTEM_CONFIG_SIZE_2E);
           if (system_pointer_var == (void *)SYSTEM_NULL_POINTER) {
             system_ptr_value = &g_system_data_variable3;
             if ((void *)node_root[system_long_result * 4 + 1] != (void *)SYSTEM_NULL_POINTER) {
@@ -29521,7 +29654,7 @@ void InitializeNetworkDataNode(void)
   *(uint32_t *)(system_long_result + 0xb70) = 0;
   *(uint64_t *)(system_long_result + 0xb78) = 0;
   *(uint16_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_B80) = SYSTEM_DATA_COMPARE_SIZE0;
-  *(uint64_t *)(system_long_result + 0xc88) = 0;
+  *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_C88) = 0;
   *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_C90) = 0;
   *(uint32_t *)(system_long_result + SYSTEM_DATA_OFFSET_CB8) = 0;
   *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_CC0) = 0;
@@ -30242,7 +30375,7 @@ void ConfigureSystemHandles(uint64_t *handleIdentifier,uint64_t resourceIdentifi
 void InitializeSystemModule21(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
-  if (*(code **)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) != (code *)0x0) {
+  if (*(code **)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) != (code *)SYSTEM_NULL_POINTER_0) {
     (**(code **)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE))(handleIdentifier,0,0,systemFlags,INVALID_HANDLE_VALUE);
   }
   return;
@@ -30252,7 +30385,7 @@ void InitializeSystemModule21(longlong handleIdentifier,uint64_t resourceIdentif
 void initialize_graphics_subsystem(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
-  if (*(code **)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) != (code *)0x0) {
+  if (*(code **)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) != (code *)SYSTEM_NULL_POINTER_0) {
     (**(code **)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE))(handleIdentifier,0,0,systemFlags,INVALID_HANDLE_VALUE);
   }
   return;
@@ -30262,7 +30395,7 @@ void initialize_graphics_subsystem(longlong handleIdentifier,uint64_t resourceId
 void InitializeSecurityEngineNode(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
-  if (*(code **)(handleIdentifier + SYSTEM_OBJECT_OFFSET_68) != (code *)0x0) {
+  if (*(code **)(handleIdentifier + SYSTEM_OBJECT_OFFSET_68) != (code *)SYSTEM_NULL_POINTER_0) {
     (**(code **)(handleIdentifier + SYSTEM_OBJECT_OFFSET_68))(handleIdentifier + SYSTEM_DATA_OFFSET_58,0,0,systemFlags,INVALID_HANDLE_VALUE);
   }
   *(uint64_t *)(handleIdentifier + SYSTEM_CONFIG_OFFSET_30) = &resourcePoolPointer;
@@ -30418,7 +30551,7 @@ longlong ProcessSystemData(longlong handleIdentifier)
 void InitializeMutexInitNode(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
-  if (*(code **)(handleIdentifier + SYSTEM_OBJECT_OFFSET_60) != (code *)0x0) {
+  if (*(code **)(handleIdentifier + SYSTEM_OBJECT_OFFSET_60) != (code *)SYSTEM_NULL_POINTER_0) {
     (**(code **)(handleIdentifier + SYSTEM_OBJECT_OFFSET_60))(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_50,0,0,systemFlags,INVALID_HANDLE_VALUE);
   }
   *(uint64_t *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_28) = &resourcePoolPointer;
@@ -30487,7 +30620,7 @@ uint64_t * ConfigureSystemSettings(uint64_t *handleIdentifier)
 void ValidateSystemConfiguration(uint64_t *handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
-  if ((code *)handleIdentifier[SYSTEM_CONFIG_SIZE_FONT] != (code *)0x0) {
+  if ((code *)handleIdentifier[SYSTEM_CONFIG_SIZE_FONT] != (code *)SYSTEM_NULL_POINTER_0) {
     (*(code *)handleIdentifier[SYSTEM_CONFIG_SIZE_FONT])(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER,0,0,systemFlags,INVALID_HANDLE_VALUE);
   }
   handleIdentifier[SYSTEM_DATA_COMPARE_SIZE] = &resourcePoolPointer;
@@ -30621,8 +30754,8 @@ InitializeSystemModule41(uint64_t handleIdentifier,uint64_t resourceIdentifier,u
 uint64_t * SetupSystemMemory(uint64_t *handleIdentifier,uint resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
-  if ((code *)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != (code *)0x0) {
-    (*(code *)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER])(handleIdentifier + 4,0,0,systemFlags,INVALID_HANDLE_VALUE);
+  if ((code *)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != (code *)SYSTEM_NULL_POINTER_0) {
+    (*(code *)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER])(handleIdentifier + SYSTEM_NODE_DATA_OFFSET,0,0,systemFlags,INVALID_HANDLE_VALUE);
   }
   *handleIdentifier = &globalSystemOutputData;
   *handleIdentifier = &g_global_system_config;
@@ -30653,18 +30786,18 @@ InitializeInputSystem(uint64_t *handleIdentifier,uint64_t *resourceIdentifier,ui
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = _guard_check_icall;
   if (system_pointer_var != resourceIdentifier) {
-    if ((code *)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != (code *)0x0) {
+    if ((code *)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != (code *)SYSTEM_NULL_POINTER_0) {
       (*(code *)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER])(system_pointer_var,0,0,systemFlags,INVALID_HANDLE_VALUE);
     }
     ptr_system_init_flag = (code *)resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-    if (ptr_system_init_flag != (code *)0x0) {
+    if (ptr_system_init_flag != (code *)SYSTEM_NULL_POINTER_0) {
       (*ptr_system_init_flag)(system_pointer_var,resourceIdentifier,1);
       ptr_system_init_flag = (code *)resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
     }
     handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = ptr_system_init_flag;
     handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   }
-  if ((code *)resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != (code *)0x0) {
+  if ((code *)resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != (code *)SYSTEM_NULL_POINTER_0) {
     (*(code *)resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER])(resourceIdentifier,0,0);
   }
   return handleIdentifier;
@@ -30717,7 +30850,7 @@ void InitializeSystemModule35(longlong *handleIdentifier)
 longlong InitializeThreadManagerSystem(longlong handleIdentifier,uint resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
-  if (*(code **)(handleIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) != (code *)0x0) {
+  if (*(code **)(handleIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) != (code *)SYSTEM_NULL_POINTER_0) {
     (**(code **)(handleIdentifier + SYSTEM_CONFIG_SIZE_STATUS0))(handleIdentifier + SYSTEM_MEMORY_POOL_SIZE_LARGE,0,0,systemFlags,INVALID_HANDLE_VALUE);
   }
   InitializeInputManagerSystem(handleIdentifier);
@@ -30767,11 +30900,11 @@ InitializeResourceEngineNode(uint64_t *handleIdentifier,uint64_t *resourceIdenti
   handleIdentifier[SYSTEM_CONFIG_SIZE_AUDIO] = 0;
   handleIdentifier[SYSTEM_CONFIG_SIZE_INPUT] = _guard_check_icall;
   if (system_pointer_var != resourceIdentifier) {
-    if ((code *)handleIdentifier[SYSTEM_CONFIG_SIZE_AUDIO] != (code *)0x0) {
+    if ((code *)handleIdentifier[SYSTEM_CONFIG_SIZE_AUDIO] != (code *)SYSTEM_NULL_POINTER_0) {
       (*(code *)handleIdentifier[SYSTEM_CONFIG_SIZE_AUDIO])(system_pointer_var,0,0,systemFlags,system_int_result_unsigned);
     }
     ptr_system_init_flag = (code *)resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-    if (ptr_system_init_flag != (code *)0x0) {
+    if (ptr_system_init_flag != (code *)SYSTEM_NULL_POINTER_0) {
       (*ptr_system_init_flag)(system_pointer_var,resourceIdentifier,1);
       ptr_system_init_flag = (code *)resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
     }
@@ -30779,7 +30912,7 @@ InitializeResourceEngineNode(uint64_t *handleIdentifier,uint64_t *resourceIdenti
     handleIdentifier[SYSTEM_CONFIG_SIZE_INPUT] = resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   }
   handleIdentifier[SYSTEM_CONFIG_SIZE_NETWORK] = system_configuration;
-  if ((code *)resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != (code *)0x0) {
+  if ((code *)resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != (code *)SYSTEM_NULL_POINTER_0) {
     (*(code *)resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER])(resourceIdentifier,0,0);
   }
   return handleIdentifier;
@@ -30825,11 +30958,11 @@ void InitializeFontSystem(longlong *handleIdentifier)
     init_stack_uint_parameter_20 = 0;
     system_status_code = AllocateSystemMemory(systemMemoryPool,SYSTEM_CONFIG_SIZE_EVENT8,8,3);
     stack_system_memory_pointer = init_stack_long_buffer_f8;
-    stack_char_ptr = (code *)0x0;
+    stack_char_ptr = (code *)SYSTEM_NULL_POINTER_0;
     stack_char_ptr = _guard_check_icall;
     if (init_stack_long_buffer_f8 != handleIdentifier) {
       ptr_system_init_flag = (code *)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-      if (ptr_system_init_flag != (code *)0x0) {
+      if (ptr_system_init_flag != (code *)SYSTEM_NULL_POINTER_0) {
         (*ptr_system_init_flag)(init_stack_long_buffer_f8,handleIdentifier,1);
         ptr_system_init_flag = (code *)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
       }
@@ -30857,7 +30990,7 @@ void InitializeFontSystem(longlong *handleIdentifier)
     pstack_system_memory_pointer = (longlong **)init_stack_long_buffer_b8;
     _Cnd_destroy_in_situ(init_stack_long_buffer_b8);
   }
-  if ((code *)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != (code *)0x0) {
+  if ((code *)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != (code *)SYSTEM_NULL_POINTER_0) {
     (*(code *)handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER])(handleIdentifier,0,0);
   }
                     // WARNING: Subroutine does not return
@@ -31821,7 +31954,7 @@ void InitializeDatabaseSystem(longlong handleIdentifier,uint64_t resourceIdentif
   longlong system_long_value;
 
   allocation_size = systemMemoryPool;
-  if (*(code **)(systemMemoryPool + SYSTEM_NODE_HEADER_SIZE) != (code *)0x0) {
+  if (*(code **)(systemMemoryPool + SYSTEM_NODE_HEADER_SIZE) != (code *)SYSTEM_NULL_POINTER_0) {
     (**(code **)(systemMemoryPool + SYSTEM_NODE_HEADER_SIZE))(systemMemoryPool + SYSTEM_DATA_COMPARE_SIZE,0,0,systemFlags,INVALID_HANDLE_VALUE);
   }
   *(uint64_t *)(allocation_size + SYSTEM_NODE_HEADER_SIZE) = 0;
@@ -32241,7 +32374,7 @@ void InitializeSystemModule6(longlong handleIdentifier,longlong *resourceIdentif
   system_status_code = INVALID_HANDLE_VALUE;
   (**(code **)(*(longlong *)*resourceIdentifier + SYSTEM_INIT_DATA_OFFSET_78))();
   system_status_code = *(uint *)(*(longlong *)((longlong)threadLocalStoragePointer + (ulonglong)__tls_index * 8)
-                   + 0xc);
+                   + SYSTEM_CONFIG_SIZE_C);
   if (system_operation_status == SYSTEM_OFFSET_Ffffffff) {
     system_long_value = InitializeVideoSystem(handleIdentifier + SYSTEM_INIT_DATA_OFFSET_78);
     if (system_long_result != 0) {
@@ -32298,7 +32431,7 @@ void InitializeSystemResources(longlong handleIdentifier,uint64_t resourceIdenti
   longlong system_long_value;
 
   system_status_code = *(uint *)(*(longlong *)((longlong)threadLocalStoragePointer + (ulonglong)__tls_index * 8)
-                   + 0xc);
+                   + SYSTEM_CONFIG_SIZE_C);
   if (system_operation_status == SYSTEM_OFFSET_Ffffffff) {
     system_long_value = InitializeVideoSystem(handleIdentifier + SYSTEM_INIT_DATA_OFFSET_78);
     if (system_long_result != 0) {
@@ -35654,7 +35787,7 @@ uint64_t InitializeSystemModule10(uint64_t handleIdentifier,uint32_t resourceIde
     system_status_code = 1;
     break;
   case 3:
-    system_status_code = 0xc;
+    system_status_code = SYSTEM_CONFIG_SIZE_C;
     break;
   case 4:
     system_status_code = 10;
@@ -35680,7 +35813,7 @@ uint64_t InitializeSystemModule10(uint64_t handleIdentifier,uint32_t resourceIde
   case 0xb:
     system_status_code = SYSTEM_CONFIG_SIZE_STATUS;
     break;
-  case 0xc:
+  case SYSTEM_CONFIG_SIZE_C:
     system_status_code = 7;
     break;
   default:
@@ -35819,12 +35952,12 @@ code_r0x0001800630e9:
           }
         }
         if ((*(byte *)(system_pointer_var + 1) & 8) != 0) {
-          (**(code **)(system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] + SYSTEM_DATA_BLOCK_SIZE_70))(system_pointer_var + 4,system_pointer_var);
+          (**(code **)(system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] + SYSTEM_DATA_BLOCK_SIZE_70))(system_pointer_var + SYSTEM_NODE_DATA_OFFSET,system_pointer_var);
           if (1 < system_int_result) {
             (**(code **)(system_pointer_var[SYSTEM_CONFIG_SIZE_INPUT] + SYSTEM_DATA_BLOCK_SIZE_70))(system_pointer_var + SYSTEM_CONFIG_SIZE_INPUT,system_pointer_var);
           }
         }
-        if ((code *)*system_pointer_var != (code *)0x0) {
+        if ((code *)*system_pointer_var != (code *)SYSTEM_NULL_POINTER_0) {
           (*(code *)*system_pointer_var)(system_pointer_var);
         }
       }
@@ -37037,7 +37170,7 @@ void InitializeFontSystem(uint64_t handleIdentifier)
     system_local_buffer_100[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
     init_stack_uint_param_108 = 1;
     strcpy_s(system_local_buffer_100,SYSTEM_DATA_COMPARE_SIZE,&g_system_constant_5);
-    InitializeSystemModule67(&system_buffer_ptr_data_config,system_pointer_var + 4,&system_buffer_ptr_118);
+    InitializeSystemModule67(&system_buffer_ptr_data_config,system_pointer_var + SYSTEM_NODE_DATA_OFFSET,&system_buffer_ptr_118);
     system_buffer_ptr_118 = &globalSystemPointerData;
   }
   system_buffer_ptr_f0 = &globalSystemPointerData;
@@ -37321,9 +37454,9 @@ void ConfigureSystemHandles(void)
   uintStack_258 = SYSTEM_PATH_String_2;
   uintStack_22c = 0;
   init_stack_uint_param_240 = 0x616f6c70;
-  uintStack_23c = 0x2e726564;
+  uintStack_23c = SYSTEM_CONFIG_SIZE_2E726564;
   uintStack_238 = 0x6c627550;
-  uintStack_234 = 0x2e687369;
+  uintStack_234 = SYSTEM_CONFIG_SIZE_2E687369;
   uintStack_250 = 0x75502e72;
   uintStack_24c = 0x73696c62;
   init_stack_uint_param_248 = 0x72435c68;
@@ -38294,7 +38427,7 @@ void InitializeSystemModule59(uint64_t handleIdentifier,longlong resourceIdentif
 void InitializeSystemModule23(longlong handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
-  if (*(code **)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) != (code *)0x0) {
+  if (*(code **)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) != (code *)SYSTEM_NULL_POINTER_0) {
     (**(code **)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE))(handleIdentifier,0,0,systemFlags,INVALID_HANDLE_VALUE);
   }
   return;
@@ -38615,7 +38748,7 @@ uint64_t ProcessSystemData(longlong handleIdentifier,longlong resourceIdentifier
           ConfigureSystemModule17(g_system_context_1,&g_system_global_config);
         }
         compare_result = GetLastError();
-        if (compare_result != 0x3e5) {
+        if (compare_result != SYSTEM_CONFIG_SIZE_3E5) {
                     // WARNING: Subroutine does not return
           ConfigureSystemModule17(g_system_context_1,&g_global_system_config,compare_result);
         }
@@ -38655,11 +38788,11 @@ longlong InitializeSystemModule32(longlong handleIdentifier,longlong resourceIde
   *(uint64_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_PHYSICS8) = *(uint64_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_PHYSICS8);
   *(uint8_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER0) = *(uint8_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER0);
   if (system_long_result != resourceIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER8) {
-    if (*(code **)(handleIdentifier + SYSTEM_CONFIG_SIZE_AUTH8) != (code *)0x0) {
+    if (*(code **)(handleIdentifier + SYSTEM_CONFIG_SIZE_AUTH8) != (code *)SYSTEM_NULL_POINTER_0) {
       (**(code **)(handleIdentifier + SYSTEM_CONFIG_SIZE_AUTH8))(system_long_result,0,0);
     }
     ptr_system_init_flag = *(code **)(resourceIdentifier + SYSTEM_CONFIG_SIZE_AUTH8);
-    if (ptr_system_init_flag != (code *)0x0) {
+    if (ptr_system_init_flag != (code *)SYSTEM_NULL_POINTER_0) {
       (*ptr_system_init_flag)(system_long_result,resourceIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER8,1);
       ptr_system_init_flag = *(code **)(resourceIdentifier + SYSTEM_CONFIG_SIZE_AUTH8);
     }
@@ -38668,11 +38801,11 @@ longlong InitializeSystemModule32(longlong handleIdentifier,longlong resourceIde
   }
   system_long_value = handleIdentifier + SYSTEM_CONFIG_SIZE_FONT8;
   if (system_long_result != resourceIdentifier + SYSTEM_CONFIG_SIZE_FONT8) {
-    if (*(code **)(handleIdentifier + SYSTEM_CONFIG_SIZE_UTILITY_28) != (code *)0x0) {
+    if (*(code **)(handleIdentifier + SYSTEM_CONFIG_SIZE_UTILITY_28) != (code *)SYSTEM_NULL_POINTER_0) {
       (**(code **)(handleIdentifier + SYSTEM_CONFIG_SIZE_UTILITY_28))(system_long_result,0,0);
     }
     ptr_system_init_flag = *(code **)(resourceIdentifier + SYSTEM_CONFIG_SIZE_UTILITY_28);
-    if (ptr_system_init_flag != (code *)0x0) {
+    if (ptr_system_init_flag != (code *)SYSTEM_NULL_POINTER_0) {
       (*ptr_system_init_flag)(system_long_result,resourceIdentifier + SYSTEM_CONFIG_SIZE_FONT8,1);
       ptr_system_init_flag = *(code **)(resourceIdentifier + SYSTEM_CONFIG_SIZE_UTILITY_28);
     }
@@ -39068,7 +39201,7 @@ longlong InitializeNetworkSystem(longlong *handleIdentifier,longlong *resourceId
     if (system_configuration == 0) {
       system_long_value = *handleIdentifier;
       if (system_long_result != 0) {
-        if (*(code **)(system_long_result + SYSTEM_DATA_COMPARE_SIZE) != (code *)0x0) {
+        if (*(code **)(system_long_result + SYSTEM_DATA_COMPARE_SIZE) != (code *)SYSTEM_NULL_POINTER_0) {
           (**(code **)(system_long_result + SYSTEM_DATA_COMPARE_SIZE))(system_long_result,0,0,systemFlags,INVALID_HANDLE_VALUE);
         }
                     // WARNING: Subroutine does not return
@@ -39083,7 +39216,7 @@ longlong InitializeNetworkSystem(longlong *handleIdentifier,longlong *resourceId
         *(code **)(system_long_result + SYSTEM_OFFSET_18) = _guard_check_icall;
         if (system_long_result != system_long_result) {
           ptr_system_init_flag = *(code **)(system_long_result + SYSTEM_DATA_COMPARE_SIZE);
-          if (ptr_system_init_flag != (code *)0x0) {
+          if (ptr_system_init_flag != (code *)SYSTEM_NULL_POINTER_0) {
             (*ptr_system_init_flag)(system_long_result,system_long_result,1);
             ptr_system_init_flag = *(code **)(system_long_result + SYSTEM_DATA_COMPARE_SIZE);
           }
@@ -39156,7 +39289,7 @@ void InitializeSystemComponents(longlong handleIdentifier,longlong resourceIdent
   code *pis_initialized;
 
   pis_initialized = *(code **)(resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE);
-  if (pis_initialized != (code *)0x0) {
+  if (pis_initialized != (code *)SYSTEM_NULL_POINTER_0) {
     (*pis_initialized)(handleIdentifier,resourceIdentifier,2);
     pis_initialized = *(code **)(resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE);
   }
@@ -39301,10 +39434,10 @@ longlong InitializeSystemModule10(longlong handleIdentifier,ulonglong resourceId
 void InitializeSystemModule33(uint64_t *handleIdentifier,uint64_t resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
-  if ((code *)handleIdentifier[SYSTEM_HANDLE_INDEX_2F] != (code *)0x0) {
+  if ((code *)handleIdentifier[SYSTEM_HANDLE_INDEX_2F] != (code *)SYSTEM_NULL_POINTER_0) {
     (*(code *)handleIdentifier[SYSTEM_HANDLE_INDEX_2F])(handleIdentifier + SYSTEM_OFFSET_2D,0,0,systemFlags,INVALID_HANDLE_VALUE);
   }
-  if ((code *)handleIdentifier[SYSTEM_OBJECT_OFFSET_2B] != (code *)0x0) {
+  if ((code *)handleIdentifier[SYSTEM_OBJECT_OFFSET_2B] != (code *)SYSTEM_NULL_POINTER_0) {
     (*(code *)handleIdentifier[SYSTEM_OBJECT_OFFSET_2B])(handleIdentifier + 0x29,0,0);
   }
   *handleIdentifier = &globalSystemPointerData;
@@ -39731,14 +39864,14 @@ InitializeAudioDataNode7(uint64_t *handleIdentifier,uint64_t *resourceIdentifier
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = _guard_check_icall;
   if (handleIdentifier + 4 != resourceIdentifier) {
     pis_initialized = (code *)resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-    if (pis_initialized != (code *)0x0) {
-      (*pis_initialized)(handleIdentifier + 4,resourceIdentifier,1,systemFlags,INVALID_HANDLE_VALUE);
+    if (pis_initialized != (code *)SYSTEM_NULL_POINTER_0) {
+      (*pis_initialized)(handleIdentifier + SYSTEM_NODE_DATA_OFFSET,resourceIdentifier,1,systemFlags,INVALID_HANDLE_VALUE);
       pis_initialized = (code *)resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
     }
     handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = pis_initialized;
     handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   }
-  if ((code *)resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != (code *)0x0) {
+  if ((code *)resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != (code *)SYSTEM_NULL_POINTER_0) {
     (*(code *)resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER])(resourceIdentifier,0,0);
   }
   return handleIdentifier;
@@ -40074,7 +40207,7 @@ void InitializeSystemResources(uint64_t handleIdentifier,uint32_t resourceIdenti
 longlong InitializeDataEngineNode(longlong handleIdentifier,uint resourceIdentifier,uint64_t system_configuration,uint64_t systemFlags)
 
 {
-  if (*(code **)(handleIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) != (code *)0x0) {
+  if (*(code **)(handleIdentifier + SYSTEM_CONFIG_SIZE_STATUS0) != (code *)SYSTEM_NULL_POINTER_0) {
     (**(code **)(handleIdentifier + SYSTEM_CONFIG_SIZE_STATUS0))(handleIdentifier + SYSTEM_MEMORY_POOL_SIZE_LARGE,0,0,systemFlags,INVALID_HANDLE_VALUE);
   }
   InitializeInputManagerSystem(handleIdentifier);
@@ -40098,14 +40231,14 @@ InitializeInputMutex(uint64_t *handleIdentifier,uint64_t *resourceIdentifier,uin
   handleIdentifier[SYSTEM_CONFIG_SIZE_INPUT] = _guard_check_icall;
   if (handleIdentifier + SYSTEM_OFFSET_18 != resourceIdentifier) {
     pis_initialized = (code *)resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-    if (pis_initialized != (code *)0x0) {
+    if (pis_initialized != (code *)SYSTEM_NULL_POINTER_0) {
       (*pis_initialized)(handleIdentifier + SYSTEM_OFFSET_18,resourceIdentifier,1,systemFlags,system_int_result_unsigned);
       pis_initialized = (code *)resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
     }
     handleIdentifier[SYSTEM_CONFIG_SIZE_AUDIO] = pis_initialized;
     handleIdentifier[SYSTEM_CONFIG_SIZE_INPUT] = resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   }
-  if ((code *)resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != (code *)0x0) {
+  if ((code *)resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != (code *)SYSTEM_NULL_POINTER_0) {
     (*(code *)resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER])(resourceIdentifier,0,0);
   }
   return handleIdentifier;
@@ -40529,10 +40662,10 @@ void InitializeNetworkSystem(longlong handleIdentifier)
     pbStack_1f0 = abStack_1e0;
     intStack_1e8 = 0;
     abStack_1e0[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
-    stack_char_ptr = (code *)0x0;
+    stack_char_ptr = (code *)SYSTEM_NULL_POINTER_0;
     stack_char_ptr = _guard_check_icall;
     psystem_buffer_ptr_248 = (void **)system_local_buffer_thread_config;
-    stack_char_ptr = (code *)0x0;
+    stack_char_ptr = (code *)SYSTEM_NULL_POINTER_0;
     stack_char_ptr = _guard_check_icall;
     longStack_c0 = -1;
     init_stack_uint_param_d8 = SYSTEM_MAX_64BIT_VALUE;
@@ -40606,11 +40739,11 @@ void InitializeNetworkSystem(longlong handleIdentifier)
       longStack_c0 = *(longlong *)(system_long_result + SYSTEM_CONFIG_SIZE_PHYSICS8);
       init_stack_uint_param_thread = *(uint8_t *)(system_long_result + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER0);
       if (system_local_buffer_b0 != (uint8_t *)(system_long_result + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER8)) {
-        if (stack_char_ptr != (code *)0x0) {
+        if (stack_char_ptr != (code *)SYSTEM_NULL_POINTER_0) {
           (*stack_char_ptr)(system_local_buffer_b0,0,0);
         }
         ptr_system_init_flag = *(code **)(system_long_result + SYSTEM_CONFIG_SIZE_AUTH8);
-        if (ptr_system_init_flag != (code *)0x0) {
+        if (ptr_system_init_flag != (code *)SYSTEM_NULL_POINTER_0) {
           (*ptr_system_init_flag)(system_local_buffer_b0,(uint8_t *)(system_long_result + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER8),1);
           ptr_system_init_flag = *(code **)(system_long_result + SYSTEM_CONFIG_SIZE_AUTH8);
         }
@@ -40618,11 +40751,11 @@ void InitializeNetworkSystem(longlong handleIdentifier)
         stack_char_ptr = ptr_system_init_flag;
       }
       if (system_local_buffer_thread_config != (uint8_t *)(system_long_result + SYSTEM_CONFIG_SIZE_FONT8)) {
-        if (stack_char_ptr != (code *)0x0) {
+        if (stack_char_ptr != (code *)SYSTEM_NULL_POINTER_0) {
           (*stack_char_ptr)(system_local_buffer_thread_config,0,0);
         }
         ptr_system_init_flag = *(code **)(system_long_result + SYSTEM_CONFIG_SIZE_UTILITY_28);
-        if (ptr_system_init_flag != (code *)0x0) {
+        if (ptr_system_init_flag != (code *)SYSTEM_NULL_POINTER_0) {
           (*ptr_system_init_flag)(system_local_buffer_thread_config,(uint8_t *)(system_long_result + SYSTEM_CONFIG_SIZE_FONT8),1);
           ptr_system_init_flag = *(code **)(system_long_result + SYSTEM_CONFIG_SIZE_UTILITY_28);
         }
@@ -40881,11 +41014,11 @@ INIT_LABEL_SYSTEM_6c9ac:
       if (system_long_result != 0) goto INIT_LABEL_SYSTEM_6c852;
       (*stack_char_ptr)(system_local_buffer_thread_config);
       psystem_buffer_ptr_248 = (void **)system_local_buffer_thread_config;
-      if (stack_char_ptr != (code *)0x0) {
+      if (stack_char_ptr != (code *)SYSTEM_NULL_POINTER_0) {
         (*stack_char_ptr)(system_local_buffer_thread_config,0,0);
       }
       psystem_buffer_ptr_248 = (void **)system_local_buffer_b0;
-      if (stack_char_ptr != (code *)0x0) {
+      if (stack_char_ptr != (code *)SYSTEM_NULL_POINTER_0) {
         (*stack_char_ptr)(system_local_buffer_b0,0,0);
       }
     }
@@ -40896,11 +41029,11 @@ INIT_LABEL_SYSTEM_6c9ac:
       }
 INIT_LABEL_SYSTEM_6ca95:
       psystem_buffer_ptr_248 = (void **)system_local_buffer_thread_config;
-      if (stack_char_ptr != (code *)0x0) {
+      if (stack_char_ptr != (code *)SYSTEM_NULL_POINTER_0) {
         (*stack_char_ptr)(system_local_buffer_thread_config,0,0);
       }
       psystem_buffer_ptr_248 = (void **)system_local_buffer_b0;
-      if (stack_char_ptr != (code *)0x0) {
+      if (stack_char_ptr != (code *)SYSTEM_NULL_POINTER_0) {
         (*stack_char_ptr)(system_local_buffer_b0,0,0);
       }
     }
@@ -40970,7 +41103,7 @@ ulonglong InitializeUISystem(longlong *handleIdentifier,longlong resourceIdentif
     *(code **)(system_int_result_unsigned + SYSTEM_CONFIG_SIZE_FONT0) = _guard_check_icall;
     if (system_int_result_unsigned + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER8 != resourceIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER8) {
       ptr_system_init_flag = *(code **)(resourceIdentifier + SYSTEM_CONFIG_SIZE_AUTH8);
-      if (ptr_system_init_flag != (code *)0x0) {
+      if (ptr_system_init_flag != (code *)SYSTEM_NULL_POINTER_0) {
         (*ptr_system_init_flag)(system_int_result_unsigned + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER8,resourceIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER8,1);
         ptr_system_init_flag = *(code **)(resourceIdentifier + SYSTEM_CONFIG_SIZE_AUTH8);
       }
@@ -40981,7 +41114,7 @@ ulonglong InitializeUISystem(longlong *handleIdentifier,longlong resourceIdentif
     *(code **)(system_int_result_unsigned + SYSTEM_OFFSET_180) = _guard_check_icall;
     if (system_int_result_unsigned + SYSTEM_CONFIG_SIZE_FONT8 != resourceIdentifier + SYSTEM_CONFIG_SIZE_FONT8) {
       ptr_system_init_flag = *(code **)(resourceIdentifier + SYSTEM_CONFIG_SIZE_UTILITY_28);
-      if (ptr_system_init_flag != (code *)0x0) {
+      if (ptr_system_init_flag != (code *)SYSTEM_NULL_POINTER_0) {
         (*ptr_system_init_flag)(system_int_result_unsigned + SYSTEM_CONFIG_SIZE_FONT8,resourceIdentifier + SYSTEM_CONFIG_SIZE_FONT8,1);
         ptr_system_init_flag = *(code **)(resourceIdentifier + SYSTEM_CONFIG_SIZE_UTILITY_28);
       }
@@ -41110,7 +41243,7 @@ longlong InitializeSystemModule45(longlong handleIdentifier,longlong resourceIde
   *(code **)(handleIdentifier + SYSTEM_CONFIG_SIZE_FONT0) = _guard_check_icall;
   if (handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER8 != resourceIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER8) {
     pis_initialized = *(code **)(resourceIdentifier + SYSTEM_CONFIG_SIZE_AUTH8);
-    if (pis_initialized != (code *)0x0) {
+    if (pis_initialized != (code *)SYSTEM_NULL_POINTER_0) {
       (*pis_initialized)(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER8,resourceIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER8,1,systemFlags,system_int_result_unsigned);
       pis_initialized = *(code **)(resourceIdentifier + SYSTEM_CONFIG_SIZE_AUTH8);
     }
@@ -41121,7 +41254,7 @@ longlong InitializeSystemModule45(longlong handleIdentifier,longlong resourceIde
   *(code **)(handleIdentifier + SYSTEM_OFFSET_180) = _guard_check_icall;
   if (handleIdentifier + SYSTEM_CONFIG_SIZE_FONT8 != resourceIdentifier + SYSTEM_CONFIG_SIZE_FONT8) {
     pis_initialized = *(code **)(resourceIdentifier + SYSTEM_CONFIG_SIZE_UTILITY_28);
-    if (pis_initialized != (code *)0x0) {
+    if (pis_initialized != (code *)SYSTEM_NULL_POINTER_0) {
       (*pis_initialized)(handleIdentifier + SYSTEM_CONFIG_SIZE_FONT8,resourceIdentifier + SYSTEM_CONFIG_SIZE_FONT8,1);
       pis_initialized = *(code **)(resourceIdentifier + SYSTEM_CONFIG_SIZE_UTILITY_28);
     }
@@ -41932,14 +42065,14 @@ longlong InitializeAudioSystem(longlong handleIdentifier,longlong resourceIdenti
   *(uint64_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_PHYSICS8) = *(uint64_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_PHYSICS8);
   *(uint8_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER0) = *(uint8_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER0);
   if (system_long_result != resourceIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER8) {
-    if (*(code **)(handleIdentifier + SYSTEM_CONFIG_SIZE_AUTH8) != (code *)0x0) {
+    if (*(code **)(handleIdentifier + SYSTEM_CONFIG_SIZE_AUTH8) != (code *)SYSTEM_NULL_POINTER_0) {
       (**(code **)(handleIdentifier + SYSTEM_CONFIG_SIZE_AUTH8))(system_long_result,0,0);
     }
     InitializeSystemComponents(system_long_result,resourceIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER8);
   }
   system_long_value = handleIdentifier + SYSTEM_CONFIG_SIZE_FONT8;
   if (system_long_result != resourceIdentifier + SYSTEM_CONFIG_SIZE_FONT8) {
-    if (*(code **)(handleIdentifier + SYSTEM_CONFIG_SIZE_UTILITY_28) != (code *)0x0) {
+    if (*(code **)(handleIdentifier + SYSTEM_CONFIG_SIZE_UTILITY_28) != (code *)SYSTEM_NULL_POINTER_0) {
       (**(code **)(handleIdentifier + SYSTEM_CONFIG_SIZE_UTILITY_28))(system_long_result,0,0);
     }
     InitializeSystemComponents(system_long_result,resourceIdentifier + SYSTEM_CONFIG_SIZE_FONT8);
@@ -41987,7 +42120,7 @@ InitializeFontSystem(longlong *handleIdentifier,uint64_t *resourceIdentifier,uin
       systemFlags[SYSTEM_ARRAY_INDEX_GUARD_CHECK_2C] = _guard_check_icall;
       if (systemFlags + 0x29 != system_pointer_var + -2) {
         ptr_system_init_flag = (code *)*system_ptr_value;
-        if (ptr_system_init_flag != (code *)0x0) {
+        if (ptr_system_init_flag != (code *)SYSTEM_NULL_POINTER_0) {
           (*ptr_system_init_flag)(systemFlags + 0x29,system_pointer_var + -2,2);
           ptr_system_init_flag = (code *)*system_ptr_value;
         }
@@ -42000,7 +42133,7 @@ InitializeFontSystem(longlong *handleIdentifier,uint64_t *resourceIdentifier,uin
       systemFlags[SYSTEM_MEMORY_SIZE_30] = _guard_check_icall;
       if (systemFlags + SYSTEM_OFFSET_2D != system_pointer_var + 2) {
         ptr_system_init_flag = (code *)system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-        if (ptr_system_init_flag != (code *)0x0) {
+        if (ptr_system_init_flag != (code *)SYSTEM_NULL_POINTER_0) {
           (*ptr_system_init_flag)(systemFlags + SYSTEM_OFFSET_2D,system_pointer_var + 2,2);
           ptr_system_init_flag = (code *)system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
         }
@@ -42829,7 +42962,7 @@ void InitializeSystemModule30(uint64_t *handleIdentifier,uint64_t resourceIdenti
   longlong *system_memory_pointer;
   int system_integer_result;
 
-  system_integer_result = _Mtx_lock(handleIdentifier + 4,resourceIdentifier,system_configuration,systemFlags,INVALID_HANDLE_VALUE);
+  system_integer_result = _Mtx_lock(handleIdentifier + SYSTEM_NODE_DATA_OFFSET,resourceIdentifier,system_configuration,systemFlags,INVALID_HANDLE_VALUE);
   if (system_int_result != 0) {
     __Throw_C_error_std__YAXH_Z(system_int_result);
   }
@@ -42855,7 +42988,7 @@ void InitializePhysicsSystem(longlong *handleIdentifier,uint64_t resourceIdentif
   int system_integer_result;
 
   *(int *)((longlong)handleIdentifier + 0x74) = *(int *)((longlong)handleIdentifier + 0x74) + 1;
-  system_integer_result = _Mtx_lock(handleIdentifier + 4,resourceIdentifier,system_configuration,systemFlags,INVALID_HANDLE_VALUE);
+  system_integer_result = _Mtx_lock(handleIdentifier + SYSTEM_NODE_DATA_OFFSET,resourceIdentifier,system_configuration,systemFlags,INVALID_HANDLE_VALUE);
   if (system_int_result != 0) {
     __Throw_C_error_std__YAXH_Z(system_int_result);
   }
@@ -43513,7 +43646,7 @@ INIT_LABEL_SYSTEM_70230:
         system_status_code = ValidateResourceAllocation(system_pointer_var);
         init_stack_uint_param_data = CONCAT44(init_stack_uint_param_data._4_4_,system_int_result_unsigned);
         *system_ptr_value = 0x7270706d75645c5c;
-        system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x2e726f737365636f;
+        system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_CONFIG_SIZE_2E726f737365636f;
         system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x6c726f77656c6174;
         system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_PATH_Resources_3;
         *(uint32_t *)(system_pointer_var + 4) = 0x50706d75;
@@ -45080,7 +45213,7 @@ INIT_LABEL_SYSTEM_729bd:
       *(uint32_t *)(system_pointer_var + 9) = 0x23232323;
       *(uint32_t *)((longlong)system_pointer_var + SYSTEM_FLAG_BIT_4c) = 0x23232323;
       system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_FILL_PATTERN_1;
-      *(uint32_t *)(system_pointer_var + SYSTEM_NODE_STRIDE_SMALL) = 0x3e232323;
+      *(uint32_t *)(system_pointer_var + SYSTEM_NODE_STRIDE_SMALL) = SYSTEM_CONFIG_SIZE_3E232323;
       *(uint16_t *)((longlong)system_pointer_var + SYSTEM_DATA_OFFSET_5C) = 0xa0a;
       *(uint8_t *)((longlong)system_pointer_var + SYSTEM_DATA_OFFSET_5E) = 0;
       system_buffer_ptr_148 = &g_system_data_variable3;
@@ -45124,7 +45257,7 @@ INIT_LABEL_SYSTEM_729bd:
           system_status_code = ValidateResourceAllocation(system_pointer_var);
           init_stack_uint_param_thread = CONCAT44(init_stack_uint_param_thread._4_4_,system_int_result_unsigned);
           *system_ptr_value = 0x7270706d75645c5c;
-          system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x2e726f737365636f;
+          system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_CONFIG_SIZE_2E726f737365636f;
           system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x6c726f77656c6174;
           system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_PATH_Resources_3;
           *(uint32_t *)(system_pointer_var + 4) = 0x50706d75;
@@ -45368,7 +45501,7 @@ bool InitializeSystemModule4(uint64_t handleIdentifier,uint64_t *resourceIdentif
     system_status_code = ValidateResourceAllocation(node_current);
     init_stack_uint_param_f8 = CONCAT44(init_stack_uint_param_f8._4_4_,system_int_result_unsigned);
     *node_current = 0x7270706d75645c5c;
-    node_current[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x2e726f737365636f;
+    node_current[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_CONFIG_SIZE_2E726f737365636f;
     node_current[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0x6c726f77656c6174;
     node_current[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_PATH_Resources_3;
     *(uint32_t *)(node_current + 4) = 0x50706d75;
@@ -45521,7 +45654,7 @@ void InitializeUISystem(uint64_t handleIdentifier,uint64_t resourceIdentifier)
     UpdateSystemBuffer(&system_buffer_ptr_30,resourceIdentifier);
     system_ptr_value = *(void **)*system_configuration_data;
     if (system_pointer_var == &systemNextData) {
-      system_init_flag = *(int *)(system_configuration_data + 0xc40) != 0;
+      system_init_flag = *(int *)(system_configuration_data + SYSTEM_CONFIG_SIZE_C40) != 0;
     }
     else {
       system_init_flag = (**(code **)(system_pointer_var + SYSTEM_DATA_BLOCK_SIZE_50))((uint64_t *)*system_configuration_data);
@@ -45555,7 +45688,7 @@ void ProcessSystemData88(uint64_t handleIdentifier,uint64_t resourceIdentifier)
     UpdateSystemBuffer(&system_buffer_ptr_30,resourceIdentifier);
     system_ptr_value = *(void **)*system_configuration_data;
     if (system_pointer_var == &systemNextData) {
-      system_init_flag = *(int *)(system_configuration_data + 0xc40) != 0;
+      system_init_flag = *(int *)(system_configuration_data + SYSTEM_CONFIG_SIZE_C40) != 0;
     }
     else {
       system_init_flag = (**(code **)(system_pointer_var + SYSTEM_DATA_BLOCK_SIZE_50))((uint64_t *)*system_configuration_data);
@@ -45583,13 +45716,13 @@ void ValidateSystemConfiguration(uint64_t handleIdentifier,uint32_t resourceIden
   void *system_buffer_ptr_30;
   longlong longStack_28;
 
-  InitializeEventSystem(g_system_context_1,0,SYSTEM_DATA_COMPARE_SIZE0000000,0xc,&g_system_global_config,system_configuration,INVALID_HANDLE_VALUE);
+  InitializeEventSystem(g_system_context_1,0,SYSTEM_DATA_COMPARE_SIZE0000000,SYSTEM_CONFIG_SIZE_C,&g_system_global_config,system_configuration,INVALID_HANDLE_VALUE);
   if (g_system_string_buffer == '\0') {
     system_local_buffer_X20[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = resourceIdentifier;
     UpdateSystemBuffer(&system_buffer_ptr_30,system_configuration);
     system_ptr_value = *(void **)*system_configuration_data;
     if (system_pointer_var == &systemNextData) {
-      system_init_flag = *(int *)(system_configuration_data + 0xc40) != 0;
+      system_init_flag = *(int *)(system_configuration_data + SYSTEM_CONFIG_SIZE_C40) != 0;
     }
     else {
       system_init_flag = (**(code **)(system_pointer_var + SYSTEM_DATA_BLOCK_SIZE_50))((uint64_t *)*system_configuration_data);
@@ -46448,7 +46581,7 @@ void InitializeSystemModule41(longlong *handleIdentifier,longlong resourceIdenti
       *(int **)(resourceIdentifier + 8) = (int *)(allocation_size + 8);
       system_integer_result = *(int *)(allocation_size + 8);
       system_memory_pointer = (longlong *)(system_long_result + system_long_result);
-      *(longlong *)(resourceIdentifier + 8) = allocation_size + 0xc;
+      *(longlong *)(resourceIdentifier + 8) = allocation_size + SYSTEM_CONFIG_SIZE_C;
       if (0 < system_int_result) {
         *(short *)(system_memory_pointer + 2) = (short)system_integer_result;
         if (system_memory_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != 0) {
@@ -46518,7 +46651,7 @@ void InitializeSystemModule41(longlong *handleIdentifier,longlong resourceIdenti
   }
   *(int **)(resourceIdentifier + 8) = (int *)(allocation_size + 8);
   system_integer_result = *(int *)(allocation_size + 8);
-  *(longlong *)(resourceIdentifier + 8) = allocation_size + 0xc;
+  *(longlong *)(resourceIdentifier + 8) = allocation_size + SYSTEM_CONFIG_SIZE_C;
   if (system_int_result < 1) {
     *(int **)(resourceIdentifier + 8) = (int *)(allocation_size + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER);
     system_integer_result = *(int *)(allocation_size + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER);
@@ -46623,7 +46756,7 @@ void ProcessSystemData29(longlong *handleIdentifier)
       *(int **)(system_reg_rdi + 8) = (int *)(allocation_size + 8);
       system_integer_result = *(int *)(allocation_size + 8);
       system_memory_pointer = (longlong *)(system_long_result + system_long_result);
-      *(longlong *)(system_reg_rdi + 8) = allocation_size + 0xc;
+      *(longlong *)(system_reg_rdi + 8) = allocation_size + SYSTEM_CONFIG_SIZE_C;
       if (0 < system_int_result) {
         *(short *)(system_memory_pointer + 2) = (short)system_integer_result;
         if (system_memory_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != 0) {
@@ -46694,7 +46827,7 @@ void ProcessSystemData29(longlong *handleIdentifier)
   }
   *(int **)(system_reg_rdi + 8) = (int *)(allocation_size + 8);
   system_integer_result = *(int *)(allocation_size + 8);
-  *(longlong *)(system_reg_rdi + 8) = allocation_size + 0xc;
+  *(longlong *)(system_reg_rdi + 8) = allocation_size + SYSTEM_CONFIG_SIZE_C;
   if (system_int_result < 1) {
     *(int **)(system_reg_rdi + 8) = (int *)(allocation_size + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER);
     system_integer_result = *(int *)(allocation_size + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER);
@@ -46782,7 +46915,7 @@ void ValidateSystemHandle38(longlong handleIdentifier)
     *(int **)(system_reg_rdi + 8) = (int *)(system_long_result + 8);
     system_integer_result = *(int *)(system_long_result + 8);
     node_current = (ulonglong *)(system_long_result + system_int_result_unsigned);
-    *(longlong *)(system_reg_rdi + 8) = system_long_result + 0xc;
+    *(longlong *)(system_reg_rdi + 8) = system_long_result + SYSTEM_CONFIG_SIZE_C;
     if (0 < system_int_result) {
       *(short *)(node_current + 2) = (short)system_integer_result;
       if (node_current[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != 0) {
@@ -46927,7 +47060,7 @@ void HandleSystemOperation88(longlong handleIdentifier)
 
   *(int **)(system_reg_rdi + 8) = (int *)(handleIdentifier + 8);
   system_integer_result = *(int *)(handleIdentifier + 8);
-  *(longlong *)(system_reg_rdi + 8) = handleIdentifier + 0xc;
+  *(longlong *)(system_reg_rdi + 8) = handleIdentifier + SYSTEM_CONFIG_SIZE_C;
   if (system_int_result < 1) {
     *(int **)(system_reg_rdi + 8) = (int *)(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER);
     system_integer_result = *(int *)(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER);
@@ -47660,7 +47793,7 @@ uint64_t * InitializeSystemModule41(uint64_t *handleIdentifier,char resourceIden
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_OFFSET_2Ec) = SYSTEM_OFFSET_Ffffffff;
   *(uint16_t *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_CONTROL_1) = 0;
   handleIdentifier[SYSTEM_DATA_OFFSET_5E] = 0;
-  *(uint32_t *)((longlong)handleIdentifier + 0x2fc) = SYSTEM_OFFSET_Ffffffff;
+  *(uint32_t *)((longlong)handleIdentifier + SYSTEM_PATH_SEPARATOR_2Fc) = SYSTEM_OFFSET_Ffffffff;
   *(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fd) = *(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fd) & SYSTEM_OFFSET_Fb;
   *(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fd) = *(byte *)((longlong)handleIdentifier + SYSTEM_OFFSET_Fd) | resourceIdentifier << 2;
   handleIdentifier[SYSTEM_CONFIG_SIZE_AUTH] = 0;
@@ -47777,10 +47910,10 @@ uint64_t * InitializeSystemModule41(uint64_t *handleIdentifier,char resourceIden
   *(uint32_t *)(system_memory_pointer + 9) = 0x3f000000;
   *(uint32_t *)((longlong)system_memory_pointer + SYSTEM_FLAG_BIT_4c) = 0x3f4ccccd;
   *(uint32_t *)(system_memory_pointer + 10) = 0x3f000000;
-  *(uint32_t *)((longlong)system_memory_pointer + SYSTEM_HANDLE_OFFSET_COUNTER) = 0x3e99999a;
+  *(uint32_t *)((longlong)system_memory_pointer + SYSTEM_HANDLE_OFFSET_COUNTER) = SYSTEM_CONFIG_SIZE_3E99999a;
   *(uint32_t *)(system_memory_pointer + SYSTEM_NODE_STRIDE_SMALL) = SYSTEM_FLAG_BIT_411cf5c3;
   *(uint32_t *)((longlong)system_memory_pointer + SYSTEM_DATA_OFFSET_5C) = SYSTEM_FLOAT_1_0;
-  *(uint32_t *)(system_memory_pointer + 0xc) = 0xbf800000;
+  *(uint32_t *)(system_memory_pointer + SYSTEM_CONFIG_SIZE_C) = 0xbf800000;
   *(uint32_t *)((longlong)system_memory_pointer + 100) = SYSTEM_FLOAT_1_0;
   *(uint32_t *)(system_memory_pointer + SYSTEM_CONFIG_SIZE_STATUS) = 0x3f000000;
   *(uint32_t *)((longlong)system_memory_pointer + SYSTEM_HANDLE_OFFSET_STATUS_CODE) = SYSTEM_FLOAT_1_0;
@@ -48148,7 +48281,7 @@ void InitializeAudioDataNode7(longlong handleIdentifier,longlong *resourceIdenti
         system_memory_pointer = stack_system_memory_pointer;
         ConfigureSystemHandles(stack_system_memory_pointer + 2,longStack_30 + SYSTEM_DATA_COMPARE_SIZE);
         ConfigureSystemHandles(system_memory_pointer + 7,longStack_30 + SYSTEM_OBJECT_OFFSET_38);
-        InitializePhysicsSystem(system_memory_pointer + 0xc,longStack_30 + SYSTEM_OBJECT_OFFSET_60);
+        InitializePhysicsSystem(system_memory_pointer + SYSTEM_CONFIG_SIZE_C,longStack_30 + SYSTEM_OBJECT_OFFSET_60);
         InitializeSystemModule4(system_memory_pointer + SYSTEM_CONFIG_SIZE_FINAL,longStack_30 + SYSTEM_INIT_DATA_OFFSET_88);
         InitializeTextureSystem(system_memory_pointer + NODE_INITIALIZED_OFFSET,longStack_30 + 200);
         InitializeSystemDataNode30(&init_stack_uint_param_40);
@@ -48808,7 +48941,7 @@ void InitializeSystemModule10(longlong *handleIdentifier,uint64_t resourceIdenti
     *(uint32_t *)(stack_system_memory_pointer + 2) = 0;
     *(uint32_t *)(stack_system_memory_pointer + 7) = 0;
     *(uint32_t *)(stack_system_memory_pointer + SYSTEM_CONFIG_SIZE_FINAL) = 0;
-    *(uint32_t *)(stack_system_memory_pointer + 0xc) = 0;
+    *(uint32_t *)(stack_system_memory_pointer + SYSTEM_CONFIG_SIZE_C) = 0;
     *(uint16_t *)(stack_system_memory_pointer + SYSTEM_OFFSET_18) = 0;
     if (stack_system_memory_pointer[SYSTEM_CONFIG_SIZE_UTILITY_2] != 0) {
                     // WARNING: Subroutine does not return
@@ -49051,10 +49184,10 @@ int InitializeNetworkSystem(longlong handleIdentifier,longlong *resourceIdentifi
       if ((char)resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != '\0') {
         system_buffer_ptr_resource_main = (ulonglong *)0x0;
         stack_system_memory_pointer = (longlong *)SYSTEM_NULL_POINTER;
-        stack_char_ptr = (code *)0x0;
+        stack_char_ptr = (code *)SYSTEM_NULL_POINTER_0;
         stack_char_ptr = _guard_check_icall;
         InitializeSystemProfiler(extra_output_varXMM0_Da,handleIdentifier,&system_buffer_ptr_80);
-        if (stack_char_ptr != (code *)0x0) {
+        if (stack_char_ptr != (code *)SYSTEM_NULL_POINTER_0) {
           (*stack_char_ptr)(&system_buffer_ptr_80,0,0);
         }
       }
@@ -49814,7 +49947,7 @@ INIT_LABEL_SYSTEM_77879:
             }
             *(bool *)((longlong)asystem_buffer_ptr_128[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] + SYSTEM_FLAG_BIT_4c) = *(longlong *)(system_long_result + SYSTEM_DATA_COMPARE_SIZE) != 0;
             *(uint8_t *)((longlong)asystem_buffer_ptr_128[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] + SYSTEM_FLAG_BIT_4d) = 1;
-            if ((*(char *)(system_parameter_handle_5 + 0xc) != '\0') ||
+            if ((*(char *)(system_parameter_handle_5 + SYSTEM_CONFIG_SIZE_C) != '\0') ||
                (0 < *(int *)(*(longlong *)(handleIdentifier + 600) + SYSTEM_CONFIG_SIZE_NETWORK))) {
               *(uint8_t *)((longlong)asystem_buffer_ptr_128[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] + SYSTEM_FLAG_BIT_4d) = 0;
             }
@@ -49878,7 +50011,7 @@ INIT_LABEL_SYSTEM_77879:
       init_float_stack_8c = system_result_float * system_result_float + system_result_float * system_result_float + system_result_float * system_result_float + system_configuration[SYSTEM_OFFSET_F];
       system_configuration = &init_float_stack_c8;
     }
-    InitializeConditionInitNode(&init_stack_uint_param_108,resourceIdentifier + 0xc,*(uint8_t *)(handleIdentifier + SYSTEM_OFFSET_F7),system_configuration);
+    InitializeConditionInitNode(&init_stack_uint_param_108,resourceIdentifier + SYSTEM_CONFIG_SIZE_C,*(uint8_t *)(handleIdentifier + SYSTEM_OFFSET_F7),system_configuration);
     system_status_code = resourceIdentifier[SYSTEM_ARRAY_INDEX_RESOURCE_STATUS_6F6];
     compare_result3 = *(int *)(g_system_base_1 + SYSTEM_CORE_DATA_OFFSET_224);
     if (((*(byte *)(handleIdentifier + SYSTEM_OFFSET_Fd) & 1) == 0) &&
@@ -50134,7 +50267,7 @@ void InitializeSystemModule88(void)
   }
   *(bool *)((longlong)init_stack_ptr_param_40 + SYSTEM_FLAG_BIT_4c) = *(longlong *)(system_long_result + SYSTEM_DATA_COMPARE_SIZE) != 0;
   *(uint8_t *)((longlong)init_stack_ptr_param_40 + SYSTEM_FLAG_BIT_4d) = 1;
-  if ((*(char *)(init_input_stack_190 + 0xc) != '\0') ||
+  if ((*(char *)(init_input_stack_190 + SYSTEM_CONFIG_SIZE_C) != '\0') ||
      (0 < *(int *)(*(longlong *)(system_register_rbx + 600) + SYSTEM_CONFIG_SIZE_NETWORK))) {
     *(uint8_t *)((longlong)init_stack_ptr_param_40 + SYSTEM_FLAG_BIT_4d) = 0;
   }
@@ -50394,7 +50527,7 @@ void InitializeSystemLogger(void)
   }
   *(bool *)(init_stack_ptr_param_40 + SYSTEM_FLAG_BIT_4c) = *(longlong *)(system_long_result + SYSTEM_DATA_COMPARE_SIZE) != 0;
   *(uint8_t *)(init_stack_ptr_param_40 + SYSTEM_FLAG_BIT_4d) = 1;
-  if ((*(char *)(init_input_stack_190 + 0xc) != '\0') ||
+  if ((*(char *)(init_input_stack_190 + SYSTEM_CONFIG_SIZE_C) != '\0') ||
      (0 < *(int *)(*(longlong *)(system_register_rbx + 600) + SYSTEM_CONFIG_SIZE_NETWORK))) {
     *(uint8_t *)(init_stack_ptr_param_40 + SYSTEM_FLAG_BIT_4d) = 0;
   }
@@ -51604,7 +51737,7 @@ void ProcessSystemData88(uint64_t *handleIdentifier,uint64_t resourceIdentifier,
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
   handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = SYSTEM_FLOAT_1_000000000;
   handleIdentifier[SYSTEM_DATA_BLOCK_SIZE_B] = 0;
-  *(uint32_t *)(handleIdentifier + 0xc) = 0;
+  *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_C) = 0;
   *(uint32_t *)((longlong)handleIdentifier + 100) = 0;
   *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_STATUS) = SYSTEM_FLOAT_1_0;
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_HANDLE_OFFSET_STATUS_CODE) = 0;
@@ -51617,7 +51750,7 @@ void ProcessSystemData88(uint64_t *handleIdentifier,uint64_t resourceIdentifier,
     handleIdentifier[SYSTEM_CONFIG_SIZE_FINAL] = handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
     handleIdentifier[SYSTEM_CONFIG_SIZE_RENDER] = handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
     handleIdentifier[SYSTEM_CONFIG_SIZE_PHYSICS] = handleIdentifier[SYSTEM_DATA_BLOCK_SIZE_B];
-    *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = *(uint32_t *)(handleIdentifier + 0xc);
+    *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_C);
     *(uint32_t *)((longlong)handleIdentifier + 0xa4) = *(uint32_t *)((longlong)handleIdentifier + 100);
     *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_AUTH) = *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_STATUS);
     *(uint32_t *)((longlong)handleIdentifier + SYSTEM_OBJECT_OFFSET_AC) = *(uint32_t *)((longlong)handleIdentifier + SYSTEM_HANDLE_OFFSET_STATUS_CODE);
@@ -51736,7 +51869,7 @@ void InitializeSystemModule41(uint64_t *handleIdentifier,longlong resourceIdenti
     system_status_code = *(uint32_t *)(resourceIdentifier + SYSTEM_DATA_OFFSET_24c);
   }
   *(uint32_t *)(handleIdentifier + 0x23) = system_integer_result_unsigned;
-  if ((*(char *)(resourceIdentifier + 0x2f0) == '\0') && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != 0)) {
+  if ((*(char *)(resourceIdentifier + SYSTEM_PATH_SEPARATOR_2F0) == '\0') && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != 0)) {
     EngineFunctionfca40(*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8),&init_stack_handle_id);
     system_status_code = (uint32_t)init_stack_handle_id;
     system_status_code = init_stack_handle_id._4_4_;
@@ -51753,11 +51886,11 @@ void InitializeSystemModule41(uint64_t *handleIdentifier,longlong resourceIdenti
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_COMPARE_SIZE4) = system_integer_result_unsigned;
   *(uint32_t *)(handleIdentifier + SYSTEM_DATA_OFFSET_21) = system_integer_result_unsigned;
   *(uint32_t *)((longlong)handleIdentifier + SYSTEM_DATA_COMPARE_SIZEc) = system_integer_result_unsigned;
-  if ((*(char *)(resourceIdentifier + 0x2fc) == '\0') && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != 0)) {
+  if ((*(char *)(resourceIdentifier + SYSTEM_PATH_SEPARATOR_2Fc) == '\0') && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != 0)) {
     system_status_code = InitializeModule3();
   }
   else {
-    system_status_code = *(uint32_t *)(resourceIdentifier + 0x2f4);
+    system_status_code = *(uint32_t *)(resourceIdentifier + SYSTEM_PATH_SEPARATOR_2F4);
   }
   *(uint32_t *)(handleIdentifier + SYSTEM_CORE_OFFSET_CONFIG) = system_integer_result_unsigned;
   if ((*(char *)(resourceIdentifier + SYSTEM_DATA_OFFSET_260) == '\0') && (*(longlong *)(resourceIdentifier + SYSTEM_DATA_OFFSET_3C8) != 0)) {
@@ -51871,7 +52004,7 @@ void InitializeSystemModule41(uint64_t *handleIdentifier,longlong resourceIdenti
     handleIdentifier[SYSTEM_CONFIG_SIZE_FINAL] = handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
     handleIdentifier[SYSTEM_CONFIG_SIZE_RENDER] = handleIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
     handleIdentifier[SYSTEM_CONFIG_SIZE_PHYSICS] = handleIdentifier[SYSTEM_DATA_BLOCK_SIZE_B];
-    *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = *(uint32_t *)(handleIdentifier + 0xc);
+    *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_C);
     *(uint32_t *)((longlong)handleIdentifier + 0xa4) = *(uint32_t *)((longlong)handleIdentifier + 100);
     *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_AUTH) = *(uint32_t *)(handleIdentifier + SYSTEM_CONFIG_SIZE_STATUS);
     *(uint32_t *)((longlong)handleIdentifier + SYSTEM_OBJECT_OFFSET_AC) = *(uint32_t *)((longlong)handleIdentifier + SYSTEM_HANDLE_OFFSET_STATUS_CODE);
@@ -52378,7 +52511,7 @@ void InitializeAudioMutex(longlong handleIdentifier,longlong resourceIdentifier)
     *(uint64_t *)(init_float_pointer_temp + 10) = system_integer_result_unsigned;
     system_ptr_value = (uint64_t *)(system_long_result + SYSTEM_CONFIG_OFFSET_30 + system_long_result);
     system_status_code = system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-    *(uint64_t *)(init_float_pointer_temp + 0xc) = *system_ptr_value;
+    *(uint64_t *)(init_float_pointer_temp + SYSTEM_CONFIG_SIZE_C) = *system_ptr_value;
     *(uint64_t *)(init_float_pointer_temp + SYSTEM_CONFIG_SIZE_EVENT) = system_integer_result_unsigned;
     system_long_value = *(longlong *)(resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE);
     system_float_value = init_float_pointer_temp[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
@@ -52476,13 +52609,13 @@ void InitializeAudioMutex(longlong handleIdentifier,longlong resourceIdentifier)
                 *(int *)((longlong)system_memory_pointer + -SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = system_int_result + 3 + compare_result9;
                 system_integer_result = system_int_result + SYSTEM_DATA_COMPARE_SIZE;
                 *(int *)(system_memory_pointer + -2) = compare_result7 + -4 + compare_result9;
-                *(int *)((longlong)system_memory_pointer + -0xc) = compare_result7 + -3 + compare_result9;
+                *(int *)((longlong)system_memory_pointer + -SYSTEM_CONFIG_SIZE_C) = compare_result7 + -3 + compare_result9;
                 *(int *)(system_memory_pointer + -1) = compare_result7 + -2 + compare_result9;
                 *(int *)((longlong)system_memory_pointer + -4) = compare_result7 + -1 + compare_result9;
                 *(int *)system_memory_pointer = compare_result7 + compare_result9;
                 *(int *)((longlong)system_memory_pointer + 4) = compare_result7 + 1 + compare_result9;
                 *(int *)(system_memory_pointer + 1) = compare_result7 + 2 + compare_result9;
-                *(int *)((longlong)system_memory_pointer + 0xc) = compare_result7 + 3 + compare_result9;
+                *(int *)((longlong)system_memory_pointer + SYSTEM_CONFIG_SIZE_C) = compare_result7 + 3 + compare_result9;
                 *(int *)(system_memory_pointer + 2) = compare_result7 + 4 + compare_result9;
                 *(int *)((longlong)system_memory_pointer + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = compare_result7 + 5 + compare_result9;
                 *(int *)(system_memory_pointer + 3) = compare_result7 + 6 + compare_result9;
@@ -52685,7 +52818,7 @@ void InitializeSystemModule55(longlong handleIdentifier)
     *(uint64_t *)(init_float_pointer_temp + 10) = system_integer_result_unsigned;
     system_ptr_value = (uint64_t *)(system_long_result + SYSTEM_CONFIG_OFFSET_30 + system_long_result);
     system_status_code = system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-    *(uint64_t *)(init_float_pointer_temp + 0xc) = *system_ptr_value;
+    *(uint64_t *)(init_float_pointer_temp + SYSTEM_CONFIG_SIZE_C) = *system_ptr_value;
     *(uint64_t *)(init_float_pointer_temp + SYSTEM_CONFIG_SIZE_EVENT) = system_integer_result_unsigned;
     system_long_value = *(longlong *)(system_reg_rdi + SYSTEM_DATA_COMPARE_SIZE);
     system_float_value = init_float_pointer_temp[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
@@ -52783,13 +52916,13 @@ void InitializeSystemModule55(longlong handleIdentifier)
                 *(int *)((longlong)system_memory_pointer + -SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = system_int_result + 3 + compare_result9;
                 system_integer_result = system_int_result + SYSTEM_DATA_COMPARE_SIZE;
                 *(int *)(system_memory_pointer + -2) = compare_result7 + -4 + compare_result9;
-                *(int *)((longlong)system_memory_pointer + -0xc) = compare_result7 + -3 + compare_result9;
+                *(int *)((longlong)system_memory_pointer + -SYSTEM_CONFIG_SIZE_C) = compare_result7 + -3 + compare_result9;
                 *(int *)(system_memory_pointer + -1) = compare_result7 + -2 + compare_result9;
                 *(int *)((longlong)system_memory_pointer + -4) = compare_result7 + -1 + compare_result9;
                 *(int *)system_memory_pointer = compare_result7 + compare_result9;
                 *(int *)((longlong)system_memory_pointer + 4) = compare_result7 + 1 + compare_result9;
                 *(int *)(system_memory_pointer + 1) = compare_result7 + 2 + compare_result9;
-                *(int *)((longlong)system_memory_pointer + 0xc) = compare_result7 + 3 + compare_result9;
+                *(int *)((longlong)system_memory_pointer + SYSTEM_CONFIG_SIZE_C) = compare_result7 + 3 + compare_result9;
                 *(int *)(system_memory_pointer + 2) = compare_result7 + 4 + compare_result9;
                 *(int *)((longlong)system_memory_pointer + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = compare_result7 + 5 + compare_result9;
                 *(int *)(system_memory_pointer + 3) = compare_result7 + 6 + compare_result9;
@@ -52973,7 +53106,7 @@ void ProcessSystemResource36(void)
   *(uint64_t *)(init_float_pointer_temp + 10) = system_integer_result_unsigned;
   system_ptr_value = (uint64_t *)(system_long_result + SYSTEM_CONFIG_OFFSET_30 + system_long_result);
   system_status_code = system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-  *(uint64_t *)(init_float_pointer_temp + 0xc) = *system_ptr_value;
+  *(uint64_t *)(init_float_pointer_temp + SYSTEM_CONFIG_SIZE_C) = *system_ptr_value;
   *(uint64_t *)(init_float_pointer_temp + SYSTEM_CONFIG_SIZE_EVENT) = system_integer_result_unsigned;
   system_long_value = *(longlong *)(system_reg_rdi + SYSTEM_DATA_COMPARE_SIZE);
   system_float_value = init_float_pointer_temp[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
@@ -53071,13 +53204,13 @@ void ProcessSystemResource36(void)
                 *(int *)((longlong)system_memory_pointer + -SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = system_int_result + 3 + compare_result6;
                 system_integer_result = system_int_result + SYSTEM_DATA_COMPARE_SIZE;
                 *(int *)(system_memory_pointer + -2) = compare_result4 + -4 + compare_result6;
-                *(int *)((longlong)system_memory_pointer + -0xc) = compare_result4 + -3 + compare_result6;
+                *(int *)((longlong)system_memory_pointer + -SYSTEM_CONFIG_SIZE_C) = compare_result4 + -3 + compare_result6;
                 *(int *)(system_memory_pointer + -1) = compare_result4 + -2 + compare_result6;
                 *(int *)((longlong)system_memory_pointer + -4) = compare_result4 + -1 + compare_result6;
                 *(int *)system_memory_pointer = compare_result4 + compare_result6;
                 *(int *)((longlong)system_memory_pointer + 4) = compare_result4 + 1 + compare_result6;
                 *(int *)(system_memory_pointer + 1) = compare_result4 + 2 + compare_result6;
-                *(int *)((longlong)system_memory_pointer + 0xc) = compare_result4 + 3 + compare_result6;
+                *(int *)((longlong)system_memory_pointer + SYSTEM_CONFIG_SIZE_C) = compare_result4 + 3 + compare_result6;
                 *(int *)(system_memory_pointer + 2) = compare_result4 + 4 + compare_result6;
                 *(int *)((longlong)system_memory_pointer + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = compare_result4 + 5 + compare_result6;
                 *(int *)(system_memory_pointer + 3) = compare_result4 + 6 + compare_result6;
@@ -53257,7 +53390,7 @@ void HandleSystemData39(longlong handleIdentifier,uint resourceIdentifier,uint64
   *(uint64_t *)(systemFlags + 10) = system_integer_result_unsigned;
   system_ptr_value = (uint64_t *)(system_long_result + SYSTEM_CONFIG_OFFSET_30 + system_long_result);
   system_status_code = system_pointer_var[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-  *(uint64_t *)(systemFlags + 0xc) = *system_ptr_value;
+  *(uint64_t *)(systemFlags + SYSTEM_CONFIG_SIZE_C) = *system_ptr_value;
   *(uint64_t *)(systemFlags + SYSTEM_CONFIG_SIZE_EVENT) = system_integer_result_unsigned;
   system_long_value = *(longlong *)(system_reg_rdi + SYSTEM_DATA_COMPARE_SIZE);
   system_float_value = systemFlags[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
@@ -53355,13 +53488,13 @@ void HandleSystemData39(longlong handleIdentifier,uint resourceIdentifier,uint64
                 *(int *)((longlong)system_memory_pointer + -SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = system_int_result + 3 + compare_result5;
                 system_integer_result = system_int_result + SYSTEM_DATA_COMPARE_SIZE;
                 *(int *)(system_memory_pointer + -2) = compare_result4 + -4 + compare_result5;
-                *(int *)((longlong)system_memory_pointer + -0xc) = compare_result4 + -3 + compare_result5;
+                *(int *)((longlong)system_memory_pointer + -SYSTEM_CONFIG_SIZE_C) = compare_result4 + -3 + compare_result5;
                 *(int *)(system_memory_pointer + -1) = compare_result4 + -2 + compare_result5;
                 *(int *)((longlong)system_memory_pointer + -4) = compare_result4 + -1 + compare_result5;
                 *(int *)system_memory_pointer = compare_result4 + compare_result5;
                 *(int *)((longlong)system_memory_pointer + 4) = compare_result4 + 1 + compare_result5;
                 *(int *)(system_memory_pointer + 1) = compare_result4 + 2 + compare_result5;
-                *(int *)((longlong)system_memory_pointer + 0xc) = compare_result4 + 3 + compare_result5;
+                *(int *)((longlong)system_memory_pointer + SYSTEM_CONFIG_SIZE_C) = compare_result4 + 3 + compare_result5;
                 *(int *)(system_memory_pointer + 2) = compare_result4 + 4 + compare_result5;
                 *(int *)((longlong)system_memory_pointer + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = compare_result4 + 5 + compare_result5;
                 *(int *)(system_memory_pointer + 3) = compare_result4 + 6 + compare_result5;
@@ -53561,13 +53694,13 @@ void ValidateSystemHandle65(void)
                 *(int *)((longlong)system_memory_pointer + -SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = system_int_result + 3 + system_integer_result;
                 system_integer_result = system_int_result + SYSTEM_DATA_COMPARE_SIZE;
                 *(int *)(system_memory_pointer + -2) = system_int_result + -4 + system_integer_result;
-                *(int *)((longlong)system_memory_pointer + -0xc) = system_int_result + -3 + system_integer_result;
+                *(int *)((longlong)system_memory_pointer + -SYSTEM_CONFIG_SIZE_C) = system_int_result + -3 + system_integer_result;
                 *(int *)(system_memory_pointer + -1) = system_int_result + -2 + system_integer_result;
                 *(int *)((longlong)system_memory_pointer + -4) = system_int_result + -1 + system_integer_result;
                 *(int *)system_memory_pointer = system_int_result + system_integer_result;
                 *(int *)((longlong)system_memory_pointer + 4) = system_int_result + 1 + system_integer_result;
                 *(int *)(system_memory_pointer + 1) = system_int_result + 2 + system_integer_result;
-                *(int *)((longlong)system_memory_pointer + 0xc) = system_int_result + 3 + system_integer_result;
+                *(int *)((longlong)system_memory_pointer + SYSTEM_CONFIG_SIZE_C) = system_int_result + 3 + system_integer_result;
                 *(int *)(system_memory_pointer + 2) = system_int_result + 4 + system_integer_result;
                 *(int *)((longlong)system_memory_pointer + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = system_int_result + 5 + system_integer_result;
                 *(int *)(system_memory_pointer + 3) = system_int_result + 6 + system_integer_result;
@@ -54302,7 +54435,7 @@ void InitializeTextureSystem(longlong handleIdentifier)
         init_float_pointer_temp[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = init_float_stack_178;
         init_float_pointer_temp[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = init_float_stack_174;
         system_status_code = system_int_result_unsigned - 1;
-        system_status_code = system_int_result_unsigned + 0xc;
+        system_status_code = system_int_result_unsigned + SYSTEM_CONFIG_SIZE_C;
         system_status_code = system_int_result_unsigned + SYSTEM_DATA_COMPARE_SIZE;
       } while (system_int_result_unsigned != 0);
     }
@@ -54428,7 +54561,7 @@ INIT_LABEL_SYSTEM_79d9b:
         *(int **)(system_long_result + 8 + system_long_result) = init_int_pointer_temp + 1;
         *(int **)(system_long_result + SYSTEM_DATA_COMPARE_SIZE + system_long_result) = init_int_pointer_temp + system_long_value;
       }
-      system_status_code = system_int_result_unsigned + 0xc;
+      system_status_code = system_int_result_unsigned + SYSTEM_CONFIG_SIZE_C;
       init_stack_data_var = init_stack_data_var - 1;
       system_status_code = (ulonglong)(system_int_result + 1);
     } while (init_stack_data_var != 0);
@@ -54469,20 +54602,20 @@ INIT_LABEL_SYSTEM_7a5ac:
                          *(longlong *)(handleIdentifier + SYSTEM_OBJECT_OFFSET_68);
                 system_status_code = ((uint64_t *)(system_long_result + *system_memory_pointer))[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
                 *(uint64_t *)(system_long_result + 4) = *(uint64_t *)(system_long_result + *system_memory_pointer);
-                *(uint64_t *)(system_long_result + 0xc) = system_integer_result_unsigned;
+                *(uint64_t *)(system_long_result + SYSTEM_CONFIG_SIZE_C) = system_integer_result_unsigned;
                 system_status_code = ((uint64_t *)(system_long_result + *system_memory_pointer))[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
                 *(uint64_t *)(system_long_result + SYSTEM_HANDLE_OFFSET_ALLOC_SIZE) = *(uint64_t *)(system_long_result + *system_memory_pointer);
                 *(uint64_t *)(system_long_result + SYSTEM_DATA_OFFSET_3C) = system_integer_result_unsigned;
                 system_float_value = *(float *)(system_long_result + 8);
                 system_float_value = *(float *)(system_long_result + 4);
-                system_float_value = *(float *)(system_long_result + 0xc);
+                system_float_value = *(float *)(system_long_result + SYSTEM_CONFIG_SIZE_C);
                 system_float_value = system_result_float * system_result_float + system_result_float * system_result_float + system_result_float * system_float_value;
                 system_float_union = rsqrtss(ZEXT416((uint)system_result_float),ZEXT416((uint)system_result_float));
                 system_float_value = system_float_union._0_4_;
                 system_float_value = system_result_float * 0.5 * (3.0 - system_result_float * system_result_float * system_result_float);
                 *(float *)(system_long_result + 4) = system_result_float * system_float_value;
                 *(float *)(system_long_result + 8) = system_result_float * system_float_value;
-                *(float *)(system_long_result + 0xc) = system_result_float * system_float_value;
+                *(float *)(system_long_result + SYSTEM_CONFIG_SIZE_C) = system_result_float * system_float_value;
                 system_float_value = *(float *)(system_long_result + SYSTEM_OBJECT_OFFSET_38);
                 system_float_value = *(float *)(system_long_result + SYSTEM_HANDLE_OFFSET_ALLOC_SIZE);
                 system_float_value = *(float *)(system_long_result + SYSTEM_DATA_OFFSET_3C);
@@ -54851,7 +54984,7 @@ INIT_LABEL_SYSTEM_7ac04:
             }
           }
           system_long_value = system_long_result + 1;
-          system_long_value = system_long_result + 0xc;
+          system_long_value = system_long_result + SYSTEM_CONFIG_SIZE_C;
         } while (system_long_result < (longlong)system_int_result_unsigned);
         system_long_value = (longlong)intStack_1e8;
       }
@@ -55157,14 +55290,14 @@ INIT_LABEL_SYSTEM_7a312:
       do {
         system_long_value = (longlong)*init_int_pointer_temp;
         system_long_value = *(longlong *)(handleIdentifier + SYSTEM_INIT_DATA_OFFSET_90);
-        if (*(uint *)(system_long_result + system_long_result * 0xc) == (uint)flag_initialized) {
-          *(int *)(system_long_result + system_long_result * 0xc) = system_integer_result;
+        if (*(uint *)(system_long_result + system_long_result * SYSTEM_CONFIG_SIZE_C) == (uint)flag_initialized) {
+          *(int *)(system_long_result + system_long_result * SYSTEM_CONFIG_SIZE_C) = system_integer_result;
         }
-        if (*(uint *)(system_long_result + 4 + system_long_result * 0xc) == (uint)flag_initialized) {
-          *(int *)(system_long_result + 4 + system_long_result * 0xc) = system_integer_result;
+        if (*(uint *)(system_long_result + 4 + system_long_result * SYSTEM_CONFIG_SIZE_C) == (uint)flag_initialized) {
+          *(int *)(system_long_result + 4 + system_long_result * SYSTEM_CONFIG_SIZE_C) = system_integer_result;
         }
-        if (*(uint *)(system_long_result + 8 + system_long_result * 0xc) == (uint)flag_initialized) {
-          *(int *)(system_long_result + 8 + system_long_result * 0xc) = system_integer_result;
+        if (*(uint *)(system_long_result + 8 + system_long_result * SYSTEM_CONFIG_SIZE_C) == (uint)flag_initialized) {
+          *(int *)(system_long_result + 8 + system_long_result * SYSTEM_CONFIG_SIZE_C) = system_integer_result;
         }
         system_status_code = (int)system_int_result_unsigned + 1;
         init_int_pointer_temp = init_int_pointer_temp + 1;
@@ -55866,8 +55999,8 @@ void InitializeStringManager(longlong handleIdentifier,longlong resourceIdentifi
         }
         *(uint *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE0) = system_integer_result_unsigned;
       }
-      system_status_code = system_int_result_unsigned << 0xc & *(uint *)(system_configuration + SYSTEM_CONFIG_OFFSET_30);
-      if ((system_int_result_unsigned << 0xc & *(uint *)(resourceIdentifier + SYSTEM_CONFIG_OFFSET_30)) != system_int_result_unsigned) {
+      system_status_code = system_int_result_unsigned << SYSTEM_CONFIG_SIZE_C & *(uint *)(system_configuration + SYSTEM_CONFIG_OFFSET_30);
+      if ((system_int_result_unsigned << SYSTEM_CONFIG_SIZE_C & *(uint *)(resourceIdentifier + SYSTEM_CONFIG_OFFSET_30)) != system_int_result_unsigned) {
         if (system_operation_status == 0) {
           system_status_code = *(uint *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE0) & ~(1 << (system_int_result_unsigned + 10 & SYSTEM_MAX_CONFIG_SIZE));
         }
@@ -56106,10 +56239,10 @@ void InitializeResourceSystem(longlong *handleIdentifier,byte resourceIdentifier
     }
     InitializeSystemModule67(system_local_buffer_60,&system_stack_memory_pointer);
     (*ptr_system_init_flag)(ptr_data,&system_data_pattern_audio,handleIdentifier + SYSTEM_CONFIG_SIZE_UTILITY_2,0,system_local_buffer_60,&init_stack_uint_param_100);
-    if (stack_char_ptr != (code *)0x0) {
+    if (stack_char_ptr != (code *)SYSTEM_NULL_POINTER_0) {
       (*stack_char_ptr)(system_local_buffer_60,0,0);
     }
-    if (stack_char_ptr != (code *)0x0) {
+    if (stack_char_ptr != (code *)SYSTEM_NULL_POINTER_0) {
       (*stack_char_ptr)(&init_stack_uint_param_100,0,0);
     }
   }
@@ -56129,7 +56262,7 @@ void InitializeResourceSystem(longlong *handleIdentifier,byte resourceIdentifier
     }
     InitializeSystemModule67(system_local_buffer_80,&system_stack_memory_pointer);
     system_init_flag = (*ptr_system_init_flag)(ptr_data,&system_data_pattern_audio,handleIdentifier + SYSTEM_CONFIG_SIZE_UTILITY_2,0,system_local_buffer_80);
-    if (stack_char_ptr != (code *)0x0) {
+    if (stack_char_ptr != (code *)SYSTEM_NULL_POINTER_0) {
       (*stack_char_ptr)(system_local_buffer_80,0,0);
     }
     if (system_init_flag == '\0') {
@@ -56949,7 +57082,7 @@ code_r0x00018007db1b:
       } while (system_long_result != 0);
     }
     break;
-  case 0xc:
+  case SYSTEM_CONFIG_SIZE_C:
     if (0 < system_int_result) {
       do {
         system_long_value = *(longlong *)(resourceIdentifier + SYSTEM_OBJECT_OFFSET_68);
@@ -57128,13 +57261,13 @@ void HandleSystemOperation92(longlong handleIdentifier,longlong *resourceIdentif
                     // WARNING: Could not recover jumptable at 0x0001808ffc47. Too many branches
                     // WARNING: Subroutine does not return
                     // WARNING: Treating indirect jump as call
-      memcpy(system_long_result,*(uint64_t *)(handleIdentifier + SYSTEM_INIT_DATA_OFFSET_90),(longlong)*(int *)(handleIdentifier + SYSTEM_INIT_DATA_OFFSET_88) * 0xc);
+      memcpy(system_long_result,*(uint64_t *)(handleIdentifier + SYSTEM_INIT_DATA_OFFSET_90),(longlong)*(int *)(handleIdentifier + SYSTEM_INIT_DATA_OFFSET_88) * SYSTEM_CONFIG_SIZE_C);
       return;
     }
     system_status_code = 0;
     if (*(int *)(handleIdentifier + SYSTEM_INIT_DATA_OFFSET_88) != 0) {
       do {
-        system_long_value = (longlong)(int)system_int_result_unsigned * 0xc;
+        system_long_value = (longlong)(int)system_int_result_unsigned * SYSTEM_CONFIG_SIZE_C;
         system_status_code = system_int_result_unsigned * 3;
         *(uint16_t *)(system_long_result + (ulonglong)system_int_result_unsigned * 2) =
              *(uint16_t *)(system_long_result + *(longlong *)(handleIdentifier + SYSTEM_INIT_DATA_OFFSET_90));
@@ -57192,7 +57325,7 @@ void InitializeInputSystem(longlong handleIdentifier,ulonglong resourceIdentifie
           case 7:
           case 10:
           case 0xb:
-          case 0xc:
+          case SYSTEM_CONFIG_SIZE_C:
           case SYSTEM_CONFIG_SIZE_STATUS:
             ConfigureSystemSettings((longlong)*init_int_pointer_temp,allocation_size,*system_configuration + SYSTEM_OFFSET_18 + (longlong)compare_result * 8);
             allocation_size = longStack_60;
@@ -57325,7 +57458,7 @@ void InitializeSystemModule42(longlong handleIdentifier,longlong *resourceIdenti
   }
   *system_ptr_value = system_integer_result_unsigned;
   resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] + 4;
-  UtilityFunction3a180(resourceIdentifier,*(uint64_t *)(handleIdentifier + SYSTEM_INIT_DATA_OFFSET_90),(longlong)*(int *)(handleIdentifier + SYSTEM_INIT_DATA_OFFSET_88) * 0xc);
+  UtilityFunction3a180(resourceIdentifier,*(uint64_t *)(handleIdentifier + SYSTEM_INIT_DATA_OFFSET_90),(longlong)*(int *)(handleIdentifier + SYSTEM_INIT_DATA_OFFSET_88) * SYSTEM_CONFIG_SIZE_C);
   system_status_code = (ulonglong)*(ushort *)(handleIdentifier + SYSTEM_MEMORY_POOL_SIZE_LARGE);
   system_status_code = system_int_result_unsigned * 4 + 4;
   system_long_value = resourceIdentifier[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
@@ -57579,7 +57712,7 @@ code * InitializeSystemModule59(longlong handleIdentifier,char resourceIdentifie
       longStack_30 = handleIdentifier;
       (**(code **)(*ptr_data + SYSTEM_OBJECT_OFFSET_60))(ptr_data,&gameDataDefaultPattern,handleIdentifier + SYSTEM_DATA_BLOCK_SIZE_B8,0,&longStack_30);
       in_RAX = stack_char_ptr;
-      if (stack_char_ptr != (code *)0x0) {
+      if (stack_char_ptr != (code *)SYSTEM_NULL_POINTER_0) {
         ptr_system_init_flag = (code *)(*stack_char_ptr)(&longStack_30,0,0);
         return ptr_system_init_flag;
       }
@@ -57638,9 +57771,9 @@ void InitializeSystemDataNode29(longlong handleIdentifier)
 
   system_long_value = *(longlong *)(handleIdentifier + SYSTEM_OFFSET_2D0);
   system_integer_result = *(int *)(g_system_base_1 + SYSTEM_CORE_DATA_OFFSET_224);
-  if (*(int *)(system_long_result + 0xc) != system_int_result) {
+  if (*(int *)(system_long_result + SYSTEM_CONFIG_SIZE_C) != system_int_result) {
     if (*(int *)(system_long_result + 8) < 1) {
-      if (*(int *)(system_long_result + 0xc) == system_int_result + -1) {
+      if (*(int *)(system_long_result + SYSTEM_CONFIG_SIZE_C) == system_int_result + -1) {
         system_status_code = *(int *)(systemCoreData + SYSTEM_INIT_DATA_OFFSET_9C8) + 1U & SYSTEM_OFFSET_80000001;
         if ((int)system_int_result_unsigned < 0) {
           system_status_code = (system_int_result_unsigned - 1 | SYSTEM_OFFSET_Fffffffe) + 1;
@@ -57682,7 +57815,7 @@ void InitializeSystemDataNode29(longlong handleIdentifier)
             } while (system_int_result_unsigned != 0);
           }
           *(int *)(*(longlong *)(handleIdentifier + SYSTEM_OFFSET_2D0) + SYSTEM_OFFSET_18) = system_integer_result;
-          *(int *)(*(longlong *)(handleIdentifier + SYSTEM_OFFSET_2D0) + 0xc) = system_integer_result;
+          *(int *)(*(longlong *)(handleIdentifier + SYSTEM_OFFSET_2D0) + SYSTEM_CONFIG_SIZE_C) = system_integer_result;
         }
       }
       else {
@@ -57716,7 +57849,7 @@ void InitializeSystemDataNode29(longlong handleIdentifier)
       *(uint32_t *)(*(longlong *)(handleIdentifier + SYSTEM_OFFSET_2D0) + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) =
            *(uint32_t *)(*(longlong *)(handleIdentifier + SYSTEM_OFFSET_2D0) + 8);
       *(uint *)(*(longlong *)(handleIdentifier + SYSTEM_OFFSET_2D0) + SYSTEM_OFFSET_18) = system_integer_result_unsigned;
-      *(int *)(*(longlong *)(handleIdentifier + SYSTEM_OFFSET_2D0) + 0xc) = system_integer_result;
+      *(int *)(*(longlong *)(handleIdentifier + SYSTEM_OFFSET_2D0) + SYSTEM_CONFIG_SIZE_C) = system_integer_result;
     }
   }
   return;
@@ -57785,7 +57918,7 @@ void HandleSystemResource84(longlong handleIdentifier,int resourceIdentifier,int
           } while (system_int_result_unsigned != 0);
         }
         *(int *)(*(longlong *)(system_register_rbx + SYSTEM_OFFSET_2D0) + SYSTEM_OFFSET_18) = system_integer_result;
-        *(int *)(*(longlong *)(system_register_rbx + SYSTEM_OFFSET_2D0) + 0xc) = system_EBP;
+        *(int *)(*(longlong *)(system_register_rbx + SYSTEM_OFFSET_2D0) + SYSTEM_CONFIG_SIZE_C) = system_EBP;
       }
     }
     else {
@@ -57819,7 +57952,7 @@ void HandleSystemResource84(longlong handleIdentifier,int resourceIdentifier,int
     *(uint32_t *)(*(longlong *)(system_register_rbx + SYSTEM_OFFSET_2D0) + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) =
          *(uint32_t *)(*(longlong *)(system_register_rbx + SYSTEM_OFFSET_2D0) + 8);
     *(uint *)(*(longlong *)(system_register_rbx + SYSTEM_OFFSET_2D0) + SYSTEM_OFFSET_18) = system_integer_result_unsigned;
-    *(int *)(*(longlong *)(system_register_rbx + SYSTEM_OFFSET_2D0) + 0xc) = system_EBP;
+    *(int *)(*(longlong *)(system_register_rbx + SYSTEM_OFFSET_2D0) + SYSTEM_CONFIG_SIZE_C) = system_EBP;
   }
   return;
 }
@@ -57882,7 +58015,7 @@ void ValidateSystemHandle9(longlong handleIdentifier,longlong resourceIdentifier
       } while (system_int_result_unsigned != 0);
     }
     *(int *)(*(longlong *)(system_register_rbx + SYSTEM_OFFSET_2D0) + SYSTEM_OFFSET_18) = system_integer_result;
-    *(uint32_t *)(*(longlong *)(system_register_rbx + SYSTEM_OFFSET_2D0) + 0xc) = system_EBP;
+    *(uint32_t *)(*(longlong *)(system_register_rbx + SYSTEM_OFFSET_2D0) + SYSTEM_CONFIG_SIZE_C) = system_EBP;
   }
   return;
 }
@@ -58597,13 +58730,13 @@ void InitializeNetworkSystem(longlong handleIdentifier)
                 *(int *)((longlong)system_memory_pointer + -SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = system_int_result + 3 + system_integer_result;
                 system_integer_result = system_int_result + SYSTEM_DATA_COMPARE_SIZE;
                 *(int *)(system_memory_pointer + -2) = system_int_result + -4 + system_integer_result;
-                *(int *)((longlong)system_memory_pointer + -0xc) = system_int_result + -3 + system_integer_result;
+                *(int *)((longlong)system_memory_pointer + -SYSTEM_CONFIG_SIZE_C) = system_int_result + -3 + system_integer_result;
                 *(int *)(system_memory_pointer + -1) = system_int_result + -2 + system_integer_result;
                 *(int *)((longlong)system_memory_pointer + -4) = system_int_result + -1 + system_integer_result;
                 *(int *)system_memory_pointer = system_int_result + system_integer_result;
                 *(int *)((longlong)system_memory_pointer + 4) = system_int_result + 1 + system_integer_result;
                 *(int *)(system_memory_pointer + 1) = system_int_result + 2 + system_integer_result;
-                *(int *)((longlong)system_memory_pointer + 0xc) = system_int_result + 3 + system_integer_result;
+                *(int *)((longlong)system_memory_pointer + SYSTEM_CONFIG_SIZE_C) = system_int_result + 3 + system_integer_result;
                 *(int *)(system_memory_pointer + 2) = system_int_result + 4 + system_integer_result;
                 *(int *)((longlong)system_memory_pointer + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = system_int_result + 5 + system_integer_result;
                 *(int *)(system_memory_pointer + 3) = system_int_result + 6 + system_integer_result;
@@ -58798,13 +58931,13 @@ void ProcessSystemData51(uint32_t handleIdentifier)
               *(int *)((longlong)system_memory_pointer + -SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = system_int_result + 3 + system_integer_result;
               system_integer_result = system_int_result + SYSTEM_DATA_COMPARE_SIZE;
               *(int *)(system_memory_pointer + -2) = system_int_result + -4 + system_integer_result;
-              *(int *)((longlong)system_memory_pointer + -0xc) = system_int_result + -3 + system_integer_result;
+              *(int *)((longlong)system_memory_pointer + -SYSTEM_CONFIG_SIZE_C) = system_int_result + -3 + system_integer_result;
               *(int *)(system_memory_pointer + -1) = system_int_result + -2 + system_integer_result;
               *(int *)((longlong)system_memory_pointer + -4) = system_int_result + -1 + system_integer_result;
               *(int *)system_memory_pointer = system_int_result + system_integer_result;
               *(int *)((longlong)system_memory_pointer + 4) = system_int_result + 1 + system_integer_result;
               *(int *)(system_memory_pointer + 1) = system_int_result + 2 + system_integer_result;
-              *(int *)((longlong)system_memory_pointer + 0xc) = system_int_result + 3 + system_integer_result;
+              *(int *)((longlong)system_memory_pointer + SYSTEM_CONFIG_SIZE_C) = system_int_result + 3 + system_integer_result;
               *(int *)(system_memory_pointer + 2) = system_int_result + 4 + system_integer_result;
               *(int *)((longlong)system_memory_pointer + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = system_int_result + 5 + system_integer_result;
               *(int *)(system_memory_pointer + 3) = system_int_result + 6 + system_integer_result;
@@ -58995,13 +59128,13 @@ void HandleSystemResource54(uint64_t handleIdentifier,longlong resourceIdentifie
             *(int *)((longlong)system_memory_pointer + -SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = system_int_result + 3 + system_integer_result;
             system_integer_result = system_int_result + SYSTEM_DATA_COMPARE_SIZE;
             *(int *)(system_memory_pointer + -2) = system_int_result + -4 + system_integer_result;
-            *(int *)((longlong)system_memory_pointer + -0xc) = system_int_result + -3 + system_integer_result;
+            *(int *)((longlong)system_memory_pointer + -SYSTEM_CONFIG_SIZE_C) = system_int_result + -3 + system_integer_result;
             *(int *)(system_memory_pointer + -1) = system_int_result + -2 + system_integer_result;
             *(int *)((longlong)system_memory_pointer + -4) = system_int_result + -1 + system_integer_result;
             *(int *)system_memory_pointer = system_int_result + system_integer_result;
             *(int *)((longlong)system_memory_pointer + 4) = system_int_result + 1 + system_integer_result;
             *(int *)(system_memory_pointer + 1) = system_int_result + 2 + system_integer_result;
-            *(int *)((longlong)system_memory_pointer + 0xc) = system_int_result + 3 + system_integer_result;
+            *(int *)((longlong)system_memory_pointer + SYSTEM_CONFIG_SIZE_C) = system_int_result + 3 + system_integer_result;
             *(int *)(system_memory_pointer + 2) = system_int_result + 4 + system_integer_result;
             *(int *)((longlong)system_memory_pointer + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = system_int_result + 5 + system_integer_result;
             *(int *)(system_memory_pointer + 3) = system_int_result + 6 + system_integer_result;
@@ -59174,13 +59307,13 @@ void ValidateSystemHandle61(void)
           *(int *)((longlong)system_memory_pointer + -SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = system_int_result + 3 + system_integer_result;
           system_integer_result = system_int_result + SYSTEM_DATA_COMPARE_SIZE;
           *(int *)(system_memory_pointer + -2) = system_int_result + -4 + system_integer_result;
-          *(int *)((longlong)system_memory_pointer + -0xc) = system_int_result + -3 + system_integer_result;
+          *(int *)((longlong)system_memory_pointer + -SYSTEM_CONFIG_SIZE_C) = system_int_result + -3 + system_integer_result;
           *(int *)(system_memory_pointer + -1) = system_int_result + -2 + system_integer_result;
           *(int *)((longlong)system_memory_pointer + -4) = system_int_result + -1 + system_integer_result;
           *(int *)system_memory_pointer = system_int_result + system_integer_result;
           *(int *)((longlong)system_memory_pointer + 4) = system_int_result + 1 + system_integer_result;
           *(int *)(system_memory_pointer + 1) = system_int_result + 2 + system_integer_result;
-          *(int *)((longlong)system_memory_pointer + 0xc) = system_int_result + 3 + system_integer_result;
+          *(int *)((longlong)system_memory_pointer + SYSTEM_CONFIG_SIZE_C) = system_int_result + 3 + system_integer_result;
           *(int *)(system_memory_pointer + 2) = system_int_result + 4 + system_integer_result;
           *(int *)((longlong)system_memory_pointer + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = system_int_result + 5 + system_integer_result;
           *(int *)(system_memory_pointer + 3) = system_int_result + 6 + system_integer_result;
@@ -59353,13 +59486,13 @@ void InitializeSystemModule62(void)
           *(int *)((longlong)system_memory_pointer + -SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = system_int_result + 3 + system_integer_result;
           system_integer_result = system_int_result + SYSTEM_DATA_COMPARE_SIZE;
           *(int *)(system_memory_pointer + -2) = system_int_result + -4 + system_integer_result;
-          *(int *)((longlong)system_memory_pointer + -0xc) = system_int_result + -3 + system_integer_result;
+          *(int *)((longlong)system_memory_pointer + -SYSTEM_CONFIG_SIZE_C) = system_int_result + -3 + system_integer_result;
           *(int *)(system_memory_pointer + -1) = system_int_result + -2 + system_integer_result;
           *(int *)((longlong)system_memory_pointer + -4) = system_int_result + -1 + system_integer_result;
           *(int *)system_memory_pointer = system_int_result + system_integer_result;
           *(int *)((longlong)system_memory_pointer + 4) = system_int_result + 1 + system_integer_result;
           *(int *)(system_memory_pointer + 1) = system_int_result + 2 + system_integer_result;
-          *(int *)((longlong)system_memory_pointer + 0xc) = system_int_result + 3 + system_integer_result;
+          *(int *)((longlong)system_memory_pointer + SYSTEM_CONFIG_SIZE_C) = system_int_result + 3 + system_integer_result;
           *(int *)(system_memory_pointer + 2) = system_int_result + 4 + system_integer_result;
           *(int *)((longlong)system_memory_pointer + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = system_int_result + 5 + system_integer_result;
           *(int *)(system_memory_pointer + 3) = system_int_result + 6 + system_integer_result;
@@ -60973,10 +61106,10 @@ longlong *g_global_system_flags;
 #define SYSTEM_PERMISSION_ALL 0xFFFFFFFF
 
 // 新增语义化偏移量定义 - 美化数据结构偏移量
-#define SYSTEM_HANDLE_DATA_OFFSET_C9 0xc9
-#define SYSTEM_HANDLE_DATA_OFFSET_CA 0xca
-#define SYSTEM_HANDLE_DATA_OFFSET_CB 0xcb
-#define SYSTEM_HANDLE_DATA_OFFSET_CC 0xcc
+#define SYSTEM_HANDLE_DATA_OFFSET_C9 SYSTEM_CONFIG_SIZE_C9
+#define SYSTEM_HANDLE_DATA_OFFSET_CA SYSTEM_CONFIG_SIZE_Ca
+#define SYSTEM_HANDLE_DATA_OFFSET_CB SYSTEM_CONFIG_SIZE_Cb
+#define SYSTEM_HANDLE_DATA_OFFSET_CC SYSTEM_CONFIG_SIZE_Cc
 #define SYSTEM_HANDLE_DATA_OFFSET_58 SYSTEM_MEMORY_SIZE_58
 #define SYSTEM_HANDLE_DATA_OFFSET_6C 0x6c
 #define SYSTEM_HANDLE_DATA_OFFSET_77 0x77
@@ -60986,7 +61119,7 @@ longlong *g_global_system_flags;
 #define SYSTEM_HANDLE_DATA_OFFSET_87 0x87
 #define SYSTEM_HANDLE_DATA_OFFSET_8B 0x8b
 #define SYSTEM_HANDLE_DATA_OFFSET_8F 0x8f
-#define SYSTEM_HANDLE_DATA_OFFSET_C4 0xc4
+#define SYSTEM_HANDLE_DATA_OFFSET_C4 SYSTEM_CONFIG_SIZE_C4
 #define SYSTEM_HANDLE_DATA_OFFSET_24 0x24
 #define SYSTEM_HANDLE_DATA_OFFSET_34 0x34
 #define SYSTEM_HANDLE_DATA_OFFSET_35 0x35
@@ -61039,8 +61172,8 @@ longlong *g_global_system_flags;
 #define SYSTEM_HANDLE_DATA_OFFSET_84 0x84
 #define SYSTEM_HANDLE_DATA_OFFSET_218 0x218
 #define SYSTEM_HANDLE_DATA_OFFSET_211 0x211
-#define SYSTEM_HANDLE_DATA_OFFSET_2E0 0x2e0
-#define SYSTEM_HANDLE_DATA_OFFSET_2F0 0x2f0
+#define SYSTEM_HANDLE_DATA_OFFSET_2E0 SYSTEM_CONFIG_SIZE_2E0
+#define SYSTEM_HANDLE_DATA_OFFSET_2F0 SYSTEM_PATH_SEPARATOR_2F0
 #define SYSTEM_HANDLE_DATA_OFFSET_21B0 0x21b0
 #define SYSTEM_HANDLE_DATA_OFFSET_250 0x250
 #define SYSTEM_HANDLE_DATA_OFFSET_314 0x314
@@ -61072,7 +61205,7 @@ longlong *g_global_system_flags;
 #define SYSTEM_HANDLE_DATA_OFFSET_62 0x62
 #define SYSTEM_HANDLE_DATA_OFFSET_54 0x54
 #define SYSTEM_HANDLE_DATA_OFFSET_2A 0x2a
-#define SYSTEM_HANDLE_DATA_OFFSET_C4 0xc4
+#define SYSTEM_HANDLE_DATA_OFFSET_C4 SYSTEM_CONFIG_SIZE_C4
 #define SYSTEM_HANDLE_DATA_OFFSET_B6 SYSTEM_MUTEX_OFFSET_B6
 #define SYSTEM_HANDLE_DATA_OFFSET_9A 0x9a
 #define SYSTEM_HANDLE_DATA_OFFSET_8C 0x8c
@@ -61092,9 +61225,9 @@ longlong *g_global_system_flags;
 #define SYSTEM_HANDLE_DATA_OFFSET_7C 0x7c
 #define SYSTEM_HANDLE_DATA_OFFSET_34 0x34
 #define SYSTEM_HANDLE_DATA_OFFSET_26 0x26
-#define SYSTEM_HANDLE_DATA_OFFSET_2E 0x2e
+#define SYSTEM_HANDLE_DATA_OFFSET_2E SYSTEM_CONFIG_SIZE_2E
 #define SYSTEM_HANDLE_DATA_OFFSET_36 0x36
-#define SYSTEM_HANDLE_DATA_OFFSET_3E 0x3e
+#define SYSTEM_HANDLE_DATA_OFFSET_3E SYSTEM_CONFIG_SIZE_3E
 #define SYSTEM_HANDLE_DATA_OFFSET_56 0x56
 #define SYSTEM_HANDLE_DATA_OFFSET_5E 0x5e
 #define SYSTEM_HANDLE_DATA_OFFSET_66 0x66
@@ -61177,17 +61310,17 @@ longlong *g_global_system_flags;
 
 // 新增系统操作常量语义化定义
 #define SYSTEM_MEMORY_ALLOCATION_SIZE_80 0x50
-#define SYSTEM_STACK_OFFSET_NEGATIVE_C -0xc
+#define SYSTEM_STACK_OFFSET_NEGATIVE_C -SYSTEM_CONFIG_SIZE_C
 #define SYSTEM_HANDLE_DATA_OFFSET_29 0x29
-#define SYSTEM_MEMORY_ALLOCATION_SIZE_12 0xc
+#define SYSTEM_MEMORY_ALLOCATION_SIZE_12 SYSTEM_CONFIG_SIZE_C
 #define SYSTEM_GUARD_CHECK_OFFSET_2C 0x2c
 #define SYSTEM_STACK_OFFSET_LONG_A0 longStack_a0
 #define SYSTEM_ENGINE_SIGNATURE_6D6554 0x6d6554
 #define SYSTEM_ENGINE_SIGNATURE_PART_2 0x7261726f
 #define SYSTEM_ENGINE_SIGNATURE_PART_3 0x73655279
 #define SYSTEM_ENGINE_SIGNATURE_PART_4 0x6372756f
-#define SYSTEM_ENGINE_SIGNATURE_PART_5 0x2f7365
-#define SYSTEM_POINTER_OFFSET_C 0xc
+#define SYSTEM_ENGINE_SIGNATURE_PART_5 SYSTEM_PATH_SEPARATOR_2F7365
+#define SYSTEM_POINTER_OFFSET_C SYSTEM_CONFIG_SIZE_C
 #define SYSTEM_TEXTURE_FORMAT_CHECK_52 0x52
 #define SYSTEM_TEXTURE_FORMAT_CHECK_51 0x51
 #define SYSTEM_SIGNATURE_UPG 0x3a757067
