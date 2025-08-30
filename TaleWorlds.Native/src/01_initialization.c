@@ -28967,7 +28967,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
               node_root1 = (uint *)(system_long_value_result - (ulonglong)*(uint *)(system_long_value_result + 4));
               if ((*(byte *)((longlong)node_root1 + SYSTEM_CONFIG_SIZE_EVENT) & 2) == 0) {
                 system_status_code = node_root1[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-                if (0x3ffffff < system_unsigned_integer_result_temp) {
+                if (SYSTEM_INTEGER_MAX_VALUE_0X3FFFFFF < system_unsigned_integer_result_temp) {
                   system_status_code = *node_root1 << SYSTEM_DATA_COMPARE_SIZE;
                 }
               }
@@ -28979,7 +28979,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
                 else {
                   system_status_code = (ulonglong)*node_root1 << SYSTEM_DATA_COMPARE_SIZE;
                 }
-                if (0x3ffffff < system_unsigned_integer_result_temp) {
+                if (SYSTEM_INTEGER_MAX_VALUE_0X3FFFFFF < system_unsigned_integer_result_temp) {
                   system_status_code = *node_root1 << SYSTEM_DATA_COMPARE_SIZE;
                 }
                 system_status_code = system_unsigned_integer_result_temp - (int)(((longlong)system_buffer_ptr_328 -
@@ -29007,7 +29007,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
             handle_validation_flag = true;
             system_pointer_chain4 = &pppppsystem_buffer_ptr_shader_data;
             system_pointer_chain = (uint64_t *******)pppppsystem_buffer_ptr_350;
-            while (system_pointer_chain != (uint64_t *******)0x0) {
+            while (system_pointer_chain != SYSTEM_NULL_POINTER_64BIT) {
               handle_validation_flag = *(int *)(system_pointer_chain + 6) != 0;
               system_pointer_chain4 = system_pointer_chain;
               if (handle_validation_flag) {
@@ -29150,7 +29150,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
                 node_root1 = (uint *)(system_long_value_result - (ulonglong)*(uint *)(system_long_value_result + 4));
                 if ((*(byte *)((longlong)node_root1 + SYSTEM_CONFIG_SIZE_EVENT) & 2) == 0) {
                   system_status_code = node_root1[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-                  if (0x3ffffff < system_unsigned_integer_result_temp) {
+                  if (SYSTEM_INTEGER_MAX_VALUE_0X3FFFFFF < system_unsigned_integer_result_temp) {
                     system_status_code = *node_root1 << SYSTEM_DATA_COMPARE_SIZE;
                   }
                 }
@@ -29162,7 +29162,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
                   else {
                     system_status_code = (ulonglong)*node_root1 << SYSTEM_DATA_COMPARE_SIZE;
                   }
-                  if (0x3ffffff < system_unsigned_integer_result_temp) {
+                  if (SYSTEM_INTEGER_MAX_VALUE_0X3FFFFFF < system_unsigned_integer_result_temp) {
                     system_status_code = *node_root1 << SYSTEM_DATA_COMPARE_SIZE;
                   }
                   system_status_code = system_unsigned_integer_result_temp - (int)(((longlong)system_buffer_ptr_390 -
