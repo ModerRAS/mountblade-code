@@ -21190,7 +21190,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param)
   system_context_param[SYSTEM_INIT_OFFSET_ARRAY_75] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_ARRAY_76] = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint32_t *)(system_context_param + SYSTEM_INIT_OFFSET_ARRAY_77) = SYSTEM_INIT_VALUE_THREE;
-  system_context_param[] = SYSTEM_INIT_VALUE_ZERO;
+  system_context_param[SYSTEM_INIT_CONTEXT_INDEX_PADDING_0] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_OFFSET_ARRAY_79] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_ARRAY_7A] = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint32_t *)(system_context_param + SYSTEM_INIT_OFFSET_ARRAY_7B) = SYSTEM_INIT_VALUE_THREE;
@@ -21739,7 +21739,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param)
   *(system_uint32_t *)(system_context_param + 3) = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_ARRAY_INDEX_NINTH] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_context_param[] = SYSTEM_INIT_VALUE_ZERO;
+  system_context_param[SYSTEM_INIT_CONTEXT_INDEX_PADDING_0] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_SIZE_COMPARE] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_FLAG_PRIMARY_ENABLED] = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint32_t *)(system_context_param + SYSTEM_INIT_FLAG_SECONDARY_ENABLED) = SYSTEM_INIT_VALUE_THREE;
@@ -21820,7 +21820,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param)
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_RESOURCE_CONFIG_BASE] = system_module_data_pointer;
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_RESOURCE_CONFIG_SIZE] = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint8_t *)(system_context_param + SYSTEM_INIT_VALUE_STRING_TERMINATOR) = SYSTEM_INIT_VALUE_ZERO;
-  system_context_param[] = SYSTEM_INIT_VALUE_ZERO;
+  system_context_param[SYSTEM_INIT_CONTEXT_INDEX_PADDING_0] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[100] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_SHADER_CONFIG_BASE] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_SHADER_CONFIG_SIZE] = SYSTEM_INIT_VALUE_ZERO;
@@ -21837,7 +21837,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param)
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_FRAME_STATUS] = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint32_t *)(system_context_param + SYSTEM_INIT_CONTEXT_INDEX_FRAME_ERROR) = SYSTEM_INIT_VALUE_ZERO;
   *asystem_stack_frame_pointer[SYSTEM_ARRAY_INDEX_FIRST] = &g_system_context;
-  system_context_param[] = SYSTEM_INIT_VALUE_ZERO;
+  system_context_param[SYSTEM_INIT_CONTEXT_INDEX_PADDING_0] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_FRAME_STATUS] = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint32_t *)(system_context_param + SYSTEM_INIT_CONTEXT_INDEX_FRAME_ERROR) = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint32_t *)(system_context_param + 4) = SYSTEM_INIT_VALUE_ZERO;
@@ -26359,7 +26359,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param)
   system_context_param[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_ARRAY_INDEX_NINTH] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[f] = SYSTEM_INIT_VALUE_ZERO;
-  system_context_param[] = SYSTEM_INIT_VALUE_ZERO;
+  system_context_param[SYSTEM_INIT_CONTEXT_INDEX_PADDING_0] = SYSTEM_INIT_VALUE_ZERO;
   system_context_pointer = system_context_param + ;
   system_context_param[] = system_context_pointer;
   system_context_param[] = (ulonglong)(-(int)system_context_pointer & 7) + (longlong)system_context_pointer;
@@ -30802,7 +30802,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
   }
   _Cnd_init_in_situ();
   _Mtx_init_in_situ(system_context_param + SYSTEM_INIT_OFFSET_STACK_56,2);
-  system_context_param[] = SYSTEM_INIT_VALUE_ZERO;
+  system_context_param[SYSTEM_INIT_CONTEXT_INDEX_PADDING_0] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_RESOURCE_CONFIG_FLAGS] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_SHADER_CONFIG] = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint32_t *)(system_context_param + 99) = SYSTEM_INIT_VALUE_THREE;
@@ -31197,15 +31197,15 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param)
   system_context_param[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint32_t *)(system_context_param + 10) = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
-  system_context_param[] = SYSTEM_INIT_VALUE_ZERO;
+  system_context_param[SYSTEM_INIT_CONTEXT_INDEX_PADDING_0] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint32_t *)(system_context_param + 10) = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[] = &g_system_context;
-  system_context_param[] = SYSTEM_INIT_VALUE_ZERO;
+  system_context_param[SYSTEM_INIT_CONTEXT_INDEX_PADDING_0] = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint32_t *)(system_context_param + ) = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[] = &g_system_context;
-  system_context_param[] = SYSTEM_INIT_VALUE_ZERO;
-  system_context_param[] = SYSTEM_INIT_VALUE_ZERO;
+  system_context_param[SYSTEM_INIT_CONTEXT_INDEX_PADDING_0] = SYSTEM_INIT_VALUE_ZERO;
+  system_context_param[SYSTEM_INIT_CONTEXT_INDEX_PADDING_0] = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint32_t *)(system_context_param + ) = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_SIZE_COMPARE] = &g_system_context;
   system_context_param[SYSTEM_INIT_FLAG_PRIMARY_ENABLED] = SYSTEM_INIT_VALUE_ZERO;
@@ -31242,7 +31242,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t 
                     // WARNING: Subroutine does not return
     system_execute_operation();
   }
-  system_context_param[] = SYSTEM_INIT_VALUE_ZERO;
+  system_context_param[SYSTEM_INIT_CONTEXT_INDEX_PADDING_0] = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint32_t *)(system_context_param + ) = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[] = &g_system_context;
   system_context_param[SYSTEM_ARRAY_INDEX_NINTH] = &g_system_context;
@@ -41607,7 +41607,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
     system_ptr_pool = system_ptr_pool + 2;
     system_function_result = system_function_result + -1;
   } while (system_function_result != 0);
-  system_context_param[] = SYSTEM_INIT_VALUE_ZERO;
+  system_context_param[SYSTEM_INIT_CONTEXT_INDEX_PADDING_0] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_ARRAY_INDEX_NINTH] = system_context_param + 10;
   system_context_param[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_FLAG_QUINARY_ENABLED;
   system_calculation_temp = InitializeSystemCore();
@@ -49338,7 +49338,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,cha
   if (system_context_base_pointer != (longlong *)SYSTEM_INIT_VALUE_CHAR_NULL) {
     (**(system_code **)(*system_context_base_pointer + SYSTEM_INIT_SIZE_0X38))();
   }
-  system_context_param[] = SYSTEM_INIT_VALUE_ZERO;
+  system_context_param[SYSTEM_INIT_CONTEXT_INDEX_PADDING_0] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_OFFSET_ARRAY_3C] = SYSTEM_INIT_VALUE_ZERO;
   if (system_memory_param == '\0') {
     *(byte *)((longlong)system_context_param + ) = *(byte *)((longlong)system_context_param + ) & ;
@@ -49381,7 +49381,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,cha
   system_context_param[SYSTEM_INIT_FLAG_INITIALIZEDd] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_FLAG_INITIALIZEDe] = SYSTEM_INIT_DOUBLE_VALUE_1_0;
   system_context_param[SYSTEM_INIT_FLAG_INITIALIZEDf] = SYSTEM_INIT_VALUE_ZERO;
-  system_context_param[] = SYSTEM_INIT_VALUE_ZERO;
+  system_context_param[SYSTEM_INIT_CONTEXT_INDEX_PADDING_0] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_OFFSET_ARRAY_31] = SYSTEM_INIT_FLOAT_VALUE_1_0;
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_SECONDARY_CONFIG] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_TERTIARY_CONFIG] = SYSTEM_INIT_DOUBLE_VALUE_1_0;
@@ -49399,7 +49399,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,cha
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_FILE_CONFIG] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_SECURITY_CONFIG] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_DEBUG_CONFIG] = SYSTEM_INIT_VALUE_ZERO;
-  system_context_param[] = SYSTEM_INIT_VALUE_ZERO;
+  system_context_param[SYSTEM_INIT_CONTEXT_INDEX_PADDING_0] = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint32_t *)(system_context_param + SYSTEM_INIT_OFFSET_CHAR_CHECK) = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint32_t *)((longlong)system_context_param + ) = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint32_t *)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_CONFIG) = SYSTEM_INIT_VALUE_ZERO;
@@ -49692,7 +49692,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
   
   system_temp_counter = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   *system_context_param = &g_cache_system;
-  system_context_param[] = SYSTEM_INIT_VALUE_ZERO;
+  system_context_param[SYSTEM_INIT_CONTEXT_INDEX_PADDING_0] = SYSTEM_INIT_VALUE_ZERO;
   if (system_context_param[SYSTEM_INIT_CONTEXT_INDEX_PERFORMANCE_CONFIG] != 0) {
                     // WARNING: Subroutine does not return
     system_execute_operation();
@@ -51572,7 +51572,7 @@ LAB_180077879:
       system_coefficient_a7 = system_memory_param[SYSTEM_ARRAY_INDEX_NINTH];
       system_coefficient_a8 = system_memory_param[SYSTEM_ARRAY_INDEX_TENTH];
       system_coefficient_a9 = system_memory_param[10];
-      system_coefficient_b0 = system_memory_param[];
+      system_coefficient_b0 = system_memory_param[SYSTEM_ARRAY_INDEX_ELEVENTH];
       system_coefficient_a = *(float *)(system_context_param + SYSTEM_INIT_FLAG_SECONDARY_ENABLED4);
       system_coefficient_b = *(float *)(system_context_param + SYSTEM_INIT_FLAG_SECONDARY_ENABLED0);
       system_coefficient_c = *(float *)(system_context_param + SYSTEM_INIT_FLAG_SECONDARY_ENABLED8);
@@ -51597,10 +51597,10 @@ LAB_180077879:
       system_stack_float_bound_min_z = system_coefficient_c * system_coefficient_a5 + system_coefficient_b * system_coefficient_a1 + system_coefficient_a * system_coefficient_a9;
       system_stack_float_matrix_partial_1 = system_coefficient_c * system_coefficient_a6 + system_coefficient_b * system_coefficient_a2 + system_coefficient_a * system_coefficient_b0;
       system_coefficient_a = *(float *)(system_context_param + SYSTEM_INIT_FLAG_QUINARY_ENABLED8);
-      system_stack_float_matrix_final_0 = system_float_4 * system_coefficient_a3 + system_float_5 * system_divider + system_coefficient_a * system_coefficient_a7 + system_memory_param[];
-      system_stack_float_matrix_final_1 = system_float_4 * system_coefficient_a4 + system_float_5 * system_coefficient_a0 + system_coefficient_a * system_coefficient_a8 + system_memory_param[];
-      system_stack_float_matrix_final_2 = system_float_4 * system_coefficient_a5 + system_float_5 * system_coefficient_a1 + system_coefficient_a * system_coefficient_a9 + system_memory_param[];
-      system_stack_float_matrix_final_3 = system_float_4 * system_coefficient_a6 + system_float_5 * system_coefficient_a2 + system_coefficient_a * system_coefficient_b0 + system_memory_param[];
+      system_stack_float_matrix_final_0 = system_float_4 * system_coefficient_a3 + system_float_5 * system_divider + system_coefficient_a * system_coefficient_a7 + system_memory_param[SYSTEM_ARRAY_INDEX_ELEVENTH];
+      system_stack_float_matrix_final_1 = system_float_4 * system_coefficient_a4 + system_float_5 * system_coefficient_a0 + system_coefficient_a * system_coefficient_a8 + system_memory_param[SYSTEM_ARRAY_INDEX_ELEVENTH];
+      system_stack_float_matrix_final_2 = system_float_4 * system_coefficient_a5 + system_float_5 * system_coefficient_a1 + system_coefficient_a * system_coefficient_a9 + system_memory_param[SYSTEM_ARRAY_INDEX_ELEVENTH];
+      system_stack_float_matrix_final_3 = system_float_4 * system_coefficient_a6 + system_float_5 * system_coefficient_a2 + system_coefficient_a * system_coefficient_b0 + system_memory_param[SYSTEM_ARRAY_INDEX_ELEVENTH];
       system_memory_param = &system_stack_float_matrix_result_0;
     }
     InitializeSystemCore(&system_stack_uint_108,system_config_param + ,*(system_uint8_t *)(system_context_param + ),system_memory_param);
@@ -53395,7 +53395,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t 
   system_context_param[SYSTEM_ARRAY_INDEX_NINTH] = SYSTEM_INIT_FLOAT_VALUE_1_0;
   system_context_param[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_ARRAY_INDEX_FUNCTION_PTR] = SYSTEM_INIT_DOUBLE_VALUE_1_0;
-  system_context_param[] = SYSTEM_INIT_VALUE_ZERO;
+  system_context_param[SYSTEM_INIT_CONTEXT_INDEX_PADDING_0] = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint32_t *)(system_context_param + ) = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint32_t *)((longlong)system_context_param + 100) = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint32_t *)(system_context_param + ) = SYSTEM_INIT_FLOAT_VALUE_1_0;
@@ -60110,8 +60110,8 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param)
   system_context_param[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_ARRAY_INDEX_NINTH] = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint8_t *)(system_context_param + ) = SYSTEM_INIT_VALUE_THREE;
-  system_context_param[] = SYSTEM_INIT_VALUE_ZERO;
-  system_context_param[] = SYSTEM_INIT_VALUE_ZERO;
+  system_context_param[SYSTEM_INIT_CONTEXT_INDEX_PADDING_0] = SYSTEM_INIT_VALUE_ZERO;
+  system_context_param[SYSTEM_INIT_CONTEXT_INDEX_PADDING_0] = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint8_t *)(system_context_param + SYSTEM_INIT_SIZE_COMPARE) = SYSTEM_INIT_VALUE_THREE;
   system_context_param[SYSTEM_INIT_FLAG_PRIMARY_ENABLED] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_FLAG_SECONDARY_ENABLED] = SYSTEM_INIT_VALUE_ZERO;
