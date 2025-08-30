@@ -1240,6 +1240,7 @@
 
 // 新增位移语义化常量
 #define SYSTEM_BIT_SHIFT_3F 0x3f
+#define SYSTEM_BIT_SHIFT_5 5
 
 // 新增资源偏移量语义化常量
 #define SYSTEM_RESOURCE_OFFSET_64 64
