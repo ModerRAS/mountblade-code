@@ -7139,7 +7139,7 @@ uint64_t GetMemoryUsage(int64_t network_socket_handle)
   return network_processor_index;
 // 函数: void InitializeConnectionPool(int64_t network_socket_handle)
 void InitializeConnectionPool(int64_t network_socket_handle)
-  uint8_t network_operation_status_code_third_buffer [NETWORK_ARRAY_SIZE_16];
+  uint8_t network_operation_status_code_tertiary_buffer [NETWORK_ARRAY_SIZE_16];
   short network_connection_processor_state;
   uint64_t network_data_pointer_offsetset_quaternary;
   uint8_t network_temp_status_flag_handshake;
