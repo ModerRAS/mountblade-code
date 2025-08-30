@@ -5576,7 +5576,7 @@ long long process_memory_block(long long handle_param,long long system_thread_op
       *(unsigned int *)(system_string_length_counter + SYSTEM_BUFFER_OFFSET_8 + (long long)system_string_input_pointer) = SYSTEM_ZERO_VALUE;
       *(unsigned int *)(system_string_length_counter + SYSTEM_BUFFER_OFFSET_8 + (long long)system_string_input_pointer) = *(unsigned int *)(psystem_thread_operation_flags + -3);
       *(unsigned long long *)(system_string_length_counter + (long long)system_string_input_pointer) = *system_string_input_pointer;
-      *(unsigned int *)(system_string_length_counter + SYSTEM_CONFIG_OFFSET_INIT_FLAG + (long long)system_string_input_pointer) = *(unsigned int *)((long long)psystem_thread_operation_flags + -0xc);
+      *(unsigned int *)(system_string_length_counter + SYSTEM_CONFIG_OFFSET_INIT_FLAG + (long long)system_string_input_pointer) = *(unsigned int *)((long long)psystem_thread_operation_flags + SYSTEM_POINTER_OFFSET_NEGATIVE_C);
       *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_STRING_BUFFER_SIZE + (long long)system_string_input_pointer) = *(unsigned int *)(psystem_thread_operation_flags + -2);
       *(unsigned int *)(psystem_thread_operation_flags + -3) = SYSTEM_ZERO_VALUE;
       *system_string_input_pointer = SYSTEM_ZERO_VALUE;
@@ -5607,7 +5607,7 @@ long long process_memory_with_system_thread_operation_flags(unsigned long long h
     *(unsigned int *)(mutex_attr + 8 + (long long)system_string_input_pointer) = SYSTEM_ZERO_VALUE;
     *(unsigned int *)(mutex_attr + 8 + (long long)system_string_input_pointer) = *(unsigned int *)(system_string_input_pointer + -3);
     *(unsigned long long *)(mutex_attr + (long long)system_string_input_pointer) = *system_string_input_pointer;
-    *(unsigned int *)(mutex_attr + SYSTEM_CONFIG_OFFSET_INIT_FLAG + (long long)system_string_input_pointer) = *(unsigned int *)((long long)system_string_input_pointer + -0xc);
+    *(unsigned int *)(mutex_attr + SYSTEM_CONFIG_OFFSET_INIT_FLAG + (long long)system_string_input_pointer) = *(unsigned int *)((long long)system_string_input_pointer + SYSTEM_POINTER_OFFSET_NEGATIVE_C);
     *(unsigned int *)(mutex_attr + SYSTEM_OFFSET_STRING_BUFFER_SIZE + (long long)system_string_input_pointer) = *(unsigned int *)(system_string_input_pointer + -2);
     *(unsigned int *)(system_string_input_pointer + -3) = SYSTEM_ZERO_VALUE;
     *system_string_input_pointer = SYSTEM_ZERO_VALUE;
@@ -5671,15 +5671,15 @@ long long process_memory_with_system_thread_operation_flags(unsigned long long h
         system_event_handle_paramr_allocate_memory(system_buffer_allocation_result,&psystem_double_pointer_stack_long);
       }
       else {
-        (*(code *)(*system_triple_pointer_stack_b8)[0xc])(system_triple_pointer_stack_b8);
-        if ((*system_triple_pointer_stack_b8)[0xe] == (long long *)&systemThreadCheckData) {
+        (*(code *)(*system_triple_pointer_stack_b8)[SYSTEM_MEMORY_OFFSET_C])(system_triple_pointer_stack_b8);
+        if ((*system_triple_pointer_stack_b8)[SYSTEM_MEMORY_OFFSET_E] == (long long *)&systemThreadCheckData) {
           LOCK();
           *(unsigned char *)(system_triple_pointer_stack_b8 + 2) = SYSTEM_ONE_VALUE;
           UNLOCK();
           system_cleanup_module(system_triple_pointer_stack_b8 + SYSTEM_OFFSET_HANDLE_PARAM);
         }
         else {
-          (*(code *)(*system_triple_pointer_stack_b8)[0xe])(system_triple_pointer_stack_b8);
+          (*(code *)(*system_triple_pointer_stack_b8)[SYSTEM_MEMORY_OFFSET_E])(system_triple_pointer_stack_b8);
         }
       }
     }

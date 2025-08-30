@@ -20280,9 +20280,9 @@ void InitializeSystemCore(void)
     system_long_var_6 = SYSTEM_INIT_VALUE_ZERO;
     do {
       system_char_check = puStack_28[system_long_var_6];
-      if (((byte)(system_char_check + 0x9fU) < SYSTEM_INIT_FLAG_ENABLEDa) ||
+      if (((byte)(system_char_check + SYSTEM_INIT_CHAR_CHECK_OFFSET_9F) < SYSTEM_INIT_CHAR_CHECK_FLAG_10) ||
          (((byte)(system_char_check - SYSTEM_INIT_OFFSET_0X30U) < SYSTEM_INIT_OFFSET_0X30 &&
-          ((SYSTEM_INIT_SIZE_POINTER7fffffe03ffU >> ((longlong)(char)(system_char_check - SYSTEM_INIT_OFFSET_0X30U) & 0x3fU) & 1) != 0)))) {
+          ((SYSTEM_INIT_SIZE_POINTER7fffffe03ffU >> ((longlong)(char)(system_char_check - SYSTEM_INIT_CHAR_CHECK_OFFSET_30) & SYSTEM_INIT_CHAR_CHECK_MASK_3F) & 1) != 0)))) {
         if (system_initialization_result != system_long_var_6) {
           puStack_28[system_initialization_result] = system_char_check;
         }
@@ -21108,7 +21108,7 @@ void InitializeSystemCore(longlong *system_context_param,system_uint64_t system_
   
   system_unsigned_var_3 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   system_ptr_context = (system_uint64_t *)system_context_param[SYSTEM_ARRAY_INDEX_SECOND];
-  for (system_ptr_buffer = (system_uint64_t *)*system_context_param; system_ptr_buffer != system_ptr_context; system_ptr_buffer = system_ptr_buffer + 0x69) {
+  for (system_ptr_buffer = (system_uint64_t *)*system_context_param; system_ptr_buffer != system_ptr_context; system_ptr_buffer = system_ptr_buffer + SYSTEM_INIT_POINTER_INCREMENT_69) {
     (**(system_code **)*system_ptr_buffer)(system_ptr_buffer,0,system_memory_param,system_thread_param,system_unsigned_var_3);
   }
   if (*system_context_param == 0) {
@@ -24639,7 +24639,7 @@ LAB_18005419d:
   system_ulonglong_var_14 = system_primary_uint_var_7;
   if (uStack_60 != 0) {
     do {
-      if ((byte)(psystem_stack_uint_key[system_ulonglong_var_14] + SYSTEM_INIT_VALUE_STACK_11f) < SYSTEM_INIT_FLAG_ENABLEDa) {
+      if ((byte)(psystem_stack_uint_key[system_ulonglong_var_14] + SYSTEM_INIT_VALUE_STACK_11f) < SYSTEM_INIT_CHAR_CHECK_FLAG_10) {
         psystem_stack_uint_key[system_ulonglong_var_14] = psystem_stack_uint_key[system_ulonglong_var_14] + ' ';
       }
       system_init_flag_network = (int)system_init_flag_graphics + 1;
@@ -27023,7 +27023,7 @@ void InitializeSystemCore(longlong *system_context_param,system_uint64_t system_
   
   system_unsigned_var_3 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   system_ptr_context = (system_uint64_t *)system_context_param[SYSTEM_ARRAY_INDEX_SECOND];
-  for (system_ptr_buffer = (system_uint64_t *)*system_context_param; system_ptr_buffer != system_ptr_context; system_ptr_buffer = system_ptr_buffer + 0x69) {
+  for (system_ptr_buffer = (system_uint64_t *)*system_context_param; system_ptr_buffer != system_ptr_context; system_ptr_buffer = system_ptr_buffer + SYSTEM_INIT_POINTER_INCREMENT_69) {
     (**(system_code **)*system_ptr_buffer)(system_ptr_buffer,0,system_memory_param,system_thread_param,system_unsigned_var_3);
   }
   if (*system_context_param == 0) {
@@ -62837,3 +62837,20 @@ longlong *system_memory_pool_pointer;
 #define SYSTEM_ARRAY_INDEX_NINTH            8 // 数组第九个元素索引
 #define SYSTEM_ARRAY_INDEX_TENTH            9 // 数组第十个元素索引
 
+
+// 补充系统上下文参数索引语义化常量（2025年8月30日最终批次补充）
+#define SYSTEM_INIT_CONTEXT_INDEX_MISC_CONFIG_0X3D    0x3d    // 杂项配置索引0x3d
+#define SYSTEM_INIT_CONTEXT_INDEX_MISC_CONFIG_0X3E    0x3e    // 杂项配置索引0x3e
+#define SYSTEM_INIT_CONTEXT_INDEX_MISC_CONFIG_0X3F    0x3f    // 杂项配置索引0x3f
+#define SYSTEM_INIT_CONTEXT_INDEX_MISC_CONFIG_0X36    0x36    // 杂项配置索引0x36
+#define SYSTEM_INIT_CONTEXT_INDEX_MISC_CONFIG_0X37    0x37    // 杂项配置索引0x37
+#define SYSTEM_INIT_CONTEXT_INDEX_BOUND_MIN_X      0x9e    // 边界最小X索引
+#define SYSTEM_INIT_CONTEXT_INDEX_BOUND_MIN_Y      0x9f    // 边界最小Y索引
+#define SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_X      0xa1    // 边界最大X索引
+#define SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Y      0xa2    // 边界最大Y索引
+#define SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Z      0xa3    // 边界最大Z索引
+#define SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_W      0xa4    // 边界最大W索引
+#define SYSTEM_INIT_CONTEXT_INDEX_CENTER_X         0xa5    // 中心X索引
+#define SYSTEM_INIT_CONTEXT_INDEX_CENTER_Y         0xa6    // 中心Y索引
+#define SYSTEM_INIT_CONTEXT_INDEX_CENTER_Z         0xa7    // 中心Z索引
+#define SYSTEM_INIT_CONTEXT_INDEX_RADIUS           0xa9    // 半径索引
