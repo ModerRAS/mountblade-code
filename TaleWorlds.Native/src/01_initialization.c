@@ -25851,21 +25851,21 @@ void InitializeAuthenticationSystem(void)
   init_stack_uint_param_30 = system_configuration_data ^ (ulonglong)system_local_buffer_178;
   stack_system_memory_pointer = g_system_base_1;
   system_long_result_temp = *(longlong *)(*g_system_base_1 + SYSTEM_DATA_OFFSET_890) - *(longlong *)(*g_system_base_1 + SYSTEM_INIT_DATA_OFFSET_888) >> 5;
-  intStack_f8 = 0;
+  int_stack_loop_counter = 0;
   init_stack_memory_index_a0 = system_temp_long;
   if (0 < (int)system_long_result) {
     do {
-      system_temp_integer = intStack_f8;
+      system_temp_integer = int_stack_loop_counter;
       system_temp_integer = 0;
-      if (intStack_f8 < SYSTEM_COMPARISON_ZERO) {
+      if (int_stack_loop_counter < SYSTEM_COMPARISON_ZERO) {
 INIT_LABEL_MEMORY_MANAGER_INIT:
         system_long_result_temp = GetBufferData();
       }
       else {
         system_long_result_temp = *(longlong *)(*g_system_base_1 + SYSTEM_INIT_DATA_OFFSET_888);
         if ((ulonglong)(*(longlong *)(*g_system_base_1 + SYSTEM_DATA_OFFSET_890) - system_long_result >> 5) <=
-            (ulonglong)(longlong)intStack_f8) goto INIT_LABEL_SYSTEM_5485e;
-        system_long_result_temp = (longlong)intStack_f8 * SYSTEM_NODE_HEADER_SIZE + system_temp_long;
+            (ulonglong)(longlong)int_stack_loop_counter) goto INIT_LABEL_SYSTEM_5485e;
+        system_long_result_temp = (longlong)int_stack_loop_counter * SYSTEM_NODE_HEADER_SIZE + system_temp_long;
       }
       system_buffer_ptr_resource_pool = &resourcePoolPointer;
       initialization_stack_unsigned_long_param_120 = 0;
@@ -26070,8 +26070,8 @@ INIT_LABEL_SYSTEM_54d57:
                   init_stack_uint_param_d8_hex = 0;
                   system_buffer_ptr_thread_param = (uint8_t *)SYSTEM_NULL_POINTER;
                   init_stack_uint_param_e0_hex = 0;
-                  ConfigureSystemParameters(&system_buffer_ptr_graphics_config,intStack_c0);
-                  if (intStack_c0 != SYSTEM_COMPARISON_ZERO) {
+                  ConfigureSystemParameters(&system_buffer_ptr_graphics_config,int_stack_size_counter);
+                  if (int_stack_size_counter != SYSTEM_COMPARISON_ZERO) {
                     // WARNING: Subroutine does not return
                     memcpy(system_buffer_ptr_thread_param,long_stack_data_buffer,int_stack_size_counter + 1);
                   }
@@ -26138,15 +26138,15 @@ INIT_LABEL_SYSTEM_54ec9:
             system_long_result_temp = system_long_result + -1;
             system_long_result_temp = init_stack_memory_index_a0;
             system_pointer_value = system_buffer_ptr_thread_context;
-            system_temp_integer = intStack_f8;
+            system_temp_integer = int_stack_loop_counter;
           } while (system_long_result != SYSTEM_COMPARISON_ZERO);
         }
         system_buffer_ptr_config = &resourcePoolPointer;
-        if (longStack_c8 != SYSTEM_COMPARISON_ZERO) {
+        if (long_stack_data_buffer != SYSTEM_COMPARISON_ZERO) {
                     // WARNING: Subroutine does not return
           ProcessSystemOperation();
         }
-        longStack_c8 = 0;
+        long_stack_data_buffer = 0;
         init_stack_uint_param_thread = 0;
         system_buffer_ptr_config = &globalSystemPointerData;
         for (system_pointer_value = system_pointer_value; system_pointer_temp != system_pointer_value; system_pointer_value = system_pointer_temp + SYSTEM_OFFSET_4) {
@@ -26175,8 +26175,8 @@ INIT_LABEL_SYSTEM_54ec9:
       initialization_stack_unsigned_long_param_120 = initialization_stack_unsigned_long_param_120 & SYSTEM_HIGH_32BIT_MASK;
       system_buffer_ptr_temp_buffer = (uint8_t *)SYSTEM_NULL_POINTER;
       system_buffer_ptr_resource_pool = &globalSystemPointerData;
-      intStack_f8 = system_temp_integer_primary + 1;
-    } while (intStack_f8 < (int)system_long_result);
+      int_stack_loop_counter = system_temp_integer_primary + 1;
+    } while (int_stack_loop_counter < (int)system_long_result);
   }
                     // WARNING: Subroutine does not return
   InitializeSystemStack(init_stack_uint_param_30 ^ (ulonglong)system_local_buffer_178);
@@ -41604,7 +41604,7 @@ void InitializeNetworkSystem(longlong handleIdentifier)
     init_stack_uint_param_d8_hex = SYSTEM_MAX_64BIT_VALUE;
     init_stack_uint_param_e0_hex = SYSTEM_MAX_64BIT_VALUE;
     long_stack_config_aux = 0;
-    longStack_c8 = 0;
+    long_stack_data_buffer = 0;
     init_stack_uint_param_thread = 0;
     system_long_result_temp = *(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_3C8);
     system_long_result_temp = *(longlong *)(handleIdentifier + SYSTEM_DATA_OFFSET_3D0) - system_temp_long;
