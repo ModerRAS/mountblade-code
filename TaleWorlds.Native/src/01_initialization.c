@@ -29991,7 +29991,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
                     // WARNING: Subroutine does not return
         ProcessSystemOperation();
       }
-      init_stack_graphics_temp_2e0 = 0;
+      init_stack_graphics_temp_display = 0;
       init_stack_ulong_param_2d0 = 0;
       system_buffer_ptr_resource_pool_small = &globalSystemPointerData;
       init_stack_texture_counter_370 = system_temp_integer_result + 1;
@@ -30115,7 +30115,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
                     // WARNING: Subroutine does not return
             ProcessSystemOperation();
           }
-          init_stack_graphics_temp_2e0 = 0;
+          init_stack_graphics_temp_display = 0;
           init_stack_ulong_param_2d0 = 0;
           system_buffer_ptr_resource_pool_small = &globalSystemPointerData;
           system_buffer_ptr_texture_data = (uint64_t *)&resourcePoolPointer;
