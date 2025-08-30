@@ -274,6 +274,10 @@
 #define UTILITY_RESOURCE_FLAG_OFFSET_ALT 0x17
 #define UTILITY_RESOURCE_DATA_OFFSET_ALT 0x19
 
+// 新增语义化宏定义 - 替换寄存器变量名
+#define UTILITY_REGISTER_R10 UTILITY_REGISTER_R10
+#define UTILITY_REGISTER_ZF UTILITY_REGISTER_ZF
+
 // 新增语义化宏定义 - 替换十六进制地址变量名
 #define UTILITY_GLOBAL_MEMORY_CLEAR_FLAG uRam0000000180d499c0
 #define UTILITY_GLOBAL_MEMORY_BUFFER_START uRam0000000180d499a8
@@ -9053,14 +9057,14 @@ uint64 FindCallbackFunction(longlong resource_handle_identifier,uint64 resource_
   uint64 *generic_data_pointer;
   int utility_iteration_counter_primary;
   int *utility_cpu_context;
-  longlong in_R10;
-  bool in_ZF;
+  longlong UTILITY_REGISTER_R10;
+  bool UTILITY_REGISTER_ZF;
   int utility_thread_stack_secondary_offset;
   
-  if (((!in_ZF) && (*(int *)(resource_handle_identifier + UTILITY_HANDLE_DATA_OFFSET) != 0)) &&
-     (utility_iteration_counter = *(int *)(*(longlong *)(in_R10 + UTILITY_MEMORY_DATA_OFFSET) +
+  if (((!UTILITY_REGISTER_ZF) && (*(int *)(resource_handle_identifier + UTILITY_HANDLE_DATA_OFFSET) != 0)) &&
+     (utility_iteration_counter = *(int *)(*(longlong *)(UTILITY_REGISTER_R10 + UTILITY_MEMORY_DATA_OFFSET) +
                       (longlong)(int)(*(int *)(resource_handle_identifier + UTILITY_HANDLE_DATA_OFFSET) - 1U & resourceCallbackFunction) * UTILITY_WORD_SIZE), utility_iteration_counter != -1)) {
-    resource_buffer = *(longlong *)(in_R10 + utility_buffer_offset);
+    resource_buffer = *(longlong *)(UTILITY_REGISTER_R10 + utility_buffer_offset);
     do {
       process_buffer = (longlong)utility_iteration_counter;
       if (*(uint *)(resource_buffer + process_buffer * RESOURCE_UTILITY_HANDLE_DATA_OFFSET) == resourceCallbackFunction) {
@@ -9078,8 +9082,8 @@ uint64 FindCallbackFunction(longlong resource_handle_identifier,uint64 resource_
   utility_thread_stack_secondary_offset = 0;
 process_next_character:
   generic_data_pointer = (uint64 *)
-           ((longlong)*(int *)(*(longlong *)(in_R10 + RESOURCE_HANDLE_OFFSET) + resourceOperationFlags * structure_multiplier) +
-           *(longlong *)(in_R10 + 8));
+           ((longlong)*(int *)(*(longlong *)(UTILITY_REGISTER_R10 + RESOURCE_HANDLE_OFFSET) + resourceOperationFlags * structure_multiplier) +
+           *(longlong *)(UTILITY_REGISTER_R10 + 8));
   if (utility_unsigned_pointer_var3 != (uint64 *)UTILITY_NULL_POINTER) {
     (**(code **)*generic_data_pointer)();
   }
@@ -9096,7 +9100,7 @@ uint64 ValidateResourceHandle(longlong resource_handle_identifier,uint64 resourc
   longlong utility_register_input_value;
   uint64 *loop_counter_pointer;
   int *utility_cpu_context;
-  longlong in_R10;
+  longlong UTILITY_REGISTER_R10;
   uint64 utility_thread_stack_primary_offset;
   
   utility_operation_status = *(uint64 *)(resource_handle_identifier + 8 + utility_register_input_value * UTILITY_DOUBLE_WORD_SIZE);
@@ -9106,8 +9110,8 @@ uint64 ValidateResourceHandle(longlong resource_handle_identifier,uint64 resourc
     return 0;
   }
   loop_counter_pointer = (uint64 *)
-           ((longlong)*(int *)(*(longlong *)(in_R10 + RESOURCE_HANDLE_OFFSET) + resourceOperationFlags * structure_multiplier) +
-           *(longlong *)(in_R10 + 8));
+           ((longlong)*(int *)(*(longlong *)(UTILITY_REGISTER_R10 + RESOURCE_HANDLE_OFFSET) + resourceOperationFlags * structure_multiplier) +
+           *(longlong *)(UTILITY_REGISTER_R10 + 8));
   if (loop_counter_pointer != (uint64 *)UTILITY_NULL_POINTER) {
     utility_thread_stack_primary_offset = utility_operation_status;
     (**(code **)*loop_counter_pointer)();
