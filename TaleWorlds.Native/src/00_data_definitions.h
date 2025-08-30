@@ -1693,14 +1693,14 @@ extern char system_flag_buffer_network_config;
 extern char system_flag_buffer_render_context;
 extern char system_flag_buffer_input_handler;
 extern char system_flag_buffer_audio_processor;
-extern char system_flag_buffer_physics_engine;
-extern char system_flag_buffer_ui_system;
-extern char system_flag_buffer_resource_manager;
-extern char system_flag_buffer_file_system;
-extern char system_flag_buffer_debug_interface;
-extern char system_flag_buffer_performance_monitor;
-extern char system_flag_buffer_security_context;
-extern char system_flag_buffer_cleanup_handler;
+extern char system_physics_engine_flag_buffer;                            // 系统物理引擎标志缓冲区
+extern char system_ui_system_flag_buffer;                                 // 系统UI系统标志缓冲区
+extern char system_resource_manager_flag_buffer;                          // 系统资源管理器标志缓冲区
+extern char system_filesystem_flag_buffer;                                // 系统文件系统标志缓冲区
+extern char system_debug_interface_flag_buffer;                           // 系统调试接口标志缓冲区
+extern char system_performance_monitor_flag_buffer;                       // 系统性能监控标志缓冲区
+extern char system_security_context_flag_buffer;                          // 系统安全上下文标志缓冲区
+extern char system_cleanup_handler_flag_buffer;                            // 系统清理处理程序标志缓冲区
 // 系统模块地址常量定义（2025年8月30日最终批次美化）
 #define SYSTEM_MODULE_HANDLER_ADDRESS 0x180c95de0                // 模块处理器地址
 #define SYSTEM_MODULE_CONFIG_ADDRESS 0x180c95df0                 // 模块配置地址
