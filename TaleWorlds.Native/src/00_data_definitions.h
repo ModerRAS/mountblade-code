@@ -9456,7 +9456,7 @@ section_processing_jump_label_:
                                                       system_char_variable = string_system_processor(auStack_50,
                                                                                   &g_system_variable_flag_debug);
                                                       if (system_char_variable != '\0') {
-                                                        buffer_allocation_result = 0x240;
+                                                        buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_FINAL_1;
                                                         goto section_processing_jump_label_;
                                                       }
                                                     }
@@ -9537,21 +9537,21 @@ section_processing_jump_label_:
                                                                                 &g_system_config_status);
                                                     if (system_char_variable != '\0') {
 section_processing_jump_label_:
-                                                      buffer_allocation_result = 0xc;
+                                                      buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_FINAL_2;
                                                       goto section_processing_jump_label_;
                                                     }
                                                     system_char_variable = string_system_processor(auStack_50,
                                                                                 &g_system_config_size);
                                                     if (system_char_variable != '\0') {
 section_processing_jump_label_:
-                                                      buffer_allocation_result = 0x14;
+                                                      buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_FINAL_3;
                                                       goto section_processing_jump_label_;
                                                     }
                                                     system_char_variable = string_system_processor(auStack_50,
                                                                                 &g_system_config_offset);
                                                     if (system_char_variable != '\0') {
 section_processing_jump_label_:
-                                                      buffer_allocation_result = 0x1c;
+                                                      buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_FINAL_4;
                                                       goto section_processing_jump_label_;
                                                     }
                                                     pthread_operation_flags = &g_system_config_buffer;
@@ -9617,7 +9617,7 @@ section_processing_jump_label_:
                                             system_char_variable = string_system_processor(auStack_50,&g_system_data_flag_error);
                                             if (system_char_variable != '\0') {
 section_processing_jump_label_:
-                                              buffer_allocation_result = 0x24;
+                                              buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_FINAL_5;
                                               goto section_processing_jump_label_;
                                             }
                                             system_char_variable = string_system_processor(auStack_50,&g_system_data_flag_temp);
@@ -9625,7 +9625,7 @@ section_processing_jump_label_:
                                             system_char_variable = string_system_processor(auStack_50,&g_system_data_flag_value);
                                             if (system_char_variable != '\0') {
 section_processing_jump_label_:
-                                              buffer_allocation_result = 0x2c;
+                                              buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_FINAL_6;
                                               goto section_processing_jump_label_;
                                             }
                                             system_char_variable = string_system_processor(auStack_50,&g_system_data_flag_code);
@@ -9633,7 +9633,7 @@ section_processing_jump_label_:
                                             system_char_variable = string_system_processor(auStack_50,&g_buffer_counter);
                                             if (system_char_variable != '\0') {
 section_processing_jump_label_:
-                                              buffer_allocation_result = 0x34;
+                                              buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_FINAL_7;
                                               goto section_processing_jump_label_;
                                             }
                                             system_char_variable = string_system_processor(auStack_50,&g_thread_stack_size);
@@ -9641,13 +9641,13 @@ section_processing_jump_label_:
                                             system_char_variable = string_system_processor(auStack_50,&g_thread_stack_length);
                                             if (system_char_variable != '\0') {
 section_processing_jump_label_:
-                                              buffer_allocation_result = 0x3c;
+                                              buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_FINAL_8;
                                               goto section_processing_jump_label_;
                                             }
                                             system_char_variable = string_system_processor(auStack_50,&g_thread_stack_index);
                                             if (system_char_variable != '\0') {
 section_processing_jump_label_:
-                                              buffer_allocation_result = 0x50;
+                                              buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_FINAL_9;
                                               goto section_processing_jump_label_;
                                             }
                                             system_char_variable = string_system_processor(auStack_50,&g_thread_stack_counter);
@@ -9661,7 +9661,7 @@ section_processing_jump_label_:
                                             system_char_variable = string_system_processor(auStack_50,&g_system_data_index);
                                             if (system_char_variable != '\0') {
 section_processing_jump_label_:
-                                              buffer_allocation_result = 0x60;
+                                              buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_FINAL_10;
                                               goto section_processing_jump_label_;
                                             }
                                             system_char_variable = string_system_processor(auStack_50,&g_thread_stack_result);
@@ -14355,6 +14355,18 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_18 0x234
 #define SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_19 0x238
 #define SYSTEM_BUFFER_ALLOC_RESULT_EXTENDED_20 0x23c
+
+// 缓冲区分配结果最终常量定义（2025年8月30日最新美化批次）
+#define SYSTEM_BUFFER_ALLOC_RESULT_FINAL_1 0x240
+#define SYSTEM_BUFFER_ALLOC_RESULT_FINAL_2 0xc
+#define SYSTEM_BUFFER_ALLOC_RESULT_FINAL_3 0x14
+#define SYSTEM_BUFFER_ALLOC_RESULT_FINAL_4 0x1c
+#define SYSTEM_BUFFER_ALLOC_RESULT_FINAL_5 0x24
+#define SYSTEM_BUFFER_ALLOC_RESULT_FINAL_6 0x2c
+#define SYSTEM_BUFFER_ALLOC_RESULT_FINAL_7 0x34
+#define SYSTEM_BUFFER_ALLOC_RESULT_FINAL_8 0x3c
+#define SYSTEM_BUFFER_ALLOC_RESULT_FINAL_9 0x50
+#define SYSTEM_BUFFER_ALLOC_RESULT_FINAL_10 0x60
 
 #define SYSTEM_OFFSET_FLOAT_ARRAY_EXTENDED 0x354
 #define SYSTEM_OFFSET_FLOAT_ARRAY_BASE 0x33c

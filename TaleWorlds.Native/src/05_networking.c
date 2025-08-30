@@ -4235,25 +4235,25 @@ void NetworkBindSocket(uint64_t *network_socket_handle, int32_t network_buffer_p
   uint32_t socket_config_array [NETWORK_BASIC_VALUE_QUAD];    // 套接字配置数组
   uint8_t socket_send_buffer [NETWORK_BUFFER_SIZE_256];       // 套接字发送缓冲区
   uint64_t network_encryption_mask;               // 网络加密掩码
-  network_encryption_key_main = network_encryption_xor_global_value ^ (NETWORK_ULONG_LONG)socket_validation_cache;
+  network_encryption_key_main = network_encryption_xor_global_value ^ (NETWORK_ULONG_LONG)socket_validation_buffer;
   networkInitializeSystem(&g_networkInitData);
   if (network_socket_handle == (uint64_t *)MEMORY_MEMORY_ZERO_OFFSET) {
-    socket_bind_status = NETWORK_SOCKET_DATA_OFFSET_MINIMAL;
+    socket_bind_result = NETWORK_SOCKET_DATA_OFFSET_MINIMAL;
   else {
     if (network_buffer_ptr - NETWORK_SOCKET_RESPONSE_EXTENDED_OFFSET < NETWORK_ERROR_BUFFER_SIZE) {
-      socket_desc_cache = NETWORK_STATUS_FAILURE;
-      socket_bind_status = networkAllocateBuffer(&socket_desc_cache);
-      if (socket_bind_status == NETWORK_STATUS_FAILURE) {
+      socket_descriptor = NETWORK_STATUS_FAILURE;
+      socket_bind_result = networkAllocateBuffer(&socket_descriptor);
+      if (socket_bind_result == NETWORK_STATUS_FAILURE) {
         packet_info_array[NETWORK_STATUS_FAILURE] = NETWORK_STATUS_FAILURE;
-        socket_bind_status = networkSendPacket(*(uint64_t *)(socket_desc_cache + SOCKET_HANDLE_OFFSET), packet_info_array);
-        if (socket_bind_status == NETWORK_STATUS_FAILURE) {
+        socket_bind_result = networkSendPacket(*(uint64_t *)(socket_descriptor + SOCKET_HANDLE_OFFSET), packet_info_array);
+        if (socket_bind_result == NETWORK_STATUS_FAILURE) {
           if (packet_info_array[NETWORK_STATUS_FAILURE] != NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET_EXTENDED) {
             networkFlushBuffer();
             goto network_send_chunk_start_label;
           }
-          socket_bind_status = network_config_buffer(socket_desc_cache, socket_config_params);
-          if (socket_bind_status == NETWORK_STATUS_FAILURE) {
-            *network_socket_handle = (NETWORK_ULONG_LONG)socket_config_params[NETWORK_STATUS_FAILURE];
+          socket_bind_result = network_config_buffer(socket_descriptor, socket_config_array);
+          if (socket_bind_result == NETWORK_STATUS_FAILURE) {
+            *network_socket_handle = (NETWORK_ULONG_LONG)socket_config_array[NETWORK_STATUS_FAILURE];
             goto network_send_chunk_end;
         }
       }

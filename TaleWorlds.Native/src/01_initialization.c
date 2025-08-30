@@ -629,11 +629,15 @@
 #define SYSTEM_INIT_VALUE_ZERO 0
 #define SYSTEM_INIT_VALUE_ONE 1
 #define SYSTEM_INIT_VALUE_TWO 2
+#define SYSTEM_INIT_VALUE_THREE 3
 #define SYSTEM_INIT_VALUE_FIVE 5
 #define SYSTEM_INIT_VALUE_SEVEN 7
 #define SYSTEM_INIT_VALUE_NINE 9
 #define SYSTEM_INIT_VALUE_TEN 10
 #define SYSTEM_INIT_VALUE_NULL 0
+
+// 系统负值初始化语义化常量（2025年8月30日最终批次续）
+#define SYSTEM_INIT_VALUE_NEGATIVE_THREE -3
 
 // 系统状态语义化常量
 #define SYSTEM_STATUS_DISABLED 0
@@ -8279,11 +8283,11 @@ void InitializeMathLookupTables(void)
 
   data_pointer = (float *)GRAPHICS_DATA_START_ADDR;
   loop_counter = SYSTEM_OPERATION_SUCCESS;
-  maxIterations = -3;
+  maxIterations = SYSTEM_INIT_VALUE_NEGATIVE_THREE;
   tableSize = loop_counter;
   do {
     if (0 < (longlong)tableSize) {
-      system_memory_comparison_result = -3;
+      system_memory_comparison_result = SYSTEM_INIT_VALUE_NEGATIVE_THREE;
       arrayIndex = loop_counter;
       tablePointer = data_pointer;
       do {
