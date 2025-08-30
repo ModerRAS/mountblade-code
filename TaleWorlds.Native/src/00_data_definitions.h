@@ -1340,12 +1340,12 @@ int initialize_network_module(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &g_font_resource_buffer;
   g_font_resource_buffer = 0;
-  system_global_data_pointer = 0xc;
+  system_global_data_pointer = SYSTEM_RESOURCE_ID_FONT;
   strcpy_s(&g_font_resource_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&g_font_resource_string);
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &g_misc_particle_buffer;
   g_misc_particle_buffer = 0;
-  system_global_data_pointer = 0xc;
+  system_global_data_pointer = SYSTEM_RESOURCE_ID_FONT;
   strcpy_s(&g_misc_particle_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&particle_resource_config_string);
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &g_misc_font_buffer;
@@ -1355,7 +1355,7 @@ int initialize_network_module(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &g_misc_model_buffer;
   g_misc_model_buffer = 0;
-  system_global_data_pointer = 0x1f;
+  system_global_data_pointer = SYSTEM_RESOURCE_ID_MODEL;
   strcpy_s(&g_misc_model_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&model_resource_name_string);
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &g_misc_animation_buffer;
@@ -1607,7 +1607,7 @@ int initialize_memory_manager(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &system_module_config_buffer_11;
   system_module_config_buffer_11 = 0;
-  system_global_data_pointer = 0xc;
+  system_global_data_pointer = SYSTEM_RESOURCE_ID_FONT;
   strcpy_s(&system_module_config_buffer_11,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString10,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_initialization_result = system_execution_function(resource_manager_14_initialization_function);
   return (system_initialization_result != 0) - 1;
@@ -1811,7 +1811,7 @@ int initialize_ui_framework(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &system_module_config_buffer_28;
   system_module_config_buffer_28 = 0;
-  system_global_data_pointer = 0x1f;
+  system_global_data_pointer = SYSTEM_RESOURCE_ID_MODEL;
   strcpy_s(&system_module_config_buffer_28,SYSTEM_CONFIG_BUFFER_SIZE,&g_moduleString25,system_string_length_parameter,DEFAULT_THREAD_POOL_FLAG);
   system_initialization_result = system_execution_function(resource_manager_31_initialization_function);
   return (system_initialization_result != 0) - 1;
@@ -2090,7 +2090,7 @@ int initialize_worker_thread_pool(unsigned long long handle_param,unsigned long 
   system_global_data_pointer = &g_memoryAllocationFlag;
   system_global_data_pointer = &system_memory_buffer_5;
   system_memory_buffer_5 = 0;
-  system_global_data_pointer = 0xc;
+  system_global_data_pointer = SYSTEM_RESOURCE_ID_FONT;
   strcpy_s(&system_memory_buffer_5,PRIMARY_STRING_BUFFER_SIZE,&g_bufferString5);
   system_global_data_pointer = &g_memoryAllocationFlag;
   system_global_data_pointer = &system_memory_buffer_6;
@@ -2100,7 +2100,7 @@ int initialize_worker_thread_pool(unsigned long long handle_param,unsigned long 
   system_global_data_pointer = &g_memoryAllocationFlag;
   system_global_data_pointer = &system_memory_buffer_7;
   system_memory_buffer_7 = 0;
-  system_global_data_pointer = 0xc;
+  system_global_data_pointer = SYSTEM_RESOURCE_ID_FONT;
   strcpy_s(&system_memory_buffer_7,PRIMARY_STRING_BUFFER_SIZE,&g_bufferString7);
   system_initialization_result = system_execution_function(&g_systemInitFunction4);
   return (system_initialization_result != 0) - 1;
@@ -2122,7 +2122,7 @@ int initialize_io_thread_pool(void)
   system_global_data_pointer = &g_memoryAllocationFlag;
   system_global_data_pointer = &system_memory_buffer_10;
   system_memory_buffer_10 = 0;
-  system_global_data_pointer = 0x1f;
+  system_global_data_pointer = SYSTEM_RESOURCE_ID_MODEL;
   strcpy_s(&system_memory_buffer_10,PRIMARY_STRING_BUFFER_SIZE,&g_bufferString10);
   system_global_data_pointer = &g_memoryAllocationFlag;
   system_global_data_pointer = &system_memory_buffer_11;
