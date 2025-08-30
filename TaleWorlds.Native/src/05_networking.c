@@ -2058,7 +2058,7 @@ void NetworkConnectSocket(uint64_t network_socket_descriptor, uint64_t *network_
   if (network_buffer_pointer == (uint64_t *)ZERO_OFFSET) {
     if ((*(uint8_t *)(g_networkModule + MODULE_STATUS_OFFSET) & NETWORK_STATUS_READY_MASK) == NETWORK_OPERATION_FAILURE) {
       network_encrypt_content(network_encryption_key_main ^ (ulonglong)network_validation_temp_buffer);
-    networkSendBuffer(network_send_buffer_ptr, NETWORK_ERROR_BUFFER_SIZE, NETWORK_OPERATION_FAILURE);
+    networkSendBuffer(network_send_buffer, NETWORK_ERROR_BUFFER_SIZE, NETWORK_OPERATION_FAILURE);
     network_buffer_pointer = network_send_data_buffer;
     networkSendControlPacket(BIT_SHIFT_MASK, NETWORK_SOCKET_BUFFER_OFFSET, network_socket_descriptor, &networkAckPacketType);
   *network_buffer_pointer = NETWORK_OPERATION_FAILURE;
@@ -2110,7 +2110,7 @@ void NetworkSendData(uint32_t network_socket_descriptor, int32_t network_buffer_
     network_timeout_config_ptr = *(int64_t **)(network_context_array_ptr + NETWORK_SOCKET_TIMEOUT_CONFIG_OFFSET);
     network_primary_connection_data = (**(code **)(*network_timeout_config_ptr + CONNECTION_INFO_OFFSET))(network_timeout_config_ptr, network_data_buffer_ptr, NETWORK_OPERATION_SUCCESS);
     if (network_primary_connection_data == NETWORK_OPERATION_FAILURE) {
-      networkSendRawData(network_data_buffer_ptr, network_send_buffer_ptr);
+      networkSendRawData(network_data_buffer_ptr, network_send_buffer);
     if ((((*(int32_t *)(network_primary_connection_data + NETWORK_ENCRYPTION_OFFSET) != NETWORK_OPERATION_FAILURE) || (*(int32_t *)(network_primary_connection_data + SOCKET_COMPRESSION_OFFSET) != NETWORK_OPERATION_FAILURE)) ||
         ((*(int32_t *)(network_primary_connection_data + SOCKET_CHECKSUM_OFFSET) != NETWORK_OPERATION_FAILURE || (*(int32_t *)(network_primary_connection_data + SOCKET_PRIORITY_OFFSET) != NETWORK_OPERATION_FAILURE)))) &&
        (network_secondary_connection_info = networkGetTimeoutInfo(network_timeout_config_ptr), network_secondary_connection_info != NETWORK_OPERATION_FAILURE)) {
