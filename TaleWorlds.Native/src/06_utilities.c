@@ -53,7 +53,17 @@
 // 美化修改说明：
 // 1. 将所有 g_systemData 十六进制地址变量名替换为语义化名称
 // 2. 将十六进制常量替换为语义化宏定义
-// 3. 保持代码语义不变，提高可读性和维护性
+// 3. 将local_variableonfig_buffer替换为utility_config_buffer
+// 4. 将local_variablencryption_buffer替换为utility_encryption_buffer
+// 5. 将utility_signed_local_var替换为utility_local_signed_var
+// 6. 将set_thread_local_variabletaValue替换为set_thread_local_data_value
+// 7. 将get_thread_local_variabletaValue替换为get_thread_local_data_value
+// 8. 将g_memory_thread_local_variablellocator替换为g_memory_thread_local_allocator
+// 9. 将unsignedStackArrayX24替换为unsigned_stack_array_24
+// 10. 将unsignedStackArrayX26替换为unsigned_stack_array_26
+// 11. 将aiStackX_10替换为ai_stack_10
+// 12. 将float_secondary_temp_var替换为float_temp_secondary_var
+// 13. 保持代码语义不变，提高可读性和维护性
 
 // 常量定义 - 替换十六进制值为语义化名称
 #define UTILITY_HANDLE_DATA_OFFSET 0x2b0
