@@ -3648,11 +3648,11 @@ uint64 check_utility_operation_result(longlong resource_handle_identifier) # 资
   iteration_counter = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),utility_stack_buffer_array);
   if ((int)iteration_counter == 0) {
     long_ptr_buffer = *(longlong **)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + POINTER_DATA_OFFSET);
-    while ((*(longlong **)(utility_stack_buffer_array[0] + POINTER_DATA_OFFSET) <= long_ptr_buffer &&
-           (long_ptr_buffer < *(longlong **)(utility_stack_buffer_array[0] + POINTER_DATA_OFFSET) + *(int *)(utility_stack_buffer_array[0] + UTILITY_SECONDARY_BYTE_OFFSET)))) {
+    while ((*(longlong **)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + POINTER_DATA_OFFSET) <= long_ptr_buffer &&
+           (long_ptr_buffer < *(longlong **)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + POINTER_DATA_OFFSET) + *(int *)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + UTILITY_SECONDARY_BYTE_OFFSET)))) {
       operation_buffer = *long_ptr_buffer;
       long_ptr_buffer = long_ptr_buffer + 1;
-      if ((*(longlong *)(operation_buffer + RESOURCE_HANDLE_OFFSET) == *(longlong *)(utility_stack_buffer_array[0] + 8)) &&
+      if ((*(longlong *)(operation_buffer + RESOURCE_HANDLE_OFFSET) == *(longlong *)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + UTILITY_OFFSET_ERROR_COUNTER)) &&
          (operation_buffer = *(longlong *)(operation_buffer + RESOURCE_UTILITY_HANDLE_DATA_OFFSET), operation_buffer != 0)) {
         utility_operation_result = (uint *)(operation_buffer + UTILITY_POINTER_OFFSET_CHECKSUM);
         *utility_operation_result = *utility_operation_result | 4;
@@ -3952,10 +3952,10 @@ uint64 resource_handle_identifier_resource_operation(longlong resource_handle_id
     utility_operation_status = utilityProcessResourceData(utility_temp_stack_buffer[0],resource_handle_identifier + RESOURCE_HANDLE_OFFSET,utility_stack_buffer_array);
     if ((int)utility_operation_status == 0) {
       if (utility_stack_buffer_array[0] != 0) {
-        if (*(longlong *)(utility_stack_buffer_array[0] + 8) == 0) {
+        if (*(longlong *)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + UTILITY_OFFSET_ERROR_COUNTER) == 0) {
           return UTILITY_BYTE_OFFSET_FLAG;
         }
-        utility_operation_status = utilityHandleResourceOperation(*(longlong *)(utility_stack_buffer_array[0] + 8),*(uint32 *)(resource_handle_identifier + POINTER_DATA_OFFSET),
+        utility_operation_status = utilityHandleResourceOperation(*(longlong *)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + UTILITY_OFFSET_ERROR_COUNTER),*(uint32 *)(resource_handle_identifier + POINTER_DATA_OFFSET),
                               *(byte *)(resource_handle_identifier + FIELD_OFFSET_THIRD));
         if ((int)utility_operation_status != 0) {
           return utility_operation_status;
@@ -3988,10 +3988,10 @@ uint64 manage_resource_resource_handle_identifier(longlong resource_handle_ident
     utility_operation_status = utilityProcessResourceData(utility_temp_stack_buffer[0],resource_handle_identifier + POINTER_DATA_OFFSET,utility_stack_buffer_array);
     if ((int)utility_operation_status == 0) {
       if (utility_stack_buffer_array[0] != 0) {
-        if (*(longlong *)(utility_stack_buffer_array[0] + 8) == 0) {
+        if (*(longlong *)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + UTILITY_OFFSET_ERROR_COUNTER) == 0) {
           return UTILITY_BYTE_OFFSET_FLAG;
         }
-        utility_operation_status = utilityHandleResourceOperation(*(longlong *)(utility_stack_buffer_array[0] + 8),*(uint32 *)(resource_handle_identifier + RESOURCE_HANDLE_OFFSET),
+        utility_operation_status = utilityHandleResourceOperation(*(longlong *)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + UTILITY_OFFSET_ERROR_COUNTER),*(uint32 *)(resource_handle_identifier + RESOURCE_HANDLE_OFFSET),
                               *(byte *)(resource_handle_identifier + UTILITY_BYTE_OFFSET_FLAG));
         if ((int)utility_operation_status != 0) {
           return utility_operation_status;
@@ -5210,7 +5210,7 @@ uint64 get_file_permissions(longlong resource_handle_identifier)
   utility_operation_status = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),utility_stack_buffer_array);
   if ((int)utility_operation_status == 0) {
     *(uint32 *)(*(longlong *)(utility_stack_buffer_array[0] + RESOURCE_UTILITY_HANDLE_DATA_OFFSET) + UTILITY_LIST_HEAD_OFFSET) = *(uint32 *)(resource_handle_identifier + RESOURCE_HANDLE_OFFSET);
-    if ((*(longlong *)(utility_stack_buffer_array[0] + 8) != 0) && (utility_operation_status = utilityGetResourceCapability(), (int)utility_operation_status != 0)) {
+    if ((*(longlong *)(utility_stack_buffer_array[UTILITY_ARRAY_INDEX_PRIMARY] + UTILITY_OFFSET_ERROR_COUNTER) != 0) && (utility_operation_status = utilityGetResourceCapability(), (int)utility_operation_status != 0)) {
       return utility_operation_status;
     }
     utility_operation_status = 0;
