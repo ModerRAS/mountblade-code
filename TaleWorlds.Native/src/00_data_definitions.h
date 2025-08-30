@@ -627,10 +627,10 @@ int initialize_secondary_shader_resource_manager(void)
   long long system_init_result;
   unsigned long long audio_resource_string_length;
   void* resource_buffer_ptr = &g_resource_data_buffer;
-  void* resource_value_ptr = &resource_buffer_3;
-  resource_buffer_3 = 0;
-  resource_type_3 = RESOURCE_TYPE_SHADER;
-  strcpy_s(&resource_buffer_3, RESOURCE_BUFFER_SIZE, &audio_resource_string, audio_resource_string_length, DEFAULT_THREAD_POOL_FLAG);
+  void* resource_value_ptr = &shader_resource_buffer_secondary;
+  shader_resource_buffer_secondary = 0;
+  shader_resource_type_secondary = RESOURCE_TYPE_SHADER;
+  strcpy_s(&shader_resource_buffer_secondary, RESOURCE_BUFFER_SIZE, &audio_resource_string, audio_resource_string_length, DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(shader_resource_manager_2_init_function);
   return (system_init_result != 0) - 1;
 }
@@ -639,10 +639,10 @@ int initialize_audio_resource_manager(void)
   long long initialization_result;
   unsigned long long font_resource_string_length;
   void* resource_buffer_ptr = &g_resource_data_buffer;
-  void* resource_buffer_pointer = &resource_buffer_4;
-  resource_buffer_4 = 0;
-  resource_type_4 = RESOURCE_TYPE_AUDIO;
-  strcpy_s(&resource_buffer_4, RESOURCE_BUFFER_SIZE, &font_resource_string, font_resource_string_length, DEFAULT_THREAD_POOL_FLAG);
+  void* resource_buffer_pointer = &audio_resource_buffer;
+  audio_resource_buffer = 0;
+  audio_resource_type = RESOURCE_TYPE_AUDIO;
+  strcpy_s(&audio_resource_buffer, RESOURCE_BUFFER_SIZE, &font_resource_string, font_resource_string_length, DEFAULT_THREAD_POOL_FLAG);
   initialization_result = system_execution_function(audio_resource_manager_init_function);
   return (initialization_result != 0) - 1;
 }
@@ -651,10 +651,10 @@ int initialize_font_resource_manager(void)
   long long initialization_result;
   size_t model_resource_string_length;
   void* resource_buffer_ptr = &g_resource_data_buffer;
-  void* resource_buffer_value_pointer = &resource_buffer_5;
-  resource_buffer_5 = 0;
-  resource_type_5 = RESOURCE_TYPE_FONT;
-  strcpy_s(&resource_buffer_5, RESOURCE_BUFFER_SIZE, &model_resource_string, model_resource_string_length, DEFAULT_THREAD_POOL_FLAG);
+  void* resource_buffer_value_pointer = &font_resource_buffer;
+  font_resource_buffer = 0;
+  font_resource_type = RESOURCE_TYPE_FONT;
+  strcpy_s(&font_resource_buffer, RESOURCE_BUFFER_SIZE, &model_resource_string, model_resource_string_length, DEFAULT_THREAD_POOL_FLAG);
   initialization_result = system_execution_function(font_resource_manager_init_function);
   return (initialization_result != 0) - 1;
 }

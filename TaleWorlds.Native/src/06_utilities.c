@@ -19610,7 +19610,7 @@ UTILITY_LABEL_CONTINUE_ARRAY_ITERATION:
            utility_iteration_index * UTILITY_WORD_SIZE) & ~(validation_flag * UTILITY_WORD_SIZE);
       iteration_counter = *(uint *)(resource_buffer + 8);
     }
-    if ((iteration_counter < 0x87) && ((*(uint *)(resource_handle_identifier + UTILITY_FIELD_SIZE_OFFSET) >> 3 & 1 UTILITY_BIT_MASK_1) != 0)) {
+    if ((iteration_counter < UTILITY_ITERATION_LIMIT_PRIMARY) && ((*(uint *)(resource_handle_identifier + UTILITY_FIELD_SIZE_OFFSET) >> 3 & 1 UTILITY_BIT_MASK_1) != 0)) {
       *(float *)(resource_handle_identifier + RESOURCE_PROP_OFFSET) = *(float *)(resource_handle_identifier + RESOURCE_PROP_OFFSET) - UTILITY_FLOAT_ONE;
       iteration_counter = *(uint *)(resource_buffer + 8);
     }
@@ -19970,7 +19970,7 @@ LAB_ARRAY_PROCESS_COMPLETE:
          ~(utility_cpu_context * UTILITY_WORD_SIZE);
     iteration_counter = *(uint *)(utility_register_context_base + 8);
   }
-  if ((iteration_counter < 0x87) && ((*(uint *)(utility_register_context + UTILITY_FIELD_SIZE_OFFSET) >> 3 & 1 UTILITY_BIT_MASK_1) != 0)) {
+  if ((iteration_counter < UTILITY_ITERATION_LIMIT_PRIMARY) && ((*(uint *)(utility_register_context + UTILITY_FIELD_SIZE_OFFSET) >> 3 & 1 UTILITY_BIT_MASK_1) != 0)) {
     utility_float_secondary_value = *(float *)(utility_register_context + RESOURCE_PROP_OFFSET) - UTILITY_FLOAT_ONE;
     *(float *)(utility_register_context + RESOURCE_PROP_OFFSET) = utility_float_secondary_value;
     iteration_counter = *(uint *)(utility_register_context_base + 8);
@@ -20159,7 +20159,7 @@ UTILITY_LABEL_ITERATE_ARRAY_ELEMENT:
      (validation_flag = system_test_func(), float_value = utility_float_param_tertiary, (int)validation_flag != 0)) {
     return validation_flag;
   }
-  if (*(uint *)(utility_register_context_base + 8) < 0x52) {
+  if (*(uint *)(utility_register_context_base + 8) < UTILITY_ITERATION_LIMIT_SECONDARY) {
     validation_flag = utility_cpu_context & INVALID_HANDLE;
   }
   else if (*(int *)(utility_register_context_base[1] + RESOURCE_HANDLE_OFFSET) == 0) {
@@ -20219,7 +20219,7 @@ LAB_ARRAY_PROCESS_COMPLETE:
          ~(utility_cpu_context * UTILITY_WORD_SIZE);
     system_status_code = *(uint *)(utility_register_context_base + 8);
   }
-  if ((system_status_code < 0x87) && ((*(uint *)(utility_register_context + UTILITY_FIELD_SIZE_OFFSET) >> 3 & 1 UTILITY_BIT_MASK_1) != 0)) {
+  if ((system_status_code < UTILITY_ITERATION_LIMIT_PRIMARY) && ((*(uint *)(utility_register_context + UTILITY_FIELD_SIZE_OFFSET) >> 3 & 1 UTILITY_BIT_MASK_1) != 0)) {
     float_value = *(float *)(utility_register_context + RESOURCE_PROP_OFFSET) - UTILITY_FLOAT_ONE;
     *(float *)(utility_register_context + RESOURCE_PROP_OFFSET) = float_value;
     system_status_code = *(uint *)(utility_register_context_base + 8);
@@ -20409,7 +20409,7 @@ UTILITY_LABEL_ITERATE_ARRAY_ELEMENT:
      (validation_flag = system_test_func(), float_value = utility_float_param_tertiary, (int)validation_flag != 0)) {
     return validation_flag;
   }
-  if (*(uint *)(utility_register_context_base + 8) < 0x52) {
+  if (*(uint *)(utility_register_context_base + 8) < UTILITY_ITERATION_LIMIT_SECONDARY) {
     validation_flag = utility_cpu_context & INVALID_HANDLE;
   }
   else if (*(int *)(utility_register_context_base[1] + RESOURCE_HANDLE_OFFSET) == 0) {
@@ -20469,7 +20469,7 @@ LAB_ARRAY_PROCESS_COMPLETE:
          ~(utility_cpu_context * UTILITY_WORD_SIZE);
     system_status_code = *(uint *)(utility_register_context_base + 8);
   }
-  if ((system_status_code < 0x87) && ((*(uint *)(utility_register_context + UTILITY_FIELD_SIZE_OFFSET) >> 3 & 1 UTILITY_BIT_MASK_1) != 0)) {
+  if ((system_status_code < UTILITY_ITERATION_LIMIT_PRIMARY) && ((*(uint *)(utility_register_context + UTILITY_FIELD_SIZE_OFFSET) >> 3 & 1 UTILITY_BIT_MASK_1) != 0)) {
     float_value = *(float *)(utility_register_context + RESOURCE_PROP_OFFSET) - UTILITY_FLOAT_ONE;
     *(float *)(utility_register_context + RESOURCE_PROP_OFFSET) = float_value;
     system_status_code = *(uint *)(utility_register_context_base + 8);
@@ -20612,7 +20612,7 @@ UTILITY_LABEL_ITERATE_ARRAY_ELEMENT:
      (validation_flag = system_test_func(), resource_handle_identifier = utility_float_param_secondary, (int)validation_flag != 0)) {
     return validation_flag;
   }
-  if (*(uint *)(utility_register_context_base + 8) < 0x52) {
+  if (*(uint *)(utility_register_context_base + 8) < UTILITY_ITERATION_LIMIT_SECONDARY) {
     validation_flag = utility_cpu_context & INVALID_HANDLE;
   }
   else if (*(int *)(utility_register_context_base[1] + RESOURCE_HANDLE_OFFSET) == utility_capacity) {
@@ -20673,7 +20673,7 @@ UTILITY_LABEL_CONTINUE_ARRAY_ITERATION:
            ~(utility_cpu_context * UTILITY_WORD_SIZE);
       system_status_code = *(uint *)(utility_register_context_base + 8);
     }
-    if ((system_status_code < 0x87) && ((*(uint *)(utility_register_context + UTILITY_FIELD_SIZE_OFFSET) >> 3 & 1 UTILITY_BIT_MASK_1) != 0)) {
+    if ((system_status_code < UTILITY_ITERATION_LIMIT_PRIMARY) && ((*(uint *)(utility_register_context + UTILITY_FIELD_SIZE_OFFSET) >> 3 & 1 UTILITY_BIT_MASK_1) != 0)) {
       resource_handle_identifier = *(float *)(utility_register_context + RESOURCE_PROP_OFFSET) - UTILITY_FLOAT_ONE;
       *(float *)(utility_register_context + RESOURCE_PROP_OFFSET) = resource_handle_identifier;
       system_status_code = *(uint *)(utility_register_context_base + 8);
@@ -21294,7 +21294,7 @@ ulonglong ProcessStatusRequest(longlong resource_handle_identifier,uint64 *memor
   iteration_counter = (ulonglong)utility_operation_status;
   if (utility_operation_status == 0) {
     iteration_counter = UTILITY_BYTE_OFFSET_FLAG;
-    if (*(uint *)(resource_buffer + 8) < 0x36) {
+    if (*(uint *)(resource_buffer + 8) < UTILITY_ITERATION_LIMIT_TERTIARY) {
       iteration_counter = 0;
     }
     else {
@@ -21340,7 +21340,7 @@ ulonglong InitializeStatusHandler(void)
   iteration_counter = (ulonglong)utility_operation_status;
   if (utility_operation_status == 0) {
     iteration_counter = UTILITY_BYTE_OFFSET_FLAG;
-    if (*(uint *)(utility_register_context_base + 8) < 0x36) {
+    if (*(uint *)(utility_register_context_base + 8) < UTILITY_ITERATION_LIMIT_TERTIARY) {
       iteration_counter = 0;
     }
     else {
@@ -21382,7 +21382,7 @@ ulonglong GetStatusResult(void)
   iteration_counter = (ulonglong)utility_operation_status;
   if (utility_operation_status == 0) {
     iteration_counter = UTILITY_BYTE_OFFSET_FLAG;
-    if (*(uint *)(utility_register_context_base + 8) < 0x36) {
+    if (*(uint *)(utility_register_context_base + 8) < UTILITY_ITERATION_LIMIT_TERTIARY) {
       iteration_counter = 0;
     }
     else {
