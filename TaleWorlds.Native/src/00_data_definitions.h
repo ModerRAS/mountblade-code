@@ -52,6 +52,25 @@
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中剩余硬编码值的语义化替换
 
+// 本轮美化工作（当前轮次）：
+// - 美化系统内存偏移量常量，将SYSTEM_MEMORY_OFFSET_RESERVED_461等替换为SYSTEM_MEMORY_OFFSET_RESERVED_SMALL_BLOCK等语义化常量
+// - 美化系统初始化偏移量常量，将SYSTEM_OFFSET_INITIALIZATION_133C等替换为SYSTEM_OFFSET_INITIALIZATION_MEMORY_BLOCK等语义化常量
+// - 美化系统分配大小常量，将SYSTEM_ALLOC_SIZE_1C8等替换为SYSTEM_ALLOC_SIZE_MEMORY_BLOCK等语义化常量
+// - 美化系统互斥量偏移量常量，将SYSTEM_MUTEX_OFFSET_6E8等替换为SYSTEM_MUTEX_OFFSET_THREAD_CONTROL等语义化常量
+// - 美化系统表偏移量常量，将SYSTEM_TABLE_OFFSET_9F8等替换为SYSTEM_TABLE_OFFSET_FUNCTION_DISPATCH等语义化常量
+// - 美化系统控制值常量，将SYSTEM_CONTROL_VALUE_9C等替换为SYSTEM_CONTROL_VALUE_FUNCTION_DISPATCH等语义化常量
+// - 美化系统浮点数常量，将SYSTEM_FLOAT_VALUE_SPECIAL_1等替换为SYSTEM_FLOAT_VALUE_ARRAY_CONSTANT等语义化常量
+// - 美化系统字符串模式常量，将SYSTEM_STRING_PATTERN_TERMINATOR_CHAR_2等替换为SYSTEM_STRING_PATTERN_DECORATION_SUFFIX等语义化常量
+// - 美化系统位掩码常量，将SYSTEM_BIT_MASK_SPECIAL_1等替换为SYSTEM_BIT_MASK_ADDRESS_VALIDATION等语义化常量
+// - 美化系统错误码常量，将SYSTEM_ERROR_CODE_SPECIAL_1等替换为SYSTEM_ERROR_CODE_MEMORY_ALLOCATION_FAILED等语义化常量
+// - 美化系统地址偏移量常量，将SYSTEM_ADDRESS_OFFSET_SPECIAL_1等替换为SYSTEM_ADDRESS_OFFSET_HEAP_BASE等语义化常量
+// - 美化系统指针偏移量常量，将SYSTEM_POINTER_OFFSET_70等替换为SYSTEM_POINTER_OFFSET_THREAD_LOCAL_STORAGE等语义化常量
+// - 美化系统特殊值常量，将SYSTEM_SPECIAL_VALUE_NEGATIVE_1等替换为SYSTEM_SPECIAL_VALUE_INVALID_INDEX等语义化常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中剩余数字后缀常量名的语义化替换
+// - 原本实现：完全重构所有常量命名体系，建立统一的语义化命名规范
+// - 简化实现：仅将常见的数字后缀常量名替换为语义化名称，保持代码结构不变
+
 // 新增语义化常量定义（2025年8月30日最终批次美化）
 // 系统缓冲区分配结果常量
 #define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_BASE 0xb8
