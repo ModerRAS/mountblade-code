@@ -22549,12 +22549,12 @@ void ConfigureGraphicsShader(uint64_t handleIdentifier,longlong resourceIdentifi
   uint64_t init_stack_ulong_param_270;
   void *system_buffer_ptr_global_context;
   longlong init_stack_memory_base_260;
-  void *system_buffer_ptr_258;
+  void *system_buffer_ptr_data_transfer;
   longlong init_stack_memory_size_250;
   uint init_stack_uint_param_248;
   uint32_t init_stack_uint_param_240;
   uint32_t init_stack_buffer_size_23c;
-  void *system_buffer_ptr_238;
+  void *system_buffer_ptr_temp_storage;
   longlong init_stack_memory_offset_230;
   uint init_stack_uint_param_228;
   uint32_t init_stack_uint_param_220;
@@ -29301,11 +29301,11 @@ void InitializeTextureSystem(longlong *handleIdentifier)
                 *(uint32_t *)(system_long_result + SYSTEM_CONFIG_OFFSET_30) = 0;
                 system_buffer_ptr_resource_data_2a8 = system_buffer_ptr_resource_pool_2b0;
                 ConfigureSystemParameters(system_buffer_ptr_resource_pool_2b0,0);
-                system_buffer_ptr_2a0 = (uint64_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE);
-                *system_buffer_ptr_2a0 = &globalSystemPointerData;
+                system_buffer_ptr_resource_data = (uint64_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE);
+                *system_buffer_ptr_resource_data = &globalSystemPointerData;
                 *(uint64_t *)(system_long_result + SYSTEM_FLAG_BIT_48) = 0;
                 *(uint32_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_50) = 0;
-                *system_buffer_ptr_2a0 = &resourcePoolPointer;
+                *system_buffer_ptr_resource_data = &resourcePoolPointer;
                 *(uint64_t *)(system_long_result + SYSTEM_HANDLE_OFFSET_RESOURCE_DATA) = 0;
                 *(uint64_t *)(system_long_result + SYSTEM_FLAG_BIT_48) = 0;
                 *(uint32_t *)(system_long_result + SYSTEM_DATA_BLOCK_SIZE_50) = 0;
@@ -36867,7 +36867,7 @@ void InitializeSystemResources(uint64_t handleIdentifier)
   void *system_buffer_ptr_278;
   uint32_t initialization_stack_combined_register_268;
   void *system_buffer_ptr_260;
-  void *system_buffer_ptr_258;
+  void *system_buffer_ptr_data_transfer;
   uint32_t init_stack_uint_param_248;
   uint64_t init_stack_uint_param_240;
   uint8_t system_local_buffer_temp_data_238 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
@@ -36908,14 +36908,14 @@ void InitializeSystemResources(uint64_t handleIdentifier)
                     // WARNING: Subroutine does not return
     ProcessSystemOperation();
   }
-  system_buffer_ptr_2a0 = &resourcePoolPointer;
+  system_buffer_ptr_resource_data = &resourcePoolPointer;
   if (init_stack_buffer_ptr_298 != SYSTEM_COMPARISON_ZERO) {
                     // WARNING: Subroutine does not return
     ProcessSystemOperation();
   }
   init_stack_buffer_ptr_298 = 0;
   init_stack_parameter_288 = 0;
-  system_buffer_ptr_2a0 = &globalSystemPointerData;
+  system_buffer_ptr_resource_data = &globalSystemPointerData;
   init_stack_uint_offset_2f8 = 0;
   init_stack_buffer_end_2f0 = 0;
   InitializeSharedMemory(handleIdentifier,&system_buffer_ptr_config_data0,&g_system_network_module_data);
@@ -37779,14 +37779,14 @@ INIT_LABEL_SYSTEM_65a3e:
               system_ptr_value = system_temp_pointer + 4;
             } while ((ulonglong)(longlong)system_temp_integer_temp < system_temp_counter);
           }
-          system_buffer_ptr_2a0 = &resourcePoolPointer;
+          system_buffer_ptr_resource_data = &resourcePoolPointer;
           if (stack_char_ptr != (char *)SYSTEM_NULL_POINTER) {
                     // WARNING: Subroutine does not return
             ProcessSystemOperation();
           }
           stack_char_ptr = (char *)SYSTEM_NULL_POINTER;
           init_stack_parameter_288 = 0;
-          system_buffer_ptr_2a0 = &globalSystemPointerData;
+          system_buffer_ptr_resource_data = &globalSystemPointerData;
           for (system_ptr_value = system_ptr_value; system_temp_pointer != system_ptr_value; system_ptr_value = system_temp_pointer + 4) {
             (**(code **)*system_temp_pointer)(system_temp_pointer,0);
           }
