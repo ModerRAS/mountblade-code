@@ -347,6 +347,7 @@
 #define SYSTEM_BIT_MASK_0x20 0x20
 #define SYSTEM_BIT_MASK_0x40 0x40
 #define SYSTEM_BIT_MASK_0x80 0x80
+// 美化位掩码常量定义（2025年8月30日美化批次）
 #define SYSTEM_BIT_MASK_0x100 0x100
 #define SYSTEM_BIT_MASK_0x200 0x200
 #define SYSTEM_BIT_MASK_0x400 0x400
@@ -355,6 +356,16 @@
 #define SYSTEM_BIT_MASK_0x2000 0x2000
 #define SYSTEM_BIT_MASK_0x4000 0x4000
 #define SYSTEM_BIT_MASK_0x8000 0x8000
+
+// 位掩码语义化常量定义
+#define SYSTEM_BIT_MASK_BYTE_ALIGNMENT 0x100                    // 字节对齐掩码
+#define SYSTEM_BIT_MASK_WORD_ALIGNMENT 0x200                    // 字对齐掩码
+#define SYSTEM_BIT_MASK_DWORD_ALIGNMENT 0x400                   // 双字对齐掩码
+#define SYSTEM_BIT_MASK_QWORD_ALIGNMENT 0x800                    // 四字对齐掩码
+#define SYSTEM_BIT_MASK_PAGE_ALIGNMENT 0x1000                   // 页对齐掩码
+#define SYSTEM_BIT_MASK_SECTION_ALIGNMENT 0x2000                 // 节对齐掩码
+#define SYSTEM_BIT_MASK_SEGMENT_ALIGNMENT 0x4000                // 段对齐掩码
+#define SYSTEM_BIT_MASK_BLOCK_ALIGNMENT 0x8000                   // 块对齐掩码
 #define SYSTEM_BIT_MASK_0x10000 0x10000
 #define SYSTEM_BIT_MASK_0x20000 0x20000
 #define SYSTEM_BIT_MASK_0x40000 0x40000
