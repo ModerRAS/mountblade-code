@@ -603,9 +603,9 @@ int initialize_texture_resource_manager(void)
   long long system_init_result;
   unsigned long long texture_resource_string_length;
   void* resource_buffer_ptr = &g_resource_data_buffer;
-  void* resource_value_ptr = &resource_buffer_1;
-  resource_buffer_1 = 0;
-  resource_type_1 = RESOURCE_TYPE_TEXTURE;
+  void* resource_value_ptr = &texture_resource_buffer;
+  texture_resource_buffer = 0;
+  texture_resource_type = RESOURCE_TYPE_TEXTURE;
   strcpy_s(&resource_buffer_1, RESOURCE_BUFFER_SIZE, &texture_resource_string, texture_resource_string_length, DEFAULT_THREAD_POOL_FLAG);
   system_init_result = system_execution_function(texture_resource_manager_init_function);
   return (system_init_result != 0) - 1;
