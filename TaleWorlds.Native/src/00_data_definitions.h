@@ -5974,7 +5974,7 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
                   ((*(long long *)(mutex_attr + 0x1c) - *(long long *)(mutex_attr + 0x1a)) / 0xb0)) {
         string_input_ptr = (uint *)(buffer_alloc_result + *(long long *)(mutex_attr + 0x1a));
       }
-      if ((*(int *)(system_initialization_result0 + 0x48) < system_global_data_pointer) &&
+      if ((*(int *)(system_initialization_result0 + SYSTEM_THREAD_LOCAL_STORAGE_OFFSET) < system_global_data_pointer) &&
          (system_crypto_004(&crypto_module_data_buffer), system_global_data_pointer == -1)) {
         resource_template_pointer = &g_defaultDataTemplate;
         system_global_data_pointer = &g_data_network_flag;
