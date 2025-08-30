@@ -17036,7 +17036,7 @@ void network_socket_handle(uint64_t network_socket_handle, int32_t network_buffe
     network_operation_status_code_third_calc = network_processor_result;
     if (3 < network_socket_context) {
       network_operation_status_code = NETWORK_OPERATION_SUCCESS;
-      pnetwork_calculated_frequency0 = (float *)(network_socket_context + -NETWORK_CONNECTION_OFFSET);
+      pnetwork_calculated_frequency_primary = (float *)(network_socket_context + -NETWORK_CONNECTION_OFFSET);
       client_port_address = (network_socket_context - 4U >> NETWORK_BUFFER_SIZE_MEDIUM) + NETWORK_OPERATION_SUCCESS;
       network_processor_result = (ulonglong)(uint)((int)client_port_address * 4);
       network_operation_status_code_third_calc = client_port_address * 4;
@@ -17051,13 +17051,13 @@ void network_socket_handle(uint64_t network_socket_handle, int32_t network_buffe
                      pnetwork_calculated_frequency0[NETWORK_SOCKET_DATA_OFFSETa] * pnetwork_calculated_frequency0[NETWORK_SOCKET_DATA_OFFSETa], network_frequency_calculated_fifth <= network_frequency_calculated_sixth)) {
            (network_frequency_calculated_fifth = pnetwork_calculated_frequency0[SOCKET_FLAG_OFFSET] * pnetwork_calculated_frequency0[SOCKET_FLAG_OFFSET] + pnetwork_calculated_frequency0[NETWORK_SOCKET_DATA_OFFSET] * pnetwork_calculated_frequency0[NETWORK_SOCKET_DATA_OFFSET] +
                      pnetwork_calculated_frequency0[NETWORK_INVALID_HEADER_MAGIC] * pnetwork_calculated_frequency0[NETWORK_INVALID_HEADER_MAGIC], network_frequency_calculated_fifth <= network_frequency_calculated_sixth)) {
-        pnetwork_calculated_frequency0 = pnetwork_calculated_frequency0 + NETWORK_PACKET_DATA_PAYLOAD_OFFSET;
+        pnetwork_calculated_frequency_primary = pnetwork_calculated_frequency_primary + NETWORK_PACKET_DATA_PAYLOAD_OFFSET;
     if ((longlong)network_operation_status_code_third_calc < network_socket_context) {
       isConnected = (byte)network_processor_result & BIT_SHIFT_MASK;
       network_operation_status_code = NETWORK_OPERATION_SUCCESS << isConnected | 1U >> SOCKET_RESPONSE_OFFSET - isConnected;
-      pnetwork_calculated_frequency0 = (float *)(network_socket_context + -NETWORK_CONNECTION_OFFSET + network_operation_status_code_third_calc * NETWORK_PACKET_DATA_PAYLOAD_OFFSET);
+      pnetwork_calculated_frequency_primary = (float *)(network_socket_context + -NETWORK_CONNECTION_OFFSET + network_operation_status_code_third_calc * NETWORK_PACKET_DATA_PAYLOAD_OFFSET);
       client_port_address = network_socket_context - network_operation_status_code_third_calc;
-        pnetwork_calculated_frequency0 = pnetwork_calculated_frequency0 + NETWORK_SOCKET_BUFFER_OFFSET;
+        pnetwork_calculated_frequency_primary = pnetwork_calculated_frequency_primary + NETWORK_SOCKET_BUFFER_OFFSET;
     network_buffer_main_index = NETWORK_STATUS_ACTIVE;
     network_buffer_ptr = NETWORK_STATUS_ACTIVE;
     network_config_parameter_ptr = CONCAT44(network_config_parameter_ptr._dword_4_, SQRT(network_frequency_calculated_sixth));
