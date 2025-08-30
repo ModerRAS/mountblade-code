@@ -19914,7 +19914,7 @@ void initialize_system_module_thirty_one(uint64_t handleIdentifier,uint64_t reso
       }
       system_temp_double_value = *(double *)(system_long_result + SYSTEM_OBJECT_OFFSET_28 + system_counter_temp);
       if (system_temp_double_value != SYSTEM_COMPARISON_ZERO.0) {
-        InitializeSystemModule(system_pointer_temp,&g_global_config_6,&g_global_config_11,system_temp_double_value);
+        InitializeSystemModule(system_pointer_temp,&g_global_config_SENARY,&g_global_config_UNDENARY,system_temp_double_value);
       }
       system_long_result_temp = *(longlong *)(system_long_result + SYSTEM_CONFIG_OFFSET_30 + system_counter_temp);
       system_temp_double_value = (double)system_long_result_temp;
