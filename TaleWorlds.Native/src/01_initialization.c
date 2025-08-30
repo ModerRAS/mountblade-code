@@ -1010,11 +1010,31 @@
 // 系统数据块大小语义化常量
 #define SYSTEM_DATA_BLOCK_SIZE070 0x70
 
-// 本次美化内容（2025年8月30日）第二十批次：
+// 系统寄存器值语义化常量
+#define SYSTEM_REGISTER_VALUE_GENERAL_PURPOSE_20 0x00000020
+
+// 系统资源分配大小语义化常量
+#define SYSTEM_RESOURCE_ALLOCATION_SIZE_BASIC 0x34
+
+// 系统消息框类型语义化常量
+#define SYSTEM_MESSAGEBOX_TYPE_ERROR_WARNING 0x52012
+
+// 系统内存释放大小语义化常量
+#define SYSTEM_MEMORY_FREE_SIZE_BASIC 0xb8
+
+// 本次美化内容（2025年8月30日）第二十一批次：
+// - 添加了SYSTEM_REGISTER_VALUE_GENERAL_PURPOSE_20等系统寄存器值语义化常量
+// - 添加了SYSTEM_RESOURCE_ALLOCATION_SIZE_BASIC等系统资源分配大小语义化常量
+// - 添加了SYSTEM_MESSAGEBOX_TYPE_ERROR_WARNING等系统消息框类型语义化常量
+// - 添加了SYSTEM_MEMORY_FREE_SIZE_BASIC等系统内存释放大小语义化常量
 // - 添加了SYSTEM_HANDLE_OFFSET_42687等系统特殊句柄偏移量语义化常量
 // - 添加了SYSTEM_MEMORY_SIZE_213458等系统内存大小语义化常量
 // - 添加了SYSTEM_FLAG_MASK_BB80073等系统标志掩码语义化常量
 // - 添加了SYSTEM_DATA_BLOCK_SIZE070等系统数据块大小语义化常量
+// - 将硬编码的0x00000020替换为SYSTEM_REGISTER_VALUE_GENERAL_PURPOSE_20等寄存器值常量
+// - 将硬编码的0x34替换为SYSTEM_RESOURCE_ALLOCATION_SIZE_BASIC等资源分配大小常量
+// - 将硬编码的0x52012替换为SYSTEM_MESSAGEBOX_TYPE_ERROR_WARNING等消息框类型常量
+// - 将硬编码的0xb8替换为SYSTEM_MEMORY_FREE_SIZE_BASIC等内存释放大小常量
 // - 将硬编码的0x42687替换为SYSTEM_HANDLE_OFFSET_42687等句柄偏移量常量
 // - 将硬编码的0x4267C替换为SYSTEM_HANDLE_OFFSET_4267C等句柄偏移量常量
 // - 将硬编码的0x213458替换为SYSTEM_MEMORY_SIZE_213458等内存大小常量
