@@ -333,9 +333,11 @@ void system_memory_handler;
 void system_thread_handler;
 void system_process_handler;
 char system_char_buffer;
-void system_undefined_data_1;
+// 系统配置数据管理器
+void g_system_configuration_data;
 void g_module_loader;
-void system_undefined_data_2;
+// 系统状态数据管理器
+void g_system_state_data;
 void g_plugin_manager;
 void g_configuration_manager;
 void g_log_system;
@@ -364,9 +366,11 @@ void InitializeSystemCore;
 void g_system_registry;
 void g_service_locator;
 void g_dependency_injector;
-void system_undefined_data_3;
+// 系统临时数据管理器
+void g_system_temporary_data;
 void g_lifecycle_manager;
-void system_undefined_data_4;
+// 系统持久化数据管理器
+void g_system_persistent_data;
 
 // 函数: void SetupMemoryManager;
 void SetupMemoryManager;
@@ -401,9 +405,12 @@ void g_audio_buffer;
 void g_graphics_buffer;
 void g_network_buffer;
 void g_resource_buffer;
-void system_resource_data_1;
-void system_resource_data_2;
-void system_resource_data_3;
+// 系统资源缓存管理器
+void g_system_resource_cache_manager;
+// 系统资源流管理器
+void g_system_resource_stream_manager;
+// 系统资源备份管理器
+void g_system_resource_backup_manager;
 void g_system_started;
 void g_initialization_failed;
 void g_system_error;
