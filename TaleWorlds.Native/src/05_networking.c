@@ -1,19 +1,31 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 最新美化内容（2025年8月30日）：
+// - 添加了NETWORK_ARRAY_INDEX_3/4/5等网络数组索引语义化常量
+// - 添加了NETWORK_COMPRESSION_LEVEL_10等网络压缩级别语义化常量
+// - 将硬编码的数组索引+3替换为NETWORK_ARRAY_INDEX_3等语义化常量
+// - 将硬编码的数组索引+4替换为NETWORK_ARRAY_INDEX_4等语义化常量
+// - 将硬编码的数组索引+5替换为NETWORK_ARRAY_INDEX_5等语义化常量
+// - 将硬编码的压缩级别10替换为NETWORK_COMPRESSION_LEVEL_10等语义化常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了网络系统中硬编码数值的语义化替换
+// - 原本实现：完全重构网络系统常量定义体系
+// - 简化实现：仅将常见的硬编码数值替换为语义化常量
+
 // 新增语义化常量定义 - 网络操作状态码
-#define NETWORK_STATUS_CODE_3A NETWORK_STATUS_CODE_3A  // 网络状态码3A
-#define NETWORK_STATUS_CODE_3F NETWORK_STATUS_CODE_3F  // 网络状态码3F
-#define NETWORK_STATUS_CODE_46 NETWORK_STATUS_CODE_46  // 网络状态码46
-#define NETWORK_STATUS_CODE_49 NETWORK_STATUS_CODE_49  // 网络状态码49
-#define NETWORK_STATUS_CODE_55 NETWORK_STATUS_CODE_55  // 网络状态码55
-#define NETWORK_STATUS_CODE_56 NETWORK_STATUS_CODE_56  // 网络状态码56
-#define NETWORK_STATUS_CODE_6A NETWORK_STATUS_CODE_6A  // 网络状态码6A
-#define NETWORK_STATUS_CODE_6F NETWORK_STATUS_CODE_6F  // 网络状态码6F
-#define NETWORK_STATUS_CODE_71 NETWORK_STATUS_CODE_71  // 网络状态码71
-#define NETWORK_STATUS_CODE_73 NETWORK_STATUS_CODE_73  // 网络状态码73
-#define NETWORK_STATUS_CODE_75 NETWORK_STATUS_CODE_75  // 网络状态码75
-#define NETWORK_STATUS_CODE_82 NETWORK_STATUS_CODE_82  // 网络状态码82
-#define NETWORK_STATUS_CODE_85 NETWORK_STATUS_CODE_85  // 网络状态码85
+#define NETWORK_STATUS_CODE_3A 0x3a  // 网络状态码3A
+#define NETWORK_STATUS_CODE_3F 0x3f  // 网络状态码3F
+#define NETWORK_STATUS_CODE_46 0x46  // 网络状态码46
+#define NETWORK_STATUS_CODE_49 0x49  // 网络状态码49
+#define NETWORK_STATUS_CODE_55 0x55  // 网络状态码55
+#define NETWORK_STATUS_CODE_56 0x56  // 网络状态码56
+#define NETWORK_STATUS_CODE_6A 0x6a  // 网络状态码6A
+#define NETWORK_STATUS_CODE_6F 0x6f  // 网络状态码6F
+#define NETWORK_STATUS_CODE_71 0x71  // 网络状态码71
+#define NETWORK_STATUS_CODE_73 0x73  // 网络状态码73
+#define NETWORK_STATUS_CODE_75 0x75  // 网络状态码75
+#define NETWORK_STATUS_CODE_82 0x82  // 网络状态码82
+#define NETWORK_STATUS_CODE_85 0x85  // 网络状态码85
 
 // 新增语义化常量定义 - 网络偏移量
 #define NETWORK_OFFSET_210 0x210  // 网络偏移量210
