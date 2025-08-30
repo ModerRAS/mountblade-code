@@ -90,7 +90,7 @@
 #define NETWORK_TIME_SCALE_FACTOR_INV 3.4722222222222224e-07  // 时间缩放因子倒数
 
 // 新增语义化常量定义 - 网络数据包大小
-#define NETWORK_PACKET_HEADER_SIZE NETWORK_PACKET_HEADER_SIZE         // 网络数据包头部大小
+#define NETWORK_PACKET_HEADER_SIZE 0x10         // 网络数据包头部大小
 #define NETWORK_PACKET_DATA_OFFSET NETWORK_PACKET_HEADER_SIZE         // 网络数据包数据偏移量
 #define NETWORK_PACKET_OPERATION_COUNT NETWORK_BUFFER_SIZE_LARGE     // 网络数据包操作计数
 
@@ -99,11 +99,11 @@
 // 新增语义化常量定义 - 扩展偏移量
 
 // 新增语义化常量定义 - 其他偏移量
-#define NETWORK_SOCKET_OFFSET_394 NETWORK_SOCKET_OFFSET_394  // 套接字偏移量394
+#define NETWORK_SOCKET_OFFSET_394 0x394  // 套接字偏移量394
 #define NETWORK_CONNECTION_TIMEOUT_OFFSET_55 0x55  // 连接超时偏移量55
 
 // 新增语义化常量定义 - 套接字描述符偏移量
-#define NETWORK_SOCKET_DESCRIPTOR_OFFSET_878 NETWORK_SOCKET_CONFIG_OFFSET_878  // 套接字描述符偏移量878
+#define NETWORK_SOCKET_DESCRIPTOR_OFFSET_878 0x878  // 套接字描述符偏移量878
 
 
 
