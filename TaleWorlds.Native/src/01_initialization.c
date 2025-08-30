@@ -2174,7 +2174,7 @@ void InitializeSystemCore(void)
   system_uint64_t *system_config_data_pointer;
   system_uint64_t *system_temp_data_pointer;
   system_uint64_t *system_stack_frame_pointer;
-  void* *psystem_stack_initialization_counter;
+  void* *system_stack_initialization_counter_ptr;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
@@ -2906,7 +2906,7 @@ void InitializeSystemCore(void)
   system_uint64_t *system_config_data_pointer;
   system_uint64_t *system_temp_data_pointer;
   system_uint64_t *system_stack_frame_pointer;
-  void* *psystem_stack_initialization_counter;
+  void* *system_stack_initialization_counter_ptr;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
@@ -3306,7 +3306,7 @@ void InitializeSystemCore(void)
   system_uint64_t *system_config_data_pointer;
   system_uint64_t *system_temp_data_pointer;
   system_uint64_t *system_stack_frame_pointer;
-  void* *psystem_stack_initialization_counter;
+  void* *system_stack_initialization_counter_ptr;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
@@ -3656,7 +3656,7 @@ void InitializeSystemCore(void)
   system_uint64_t *system_config_data_pointer;
   system_uint64_t *system_temp_data_pointer;
   system_uint64_t *system_stack_frame_pointer;
-  void* *psystem_stack_initialization_counter;
+  void* *system_stack_initialization_counter_ptr;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
@@ -4106,7 +4106,7 @@ void InitializeSystemCore(void)
   system_uint64_t *system_config_data_pointer;
   system_uint64_t *system_temp_data_pointer;
   system_uint64_t *system_stack_frame_pointer;
-  void* *psystem_stack_initialization_counter;
+  void* *system_stack_initialization_counter_ptr;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
@@ -4690,7 +4690,7 @@ void InitializeSystemCore(void)
   system_uint64_t *system_config_data_pointer;
   system_uint64_t *system_temp_data_pointer;
   system_uint64_t *system_stack_frame_pointer;
-  void* *psystem_stack_initialization_counter;
+  void* *system_stack_initialization_counter_ptr;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
@@ -5064,7 +5064,7 @@ void InitializeSystemCore(void)
   system_uint64_t *system_config_data_pointer;
   system_uint64_t *system_temp_data_pointer;
   system_uint64_t *system_stack_frame_pointer;
-  void* *psystem_stack_initialization_counter;
+  void* *system_stack_initialization_counter_ptr;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
@@ -5666,7 +5666,7 @@ void InitializeSystemCore(void)
   system_uint64_t *system_config_data_pointer;
   system_uint64_t *system_temp_data_pointer;
   system_uint64_t *system_stack_frame_pointer;
-  void* *psystem_stack_initialization_counter;
+  void* *system_stack_initialization_counter_ptr;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
@@ -6016,7 +6016,7 @@ void InitializeSystemCore(void)
   system_uint64_t *system_config_data_pointer;
   system_uint64_t *system_temp_data_pointer;
   system_uint64_t *system_stack_frame_pointer;
-  void* *psystem_stack_initialization_counter;
+  void* *system_stack_initialization_counter_ptr;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
@@ -6623,7 +6623,7 @@ void InitializeSystemCore(void)
   system_uint64_t *system_config_data_pointer;
   system_uint64_t *system_temp_data_pointer;
   system_uint64_t *system_stack_frame_pointer;
-  void* *psystem_stack_initialization_counter;
+  void* *system_stack_initialization_counter_ptr;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
@@ -7073,7 +7073,7 @@ void InitializeSystemCore(void)
   system_uint64_t *system_config_data_pointer;
   system_uint64_t *system_temp_data_pointer;
   system_uint64_t *system_stack_frame_pointer;
-  void* *psystem_stack_initialization_counter;
+  void* *system_stack_initialization_counter_ptr;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
@@ -7673,7 +7673,7 @@ void InitializeSystemCore(void)
   system_uint64_t *system_config_data_pointer;
   system_uint64_t *system_temp_data_pointer;
   system_uint64_t *system_stack_frame_pointer;
-  void* *psystem_stack_initialization_counter;
+  void* *system_stack_initialization_counter_ptr;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
@@ -8103,7 +8103,7 @@ void InitializeSystemCore(void)
   system_uint64_t *system_config_data_pointer;
   system_uint64_t *system_temp_data_pointer;
   system_uint64_t *system_stack_frame_pointer;
-  void* *psystem_stack_initialization_counter;
+  void* *system_stack_initialization_counter_ptr;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
@@ -9293,7 +9293,7 @@ void InitializeSystemCore(void)
   system_uint64_t *system_config_data_pointer;
   system_uint64_t *system_temp_data_pointer;
   system_uint64_t *system_stack_frame_pointer;
-  void* *psystem_stack_initialization_counter;
+  void* *system_stack_initialization_counter_ptr;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
@@ -9643,7 +9643,7 @@ void InitializeSystemCore(void)
   system_uint64_t *system_config_data_pointer;
   system_uint64_t *system_temp_data_pointer;
   system_uint64_t *system_stack_frame_pointer;
-  void* *psystem_stack_initialization_counter;
+  void* *system_stack_initialization_counter_ptr;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
@@ -9993,7 +9993,7 @@ void InitializeSystemCore(void)
   system_uint64_t *system_config_data_pointer;
   system_uint64_t *system_temp_data_pointer;
   system_uint64_t *system_stack_frame_pointer;
-  void* *psystem_stack_initialization_counter;
+  void* *system_stack_initialization_counter_ptr;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
@@ -10343,7 +10343,7 @@ void InitializeSystemCore(void)
   system_uint64_t *system_config_data_pointer;
   system_uint64_t *system_temp_data_pointer;
   system_uint64_t *system_stack_frame_pointer;
-  void* *psystem_stack_initialization_counter;
+  void* *system_stack_initialization_counter_ptr;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
@@ -11775,7 +11775,7 @@ void InitializeSystemCore(void)
   system_uint64_t *system_config_data_pointer;
   system_uint64_t *system_temp_data_pointer;
   system_uint64_t *system_stack_frame_pointer;
-  void* *psystem_stack_initialization_counter;
+  void* *system_stack_initialization_counter_ptr;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
@@ -12185,7 +12185,7 @@ void InitializeSystemCore(void)
   system_uint64_t *system_config_data_pointer;
   system_uint64_t *system_temp_data_pointer;
   system_uint64_t *system_stack_frame_pointer;
-  void* *psystem_stack_initialization_counter;
+  void* *system_stack_initialization_counter_ptr;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
@@ -12535,7 +12535,7 @@ void InitializeSystemCore(void)
   system_uint64_t *system_config_data_pointer;
   system_uint64_t *system_temp_data_pointer;
   system_uint64_t *system_stack_frame_pointer;
-  void* *psystem_stack_initialization_counter;
+  void* *system_stack_initialization_counter_ptr;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
@@ -14478,7 +14478,7 @@ void InitializeSystemCore(void)
   system_uint64_t *system_config_data_pointer;
   system_uint64_t *system_temp_data_pointer;
   system_uint64_t *system_stack_frame_pointer;
-  void* *psystem_stack_initialization_counter;
+  void* *system_stack_initialization_counter_ptr;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
@@ -15454,7 +15454,7 @@ void InitializeSystemCore(void)
   system_uint64_t *system_config_data_pointer;
   system_uint64_t *system_temp_data_pointer;
   system_uint64_t *system_stack_frame_pointer;
-  void* *psystem_stack_initialization_counter;
+  void* *system_stack_initialization_counter_ptr;
   
   system_context_base_pointer = (longlong *)InitializeSystemCore();
   system_buffer_pointer = (system_uint64_t *)*system_context_base_pointer;
