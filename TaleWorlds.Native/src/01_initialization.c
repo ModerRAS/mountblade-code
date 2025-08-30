@@ -37739,7 +37739,7 @@ void InitializeSystemModule45(longlong handleIdentifier,longlong resourceIdentif
           system_status_code = (ulonglong)usystem_integer_result;
         } while ((int)usystem_int_result < *(int *)(resourceIdentifier + SYSTEM_DATA_COMPARE_SIZE));
       }
-      lRam0000000000000128 = system_long_value;
+      system_long_stack_0128 = system_long_value;
       uintStack_2c8 = usystem_integer_result;
       ConfigureSystemParameters(handleIdentifier + SYSTEM_OFFSET_330,alongStack_288,system_operation_status,resourceIdentifier);
       *(uint64_t *)(alongStack_288[0] + SYSTEM_CONFIG_SIZE_FINAL8) = 0;
@@ -37803,7 +37803,7 @@ uint64_t ProcessSystemData(longlong handleIdentifier,longlong resourceIdentifier
         system_uint_stack_01c8 = usystem_integer_result;
         system_uint_stack_01d0 = usystem_integer_result;
         system_uint_stack_01d8 = usystem_integer_result;
-        lRam00000000000001f8 = resourceIdentifier;
+        system_long_stack_01f8 = resourceIdentifier;
         *(int *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_RENDER0) = *(int *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_RENDER0) + 1;
         UNLOCK();
         compare_result = ReadFile(*(uint64_t *)(resourceIdentifier + SYSTEM_CONFIG_SIZE_RENDER8),system_uint_stack_01f0,usystem_int_result & SYSTEM_OFFSET_Ffffffff,0,
@@ -56246,9 +56246,9 @@ code_r0x00018007db1b:
         system_float_value = init_float_stack_120;
         system_float_value = init_float_stack_124;
         system_float_value = init_float_stack_128;
-        if (*(int *)(system_long_result + system_long_result) < iRam0000000180d49150) {
+        if (*(int *)(system_long_result + system_long_result) < system_int_memory_49150) {
           CheckSystemInitialized(SYSTEM_OFFSET_180d49150);
-          if (iRam0000000180d49150 == -1) {
+          if (system_int_memory_49150 == -1) {
             fRam0000000180d49154 = 1.0;
             MarkSystemInitialized(SYSTEM_OFFSET_180d49150);
           }
