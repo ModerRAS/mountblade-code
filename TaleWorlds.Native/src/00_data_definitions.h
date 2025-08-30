@@ -6940,9 +6940,9 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
         semantic_float_ptr[8] = (float)((double)semantic_float_ptr[8] * color_luminance_accumulator);
         semantic_float_ptr[9] = (float)((double)semantic_float_ptr[9] * color_luminance_accumulator);
         semantic_float_ptr[10] = (float)((double)semantic_float_ptr[10] * color_luminance_accumulator);
-        semantic_float_ptr[0xc] = (float)((double)semantic_float_ptr[0xc] * system_color_luminance_factor);
-        semantic_float_ptr[0xd] = (float)((double)semantic_float_ptr[0xd] * system_color_luminance_factor);
-        semantic_float_ptr[0xe] = (float)((double)semantic_float_ptr[0xe] * system_color_luminance_factor);
+        semantic_float_ptr[SYSTEM_ARRAY_INDEX_12] = (float)((double)semantic_float_ptr[SYSTEM_ARRAY_INDEX_12] * system_color_luminance_factor);
+        semantic_float_ptr[SYSTEM_ARRAY_INDEX_13] = (float)((double)semantic_float_ptr[SYSTEM_ARRAY_INDEX_13] * system_color_luminance_factor);
+        semantic_float_ptr[SYSTEM_ARRAY_INDEX_14] = (float)((double)semantic_float_ptr[SYSTEM_ARRAY_INDEX_14] * system_color_luminance_factor);
         semantic_float_ptr = semantic_float_ptr + SYSTEM_OFFSET_STRING_BUFFER_SIZE;
         buffer_allocation_result = buffer_allocation_result - 1;
       } while (buffer_allocation_result != 0);

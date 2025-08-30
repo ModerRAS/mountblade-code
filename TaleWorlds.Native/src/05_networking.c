@@ -3970,18 +3970,18 @@ NetworkProcessPacketFunc NetworkProcessPacket;
 // 网络断开处理函数指针 - 处理连接断开事件
 typedef void (*NetworkHandleDisconnectFunc)(void* network_connection_processor);
 NetworkHandleDisconnectFunc NetworkHandleDisconnect;
-// 网络断开原因
-void* g_networkDisconnectionReason;
-// 网络错误信息
-void* g_networkErrorMessage;
-// 网络接收队列
-void* g_networkReceiveDataQueue;
-// 网络发送队列
-void* g_networkSendDataQueue;
-// 网络待处理数据
-void* g_networkPendingDataObject;
-// 网络活跃连接数
-void* g_networkActiveConnectionCount;
+// 网络断开原因（美化后）
+void* g_network_disconnect_reason;
+// 网络错误信息（美化后）
+void* g_network_error_message;
+// 网络接收队列（美化后）
+void* g_network_receive_queue;
+// 网络发送队列（美化后）
+void* g_network_send_queue;
+// 网络待处理数据（美化后）
+void* g_network_pending_data;
+// 网络活跃连接数（美化后）
+void* g_network_active_connection_count;
 // 网络连接池
 void* g_network_connection_pool;
 // 网络带宽信息指针
@@ -38617,7 +38617,8 @@ uint64_t networkProcessHandshake(uint64_t network_socket_handle, int64_t network
       network_op_status = networkSendProtocolMessage(network_socket_handle, network_buffer_ptr, NETWORK_PROTOCOL_SERVER);
         network_op_status = networkEstablishSecureConnection(network_socket_handle, network_buffer_ptr);
 // 网络系统常量定义补充
-#define NETWORK_NETWORK_SOCKET_BUFFER_OFFSET 0x19
+#define NETWORK_NETWORK_SOCKET_BUFFER_OFFSET_HEX_19 0x19   // 网络套接字缓冲区偏移量（十六进制）
+#define NETWORK_NETWORK_SOCKET_BUFFER_OFFSET NETWORK_NETWORK_SOCKET_BUFFER_OFFSET_HEX_19  // 简化的网络套接字缓冲区偏移量
 
 // 新增语义化常量定义 - 网络状态码偏移量
 #define NETWORK_STATUS_OFFSET_390 NETWORK_STATUS_OFFSET_390  // 网络状态偏移量390
