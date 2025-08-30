@@ -11424,7 +11424,7 @@ void ProcessResourceOperation(longlong resource_handle_identifier,longlong resou
         utility_operation_status = (**(code **)*utility_return_pointer_primary)(utility_return_pointer_primary);
         utility_temp_int_result = execute_data_operation(utility_operation_status,utility_operation_result_var,utility_stack_char_array_small);
         if (utility_temp_int_result == 0) {
-          if (stackCharArray1c4[0] != '\0') {
+          if (utility_stack_char_array_small[0] != '\0') {
             utility_operation_result_var = systemQueryFunction();
             utility_temp_int_result = memcmp(operation_buffer + UTILITY_STRUCTURE_SIZE_OFFSET,utility_operation_result_var,UTILITY_FIELD_PRIMARY_OFFSET);
             if (utility_temp_int_result != 0) {
@@ -17782,7 +17782,7 @@ void utilityTripTarget(void)
   longlong utility_register_context_base;
   uint64 *utility_cpu_context;
   uint validation_flag;
-  uint stackContextUInt88;
+  uint utility_stack_context_primary;
   
   stackContextUInt88 = 0;
   utility_iteration_counter = get_resource_size();
