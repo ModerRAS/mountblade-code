@@ -30334,7 +30334,7 @@ uint64_t networkHandleNetworkError7(int64_t network_socket_descriptor)
            (network_float_value_7 != *(float *)(network_timeout_ms + SOCKET_RESPONSE_OFFSET))) {
           *(float *)(network_timeout_ms + SOCKET_RESPONSE_OFFSET) = network_float_value_7;
           networkDebugProtocol(network_timeout_ms);
-          *(uint8_t *)(network_timeout_ms + 0x35) = NETWORK_OPERATION_FAILURE;
+          *(uint8_t *)(network_timeout_ms + NETWORK_OPERATION_OFFSET_35) = NETWORK_OPERATION_FAILURE;
 uint64_t networkHandleNetworkError8(int64_t network_socket_descriptor)
     processor_index = network_temp_value - NETWORK_PACKET_HEADER_SIZE;
     network_processor_data_ptr = (uint32_t *)(network_socket_descriptor + SOCKET_RESPONSE_OFFSET + (longlong)*(int32_t *)(network_socket_descriptor + SESSION_CONFIG_SIZE) * 4);
