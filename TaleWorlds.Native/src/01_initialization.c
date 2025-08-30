@@ -23170,7 +23170,7 @@ void InitializeSystemComponents(longlong handleIdentifier,longlong resourceIdent
     *(uint16_t *)(system_pointer_var + 1) = SYSTEM_CONFIG_VALUE_5F53;
     *(uint8_t *)((longlong)system_pointer_var + 10) = 0;
     init_stack_uint_param_80 = 10;
-    CompareSystemBuffers(handleIdentifier + 0x2c0,&system_buffer_ptr_small_buffer);
+    CompareSystemBuffers(handleIdentifier + SYSTEM_OFFSET_2c0,&system_buffer_ptr_small_buffer);
     system_buffer_ptr_small_buffer = &resourcePoolPointer;
                     // WARNING: Subroutine does not return
     ProcessSystemOperation(system_pointer_var);
