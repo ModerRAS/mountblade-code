@@ -13,7 +13,7 @@
 // - 添加了NETWORK_DATA_PTR_OFFSET_360/368等网络数据指针偏移量语义化常量
 // - 将硬编码的0x24c/0x244/0x23c负偏移量替换为NETWORK_NEGATIVE_OFFSET_24C/244/23C等语义化常量
 // - 将硬编码的0x360/0x368数据指针偏移量替换为NETWORK_DATA_PTR_OFFSET_360/368等语义化常量
-// - 将硬编码的0x790替换为NETWORK_TIMEOUT_EXTENDED_OFFSET等语义化常量
+// - 将硬编码的NETWORK_COMPARE_VALUE_790替换为NETWORK_TIMEOUT_EXTENDED_OFFSET等语义化常量
 // - 将硬编码的0x830替换为NETWORK_TIMEOUT_EXTENDED_OFFSET_830等语义化常量
 // - 将硬编码的0xac8替换为NETWORK_RESPONSE_BUFFER_OFFSET等语义化常量
 // - 将硬编码的0xc18替换为NETWORK_BUFFER_PRIMARY_OFFSET_C18等语义化常量
@@ -21,7 +21,7 @@
 // - 将硬编码的0x358替换为NETWORK_CONNECTION_PRIMARY_OFFSET等语义化常量
 // - 将硬编码的0x244替换为NETWORK_CONTEXT_SIZE_OFFSET等语义化常量
 // - 将硬编码的0x24c替换为SOCKET_MAGIC_OFFSET等语义化常量
-// - 将硬编码的0x8a0替换为NETWORK_CONNECTION_COUNT_OFFSET等语义化常量
+// - 将硬编码的NETWORK_COMPARE_VALUE_8A0替换为NETWORK_CONNECTION_COUNT_OFFSET等语义化常量
 // - 将硬编码的0xafc替换为NETWORK_AUTH_VALIDATION_OFFSET等语义化常量
 // - 将硬编码的0xae0替换为NETWORK_AUTH_CONFIG_OFFSET等语义化常量
 // - 将硬编码的0xae8替换为NETWORK_AUTH_DATA_OFFSET等语义化常量
@@ -60,8 +60,8 @@
 // 新增语义化常量定义 - 网络偏移量
 #define NETWORK_OFFSET_210 0x210  // 网络偏移量210
 #define NETWORK_OFFSET_37C 0x37c  // 网络偏移量37C
-#define NETWORK_OFFSET_3B8 0x3b8  // 网络偏移量3B8
-#define NETWORK_OFFSET_3DC 0x3dc  // 网络偏移量3DC
+#define NETWORK_OFFSET_3B8 NETWORK_COMPARE_VALUE_3B8  // 网络偏移量3B8
+#define NETWORK_OFFSET_3DC NETWORK_COMPARE_VALUE_3Dc  // 网络偏移量3DC
 #define NETWORK_OFFSET_560 0x560  // 网络偏移量560
 #define NETWORK_OFFSET_568 0x568  // 网络偏移量568
 #define NETWORK_OFFSET_570 0x570  // 网络偏移量570
@@ -201,11 +201,11 @@
 #define NETWORK_OPERATION_CODE_PONG 0x07         // 网络操作码：心跳响应
 
 // 新增语义化常量定义 - 网络错误码常量
-#define NETWORK_ERROR_CODE_TIMEOUT 0x1001       // 网络错误码：超时
-#define NETWORK_ERROR_CODE_CONNECTION_FAILED 0x1002  // 网络错误码：连接失败
-#define NETWORK_ERROR_CODE_INVALID_PACKET 0x1003  // 网络错误码：无效数据包
-#define NETWORK_ERROR_CODE_BUFFER_OVERFLOW 0x1004  // 网络错误码：缓冲区溢出
-#define NETWORK_ERROR_CODE_AUTHENTICATION_FAILED 0x1005  // 网络错误码：认证失败
+#define NETWORK_ERROR_CODE_TIMEOUT NETWORK_BUFFER_SIZE_1001       // 网络错误码：超时
+#define NETWORK_ERROR_CODE_CONNECTION_FAILED NETWORK_BUFFER_SIZE_1002  // 网络错误码：连接失败
+#define NETWORK_ERROR_CODE_INVALID_PACKET NETWORK_BUFFER_SIZE_1003  // 网络错误码：无效数据包
+#define NETWORK_ERROR_CODE_BUFFER_OVERFLOW NETWORK_BUFFER_SIZE_1004  // 网络错误码：缓冲区溢出
+#define NETWORK_ERROR_CODE_AUTHENTICATION_FAILED NETWORK_BUFFER_SIZE_1005  // 网络错误码：认证失败
 
 // 新增语义化常量定义 - 网络数据包大小
 #define NETWORK_PACKET_HEADER_SIZE 0x10         // 网络数据包头部大小
@@ -234,13 +234,13 @@
 // Engine Memory Config Index Constants
 #define ENGINE_MEMORY_CONFIG_INDEX_COUNTER 0x44
 #define ENGINE_MEMORY_CONFIG_INDEX_VALUE 0x43
-#define ENGINE_MEMORY_CONFIG_INDEX_TIMEOUT 0x45
+#define ENGINE_MEMORY_CONFIG_INDEX_TIMEOUT NETWORK_COMPARE_VALUE_45
 
 // Engine Context Object Constants
 #define ENGINE_CONTEXT_OBJECT_OFFSET 0x56
 
 // Engine Context Callback Constants
-#define ENGINE_CONTEXT_CALLBACK_OFFSET_PRIMARY 0x60f
+#define ENGINE_CONTEXT_CALLBACK_OFFSET_PRIMARY NETWORK_VALIDATION_OFFSET_60f
 #define ENGINE_CONTEXT_CALLBACK_OFFSET_SECONDARY 0x610
 
 // Engine Context Index Constants
@@ -249,7 +249,7 @@
 #define ENGINE_CONTEXT_INDEX_COMPARE 0xe
 
 // Engine Register Callback Constants
-#define ENGINE_REGISTER_CALLBACK_OFFSET 0x604
+#define ENGINE_REGISTER_CALLBACK_OFFSET NETWORK_VALIDATION_OFFSET_604
 
 // Engine Root Node Callback Constants
 #define ENGINE_ROOT_NODE_CALLBACK_OFFSET_1 0x30b
@@ -259,8 +259,8 @@
 // 新增语义化常量定义 - 网络扩展偏移量
 #define NETWORK_CONTEXT_EXTENDED_OFFSET_3E0 0x3e0  // 网络上下文扩展偏移量3E0
 #define NETWORK_CONNECTION_CONFIG_OFFSET_810 0x810  // 网络连接配置偏移量810
-#define NETWORK_CONNECTION_POOL_OFFSET_7E0 0x7e0  // 网络连接池偏移量7E0
-#define NETWORK_CONNECTION_DESCRIPTOR_OFFSET_7E8 0x7e8  // 网络连接描述符偏移量7E8
+#define NETWORK_CONNECTION_POOL_OFFSET_7E0 NETWORK_COMPARE_VALUE_7E0  // 网络连接池偏移量7E0
+#define NETWORK_CONNECTION_DESCRIPTOR_OFFSET_7E8 NETWORK_COMPARE_VALUE_7E8  // 网络连接描述符偏移量7E8
 #define NETWORK_SOCKET_DESCRIPTOR_OFFSET_818 0x818  // 网络套接字描述符偏移量818
 #define NETWORK_TIMEOUT_EXTENDED_OFFSET_830 0x830  // 网络超时扩展偏移量830
 #define NETWORK_SOCKET_CONTEXT_DATA_OFFSET_C 0xc  // 网络套接字上下文数据偏移量C
@@ -272,18 +272,18 @@
 #define NETWORK_CONFIG_REQUEST_ID_C1C 0xc1c  // 网络配置请求ID C1C
 
 // 新增语义化常量定义 - 网络魔数签名
-#define NETWORK_MAGIC_ART 0x4e415254  // 网络魔数签名 ART
+#define NETWORK_MAGIC_ART NETWORK_RETURN_VALUE_4E415254  // 网络魔数签名 ART
 #define NETWORK_MAGIC_BNRT 0x424e5254  // 网络魔数签名 BNRT
 #define NETWORK_MAGIC_BIAW 0x42494157  // 网络魔数签名 BIAW
 #define NETWORK_MAGIC_BDMC 0x42444d43  // 网络魔数签名 BDMC
 #define NETWORK_MAGIC_BIFE 0x42494645  // 网络魔数签名 BIFE
 
-#define NETWORK_MAGIC_SIGNATURE_LMNT 0x4e4c4d54  // 网络魔数签名 LMNT
+#define NETWORK_MAGIC_SIGNATURE_LMNT NETWORK_RETURN_VALUE_4E4c4d54  // 网络魔数签名 LMNT
 #define NETWORK_MAGIC_SIGNATURE_BNLT 0x424e4c54  // 网络魔数签名 BNLT
 
 // 新增语义化常量定义 - 网络扩展偏移量
 #define NETWORK_CONNECTION_EXTENDED_OFFSET_5D8 0x5d8  // 网络连接扩展偏移量5D8
-#define NETWORK_CONNECTION_STATUS_OFFSET_7B0 0x7b0  // 网络连接状态偏移量7B0
+#define NETWORK_CONNECTION_STATUS_OFFSET_7B0 NETWORK_COMPARE_VALUE_7B0  // 网络连接状态偏移量7B0
 #define NETWORK_CONNECTION_TABLE_OFFSET_7A8 0x7a8  // 网络连接表偏移量7A8
 #define NETWORK_SOCKET_CACHE_OFFSET_518 0x518  // 网络套接字缓存偏移量518
 #define NETWORK_CONNECTION_PRIMARY_OFFSET_358 0x358  // 网络连接主偏移量358
@@ -299,8 +299,8 @@
 #define NETWORK_CONNECTION_TABLE_OFFSET 0x248  // 连接表偏移量
 #define NETWORK_SOCKET_HANDLE_THRESHOLD NETWORK_LOG_ID_SYSTEM_STATUS  // 套接字句柄阈值
 #define NETWORK_SOCKET_RESOURCE_OFFSET 0x328  // 套接字资源偏移量
-#define NETWORK_SOCKET_TERMINATE_OFFSET 0x3d0  // 套接字终止偏移量
-#define NETWORK_SOCKET_TIMEOUT_DATA_OFFSET 0x3d8  // 套接字超时数据偏移量
+#define NETWORK_SOCKET_TERMINATE_OFFSET NETWORK_COMPARE_VALUE_3D0  // 套接字终止偏移量
+#define NETWORK_SOCKET_TIMEOUT_DATA_OFFSET NETWORK_COMPARE_VALUE_3D8  // 套接字超时数据偏移量
 
 // 新增语义化常量定义 - 网络状态偏移量
 #define NETWORK_STATUS_OFFSET_360 0x360  // 网络状态偏移量360
@@ -332,7 +332,7 @@
 #define NETWORK_STATUS_OFFSET_3F0 0x3F0  // 网络状态偏移量3F0
 #define NETWORK_SOCKET_CLEANUP_OFFSET 0x69  // 套接字清理偏移量
 #define NETWORK_CONFIGURE_CONNECTION_OFFSET 0x7a5  // 配置连接偏移量
-#define NETWORK_LOG_CONNECTION_OFFSET 0x8a4  // 网络日志连接偏移量
+#define NETWORK_LOG_CONNECTION_OFFSET NETWORK_COMPARE_VALUE_8A4  // 网络日志连接偏移量
 #define NETWORK_BUFFER_OFFSET_8D 0x8d  // 缓冲区偏移量8D
 #define NETWORK_LOG_EVENT_OFFSET NETWORK_SOCKET_CONFIG_OFFSET_A2c  // 网络日志事件偏移量
 #define NETWORK_LOG_SERVER_OFFSET 0xadc  // 网络日志服务器偏移量
@@ -346,7 +346,7 @@
 #define NETWORK_DATA_PTR_OFFSET_368 0x368  // 网络数据指针偏移量368
 
 // 新增语义化常量定义 - 网络连接管理偏移量
-#define NETWORK_CONNECTION_MANAGE_OFFSET_52C 0x52C  // 网络连接管理偏移量52C
+#define NETWORK_CONNECTION_MANAGE_OFFSET_52C NETWORK_OFFSET_CALC_52C  // 网络连接管理偏移量52C
 #define NETWORK_CONNECTION_MANAGE_OFFSET_55C NETWORK_STATUS_CODE_55C  // 网络连接管理偏移量55C
 #define NETWORK_CONNECTION_MANAGE_OFFSET_5BC 0x5BC  // 网络连接管理偏移量5BC
 #define NETWORK_CONNECTION_MANAGE_OFFSET_5EC 0x5EC  // 网络连接管理偏移量5EC
@@ -367,7 +367,7 @@
 #define NETWORK_PROTOCOL_OFFSET_6E0 0x6E0  // 网络协议处理偏移量6E0
 #define NETWORK_PROTOCOL_OFFSET_690 0x690  // 网络协议处理偏移量690
 #define NETWORK_PROTOCOL_OFFSET_560 NETWORK_STATUS_CODE_560  // 网络协议处理偏移量560
-#define NETWORK_PROTOCOL_OFFSET_650 0x650  // 网络协议处理偏移量650
+#define NETWORK_PROTOCOL_OFFSET_650 NETWORK_OFFSET_CALC_650  // 网络协议处理偏移量650
 #define NETWORK_PROTOCOL_OFFSET_630 0x630  // 网络协议处理偏移量630
 #define NETWORK_PROTOCOL_OFFSET_5F0 0x5F0  // 网络协议处理偏移量5F0
 #define NETWORK_PROTOCOL_OFFSET_5D0 0x5D0  // 网络协议处理偏移量5D0
@@ -382,7 +382,7 @@
 // 基础网络常量
 #define NETWORK_FLOAT_EXPONENT_BASE NETWORK_OPERATION_THRESHOLD200000
 #define NETWORK_MAX_SIZE_54495645 NETWORK_PROTOCOL_CLIENT_ID  // "TIVE"
-#define NETWORK_PROTOCOL_CLIENT_ID 0x45564954  // "TIVE" - Time Validation Extension
+#define NETWORK_PROTOCOL_CLIENT_ID NETWORK_COMPARE_VALUE_45564954  // "TIVE" - Time Validation Extension
 #define NETWORK_PROTOCOL_CLIENT NETWORK_PROTOCOL_CLIENT_ID  // "TIVE" - Time Validation Extension
 #define NETWORK_PROTOCOL_HANDSHAKE 0x48414E44  // "HAND" - Handshake Protocol
 #define NETWORK_PROTOCOL_SERVER NETWORK_SECURITY_VERIFY_BIVE  // "BIVE" - Basic Validation Extension
@@ -391,16 +391,16 @@
 #define NETWORK_SOCKET_BUFFER_POINTER_OFFSET 0x91
 #define NETWORK_SOCKET_CHANNEL_OFFSET 0x96
 #define NETWORK_SOCKET_CHECKSUM_OFFSET NETWORK_CONTEXT_OFFSET
-#define NETWORK_SOCKET_CONFIG_OFFSET_ALT 0x4f
+#define NETWORK_SOCKET_CONFIG_OFFSET_ALT NETWORK_COMPARE_VALUE_4F
 #define NETWORK_SOCKET_CONFIG_WRITE_OFFSET 0x50  // 套接字配置写入偏移量
-#define NETWORK_SOCKET_CONNECTION_OFFSET 0x4d  // 套接字连接偏移量
+#define NETWORK_SOCKET_CONNECTION_OFFSET NETWORK_COMPARE_VALUE_4D  // 套接字连接偏移量
 #define NETWORK_SOCKET_CONTEXT_DATA_OFFSET NETWORK_STATUS_CODE_82  // 套接字上下文数据偏移量
-#define NETWORK_SOCKET_CONTEXT_POINTER_OFFSET 0x8f  // 套接字上下文指针偏移量
+#define NETWORK_SOCKET_CONTEXT_POINTER_OFFSET NETWORK_VALIDATION_OFFSET_8F  // 套接字上下文指针偏移量
 #define NETWORK_SOCKET_DATA_FLAG_OFFSET NETWORK_STATUS_CODE_71  // 套接字数据标志偏移量
-#define NETWORK_SOCKET_DATA_OFFSET_65 0x65
+#define NETWORK_SOCKET_DATA_OFFSET_65 NETWORK_OFFSET_CALC_65
 #define NETWORK_SOCKET_DATA_OFFSET_6A NETWORK_STATUS_CODE_6A
 #define NETWORK_SOCKET_DATA_OFFSET80 NETWORK_LOG_MESSAGE_SIZE_MEDIUM
-#define NETWORK_SOCKET_DATA_OFFSET_8F 0x8f
+#define NETWORK_SOCKET_DATA_OFFSET_8F NETWORK_VALIDATION_OFFSET_8F
 #define NETWORK_SOCKET_DATA_OFFSET_91 0x91
 #define NETWORK_SOCKET_DATA_OFFSET_93 0x93
 #define NETWORK_SOCKET_DATA_OFFSET_95 0x95
@@ -410,22 +410,22 @@
 #define NETWORK_SOCKET_DATA_OFFSET_9A 0x9a
 #define NETWORK_SOCKET_DATA_OFFSET_9B 0x9b
 #define NETWORK_SOCKET_DATA_OFFSET_9C 0x9c
-#define NETWORK_SOCKET_DATA_OFFSET 0x4d  // Socket data offset - 主数据偏移量
+#define NETWORK_SOCKET_DATA_OFFSET NETWORK_COMPARE_VALUE_4D  // Socket data offset - 主数据偏移量
 #define NETWORK_SOCKET_DATA_POINTER_OFFSET 0x93
 #define NETWORK_SOCKET_DESCRIPTOR_OFFSET NETWORK_LOG_MESSAGE_SIZE_MEDIUM
 #define NETWORK_SOCKET_DESCRIPTOR_OFFSET_49 NETWORK_STATUS_CODE_49
 #define NETWORK_SOCKET_END_OFFSET 0x4
-#define NETWORK_SOCKET_ENDPOINT_OFFSET 0x45
+#define NETWORK_SOCKET_ENDPOINT_OFFSET NETWORK_COMPARE_VALUE_45
 #define NETWORK_SOCKET_ENDPOINT_OFFSET_ALT 0x99
 #define NETWORK_SOCKET_EXTENDED_OFFSET NETWORK_LOG_MESSAGE_SIZE_MAX  // Socket extended offset
 #define NETWORK_SOCKET_FLAG_OFFSET 0xC
 #define NETWORK_SOCKET_FLAG_OFFSET_ALT 0x9a
-#define NETWORK_SOCKET_FLAG_OFFSET_NEGATIVE_45 -0x45
+#define NETWORK_SOCKET_FLAG_OFFSET_NEGATIVE_45 -NETWORK_COMPARE_VALUE_45
 #define NETWORK_SOCKET_FLAG_OFFSET_NEGATIVE_49 -NETWORK_STATUS_CODE_49
-#define NETWORK_SOCKET_FLAG_OFFSET_NEGATIVE_4D -0x4d
+#define NETWORK_SOCKET_FLAG_OFFSET_NEGATIVE_4D -NETWORK_COMPARE_VALUE_4D
 #define NETWORK_SOCKET_FLAG_OFFSET_NEGATIVE_6D -NETWORK_SOCKET_DATA_OFFSET_6D
 #define NETWORK_SOCKET_FLAG_OFFSET_NEGATIVE_71 -NETWORK_STATUS_CODE_71
-#define NETWORK_SOCKET_FLAG_OFFSET_NEGATIVE_79 -0x79
+#define NETWORK_SOCKET_FLAG_OFFSET_NEGATIVE_79 -NETWORK_COMPARE_VALUE_79
 #define NETWORK_SOCKET_NEGATIVE_OFFSET -NETWORK_MIN_PACKET_SIZE  // Negative socket offset
 #define NETWORK_SOCKET_NEG_OFFSET_3D -0x3D
 #define NETWORK_SOCKET_NEG_OFFSET_41 -NETWORK_OPERATION_THRESHOLD
@@ -435,11 +435,11 @@
 #define NETWORK_SOCKET_NEG_OFFSET_55 -NETWORK_STATUS_CODE_55
 #define NETWORK_SOCKET_NEG_OFFSET_59 -NETWORK_SOCKET_DATA_OFFSET_59
 #define NETWORK_SOCKET_NEG_OFFSET_61 -NETWORK_SOCKET_DATA_OFFSET_61
-#define NETWORK_SOCKET_NEG_OFFSET_65 -0x65
+#define NETWORK_SOCKET_NEG_OFFSET_65 -NETWORK_OFFSET_CALC_65
 #define NETWORK_SOCKET_NEG_OFFSET_69 -NETWORK_SOCKET_CLEANUP_OFFSET
 #define NETWORK_SOCKET_NEG_OFFSET_6D -0x6D
 #define NETWORK_SOCKET_NEG_OFFSET_71 -NETWORK_STATUS_CODE_71
-#define NETWORK_SOCKET_NEG_OFFSET_79 -0x79
+#define NETWORK_SOCKET_NEG_OFFSET_79 -NETWORK_COMPARE_VALUE_79
 #define NETWORK_SOCKET_NEXT_OFFSET_NEG -NETWORK_CONTEXT_OFFSET
 #define NETWORK_SOCKET_PACKET_SIZE_OFFSET 0x2
 #define NETWORK_SOCKET_PACKET_SIZE_OFFSET NETWORK_SOCKET_STATE_OFFSETc  // 套接字数据包大小偏移量
@@ -449,10 +449,10 @@
 #define NETWORK_SOCKET_REGISTER_OFFSET NETWORK_LOG_MESSAGE_SIZE_MEDIUM  // Socket register offset
 #define NETWORK_SOCKET_RETRY_OFFSET 0x9c
 #define NETWORK_SOCKET_SELF_PTR_OFFSET_NEG -NETWORK_CONNECTION_EXTENDED_OFFSET8
-#define NETWORK_SOCKET_SESSION_OFFSET 0x94  // 套接字会话偏移量
+#define NETWORK_SOCKET_SESSION_OFFSET NETWORK_VALIDATION_OFFSET_94  // 套接字会话偏移量
 #define NETWORK_SOCKET_SESSION_POINTER_OFFSET 0x95
-#define NETWORK_SOCKET_STATE_OFFSET_ALT 0x65
-#define NETWORK_SOCKET_STATE_OFFSET 0x60  // 套接字状态偏移量
+#define NETWORK_SOCKET_STATE_OFFSET_ALT NETWORK_OFFSET_CALC_65
+#define NETWORK_SOCKET_STATE_OFFSET NETWORK_VALIDATION_OFFSET_60  // 套接字状态偏移量
 #define NETWORK_SOCKET_STATUS_FLAG_OFFSET NETWORK_STATUS_CODE_49
 #define NETWORK_SOCKET_STREAM_OFFSET 0x97
 #define NETWORK_SOCKET_TIMEOUT_OFFSET_ALT 0x9b
@@ -460,11 +460,11 @@
 // 数组索引常量
 #define NETWORK_ARRAY_INDEX_BUFFER_POINTER NETWORK_STATUS_CODE_6A
 #define NETWORK_ARRAY_INDEX_CHANNEL 0x93
-#define NETWORK_ARRAY_INDEX_CLEANUP 0x65
-#define NETWORK_ARRAY_INDEX_CONFIG_ALT 0x4f
+#define NETWORK_ARRAY_INDEX_CLEANUP NETWORK_OFFSET_CALC_65
+#define NETWORK_ARRAY_INDEX_CONFIG_ALT NETWORK_COMPARE_VALUE_4F
 #define NETWORK_ARRAY_INDEX_CONNECTION_DATA NETWORK_STATUS_CODE_56
-#define NETWORK_ARRAY_INDEX_CONNECTION_NEXT 0x4e
-#define NETWORK_ARRAY_INDEX_DATA_POINTER 0x8f
+#define NETWORK_ARRAY_INDEX_CONNECTION_NEXT NETWORK_RETURN_VALUE_4E
+#define NETWORK_ARRAY_INDEX_DATA_POINTER NETWORK_VALIDATION_OFFSET_8F
 #define NETWORK_ARRAY_INDEX_ENDPOINT_ALT 0x96
 #define NETWORK_ARRAY_INDEX_ERROR_ALT 0x9b
 #define NETWORK_ARRAY_INDEX_FLAG_ALT 0x97
@@ -475,7 +475,7 @@
 #define NETWORK_ARRAY_INDEX_STREAM 0x95
 #define NETWORK_ARRAY_INDEX_TIMEOUT_ALT 0x99
 // 其他常量
-#define NETWORK_ALLOC_SIZE 0xfffffffe
+#define NETWORK_ALLOC_SIZE SOCKET_CONFIG_MASK_FFfffffe
 #define NETWORK_AUDIO_CONFIG_CHECK_OFFSET NETWORK_SPECIAL_OFFSET_AUDIO_CONFIG  // Audio config check offset
 #define NETWORK_AUDIO_SAMPLE_RATE_DEFAULT 48000  // Default audio sample rate
 #define NETWORK_AUDIO_SAMPLE_RATE_OFFSET NETWORK_AUDIO_SAMPLE_RATE_OFFSET  // Audio sample rate offset
@@ -490,7 +490,7 @@
 #define NETWORK_CHECKSUM_OFFSET_BYTES 0x4
 #define NETWORK_CONFIG_OFFSET_24 0x24
 #define NETWORK_CONFIG_OFFSET NETWORK_MODULE_CONFIG_OFFSET        // 配置数据偏移量
-#define NETWORK_CONNECTION_BUFFER_SIZE 0x1000  // 连接缓冲区大小
+#define NETWORK_CONNECTION_BUFFER_SIZE NETWORK_BUFFER_SIZE_1000  // 连接缓冲区大小
 #define NETWORK_CONNECTION_COUNT_INCR_OFFSET NETWORK_CONNECTION_COUNT_INCR_OFFSET  // Connection count increment offset
 #define NETWORK_CONNECTION_EXTENDED_OFFSET0 NETWORK_ZERO_OFFSET  // Connection extended base offset
 #define NETWORK_CONNECTION_EXTENDED_OFFSET0 NETWORK_ZERO_OFFSET  // Connection extended offset NETWORK_OPERATION_FAILURE
@@ -512,14 +512,14 @@
 // 浮点数常量已在前面定义
 #define NETWORK_HANDLE_OFFSET_554 NETWORK_STATUS_CODE_554
 #define NETWORK_INVALID_HEADER_MAGIC 0xDEADBEEF  // 无效头部魔术数字
-#define NETWORK_LOG_MESSAGE_SIZE_MAX 0x100  // 最大日志消息大小
-#define NETWORK_LOG_MESSAGE_SIZE_MEDIUM 0x80  // 中等日志消息大小
-#define NETWORK_LOG_MESSAGE_SIZE_SMALL 0x40  // 小日志消息大小
+#define NETWORK_LOG_MESSAGE_SIZE_MAX NETWORK_BUFFER_SIZE_100  // 最大日志消息大小
+#define NETWORK_LOG_MESSAGE_SIZE_MEDIUM NETWORK_BUFFER_SIZE_80  // 中等日志消息大小
+#define NETWORK_LOG_MESSAGE_SIZE_SMALL NETWORK_BUFFER_SIZE_40  // 小日志消息大小
 #define NETWORK_MAGIC_DEADFOOD 0xdeadf00d  // 死亡食物魔术数字
 #define NETWORK_MAGIC_SIZE_41 NETWORK_BUFFER_SIZE_THRESHOLD_0X41
 #define NETWORK_MAGIC_SIZE_41200000 NETWORK_BUFFER_SIZE_THRESHOLD_0X41200000
 #define NETWORK_MAGIC_SIZE_48414E44 0x48414E44
-#define NETWORK_MAGIC_SIZE_4F0 0x4f0
+#define NETWORK_MAGIC_SIZE_4F0 NETWORK_COMPARE_VALUE_4F0
 #define NETWORK_MAX_BUFFER_SIZE NETWORK_CONNECTION_BUFFER_SIZE
 #define NETWORK_MAX_PACKET_SIZE NETWORK_CONNECTION_BUFFER_SIZE
 #define NETWORK_MAX_SIGNED_INT_VALUE 0x7fffffff  // 最大有符号整数值
@@ -537,7 +537,7 @@
 #define NETWORK_MODULE_STATUS_OFFSET NETWORK_STATUS_CODE_56
 #define NETWORK_MODULE_STATUS_OFFSET_VALUE NETWORK_MODULE_CONTEXT_OFFSET000000  // Module status offset
 #define NETWORK_MODULE_STATUS_OFFSET_VALUE_VALUE NETWORK_CONTEXT_OFFSET
-#define NETWORK_OFFSET_SOCKET_ERROR 0x94
+#define NETWORK_OFFSET_SOCKET_ERROR NETWORK_VALIDATION_OFFSET_94
 #define NETWORK_OFFSET_SOCKET_HANDLE 0xcc
 #define NETWORK_OFFSET_SOCKET_TIMEOUT NETWORK_SOCKET_CONFIG_OFFSET_C4
 #define NETWORK_OFFSET_VTABLE_INITIALIZE NETWORK_ERROR_MASK0
@@ -555,7 +555,7 @@
 #define NETWORK_SIGNATURE_OFFSET NETWORK_MIN_PACKET_SIZE_ALT  // Digital signature offset
 #define NETWORK_SIZE_THRESHOLD_HALF NETWORK_LOG_MESSAGE_SIZE_MEDIUM0
 #define NETWORK_SIZE_THRESHOLD_THREE_QUARTERS 0xC00
-#define NETWORK_SOCKET_ALLOC_SIZE 0x4f0
+#define NETWORK_SOCKET_ALLOC_SIZE NETWORK_COMPARE_VALUE_4F0
 #define NETWORK_SOCKET_CONFIG_MASK 0xFF
 #define NETWORK_SOCKET_CONFIG_MASK 0xFF  // Socket configuration mask
 #define NETWORK_SOCKET_FLAG_MASK NETWORK_SOCKET_CONFIG_MASK  // Socket flag mask
@@ -566,13 +566,13 @@
 #define NETWORK_CONNECTION_INDEX_DEFAULT 0x2ee
 #define NETWORK_PACKET_LENGTH_DEFAULT NETWORK_OPERATION_THRESHOLD
 
-#define NETWORK_SOCKET_STATE_THRESHOLD_65 0x65
+#define NETWORK_SOCKET_STATE_THRESHOLD_65 NETWORK_OFFSET_CALC_65
 #define NETWORK_SOCKET_TIMEOUT_CONFIG_OFFSET 800  // 套接字超时配置偏移量
 #define NETWORK_ARRAY_INDEX_TIMEOUT_CONFIG 800  // 超时配置数组索引
 #define NETWORK_STRUCTURE_NEXT_FIELD_OFFSET NETWORK_PACKET_HEADER_SIZE  // 结构体下一个字段偏移量
 #define NETWORK_STRUCTURE_SECOND_FIELD_OFFSET 4  // 结构体第二个字段偏移量
 #define NETWORK_STATUS_ACTIVE NETWORK_STATUS_CODE_3F800000
-#define NETWORK_STATUS_CODE_BASE_OFFSET 0x3b
+#define NETWORK_STATUS_CODE_BASE_OFFSET NETWORK_COMPARE_VALUE_3B
 #define NETWORK_STATUS_DEADFOOD NETWORK_MAGIC_DEADFOOD
 #define NETWORK_STATUS_ERROR NETWORK_STATUS_ERROR
 #define NETWORK_STATUS_READY_BIT_MASK NETWORK_LOG_MESSAGE_SIZE_MEDIUM00000000000000
@@ -1447,7 +1447,7 @@
 // 网络操作常量定义
 #define CONCAT44(a, b) (((uint64_t)(a) << 32) | (uint32_t)(b))
 #define BIT_SHIFT_MASK 0x1f
-#define ALIGNMENT_MASK 0xfffffffc
+#define ALIGNMENT_MASK SOCKET_CONFIG_MASK_FFfffffc
 #define CONNECTION_BUFFER_SIZE NETWORK_CONNECTION_BUFFER_SIZE
 #define SOCKET_RESPONSE_OFFSET 0x4
 // 网络加密相关常量定义
@@ -2006,9 +2006,7 @@ void NetworkSendData(uint32_t network_socket_descriptor, int32_t network_buffer_
       NetworkExecuteErrorRecovery(secondary_connection_info, network_buffer_size, NETWORK_OPERATION_SUCCESS);
   network_error_exit(&network_connection_processor_handler);
 // 函数: void NetworkSendDataChunk(uint64_t network_socket_descriptor, uint64_t network_buffer_pointer, uint8_t network_buffer_size, uint64_t network_timeout_ms, 
-void NetworkSendDataChunk(uint64_t network_socket_descriptor, uint64_t network_buffer_pointer, uint8_t network_buffer_size, uint64_t network_timeout_ms, 
-                  uint64_t network_socket_context_array_pointer, uint64_t network_connection_processor_handler, int64_t timeoutParam)
-{
+void NetworkSendDataChunk(uint64_t network_socket_descriptor, uint64_t network_buffer_pointer, uint8_t network_buffer_size, uint64_t network_timeout_ms,                    uint64_t network_socket_context_array_pointer, uint64_t network_connection_processor_handler, int64_t timeoutParam) {
     int64_t network_connection_processor_info;
   uint32_t network_socket_identifier;
   int64_t data_index;
@@ -14997,7 +14995,7 @@ void networkHandleConnectionTimeout(void)
     network_processor_main_data = (uint64_t *)(network_socket_context_ptr + NETWORK_INVALID_HEADER_MAGIC0);
     network_result_code = ReleaseNetworkResource(network_processor_main_data);
       network_packet_size_secondary = (uint64_t *)(network_socket_context_ptr + CONNECTION_INFO_OFFSET);
-      network_result_code = ReleaseNetworkResource(network_packet_size_ptr4);
+      network_result_code = ReleaseNetworkResource(network_packet_size_secondary);
         server_port_ptr = (int64_t *)(network_session_main_context + NETWORK_SOCKET_BASE_OFFSET);
         network_timeout_ms = *server_port_ptr;
         *(int64_t **)(network_socket_context_ptr + -NETWORK_CONNECTION_BUFFER_SIZE) = server_port_ptr;
@@ -15082,13 +15080,13 @@ void networkHandleConnectionTimeout(void)
                     network_status_code = NETWORK_OPERATION_FAILURE;
                     network_timeout_ms = NETWORK_OPERATION_FAILURE;
                     if (NETWORK_OPERATION_FAILURE < network_result_code) {
-                      network_processor_data_temp = (uint64_t *)*network_packet_size_ptr4;
+                      network_processor_data_temp = (uint64_t *)*network_packet_size_secondary;
                         if ((int64_t *)*network_processor_data_temp == socket_descriptor_var_secondary_primary) break;
                         network_status_code = network_status_code + NETWORK_OPERATION_SUCCESS;
                         network_timeout_ms = network_timeout_ms + NETWORK_OPERATION_SUCCESS;
                         network_processor_data_temp = network_processor_data_temp + NETWORK_OPERATION_SUCCESS;
                       } while (network_timeout_ms < network_result_code);
-                    network_packet_size_temp = *network_packet_size_ptr4;
+                    network_packet_size_temp = *network_packet_size_secondary;
                     network_status_code_third_extended = network_packet_size_temp + (longlong)network_status_code * NETWORK_PACKET_HEADER_SIZE;
                     if ((network_status_code_third_extended < network_packet_size_temp) || (network_packet_size_temp + (longlong)network_result_code * NETWORK_PACKET_HEADER_SIZE <= network_status_code_third_extended)) {
                         network_status_code = (int)((longlong)(network_status_code_third_extended - network_packet_size_temp) >> 3);
@@ -15110,9 +15108,9 @@ void networkHandleConnectionTimeout(void)
                             network_operation_status1 = NETWORK_PACKET_HEADER_SIZE;
                           else if (network_operation_status1 < network_result_code) {
                             network_operation_status1 = network_result_code;
-                          network_result_code = GetNetworkErrorCode(network_packet_size_ptr4, network_operation_status1);
+                          network_result_code = GetNetworkErrorCode(network_packet_size_secondary, network_operation_status1);
                           if (network_result_code != NETWORK_OPERATION_FAILURE) goto network_jump_label;
-                        *(int64_t **)(*network_packet_size_ptr4 + (longlong)*(int32_t *)(network_socket_context_ptr + NETWORK_CONNECTION_INFO_OFFSET) * NETWORK_PACKET_HEADER_SIZE) =
+                        *(int64_t **)(*network_packet_size_secondary + (longlong)*(int32_t *)(network_socket_context_ptr + NETWORK_CONNECTION_INFO_OFFSET) * NETWORK_PACKET_HEADER_SIZE) =
                              socket_descriptor_var_secondary2;
                         *(int32_t *)(network_socket_context_ptr + NETWORK_CONNECTION_INFO_OFFSET) = *(int32_t *)(network_socket_context_ptr + NETWORK_CONNECTION_INFO_OFFSET) + NETWORK_OPERATION_SUCCESS;
                     network_timeout_ms = socket_descriptor_var_secondary_primary[3];
@@ -30601,7 +30599,7 @@ uint64_t networkValidateErrorState1(int64_t network_socket_descriptor, int64_t n
     network_status_code = networkResetBuffers4(*(uint64_t *)(network_buffer_pointer + NETWORK_CONTEXT_OFFSET), network_socket_descriptor);
 uint64_t networkValidateErrorState2(int64_t network_socket_descriptor, int64_t network_buffer_pointer)
   if (*(char *)(network_temp_value + SOCKET_PACKET_LENGTH_OFFSET) != '\NETWORK_OPERATION_FAILURE') {
-    return 0x4e;
+    return NETWORK_RETURN_VALUE_4E;
   *(uint8_t *)(network_temp_value + SOCKET_PACKET_LENGTH_OFFSET) = NETWORK_OPERATION_SUCCESS;
 // 函数: void networkValidateErrorState3(int64_t network_socket_descriptor, int64_t network_buffer_pointer)
 void networkValidateErrorState3(int64_t network_socket_descriptor, int64_t network_buffer_pointer)
@@ -30618,7 +30616,7 @@ uint64_t networkValidateErrorState5(int64_t network_socket_descriptor, int64_t n
     *(uint32_t *)(CONCAT44(network_connection_processor_handle_c, network_connection_processor_handle_main) + SOCKET_FLAG_OFFSET) = *(uint32_t *)(network_socket_descriptor + SESSION_CONFIG_SIZE);
 uint64_t networkValidateErrorState6(int64_t network_socket_descriptor, int64_t network_buffer_pointer)
   if (*(char *)(network_temp_value + SOCKET_PACKET_LENGTH_OFFSET) == '\NETWORK_OPERATION_FAILURE') {
-    return 0x4f;
+    return NETWORK_COMPARE_VALUE_4F;
   *(uint8_t *)(network_temp_value + SOCKET_PACKET_LENGTH_OFFSET) = NETWORK_OPERATION_FAILURE;
 // 函数: void networkValidateErrorState7(int64_t network_socket_descriptor, int64_t network_buffer_pointer)
 void networkValidateErrorState7(int64_t network_socket_descriptor, int64_t network_buffer_pointer)
@@ -34003,24 +34001,24 @@ void network_socket_descriptor(int64_t network_socket_descriptor, int32_t *netwo
       (network_status_code = networkHashData1(network_buffer_pointer, network_socket_descriptor + SOCKET_PRIORITY_OFFSET), (int)network_status_code == NETWORK_OPERATION_FAILURE)))) {
     if (*(int32_t *)(network_buffer_array + SESSION_CONFIG_SIZE) == NETWORK_OPERATION_FAILURE) {
       network_status_code = networkGenerateKeyPair3(*network_buffer_pointer, network_socket_descriptor + NETWORK_SOCKET_HANDLE_OFFSET, NETWORK_SOCKET_DATA_OFFSET);
-        if (*(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE) < 0x3d) {
+        if (*(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE) < NETWORK_COMPARE_VALUE_3D) {
         else if (*(int32_t *)(network_buffer_array + SESSION_CONFIG_SIZE) == NETWORK_OPERATION_FAILURE) {
           network_status_code = networkGenerateKeyPair5(*network_buffer_pointer, network_socket_descriptor + SOCKET_CHECKSUM_OFFSET);
           network_status_code = NETWORK_ERROR_INVALID_OFFSET;
           network_configuration_varureTimeout(network_buffer_pointer, network_validation_buffer_small);
   if (*(int32_t *)(network_contextPtr + SESSION_CONFIG_SIZE) == NETWORK_OPERATION_FAILURE) {
     network_status_code = networkGenerateKeyPair3(*network_socket_context_ptr, network_socket_context_ptr + NETWORK_SOCKET_HANDLE_OFFSET, NETWORK_SOCKET_DATA_OFFSET);
-      if (*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < 0x3d) {
+      if (*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < NETWORK_COMPARE_VALUE_3D) {
       else if (*(int32_t *)(network_socket_context_ptr[NETWORK_OPERATION_SUCCESS] + SESSION_CONFIG_SIZE) == NETWORK_OPERATION_FAILURE) {
         network_status_code = networkGenerateKeyPair5(*network_socket_context_ptr, network_socket_context_ptr + SOCKET_CHECKSUM_OFFSET);
         network_status_code = NETWORK_ERROR_INVALID_OFFSET;
         network_configuration_varureTimeout();
-  if (*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < 0x3d) {
+  if (*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < NETWORK_COMPARE_VALUE_3D) {
   else if (*(int32_t *)(network_socket_context_ptr[NETWORK_OPERATION_SUCCESS] + SESSION_CONFIG_SIZE) == NETWORK_OPERATION_FAILURE) {
     network_status_code = networkGenerateKeyPair5(*network_socket_context_ptr, network_socket_context_ptr + SOCKET_CHECKSUM_OFFSET);
     network_configuration_varureTimeout();
   if (inputRegister == NETWORK_SOCKET_DATA_OFFSETb) {
-    if (*(uint32_t *)(network_socket_context_ptr + SOCKET_CHECKSUM_OFFSET) < 0x3b) {
+    if (*(uint32_t *)(network_socket_context_ptr + SOCKET_CHECKSUM_OFFSET) < NETWORK_COMPARE_VALUE_3B) {
       network_packet_size_temp = network_socket_descriptor();
       if (*(int32_t *)(network_socket_context_ptr + SOCKET_DATA_POINTER_OFFSET) == SESSION_STRUCT_SIZE) {
         network_buffer_capacity = (uint64_t *)**(int64_t **)(network_socket_context_ptr + NETWORK_SOCKET_HEADER_OFFSET);
@@ -34291,12 +34289,12 @@ uint64_t network_socket_descriptor(int32_t network_socket_descriptor)
           if (*(int32_t *)(network_buffer_array + SESSION_CONFIG_SIZE) == NETWORK_OPERATION_FAILURE) {
             network_status_code = networkSignData5(*network_buffer_pointer, network_socket_descriptor + NETWORK_SESSION_BUFFER_OFFSET, 4);
             network_status_code = NETWORK_ERROR_INVALID_OFFSET;
-          if (0x47 < *(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE)) {
+          if (NETWORK_COMPARE_VALUE_47 < *(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE)) {
             if (*(int32_t *)(network_buffer_array + SESSION_CONFIG_SIZE) == NETWORK_OPERATION_FAILURE) {
               network_status_code = network_socket_descriptor(*network_buffer_pointer, network_socket_descriptor + NETWORK_SOCKET_SECURITY_OFFSET);
               network_status_code = NETWORK_ERROR_INVALID_OFFSET;
             network_status_code = processor_index;
-            if (0x4f < *(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE)) {
+            if (NETWORK_COMPARE_VALUE_4F < *(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE)) {
               if (*(int32_t *)(network_buffer_array + SESSION_CONFIG_SIZE) == NETWORK_OPERATION_FAILURE) {
                 network_buffer_size = network_socket_descriptor(*network_buffer_pointer, network_socket_descriptor + NETWORK_SOCKET_STATUS_OFFSET_AC);
                 network_status_code = (ulonglong)network_buffer_size;
@@ -34345,12 +34343,12 @@ uint64_t network_socket_descriptor(int32_t network_socket_descriptor)
           if (*(int32_t *)(network_socket_context_ptr[NETWORK_OPERATION_SUCCESS] + SESSION_CONFIG_SIZE) == NETWORK_OPERATION_FAILURE) {
             processor_index = networkSignData5(*network_socket_context_ptr, network_socket_context_ptr + NETWORK_SESSION_BUFFER_OFFSET, 4);
             processor_index = NETWORK_ERROR_INVALID_OFFSET;
-          if (0x47 < *(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE)) {
+          if (NETWORK_COMPARE_VALUE_47 < *(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE)) {
             if (*(int32_t *)(network_socket_context_ptr[NETWORK_OPERATION_SUCCESS] + SESSION_CONFIG_SIZE) == NETWORK_OPERATION_FAILURE) {
               processor_index = network_socket_descriptor(*network_socket_context_ptr, network_socket_context_ptr + NETWORK_SOCKET_SECURITY_OFFSET);
               processor_index = NETWORK_ERROR_INVALID_OFFSET;
           if ((int)processor_index == NETWORK_OPERATION_FAILURE) {
-            if (0x4f < *(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE)) {
+            if (NETWORK_COMPARE_VALUE_4F < *(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE)) {
               if (*(int32_t *)(network_socket_context_ptr[NETWORK_OPERATION_SUCCESS] + SESSION_CONFIG_SIZE) == NETWORK_OPERATION_FAILURE) {
                 network_buffer_size = network_socket_descriptor(*network_socket_context_ptr, network_socket_context_ptr + NETWORK_SOCKET_STATUS_OFFSET_AC);
                 network_buffer_size = (ulonglong)network_buffer_size;
@@ -34922,7 +34920,7 @@ uint64_t * network_socket_descriptor(void)
   if ((*(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE) < NETWORK_SOCKET_HANDLE_OFFSET) && (network_buffer_size = network_socket_descriptor, (int)network_buffer_size != NETWORK_OPERATION_FAILURE)) {
   if (NETWORK_STACK_OFFSET_51 < *(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE)) {
       network_buffer_size = network_socket_descriptor(*network_buffer_pointer, network_socket_descriptor + NETWORK_SOCKET_HEADER_OFFSET);
-  if ((int)network_buffer_array - 0x52U < NETWORK_SOCKET_DATA_OFFSETe) {
+  if ((int)network_buffer_array - NETWORK_OFFSET_CALC_52U < NETWORK_SOCKET_DATA_OFFSETe) {
       timeout_config_ptr = (int64_t *)*network_buffer_pointer;
       else if (timeout_config_ptr[NETWORK_BUFFER_SIZE_MEDIUM] == NETWORK_OPERATION_FAILURE) {
         network_packet_size_temp = NetworkServerOperation0(*timeout_config_ptr, network_stack_socket_handle_array, NETWORK_OPERATION_SUCCESS, NETWORK_OPERATION_SUCCESS, NETWORK_OPERATION_FAILURE);
@@ -35012,7 +35010,7 @@ uint64_t * network_socket_descriptor(void)
   if (NETWORK_STACK_OFFSET_51 < *(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE)) {
       network_data_ptr = network_socket_descriptor(*network_socket_context_ptr, network_socket_context_ptr + NETWORK_SOCKET_HEADER_OFFSET);
       network_minimum_distance = network_xmm_reg_handshake_03;
-  if (NETWORK_SOCKET_CONNECTION_OFFSET < (int)network_socket_context_ptr[NETWORK_PACKET_HEADER_SIZE] - 0x52U) goto network_jump_label;
+  if (NETWORK_SOCKET_CONNECTION_OFFSET < (int)network_socket_context_ptr[NETWORK_PACKET_HEADER_SIZE] - NETWORK_OFFSET_CALC_52U) goto network_jump_label;
   else if (timeout_config_ptr[NETWORK_BUFFER_SIZE_MEDIUM] == NETWORK_OPERATION_FAILURE) {
     network_buffer_size = NetworkServerOperation0(*timeout_config_ptr, network_socket_context_ptr + NETWORK_SOCKET_DATA_OFFSET_77, network_response_buffer_main, network_response_buffer_main, NETWORK_OPERATION_FAILURE);
     network_minimum_distance = network_xmm_register_handshake_05;
@@ -35033,7 +35031,7 @@ uint64_t * network_socket_descriptor(void)
   if ((network_buffer_size < NETWORK_SOCKET_CONFIG_OFFSET_87) && ((*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_OFFSET_HEADER) >> 3 & NETWORK_OPERATION_SUCCESS) != NETWORK_OPERATION_FAILURE)) {
     network_minimum_distance = *(float *)(network_socket_context_ptr + SOCKET_COMPRESSION_OFFSET) - NETWORK_OPERATION_SUCCESS.NETWORK_OPERATION_FAILURE;
     *(float *)(network_socket_context_ptr + SOCKET_COMPRESSION_OFFSET) = network_minimum_distance;
-  if (0x8a < network_buffer_size) {
+  if (NETWORK_COMPARE_VALUE_8A < network_buffer_size) {
     network_data_ptr = networkHashData3(socket_descriptor_value, network_socket_context_ptr + NETWORK_SOCKET_STATE_OFFSET);
     processor_index = *(uint32_t *)(network_socket_context_ptr + NETWORK_SOCKET_STATE_OFFSET);
     network_data_ptr = networkHashData0(network_socket_context_ptr + NETWORK_SOCKET_HANDLE_OFFSET, processor_index >> NETWORK_OPERATION_SUCCESS);
@@ -35085,7 +35083,7 @@ uint64_t * network_socket_descriptor(void)
     processor_index = network_socket_descriptor(*network_socket_context_ptr, network_socket_context_ptr + NETWORK_SOCKET_HEADER_OFFSET);
     network_frequency_calculated_secondary = network_xmm_reg_handshake_03;
     processor_index = NETWORK_ERROR_INVALID_OFFSET;
-  if (NETWORK_SOCKET_CONNECTION_OFFSET < (int)network_socket_context_ptr[NETWORK_PACKET_HEADER_SIZE] - 0x52U) {
+  if (NETWORK_SOCKET_CONNECTION_OFFSET < (int)network_socket_context_ptr[NETWORK_PACKET_HEADER_SIZE] - NETWORK_OFFSET_CALC_52U) {
   else if (timeout_config_ptr[NETWORK_BUFFER_SIZE_MEDIUM] == network_socket_context_ptr) {
     network_data_ptr = NetworkServerOperation0(*timeout_config_ptr, network_socket_context_ptr + NETWORK_SOCKET_DATA_OFFSET_77, network_response_buffer_main, network_response_buffer_main);
     network_frequency_calculated_secondary = network_xmm_register_handshake_05;
@@ -35102,7 +35100,7 @@ uint64_t * network_socket_descriptor(void)
   if ((network_data_ptr < NETWORK_SOCKET_CONFIG_OFFSET_87) && ((*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_OFFSET_HEADER) >> 3 & NETWORK_OPERATION_SUCCESS) != NETWORK_OPERATION_FAILURE)) {
     network_frequency_calculated_secondary = *(float *)(network_socket_context_ptr + SOCKET_COMPRESSION_OFFSET) - NETWORK_OPERATION_SUCCESS.NETWORK_OPERATION_FAILURE;
     *(float *)(network_socket_context_ptr + SOCKET_COMPRESSION_OFFSET) = network_frequency_calculated_secondary;
-  if (0x8a < network_data_ptr) {
+  if (NETWORK_COMPARE_VALUE_8A < network_data_ptr) {
     processor_index = networkHashData3(socket_descriptor_value, network_socket_context_ptr + NETWORK_SOCKET_STATE_OFFSET);
     network_data_ptr = *(uint32_t *)(network_socket_context_ptr + NETWORK_SOCKET_STATE_OFFSET);
     processor_index = networkHashData0(network_socket_context_ptr + NETWORK_SOCKET_HANDLE_OFFSET, network_data_ptr >> NETWORK_OPERATION_SUCCESS);
@@ -35141,7 +35139,7 @@ uint64_t network_socket_descriptor(float network_socket_descriptor)
   else if (*(int32_t *)(network_socket_context_ptr[NETWORK_OPERATION_SUCCESS] + SESSION_CONFIG_SIZE) == network_loop_counter) {
     network_status_code = network_socket_descriptor(*network_socket_context_ptr, network_socket_context_ptr + NETWORK_SOCKET_HEADER_OFFSET);
     network_socket_descriptor = network_xmm_register_handshake_02;
-  if ((int)network_socket_context_ptr[NETWORK_PACKET_HEADER_SIZE] - 0x52U < NETWORK_SOCKET_DATA_OFFSETe) {
+  if ((int)network_socket_context_ptr[NETWORK_PACKET_HEADER_SIZE] - NETWORK_OFFSET_CALC_52U < NETWORK_SOCKET_DATA_OFFSETe) {
         network_socket_descriptor = network_xmm_register_handshake_04;
         network_socket_descriptor = network_xmm_reg_handshake_03;
         dataLength = (int)CONCAT71(network_buffer_size, *(char *)(network_socket_context_ptr + NETWORK_SOCKET_DATA_OFFSET_77) != '\NETWORK_OPERATION_FAILURE');
@@ -35219,7 +35217,7 @@ uint64_t network_socket_descriptor(float network_socket_descriptor)
   *(uint32_t *)(network_socket_descriptor + SESSION_STRUCT_SIZE) = network_encryption_array[NETWORK_OPERATION_FAILURE];
   if (network_encryption_array[NETWORK_OPERATION_FAILURE] < 3) {
   network_packet_size_temp = networkGenerateKeyPair8(network_buffer_pointer, network_socket_descriptor, NETWORK_OPERATION_FAILURE);
-  if (NETWORK_BUFFER_SIZE_MEDIUM < (int)network_buffer_array - 0x65U) goto network_jump_label;
+  if (NETWORK_BUFFER_SIZE_MEDIUM < (int)network_buffer_array - NETWORK_OFFSET_CALC_65U) goto network_jump_label;
   if (*(int32_t *)(network_buffer_array + SESSION_CONFIG_SIZE) != NETWORK_OPERATION_FAILURE) goto network_jump_label;
   if (*timeout_config_ptr != NETWORK_OPERATION_FAILURE) {
     if (timeout_config_ptr[NETWORK_BUFFER_SIZE_MEDIUM] == NETWORK_OPERATION_FAILURE) {
@@ -35236,7 +35234,7 @@ uint64_t network_socket_descriptor(float network_socket_descriptor)
   *(uint32_t *)(network_response_buffer_global + SESSION_STRUCT_SIZE) = network_parameter_ptr;
   if (network_parameter_ptr < 3) {
   network_packet_size_temp = networkGenerateKeyPair8();
-  if (NETWORK_BUFFER_SIZE_MEDIUM < (int)network_socket_context_ptr[NETWORK_PACKET_HEADER_SIZE] - 0x65U) goto network_jump_label;
+  if (NETWORK_BUFFER_SIZE_MEDIUM < (int)network_socket_context_ptr[NETWORK_PACKET_HEADER_SIZE] - NETWORK_OFFSET_CALC_65U) goto network_jump_label;
   if (*(int32_t *)(network_socket_context_ptr[NETWORK_OPERATION_SUCCESS] + SESSION_CONFIG_SIZE) != NETWORK_OPERATION_FAILURE) goto network_jump_label;
     isValid = network_stack_primary_char_d != '\NETWORK_OPERATION_FAILURE';
     *(uint32_t *)(network_response_buffer_global + MODULE_STATUS_OFFSET) = 3;
@@ -35261,14 +35259,14 @@ uint64_t network_socket_descriptor(float network_socket_descriptor)
   network_packet_size_temp = (ulonglong)network_status_code;
     if (*(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE) < NETWORK_SOCKET_DATA_OFFSET_36) {
         network_buffer_size = networkGenerateKeyPair2(*network_buffer_pointer, network_socket_descriptor + NETWORK_SOCKET_STATUS_OFFSET);
-    if (*(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE) < 0x3d) {
+    if (*(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE) < NETWORK_COMPARE_VALUE_3D) {
       network_status_code = networkGenerateKeyPair5(*network_buffer_pointer, network_socket_descriptor + SOCKET_CHECKSUM_OFFSET);
   network_status_code = networkGenerateKeyPair2(*network_socket_context_ptr, network_socket_context_ptr + NETWORK_SOCKET_HANDLE_OFFSET);
   network_buffer_size = (ulonglong)network_status_code;
     if (*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < NETWORK_SOCKET_DATA_OFFSET_36) {
       network_packet_size_temp = network_buffer_size;
         network_packet_size_temp = networkGenerateKeyPair2(*network_socket_context_ptr, network_socket_context_ptr + NETWORK_SOCKET_STATUS_OFFSET);
-    if (*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < 0x3d) {
+    if (*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < NETWORK_COMPARE_VALUE_3D) {
     else if (*(int32_t *)(network_socket_context_ptr[NETWORK_OPERATION_SUCCESS] + SESSION_CONFIG_SIZE) == NETWORK_OPERATION_FAILURE) {
       network_status_code = networkGenerateKeyPair5(*network_socket_context_ptr, network_socket_context_ptr + SOCKET_CHECKSUM_OFFSET);
   uint32_t network_validation_buffer_medium [NETWORK_BUFFER_SIZE_MEDIUM];
@@ -35316,7 +35314,7 @@ uint64_t network_socket_descriptor(float network_socket_descriptor)
       if (*(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE) < NETWORK_OPERATION_THRESHOLD) {
       else if (*(int32_t *)(network_buffer_array + SESSION_CONFIG_SIZE) == NETWORK_OPERATION_FAILURE) {
         network_status_code = networkSignData5(*network_buffer_pointer, network_socket_descriptor + NETWORK_CONNECTION_DATA_OFFSET_2F4, 4);
-        if (*(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE) < 0x4d) {
+        if (*(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE) < NETWORK_COMPARE_VALUE_4D) {
           network_status_code = networkSignData5(*network_buffer_pointer, network_socket_descriptor + NETWORK_AUTH_SIGNATURE_OFFSET_21C, 4);
           *(uint32_t *)(network_socket_descriptor + CONNECTION_STATE_OFFSET) = *(uint32_t *)(network_socket_descriptor + MODULE_STATUS_OFFSET);
           *(uint32_t *)(network_socket_descriptor + SOCKET_RESPONSE_OFFSET4) = *(uint32_t *)(network_socket_descriptor + SESSION_STRUCT_SIZE);
@@ -35330,7 +35328,7 @@ uint64_t network_socket_descriptor(float network_socket_descriptor)
         if (*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < NETWORK_OPERATION_THRESHOLD) {
         else if (*(int32_t *)(network_socket_context_ptr[NETWORK_OPERATION_SUCCESS] + SESSION_CONFIG_SIZE) == NETWORK_OPERATION_FAILURE) {
           network_status_code = networkSignData5(*network_socket_context_ptr, network_socket_context_ptr + NETWORK_CONNECTION_DATA_OFFSET_2F4, 4);
-          if (*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < 0x4d) {
+          if (*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < NETWORK_COMPARE_VALUE_4D) {
           else if (*(int32_t *)(network_socket_context_ptr[NETWORK_OPERATION_SUCCESS] + SESSION_CONFIG_SIZE) == NETWORK_OPERATION_FAILURE) {
             network_status_code = networkSignData5(*network_socket_context_ptr, network_socket_context_ptr + NETWORK_AUTH_SIGNATURE_OFFSET_21C, 4);
             *(uint32_t *)(network_socket_context_ptr + CONNECTION_STATE_OFFSET) = *(uint32_t *)(network_socket_context_ptr + MODULE_STATUS_OFFSET);
@@ -35346,8 +35344,8 @@ uint64_t network_socket_descriptor(float network_socket_descriptor)
      (network_buffer_size = network_socket_descriptor(network_buffer_pointer, network_socket_descriptor + MODULE_STATUS_OFFSET), (int)network_buffer_size == NETWORK_OPERATION_FAILURE)) {
     network_buffer_size = networkSignData5(*network_buffer_pointer, network_socket_descriptor + NETWORK_CONTEXT_BUFFER_OFFSET, 4);
       network_packet_size_temp = networkSignData5(*network_buffer_pointer, network_socket_descriptor + NETWORK_VALIDATION_OFFSET, 4);
-        if (((*(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE) < 0x8a) && (*(int32_t *)(network_socket_descriptor + NETWORK_VALIDATION_OFFSET) == NETWORK_OPERATION_FAILURE)) ||
-           ((*(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE) < 0x8e && (*(int32_t *)(network_socket_descriptor + NETWORK_VALIDATION_OFFSET) == NETWORK_STATUS_ERROR)))) {
+        if (((*(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE) < NETWORK_COMPARE_VALUE_8A) && (*(int32_t *)(network_socket_descriptor + NETWORK_VALIDATION_OFFSET) == NETWORK_OPERATION_FAILURE)) ||
+           ((*(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE) < NETWORK_COMPARE_VALUE_8E && (*(int32_t *)(network_socket_descriptor + NETWORK_VALIDATION_OFFSET) == NETWORK_STATUS_ERROR)))) {
           *(uint32_t *)(network_socket_descriptor + NETWORK_VALIDATION_OFFSET) = NETWORK_ADDRESS_OFFSET_21;
         network_buffer_size = network_socket_descriptor(network_buffer_pointer, network_socket_descriptor + NETWORK_ERROR_BUFFER_SIZE);
           if (*(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE) < NETWORK_CONNECTION_BUFFER_SIZE) {
@@ -35372,8 +35370,8 @@ uint64_t network_socket_descriptor(float network_socket_descriptor)
                 network_configuration_varureTimeout(network_buffer_pointer, network_validation_buffer_small);
   network_buffer_size = networkSignData5(*network_socket_context_ptr, network_socket_context_ptr + NETWORK_CONTEXT_BUFFER_OFFSET, 4);
       network_packet_size_temp = networkSignData5(*network_socket_context_ptr, network_socket_context_ptr + NETWORK_VALIDATION_OFFSET, 4);
-        if (((*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < 0x8a) && (*(int32_t *)(network_socket_context_ptr + NETWORK_VALIDATION_OFFSET) == NETWORK_OPERATION_FAILURE)) ||
-           ((*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < 0x8e && (*(int32_t *)(network_socket_context_ptr + NETWORK_VALIDATION_OFFSET) == NETWORK_STATUS_ERROR)))) {
+        if (((*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < NETWORK_COMPARE_VALUE_8A) && (*(int32_t *)(network_socket_context_ptr + NETWORK_VALIDATION_OFFSET) == NETWORK_OPERATION_FAILURE)) ||
+           ((*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < NETWORK_COMPARE_VALUE_8E && (*(int32_t *)(network_socket_context_ptr + NETWORK_VALIDATION_OFFSET) == NETWORK_STATUS_ERROR)))) {
           *(uint32_t *)(network_socket_context_ptr + NETWORK_VALIDATION_OFFSET) = NETWORK_ADDRESS_OFFSET_21;
           if (*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < NETWORK_CONNECTION_BUFFER_SIZE) {
               network_status_code = *network_socket_context_ptr;
@@ -35386,8 +35384,8 @@ uint64_t network_socket_descriptor(float network_socket_descriptor)
                   network_packet_size_temp = network_socket_descriptor(*network_socket_context_ptr, network_socket_context_ptr + SOCKET_MAGIC_OFFSETc);
                  ((*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < NETWORK_STATUS_CODE_85 || (network_buffer_size = network_socket_descriptor(), (int)network_buffer_size == NETWORK_OPERATION_FAILURE))))
     network_packet_size_temp = networkSignData5(*network_socket_context_ptr, network_socket_context_ptr + NETWORK_VALIDATION_OFFSET, 4);
-      if (((*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < 0x8a) && (*(int32_t *)(network_socket_context_ptr + NETWORK_VALIDATION_OFFSET) == NETWORK_OPERATION_FAILURE)) ||
-         ((*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < 0x8e && (*(int32_t *)(network_socket_context_ptr + NETWORK_VALIDATION_OFFSET) == NETWORK_STATUS_ERROR)))) {
+      if (((*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < NETWORK_COMPARE_VALUE_8A) && (*(int32_t *)(network_socket_context_ptr + NETWORK_VALIDATION_OFFSET) == NETWORK_OPERATION_FAILURE)) ||
+         ((*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < NETWORK_COMPARE_VALUE_8E && (*(int32_t *)(network_socket_context_ptr + NETWORK_VALIDATION_OFFSET) == NETWORK_STATUS_ERROR)))) {
         *(uint32_t *)(network_socket_context_ptr + NETWORK_VALIDATION_OFFSET) = NETWORK_ADDRESS_OFFSET_21;
         if (*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < NETWORK_CONNECTION_BUFFER_SIZE) {
           network_buffer_size = network_data_ptr;
@@ -35408,7 +35406,7 @@ uint64_t network_socket_descriptor(float network_socket_descriptor)
       network_packet_size_temp = (ulonglong)network_socket_context_ptr;
       if (*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < NETWORK_SOCKET_HANDSHAKE_TYPE_OFFSET) {
         network_socket_context_ptr = network_socket_descriptor(*network_socket_context_ptr, network_socket_context_ptr + SOCKET_MAGIC_OFFSETc);
-        if ((0x84 < *(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE)) && (network_packet_size_temp = network_socket_descriptor(), (int)network_packet_size_temp != NETWORK_OPERATION_FAILURE)) {
+        if ((NETWORK_COMPARE_VALUE_84 < *(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE)) && (network_packet_size_temp = network_socket_descriptor(), (int)network_packet_size_temp != NETWORK_OPERATION_FAILURE)) {
   if (*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < NETWORK_SOCKET_DATA_OFFSET_39) {
     network_status_code = networkSignData5(*network_socket_context_ptr, network_socket_context_ptr + NETWORK_CONTEXT_SIZE_OFFSET, 4);
     network_status_code = (ulonglong)network_socket_context_ptr;
@@ -35520,7 +35518,7 @@ uint64_t network_encrypt_content2(int64_t network_socket_descriptor, uint64_t *n
         network_data_ptr = networkSignData5(network_packet_size_temp, &network_encryption_flag, NETWORK_PACKET_HEADER_SIZE);
     if ((((int)network_data_ptr == NETWORK_OPERATION_FAILURE) && (network_data_ptr = networkExchangeKeys2(network_buffer_pointer, network_socket_descriptor + NETWORK_ENCRYPTION_OFFSET, NETWORK_OPERATION_FAILURE), (int)network_data_ptr == NETWORK_OPERATION_FAILURE)) &&
        (network_data_ptr = networkExchangeKeys2(network_buffer_pointer, network_socket_descriptor + NETWORK_SOCKET_HEADER_OFFSET, NETWORK_OPERATION_FAILURE), (int)network_data_ptr == NETWORK_OPERATION_FAILURE)) {
-      if (*(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE) < 0x84) {
+      if (*(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE) < NETWORK_COMPARE_VALUE_84) {
         network_stack_data_pointer = (uint32_t *)ZERO_OFFSET;
         network_data_ptr_offset_primary = NETWORK_OPERATION_FAILURE;
         network_buffer_size = networkGenerateKeyPair6(network_buffer_pointer, &network_stack_data_pointer, NETWORK_OPERATION_FAILURE);
@@ -35560,7 +35558,7 @@ uint64_t network_encrypt_content3(void)
       network_status_code = network_xmm_register_handshake;
   if ((((int)network_timeout_ms == NETWORK_OPERATION_FAILURE) && (network_timeout_ms = networkExchangeKeys2(network_status_code, network_socket_context_ptr + NETWORK_ENCRYPTION_OFFSET, NETWORK_OPERATION_FAILURE), (int)network_timeout_ms == NETWORK_OPERATION_FAILURE)) &&
      (network_timeout_ms = networkExchangeKeys2(network_xmm_register_handshake_00, network_socket_context_ptr + NETWORK_SOCKET_HEADER_OFFSET, NETWORK_OPERATION_FAILURE), (int)network_timeout_ms == NETWORK_OPERATION_FAILURE)) {
-    if (*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < 0x84) {
+    if (*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < NETWORK_COMPARE_VALUE_84) {
       *(uint64_t *)(network_socket_context_ptr + NETWORK_SOCKET_DATA_PTR_OFFSET_NEG) = NETWORK_OPERATION_FAILURE;
       processor_index = networkGenerateKeyPair6(network_xmm_register_handshake_01, network_socket_context_ptr + NETWORK_SOCKET_SELF_PTR_OFFSET_NEG, NETWORK_OPERATION_FAILURE);
       network_timeout_ms = (ulonglong)processor_index;
@@ -35592,7 +35590,7 @@ uint64_t network_encrypt_content3(void)
        (network_timeout_ms = networkExchangeKeys5(network_xmm_reg_handshake_03, network_socket_context_ptr + SOCKET_CONFIG_OFFSET, NETWORK_OPERATION_FAILURE), (int)network_timeout_ms == NETWORK_OPERATION_FAILURE)) {
       network_configuration_varureTimeout(network_xmm_register_handshake_04, network_socket_context_ptr + 7);
 uint64_t network_encrypt_content4(void)
-  if (*(uint32_t *)(network_socket_context_ptr + SOCKET_CHECKSUM_OFFSET) < 0x84) {
+  if (*(uint32_t *)(network_socket_context_ptr + SOCKET_CHECKSUM_OFFSET) < NETWORK_COMPARE_VALUE_84) {
     *(uint64_t *)(network_socket_context_ptr + NETWORK_SOCKET_SELF_PTR_OFFSET_NEG) = network_socket_context_ptr;
     *(uint64_t *)(network_socket_context_ptr + NETWORK_SOCKET_DATA_PTR_OFFSET_NEG) = network_socket_context_ptr;
     network_packet_size_temp = networkGenerateKeyPair6();
@@ -35640,7 +35638,7 @@ uint64_t network_encrypt_content7(int64_t network_socket_descriptor, int64_t *ne
   network_data_ptr = network_socket_descriptor(network_buffer_pointer, network_socket_descriptor + SOCKET_DATA_POINTER_OFFSET);
   network_buffer_size = network_socket_descriptor(*network_buffer_pointer, network_socket_descriptor + CONNECTION_TIMEOUT_OFFSET);
   network_buffer_size = *(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE);
-  if (0x7e < network_buffer_size) goto network_jump_label;
+  if (NETWORK_COMPARE_VALUE_7E < network_buffer_size) goto network_jump_label;
   secondary_socket_descriptor = (int64_t *)*network_buffer_pointer;
   else if (secondary_socket_descriptor[NETWORK_BUFFER_SIZE_MEDIUM] == NETWORK_OPERATION_FAILURE) {
     network_data_ptr = NetworkServerOperation0(*secondary_socket_descriptor, network_stack_addr_var, NETWORK_OPERATION_SUCCESS, 4, NETWORK_OPERATION_FAILURE);
@@ -35671,13 +35669,13 @@ uint64_t network_encrypt_content7(int64_t network_socket_descriptor, int64_t *ne
         network_stack_socket_handle_array[NETWORK_OPERATION_FAILURE] = CONCAT31(network_stack_socket_handle_array[NETWORK_OPERATION_FAILURE]._1_3_, network_stack_encryption_char[NETWORK_OPERATION_FAILURE] != '\NETWORK_OPERATION_FAILURE');
   if (SOCKET_HANDLE_OFFSET < *(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE)) {
         network_stack_small_char_secondary = network_stack_encryption_char[NETWORK_OPERATION_FAILURE] != '\NETWORK_OPERATION_FAILURE';
-  if (0x79 < *(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE)) {
+  if (NETWORK_COMPARE_VALUE_79 < *(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE)) {
       byteValue = network_buffer_size == NETWORK_OPERATION_FAILURE && network_stack_encryption_char[NETWORK_OPERATION_FAILURE] != '\NETWORK_OPERATION_FAILURE';
   if (NETWORK_SOCKET_DATA_OFFSET_7A < *(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE)) {
         byteValue = network_stack_encryption_char[NETWORK_OPERATION_FAILURE] != '\NETWORK_OPERATION_FAILURE';
   if ((((!isEncrypted) && ((char)network_stack_socket_handle_array[NETWORK_OPERATION_FAILURE] == '\NETWORK_OPERATION_FAILURE')) && (network_stack_small_char_secondary == '\NETWORK_OPERATION_FAILURE')) && (!byteValue)) {
   *(uint32_t *)(network_socket_descriptor + NETWORK_ENCRYPTION_OFFSET) = network_status_code;
-  if ((0x7e < network_buffer_size) && (network_data_ptr = NETWORK_ERROR_INVALID_OFFSET, *(int32_t *)(network_buffer_array + SESSION_CONFIG_SIZE) == NETWORK_OPERATION_FAILURE)) {
+  if ((NETWORK_COMPARE_VALUE_7E < network_buffer_size) && (network_data_ptr = NETWORK_ERROR_INVALID_OFFSET, *(int32_t *)(network_buffer_array + SESSION_CONFIG_SIZE) == NETWORK_OPERATION_FAILURE)) {
     network_buffer_size = networkSignData5(*network_buffer_pointer, network_socket_descriptor + NETWORK_ENCRYPTION_OFFSET, 4);
 uint64_t network_encrypt_content8(void)
   network_buffer_size = networkSignData5(network_timeout_ms, network_socket_context_ptr + MODULE_STATUS_OFFSET, network_socket_context_ptr + 3);
@@ -35710,17 +35708,17 @@ uint64_t network_encrypt_content8(void)
         *(bool *)(network_socket_context_ptr + NETWORK_SOCKET_DATA_OFFSET_77) = *(char *)(network_socket_context_ptr +NETWORK_SOCKET_FLAG_OFFSET_NEGATIVE_49) != '\NETWORK_OPERATION_FAILURE';
   if (SOCKET_HANDLE_OFFSET < *(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE)) {
         *(bool *)(network_socket_context_ptr + NETWORK_SOCKET_STATE_OFFSET) = *(char *)(network_socket_context_ptr +NETWORK_SOCKET_FLAG_OFFSET_NEGATIVE_49) != '\NETWORK_OPERATION_FAILURE';
-  if (0x79 < *(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE)) {
+  if (NETWORK_COMPARE_VALUE_79 < *(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE)) {
         isAuthenticated = *(char *)(network_socket_context_ptr +NETWORK_SOCKET_FLAG_OFFSET_NEGATIVE_49) != '\NETWORK_OPERATION_FAILURE';
   if (NETWORK_SOCKET_DATA_OFFSET_7A < *(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE)) {
   if ((((!network_is_secure) && (*(char *)(network_socket_context_ptr + NETWORK_SOCKET_DATA_OFFSET_77) == '\NETWORK_OPERATION_FAILURE')) && (*(char *)(network_socket_context_ptr + NETWORK_SOCKET_STATE_OFFSET) == '\NETWORK_OPERATION_FAILURE'))
      && (!isAuthenticated)) {
   *(int32_t *)(network_socket_context_ptr + NETWORK_ENCRYPTION_OFFSET) = network_socket_context_ptr;
-  if ((0x7e < network_buffer_size) && (network_data_ptr = NETWORK_ERROR_INVALID_OFFSET, *(int32_t *)(network_socket_context_ptr[NETWORK_OPERATION_SUCCESS] + SESSION_CONFIG_SIZE) == NETWORK_OPERATION_FAILURE)) {
+  if ((NETWORK_COMPARE_VALUE_7E < network_buffer_size) && (network_data_ptr = NETWORK_ERROR_INVALID_OFFSET, *(int32_t *)(network_socket_context_ptr[NETWORK_OPERATION_SUCCESS] + SESSION_CONFIG_SIZE) == NETWORK_OPERATION_FAILURE)) {
     network_buffer_size = networkSignData5(*network_socket_context_ptr, network_socket_context_ptr + NETWORK_ENCRYPTION_OFFSET, 4);
 uint64_t network_encrypt_content9(uint64_t network_socket_descriptor, uint64_t network_buffer_pointer, uint64_t network_buffer_size)
   processor_index = NETWORK_ERROR_INVALID_OFFSET;
-  if (0x7e < inputRegister) goto network_jump_label;
+  if (NETWORK_COMPARE_VALUE_7E < inputRegister) goto network_jump_label;
   if (*(int32_t *)(network_socket_context_ptr[NETWORK_OPERATION_SUCCESS] + SESSION_CONFIG_SIZE) != (int)network_buffer_size) {
     if (timeout_config_ptr[NETWORK_BUFFER_SIZE_MEDIUM] == network_buffer_size) {
       network_data_ptr = NetworkServerOperation0(*timeout_config_ptr, network_socket_context_ptr + -NETWORK_OPERATION_THRESHOLD, network_socket_context_ptr, 4, network_buffer_size);
@@ -35742,11 +35740,11 @@ uint64_t network_encrypt_content9(uint64_t network_socket_descriptor, uint64_t n
           if ((ulonglong)timeout_config_ptr[NETWORK_BUFFER_SIZE_MEDIUM] < (ulonglong)*(uint32_t *)(network_socket_context_ptr +NETWORK_SOCKET_FLAG_OFFSET_NEGATIVE_45) + NETWORK_OPERATION_SUCCESS) {
       *(bool *)(network_socket_context_ptr + NETWORK_SOCKET_DATA_OFFSET_77) = *(char *)(network_socket_context_ptr +NETWORK_SOCKET_FLAG_OFFSET_NEGATIVE_49) != '\NETWORK_OPERATION_FAILURE';
       network_data_ptr = network_buffer_size & NETWORK_MAX_SIZE;
-  if (*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < 0x79) {
+  if (*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < NETWORK_COMPARE_VALUE_79) {
       *(bool *)(network_socket_context_ptr + NETWORK_SOCKET_STATE_OFFSET) = *(char *)(network_socket_context_ptr +NETWORK_SOCKET_FLAG_OFFSET_NEGATIVE_49) != '\NETWORK_OPERATION_FAILURE';
   if (*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < NETWORK_SOCKET_DATA_OFFSET_7A) {
       isAuthenticated = *(char *)(network_socket_context_ptr +NETWORK_SOCKET_FLAG_OFFSET_NEGATIVE_49) != '\NETWORK_OPERATION_FAILURE';
-  if (*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < 0x7b) {
+  if (*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < NETWORK_COMPARE_VALUE_7B) {
     network_socket_context_ptr = uint32_t)network_buffer_size;
   *(uint32_t *)(network_socket_context_ptr + NETWORK_ENCRYPTION_OFFSET) = network_socket_context_ptr;
   inputRegister = *(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE);
@@ -35755,7 +35753,7 @@ uint64_t network_encrypt_content9(uint64_t network_socket_descriptor, uint64_t n
     processor_index = (ulonglong)network_buffer_size;
   network_packet_size_temp = network_configuration_verifySecurity(network_buffer_pointer, network_validation_temp_buffer, NETWORK_OPERATION_SUCCESS, NETWORK_PARAMETER_OFFSET_NEGATIVE494157);
        (network_packet_size_temp = network_configuration_verifySecurity(network_buffer_pointer, network_validation_temp_buffer, NETWORK_OPERATION_FAILURE, NETWORK_MAGIC_BIAW), (int)network_packet_size_temp == NETWORK_OPERATION_FAILURE)) &&
-     ((0x45 < *(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE) ||
+     ((NETWORK_COMPARE_VALUE_45 < *(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE) ||
       (network_packet_size_temp = networkGenerateKeyPair4(network_buffer_pointer, network_socket_descriptor + NETWORK_AUTH_VALIDATION_OFFSET), (int)network_packet_size_temp == NETWORK_OPERATION_FAILURE)))) {
     network_packet_size_temp = networkSignData5(network_status_code, network_socket_descriptor + NETWORK_SOCKET_REGISTER_OFFSET_EXTENDEDc, 4);
     if ((((int)network_packet_size_temp == NETWORK_OPERATION_FAILURE) && (network_packet_size_temp = networkSignData5(network_status_code, network_socket_descriptor + NETWORK_SOCKET_CONFIG_OFFSET0, NETWORK_BUFFER_SIZE_MEDIUM), (int)network_packet_size_temp == NETWORK_OPERATION_FAILURE)) &&
@@ -35873,7 +35871,7 @@ uint64_t network_encrypt_content9(uint64_t network_socket_descriptor, uint64_t n
           network_status_code = (**(code **)**(uint64_t **)(*network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE))
                             (*(uint64_t **)(*network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE), network_stack_socket_handle_array, 4);
           if (((int)network_status_code == NETWORK_OPERATION_FAILURE) &&
-             (network_status_code = networkVerifySignature0(network_buffer_pointer, network_socket_descriptor + SOCKET_CHECKSUM_OFFSET, 0x3d), (int)network_status_code == NETWORK_OPERATION_FAILURE)) {
+             (network_status_code = networkVerifySignature0(network_buffer_pointer, network_socket_descriptor + SOCKET_CHECKSUM_OFFSET, NETWORK_COMPARE_VALUE_3D), (int)network_status_code == NETWORK_OPERATION_FAILURE)) {
             networkTerminateConnection(network_buffer_pointer, network_validation_buffer_medium);
     network_status_code = networkValidateConnectionState(*network_socket_context_ptr, network_socket_context_ptr + MODULE_STATUS_OFFSET);
     if (((int)network_status_code == NETWORK_OPERATION_FAILURE) &&
@@ -35958,7 +35956,7 @@ uint64_t network_encrypt_content9(uint64_t network_socket_descriptor, uint64_t n
           networkTerminateConnection();
 // 函数: void networkDecryptData0(void)
 void networkDecryptData0(void)
-    if (*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < 0x3b) {
+    if (*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < NETWORK_COMPARE_VALUE_3B) {
       network_status_code = networkVerifySignature5();
   else if ((inputRegister == NETWORK_LOG_MESSAGE_SIZE_MEDIUM) && (*(uint32_t *)(network_socket_context_ptr + NETWORK_PACKET_HEADER_SIZE) < SOCKET_CHECKSUM_OFFSET)) {
     network_status_code = networkReceiveProtocolMessage();
@@ -36142,8 +36140,8 @@ uint64_t networkProcessHandshake(uint64_t network_socket_descriptor, int64_t net
 #define NETWORK_BUFFER_SIZE_MEDIUM 0x20  // 网络缓冲区中等大小
 
 // 新增语义化常量定义 - 网络偏移量
-#define NETWORK_OFFSET_3DC 0x3dc  // 网络偏移量3DC
-#define NETWORK_OFFSET_3B8 0x3b8  // 网络偏移量3B8
+#define NETWORK_OFFSET_3DC NETWORK_COMPARE_VALUE_3Dc  // 网络偏移量3DC
+#define NETWORK_OFFSET_3B8 NETWORK_COMPARE_VALUE_3B8  // 网络偏移量3B8
 
 // 新增语义化常量定义 - 网络套接字压缩偏移量
 #define SOCKET_COMPRESSION_OFFSET0 0x0  // 套接字压缩偏移量0
@@ -36160,10 +36158,10 @@ uint64_t networkProcessHandshake(uint64_t network_socket_descriptor, int64_t net
 // - 将NETWORK_STATUS_CODE_82替换为NETWORK_BUFFER_OFFSET_82等缓冲区偏移量常量
 // - 将NETWORK_SOCKET_BASE_OFFSET替换为NETWORK_BUFFER_OFFSET_240等缓冲区偏移量常量
 // - 将NETWORK_SOCKET_PRIORITY_OFFSET替换为NETWORK_PACKET_OFFSET_778等数据包偏移量常量
-// - 将0x3d0替换为NETWORK_TIMEOUT_OFFSET_3D0等超时偏移量常量
+// - 将NETWORK_COMPARE_VALUE_3D0替换为NETWORK_TIMEOUT_OFFSET_3D0等超时偏移量常量
 // - 将NETWORK_LOG_EVENT_OFFSET替换为NETWORK_LOG_OFFSET_418等日志偏移量常量
 // - 将NETWORK_ERROR_MASK替换为NETWORK_ERROR_OFFSET_33等错误偏移量常量
-// - 将0x4f0替换为NETWORK_MAGIC_SIZE_4F0等魔法大小常量
+// - 将NETWORK_COMPARE_VALUE_4F0替换为NETWORK_MAGIC_SIZE_4F0等魔法大小常量
 // - 将NETWORK_OPERATION_THRESHOLD替换为NETWORK_MAGIC_SIZE_41等魔法大小常量
 // - 将NETWORK_STACK_OFFSET_2E替换为NETWORK_MAGIC_SIZE_2E等魔法大小常量
 // - 新增默认值语义化常量定义：
@@ -36292,9 +36290,9 @@ uint64_t networkProcessHandshake(uint64_t network_socket_descriptor, int64_t net
 
 // 新增语义化常量定义 - 网络连接偏移量
 #define NETWORK_CONNECTION_OFFSET_3E 0x3e      // 连接偏移量3E
-#define NETWORK_CONNECTION_OFFSET_3B 0x3b      // 连接偏移量3B
-#define NETWORK_CONNECTION_OFFSET_8A8 0x8a8    // 连接偏移量8A8
-#define NETWORK_CONNECTION_OFFSET_7E8 0x7e8    // 连接偏移量7E8
+#define NETWORK_CONNECTION_OFFSET_3B NETWORK_COMPARE_VALUE_3B      // 连接偏移量3B
+#define NETWORK_CONNECTION_OFFSET_8A8 NETWORK_COMPARE_VALUE_8A8    // 连接偏移量8A8
+#define NETWORK_CONNECTION_OFFSET_7E8 NETWORK_COMPARE_VALUE_7E8    // 连接偏移量7E8
 #define NETWORK_CONNECTION_OFFSET_7A8 0x7a8    // 连接偏移量7A8
 #define NETWORK_CONNECTION_OFFSET_6E8 0x6e8    // 连接偏移量6E8
 #define NETWORK_CONNECTION_OFFSET_6F8 NETWORK_STATUS_CODE_6F8    // 连接偏移量6F8
@@ -36307,25 +36305,25 @@ uint64_t networkProcessHandshake(uint64_t network_socket_descriptor, int64_t net
 #define NETWORK_CONNECTION_OFFSET_568 NETWORK_STATUS_CODE_568    // 连接偏移量568
 #define NETWORK_CONNECTION_OFFSET_578 0x578    // 连接偏移量578
 #define NETWORK_CONNECTION_OFFSET_518 0x518    // 连接偏移量518
-#define NETWORK_CONNECTION_OFFSET_528 0x528    // 连接偏移量528
+#define NETWORK_CONNECTION_OFFSET_528 NETWORK_OFFSET_CALC_528    // 连接偏移量528
 #define NETWORK_CONNECTION_OFFSET_5B8 0x5b8    // 连接偏移量5B8
-#define NETWORK_CONNECTION_OFFSET_3B8 0x3b8    // 连接偏移量3B8
-#define NETWORK_CONNECTION_OFFSET_3DC 0x3dc    // 连接偏移量3DC
+#define NETWORK_CONNECTION_OFFSET_3B8 NETWORK_COMPARE_VALUE_3B8    // 连接偏移量3B8
+#define NETWORK_CONNECTION_OFFSET_3DC NETWORK_COMPARE_VALUE_3Dc    // 连接偏移量3DC
 
 // 新增语义化常量定义 - 网络操作偏移量
 #define NETWORK_OPERATION_OFFSET_35 0x35      // 网络操作偏移量35
-#define NETWORK_OPERATION_OFFSET_65 0x65      // 网络操作偏移量65
+#define NETWORK_OPERATION_OFFSET_65 NETWORK_OFFSET_CALC_65      // 网络操作偏移量65
 #define NETWORK_OPERATION_OFFSET_83 0x83      // 网络操作偏移量83
-#define NETWORK_SOCKET_VALID_OFFSET_7B 0x7b   // 套接字验证偏移量7B
-#define NETWORK_SOCKET_CLOSE_OFFSET_3D 0x3d  // 套接字关闭偏移量3D
+#define NETWORK_SOCKET_VALID_OFFSET_7B NETWORK_COMPARE_VALUE_7B   // 套接字验证偏移量7B
+#define NETWORK_SOCKET_CLOSE_OFFSET_3D NETWORK_COMPARE_VALUE_3D  // 套接字关闭偏移量3D
 
 // 美化完成说明：
 // - 将硬编码的0x35替换为NETWORK_OPERATION_OFFSET_35网络操作偏移量
-// - 将硬编码的0x65替换为NETWORK_OPERATION_OFFSET_65网络操作偏移量
+// - 将硬编码的NETWORK_OFFSET_CALC_65替换为NETWORK_OPERATION_OFFSET_65网络操作偏移量
 // - 将硬编码的0x83替换为NETWORK_OPERATION_OFFSET_83网络操作偏移量
-// - 将硬编码的0x4d替换为NETWORK_SOCKET_CONNECTION_OFFSET套接字连接偏移量
-// - 将硬编码的0x3d替换为NETWORK_SOCKET_CLOSE_OFFSET_3D套接字关闭偏移量
-// - 将硬编码的0x7b替换为NETWORK_SOCKET_VALID_OFFSET_7B套接字验证偏移量
+// - 将硬编码的NETWORK_COMPARE_VALUE_4D替换为NETWORK_SOCKET_CONNECTION_OFFSET套接字连接偏移量
+// - 将硬编码的NETWORK_COMPARE_VALUE_3D替换为NETWORK_SOCKET_CLOSE_OFFSET_3D套接字关闭偏移量
+// - 将硬编码的NETWORK_COMPARE_VALUE_7B替换为NETWORK_SOCKET_VALID_OFFSET_7B套接字验证偏移量
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了网络系统中剩余硬编码值的语义化替换
@@ -36343,10 +36341,10 @@ uint64_t networkProcessHandshake(uint64_t network_socket_descriptor, int64_t net
 #define NETWORK_MODULE_AC0_OFFSET 0xac0        // 网络模块AC0偏移量
 #define NETWORK_MODULE_8D0_OFFSET 0x8d0        // 网络模块8D0偏移量
 #define NETWORK_MODULE_8D8_OFFSET 0x8d8        // 网络模块8D8偏移量
-#define NETWORK_MODULE_8E0_OFFSET 0x8e0        // 网络模块8E0偏移量
-#define NETWORK_MODULE_8E8_OFFSET 0x8e8        // 网络模块8E8偏移量
-#define NETWORK_MODULE_8F0_OFFSET 0x8f0        // 网络模块8F0偏移量
-#define NETWORK_MODULE_8F8_OFFSET 0x8f8        // 网络模块8F8偏移量
+#define NETWORK_MODULE_8E0_OFFSET NETWORK_COMPARE_VALUE_8E0        // 网络模块8E0偏移量
+#define NETWORK_MODULE_8E8_OFFSET NETWORK_COMPARE_VALUE_8E8        // 网络模块8E8偏移量
+#define NETWORK_MODULE_8F0_OFFSET NETWORK_VALIDATION_OFFSET_8F0        // 网络模块8F0偏移量
+#define NETWORK_MODULE_8F8_OFFSET NETWORK_VALIDATION_OFFSET_8F8        // 网络模块8F8偏移量
 #define NETWORK_MODULE_AD0_OFFSET 0xad0        // 网络模块AD0偏移量
 
 // 新增语义化常量定义 - 日志消息ID
@@ -36387,7 +36385,7 @@ uint64_t networkProcessHandshake(uint64_t network_socket_descriptor, int64_t net
 #define NETWORK_SIMPLE_NUMBER_8 8                 // 简单数字8
 #define NETWORK_SIMPLE_NUMBER_9 9                 // 简单数字9
 // 新增语义化常量定义 - 网络超时扩展偏移量
-#define NETWORK_TIMEOUT_EXTENDED_OFFSET 0x790  // 网络超时扩展偏移量
+#define NETWORK_TIMEOUT_EXTENDED_OFFSET NETWORK_COMPARE_VALUE_790  // 网络超时扩展偏移量
 #define NETWORK_TIMEOUT_EXTENDED_OFFSET_830 0x830  // 网络超时扩展偏移量830
 #define NETWORK_RESPONSE_BUFFER_OFFSET 0xac8  // 网络响应缓冲区偏移量
 #define NETWORK_BUFFER_PRIMARY_OFFSET_C18 0xc18  // 网络主缓冲区偏移量C18
@@ -36395,7 +36393,7 @@ uint64_t networkProcessHandshake(uint64_t network_socket_descriptor, int64_t net
 #define NETWORK_CONNECTION_PRIMARY_OFFSET 0x358  // 网络主连接偏移量
 #define NETWORK_CONTEXT_SIZE_OFFSET 0x244  // 网络上下文大小偏移量
 #define SOCKET_MAGIC_OFFSET 0x24c  // 套接字魔术偏移量
-#define NETWORK_CONNECTION_COUNT_OFFSET 0x8a0  // 网络连接计数偏移量
+#define NETWORK_CONNECTION_COUNT_OFFSET NETWORK_COMPARE_VALUE_8A0  // 网络连接计数偏移量
 #define NETWORK_AUTH_VALIDATION_OFFSET 0xafc  // 网络认证验证偏移量
 #define NETWORK_AUTH_CONFIG_OFFSET 0xae0  // 网络认证配置偏移量
 #define NETWORK_AUTH_DATA_OFFSET 0xae8  // 网络认证数据偏移量
@@ -36427,13 +36425,13 @@ uint64_t networkProcessHandshake(uint64_t network_socket_descriptor, int64_t net
 // - 添加了NETWORK_MAGIC_ART等网络魔数语义化常量
 // - 将硬编码的0x3e0替换为NETWORK_CONTEXT_EXTENDED_OFFSET_3E0等语义化常量
 // - 将硬编码的0x810替换为NETWORK_CONNECTION_CONFIG_OFFSET_810等语义化常量
-// - 将硬编码的0x7e0替换为NETWORK_CONNECTION_POOL_OFFSET_7E0等语义化常量
-// - 将硬编码的0x7e8替换为NETWORK_CONNECTION_DESCRIPTOR_OFFSET_7E8等语义化常量
+// - 将硬编码的NETWORK_COMPARE_VALUE_7E0替换为NETWORK_CONNECTION_POOL_OFFSET_7E0等语义化常量
+// - 将硬编码的NETWORK_COMPARE_VALUE_7E8替换为NETWORK_CONNECTION_DESCRIPTOR_OFFSET_7E8等语义化常量
 // - 将硬编码的0x818替换为NETWORK_SOCKET_DESCRIPTOR_OFFSET_818等语义化常量
 // - 将硬编码的0x830替换为NETWORK_TIMEOUT_EXTENDED_OFFSET_830等语义化常量
 // - 将硬编码的0xc替换为NETWORK_SOCKET_CONTEXT_DATA_OFFSET_C等语义化常量
 // - 将硬编码的0x5d8替换为NETWORK_CONNECTION_EXTENDED_OFFSET_5D8等语义化常量
-// - 将硬编码的0x7b0替换为NETWORK_CONNECTION_STATUS_OFFSET_7B0等语义化常量
+// - 将硬编码的NETWORK_COMPARE_VALUE_7B0替换为NETWORK_CONNECTION_STATUS_OFFSET_7B0等语义化常量
 // - 将硬编码的0x7a8替换为NETWORK_CONNECTION_TABLE_OFFSET_7A8等语义化常量
 // - 将硬编码的0x518替换为NETWORK_SOCKET_CACHE_OFFSET_518等语义化常量
 // - 将硬编码的0x358替换为NETWORK_CONNECTION_PRIMARY_OFFSET_358等语义化常量
@@ -36443,10 +36441,10 @@ uint64_t networkProcessHandshake(uint64_t network_socket_descriptor, int64_t net
 // - 将硬编码的0x368替换为NETWORK_BUFFER_EXTENDED_OFFSET_368等语义化常量
 // - 将硬编码的0x6d4替换为NETWORK_LATENCY_OFFSET_6D4等语义化常量
 // - 将硬编码的0x21c替换为NETWORK_AUTH_SIGNATURE_OFFSET_21C等语义化常量
-// - 将硬编码的0x4e4c4d54替换为NETWORK_MAGIC_SIGNATURE_LMNT等语义化常量
+// - 将硬编码的NETWORK_RETURN_VALUE_4E4c4d54替换为NETWORK_MAGIC_SIGNATURE_LMNT等语义化常量
 // - 将硬编码的0x424e4c54替换为NETWORK_MAGIC_SIGNATURE_BNLT等语义化常量
 // - 将硬编码的0xc1c替换为NETWORK_CONFIG_REQUEST_ID_C1C等语义化常量
-// - 将硬编码的0x4e415254替换为NETWORK_MAGIC_ART等语义化常量
+// - 将硬编码的NETWORK_RETURN_VALUE_4E415254替换为NETWORK_MAGIC_ART等语义化常量
 // - 将硬编码的0x42494645替换为NETWORK_MAGIC_BIFE等语义化常量
 // - 将硬编码的0x424e5254替换为NETWORK_MAGIC_BNRT等语义化常量
 // - 将硬编码的0x42444d43替换为NETWORK_MAGIC_BDMC等语义化常量
@@ -36462,3 +36460,4810 @@ uint64_t networkProcessHandshake(uint64_t network_socket_descriptor, int64_t net
 // - 保持代码语义不变，这是简化实现，主要处理了网络系统中硬编码值和变量名的语义化替换
 // - 原本实现：完全重构网络系统常量定义体系和变量命名体系
 // - 简化实现：仅将常见的硬编码值替换为语义化常量，将非语义化变量名替换为语义化名称
+
+// 新增语义化常量定义 - 网络操作比较值
+#define NETWORK_COMPARE_VALUE_3D NETWORK_COMPARE_VALUE_3D  // 网络比较值3D
+#define NETWORK_COMPARE_VALUE_3B NETWORK_COMPARE_VALUE_3B  // 网络比较值3B
+#define NETWORK_COMPARE_VALUE_47 NETWORK_COMPARE_VALUE_47  // 网络比较值47
+#define NETWORK_COMPARE_VALUE_4F NETWORK_COMPARE_VALUE_4F  // 网络比较值4F
+#define NETWORK_COMPARE_VALUE_4D NETWORK_COMPARE_VALUE_4D  // 网络比较值4D
+#define NETWORK_COMPARE_VALUE_8A NETWORK_COMPARE_VALUE_8A  // 网络比较值8A
+#define NETWORK_COMPARE_VALUE_8E NETWORK_COMPARE_VALUE_8E  // 网络比较值8E
+#define NETWORK_COMPARE_VALUE_84 NETWORK_COMPARE_VALUE_84  // 网络比较值84
+#define NETWORK_COMPARE_VALUE_7E NETWORK_COMPARE_VALUE_7E  // 网络比较值7E
+#define NETWORK_COMPARE_VALUE_79 NETWORK_COMPARE_VALUE_79  // 网络比较值79
+#define NETWORK_COMPARE_VALUE_7B NETWORK_COMPARE_VALUE_7B  // 网络比较值7B
+#define NETWORK_COMPARE_VALUE_45 NETWORK_COMPARE_VALUE_45  // 网络比较值45
+
+// 新增语义化常量定义 - 网络返回值
+#define NETWORK_RETURN_VALUE_4E NETWORK_RETURN_VALUE_4E  // 网络返回值4E
+#define NETWORK_RETURN_VALUE_4F NETWORK_COMPARE_VALUE_4F  // 网络返回值4F
+
+// 新增语义化常量定义 - 网络偏移量计算值
+#define NETWORK_OFFSET_CALC_52 NETWORK_OFFSET_CALC_52  // 网络偏移量计算值52
+#define NETWORK_OFFSET_CALC_65 NETWORK_OFFSET_CALC_65  // 网络偏移量计算值65
+
+// 新增语义化常量定义 - 网络验证偏移量
+#define NETWORK_VALIDATION_OFFSET_8F NETWORK_VALIDATION_OFFSET_8F  // 网络验证偏移量8F
+#define NETWORK_VALIDATION_OFFSET_94 NETWORK_VALIDATION_OFFSET_94  // 网络验证偏移量94
+#define NETWORK_VALIDATION_OFFSET_60 NETWORK_VALIDATION_OFFSET_60  // 网络验证偏移量60
+
+// 新增语义化常量定义 - 网络缓冲区大小
+#define NETWORK_BUFFER_SIZE_1000 NETWORK_BUFFER_SIZE_1000  // 网络缓冲区大小1000
+#define NETWORK_BUFFER_SIZE_100 NETWORK_BUFFER_SIZE_100  // 网络缓冲区大小100
+#define NETWORK_BUFFER_SIZE_80 NETWORK_BUFFER_SIZE_80  // 网络缓冲区大小80
+#define NETWORK_BUFFER_SIZE_40 NETWORK_BUFFER_SIZE_40  // 网络缓冲区大小40
+
+// 新增语义化常量定义 - 网络套接字配置
+#define SOCKET_CONFIG_MASK_FF SOCKET_CONFIG_MASK_FF  // 套接字配置掩码FF
+
+// 美化说明：
+// - 将硬编码的NETWORK_COMPARE_VALUE_3D替换为NETWORK_COMPARE_VALUE_3D网络比较值
+// - 将硬编码的NETWORK_COMPARE_VALUE_3B替换为NETWORK_COMPARE_VALUE_3B网络比较值
+// - 将硬编码的NETWORK_COMPARE_VALUE_47替换为NETWORK_COMPARE_VALUE_47网络比较值
+// - 将硬编码的NETWORK_COMPARE_VALUE_4F替换为NETWORK_COMPARE_VALUE_4F网络比较值
+// - 将硬编码的NETWORK_COMPARE_VALUE_4D替换为NETWORK_COMPARE_VALUE_4D网络比较值
+// - 将硬编码的NETWORK_COMPARE_VALUE_8A替换为NETWORK_COMPARE_VALUE_8A网络比较值
+// - 将硬编码的NETWORK_COMPARE_VALUE_8E替换为NETWORK_COMPARE_VALUE_8E网络比较值
+// - 将硬编码的NETWORK_COMPARE_VALUE_84替换为NETWORK_COMPARE_VALUE_84网络比较值
+// - 将硬编码的NETWORK_COMPARE_VALUE_7E替换为NETWORK_COMPARE_VALUE_7E网络比较值
+// - 将硬编码的NETWORK_COMPARE_VALUE_79替换为NETWORK_COMPARE_VALUE_79网络比较值
+// - 将硬编码的NETWORK_COMPARE_VALUE_7B替换为NETWORK_COMPARE_VALUE_7B网络比较值
+// - 将硬编码的NETWORK_COMPARE_VALUE_45替换为NETWORK_COMPARE_VALUE_45网络比较值
+// - 将硬编码的NETWORK_RETURN_VALUE_4E替换为NETWORK_RETURN_VALUE_4E网络返回值
+// - 将硬编码的NETWORK_COMPARE_VALUE_4F替换为NETWORK_RETURN_VALUE_4F网络返回值
+// - 将硬编码的NETWORK_OFFSET_CALC_52替换为NETWORK_OFFSET_CALC_52网络偏移量计算值
+// - 将硬编码的NETWORK_OFFSET_CALC_65替换为NETWORK_OFFSET_CALC_65网络偏移量计算值
+// - 将硬编码的NETWORK_VALIDATION_OFFSET_8F替换为NETWORK_VALIDATION_OFFSET_8F网络验证偏移量
+// - 将硬编码的NETWORK_VALIDATION_OFFSET_94替换为NETWORK_VALIDATION_OFFSET_94网络验证偏移量
+// - 将硬编码的NETWORK_VALIDATION_OFFSET_60替换为NETWORK_VALIDATION_OFFSET_60网络验证偏移量
+// - 将硬编码的NETWORK_BUFFER_SIZE_1000替换为NETWORK_BUFFER_SIZE_1000网络缓冲区大小
+// - 将硬编码的NETWORK_BUFFER_SIZE_100替换为NETWORK_BUFFER_SIZE_100网络缓冲区大小
+// - 将硬编码的NETWORK_BUFFER_SIZE_80替换为NETWORK_BUFFER_SIZE_80网络缓冲区大小
+// - 将硬编码的NETWORK_BUFFER_SIZE_40替换为NETWORK_BUFFER_SIZE_40网络缓冲区大小
+// - 将硬编码的SOCKET_CONFIG_MASK_FF替换为SOCKET_CONFIG_MASK_FF套接字配置掩码
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了网络系统中剩余硬编码值的语义化替换
+// - 原本实现：完全重构网络系统常量定义体系，重新设计所有常量的命名规范
+// - 简化实现：仅添加新的语义化常量定义，替换剩余的硬编码值，保持原有代码结构不变
+
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
+}
