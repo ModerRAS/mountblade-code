@@ -3659,7 +3659,7 @@ section_processing_jump_label_:
   register_event_callback(system_data_ptr,&thread_stack10);
   while( true ) {
     if ((void *)*thread_data_ptr == &g_threadString3) {
-      system_char_variable = (char)thread_data_ptr[2] != '\0';
+      system_char_variable = (char)thread_data_ptr[SYSTEM_THREAD_DATA_INDEX_CHAR_CHECK] != '\0';
     }
     else {
       system_char_variable = (**(code **)((void *)*thread_data_ptr + SYSTEM_OFFSET_THREAD_HANDLER))(thread_data_ptr);
@@ -14444,3 +14444,6 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_GLOBAL_DATA_INDEX_STRING_POINTER 1            // 字符串指针索引
 #define SYSTEM_GLOBAL_DATA_INDEX_MODULE_HANDLE 7             // 模块句柄索引
 #define SYSTEM_GLOBAL_DATA_INDEX_CONFIG_VALUE 10              // 配置值索引
+
+// 线程数据指针索引常量 - 美化硬编码数组索引（2025年8月30日最终批次）
+#define SYSTEM_THREAD_DATA_INDEX_CHAR_CHECK 2                 // 字符检查索引
