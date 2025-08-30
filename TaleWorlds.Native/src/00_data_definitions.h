@@ -1,4 +1,4 @@
-// 系统数据定义文件 - 美化硬编码值（2025年8月30日最终批次+补充批次+最终完成批次+续+最新完成批次+变量名美化批次+语义化常量替换批次）
+// 系统数据定义文件 - 美化硬编码值（2025年8月30日最终批次+补充批次+最终完成批次+续+最新完成批次+变量名美化批次+语义化常量替换批次+负偏移量语义化批次）
 // 简化实现：仅将常见的硬编码值替换为语义化常量
 // 原本实现：完全重构硬编码值体系
 
@@ -1851,82 +1851,83 @@ extern char system_flag_buffer_debug_interface;
 extern char system_flag_buffer_performance_monitor;
 extern char system_flag_buffer_security_context;
 extern char system_flag_buffer_cleanup_handler;
-#define MODULE_HANDLER_ADDR 0x180c95de0
-#define MODULE_CONFIG_ADDR 0x180c95df0
+// 系统模块地址常量定义（2025年8月30日最终批次美化）
+#define SYSTEM_MODULE_HANDLER_ADDRESS 0x180c95de0                // 模块处理器地址
+#define SYSTEM_MODULE_CONFIG_ADDRESS 0x180c95df0                 // 模块配置地址
 
-// 系统模块类型定义
-#define MODULE_TYPE_AUDIO 0xb
-#define MODULE_TYPE_VIDEO 0xc
-#define MODULE_TYPE_INPUT 0xd
-#define MODULE_TYPE_NETWORK 0xe
-#define MODULE_TYPE_PHYSICS 0x11
-#define MODULE_TYPE_AI 0x13
-#define MODULE_TYPE_UI 0x14
-#define MODULE_TYPE_SCRIPT 0x15
-#define MODULE_TYPE_CONFIG 0x16
-#define MODULE_TYPE_RESOURCE_CACHE 0x17
-#define MODULE_TYPE_RESOURCE_LOADER 0x18
-#define MODULE_TYPE_SHADER 0x19
-#define MODULE_TYPE_TEXTURE 0x1a
-#define MODULE_TYPE_MESH 0x1b
-#define MODULE_TYPE_ANIMATION 0x1c
-#define MODULE_TYPE_PARTICLE 0x1d
-#define MODULE_TYPE_PHYSICS_ENGINE 0x1e
-#define MODULE_TYPE_COLLISION SYSTEM_CONSTANT_2
-#define MODULE_TYPE_AI_SYSTEM 0x21
-#define MODULE_TYPE_NAVIGATION 0x23
-#define MODULE_TYPE_UI_FRAMEWORK 0x25
-#define MODULE_TYPE_SCRIPT_ENGINE 0x27
-#define MODULE_TYPE_DATABASE 0x28
-#define MODULE_TYPE_NETWORK_MANAGER 0x2a
-#define MODULE_TYPE_SECURITY 0x2c
-#define MODULE_TYPE_ENCRYPTION 0x2d
-#define MODULE_TYPE_AUTH 0x2e
-#define MODULE_TYPE_PERMISSION SYSTEM_CHAR_SLASH
-#define MODULE_TYPE_SESSION 0x30
-#define MODULE_TYPE_USER_CONFIG 0x31
-#define MODULE_TYPE_SAVE 0x32
-#define MODULE_TYPE_ACHIEVEMENT 0x33
-#define MODULE_TYPE_STATISTICS 0x34
-#define MODULE_TYPE_ANALYTICS 0x35
-#define MODULE_TYPE_DEBUG 0x36
-#define MODULE_TYPE_PERFORMANCE_ANALYSIS 0x37
-#define MODULE_TYPE_CRASH_HANDLER 0x38
-#define MODULE_TYPE_ERROR_REPORT 0x39
-#define MODULE_TYPE_UPDATE 0x3a
-#define MODULE_TYPE_PATCH 0x3b
-#define MODULE_TYPE_DIAGNOSTICS 0x3c
-#define MODULE_TYPE_MONITORING 0x3d
-#define MODULE_TYPE_HEALTH_CHECK 0x3e
+// 系统模块类型定义（2025年8月30日最终批次美化）
+#define SYSTEM_MODULE_TYPE_AUDIO 0xb                              // 音频模块类型
+#define SYSTEM_MODULE_TYPE_VIDEO 0xc                              // 视频模块类型
+#define SYSTEM_MODULE_TYPE_INPUT 0xd                              // 输入模块类型
+#define SYSTEM_MODULE_TYPE_NETWORK 0xe                            // 网络模块类型
+#define SYSTEM_MODULE_TYPE_PHYSICS 0x11                          // 物理模块类型
+#define SYSTEM_MODULE_TYPE_AI 0x13                                // AI模块类型
+#define SYSTEM_MODULE_TYPE_UI 0x14                                // UI模块类型
+#define SYSTEM_MODULE_TYPE_SCRIPT 0x15                            // 脚本模块类型
+#define SYSTEM_MODULE_TYPE_CONFIG 0x16                            // 配置模块类型
+#define SYSTEM_MODULE_TYPE_RESOURCE_CACHE 0x17                   // 资源缓存模块类型
+#define SYSTEM_MODULE_TYPE_RESOURCE_LOADER 0x18                   // 资源加载器模块类型
+#define SYSTEM_MODULE_TYPE_SHADER 0x19                            // 着色器模块类型
+#define SYSTEM_MODULE_TYPE_TEXTURE 0x1a                           // 纹理模块类型
+#define SYSTEM_MODULE_TYPE_MESH 0x1b                              // 网格模块类型
+#define SYSTEM_MODULE_TYPE_ANIMATION 0x1c                         // 动画模块类型
+#define SYSTEM_MODULE_TYPE_PARTICLE 0x1d                          // 粒子模块类型
+#define SYSTEM_MODULE_TYPE_PHYSICS_ENGINE 0x1e                   // 物理引擎模块类型
+#define SYSTEM_MODULE_TYPE_COLLISION SYSTEM_CONSTANT_2             // 碰撞模块类型
+#define SYSTEM_MODULE_TYPE_AI_SYSTEM 0x21                         // AI系统模块类型
+#define SYSTEM_MODULE_TYPE_NAVIGATION 0x23                        // 导航模块类型
+#define SYSTEM_MODULE_TYPE_UI_FRAMEWORK 0x25                      // UI框架模块类型
+#define SYSTEM_MODULE_TYPE_SCRIPT_ENGINE 0x27                     // 脚本引擎模块类型
+#define SYSTEM_MODULE_TYPE_DATABASE 0x28                          // 数据库模块类型
+#define SYSTEM_MODULE_TYPE_NETWORK_MANAGER 0x2a                   // 网络管理器模块类型
+#define SYSTEM_MODULE_TYPE_SECURITY 0x2c                          // 安全模块类型
+#define SYSTEM_MODULE_TYPE_ENCRYPTION 0x2d                        // 加密模块类型
+#define SYSTEM_MODULE_TYPE_AUTH 0x2e                              // 认证模块类型
+#define SYSTEM_MODULE_TYPE_PERMISSION SYSTEM_CHAR_SLASH            // 权限模块类型
+#define SYSTEM_MODULE_TYPE_SESSION 0x30                          // 会话模块类型
+#define SYSTEM_MODULE_TYPE_USER_CONFIG 0x31                       // 用户配置模块类型
+#define SYSTEM_MODULE_TYPE_SAVE 0x32                              // 保存模块类型
+#define SYSTEM_MODULE_TYPE_ACHIEVEMENT 0x33                       // 成就模块类型
+#define SYSTEM_MODULE_TYPE_STATISTICS 0x34                        // 统计模块类型
+#define SYSTEM_MODULE_TYPE_ANALYTICS 0x35                         // 分析模块类型
+#define SYSTEM_MODULE_TYPE_DEBUG 0x36                             // 调试模块类型
+#define SYSTEM_MODULE_TYPE_PERFORMANCE_ANALYSIS 0x37              // 性能分析模块类型
+#define SYSTEM_MODULE_TYPE_CRASH_HANDLER 0x38                     // 崩溃处理模块类型
+#define SYSTEM_MODULE_TYPE_ERROR_REPORT 0x39                      // 错误报告模块类型
+#define SYSTEM_MODULE_TYPE_UPDATE 0x3a                             // 更新模块类型
+#define SYSTEM_MODULE_TYPE_PATCH 0x3b                              // 补丁模块类型
+#define SYSTEM_MODULE_TYPE_DIAGNOSTICS 0x3c                       // 诊断模块类型
+#define SYSTEM_MODULE_TYPE_MONITORING 0x3d                        // 监控模块类型
+#define SYSTEM_MODULE_TYPE_HEALTH_CHECK 0x3e                      // 健康检查模块类型
 
-// 系统操作码常量定义
-#define SYSTEM_OPCODE_SUCCESS 0x0
-#define SYSTEM_OPCODE_NETWORK_INIT 0xe8
-#define SYSTEM_OPCODE_MEMORY_ALLOC 0x13
-#define SYSTEM_OPCODE_STRING_PROCESS 0x2e
-#define SYSTEM_OPCODE_CONFIG_UPDATE 0xc
-#define SYSTEM_OPCODE_DEBUG_INFO 0xd
-#define SYSTEM_OPCODE_SECURITY_CHECK 0x12
-#define SYSTEM_OPCODE_THREAD_CREATE 0x14
-#define SYSTEM_OPCODE_RESOURCE_LOAD 0x16
-#define SYSTEM_OPCODE_AUTH_REQUEST 0xf
-#define SYSTEM_OPCODE_SESSION_START 0x16
-#define SYSTEM_OPCODE_DATA_TRANSFER 0x18
-#define SYSTEM_OPCODE_MONITOR_START 0x1a
-#define SYSTEM_OPCODE_BACKUP_CREATE 0x17
-#define SYSTEM_OPCODE_DIAGNOSTIC_RUN 0x1b
-#define SYSTEM_OPCODE_HEALTH_CHECK SYSTEM_CONSTANT_2
-#define SYSTEM_OPCODE_FLAG_SET 0xb
-#define SYSTEM_OPCODE_FLAG_CLEAR 0xe
+// 系统操作码常量定义（2025年8月30日最终批次美化）
+#define SYSTEM_OPCODE_SUCCESS 0x0                                  // 操作成功
+#define SYSTEM_OPCODE_NETWORK_INIT 0xe8                            // 网络初始化
+#define SYSTEM_OPCODE_MEMORY_ALLOC 0x13                            // 内存分配
+#define SYSTEM_OPCODE_STRING_PROCESS 0x2e                          // 字符串处理
+#define SYSTEM_OPCODE_CONFIG_UPDATE 0xc                            // 配置更新
+#define SYSTEM_OPCODE_DEBUG_INFO 0xd                               // 调试信息
+#define SYSTEM_OPCODE_SECURITY_CHECK 0x12                          // 安全检查
+#define SYSTEM_OPCODE_THREAD_CREATE 0x14                           // 线程创建
+#define SYSTEM_OPCODE_RESOURCE_LOAD 0x16                           // 资源加载
+#define SYSTEM_OPCODE_AUTH_REQUEST 0xf                             // 认证请求
+#define SYSTEM_OPCODE_SESSION_START 0x16                           // 会话开始
+#define SYSTEM_OPCODE_DATA_TRANSFER 0x18                            // 数据传输
+#define SYSTEM_OPCODE_MONITOR_START 0x1a                           // 监控开始
+#define SYSTEM_OPCODE_BACKUP_CREATE 0x17                           // 备份创建
+#define SYSTEM_OPCODE_DIAGNOSTIC_RUN 0x1b                          // 诊断运行
+#define SYSTEM_OPCODE_HEALTH_CHECK SYSTEM_CONSTANT_2                 // 健康检查
+#define SYSTEM_OPCODE_FLAG_SET 0xb                                  // 标志设置
+#define SYSTEM_OPCODE_FLAG_CLEAR 0xe                                // 标志清除
 
-// 系统偏移量常量定义
-#define SYSTEM_OFFSET_GLOBAL_DATA 0x18
-#define SYSTEM_OFFSET_THREAD_STACK 0x28
-#define SYSTEM_OFFSET_MEMORY_POOL 0x30
-#define SYSTEM_OFFSET_CONFIG_BUFFER 0x38
-#define SYSTEM_OFFSET_FLAG_BUFFER 0x48
-#define SYSTEM_OFFSET_STRING_BUFFER 0x58
-#define SYSTEM_OFFSET_NETWORK_BUFFER SYSTEM_CHAR_LOWERCASE_H
+// 系统偏移量常量定义（2025年8月30日最终批次美化）
+#define SYSTEM_OFFSET_GLOBAL_DATA 0x18                                // 全局数据偏移量
+#define SYSTEM_OFFSET_THREAD_STACK 0x28                               // 线程栈偏移量
+#define SYSTEM_OFFSET_MEMORY_POOL 0x30                               // 内存池偏移量
+#define SYSTEM_OFFSET_CONFIG_BUFFER 0x38                              // 配置缓冲区偏移量
+#define SYSTEM_OFFSET_FLAG_BUFFER 0x48                                // 标志缓冲区偏移量
+#define SYSTEM_OFFSET_STRING_BUFFER 0x58                              // 字符串缓冲区偏移量
+#define SYSTEM_OFFSET_NETWORK_BUFFER SYSTEM_CHAR_LOWERCASE_H            // 网络缓冲区偏移量
 #define SYSTEM_OFFSET_RENDER_BUFFER SYSTEM_CHAR_LOWERCASE_P
 #define SYSTEM_OFFSET_SECURITY_BUFFER 0x7b4
 #define SYSTEM_OFFSET_INIT_FLAG 0x22
@@ -14999,14 +15000,41 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_ERROR_CODE_TIMEOUT -0x7ffeffff                     // 超时错误码
 
 // 系统最大值常量定义
-#define SYSTEM_MAX_VALUE_32BIT 0xffffffff                         // 32位最大值
-#define SYSTEM_MAX_VALUE_64BIT 0xffffffffffffffff                 // 64位最大值
-#define SYSTEM_MAX_VALUE_FLOAT 0x7f7fffff                         // 浮点数最大值
-#define SYSTEM_MAX_VALUE_STACK 0x7f7fffff3f800000                // 栈最大值
+// 系统最大值常量定义（2025年8月30日最终批次美化）
+#define SYSTEM_MAX_VALUE_32BIT 0xffffffff                         // 32位无符号整数最大值
+#define SYSTEM_MAX_VALUE_64BIT 0xffffffffffffffff                 // 64位无符号整数最大值
+#define SYSTEM_MAX_VALUE_FLOAT 0x7f7fffff                         // 32位浮点数最大值
+#define SYSTEM_MAX_VALUE_STACK 0x7f7fffff3f800000                // 栈空间最大值
 
-// 系统地址偏移常量定义
-#define SYSTEM_ADDRESS_OFFSET_SPECIAL_1 0x1c0042ed               // 特殊地址偏移1
-#define SYSTEM_ADDRESS_OFFSET_MEMORY_BOUNDARY 0x17ffffff          // 内存边界地址偏移
+// 系统地址偏移常量定义（2025年8月30日最终批次美化）
+#define SYSTEM_ADDRESS_OFFSET_SPECIAL_1 0x1c0042ed               // 特殊地址偏移量1
+#define SYSTEM_ADDRESS_OFFSET_MEMORY_BOUNDARY 0x17ffffff          // 内存边界地址偏移量
 
-// 系统执行参数常量定义
-#define SYSTEM_EXECUTION_PARAM_SPECIAL 0xfffffffd               // 特殊执行参数
+// 系统执行参数常量定义（2025年8月30日最终批次美化）
+#define SYSTEM_EXECUTION_PARAM_SPECIAL 0xfffffffd               // 特殊执行参数值
+
+// 系统负偏移常量定义（2025年8月30日最终批次）
+#define SYSTEM_OFFSET_NEGATIVE_C -0xc                            // 负C偏移量
+#define SYSTEM_OFFSET_NEGATIVE_12 -0x12                          // 负12偏移量
+#define SYSTEM_OFFSET_NEGATIVE_15 -0x15                          // 负15偏移量
+#define SYSTEM_OFFSET_NEGATIVE_18 -0x18                          // 负18偏移量
+#define SYSTEM_OFFSET_NEGATIVE_24 -0x24                          // 负24偏移量
+#define SYSTEM_OFFSET_NEGATIVE_30 -0x30                          // 负30偏移量
+#define SYSTEM_OFFSET_NEGATIVE_F -0xf                            // 负F偏移量
+#define SYSTEM_OFFSET_NEGATIVE_14 -0x14                          // 负14偏移量
+#define SYSTEM_OFFSET_NEGATIVE_EFC -0xefc                        // 负EFC偏移量
+#define SYSTEM_OFFSET_NEGATIVE_1EF8 -0x1ef8                      // 负1EF8偏移量
+#define SYSTEM_OFFSET_NEGATIVE_7FFEFFFF -0x7ffeffff              // 负7FFEFFFF偏移量（超时错误码）
+
+// 系统特殊负偏移常量定义
+#define SYSTEM_OFFSET_EXCEPTION_HANDLER_7FF -0x7ffeffff         // 异常处理程序7FF偏移量
+#define SYSTEM_OFFSET_EXCEPTION_FLAG_15 -0x15                   // 异常标志15偏移量
+#define SYSTEM_OFFSET_EXCEPTION_FLAG_18 -0x18                   // 异常标志18偏移量
+#define SYSTEM_OFFSET_EXCEPTION_HANDLER_F -0xf                  // 异常处理程序F偏移量
+#define SYSTEM_OFFSET_EXCEPTION_HANDLER_14 -0x14                // 异常处理程序14偏移量
+#define SYSTEM_OFFSET_EXCEPTION_FLAG_F -0xf                     // 异常标志F偏移量
+#define SYSTEM_OFFSET_SYSTEM_NEGATIVE_12 -0x12                  // 系统负数12偏移量
+
+// 系统内存分配负偏移常量定义
+#define SYSTEM_OFFSET_MEMORY_NEGATIVE_EFC -0xefc                 // 内存负数EFC偏移量
+#define SYSTEM_OFFSET_MEMORY_NEGATIVE_1EF8 -0x1ef8               // 内存负数1EF8偏移量
