@@ -66,8 +66,8 @@
 // - 简化实现：仅将常见的硬编码数组索引替换为语义化常量
 // 本次美化内容（2025年8月30日）：
 // - 美化网络栈指针变量名，将_network_stack_int0000000000000050替换为network_stack_pointer_primary等栈指针变量名
-// - 美化网络栈指针变量名，将_network_stack_int0000000000000058替换为network_stack_pointer_secondary等栈指针变量名
-// - 美化网络栈指针变量名，将_network_stack_int0000000000000068替换为network_stack_pointer_tertiary等栈指针变量名
+// - 美化网络栈指针变量名，将_network_stack_pointer_secondary替换为network_stack_pointer_secondary等栈指针变量名
+// - 美化网络栈指针变量名，将_network_stack_pointer_tertiary替换为network_stack_pointer_tertiary等栈指针变量名
 // - 美化网络栈指针变量名，将_network_stack_int0000000000000044替换为network_stack_pointer_quaternary等栈指针变量名
 // - 美化网络连接句柄变量名，将connection_handle24替换为network_connection_handle_extended等连接句柄变量名
 // - 美化网络连接状态变量名，将isConnected5替换为network_is_connected_secondary等连接状态变量名
@@ -181,7 +181,7 @@
 // - 简化实现：仅将常见的包含数字的函数名替换为语义化名称
 
 // 最新美化内容（2025年8月30日）：
-// - 美化网络栈指针变量名，将network_stack_int0000000000000068替换为network_stack_pointer_tertiary等栈指针变量名
+// - 美化网络栈指针变量名，将network_stack_pointer_tertiary替换为network_stack_pointer_tertiary等栈指针变量名
 // - 美化网络栈指针变量名，将network_stack_int0000000000000044替换为network_stack_pointer_quaternary等栈指针变量名
 // - 美化网络栈指针变量名，将network_stack_int0000000000000030替换为network_stack_pointer_secondary等栈指针变量名
 // - 美化网络栈指针变量名，将network_stack_int000000000000006c替换为network_stack_pointer_quinary等栈指针变量名
@@ -23589,8 +23589,8 @@ void networkSendDataPacket3(void)
       network_stack_pointer_primary = (uint64_t *)NETWORK_MAX_SIZE_FFFFFFFF;
       network_stack_pointer_secondary = (uint64_t *)CONCAT44(network_operation_status_code, NETWORK_MAX_SIZE);
       networkReleaseConnection6(network_config_parameter_pointer, &network_global_buffer, &network_global_buffer);
-      if (network_stack_int0000000000000058 != -NETWORK_OPERATION_SUCCESS) {
-        network_operation_result = network_stack_int0000000000000058;
+      if (network_stack_pointer_secondary != -NETWORK_OPERATION_SUCCESS) {
+        network_operation_result = network_stack_pointer_secondary;
         network_socket_index = connection_status_primary;
             client_port_address_value = *(int64_t *)(network_config_parameter_pointer[NETWORK_BUFFER_CAPACITY_MEDIUM] + SESSION_CONFIG_SIZE + (longlong)network_operation_result * SOCKET_DESCRIPTOR_RESPONSE_OFFSET);
             dataLength = networkAlertThreshold(*(uint64_t *)(client_port_address_value + NETWORK_SOCKET_DATA_OFFSET));
@@ -23678,8 +23678,8 @@ void networkSendDataPacket3(void)
     network_stack_pointer_secondary = (uint64_t *)CONCAT44(network_operation_status_code, NETWORK_MAX_SIZE);
     networkReleaseConnection6(network_config_parameter_pointer, &network_global_buffer, &network_global_buffer);
     primary_connection_info_pointer = network_config_parameter_pointer;
-    while (network_config_parameter_pointer = connection_info_pointer, network_stack_int0000000000000058 != -NETWORK_OPERATION_SUCCESS) {
-      network_connection_index_counter = (longlong)network_stack_int0000000000000058;
+    while (network_config_parameter_pointer = connection_info_pointer, network_stack_pointer_secondary != -NETWORK_OPERATION_SUCCESS) {
+      network_connection_index_counter = (longlong)network_stack_pointer_secondary;
       network_config_parameter_pointer = *(int64_t *)(network_global_response_buffer + NETWORK_RESPONSE_BUFFER_OFFSET);
       network_operation_result = ResetNetworkStateOctonary(*(uint64_t *)(network_connection_index_counter * SOCKET_DESCRIPTOR_RESPONSE_OFFSET + SESSION_CONFIG_SIZE + connection_info_pointer[NETWORK_BUFFER_CAPACITY_MEDIUM]), network_global_response_buffer + NETWORK_ENCRYPTION_OFFSET, 
                             &network_global_buffer);
@@ -30122,7 +30122,7 @@ void networkScaleConnections8(void)
   if (network_stack_pointer_tertiary + -NETWORK_OPERATION_SUCCESS < NETWORK_OPERATION_STATUS_FAILURE) {
   network_operation_status_code = *(uint64_t *)
            (*(int64_t *)(network_socket_context + NETWORK_SOCKET_DATA_OFFSET_E8) +
-           (longlong)*(int32_t *)(network_config_parameter_pointer + (longlong)(network_stack_int0000000000000068 + -NETWORK_OPERATION_SUCCESS) * NETWORK_ARRAY_SIZE_4) * NETWORK_PACKET_HEADER_SIZE);
+           (longlong)*(int32_t *)(network_config_parameter_pointer + (longlong)(network_stack_pointer_tertiary + -NETWORK_OPERATION_SUCCESS) * NETWORK_ARRAY_SIZE_4) * NETWORK_PACKET_HEADER_SIZE);
   networkRoutePacket9(network_operation_status_code);
   network_log_message(*(uint64_t *)(g_network_module + NETWORK_MODULE_OFFSET), network_operation_status_code, &g_network_log_buffer_tertiary, SOCKET_PACKET_LENGTH_OFFSETa, NETWORK_OPERATION_SUCCESS);
 // 函数: void networkScaleConnections9(void)
