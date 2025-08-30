@@ -17612,7 +17612,7 @@ uint64_t InitializeThreadLocalStorage(void)
   }
   else {
     if (*storage_ptr != SYSTEM_OFFSET_1E) goto INIT_LABEL_CHECK_STORAGE_VALUE;
-    storage_ptr = (int *)malloc(SYSTEM_DATA_COMPARE_SIZE0);
+    storage_ptr = (int *)malloc(SYSTEM_DATA_COMPARE_SIZE_ZERO);
     free(0);
     if (storage_ptr == (int *)SYSTEM_NULL_POINTER) {
       return SYSTEM_OFFSET_Ffffffff;
@@ -17688,7 +17688,7 @@ int initialize_system_module_thirty_seven(void)
   longlong system_long_result_temp;
   int system_temp_integer;
 
-  systemCoreData = SYSTEM_DATA_COMPARE_SIZE0;
+  systemCoreData = SYSTEM_DATA_COMPARE_SIZE_ZERO;
   system_temp_integer = SYSTEM_INIT_VALUE_ZERO;
   do {
     InitializeSystemModule(system_temp_integer_result,SYSTEM_POWER_2_BIT_MASK,SYSTEM_MODULE_FLAG_MASK,0);
