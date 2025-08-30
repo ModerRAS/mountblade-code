@@ -7823,9 +7823,9 @@ void InitializeSystemModule46(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// void UtilityModule1(void)
+// void InitializeNetworkResourceNode(void)
 
-void UtilityModule1(void)
+void InitializeNetworkResourceNode(void)
 
 {
   char is_initialized;
@@ -7870,9 +7870,9 @@ void UtilityModule1(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// void UtilityModule2(void)
+// void InitializeMutexResourceNode(void)
 
-void UtilityModule2(void)
+void InitializeMutexResourceNode(void)
 
 {
   char is_initialized;
@@ -7917,9 +7917,9 @@ void UtilityModule2(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// void UtilityModule3(void)
+// void InitializeConditionResourceNode(void)
 
-void UtilityModule3(void)
+void InitializeConditionResourceNode(void)
 
 {
   char is_initialized;
@@ -7964,9 +7964,9 @@ void UtilityModule3(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// void UtilityModule4(void)
+// void InitializeSemaphoreResourceNode(void)
 
-void UtilityModule4(void)
+void InitializeSemaphoreResourceNode(void)
 
 {
   char is_initialized;
@@ -8011,9 +8011,9 @@ void UtilityModule4(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = init_function_pointer_temp;
   return;
 }
-// void UtilityModule5(void)
+// void InitializeEventResourceNode(void)
 
-void UtilityModule5(void)
+void InitializeEventResourceNode(void)
 
 {
   char is_initialized;
@@ -8058,9 +8058,9 @@ void UtilityModule5(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
-// void UtilityModule6(void)
+// void InitializeThreadResourceNode(void)
 
-void UtilityModule6(void)
+void InitializeThreadResourceNode(void)
 
 {
   char is_initialized;
@@ -8105,9 +8105,9 @@ void UtilityModule6(void)
   node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
   return;
 }
-// void UtilityModule7(void)
+// void InitializeProcessResourceNode(void)
 
-void UtilityModule7(void)
+void InitializeProcessResourceNode(void)
 
 {
   char is_initialized;
@@ -8153,8 +8153,8 @@ void UtilityModule7(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void UtilityModule8(void)
-void UtilityModule8(void)
+// void InitializeMemoryResourceNode(void)
+void InitializeMemoryResourceNode(void)
 
 {
   uint64_t system_parameter;
@@ -8201,8 +8201,8 @@ void InitializeFontSystem(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void UtilityModule10(void)
-void UtilityModule10(void)
+// void InitializeFileResourceNode(void)
+void InitializeFileResourceNode(void)
 
 {
   uint64_t system_parameter;
@@ -9227,8 +9227,8 @@ void InitializePhysicsSystem(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void UtilityModule33(void)
-void UtilityModule33(void)
+// void InitializeGraphicsResourceNode(void)
+void InitializeGraphicsResourceNode(void)
 
 {
   uint64_t system_parameter;
@@ -16157,8 +16157,8 @@ void InitializeSystemModule41(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void UtilityModule216(void)
-void UtilityModule216(void)
+// void InitializeSecurityResourceNode(void)
+void InitializeSecurityResourceNode(void)
 
 {
   int system_integer_result;
@@ -16369,8 +16369,8 @@ void ValidateSystemConfiguration(uint64_t *handleIdentifier)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-// void UtilityModule231(void)
-void UtilityModule231(void)
+// void InitializeDatabaseResourceNode(void)
+void InitializeDatabaseResourceNode(void)
 
 {
   uint64_t *system_ptr_value;
