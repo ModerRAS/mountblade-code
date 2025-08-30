@@ -10828,7 +10828,7 @@ goto section_processing_jump_label_488;
       if ((int)system_buffer_allocation_result < STRING_BUFFER_SIZE) {
         system_buffer_allocation_result = STRING_BUFFER_SIZE;
       }
-      system_string_input_pointer = (unsigned long long *)system_execution_function(system_global_data_pointer_variable,(long long)(int)system_buffer_allocation_result,0x13);
+      system_string_input_pointer = (unsigned long long *)system_execution_function(system_global_data_pointer_variable,(long long)(int)system_buffer_allocation_result,SYSTEM_STACK_SIZE_SMALL);
       *(unsigned char *)system_string_input_pointer = SYSTEM_ZERO_VALUE;
     }
     else {
