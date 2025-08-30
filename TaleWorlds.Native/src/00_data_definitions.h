@@ -13522,7 +13522,7 @@ bool check_system_availability(void)
   long long system_string_length_counter;
   char unaff_SIL;
   long long system_destination_index_register;
-  short system_short_char_value0;
+  short system_short_char_value_zero;
   long long system_unaffected_register;
   void *system_string_input_pointer;
   bool byte_validation_result_secondary;
@@ -13532,8 +13532,8 @@ bool check_system_availability(void)
     system_string_length_counter = SYSTEM_STRING_LENGTH_INVALID;
     do {
       system_string_length_counter = system_string_length_counter + 1;
-      system_short_char_value0 = (short)system_unaffected_register;
-    } while (*(short *)(system_destination_index_register + system_string_length_counter * 2) != system_short_char_value0);
+      system_short_char_value_zero = (short)system_unaffected_register;
+    } while (*(short *)(system_destination_index_register + system_string_length_counter * 2) != system_short_char_value_zero);
     if (system_string_length_counter != 0) {
       system_string_input_pointer = &system_debug_string_2;
       if (unaff_SIL != '\0') {
@@ -13568,7 +13568,7 @@ bool check_system_availability(void)
               system_string_length_counter = system_string_length_counter;
               system_string_length_counter = system_string_length_counter + 1;
               system_string_length_counter = system_string_length_counter;
-            } while (*(short *)(system_destination_index_register + 2 + system_string_length_counter * 2) != system_short_char_value0);
+            } while (*(short *)(system_destination_index_register + 2 + system_string_length_counter * 2) != system_short_char_value_zero);
             while( true ) {
               system_string_length_counter = system_unaffected_register;
               if (((system_string_length_counter == 0) || (system_short_char_value = *(short *)(system_string_length_counter + system_string_length_counter * 2), system_short_char_value == SYSTEM_CHAR_SLASH)) ||
@@ -13576,7 +13576,7 @@ goto section_processing_jump_label_526;
               if (system_short_char_value == 0x2e) break;
               system_string_length_counter = system_string_length_counter + -1;
             }
-            *(short *)(system_string_length_counter + system_string_length_counter * 2) = system_short_char_value0;
+            *(short *)(system_string_length_counter + system_string_length_counter * 2) = system_short_char_value_zero;
             system_string_length_counter = system_string_length_counter + 2 + system_string_length_counter * 2;
 section_processing_jump_label_158:
             system_string_length_counter = system_string_length_counter + 9;
