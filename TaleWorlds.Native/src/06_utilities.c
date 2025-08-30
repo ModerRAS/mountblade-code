@@ -309,15 +309,15 @@ dataValue g_config_system_update_settings;             // 配置系统更新设�
 dataValue g_config_system_mod_settings;              // 配置系统Mod设置
 dataValue configSystemCloudSettings;
 dataValue configSystemSocialSettings;
-dataValue g_systemModuleConfig1;
-dataValue g_systemModuleConfig2;
-dataValue g_systemModuleConfig3;
-dataValue g_systemModuleStatus4;
-dataValue g_systemModuleStatus5;
-dataValue g_systemModuleStatus6;
-dataValue g_systemModuleHandle7;
-dataValue g_systemModuleHandle8;
-dataValue g_systemModuleHandle9;
+dataValue g_system_module_config_primary;
+dataValue g_system_module_config_secondary;
+dataValue g_system_module_config_tertiary;
+dataValue g_system_module_status_core;
+dataValue g_system_module_status_memory;
+dataValue g_system_module_status_thread;
+dataValue g_system_module_handle_input;
+dataValue g_system_module_handle_audio;
+dataValue g_system_module_handle_physics;
 dataValue temp_bufferVarManagementControl;
 dataValue g_textureUploadBuffer;
 dataValue temp_bufferVarAllocationPointer;
@@ -351,56 +351,56 @@ dataValue fileBufferSize;
 dataValue fileOperationFlag;
 dataValue networkConnectionStatus;
 dataValue networkSocketHandle;
-dataValue g_systemModuleNetworkFlags10;
-dataValue g_systemModuleNetworkFlags11;
-dataValue g_systemModuleNetworkFlags12;
+dataValue g_system_module_network_flags_connection;
+dataValue g_system_module_network_flags_security;
+dataValue g_system_module_network_flags_protocol;
 
-// 函数: dataValueValue g_initializeSystemModule1;
-dataValue g_initializeSystemModule1;
-dataValue g_systemModuleNetworkPointer13;
+// 函数: dataValueValue g_initialize_system_module_core;
+dataValue g_initialize_system_module_core;
+dataValue g_system_module_network_pointer_socket;
 dataValue networkSendBuffer;
-dataValue g_bufferModuleConfig4;
-dataValue g_bufferModuleConfig5;
-dataValue g_bufferModuleConfig6;
-dataValue g_bufferModuleConfig7;
+dataValue g_buffer_module_config_size;
+dataValue g_buffer_module_config_alignment;
+dataValue g_buffer_module_config_flags;
+dataValue g_buffer_module_config_permissions;
 
-// 函数: dataValueValue g_initializeSystemModule2;
-dataValue g_initializeSystemModule2;
+// 函数: dataValueValue g_initialize_system_module_network;
+dataValue g_initialize_system_module_network;
 dataValue networkReceiveBuffer;
-dataValue g_systemModuleNetworkContext14;
-dataValue g_systemModuleNetworkContext15;
-dataValue g_systemModuleNetworkContext16;
-dataValue g_systemModuleNetworkContext17;
+dataValue g_system_module_network_context_client;
+dataValue g_system_module_network_context_server;
+dataValue g_system_module_network_context_peer;
+dataValue g_system_module_network_context_manager;
 
-// 函数: dataValueValue g_initializeSystemModule3;
-dataValue g_initializeSystemModule3;
+// 函数: dataValueValue g_initialize_system_module_thread_sync;
+dataValue g_initialize_system_module_thread_sync;
 dataValue networkPacketSize;
-dataValue g_threadSyncModuleConfig2;
-dataValue g_threadSyncModuleConfig3;
-dataValue g_threadSyncModuleConfig4;
-dataValue g_threadSyncModuleConfig5;
-dataValue g_eventModuleConfig9;
-dataValue g_eventModuleConfig10;
-dataValue g_systemModuleEventPointer18;
-dataValue g_memoryModuleConfig1;
-dataValue g_fileModuleConfig4;
-dataValue g_fileModuleConfig5;
-dataValue g_fileModuleConfig6;
-dataValue g_fileModuleConfig7;
-dataValue g_systemModuleMemoryPointer19;
-dataValue g_renderModuleConfig1;
-dataValue g_systemModuleRenderPointer20;
-dataValue g_renderModuleConfig2;
-dataValue g_systemConfigModuleConfig6;
-dataValue g_systemConfigModuleConfig7;
-dataValue g_systemConfigModuleConfig8;
-dataValue g_systemConfigModuleConfig9;
-dataValue g_renderModuleConfig14;
-dataValue g_renderModuleConfig15;
-dataValue g_renderModuleConfig16;
-dataValue g_renderModuleConfig17;
-dataValue g_deviceConfigModuleConfig1;
-dataValue g_deviceConfigModuleConfig2;
+dataValue g_thread_sync_module_config_mutex;
+dataValue g_thread_sync_module_config_semaphore;
+dataValue g_thread_sync_module_config_event;
+dataValue g_thread_sync_module_config_condition;
+dataValue g_event_module_config_queue_size;
+dataValue g_event_module_config_priority;
+dataValue g_system_module_event_pointer_dispatcher;
+dataValue g_memory_module_config_pool_size;
+dataValue g_file_module_config_buffer_size;
+dataValue g_file_module_config_cache_size;
+dataValue g_file_module_config_access_mode;
+dataValue g_file_module_config_share_mode;
+dataValue g_system_module_memory_pointer_allocator;
+dataValue g_render_module_config_resolution;
+dataValue g_system_module_render_pointer_device;
+dataValue g_render_module_config_quality;
+dataValue g_system_config_module_config_validation;
+dataValue g_system_config_module_config_persistence;
+dataValue g_system_config_module_config_serialization;
+dataValue g_system_config_module_config_encryption;
+dataValue g_render_module_config_resolution_width;
+dataValue g_render_module_config_resolution_height;
+dataValue g_render_module_config_resolution_refresh;
+dataValue g_render_module_config_resolution_scale;
+dataValue g_device_config_module_config_primary;
+dataValue g_device_config_module_config_secondary;
 dataValue deviceConfigSettings3;
 dataValue deviceConfigSettings4;
 dataValue inputBuffer1;
@@ -637,9 +637,9 @@ dataValue g_resourceTempSize;
 dataValue referenceCountTable;
 dataValue g_resourceTempFlags;
 dataValue resourceGarbageCollector;
-dataValue g_resourceReserved1;
+dataValue g_resource_reserved_memory;
 dataValue sceneObjectDatabase;
-dataValue g_resourceReserved2;
+dataValue g_resource_reserved_texture;
 dataValue sceneTransformData;
 dataValue g_sceneWorkBuffer;
 dataValue g_sceneTempOffset;
@@ -678,12 +678,12 @@ dataValue g_materialTextureTempOffset;
 
 // 函数: dataValueValue materialTextureSamplerInitialize;
 dataValue materialTextureSamplerInitialize;
-dataValue g_materialTextureWorkBuffer3;
-dataValue g_materialTextureTempOffset3;
+dataValue g_material_texture_work_buffer_main;
+dataValue g_material_texture_temp_offset_main;
 dataValue materialTextureSampler;
-dataValue g_materialTextureWorkBuffer2;
-dataValue g_materialTextureTempOffset2;
-dataValue g_materialTextureTempSize2;
+dataValue g_material_texture_work_buffer_secondary;
+dataValue g_material_texture_temp_offset_secondary;
+dataValue g_material_texture_temp_size_secondary;
 
 // 函数: dataValueValue materialPropertyBufferInitialize;
 dataValue materialPropertyBufferInitialize;
@@ -1191,9 +1191,9 @@ dataValue renderLODData;
 dataValue resourceCacheStrategy;
 dataValue renderVertexShaderData;
 dataValue resourceCacheCompression;
-dataValue aiSystemVar3;
-dataValue aiSystemVar4;
-dataValue sceneManagerVar1;
+dataValue ai_system_navigation_data;
+dataValue ai_system_behavior_data;
+dataValue scene_manager_object_data;
 dataValue resourceCacheBuffer1;
 dataValue resourceCacheBuffer2;
 dataValue resourceCacheBuffer3;
@@ -1208,13 +1208,13 @@ dataValue resourceCacheInvalidateBuffer4;
 
 // 函数: dataValueValue resourceCacheUpdate;
 dataValue resourceCacheUpdate;
-dataValue physicsSystemVar1;;
+dataValue physics_system_gravity_data;
 dataValue renderCullingData;
-dataValue physicsSystemVar2;;
+dataValue physics_system_collision_data;
 dataValue renderFrustumData;
-dataValue audioSystemVar1;;
-dataValue audioSystemVar2;;
-dataValue audioSystemVar3;;
+dataValue audio_system_device_data;
+dataValue audio_system_stream_data;
+dataValue audio_system_effect_data;
 
 // 函数: dataValueValue resourceMonitorActivity;
 dataValue resourceMonitorActivity;
@@ -1225,14 +1225,14 @@ dataValue resourceMonitorBuffer4;
 
 // 函数: dataValueValue resourceManageLifecycle;
 dataValue resourceManageLifecycle;
-dataValue performanceMonitorVar1;;
+dataValue performance_monitor_frame_data;
 dataValue memoryBlockAllocatorHeap;
 
 // 函数: dataValueValue resourceOptimizePerformance;
 dataValue resourceOptimizePerformance;
-dataValue resourceOptimizationVar1;
+dataValue resource_optimization_texture_data;
 dataValue memoryBlockPoolManager;
-dataValue resourceOptimizationVar2;
+dataValue resource_optimization_mesh_data;
 dataValue eventHandlerState;
 
 // 函数: dataValueValue resourceReportStatus;
@@ -1241,15 +1241,15 @@ dataValue resourceReportStatus;
 // 函数: dataValueValue resourceGenerateReport;
 dataValue resourceGenerateReport;
 dataValue resourceReportFormat;
-dataValue eventHandlerDataVar798;
+dataValue event_handler_queue_data;
 
 // 函数: dataValueValue resourceBatchOperation;
 dataValue resourceBatchOperation;
-dataValue eventHandlerDataVar7a0;
-dataValue eventHandlerDataVar7a8;;
-dataValue eventSystemVar67b0;
-dataValue eventSystemVar67b8;
-dataValue eventSystemVar67d0;
+dataValue event_handler_callback_data;
+dataValue event_handler_state_data;
+dataValue event_system_queue_data;
+dataValue event_system_callback_data;
+dataValue event_system_state_data;
 dataValue memoryBlockTrackingTable;
 dataValue threadLocalStorageCleanup;
 
@@ -1257,106 +1257,106 @@ dataValue threadLocalStorageCleanup;
 dataValue InitializeThreadLocalStorage;
 dataValue _tls_array_handle_data;
 void *tlsPointer;
-dataValue eventSystemVar67d4;
+dataValue event_system_priority_data;
 dataValue memoryBlockDebugInfo;
-dataValue eventSystemVar67d8;
+dataValue event_system_timeout_data;
 dataValue memoryBlockLeakDetector;
 dataValue systemCallData;
-dataValue eventSystemVar67e8;
-dataValue eventSystemVar67f0;
-dataValue eventSystemVar67f8;
+dataValue event_system_filter_data;
+dataValue event_system_handler_data;
+dataValue event_system_manager_data;
 
 // 函数: dataValueValue CleanupThreadResources;
 dataValue CleanupThreadResources;
-dataValue eventSystemVar6800;
-dataValue eventSystemVar6808;
+dataValue event_system_cleanup_data;
+dataValue event_system_initialization_data;
 dataValue semaphoreWaitTimeout;
-dataValue temp_bufferVarSystemVar14a0;
-dataValue temp_bufferVarSystemVar1324;
+dataValue temp_buffer_system_manager_data;
+dataValue temp_buffer_system_pool_data;
 dataValue semaphoreInitState;
 dataValue semaphoreControlFlag;
 dataValue semaphoreRecursionCount;
-dataValue memoryBlockSystemVar6d8;;
-dataValue renderSystemVar100;;
-dataValue renderSystemVar170;;
-dataValue renderSystemVar8d0;;
-dataValue networkSystemVarca0;;
-dataValue networkSystemVar148;;
+dataValue memory_block_system_manager_data;
+dataValue render_system_texture_data;
+dataValue render_system_shader_data;
+dataValue render_system_buffer_data;
+dataValue network_system_connection_data;
+dataValue network_system_socket_data;
 dataValue mutexInitializationFlag;
 dataValue temp_bufferVarManagerState;
-dataValue systemVarea58;
-dataValue audioSystemVara60;;
+dataValue system_area_data;
+dataValue audio_system_device_handle;
 dataValue temp_bufferVarPoolAddress;
 dataValue temp_bufferVarPoolSize;
-byte systemVar2841;
-byte systemVar2840;
-dataValue systemVar2864;
-dataValue eventSystemVar1048;
-dataValue systemVared18;
-dataValue systemVar6948;
-dataValue systemVar6870;
-dataValue systemVar2868;
-dataValue temp_bufferVarControlData1;
-dataValue temp_bufferVarControlData2;
-dataValue temp_bufferVarControlData3;
+byte system_initialization_flag;
+byte system_thread_flag;
+dataValue system_manager_data;
+dataValue event_system_queue_data;
+dataValue system_error_data;
+dataValue system_status_data;
+dataValue system_config_data;
+dataValue system_thread_data;
+dataValue temp_buffer_control_data_1;
+dataValue temp_buffer_control_data_2;
+dataValue temp_buffer_control_data_3;
 dataValue threadSyncObject;
 dataValue threadContextData;
 dataValue threadSystemData;
-dataValue systemVar6928;
-dataValue g_system_statusFlag1;
-dataValue g_system_statusFlag2;
-dataValue g_system_statusFlag3;
+dataValue system_pool_data;
+dataValue g_system_status_flag_initialization;
+dataValue g_system_status_flag_memory;
+dataValue g_system_status_flag_thread;
 dataValue fileMetadataTable;
 dataValue fileDirectoryTree;
-dataValue g_system_statusFlag4;
+dataValue g_system_status_flag_network;
 dataValue fileAccessTable;
-dataValue systemVared10;
+dataValue system_memory_data;
 dataValue networkConnectionPool;
 dataValue networkPacketQueue;
-dataValue systemVared08;
-dataValue systemVared68;
-dataValue systemVared00;
-dataValue systemVared50;
-char renderSystemVar0102;
-dataValue systemVared58;
-dataValue systemVared48;
-dataValue systemVared40;
-dataValue systemVar6940;
+dataValue system_buffer_data;
+dataValue system_queue_data;
+dataValue system_initialization_data;
+dataValue system_state_data;
+char render_system_state_flag;
+dataValue system_thread_data;
+dataValue system_memory_data;
+dataValue system_pool_data;
+dataValue system_manager_data;
 dataValue threadManagerState;
 dataValue threadControlFlag1;
 dataValue threadControlFlag2;
 dataValue threadControlFlag3;
 dataValue threadControlFlag4;
 dataValue threadControlFlag5;
-dataValue configSystemVar854;;
+dataValue config_system_manager_data;
 dataValue allocatorState;
-char systemVar2860;
+char system_pool_flag;
 dataValue allocatorControlFlag;
-dataValue systemVar6920;
+dataValue system_allocator_data;
 void *ExceptionList;
 dataValue dataValuebaseSchemaData;
 dataValue allocatorMemoryPool;
-dataValue systemVar6960;
+dataValue system_heap_data;
 dataValue allocatorChunk1;
 dataValue allocatorChunk2;
 dataValue allocatorChunk3;
-dataValue systemVared60;
+dataValue system_encryption_data;
 dataValue encryptionKeyData;
 dataValue encryptionAlgorithm;
 dataValue allocatorHeapBase;
 dataValue allocatorHeapSize;
 dataValue allocatorHeapFlags;
-dataValue systemVarc7ec;
+dataValue system_chunk_data;
 dataValue allocatorChunk4;
 
 // 函数: dataValueValue systemInitializeCore;
 dataValue systemInitializeCore;
-dataValue systemVar9160;
-dataValue systemVar9168;
-dataValue systemVar9170;
-dataValue systemVar9178;
+dataValue system_core_data;
+dataValue system_module_data;
+dataValue system_thread_data;
+dataValue system_queue_data;
 dataValue eventQueueState;
-dataValue systemVar01d0;
+dataValue system_event_data;
 dataValue compressionBuffer;
 dataValue compressionLevel;
 dataValue compressionAlgorithm;
@@ -1374,13 +1374,13 @@ dataValue serializationObjectPool;
 dataValue serializationReferenceTable;
 dataValue uiLayoutData;
 dataValue uiStyleData;
-dataValue systemVar1440;
-dataValue systemVar8d38;
+dataValue system_ui_data;
+dataValue system_widget_data;
 dataValue uiWidgetTree;
 dataValue eventHandlerTable;
 dataValue uiAnimationData;
 dataValue uiThemeData;
-dataValue systemVar8d30;
+dataValue system_theme_data;
 dataValue *PTR_?id@?$codecvt@DDU_Mbstatet@@@std@@2V0locale@2@A_180944718;
 dataValue inputDeviceManager;
 dataValue inputMappingTable;
@@ -1403,7 +1403,7 @@ dataValue systemVar9250;
 dataValue systemVar9248;
 dataValue systemVar9240;
 dataValue systemVar9258;
-dataValue systemVar925c;
+dataValue systemThreadPriority;
 dataValue videoStreamBuffer;
 
 // 函数: dataValueValue systemInitializeExtensions;
@@ -1520,7 +1520,7 @@ dataValue g_system_logging_handler;
 dataValue g_system_monitoring_handler;
 dataValue g_system_event_handler;
 dataValue g_system_exception_handler;
-dataValue systemVar6b58;
+dataValue systemProcessId;
 dataValue g_system_memory_handler;
 dataValue g_system_thread_handler;
 dataValue g_system_io_handler;
@@ -1583,21 +1583,21 @@ dataValue entityComponentSystem;
 
 // 函数: dataValueValue systemInitializePools;
 dataValue systemInitializePools;
-dataValue systemVar97d0;
+dataValue systemMainThreadId;
 
 // 函数: dataValueValue systemInitializeQueues;
 dataValue systemInitializeQueues;
 dataValue systemVar9990;
-dataValue systemVar8de0;
-dataValue systemVar8de8;
-dataValue systemVar8df0;
-dataValue systemVar8df8;
-dataValue systemVar8e00;
-dataValue systemVar8e08;
-dataValue eventSystemVar18d8;
-dataValue systemVar8e10;
-dataValue systemVar8e18;
-dataValue eventSystemVar18c0;
+dataValue systemThreadStackSize;
+dataValue systemThreadStackBase;
+dataValue systemThreadStackLimit;
+dataValue systemThreadContext;
+dataValue systemThreadLocalStorage;
+dataValue systemThreadScheduler;
+dataValue eventSystemHandler;
+dataValue systemThreadQueue;
+dataValue systemThreadSemaphore;
+dataValue eventSystemQueue;
 dataValue entityManager;
 dataValue componentManager;
 dataValue systemManager;
@@ -1606,11 +1606,11 @@ dataValue systemManager;
 dataValue resourceHashData;
 dataValue entityPool;
 dataValue componentPool;
-dataValue systemVar9d08;
-dataValue systemVar9bf0;
-dataValue systemVar9bf8;
-dataValue systemVar9c00;
-dataValue systemVar9c08;
+dataValue systemEventQueue;
+dataValue systemEventHandle;
+dataValue systemEventData;
+dataValue systemEventCallback;
+dataValue systemEventTimer;
 dataValue physicsEngineCore;
 dataValue physicsWorldData;
 
@@ -1649,15 +1649,15 @@ dataValue rigidBodyMassData;
 dataValue rigidBodyInertia;
 dataValue rigidBodyForceData;
 dataValue rigidBodyTorqueData;
-dataValue systemVar9d0c;
-dataValue systemVar9d10;
-dataValue systemVar9d18;
-dataValue systemVar9d20;
-dataValue systemVar9d28;
-dataValue systemVar9d30;
-dataValue systemVar9d38;
-dataValue systemVar9d40;
-dataValue systemVar9d48;
+dataValue systemEventSignal;
+dataValue systemEventMask;
+dataValue systemEventFilter;
+dataValue systemEventDispatcher;
+dataValue systemEventHandler;
+dataValue systemEventProcessor;
+dataValue systemEventManager;
+dataValue systemEventMonitor;
+dataValue systemEventLogger;
 dataValue fileCacheState;
 uint32 softBodyVertices;
 uint32 softBodyIndices;
@@ -1807,14 +1807,14 @@ dataValue g_memory_real_allocator;
 dataValue g_memory_float_allocator;
 dataValue g_memory_double_allocator;
 dataValue g_memory_long_double_allocator;
-dataValue g_memory_int8_allocator;
-dataValue g_memory_int16_allocator;
-dataValue g_memory_int32_allocator;
-dataValue g_memory_int64_allocator;
-dataValue g_memory_uint8_allocator;
-dataValue g_memory_uint16_allocator;
-dataValue g_memory_uint32_allocator;
-dataValue g_memory_uint64_allocator;
+dataValue g_memory_allocator_sint8;
+dataValue g_memory_allocator_sint16;
+dataValue g_memory_allocator_sint32;
+dataValue g_memory_allocator_sint64;
+dataValue g_memory_allocator_uint8;
+dataValue g_memory_allocator_uint16;
+dataValue g_memory_allocator_uint32;
+dataValue g_memory_allocator_uint64;
 dataValue g_memory_char_allocator;
 dataValue g_memory_wchar_allocator;
 dataValue g_memory_string_allocator;
@@ -1888,8 +1888,8 @@ dataValue g_memory_real_register_allocator;
 dataValue g_memory_float_register_allocator;
 dataValue g_memory_double_register_allocator;
 dataValue g_memory_long_double_register_allocator;
-dataValue g_memory_int8_register_allocator;
-dataValue g_memory_int16_register_allocator;
+dataValue g_memory_register_allocator_sint8;
+dataValue g_memory_register_allocator_sint16;
 dataValue g_memory_int32_register_allocator;
 dataValue g_memory_int64_register_allocator;
 dataValue g_memory_uint8_register_allocator;
@@ -2412,7 +2412,7 @@ void ProcessMemoryAllocation(longlong resource_handle_id,longlong resource_buffe
   int operation_result;        // 操作结果
   longlong iterationCounter;  // 迭代计数器
   int processedCount;         // 已处理计数
-  byte temp_bufferVar2 [32];       // 临时缓冲区
+  byte temp_buffer_security [32];       // 临时缓冲区
   longlong resourceInfo [2];  // 资源信息数组
   byte *allocatedMemory;      // 分配的内存指针
   int allocationCount;        // 分配计数
@@ -2420,10 +2420,10 @@ void ProcessMemoryAllocation(longlong resource_handle_id,longlong resource_buffe
   byte workingBuffer [512];   // 工作缓冲区
   ulonglong securityToken;    // 安全令牌
   
-  securityToken = g_securityTokenMask ^ (ulonglong)temp_bufferVar2;
+  securityToken = g_securityTokenMask ^ (ulonglong)temp_buffer_security;
   operation_result = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),resourceInfo);
   if ((operation_result == 0) && (*(longlong *)(resourceInfo[0] + 8) != 0)) {
-    allocatedMemory = temp_bufferVar2;
+    allocatedMemory = temp_buffer_security;
     processedCount = 0;
     allocationCount = 0;
     securityToken = SECURITY_TOKEN_MASK;
@@ -2450,7 +2450,7 @@ void ProcessMemoryAllocation(longlong resource_handle_id,longlong resource_buffe
     }
   }
                     // WARNING: Subroutine does not return
-  ExecuteSecurityCheck(securityToken ^ (ulonglong)temp_bufferVar2);
+  ExecuteSecurityCheck(securityToken ^ (ulonglong)temp_buffer_security);
 }
 
 
@@ -2552,7 +2552,7 @@ uint64 validate_resource_handle_identifier(longlong resource_handle_id)    // �
   ulonglong func_result_var;
   longlong *resourceArrayPointer;
   longlong stackParameter;
-  char temp_bufferVar2 [16];
+  char temp_buffer_security [16];
   
   system_status = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&stackBuffer8Var);
   if ((int)system_status != 0) {
@@ -2567,7 +2567,7 @@ uint64 validate_resource_handle_identifier(longlong resource_handle_id)    // �
     return ERROR_CODE_FAILED;
   }
   if (*(int *)(temp_buffer + BUFFER_OFFSET_STATUS) == -1) {
-    system_status = utilityProcessMemoryData(temp_buffer,temp_bufferVar2);
+    system_status = utilityProcessMemoryData(temp_buffer,temp_buffer_security);
     if ((int)system_status != 0) {
       return system_status;
     }
@@ -2576,7 +2576,7 @@ uint64 validate_resource_handle_identifier(longlong resource_handle_id)    // �
       return validation_result;
     }
     if ((char)system_status == (char)validation_result) {
-      if (temp_bufferVar2[0] == (char)validation_result) {
+      if (temp_buffer_security[0] == (char)validation_result) {
         dataValuePointer = (longlong *)(resource_buffer + RESOURCE_OFFSET_POINTER);
         iteration_index = 0;
         resourceCounter = *(int *)(resource_buffer + resourceOffsetIndex);
@@ -2647,7 +2647,7 @@ ulonglong calculate_memory_allocation(longlong resource_handle_id,longlong resou
   longlong *long_valuePointer;
   longlong *memoryBlockPointer9;
   longlong *resourceDataBufferVar0;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   longlong stackMemoryOffset18;
   
   validation_result = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_offset),&stackMemoryOffset18);
@@ -2661,18 +2661,18 @@ ulonglong calculate_memory_allocation(longlong resource_handle_id,longlong resou
     validation_result = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&stackMemoryOffset18);
     iterationCounter = (int)validation_result;
     if (iterationCounter == 0) {
-      long_stack8Var2 = 0;
+      systemResourceHandle = 0;
       validation_result = utilityEncryptMemoryData(*(uint64 *)(resource_buffer + MEMORY_SIZE_OFFSET),*(longlong *)(stackMemoryOffset18 + 8) + resource_handle_data_off,
-                            &long_stack8Var2);
+                            &systemResourceHandle);
       if (validation_result != 0) {
         utilityValidateMemoryAccess(memoryBlockPointer9);
         return (ulonglong)validation_result;
       }
       if (((*(uint *)(*(longlong *)(stackMemoryOffset18 + 8) + SYSTEM_FLAGS_OFFSET) >> 2 & 1) == 0) &&
-         (validation_result = validate_system_integrity(long_stack8Var2), (int)validation_result != 0)) {
+         (validation_result = validate_system_integrity(systemResourceHandle), (int)validation_result != 0)) {
         return validation_result;
       }
-      resource_data_buffer_pointer = (longlong *)(long_stack8Var2 + memoryOffsetBuffer);
+      resource_data_buffer_pointer = (longlong *)(systemResourceHandle + memoryOffsetBuffer);
       memoryBlockPointer7 = (longlong *)(*resource_data_buffer_pointer + -resource_handle_offset);
       if (*resource_data_buffer_pointer == 0) {
         memoryBlockPointer7 = resourceDataBufferVar0;
@@ -2685,10 +2685,10 @@ ulonglong calculate_memory_allocation(longlong resource_handle_id,longlong resou
       }
       while( true ) {
         if (long_valuePointer == resource_data_buffer_pointer) {
-          *(longlong **)(long_stack8Var2 + bufferOffsetTemp) = memoryBlockPointer9;
-          cleanup_system_resources(long_stack8Var2,memoryBlockPointer9);
-          memoryBlockPointer9[2] = long_stack8Var2;
-          validation_result = utilityGetMemoryStatus(long_stack8Var2);
+          *(longlong **)(systemResourceHandle + bufferOffsetTemp) = memoryBlockPointer9;
+          cleanup_system_resources(systemResourceHandle,memoryBlockPointer9);
+          memoryBlockPointer9[2] = systemResourceHandle;
+          validation_result = utilityGetMemoryStatus(systemResourceHandle);
           if ((int)validation_result == 0) {
             return 0;
           }
@@ -2858,19 +2858,19 @@ uint64 allocate_resource_memoryBlock(longlong resource_handle_id)
 
 {
   uint64 func_result_var;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if ((int)func_result_var == 0) {
-    if (long_stack8Var2 == 0) {
-      long_stack8Var2 = 0;
+    if (systemResourceHandle == 0) {
+      systemResourceHandle = 0;
     }
     else {
-      long_stack8Var2 = long_stack8Var2 + -8;
+      systemResourceHandle = systemResourceHandle + -8;
     }
-    if (*(longlong *)(long_stack8Var2 + resource_handle_data_off) != 0) {
+    if (*(longlong *)(systemResourceHandle + resource_handle_data_off) != 0) {
                     // WARNING: Subroutine does not return
-      utilityFreeMemoryBlock(*(longlong *)(long_stack8Var2 + resource_handle_data_off),1); # 内存块释放函数
+      utilityFreeMemoryBlock(*(longlong *)(systemResourceHandle + resource_handle_data_off),1); # 内存块释放函数
     }
     func_result_var = 0;
   }
@@ -2926,23 +2926,23 @@ uint64 process_resource_dataValue(longlong resource_handle_id)
 
 {
   uint64 func_result_var;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if ((int)func_result_var != 0) {
     return func_result_var;
   }
-  if (long_stack8Var2 == 0) {
-    long_stack8Var2 = 0;
+  if (systemResourceHandle == 0) {
+    systemResourceHandle = 0;
   }
   else {
-    long_stack8Var2 = long_stack8Var2 + -8;
+    systemResourceHandle = systemResourceHandle + -8;
   }
-  if (*(longlong *)(long_stack8Var2 + resource_handle_data_off) == 0) {
+  if (*(longlong *)(systemResourceHandle + resource_handle_data_off) == 0) {
     return byteOffsetFlag;
   }
                     // WARNING: Subroutine does not return
-  utilityFreeMemoryBlock(*(longlong *)(long_stack8Var2 + resource_handle_data_off),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(systemResourceHandle + resource_handle_data_off),1); # 内存块释放函数
 }
 
 
@@ -2993,23 +2993,23 @@ uint64 validate_resource_access(longlong resource_handle_id)
 
 {
   uint64 func_result_var;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if ((int)func_result_var != 0) {
     return func_result_var;
   }
-  if (long_stack8Var2 == 0) {
-    long_stack8Var2 = 0;
+  if (systemResourceHandle == 0) {
+    systemResourceHandle = 0;
   }
   else {
-    long_stack8Var2 = long_stack8Var2 + -8;
+    systemResourceHandle = systemResourceHandle + -8;
   }
-  if (*(longlong *)(long_stack8Var2 + resource_handle_data_off) == 0) {
+  if (*(longlong *)(systemResourceHandle + resource_handle_data_off) == 0) {
     return byteOffsetFlag;
   }
                     // WARNING: Subroutine does not return
-  utilityFreeMemoryBlock(*(longlong *)(long_stack8Var2 + resource_handle_data_off),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(systemResourceHandle + resource_handle_data_off),1); # 内存块释放函数
 }
 
 
@@ -3143,9 +3143,9 @@ uint64 execute_resource_command(longlong resource_handle_id)
   int integer_value;
   float float_result;
   byte array_var8 [16];
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  system_status = SystemMemoryFunction(*(uint32 *)(resource_handle_id + byteOffsetFlag),&long_stack8Var2long_stack8Var2);
+  system_status = SystemMemoryFunction(*(uint32 *)(resource_handle_id + byteOffsetFlag),&systemResourceHandlesystemResourceHandle);
   if ((int)system_status != 0) {
     return system_status;
   }
@@ -3201,13 +3201,13 @@ uint64 validate_resource_operation(longlong resource_handle_id)
   uint validation_result;
   ulonglong systemFlagsData;
   longlong long_value;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  loop_counter = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  loop_counter = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if ((int)loop_counter == 0) {
     systemFlagsData = 0;
-    validation_result = long_stack8Var2 - 8;
-    if (long_stack8Var2 == 0) {
+    validation_result = systemResourceHandle - 8;
+    if (systemResourceHandle == 0) {
       validation_result = systemFlagsData;
     }
     pointerUintVar4 = (uint32 *)(resource_handle_id + PTR_DATA_OFFSET + (longlong)*(int *)(resource_handle_id + resource_handle_offset) * 4);
@@ -3309,14 +3309,14 @@ uint64 allocate_system_resources(longlong resource_handle_id)
   uint32 *pointerVar3;
   uint system_status;
   ulonglong validation_result;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   ulonglong validation_result;
   
-  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if ((int)func_result_var == 0) {
     validation_result = 0;
-    validation_result = long_stack8Var2 - 8;
-    if (long_stack8Var2 == 0) {
+    validation_result = systemResourceHandle - 8;
+    if (systemResourceHandle == 0) {
       validation_result = validation_result;
     }
     pointerVar3 = (uint32 *)(resource_handle_id + PTR_DATA_OFFSET + (longlong)*(int *)(resource_handle_id + resource_handle_offset) * 8);
@@ -3324,16 +3324,16 @@ uint64 allocate_system_resources(longlong resource_handle_id)
     if (0 < *(int *)(resource_handle_id + resource_handle_offset)) {
       do {
         if ((*operation_statusPointer != g_securityTokenValue1) || (operation_statusPointer[1] != g_securityTokenValue2)) {
-          long_stack8Var2 = 0;
-          func_result_var = utilityProcessResourceData(validation_result,(int *)(resource_handle_id + PTR_DATA_OFFSET) + (longlong)(int)validation_result * 2,&long_stack8Var2long_stack8Var2)
+          systemResourceHandle = 0;
+          func_result_var = utilityProcessResourceData(validation_result,(int *)(resource_handle_id + PTR_DATA_OFFSET) + (longlong)(int)validation_result * 2,&systemResourceHandlesystemResourceHandle)
         ;
           if ((int)func_result_var != 0) {
             return func_result_var;
           }
-          if (*(longlong *)(long_stack8Var2 + 8) == 0) {
+          if (*(longlong *)(systemResourceHandle + 8) == 0) {
             return byteOffsetFlag;
           }
-          func_result_var = utilityHandleResourceOperation(*(longlong *)(long_stack8Var2 + 8),*pointerVar3,*(byte *)(resource_handle_id + byteOffsetFlag)
+          func_result_var = utilityHandleResourceOperation(*(longlong *)(systemResourceHandle + 8),*pointerVar3,*(byte *)(resource_handle_id + byteOffsetFlag)
                                );
           if ((int)func_result_var != 0) {
             return func_result_var;
@@ -3425,23 +3425,23 @@ uint64 terminate_process(longlong resource_handle_id)
 
 {
   uint64 func_result_var;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if ((int)func_result_var != 0) {
     return func_result_var;
   }
-  if (long_stack8Var2 == 0) {
-    long_stack8Var2 = 0;
+  if (systemResourceHandle == 0) {
+    systemResourceHandle = 0;
   }
   else {
-    long_stack8Var2 = long_stack8Var2 + -8;
+    systemResourceHandle = systemResourceHandle + -8;
   }
-  if (*(longlong *)(long_stack8Var2 + resource_handle_data_off) == 0) {
+  if (*(longlong *)(systemResourceHandle + resource_handle_data_off) == 0) {
     return byteOffsetFlag;
   }
                     // WARNING: Subroutine does not return
-  utilityFreeMemoryBlock(*(longlong *)(long_stack8Var2 + resource_handle_data_off),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(systemResourceHandle + resource_handle_data_off),1); # 内存块释放函数
 }
 
 
@@ -3492,23 +3492,23 @@ uint64 manage_thread_pool(longlong resource_handle_id)
 
 {
   uint64 func_result_var;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if ((int)func_result_var != 0) {
     return func_result_var;
   }
-  if (long_stack8Var2 == 0) {
-    long_stack8Var2 = 0;
+  if (systemResourceHandle == 0) {
+    systemResourceHandle = 0;
   }
   else {
-    long_stack8Var2 = long_stack8Var2 + -8;
+    systemResourceHandle = systemResourceHandle + -8;
   }
-  if (*(longlong *)(long_stack8Var2 + resource_handle_data_off) == 0) {
+  if (*(longlong *)(systemResourceHandle + resource_handle_data_off) == 0) {
     return byteOffsetFlag;
   }
                     // WARNING: Subroutine does not return
-  utilityFreeMemoryBlock(*(longlong *)(long_stack8Var2 + resource_handle_data_off),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(systemResourceHandle + resource_handle_data_off),1); # 内存块释放函数
 }
 
 
@@ -3560,14 +3560,14 @@ uint64 lock_mutex(longlong resource_handle_id)
 {
   uint64 func_result_var;
   longlong temp_buffer;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if ((int)func_result_var != 0) {
     return func_result_var;
   }
-  temp_buffer = long_stack8Var2 + -8;
-  if (long_stack8Var2 == 0) {
+  temp_buffer = systemResourceHandle + -8;
+  if (systemResourceHandle == 0) {
     temp_buffer = 0;
   }
   if (*(longlong *)(temp_buffer + resource_handle_data_off) == 0) {
@@ -3623,23 +3623,23 @@ uint64 wait_for_semaphore(longlong resource_handle_id)
 
 {
   uint64 func_result_var;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if ((int)func_result_var != 0) {
     return func_result_var;
   }
-  if (long_stack8Var2 == 0) {
-    long_stack8Var2 = 0;
+  if (systemResourceHandle == 0) {
+    systemResourceHandle = 0;
   }
   else {
-    long_stack8Var2 = long_stack8Var2 + -8;
+    systemResourceHandle = systemResourceHandle + -8;
   }
-  if (*(longlong *)(long_stack8Var2 + resource_handle_data_off) == 0) {
+  if (*(longlong *)(systemResourceHandle + resource_handle_data_off) == 0) {
     return byteOffsetFlag;
   }
                     // WARNING: Subroutine does not return
-  utilityFreeMemoryBlock(*(longlong *)(long_stack8Var2 + resource_handle_data_off),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(systemResourceHandle + resource_handle_data_off),1); # 内存块释放函数
 }
 
 
@@ -3690,23 +3690,23 @@ uint64 wait_for_event(longlong resource_handle_id)
 
 {
   uint64 func_result_var;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if ((int)func_result_var != 0) {
     return func_result_var;
   }
-  if (long_stack8Var2 == 0) {
-    long_stack8Var2 = 0;
+  if (systemResourceHandle == 0) {
+    systemResourceHandle = 0;
   }
   else {
-    long_stack8Var2 = long_stack8Var2 + -8;
+    systemResourceHandle = systemResourceHandle + -8;
   }
-  if (*(longlong *)(long_stack8Var2 + resource_handle_data_off) == 0) {
+  if (*(longlong *)(systemResourceHandle + resource_handle_data_off) == 0) {
     return byteOffsetFlag;
   }
                     // WARNING: Subroutine does not return
-  utilityFreeMemoryBlock(*(longlong *)(long_stack8Var2 + resource_handle_data_off),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(systemResourceHandle + resource_handle_data_off),1); # 内存块释放函数
 }
 
 
@@ -3757,23 +3757,23 @@ uint64 create_timer(longlong resource_handle_id)
 
 {
   uint64 func_result_var;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if ((int)func_result_var != 0) {
     return func_result_var;
   }
-  if (long_stack8Var2 == 0) {
-    long_stack8Var2 = 0;
+  if (systemResourceHandle == 0) {
+    systemResourceHandle = 0;
   }
   else {
-    long_stack8Var2 = long_stack8Var2 + -8;
+    systemResourceHandle = systemResourceHandle + -8;
   }
-  if (*(longlong *)(long_stack8Var2 + resource_handle_data_off) == 0) {
+  if (*(longlong *)(systemResourceHandle + resource_handle_data_off) == 0) {
     return byteOffsetFlag;
   }
                     // WARNING: Subroutine does not return
-  utilityFreeMemoryBlock(*(longlong *)(long_stack8Var2 + resource_handle_data_off),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(systemResourceHandle + resource_handle_data_off),1); # 内存块释放函数
 }
 
 
@@ -3824,20 +3824,20 @@ uint64 get_timer_elapsed(longlong resource_handle_id)
 
 {
   uint64 func_result_var;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if ((int)func_result_var != 0) {
     return func_result_var;
   }
-  if (long_stack8Var2 != 0) {
-    long_stack8Var2 = long_stack8Var2 + -8;
+  if (systemResourceHandle != 0) {
+    systemResourceHandle = systemResourceHandle + -8;
   }
-  if (*(longlong *)(long_stack8Var2 + resource_handle_data_off) == 0) {
+  if (*(longlong *)(systemResourceHandle + resource_handle_data_off) == 0) {
     return byteOffsetFlag;
   }
                     // WARNING: Subroutine does not return
-  utilityFreeMemoryBlock(*(longlong *)(long_stack8Var2 + resource_handle_data_off),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(systemResourceHandle + resource_handle_data_off),1); # 内存块释放函数
 }
 
 
@@ -3895,20 +3895,20 @@ uint64 open_file_resource_handle_id(longlong resource_handle_id)
 
 {
   uint64 func_result_var;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if ((int)func_result_var != 0) {
     return func_result_var;
   }
-  if (long_stack8Var2 != 0) {
-    long_stack8Var2 = long_stack8Var2 + -8;
+  if (systemResourceHandle != 0) {
+    systemResourceHandle = systemResourceHandle + -8;
   }
-  if (*(longlong *)(long_stack8Var2 + resource_handle_data_off) == 0) {
+  if (*(longlong *)(systemResourceHandle + resource_handle_data_off) == 0) {
     return byteOffsetFlag;
   }
                     // WARNING: Subroutine does not return
-  utilityFreeMemoryBlock(*(longlong *)(long_stack8Var2 + resource_handle_data_off),1); # 内存块释放函数
+  utilityFreeMemoryBlock(*(longlong *)(systemResourceHandle + resource_handle_data_off),1); # 内存块释放函数
 }
 
 
@@ -4372,14 +4372,14 @@ void get_file_owner(longlong resource_handle_id,longlong resource_buffer)
 
 {
   int operation_status;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
   if (*(int *)(resource_handle_id + FIELD_OFFSET_4) == 0) {
-    operation_status = utilityAnalyzeResourceData(resource_buffer,resource_handle_id + byteOffsetFlag,&long_stack8Var2long_stack8Var2);
+    operation_status = utilityAnalyzeResourceData(resource_buffer,resource_handle_id + byteOffsetFlag,&systemResourceHandlesystemResourceHandle);
     if (operation_status != 0) {
       return;
     }
-    operation_status = validate_resource_handle_identifier(*(uint64 *)(long_stack8Var2 + struct_offset_1),resource_handle_id + FIELD_OFFSET_4);
+    operation_status = validate_resource_handle_identifier(*(uint64 *)(systemResourceHandle + struct_offset_1),resource_handle_id + FIELD_OFFSET_4);
     if (operation_status != 0) {
       return;
     }
@@ -4396,12 +4396,12 @@ void set_file_owner(longlong resource_handle_id,longlong resource_buffer)
 
 {
   int operation_status;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  operation_status = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  operation_status = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if (operation_status == 0) {
-    *(uint32 *)(resource_handle_id + resource_handle_offset) = *(uint32 *)(long_stack8Var2 + first_field_offset);
-    *(uint32 *)(resource_handle_id + byteOffsetFlag) = *(uint32 *)(long_stack8Var2 + FIELD_OFFSET_2);
+    *(uint32 *)(resource_handle_id + resource_handle_offset) = *(uint32 *)(systemResourceHandle + first_field_offset);
+    *(uint32 *)(resource_handle_id + byteOffsetFlag) = *(uint32 *)(systemResourceHandle + FIELD_OFFSET_2);
     utilityAcquireResourceHandle(*(uint64 *)(resource_buffer + resource_handle_data_off),resource_handle_id);
   }
   return;
@@ -4457,15 +4457,15 @@ uint64 check_file_access(longlong resource_handle_id,longlong resource_buffer)
 {
   int operation_status;
   uint64 loop_counter;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  loop_counter = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  loop_counter = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if ((int)loop_counter == 0) {
-    if (*(int *)(long_stack8Var2 + FIELD_OFFSET_2) != 0) {
+    if (*(int *)(systemResourceHandle + FIELD_OFFSET_2) != 0) {
       return ERROR_CODE_1;
     }
-    operation_status = *(int *)(long_stack8Var2 + secondByteOffset);
-    *(int *)(long_stack8Var2 + secondByteOffset) = localStatus + 1;
+    operation_status = *(int *)(systemResourceHandle + secondByteOffset);
+    *(int *)(systemResourceHandle + secondByteOffset) = localStatus + 1;
     if (operation_status == 0) {
                     // WARNING: Subroutine does not return
       utilityReleaseResourceHandle(*(uint64 *)(resource_buffer + resource_handle_data_off),resource_handle_id);
@@ -4483,11 +4483,11 @@ void lock_file(longlong resource_handle_id,longlong resource_buffer)
 
 {
   int operation_status;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  operation_status = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  operation_status = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if (operation_status == 0) {
-    *(uint32 *)(long_stack8Var2 + first_field_offset) = 0;
+    *(uint32 *)(systemResourceHandle + first_field_offset) = 0;
                     // WARNING: Subroutine does not return
     utilityReleaseResourceHandle(*(uint64 *)(resource_buffer + resource_handle_data_off),resource_handle_id);
   }
@@ -4501,21 +4501,21 @@ uint64 unlock_file(longlong resource_handle_id,longlong resource_buffer)
 {
   int operation_status;
   uint64 loop_counter;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  loop_counter = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  loop_counter = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if ((int)loop_counter == 0) {
-    if (*(int *)(long_stack8Var2 + FIELD_OFFSET_2) != 0) {
+    if (*(int *)(systemResourceHandle + FIELD_OFFSET_2) != 0) {
       return ERROR_CODE_1;
     }
-    operation_status = *(int *)(long_stack8Var2 + secondByteOffset);
+    operation_status = *(int *)(systemResourceHandle + secondByteOffset);
     if (localStatus < 0) {
       return byteOffsetFlag;
     }
     if (operation_status == 0) {
       return ERROR_CODE_2;
     }
-    *(int *)(long_stack8Var2 + secondByteOffset) = localStatus + -1;
+    *(int *)(systemResourceHandle + secondByteOffset) = localStatus + -1;
     if (operation_status == 1) {
                     // WARNING: Subroutine does not return
       utilityReleaseResourceHandle(*(uint64 *)(resource_buffer + resource_handle_data_off),resource_handle_id);
@@ -4531,14 +4531,14 @@ uint64 check_file_lock(longlong resource_handle_id,longlong resource_buffer)
 
 {
   uint64 func_result_var;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if ((int)func_result_var == 0) {
-    if (*(longlong *)(long_stack8Var2 + 8) == 0) {
+    if (*(longlong *)(systemResourceHandle + 8) == 0) {
       return ERROR_CODE_2;
     }
-    *(uint64 *)(resource_handle_id + resource_handle_offset) = *(uint64 *)(*(longlong *)(long_stack8Var2 + 8) + HANDLE_DATA_OFFSET);
+    *(uint64 *)(resource_handle_id + resource_handle_offset) = *(uint64 *)(*(longlong *)(systemResourceHandle + 8) + HANDLE_DATA_OFFSET);
     func_result_var = utilityAcquireResourceHandle(*(uint64 *)(resource_buffer + resource_handle_data_off),resource_handle_id);
   }
   return func_result_var;
@@ -4550,16 +4550,16 @@ uint64 get_file_lock_info(longlong resource_handle_id,longlong resource_buffer)
 
 {
   uint64 func_result_var;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if ((int)func_result_var != 0) {
     return func_result_var;
   }
-  if (*(char *)(long_stack8Var2 + FIELD_OFFSET_4) != '\0') {
+  if (*(char *)(systemResourceHandle + FIELD_OFFSET_4) != '\0') {
     return ERROR_CODE_3;
   }
-  *(byte *)(long_stack8Var2 + FIELD_OFFSET_4) = 1;
+  *(byte *)(systemResourceHandle + FIELD_OFFSET_4) = 1;
                     // WARNING: Subroutine does not return
   utilityReleaseResourceHandle(*(uint64 *)(resource_buffer + resource_handle_data_off),resource_handle_id);
 }
@@ -4572,11 +4572,11 @@ void compress_file(longlong resource_handle_id,longlong resource_buffer)
 
 {
   int operation_status;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  operation_status = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  operation_status = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if (operation_status == 0) {
-    *(byte *)(long_stack8Var2 + BYTE_OFFSET_1) = *(byte *)(resource_handle_id + resource_handle_offset);
+    *(byte *)(systemResourceHandle + BYTE_OFFSET_1) = *(byte *)(resource_handle_id + resource_handle_offset);
                     // WARNING: Subroutine does not return
     utilityReleaseResourceHandle(*(uint64 *)(resource_buffer + resource_handle_data_off),resource_handle_id);
   }
@@ -4591,11 +4591,11 @@ void decompress_file(longlong resource_handle_id,longlong resource_buffer)
 
 {
   int operation_status;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  operation_status = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  operation_status = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if (operation_status == 0) {
-    *(byte *)(long_stack8Var2 + secondByteOffset) = *(byte *)(resource_handle_id + resource_handle_offset);
+    *(byte *)(systemResourceHandle + secondByteOffset) = *(byte *)(resource_handle_id + resource_handle_offset);
                     // WARNING: Subroutine does not return
     utilityReleaseResourceHandle(*(uint64 *)(resource_buffer + resource_handle_data_off),resource_handle_id);
   }
@@ -4630,16 +4630,16 @@ uint64 verify_file_integrity(longlong resource_handle_id,longlong resource_buffe
 
 {
   uint64 func_result_var;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if ((int)func_result_var != 0) {
     return func_result_var;
   }
-  if (*(char *)(long_stack8Var2 + FIELD_OFFSET_4) == '\0') {
+  if (*(char *)(systemResourceHandle + FIELD_OFFSET_4) == '\0') {
     return ERROR_CODE_4;
   }
-  *(byte *)(long_stack8Var2 + FIELD_OFFSET_4) = 0;
+  *(byte *)(systemResourceHandle + FIELD_OFFSET_4) = 0;
                     // WARNING: Subroutine does not return
   utilityReleaseResourceHandle(*(uint64 *)(resource_buffer + resource_handle_data_off),resource_handle_id);
 }
@@ -4658,17 +4658,17 @@ void encrypt_file(longlong resource_handle_id,longlong resource_buffer)
   longlong array_handle_data;
   longlong threadContextData;
   uint validation_result;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   longlong stackMemoryOffset18;
   
   operation_status = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&stackMemoryOffset18);
-  if (((localStatus != 0) || (operation_status = utilityInitializeResourceEnvironment(&long_stack8Var2long_stack8Var2), localStatus != 0)) ||
-     (operation_status = utilityConfigureResourceSettings(long_stack8Var2,resource_buffer,*(uint64 *)(stackMemoryOffset18 + 8)), localStatus != 0)) {
+  if (((localStatus != 0) || (operation_status = utilityInitializeResourceEnvironment(&systemResourceHandlesystemResourceHandle), localStatus != 0)) ||
+     (operation_status = utilityConfigureResourceSettings(systemResourceHandle,resource_buffer,*(uint64 *)(stackMemoryOffset18 + 8)), localStatus != 0)) {
     return;
   }
   array_handle_data = 0;
-  threadContextData = long_stack8Var2 + 8;
-  if (long_stack8Var2 == 0) {
+  threadContextData = systemResourceHandle + 8;
+  if (systemResourceHandle == 0) {
     threadContextData = array_handle_data;
   }
   operation_status = validate_resource_handle_identifier(threadContextData,resource_handle_id + resource_handle_offset);
@@ -4705,7 +4705,7 @@ void encrypt_file(longlong resource_handle_id,longlong resource_buffer)
     *(int *)(stackMemoryOffset18 + FIELD_OFFSET_4) = localStatus;
   }
   *(longlong *)(*(longlong *)(stackMemoryOffset18 + PTR_DATA_OFFSET) + (longlong)*(int *)(stackMemoryOffset18 + secondByteOffset) * 8) =
-       long_stack8Var2;
+       systemResourceHandle;
   *(int *)(stackMemoryOffset18 + secondByteOffset) = *(int *)(stackMemoryOffset18 + secondByteOffset) + 1;
 handle_buffer_error:
                     // WARNING: Subroutine does not return
@@ -5077,18 +5077,18 @@ uint64 utilityQueryResourceStatus(longlong resource_handle_id,longlong resource_
 
 {
   uint64 func_result_var;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if ((int)func_result_var == 0) {
-    if (long_stack8Var2 != 0) {
-      long_stack8Var2 = long_stack8Var2 + -8;
+    if (systemResourceHandle != 0) {
+      systemResourceHandle = systemResourceHandle + -8;
     }
-    if (*(longlong *)(long_stack8Var2 + resource_handle_data_off) == 0) {
+    if (*(longlong *)(systemResourceHandle + resource_handle_data_off) == 0) {
       return ERROR_CODE_2;
     }
     *(uint64 *)(resource_handle_id + resource_handle_offset) =
-         *(uint64 *)(*(longlong *)(*(longlong *)(long_stack8Var2 + resource_handle_data_off) + 0x2b0) + HANDLE_DATA_OFFSET);
+         *(uint64 *)(*(longlong *)(*(longlong *)(systemResourceHandle + resource_handle_data_off) + 0x2b0) + HANDLE_DATA_OFFSET);
     func_result_var = utilityAcquireResourceHandle(*(uint64 *)(resource_buffer + resource_handle_data_off),resource_handle_id);
   }
   return func_result_var;
@@ -5100,17 +5100,17 @@ uint64 utilityCheckResourceAvailability(longlong resource_handle_id,longlong res
 
 {
   uint64 func_result_var;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  func_result_var = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if ((int)func_result_var == 0) {
-    if (long_stack8Var2 != 0) {
-      long_stack8Var2 = long_stack8Var2 + -8;
+    if (systemResourceHandle != 0) {
+      systemResourceHandle = systemResourceHandle + -8;
     }
-    if (*(longlong *)(long_stack8Var2 + resource_handle_offset) == 0) {
+    if (*(longlong *)(systemResourceHandle + resource_handle_offset) == 0) {
       return SUCCESS_CODE;
     }
-    func_result_var = validate_resource_handle_identifier(*(uint64 *)(*(longlong *)(long_stack8Var2 + resource_handle_offset) + struct_offset_1),
+    func_result_var = validate_resource_handle_identifier(*(uint64 *)(*(longlong *)(systemResourceHandle + resource_handle_offset) + struct_offset_1),
                                 resource_handle_id + resource_handle_offset);
     if ((int)func_result_var == 0) {
       func_result_var = utilityAcquireResourceHandle(*(uint64 *)(resource_buffer + resource_handle_data_off),resource_handle_id);
@@ -5133,17 +5133,17 @@ uint64 utilityGetResourceInformation(longlong resource_handle_id,longlong resour
   longlong long_value;
   ulonglong iteration_index;
   ulonglong unsigned_var_9;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
   if (resource_handle_id + byteOffsetFlag == 0) {
     return ERROR_CODE_FAILED;
   }
-  loop_counter = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  loop_counter = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if ((int)loop_counter == 0) {
     validation_result = 0;
     iteration_index = validation_result;
-    if (long_stack8Var2 != 0) {
-      iteration_index = long_stack8Var2 - 8;
+    if (systemResourceHandle != 0) {
+      iteration_index = systemResourceHandle - 8;
     }
     unsigned_var_9 = validation_result;
     if (0 < *(int *)(iteration_index + secondByteOffset)) {
@@ -5267,15 +5267,15 @@ uint64 utilityProcessResourceTransaction(longlong resource_handle_id,longlong re
   int operation_status;
   uint64 loop_counter;
   longlong array_handle_data;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  loop_counter = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  loop_counter = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if ((int)loop_counter != 0) {
     return loop_counter;
   }
-  array_handle_data = long_stack8Var2;
-  if (long_stack8Var2 != 0) {
-    array_handle_data = long_stack8Var2 + -8;
+  array_handle_data = systemResourceHandle;
+  if (systemResourceHandle != 0) {
+    array_handle_data = systemResourceHandle + -8;
   }
   operation_status = *(int *)(resource_handle_id + resource_handle_offset);
   if ((localStatus < 0) || (*(int *)(array_handle_data + secondByteOffset) <= localStatus)) {
@@ -5293,9 +5293,9 @@ uint64 utilityProcessResourceTransaction(longlong resource_handle_id,longlong re
     return 0;
   }
   if ((*(int *)(array_handle_data + SYS_STATUS_OFFSET1) != 0) || (*(int *)(array_handle_data + SYS_STATUS_OFFSET2) != 0)) {
-    long_stack8Var2 = 0;
-    utilityPrepareResourceOperation(&long_stack8Var2long_stack8Var2);
-    if (long_stack8Var2 == *(longlong *)((longlong)*(int *)(array_handle_data + SYSTEM_INDEX_OFFSET) * 8 + 0x180c4f450)) {
+    systemResourceHandle = 0;
+    utilityPrepareResourceOperation(&systemResourceHandlesystemResourceHandle);
+    if (systemResourceHandle == *(longlong *)((longlong)*(int *)(array_handle_data + SYSTEM_INDEX_OFFSET) * 8 + 0x180c4f450)) {
       loop_counter = utilityExecuteResourceOperation(array_handle_data,resource_handle_id);
       goto process_resource_handle;
     }
@@ -5561,10 +5561,10 @@ uint64 utilityHandleResourceResponse(longlong resource_handle_id,longlong resour
   longlong temp_buffer;
   uint64 loop_counter;
   float float_secondary_value;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   longlong astackMemoryOffset18 [2];
   
-  long_stack8Var2 = CONCAT44(long_stack8Var2._4_4_,*(uint *)(resource_handle_id + PTR_DATA_OFFSET));
+  systemResourceHandle = CONCAT44(systemResourceHandle._4_4_,*(uint *)(resource_handle_id + PTR_DATA_OFFSET));
   if ((*(uint *)(resource_handle_id + PTR_DATA_OFFSET) & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
     return ERROR_CODE_5;
   }
@@ -5576,13 +5576,13 @@ uint64 utilityHandleResourceResponse(longlong resource_handle_id,longlong resour
     else {
       astackMemoryOffset18[0] = astackMemoryOffset18[0] + -8;
     }
-    long_stack8Var2 = 0;
-    loop_counter = utilityProcessResourceData(astackMemoryOffset18[0],resource_handle_id + resource_handle_offset,&long_stack8Var2long_stack8Var2);
+    systemResourceHandle = 0;
+    loop_counter = utilityProcessResourceData(astackMemoryOffset18[0],resource_handle_id + resource_handle_offset,&systemResourceHandlesystemResourceHandle);
     if ((int)loop_counter == 0) {
-      if (long_stack8Var2 == 0) {
+      if (systemResourceHandle == 0) {
         return ERROR_CODE_INVALID;
       }
-      temp_buffer = *(longlong *)(long_stack8Var2 + resource_handle_data_off);
+      temp_buffer = *(longlong *)(systemResourceHandle + resource_handle_data_off);
       if (temp_buffer == 0) {
         return SUCCESS_CODE;
       }
@@ -5596,7 +5596,7 @@ uint64 utilityHandleResourceResponse(longlong resource_handle_id,longlong resour
         float_secondary_value = float_temp;
       }
       *(float *)(resource_handle_id + PTR_DATA_OFFSET) = float_secondary_value;
-      *(float *)(long_stack8Var2 + 4) = float_secondary_value;
+      *(float *)(systemResourceHandle + 4) = float_secondary_value;
                     // WARNING: Subroutine does not return
       utilityReleaseResourceHandle(*(uint64 *)(resource_buffer + resource_handle_data_off),resource_handle_id);
     }
@@ -5612,7 +5612,7 @@ uint64 utilityProcessResourceResult(longlong resource_handle_id,longlong resourc
   float float_temp;
   longlong temp_buffer;
   uint64 loop_counter;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   longlong astackMemoryOffset18 [2];
   
   loop_counter = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),astackMemoryOffset18);
@@ -5623,13 +5623,13 @@ uint64 utilityProcessResourceResult(longlong resource_handle_id,longlong resourc
     else {
       astackMemoryOffset18[0] = astackMemoryOffset18[0] + -8;
     }
-    long_stack8Var2 = 0;
-    loop_counter = utilityProcessResourceData(astackMemoryOffset18[0],resource_handle_id + resource_handle_offset,&long_stack8Var2long_stack8Var2);
+    systemResourceHandle = 0;
+    loop_counter = utilityProcessResourceData(astackMemoryOffset18[0],resource_handle_id + resource_handle_offset,&systemResourceHandlesystemResourceHandle);
     if ((int)loop_counter == 0) {
-      if (long_stack8Var2 == 0) {
+      if (systemResourceHandle == 0) {
         return ERROR_CODE_INVALID;
       }
-      temp_buffer = *(longlong *)(long_stack8Var2 + resource_handle_data_off);
+      temp_buffer = *(longlong *)(systemResourceHandle + resource_handle_data_off);
       if (temp_buffer == 0) {
         return SUCCESS_CODE;
       }
@@ -5642,7 +5642,7 @@ uint64 utilityProcessResourceResult(longlong resource_handle_id,longlong resourc
         if ((*(float *)(temp_buffer + struct_size_offset) <= float_temp) &&
            (float_temp < *(float *)(temp_buffer + RESOURCE_PROP_OFFSET) || float_temp == *(float *)(temp_buffer + RESOURCE_PROP_OFFSET))) {
           loop_counter = *(uint64 *)(resource_buffer + resource_handle_data_off);
-          *(float *)(long_stack8Var2 + 4) = float_temp;
+          *(float *)(systemResourceHandle + 4) = float_temp;
                     // WARNING: Subroutine does not return
           utilityReleaseResourceHandle(loop_counter,resource_handle_id);
         }
@@ -5923,19 +5923,19 @@ uint64 utilityExecuteResourceTask(longlong resource_handle_id,longlong resource_
   longlong memory_offset_data;
   uint64 cpu_register;
   float float_secondary_value;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  long_stack8Var2 = CONCAT44(long_stack8Var2._4_4_,*(uint *)(resource_handle_id + PTR_DATA_OFFSET));
+  systemResourceHandle = CONCAT44(systemResourceHandle._4_4_,*(uint *)(resource_handle_id + PTR_DATA_OFFSET));
   if ((*(uint *)(resource_handle_id + PTR_DATA_OFFSET) & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
     return ERROR_CODE_5;
   }
-  system_status = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  system_status = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if ((int)system_status != 0) {
     return system_status;
   }
-  memory_offset_data = long_stack8Var2;
-  if (long_stack8Var2 != 0) {
-    memory_offset_data = long_stack8Var2 + -8;
+  memory_offset_data = systemResourceHandle;
+  if (systemResourceHandle != 0) {
+    memory_offset_data = systemResourceHandle + -8;
   }
   operation_status = *(int *)(resource_handle_id + resource_handle_offset);
   if ((operation_status < 0) || (*(int *)(memory_offset_data + secondByteOffset) <= operation_status)) {
@@ -5961,9 +5961,9 @@ uint64 utilityExecuteResourceTask(longlong resource_handle_id,longlong resource_
     }
     memory_offset_data = *(longlong *)(resource_buffer + resource_handle_data_off);
     if ((*(int *)(memory_offset_data + SYS_STATUS_OFFSET1) != 0) || (*(int *)(memory_offset_data + SYS_STATUS_OFFSET2) != 0)) {
-      long_stack8Var2 = 0;
-      utilityPrepareResourceOperation(&long_stack8Var2long_stack8Var2,resource_handle_id,resourceOperationFlags,resourceCallbackFunction,cpu_register);
-      if (long_stack8Var2 == *(longlong *)((longlong)*(int *)(memory_offset_data + SYSTEM_INDEX_OFFSET) * 8 + 0x180c4f450)) {
+      systemResourceHandle = 0;
+      utilityPrepareResourceOperation(&systemResourceHandlesystemResourceHandle,resource_handle_id,resourceOperationFlags,resourceCallbackFunction,cpu_register);
+      if (systemResourceHandle == *(longlong *)((longlong)*(int *)(memory_offset_data + SYSTEM_INDEX_OFFSET) * 8 + 0x180c4f450)) {
         system_status = utilityExecuteResourceOperation(memory_offset_data,resource_handle_id);
         if ((int)system_status == 0) {
           return 0;
@@ -6231,32 +6231,32 @@ uint64 utilityExecuteResourceCycleTask(longlong resource_handle_id,longlong reso
   uint64 loop_counter;
   longlong array_handle_data;
   uint64 cpu_register;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
   float_temp = *(float *)(resource_handle_id + resource_handle_offset);
-  long_stack8Var2 = CONCAT44(long_stack8Var2._4_4_,float_temp);
+  systemResourceHandle = CONCAT44(systemResourceHandle._4_4_,float_temp);
   if (((uint)float_temp & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
     return ERROR_CODE_5;
   }
   if ((float_temp < 0.0) || (3.4028235e+38 <= float_temp)) {
     return ERROR_CODE_FAILED;
   }
-  loop_counter = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  loop_counter = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if ((int)loop_counter != 0) {
     return loop_counter;
   }
-  if (long_stack8Var2 == 0) {
+  if (systemResourceHandle == 0) {
     array_handle_data = 0;
   }
   else {
-    array_handle_data = long_stack8Var2 + -8;
+    array_handle_data = systemResourceHandle + -8;
   }
   *(uint32 *)(array_handle_data + MEMORY_SIZE_OFFSET) = *(uint32 *)(resource_handle_id + resource_handle_offset);
   array_handle_data = *(longlong *)(resource_buffer + resource_handle_data_off);
   if ((*(int *)(array_handle_data + SYS_STATUS_OFFSET1) != 0) || (*(int *)(array_handle_data + SYS_STATUS_OFFSET2) != 0)) {
-    long_stack8Var2 = 0;
-    utilityPrepareResourceOperation(&long_stack8Var2long_stack8Var2,resource_handle_id,resourceOperationFlags,resourceCallbackFunction,cpu_register);
-    if (long_stack8Var2 == *(longlong *)((longlong)*(int *)(array_handle_data + SYSTEM_INDEX_OFFSET) * 8 + 0x180c4f450)) {
+    systemResourceHandle = 0;
+    utilityPrepareResourceOperation(&systemResourceHandlesystemResourceHandle,resource_handle_id,resourceOperationFlags,resourceCallbackFunction,cpu_register);
+    if (systemResourceHandle == *(longlong *)((longlong)*(int *)(array_handle_data + SYSTEM_INDEX_OFFSET) * 8 + 0x180c4f450)) {
       loop_counter = utilityExecuteResourceOperation(array_handle_data,resource_handle_id);
       if ((int)loop_counter == 0) {
         return 0;
@@ -6280,10 +6280,10 @@ uint64 utilityHandleResourceCycleResponse(longlong resource_handle_id,longlong r
   float float_temp;
   uint64 loop_counter;
   longlong array_handle_data;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
   float_temp = *(float *)(resource_handle_id + byteOffsetFlag);
-  long_stack8Var2 = CONCAT44(long_stack8Var2._4_4_,float_temp);
+  systemResourceHandle = CONCAT44(systemResourceHandle._4_4_,float_temp);
   if (((uint)float_temp & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
     return ERROR_CODE_5;
   }
@@ -6313,19 +6313,19 @@ code_r0x00018089322c:
   if ((int)loop_counter != 0) {
     return loop_counter;
   }
-  if (long_stack8Var2 == 0) {
+  if (systemResourceHandle == 0) {
     array_handle_data = 0;
   }
   else {
-    array_handle_data = long_stack8Var2 + -8;
+    array_handle_data = systemResourceHandle + -8;
   }
   *(uint32 *)(array_handle_data + 0xa4 + (longlong)*(int *)(resource_handle_id + resource_handle_offset) * 4) =
        *(uint32 *)(resource_handle_id + byteOffsetFlag);
   array_handle_data = *(longlong *)(resource_buffer + resource_handle_data_off);
   if ((*(int *)(array_handle_data + SYS_STATUS_OFFSET1) != 0) || (*(int *)(array_handle_data + SYS_STATUS_OFFSET2) != 0)) {
-    long_stack8Var2 = 0;
-    utilityPrepareResourceOperation(&long_stack8Var2long_stack8Var2);
-    if (long_stack8Var2 == *(longlong *)((longlong)*(int *)(array_handle_data + SYSTEM_INDEX_OFFSET) * 8 + 0x180c4f450)) {
+    systemResourceHandle = 0;
+    utilityPrepareResourceOperation(&systemResourceHandlesystemResourceHandle);
+    if (systemResourceHandle == *(longlong *)((longlong)*(int *)(array_handle_data + SYSTEM_INDEX_OFFSET) * 8 + 0x180c4f450)) {
       loop_counter = utilityExecuteResourceOperation(array_handle_data,resource_handle_id);
       if ((int)loop_counter == 0) {
         return 0;
@@ -6348,12 +6348,12 @@ uint64 utilityProcessResourceCycleResult(longlong resource_handle_id,longlong re
 {
   uint64 func_result_var;
   longlong temp_buffer;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
   if (3 < *(uint *)(resource_handle_id + resource_handle_offset)) {
     return ERROR_CODE_FAILED;
   }
-  long_stack8Var2 = CONCAT44(long_stack8Var2._4_4_,*(uint *)(resource_handle_id + byteOffsetFlag));
+  systemResourceHandle = CONCAT44(systemResourceHandle._4_4_,*(uint *)(resource_handle_id + byteOffsetFlag));
   if ((*(uint *)(resource_handle_id + byteOffsetFlag) & FLOAT_INFINITY_MASK) == FLOAT_INFINITY_MASK) {
     return ERROR_CODE_5;
   }
@@ -6361,19 +6361,19 @@ uint64 utilityProcessResourceCycleResult(longlong resource_handle_id,longlong re
   if ((int)func_result_var != 0) {
     return func_result_var;
   }
-  if (long_stack8Var2 == 0) {
+  if (systemResourceHandle == 0) {
     temp_buffer = 0;
   }
   else {
-    temp_buffer = long_stack8Var2 + -8;
+    temp_buffer = systemResourceHandle + -8;
   }
   *(uint32 *)(temp_buffer + 0x94 + (longlong)*(int *)(resource_handle_id + resource_handle_offset) * 4) =
        *(uint32 *)(resource_handle_id + byteOffsetFlag);
   temp_buffer = *(longlong *)(resource_buffer + resource_handle_data_off);
   if ((*(int *)(temp_buffer + SYS_STATUS_OFFSET1) != 0) || (*(int *)(temp_buffer + SYS_STATUS_OFFSET2) != 0)) {
-    long_stack8Var2 = 0;
-    utilityPrepareResourceOperation(&long_stack8Var2long_stack8Var2);
-    if (long_stack8Var2 == *(longlong *)((longlong)*(int *)(temp_buffer + SYSTEM_INDEX_OFFSET) * 8 + 0x180c4f450)) {
+    systemResourceHandle = 0;
+    utilityPrepareResourceOperation(&systemResourceHandlesystemResourceHandle);
+    if (systemResourceHandle == *(longlong *)((longlong)*(int *)(temp_buffer + SYSTEM_INDEX_OFFSET) * 8 + 0x180c4f450)) {
       func_result_var = utilityExecuteResourceOperation(temp_buffer,resource_handle_id);
       if ((int)func_result_var == 0) {
         return 0;
@@ -6426,15 +6426,15 @@ void utilityOptimizeResourceCycle(longlong resource_handle_id,longlong resource_
 
 {
   int operation_status;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  operation_status = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  operation_status = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if (operation_status == 0) {
-    if (long_stack8Var2 != 0) {
-      long_stack8Var2 = long_stack8Var2 + -8;
+    if (systemResourceHandle != 0) {
+      systemResourceHandle = systemResourceHandle + -8;
     }
-    *(int *)(long_stack8Var2 + 0x84) = *(int *)(long_stack8Var2 + 0x84) + 1;
-    *(byte *)(long_stack8Var2 + 0xbd) = 1;
+    *(int *)(systemResourceHandle + 0x84) = *(int *)(systemResourceHandle + 0x84) + 1;
+    *(byte *)(systemResourceHandle + 0xbd) = 1;
                     // WARNING: Subroutine does not return
     utilityReleaseResourceHandle(*(uint64 *)(resource_buffer + resource_handle_data_off),resource_handle_id);
   }
@@ -6449,15 +6449,15 @@ void utilityCompleteResourceCycle(longlong resource_handle_id,longlong resource_
 
 {
   int operation_status;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  operation_status = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+  operation_status = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
   if (operation_status == 0) {
-    if (long_stack8Var2 != 0) {
-      long_stack8Var2 = long_stack8Var2 + -8;
+    if (systemResourceHandle != 0) {
+      systemResourceHandle = systemResourceHandle + -8;
     }
-    *(int *)(long_stack8Var2 + 0x84) = *(int *)(long_stack8Var2 + 0x84) + 1;
-    *(byte *)(long_stack8Var2 + 0xbd) = 0;
+    *(int *)(systemResourceHandle + 0x84) = *(int *)(systemResourceHandle + 0x84) + 1;
+    *(byte *)(systemResourceHandle + 0xbd) = 0;
                     // WARNING: Subroutine does not return
     utilityReleaseResourceHandle(*(uint64 *)(resource_buffer + resource_handle_data_off),resource_handle_id);
   }
@@ -6606,11 +6606,11 @@ void utilityTrackResourceCycle(longlong resource_handle_id,longlong resource_buf
 
 {
   int operation_status;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
-  operation_status = utilityAnalyzeResourceData(resource_buffer,resource_handle_id + resource_handle_data_off,&long_stack8Var2long_stack8Var2);
+  operation_status = utilityAnalyzeResourceData(resource_buffer,resource_handle_id + resource_handle_data_off,&systemResourceHandlesystemResourceHandle);
   if (operation_status == 0) {
-    operation_status = validate_resource_handle_identifier(*(uint64 *)(long_stack8Var2 + struct_offset_1),resource_handle_id + PTR_DATA_OFFSET);
+    operation_status = validate_resource_handle_identifier(*(uint64 *)(systemResourceHandle + struct_offset_1),resource_handle_id + PTR_DATA_OFFSET);
     if (operation_status == 0) {
       utilityAcquireResourceHandle(*(uint64 *)(resource_buffer + resource_handle_data_off),resource_handle_id);
     }
@@ -6649,16 +6649,16 @@ int bind_network_socket(longlong resource_handle_id,longlong resource_buffer)
 {
   int operation_status;
   longlong temp_buffer;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
   if ((((*(longlong *)(resource_handle_id + secondByteOffset) != 0) && (*(longlong *)(resource_handle_id + first_field_offset) != 0)) &&
       (*(longlong *)(resource_handle_id + struct_size_offset) != 0)) && (*(longlong *)(resource_handle_id + bufferSizeDataOffset) != 0)) {
     if (*(int *)(resource_handle_id + PTR_DATA_OFFSET) < 1) {
       operation_status = allocateSystemMemory(resource_buffer,resource_handle_id + ERROR_CODE_2);
       if ((localStatus == 0) &&
-         (operation_status = SystemMemoryFunction(*(uint32 *)(resource_handle_id + ERROR_CODE_2),&long_stack8Var2long_stack8Var2), localStatus == 0)) {
-        if (*(int *)(long_stack8Var2 + first_field_offset) == 1) {
-          *(uint32 *)(long_stack8Var2 + first_field_offset) = 2;
+         (operation_status = SystemMemoryFunction(*(uint32 *)(resource_handle_id + ERROR_CODE_2),&systemResourceHandlesystemResourceHandle), localStatus == 0)) {
+        if (*(int *)(systemResourceHandle + first_field_offset) == 1) {
+          *(uint32 *)(systemResourceHandle + first_field_offset) = 2;
         }
                     // WARNING: Subroutine does not return
         utilityReleaseResourceHandle(*(uint64 *)(resource_buffer + resource_handle_data_off),resource_handle_id);
@@ -6737,14 +6737,14 @@ void listen_network_socket(longlong resource_handle_id,longlong resource_buffer)
 
 {
   int operation_status;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
   operation_status = allocateSystemMemory(resource_buffer,resource_handle_id + resource_handle_data_off);
   if (operation_status == 0) {
-    operation_status = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&long_stack8Var2long_stack8Var2);
+    operation_status = SystemMemoryFunction(*(uint32 *)(resource_handle_id + resource_handle_data_off),&systemResourceHandlesystemResourceHandle);
     if (operation_status == 0) {
-      if (*(int *)(long_stack8Var2 + first_field_offset) == 1) {
-        *(uint32 *)(long_stack8Var2 + first_field_offset) = 2;
+      if (*(int *)(systemResourceHandle + first_field_offset) == 1) {
+        *(uint32 *)(systemResourceHandle + first_field_offset) = 2;
       }
                     // WARNING: Subroutine does not return
       utilityReleaseResourceHandle(*(uint64 *)(resource_buffer + resource_handle_data_off),resource_handle_id);
@@ -6764,7 +6764,7 @@ int accept_network_connection(longlong resource_handle_id,longlong resource_buff
   uint func_result_var;
   int operation_status;
   longlong array_handle_data;
-  longlong long_stack8Var2;
+  longlong systemResourceHandle;
   
   func_result_var = *(uint *)(resource_handle_id + byteOffsetFlag);
   if ((((func_result_var != 1) || ((*(byte *)(resource_handle_id + resource_handle_data_off) & ERROR_CODE_FAILED) == 0)) && (0 < *(int *)(resource_handle_id + resource_handle_offset))
@@ -6781,9 +6781,9 @@ int accept_network_connection(longlong resource_handle_id,longlong resource_buff
     else {
       operation_status = allocateSystemMemory(resource_buffer,resource_handle_id + FIELD_OFFSET_3);
       if ((operation_status == 0) &&
-         (operation_status = SystemMemoryFunction(*(uint32 *)(resource_handle_id + FIELD_OFFSET_3),&long_stack8Var2long_stack8Var2), operation_status == 0)) {
-        if (*(int *)(long_stack8Var2 + first_field_offset) == 1) {
-          *(uint32 *)(long_stack8Var2 + first_field_offset) = 2;
+         (operation_status = SystemMemoryFunction(*(uint32 *)(resource_handle_id + FIELD_OFFSET_3),&systemResourceHandlesystemResourceHandle), operation_status == 0)) {
+        if (*(int *)(systemResourceHandle + first_field_offset) == 1) {
+          *(uint32 *)(systemResourceHandle + first_field_offset) = 2;
         }
                     // WARNING: Subroutine does not return
         utilityReleaseResourceHandle(*(uint64 *)(resource_buffer + resource_handle_data_off),resource_handle_id);
@@ -16225,7 +16225,7 @@ ulonglong ProcessCallbackRequest(longlong resource_handle_id,longlong *memoryBlo
   ulonglong validation_result;
   uint systemFlagsData;
   ulonglong iteration_index;
-  char temp_bufferVar2 [8];
+  char temp_buffer_security [8];
   uint stackArray20 [2];
   byte localBuffer [32];
   
@@ -16271,7 +16271,7 @@ ulonglong ProcessCallbackRequest(longlong resource_handle_id,longlong *memoryBlo
     }
     else if (resource_data_buffer_pointer[2] == 0) {
 LAB_VALIDATE_RESOURCE_BOUNDARY:
-      system_status = read_resource_data(*resource_data_buffer_pointer,temp_bufferVar2,1,1,0);
+      system_status = read_resource_data(*resource_data_buffer_pointer,temp_buffer_security,1,1,0);
     }
     else {
       stackArray20[0] = 0;
@@ -16283,8 +16283,8 @@ LAB_VALIDATE_RESOURCE_BOUNDARY:
     }
     systemFlagsData = 0;
     if (system_status == 0) {
-      systemFlagsData = (uint)(temp_bufferVar2[0] != '\0');
-      loop_counter = (uint)(temp_bufferVar2[0] == '\0');
+      systemFlagsData = (uint)(temp_buffer_security[0] != '\0');
+      loop_counter = (uint)(temp_buffer_security[0] == '\0');
       system_status = 0;
     }
     if (system_status != 0) {
@@ -80310,7 +80310,7 @@ void g_register_memory_handler(void)
 void g_configure_memory_settings(void)
 
 {
-  _g_system_statusFlag1 = &threadLocalStorageCleanup;
+  _g_system_status_flag_initialization = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80708,8 +80708,8 @@ void systemInitializeComponents(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void g_initializeSystemModule1(void)
-void g_initializeSystemModule1(void)
+// 函数: void g_initialize_system_module_core(void)
+void g_initialize_system_module_core(void)
 
 {
   _g_systemModuleData10 = &threadLocalStorageCleanup;
@@ -80721,11 +80721,11 @@ void g_initializeSystemModule1(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void g_initializeSystemModule2(void)
-void g_initializeSystemModule2(void)
+// 函数: void g_initialize_system_module_network(void)
+void g_initialize_system_module_network(void)
 
 {
-  _g_bufferModuleConfig4 = &threadLocalStorageCleanup;
+  _g_buffer_module_config_size = &threadLocalStorageCleanup;
   return;
 }
 
@@ -80734,8 +80734,8 @@ void g_initializeSystemModule2(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void g_initializeSystemModule3(void)
-void g_initializeSystemModule3(void)
+// 函数: void g_initialize_system_module_thread_sync(void)
+void g_initialize_system_module_thread_sync(void)
 
 {
   _g_systemModuleData14 = &threadLocalStorageCleanup;
@@ -80963,7 +80963,7 @@ void materialTextureSamplerInitialize(void)
 void materialPropertyBufferInitialize(void)
 
 {
-  _g_materialTextureWorkBuffer2 = &threadLocalStorageCleanup;
+  _g_material_texture_work_buffer_secondary = &threadLocalStorageCleanup;
   return;
 }
 
@@ -81804,7 +81804,7 @@ void resourceHashData(void)
 void resourceVerifyHash(void)
 
 {
-  _systemVar9bf0 = &threadLocalStorageCleanup;
+  _systemEventHandle = &threadLocalStorageCleanup;
   return;
 }
 
