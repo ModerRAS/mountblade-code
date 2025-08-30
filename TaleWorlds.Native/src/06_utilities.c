@@ -155,6 +155,8 @@
 // 104. 将0xffffffff00000000替换为UTILITY_MEMORY_MASK_HIGH等内存掩码常量
 // 105. 将-0x3ffffffb替换为UTILITY_HANDLE_CHECK_VALUE等句柄检查值常量
 // 106. 将-0x565dff77替换为UTILITY_RESOURCE_MASK_OFFSET等资源掩码偏移量常量
+// 107. 将unaff_EBP替换为UTILITY_REGISTER_EBP等寄存器变量名
+// 108. 将unaff_BPL替换为UTILITY_REGISTER_BPL等寄存器变量名
 // 65. 将utility_stack_working_buffer_30替换为utility_stack_working_buffer_primary_30等工作缓冲区变量名
 // 66. 将float_array_stack_348替换为utility_stack_float_array_buffer_348等浮点数组变量名
 // 67. 将float_array_stack_308替换为utility_stack_float_array_buffer_308等浮点数组变量名
