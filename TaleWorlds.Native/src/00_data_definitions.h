@@ -108,6 +108,14 @@
 // - 新增美化内容：将变量名如 section_header_ptr -> image_section_header_pointer
 // - 新增美化内容：将变量名如 system_section_end -> system_image_section_end
 // - 新增美化内容：将变量名如 label_ -> section_processing_jump_label_
+// - 新增美化内容：将变量名如 resource_buffer_1 -> texture_resource_buffer
+// - 新增美化内容：将变量名如 resource_buffer_2 -> shader_resource_buffer_primary
+// - 新增美化内容：将变量名如 resource_buffer_3 -> shader_resource_buffer_secondary
+// - 新增美化内容：将变量名如 resource_buffer_4 -> audio_resource_buffer
+// - 新增美化内容：将变量名如 resource_buffer_5 -> font_resource_buffer
+// - 新增美化内容：将变量名如 resource_buffer_6 -> model_resource_buffer
+// - 新增美化内容：将变量名如 resource_type_1 -> texture_resource_type
+// - 新增美化内容：将变量名如 global_data_ptr -> shader_resource_flag/audio_resource_flag等语义化名称
 // - 这是简化实现，主要处理了变量名和函数名的语义化替换
 
 // 系统常量定义
