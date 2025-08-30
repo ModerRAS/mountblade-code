@@ -455,8 +455,8 @@
 // #define SYSTEM_INIT_OFFSET_REMOVED
 // 偏移量常量（已移除）
 // #define SYSTEM_INIT_OFFSET_REMOVED
-#define                0x30    // 偏移量
-#define SYSTEM_INIT_VALUE_SPECIAL_BB80073     // 特殊值BB80073
+#define SYSTEM_INIT_OFFSET_STRUCT_0X30_REPLACEMENT    0x30    // 偏移量
+#define SYSTEM_INIT_VALUE_SPECIAL_BB80073_FIX     0xbb80073     // 特殊值BB80073修复
 // 偏移量常量（已移除）
 // #define SYSTEM_INIT_OFFSET_REMOVED
 // 偏移量常量（已移除）
@@ -469,17 +469,17 @@
 // #define SYSTEM_INIT_OFFSET_REMOVED
 // 偏移量常量（已移除）
 // #define SYSTEM_INIT_OFFSET_REMOVED
-#define                0x60    // 偏移量
+#define SYSTEM_INIT_OFFSET_STRUCT_0X60_REPLACEMENT    0x60    // 偏移量
 // 偏移量常量（已移除）
 // #define SYSTEM_INIT_OFFSET_REMOVED
 // 偏移量常量（已移除）
 // #define SYSTEM_INIT_OFFSET_REMOVED
-#define                0x50    // 偏移量
+#define SYSTEM_INIT_OFFSET_STRUCT_0X50_REPLACEMENT    0x50    // 偏移量
 // 偏移量常量（已移除）
 // #define SYSTEM_INIT_OFFSET_REMOVED
 // 偏移量常量（已移除）
 // #define SYSTEM_INIT_OFFSET_REMOVED
-#define                0x30    // 偏移量
+#define SYSTEM_INIT_OFFSET_STRUCT_0X30_REPLACEMENT2    0x30    // 偏移量
 #define                SYSTEM_INIT_SIZE_0X38    // 偏移量SYSTEM_INIT_SIZE_0X38SYSTEM_INIT_SIZE_0X38
 
 #define SYSTEM_INIT_MAGIC_COOKIE_SYSTEM_1       0x53595354454d5f31 // 系统魔法cookie 1
