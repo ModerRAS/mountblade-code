@@ -377,14 +377,28 @@
 #define SYSTEM_BIT_MASK_LARGE_SEGMENT_ALIGNMENT 0x20000           // 大段对齐掩码
 #define SYSTEM_BIT_MASK_LARGE_BLOCK_ALIGNMENT 0x40000              // 大块对齐掩码
 #define SYSTEM_BIT_MASK_SUPER_BLOCK_ALIGNMENT 0x80000              // 超级块对齐掩码
+// 超大位掩码语义化常量定义
 #define SYSTEM_BIT_MASK_0x100000 0x100000
 #define SYSTEM_BIT_MASK_0x200000 0x200000
 #define SYSTEM_BIT_MASK_0x400000 0x400000
 #define SYSTEM_BIT_MASK_0x800000 0x800000
+
+// 超大位掩码语义化常量定义
+#define SYSTEM_BIT_MASK_MEGA_SECTION_ALIGNMENT 0x100000           // 兆节对齐掩码
+#define SYSTEM_BIT_MASK_MEGA_SEGMENT_ALIGNMENT 0x200000          // 兆段对齐掩码
+#define SYSTEM_BIT_MASK_MEGA_BLOCK_ALIGNMENT 0x400000             // 兆块对齐掩码
+#define SYSTEM_BIT_MASK_GIGA_ALIGNMENT 0x800000                  // 千兆对齐掩码
+// 超级位掩码语义化常量定义
 #define SYSTEM_BIT_MASK_0x1000000 0x1000000
 #define SYSTEM_BIT_MASK_0x2000000 0x2000000
 #define SYSTEM_BIT_MASK_0x4000000 0x4000000
 #define SYSTEM_BIT_MASK_0x8000000 0x8000000
+
+// 超级位掩码语义化常量定义
+#define SYSTEM_BIT_MASK_HUGE_SECTION_ALIGNMENT 0x1000000          // 巨节对齐掩码
+#define SYSTEM_BIT_MASK_HUGE_SEGMENT_ALIGNMENT 0x2000000         // 巨段对齐掩码
+#define SYSTEM_BIT_MASK_HUGE_BLOCK_ALIGNMENT 0x4000000            // 巨块对齐掩码
+#define SYSTEM_BIT_MASK_ULTRA_ALIGNMENT 0x8000000                 // 超级对齐掩码
 
 // 系统地址常量定义
 #define SYSTEM_ADDRESS_BASE 0x180000000
@@ -1060,7 +1074,7 @@
 // - 新增美化内容：将变量名如 system_data_buffer_0 -> system_data_buffer_primary
 // - 新增美化内容：将变量名如 system_data_buffer_1 -> system_data_buffer_secondary
 // - 新增美化内容：将变量名如 thread_data_buffer_char -> thread_data_buffer_character
-// - 新增美化内容：将变量名如 pfloat_var -> pointer_float_variable
+// - 新增美化内容：将变量名如 semantic_float_ptr -> pointer_float_variable
 // - 新增美化内容：将变量名如 CONCAT71 -> CONCAT_BYTES_TO_64BIT
 // - 新增美化内容：将变量名如 section_header_ptr -> image_section_header_pointer
 // - 新增美化内容：将变量名如 system_section_end -> system_image_section_end
@@ -7015,7 +7029,7 @@ unsigned long long process_system_request(unsigned long long *handle_param)
     byte_string_input_pointer = (byte *)*handle_param;
     temporary_buffer_secondary_second_long_ = SYSTEM_ZERO_VALUE;
     temporary_buffer_secondary_first_long_ = handle_param[1];
-    pfloat_var = sub_long_long(zero_ext_long(floating_point_conversion_constant) * temporary_buffer_secondary,0);
+    semantic_float_ptr = sub_long_long(zero_ext_long(floating_point_conversion_constant) * temporary_buffer_secondary,0);
     buffer_allocation_result = (ulong long)handle_param[1] / 3;
     if (0 < (int)buffer_allocation_result) {
       buffer_allocation_result = buffer_allocation_result & UINT32_MAX;
@@ -7037,20 +7051,20 @@ unsigned long long process_system_request(unsigned long long *handle_param)
       } while (buffer_allocation_result != 0);
     }
   }
-  return CONCAT_BYTES_TO_64BIT((int7)((ulong long)pfloat_var >> 8),1);
+  return CONCAT_BYTES_TO_64BIT((int7)((ulong long)semantic_float_ptr >> 8),1);
 }
 unsigned long long handle_param_system_callback(unsigned long long *handle_param)
 {
-  float *pfloat_var;
-  float *pfloat_var;
-  float *pfloat_var;
+  float *semantic_float_ptr;
+  float *semantic_float_ptr;
+  float *semantic_float_ptr;
   float *color_float_ptr;
-  float *pfloat_var;
-  float *pfloat_var;
-  float *pfloat_var;
-  float *pfloat_var;
-  float *pfloat_var;
-  float *pfloat_var;
+  float *semantic_float_ptr;
+  float *semantic_float_ptr;
+  float *semantic_float_ptr;
+  float *semantic_float_ptr;
+  float *semantic_float_ptr;
+  float *semantic_float_ptr;
   float *color_float_ptr;
   float system_float_variable;
   uint buffer_allocation_result;
@@ -7076,24 +7090,24 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
       str_len_counter = (ulong long)buffer_allocation_result * 4;
       thread_result_status = buffer_allocation_result * 4;
       do {
-        pfloat_var = pfloat_var + 3;
-        system_float_variable = *pfloat_var;
-        pfloat_var = pfloat_var + 6;
+        semantic_float_ptr = semantic_float_ptr + 3;
+        system_float_variable = *semantic_float_ptr;
+        semantic_float_ptr = semantic_float_ptr + 6;
         color_float_ptr = color_float_ptr + 7;
         color_float_ptr = color_float_ptr + 5;
         color_float_ptr = color_float_ptr + 9;
         color_float_ptr = color_float_ptr + 10;
         color_float_ptr = color_float_ptr + SYSTEM_OFFSET_HANDLE_PARAM;
-        pfloat_var = pfloat_var + 1;
-        pfloat_var = pfloat_var + 2;
-        pfloat_var = pfloat_var + 8;
-        pfloat_var = pfloat_var + 0xb;
-        pfloat_var = pfloat_var + 0xc;
-        color_luminance_accumulator = color_luminance_accumulator + (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_RED + (double)system_float_variable * SYSTEM_COLOR_WEIGHT_RED +
-                          (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_RED + (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_RED +
-                          (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN +
-                          (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN + (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN +
-                          (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN +
+        semantic_float_ptr = semantic_float_ptr + 1;
+        semantic_float_ptr = semantic_float_ptr + 2;
+        semantic_float_ptr = semantic_float_ptr + 8;
+        semantic_float_ptr = semantic_float_ptr + 0xb;
+        semantic_float_ptr = semantic_float_ptr + 0xc;
+        color_luminance_accumulator = color_luminance_accumulator + (double)*semantic_float_ptr * SYSTEM_COLOR_WEIGHT_RED + (double)system_float_variable * SYSTEM_COLOR_WEIGHT_RED +
+                          (double)*semantic_float_ptr * SYSTEM_COLOR_WEIGHT_RED + (double)*semantic_float_ptr * SYSTEM_COLOR_WEIGHT_RED +
+                          (double)*semantic_float_ptr * SYSTEM_COLOR_WEIGHT_GREEN +
+                          (double)*semantic_float_ptr * SYSTEM_COLOR_WEIGHT_GREEN + (double)*semantic_float_ptr * SYSTEM_COLOR_WEIGHT_GREEN +
+                          (double)*semantic_float_ptr * SYSTEM_COLOR_WEIGHT_GREEN +
                           (double)*color_float_ptr * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT + (double)*color_float_ptr * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT +
                           (double)*color_float_ptr * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT + (double)*color_float_ptr * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT;
         buffer_allocation_result = buffer_allocation_result - 1;
@@ -7107,8 +7121,8 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
         color_float_ptr = color_float_ptr + -1;
         color_float_ptr = color_float_ptr + -2;
         system_float_variable = *color_float_ptr;
-        pfloat_var = pfloat_var + 3;
-        color_luminance_accumulator = color_luminance_accumulator + (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN + (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_RED +
+        semantic_float_ptr = semantic_float_ptr + 3;
+        color_luminance_accumulator = color_luminance_accumulator + (double)*semantic_float_ptr * SYSTEM_COLOR_WEIGHT_GREEN + (double)*semantic_float_ptr * SYSTEM_COLOR_WEIGHT_RED +
                           (double)system_float_variable * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT;
         buffer_allocation_result = buffer_allocation_result - 1;
       } while (buffer_allocation_result != 0);
@@ -7119,30 +7133,30 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
       buffer_allocation_result = (ulong long)buffer_allocation_result;
       thread_result_status = buffer_allocation_result * 4;
       do {
-        *pfloat_var = (float)((double)*pfloat_var * color_luminance_accumulator);
-        pfloat_var[1] = (float)((double)pfloat_var[1] * color_luminance_accumulator);
-        pfloat_var[2] = (float)((double)pfloat_var[2] * color_luminance_accumulator);
-        pfloat_var[3] = (float)((double)pfloat_var[3] * color_luminance_accumulator);
-        pfloat_var[4] = (float)((double)pfloat_var[4] * color_luminance_accumulator);
-        pfloat_var[5] = (float)((double)pfloat_var[5] * color_luminance_accumulator);
-        pfloat_var[6] = (float)((double)pfloat_var[6] * color_luminance_accumulator);
-        pfloat_var[7] = (float)((double)pfloat_var[7] * color_luminance_accumulator);
-        pfloat_var[8] = (float)((double)pfloat_var[8] * color_luminance_accumulator);
-        pfloat_var[9] = (float)((double)pfloat_var[9] * color_luminance_accumulator);
-        pfloat_var[10] = (float)((double)pfloat_var[10] * color_luminance_accumulator);
-        pfloat_var[0xb] = (float)((double)pfloat_var[0xb] * color_luminance_accumulator);
-        pfloat_var = pfloat_var + 0xc;
+        *semantic_float_ptr = (float)((double)*semantic_float_ptr * color_luminance_accumulator);
+        semantic_float_ptr[1] = (float)((double)semantic_float_ptr[1] * color_luminance_accumulator);
+        semantic_float_ptr[2] = (float)((double)semantic_float_ptr[2] * color_luminance_accumulator);
+        semantic_float_ptr[3] = (float)((double)semantic_float_ptr[3] * color_luminance_accumulator);
+        semantic_float_ptr[4] = (float)((double)semantic_float_ptr[4] * color_luminance_accumulator);
+        semantic_float_ptr[5] = (float)((double)semantic_float_ptr[5] * color_luminance_accumulator);
+        semantic_float_ptr[6] = (float)((double)semantic_float_ptr[6] * color_luminance_accumulator);
+        semantic_float_ptr[7] = (float)((double)semantic_float_ptr[7] * color_luminance_accumulator);
+        semantic_float_ptr[8] = (float)((double)semantic_float_ptr[8] * color_luminance_accumulator);
+        semantic_float_ptr[9] = (float)((double)semantic_float_ptr[9] * color_luminance_accumulator);
+        semantic_float_ptr[10] = (float)((double)semantic_float_ptr[10] * color_luminance_accumulator);
+        semantic_float_ptr[0xb] = (float)((double)semantic_float_ptr[0xb] * color_luminance_accumulator);
+        semantic_float_ptr = semantic_float_ptr + 0xc;
         buffer_allocation_result = buffer_allocation_result - 1;
       } while (buffer_allocation_result != 0);
     }
     if (thread_result_status < thread_result_status) {
-      pfloat_var = pfloat_var + 2;
+      semantic_float_ptr = semantic_float_ptr + 2;
       buffer_allocation_result = (ulong long)(uint)(thread_result_status - thread_result_status);
       do {
-        pfloat_var[-2] = (float)((double)pfloat_var[-2] * color_luminance_accumulator);
-        pfloat_var[-1] = (float)((double)pfloat_var[-1] * color_luminance_accumulator);
-        *pfloat_var = (float)((double)*pfloat_var * color_luminance_accumulator);
-        pfloat_var = pfloat_var + 3;
+        semantic_float_ptr[-2] = (float)((double)semantic_float_ptr[-2] * color_luminance_accumulator);
+        semantic_float_ptr[-1] = (float)((double)semantic_float_ptr[-1] * color_luminance_accumulator);
+        *semantic_float_ptr = (float)((double)*semantic_float_ptr * color_luminance_accumulator);
+        semantic_float_ptr = semantic_float_ptr + 3;
         buffer_allocation_result = buffer_allocation_result - 1;
       } while (buffer_allocation_result != 0);
     }
@@ -7152,51 +7166,51 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
       return 0;
     }
     thread_result_status = SYSTEM_ZERO_VALUE;
-    pfloat_var = (float *)*handle_param;
+    semantic_float_ptr = (float *)*handle_param;
     color_luminance_accumulator = SYSTEM_FLOAT_VALUE_ZERO;
     str_len_counter = SYSTEM_ZERO_VALUE;
     thread_result_status = SYSTEM_ZERO_VALUE;
     thread_result_status = (int)((ulong long)handle_param[1] >> 4);
-    pfloat_var = pfloat_var;
+    semantic_float_ptr = semantic_float_ptr;
     if (3 < thread_result_status) {
       buffer_allocation_result = (thread_result_status - 4U >> 2) + 1;
       buffer_allocation_result = (ulong long)buffer_allocation_result;
       str_len_counter = (ulong long)buffer_allocation_result * 4;
       thread_result_status = buffer_allocation_result * 4;
       do {
-        pfloat_var = pfloat_var + SYSTEM_OFFSET_HANDLE_PARAM;
-        system_float_variable = *pfloat_var;
-        pfloat_var = pfloat_var + 8;
-        pfloat_var = pfloat_var + 9;
-        pfloat_var = pfloat_var + 6;
-        pfloat_var = pfloat_var + 0xc;
-        pfloat_var = pfloat_var + 0xd;
-        pfloat_var = pfloat_var + 5;
-        pfloat_var = pfloat_var + 1;
-        pfloat_var = pfloat_var + 2;
-        pfloat_var = pfloat_var + 10;
-        pfloat_var = pfloat_var + 0xe;
-        pfloat_var = pfloat_var + SYSTEM_OFFSET_STRING_BUFFER_SIZE;
-        color_luminance_accumulator = color_luminance_accumulator + (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_RED + (double)system_float_variable * SYSTEM_COLOR_WEIGHT_RED +
-                          (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_RED + (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_RED +
-                          (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN +
-                          (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN + (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN +
-                          (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN +
-                          (double)*pfloat_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT + (double)*pfloat_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT +
-                          (double)*pfloat_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT + (double)*pfloat_var * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT;
+        semantic_float_ptr = semantic_float_ptr + SYSTEM_OFFSET_HANDLE_PARAM;
+        system_float_variable = *semantic_float_ptr;
+        semantic_float_ptr = semantic_float_ptr + 8;
+        semantic_float_ptr = semantic_float_ptr + 9;
+        semantic_float_ptr = semantic_float_ptr + 6;
+        semantic_float_ptr = semantic_float_ptr + 0xc;
+        semantic_float_ptr = semantic_float_ptr + 0xd;
+        semantic_float_ptr = semantic_float_ptr + 5;
+        semantic_float_ptr = semantic_float_ptr + 1;
+        semantic_float_ptr = semantic_float_ptr + 2;
+        semantic_float_ptr = semantic_float_ptr + 10;
+        semantic_float_ptr = semantic_float_ptr + 0xe;
+        semantic_float_ptr = semantic_float_ptr + SYSTEM_OFFSET_STRING_BUFFER_SIZE;
+        color_luminance_accumulator = color_luminance_accumulator + (double)*semantic_float_ptr * SYSTEM_COLOR_WEIGHT_RED + (double)system_float_variable * SYSTEM_COLOR_WEIGHT_RED +
+                          (double)*semantic_float_ptr * SYSTEM_COLOR_WEIGHT_RED + (double)*semantic_float_ptr * SYSTEM_COLOR_WEIGHT_RED +
+                          (double)*semantic_float_ptr * SYSTEM_COLOR_WEIGHT_GREEN +
+                          (double)*semantic_float_ptr * SYSTEM_COLOR_WEIGHT_GREEN + (double)*semantic_float_ptr * SYSTEM_COLOR_WEIGHT_GREEN +
+                          (double)*semantic_float_ptr * SYSTEM_COLOR_WEIGHT_GREEN +
+                          (double)*semantic_float_ptr * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT + (double)*semantic_float_ptr * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT +
+                          (double)*semantic_float_ptr * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT + (double)*semantic_float_ptr * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT;
         buffer_allocation_result = buffer_allocation_result - 1;
       } while (buffer_allocation_result != 0);
     }
     if (thread_result_status < thread_result_status) {
-      pfloat_var = pfloat_var + 2;
+      semantic_float_ptr = semantic_float_ptr + 2;
       buffer_allocation_result = (ulong long)(uint)(thread_result_status - thread_result_status);
       str_len_counter = str_len_counter + buffer_allocation_result;
       do {
-        pfloat_var = pfloat_var + -1;
-        pfloat_var = pfloat_var + -2;
-        system_float_variable = *pfloat_var;
-        pfloat_var = pfloat_var + SYSTEM_OFFSET_HANDLE_PARAM;
-        color_luminance_accumulator = color_luminance_accumulator + (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_GREEN + (double)*pfloat_var * SYSTEM_COLOR_WEIGHT_RED +
+        semantic_float_ptr = semantic_float_ptr + -1;
+        semantic_float_ptr = semantic_float_ptr + -2;
+        system_float_variable = *semantic_float_ptr;
+        semantic_float_ptr = semantic_float_ptr + SYSTEM_OFFSET_HANDLE_PARAM;
+        color_luminance_accumulator = color_luminance_accumulator + (double)*semantic_float_ptr * SYSTEM_COLOR_WEIGHT_GREEN + (double)*semantic_float_ptr * SYSTEM_COLOR_WEIGHT_RED +
                           (double)system_float_variable * SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT;
         buffer_allocation_result = buffer_allocation_result - 1;
       } while (buffer_allocation_result != 0);
@@ -7207,30 +7221,30 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
       buffer_allocation_result = (ulong long)buffer_allocation_result;
       thread_result_status = buffer_allocation_result * 4;
       do {
-        *pfloat_var = (float)((double)*pfloat_var * color_luminance_accumulator);
-        pfloat_var[1] = (float)((double)pfloat_var[1] * color_luminance_accumulator);
-        pfloat_var[2] = (float)((double)pfloat_var[2] * color_luminance_accumulator);
-        pfloat_var[4] = (float)((double)pfloat_var[4] * color_luminance_accumulator);
-        pfloat_var[5] = (float)((double)pfloat_var[5] * color_luminance_accumulator);
-        pfloat_var[6] = (float)((double)pfloat_var[6] * color_luminance_accumulator);
-        pfloat_var[8] = (float)((double)pfloat_var[8] * color_luminance_accumulator);
-        pfloat_var[9] = (float)((double)pfloat_var[9] * color_luminance_accumulator);
-        pfloat_var[10] = (float)((double)pfloat_var[10] * color_luminance_accumulator);
-        pfloat_var[0xc] = (float)((double)pfloat_var[0xc] * system_color_luminance_factor);
-        pfloat_var[0xd] = (float)((double)pfloat_var[0xd] * system_color_luminance_factor);
-        pfloat_var[0xe] = (float)((double)pfloat_var[0xe] * system_color_luminance_factor);
-        pfloat_var = pfloat_var + SYSTEM_OFFSET_STRING_BUFFER_SIZE;
+        *semantic_float_ptr = (float)((double)*semantic_float_ptr * color_luminance_accumulator);
+        semantic_float_ptr[1] = (float)((double)semantic_float_ptr[1] * color_luminance_accumulator);
+        semantic_float_ptr[2] = (float)((double)semantic_float_ptr[2] * color_luminance_accumulator);
+        semantic_float_ptr[4] = (float)((double)semantic_float_ptr[4] * color_luminance_accumulator);
+        semantic_float_ptr[5] = (float)((double)semantic_float_ptr[5] * color_luminance_accumulator);
+        semantic_float_ptr[6] = (float)((double)semantic_float_ptr[6] * color_luminance_accumulator);
+        semantic_float_ptr[8] = (float)((double)semantic_float_ptr[8] * color_luminance_accumulator);
+        semantic_float_ptr[9] = (float)((double)semantic_float_ptr[9] * color_luminance_accumulator);
+        semantic_float_ptr[10] = (float)((double)semantic_float_ptr[10] * color_luminance_accumulator);
+        semantic_float_ptr[0xc] = (float)((double)semantic_float_ptr[0xc] * system_color_luminance_factor);
+        semantic_float_ptr[0xd] = (float)((double)semantic_float_ptr[0xd] * system_color_luminance_factor);
+        semantic_float_ptr[0xe] = (float)((double)semantic_float_ptr[0xe] * system_color_luminance_factor);
+        semantic_float_ptr = semantic_float_ptr + SYSTEM_OFFSET_STRING_BUFFER_SIZE;
         buffer_allocation_result = buffer_allocation_result - 1;
       } while (buffer_allocation_result != 0);
     }
     if (thread_result_status < thread_result_status) {
-      pfloat_var = pfloat_var + 2;
+      semantic_float_ptr = semantic_float_ptr + 2;
       buffer_allocation_result = (ulong long)(uint)(thread_result_status - thread_result_status);
       do {
-        pfloat_var[-2] = (float)((double)pfloat_var[-2] * color_luminance_accumulator);
-        pfloat_var[-1] = (float)((double)pfloat_var[-1] * color_luminance_accumulator);
-        *pfloat_var = (float)((double)*pfloat_var * color_luminance_accumulator);
-        pfloat_var = pfloat_var + SYSTEM_OFFSET_HANDLE_PARAM;
+        semantic_float_ptr[-2] = (float)((double)semantic_float_ptr[-2] * color_luminance_accumulator);
+        semantic_float_ptr[-1] = (float)((double)semantic_float_ptr[-1] * color_luminance_accumulator);
+        *semantic_float_ptr = (float)((double)*semantic_float_ptr * color_luminance_accumulator);
+        semantic_float_ptr = semantic_float_ptr + SYSTEM_OFFSET_HANDLE_PARAM;
         buffer_allocation_result = buffer_allocation_result - 1;
       } while (buffer_allocation_result != 0);
     }
@@ -8318,23 +8332,23 @@ unsigned long long initialize_graphics_context(unsigned long long handle_param,u
       maximum_stack_size = string_input_pointer[1];
       maximum_stack_size = string_input_pointer[2];
       maximum_stack_size = string_input_pointer[3];
-      pfloat_var = (float *)(thread_operation_flags + ((long long)system_char_variable + SYSTEM_CONFIG_BUFFER_SIZE) * STRING_BUFFER_SIZE);
-      system_float_variable = *pfloat_var;
-      system_float_variable = pfloat_var[1];
-      system_float_variable = pfloat_var[2];
-      fStack_cc = pfloat_var[3];
+      semantic_float_ptr = (float *)(thread_operation_flags + ((long long)system_char_variable + SYSTEM_CONFIG_BUFFER_SIZE) * STRING_BUFFER_SIZE);
+      system_float_variable = *semantic_float_ptr;
+      system_float_variable = semantic_float_ptr[1];
+      system_float_variable = semantic_float_ptr[2];
+      fStack_cc = semantic_float_ptr[3];
       fStack_d8 = system_float_variable;
       fStack_d4 = system_float_variable;
       fStack_d0 = system_float_variable;
-      pfloat_var = (float *)system_execution_function(&maximum_stack_size,auStack_c8,system_initialization_result0);
-      fStack_170 = (system_float_variable + pfloat_var[2]) - system_float_variable;
-      fStack_174 = (system_float_variable + pfloat_var[1]) - system_float_variable;
-      fStack_178 = (system_float_variable + *pfloat_var) - system_float_variable;
+      semantic_float_ptr = (float *)system_execution_function(&maximum_stack_size,auStack_c8,system_initialization_result0);
+      fStack_170 = (system_float_variable + semantic_float_ptr[2]) - system_float_variable;
+      fStack_174 = (system_float_variable + semantic_float_ptr[1]) - system_float_variable;
+      fStack_178 = (system_float_variable + *semantic_float_ptr) - system_float_variable;
       system_execution_function(&maximum_stack_size,&fStack_138,&fStack_178);
-      pfloat_var = (float *)system_execution_function(&maximum_stack_size,auStack_b8,system_initialization_result0 + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
-      fStack_160 = (system_float_variable + pfloat_var[2]) - system_float_variable;
-      fStack_164 = (system_float_variable + pfloat_var[1]) - system_float_variable;
-      fStack_168 = (system_float_variable + *pfloat_var) - system_float_variable;
+      semantic_float_ptr = (float *)system_execution_function(&maximum_stack_size,auStack_b8,system_initialization_result0 + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
+      fStack_160 = (system_float_variable + semantic_float_ptr[2]) - system_float_variable;
+      fStack_164 = (system_float_variable + semantic_float_ptr[1]) - system_float_variable;
+      fStack_168 = (system_float_variable + *semantic_float_ptr) - system_float_variable;
       system_execution_function(&maximum_stack_size,&fStack_128,&fStack_168);
       system_float_variable = *(float *)(system_initialization_result0 + SYSTEM_OFFSET_PATH_BUFFER);
       system_float_variable = fStack_128;
@@ -8471,155 +8485,155 @@ unsigned long long initialize_graphics_context(unsigned long long handle_param,u
   *(float *)(system_initialization_result1 + SYSTEM_OFFSET_RENDER_CONFIG) = system_float_variable;
   *(float *)(system_initialization_result1 + SYSTEM_CONFIG_OFFSET_DATA_FLAG0) = system_float_variable;
   *(unsigned int *)(system_initialization_result1 + SYSTEM_CONFIG_OFFSET_DATA_FLAG4) = buffer_allocation_result;
-  pfloat_var = *(float **)(handle_param + SYSTEM_POINTER_OFFSET60);
-  if ((pfloat_var != (float *)0x0) && (*(long long *)(handle_param + SYSTEM_POINTER_OFFSET68) != 0)) {
-    if ((pfloat_var[4] <= system_float_variable && system_float_variable != pfloat_var[4]) ||
-       ((pfloat_var[5] <= system_float_variable && system_float_variable != pfloat_var[5] || (pfloat_var[6] <= system_float_variable && system_float_variable != pfloat_var[6]))
+  semantic_float_ptr = *(float **)(handle_param + SYSTEM_POINTER_OFFSET60);
+  if ((semantic_float_ptr != (float *)0x0) && (*(long long *)(handle_param + SYSTEM_POINTER_OFFSET68) != 0)) {
+    if ((semantic_float_ptr[4] <= system_float_variable && system_float_variable != semantic_float_ptr[4]) ||
+       ((semantic_float_ptr[5] <= system_float_variable && system_float_variable != semantic_float_ptr[5] || (semantic_float_ptr[6] <= system_float_variable && system_float_variable != semantic_float_ptr[6]))
        )) {
       do {
       } while (thread_data_buffer_character != '\0');
       LOCK();
       UNLOCK();
-      pfloat_var = *(float **)(handle_param + SYSTEM_POINTER_OFFSET60);
+      semantic_float_ptr = *(float **)(handle_param + SYSTEM_POINTER_OFFSET60);
       fStack_198 = system_float_variable;
-      if (*pfloat_var < system_float_variable) {
-        fStack_198 = *pfloat_var;
+      if (*semantic_float_ptr < system_float_variable) {
+        fStack_198 = *semantic_float_ptr;
       }
       fStack_194 = system_float_variable;
-      if (pfloat_var[1] < system_float_variable) {
-        fStack_194 = pfloat_var[1];
+      if (semantic_float_ptr[1] < system_float_variable) {
+        fStack_194 = semantic_float_ptr[1];
       }
       fStack_190 = system_float_variable;
-      if (pfloat_var[2] < system_float_variable) {
-        fStack_190 = pfloat_var[2];
+      if (semantic_float_ptr[2] < system_float_variable) {
+        fStack_190 = semantic_float_ptr[2];
       }
-      *(ulong long *)pfloat_var = merge_32bit_values(fStack_194,fStack_198);
-      *(ulong long *)(pfloat_var + 2) = merge_32bit_values(maximum_stack_size,fStack_190);
+      *(ulong long *)semantic_float_ptr = merge_32bit_values(fStack_194,fStack_198);
+      *(ulong long *)(semantic_float_ptr + 2) = merge_32bit_values(maximum_stack_size,fStack_190);
       fStack_198 = system_float_variable;
-      if (system_float_variable < pfloat_var[4]) {
-        fStack_198 = pfloat_var[4];
+      if (system_float_variable < semantic_float_ptr[4]) {
+        fStack_198 = semantic_float_ptr[4];
       }
       fStack_194 = system_float_variable;
-      if (system_float_variable < pfloat_var[5]) {
-        fStack_194 = pfloat_var[5];
+      if (system_float_variable < semantic_float_ptr[5]) {
+        fStack_194 = semantic_float_ptr[5];
       }
       fStack_190 = system_float_variable;
-      if (system_float_variable < pfloat_var[6]) {
-        fStack_190 = pfloat_var[6];
+      if (system_float_variable < semantic_float_ptr[6]) {
+        fStack_190 = semantic_float_ptr[6];
       }
-      *(ulong long *)(pfloat_var + SYSTEM_OFFSET_HANDLE_PARAM) = merge_32bit_values(fStack_194,fStack_198);
-      *(ulong long *)(pfloat_var + 6) = merge_32bit_values(maximum_stack_size,fStack_190);
+      *(ulong long *)(semantic_float_ptr + SYSTEM_OFFSET_HANDLE_PARAM) = merge_32bit_values(fStack_194,fStack_198);
+      *(ulong long *)(semantic_float_ptr + 6) = merge_32bit_values(maximum_stack_size,fStack_190);
       thread_data_buffer_character = '\0';
     }
-    if (((system_float_variable < *pfloat_var) || (system_float_variable < pfloat_var[1])) || (fStack_180 < pfloat_var[2])) {
+    if (((system_float_variable < *semantic_float_ptr) || (system_float_variable < semantic_float_ptr[1])) || (fStack_180 < semantic_float_ptr[2])) {
       do {
       } while (thread_data_buffer_character != '\0');
       LOCK();
       UNLOCK();
-      pfloat_var = *(float **)(handle_param + SYSTEM_POINTER_OFFSET60);
+      semantic_float_ptr = *(float **)(handle_param + SYSTEM_POINTER_OFFSET60);
       fStack_198 = system_float_variable;
-      if (*pfloat_var < system_float_variable) {
-        fStack_198 = *pfloat_var;
+      if (*semantic_float_ptr < system_float_variable) {
+        fStack_198 = *semantic_float_ptr;
       }
       fStack_194 = system_float_variable;
-      if (pfloat_var[1] < system_float_variable) {
-        fStack_194 = pfloat_var[1];
+      if (semantic_float_ptr[1] < system_float_variable) {
+        fStack_194 = semantic_float_ptr[1];
       }
       fStack_190 = fStack_180;
-      if (pfloat_var[2] < fStack_180) {
-        fStack_190 = pfloat_var[2];
+      if (semantic_float_ptr[2] < fStack_180) {
+        fStack_190 = semantic_float_ptr[2];
       }
-      *(ulong long *)pfloat_var = merge_32bit_values(fStack_194,fStack_198);
-      *(ulong long *)(pfloat_var + 2) = merge_32bit_values(maximum_stack_size,fStack_190);
+      *(ulong long *)semantic_float_ptr = merge_32bit_values(fStack_194,fStack_198);
+      *(ulong long *)(semantic_float_ptr + 2) = merge_32bit_values(maximum_stack_size,fStack_190);
       fStack_198 = system_float_variable;
-      if (system_float_variable < pfloat_var[4]) {
-        fStack_198 = pfloat_var[4];
+      if (system_float_variable < semantic_float_ptr[4]) {
+        fStack_198 = semantic_float_ptr[4];
       }
       fStack_194 = system_float_variable;
-      if (system_float_variable < pfloat_var[5]) {
-        fStack_194 = pfloat_var[5];
+      if (system_float_variable < semantic_float_ptr[5]) {
+        fStack_194 = semantic_float_ptr[5];
       }
       fStack_190 = fStack_180;
-      if (fStack_180 < pfloat_var[6]) {
-        fStack_190 = pfloat_var[6];
+      if (fStack_180 < semantic_float_ptr[6]) {
+        fStack_190 = semantic_float_ptr[6];
       }
-      *(ulong long *)(pfloat_var + SYSTEM_OFFSET_HANDLE_PARAM) = merge_32bit_values(fStack_194,fStack_198);
-      *(ulong long *)(pfloat_var + 6) = merge_32bit_values(maximum_stack_size,fStack_190);
+      *(ulong long *)(semantic_float_ptr + SYSTEM_OFFSET_HANDLE_PARAM) = merge_32bit_values(fStack_194,fStack_198);
+      *(ulong long *)(semantic_float_ptr + 6) = merge_32bit_values(maximum_stack_size,fStack_190);
       thread_data_buffer_character = '\0';
     }
-    pfloat_var = *(float **)(handle_param + SYSTEM_POINTER_OFFSET68);
-    if (((pfloat_var[4] <= system_float_variable && system_float_variable != pfloat_var[4]) ||
-        (pfloat_var[5] <= system_float_variable && system_float_variable != pfloat_var[5])) ||
-       (pfloat_var[6] <= system_float_variable && system_float_variable != pfloat_var[6])) {
+    semantic_float_ptr = *(float **)(handle_param + SYSTEM_POINTER_OFFSET68);
+    if (((semantic_float_ptr[4] <= system_float_variable && system_float_variable != semantic_float_ptr[4]) ||
+        (semantic_float_ptr[5] <= system_float_variable && system_float_variable != semantic_float_ptr[5])) ||
+       (semantic_float_ptr[6] <= system_float_variable && system_float_variable != semantic_float_ptr[6])) {
       do {
       } while (thread_data_buffer_character != '\0');
       LOCK();
       UNLOCK();
-      pfloat_var = *(float **)(handle_param + SYSTEM_POINTER_OFFSET68);
+      semantic_float_ptr = *(float **)(handle_param + SYSTEM_POINTER_OFFSET68);
       fStack_198 = system_float_variable;
-      if (*pfloat_var < system_float_variable) {
-        fStack_198 = *pfloat_var;
+      if (*semantic_float_ptr < system_float_variable) {
+        fStack_198 = *semantic_float_ptr;
       }
       fStack_194 = system_float_variable;
-      if (pfloat_var[1] < system_float_variable) {
-        fStack_194 = pfloat_var[1];
+      if (semantic_float_ptr[1] < system_float_variable) {
+        fStack_194 = semantic_float_ptr[1];
       }
       fStack_190 = system_float_variable;
-      if (pfloat_var[2] < system_float_variable) {
-        fStack_190 = pfloat_var[2];
+      if (semantic_float_ptr[2] < system_float_variable) {
+        fStack_190 = semantic_float_ptr[2];
       }
-      *(ulong long *)pfloat_var = merge_32bit_values(fStack_194,fStack_198);
-      *(ulong long *)(pfloat_var + 2) = merge_32bit_values(maximum_stack_size,fStack_190);
+      *(ulong long *)semantic_float_ptr = merge_32bit_values(fStack_194,fStack_198);
+      *(ulong long *)(semantic_float_ptr + 2) = merge_32bit_values(maximum_stack_size,fStack_190);
       fStack_198 = system_float_variable;
-      if (system_float_variable < pfloat_var[4]) {
-        fStack_198 = pfloat_var[4];
+      if (system_float_variable < semantic_float_ptr[4]) {
+        fStack_198 = semantic_float_ptr[4];
       }
       fStack_194 = system_float_variable;
-      if (system_float_variable < pfloat_var[5]) {
-        fStack_194 = pfloat_var[5];
+      if (system_float_variable < semantic_float_ptr[5]) {
+        fStack_194 = semantic_float_ptr[5];
       }
       fStack_190 = system_float_variable;
-      if (system_float_variable < pfloat_var[6]) {
-        fStack_190 = pfloat_var[6];
+      if (system_float_variable < semantic_float_ptr[6]) {
+        fStack_190 = semantic_float_ptr[6];
       }
-      *(ulong long *)(pfloat_var + SYSTEM_OFFSET_HANDLE_PARAM) = merge_32bit_values(fStack_194,fStack_198);
-      *(ulong long *)(pfloat_var + 6) = merge_32bit_values(maximum_stack_size,fStack_190);
+      *(ulong long *)(semantic_float_ptr + SYSTEM_OFFSET_HANDLE_PARAM) = merge_32bit_values(fStack_194,fStack_198);
+      *(ulong long *)(semantic_float_ptr + 6) = merge_32bit_values(maximum_stack_size,fStack_190);
       thread_data_buffer_character = '\0';
     }
-    if (((system_float_variable < *pfloat_var) || (system_float_variable < pfloat_var[1])) || (fStack_180 < pfloat_var[2])) {
+    if (((system_float_variable < *semantic_float_ptr) || (system_float_variable < semantic_float_ptr[1])) || (fStack_180 < semantic_float_ptr[2])) {
       do {
       } while (thread_data_buffer_character != '\0');
       LOCK();
       UNLOCK();
-      pfloat_var = *(float **)(handle_param + SYSTEM_POINTER_OFFSET68);
+      semantic_float_ptr = *(float **)(handle_param + SYSTEM_POINTER_OFFSET68);
       fStack_198 = system_float_variable;
-      if (*pfloat_var < system_float_variable) {
-        fStack_198 = *pfloat_var;
+      if (*semantic_float_ptr < system_float_variable) {
+        fStack_198 = *semantic_float_ptr;
       }
       fStack_194 = system_float_variable;
-      if (pfloat_var[1] < system_float_variable) {
-        fStack_194 = pfloat_var[1];
+      if (semantic_float_ptr[1] < system_float_variable) {
+        fStack_194 = semantic_float_ptr[1];
       }
       fStack_190 = fStack_180;
-      if (pfloat_var[2] < fStack_180) {
-        fStack_190 = pfloat_var[2];
+      if (semantic_float_ptr[2] < fStack_180) {
+        fStack_190 = semantic_float_ptr[2];
       }
-      *(ulong long *)pfloat_var = merge_32bit_values(fStack_194,fStack_198);
-      *(ulong long *)(pfloat_var + 2) = merge_32bit_values(maximum_stack_size,fStack_190);
+      *(ulong long *)semantic_float_ptr = merge_32bit_values(fStack_194,fStack_198);
+      *(ulong long *)(semantic_float_ptr + 2) = merge_32bit_values(maximum_stack_size,fStack_190);
       fStack_198 = system_float_variable;
-      if (system_float_variable < pfloat_var[4]) {
-        fStack_198 = pfloat_var[4];
+      if (system_float_variable < semantic_float_ptr[4]) {
+        fStack_198 = semantic_float_ptr[4];
       }
       fStack_194 = system_float_variable;
-      if (system_float_variable < pfloat_var[5]) {
-        fStack_194 = pfloat_var[5];
+      if (system_float_variable < semantic_float_ptr[5]) {
+        fStack_194 = semantic_float_ptr[5];
       }
       fStack_190 = fStack_180;
-      if (fStack_180 < pfloat_var[6]) {
-        fStack_190 = pfloat_var[6];
+      if (fStack_180 < semantic_float_ptr[6]) {
+        fStack_190 = semantic_float_ptr[6];
       }
-      *(ulong long *)(pfloat_var + SYSTEM_OFFSET_HANDLE_PARAM) = merge_32bit_values(fStack_194,fStack_198);
-      *(ulong long *)(pfloat_var + 6) = merge_32bit_values(maximum_stack_size,fStack_190);
+      *(ulong long *)(semantic_float_ptr + SYSTEM_OFFSET_HANDLE_PARAM) = merge_32bit_values(fStack_194,fStack_198);
+      *(ulong long *)(semantic_float_ptr + 6) = merge_32bit_values(maximum_stack_size,fStack_190);
       thread_data_buffer_character = '\0';
     }
   }
@@ -12379,7 +12393,7 @@ long long process_context_handle_param(long long *handle_param)
       network_initialization_flag = '\x01';
       handle_param = maximum_stack_size;
     }
-    pfloat_var = afStack_2e8;
+    semantic_float_ptr = afStack_2e8;
     str_len_counter = SYSTEM_ZERO_VALUE;
     str_len_counter = path_buffer_size;
     str_len_counter = path_buffer_size;
@@ -12398,7 +12412,7 @@ long long process_context_handle_param(long long *handle_param)
       if (thread_operation_flags != 0) {
         maximum_stack_size = maximum_stack_size & INT64_MASK;
         if (*(long long *)(thread_operation_flags + 0x2908) == SYSTEM_ZERO_VALUE) {
-          system_execution_function(thread_operation_flags,pfloat_var,0x31b189,&maximum_stack_size);
+          system_execution_function(thread_operation_flags,semantic_float_ptr,0x31b189,&maximum_stack_size);
           system_float_variable = (float)maximum_stack_size;
         }
         else {
@@ -12420,7 +12434,7 @@ long long process_context_handle_param(long long *handle_param)
         }
         *(float *)((long long)&maximum_stack_size + str_len_counter) = system_float_variable + SYSTEM_FLOAT_ADJUSTMENT_SMALL;
       }
-      pfloat_var = pfloat_var + SYSTEM_OFFSET_HANDLE_PARAM;
+      semantic_float_ptr = semantic_float_ptr + SYSTEM_OFFSET_HANDLE_PARAM;
       str_len_counter = str_len_counter + SYSTEM_OFFSET_STRING_BUFFER_SIZE;
       str_len_counter = str_len_counter + -1;
     } while (str_len_counter != 0);
@@ -12431,12 +12445,12 @@ long long process_context_handle_param(long long *handle_param)
     system_float_variable = mutex_attr[8];
     system_float_variable = mutex_attr[10];
     maximum_stack_size = SYSTEM_FLOAT_MAX_VALUE;
-    pfloat_var = afStack_2e8;
+    semantic_float_ptr = afStack_2e8;
     str_len_counter = path_buffer_size;
     do {
-      system_float_variable = pfloat_var[2] - system_float_variable;
-      system_float_variable = pfloat_var[1] - system_float_variable;
-      system_float_variable = *pfloat_var - system_float_variable;
+      system_float_variable = semantic_float_ptr[2] - system_float_variable;
+      system_float_variable = semantic_float_ptr[1] - system_float_variable;
+      system_float_variable = *semantic_float_ptr - system_float_variable;
       system_float_variable = system_float_variable * system_float_variable + system_float_variable * system_float_variable + system_float_variable * system_float_variable;
       system_float_variable = system_float_variable - system_float_variable * system_float_variable;
       system_float_variable = system_float_variable - system_float_variable * system_float_variable;
@@ -12449,20 +12463,20 @@ long long process_context_handle_param(long long *handle_param)
       system_float_variable = system_float_variable * system_float_variable * system_operation_parameter + system_float_variable;
       system_float_variable = system_float_variable * system_float_variable * system_operation_parameter + system_float_variable;
       maximum_stack_size = merge_32bit_values(system_float_variable,system_float_variable);
-      *pfloat_var = system_float_variable;
-      pfloat_var[1] = system_float_variable;
-      pfloat_var[2] = fStack_370;
-      pfloat_var[3] = SYSTEM_FLOAT_MAX_VALUE;
-      pfloat_var = pfloat_var + SYSTEM_OFFSET_HANDLE_PARAM;
+      *semantic_float_ptr = system_float_variable;
+      semantic_float_ptr[1] = system_float_variable;
+      semantic_float_ptr[2] = fStack_370;
+      semantic_float_ptr[3] = SYSTEM_FLOAT_MAX_VALUE;
+      semantic_float_ptr = semantic_float_ptr + SYSTEM_OFFSET_HANDLE_PARAM;
       str_len_counter = str_len_counter + -1;
     } while (str_len_counter != 0);
     if (thread_operation_flags != 0) {
-      pfloat_var = (float *)&maximum_stack_size;
-      pfloat_var = afStack_2e8;
+      semantic_float_ptr = (float *)&maximum_stack_size;
+      semantic_float_ptr = afStack_2e8;
       do {
         maximum_stack_size = maximum_stack_size & INT64_MASK;
         if (*(long long *)(thread_operation_flags + 0x2908) == SYSTEM_ZERO_VALUE) {
-          system_execution_function(thread_operation_flags,pfloat_var,0x31b189,&maximum_stack_size);
+          system_execution_function(thread_operation_flags,semantic_float_ptr,0x31b189,&maximum_stack_size);
           system_float_variable = (float)maximum_stack_size;
         }
         else {
@@ -12472,8 +12486,8 @@ long long process_context_handle_param(long long *handle_param)
           fStack_328 = SYSTEM_FLOAT_VALUE_ZERO;
           maximum_stack_size = SYSTEM_ZERO_VALUE;
           maximum_stack_size = SYSTEM_ZERO_VALUE;
-          maximum_stack_size = *(unsigned long long *)(pfloat_var + -2);
-          maximum_stack_size = *(unsigned long long *)pfloat_var;
+          maximum_stack_size = *(unsigned long long *)(semantic_float_ptr + -2);
+          maximum_stack_size = *(unsigned long long *)semantic_float_ptr;
           maximum_stack_size = CONCAT31(maximum_stack_size_bitfield1_3_,1);
           maximum_stack_size = SYSTEM_ZERO_VALUE;
           system_execution_function(thread_operation_flags,&maximum_stack_size,0,auStack_358);
@@ -12482,9 +12496,9 @@ long long process_context_handle_param(long long *handle_param)
             system_float_variable = SYSTEM_FLOAT_VALUE_ZERO;
           }
         }
-        *pfloat_var = system_float_variable + SYSTEM_FLOAT_ADJUSTMENT_SMALL;
-        pfloat_var = pfloat_var + SYSTEM_OFFSET_HANDLE_PARAM;
-        pfloat_var = pfloat_var + SYSTEM_OFFSET_HANDLE_PARAM;
+        *semantic_float_ptr = system_float_variable + SYSTEM_FLOAT_ADJUSTMENT_SMALL;
+        semantic_float_ptr = semantic_float_ptr + SYSTEM_OFFSET_HANDLE_PARAM;
+        semantic_float_ptr = semantic_float_ptr + SYSTEM_OFFSET_HANDLE_PARAM;
         str_len_counter = str_len_counter + -1;
       } while (str_len_counter != 0);
     }
@@ -12574,9 +12588,9 @@ unsigned long long allocate_resource_memory(int handle_param)
   int thread_result_status;
   uint buffer_allocation_result;
   long long str_len_counter;
-  float *pfloat_var;
+  float *semantic_float_ptr;
   int thread_result_status;
-  float *pfloat_var;
+  float *semantic_float_ptr;
   uint buffer_allocation_result;
   ulong long buffer_allocation_result;
   ulong long buffer_allocation_result;
@@ -12648,22 +12662,22 @@ unsigned long long allocate_resource_memory(int handle_param)
       } while ((int)buffer_allocation_result < (int)(buffer_allocation_result - buffer_allocation_result));
     }
     if ((int)buffer_allocation_result < (int)buffer_allocation_result) {
-      pfloat_var = (float *)(system_initialization_result5 + buffer_allocation_result * 4);
+      semantic_float_ptr = (float *)(system_initialization_result5 + buffer_allocation_result * 4);
       system_float_variable = SYSTEM_FLOAT_VALUE_ONE / (float)(int)buffer_allocation_result;
       unassigned_xmm_register_six = zero_extension_float((uint)system_float_variable);
       do {
         system_float_variable = (float)cosf(((float)(int)buffer_allocation_result * SYSTEM_FLOAT_TWO_PI + SYSTEM_FLOAT_PI) * system_float_variable);
         buffer_allocation_result = (int)buffer_allocation_result + 1;
         buffer_allocation_result = (ulong long)buffer_allocation_result;
-        *pfloat_var = SYSTEM_FLOAT_HALF / system_float_variable;
-        pfloat_var = pfloat_var + 1;
+        *semantic_float_ptr = SYSTEM_FLOAT_HALF / system_float_variable;
+        semantic_float_ptr = semantic_float_ptr + 1;
       } while ((int)buffer_allocation_result < (int)buffer_allocation_result);
     }
     thread_result_status = thread_result_status + 1;
     system_initialization_result_pointer = system_initialization_result_pointer + 1;
   } while (thread_result_status < 5);
   system_system_string_length_counter_ptr2 = (int *)SYSTEM_STRING_LENGTH_COUNTER_ADDR;
-  pfloat_var = (float *)SYSTEM_GLOBAL_DATA_ADDR;
+  semantic_float_ptr = (float *)SYSTEM_GLOBAL_DATA_ADDR;
   system_global_data_pointer = SYSTEM_GLOBAL_DATA_ADDR;
   handle_param = -handle_param;
   thread_result_status = SYSTEM_TWO_VALUE;
@@ -12672,23 +12686,23 @@ unsigned long long allocate_resource_memory(int handle_param)
   buffer_allocation_result = SYSTEM_ZERO_VALUE;
   do {
     buffer_allocation_result = buffer_allocation_result;
-    if (pfloat_var < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
+    if (semantic_float_ptr < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
       system_float_variable = (float)system_system_string_length_counter_ptr2[-1] * FLOAT_CONVERSION_FACTOR * (float)handle_param;
-      *pfloat_var = system_float_variable;
-      pfloat_var[STRING_BUFFER_SIZE] = system_float_variable;
+      *semantic_float_ptr = system_float_variable;
+      semantic_float_ptr[STRING_BUFFER_SIZE] = system_float_variable;
     }
-    pfloat_var = pfloat_var + -SYSTEM_CONSTANT_3f;
+    semantic_float_ptr = semantic_float_ptr + -SYSTEM_CONSTANT_3f;
     if (((byte)buffer_allocation_result & SYSTEM_CONSTANT_2) != SYSTEM_CONSTANT_2) {
-      pfloat_var = pfloat_var;
+      semantic_float_ptr = semantic_float_ptr;
     }
     thread_result_status = -handle_param;
     if (((byte)buffer_allocation_result & SYSTEM_CONSTANT_3) != SYSTEM_CONSTANT_3) {
       thread_result_status = handle_param;
     }
-    if (pfloat_var + path_buffer_size < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
+    if (semantic_float_ptr + path_buffer_size < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
       system_float_variable = (float)*system_system_string_length_counter_ptr2 * FLOAT_CONVERSION_FACTOR * (float)thread_result_status;
-      pfloat_var[path_buffer_size] = system_float_variable;
-      pfloat_var[0x30] = system_float_variable;
+      semantic_float_ptr[path_buffer_size] = system_float_variable;
+      semantic_float_ptr[0x30] = system_float_variable;
     }
     byte_check_result = (byte)thread_result_status;
     buffer_allocation_result = thread_result_status - 1U & SYSTEM_CONSTANT_2;
@@ -12700,31 +12714,31 @@ unsigned long long allocate_resource_memory(int handle_param)
     if (buffer_allocation_result != SYSTEM_CONSTANT_2) {
       str_len_counter = string_buffer_size_constant;
     }
-    pfloat_var = (float *)(str_len_counter + (long long)pfloat_var);
-    if (pfloat_var < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
+    semantic_float_ptr = (float *)(str_len_counter + (long long)semantic_float_ptr);
+    if (semantic_float_ptr < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
       str_len_counter = -SYSTEM_CONSTANT_1;
       if (buffer_allocation_result != SYSTEM_CONSTANT_2) {
         str_len_counter = system_initialization_result5;
       }
       system_float_variable = (float)system_system_string_length_counter_ptr2[1] * FLOAT_CONVERSION_FACTOR * (float)thread_result_status;
-      *pfloat_var = system_float_variable;
-      *(float *)(str_len_counter + (long long)pfloat_var) = system_float_variable;
+      *semantic_float_ptr = system_float_variable;
+      *(float *)(str_len_counter + (long long)semantic_float_ptr) = system_float_variable;
     }
     if ((byte_check_result & SYSTEM_CONSTANT_2) == SYSTEM_CONSTANT_2) {
       str_len_counter = -0x1ef8;
       if (buffer_allocation_result != SYSTEM_CONSTANT_2) {
         str_len_counter = -0xefc;
       }
-      pfloat_var = (float *)(str_len_counter + (long long)pfloat_var);
+      semantic_float_ptr = (float *)(str_len_counter + (long long)semantic_float_ptr);
     }
     thread_result_status = -thread_result_status;
     if ((byte_check_result & SYSTEM_CONSTANT_3) != SYSTEM_CONSTANT_3) {
       thread_result_status = thread_result_status;
     }
-    if (pfloat_var + path_buffer_size < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
+    if (semantic_float_ptr + path_buffer_size < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
       system_float_variable = (float)system_system_string_length_counter_ptr2[2] * FLOAT_CONVERSION_FACTOR * (float)thread_result_status;
-      pfloat_var[path_buffer_size] = system_float_variable;
-      pfloat_var[0x30] = system_float_variable;
+      semantic_float_ptr[path_buffer_size] = system_float_variable;
+      semantic_float_ptr[0x30] = system_float_variable;
     }
     buffer_allocation_result = thread_result_status + 1U & SYSTEM_CONSTANT_2;
     str_len_counter = -0xefc;
@@ -12735,31 +12749,31 @@ unsigned long long allocate_resource_memory(int handle_param)
     if (buffer_allocation_result != SYSTEM_CONSTANT_2) {
       str_len_counter = string_buffer_size_constant;
     }
-    pfloat_var = (float *)(str_len_counter + (long long)pfloat_var);
-    if (pfloat_var < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
+    semantic_float_ptr = (float *)(str_len_counter + (long long)semantic_float_ptr);
+    if (semantic_float_ptr < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
       str_len_counter = -SYSTEM_CONSTANT_1;
       if (buffer_allocation_result != SYSTEM_CONSTANT_2) {
         str_len_counter = system_initialization_result5;
       }
       system_float_variable = (float)system_system_string_length_counter_ptr2[3] * FLOAT_CONVERSION_FACTOR * (float)thread_result_status;
-      *pfloat_var = system_float_variable;
-      *(float *)(str_len_counter + (long long)pfloat_var) = system_float_variable;
+      *semantic_float_ptr = system_float_variable;
+      *(float *)(str_len_counter + (long long)semantic_float_ptr) = system_float_variable;
     }
     if ((byte_check_result + 2 & SYSTEM_CONSTANT_2) == SYSTEM_CONSTANT_2) {
       str_len_counter = -0x1ef8;
       if (buffer_allocation_result != SYSTEM_CONSTANT_2) {
         str_len_counter = -0xefc;
       }
-      pfloat_var = (float *)(str_len_counter + (long long)pfloat_var);
+      semantic_float_ptr = (float *)(str_len_counter + (long long)semantic_float_ptr);
     }
     thread_result_status = -thread_result_status;
     if ((byte_check_result + 2 & SYSTEM_CONSTANT_3) != SYSTEM_CONSTANT_3) {
       thread_result_status = thread_result_status;
     }
-    if (pfloat_var + path_buffer_size < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
+    if (semantic_float_ptr + path_buffer_size < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
       system_float_variable = (float)system_system_string_length_counter_ptr2[4] * FLOAT_CONVERSION_FACTOR * (float)thread_result_status;
-      pfloat_var[path_buffer_size] = system_float_variable;
-      pfloat_var[0x30] = system_float_variable;
+      semantic_float_ptr[path_buffer_size] = system_float_variable;
+      semantic_float_ptr[0x30] = system_float_variable;
     }
     buffer_allocation_result = thread_result_status + 3U & SYSTEM_CONSTANT_2;
     str_len_counter = -0xefc;
@@ -12770,31 +12784,31 @@ unsigned long long allocate_resource_memory(int handle_param)
     if (buffer_allocation_result != SYSTEM_CONSTANT_2) {
       str_len_counter = string_buffer_size_constant;
     }
-    pfloat_var = (float *)(str_len_counter + (long long)pfloat_var);
-    if (pfloat_var < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
+    semantic_float_ptr = (float *)(str_len_counter + (long long)semantic_float_ptr);
+    if (semantic_float_ptr < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
       str_len_counter = -SYSTEM_CONSTANT_1;
       if (buffer_allocation_result != SYSTEM_CONSTANT_2) {
         str_len_counter = system_initialization_result5;
       }
       system_float_variable = (float)system_system_string_length_counter_ptr2[5] * FLOAT_CONVERSION_FACTOR * (float)thread_result_status;
-      *pfloat_var = system_float_variable;
-      *(float *)(str_len_counter + (long long)pfloat_var) = system_float_variable;
+      *semantic_float_ptr = system_float_variable;
+      *(float *)(str_len_counter + (long long)semantic_float_ptr) = system_float_variable;
     }
     if ((byte_check_result + SYSTEM_OFFSET_HANDLE_PARAM & SYSTEM_CONSTANT_2) == SYSTEM_CONSTANT_2) {
       str_len_counter = -0x1ef8;
       if (buffer_allocation_result != SYSTEM_CONSTANT_2) {
         str_len_counter = -0xefc;
       }
-      pfloat_var = (float *)(str_len_counter + (long long)pfloat_var);
+      semantic_float_ptr = (float *)(str_len_counter + (long long)semantic_float_ptr);
     }
     thread_result_status = -thread_result_status;
     if ((byte_check_result + SYSTEM_OFFSET_HANDLE_PARAM & SYSTEM_CONSTANT_3) != SYSTEM_CONSTANT_3) {
       thread_result_status = thread_result_status;
     }
-    if (pfloat_var + path_buffer_size < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
+    if (semantic_float_ptr + path_buffer_size < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
       system_float_variable = (float)system_system_string_length_counter_ptr2[6] * FLOAT_CONVERSION_FACTOR * (float)thread_result_status;
-      pfloat_var[path_buffer_size] = system_float_variable;
-      pfloat_var[0x30] = system_float_variable;
+      semantic_float_ptr[path_buffer_size] = system_float_variable;
+      semantic_float_ptr[0x30] = system_float_variable;
     }
     handle_param = -thread_result_status;
     if ((byte_check_result + 5 & SYSTEM_CONSTANT_3) != SYSTEM_CONSTANT_3) {
@@ -12805,7 +12819,7 @@ unsigned long long allocate_resource_memory(int handle_param)
       str_len_counter = string_buffer_size_constant;
     }
     buffer_allocation_result = buffer_allocation_result + 8;
-    pfloat_var = (float *)(str_len_counter + (long long)pfloat_var);
+    semantic_float_ptr = (float *)(str_len_counter + (long long)semantic_float_ptr);
     thread_result_status = thread_result_status + 8;
     system_system_string_length_counter_ptr2 = system_system_string_length_counter_ptr2 + 8;
   } while (thread_result_status < STRING_BUFFER_SIZE_SECONDARY);
@@ -12815,18 +12829,18 @@ unsigned long long allocate_resource_memory(int handle_param)
       system_system_string_length_counter_ptr2 = (int *)SYSTEM_STRING_LENGTH_COUNTER_ALT_ADDR;
       thread_result_status = (SYSTEM_CONSTANT_3 - (SYSTEM_CONSTANT_2c - buffer_allocation_result >> 2)) * 4;
       do {
-        if (pfloat_var < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
+        if (semantic_float_ptr < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
           system_float_variable = (float)system_system_string_length_counter_ptr2[2] * FLOAT_CONVERSION_FACTOR * (float)handle_param;
-          *pfloat_var = system_float_variable;
-          pfloat_var[STRING_BUFFER_SIZE] = system_float_variable;
+          *semantic_float_ptr = system_float_variable;
+          semantic_float_ptr[STRING_BUFFER_SIZE] = system_float_variable;
         }
         buffer_allocation_result = buffer_allocation_result & SYSTEM_POINTER_OFFSET000001f;
         if ((int)buffer_allocation_result < 0) {
           buffer_allocation_result = (buffer_allocation_result - 1 | SYSTEM_BIT_MASK_ALIGN_5BIT) + 1;
         }
-        pfloat_var = pfloat_var + -SYSTEM_CONSTANT_3f;
+        semantic_float_ptr = semantic_float_ptr + -SYSTEM_CONSTANT_3f;
         if (buffer_allocation_result != SYSTEM_CONSTANT_2) {
-          pfloat_var = pfloat_var;
+          semantic_float_ptr = semantic_float_ptr;
         }
         buffer_allocation_result = buffer_allocation_result & SYSTEM_POINTER_OFFSET000003f;
         if ((int)buffer_allocation_result < 0) {
@@ -12836,10 +12850,10 @@ unsigned long long allocate_resource_memory(int handle_param)
         if (buffer_allocation_result != SYSTEM_CONSTANT_3) {
           thread_result_status = handle_param;
         }
-        if (pfloat_var + path_buffer_size < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
+        if (semantic_float_ptr + path_buffer_size < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
           system_float_variable = (float)system_system_string_length_counter_ptr2[1] * FLOAT_CONVERSION_FACTOR * (float)thread_result_status;
-          pfloat_var[path_buffer_size] = system_float_variable;
-          pfloat_var[0x30] = system_float_variable;
+          semantic_float_ptr[path_buffer_size] = system_float_variable;
+          semantic_float_ptr[0x30] = system_float_variable;
         }
         buffer_allocation_result = buffer_allocation_result - 1 & SYSTEM_POINTER_OFFSET000001f;
         if ((int)buffer_allocation_result < 0) {
@@ -12857,15 +12871,15 @@ unsigned long long allocate_resource_memory(int handle_param)
         if (buffer_allocation_result != SYSTEM_CONSTANT_2) {
           str_len_counter = string_buffer_size_constant;
         }
-        pfloat_var = (float *)(str_len_counter + (long long)pfloat_var);
-        if (pfloat_var < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
+        semantic_float_ptr = (float *)(str_len_counter + (long long)semantic_float_ptr);
+        if (semantic_float_ptr < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
           str_len_counter = -SYSTEM_CONSTANT_1;
           if (buffer_allocation_result != SYSTEM_CONSTANT_2) {
             str_len_counter = system_initialization_result5;
           }
           system_float_variable = (float)*system_system_string_length_counter_ptr2 * FLOAT_CONVERSION_FACTOR * (float)thread_result_status;
-          *pfloat_var = system_float_variable;
-          *(float *)(str_len_counter + (long long)pfloat_var) = system_float_variable;
+          *semantic_float_ptr = system_float_variable;
+          *(float *)(str_len_counter + (long long)semantic_float_ptr) = system_float_variable;
         }
         buffer_allocation_result = buffer_allocation_result & SYSTEM_POINTER_OFFSET000001f;
         if ((int)buffer_allocation_result < 0) {
@@ -12876,7 +12890,7 @@ unsigned long long allocate_resource_memory(int handle_param)
           if (buffer_allocation_result != SYSTEM_CONSTANT_2) {
             str_len_counter = -0xefc;
           }
-          pfloat_var = (float *)(str_len_counter + (long long)pfloat_var);
+          semantic_float_ptr = (float *)(str_len_counter + (long long)semantic_float_ptr);
         }
         buffer_allocation_result = buffer_allocation_result & SYSTEM_POINTER_OFFSET000003f;
         if ((int)buffer_allocation_result < 0) {
@@ -12886,10 +12900,10 @@ unsigned long long allocate_resource_memory(int handle_param)
         if (buffer_allocation_result != SYSTEM_CONSTANT_3) {
           thread_result_status = thread_result_status;
         }
-        if (pfloat_var + path_buffer_size < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
+        if (semantic_float_ptr + path_buffer_size < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
           system_float_variable = (float)system_system_string_length_counter_ptr2[-1] * FLOAT_CONVERSION_FACTOR * (float)thread_result_status;
-          pfloat_var[path_buffer_size] = system_float_variable;
-          pfloat_var[0x30] = system_float_variable;
+          semantic_float_ptr[path_buffer_size] = system_float_variable;
+          semantic_float_ptr[0x30] = system_float_variable;
         }
         buffer_allocation_result = buffer_allocation_result + 1 & SYSTEM_POINTER_OFFSET000003f;
         if ((int)buffer_allocation_result < 0) {
@@ -12908,7 +12922,7 @@ unsigned long long allocate_resource_memory(int handle_param)
           str_len_counter = string_buffer_size_constant;
         }
         system_system_string_length_counter_ptr2 = system_system_string_length_counter_ptr2 + -4;
-        pfloat_var = (float *)(str_len_counter + (long long)pfloat_var);
+        semantic_float_ptr = (float *)(str_len_counter + (long long)semantic_float_ptr);
         buffer_allocation_result = buffer_allocation_result + SYSTEM_OFFSET_HANDLE_PARAM;
         buffer_allocation_result = buffer_allocation_result + SYSTEM_OFFSET_HANDLE_PARAM;
       } while ((int)buffer_allocation_result < SYSTEM_CONSTANT_2f);
@@ -12916,10 +12930,10 @@ unsigned long long allocate_resource_memory(int handle_param)
     if ((int)buffer_allocation_result < path_buffer_size0) {
       system_system_string_length_counter_ptr2 = (int *)((long long)thread_result_status * 4 + SYSTEM_PERFORMANCE_COUNTER_ADDR);
       do {
-        if (pfloat_var < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
+        if (semantic_float_ptr < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
           system_float_variable = (float)*system_system_string_length_counter_ptr2 * FLOAT_CONVERSION_FACTOR * (float)handle_param;
-          *pfloat_var = system_float_variable;
-          pfloat_var[STRING_BUFFER_SIZE] = system_float_variable;
+          *semantic_float_ptr = system_float_variable;
+          semantic_float_ptr[STRING_BUFFER_SIZE] = system_float_variable;
         }
         buffer_allocation_result = buffer_allocation_result & SYSTEM_POINTER_OFFSET000003f;
         if ((int)buffer_allocation_result < 0) {
@@ -12929,13 +12943,13 @@ unsigned long long allocate_resource_memory(int handle_param)
         if ((int)buffer_allocation_result < 0) {
           buffer_allocation_result = (buffer_allocation_result - 1 | SYSTEM_BIT_MASK_ALIGN_5BIT) + 1;
         }
-        pfloat_var = pfloat_var + -SYSTEM_CONSTANT_3f;
+        semantic_float_ptr = semantic_float_ptr + -SYSTEM_CONSTANT_3f;
         if (buffer_allocation_result != SYSTEM_CONSTANT_2) {
-          pfloat_var = pfloat_var;
+          semantic_float_ptr = semantic_float_ptr;
         }
         system_system_string_length_counter_ptr2 = system_system_string_length_counter_ptr2 + -1;
         buffer_allocation_result = buffer_allocation_result + 1;
-        pfloat_var = pfloat_var + path_buffer_size;
+        semantic_float_ptr = semantic_float_ptr + path_buffer_size;
         thread_result_status = -handle_param;
         if (buffer_allocation_result != SYSTEM_CONSTANT_3) {
           thread_result_status = handle_param;
