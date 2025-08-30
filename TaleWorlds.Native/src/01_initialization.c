@@ -102,12 +102,12 @@
 // - 这是简化实现，主要处理了寄存器变量名的语义化替换
 
 // 最新美化内容：
-// - 将LAB_1808fd14a等十六进制地址标签替换为INIT_LABEL_CHECK_STORAGE_VALUE等语义化名称
-// - 将ptr_ptr_ptr_ptr_ptr_long_var3等复杂指针变量名替换为system_memory_allocator_ptr等清晰名称
-// - 将is_initialized1等变量名替换为is_initialized_flag等标准化名称
-// - 将long_result等通用结果变量名替换为system_long_result等系统相关名称
+// - 将system_system_local_buffer_248等重复前缀变量名替换为system_local_buffer_248等简洁名称
+// - 将bufferPtr_1f8system_buffer_ptr_network_context错误变量名替换为system_buffer_ptr_network_context_param
+// - 将stack_system_memory_pointer重复声明优化为更清晰的变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
+// - 这是简化实现，主要处理了重复前缀和错误变量名的修正
 // - 这是简化实现，主要处理了标签名和变量名的最终语义化替换
 
 // 地址常量定义
@@ -50014,15 +50014,15 @@ INIT_LABEL_SYSTEM_77fcf:
                              system_float_value * system_float_value + system_float_value * system_float_value + system_float_value * system_float_value);
         system_float_value = *(float *)(handleIdentifier + 0x148);
         system_float_value = *(float *)(handleIdentifier + 0x150);
-        init_stack_uint_param_60._0_4_ = system_float_result * system_float_result + system_float_result * system_float_result + system_float_result * system_float_value;
+        init_stack_uint_param_60._0_4_ = system_float_value * system_float_value + system_float_value * system_float_value + system_float_value * system_float_value;
         system_float_value = *(float *)(handleIdentifier + 0x158);
-        init_stack_uint_param_78 = CONCAT44(system_float_result * system_float_result + system_float_result * system_float_result + system_float_result * system_float_result,
-                             system_float_result * system_float_result + system_float_result * system_float_result + system_float_result * system_float_result);
-        init_stack_uint_param_68 = CONCAT44(system_float_result * system_float_result + system_float_result * system_float_result + system_float_result * system_float_result,
-                             system_float_result * system_float_result + system_float_result * system_float_result + system_float_result * system_float_result);
-        init_float_stack_58 = system_float_result * system_float_result + system_float_result * system_float_result + system_float_result * system_float_result + systemFlags[0xc];
-        init_float_stack_54 = system_float_result * system_float_result + system_float_result * system_float_result + system_float_result * system_float_result + systemFlags[0xd];
-        init_float_stack_50 = system_float_result * system_float_result + system_float_result * system_float_result + system_float_result * system_float_result + systemFlags[0xe];
+        init_stack_uint_param_78 = CONCAT44(system_float_value * system_float_value + system_float_value * system_float_value + system_float_value * system_float_value,
+                             system_float_value * system_float_value + system_float_value * system_float_value + system_float_value * system_float_value);
+        init_stack_uint_param_68 = CONCAT44(system_float_value * system_float_value + system_float_value * system_float_value + system_float_value * system_float_value,
+                             system_float_value * system_float_value + system_float_value * system_float_value + system_float_value * system_float_value);
+        init_float_stack_58 = system_float_value * system_float_value + system_float_value * system_float_value + system_float_value * system_float_value + systemFlags[0xc];
+        init_float_stack_54 = system_float_value * system_float_value + system_float_value * system_float_value + system_float_value * system_float_value + systemFlags[0xd];
+        init_float_stack_50 = system_float_value * system_float_value + system_float_value * system_float_value + system_float_value * system_float_value + systemFlags[0xe];
       }
       init_stack_uint_param_4c = 0x3f800000;
       init_stack_uint_param_60 = (ulonglong)(uint)(float)init_stack_uint_param_60;
