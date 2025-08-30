@@ -2129,8 +2129,8 @@ dataValue g_physics_buffer_constraints;           // 物理缓冲区约束
 dataValue g_physics_buffer_forces;                // 物理缓冲区力
 dataValue g_resource_manager_config_memory;         // 资源管理器配置内存;
 dataValue g_resource_manager_config_textures;        // 资源管理器配置纹理;
-dataValue resourceManagerConfigModels;
-dataValue resourceManagerConfigAudio;
+dataValue g_resource_manager_config_models;          // 资源管理器配置模型;
+dataValue g_resource_manager_config_audio;          // 资源管理器配置音频;
 dataValue sceneManagerConfigLighting;
 dataValue sceneManagerConfigShadows;
 dataValue sceneManagerConfigPostProcessing;
