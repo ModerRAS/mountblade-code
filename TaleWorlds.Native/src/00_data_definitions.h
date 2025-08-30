@@ -8973,7 +8973,7 @@ section_processing_jump_label_:
 section_processing_jump_label_:
           thread_result_status = strcmp(str_len_counter,&g_system_string_size);
           if (thread_result_status == SYSTEM_ZERO_VALUE) {
-            thread_result_status = 0x50;
+            thread_result_status = SYSTEM_THREAD_STATUS_TRANSITION;
             goto section_processing_jump_label_;
           }
         }
@@ -9130,13 +9130,13 @@ system_execution_function(unsigned long long handle_param,unsigned long long thr
                                                         system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_stack_data_index);
                                                         if (system_char_variable != '\0') {
-                                                          buffer_allocation_result = 0x41d;
+                                                          buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_BASE_1;
                                                           goto section_processing_jump_label_;
                                                         }
                                                         system_char_variable = string_system_processor(auStack_50,
                                                                                     &g_stack_data_counter);
                                                         if (system_char_variable != '\0') {
-                                                          buffer_allocation_result = 0x420;
+                                                          buffer_allocation_result = SYSTEM_BUFFER_ALLOC_RESULT_BASE_2;
                                                           goto section_processing_jump_label_;
                                                         }
                                                         system_char_variable = string_system_processor(auStack_50,
