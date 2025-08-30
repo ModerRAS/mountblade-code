@@ -5503,16 +5503,16 @@ section_processing_jump_label_:
   buffer_allocation_result = *(unsigned int *)(str_len_counter + SYSTEM_OFFSET_DATA_INTEGRITY);
   buffer_allocation_result = *(unsigned int *)(str_len_counter + SYSTEM_OFFSET_STRING_FLAG0);
   *(unsigned int *)(system_initialization_result8 + SYSTEM_GLOBAL_DATA_OFFSET_1330) = *(unsigned int *)(str_len_counter + SYSTEM_GLOBAL_DATA_OFFSET_1674);
-  *(unsigned int *)(system_initialization_result8 + 0x1334) = thread_operation_flags;
+  *(unsigned int *)(system_initialization_result8 + SYSTEM_STRUCTURE_OFFSET_1334) = thread_operation_flags;
   *(unsigned int *)(system_initialization_result8 + 0x1338) = buffer_allocation_result;
-  *(unsigned int *)(system_initialization_result8 + 0x133c) = buffer_allocation_result;
+  *(unsigned int *)(system_initialization_result8 + SYSTEM_STRUCTURE_OFFSET_133C) = buffer_allocation_result;
   thread_operation_flags = *(unsigned int *)(str_len_counter + SYSTEM_OFFSET_STRING_FLAG8);
   buffer_allocation_result = *(unsigned int *)(str_len_counter + SYSTEM_OFFSET_STRING_FLAGc);
   buffer_allocation_result = *(unsigned int *)(str_len_counter + SYSTEM_OFFSET_STRING_FLAG2);
   *(unsigned int *)(system_initialization_result8 + 0x1340) = *(unsigned int *)(str_len_counter + SYSTEM_OFFSET_STRING_FLAG_EXTENDED);
-  *(unsigned int *)(system_initialization_result8 + 0x1344) = thread_operation_flags;
+  *(unsigned int *)(system_initialization_result8 + SYSTEM_STRUCTURE_OFFSET_1344) = thread_operation_flags;
   *(unsigned int *)(system_initialization_result8 + 0x1348) = buffer_allocation_result;
-  *(unsigned int *)(system_initialization_result8 + 0x134c) = buffer_allocation_result;
+  *(unsigned int *)(system_initialization_result8 + SYSTEM_STRUCTURE_OFFSET_134C) = buffer_allocation_result;
   *(unsigned short *)(str_len_counter + SYSTEM_OFFSET_STRING_TERMINATOR) = SYSTEM_ZERO_VALUE;
   *(unsigned char *)(str_len_counter + SYSTEM_OFFSET_COUNTER_PRIMARY) = SYSTEM_ZERO_VALUE;
   system_finalizer_001();
@@ -5831,7 +5831,7 @@ long long process_memory_with_thread_operation_flags(unsigned long long handle_p
       g_data_system_flag = g_data_system_flag == '\0';
     }
     if (g_data_system_flag != '\0') {
-      (*(code *)(*reg_rcx[SYSTEM_OFFSET_MODULE_C170])[9])(reg_rcx[SYSTEM_OFFSET_MODULE_C170],astack_long_var[0] + 0x120);
+      (*(code *)(*reg_rcx[SYSTEM_OFFSET_MODULE_C170])[9])(reg_rcx[SYSTEM_OFFSET_MODULE_C170],astack_long_var[0] + SYSTEM_FUNCTION_OFFSET_CALLBACK_120);
     }
   }
   system_initialization_result0 = astack_long_var[0];
@@ -15037,3 +15037,19 @@ void system_data_initialization_cleanup(void)
 // 系统内存分配负偏移常量定义
 #define SYSTEM_OFFSET_MEMORY_NEGATIVE_EFC -0xefc                 // 内存负数EFC偏移量
 #define SYSTEM_OFFSET_MEMORY_NEGATIVE_1EF8 -0x1ef8               // 内存负数1EF8偏移量
+
+// 系统结构体偏移常量定义（2025年8月30日语义化常量替换批次）
+#define SYSTEM_STRUCTURE_OFFSET_1334 0x1334                      // 结构体1334偏移量
+#define SYSTEM_STRUCTURE_OFFSET_133C 0x133c                      // 结构体133C偏移量
+#define SYSTEM_STRUCTURE_OFFSET_1344 0x1344                      // 结构体1344偏移量
+#define SYSTEM_STRUCTURE_OFFSET_134C 0x134c                      // 结构体134C偏移量
+
+// 系统函数调用偏移常量定义
+#define SYSTEM_FUNCTION_OFFSET_CALLBACK_120 0x120                // 函数回调120偏移量
+#define SYSTEM_FUNCTION_OFFSET_STACK_1BD8 0x1bd8                 // 函数栈1BD8偏移量
+#define SYSTEM_FUNCTION_OFFSET_REGISTER_4F8 0x4f8                 // 函数寄存器4F8偏移量
+#define SYSTEM_FUNCTION_OFFSET_REGISTER_A3A 0xa3a                 // 函数寄存器A3A偏移量
+
+// 系统控制值常量定义
+#define SYSTEM_CONTROL_VALUE_98 0x98                             // 控制值98
+#define SYSTEM_CONTROL_VALUE_COUNTER_MODULO 0x1614                // 控制计数器模数值
