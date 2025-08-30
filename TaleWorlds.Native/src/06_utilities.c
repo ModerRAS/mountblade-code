@@ -347,6 +347,19 @@
 #define UTILITY_FLAG_MASK_CLEAR_2 0xfbffffff
 #define UTILITY_FLAG_SET_BIT_2 0x6000000
 #define UTILITY_ENCRYPTION_KEY_SIZE 0xdd
+
+// 新增语义化宏定义 - 替换更多十六进制常量
+#define UTILITY_SYSTEM_MEMORY_OFFSET_1CD8 0x1cd8
+#define UTILITY_SYSTEM_CONFIG_OFFSET_12E3 0x12e3
+#define UTILITY_SYSTEM_CONFIG_OFFSET_12DD 0x12dd
+#define UTILITY_MEMORY_OFFSET_80D8 0x80d8
+#define UTILITY_MEMORY_OFFSET_8088 0x8088
+#define UTILITY_MEMORY_OFFSET_80B0 0x80b0
+#define UTILITY_MEMORY_OFFSET_7F20 0x7f20
+#define UTILITY_DATA_OFFSET_200 0xc8
+#define UTILITY_RESOURCE_HANDLE_OFFSET_3B0 0x3b0
+#define UTILITY_LIST_HANDLE_OFFSET 0x88
+#define UTILITY_DATA_OFFSET_1D0 0x1d0
 #define RESOURCE_PROP_OFFSET 0x100
 #define RESOURCE_UTILITY_HANDLE_DATA_OFFSET 0x200
 #define UTILITY_DATA_OFFSET_START 0x288
@@ -59653,7 +59666,7 @@ void UtilityUtilityUnwind_18090c490(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_RESOURCE_ACCESS_OFFSET)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -59876,7 +59889,7 @@ void UtilityUtilityUnwind_18090c540(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_SYS_STATUS_OFFSET1)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -59922,7 +59935,7 @@ void UtilityUtilityUnwind_18090c550(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + memory_offset)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -59998,7 +60011,7 @@ void UtilityUtilityUnwind_18090c590(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + SYSTEM_DATA_OFFSET)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -60065,7 +60078,7 @@ void UtilityUtilityUnwind_18090c5c0(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x120)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -60111,7 +60124,7 @@ void UtilityUtilityUnwind_18090c5d0(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x2a0)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -60169,7 +60182,7 @@ void UtilityUtilityUnwind_18090c5f0(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x300)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -60215,7 +60228,7 @@ void UtilityUtilityUnwind_18090c600(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x360)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -60904,7 +60917,7 @@ void UtilityUtilityUnwind_18090ca20(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_STRUCT_OFFSET_1)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -60962,7 +60975,7 @@ void UtilityUtilityUnwind_18090ca40(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_RESOURCE_CONFIG_OFFSET_ALT0)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -61032,7 +61045,7 @@ void UtilityUtilityUnwind_18090ca70(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 400)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -61099,7 +61112,7 @@ void UtilityUtilityUnwind_18090caa0(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x1f0)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -61166,7 +61179,7 @@ void UtilityUtilityUnwind_18090cad0(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x250)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -61233,7 +61246,7 @@ void UtilityUtilityUnwind_18090cb00(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_UTILITY_HANDLE_DATA_OFFSET)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -61288,7 +61301,7 @@ void UtilityUtilityUnwind_18090cb20(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x310)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -61343,7 +61356,7 @@ void UtilityUtilityUnwind_18090cb40(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + RESOURCE_PROP_OFFSETf0)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -61401,7 +61414,7 @@ void UtilityUtilityUnwind_18090cb60(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x370)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -61456,7 +61469,7 @@ void UtilityUtilityUnwind_18090cb80(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x3d0)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -61547,7 +61560,7 @@ void UtilityUtilityUnwind_18090cbd0(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + RESOURCE_PROP_OFFSET30)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -61614,7 +61627,7 @@ void UtilityUtilityUnwind_18090cc00(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + RESOURCE_PROP_OFFSET90)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -61780,7 +61793,7 @@ void UtilityUtilityUnwind_18090cce0(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + list_head_offset)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -67053,7 +67066,7 @@ void UtilityUtilityUnwind_18090e760(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_MEMORY_DATA_OFFSET)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -67111,7 +67124,7 @@ void UtilityUtilityUnwind_18090e7a0(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + SYSTEM_TABLE_OFFSET)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -67157,7 +67170,7 @@ void UtilityUtilityUnwind_18090e7b0(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_RESOURCE_ACCESS_ID)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -67203,7 +67216,7 @@ void UtilityUtilityUnwind_18090e7c0(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_RESOURCE_HANDLE_OFFSET_ZERO)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -67249,7 +67262,7 @@ void UtilityUtilityUnwind_18090e7d0(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + utility_data_offset_start)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -67295,7 +67308,7 @@ void UtilityUtilityUnwind_18090e7e0(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_MEMORY_SIZE_OFFSET)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -67341,7 +67354,7 @@ void UtilityUtilityUnwind_18090e7f0(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_STACK_OFFSET_F0)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -67387,7 +67400,7 @@ void UtilityUtilityUnwind_18090e800(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_DATA_OFFSET_1B0)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -67445,7 +67458,7 @@ void UtilityUtilityUnwind_18090e820(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x210)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -67503,7 +67516,7 @@ void UtilityUtilityUnwind_18090e840(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + UTILITY_BUFFER_SIZE0)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -67561,7 +67574,7 @@ void UtilityUtilityUnwind_18090e860(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x2d0)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
@@ -68000,7 +68013,7 @@ void UtilityUtilityUnwind_18090eb00(uint64 resource_handle_identifier,longlong r
   longlong memory_offset_data;
   
   if (0 < *(int *)(resource_buffer + 0x140)) {
-    memory_offset_data = *(longlong *)(systemMemoryManager + 0x1cd8);
+    memory_offset_data = *(longlong *)(systemMemoryManager + UTILITY_SYSTEM_MEMORY_OFFSET_1CD8);
     if ((*(char *)(systemConfigManager + 0x12e3) != '\0') || (*(char *)(systemConfigManager + 0x12dd) != '\0')
        ) {
       long_ptr_buffer = (longlong *)(memory_offset_data + 0x80d8 + (longlong)*(int *)(memory_offset_data + 0x8088) * POINTER_DATA_OFFSET);
