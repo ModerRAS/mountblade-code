@@ -991,9 +991,9 @@
 #define UTILITY_ERROR_CODE_TIMEOUT ERROR_MEMORY_FAIL
 
 // 函数参数语义化宏定义
-#define PARAM_SEARCH_DATA_OFFSET param3
-#define PARAM_SEARCH_FLAGS param4  
-#define PARAM_SEARCH_CONTEXT param5
+#define PARAM_SEARCH_DATA_OFFSET utility_param_search_data_offset
+#define PARAM_SEARCH_FLAGS utility_param_search_flags  
+#define PARAM_SEARCH_CONTEXT utility_param_search_context
 
 // 新增语义化宏定义 - 替换更多十六进制常量
 #define UTILITY_BUFFER_OFFSET 0x94
