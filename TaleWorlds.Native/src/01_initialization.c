@@ -329,6 +329,20 @@
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了通用变量名和寄存器变量名的语义化替换
 
+// 最新美化内容：
+// - 将init_stack_uint_parameter_200等栈参数变量名替换为init_stack_parameter_200等简化名称
+// - 将init_stack_ulong_parameter_198等栈参数变量名替换为init_stack_parameter_198等简化名称
+// - 将init_stack_uint_parameter_178等栈参数变量名替换为init_stack_parameter_178等简化名称
+// - 将init_stack_ulong_parameter_28等栈参数变量名替换为init_stack_parameter_28等简化名称
+// - 将init_stack_uint_param_a0等栈参数变量名替换为init_stack_param_a0等简化名称
+// - 将init_stack_long_param_90等栈参数变量名替换为init_stack_param_90等简化名称
+// - 将init_stack_uint_param_88等栈参数变量名替换为init_stack_param_88等简化名称
+// - 将init_stack_uint_param_60等栈参数变量名替换为init_stack_param_60等简化名称
+// - 将init_stack_ulong_param_58等栈参数变量名替换为init_stack_param_58等简化名称
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了栈参数变量名的语义化替换
+
 // 本次美化内容：
 // - 添加了系统字符串常量语义化定义，如SYSTEM_STRING_CONFIG_TOKEN、SYSTEM_STRING_PATH_SEPARATOR等
 // - 添加了SYSTEM_CONFIG_SIZE_THREAD_LOCAL等配置大小常量
