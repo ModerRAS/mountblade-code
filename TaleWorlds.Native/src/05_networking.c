@@ -33757,14 +33757,14 @@ void network_socket_descriptor(int64_t network_socket_descriptor,int32_t *networ
   status_return_code = (uint32_t)((uint)inputRegister >> NETWORK_PACKET_HEADER_SIZE);
   network_character_flag = (char)inputRegister + -NETWORK_SOCKET_SESSION_OFFSET + network_register_cf;
   network_data_ptr = CONCAT31(status_return_code,network_character_flag);
-  *(uint32_t *)CONCAT44(in_register_00000004,network_data_ptr) = network_data_ptr;
+  *(uint32_t *)CONCAT44(network_input_register_value,network_data_ptr) = network_data_ptr;
   *(uint32_t *)(network_socket_descriptor + -NETWORK_SOCKET_OFFSET_MASK) = *(uint32_t *)(network_socket_descriptor + -NETWORK_SOCKET_OFFSET_MASK) & network_socket_context_ptr;
   network_stack_int_pointer = network_buffer_pointer;
-  *(char *)CONCAT44(in_register_00000004,network_data_ptr) =
-       *(char *)CONCAT44(in_register_00000004,network_data_ptr) + network_character_flag;
+  *(char *)CONCAT44(network_input_register_value,network_data_ptr) =
+       *(char *)CONCAT44(network_input_register_value,network_data_ptr) + network_character_flag;
   network_operation_result = CONCAT31(status_return_code,network_character_flag + '\x18');
   *network_buffer_pointer = *network_buffer_pointer + network_operation_result;
-  network_char_temp = (char *)((longlong)&network_stack_int_pointer + CONCAT44(in_register_00000004,network_operation_result));
+  network_char_temp = (char *)((longlong)&network_stack_int_pointer + CONCAT44(network_input_register_value,network_operation_result));
   *network_char_temp = *network_char_temp + network_character_flag + '\x18';
   network_char_temp = (code *)swi(3);
   (*network_char_temp)();
