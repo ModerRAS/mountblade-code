@@ -34561,13 +34561,13 @@ INIT_LABEL_SYSTEM_5f30a:
           system_stack_memory_pointer = system_memory_pointer;
           (**(code **)(*resourceIdentifier + SYSTEM_OBJECT_OFFSET_28))();
         }
-        *(longlong **)(flag_initialized + SYSTEM_OFFSET_8) = system_memory_pointer;
+        *(longlong **)(system_init_status_flag + SYSTEM_OFFSET_8) = system_memory_pointer;
         *(longlong **)(handleIdentifier + SYSTEM_DATA_BLOCK_SIZE) = system_memory_pointer;
         goto INIT_LABEL_SYSTEM_5f30a;
       }
       system_memory_pointer = *(longlong **)(handleIdentifier + SYSTEM_OBJECT_OFFSET_60);
       system_memory_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = *system_memory_pointer - 1U & system_memory_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] - 1U;
-      *(uint64_t *)(flag_initialized + SYSTEM_OFFSET_8) = 0;
+      *(uint64_t *)(system_init_status_flag + SYSTEM_OFFSET_8) = 0;
     }
   }
   return 0;
