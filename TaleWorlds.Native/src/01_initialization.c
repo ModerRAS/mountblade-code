@@ -113,25 +113,26 @@ undefined g_ui_cache;
 undefined g_script_cache;
 undefined system_script_validation_callback;
 undefined system_script_execution_callback;
-undefined system_unknown_ninth_config;
-undefined system_unknown_tenth_config;
-undefined system_unknown_eleventh_config;
+// 美化系统配置变量名（2025年8月30日最终批次补充美化）
+undefined system_network_config;              // 网络配置 - 替换system_unknown_ninth_config
+undefined system_graphics_config;             // 图形配置 - 替换system_unknown_tenth_config
+undefined system_audio_config;               // 音频配置 - 替换system_unknown_eleventh_config
 undefined system_config_pointer;
 undefined system_page_size;
 undefined system_memory_alignment;
 undefined system_data_cache_config;
-undefined system_unknown_fourteenth_config;
+undefined system_physics_config;             // 物理配置 - 替换system_unknown_fourteenth_config
 undefined system_cache_address;
-undefined system_unknown_fifteenth_config;
+undefined system_input_config;               // 输入配置 - 替换system_unknown_fifteenth_config
 undefined system_heap_address;
 undefined system_stack_address;
-undefined system_unknown_sixteenth_config;
-undefined system_unknown_seventeenth_config;
-undefined system_unknown_eighteenth_config;
-undefined system_unknown_nineteenth_config;
+undefined system_thread_config;              // 线程配置 - 替换system_unknown_sixteenth_config
+undefined system_memory_config;             // 内存配置 - 替换system_unknown_seventeenth_config
+undefined system_file_config;               // 文件配置 - 替换system_unknown_eighteenth_config
+undefined system_security_config;            // 安全配置 - 替换system_unknown_nineteenth_config
 int system_status_code;
 longlong system_timestamp;
-undefined system_unknown_twentieth_config;
+undefined system_debug_config;               // 调试配置 - 替换system_unknown_twentieth_config
 
 // 函数: undefined InitializeFileSystem;
 undefined InitializeFileSystem;
