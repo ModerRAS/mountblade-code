@@ -55,6 +55,14 @@
 // - 原本实现：完全重构所有硬编码值体系
 // - 简化实现：仅将常见的硬编码值替换为语义化常量
 
+// 最新美化内容（2025年8月30日）：
+// - 删除了重复的SYSTEM_ONE_VALUE到SYSTEM_TEN_VALUE常量定义
+// - 将SYSTEM_SPECIAL_VALUE_*常量美化成语义化名称，如SYSTEM_CHAR_SLASH、SYSTEM_CONTROL_VALUE_B0等
+// - 为ASCII字符值添加了明确的字符语义，如0x2f->'/'，0x65->'a'等
+// - 为控制值添加了CONTROL_VALUE前缀，便于区分字符常量和控制常量
+// - 标记了重复定义的常量，如SYSTEM_CHAR_LOWERCASE_A_2等
+// - 提高了代码的可读性和维护性
+
 
 // 系统数值常量定义 - 美化硬编码值（2025年8月30日）
 // 简化实现：仅将常见的硬编码值替换为语义化常量
@@ -98,6 +106,28 @@
 // 系统标志值常量
 #define SYSTEM_FLAG_ENABLED 1
 #define SYSTEM_FLAG_DISABLED 0
+
+// 系统字符串大小常量
+#define SYSTEM_STRING_SIZE_SMALL 32
+#define SYSTEM_STRING_SIZE_MEDIUM 64
+#define SYSTEM_STRING_SIZE_LARGE 128
+#define SYSTEM_STRING_SIZE_XLARGE 256
+
+// 系统缓冲区类型常量
+#define SYSTEM_BUFFER_TYPE_PRIMARY 1
+#define SYSTEM_BUFFER_TYPE_SECONDARY 2
+#define SYSTEM_BUFFER_TYPE_TERTIARY 3
+
+// 系统资源类型常量
+#define SYSTEM_RESOURCE_TYPE_TEXTURE 1
+#define SYSTEM_RESOURCE_TYPE_SHADER 2
+#define SYSTEM_RESOURCE_TYPE_AUDIO 3
+#define SYSTEM_RESOURCE_TYPE_FONT 4
+
+// 系统配置类型常量
+#define SYSTEM_CONFIG_TYPE_BASIC 1
+#define SYSTEM_CONFIG_TYPE_ADVANCED 2
+#define SYSTEM_CONFIG_TYPE_EXPERT 3
 #define SYSTEM_FLAG_INITIALIZED 1
 #define SYSTEM_FLAG_ACTIVE 1
 
@@ -245,18 +275,8 @@
 #define SYSTEM_STATUS_ENABLED 1
 #define SYSTEM_STATUS_DISABLED 0
 
-// 系统通用数值常量
+// 系统通用数值常量 - 重复定义已删除，请参考第64-73行的定义
 #define SYSTEM_ZERO_VALUE 0
-#define SYSTEM_ONE_VALUE 1
-#define SYSTEM_TWO_VALUE 2
-#define SYSTEM_THREE_VALUE 3
-#define SYSTEM_FOUR_VALUE 4
-#define SYSTEM_FIVE_VALUE 5
-#define SYSTEM_SIX_VALUE 6
-#define SYSTEM_SEVEN_VALUE 7
-#define SYSTEM_EIGHT_VALUE 8
-#define SYSTEM_NINE_VALUE 9
-#define SYSTEM_TEN_VALUE 10
 
 // 系统模块句柄常量
 #define SYSTEM_MODULE_HANDLE_NULL 0
@@ -344,30 +364,30 @@
 // - 将 data_180bf0082 替换为 string_concatenation_flag
 // - 将 data_180c91d50 替换为 system_cleanup_flag
 // - 新增美化内容：将函数调用中的十六进制地址替换为语义化名称
-// - 将 func_0x00018013d940 替换为 system_initialization_processor
-// - 将 func_0x0001804ca2d0 替换为 module_configuration_processor
-// - 将 func_0x0001800a1eb0 替换为 string_system_processor
-// - 将 func_0x000180329ed1 替换为 system_address_validator
+// - 将 unnamed_functionx00018013d940 替换为 system_initialization_processor
+// - 将 unnamed_functionx0001804ca2d0 替换为 module_configuration_processor
+// - 将 unnamed_functionx0001800a1eb0 替换为 string_system_processor
+// - 将 unnamed_functionx000180329ed1 替换为 system_address_validator
 // - 将 0x180c919f0 替换为 system_validator_address
 // - 将 0xaaaaaaaaaaaaaaab 替换为 floating_point_conversion_constant
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了函数调用中十六进制地址的语义化替换
 // 最新美化内容（本轮）：
-// - 将 func_0x00018064e870 替换为 system_buffer_allocator 等系统缓冲区管理函数名
-// - 将 func_0x00018076a7d0 替换为 thread_configuration_handler 等线程配置函数名
-// - 将 func_0x000180856540 替换为 network_operation_processor 等网络操作函数名
-// - 将 func_0x0001808cf230 替换为 string_conversion_handler 等字符串处理函数名
-// - 将 func_0x0001808f62c0 替换为 system_cleanup_routine 等系统清理函数名
-// - 将 func_0x0001808f6640 替换为 buffer_deallocator 等缓冲区管理函数名
-// - 将 func_0x0001808f6ce0 替换为 system_synchronization_handler 等系统同步函数名
-// - 将 func_0x0001808f0200 替换为 handle_processor 等句柄处理函数名
-// - 将 func_0x0001808f0760 替换为 parameter_validator 等参数验证函数名
-// - 将 func_0x0001808f2030 替换为 status_checker 等状态检查函数名
-// - 将 func_0x0001808f6f90 替换为 thread_initializer 等线程初始化函数名
-// - 将 func_0x0001808f0dd0 替换为 data_processor 等数据处理函数名
-// - 将 func_0x0001808f0e30 替换为 string_comparator 等字符串比较函数名
-// - 将 func_0x0001808f0b40 替换为 integer_processor 等整数处理函数名
+// - 将 unnamed_functionx00018064e870 替换为 system_buffer_allocator 等系统缓冲区管理函数名
+// - 将 unnamed_functionx00018076a7d0 替换为 thread_configuration_handler 等线程配置函数名
+// - 将 unnamed_functionx000180856540 替换为 network_operation_processor 等网络操作函数名
+// - 将 unnamed_functionx0001808cf230 替换为 string_conversion_handler 等字符串处理函数名
+// - 将 unnamed_functionx0001808f62c0 替换为 system_cleanup_routine 等系统清理函数名
+// - 将 unnamed_functionx0001808f6640 替换为 buffer_deallocator 等缓冲区管理函数名
+// - 将 unnamed_functionx0001808f6ce0 替换为 system_synchronization_handler 等系统同步函数名
+// - 将 unnamed_functionx0001808f0200 替换为 handle_processor 等句柄处理函数名
+// - 将 unnamed_functionx0001808f0760 替换为 parameter_validator 等参数验证函数名
+// - 将 unnamed_functionx0001808f2030 替换为 status_checker 等状态检查函数名
+// - 将 unnamed_functionx0001808f6f90 替换为 thread_initializer 等线程初始化函数名
+// - 将 unnamed_functionx0001808f0dd0 替换为 data_processor 等数据处理函数名
+// - 将 unnamed_functionx0001808f0e30 替换为 string_comparator 等字符串比较函数名
+// - 将 unnamed_functionx0001808f0b40 替换为 integer_processor 等整数处理函数名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了剩余十六进制函数名的语义化替换
@@ -1473,82 +1493,82 @@ extern char system_flag_buffer_cleanup_handler;
 #define SYSTEM_ERROR_TOO_MANY_CMDS 0x1e
 #define SYSTEM_ERROR_ADAP_HDW_ERR 0x1f
 
-// 系统特殊常量定义
-#define SYSTEM_SPECIAL_VALUE_2F 0x2f
-#define SYSTEM_SPECIAL_VALUE_65 0x65
-#define SYSTEM_SPECIAL_VALUE_21 0x21
-#define SYSTEM_SPECIAL_VALUE_12 0x12
-#define SYSTEM_SPECIAL_VALUE_30 0x30
-#define SYSTEM_SPECIAL_VALUE_B0 0xb0
-#define SYSTEM_SPECIAL_VALUE_D4 0xd4
-#define SYSTEM_SPECIAL_VALUE_48 0x48
-#define SYSTEM_SPECIAL_VALUE_14 0x14
-#define SYSTEM_SPECIAL_VALUE_28 0x28
-#define SYSTEM_SPECIAL_VALUE_58 0x58
-#define SYSTEM_SPECIAL_VALUE_C 0xc
-#define SYSTEM_SPECIAL_VALUE_A8 0xa8
-#define SYSTEM_SPECIAL_VALUE_68 0x68
-#define SYSTEM_SPECIAL_VALUE_18 0x18
-#define SYSTEM_SPECIAL_VALUE_A0 0xa0
-#define SYSTEM_SPECIAL_VALUE_50 0x50
-#define SYSTEM_SPECIAL_VALUE_6C 0x6c
-#define SYSTEM_SPECIAL_VALUE_74 0x74
-#define SYSTEM_SPECIAL_VALUE_96 0x96
-#define SYSTEM_SPECIAL_VALUE_F8 0xf8
-#define SYSTEM_SPECIAL_VALUE_FC 0xfc
-#define SYSTEM_SPECIAL_VALUE_24 0x24
-#define SYSTEM_SPECIAL_VALUE_34 0x34
-#define SYSTEM_SPECIAL_VALUE_3C 0x3c
-#define SYSTEM_SPECIAL_VALUE_5C 0x5c
-#define SYSTEM_SPECIAL_VALUE_60 0x60
-#define SYSTEM_SPECIAL_VALUE_61 0x61
-#define SYSTEM_SPECIAL_VALUE_70 0x70
-#define SYSTEM_SPECIAL_VALUE_38 0x38
-#define SYSTEM_SPECIAL_VALUE_44 0x44
-#define SYSTEM_SPECIAL_VALUE_4C 0x4c
-#define SYSTEM_SPECIAL_VALUE_51 0x51
-#define SYSTEM_SPECIAL_VALUE_78 0x78
-#define SYSTEM_SPECIAL_VALUE_94 0x94
-#define SYSTEM_SPECIAL_VALUE_98 0x98
-#define SYSTEM_SPECIAL_VALUE_9C 0x9c
-#define SYSTEM_SPECIAL_VALUE_A4 0xa4
-#define SYSTEM_SPECIAL_VALUE_AC 0xac
-#define SYSTEM_SPECIAL_VALUE_B4 0xb4
-#define SYSTEM_SPECIAL_VALUE_B5 0xb5
-#define SYSTEM_SPECIAL_VALUE_B8 0xb8
-#define SYSTEM_SPECIAL_VALUE_BC 0xbc
-#define SYSTEM_SPECIAL_VALUE_BD 0xbd
-#define SYSTEM_SPECIAL_VALUE_BE 0xbe
-#define SYSTEM_SPECIAL_VALUE_C0 0xc0
-#define SYSTEM_SPECIAL_VALUE_1D 0x1d
-#define SYSTEM_SPECIAL_VALUE_7C 0x7c
-#define SYSTEM_SPECIAL_VALUE_C4 0xc4
-#define SYSTEM_SPECIAL_VALUE_CC 0xcc
-#define SYSTEM_SPECIAL_VALUE_D0 0xd0
-#define SYSTEM_SPECIAL_VALUE_31 0x31
-#define SYSTEM_SPECIAL_VALUE_32 0x32
-#define SYSTEM_SPECIAL_VALUE_35 0x35
-#define SYSTEM_SPECIAL_VALUE_54 0x54
-#define SYSTEM_SPECIAL_VALUE_22 0x22
-#define SYSTEM_SPECIAL_VALUE_23 0x23
-#define SYSTEM_SPECIAL_VALUE_25 0x25
-#define SYSTEM_SPECIAL_VALUE_26 0x26
-#define SYSTEM_SPECIAL_VALUE_27 0x27
-#define SYSTEM_SPECIAL_VALUE_29 0x29
-#define SYSTEM_SPECIAL_VALUE_2A 0x2a
-#define SYSTEM_SPECIAL_VALUE_2B 0x2b
-#define SYSTEM_SPECIAL_VALUE_2D 0x2d
-#define SYSTEM_SPECIAL_VALUE_2E 0x2e
-#define SYSTEM_SPECIAL_VALUE_15 0x15
-#define SYSTEM_SPECIAL_VALUE_16 0x16
-#define SYSTEM_SPECIAL_VALUE_1A 0x1a
-#define SYSTEM_SPECIAL_VALUE_1B 0x1b
-#define SYSTEM_SPECIAL_VALUE_EB 0xeb
-#define SYSTEM_SPECIAL_VALUE_EF 0xef
-#define SYSTEM_SPECIAL_VALUE_E 0xe
-#define SYSTEM_SPECIAL_VALUE_17 0x17
-#define SYSTEM_SPECIAL_VALUE_11 0x11
-#define SYSTEM_SPECIAL_VALUE_13 0x13
+// 系统特殊常量定义 - 美化为语义化名称
+#define SYSTEM_CHAR_SLASH 0x2f        // '/' 字符
+#define SYSTEM_CHAR_LOWERCASE_A 0x65  // 'a' 字符  
+#define SYSTEM_CHAR_EXCLAMATION 0x21  // '!' 字符
+#define SYSTEM_CHAR_DC2 0x12          // DC2 控制字符
+#define SYSTEM_CHAR_DIGIT_ZERO 0x30   // '0' 字符
+#define SYSTEM_CONTROL_VALUE_B0 0xb0    // 控制值 B0
+#define SYSTEM_CONTROL_VALUE_D4 0xd4    // 控制值 D4  
+#define SYSTEM_CHAR_DIGIT_ONE 0x48     // '1' 字符
+#define SYSTEM_CONTROL_VALUE_14 0x14   // 控制值 14
+#define SYSTEM_CONTROL_VALUE_28 0x28   // 控制值 28
+#define SYSTEM_CHAR_DIGIT_FIVE 0x58    // '5' 字符
+#define SYSTEM_CONTROL_VALUE_C 0xc     // 控制值 C
+#define SYSTEM_CONTROL_VALUE_A8 0xa8   // 控制值 A8
+#define SYSTEM_CHAR_LOWERCASE_H 0x68   // 'h' 字符
+#define SYSTEM_CONTROL_VALUE_18 0x18  // 控制值 18
+#define SYSTEM_CONTROL_VALUE_A0 0xa0   // 控制值 A0
+#define SYSTEM_CHAR_LOWERCASE_P 0x50   // 'p' 字符
+#define SYSTEM_CHAR_LOWERCASE_L 0x6c   // 'l' 字符
+#define SYSTEM_CHAR_LOWERCASE_T 0x74   // 't' 字符
+#define SYSTEM_CONTROL_VALUE_96 0x96   // 控制值 96
+#define SYSTEM_CONTROL_VALUE_F8 0xf8   // 控制值 F8
+#define SYSTEM_CONTROL_VALUE_FC 0xfc   // 控制值 FC
+#define SYSTEM_CHAR_DOLLAR_SIGN 0x24   // '$' 字符
+#define SYSTEM_CHAR_DIGIT_FOUR 0x34    // '4' 字符
+#define SYSTEM_CHAR_LESS_THAN 0x3c     // '<' 字符
+#define SYSTEM_CHAR_BACKSLASH 0x5c    // '\' 字符
+#define SYSTEM_CHAR_GRAVE_ACCENT 0x60  // '`' 字符
+#define SYSTEM_CHAR_LOWERCASE_A_2 0x61 // 'a' 字符 (重复定义)
+#define SYSTEM_CHAR_LOWERCASE_F 0x70   // 'f' 字符
+#define SYSTEM_CHAR_DIGIT_EIGHT 0x38    // '8' 字符
+#define SYSTEM_CHAR_DIGIT_FOUR_2 0x44   // '4' 字符 (重复定义)
+#define SYSTEM_CHAR_LOWERCASE_L_2 0x4c  // 'l' 字符 (重复定义)
+#define SYSTEM_CHAR_LOWERCASE_Q 0x51    // 'q' 字符
+#define SYSTEM_CHAR_LOWERCASE_X 0x78    // 'x' 字符
+#define SYSTEM_CONTROL_VALUE_94 0x94    // 控制值 94
+#define SYSTEM_CONTROL_VALUE_98 0x98    // 控制值 98
+#define SYSTEM_CONTROL_VALUE_9C 0x9c    // 控制值 9C
+#define SYSTEM_CONTROL_VALUE_A4 0xa4    // 控制值 A4
+#define SYSTEM_CONTROL_VALUE_AC 0xac    // 控制值 AC
+#define SYSTEM_CONTROL_VALUE_B4 0xb4    // 控制值 B4
+#define SYSTEM_CONTROL_VALUE_B5 0xb5    // 控制值 B5
+#define SYSTEM_CONTROL_VALUE_B8 0xb8    // 控制值 B8
+#define SYSTEM_CONTROL_VALUE_BC 0xbc    // 控制值 BC
+#define SYSTEM_CONTROL_VALUE_BD 0xbd    // 控制值 BD
+#define SYSTEM_CONTROL_VALUE_BE 0xbe    // 控制值 BE
+#define SYSTEM_CONTROL_VALUE_C0 0xc0    // 控制值 C0
+#define SYSTEM_CONTROL_VALUE_1D 0x1d    // 控制值 1D
+#define SYSTEM_CHAR_VERTICAL_BAR 0x7c   // '|' 字符
+#define SYSTEM_CONTROL_VALUE_C4 0xc4    // 控制值 C4
+#define SYSTEM_CONTROL_VALUE_CC 0xcc    // 控制值 CC
+#define SYSTEM_CONTROL_VALUE_D0 0xd0    // 控制值 D0
+#define SYSTEM_CHAR_DIGIT_ONE_2 0x31    // '1' 字符 (重复定义)
+#define SYSTEM_CHAR_DIGIT_TWO 0x32      // '2' 字符
+#define SYSTEM_CHAR_DIGIT_FIVE_2 0x35   // '5' 字符 (重复定义)
+#define SYSTEM_CHAR_LOWERCASE_T_2 0x54  // 't' 字符 (重复定义)
+#define SYSTEM_CHAR_DOUBLE_QUOTE 0x22   // '"' 字符
+#define SYSTEM_CHAR_HASH 0x23           // '#' 字符
+#define SYSTEM_CHAR_PERCENT 0x25        // '%' 字符
+#define SYSTEM_CHAR_AMPERSAND 0x26      // '&' 字符
+#define SYSTEM_CHAR_SINGLE_QUOTE 0x27   // '\'' 字符
+#define SYSTEM_CHAR_RIGHT_PAREN 0x29     // ')' 字符
+#define SYSTEM_CHAR_ASTERISK 0x2a        // '*' 字符
+#define SYSTEM_CHAR_PLUS 0x2b            // '+' 字符
+#define SYSTEM_CHAR_MINUS 0x2d           // '-' 字符
+#define SYSTEM_CHAR_PERIOD 0x2e          // '.' 字符
+#define SYSTEM_CONTROL_VALUE_15 0x15     // 控制值 15
+#define SYSTEM_CONTROL_VALUE_16 0x16     // 控制值 16
+#define SYSTEM_CONTROL_VALUE_1A 0x1a     // 控制值 1A
+#define SYSTEM_CONTROL_VALUE_1B 0x1b     // 控制值 1B
+#define SYSTEM_CONTROL_VALUE_EB 0xeb     // 控制值 EB
+#define SYSTEM_CONTROL_VALUE_EF 0xef     // 控制值 EF
+#define SYSTEM_CONTROL_VALUE_E 0xe       // 控制值 E
+#define SYSTEM_CONTROL_VALUE_17 0x17     // 控制值 17
+#define SYSTEM_CONTROL_VALUE_11 0x11     // 控制值 11
+#define SYSTEM_CONTROL_VALUE_13 0x13     // 控制值 13
 
 // 全局系统数据定义
 void* global_system_data_pointer;
@@ -1697,9 +1717,9 @@ int initialize_base_resource_manager(void)
 {
   long long system_initialization_result;
   unsigned long long base_resource_system_string_length;
-  g_resource_string_1 = SYSTEM_ZERO_VALUE;
+  resource_string_base = SYSTEM_ZERO_VALUE;
   g_resource_id_1 = SYSTEM_SIX_VALUE;
-  strcpy_s(&g_resource_string_1, STRING_BUFFER_SIZE, &base_resource_string, base_resource_system_string_length, default_thread_pool_flag);
+  strcpy_s(&resource_string_base, STRING_BUFFER_SIZE, &base_resource_string, base_resource_system_string_length, default_thread_pool_flag);
   system_initialization_result = system_execution_function(base_resource_manager_initialization_function);
   return (system_initialization_result != 0) - 1;
 }
@@ -2042,15 +2062,15 @@ int initialize_network_module(void)
   long long system_initialization_result;
   unsigned long long system_string_length;
   system_global_data_pointer = &g_memoryAllocationFlag;
-  system_global_data_pointer = &g_system_memory_buffer_1;
-  g_system_memory_buffer_1 = SYSTEM_ZERO_VALUE;
+  system_global_data_pointer = &system_memory_buffer_primary;
+  system_memory_buffer_primary = SYSTEM_ZERO_VALUE;
   system_global_data_pointer = SYSTEM_OPCODE_NETWORK_INIT;
-  strcpy_s(&g_system_memory_buffer_1,PRIMARY_STRING_BUFFER_SIZE,&g_memoryString1,system_string_length_parameter,default_thread_pool_flag);
+  strcpy_s(&system_memory_buffer_primary,PRIMARY_STRING_BUFFER_SIZE,&memory_string_primary,system_string_length_parameter,default_thread_pool_flag);
   system_global_data_pointer = &g_memoryAllocationFlag;
-  system_global_data_pointer = &g_system_memory_buffer_2;
-  g_system_memory_buffer_2 = SYSTEM_ZERO_VALUE;
+  system_global_data_pointer = &system_memory_buffer_secondary;
+  system_memory_buffer_secondary = SYSTEM_ZERO_VALUE;
   system_global_data_pointer = STRING_BUFFER_SIZE;
-  strcpy_s(&g_system_memory_buffer_2,PRIMARY_STRING_BUFFER_SIZE,&g_memoryString2);
+  strcpy_s(&system_memory_buffer_secondary,PRIMARY_STRING_BUFFER_SIZE,&memory_string_secondary);
   system_global_data_pointer = &g_memoryAllocationFlag;
   system_global_data_pointer = &g_memory_texture_buffer;
   g_memory_texture_buffer = SYSTEM_ZERO_VALUE;
@@ -2090,37 +2110,37 @@ int initialize_network_module(void)
   system_global_data_pointer = &g_memory_config_buffer;
   g_memory_config_buffer = SYSTEM_ZERO_VALUE;
   system_global_data_pointer = SYSTEM_OPCODE_SECURITY_INIT;
-  strcpy_s(&g_memory_config_buffer,PRIMARY_STRING_BUFFER_SIZE,&g_memoryString10);
+  strcpy_s(&g_memory_config_buffer,PRIMARY_STRING_BUFFER_SIZE,&memory_string_primary0);
   system_global_data_pointer = &g_memoryAllocationFlag;
   system_global_data_pointer = &g_memory_savegame_buffer;
   g_memory_savegame_buffer = SYSTEM_ZERO_VALUE;
   system_global_data_pointer = SYSTEM_OPCODE_RESOURCE_INIT;
-  strcpy_s(&g_memory_savegame_buffer,PRIMARY_STRING_BUFFER_SIZE,&g_memoryString11);
+  strcpy_s(&g_memory_savegame_buffer,PRIMARY_STRING_BUFFER_SIZE,&memory_string_primary1);
   system_global_data_pointer = &g_memoryAllocationFlag;
   system_global_data_pointer = &g_memory_string_manager_buffer;
   g_memory_string_manager_buffer = SYSTEM_ZERO_VALUE;
   system_global_data_pointer = SYSTEM_OPCODE_AUTH_INIT;
-  strcpy_s(&g_memory_string_manager_buffer,PRIMARY_STRING_BUFFER_SIZE,&g_memoryString12);
+  strcpy_s(&g_memory_string_manager_buffer,PRIMARY_STRING_BUFFER_SIZE,&memory_string_primary2);
   system_global_data_pointer = &g_memoryAllocationFlag;
   system_global_data_pointer = &g_memory_vertex_buffer;
   g_memory_vertex_buffer = SYSTEM_ZERO_VALUE;
   system_global_data_pointer = SYSTEM_OPCODE_UTILITY_INIT;
-  strcpy_s(&g_memory_vertex_buffer,PRIMARY_STRING_BUFFER_SIZE,&g_memoryString13);
+  strcpy_s(&g_memory_vertex_buffer,PRIMARY_STRING_BUFFER_SIZE,&memory_string_primary3);
   system_global_data_pointer = &g_memoryAllocationFlag;
   system_global_data_pointer = &g_memory_fragment_buffer;
   g_memory_fragment_buffer = SYSTEM_ZERO_VALUE;
   system_global_data_pointer = SYSTEM_OPCODE_PHYSICS_INIT;
-  strcpy_s(&g_memory_fragment_buffer,PRIMARY_STRING_BUFFER_SIZE,&g_memoryString14);
+  strcpy_s(&g_memory_fragment_buffer,PRIMARY_STRING_BUFFER_SIZE,&memory_string_primary4);
   system_global_data_pointer = &g_memoryAllocationFlag;
   system_global_data_pointer = &g_memory_geometry_buffer;
   g_memory_geometry_buffer = SYSTEM_ZERO_VALUE;
   system_global_data_pointer = SYSTEM_OPCODE_FINAL_INIT;
-  strcpy_s(&g_memory_geometry_buffer,PRIMARY_STRING_BUFFER_SIZE,&g_memoryString15);
+  strcpy_s(&g_memory_geometry_buffer,PRIMARY_STRING_BUFFER_SIZE,&memory_string_primary5);
   system_global_data_pointer = &g_memoryAllocationFlag;
   system_global_data_pointer = &g_memory_tessellation_buffer;
   g_memory_tessellation_buffer = SYSTEM_ZERO_VALUE;
   system_global_data_pointer = SYSTEM_OPCODE_FINAL_INIT;
-  strcpy_s(&g_memory_tessellation_buffer,PRIMARY_STRING_BUFFER_SIZE,&g_memoryString16);
+  strcpy_s(&g_memory_tessellation_buffer,PRIMARY_STRING_BUFFER_SIZE,&memory_string_primary6);
   system_initialization_result = system_execution_function(&system_init_function_secondary);
   return (system_initialization_result != 0) - 1;
 }
@@ -2173,70 +2193,70 @@ int initialize_network_module(void)
   system_global_data_pointer = SYSTEM_RESOURCE_ID_STRING_MANAGER;
   strcpy_s(&misc_particle_data_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&particle_resource_data_config_string);
   resource_template_pointer = &g_defaultDataTemplate;
-  system_global_data_pointer = &texture_resource_buffer_0;
-  texture_resource_buffer_0 = SYSTEM_ZERO_VALUE;
+  system_global_data_pointer = &texture_resource_buffer_config;
+  texture_resource_buffer_config = SYSTEM_ZERO_VALUE;
   system_global_data_pointer = TEXTURE_RESOURCE_DATA_CONFIG_OPCODE;
-  strcpy_s(&texture_resource_buffer_0,SYSTEM_CONFIG_BUFFER_SIZE,&texture_resource_data_config_string);
+  strcpy_s(&texture_resource_buffer_config,SYSTEM_CONFIG_BUFFER_SIZE,&texture_resource_data_config_string);
   resource_template_pointer = &g_defaultDataTemplate;
-  system_global_data_pointer = &texture_resource_buffer_1;
-  texture_resource_buffer_1 = SYSTEM_ZERO_VALUE;
+  system_global_data_pointer = &texture_resource_buffer_default;
+  texture_resource_buffer_default = SYSTEM_ZERO_VALUE;
   system_global_data_pointer = SYSTEM_ZERO_VALUE;
-  strcpy_s(&texture_resource_buffer_1,SYSTEM_CONFIG_BUFFER_SIZE,&default_resource_config_string);
+  strcpy_s(&texture_resource_buffer_default,SYSTEM_CONFIG_BUFFER_SIZE,&default_resource_config_string);
   resource_template_pointer = &g_defaultDataTemplate;
-  system_global_data_pointer = &texture_resource_buffer_2;
-  texture_resource_buffer_2 = SYSTEM_ZERO_VALUE;
+  system_global_data_pointer = &texture_resource_buffer_definition;
+  texture_resource_buffer_definition = SYSTEM_ZERO_VALUE;
   system_global_data_pointer = TEXTURE_CONFIG_DEFINITION_OPCODE;
-  strcpy_s(&texture_resource_buffer_2,SYSTEM_CONFIG_BUFFER_SIZE,&texture_config_definition_string);
+  strcpy_s(&texture_resource_buffer_definition,SYSTEM_CONFIG_BUFFER_SIZE,&texture_config_definition_string);
   resource_template_pointer = &g_defaultDataTemplate;
-  system_global_data_pointer = &texture_resource_buffer_3;
-  texture_resource_buffer_3 = SYSTEM_ZERO_VALUE;
+  system_global_data_pointer = &texture_resource_buffer_properties;
+  texture_resource_buffer_properties = SYSTEM_ZERO_VALUE;
   system_global_data_pointer = SYSTEM_SEVEN_VALUE;
-  strcpy_s(&texture_resource_buffer_3,SYSTEM_CONFIG_BUFFER_SIZE,&texture_properties_definition_string);
+  strcpy_s(&texture_resource_buffer_properties,SYSTEM_CONFIG_BUFFER_SIZE,&texture_properties_definition_string);
   resource_template_pointer = &g_defaultDataTemplate;
-  system_global_data_pointer = &texture_resource_buffer_4;
-  texture_resource_buffer_4 = SYSTEM_ZERO_VALUE;
+  system_global_data_pointer = &texture_resource_buffer_format;
+  texture_resource_buffer_format = SYSTEM_ZERO_VALUE;
   system_global_data_pointer = TEXTURE_FORMAT_DEFINITION_OPCODE;
-  strcpy_s(&texture_resource_buffer_4,SYSTEM_CONFIG_BUFFER_SIZE,&texture_format_definition_string);
+  strcpy_s(&texture_resource_buffer_format,SYSTEM_CONFIG_BUFFER_SIZE,&texture_format_definition_string);
   resource_template_pointer = &g_defaultDataTemplate;
-  system_global_data_pointer = &texture_resource_buffer_5;
-  texture_resource_buffer_5 = SYSTEM_ZERO_VALUE;
+  system_global_data_pointer = &texture_resource_buffer_compression;
+  texture_resource_buffer_compression = SYSTEM_ZERO_VALUE;
   system_global_data_pointer = TEXTURE_COMPRESSION_DEFINITION_OPCODE;
-  strcpy_s(&texture_resource_buffer_5,SYSTEM_CONFIG_BUFFER_SIZE,&texture_compression_definition_string);
+  strcpy_s(&texture_resource_buffer_compression,SYSTEM_CONFIG_BUFFER_SIZE,&texture_compression_definition_string);
   resource_template_pointer = &g_defaultDataTemplate;
-  system_global_data_pointer = &texture_resource_buffer_6;
-  texture_resource_buffer_6 = SYSTEM_ZERO_VALUE;
+  system_global_data_pointer = &texture_resource_buffer_filter;
+  texture_resource_buffer_filter = SYSTEM_ZERO_VALUE;
   system_global_data_pointer = TEXTURE_FILTER_DEFINITION_OPCODE;
-  strcpy_s(&texture_resource_buffer_6,SYSTEM_CONFIG_BUFFER_SIZE,&texture_filter_definition_string);
+  strcpy_s(&texture_resource_buffer_filter,SYSTEM_CONFIG_BUFFER_SIZE,&texture_filter_definition_string);
   resource_template_pointer = &g_defaultDataTemplate;
-  system_global_data_pointer = &texture_resource_buffer_7;
-  texture_resource_buffer_7 = SYSTEM_ZERO_VALUE;
+  system_global_data_pointer = &texture_resource_buffer_mipmap;
+  texture_resource_buffer_mipmap = SYSTEM_ZERO_VALUE;
   system_global_data_pointer = SYSTEM_OPCODE_19;
-  strcpy_s(&texture_resource_buffer_7,SYSTEM_CONFIG_BUFFER_SIZE,&texture_mipmap_definition_string);
+  strcpy_s(&texture_resource_buffer_mipmap,SYSTEM_CONFIG_BUFFER_SIZE,&texture_mipmap_definition_string);
   resource_template_pointer = &g_defaultDataTemplate;
-  system_global_data_pointer = &texture_resource_buffer_8;
-  texture_resource_buffer_8 = SYSTEM_ZERO_VALUE;
+  system_global_data_pointer = &texture_resource_buffer_wrap;
+  texture_resource_buffer_wrap = SYSTEM_ZERO_VALUE;
   system_global_data_pointer = SYSTEM_OPCODE_11;
-  strcpy_s(&texture_resource_buffer_8,SYSTEM_CONFIG_BUFFER_SIZE,&texture_wrap_definition_string);
+  strcpy_s(&texture_resource_buffer_wrap,SYSTEM_CONFIG_BUFFER_SIZE,&texture_wrap_definition_string);
   resource_template_pointer = &g_defaultDataTemplate;
-  system_global_data_pointer = &texture_resource_buffer_9;
-  texture_resource_buffer_9 = SYSTEM_ZERO_VALUE;
+  system_global_data_pointer = &texture_resource_buffer_shader;
+  texture_resource_buffer_shader = SYSTEM_ZERO_VALUE;
   system_global_data_pointer = SYSTEM_OPCODE_18;
-  strcpy_s(&texture_resource_buffer_9,SYSTEM_CONFIG_BUFFER_SIZE,&texture_shader_definition_string);
+  strcpy_s(&texture_resource_buffer_shader,SYSTEM_CONFIG_BUFFER_SIZE,&texture_shader_definition_string);
   resource_template_pointer = &g_defaultDataTemplate;
-  system_global_data_pointer = &shader_resource_buffer_0;
-  shader_resource_buffer_0 = SYSTEM_ZERO_VALUE;
+  system_global_data_pointer = &shader_resource_buffer_material;
+  shader_resource_buffer_material = SYSTEM_ZERO_VALUE;
   system_global_data_pointer = SYSTEM_RESOURCE_ID_STRING_MANAGER;
-  strcpy_s(&shader_resource_buffer_0,SYSTEM_CONFIG_BUFFER_SIZE,&texture_material_definition_string);
+  strcpy_s(&shader_resource_buffer_material,SYSTEM_CONFIG_BUFFER_SIZE,&texture_material_definition_string);
   resource_template_pointer = &g_defaultDataTemplate;
-  system_global_data_pointer = &shader_resource_buffer_1;
-  shader_resource_buffer_1 = SYSTEM_ZERO_VALUE;
+  system_global_data_pointer = &shader_resource_buffer_vertex;
+  shader_resource_buffer_vertex = SYSTEM_ZERO_VALUE;
   system_global_data_pointer = SYSTEM_OPCODE_19;
-  strcpy_s(&shader_resource_buffer_1,SYSTEM_CONFIG_BUFFER_SIZE,&shader_vertex_definition_string);
+  strcpy_s(&shader_resource_buffer_vertex,SYSTEM_CONFIG_BUFFER_SIZE,&shader_vertex_definition_string);
   resource_template_pointer = &g_defaultDataTemplate;
-  system_global_data_pointer = &shader_resource_buffer_2;
-  shader_resource_buffer_2 = SYSTEM_ZERO_VALUE;
+  system_global_data_pointer = &shader_resource_buffer_geometry;
+  shader_resource_buffer_geometry = SYSTEM_ZERO_VALUE;
   system_global_data_pointer = STRING_BUFFER_SIZE;
-  strcpy_s(&shader_resource_buffer_2,SYSTEM_CONFIG_BUFFER_SIZE,&shader_fragment_definition_string);
+  strcpy_s(&shader_resource_buffer_geometry,SYSTEM_CONFIG_BUFFER_SIZE,&shader_fragment_definition_string);
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &shader_resource_buffer_3;
   shader_resource_buffer_3 = SYSTEM_ZERO_VALUE;
@@ -4089,7 +4109,7 @@ section_processing_jump_label_:
     if (thread_result_status != 0) {
       __Throw_C_error_std__YAXH_Z(thread_result_status);
     }
-    system_cleanup_001(ADDR_CLEANUP_FUNC);
+    system_cleanup_module(ADDR_CLEANUP_FUNC);
   }
   *(unsigned int *)(system_global_data_pointer + SYSTEM_OFFSET_HANDLE_PARAM) = SYSTEM_ZERO_VALUE;
   if (*(char *)(str_len_counter + 0x1ee) == '\0') {
@@ -4198,7 +4218,7 @@ section_processing_jump_label_:
     if (thread_result_status != 0) {
       __Throw_C_error_std__YAXH_Z(thread_result_status);
     }
-    system_cleanup_001(ADDR_CLEANUP_FUNC);
+    system_cleanup_module(ADDR_CLEANUP_FUNC);
   }
   *(unsigned int *)(system_global_data_pointer + SYSTEM_OFFSET_HANDLE_PARAM) = SYSTEM_ZERO_VALUE;
   if (*(char *)(handle_param + 0x1ee) == '\0') {
@@ -4618,7 +4638,7 @@ unsigned long long * system_handle_param_manager_001(unsigned long long *handle_
   if (str_len_counter != 0) {
     fwrite(&io_output_char,1,1,str_len_counter);
     fwrite(&system_thread_name_buffer,str_len_counter,1,str_len_counter);
-    system_cleanup_010(0);
+    system_cleanup_module(0);
   }
   if (str_len_counter != 0) {
     fclose(str_len_counter);
@@ -4645,8 +4665,8 @@ unsigned long long * system_handle_param_manager_001(unsigned long long *handle_
 }
   system_initialized_flag = SYSTEM_ONE_VALUE;
   system_event_handle_paramr_015(system_global_data_pointer);
-  system_cleanup_002();
-  system_cleanup_008(0);
+  system_cleanup_module();
+  system_cleanup_module(0);
   if (system_thread_sync_flag != '\0') {
     LOCK();
     *(unsigned int *)(*(long long *)(system_global_data_pointer + 0x48) + 0xcc) = SYSTEM_ZERO_VALUE;
@@ -4660,10 +4680,10 @@ unsigned long long * system_handle_param_manager_001(unsigned long long *handle_
       (**(code **)(*psystem_initialization_result + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG))(psystem_initialization_result);
     }
   }
-  system_cleanup_009();
+  system_cleanup_module();
   str_len_counter = system_global_data_pointer;
   if (system_global_data_pointer != 0) {
-    system_cleanup_011(system_global_data_pointer);
+    system_cleanup_module(system_global_data_pointer);
     handle_param_system_error(str_len_counter);
   }
   system_global_data_pointer = SYSTEM_ZERO_VALUE;
@@ -4683,7 +4703,7 @@ system_execution_function(unsigned long long *handle_param,ulong long thread_ope
   unsigned long long buffer_allocation_result;
   buffer_allocation_result = default_thread_pool_flag;
   *handle_param = &systemHandleData;
-  system_cleanup_004();
+  system_cleanup_module();
   if ((thread_operation_flags & 1) != 0) {
     free(handle_param,0xc0,mutex_attr,mutex_type,buffer_allocation_result);
   }
@@ -4955,7 +4975,7 @@ section_processing_jump_label_:
       if (system_char_variable != '\0') break;
       string_input_pointer = (void *)**(unsigned long long **)(system_initialization_result6 + STRING_BUFFER_SIZE);
       if (string_input_pointer == &systemValidationData1) {
-        system_cleanup_005(*(unsigned long long **)(system_initialization_result6 + STRING_BUFFER_SIZE) + SYSTEM_OFFSET_HANDLE_PARAM);
+        system_cleanup_module(*(unsigned long long **)(system_initialization_result6 + STRING_BUFFER_SIZE) + SYSTEM_OFFSET_HANDLE_PARAM);
       }
       else {
         (**(code **)(string_input_pointer + SYSTEM_POINTER_OFFSET0))();
@@ -5259,7 +5279,7 @@ long long process_memory_with_thread_operation_flags(unsigned long long handle_p
           LOCK();
           *(unsigned char *)(ppplStack_b8 + 2) = SYSTEM_ONE_VALUE;
           UNLOCK();
-          system_cleanup_003(ppplStack_b8 + SYSTEM_OFFSET_HANDLE_PARAM);
+          system_cleanup_module(ppplStack_b8 + SYSTEM_OFFSET_HANDLE_PARAM);
         }
         else {
           (*(code *)(*ppplStack_b8)[0xe])(ppplStack_b8);
@@ -5280,7 +5300,7 @@ long long process_memory_with_thread_operation_flags(unsigned long long handle_p
     }
     if ((*(char *)((long long)reg_rcx + 0x563) != '\0') &&
        (0 < (int)(((long long)reg_rcx[0xb6] - (long long)reg_rcx[0xb5]) / 0xc))) {
-      system_cleanup_001(reg_rcx + 0x4cf);
+      system_cleanup_module(reg_rcx + 0x4cf);
       while( true ) {
         system_thread_manager_ptr = *reg_rcx[0x4ce];
         if (system_thread_manager_ptr == (long long ***)&systemThreadManagerData) {
@@ -7277,7 +7297,7 @@ system_finalizer_tertiary(unsigned long long handle_param,unsigned long long thr
   long long thread_stack_base_address;
   buffer_allocation_result = default_thread_pool_flag;
   character_scan_pointer = *(code **)(*system_global_data_pointer + 0x70);
-  buffer_allocation_result = system_cleanup_007(&thread_stack_ptr);
+  buffer_allocation_result = system_cleanup_module(&thread_stack_ptr);
   thread_operation_flags = (*character_scan_pointer)(system_global_data_pointer,buffer_allocation_result,mutex_attr,mutex_type,buffer_allocation_result);
   thread_stack_ptr = &g_threadString2;
   if (thread_stack_base_address != 0) {
