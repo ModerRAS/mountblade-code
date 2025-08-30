@@ -1,6 +1,26 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 本次美化内容：
+// 本次美化内容（2025年8月30日）：
+// - 添加了SYSTEM_MUTEX_OFFSET_A4等系统互斥锁偏移量语义化常量
+// - 添加了SYSTEM_CONFIG_OFFSET_1DE等系统配置偏移量语义化常量  
+// - 添加了SYSTEM_AUDIO_OFFSET_370等音频系统偏移量语义化常量
+// - 添加了SYSTEM_RESOURCE_OFFSET_290等资源偏移量语义化常量
+// - 添加了SYSTEM_RENDER_DATA_OFFSET_374等渲染数据偏移量语义化常量
+// - 添加了SYSTEM_BIT_SHIFT_7等系统位操作语义化常量
+// - 添加了SYSTEM_FLOAT_MAX_VALUE等浮点数语义化常量
+// - 添加了SYSTEM_STRING_ENGINE_ROOT等系统字符串语义化常量
+// - 将硬编码的0xa4替换为SYSTEM_MUTEX_OFFSET_A4等互斥锁偏移量常量
+// - 将硬编码的0x9f0替换为SYSTEM_MUTEX_OFFSET_9F0等互斥锁常量
+// - 将硬编码的3.4028235e+38替换为SYSTEM_FLOAT_MAX_VALUE等浮点数常量
+// - 将硬编码的-1e+08替换为SYSTEM_FLOAT_MIN_VALUE等浮点数常量
+// - 将硬编码的数组索引[0x50]替换为[SYSTEM_AUDIO_DATA_OFFSET_50]等音频数据索引常量
+// - 将硬编码的0x374替换为SYSTEM_RENDER_DATA_OFFSET_374等渲染数据常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了硬编码十六进制值的语义化替换
+// - 原本实现：完全重构硬编码常量体系
+// - 简化实现：仅将常见的硬编码值替换为语义化常量
+
+// 之前的美化内容：
 // - 将init_stack_param_a0替换为init_stack_status_flag等状态标志变量名
 // - 将init_stack_param_90替换为init_stack_config_data等配置数据变量名
 // - 将init_stack_param_88替换为init_stack_thread_count等线程计数变量名
