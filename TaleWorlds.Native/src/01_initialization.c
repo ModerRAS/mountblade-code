@@ -26680,8 +26680,8 @@ void SetupGraphicsDevice(uint64_t handleIdentifier,uint64_t resourceIdentifier,u
   longlong system_temp_long_result;
   char system_initialization_flag;
   uint8_t system_local_buffer_30 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-  void *system_buffer_ptr_20;
-  void *system_buffer_ptr_18;
+  void *system_buffer_ptr_secondary_config;
+  void *system_buffer_ptr_primary_config;
 
   InitializeSystemModule25(handleIdentifier,1,1,systemFlags,INVALID_HANDLE_VALUE);
   if (system_configuration_data != (longlong *)SYSTEM_NULL_POINTER) {
@@ -29272,8 +29272,8 @@ void InitializeTextureSystem(longlong *handleIdentifier)
   ulonglong system_operation_result;
   bool handle_validation_flag;
   uint8_t system_local_buffer_3b8 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-  void *system_buffer_ptr_398;
-  uint8_t *system_buffer_ptr_390;
+  void *system_buffer_ptr_shader_config;
+  uint8_t *system_buffer_ptr_texture_config;
   uint32_t init_stack_config_handle8;
   ulonglong init_stack_config_handle0;
   uint init_stack_texture_flags_378;
@@ -29281,7 +29281,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
   int init_stack_texture_counter_370;
   longlong init_stack_graphics_offset_368;
   uint64_t ******pppppsystem_buffer_ptr_shader_data;
-  uint64_t ******pppppsystem_buffer_ptr_358;
+  uint64_t ******pppppsystem_buffer_ptr_shader_aux;
   uint64_t ******pppppsystem_buffer_ptr_350;
   uint64_t init_stack_texture_id_348;
   uint64_t init_stack_texture_handle_340;
@@ -32923,11 +32923,11 @@ void HandleSystemOperation92(void)
   longlong longStack_178;
   void **psystem_buffer_ptr_170;
   uint64_t uintStack_168;
-  void *system_buffer_ptr_160;
+  void *system_buffer_ptr_resource_aux;
   uint8_t *system_buffer_ptr_158;
   uint init_stack_data_size_150;
   uint8_t system_local_buffer_148 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-  void *system_buffer_ptr_138;
+  void *system_buffer_ptr_data_aux;
   uint8_t *system_buffer_ptr_130;
   uint32_t init_stack_uint_parameter_128;
   uint8_t system_local_buffer_120 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
@@ -44606,7 +44606,7 @@ void ConfigureSystemHandles(uint64_t handleIdentifier,longlong resourceIdentifie
   ulonglong system_operation_result;
   uint8_t system_local_buffer_188 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   uint8_t *system_buffer_ptr_resource_main;
-  void *system_buffer_ptr_160;
+  void *system_buffer_ptr_graphics_aux;
   uint8_t *system_buffer_ptr_158;
   uint8_t initialization_stack_float_register_148;
   char cStack_147;
