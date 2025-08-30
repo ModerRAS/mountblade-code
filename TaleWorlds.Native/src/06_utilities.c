@@ -3007,12 +3007,12 @@ void ProcessMemoryAllocation(longlong resource_handle_identifier,longlong resour
   int utility_operation_status;        // 操作结果
   longlong utility_iteration_counter;  // 迭代计数器
   int utility_processed_count;         // 已处理计数
-  byte utility_security_data [32];       // 临时缓冲区
-  longlong utility_resource_info_data [2];  // 资源信息数组
+  byte utility_security_data [UTILITY_SECURITY_BUFFER_SIZE_32];       // 临时缓冲区
+  longlong utility_resource_info_data [UTILITY_RESOURCE_INFO_ARRAY_SIZE];  // 资源信息数组
   byte *utility_allocated_memory_ptr;      // 分配的内存指针
   int utility_allocation_count;        // 分配计数
   uint32 utility_temp_unsigned_int;            // 临时无符号整数
-  byte utility_working_buffer [512];   // 工作缓冲区
+  byte utility_working_buffer [UTILITY_WORKING_BUFFER_SIZE];   // 工作缓冲区
   ulonglong security_token;    // 安全令牌
   
   security_token = g_security_token_mask ^ (ulonglong)utility_security_data;
@@ -3148,7 +3148,7 @@ uint64 validate_resource_handle_identifier(longlong resource_handle_identifier) 
   ulonglong utility_operation_status;
   longlong *utility_resource_array_ptr;
   longlong utility_stack_param;
-  char utility_security_data [16];
+  char utility_security_data [UTILITY_SECURITY_BUFFER_SIZE_16];
   
   system_status_code = system_memory_operation(*(uint32 *)(resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET),&utility_stack_buffer_temp);
   if ((int)system_status_code != 0) {
@@ -3198,8 +3198,8 @@ uint64 validate_resource_handle_identifier(longlong resource_handle_identifier) 
           if (resource_count <= utility_capacity) {
             utility_array_index = utility_capacity;
           }
-          if (utility_array_index < 8) {
-            utility_capacity = 8;
+          if (utility_array_index < UTILITY_MIN_CAPACITY) {
+            utility_capacity = UTILITY_MIN_CAPACITY;
           }
           else if (utility_capacity < resource_count) {
             utility_capacity = resource_count;
