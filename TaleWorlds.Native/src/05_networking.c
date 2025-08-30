@@ -304,6 +304,7 @@
 #define NETWORK_SOCKET_FLAG_OFFSET       3
 #define NETWORK_SOCKET_DATA_OFFSET       4
 #define NETWORK_AUTH_OFFSET              5
+#define NETWORK_SOCKET_HANDLE_OFFSET     400
 
 // 网络系统处理器数据索引语义化常量（本次美化内容）
 #define NETWORK_PROCESSOR_DATA_INDEX_STATUS    3
