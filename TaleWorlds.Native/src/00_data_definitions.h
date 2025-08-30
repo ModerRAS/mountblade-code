@@ -6042,7 +6042,7 @@ goto section_processing_jump_label_36;
               }
               system_system_maximum_stack_size_low_half_extended = *(uint *)((long long)pppppsystem_thread_operation_flags + SYSTEM_CONFIG_OFFSET_INIT_FLAG);
               system_maximum_stack_size = system_buffer_allocation_result;
-              system_thread_manager_create(system_thread_manager_create(&system_thread_stack_pointer_variable,0x12)system_thread_stack_pointer_variable,SYSTEM_OFFSET_STACK_SIZE_MIN);
+              system_thread_manager_create(system_thread_manager_create(&system_thread_stack_pointer_variable,SYSTEM_OFFSET_REGISTER_PARAM_FINAL)system_thread_stack_pointer_variable,SYSTEM_OFFSET_STACK_SIZE_MIN);
               system_string_input_pointer = (unsigned int *)(system_thread_stack_pointer_variable + system_maximum_stack_size);
               *system_string_input_pointer = SYSTEM_CHAR_LOWERCASE_E63732f;
               system_string_input_pointer[1] = SYSTEM_CHAR_LOWERCASE_X2e656e;
@@ -6575,7 +6575,7 @@ code_section_1ade:
 SYSTEM_LABEL_THREAD_PRIORITY_PROCESSING:
     system_float_variable = SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT;
     *system_thread_operation_flags = (float)system_maximum_stack_size_byte2_ * SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT;
-    system_buffer_allocation_result = (uint)((ulong long)system_maximum_stack_size >> 8) & 0xff;
+    system_buffer_allocation_result = (uint)((ulong long)system_maximum_stack_size >> 8) & SYSTEM_BIT_MASK_BYTE_MASK_FULL;
     system_buffer_allocation_result = (ushort)(byte)system_maximum_stack_size;
 SYSTEM_LABEL_BUFFER_CONVERSION_START:
     system_thread_operation_flags[3] = SYSTEM_FLOAT_THREAD_OPERATION_FLAG_ENABLED;
