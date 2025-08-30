@@ -2680,6 +2680,28 @@
 // 资源池状态常量
 #define RESOURCE_POOL_EMPTY 0
 #define RESOURCE_POOL_READY 1
+
+// 系统参数常量
+#define SYSTEM_PARAMETER_ZERO 0
+#define SYSTEM_PARAMETER_ONE 1
+#define SYSTEM_PARAMETER_TWO 2
+#define SYSTEM_PARAMETER_THREE 3
+#define SYSTEM_PARAMETER_FOUR 4
+#define SYSTEM_PARAMETER_FIVE 5
+
+// 系统数组索引常量
+#define SYSTEM_ARRAY_INDEX_ZERO 0
+#define SYSTEM_ARRAY_INDEX_ONE 1
+#define SYSTEM_ARRAY_INDEX_TWO 2
+#define SYSTEM_ARRAY_INDEX_THREE 3
+
+// 系统内存分配常量
+#define SYSTEM_MEMORY_ALLOC_SIZE_UNIT 1
+#define SYSTEM_MEMORY_ALLOC_SIZE_SMALL 1
+
+// 系统时间常量
+#define SYSTEM_TIME_PERIOD_MINIMUM 1
+
 void* g_game_data_reserved_audio;
 
 void* g_game_render_data;
@@ -4404,7 +4426,7 @@ int InitializeMutex(uint64_t mutex_address,uint64_t mutex_type,uint64_t system_c
 {
   longlong mutex_result;
 
-  _Mtx_init_in_situ(MUTEX_SYSTEM_ADDR,2,system_configuration,systemFlags,SYSTEM_HANDLE_INVALID);
+  _Mtx_init_in_situ(MUTEX_SYSTEM_ADDR,SYSTEM_PARAMETER_TWO,system_configuration,systemFlags,SYSTEM_HANDLE_INVALID);
   mutex_result = execute_system_init(get_mutex_init_function);
   return (mutex_result != SYSTEM_OPERATION_SUCCESS) + SYSTEM_RETURN_VALUE_FAILURE_OFFSET;
 }
@@ -8354,13 +8376,13 @@ void InitializeMathLookupTables(void)
   maxIterations = SYSTEM_INIT_VALUE_NEGATIVE_THREE;
   tableSize = loop_counter;
   do {
-    if (0 < (longlong)tableSize) {
+    if (SYSTEM_PARAMETER_ZERO < (longlong)tableSize) {
       system_memory_comparison_result = SYSTEM_INIT_VALUE_NEGATIVE_THREE;
       arrayIndex = loop_counter;
       tablePointer = data_pointer;
       do {
         calculatedValue = SYSTEM_FLOAT_VALUE_ZERO;
-        if (-1 < (longlong)arrayIndex) {
+        if (SYSTEM_COMPARE_RESULT_LESS_THAN < (longlong)arrayIndex) {
           if ((longlong)arrayIndex < SYSTEM_COMPARISON_THREE) {
             calculatedValue = SYSTEM_FLOAT_VALUE_POINT_SEVENTY_FIVE;
           }
@@ -16360,10 +16382,10 @@ int ConfigureGraphicsParameters(void)
 {
   longlong system_result_temp_primary;
 
-  initialize_system_component(&g_system_memory_data,SYSTEM_INIT_PARAM_POINTER_SIZE,5,&g_subsystem_init_function,InitializeNetworkSystem);
-  initialize_system_component(NETWORK_SYSTEM_INIT_ADDR_1,SYSTEM_INIT_PARAM_POINTER_SIZE,5,&g_subsystem_init_function,InitializeNetworkSystem);
-  initialize_system_component(NETWORK_SYSTEM_INIT_ADDR_2,SYSTEM_INIT_PARAM_POINTER_SIZE,5,&g_subsystem_init_function,InitializeNetworkSystem);
-  _Mtx_init_in_situ(NETWORK_SYSTEM_MUTEX_ADDR,2);
+  initialize_system_component(&g_system_memory_data,SYSTEM_INIT_PARAM_POINTER_SIZE,SYSTEM_PARAMETER_FIVE,&g_subsystem_init_function,InitializeNetworkSystem);
+  initialize_system_component(NETWORK_SYSTEM_INIT_ADDR_1,SYSTEM_INIT_PARAM_POINTER_SIZE,SYSTEM_PARAMETER_FIVE,&g_subsystem_init_function,InitializeNetworkSystem);
+  initialize_system_component(NETWORK_SYSTEM_INIT_ADDR_2,SYSTEM_INIT_PARAM_POINTER_SIZE,SYSTEM_PARAMETER_FIVE,&g_subsystem_init_function,InitializeNetworkSystem);
+  _Mtx_init_in_situ(NETWORK_SYSTEM_MUTEX_ADDR,SYSTEM_PARAMETER_TWO);
   system_network_state_primary = SYSTEM_INIT_STATUS_DISABLED; // 原始名称: systemCoreData
   g_network_buffer_size = SYSTEM_HANDLE_STATUS_INVALID;
   system_network_state_secondary = SYSTEM_INIT_STATUS_DISABLED; // 原始名称: systemCoreData
@@ -16603,7 +16625,7 @@ int InitializeAudioMutex(uint64_t handleIdentifier,uint64_t resourceIdentifier,u
 {
   longlong system_result_temp_primary;
 
-  _Mtx_init_in_situ(DATABASE_MUTEX_ADDR,2,system_configuration,systemFlags,SYSTEM_HANDLE_INVALID);
+  _Mtx_init_in_situ(DATABASE_MUTEX_ADDR,SYSTEM_PARAMETER_TWO,system_configuration,systemFlags,SYSTEM_HANDLE_INVALID);
   system_result_temp_primary = execute_system_init(InitializeFileSystem);
   return (system_long_result != SYSTEM_OPERATION_SUCCESS) + SYSTEM_RETURN_VALUE_FAILURE_OFFSET;
 }
@@ -17637,7 +17659,7 @@ int InitializeInputMutex(uint64_t handleIdentifier,uint64_t resourceIdentifier,u
 {
   longlong system_result_temp_primary;
 
-  _Mtx_init_in_situ(INPUT_MUTEX_ADDR,2,system_configuration,systemFlags,SYSTEM_HANDLE_INVALID);
+  _Mtx_init_in_situ(INPUT_MUTEX_ADDR,SYSTEM_PARAMETER_TWO,system_configuration,systemFlags,SYSTEM_HANDLE_INVALID);
   system_result_temp_primary = execute_system_init(InitializeDatabaseSystem);
   return (system_long_result != SYSTEM_OPERATION_SUCCESS) + SYSTEM_RETURN_VALUE_FAILURE_OFFSET;
 }
@@ -17647,7 +17669,7 @@ int InitializeNetworkMutex(uint64_t handleIdentifier,uint64_t resourceIdentifier
 {
   longlong system_result_temp_primary;
 
-  _Mtx_init_in_situ(NETWORK_MUTEX_ADDR,2,system_configuration,systemFlags,SYSTEM_HANDLE_INVALID);
+  _Mtx_init_in_situ(NETWORK_MUTEX_ADDR,SYSTEM_PARAMETER_TWO,system_configuration,systemFlags,SYSTEM_HANDLE_INVALID);
   system_result_temp_primary = execute_system_init(InitializeCacheSystem);
   return (system_long_result != SYSTEM_OPERATION_SUCCESS) + SYSTEM_RETURN_VALUE_FAILURE_OFFSET;
 }
@@ -17711,7 +17733,7 @@ uint64_t InitializeThreadLocalStorage(void)
   else {
     if (*storage_ptr != SYSTEM_OFFSET_1E) goto INIT_LABEL_CHECK_STORAGE_VALUE;
     storage_ptr = (int *)malloc(SYSTEM_DATA_COMPARE_SIZE_ZERO);
-    free(0);
+    free(SYSTEM_PARAMETER_ZERO);
     if (storage_ptr == (int *)SYSTEM_NULL_POINTER) {
       return SYSTEM_OFFSET_Ffffffff;
     }
@@ -17722,7 +17744,7 @@ uint64_t InitializeThreadLocalStorage(void)
 INIT_LABEL_CHECK_STORAGE_VALUE:
   *(code **)(storage_ptr + (longlong)*storage_ptr * SYSTEM_ARRAY_SIZE_FACTOR + SYSTEM_STORAGE_PTR_OFFSET_NEXT) = InitializeErrorHandler;
   *storage_ptr = *storage_ptr + SYSTEM_ARRAY_OFFSET_FACTOR;
-  return 0;
+  return SYSTEM_PARAMETER_ZERO;
 }
 // WARNING: Globals starting with SYSTEM_CHAR_UNDERSCORE overlap smaller symbols at the same address
 // 清理线程本地存储
