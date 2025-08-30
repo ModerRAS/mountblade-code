@@ -6854,7 +6854,7 @@ unsigned long long handle_param_system_callback(unsigned long long *handle_param
         semantic_float_ptr[8] = (float)((double)semantic_float_ptr[8] * color_luminance_accumulator);
         semantic_float_ptr[9] = (float)((double)semantic_float_ptr[9] * color_luminance_accumulator);
         semantic_float_ptr[10] = (float)((double)semantic_float_ptr[10] * color_luminance_accumulator);
-        semantic_float_ptr[0xb] = (float)((double)semantic_float_ptr[0xb] * color_luminance_accumulator);
+        semantic_float_ptr[SYSTEM_ARRAY_INDEX_11] = (float)((double)semantic_float_ptr[SYSTEM_ARRAY_INDEX_11] * color_luminance_accumulator);
         semantic_float_ptr = semantic_float_ptr + SYSTEM_POINTER_OFFSET_C;
         buffer_allocation_result = buffer_allocation_result - 1;
       } while (buffer_allocation_result != 0);
@@ -14836,3 +14836,21 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_CONTROL_VALUE_31 0x31                              // 控制值31 - ASCII字符'1'
 #define SYSTEM_CONTROL_VALUE_32 0x32                              // 控制值32 - ASCII字符'2'
 #define SYSTEM_CONTROL_VALUE_19 0x19                              // 控制值19 - END_OF_MEDIUM
+
+// 系统数组索引常量定义（2025年8月30日美化批次）
+#define SYSTEM_ARRAY_INDEX_0 0                                    // 数组索引0
+#define SYSTEM_ARRAY_INDEX_1 1                                    // 数组索引1
+#define SYSTEM_ARRAY_INDEX_2 2                                    // 数组索引2
+#define SYSTEM_ARRAY_INDEX_3 3                                    // 数组索引3
+#define SYSTEM_ARRAY_INDEX_4 4                                    // 数组索引4
+#define SYSTEM_ARRAY_INDEX_5 5                                    // 数组索引5
+#define SYSTEM_ARRAY_INDEX_6 6                                    // 数组索引6
+#define SYSTEM_ARRAY_INDEX_7 7                                    // 数组索引7
+#define SYSTEM_ARRAY_INDEX_8 8                                    // 数组索引8
+#define SYSTEM_ARRAY_INDEX_9 9                                    // 数组索引9
+#define SYSTEM_ARRAY_INDEX_10 10                                  // 数组索引10
+#define SYSTEM_ARRAY_INDEX_11 0xb                                 // 数组索引11 (十六进制)
+#define SYSTEM_ARRAY_INDEX_12 0xc                                 // 数组索引12 (十六进制)
+#define SYSTEM_ARRAY_INDEX_13 0xd                                 // 数组索引13 (十六进制)
+#define SYSTEM_ARRAY_INDEX_14 0xe                                 // 数组索引14 (十六进制)
+#define SYSTEM_ARRAY_INDEX_48 0x30                                // 数组索引48 (十六进制)
