@@ -37088,12 +37088,12 @@ uint64_t network_validate_certificate_two(void)
 void network_validate_certificate_three(void)
 // 函数: void network_validate_certificate_four(void)
 void network_validate_certificate_four(void)
-// 函数: void networkValidateCertificate5(int64_t network_socket_handle, uint64_t network_buffer_pointer)
-void networkValidateCertificate5(int64_t network_socket_handle, uint64_t network_buffer_pointer)
+// 函数: void network_validate_certificate_five(int64_t network_socket_handle, uint64_t network_buffer_pointer)
+void network_validate_certificate_five(int64_t network_socket_handle, uint64_t network_buffer_pointer)
   network_operation_status_code = networkReceiveProtocolMessage(network_buffer_pointer, network_validation_temporary_bufferfer, NETWORK_OPERATION_STATUS_FAILURE, NETWORK_SECURITY_VERIFY_ORTC, NETWORK_OPERATION_STATUS_FAILURE);
     network_operation_status_code = networkExchangeKeys8(network_buffer_pointer, network_socket_handle + NETWORK_PACKET_HEADER_SIZE);
       networkTerminateConnection(network_buffer_pointer, network_validation_temporary_bufferfer);
-uint64_t networkValidateCertificate6(int64_t network_socket_handle, uint64_t *network_buffer_pointer)
+uint64_t network_validate_certificate_six(int64_t network_socket_handle, uint64_t *network_buffer_pointer)
   network_operation_status_code = networkReceiveProtocolMessage(network_buffer_pointer, network_validation_temporary_bufferfer, NETWORK_OPERATION_STATUS_FAILURE, NETWORK_STATUS_CODE_56525543, NETWORK_OPERATION_STATUS_FAILURE);
       network_operation_status_code = network_validate_connectionState(*network_buffer_pointer, network_socket_handle + SOCKET_DESCRIPTOR_RESPONSE_OFFSET);
       if (((int)network_operation_status_code == NETWORK_OPERATION_STATUS_FAILURE) && (network_operation_status_code = networkGenerateKeyPair7(network_buffer_pointer, network_socket_handle + NETWORK_PACKET_DATA_PAYLOAD_OFFSET, NETWORK_OPERATION_SUCCESS, NETWORK_OPERATION_STATUS_FAILURE), (int)network_operation_status_code == NETWORK_OPERATION_STATUS_FAILURE))
