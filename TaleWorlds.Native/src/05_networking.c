@@ -299,6 +299,22 @@
 // 网络系统处理器数据索引指针数组索引语义化常量（本次美化内容）
 #define NETWORK_NETWORK_PROCESSOR_INDEX_CLEANUP   5
 
+// 网络系统套接字句柄扩展索引语义化常量（本次美化内容）
+#define NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_99   99    // 扩展套接字句柄索引99
+#define NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_100  100   // 扩展套接字句柄索引100
+#define NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_199  199   // 扩展套接字句柄索引199
+#define NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_200  200   // 扩展套接字句柄索引200
+#define NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_299  299   // 扩展套接字句柄索引299
+#define NETWORK_SOCKET_HANDLE_INDEX_EXTENDED_300  300   // 扩展套接字句柄索引300
+
+// 网络系统扩展索引语义化常量（本次美化内容）
+#define NETWORK_EXTENDED_INDEX_99     99    // 扩展索引99
+#define NETWORK_EXTENDED_INDEX_100    100   // 扩展索引100
+#define NETWORK_EXTENDED_INDEX_199    199   // 扩展索引199
+#define NETWORK_EXTENDED_INDEX_200    200   // 扩展索引200
+#define NETWORK_EXTENDED_INDEX_299    299   // 扩展索引299
+#define NETWORK_EXTENDED_INDEX_300    300   // 扩展索引300
+
 #define NETWORK_HARD_CODED_VALUES
 #define STRUCT_FIELD_BYTE_0    _byte_0_
 #define STRUCT_FIELD_WORD_0    _word_0_
