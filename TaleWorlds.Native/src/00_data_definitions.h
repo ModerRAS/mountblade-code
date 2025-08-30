@@ -5828,21 +5828,21 @@ section_processing_jump_label_:
 }
         g_data_crypto_flag = '\x01';
         thread_priority_level = SYSTEM_THREAD_PRIORITY_HIGH;
-        system_execution_function(auStack_258,&systemFunctionData1,&systemFunctionData2,&systemFunctionData3);
-        OutputDebugStringA(auStack_258);
+        system_execution_function(system_stack_ushort_array_258,&systemFunctionData1,&systemFunctionData2,&systemFunctionData3);
+        OutputDebugStringA(system_stack_ushort_array_258);
       }
       float_var = (float)modff((float)(int)(*(ushort *)((long long)handle_param + 0x5e) - 1) *
-                            uStackX_18._4_4_,&stack_size_max);
+                            system_stack_uint_param_18._4_4_,&stack_size_max);
       float_var = (float)modff();
-      fStack_298 = (fStack_28c - fStack_298) * float_var + fStack_298;
-      fStack_294 = (fStack_288 - fStack_294) * float_var + fStack_294;
-      fStack_290 = (fStack_284 - fStack_290) * float_var + fStack_290;
-      float_var = (((fStack_270 - fStack_27c) * float_var + fStack_27c) - fStack_294) * float_var +
-               fStack_294;
-      float_var = (((fStack_26c - fStack_278) * float_var + fStack_278) - fStack_290) * float_var +
-               fStack_290;
-      float_var = (((fStack_274 - fStack_280) * float_var + fStack_280) - fStack_298) * float_var +
-               fStack_298;
+      system_stack_float_calc_result_298 = (system_stack_float_input_param_28c - system_stack_float_calc_result_298) * float_var + system_stack_float_calc_result_298;
+      system_stack_float_calc_result_294 = (system_stack_float_input_param_288 - system_stack_float_calc_result_294) * float_var + system_stack_float_calc_result_294;
+      system_stack_float_calc_result_290 = (system_stack_float_input_param_284 - system_stack_float_calc_result_290) * float_var + system_stack_float_calc_result_290;
+      float_var = (((system_stack_float_base_value_270 - system_stack_float_base_value_27c) * float_var + system_stack_float_base_value_27c) - system_stack_float_calc_result_294) * float_var +
+               system_stack_float_calc_result_294;
+      float_var = (((system_stack_float_base_value_26c - system_stack_float_base_value_278) * float_var + system_stack_float_base_value_278) - system_stack_float_calc_result_290) * float_var +
+               system_stack_float_calc_result_290;
+      float_var = (((system_stack_float_base_value_274 - system_stack_float_input_param_280) * float_var + system_stack_float_input_param_280) - system_stack_float_calc_result_298) * float_var +
+               system_stack_float_calc_result_298;
     }
     else {
       float_var = (float)stack_size_max;
@@ -5856,7 +5856,7 @@ section_processing_jump_label_:
     break;
   case 0x16:
     thread_priority_level = mutex_type;
-    system_handle_paramr_007(system_initialization_result0,&stack_size_max,handle_param,&uStackX_18);
+    system_handle_paramr_007(system_initialization_result0,&stack_size_max,handle_param,&system_stack_uint_param_18);
 code_section_14f5:
     *thread_op_flags = (float)stack_size_max._2_1_ * 0.003921569;
     byte_check_result = (byte)stack_size_max;
@@ -5872,7 +5872,7 @@ SYSTEM_LABEL_THREAD_OP_BUFFER_ALLOC:
     break;
   case 0x1e:
     thread_priority_level = mutex_type;
-    string_input_ptr = (unsigned short *)system_handle_paramr_008(system_initialization_result0,&stack_size_max,handle_param,&uStackX_18);
+    string_input_ptr = (unsigned short *)system_handle_paramr_008(system_initialization_result0,&stack_size_max,handle_param,&system_stack_uint_param_18);
     float_var = (float)float_convert_function(string_input_ptr[2]);
     float_var = (float)float_convert_function(string_input_ptr[1]);
     float_var = (float)float_convert_function(*string_input_ptr);
@@ -5884,7 +5884,7 @@ SYSTEM_LABEL_THREAD_OP_BUFFER_ALLOC:
     break;
   case path_buffer_size:
     thread_priority_level = mutex_type;
-    system_handle_paramr_002(system_initialization_result0,&stack_size_max,handle_param,&uStackX_18);
+    system_handle_paramr_002(system_initialization_result0,&stack_size_max,handle_param,&system_stack_uint_param_18);
     *thread_op_flags = (float)stack_size_max;
     thread_op_flags[2] = (float)stack_size_max;
 code_section_1ad1:
@@ -5897,13 +5897,13 @@ code_section_1ade:
     if (mutex_type == SYSTEM_ZERO_VALUE) {
       thread_result_index = *(ushort *)((long long)handle_param + 0x5e) - 1;
       thread_result_index = *(ushort *)((long long)handle_param + 0x5c) - 1;
-      uStackX_18._0_4_ = (float)mutex_attr;
-      if ((int)((float)thread_result_index * (float)uStackX_18) <= thread_result_index) {
-        thread_result_index = (int)((float)thread_result_index * (float)uStackX_18);
+      system_stack_uint_param_18._0_4_ = (float)mutex_attr;
+      if ((int)((float)thread_result_index * (float)system_stack_uint_param_18) <= thread_result_index) {
+        thread_result_index = (int)((float)thread_result_index * (float)system_stack_uint_param_18);
       }
-      uStackX_18._4_4_ = (float)((ulong long)mutex_attr >> path_buffer_size);
-      if ((int)((float)thread_result_index * uStackX_18._4_4_) <= thread_result_index) {
-        thread_result_index = (int)((float)thread_result_index * uStackX_18._4_4_);
+      system_stack_uint_param_18._4_4_ = (float)((ulong long)mutex_attr >> path_buffer_size);
+      if ((int)((float)thread_result_index * system_stack_uint_param_18._4_4_) <= thread_result_index) {
+        thread_result_index = (int)((float)thread_result_index * system_stack_uint_param_18._4_4_);
       }
       thread_result_index = SYSTEM_ZERO_VALUE;
       if (-1 < thread_result_index) {
@@ -5921,19 +5921,19 @@ code_section_1ade:
       *(unsigned long long *)(thread_op_flags + 2) = thread_op_flags;
     }
     else if (mutex_type == 1) {
-      system_handle_paramr_009(handle_param,&uStackX_18,mutex_attr,&fStack_298);
+      system_handle_paramr_009(handle_param,&system_stack_uint_param_18,mutex_attr,&system_stack_float_calc_result_298);
       float_var = (float)modff((float)(int)(*(ushort *)((long long)handle_param + 0x5e) - 1) *
-                            uStackX_18._4_4_,&stack_size_max);
+                            system_stack_uint_param_18._4_4_,&stack_size_max);
       float_var = (float)modff();
-      fStack_298 = (fStack_288 - fStack_298) * float_var + fStack_298;
-      fStack_294 = (fStack_284 - fStack_294) * float_var + fStack_294;
-      fStack_290 = (fStack_280 - fStack_290) * float_var + fStack_290;
-      *thread_op_flags = (((fStack_268 - fStack_278) * float_var + fStack_278) - fStack_298) * float_var +
-                 fStack_298;
-      thread_op_flags[1] = (((fStack_264 - fStack_274) * float_var + fStack_274) - fStack_294) * float_var +
-                   fStack_294;
-      thread_op_flags[2] = (((fStack_260 - fStack_270) * float_var + fStack_270) - fStack_290) * float_var +
-                   fStack_290;
+      system_stack_float_calc_result_298 = (system_stack_float_input_param_288 - system_stack_float_calc_result_298) * float_var + system_stack_float_calc_result_298;
+      system_stack_float_calc_result_294 = (system_stack_float_input_param_284 - system_stack_float_calc_result_294) * float_var + system_stack_float_calc_result_294;
+      system_stack_float_calc_result_290 = (system_stack_float_input_param_280 - system_stack_float_calc_result_290) * float_var + system_stack_float_calc_result_290;
+      *thread_op_flags = (((system_stack_float_base_value_268 - system_stack_float_base_value_278) * float_var + system_stack_float_base_value_278) - system_stack_float_calc_result_298) * float_var +
+                 system_stack_float_calc_result_298;
+      thread_op_flags[1] = (((system_stack_float_base_value_264 - system_stack_float_base_value_274) * float_var + system_stack_float_base_value_274) - system_stack_float_calc_result_294) * float_var +
+                   system_stack_float_calc_result_294;
+      thread_op_flags[2] = (((system_stack_float_base_value_260 - system_stack_float_base_value_270) * float_var + system_stack_float_base_value_270) - system_stack_float_calc_result_290) * float_var +
+                   system_stack_float_calc_result_290;
       thread_op_flags[3] = 3.4028235e+38;
     }
     else {
@@ -5947,7 +5947,7 @@ code_section_1ade:
     break;
   case 0x27:
     thread_priority_level = mutex_type;
-    system_handle_paramr_005(system_initialization_result0,&stack_size_max,handle_param,&uStackX_18);
+    system_handle_paramr_005(system_initialization_result0,&stack_size_max,handle_param,&system_stack_uint_param_18);
     float_var = 1.5259022e-05;
     *thread_op_flags = (float)(ushort)stack_size_max * 1.5259022e-05;
     buffer_alloc_result = (uint)stack_size_max._2_2_;
@@ -5955,7 +5955,7 @@ code_section_1ade:
     goto code_section_16a1;
   case 0x28:
     thread_priority_level = mutex_type;
-    system_handle_paramr_006(system_initialization_result0,&stack_size_max,handle_param,&uStackX_18);
+    system_handle_paramr_006(system_initialization_result0,&stack_size_max,handle_param,&system_stack_uint_param_18);
     float_var = 0.003921569;
     *thread_op_flags = (float)(byte)stack_size_max * 0.003921569;
     buffer_alloc_result = (uint)stack_size_max._1_1_;
@@ -5963,7 +5963,7 @@ code_section_1ade:
     goto code_section_16a1;
   case 0x29:
     thread_priority_level = mutex_type;
-    system_handle_paramr_006(system_initialization_result0,&stack_size_max,handle_param,&uStackX_18);
+    system_handle_paramr_006(system_initialization_result0,&stack_size_max,handle_param,&system_stack_uint_param_18);
 SYSTEM_LABEL_THREAD_PRIORITY_PROCESSING:
     float_var = 0.003921569;
     *thread_op_flags = (float)stack_size_max._2_1_ * 0.003921569;
@@ -5976,14 +5976,14 @@ SYSTEM_LABEL_BUFFER_CONVERSION_START:
     break;
   case 0x2b:
     thread_priority_level = mutex_type;
-    system_handle_paramr_004(system_initialization_result0,abStack_2b8,handle_param,&uStackX_18);
+    system_handle_paramr_004(system_initialization_result0,system_stack_byte_array_2b8,handle_param,&system_stack_uint_param_18);
     thread_op_flags[1] = 0.0;
     thread_op_flags[2] = 0.0;
     thread_op_flags[3] = 0.0;
-    *thread_op_flags = (float)abStack_2b8[0];
+    *thread_op_flags = (float)system_stack_byte_array_2b8[0];
     break;
   case 0x2c:
-    buffer_alloc_result = system_handle_paramr_003(system_initialization_result0,handle_param,&uStackX_18);
+    buffer_alloc_result = system_handle_paramr_003(system_initialization_result0,handle_param,&system_stack_uint_param_18);
     float_var = (float)buffer_alloc_result;
 SYSTEM_LABEL_THREAD_OP_FINAL_PROCESSING:
     *thread_op_flags = float_var;
@@ -5992,7 +5992,7 @@ SYSTEM_LABEL_THREAD_OP_FINAL_PROCESSING:
     thread_op_flags[3] = 1.0;
   }
 system_handle_paramr_001:
-  system_execute_crypto_operation(stack_size_max ^ (ulong long)auStack_2e8);
+  system_execute_crypto_operation(stack_size_max ^ (ulong long)system_stack_ushort_array_2e8);
 }
     g_data_crypto_flag = '\x01';
     system_execution_function(unreg_bp + -0x70,&systemFunctionData1,&systemFunctionData2,&systemFunctionData3,SYSTEM_THREAD_PRIORITY_HIGH);
@@ -6003,17 +6003,17 @@ system_handle_paramr_001:
   float_var = (float)modff((float)(int)(*(ushort *)(unaffected_registerDI + 0x5e) - 1) *
                        *(float *)(unreg_bp + path_buffer_size4),&stack_float_param_38);
   float_var = (float)modff((float)(int)(buffer_alloc_result - 1) * float_var,&stack_float_param_38);
-  float_var = (stack_float_system_operation_parameterc - stack_float_system_operation_parameter0) * float_var + stack_float_system_operation_parameter0;
-  stack_float_system_operation_parameter4 =
-       (stack_float_system_control_parameter0 - stack_float_system_operation_parameter4) * float_var + stack_float_system_operation_parameter4;
-  float_var = (stack_float_system_control_parameter4 - stack_float_system_operation_parameter8) * float_var + stack_float_system_operation_parameter8;
-  *unreg_bx = (((stack_float_param_7c - stack_float_param_70) * float_var + stack_float_param_70)
+  float_var = (system_stack_float_operation_param_c - system_stack_float_operation_param_0) * float_var + system_stack_float_operation_param_0;
+  system_stack_float_operation_param_4 =
+       (system_stack_float_control_param_0 - system_stack_float_operation_param_4) * float_var + system_stack_float_operation_param_4;
+  float_var = (system_stack_float_control_param_4 - system_stack_float_operation_param_8) * float_var + system_stack_float_operation_param_8;
+  *unreg_bx = (((system_stack_float_param_7c - system_stack_float_param_70) * float_var + system_stack_float_param_70)
                - float_var) * float_var + float_var;
-  unreg_bx[1] = (((stack_float_param_78 - stack_float_system_control_parameterc) * float_var +
-                  stack_float_system_control_parameterc) - stack_float_system_operation_parameter4) * float_var + stack_float_system_operation_parameter4
+  unreg_bx[1] = (((system_stack_float_param_78 - system_stack_float_control_param_c) * float_var +
+                  system_stack_float_control_param_c) - system_stack_float_operation_param_4) * float_var + system_stack_float_operation_param_4
   ;
-  unreg_bx[2] = (((stack_float_param_74 - stack_float_system_control_parameter8) * float_var +
-                  stack_float_system_control_parameter8) - float_var) * float_var + float_var;
+  unreg_bx[2] = (((system_stack_float_param_74 - system_stack_float_control_param_8) * float_var +
+                  system_stack_float_control_param_8) - float_var) * float_var + float_var;
   unreg_bx[3] = 1.0;
   system_execute_crypto_operation(*(ulong long *)(unreg_bp + 400) ^ (ulong long)&system_stack_zero);
 }
@@ -6025,17 +6025,17 @@ system_handle_paramr_001:
   float_var = (float)modff((float)(int)(*(ushort *)(unaffected_registerDI + 0x5e) - 1) *
                        *(float *)(unreg_bp + path_buffer_size4),&stack_float_param_38);
   float_var = (float)modff((float)(int)(buffer_alloc_result - 1) * float_var,&stack_float_param_38);
-  float_var = (stack_float_system_operation_parameterc - stack_float_system_operation_parameter0) * float_var + stack_float_system_operation_parameter0;
-  stack_float_system_operation_parameter4 =
-       (stack_float_system_control_parameter0 - stack_float_system_operation_parameter4) * float_var + stack_float_system_operation_parameter4;
-  float_var = (stack_float_system_control_parameter4 - stack_float_system_operation_parameter8) * float_var + stack_float_system_operation_parameter8;
-  *unreg_bx = (((stack_float_param_7c - stack_float_param_70) * float_var + stack_float_param_70)
+  float_var = (system_stack_float_operation_param_c - system_stack_float_operation_param_0) * float_var + system_stack_float_operation_param_0;
+  system_stack_float_operation_param_4 =
+       (system_stack_float_control_param_0 - system_stack_float_operation_param_4) * float_var + system_stack_float_operation_param_4;
+  float_var = (system_stack_float_control_param_4 - system_stack_float_operation_param_8) * float_var + system_stack_float_operation_param_8;
+  *unreg_bx = (((system_stack_float_param_7c - system_stack_float_param_70) * float_var + system_stack_float_param_70)
                - float_var) * float_var + float_var;
-  unreg_bx[1] = (((stack_float_param_78 - stack_float_system_control_parameterc) * float_var +
-                  stack_float_system_control_parameterc) - stack_float_system_operation_parameter4) * float_var + stack_float_system_operation_parameter4
+  unreg_bx[1] = (((system_stack_float_param_78 - system_stack_float_control_param_c) * float_var +
+                  system_stack_float_control_param_c) - system_stack_float_operation_param_4) * float_var + system_stack_float_operation_param_4
   ;
-  unreg_bx[2] = (((stack_float_param_74 - stack_float_system_control_parameter8) * float_var +
-                  stack_float_system_control_parameter8) - float_var) * float_var + float_var;
+  unreg_bx[2] = (((system_stack_float_param_74 - system_stack_float_control_param_8) * float_var +
+                  system_stack_float_control_param_8) - float_var) * float_var + float_var;
   unreg_bx[3] = 1.0;
   system_execute_crypto_operation(*(ulong long *)(unreg_bp + 400) ^ (ulong long)&system_stack_zero);
 }
