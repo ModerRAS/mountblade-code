@@ -16815,7 +16815,7 @@ void InitializeDatabaseSystem(ulonglong *handleIdentifier)
 int InitializeGameSystem(longlong handleIdentifier,longlong resourceIdentifier)
 
 {
-  uint64_t ***ptr_ptr_system_ptr_value;
+  uint64_t ***ptr_init_system_ptr_temp;
   longlong system_long_value;
   void *system_ptr_value;
   longlong system_long_value;
@@ -16823,7 +16823,7 @@ int InitializeGameSystem(longlong handleIdentifier,longlong resourceIdentifier)
   longlong system_long_value;
   longlong system_long_value;
   ulonglong system_status_code;
-  uint64_t ****ptr_ptr_ptr_system_ptr_value;
+  uint64_t ****ptr_ptr_init_system_ptr_temp;
   uint64_t ***pppustack_var;
   uint64_t *system_buffer_ptr_resource_pool;
   longlong longStack_130;
@@ -16903,7 +16903,7 @@ int InitializeGameSystem(longlong handleIdentifier,longlong resourceIdentifier)
   if (usystem_int_result < *(ulonglong *)(handleIdentifier + 0x18)) {
     *(ulonglong *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) = usystem_int_result + SYSTEM_DATA_COMPARE_SIZE0;
     InitializeSystemResources(system_operation_status,&bufferPtr_resource_pool);
-    ptr_ptr_ptr_system_ptr_value = *(uint64_t *****)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE);
+    ptr_ptr_init_system_ptr_temp = *(uint64_t *****)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE);
     goto INIT_LABEL_PROCESS_SYSTEM_CONFIG;
   }
   system_long_value = *(longlong *)(handleIdentifier + 8);
@@ -16920,9 +16920,9 @@ INIT_LABEL_RETRY_OPERATION:
     if (system_long_result != 0) goto INIT_LABEL_RETRY_OPERATION;
   }
   InitializeSystemModule21(&pppustack_var,system_long_result,system_operation_status,system_long_result);
-  ptr_ptr_system_ptr_value = pppustack_var;
+  ptr_init_system_ptr_temp = pppustack_var;
   InitializeSystemResources(pppustack_var,&bufferPtr_resource_pool);
-  ptr_ptr_ptr_system_ptr_value = (uint64_t ****)(ptr_ptr_system_pointer_var + SYSTEM_NODE_HEADER_SIZE);
+  ptr_ptr_init_system_ptr_temp = (uint64_t ****)(ptr_ptr_system_pointer_var + SYSTEM_NODE_HEADER_SIZE);
   system_long_value = *(longlong *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE);
   system_long_value = *(longlong *)(handleIdentifier + 8);
   if (system_long_result != system_long_result) {
@@ -16937,7 +16937,7 @@ INIT_LABEL_RETRY_OPERATION:
     ProcessSystemOperation(system_long_result);
   }
   *(longlong *)(handleIdentifier + 8) = system_long_value;
-  *(uint64_t *****)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) = ptr_ptr_ptr_system_ptr_value;
+  *(uint64_t *****)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) = ptr_ptr_init_system_ptr_temp;
   *(longlong *)(handleIdentifier + 0x18) = system_long_result * SYSTEM_DATA_COMPARE_SIZE0 + system_long_value;
 INIT_LABEL_PROCESS_SYSTEM_CONFIG:
   system_integer_result = (int)((ulonglong)((longlong)ptr_ptr_ptr_system_pointer_var - *(longlong *)(handleIdentifier + 8)) >> 8) + -1;
@@ -30074,7 +30074,7 @@ void InitializeConfigSystem(void **handleIdentifier,uint64_t resourceIdentifier,
   byte system_boolean_flag;
   uint system_status_code;
   longlong system_long_value;
-  void **ptr_system_ptr_value;
+  void **init_system_ptr_temp;
   byte *init_byte_pointer_temp;
   void **pnode_current;
   longlong system_long_value;
@@ -30103,7 +30103,7 @@ void InitializeConfigSystem(void **handleIdentifier,uint64_t resourceIdentifier,
   system_status_code = 1;
   system_long_value = AllocateSystemResource(systemMemoryPool,0x60,*(uint8_t *)(system_long_result + 0x98));
   InitializeSystemModule42(system_long_result + SYSTEM_NODE_HEADER_SIZE,&system_buffer_ptr_68system_buffer_ptr_system_context);
-  ptr_system_ptr_value = (void **)InitializeSystemDataNode19(pnode_current,acstack_var,system_long_result + SYSTEM_NODE_HEADER_SIZE);
+  init_system_ptr_temp = (void **)InitializeSystemDataNode19(pnode_current,acstack_var,system_long_result + SYSTEM_NODE_HEADER_SIZE);
   if (acstack_var[0] == '\0') {
     InitializeSystemDataNode23(system_long_result);
     if (system_long_result != 0) {
