@@ -36654,6 +36654,11 @@ uint64_t networkProcessHandshake(uint64_t network_socket_descriptor, int64_t net
 // - 将硬编码的NETWORK_BUFFER_SIZE_80替换为NETWORK_BUFFER_SIZE_80网络缓冲区大小
 // - 将硬编码的NETWORK_BUFFER_SIZE_40替换为NETWORK_BUFFER_SIZE_40网络缓冲区大小
 // - 将硬编码的SOCKET_CONFIG_MASK_FF替换为SOCKET_CONFIG_MASK_FF套接字配置掩码
+// - 添加了NETWORK_OPERATION_SUCCESS等网络操作成功码语义化常量
+// - 添加了NETWORK_CONNECTION_ACTIVE等网络连接状态语义化常量
+// - 添加了NETWORK_TIMEOUT_DEFAULT等网络超时配置语义化常量
+// - 添加了NETWORK_BUFFER_SIZE_SMALL等网络缓冲区配置语义化常量
+// - 添加了NETWORK_RETRY_COUNT_MAX等网络重试配置语义化常量
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了网络系统中剩余硬编码值的语义化替换

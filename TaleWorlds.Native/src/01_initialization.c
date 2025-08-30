@@ -48,6 +48,7 @@
 #define SYSTEM_RESULT_OFFSET_B 0xb
 #define SYSTEM_RESULT_OFFSET_C SYSTEM_CONFIG_SIZE_C
 // 本次美化内容（2025年8月30日）：
+// - 添加了SYSTEM_LABEL_INIT_CHECK_LOOP等系统标签语义化常量
 // - 添加了SYSTEM_MUTEX_OFFSET_A4等系统互斥锁偏移量语义化常量
 // - 添加了SYSTEM_CONFIG_OFFSET_1DE等系统配置偏移量语义化常量  
 // - 添加了SYSTEM_AUDIO_OFFSET_370等音频系统偏移量语义化常量
@@ -58,6 +59,7 @@
 // - 添加了SYSTEM_STRING_ENGINE_ROOT等系统字符串语义化常量
 // - 添加了SYSTEM_STRING_EXEC等字符串常量语义化定义
 // - 添加了SYSTEM_FLOAT_VALUE_1_0F等浮点常量语义化定义
+// - 将硬编码的joined_r0x00018005430b替换为system_label_init_check_loop等标签名
 // - 将硬编码的0xa4替换为SYSTEM_MUTEX_OFFSET_A4等互斥锁偏移量常量
 // - 将硬编码的0x9f0替换为SYSTEM_MUTEX_OFFSET_9F0等互斥锁常量
 // - 将硬编码的3.4028235e+38替换为SYSTEM_FLOAT_MAX_VALUE等浮点数常量
@@ -75,9 +77,9 @@
 // - 将longStack_678等变量名替换为init_stack_resource_handle_678等资源句柄变量名
 // - 将system_buffer_ptr_60等变量名替换为system_buffer_ptr_thread_context等线程上下文变量名
 // - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了硬编码十六进制值的语义化替换
-// - 原本实现：完全重构硬编码常量体系
-// - 简化实现：仅将常见的硬编码值替换为语义化常量
+// - 保持代码语义不变，这是简化实现，主要处理了硬编码标签名和常量的语义化替换
+// - 原本实现：完全重构标签命名体系
+// - 简化实现：仅将硬编码的标签名替换为语义化名称
 
 // 之前的美化内容：
 // - 将init_stack_param_a0替换为init_stack_status_flag等状态标志变量名
