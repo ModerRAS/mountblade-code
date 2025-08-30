@@ -1,4 +1,4 @@
-// 系统数据定义文件 - 美化硬编码值（2025年8月30日最终批次+补充批次+最终完成批次+续+最新完成批次+变量名美化批次+语义化常量替换批次+负偏移量语义化批次+结构体偏移量语义化批次+参数语义化批次+语义化变量名美化批次+最终语义化常量美化批次+最终清理批次+线程优先级语义化批次）
+// 系统数据定义文件 - 美化硬编码值（2025年8月30日最终批次+补充批次+最终完成批次+续+最新完成批次+变量名美化批次+语义化常量替换批次+负偏移量语义化批次+结构体偏移量语义化批次+参数语义化批次+语义化变量名美化批次+最终语义化常量美化批次+最终清理批次+线程优先级语义化批次+格式统一批次）
 // 简化实现：仅将常见的硬编码值替换为语义化常量，并将非语义化变量名替换为语义化名称
 // 原本实现：完全重构硬编码值体系和变量命名体系
 
@@ -21,6 +21,14 @@
 // - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中最终清理工作
 // - 原本实现：完全重构所有变量命名体系，确保完全语义化
 // - 简化实现：仅完成最终清理工作，保持代码结构不变
+
+// 本次格式统一批次内容（2025年8月30日格式统一批次）：
+// - 删除重复的常量定义，如SYSTEM_THREAD_PRIORITY_LEVEL_0X13等
+// - 统一十六进制注释格式，将大写格式（如0x4C、0xA0）统一为小写格式（如0x4c、0xa0）
+// - 提高了代码的一致性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中格式统一工作
+// - 原本实现：完全重构所有注释格式体系，建立统一的格式规范
+// - 简化实现：仅将常见的格式不一致的地方进行统一，保持代码结构不变
 
 // 本次线程优先级语义化批次内容（2025年8月30日线程优先级语义化批次）：
 // - 美化系统线程优先级常量，将硬编码的0x0d、0x0c、0x0f等替换为SYSTEM_THREAD_PRIORITY_LEVEL_*等语义化常量
@@ -268,7 +276,7 @@
 #define SYSTEM_FLOAT_MAX_DOUBLE_VALUE 1.8446744e+19    // 最大双精度浮点数
 #define SYSTEM_FLOAT_MAX_VALUE 3.4028235e+38           // 最大浮点数
 #define SYSTEM_FLOAT_CONVERSION_FACTOR_0_003921569 0.003921569 // 转换因子
-#define SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT // 字节转浮点数转换因子
+#define SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT 0.003921569 // 字节转浮点数转换因子（0.003921569 = 1/255）
 
 // 颜色处理权重常量定义（2025年8月30日最终批次美化）
 #define SYSTEM_COLOR_WEIGHT_RED 0.2126      // 红色通道权重
@@ -14868,8 +14876,6 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_THREAD_PRIORITY_LEVEL_0X26 0x26                    // 线程优先级0x26
 #define SYSTEM_THREAD_PRIORITY_LEVEL_0X34 0x34                    // 线程优先级0x34
 #define SYSTEM_THREAD_PRIORITY_LEVEL_0X0B 0x0b                    // 线程优先级0x0B
-#define SYSTEM_THREAD_PRIORITY_LEVEL_0X11 0x11                    // 线程优先级0x11
-#define SYSTEM_THREAD_PRIORITY_LEVEL_0X13 0x13                    // 线程优先级0x13
 
 // 系统状态码常量定义（2025年8月30日美化批次）
 #define SYSTEM_STATUS_CODE_0X27 0x27                             // 状态码0x27
@@ -14883,30 +14889,30 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_BUFFER_ALLOC_RESULT_0X38 0x38                      // 缓冲区分配结果0x38
 #define SYSTEM_BUFFER_ALLOC_RESULT_0X44 0x44                      // 缓冲区分配结果0x44
 #define SYSTEM_BUFFER_ALLOC_RESULT_0X48 0x48                      // 缓冲区分配结果0x48
-#define SYSTEM_BUFFER_ALLOC_RESULT_0X4C 0x4c                      // 缓冲区分配结果0x4C
+#define SYSTEM_BUFFER_ALLOC_RESULT_0X4C 0x4c                      // 缓冲区分配结果0x4c
 #define SYSTEM_BUFFER_ALLOC_RESULT_0X51 0x51                      // 缓冲区分配结果0x51
 #define SYSTEM_BUFFER_ALLOC_RESULT_0X58 0x58                      // 缓冲区分配结果0x58
 #define SYSTEM_BUFFER_ALLOC_RESULT_0X90 0x90                      // 缓冲区分配结果0x90
 #define SYSTEM_BUFFER_ALLOC_RESULT_0X94 0x94                      // 缓冲区分配结果0x94
 #define SYSTEM_BUFFER_ALLOC_RESULT_0X98 0x98                      // 缓冲区分配结果0x98
-#define SYSTEM_BUFFER_ALLOC_RESULT_0X9C 0x9c                      // 缓冲区分配结果0x9C
-#define SYSTEM_BUFFER_ALLOC_RESULT_0XA0 0xa0                      // 缓冲区分配结果0xA0
-#define SYSTEM_BUFFER_ALLOC_RESULT_0XA4 0xa4                      // 缓冲区分配结果0xA4
-#define SYSTEM_BUFFER_ALLOC_RESULT_0XA8 0xa8                      // 缓冲区分配结果0xA8
-#define SYSTEM_BUFFER_ALLOC_RESULT_0XAC 0xac                      // 缓冲区分配结果0xAC
-#define SYSTEM_BUFFER_ALLOC_RESULT_0XB0 0xb0                      // 缓冲区分配结果0xB0
-#define SYSTEM_BUFFER_ALLOC_RESULT_0XB4 0xb4                      // 缓冲区分配结果0xB4
-#define SYSTEM_BUFFER_ALLOC_RESULT_0XB5 0xb5                      // 缓冲区分配结果0xB5
-#define SYSTEM_BUFFER_ALLOC_RESULT_0XB8 0xb8                      // 缓冲区分配结果0xB8
-#define SYSTEM_BUFFER_ALLOC_RESULT_0XBC 0xbc                      // 缓冲区分配结果0xBC
-#define SYSTEM_BUFFER_ALLOC_RESULT_0XBD 0xbd                      // 缓冲区分配结果0xBD
-#define SYSTEM_BUFFER_ALLOC_RESULT_0XBE 0xbe                      // 缓冲区分配结果0xBE
-#define SYSTEM_BUFFER_ALLOC_RESULT_0XC0 0xc0                      // 缓冲区分配结果0xC0
-#define SYSTEM_BUFFER_ALLOC_RESULT_0X1D 0x1d                      // 缓冲区分配结果0x1D
-#define SYSTEM_BUFFER_ALLOC_RESULT_0X1E 0x1e                      // 缓冲区分配结果0x1E
-#define SYSTEM_BUFFER_ALLOC_RESULT_0X7C 0x7c                      // 缓冲区分配结果0x7C
-#define SYSTEM_BUFFER_ALLOC_RESULT_0X0D 0x0d                      // 缓冲区分配结果0x0D
-#define SYSTEM_BUFFER_ALLOC_RESULT_0X0E 0x0e                      // 缓冲区分配结果0x0E
+#define SYSTEM_BUFFER_ALLOC_RESULT_0X9C 0x9c                      // 缓冲区分配结果0x9c
+#define SYSTEM_BUFFER_ALLOC_RESULT_0XA0 0xa0                      // 缓冲区分配结果0xa0
+#define SYSTEM_BUFFER_ALLOC_RESULT_0XA4 0xa4                      // 缓冲区分配结果0xa4
+#define SYSTEM_BUFFER_ALLOC_RESULT_0XA8 0xa8                      // 缓冲区分配结果0xa8
+#define SYSTEM_BUFFER_ALLOC_RESULT_0XAC 0xac                      // 缓冲区分配结果0xac
+#define SYSTEM_BUFFER_ALLOC_RESULT_0XB0 0xb0                      // 缓冲区分配结果0xb0
+#define SYSTEM_BUFFER_ALLOC_RESULT_0XB4 0xb4                      // 缓冲区分配结果0xb4
+#define SYSTEM_BUFFER_ALLOC_RESULT_0XB5 0xb5                      // 缓冲区分配结果0xb5
+#define SYSTEM_BUFFER_ALLOC_RESULT_0XB8 0xb8                      // 缓冲区分配结果0xb8
+#define SYSTEM_BUFFER_ALLOC_RESULT_0XBC 0xbc                      // 缓冲区分配结果0xbc
+#define SYSTEM_BUFFER_ALLOC_RESULT_0XBD 0xbd                      // 缓冲区分配结果0xbd
+#define SYSTEM_BUFFER_ALLOC_RESULT_0XBE 0xbe                      // 缓冲区分配结果0xbe
+#define SYSTEM_BUFFER_ALLOC_RESULT_0XC0 0xc0                      // 缓冲区分配结果0xc0
+#define SYSTEM_BUFFER_ALLOC_RESULT_0X1D 0x1d                      // 缓冲区分配结果0x1d
+#define SYSTEM_BUFFER_ALLOC_RESULT_0X1E 0x1e                      // 缓冲区分配结果0x1e
+#define SYSTEM_BUFFER_ALLOC_RESULT_0X7C 0x7c                      // 缓冲区分配结果0x7c
+#define SYSTEM_BUFFER_ALLOC_RESULT_0X0D 0x0d                      // 缓冲区分配结果0x0d
+#define SYSTEM_BUFFER_ALLOC_RESULT_0X0E 0x0e                      // 缓冲区分配结果0x0e
 
 // 路径缓冲区大小常量定义（2025年8月30日最终批次补充）
 #define SYSTEM_PATH_BUFFER_SIZE_38 38                              // 路径缓冲区大小38
@@ -14944,9 +14950,9 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_PATH_BUFFER_SIZE_30 0x30                            // 路径缓冲区大小30
 #define SYSTEM_PATH_BUFFER_SIZE_65 0x65                            // 路径缓冲区大小65
 #define SYSTEM_PATH_BUFFER_SIZE_28 0x28                            // 路径缓冲区大小28
-#define SYSTEM_PATH_BUFFER_SIZE_4C4D58 0x4c4d58                    // 路径缓冲区大小4C4D58
-#define SYSTEM_PATH_BUFFER_SIZE_646C75 0x646c75                    // 路径缓冲区大小646C75
-#define SYSTEM_PATH_BUFFER_SIZE_746F6E 0x746f6e                    // 路径缓冲区大小746F6E
+#define SYSTEM_PATH_BUFFER_SIZE_4C4D58 0x4c4d58                    // 路径缓冲区大小4c4d58
+#define SYSTEM_PATH_BUFFER_SIZE_646C75 0x646c75                    // 路径缓冲区大小646c75
+#define SYSTEM_PATH_BUFFER_SIZE_746F6E 0x746f6e                    // 路径缓冲区大小746f6e
 #define SYSTEM_PATH_BUFFER_SIZE_10 0x10                            // 路径缓冲区大小10
 #define SYSTEM_PATH_BUFFER_SIZE_20 0x20                            // 路径缓冲区大小20
 #define SYSTEM_PATH_BUFFER_SIZE_24 0x24                            // 路径缓冲区大小24

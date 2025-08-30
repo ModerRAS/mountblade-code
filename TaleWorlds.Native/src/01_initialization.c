@@ -16538,45 +16538,45 @@ void InitializeSystemCore(undefined8 system_param_1,longlong system_param_2)
   ulonglong system_ulonglong_var_14;
   uint system_ulong_var_15;
   char system_char_var_16;
-  longlong *plStackX_10;
-  longlong **pplStackX_18;
-  longlong lStackX_20;
-  undefined *puStack_b8;
-  undefined *puStack_b0;
-  undefined4 uStack_a0;
-  undefined *puStack_98;
-  longlong lStack_90;
-  uint uStack_88;
-  undefined *puStack_78;
-  undefined *puStack_70;
-  undefined4 uStack_60;
-  undefined8 uStack_58;
-  longlong **pplStack_50;
-  longlong *plStack_48;
+  longlong *system_longlong_pointer_stack_10;
+  longlong **system_longlong_pointer_pointer_stack_18;
+  longlong system_longlong_stack_20;
+  undefined *system_undefined_stack_pointer_b8;
+  undefined *system_undefined_stack_pointer_b0;
+  undefined4 system_unsigned_stack_a0;
+  undefined *system_undefined_stack_pointer_98;
+  longlong system_longlong_stack_90;
+  uint system_unsigned_stack_88;
+  undefined *system_undefined_stack_pointer_78;
+  undefined *system_undefined_stack_pointer_70;
+  undefined4 system_unsigned_stack_60;
+  undefined8 system_unsigned_stack_58;
+  longlong **system_longlong_pointer_pointer_stack_50;
+  longlong *system_longlong_pointer_stack_48;
   
-  uStack_58 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
+  system_unsigned_stack_58 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   system_ulong_var_5 = InitializeSystemCore();
   system_cleanup_memory();
   system_longlong_pointer_var_6 = (longlong *)system_access_memory(_g_system_initialized,SYSTEM_INIT_OFFSET_0X68,8,3);
   system_longlong_pointer_pointer_var_1 = (longlong **)(system_longlong_pointer_var_6 + 1);
-  plStackX_10 = system_longlong_pointer_var_6;
-  pplStackX_18 = system_longlong_pointer_pointer_var_1;
+  system_longlong_pointer_stack_10 = system_longlong_pointer_var_6;
+  system_longlong_pointer_pointer_stack_18 = system_longlong_pointer_pointer_var_1;
   _Mtx_init_in_situ(system_longlong_pointer_pointer_var_1,2);
   system_longlong_pointer_var_6[SYSTEM_INIT_VALUE_STACK_11] = 0;
   system_longlong_pointer_var_6[SYSTEM_INIT_VALUE_STACK_12] = 0;
   *(undefined2 *)system_longlong_pointer_var_6 = 0;
   _g_system_initialized = system_longlong_pointer_var_6;
   if ((char)*system_longlong_pointer_var_6 != '\0') goto LAB_180044faf;
-  pplStack_50 = system_longlong_pointer_pointer_var_1;
+  system_longlong_pointer_pointer_stack_50 = system_longlong_pointer_pointer_var_1;
   system_int_count = _Mtx_lock(system_longlong_pointer_pointer_var_1);
   if (system_int_count != 0) {
     __Throw_C_error_std__YAXH_Z(system_int_count);
   }
   SymSetOptions(SYSTEM_INIT_OFFSET_STACK_PARAM17);
-  system_prepare_operation(&puStack_b8);
+  system_prepare_operation(&system_undefined_stack_pointer_b8);
   psystem_ulong_var_13 = &g_system_initialized;
-  if (puStack_b0 != (undefined *)SYSTEM_INIT_VALUE_CHAR_NULL) {
-    psystem_ulong_var_13 = puStack_b0;
+  if (system_undefined_stack_pointer_b0 != (undefined *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+    psystem_ulong_var_13 = system_undefined_stack_pointer_b0;
   }
   SymSetSearchPath(_g_system_initialized,psystem_ulong_var_13);
   system_long_var_7 = system_longlong_pointer_var_6[SYSTEM_INIT_VALUE_STACK_11];
@@ -16585,7 +16585,7 @@ void InitializeSystemCore(undefined8 system_param_1,longlong system_param_2)
     system_longlong_pointer_var_6[SYSTEM_INIT_VALUE_STACK_11] = system_long_var_7;
     if (system_long_var_7 != 0) goto LAB_180044ee3;
     puStack_b8 = &g_system_context;
-    if (puStack_b0 != (undefined *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+    if (system_undefined_stack_pointer_b0 != (undefined *)SYSTEM_INIT_VALUE_CHAR_NULL) {
                     // WARNING: Subroutine does not return
       system_execute_operation();
     }
@@ -16597,7 +16597,7 @@ LAB_180044ee3:
       system_longlong_pointer_var_6[SYSTEM_INIT_VALUE_STACK_12] = system_long_var_7;
       if (system_long_var_7 == 0) {
         puStack_b8 = &g_system_context;
-        if (puStack_b0 != (undefined *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+        if (system_undefined_stack_pointer_b0 != (undefined *)SYSTEM_INIT_VALUE_CHAR_NULL) {
                     // WARNING: Subroutine does not return
           system_execute_operation();
         }
@@ -16605,13 +16605,13 @@ LAB_180044ee3:
       }
     }
     psystem_ulong_var_13 = &g_system_initialized;
-    if (puStack_b0 != (undefined *)SYSTEM_INIT_VALUE_CHAR_NULL) {
-      psystem_ulong_var_13 = puStack_b0;
+    if (system_undefined_stack_pointer_b0 != (undefined *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+      psystem_ulong_var_13 = system_undefined_stack_pointer_b0;
     }
     system_int_count = SymInitialize(_g_system_initialized,psystem_ulong_var_13,1);
     if (system_int_count == 0) {
       puStack_b8 = &g_system_context;
-      if (puStack_b0 != (undefined *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+      if (system_undefined_stack_pointer_b0 != (undefined *)SYSTEM_INIT_VALUE_CHAR_NULL) {
                     // WARNING: Subroutine does not return
         system_execute_operation();
       }
@@ -16619,7 +16619,7 @@ LAB_180044ee3:
     else {
       *(char *)system_longlong_pointer_var_6 = '\x01';
       puStack_b8 = &g_system_context;
-      if (puStack_b0 != (undefined *)SYSTEM_INIT_VALUE_CHAR_NULL) {
+      if (system_undefined_stack_pointer_b0 != (undefined *)SYSTEM_INIT_VALUE_CHAR_NULL) {
                     // WARNING: Subroutine does not return
         system_execute_operation();
       }
@@ -22774,7 +22774,7 @@ void InitializeSystemCore(void)
   ulonglong uStack_28;
   
   system_long_var_4 = _g_system_initialized;
-  uStack_58 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
+  system_unsigned_stack_58 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   uStack_28 = _g_system_initialized ^ (ulonglong)auStack_a8;
   InitializeSystemCore(_g_system_initialized);
   do {
@@ -25740,7 +25740,7 @@ void InitializeSystemCore(longlong *system_param_1)
   undefined1 auStack_38 [16];
   ulonglong uStack_28;
   
-  uStack_58 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
+  system_unsigned_stack_58 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   uStack_28 = _g_system_initialized ^ (ulonglong)auStack_98;
   system_context_base_pointer = (longlong *)system_access_memory(_g_system_initialized,SYSTEM_INIT_VALUE_STACK_130,8,3);
   pplStack_60 = (longlong **)system_context_base_pointer;
@@ -56928,7 +56928,7 @@ ulonglong InitializeSystemCore(longlong system_param_1,longlong *system_param_2,
   longlong *plStack_48;
   longlong *plStack_40;
   
-  uStack_58 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
+  system_unsigned_stack_58 = SYSTEM_INIT_VALUE_HANDLE_INVALID;
   while ((system_long_var_6 = system_param_1, (*(byte *)(system_param_1 + SYSTEM_INIT_VALUE_STACK_15d) & SYSTEM_INIT_OFFSET_STACK_PARAM) == 0 &&
          (system_long_var_6 = func_SYSTEM_INIT_VALUE_CHAR_NULL00180085de0(*(undefined8 *)(system_param_1 + SYSTEM_INIT_FLAG_ENABLEDb0)), system_long_var_6 != system_param_1))) {
     if ((system_param_4 != '\0') ||
