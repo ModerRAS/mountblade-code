@@ -197,6 +197,13 @@
 // 系统临时变量语义化常量
 #define SYSTEM_TEMP_VARIABLE_18 18
 #define SYSTEM_TEMP_VARIABLE_00 0
+
+// 系统初始化参数语义化常量
+#define SYSTEM_INIT_PARAM_SUBSYSTEM_COUNT 8
+#define SYSTEM_INIT_PARAM_POINTER_SIZE 8
+#define SYSTEM_INIT_PARAM_MEMORY_ALIGNMENT 8
+#define SYSTEM_INIT_PARAM_HANDLE_OFFSET 8
+#define SYSTEM_INIT_PARAM_RESOURCE_SIZE 8
 #define SYSTEM_TEMP_VARIABLE_10 10
 
 // 系统操作状态语义化常量
@@ -3096,7 +3103,7 @@ int InitializeAudioSystem(void)
 {
   longlong init_result;
 
-  initialize_system_component(AUDIO_SYSTEM_BASE_ADDR,SYSTEM_NODE_HEADER_SIZE,8,initialize_audio_subsystem,initialize_graphics_subsystem);
+  initialize_system_component(AUDIO_SYSTEM_BASE_ADDR,SYSTEM_NODE_HEADER_SIZE,SYSTEM_INIT_PARAM_SUBSYSTEM_COUNT,initialize_audio_subsystem,initialize_graphics_subsystem);
   init_result = execute_system_init(&g_graphics_config_data);
   return (init_result != 0) - 1;
 }
@@ -3107,7 +3114,7 @@ int InitializeInputSystem(void)
 {
   longlong init_result;
 
-  initialize_system_component(INPUT_SYSTEM_BASE_ADDR,SYSTEM_NODE_HEADER_SIZE,8,initialize_input_subsystem,initialize_graphics_subsystem);
+  initialize_system_component(INPUT_SYSTEM_BASE_ADDR,SYSTEM_NODE_HEADER_SIZE,SYSTEM_INIT_PARAM_SUBSYSTEM_COUNT,initialize_input_subsystem,initialize_graphics_subsystem);
   init_result = execute_system_init(&g_audio_config_data);
   return (init_result != 0) - 1;
 }
@@ -15178,9 +15185,9 @@ int ConfigureGraphicsParameters(void)
 {
   longlong system_long_value;
 
-  initialize_system_component(&g_system_memory_data,8,5,&g_subsystem_init_function,InitializeNetworkSystem);
-  initialize_system_component(NETWORK_SYSTEM_INIT_ADDR_1,8,5,&g_subsystem_init_function,InitializeNetworkSystem);
-  initialize_system_component(NETWORK_SYSTEM_INIT_ADDR_2,8,5,&g_subsystem_init_function,InitializeNetworkSystem);
+  initialize_system_component(&g_system_memory_data,SYSTEM_INIT_PARAM_POINTER_SIZE,5,&g_subsystem_init_function,InitializeNetworkSystem);
+  initialize_system_component(NETWORK_SYSTEM_INIT_ADDR_1,SYSTEM_INIT_PARAM_POINTER_SIZE,5,&g_subsystem_init_function,InitializeNetworkSystem);
+  initialize_system_component(NETWORK_SYSTEM_INIT_ADDR_2,SYSTEM_INIT_PARAM_POINTER_SIZE,5,&g_subsystem_init_function,InitializeNetworkSystem);
   _Mtx_init_in_situ(NETWORK_SYSTEM_MUTEX_ADDR,2);
   _g_network_state_1 = 0; // 原始名称: systemCoreData
   g_network_buffer_size = 0;
@@ -16513,7 +16520,7 @@ uint64_t InitializeThreadLocalStorage(void)
   longlong threadLocalStorageBase;
   int *storage_ptr;
 
-  threadLocalStorageBase = *(longlong *)((longlong)threadLocalStoragePointer + (ulonglong)__tls_index * 8);
+  threadLocalStorageBase = *(longlong *)((longlong)threadLocalStoragePointer + (ulonglong)__tls_index * SYSTEM_INIT_PARAM_POINTER_SIZE);
   *(uint64_t *)(threadLocalStorageBase + SYSTEM_OFFSET_18) = &globalSystemPointerData;
   *(uint64_t *)(threadLocalStorageBase + SYSTEM_NODE_HEADER_SIZE) = 0;
   *(uint32_t *)(threadLocalStorageBase + SYSTEM_OBJECT_OFFSET_28) = 0;
@@ -16521,7 +16528,7 @@ uint64_t InitializeThreadLocalStorage(void)
   *(uint64_t *)(threadLocalStorageBase + SYSTEM_THREAD_LOCAL_STORAGE_OFFSET_30) = 0;
   *(uint64_t *)(threadLocalStorageBase + SYSTEM_NODE_HEADER_SIZE) = 0;
   *(uint32_t *)(threadLocalStorageBase + SYSTEM_OBJECT_OFFSET_28) = 0;
-  threadLocalStorageBase = *(longlong *)((longlong)threadLocalStoragePointer + (ulonglong)__tls_index * 8);
+  threadLocalStorageBase = *(longlong *)((longlong)threadLocalStoragePointer + (ulonglong)__tls_index * SYSTEM_INIT_PARAM_POINTER_SIZE);
   storage_ptr = *(int **)(threadLocalStorageBase + SYSTEM_THREAD_LOCAL_STORAGE_OFFSET_50);
   if (storage_ptr == (int *)SYSTEM_NULL_POINTER) {
     storage_ptr = (int *)(threadLocalStorageBase + SYSTEM_OBJECT_OFFSET_60);
