@@ -18897,7 +18897,7 @@ InitializeSystemModule21(uint64_t *handleIdentifier,longlong *resourceIdentifier
       systemFlags[SYSTEM_DATA_BLOCK_SIZE_C] = pallocation_size[-SYSTEM_OFFSET_F];
       systemFlags[SYSTEM_CONFIG_SIZE_STATUS] = system_long_value;
       systemFlags[SYSTEM_CONFIG_SIZE_EVENT] = pallocation_size[-SYSTEM_CONFIG_SIZE_STATUS];
-      systemFlags[SYSTEM_OFFSET_F] = pallocation_size[-0xc];
+      systemFlags[SYSTEM_OFFSET_F] = pallocation_size[SYSTEM_STACK_OFFSET_NEGATIVE_C];
       systemFlags[SYSTEM_DATA_COMPARE_SIZE] = pallocation_size[-0xb];
       systemFlags[SYSTEM_CONFIG_SIZE_FINAL] = pallocation_size[-10];
       systemFlags[SYSTEM_CONFIG_SIZE_RENDER] = pallocation_size[-9];

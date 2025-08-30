@@ -2372,10 +2372,10 @@ dataValue g_ai_nav_temp_flags;                        // AI导航临时标志
 
 // 函数: resource_data InitializeDatabaseConnection;
 dataValue InitializeDatabaseConnection;
-dataValue g_databaseWorkBuffer;
-dataValue g_databaseTempOffset;
-dataValue g_databaseTempSize;
-dataValue g_databaseTempFlags;
+dataValue g_database_work_buffer;                    // 数据库工作缓冲区
+dataValue g_database_temp_offset;                    // 数据库临时偏移量
+dataValue g_database_temp_size;                      // 数据库临时大小
+dataValue g_database_temp_flags;                     // 数据库临时标志
 
 // 函数: resource_data SetupDatabaseTables;
 dataValue SetupDatabaseTables;
