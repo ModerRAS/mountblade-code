@@ -18076,8 +18076,8 @@ void InitializePhysicsSystem(void)
   float system_float_value;
   uint8_t system_local_buffer_698 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   longlong init_stack_resource_data_678;
-  longlong longStack_670;
-  int intStack_668;
+  longlong init_stack_resource_config_670;
+  int init_stack_resource_status_668;
   void *system_buffer_ptr_graphics_main;
   uint8_t *system_buffer_ptr_graphics_config;
   uint init_stack_buffer_size8;
@@ -18091,8 +18091,8 @@ void InitializePhysicsSystem(void)
   uint32_t init_stack_uint_param_568;
   uint64_t init_stack_uint_param_560;
   void *system_buffer_ptr_graphics_context;
-  longlong longStack_550;
-  int intStack_548;
+  longlong init_stack_path_data_550;
+  int init_stack_path_index_548;
   uint32_t init_stack_uint_param_540;
   void *system_buffer_ptr_graphics_state;
   longlong longStack_530;
