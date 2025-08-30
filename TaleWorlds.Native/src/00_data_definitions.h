@@ -5956,11 +5956,11 @@ long long process_memory_with_thread_operation_flags(unsigned long long handle_p
       *(unsigned int *)pppppsystem_initialization_result7 = SYSTEM_ZERO_VALUE;
       UNLOCK();
       system_processor_008(pppppsystem_initialization_result7,buffer_allocation_result);
-      if (*(int *)(reg_rcx + 0xa3a) == SYSTEM_ZERO_VALUE) {
+      if (*(int *)(reg_rcx + SYSTEM_FUNCTION_OFFSET_REGISTER_A3A) == SYSTEM_ZERO_VALUE) {
         thread_result_status = SYSTEM_ZERO_VALUE;
       }
       else {
-        thread_result_status = (*(int *)(reg_rcx + 0xa3a) - 1U >> 0xc) + 1;
+        thread_result_status = (*(int *)(reg_rcx + SYSTEM_FUNCTION_OFFSET_REGISTER_A3A) - 1U >> 0xc) + 1;
       }
       if (thread_result_status != 0) {
         memcpy(pppppsystem_initialization_result7[1], reg_rcx[0xa3b], path_buffer_size_000);

@@ -122,6 +122,7 @@
 #define NETWORK_BASIC_UNSIGNED_VALUE_EIGHT 8U   // 基本无符号值8
 #define NETWORK_BASIC_UNSIGNED_VALUE_NINE 9U   // 基本无符号值9
 #define NETWORK_BASIC_UNSIGNED_VALUE_TEN 10U   // 基本无符号值10
+#define NETWORK_LONG_CAST longlong              // 网络系统长整型转换
 #define NETWORK_CHAR_NULL '\0'               // 网络字符空值
 #define NETWORK_CONNECTION_BUFFER_784 784    // 网络连接缓冲区大小784字节
 #define NETWORK_CONNECTION_BUFFER_1128 1128  // 网络连接缓冲区大小1128字节
@@ -4224,7 +4225,7 @@ uint32_t network_process_socket_data(int64_t *network_socket_handle)
   calc_packet_size = socket_buf_size ^ (int)socket_buf_size >> NETWORK_BIT_SHIFT_MASK_5BIT;
   if ((int)(calc_packet_size - ((int)socket_buf_size >> NETWORK_BIT_SHIFT_MASK_5BIT)) < NETWORK_STATUS_FAILURE) {
     if (NETWORK_STATUS_FAILURE < (int)network_socket_handle[NETWORK_SOCKET_INDEX_PRIMARY]) {
-      return calculated_packet_size;
+      return calc_packet_size;
     if ((NETWORK_STATUS_FAILURE < (int)socket_buffer_size) && (*network_socket_handle != NETWORK_STATUS_FAILURE)) {
       network_log_message(*(uint64_t *)(g_network_module + NETWORK_MODULE_OFFSET), *network_socket_handle, &g_network_error_buffer, NETWORK_ERROR_BUFFER_SIZE, NETWORK_LOG_LEVEL_ERROR);
     *network_socket_handle = NETWORK_STATUS_FAILURE;
