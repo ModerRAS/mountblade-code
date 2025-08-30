@@ -58,6 +58,17 @@
 // - 新增美化内容：将变量名如 stack_size_max -> maximum_stack_size
 // - 新增美化内容：将变量名如 thread_stack_ptr -> thread_stack_pointer
 // - 新增美化内容：将变量名如 str_len_counter -> string_length_counter
+
+// 本次美化内容：
+// - 将十六进制地址常量替换为语义化名称，如 0x180c91970 -> SYSTEM_MUTEX_PRIMARY_ADDR
+// - 将系统函数地址常量替换为语义化名称，如 0x00018005c480 -> RENDER_ENGINE_MAIN_FUNCTION
+// - 将内存管理地址常量替换为语义化名称，如 0x180d496e0 -> PRIMARY_MEMORY_POOL_ADDR
+// - 将系统缓冲区地址常量替换为语义化名称，如 0x180c91d08 -> SYSTEM_CONFIG_BUFFER_ADDR
+// - 将模块相关地址常量替换为语义化名称，如 0x180c95de0 -> MODULE_HANDLER_ADDR
+// - 将全局系统数据地址常量替换为语义化名称，如 0x180a1b368 -> HANDLE_MANAGER_ADDRESS
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了十六进制地址常量的语义化替换
 // - 新增美化内容：将变量名如 buffer_alloc_result -> buffer_allocation_result
 // - 新增美化内容：将变量名如 thread_op_flags -> thread_operation_flags
 // - 新增美化内容：将变量名如 string_input_ptr -> string_input_pointer
