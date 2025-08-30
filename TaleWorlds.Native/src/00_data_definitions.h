@@ -10661,8 +10661,8 @@ section_processing_jump_label_131:
   memcpy(system_string_input_pointer + 3,system_auxiliary_char_stack_40,(long long)((int)system_string_length_counter + 2));
 }
 char * system_execution_function(unsigned int handle_param,unsigned long long system_thread_operation_flags,char *mutex_attr,unsigned long long mutex_type,
-                    long long *system_operation_parameter,long long system_control_parameter,ulong long param_7,unsigned long long *param_8,
-                    int *param_9,unsigned long long *handle_param0)
+                    long long *system_operation_parameter,long long system_control_parameter,ulong long system_stack_size_parameter,unsigned long long *system_thread_stack_pointer_parameter,
+                    int *system_thread_status_parameter,unsigned long long *handle_param0)
 {
   char system_char_variable;
   unsigned int system_thread_operation_flags;
@@ -10720,9 +10720,9 @@ char * system_execution_function(unsigned int handle_param,unsigned long long sy
   system_maximum_stack_size = default_thread_pool_flag;
   stack_pointer_120 = system_operation_parameter;
   system_thread_stack_base_address = system_control_parameter;
-  system_maximum_stack_size = param_7;
-  system_thread_stack_pointer_variable = param_8;
-  piStack_78 = param_9;
+  system_maximum_stack_size = system_stack_size_parameter;
+  system_thread_stack_pointer_variable = system_thread_stack_pointer_parameter;
+  piStack_78 = system_thread_status_parameter;
   system_thread_stack_pointer_variable = handle_param0;
   system_thread_stack_pointer_variable = handle_param0;
   system_thread_stack_pointer_variable = &system_global_thread_string_2;
@@ -10751,7 +10751,7 @@ char * system_execution_function(unsigned int handle_param,unsigned long long sy
     system_string_input_pointer = system_thread_stack_pointer_variable;
   }
   system_execution_function(&system_string_function_1,system_string_input_pointer);
-  *param_9 = SYSTEM_ZERO_VALUE;
+  *system_thread_status_parameter = SYSTEM_ZERO_VALUE;
   system_string_length_counter = *system_operation_parameter;
   system_thread_result_status = SYSTEM_ZERO_VALUE;
   if (system_string_length_counter != system_operation_parameter[1]) {
@@ -10764,7 +10764,7 @@ char * system_execution_function(unsigned int handle_param,unsigned long long sy
         system_string_input_pointer = *(void **)(system_string_length_counter + 8);
       }
       system_execution_function(&system_string_function_3,system_string_input_pointer);
-      system_thread_result_status = *param_9;
+      system_thread_result_status = *system_thread_status_parameter;
       system_string_length_counter = (long long)system_thread_result_status * SYSTEM_OFFSET_3088 + system_thread_stack_base_address;
       system_string_input_pointer = &default_resource_config_string;
       if (*(void **)(system_string_length_counter + 8) != (void *)SYSTEM_NULL_POINTER) {
@@ -10804,7 +10804,7 @@ char * system_execution_function(unsigned int handle_param,unsigned long long sy
       if (system_thread_stack_pointer_variable != (void *)SYSTEM_NULL_POINTER) {
         system_string_input_pointer = system_thread_stack_pointer_variable;
       }
-      system_execution_function(system_string_input_pointer,system_string_length_counter,(long long)system_thread_result_status * path_buffer_size + param_7);
+      system_execution_function(system_string_input_pointer,system_string_length_counter,(long long)system_thread_result_status * path_buffer_size + system_stack_size_parameter);
       system_thread_stack_pointer_variable = &system_global_thread_string_2;
       if (system_string_input_pointer != (void *)SYSTEM_NULL_POINTER) {
         handle_param_system_error(system_string_input_pointer);
@@ -10815,10 +10815,10 @@ char * system_execution_function(unsigned int handle_param,unsigned long long sy
       system_string_length_counter = system_string_length_counter + path_buffer_size;
       system_thread_result_status = *piStack_78 + 1;
       *piStack_78 = system_thread_result_status;
-      param_7 = system_maximum_stack_size;
+      system_stack_size_parameter = system_maximum_stack_size;
       mutex_attr = pcStack_70;
       system_control_parameter = system_thread_stack_base_address;
-      param_9 = piStack_78;
+      system_thread_status_parameter = piStack_78;
     } while (system_string_length_counter != system_operation_parameter[1]);
   }
   system_character_scan_pointer = (char *)0x0;
@@ -10984,7 +10984,7 @@ section_processing_jump_label_133:
       system_control_parameter = system_control_parameter + SYSTEM_OFFSET_FUNCTION_TABLE88;
       mutex_attr = pcStack_70;
       system_thread_stack_base_address = system_control_parameter;
-    } while (system_thread_result_status < *param_9);
+    } while (system_thread_result_status < *system_thread_status_parameter);
   }
   system_thread_stack_pointer_variable = &system_global_thread_string_2;
   if (system_thread_stack_pointer_variable != (void *)SYSTEM_NULL_POINTER) {
@@ -11003,7 +11003,7 @@ section_processing_jump_label_133:
   return system_character_scan_pointer;
 }
 char * system_execution_function(unsigned long long handle_param,unsigned long long system_thread_operation_flags,unsigned long long *mutex_attr,long long mutex_type,
-                    unsigned long long system_operation_parameter,unsigned long long *system_control_parameter,unsigned long long *param_7)
+                    unsigned long long system_operation_parameter,unsigned long long *system_control_parameter,unsigned long long *system_stack_size_parameter)
 {
   unsigned int system_buffer_allocation_result;
   unsigned int system_thread_operation_flags;
@@ -11038,10 +11038,10 @@ char * system_execution_function(unsigned long long handle_param,unsigned long l
   unsigned long long *system_thread_stack_pointer_variable;
   unsigned long long *system_thread_stack_pointer_variable;
   system_maximum_stack_size = default_thread_pool_flag;
-  system_thread_stack_pointer_variable = param_7;
+  system_thread_stack_pointer_variable = system_stack_size_parameter;
   system_character_scan_pointer = (char *)0x0;
   system_thread_stack_pointer_variable = mutex_attr;
-  system_string_length_counter = system_execution_function(param_7,&system_thread_stack_pointer_variable);
+  system_string_length_counter = system_execution_function(system_stack_size_parameter,&system_thread_stack_pointer_variable);
   system_string_input_pointer = &default_resource_config_string;
   if (*(void **)(system_string_length_counter + 8) != (void *)SYSTEM_NULL_POINTER) {
     system_string_input_pointer = *(void **)(system_string_length_counter + 8);
@@ -11200,13 +11200,13 @@ section_processing_jump_label_135:
   mutex_attr[SYSTEM_ARRAY_INDEX_1] = SYSTEM_ZERO_VALUE;
   *(unsigned int *)(mutex_attr + 3) = SYSTEM_ZERO_VALUE;
   *mutex_attr = &system_global_thread_string_4;
-  *param_7 = &system_global_thread_string_2;
-  if (param_7[1] != 0) {
+  *system_stack_size_parameter = &system_global_thread_string_2;
+  if (system_stack_size_parameter[1] != 0) {
     handle_param_system_error();
   }
-  param_7[1] = SYSTEM_ZERO_VALUE;
-  *(unsigned int *)(param_7 + 3) = SYSTEM_ZERO_VALUE;
-  *param_7 = &system_global_thread_string_4;
+  system_stack_size_parameter[1] = SYSTEM_ZERO_VALUE;
+  *(unsigned int *)(system_stack_size_parameter + 3) = SYSTEM_ZERO_VALUE;
+  *system_stack_size_parameter = &system_global_thread_string_4;
   return system_character_scan_pointer;
 }
 long long process_system_configuration(long long handle_param,long long system_thread_operation_flags,unsigned int mutex_attr,long long mutex_type)
@@ -12234,14 +12234,14 @@ long long process_context_handle_param(long long *handle_param)
       }
       if (((handle_param2 == '\0') || ((system_buffer_allocation_result & 1) != 0)) &&
          (system_char_variable = system_execution_function((double)((float)(int)system_buffer_allocation_result * SYSTEM_FLOAT_HALF_CIRCLE),SUB84((double)system_control_parameter,0),
-                                (double)param_7), system_char_variable != '\0')) {
+                                (double)system_stack_size_parameter), system_char_variable != '\0')) {
         fStack_370 = *(float *)(&system_maximum_stack_size + system_string_length_counter * 2) - *(float *)(&system_maximum_stack_size + system_string_length_counter * 2);
         system_maximum_stack_size = merge_32bit_values(afStack_2e8[system_string_length_counter * 4 + 1] - afStack_2e8[system_string_length_counter * 4 + 1],
                               afStack_2e8[system_string_length_counter * 4] - afStack_2e8[system_string_length_counter * 4]);
         system_maximum_stack_size = SYSTEM_FLOAT_MAX_VALUE;
         system_maximum_stack_size = SYSTEM_ZERO_VALUE;
         system_maximum_stack_size = CONCAT31(system_maximum_stack_size_bitfield1_3_,handle_param1);
-        system_execution_function(handle_param,afStack_2e8 + system_string_length_counter * 4,&system_maximum_stack_size,param_8);
+        system_execution_function(handle_param,afStack_2e8 + system_string_length_counter * 4,&system_maximum_stack_size,system_thread_stack_pointer_parameter);
       }
       system_buffer_allocation_result = system_buffer_allocation_result + 1;
       system_string_length_counter = system_string_length_counter + 1;
@@ -12893,7 +12893,7 @@ section_processing_jump_label_154:
 }
 unsigned long long
 system_execution_function(long long handle_param,long long system_thread_operation_flags,long long *mutex_attr,long long *mutex_type,
-             unsigned long long *system_operation_parameter,char system_control_parameter,char param_7)
+             unsigned long long *system_operation_parameter,char system_control_parameter,char system_stack_size_parameter)
 {
   uint system_buffer_allocation_result;
   long long system_string_length_counter;
@@ -12944,7 +12944,7 @@ system_execution_function(long long handle_param,long long system_thread_operati
   }
   system_buffer_allocation_result = system_execution_function(system_buffer_allocation_result,*(unsigned long long *)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE),system_string_length_counter,*system_operation_parameter,system_buffer_allocation_result,0,0,&stack_long_var);
   if ((int)system_buffer_allocation_result == SYSTEM_ZERO_VALUE) {
-    if (param_7 != (char)system_buffer_allocation_result) {
+    if (system_stack_size_parameter != (char)system_buffer_allocation_result) {
       string_conversion_handler(stack_long_var,system_string_length_counter);
     }
     byte_system_flag = (byte)(*(uint *)(system_thread_operation_flags + SYSTEM_OFFSET_PATH_SIZE) >> 4) & 1;
