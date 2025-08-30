@@ -4036,10 +4036,10 @@ GameSession* g_network_game_session;
 PlayerData* g_network_player_data;
 // 网络游戏状态（美化后）
 GameState* g_network_game_state;
-// 网络同步数据
-SyncData* g_networkSyncData;
-// 网络大厅数据
-LobbyData* g_networkLobbyData;
+// 网络同步数据（美化后）
+SyncData* g_network_sync_data;
+// 网络大厅数据（美化后）
+LobbyData* g_network_lobby_data;
 // 网络匹配数据
 MatchData* g_networkMatchData;
 // 网络主套接字描述符
