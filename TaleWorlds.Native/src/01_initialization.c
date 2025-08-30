@@ -8044,20 +8044,20 @@ void InitializeMathLookupTables(void)
           }
         }
         *tablePointer = calculatedValue;
-        system_memory_comparison_result = system_memory_comparison_result + 1;
-        tablePointer = tablePointer + 1;
-        arrayIndex = arrayIndex + 1;
+        system_memory_comparison_result = system_memory_comparison_result + SYSTEM_INCREMENT_VALUE;
+        tablePointer = tablePointer + SYSTEM_POINTER_INCREMENT_VALUE;
+        arrayIndex = arrayIndex + SYSTEM_INDEX_INCREMENT_VALUE;
       } while ((longlong)arrayIndex < (longlong)tableSize);
     }
-    maxIterations = maxIterations + 1;
-    tableSize = tableSize + 1;
+    maxIterations = maxIterations + SYSTEM_LOOP_INCREMENT_VALUE;
+    tableSize = tableSize + SYSTEM_ARRAY_INCREMENT_VALUE;
     data_pointer = data_pointer + SYSTEM_DATA_BLOCK_SIZE;
   } while ((longlong)data_pointer < GRAPHICS_DATA_END_ADDR);
   data_pointer = (float *)RENDER_DATA_START_ADDR;
   do {
-    nextIndex = (int)loop_counter + 1;
+    nextIndex = (int)loop_counter + SYSTEM_COUNTER_INCREMENT_VALUE;
     *data_pointer = SYSTEM_FLOAT_VALUE_ONE / SQRT((float)loop_counter) + SYSTEM_FLOAT_VALUE_ONE / SQRT((float)loop_counter);
-    data_pointer = data_pointer + 1;
+    data_pointer = data_pointer + SYSTEM_POINTER_INCREMENT_VALUE;
     loop_counter = (ulonglong)nextIndex;
   } while (nextIndex < SYSTEM_DATA_BLOCK_SIZE);
   return;
@@ -14754,7 +14754,7 @@ void InitializeThreadDataNode(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_global_system_config;
-  system_node_previous[NODE_INDEX_ENGINE_TYPE] = 2;
+  system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_VALUE;
   system_node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -14801,7 +14801,7 @@ void InitializeProcessDataNode(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_1] = INITIALIZATION_NODE_VALUE_1;
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = INITIALIZATION_NODE_VALUE_2;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_global_system_config;
-  system_node_previous[NODE_INDEX_ENGINE_TYPE] = 2;
+  system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_VALUE;
   system_node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -15318,7 +15318,7 @@ void InitializeGraphicsMemory(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_global_system_config;
-  system_node_previous[NODE_INDEX_ENGINE_TYPE] = 2;
+  system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_VALUE;
   system_node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -15365,7 +15365,7 @@ void InitializeRenderSystem(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_1] = INITIALIZATION_NODE_VALUE_1;
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = INITIALIZATION_NODE_VALUE_2;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_global_system_config;
-  system_node_previous[NODE_INDEX_ENGINE_TYPE] = 2;
+  system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_VALUE;
   system_node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -15976,7 +15976,7 @@ void InitializeUtilEngineNode(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_global_system_config;
-  system_node_previous[NODE_INDEX_ENGINE_TYPE] = 2;
+  system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_VALUE;
   system_node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -16023,7 +16023,7 @@ void InitializeResourceEngineNode(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_1] = INITIALIZATION_NODE_VALUE_1;
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = INITIALIZATION_NODE_VALUE_2;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_global_system_config;
-  system_node_previous[NODE_INDEX_ENGINE_TYPE] = 2;
+  system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_VALUE;
   system_node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -16107,7 +16107,7 @@ void InitializeThreadDataNode(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_global_system_config;
-  system_node_previous[NODE_INDEX_ENGINE_TYPE] = 2;
+  system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_VALUE;
   system_node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -16154,7 +16154,7 @@ void InitializeProcessDataNode(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_1] = INITIALIZATION_NODE_VALUE_1;
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = INITIALIZATION_NODE_VALUE_2;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_global_system_config;
-  system_node_previous[NODE_INDEX_ENGINE_TYPE] = 2;
+  system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_VALUE;
   system_node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -16201,7 +16201,7 @@ void InitializeStringManagerSystem(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_global_system_config;
-  system_node_previous[NODE_INDEX_ENGINE_TYPE] = 2;
+  system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_VALUE;
   system_node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -16248,7 +16248,7 @@ void InitializeMemoryManagerSystem(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_1] = INITIALIZATION_NODE_VALUE_1;
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = INITIALIZATION_NODE_VALUE_2;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_global_system_config;
-  system_node_previous[NODE_INDEX_ENGINE_TYPE] = 2;
+  system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_VALUE;
   system_node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -16324,7 +16324,7 @@ void InitializeResourceSystem(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_1] = SYSTEM_NODE_ID_AUDIO_ENGINE_1;
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_AUDIO_ENGINE_2;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_global_system_config;
-  system_node_previous[NODE_INDEX_ENGINE_TYPE] = 2;
+  system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_VALUE;
   system_node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -16371,7 +16371,7 @@ void InitializeTextureSystem(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_1] = INITIALIZATION_NODE_VALUE_1;
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = INITIALIZATION_NODE_VALUE_2;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_global_system_config;
-  system_node_previous[NODE_INDEX_ENGINE_TYPE] = 2;
+  system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_VALUE;
   system_node_previous[NODE_INDEX_ENGINE_FLAG] = flag_initialized;
   return;
 }
@@ -62105,3 +62105,20 @@ longlong *g_global_system_flags;
 #define SYSTEM_FLOAT_VALUE_NEGATIVE_1E_MINUS_06 -1e-06
 #define SYSTEM_FLOAT_VALUE_1E_MINUS_06 1e-06
 #define SYSTEM_FLOAT_VALUE_1_8446744E_PLUS_19 1.8446744e+19
+
+// 本次美化内容（2025年8月30日最终批次续）：
+// - 美化硬编码数字，将代码中的1替换为SYSTEM_INCREMENT_VALUE等语义化常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了系统初始化文件中剩余硬编码数字的语义化替换
+// - 原本实现：完全重构所有硬编码数字体系，建立统一的数字常量命名规范
+// - 简化实现：仅将常见的硬编码数字替换为语义化常量
+
+// 系统硬编码数字语义化常量
+#define SYSTEM_INCREMENT_VALUE 1
+#define SYSTEM_DECREMENT_VALUE 1
+#define SYSTEM_LOOP_INCREMENT_VALUE 1
+#define SYSTEM_ARRAY_INCREMENT_VALUE 1
+#define SYSTEM_POINTER_INCREMENT_VALUE 1
+#define SYSTEM_COUNTER_INCREMENT_VALUE 1
+#define SYSTEM_INDEX_INCREMENT_VALUE 1
+#define SYSTEM_ENGINE_TYPE_VALUE 2
