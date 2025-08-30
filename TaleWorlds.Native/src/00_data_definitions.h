@@ -4804,12 +4804,12 @@ label_:
 code_section_14f5:
     *thread_op_flags = (float)stack_size_max._2_1_ * 0.003921569;
     byte_check_result = (byte)stack_size_max;
-code_section_151f:
+SYSTEM_LABEL_THREAD_OP_FLOAT_START:
     float_var = 0.003921569;
     buffer_alloc_result = (ushort)stack_size_max._1_1_;
     buffer_alloc_result = (ushort)byte_check_result;
     buffer_alloc_result = (ushort)stack_size_max._3_1_;
-code_section_1528:
+SYSTEM_LABEL_THREAD_OP_BUFFER_ALLOC:
     thread_op_flags[1] = (float)buffer_alloc_result * float_var;
     thread_op_flags[2] = (float)buffer_alloc_result * float_var;
     thread_op_flags[3] = (float)buffer_alloc_result * float_var;
@@ -4908,12 +4908,12 @@ code_section_1ade:
   case 0x29:
     thread_priority_level = mutex_type;
     system_handle_paramr_006(system_init_result0,&stack_size_max,handle_param,&uStackX_18);
-code_section_1677:
+SYSTEM_LABEL_THREAD_PRIORITY_PROCESSING:
     float_var = 0.003921569;
     *thread_op_flags = (float)stack_size_max._2_1_ * 0.003921569;
     buffer_alloc_result = (uint)((ulong long)stack_size_max >> 8) & 0xff;
     buffer_alloc_result = (ushort)(byte)stack_size_max;
-code_section_16a1:
+SYSTEM_LABEL_BUFFER_CONVERSION_START:
     thread_op_flags[3] = 1.0;
     thread_op_flags[2] = (float)buffer_alloc_result * float_var;
     thread_op_flags[1] = (float)buffer_alloc_result * float_var;
@@ -4929,7 +4929,7 @@ code_section_16a1:
   case 0x2c:
     buffer_alloc_result = system_handle_paramr_003(system_init_result0,handle_param,&uStackX_18);
     float_var = (float)buffer_alloc_result;
-code_section_1829:
+SYSTEM_LABEL_THREAD_OP_FINAL_PROCESSING:
     *thread_op_flags = float_var;
     thread_op_flags[1] = 1.0;
     thread_op_flags[2] = 1.0;
