@@ -89,6 +89,20 @@
 #define SYSTEM_RENDER_CONFIG_OFFSET_SECONDARY 0x298
 #define SYSTEM_RENDER_CONFIG_OFFSET_TERTIARY 0x29c
 #define SYSTEM_RENDER_CONFIG_OFFSET_QUATERNARY 0x2a4
+
+// 新增语义化常量 - 美化全局配置变量（2025年8月30日最终批次）
+#define GLOBAL_CONFIG_PRIMARY 1
+#define GLOBAL_CONFIG_SECONDARY 2
+#define GLOBAL_CONFIG_TERTIARY 3
+#define GLOBAL_CONFIG_QUATERNARY 4
+#define GLOBAL_CONFIG_QUINARY 5
+#define GLOBAL_CONFIG_SENARY 6
+#define GLOBAL_CONFIG_SEPTENARY 7
+#define GLOBAL_CONFIG_OCTONARY 8
+#define GLOBAL_CONFIG_NONARY 9
+#define GLOBAL_CONFIG_DENARY 10
+#define GLOBAL_CONFIG_UNDENARY 11
+#define GLOBAL_CONFIG_DUODENARY 12
 // - 美化系统函数名，将EngineFunction_61_6替换为ConfigureSystemBuffers等系统缓冲区配置函数名
 // - 美化系统函数名，将EngineFunction_11_2替换为InitializeNetworkStack等网络栈初始化函数名
 // - 美化系统函数名，将EngineFunction_40_0替换为AllocateSystemMemoryPool等内存池分配函数名
@@ -19487,7 +19501,7 @@ void InitializePhysicsSystem(void)
   (*(code *)(*ppptr_data)[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER])(ppptr_data);
   ProcessResourceData(&init_stack_resource_handle_678,&g_system_string_buffer);
   if (init_stack_counter_668 == SYSTEM_COMPARISON_ZERO) {
-    (**(code **)(init_stack_resource_handle_678 + SYSTEM_DATA_COMPARE_SIZE))(&init_stack_resource_handle_678,&g_global_config_2);
+    (**(code **)(init_stack_resource_handle_678 + SYSTEM_DATA_COMPARE_SIZE))(&init_stack_resource_handle_678,&g_global_config_SECONDARY);
     system_init_status_flag = ValidateSystemData(&init_stack_resource_handle_678);
     if (system_init_status_flag == SYSTEM_CHAR_NULL_TERMINATOR) {
       CleanupSystemData(&init_stack_resource_handle_678);
@@ -19501,21 +19515,21 @@ void InitializePhysicsSystem(void)
   system_buffer_ptr_network_buffer = system_local_buffer_graphics_config;
   system_local_buffer_graphics_config[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
   init_stack_uint_param_4d8 = SYSTEM_OFFSET_18;
-  strcpy_s(system_local_buffer_graphics_config,SYSTEM_DATA_BLOCK_SIZE,&g_global_config_3);
+  strcpy_s(system_local_buffer_graphics_config,SYSTEM_DATA_BLOCK_SIZE,&g_global_config_TERTIARY);
   InitializeNetworkManagerSystem(systemCoreData,&system_buffer_ptr_network_manager,&init_stack_resource_handle_678);
   system_buffer_ptr_network_manager = &globalSystemPointerData;
   system_buffer_ptr_network_config = &g_system_core_data_ptr;
   system_buffer_ptr_network_data = system_local_buffer_render_context;
   system_local_buffer_render_context[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
   init_stack_ulong_param_graphics = SYSTEM_CONFIG_SIZE_THREAD_LOCAL;
-  strcpy_s(system_local_buffer_render_context,SYSTEM_DATA_BLOCK_SIZE,&g_global_config_1);
+  strcpy_s(system_local_buffer_render_context,SYSTEM_DATA_BLOCK_SIZE,&g_global_config_PRIMARY);
   InitializeNetworkManagerSystem(systemCoreData,&system_buffer_ptr_network_config,&init_stack_resource_handle_678);
   system_buffer_ptr_network_config = &globalSystemPointerData;
   system_buffer_ptr_profiler = &g_system_core_data_ptr;
   system_buffer_ptr_graphics_aux = system_local_buffer_shader_context;
   system_local_buffer_shader_context[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
   init_stack_uint_config_offset_418 = SYSTEM_OFFSET_18;
-  system_result_operation = strcpy_s(system_local_buffer_shader_context,SYSTEM_DATA_BLOCK_SIZE,&g_global_config_3);
+  system_result_operation = strcpy_s(system_local_buffer_shader_context,SYSTEM_DATA_BLOCK_SIZE,&g_global_config_TERTIARY);
   system_configuration_data = (float)InitializeSystemProfiler(system_flag_status,&system_buffer_ptr_profiler);
   system_configuration_data = SYSTEM_FLOAT_VALUE_ONE / system_configuration_data;
   system_buffer_ptr_profiler = &globalSystemPointerData;
@@ -19523,7 +19537,7 @@ void InitializePhysicsSystem(void)
   system_buffer_ptr_render_state = system_local_buffer_texture_data;
   system_local_buffer_texture_data[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
   init_stack_uint_thread_local_size_3b8 = SYSTEM_CONFIG_SIZE_THREAD_LOCAL;
-  system_result_operation = strcpy_s(system_local_buffer_texture_data,SYSTEM_DATA_BLOCK_SIZE,&g_global_config_1);
+  system_result_operation = strcpy_s(system_local_buffer_texture_data,SYSTEM_DATA_BLOCK_SIZE,&g_global_config_PRIMARY);
   g_system_data_variablec = (float)InitializeSystemProfiler(system_flag_status,&system_buffer_ptr_profiler_context);
   g_system_data_variablec = SYSTEM_FLOAT_VALUE_ONE / g_system_data_variablec;
   system_buffer_ptr_profiler_context = &globalSystemPointerData;
@@ -19531,14 +19545,14 @@ void InitializePhysicsSystem(void)
   system_buffer_ptr_shader_data = system_local_buffer_vertex_data;
   system_local_buffer_vertex_data[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
   init_stack_uint_thread_local_size_358 = SYSTEM_CONFIG_SIZE_THREAD_LOCAL;
-  system_result_operation = strcpy_s(system_local_buffer_vertex_data,SYSTEM_DATA_BLOCK_SIZE,&g_global_config_1);
+  system_result_operation = strcpy_s(system_local_buffer_vertex_data,SYSTEM_DATA_BLOCK_SIZE,&g_global_config_PRIMARY);
   system_temp_float_value = (float)ConfigureSystemParameters(system_flag_status,&system_buffer_ptr_shader_context);
   system_buffer_ptr_shader_context = &globalSystemPointerData;
   system_buffer_ptr_texture_data = &g_system_core_data_ptr;
   system_buffer_ptr_vertex_data = system_local_buffer_resource_data;
   system_local_buffer_resource_data[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] = 0;
   init_stack_uint_offset_2f8 = SYSTEM_OFFSET_18;
-  system_result_operation = strcpy_s(system_local_buffer_resource_data,SYSTEM_DATA_BLOCK_SIZE,&g_global_config_3);
+  system_result_operation = strcpy_s(system_local_buffer_resource_data,SYSTEM_DATA_BLOCK_SIZE,&g_global_config_TERTIARY);
   system_temp_float_value = (float)ConfigureSystemParameters(system_flag_status,&system_buffer_ptr_texture_data);
   system_buffer_ptr_texture_data = &globalSystemPointerData;
   system_result_operation = GetSystemStatus();
