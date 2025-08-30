@@ -9972,8 +9972,8 @@ network_monitor_connection_label:
     } while (network_op_status < (int)network_buffer_array_current);
 // 函数: void NetworkProcessResponse(uint64_t *network_socket_handle, uint64_t *network_buffer_ptr)
 void NetworkProcessResponse(uint64_t *network_socket_handle, uint64_t *network_buffer_ptr)
-  uint8_t *bufferData;
-  uint64_t *network_connection_processor_pointer;
+  uint8_t *buffer_data;
+  uint64_t *network_conn_processor_ptr;
   uint64_t *network_proc_data_array_temp;
   uint64_t *network_proc_data_array_secondary;
   int64_t *timeout_config_pointer_ptr_backup;
@@ -9981,7 +9981,7 @@ void NetworkProcessResponse(uint64_t *network_socket_handle, uint64_t *network_b
   int32_t network_op_code_tertiary_perf;
   code *network_char_temp_value;
   uint32_t network_packet_size_ptr_primary;
-  uint64_t network_packet_size_ptr_second;
+  uint64_t network_packet_size_ptr_secondary;
   int64_t *network_session_ctx_ptr_primary;
   uint64_t *network_stack_op_ctx_buffer_primary;
   uint32_t network_encrypt_result_primary;
@@ -9991,10 +9991,10 @@ void NetworkProcessResponse(uint64_t *network_socket_handle, uint64_t *network_b
   uint32_t network_stack_iter_senary;
   uint32_t network_stack_iter_septenary;
   uint32_t network_stack_iter_octal;
-  uint32_t network_stack_unsigned_iteration_counter_nonal;
+  uint32_t network_stack_iter_nonal;
   uint64_t network_op_temp_status;
-  uint64_t network_stack_unsigned_iteration_counter_denary;
-  uint64_t *network_stack_data_context_main_pointer;
+  uint64_t network_stack_iter_denary;
+  uint64_t *network_stack_data_context_main_ptr;
   int64_t network_long_stack_quaternary;
   int64_t network_long_stack_quinary;
   uint8_t *network_stack_resource_buf_primary;
