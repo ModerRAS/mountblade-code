@@ -12293,8 +12293,8 @@ label_:
   }
   return;
 }
-    input_system_initialized = '\0';
-  }
+
+#endif // DATA_DEFINITIONS_H
   return;
 }
 
