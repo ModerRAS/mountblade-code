@@ -16119,7 +16119,7 @@ int InitializeMemoryManagerSystem(void)
   longlong system_long_value;
 
   InitializeInputSystem();
-  system_long_value = execute_system_init(&g_system_call_1);
+  system_long_value = execute_system_init(&g_system_call_audio_init);
   return (system_long_result != 0) - 1;
 }
 
@@ -16285,7 +16285,7 @@ int InitializeSystemModule37(void)
   } while (system_int_result < SYSTEM_CONFIG_SIZE_STATUS);
   *(uint *)(systemCoreData + SYSTEM_OFFSET_330) = *(uint *)(systemCoreData + SYSTEM_OFFSET_330) | 4;
   system_statusData = SYSTEM_OFFSET_Ffffffff;
-  system_long_value = execute_system_init(&g_system_call_2);
+  system_long_value = execute_system_init(&g_system_call_video_init);
   return (system_long_result != 0) - 1;
 }
 
@@ -16295,7 +16295,7 @@ int InitializeAuthenticationSystem(void)
   longlong system_long_value;
 
   InitializeAudioHardware(AUDIO_HARDWARE_BASE_ADDR);
-  system_long_value = execute_system_init(&g_system_call_3);
+  system_long_value = execute_system_init(&g_system_call_network_init);
   return (system_long_result != 0) - 1;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -16421,7 +16421,7 @@ int InitializeSystemModule33(void)
     system_ptr_value = system_pointer_var + SYSTEM_POINTER_OFFSET_2B;
     system_long_value = system_long_result + -1;
   } while (system_long_result != 0);
-  system_long_value = execute_system_init(&g_system_call_4);
+  system_long_value = execute_system_init(&g_system_call_physics_init);
   return (system_long_result != 0) - 1;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -16469,7 +16469,7 @@ int InitializeSystemModule43(void)
   longlong system_long_value;
 
   InitializeSystemData(SYSTEM_DATA_BASE_ADDR);
-  system_long_value = execute_system_init(&g_system_call_5);
+  system_long_value = execute_system_init(&g_system_call_security_init);
   return (system_long_result != 0) - 1;
 }
 
@@ -16479,7 +16479,7 @@ int InitializeSystemModule44(void)
   longlong system_long_value;
 
   _Mtx_init_in_situ(MUTEX_INIT_ADDR,2);
-  system_long_value = execute_system_init(&g_system_call_6);
+  system_long_value = execute_system_init(&g_system_call_thread_init);
   return (system_long_result != 0) - 1;
 }
 

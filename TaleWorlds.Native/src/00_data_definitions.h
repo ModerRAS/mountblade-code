@@ -457,6 +457,20 @@
 #define SYSTEM_RESOURCE_ID_CRASH_HANDLER 0x38
 #define SYSTEM_RESOURCE_ID_ERROR_REPORT 0x39
 #define SYSTEM_RESOURCE_ID_UPDATE 0x3a
+
+// 新增语义化常量定义 - 纹理资源系统操作码
+#define TEXTURE_RESOURCE_DATA_CONFIG_OPCODE 0x14
+#define TEXTURE_CONFIG_DEFINITION_OPCODE 0x1b
+#define TEXTURE_FORMAT_DEFINITION_OPCODE 0x19
+#define TEXTURE_COMPRESSION_DEFINITION_OPCODE 0x12
+#define TEXTURE_FILTER_DEFINITION_OPCODE 0x12
+
+// 新增语义化常量定义 - 着色器资源系统操作码
+#define SHADER_GEOMETRY_DEFINITION_OPCODE 0x14
+#define SHADER_SHADOW_DEFINITION_OPCODE 0x14
+
+// 新增语义化常量定义 - 系统模块配置操作码
+#define SYSTEM_MODULE_CONFIG_OPCODE_14 0x14
 #define SYSTEM_RESOURCE_ID_PATCH 0x3b
 #define SYSTEM_RESOURCE_ID_DIAGNOSTICS 0x3c
 #define SYSTEM_RESOURCE_ID_MONITORING 0x3d
@@ -1562,7 +1576,7 @@ int initialize_network_module(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &texture_resource_buffer_0;
   texture_resource_buffer_0 = 0;
-  system_global_data_pointer = 0x14;
+  system_global_data_pointer = TEXTURE_RESOURCE_DATA_CONFIG_OPCODE;
   strcpy_s(&texture_resource_buffer_0,SYSTEM_CONFIG_BUFFER_SIZE,&texture_resource_data_config_string);
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &texture_resource_buffer_1;
@@ -1572,7 +1586,7 @@ int initialize_network_module(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &texture_resource_buffer_2;
   texture_resource_buffer_2 = 0;
-  system_global_data_pointer = 0x1b;
+  system_global_data_pointer = TEXTURE_CONFIG_DEFINITION_OPCODE;
   strcpy_s(&texture_resource_buffer_2,SYSTEM_CONFIG_BUFFER_SIZE,&texture_config_definition_string);
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &texture_resource_buffer_3;
@@ -1582,17 +1596,17 @@ int initialize_network_module(void)
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &texture_resource_buffer_4;
   texture_resource_buffer_4 = 0;
-  system_global_data_pointer = 0x19;
+  system_global_data_pointer = TEXTURE_FORMAT_DEFINITION_OPCODE;
   strcpy_s(&texture_resource_buffer_4,SYSTEM_CONFIG_BUFFER_SIZE,&texture_format_definition_string);
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &texture_resource_buffer_5;
   texture_resource_buffer_5 = 0;
-  system_global_data_pointer = 0x12;
+  system_global_data_pointer = TEXTURE_COMPRESSION_DEFINITION_OPCODE;
   strcpy_s(&texture_resource_buffer_5,SYSTEM_CONFIG_BUFFER_SIZE,&texture_compression_definition_string);
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &texture_resource_buffer_6;
   texture_resource_buffer_6 = 0;
-  system_global_data_pointer = 0x12;
+  system_global_data_pointer = TEXTURE_FILTER_DEFINITION_OPCODE;
   strcpy_s(&texture_resource_buffer_6,SYSTEM_CONFIG_BUFFER_SIZE,&texture_filter_definition_string);
   resource_template_pointer = &g_defaultDataTemplate;
   system_global_data_pointer = &texture_resource_buffer_7;
