@@ -18909,7 +18909,7 @@ InitializeSystemModule21(uint64_t *handleIdentifier,longlong *resourceIdentifier
       *(uint32_t *)((longlong)systemFlags + SYSTEM_INIT_DATA_OFFSET_B4) = *(uint32_t *)((longlong)pallocation_size + SYSTEM_OFFSET_24);
       systemFlags[SYSTEM_CONFIG_SIZE_UTILITY_2] = pallocation_size[SYSTEM_STACK_OFFSET_NEGATIVE_4];
       systemFlags[SYSTEM_OFFSET_18] = pallocation_size[SYSTEM_STACK_OFFSET_NEGATIVE_3];
-      *(int *)(systemFlags + NODE_INITIALIZED_OFFSET) = (int)pallocation_size[-2];
+      *(int *)(systemFlags + NODE_INITIALIZED_OFFSET) = (int)pallocation_size[SYSTEM_STACK_OFFSET_NEGATIVE_2];
       *(uint32_t *)((longlong)systemFlags + SYSTEM_HANDLE_OFFSET_HEADER_3) = *(uint32_t *)((longlong)pallocation_size + -0xc);
       system_memory_pointer = systemFlags + SYSTEM_CONFIG_SIZE_AUDIO;
       *system_memory_pointer = 0;
@@ -18917,7 +18917,7 @@ InitializeSystemModule21(uint64_t *handleIdentifier,longlong *resourceIdentifier
       systemFlags[SYSTEM_CONFIG_SIZE_NETWORK] = 0;
       systemFlags[SYSTEM_DATA_BLOCK_SIZE_1D] = 0;
       systemFlags[SYSTEM_OFFSET_1E] = 0;
-      *(int *)(systemFlags + SYSTEM_CONFIG_OFFSET_TYPE) = (int)pallocation_size[4];
+      *(int *)(systemFlags + SYSTEM_CONFIG_OFFSET_TYPE) = (int)pallocation_size[SYSTEM_STACK_OFFSET_POSITIVE_4];
       *system_memory_pointer = (longlong)system_memory_pointer;
       systemFlags[SYSTEM_CONFIG_SIZE_INPUT] = system_memory_pointer;
       systemFlags[SYSTEM_CONFIG_SIZE_NETWORK] = 0;
@@ -18926,7 +18926,7 @@ InitializeSystemModule21(uint64_t *handleIdentifier,longlong *resourceIdentifier
       systemFlags[SYSTEM_OFFSET_1E] = pallocation_size[3];
       pallocation_size[3] = 0;
       system_status_code = *(uint32_t *)(systemFlags + SYSTEM_CONFIG_OFFSET_TYPE);
-      *(int *)(systemFlags + SYSTEM_CONFIG_OFFSET_TYPE) = (int)pallocation_size[4];
+      *(int *)(systemFlags + SYSTEM_CONFIG_OFFSET_TYPE) = (int)pallocation_size[SYSTEM_STACK_OFFSET_POSITIVE_4];
       *(uint32_t *)(pallocation_size + 4) = system_integer_result_unsigned;
       if (systemFlags[SYSTEM_CONFIG_SIZE_NETWORK] == 0) {
         if (pallocation_size[1] != 0) {
@@ -42451,7 +42451,7 @@ void ConfigureSystemParameters(uint64_t handleIdentifier,uint64_t resourceIdenti
     *(uint32_t *)((longlong)pallocation_size + SYSTEM_CONFIG_SIZE_NETWORK_BUFFER) = uintStack_1c;
     *(uint32_t *)(pallocation_size + 3) = uintStack_18;
     *(uint32_t *)((longlong)pallocation_size + SYSTEM_CONFIG_SIZE_NETWORK) = uintStack_14;
-    pallocation_size[4] = (ulonglong)uintStack_f << 8;
+    pallocation_size[SYSTEM_STACK_OFFSET_POSITIVE_4] = (ulonglong)uintStack_f << 8;
     *pallocation_size = system_long_value;
     pallocation_size[1] = *(longlong *)(system_long_result + SYSTEM_OFFSET_F8);
     **(longlong **)(system_long_result + SYSTEM_OFFSET_F8) = (longlong)pallocation_size;
