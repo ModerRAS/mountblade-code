@@ -1,6 +1,10 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 01_initialization.c - 初始化系统代码（已美化变量名和函数名）
+// 美化内容：
+// - 将FUN_180xxxxx函数替换为语义化名称如SystemMemoryCopyFunction、EngineInitializeFunction等
+// - 将func_0x开头的函数替换为SystemFunction等语义化名称
+// - 保持代码语义不变，仅提高可读性和维护性
 // void InitializeGameData(void)
 
 // 地址常量定义
