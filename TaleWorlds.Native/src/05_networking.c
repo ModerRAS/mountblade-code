@@ -1409,7 +1409,7 @@
 // - 将network_xmm_handshake_register_07/08替换为network_xmm_handshake_register_primary/secondary（网络XMM寄存器握手主/次）
 // - 将network_socket_descriptor_tertiary1替换为network_socket_descriptor_tertiary（套接字描述符变量次要）
 // - 将network_stack_int_buffer_offsetset_40替换为network_stack_int_buffer_offsetset_main（网络栈整型缓冲区偏移量主）
-// - 将network_arrayay_stack_18/38替换为network_arrayay_stack_primary/secondary（网络数组栈主/次）
+// - 将network_array_stack_18/38替换为network_array_stack_primary/secondary（网络数组栈主/次）
 // - 将network_float_stack_buffer_140/130/128替换为network_float_stack_buffer_large/medium/standard（网络浮点栈缓冲区大/中/标准）
 // - 将network_float_stack_neg_124/120/118/114/110替换为network_float_stack_buffer_neg_large/medium/standard/small/tiny（网络浮点栈缓冲区负大/中/标准/小/微小）
 // - 提高了代码的可读性和维护性
@@ -1512,7 +1512,7 @@
 // - 将硬编码的0x6d8替换为NETWORK_LATENCY_FACTOR_OFFSET等语义化常量
 // - 将硬编码的0x6d0替换为NETWORK_LATENCY_BASE_OFFSET等语义化常量
 // - 删除了重复的常量定义，提高代码的一致性和可维护性
-// - 将network_config_var_pointer18替换为network_config_arrayay_pointer等语义化变量名
+// - 将network_config_var_pointer18替换为network_config_array_pointer等语义化变量名
 // - 将network_timeout_value_pointer9替换为network_timeout_value_current等语义化变量名
 // - 将network_timeout_config_ptr替换为network_timeout_config_ptr等语义化变量名
 // - 将network_timeout_config_secondary_pointer替换为network_timeout_config_secondary_pointer等语义化变量名
@@ -1692,10 +1692,10 @@
 // - 将network_packet_size_ptr_ptr替换为network_packet_size_ptr（网络包大小指针）
 // - 将network_connection_network_processor_index_pointer替换为network_network_processor_index_pointer（网络处理器索引指针）
 // - 将socket_descriptor_storage替换为socket_descriptor_cache（套接字描述符缓存）
-// - 将packet_information_arrayay替换为packet_info_arrayay（数据包信息数组）
+// - 将packet_information_arrayay替换为packet_info_array（数据包信息数组）
 // - 将buffer_data_pointer替换为buffer_data_pointer（缓冲区数据指针）
 // - 将socket_validation_buffer替换为socket_validation_cache（套接字验证缓存）
-// - 将socket_config_arrayay替换为socket_config_params（套接字配置参数）
+// - 将socket_config_array替换为socket_config_params（套接字配置参数）
 // - 将socket_send_buffer替换为socket_send_cache（套接字发送缓存）
 // - 将encryption_xor_key替换为encryption_xor_value（加密异或值）
 // - 将network_context_pointer_data替换为network_context_array（网络上下文数组）
