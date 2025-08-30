@@ -4422,7 +4422,7 @@ void initialize_system_phase_resources(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_SECONDARY;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
   system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
-  system_node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
+  system_node_previous[NODE_INDEX_ENGINE_FLAG] = system_pointer_init_status;
   return;
 }
 // void initialize_system_phase_networking(void)
@@ -5107,7 +5107,7 @@ void InitializeStateNode(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_SECONDARY;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
   system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
-  system_node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
+  system_node_previous[NODE_INDEX_ENGINE_FLAG] = system_pointer_init_status;
   return;
 }
 // void InitializeBufferNode(void)
@@ -5482,7 +5482,7 @@ void initialize_graphics_node_system(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_SECONDARY;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
   system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
-  system_node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
+  system_node_previous[NODE_INDEX_ENGINE_FLAG] = system_pointer_init_status;
   return;
 }
 // 初始化地图节点系统
@@ -5810,7 +5810,7 @@ void InitializeTableNode(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_SECONDARY;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
   system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
-  system_node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
+  system_node_previous[NODE_INDEX_ENGINE_FLAG] = system_pointer_init_status;
   return;
 }
 // void InitializeRecordNode(void)
@@ -6233,7 +6233,7 @@ void InitializeHandlerNode(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_SECONDARY;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
   system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
-  system_node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
+  system_node_previous[NODE_INDEX_ENGINE_FLAG] = system_pointer_init_status;
   return;
 }
 // void InitializeListenerNode(void)
@@ -6777,7 +6777,7 @@ void initialize_system_object_ten(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_SECONDARY;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
   system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
-  system_node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
+  system_node_previous[NODE_INDEX_ENGINE_FLAG] = system_pointer_init_status;
   return;
 }
 // void initialize_system_object_eleven(void)
@@ -7125,7 +7125,7 @@ void initialize_system_object_seventeen(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_SECONDARY;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
   system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
-  system_node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
+  system_node_previous[NODE_INDEX_ENGINE_FLAG] = system_pointer_init_status;
   return;
 }
 // void initialize_system_object_eighteen(void)
@@ -7672,7 +7672,7 @@ void DisconnectNetworkSocket(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_SECONDARY;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
   system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
-  system_node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
+  system_node_previous[NODE_INDEX_ENGINE_FLAG] = system_pointer_init_status;
   return;
 }
 // void SendNetworkData(void)
@@ -8001,7 +8001,7 @@ void InitializeVideoDataNode(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_SECONDARY;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
   system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
-  system_node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
+  system_node_previous[NODE_INDEX_ENGINE_FLAG] = system_pointer_init_status;
   return;
 }
 // void InitializeInputDataNode(void)
@@ -8572,7 +8572,7 @@ void InitializeSecuritySubsystem(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_SECONDARY;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
   system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
-  system_node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
+  system_node_previous[NODE_INDEX_ENGINE_FLAG] = system_pointer_init_status;
   return;
 }
 // void ProcessSystemStringData(void)
@@ -8995,7 +8995,7 @@ void InitializeNetworkSystem(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_SECONDARY;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
   system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
-  system_node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
+  system_node_previous[NODE_INDEX_ENGINE_FLAG] = system_pointer_init_status;
   return;
 }
 // void InitializeConfigSystem(void)
@@ -9559,7 +9559,7 @@ void InitializeThreadResourceNode(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_SECONDARY;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
   system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
-  system_node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
+  system_node_previous[NODE_INDEX_ENGINE_FLAG] = system_pointer_init_status;
   return;
 }
 // void InitializeProcessResourceNode(void)
@@ -9955,7 +9955,7 @@ void InitializeAuthenticationSystem(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_SECONDARY;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
   system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
-  system_node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
+  system_node_previous[NODE_INDEX_ENGINE_FLAG] = system_pointer_init_status;
   return;
 }
 // void InitializeResourceSystem(void)
@@ -11038,7 +11038,7 @@ void InitializeEventSystem(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_SECONDARY;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
   system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
-  system_node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
+  system_node_previous[NODE_INDEX_ENGINE_FLAG] = system_pointer_init_status;
   return;
 }
 // void InitializeFilesystemSystem(void)
@@ -11367,7 +11367,7 @@ void InitializeInputManagerSystem(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_SECONDARY;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
   system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
-  system_node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
+  system_node_previous[NODE_INDEX_ENGINE_FLAG] = system_pointer_init_status;
   return;
 }
 // void InitializeGraphicsMemory(void)
@@ -11696,7 +11696,7 @@ void InitializeNetworkMutex(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_SECONDARY;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
   system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
-  system_node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
+  system_node_previous[NODE_INDEX_ENGINE_FLAG] = system_pointer_init_status;
   return;
 }
 // void InitializeShaderSystem(void)
@@ -12025,7 +12025,7 @@ void InitializeDataEngineNode(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_SECONDARY;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
   system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
-  system_node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
+  system_node_previous[NODE_INDEX_ENGINE_FLAG] = system_pointer_init_status;
   return;
 }
 // void InitializeUtilEngineNode(void)
@@ -13361,7 +13361,7 @@ void InitializeSystemComponents(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_SECONDARY;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
   system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
-  system_node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
+  system_node_previous[NODE_INDEX_ENGINE_FLAG] = system_pointer_init_status;
   return;
 }
 // void SetupSystemServices(void)
@@ -13747,7 +13747,7 @@ void InitializeAudioSystem(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_SECONDARY;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
   system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
-  system_node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
+  system_node_previous[NODE_INDEX_ENGINE_FLAG] = system_pointer_init_status;
   return;
 }
 // void InitializeVideoSystem(void)
@@ -14076,7 +14076,7 @@ void InitializeEventDataNode(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_SECONDARY;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
   system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
-  system_node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
+  system_node_previous[NODE_INDEX_ENGINE_FLAG] = system_pointer_init_status;
   return;
 }
 // void InitializeThreadDataNode(void)
@@ -15879,7 +15879,7 @@ void InitializeRecordDataNode(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_SECONDARY;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
   system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
-  system_node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
+  system_node_previous[NODE_INDEX_ENGINE_FLAG] = system_pointer_init_status;
   return;
 }
 // void InitializeAudioDataNode_secondary(void)
@@ -16791,7 +16791,7 @@ void InitializeListDataNode(void)
   system_node_previous[NODE_INDEX_ENGINE_ID_2] = SYSTEM_NODE_ID_UTIL_ENGINE_SECONDARY;
   system_node_previous[NODE_INDEX_ENGINE_PTR] = &g_system_data_node_primary;
   system_node_previous[NODE_INDEX_ENGINE_TYPE] = SYSTEM_ENGINE_TYPE_DEFAULT;
-  system_node_previous[NODE_INDEX_ENGINE_FLAG] = pflag_initialized;
+  system_node_previous[NODE_INDEX_ENGINE_FLAG] = system_pointer_init_status;
   return;
 }
 // void InitializeTreeDataNode(void)
