@@ -110,13 +110,12 @@
 // 简化实现：仅将常见的硬编码十六进制值替换为语义化常量
 
 // 最新美化内容（2025年8月30日）：
-// - 美化网络系统变量名，将network_stack_int_var替换为network_stack_integer_parameter等栈参数变量名
-// - 美化网络系统变量名，将network_stack_long_temp_value替换为network_stack_long_temporary等栈临时变量名
-// - 美化网络系统变量名，将network_stack_unsigned_iteration_counter_max替换为network_stack_unsigned_max_counter等栈计数器变量名
-// - 美化网络系统变量名，将network_stack_int_connection_arrayay替换为network_stack_connection_arrayay等连接数组变量名
-// - 美化网络系统变量名，将network_stack_extended_context替换为network_stack_extended_context_data等扩展上下文变量名
-// - 美化网络系统变量名，将pnetwork_long_stack_primary替换为network_stack_long_primary_pointer等长整型指针变量名
-// - 美化网络系统变量名，将network_temp_value替换为network_temporary_value等临时变量名
+// - 美化网络连接释放函数名，将networkReleaseConnection5-9替换为network_release_connection_extended等语义化函数名
+// - 美化网络连接重置函数名，将networkResetConnection0-7替换为network_reset_connection_primary等语义化函数名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了网络系统中连接管理函数名的语义化替换
+// - 原本实现：完全重构网络系统连接管理函数命名体系
+// - 简化实现：仅将常见的包含数字的函数名替换为语义化名称
 // - 美化网络系统变量名，将network_validation_temporary_buffer替换为network_validation_temporary_buffer等验证缓冲区变量名
 // - 美化网络系统变量名，将network_calculated_frequency0替换为network_calculated_frequency_base等基础频率变量名
 // - 美化网络系统变量名，将network_calculated_frequency8替换为network_frequency_calculated_octonary等频率计算变量名
@@ -611,16 +610,16 @@
 #define NetworkThreadManager9        network_thread_manager_reset
 
 // 网络连接处理函数名语义化替换
-#define networkReleaseConnection5    network_release_connection_with_validation
-#define networkReleaseConnection6    network_release_connection_with_cleanup
-#define networkReleaseConnection7    network_release_connection_with_reset
-#define networkReleaseConnection8    network_release_connection_with_close
-#define networkReleaseConnection9    network_release_connection_final
-#define networkResetConnection0      network_reset_connection_initial
-#define networkResetConnection1      network_reset_connection_basic
-#define networkResetConnection2      network_reset_connection_with_pointer
-#define networkResetConnection4      network_reset_connection_with_cleanup
-#define networkResetConnection5      network_reset_connection_with_buffer
+#define networkReleaseConnection5    network_release_connection_extended
+#define networkReleaseConnection6    network_release_connection_with_buffer
+#define networkReleaseConnection7    network_release_connection_simple
+#define networkReleaseConnection8    network_release_connection_standard
+#define networkReleaseConnection9    network_release_connection_basic
+#define networkResetConnection0      network_reset_connection_primary
+#define networkResetConnection1      network_reset_connection_secondary
+#define networkResetConnection2      network_reset_connection_with_handle
+#define networkResetConnection4      network_reset_connection_quaternary
+#define networkResetConnection5      network_reset_connection_with_socket
 #define networkResetConnection6      network_reset_connection_socket_only
 #define networkResetConnection8      network_reset_connection_with_extended
 #define networkResetConnection9      network_reset_connection_final
@@ -22601,8 +22600,8 @@ uint64_t network_reset_connection_with_socket(uint32_t network_socket_handle, in
      (network_processor_index = NetworkCheckStreamUpdate(network_socket_handle, NETWORK_OPERATION_STATUS_FAILURE), (int)network_processor_index != NETWORK_OPERATION_STATUS_FAILURE)) {
 uint64_t network_reset_connection_final(uint32_t network_socket_handle)
      (network_operation_status_code = NetworkCheckStreamUpdate(), (int)network_operation_status_code != NETWORK_OPERATION_STATUS_FAILURE)) {
-// 函数: void networkResetConnection7(int64_t *network_socket_handle)
-void networkResetConnection7(int64_t *network_socket_handle)
+// 函数: void network_reset_connection_complete(int64_t *network_socket_handle)
+void network_reset_connection_complete(int64_t *network_socket_handle)
     InitializeNetworkContext(socket_descriptor_value);
   if (*(int32_t *)((longlong)network_socket_handle + SOCKET_FLAG_OFFSET) == NETWORK_OPERATION_STATUS_FAILURE) {
       InitializeNetworkContext(server_port_address_value);
