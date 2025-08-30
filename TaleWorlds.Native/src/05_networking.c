@@ -99,6 +99,14 @@
 // - 简化实现：仅将常见的硬编码值替换为语义化常量
 
 #define NETWORK_BASIC_UNSIGNED_VALUE 4U     // 基本无符号值4
+#define NETWORK_BASIC_UNSIGNED_VALUE_TWO 2U     // 基本无符号值2
+#define NETWORK_BASIC_UNSIGNED_VALUE_THREE 3U   // 基本无符号值3
+#define NETWORK_BASIC_UNSIGNED_VALUE_FIVE 5U   // 基本无符号值5
+#define NETWORK_BASIC_UNSIGNED_VALUE_SIX 6U     // 基本无符号值6
+#define NETWORK_BASIC_UNSIGNED_VALUE_SEVEN 7U   // 基本无符号值7
+#define NETWORK_BASIC_UNSIGNED_VALUE_EIGHT 8U   // 基本无符号值8
+#define NETWORK_BASIC_UNSIGNED_VALUE_NINE 9U   // 基本无符号值9
+#define NETWORK_BASIC_UNSIGNED_VALUE_TEN 10U   // 基本无符号值10
 #define NETWORK_CHAR_NULL '\0'               // 网络字符空值
 #define NETWORK_CONNECTION_BUFFER_784 784    // 网络连接缓冲区大小784字节
 #define NETWORK_CONNECTION_BUFFER_1128 1128  // 网络连接缓冲区大小1128字节
