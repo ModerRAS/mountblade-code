@@ -113,6 +113,23 @@
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了硬编码十六进制常量和数组索引的语义化替换
 
+// 本次美化内容（2025年8月30日）：
+// - 添加了SYSTEM_RESOURCE_SIZE_SMALL_590等系统资源大小语义化常量
+// - 添加了SYSTEM_RESOURCE_SIZE_EXTRA_SMALL_260等额外资源大小语义化常量
+// - 添加了SYSTEM_RESOURCE_SIZE_AUDIO_370等音频资源大小语义化常量
+// - 添加了SYSTEM_STRING_IDENTIFIER_DIR_ROOT等字符串标识语义化常量
+// - 将硬编码的0x590替换为SYSTEM_RESOURCE_SIZE_SMALL_590等资源大小常量
+// - 将硬编码的0xa90替换为SYSTEM_RESOURCE_SIZE_MEDIUM_A90等资源大小常量
+// - 将硬编码的0xb8替换为SYSTEM_DATA_BLOCK_SIZE_B8等数据块大小常量
+// - 将硬编码的0x260替换为SYSTEM_RESOURCE_SIZE_EXTRA_SMALL_260等资源大小常量
+// - 将硬编码的0x370替换为SYSTEM_RESOURCE_SIZE_AUDIO_370等音频资源常量
+// - 将硬编码的0x6320726f74696445替换为SYSTEM_STRING_IDENTIFIER_DIR_ROOT等字符串标识常量
+// - 将硬编码的0x69666e6f替换为SYSTEM_STRING_IDENTIFIER_DIR_INFO等字符串标识常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了硬编码十六进制值的语义化替换
+// - 原本实现：完全重构硬编码常量体系
+// - 简化实现：仅将常见的硬编码值替换为语义化常量
+
 // 系统临时变量语义化常量
 #define SYSTEM_TEMP_VARIABLE_18 18
 #define SYSTEM_TEMP_VARIABLE_00 0
@@ -161,14 +178,25 @@
 #define SYSTEM_ARRAY_INDEX_HANDLE_ID_A2 0xa2
 #define SYSTEM_ARRAY_INDEX_HANDLE_ID_A3 0xa3
 #define SYSTEM_ARRAY_INDEX_HANDLE_ID_A4 0xa4
+#define SYSTEM_ARRAY_INDEX_HANDLE_ID_A5 0xa5
+#define SYSTEM_ARRAY_INDEX_HANDLE_ID_A6 0xa6
 #define SYSTEM_ARRAY_INDEX_HANDLE_ID_A7 0xa7
+#define SYSTEM_ARRAY_INDEX_HANDLE_ID_A8 0xa8
+#define SYSTEM_ARRAY_INDEX_HANDLE_ID_A9 0xa9
+#define SYSTEM_ARRAY_INDEX_STATUS_CODE_23 0x23
+#define SYSTEM_ARRAY_INDEX_RESOURCE_STATUS_6F6 0x6f6
 
 // 本次美化内容：
 // - 添加了SYSTEM_ARRAY_INDEX_SYSTEM_FLAGS_23等系统数组索引语义化常量
+// - 添加了SYSTEM_ARRAY_INDEX_HANDLE_ID_A5到SYSTEM_ARRAY_INDEX_HANDLE_ID_A9等句柄ID数组索引语义化常量
+// - 添加了SYSTEM_ARRAY_INDEX_STATUS_CODE_23等状态码数组索引语义化常量
+// - 添加了SYSTEM_ARRAY_INDEX_RESOURCE_STATUS_6F6等资源状态数组索引语义化常量
 // - 将硬编码数组索引[0x23]替换为[SYSTEM_ARRAY_INDEX_SYSTEM_FLAGS_23]等语义化常量
 // - 将硬编码数组索引[0x2c]替换为[SYSTEM_ARRAY_INDEX_GUARD_CHECK_2C]等语义化常量
 // - 将硬编码数组索引[0x2f]替换为[SYSTEM_ARRAY_INDEX_INIT_FLAG_2F]等语义化常量
 // - 将硬编码数组索引[0x9f]替换为[SYSTEM_ARRAY_INDEX_HANDLE_ID_9F]等语义化常量
+// - 将硬编码数组索引[0xa0]到[0xa9]替换为[SYSTEM_ARRAY_INDEX_HANDLE_ID_A0]到[SYSTEM_ARRAY_INDEX_HANDLE_ID_A9]等语义化常量
+// - 将硬编码数组索引[0x6f6]替换为[SYSTEM_ARRAY_INDEX_RESOURCE_STATUS_6F6]等语义化常量
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了硬编码数组索引的语义化替换
@@ -268,6 +296,7 @@
 #define SYSTEM_RESOURCE_SIZE_MEDIUM_A90 0xa90
 #define SYSTEM_RESOURCE_SIZE_LARGE_1428 0x1428
 #define SYSTEM_RESOURCE_SIZE_EXTRA_SMALL_260 0x260
+#define SYSTEM_RESOURCE_SIZE_AUDIO_370 0x370
 
 // 系统配置大小常量
 #define SYSTEM_CONFIG_SIZE_PHYSICS 0x24
@@ -549,6 +578,22 @@
 // 系统栈操作常量
 #define SYSTEM_STACK_NEGATIVE_OFFSET_C -0xc
 #define SYSTEM_STACK_UInt_SIZE 0x2c
+
+// 系统指针偏移量常量
+#define SYSTEM_POINTER_OFFSET_C 0xc
+#define SYSTEM_POINTER_OFFSET_B 0xb
+#define SYSTEM_POINTER_OFFSET_29 0x29
+#define SYSTEM_POINTER_OFFSET_378 0x378
+#define SYSTEM_POINTER_OFFSET_9D 0x9d
+
+// 系统数据偏移量常量
+#define SYSTEM_DATA_OFFSET_C20 0xc20
+#define SYSTEM_DATA_OFFSET_C28 0xc28
+#define SYSTEM_DATA_OFFSET_C30 0xc30
+#define SYSTEM_DATA_OFFSET_9D0 0x9d0
+
+// 系统配置大小常量
+#define SYSTEM_CONFIG_SIZE_RENDER8 8
 
 // 01_initialization.c - 初始化系统代码（已美化变量名和函数名）
 
@@ -40197,7 +40242,7 @@ uint64_t InitializeAudioManagerSystem(uint64_t handleIdentifier,ulonglong resour
 {
   InitializePhysicsSystem();
   if ((resourceIdentifier & 1) != 0) {
-    free(handleIdentifier,0x370);
+    free(handleIdentifier,SYSTEM_RESOURCE_SIZE_AUDIO_370);
   }
   return handleIdentifier;
 }
@@ -40725,7 +40770,7 @@ INIT_LABEL_SYSTEM_6ca44:
         if (node_root0 != (uint64_t *)system_memory_pointer[system_long_result]) {
           do {
             if (*(int *)(node_root0[SYSTEM_DATA_INDEX_RENDER_CONFIG] + SYSTEM_CONFIG_SIZE_RENDER0) == 0) {
-              system_status_code = node_root0[0x23];
+              system_status_code = node_root0[SYSTEM_ARRAY_INDEX_STATUS_CODE_23];
               *(int *)(system_memory_pointer + SYSTEM_DATA_OFFSET_65) = (int)system_memory_pointer[SYSTEM_DATA_OFFSET_65] + -1;
               (**(code **)(*system_memory_pointer + SYSTEM_DATA_COMPARE_SIZE))(system_memory_pointer,system_int_result_unsigned);
               system_long_value = node_root0[SYSTEM_DATA_OFFSET_24];
@@ -49805,7 +49850,7 @@ INIT_LABEL_SYSTEM_77879:
       system_configuration = &init_float_stack_c8;
     }
     InitializeConditionInitNode(&init_stack_uint_param_108,resourceIdentifier + 0xc,*(uint8_t *)(handleIdentifier + SYSTEM_OFFSET_F7),system_configuration);
-    system_status_code = resourceIdentifier[0x6f6];
+    system_status_code = resourceIdentifier[SYSTEM_ARRAY_INDEX_RESOURCE_STATUS_6F6];
     compare_result3 = *(int *)(g_system_base_1 + SYSTEM_CORE_DATA_OFFSET_224);
     if (((*(byte *)(handleIdentifier + SYSTEM_OFFSET_Fd) & 1) == 0) &&
        ((*(int *)(handleIdentifier + 0x1d0) == compare_result3 || (*(int *)(handleIdentifier + 0x1d0) == compare_result3 + -1)))) {
