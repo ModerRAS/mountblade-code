@@ -8,6 +8,12 @@
 // - 美化系统栈变量名，将uintStack_218替换为uint_stack_resource_handle等资源句柄变量名
 // - 美化系统栈变量名，将uintStack_114替换为uint_stack_status_flag等状态标志变量名
 // - 美化系统函数名，将EngineFunction_42_4替换为InitializeEngineCore等引擎初始化函数名
+
+// 新增语义化常量 - 美化硬编码十六进制值（2025年8月30日最终批次）
+#define SYSTEM_RENDER_CONFIG_OFFSET_1 0x294
+#define SYSTEM_RENDER_CONFIG_OFFSET_2 0x298
+#define SYSTEM_RENDER_CONFIG_OFFSET_3 0x29c
+#define SYSTEM_RENDER_CONFIG_OFFSET_4 0x2a4
 // - 美化系统函数名，将EngineFunction_61_6替换为ConfigureSystemBuffers等系统缓冲区配置函数名
 // - 美化系统函数名，将EngineFunction_11_2替换为InitializeNetworkStack等网络栈初始化函数名
 // - 美化系统函数名，将EngineFunction_40_0替换为AllocateSystemMemoryPool等内存池分配函数名
