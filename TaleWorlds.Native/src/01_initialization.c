@@ -1192,6 +1192,7 @@
 #define SYSTEM_BUFFER_INDEX_SECOND 1
 
 // 系统指针偏移量
+#define SYSTEM_POINTER_OFFSET_2B SYSTEM_OBJECT_OFFSET_2B
 
 // 系统核心数据偏移量
 #define SYSTEM_CORE_DATA_OFFSET_22F0 0x22f0
@@ -1200,7 +1201,7 @@
 #define SYSTEM_CORE_DATA_OFFSET_2290 0x2290
 #define SYSTEM_CORE_DATA_OFFSET_22D8 0x22d8
 
-// 系统数据块大小
+// 系统数据块大小常量
 #define SYSTEM_DATA_BLOCK_SIZE_50 0x50
 
 // 系统偏移量常量
@@ -16715,13 +16716,13 @@ void InitializeDatabaseResourceNode(void)
     (**(code **)(*system_memory_pointer + SYSTEM_OBJECT_OFFSET_38))(system_memory_pointer);
     InitializeUISystem();
     system_buffer_ptr_audio_context = &resourcePoolPointer;
-    init_stack_parameter_1c0 = 0;
+    init_stack_handle_value_1c0 = 0;
     system_buffer_ptr_audio_data = (void *)SYSTEM_NULL_POINTER;
-    init_stack_parameter_1c8 = 0;
+    init_stack_config_size_1c8 = 0;
     system_buffer_ptr_network_context = &resourcePoolPointer;
-    init_stack_parameter_1e0 = 0;
+    init_stack_memory_offset_1e0 = 0;
     system_buffer_ptr_network_data = (void *)SYSTEM_NULL_POINTER;
-    init_stack_parameter_1e8 = 0;
+    init_stack_data_size_1e8 = 0;
     stack_system_memory_pointer = (longlong *)CONCAT44(stack_system_memory_pointer._4_4_,SYSTEM_DATA_COMPARE_SIZE);
     system_integer_result = GetComputerNameA(apstack_system_memory_pointer,&system_stack_memory_pointer);
     if (system_int_result == 0) {
@@ -48245,7 +48246,7 @@ float * HandleSystemOperation16(float *handleIdentifier)
           init_float_stack_a0 = handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_9F];
         }
         *(ulonglong *)init_float_pointer_temp = CONCAT44(init_float_stack_a4,init_float_stack_a8);
-        *(ulonglong *)(handleIdentifier + 0x9f) = CONCAT44(init_stack_data_size_9c,init_float_stack_a0);
+        *(ulonglong *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_9F) = CONCAT44(init_stack_data_size_9c,init_float_stack_a0);
         init_float_stack_b8 = *init_float_pointer_temp;
         if (init_float_stack_b8 < handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A1]) {
           init_float_stack_b8 = handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A1];
@@ -48258,8 +48259,8 @@ float * HandleSystemOperation16(float *handleIdentifier)
         if (init_float_stack_b0 < handleIdentifier[0xa3]) {
           init_float_stack_b0 = handleIdentifier[0xa3];
         }
-        *(ulonglong *)(handleIdentifier + 0xa1) = CONCAT44(init_float_stack_b4,init_float_stack_b8);
-        *(ulonglong *)(handleIdentifier + 0xa3) = CONCAT44(uintStack_ac,init_float_stack_b0);
+        *(ulonglong *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_A1) = CONCAT44(init_float_stack_b4,init_float_stack_b8);
+        *(ulonglong *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_A3) = CONCAT44(uintStack_ac,init_float_stack_b0);
         system_status_code = system_int_result_unsigned + 1;
       } while (system_int_result_unsigned < *(uint *)(longStack_88 + SYSTEM_DATA_COMPARE_SIZE));
     }
@@ -53866,7 +53867,7 @@ float * InitializeResourceSystem(float *handleIdentifier)
           init_float_stack_a0 = handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_9F];
         }
         *(ulonglong *)init_float_pointer_temp = CONCAT44(init_float_stack_a4,init_float_stack_a8);
-        *(ulonglong *)(handleIdentifier + 0x9f) = CONCAT44(init_stack_data_size_9c,init_float_stack_a0);
+        *(ulonglong *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_9F) = CONCAT44(init_stack_data_size_9c,init_float_stack_a0);
         init_float_stack_b8 = *init_float_pointer_temp;
         if (init_float_stack_b8 < handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A1]) {
           init_float_stack_b8 = handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_A1];
@@ -53879,8 +53880,8 @@ float * InitializeResourceSystem(float *handleIdentifier)
         if (init_float_stack_b0 < handleIdentifier[0xa3]) {
           init_float_stack_b0 = handleIdentifier[0xa3];
         }
-        *(ulonglong *)(handleIdentifier + 0xa1) = CONCAT44(init_float_stack_b4,init_float_stack_b8);
-        *(ulonglong *)(handleIdentifier + 0xa3) = CONCAT44(uintStack_ac,init_float_stack_b0);
+        *(ulonglong *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_A1) = CONCAT44(init_float_stack_b4,init_float_stack_b8);
+        *(ulonglong *)(handleIdentifier + SYSTEM_HANDLE_OFFSET_A3) = CONCAT44(uintStack_ac,init_float_stack_b0);
         system_status_code = system_int_result_unsigned + 1;
       } while (system_int_result_unsigned < *(uint *)(longStack_88 + SYSTEM_DATA_COMPARE_SIZE));
     }
