@@ -17620,10 +17620,10 @@ void InitializePhysicsSystem(void)
   compare_result = init_stack_uint_param_608 + SYSTEM_CONFIG_SIZE_FINAL;
   ConfigureSystemParameters(&system_buffer_ptr_graphics_main,compare_result);
   node_next = (uint32_t *)(system_buffer_ptr_graphics_data + init_stack_uint_param_608);
-  *node_next = 0x69676e65;
-  node_next[1] = 0x635f656e;
-  node_next[2] = 0x69666e6f;
-  node_next[3] = 0x78742e67;
+  *node_next = SYSTEM_STRING_ENGINE_TOKEN;
+  node_next[1] = SYSTEM_STRING_CONFIG_TOKEN_SHORT;
+  node_next[2] = SYSTEM_STRING_INFO_TOKEN;
+  node_next[3] = SYSTEM_STRING_EXT_TOKEN;
   *(uint16_t *)(node_next + 4) = 0x74;
   init_stack_uint_param_608 = compare_result;
   node_previous = (uint64_t *)AllocateSystemMemory(systemMemoryPool,SYSTEM_OFFSET_18,8,3);
