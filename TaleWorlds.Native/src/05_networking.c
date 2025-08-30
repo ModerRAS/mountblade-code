@@ -2092,6 +2092,19 @@
 // 新增语义化常量定义 - 网络系统套接字魔术偏移量（2025年8月30日）
 #define SOCKET_MAGIC_OFFSET 0x24c                      // 套接字魔术偏移量
 
+// 新增语义化常量定义 - 网络系统套接字压缩偏移量（2025年8月30日）
+#define SOCKET_COMPRESSION_OFFSET_BASE_HEX_2AF 0x2af  // 套接字压缩偏移量基础值（十六进制）
+
+// 新增语义化常量定义 - 网络系统套接字状态和配置偏移量（2025年8月30日）
+#define SOCKET_STATUS_OFFSET_HEX_1 0x1                // 套接字状态偏移量
+#define SESSION_CONFIG_SIZE_HEX_8 0x8                  // 会话配置大小
+#define SOCKET_COMPRESSION_OFFSET_HEX_8 0x8           // 套接字压缩偏移量8
+
+// 新增简化变量名定义（2025年8月30日）
+#define SOCKET_STATUS_OFFSET SOCKET_STATUS_OFFSET_HEX_1  // 简化的套接字状态偏移量
+#define SESSION_CONFIG_SIZE SESSION_CONFIG_SIZE_HEX_8    // 简化的会话配置大小
+#define SOCKET_COMPRESSION_OFFSET8 SOCKET_COMPRESSION_OFFSET_HEX_8  // 简化的套接字压缩偏移量8
+
 // 新增语义化常量定义 - 网络系统连接计数偏移量（2025年8月30日）
 #define NETWORK_CONNECTION_COUNT_OFFSET NETWORK_COMPARE_VALUE_8A0  // 连接计数偏移量
 

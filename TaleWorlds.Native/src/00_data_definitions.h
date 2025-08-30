@@ -1830,11 +1830,8 @@ extern char system_flag_buffer_cleanup_handler;
 #define SYSTEM_CHAR_LESS_THAN 0x3c     // '<' 字符
 #define SYSTEM_CHAR_BACKSLASH 0x5c    // '\' 字符
 #define SYSTEM_CHAR_GRAVE_ACCENT 0x60  // '`' 字符
-#define SYSTEM_CHAR_LOWERCASE_A_2 SYSTEM_CHAR_LOWERCASE_A // 'a' 字符 (重复定义)
 #define SYSTEM_CHAR_LOWERCASE_F 0x66  // 'f' 字符
 #define SYSTEM_CHAR_DIGIT_EIGHT 0x38    // '8' 字符
-#define SYSTEM_CHAR_DIGIT_FOUR_2 0x44   // '4' 字符 (重复定义)
-#define SYSTEM_CHAR_LOWERCASE_L_2 0x4c  // 'l' 字符 (重复定义)
 #define SYSTEM_CHAR_LOWERCASE_Q 0x51    // 'q' 字符
 #define SYSTEM_CHAR_LOWERCASE_X 0x78  // 'x' 字符
 #define SYSTEM_CONTROL_VALUE_94 0x94    // 控制值 94
@@ -1854,10 +1851,7 @@ extern char system_flag_buffer_cleanup_handler;
 #define SYSTEM_CONTROL_VALUE_C4 0xc4    // 控制值 C4
 #define SYSTEM_CONTROL_VALUE_CC 0xcc    // 控制值 CC
 #define SYSTEM_CONTROL_VALUE_D0 0xd0    // 控制值 D0
-#define SYSTEM_CHAR_DIGIT_ONE_2 0x31    // '1' 字符 (重复定义)
 #define SYSTEM_CHAR_DIGIT_TWO 0x32      // '2' 字符
-#define SYSTEM_CHAR_DIGIT_FIVE_2 0x35   // '5' 字符 (重复定义)
-#define SYSTEM_CHAR_LOWERCASE_T_2 0x54  // 't' 字符 (重复定义)
 #define SYSTEM_CHAR_DOUBLE_QUOTE 0x22   // '"' 字符
 #define SYSTEM_CHAR_HASH 0x23           // '#' 字符
 #define SYSTEM_CHAR_PERCENT 0x25        // '%' 字符
