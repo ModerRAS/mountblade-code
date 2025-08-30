@@ -3626,7 +3626,7 @@ system_section_processing_primary_label:
   if (system_buffer_allocation_result < system_maximum_stack_size) {
     system_character_scan_pointer = (char *)(system_thread_stack_base_address + system_buffer_allocation_result);
     do {
-goto section_processing_jump_label_2;
+goto system_section_processing_secondary_label;
       system_buffer_allocation_result = (int)system_buffer_allocation_result + SYSTEM_INCREMENT_VALUE_1;
       system_buffer_allocation_result = (ulong long)system_buffer_allocation_result;
       system_character_scan_pointer = system_character_scan_pointer + 1;
@@ -3842,7 +3842,7 @@ goto section_processing_jump_label_3;
           system_string_length_counter = strstr(system_string_input_pointer,&system_global_data_string_19);
           if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
             system_string_input_pointer = &g_systemDataString20;
-goto section_processing_jump_label_4;
+goto system_thread_allocation_secondary_label;
           }
         }
         else {
@@ -3851,7 +3851,7 @@ goto section_processing_jump_label_4;
             system_string_match_found = system_thread_result_status == SYSTEM_ZERO_VALUE;
           }
           else {
-section_processing_jump_label_3:
+system_string_match_failed_label:
             system_string_match_found = false;
           }
           if (system_string_match_found) {
@@ -3868,7 +3868,7 @@ goto section_processing_jump_label_5;
               } while (system_thread_result_status + SYSTEM_INCREMENT_VALUE_1U < system_maximum_stack_size);
             }
             system_thread_result_status = SYSTEM_THREAD_RESULT_INVALID;
-section_processing_jump_label_4:
+system_thread_allocation_secondary_label:
             system_buffer_allocation_result = system_thread_result_status + 1;
             system_thread_operation_flags = (ulong long)(int)system_buffer_allocation_result;
             if (system_buffer_allocation_result < system_maximum_stack_size) {
