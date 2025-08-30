@@ -115,6 +115,7 @@
 #define SYSTEM_STACK_OFFSET_THREAD_CREATE 0x50
 #define SYSTEM_STACK_OFFSET_THREAD_HANDLE 0x58
 #define SYSTEM_STACK_OFFSET_THREAD_DATA 0x60
+#define SYSTEM_STACK_OFFSET_THREAD_CONFIG 0x6c
 #define SYSTEM_STACK_OFFSET_STRING_LENGTH 0x24
 #define SYSTEM_STACK_OFFSET_SYSTEM_FLAG 0x48
 
@@ -3707,14 +3708,14 @@ section_processing_jump_label_:
                       *(unsigned char *)(system_global_data_pointer + SYSTEM_STACK_OFFSET_SYSTEM_FLAG) = 1;
                       thread_op_flags = (ulong long)stack_size_max;
                       if (pcStack_328 != (char *)SYSTEM_NULL_POINTER) {
-                        system_thread_manager_create(str_len_counter + 0x50,thread_op_flags);
+                        system_thread_manager_create(str_len_counter + SYSTEM_STACK_OFFSET_THREAD_CREATE,thread_op_flags);
                       }
                       if (buffer_alloc_result != 0) {
-                        memcpy(*(unsigned long long *)(str_len_counter + 0x58),pcStack_328,thread_op_flags);
+                        memcpy(*(unsigned long long *)(str_len_counter + SYSTEM_STACK_OFFSET_THREAD_HANDLE),pcStack_328,thread_op_flags);
                       }
-                      *(unsigned int *)(str_len_counter + 0x60) = SYSTEM_ZERO_VALUE;
-                      if (*(long long *)(str_len_counter + 0x58) != 0) {
-                        *(unsigned char *)(thread_op_flags + *(long long *)(str_len_counter + 0x58)) = SYSTEM_ZERO_VALUE;
+                      *(unsigned int *)(str_len_counter + SYSTEM_STACK_OFFSET_THREAD_DATA) = SYSTEM_ZERO_VALUE;
+                      if (*(long long *)(str_len_counter + SYSTEM_STACK_OFFSET_THREAD_HANDLE) != 0) {
+                        *(unsigned char *)(thread_op_flags + *(long long *)(str_len_counter + SYSTEM_STACK_OFFSET_THREAD_HANDLE)) = SYSTEM_ZERO_VALUE;
                       }
                       *(uint *)(str_len_counter + 0x6c) = stack_size_max._4_4_;
                       thread_stack_ptr = &g_threadString2;
