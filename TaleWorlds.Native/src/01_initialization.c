@@ -1,7 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 本次美化内容（2025年8月30日）第十四批次：
-// - 美化变量名，将system_buffer_ptr_330替换为system_buffer_ptr_resource_pool_large等大型资源池指针变量名
+// - 美化变量名，将system_buffer_ptr_resource_pool_large替换为system_buffer_ptr_resource_pool_large等大型资源池指针变量名
 // - 美化变量名，将system_buffer_ptr_310替换为system_buffer_ptr_resource_pool_medium等中型资源池指针变量名
 // - 美化变量名，将system_buffer_ptr_2e8替换为system_buffer_ptr_resource_pool_small等小型资源池指针变量名
 // - 美化变量名，将system_buffer_ptr_2e0替换为system_buffer_ptr_resource_pool_micro等微型资源池指针变量名
@@ -22510,11 +22510,11 @@ void ConfigureGraphicsShader(uint64_t handleIdentifier,longlong resourceIdentifi
   char init_stack_char_flag_337;
   char init_stack_char_buffer_small_336 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   uint init_stack_size_334;
-  void *system_buffer_ptr_330;
+  void *system_buffer_ptr_resource_pool_large;
   char *stack_char_ptr;
   uint init_stack_capacity_320;
   uint64_t init_stack_data_318;
-  void *system_buffer_ptr_310;
+  void *system_buffer_ptr_resource_pool_medium;
   uint8_t *system_buffer_ptr_texture_pool;
   uint init_stack_uint_param_300;
   uint64_t init_stack_uint_offset_2f8;
@@ -29053,7 +29053,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
   uint64_t init_stack_texture_id_348;
   uint64_t init_stack_texture_handle_340;
   uint32_t init_stack_texture_type_338;
-  void *system_buffer_ptr_330;
+  void *system_buffer_ptr_resource_pool_large;
   void *system_buffer_ptr_328;
   uint32_t uinit_stack_temp_counter_320;
   ulonglong init_stack_data_size_318;
@@ -29199,7 +29199,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
           initialization_stack_byte_value = 0;
           system_operation_result = 0;
           system_operation_result = 0;
-          system_buffer_ptr_330 = &resourcePoolPointer;
+          system_buffer_ptr_resource_pool_large = &resourcePoolPointer;
           init_stack_data_size_318 = 0;
           system_buffer_ptr_328 = (void *)SYSTEM_NULL_POINTER;
           uinit_stack_temp_counter_320 = 0;
@@ -29323,7 +29323,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
                *(uint32_t *)((longlong)system_root_node + system_long_result * SYSTEM_NODE_HEADER_SIZE + SYSTEM_CONFIG_SIZE_NETWORK);
           system_buffer_ptr_328 = (void *)SYSTEM_NULL_POINTER;
           init_stack_data_size_318 = init_stack_data_size_318 & SYSTEM_HIGH_32BIT_MASK;
-          system_buffer_ptr_330 = &globalSystemPointerData;
+          system_buffer_ptr_resource_pool_large = &globalSystemPointerData;
           init_stack_texture_index_374 = system_temp_integer_temp + 1;
           init_stack_graphics_index_2c8 = system_long_result + 1;
           system_root_node = system_buffer_ptr_texture_pool;
@@ -29462,7 +29462,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
         }
         if (!handle_validation_flag) {
           system_operation_result = ValidateModuleHandle(&initialization_stack_combined_register_268,system_pointer_chain4 + 8);
-          PrepareSystemBuffer(&system_buffer_ptr_330,system_temp_counter);
+          PrepareSystemBuffer(&system_buffer_ptr_resource_pool_large,system_temp_counter);
           initialization_stack_combined_register_268 = &globalSystemPointerData;
           system_pointer_root = (uint64_t ******)&g_system_data_variable3;
           if (system_pointer_chain4[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != SYSTEM_NULL_POINTER_64BIT) {
@@ -29491,14 +29491,14 @@ void InitializeTextureSystem(longlong *handleIdentifier)
           system_buffer_ptr_vertex_buffer = (uint64_t *)SYSTEM_NULL_POINTER;
           init_stack_loop_counter_2f0 = 0;
           system_buffer_ptr_texture_pool = (uint64_t *)&globalSystemPointerData;
-          system_buffer_ptr_330 = &resourcePoolPointer;
+          system_buffer_ptr_resource_pool_large = &resourcePoolPointer;
           if (system_buffer_ptr_328 != (void *)SYSTEM_NULL_POINTER) {
                     // WARNING: Subroutine does not return
             ProcessSystemOperation();
           }
           system_buffer_ptr_328 = (void *)SYSTEM_NULL_POINTER;
           init_stack_data_size_318 = init_stack_data_size_318 & SYSTEM_HIGH_32BIT_MASK;
-          system_buffer_ptr_330 = &globalSystemPointerData;
+          system_buffer_ptr_resource_pool_large = &globalSystemPointerData;
         }
       }
       system_pointer_chain4 = (uint64_t *******)DestroySystemHandle(system_pointer_chain4);
@@ -37411,7 +37411,7 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   void *system_buffer_ptr_348;
   uint16_t system_local_buffer_338 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
   uint16_t system_local_buffer_334 [SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
-  void *system_buffer_ptr_330;
+  void *system_buffer_ptr_resource_pool_large;
   longlong longStack_328;
   int init_stack_temp_counter_320;
   ulonglong init_stack_data_size_318;
@@ -37498,7 +37498,7 @@ void InitializeFontSystem(uint64_t handleIdentifier)
     system_ptr_value = system_buffer_ptr_178;
   }
   system_operation_result = ProcessSystemNode(&init_stack_parameter_280,system_temp_pointer,&g_system_video_module_data);
-  system_buffer_ptr_330 = &resourcePoolPointer;
+  system_buffer_ptr_resource_pool_large = &resourcePoolPointer;
   init_stack_data_size_318 = 0;
   longStack_328 = 0;
   init_stack_temp_counter_320 = 0;
@@ -37537,23 +37537,23 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   if (system_buffer_ptr_thread_data != (void *)SYSTEM_NULL_POINTER) {
     system_buffer_ptr_348 = system_buffer_ptr_thread_data;
   }
-  ConfigureBufferAttributes(&system_buffer_ptr_330,&g_global_system_config,&g_system_pointer_data,&g_system_config_data);
+  ConfigureBufferAttributes(&system_buffer_ptr_resource_pool_large,&g_global_system_config,&g_system_pointer_data,&g_system_config_data);
   uintStack_310 = 0;
   system_buffer_ptr_thread_context = &globalSystemPointerData;
   system_buffer_ptr_348 = &g_system_audio_data;
-  ConfigureBufferAttributes(&system_buffer_ptr_330,&g_global_system_config,&g_system_pointer_data,&g_system_video_data);
+  ConfigureBufferAttributes(&system_buffer_ptr_resource_pool_large,&g_global_system_config,&g_system_pointer_data,&g_system_video_data);
   system_buffer_ptr_348 = &g_system_constant_4;
-  ConfigureBufferAttributes(&system_buffer_ptr_330,&g_global_system_config,&g_system_pointer_data,&g_system_primary_data);
+  ConfigureBufferAttributes(&system_buffer_ptr_resource_pool_large,&g_global_system_config,&g_system_pointer_data,&g_system_primary_data);
   system_buffer_ptr_348 = &g_system_data_variable3;
   if (system_buffer_ptr_graphics_context != (void *)SYSTEM_NULL_POINTER) {
     system_buffer_ptr_348 = system_buffer_ptr_1b8;
   }
-  ConfigureBufferAttributes(&system_buffer_ptr_330,&g_global_system_config,&g_system_pointer_data,&g_system_quaternary_data);
+  ConfigureBufferAttributes(&system_buffer_ptr_resource_pool_large,&g_global_system_config,&g_system_pointer_data,&g_system_quaternary_data);
   system_buffer_ptr_348 = &g_system_data_variable3;
   if (system_buffer_ptr_audio_context != (void *)SYSTEM_NULL_POINTER) {
     system_buffer_ptr_348 = system_buffer_ptr_1d8;
   }
-  ConfigureBufferAttributes(&system_buffer_ptr_330,&g_global_system_config,&g_system_pointer_data,&g_system_tertiary_data);
+  ConfigureBufferAttributes(&system_buffer_ptr_resource_pool_large,&g_global_system_config,&g_system_pointer_data,&g_system_tertiary_data);
   system_buffer_ptr_1e0 = &resourcePoolPointer;
   if (system_buffer_ptr_audio_context != (void *)SYSTEM_NULL_POINTER) {
                     // WARNING: Subroutine does not return
@@ -37593,17 +37593,17 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   }
   ConfigureBufferAttributes(&system_buffer_ptr_texture_pool,&g_system_global_config,system_temp_counter / SYSTEM_DATA_COMPARE_SIZE0000 & SYSTEM_OFFSET_Ffffffff);
   system_buffer_ptr_348 = &g_system_data_variable3;
-  ConfigureBufferAttributes(&system_buffer_ptr_330,&g_global_system_config,&g_system_pointer_data,&g_global_system_config);
+  ConfigureBufferAttributes(&system_buffer_ptr_resource_pool_large,&g_global_system_config,&g_system_pointer_data,&g_global_system_config);
   system_buffer_ptr_348 = &g_system_data_variable3;
   if (system_buffer_ptr_2e0 != (void *)SYSTEM_NULL_POINTER) {
     system_buffer_ptr_348 = system_buffer_ptr_2e0;
   }
-  ConfigureBufferAttributes(&system_buffer_ptr_330,&g_global_system_config,&g_system_pointer_data,&g_system_global_config);
+  ConfigureBufferAttributes(&system_buffer_ptr_resource_pool_large,&g_global_system_config,&g_system_pointer_data,&g_system_global_config);
   system_buffer_ptr_348 = &g_system_data_variable3;
   if (system_buffer_ptr_vertex_buffer != (void *)SYSTEM_NULL_POINTER) {
     system_buffer_ptr_348 = system_buffer_ptr_vertex_buffer;
   }
-  ConfigureBufferAttributes(&system_buffer_ptr_330,&g_global_system_config,&g_system_pointer_data,&g_system_global_config);
+  ConfigureBufferAttributes(&system_buffer_ptr_resource_pool_large,&g_global_system_config,&g_system_pointer_data,&g_system_global_config);
   system_temp_long_result = g_system_base_1;
   system_buffer_ptr_texture_pool = &resourcePoolPointer;
   if (system_buffer_ptr_vertex_buffer != (void *)SYSTEM_NULL_POINTER) {
@@ -37631,12 +37631,12 @@ void InitializeFontSystem(uint64_t handleIdentifier)
   }
   system_buffer_ptr_348 = (void *)
                 ((double)(system_long_result - system_configuration_data) * systemCoreData - *(double *)(system_long_result + SYSTEM_DATA_OFFSET_210));
-  ConfigureBufferAttributes(&system_buffer_ptr_330,&g_system_global_config,&g_system_pointer_data,&g_system_global_config);
+  ConfigureBufferAttributes(&system_buffer_ptr_resource_pool_large,&g_system_global_config,&g_system_pointer_data,&g_system_global_config);
   system_buffer_ptr_348 = &g_system_data_variable3;
   if (system_buffer_ptr_network_context != (void *)SYSTEM_NULL_POINTER) {
     system_buffer_ptr_348 = system_buffer_ptr_1f8;
   }
-  ConfigureBufferAttributes(&system_buffer_ptr_330,&g_global_system_config,&g_system_pointer_data,&g_system_secondary_data);
+  ConfigureBufferAttributes(&system_buffer_ptr_resource_pool_large,&g_global_system_config,&g_system_pointer_data,&g_system_secondary_data);
   system_buffer_ptr_data_config = (uint64_t *)SYSTEM_NULL_POINTER;
   system_buffer_ptr_system_info = (uint64_t *)SYSTEM_NULL_POINTER;
   uinit_stack_nano_seconds_210 = 0;
@@ -37759,7 +37759,7 @@ INIT_LABEL_SYSTEM_65a3e:
                   if ((void *)system_temp_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER] != (void *)SYSTEM_NULL_POINTER) {
                     system_ptr_value = (void *)system_temp_pointer[SYSTEM_ARRAY_INDEX_FUNCTION_POINTER];
                   }
-                  ConfigureBufferAttributes(&system_buffer_ptr_330,&g_global_system_config,&g_system_global_config,system_temp_pointer);
+                  ConfigureBufferAttributes(&system_buffer_ptr_resource_pool_large,&g_global_system_config,&g_system_global_config,system_temp_pointer);
                   break;
                 }
               }
@@ -37843,7 +37843,7 @@ INIT_LABEL_SYSTEM_65a3e:
     if (system_buffer_ptr_198 != (void *)SYSTEM_NULL_POINTER) {
       system_ptr_value = system_buffer_ptr_198;
     }
-    ConfigureBufferAttributes(&system_buffer_ptr_330,&g_system_global_config,system_temp_pointer);
+    ConfigureBufferAttributes(&system_buffer_ptr_resource_pool_large,&g_system_global_config,system_temp_pointer);
     system_buffer_ptr_1a0 = &resourcePoolPointer;
     if (system_buffer_ptr_198 != (void *)SYSTEM_NULL_POINTER) {
                     // WARNING: Subroutine does not return
@@ -37888,11 +37888,11 @@ INIT_LABEL_SYSTEM_65a3e:
   system_buffer_ptr_network_context = (void *)SYSTEM_NULL_POINTER;
   init_stack_parameter_1e8 = 0;
   system_buffer_ptr_200 = &globalSystemPointerData;
-  system_buffer_ptr_330 = &resourcePoolPointer;
+  system_buffer_ptr_resource_pool_large = &resourcePoolPointer;
   if (longStack_328 == SYSTEM_COMPARISON_ZERO) {
     longStack_328 = 0;
     init_stack_data_size_318 = init_stack_data_size_318 & SYSTEM_HIGH_32BIT_MASK;
-    system_buffer_ptr_330 = &globalSystemPointerData;
+    system_buffer_ptr_resource_pool_large = &globalSystemPointerData;
     system_buffer_ptr_system_info = system_ptr_value;
     if (system_long_result != SYSTEM_COMPARISON_ZERO) {
       fclose(system_long_result);
