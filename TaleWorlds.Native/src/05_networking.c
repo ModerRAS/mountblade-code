@@ -90,6 +90,7 @@
 #define NETWORK_CONNECTION_BUFFER_784 784    // 网络连接缓冲区大小784字节
 #define NETWORK_CONNECTION_BUFFER_1128 1128  // 网络连接缓冲区大小1128字节
 #define NETWORK_CONNECTION_BUFFER_1536 1536  // 网络连接缓冲区大小1536字节
+#define NETWORK_SOCKET_HANDLE_STACK_PRIMARY_INDEX 0  // 网络套接字句柄栈主索引
 
 // 最新美化内容（2025年8月30日最终批次最终完成续续）：
 // - 美化网络系统数组大小常量名，将NETWORK_ARRAY_SIZE_16替换为NETWORK_ARRAY_SIZE_SMALL等语义化常量名
@@ -28535,7 +28536,7 @@ int32_t networkAuditConnections0(int64_t network_socket_handle, int64_t network_
   network_close_socket_descriptor(&network_socket_ctx_array_data);
   network_close_socket_descriptor(&network_secondary_value);
 int32_t NetworkProcessConnection(int64_t *network_socket_handle, uint32_t *network_buffer_ptr, uint64_t network_buffer_size, int64_t *network_timeout)
-  network_socket_handle_stack_array[NETWORK_STATUS_FAILURE] = network_buffer_size;
+  network_socket_handle_stack_array[NETWORK_SOCKET_HANDLE_STACK_PRIMARY_INDEX] = network_buffer_size;
   if (network_timeout == (int64_t *)MEMORY_MEMORY_ZERO_OFFSET) {
     network_operation_result = NetworkValidateSocket(network_socket_handle);
         network_primary_conn_data = (longlong)
