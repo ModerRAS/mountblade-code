@@ -1089,7 +1089,7 @@ LAB_180840cf0:
 
 
 
-int FUN_180840d60(longlong param_1,longlong param_2,int param_3)
+int network_copy_buffer_data(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1107,8 +1107,8 @@ int FUN_180840d60(longlong param_1,longlong param_2,int param_3)
 
 
 
-// 函数: void FUN_180840dd0(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_180840dd0(longlong param_1,undefined8 param_2,undefined4 param_3)
+// 函数: void network_send_raw_data(longlong param_1,undefined8 param_2,undefined4 param_3)
+void network_send_raw_data(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 {
   FUN_18083faf0(param_2,param_3,*(undefined4 *)(param_1 + 0x10),*(undefined4 *)(param_1 + 0x18),
@@ -1118,7 +1118,7 @@ void FUN_180840dd0(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 
 
-int FUN_180840e00(longlong param_1,longlong param_2,int param_3)
+int network_process_raw_data(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1153,7 +1153,7 @@ int FUN_180840e00(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180840f10(longlong param_1,longlong param_2,int param_3)
+int network_validate_data_integrity(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined8 uVar1;
@@ -1170,7 +1170,7 @@ int FUN_180840f10(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180840f80(longlong param_1,longlong param_2,int param_3)
+int network_encrypt_data(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined1 uVar1;
@@ -1187,7 +1187,7 @@ int FUN_180840f80(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180840ff0(longlong param_1,longlong param_2,int param_3)
+int network_decrypt_data(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1204,7 +1204,7 @@ int FUN_180840ff0(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180841060(longlong param_1,longlong param_2,int param_3)
+int network_compress_data(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1221,7 +1221,7 @@ int FUN_180841060(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_1808410d0(longlong param_1,longlong param_2,int param_3)
+int network_decompress_data(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1244,7 +1244,7 @@ int FUN_1808410d0(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180841180(longlong param_1,longlong param_2,int param_3)
+int network_calculate_checksum(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1267,7 +1267,7 @@ int FUN_180841180(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180841230(longlong param_1,longlong param_2,int param_3)
+int network_validate_checksum(longlong param_1,longlong param_2,int param_3)
 
 {
   int iVar1;
@@ -1302,7 +1302,7 @@ int FUN_180841230(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_1808412b0(longlong param_1,longlong param_2,int param_3)
+int network_append_header(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1319,7 +1319,7 @@ int FUN_1808412b0(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180841320(longlong param_1,longlong param_2,int param_3)
+int network_parse_header(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1348,7 +1348,7 @@ int FUN_180841320(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180841410(longlong param_1,longlong param_2,int param_3)
+int network_append_footer(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined1 uVar1;
@@ -1375,7 +1375,7 @@ int FUN_180841410(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_1808414f0(longlong param_1,longlong param_2,int param_3)
+int network_parse_footer(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1402,7 +1402,7 @@ int FUN_1808414f0(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_1808415e0(longlong param_1,longlong param_2,int param_3)
+int network_append_metadata(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined1 uVar1;
@@ -1427,7 +1427,7 @@ int FUN_1808415e0(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_1808416d0(longlong param_1,longlong param_2,int param_3)
+int network_parse_metadata(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1450,7 +1450,7 @@ int FUN_1808416d0(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180841790(longlong param_1,longlong param_2,int param_3)
+int network_serialize_data(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1475,7 +1475,7 @@ int FUN_180841790(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180841830(longlong param_1,longlong param_2,int param_3)
+int network_deserialize_data(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1492,7 +1492,7 @@ int FUN_180841830(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_1808418a0(longlong param_1,longlong param_2,int param_3)
+int network_format_data(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1509,7 +1509,7 @@ int FUN_1808418a0(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180841910(longlong param_1,longlong param_2,int param_3)
+int network_parse_formatted_data(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1550,7 +1550,7 @@ int FUN_180841910(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_1808419e0(longlong param_1,longlong param_2,int param_3)
+int network_validate_format(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1573,7 +1573,7 @@ int FUN_1808419e0(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180841a90(longlong param_1,longlong param_2,int param_3)
+int network_convert_format(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1608,7 +1608,7 @@ int FUN_180841a90(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180841bc0(longlong param_1,longlong param_2,int param_3)
+int network_encode_data(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined1 uVar1;
@@ -1657,7 +1657,7 @@ int FUN_180841bc0(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180841cc0(longlong param_1,longlong param_2,int param_3)
+int network_decode_data(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1674,7 +1674,7 @@ int FUN_180841cc0(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180841d30(longlong param_1,longlong param_2,int param_3)
+int network_validate_encoding(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1699,7 +1699,7 @@ int FUN_180841d30(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180841df0(longlong param_1,longlong param_2,int param_3)
+int network_sign_data(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined1 uVar1;
@@ -1722,7 +1722,7 @@ int FUN_180841df0(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180841ea0(longlong param_1,longlong param_2,int param_3)
+int network_verify_signature(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1745,7 +1745,7 @@ int FUN_180841ea0(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180841f50(longlong param_1,longlong param_2,int param_3)
+int network_hash_data(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined1 uVar1;
@@ -1767,8 +1767,8 @@ int FUN_180841f50(longlong param_1,longlong param_2,int param_3)
 
 
 
-// 函数: void FUN_180842030(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_180842030(longlong param_1,undefined8 param_2,undefined4 param_3)
+// 函数: void network_send_signed_data(longlong param_1,undefined8 param_2,undefined4 param_3)
+void network_send_signed_data(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 {
   FUN_18083f850(param_2,param_3,&UNK_180983020,*(undefined4 *)(param_1 + 0x10),
@@ -1779,8 +1779,8 @@ void FUN_180842030(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 
 
-// 函数: void FUN_180842060(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_180842060(longlong param_1,undefined8 param_2,undefined4 param_3)
+// 函数: void network_receive_signed_data(longlong param_1,undefined8 param_2,undefined4 param_3)
+void network_receive_signed_data(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 {
   FUN_18083f8f0(param_2,param_3,&UNK_1809830a0,*(undefined4 *)(param_1 + 0x10),
@@ -1790,7 +1790,7 @@ void FUN_180842060(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 
 
-int FUN_1808420a0(longlong param_1,longlong param_2,int param_3)
+int network_process_signed_data(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1832,8 +1832,8 @@ int FUN_1808420a0(longlong param_1,longlong param_2,int param_3)
 
 
 
-// 函数: void FUN_1808421c0(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_1808421c0(longlong param_1,undefined8 param_2,undefined4 param_3)
+// 函数: void network_send_hashed_data(longlong param_1,undefined8 param_2,undefined4 param_3)
+void network_send_hashed_data(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 {
   FUN_18083f850(param_2,param_3,&UNK_180982ea0,*(undefined4 *)(param_1 + 0x10),
@@ -1844,8 +1844,8 @@ void FUN_1808421c0(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 
 
-// 函数: void FUN_1808421f0(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_1808421f0(longlong param_1,undefined8 param_2,undefined4 param_3)
+// 函数: void network_receive_hashed_data(longlong param_1,undefined8 param_2,undefined4 param_3)
+void network_receive_hashed_data(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 {
   FUN_18083f8f0(param_2,param_3,&UNK_180982f20,*(undefined4 *)(param_1 + 0x10),
@@ -1855,7 +1855,7 @@ void FUN_1808421f0(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 
 
-int FUN_180842230(longlong param_1,longlong param_2,int param_3)
+int network_process_hashed_data(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1897,8 +1897,8 @@ int FUN_180842230(longlong param_1,longlong param_2,int param_3)
 
 
 
-// 函数: void FUN_180842350(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_180842350(longlong param_1,undefined8 param_2,undefined4 param_3)
+// 函数: void network_send_compressed_data(longlong param_1,undefined8 param_2,undefined4 param_3)
+void network_send_compressed_data(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 {
   FUN_18083f850(param_2,param_3,&UNK_180982c20,*(undefined4 *)(param_1 + 0x10),
@@ -1909,8 +1909,8 @@ void FUN_180842350(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 
 
-// 函数: void FUN_180842380(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_180842380(longlong param_1,undefined8 param_2,undefined4 param_3)
+// 函数: void network_receive_compressed_data(longlong param_1,undefined8 param_2,undefined4 param_3)
+void network_receive_compressed_data(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 {
   FUN_18083f850(param_2,param_3,&UNK_180982ca0,*(undefined4 *)(param_1 + 0x10),
@@ -1921,8 +1921,8 @@ void FUN_180842380(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 
 
-// 函数: void FUN_1808423b0(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_1808423b0(longlong param_1,undefined8 param_2,undefined4 param_3)
+// 函数: void network_send_encrypted_data(longlong param_1,undefined8 param_2,undefined4 param_3)
+void network_send_encrypted_data(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 {
   FUN_18083f850(param_2,param_3,&UNK_1809831a0,*(undefined4 *)(param_1 + 0x10),
@@ -1933,8 +1933,8 @@ void FUN_1808423b0(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 
 
-// 函数: void FUN_1808423e0(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_1808423e0(longlong param_1,undefined8 param_2,undefined4 param_3)
+// 函数: void network_receive_encrypted_data(longlong param_1,undefined8 param_2,undefined4 param_3)
+void network_receive_encrypted_data(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 {
   FUN_18083f8f0(param_2,param_3,&UNK_180983220,*(undefined4 *)(param_1 + 0x10),
@@ -1944,7 +1944,7 @@ void FUN_1808423e0(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 
 
-int FUN_180842420(longlong param_1,longlong param_2,int param_3)
+int network_process_encrypted_data(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -1985,7 +1985,7 @@ int FUN_180842420(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180842540(longlong param_1,longlong param_2,int param_3)
+int network_send_metadata(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -2002,7 +2002,7 @@ int FUN_180842540(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_1808425b0(longlong param_1,longlong param_2,int param_3)
+int network_receive_metadata(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -2019,7 +2019,7 @@ int FUN_1808425b0(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180842620(longlong param_1,longlong param_2,int param_3)
+int network_process_metadata(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -2036,7 +2036,7 @@ int FUN_180842620(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180842690(longlong param_1,longlong param_2,int param_3)
+int network_send_control_signal(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -2059,7 +2059,7 @@ int FUN_180842690(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180842750(longlong param_1,longlong param_2,int param_3)
+int network_receive_control_signal(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -2077,8 +2077,8 @@ int FUN_180842750(longlong param_1,longlong param_2,int param_3)
 
 
 
-// 函数: void FUN_1808427c0(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_1808427c0(longlong param_1,undefined8 param_2,undefined4 param_3)
+// 函数: void network_send_heartbeat(longlong param_1,undefined8 param_2,undefined4 param_3)
+void network_send_heartbeat(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 {
   FUN_18083f9b0(param_2,param_3,&UNK_180984438,*(undefined4 *)(param_1 + 0x10),
@@ -2089,8 +2089,8 @@ void FUN_1808427c0(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 
 
-// 函数: void FUN_1808427f0(longlong param_1,undefined8 param_2,undefined4 param_3)
-void FUN_1808427f0(longlong param_1,undefined8 param_2,undefined4 param_3)
+// 函数: void network_receive_heartbeat(longlong param_1,undefined8 param_2,undefined4 param_3)
+void network_receive_heartbeat(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 {
   FUN_18083f9b0(param_2,param_3,&UNK_1809843c0,*(undefined4 *)(param_1 + 0x10),
@@ -2100,7 +2100,7 @@ void FUN_1808427f0(longlong param_1,undefined8 param_2,undefined4 param_3)
 
 
 
-int FUN_180842820(longlong param_1,longlong param_2,int param_3)
+int network_process_heartbeat(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -2123,7 +2123,7 @@ int FUN_180842820(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_1808428d0(longlong param_1,longlong param_2,int param_3)
+int network_send_ping(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -2146,7 +2146,7 @@ int FUN_1808428d0(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180842990(longlong param_1,longlong param_2,int param_3)
+int network_receive_ping(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -2163,7 +2163,7 @@ int FUN_180842990(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180842a00(longlong param_1,longlong param_2,int param_3)
+int network_process_ping(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -2186,7 +2186,7 @@ int FUN_180842a00(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180842ac0(longlong param_1,longlong param_2,int param_3)
+int network_send_pong(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;
@@ -2209,7 +2209,7 @@ int FUN_180842ac0(longlong param_1,longlong param_2,int param_3)
 
 
 
-int FUN_180842b80(longlong param_1,longlong param_2,int param_3)
+int network_receive_pong(longlong param_1,longlong param_2,int param_3)
 
 {
   undefined4 uVar1;

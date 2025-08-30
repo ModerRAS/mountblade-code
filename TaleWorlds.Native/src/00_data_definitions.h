@@ -1661,14 +1661,14 @@ extern char system_global_thread_data_buffer_primary;
 extern char system_string_buffer;
 extern char system_data_buffer_primary;
 extern char resource_data_buffer;
-extern char default_resource_config_string;
-extern char handle_manager_address;
-extern char memory_manager_address;
-extern char thread_pool_data_buffer;
-extern char system_thread_operation_flags;
-extern char system_thread_operation_flags_secondary;
-extern char system_control_flag_buffer;
-extern char system_init_flag_buffer;
+extern char resource_default_config_string;                            // 资源默认配置字符串
+extern char system_handle_manager_address;                               // 系统句柄管理器地址
+extern char system_memory_manager_address;                               // 系统内存管理器地址
+extern char thread_pool_management_buffer;                              // 线程池管理缓冲区
+extern char system_thread_operation_flags_primary;                        // 系统线程操作标志主缓冲区
+extern char system_thread_operation_flags_secondary;                      // 系统线程操作标志次缓冲区
+extern char system_control_flag_buffer;                                   // 系统控制标志缓冲区
+extern char system_initialization_flag_buffer;                            // 系统初始化标志缓冲区
 extern char character_scan_buffer;
 extern char system_string_buffer_secondary;
 extern char system_config_buffer_secondary;
