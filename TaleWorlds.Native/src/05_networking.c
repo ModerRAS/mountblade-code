@@ -250,10 +250,10 @@
 // - 美化网络系统变量名，将network_thread_offsetset替换为network_thread_offset等语义化变量名
 // - 美化网络系统变量名，将network_session_main_context替换为network_session_main_ctx等语义化变量名
 // - 美化网络系统变量名，将network_register_ctx替换为network_reg_ctx等语义化变量名
-// - 美化网络系统变量名，将network_thread_ctx替换为network_thread_ctx_value等语义化变量名
+// - 美化网络系统变量名，将network_thread_ctx替换为network_thread_ctx等语义化变量名
 // - 美化网络系统变量名，将network_buffer_size_current替换为network_buffer_size等语义化变量名
 // - 美化网络系统变量名，将network_buffer_current_ptr替换为network_buffer_ptr等语义化变量名
-// - 美化网络系统变量名，将network_timeout_value替换为network_timeout等语义化变量名
+// - 美化网络系统变量名，将network_timeout替换为network_timeout等语义化变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了网络系统中剩余变量名的语义化替换
 // - 原本实现：完全重构网络系统变量命名体系，建立统一的语义化命名规范
@@ -308,10 +308,10 @@
 // - 美化网络系统变量名，将network_thread_offsetset替换为network_thread_offset等语义化变量名
 // - 美化网络系统变量名，将network_session_main_context替换为network_session_main_ctx等语义化变量名
 // - 美化网络系统变量名，将network_register_ctx替换为network_reg_ctx等语义化变量名
-// - 美化网络系统变量名，将network_thread_ctx替换为network_thread_ctx_value等语义化变量名
+// - 美化网络系统变量名，将network_thread_ctx替换为network_thread_ctx等语义化变量名
 // - 美化网络系统变量名，将network_buffer_size_current替换为network_buffer_size等语义化变量名
 // - 美化网络系统变量名，将network_buffer_current_ptr替换为network_buffer_ptr等语义化变量名
-// - 美化网络系统变量名，将network_timeout_value替换为network_timeout等语义化变量名
+// - 美化网络系统变量名，将network_timeout替换为network_timeout等语义化变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了网络系统中剩余变量名的语义化替换
 // - 原本实现：完全重构网络系统变量命名体系，建立统一的语义化命名规范
@@ -399,10 +399,10 @@
 // - 美化网络系统变量名，将network_thread_offsetset替换为network_thread_offset等语义化变量名
 // - 美化网络系统变量名，将network_session_main_context替换为network_session_main_ctx等语义化变量名
 // - 美化网络系统变量名，将network_register_ctx替换为network_reg_ctx等语义化变量名
-// - 美化网络系统变量名，将network_thread_ctx替换为network_thread_ctx_value等语义化变量名
+// - 美化网络系统变量名，将network_thread_ctx替换为network_thread_ctx等语义化变量名
 // - 美化网络系统变量名，将network_buffer_size_current替换为network_buffer_size等语义化变量名
 // - 美化网络系统变量名，将network_buffer_current_ptr替换为network_buffer_ptr等语义化变量名
-// - 美化网络系统变量名，将network_timeout_value替换为network_timeout等语义化变量名
+// - 美化网络系统变量名，将network_timeout替换为network_timeout等语义化变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了网络系统中剩余变量名的语义化替换
 // - 原本实现：完全重构网络系统变量命名体系，建立统一的语义化命名规范
@@ -457,10 +457,10 @@
 // - 美化网络系统变量名，将network_thread_offsetset替换为network_thread_offset等语义化变量名
 // - 美化网络系统变量名，将network_session_main_context替换为network_session_main_ctx等语义化变量名
 // - 美化网络系统变量名，将network_register_ctx替换为network_reg_ctx等语义化变量名
-// - 美化网络系统变量名，将network_thread_ctx替换为network_thread_ctx_value等语义化变量名
+// - 美化网络系统变量名，将network_thread_ctx替换为network_thread_ctx等语义化变量名
 // - 美化网络系统变量名，将network_buffer_size_current替换为network_buffer_size等语义化变量名
 // - 美化网络系统变量名，将network_buffer_current_ptr替换为network_buffer_ptr等语义化变量名
-// - 美化网络系统变量名，将network_timeout_value替换为network_timeout等语义化变量名
+// - 美化网络系统变量名，将network_timeout替换为network_timeout等语义化变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了网络系统中剩余变量名的语义化替换
 // - 原本实现：完全重构网络系统变量命名体系，建立统一的语义化命名规范
@@ -524,10 +524,10 @@
 // - 美化网络系统变量名，将network_thread_offsetset替换为network_thread_offset等语义化变量名
 // - 美化网络系统变量名，将network_session_main_context替换为network_session_main_ctx等语义化变量名
 // - 美化网络系统变量名，将network_register_ctx替换为network_reg_ctx等语义化变量名
-// - 美化网络系统变量名，将network_thread_ctx替换为network_thread_ctx_value等语义化变量名
+// - 美化网络系统变量名，将network_thread_ctx替换为network_thread_ctx等语义化变量名
 // - 美化网络系统变量名，将network_buffer_size_current替换为network_buffer_size等语义化变量名
 // - 美化网络系统变量名，将network_buffer_current_ptr替换为network_buffer_ptr等语义化变量名
-// - 美化网络系统变量名，将network_timeout_value替换为network_timeout等语义化变量名
+// - 美化网络系统变量名，将network_timeout替换为network_timeout等语义化变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了网络系统中剩余变量名的语义化替换
 // - 原本实现：完全重构网络系统变量命名体系，建立统一的语义化命名规范
@@ -582,10 +582,10 @@
 // - 美化网络系统变量名，将network_thread_offsetset替换为network_thread_offset等语义化变量名
 // - 美化网络系统变量名，将network_session_main_context替换为network_session_main_ctx等语义化变量名
 // - 美化网络系统变量名，将network_register_ctx替换为network_reg_ctx等语义化变量名
-// - 美化网络系统变量名，将network_thread_ctx替换为network_thread_ctx_value等语义化变量名
+// - 美化网络系统变量名，将network_thread_ctx替换为network_thread_ctx等语义化变量名
 // - 美化网络系统变量名，将network_buffer_size_current替换为network_buffer_size等语义化变量名
 // - 美化网络系统变量名，将network_buffer_current_ptr替换为network_buffer_ptr等语义化变量名
-// - 美化网络系统变量名，将network_timeout_value替换为network_timeout等语义化变量名
+// - 美化网络系统变量名，将network_timeout替换为network_timeout等语义化变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了网络系统中剩余变量名的语义化替换
 // - 原本实现：完全重构网络系统变量命名体系，建立统一的语义化命名规范
@@ -918,10 +918,10 @@
 // - 美化网络系统变量名，将network_thread_offsetset替换为network_thread_offset等语义化变量名
 // - 美化网络系统变量名，将network_session_main_context替换为network_session_main_ctx等语义化变量名
 // - 美化网络系统变量名，将network_register_ctx替换为network_reg_ctx等语义化变量名
-// - 美化网络系统变量名，将network_thread_ctx替换为network_thread_ctx_value等语义化变量名
+// - 美化网络系统变量名，将network_thread_ctx替换为network_thread_ctx等语义化变量名
 // - 美化网络系统变量名，将network_buffer_size_current替换为network_buffer_size等语义化变量名
 // - 美化网络系统变量名，将network_buffer_current_ptr替换为network_buffer_ptr等语义化变量名
-// - 美化网络系统变量名，将network_timeout_value替换为network_timeout等语义化变量名
+// - 美化网络系统变量名，将network_timeout替换为network_timeout等语义化变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了网络系统中剩余变量名的语义化替换
 // - 原本实现：完全重构网络系统变量命名体系，建立统一的语义化命名规范
@@ -976,10 +976,10 @@
 // - 美化网络系统变量名，将network_thread_offsetset替换为network_thread_offset等语义化变量名
 // - 美化网络系统变量名，将network_session_main_context替换为network_session_main_ctx等语义化变量名
 // - 美化网络系统变量名，将network_register_ctx替换为network_reg_ctx等语义化变量名
-// - 美化网络系统变量名，将network_thread_ctx替换为network_thread_ctx_value等语义化变量名
+// - 美化网络系统变量名，将network_thread_ctx替换为network_thread_ctx等语义化变量名
 // - 美化网络系统变量名，将network_buffer_size_current替换为network_buffer_size等语义化变量名
 // - 美化网络系统变量名，将network_buffer_current_ptr替换为network_buffer_ptr等语义化变量名
-// - 美化网络系统变量名，将network_timeout_value替换为network_timeout等语义化变量名
+// - 美化网络系统变量名，将network_timeout替换为network_timeout等语义化变量名
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变，这是简化实现，主要处理了网络系统中剩余变量名的语义化替换
 // - 原本实现：完全重构网络系统变量命名体系，建立统一的语义化命名规范
@@ -14976,7 +14976,7 @@ int32_t ValidateNetworkSocket(int64_t network_socket_handle, uint32_t network_bu
 {
     uint8_t network_global_buf;
   int64_t network_stack_calculation_result;
-  uint32_t network_config_value;
+  uint32_t network_config;
   int32_t network_stack_int_offsetset_quaternary;
   *(uint64_t *)(network_contextPtr + -SESSION_CONFIG_SIZE) = network_socket_ctx;
   *(uint64_t *)(network_contextPtr + -NETWORK_SOCKET_DESCRIPTOR_RESPONSE_OFFSET) = network_socket_ctx;
@@ -15032,7 +15032,7 @@ int32_t ValidateNetworkSocket(int64_t network_socket_handle, uint32_t network_bu
   network_global_buf = NETWORK_STATUS_FAILURE;
   network_processor_result = NETWORK_CONCAT_UINT64_UINT64_56BIT((int7)((NETWORK_ULONG_LONG)network_config_param_ptr >> NETWORK_HEADER_SIZE_DEFAULT), NETWORK_STATUS_SUCCESS);
   network_stack_calculation_result = network_timeout_pointer_tenth;
-  network_config_value = network_data_ptr;
+  network_config = network_data_ptr;
   dataLength = ManageNetworkResources(network_socket_handle, &network_global_buffer, &network_global_buffer, thread_stack_long_primary + NETWORK_STATUS_READY_MASK, 
                         network_processor_result);
   if (dataLength == NETWORK_STATUS_FAILURE) {
@@ -18846,10 +18846,10 @@ void network_socket_handle(uint64_t network_socket_handle, int32_t network_buffe
   float network_frequency_calculated_sixth;
   uint8_t network_connection_handle;
   int32_t network_stack_int_primary;
-  uint64_t *pnetwork_port_value;
+  uint64_t *pnetwork_port;
   uint32_t *pnetwork_main_buffer_data;
   uint32_t thread_stack_error_code;
-  pnetwork_port_value = (uint64_t *)(network_socket_ctx + -NETWORK_CONNECTION_OFFSET);
+  pnetwork_port = (uint64_t *)(network_socket_ctx + -NETWORK_CONNECTION_OFFSET);
   network_socket_handle = network_socket_handle & NETWORK_MAX_SIZE;
   pnetwork_main_buffer_data = network_contextPtr;
   client_port_addr_current = network_socket_ctx;
@@ -18860,8 +18860,8 @@ void network_socket_handle(uint64_t network_socket_handle, int32_t network_buffe
       network_proc_index = network_buffer_size[NETWORK_STATUS_SUCCESS];
       network_timeout = *(int64_t *)(network_socket_ctx + SOCKET_PACKET_LENGTH_OFFSET_EXTENDED);
       network_buffer_ptr = network_stack_int_primary + NETWORK_STATUS_SUCCESS;
-      *pnetwork_port_value = *network_buffer_size;
-      pnetwork_port_value[NETWORK_STATUS_SUCCESS] = network_proc_index;
+      *pnetwork_port = *network_buffer_size;
+      pnetwork_port[NETWORK_STATUS_SUCCESS] = network_proc_index;
       network_packet_temp_size = *(uint32_t *)((NETWORK_LONG_CAST)network_buffer_size + SESSION_STRUCT_SIZE);
       network_buffer_size = *(uint32_t *)(network_buffer_size + NETWORK_DATA_OFFSET_STANDARD_AUTH);
       network_data_ptr = *(uint32_t *)((NETWORK_LONG_CAST)network_buffer_size + NETWORK_ERROR_OFFSET_INVALID);
