@@ -6124,7 +6124,7 @@ uint64_t ManageNetworkResources(uint64_t *network_socket_handle, uint64_t networ
     network_operation_status_code = *(int32_t *)(socket_descriptor_value + NETWORK_SOCKET_DATA_OFFSET);
     if (network_operation_status_code == NETWORK_BUFFER_SIZE_MEDIUM) {
       socket_descriptor_value = *(int64_t *)network_socket_handle[BIT_SHIFT_MASK];
-      if (network_operation_status_code == 3) {
+      if (network_operation_status_code == NETWORK_ARRAY_INDEX_3) {
         network_operation_status_code = NETWORK_OPERATION_FAILURE;
         dataLength = NETWORK_OPERATION_FAILURE;
         if (NETWORK_OPERATION_FAILURE < *(int32_t *)(network_socket_handle + SOCKET_RESPONSE_OFFSET)) {

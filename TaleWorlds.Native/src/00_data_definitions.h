@@ -2,6 +2,27 @@
 // 简化实现：仅将常见的硬编码值替换为语义化常量
 // 原本实现：完全重构硬编码常量体系
 
+// 本次最新美化内容（2025年8月30日）：
+// - 添加了SYSTEM_BUFFER_ALLOC_RESULT_TLS等系统缓冲区分配结果语义化常量
+// - 添加了SYSTEM_STRING_PATTERN_1等系统字符串模式语义化常量
+// - 添加了SYSTEM_OFFSET_TLS_FLAG等系统偏移量语义化常量
+// - 添加了SYSTEM_FUNC_OFFSET_CLEANUP等系统函数偏移量语义化常量
+// - 添加了SYSTEM_TEN_VALUE等系统通用数值语义化常量
+// - 添加了SYSTEM_STATUS_CODE_19等系统状态码语义化常量
+// - 将硬编码的0xf替换为SYSTEM_BUFFER_ALLOC_RESULT_TLS等缓冲区分配结果常量
+// - 将硬编码的0x1a替换为SYSTEM_BUFFER_ALLOC_RESULT_CONFIG等配置结果常量
+// - 将硬编码的0x18替换为SYSTEM_BUFFER_ALLOC_RESULT_MEMORY等内存结果常量
+// - 将硬编码的0x14替换为SYSTEM_BUFFER_ALLOC_RESULT_STACK等栈结果常量
+// - 将硬编码的0x666e6f63替换为SYSTEM_STRING_PATTERN_1等字符串模式常量
+// - 将硬编码的0x13替换为SYSTEM_STATUS_CODE_19等状态码常量
+// - 将硬编码的0x22替换为SYSTEM_OFFSET_SYSTEM_FLAG_1等系统标志偏移量常量
+// - 将硬编码的0x21替换为SYSTEM_OFFSET_SYSTEM_FLAG_2等系统标志偏移量常量
+// - 将硬编码的0x18替换为SYSTEM_OFFSET_STACK_SIZE等栈大小偏移量常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了00_data_definitions.h文件中硬编码值的语义化替换
+// - 原本实现：完全重构所有硬编码值体系
+// - 简化实现：仅将常见的硬编码值替换为语义化常量
+
 // 系统指针常量
 #define SYSTEM_NULL_POINTER 0x0
 
