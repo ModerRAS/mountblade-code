@@ -542,6 +542,13 @@
 #define UTILITY_ARRAY_INDEX_TERTIARY 2
 #define UTILITY_ARRAY_INDEX_QUATERNARY 3
 #define UTILITY_ARRAY_INDEX_QUINARY 4
+
+// 新增资源属性偏移量宏定义
+#define UTILITY_RESOURCE_PROP_OFFSET_D0 0xd0
+#define UTILITY_RESOURCE_PROP_OFFSET_774 0x774
+#define UTILITY_RESOURCE_PROP_OFFSET_C525443 0xc525443
+#define UTILITY_RESOURCE_PROP_OFFSET_F4C4D50 0xf4c4d50
+#define UTILITY_RESOURCE_PROP_OFFSET_24C4D50 0x24c4d50
 #define UTILITY_ARRAY_INDEX_SENARY 5
 
 // 新增十六进制偏移量语义化宏定义
@@ -1203,7 +1210,7 @@
 #define UTILITY_STACK_POINTER_NEG_B -0xb
 #define UTILITY_STACK_POINTER_NEG_D -0xd
 #define UTILITY_STACK_POINTER_12 0x12
-#define UTILITY_STACK_OFFSET_774 0x774
+#define UTILITY_RESOURCE_PROP_OFFSET_774 0x774
 #define UTILITY_STACK_OFFSET_6D8 0x6d8
 #define UTILITY_STACK_OFFSET_6DC 0x6dc
 #define UTILITY_STACK_OFFSET_6D0 0x6d0
@@ -11217,7 +11224,7 @@ uint64 validate_memory_system(longlong resource_handle_identifier)
     *(byte *)((longlong)plocalIndex + 10) = 3;
     plocalIndex[3] = 1;
     operation_buffer = *(longlong *)(*(longlong *)(resource_handle_identifier + 8) + UTILITY_MEMORY_SIZE_OFFSET);
-    utility_system_status_code = dataAccessFunction(*(uint64 *)(operation_buffer + RESOURCE_PROP_OFFSETd0),*(uint32 *)(operation_buffer + UTILITY_STACK_OFFSET_774));
+    utility_system_status_code = dataAccessFunction(*(uint64 *)(operation_buffer + UTILITY_RESOURCE_PROP_OFFSET_D0),*(uint32 *)(operation_buffer + UTILITY_RESOURCE_PROP_OFFSET_774));
     *(uint64 *)(plocalIndex + 4) = utility_system_status_code;
                     // WARNING: Subroutine does not return
     memcpy(pdataLength + 6,resource_buffer,(longlong)utility_utility_iteration_counter);
@@ -17134,7 +17141,7 @@ ulonglong ProcessSystemRequest(longlong resource_handle_identifier,uint64 *memor
   utility_temp_unsigned_int = iteration_pointer[1];
   utility_temp_unsigned_int = iteration_pointer[2];
   utility_temp_unsigned_int = iteration_pointer[3];
-  utility_iteration_counter = createResourceBuffer(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,0,RESOURCE_PROP_OFFSETc525443);
+  utility_iteration_counter = createResourceBuffer(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,0,UTILITY_RESOURCE_PROP_OFFSET_C525443);
   if ((((int)utility_iteration_counter == 0) && (utility_iteration_counter = assessUtilityQuality(resource_buffer,resource_handle_identifier + RESOURCE_UTILITY_HANDLE_DATA_OFFSET), (int)utility_iteration_counter == 0)) &&
      (utility_iteration_counter = assessUtilityQuality(resource_buffer,resource_handle_identifier + POINTER_DATA_OFFSET), (int)utility_iteration_counter == 0)) {
     utility_system_status_code = UTILITY_BYTE_OFFSET_FLAG;
@@ -18950,11 +18957,11 @@ ulonglong InitializeDataValidator(longlong resource_handle_identifier,uint64 *me
   byte UTILITY_LOCAL_SECURITY_BUFFER [32];
   byte UTILITY_LOCAL_SECURITY_BUFFER [32];
   
-  systemFlagsData = createResourceBuffer(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,1,RESOURCE_PROP_OFFSETf4c4d50);
+  systemFlagsData = createResourceBuffer(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,1,UTILITY_RESOURCE_PROP_OFFSET_F4C4D50);
   if ((int)systemFlagsData != 0) {
     return systemFlagsData;
   }
-  systemFlagsData = createResourceBuffer(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,0,RESOURCE_PROP_OFFSET24c4d50);
+  systemFlagsData = createResourceBuffer(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,0,UTILITY_RESOURCE_PROP_OFFSET_24C4D50);
   if ((int)systemFlagsData != 0) {
     return systemFlagsData;
   }
@@ -25384,7 +25391,7 @@ ulonglong InitializeTaskOperator(longlong resource_handle_identifier,longlong *m
   utility_temp_unsigned_int = generic_data_pointer[1];
   utility_temp_unsigned_int = generic_data_pointer[2];
   utility_temp_unsigned_int = generic_data_pointer[3];
-  utility_system_status_code = ValidateOperationHandle2(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,0,RESOURCE_PROP_OFFSETc525443,0);
+  utility_system_status_code = ValidateOperationHandle2(resource_buffer,UTILITY_LOCAL_PROCESS_BUFFER,0,UTILITY_RESOURCE_PROP_OFFSET_C525443,0);
   if ((int)utility_system_status_code != 0) {
     return utility_system_status_code;
   }
@@ -60891,7 +60898,7 @@ void UtilityUnwindSystemFunctionc570(void)
 void UtilityUnwindSystemFunctionc580(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  *(resource_data **)(resource_buffer + RESOURCE_PROP_OFFSETd0) = &thread_local_storage_cleanup;
+  *(resource_data **)(resource_buffer + UTILITY_RESOURCE_PROP_OFFSET_D0) = &thread_local_storage_cleanup;
   return;
 }
 
@@ -61244,7 +61251,7 @@ void UtilityUnwindSystemFunctionc630(uint64 resource_handle_identifier,longlong 
 void UtilityUnwindSystemFunctionc640(uint64 resource_handle_identifier,longlong resource_buffer)
 
 {
-  *(resource_data **)(resource_buffer + RESOURCE_PROP_OFFSETd0) = &thread_local_storage_cleanup;
+  *(resource_data **)(resource_buffer + UTILITY_RESOURCE_PROP_OFFSET_D0) = &thread_local_storage_cleanup;
   return;
 }
 
