@@ -153,6 +153,18 @@
 #define SYSTEM_STRING_Atomination 0x2f6e6f6974616d6f  // "omnation/" backwards
 #define SYSTEM_STRING_Attachment 0x656d686361747441  // "Attachme" backwards
 
+// 浮点常量定义
+#define SYSTEM_FLOAT_CONSTANT_1 SYSTEM_FLOAT_CONSTANT_1
+
+// 更多字符串常量定义
+#define SYSTEM_STRING_Crash_path SYSTEM_STRING_Crash_path  // "crash/" backwards
+#define SYSTEM_STRING_MODULE_DOM 0x53454c55444f4d5f  // "_MOD_USE" backwards
+#define SYSTEM_STRING_MODULE_DOM_Asterisk 0x454c55444f4d5f2a  // "*_MOD_USE" backwards
+
+// 内存对齐掩码
+#define SYSTEM_MEMORY_ALIGNMENT_MASK_32 0xffffffffffffffe0
+#define SYSTEM_MEMORY_ALIGNMENT_MASK_64 0xfffffffffffffff8
+
 void InitializeGameData(void);
 
 void* g_game_data_structure;
@@ -21371,9 +21383,9 @@ void ConfigureGraphicsShader(void)
   *(uint32_t *)(long_result + 0x24c) = uint_result;
   system_operation_status = log2f(*(float *)(systemCoreData + 0x2220) * 0.01);
   *(uint32_t *)(long_result + 0x23c) = uint_result;
-  *(uint64_t *)(long_result + 0x254) = 0x3f8000003f800000;
-  longStack_1d8 = 0x3f8000003f800000;
-  *(uint64_t *)(long_result + 0x25c) = 0x3f8000003f800000;
+  *(uint64_t *)(long_result + 0x254) = SYSTEM_FLOAT_CONSTANT_1;
+  longStack_1d8 = SYSTEM_FLOAT_CONSTANT_1;
+  *(uint64_t *)(long_result + 0x25c) = SYSTEM_FLOAT_CONSTANT_1;
   long_result = systemCoreData;
   long_result = system_configurationurationData;
   system_buffer_ptr_168 = &g_system_data_nodeconfig;
@@ -22357,7 +22369,7 @@ void InitializeSystemModule36(longlong handleIdentifier)
   int_result = *(int *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) + 8;
   ConfigureSystemParameters(handleIdentifier,int_result);
   system_pointer_var = (uint64_t *)((ulonglong)*(uint *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) + *(longlong *)(handleIdentifier + 8));
-  *system_pointer_var = 0x2f73656873617263;
+  *system_pointer_var = SYSTEM_STRING_Crash_path;
   *(uint8_t *)(system_pointer_var + 1) = 0;
   *(int *)(handleIdentifier + SYSTEM_DATA_COMPARE_SIZE) = int_result;
                     // WARNING: Subroutine does not return
@@ -27667,7 +27679,7 @@ void InitializeTextureSystem(longlong *handleIdentifier)
     } while ((ulonglong)(longlong)intStack_370 <
              (ulonglong)(*(longlong *)(longStack_2b8 + 0x8b0) - long_result >> 5));
   }
-  uintStack_48 = 0x3f8000003f800000;
+  uintStack_48 = SYSTEM_FLOAT_CONSTANT_1;
   uintStack_40 = 0x3f000000;
   uintStack_3c = 0;
   if ((uint64_t *******)pppppsystem_buffer_ptr_358 != &pppppsystem_buffer_ptr_360) {
@@ -46623,10 +46635,10 @@ uint64_t * InitializeSystemModule41(uint64_t *handleIdentifier,char resourceIden
   }
   bool_var = *(byte *)((longlong)handleIdentifier + 0xfd) & 0xf7;
   *(byte *)((longlong)handleIdentifier + 0xfd) = bool_var;
-  handleIdentifier[0x47] = 0x3f8000003f800000;
-  handleIdentifier[0x48] = 0x3f8000003f800000;
-  handleIdentifier[0x49] = 0x3f8000003f800000;
-  handleIdentifier[0x4a] = 0x3f8000003f800000;
+  handleIdentifier[0x47] = SYSTEM_FLOAT_CONSTANT_1;
+  handleIdentifier[0x48] = SYSTEM_FLOAT_CONSTANT_1;
+  handleIdentifier[0x49] = SYSTEM_FLOAT_CONSTANT_1;
+  handleIdentifier[0x4a] = SYSTEM_FLOAT_CONSTANT_1;
   *(uint32_t *)(handleIdentifier + 0x4c) = 0x3f800000;
   handleIdentifier[0x24] = 0x3f800000;
   handleIdentifier[0x25] = 0;
@@ -50508,8 +50520,8 @@ void ProcessSystemData88(uint64_t *handleIdentifier,uint64_t resourceIdentifier,
     system_memory_pointer = system_memory_pointer + 1;
     long_result = long_result + -1;
   } while (long_result != 0);
-  handleIdentifier[SYSTEM_NODE_HEADER_SIZE] = 0x3f8000003f800000;
-  handleIdentifier[0x21] = 0x3f8000003f800000;
+  handleIdentifier[SYSTEM_NODE_HEADER_SIZE] = SYSTEM_FLOAT_CONSTANT_1;
+  handleIdentifier[0x21] = SYSTEM_FLOAT_CONSTANT_1;
   handleIdentifier[0x22] = 0;
   *(uint32_t *)(handleIdentifier + 0x23) = 0;
   *(uint32_t *)((longlong)handleIdentifier + 0x11c) = 0x3f800000;
