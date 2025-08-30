@@ -268,6 +268,14 @@
 #define NETWORK_OPERATION_ID_2E5 0x2e5  // 网络操作ID 2E5
 #define NETWORK_LOG_ID_43B 0x43b  // 网络日志ID 43B
 #define NETWORK_CONFIG_REQUEST_ID_C1C 0xc1c  // 网络配置请求ID C1C
+
+// 新增语义化常量定义 - 网络魔数签名
+#define NETWORK_MAGIC_ART 0x4e415254  // 网络魔数签名 ART
+#define NETWORK_MAGIC_BNRT 0x424e5254  // 网络魔数签名 BNRT
+#define NETWORK_MAGIC_BIAW 0x42494157  // 网络魔数签名 BIAW
+#define NETWORK_MAGIC_BDMC 0x42444d43  // 网络魔数签名 BDMC
+#define NETWORK_MAGIC_BIFE 0x42494645  // 网络魔数签名 BIFE
+
 #define NETWORK_MAGIC_SIGNATURE_LMNT 0x4e4c4d54  // 网络魔数签名 LMNT
 #define NETWORK_MAGIC_SIGNATURE_BNLT 0x424e4c54  // 网络魔数签名 BNLT
 
@@ -35619,8 +35627,8 @@ void network_encrypt_content6(void)
 uint64_t network_encrypt_content7(int64_t network_socket_descriptor,int64_t *network_buffer_pointer)
   char network_stack_encryption_char [4];
   network_status_code = NETWORK_OPERATION_SUCCESS;
-  network_data_ptr = network_configuration_verifySecurity(network_buffer_pointer,network_validation_buffer_small,NETWORK_OPERATION_SUCCESS,0x4e415254);
-  network_data_ptr = network_configuration_verifySecurity(network_buffer_pointer,network_validation_temp_buffer,NETWORK_OPERATION_FAILURE,0x424e5254);
+  network_data_ptr = network_configuration_verifySecurity(network_buffer_pointer,network_validation_buffer_small,NETWORK_OPERATION_SUCCESS, NETWORK_MAGIC_ART);
+  network_data_ptr = network_configuration_verifySecurity(network_buffer_pointer,network_validation_temp_buffer,NETWORK_OPERATION_FAILURE, NETWORK_MAGIC_BNRT);
   network_timeout_ms = *network_buffer_pointer;
   network_buffer_size = networkSignData5(network_timeout_ms,network_socket_descriptor + MODULE_STATUS_OFFSET,4);
     network_buffer_size = networkSignData5(network_timeout_ms,network_socket_descriptor + SESSION_STRUCT_SIZE,NETWORK_BUFFER_SIZE_MEDIUM);
@@ -35748,7 +35756,7 @@ uint64_t network_encrypt_content9(uint64_t network_socket_descriptor,uint64_t ne
     processor_index = network_buffer_size & NETWORK_MAX_SIZE;
     processor_index = (ulonglong)network_buffer_size;
   network_packet_size_temp = network_configuration_verifySecurity(network_buffer_pointer,network_validation_temp_buffer,NETWORK_OPERATION_SUCCESS,NETWORK_PARAMETER_OFFSET_NEGATIVE494157);
-       (network_packet_size_temp = network_configuration_verifySecurity(network_buffer_pointer,network_validation_temp_buffer,NETWORK_OPERATION_FAILURE,0x42494157), (int)network_packet_size_temp == NETWORK_OPERATION_FAILURE)) &&
+       (network_packet_size_temp = network_configuration_verifySecurity(network_buffer_pointer,network_validation_temp_buffer,NETWORK_OPERATION_FAILURE, NETWORK_MAGIC_BIAW), (int)network_packet_size_temp == NETWORK_OPERATION_FAILURE)) &&
      ((0x45 < *(uint32_t *)(network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE) ||
       (network_packet_size_temp = networkGenerateKeyPair4(network_buffer_pointer,network_socket_descriptor + NETWORK_AUTH_VALIDATION_OFFSET), (int)network_packet_size_temp == NETWORK_OPERATION_FAILURE)))) {
     network_packet_size_temp = networkSignData5(network_status_code,network_socket_descriptor + NETWORK_SOCKET_REGISTER_OFFSET_EXTENDEDc,4);
@@ -35987,7 +35995,7 @@ uint64_t networkDecryptData4(void)
 void networkDecryptData5(void)
 uint64_t networkDecryptData6(int64_t network_socket_descriptor,int64_t *network_buffer_pointer)
   network_status_code = networkReceiveProtocolMessage(network_buffer_pointer,network_validation_temp_buffer,NETWORK_OPERATION_SUCCESS,NETWORK_PROTOCOL_CLIENT,NETWORK_STATUS_CODE_49444d43);
-     (network_status_code = networkReceiveProtocolMessage(network_buffer_pointer,network_validation_temp_buffer,NETWORK_OPERATION_FAILURE,0x42444d43,NETWORK_OPERATION_FAILURE), (int)network_status_code == NETWORK_OPERATION_FAILURE)) {
+     (network_status_code = networkReceiveProtocolMessage(network_buffer_pointer,network_validation_temp_buffer,NETWORK_OPERATION_FAILURE, NETWORK_MAGIC_BDMC,NETWORK_OPERATION_FAILURE), (int)network_status_code == NETWORK_OPERATION_FAILURE)) {
     network_status_code = networkValidateConnectionState(*network_buffer_pointer,network_socket_descriptor + MODULE_STATUS_OFFSET);
       network_stack_socket_handle_array[NETWORK_OPERATION_FAILURE] = *(uint32_t *)(network_socket_descriptor + NETWORK_AUTH_VALIDATION_OFFSET);
                         (*(uint64_t **)(*network_buffer_pointer + NETWORK_PACKET_HEADER_SIZE),network_stack_socket_handle_array,4);
@@ -36099,7 +36107,7 @@ uint64_t networkValidateCertificate6(int64_t network_socket_descriptor,uint64_t 
       if (((int)network_status_code == NETWORK_OPERATION_FAILURE) && (network_status_code = networkGenerateKeyPair7(network_buffer_pointer,network_socket_descriptor + NETWORK_PACKET_DATA_PAYLOAD_OFFSET,NETWORK_OPERATION_SUCCESS,NETWORK_OPERATION_FAILURE), (int)network_status_code == NETWORK_OPERATION_FAILURE))
 uint64_t networkValidateCertificate7(int64_t network_socket_descriptor,uint64_t *network_buffer_pointer)
   network_status_code = networkReceiveProtocolMessage(network_buffer_pointer,network_validation_temp_buffer,NETWORK_OPERATION_SUCCESS,NETWORK_PROTOCOL_CLIENT,NETWORK_PARAMETER_OFFSET_NEGATIVE494645);
-     (network_status_code = networkReceiveProtocolMessage(network_buffer_pointer,network_validation_temp_buffer,NETWORK_OPERATION_FAILURE,0x42494645,NETWORK_OPERATION_FAILURE), (int)network_status_code == NETWORK_OPERATION_FAILURE)) {
+     (network_status_code = networkReceiveProtocolMessage(network_buffer_pointer,network_validation_temp_buffer,NETWORK_OPERATION_FAILURE, NETWORK_MAGIC_BIFE,NETWORK_OPERATION_FAILURE), (int)network_status_code == NETWORK_OPERATION_FAILURE)) {
       network_status_code = networkValidateConnectionState(*network_buffer_pointer,network_socket_descriptor + NETWORK_AUTH_VALIDATION_OFFSET);
 uint64_t networkValidateCertificate8(int64_t network_socket_descriptor,int64_t *network_buffer_pointer)
     network_stack_connection_buffer_array[NETWORK_OPERATION_FAILURE] = *(uint32_t *)(network_socket_descriptor + SOCKET_DATA_POINTER_OFFSET);
@@ -36314,6 +36322,19 @@ uint64_t networkProcessHandshake(uint64_t network_socket_descriptor,int64_t netw
 #define NETWORK_OPERATION_OFFSET_83 0x83      // 网络操作偏移量83
 #define NETWORK_SOCKET_VALID_OFFSET_7B 0x7b   // 套接字验证偏移量7B
 #define NETWORK_SOCKET_CLOSE_OFFSET_3D 0x3d  // 套接字关闭偏移量3D
+
+// 美化完成说明：
+// - 将硬编码的0x35替换为NETWORK_OPERATION_OFFSET_35网络操作偏移量
+// - 将硬编码的0x65替换为NETWORK_OPERATION_OFFSET_65网络操作偏移量
+// - 将硬编码的0x83替换为NETWORK_OPERATION_OFFSET_83网络操作偏移量
+// - 将硬编码的0x4d替换为NETWORK_SOCKET_CONNECTION_OFFSET套接字连接偏移量
+// - 将硬编码的0x3d替换为NETWORK_SOCKET_CLOSE_OFFSET_3D套接字关闭偏移量
+// - 将硬编码的0x7b替换为NETWORK_SOCKET_VALID_OFFSET_7B套接字验证偏移量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了网络系统中剩余硬编码值的语义化替换
+// - 原本实现：完全重构网络系统常量定义体系
+// - 简化实现：仅添加新的语义化常量定义，替换剩余的硬编码值
 #define NETWORK_CONNECTION_OFFSET_398 0x398    // 连接偏移量398
 #define NETWORK_CONNECTION_OFFSET_3A8 NETWORK_STATUS_CODE_3A8    // 连接偏移量3A8
 #define NETWORK_CONNECTION_OFFSET_3AC NETWORK_STATUS_CODE_3Ac    // 连接偏移量3AC
