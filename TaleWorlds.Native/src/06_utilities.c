@@ -24393,7 +24393,7 @@ void memoryBlockAllocateBlock(uint64 *handleIdentifier)
 
 
 
-void Unwind_180901ee0(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ExceptionHandlerCleanup1(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   if ((longlong *)**(longlong **)(resourceDataBuffer + 0xc0) != (longlong *)0x0) {
@@ -24404,7 +24404,7 @@ void Unwind_180901ee0(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 
 
-void Unwind_180901ef0(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ExceptionHandlerCleanup2(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   if (*(longlong **)(resourceDataBuffer + SYSTEM_STATUS_OFFSET) != (longlong *)0x0) {
@@ -24415,7 +24415,7 @@ void Unwind_180901ef0(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 
 
-void Unwind_180901f00(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ExceptionHandlerCleanup3(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   if ((longlong *)**(longlong **)(resourceDataBuffer + BUFFER_DATA_OFFSET) != (longlong *)0x0) {
@@ -24426,7 +24426,7 @@ void Unwind_180901f00(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 
 
-void Unwind_180901f10(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ExceptionHandlerCleanup4(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   uint64 *functionResultData;
@@ -24440,7 +24440,7 @@ void Unwind_180901f10(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 
 
-void Unwind_180901f20(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ExceptionHandlerCleanup5(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   uint64 *functionResultData;
@@ -24453,7 +24453,7 @@ void Unwind_180901f20(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 
 
-void Unwind_180901f30(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ExceptionHandlerCleanup6(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   **(uint64 **)(resourceDataBuffer + BUFFER_DATA_OFFSET) = &threadSyncObject;
@@ -24462,7 +24462,7 @@ void Unwind_180901f30(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 
 
-void Unwind_180901f40(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ExceptionHandlerCleanup7(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   int operationStatus;
@@ -24478,7 +24478,7 @@ void Unwind_180901f40(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180901f50(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ExceptionHandlerCleanup8(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   int operationStatus;
@@ -24493,7 +24493,7 @@ void Unwind_180901f50(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 
 
-void Unwind_180901f60(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ExceptionHandlerCleanup9(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   int *plocalStatus;
@@ -24529,7 +24529,7 @@ void Unwind_180901f60(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 
 
-void Unwind_180901f70(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ExceptionHandlerCleanup10(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   int *plocalStatus;
@@ -24567,7 +24567,7 @@ void Unwind_180901f70(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-void Unwind_180901f90(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ExceptionHandlerCleanup11(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   int operationStatus;
@@ -24582,7 +24582,7 @@ void Unwind_180901f90(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 
 
-void Unwind_180901fa0(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ExceptionHandlerCleanup12(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   int *plocalStatus;
@@ -24618,7 +24618,7 @@ void Unwind_180901fa0(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 
 
-void Unwind_180901fc0(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ExceptionHandlerCleanup13(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   int *plocalStatus;
@@ -24654,7 +24654,7 @@ void Unwind_180901fc0(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 
 
-void Unwind_180901fe0(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ExceptionHandlerCleanup14(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   if ((*(uint *)(resourceDataBuffer + POINTER_DATA_OFFSET) & 1) != 0) {
@@ -24666,7 +24666,7 @@ void Unwind_180901fe0(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 
 
-void Unwind_180902010(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ExceptionHandlerCleanup15(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   if ((*(uint *)(resourceDataBuffer + POINTER_DATA_OFFSET) & 1) != 0) {
@@ -24678,7 +24678,7 @@ void Unwind_180902010(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 
 
-void Unwind_180902040(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ExceptionHandlerCleanup16(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   if ((*(uint *)(resourceDataBuffer + POINTER_DATA_OFFSET) & 2) != 0) {
@@ -24690,7 +24690,7 @@ void Unwind_180902040(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 
 
-void Unwind_180902070(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ExceptionHandlerCleanup17(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   *(uint64 *)(resourceDataBuffer + 0x68) = &threadLocalStorageData;
@@ -24706,7 +24706,7 @@ void Unwind_180902070(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 
 
-void Unwind_180902080(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ExceptionHandlerCleanup18(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   *(dataValueValue **)(resourceDataBuffer + 0x68) = &threadLocalStorageCleanup;
@@ -24715,7 +24715,7 @@ void Unwind_180902080(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 
 
-void Unwind_180902090(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ExceptionHandlerCleanup19(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   if ((*(uint *)(resourceDataBuffer + FIRST_FIELD_OFFSET) & 1) != 0) {
@@ -24727,7 +24727,7 @@ void Unwind_180902090(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 
 
-void Unwind_1809020c0(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ExceptionHandlerCleanup20(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   if ((*(uint *)(resourceDataBuffer + FIRST_FIELD_OFFSET) & 2) != 0) {
@@ -41015,7 +41015,7 @@ void Unwind_180906190(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 
 
-void Unwind_1809061a0(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ResourceUnwindHandler1(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   longlong *presourceDataBuffer;
@@ -41029,7 +41029,7 @@ void Unwind_1809061a0(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 
 
-void Unwind_1809061b0(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ResourceUnwindHandler2(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   longlong *presourceDataBuffer;
@@ -41043,7 +41043,7 @@ void Unwind_1809061b0(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 
 
-void Unwind_1809061c0(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ResourceUnwindHandler3(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   longlong *presourceDataBuffer;
@@ -41057,7 +41057,7 @@ void Unwind_1809061c0(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 
 
-void Unwind_1809061d0(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ResourceUnwindHandler4(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   longlong *presourceDataBuffer;
@@ -41071,7 +41071,7 @@ void Unwind_1809061d0(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 
 
-void Unwind_1809061f0(uint64 handleIdentifier,longlong resourceDataBuffer)
+void ResourceUnwindHandler5(uint64 handleIdentifier,longlong resourceDataBuffer)
 
 {
   int *plocalStatus;
