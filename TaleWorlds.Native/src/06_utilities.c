@@ -275,8 +275,8 @@
 
 // 函数参数语义化宏定义
 #define PARAM_SEARCH_DATA_OFFSET PARAM_SEARCH_DATA_OFFSET
-#define PARAM_SEARCH_FLAGS param4  
-#define PARAM_SEARCH_CONTEXT param5
+#define PARAM_SEARCH_FLAGS PARAM_SEARCH_FLAGS  
+#define PARAM_SEARCH_CONTEXT PARAM_SEARCH_CONTEXT
 
 // 新增语义化宏定义 - 替换文件中的十六进制常量
 #define UTILITY_BUFFER_OFFSET 0x94
@@ -12636,8 +12636,8 @@ validate_string_data:
 
 // 数组二分搜索函数 - 在排序数组中查找指定元素
 uint64
-binary_search_in_array(longlong array_handle, uint *search_key, uint64 PARAM_SEARCH_DATA_OFFSET, uint32 param4,
-                   uint64 param5)
+binary_search_in_array(longlong array_handle, uint *search_key, uint64 PARAM_SEARCH_DATA_OFFSET, uint32 PARAM_SEARCH_FLAGS,
+                   uint64 PARAM_SEARCH_CONTEXT)
 
 {
   uint searchValue;
@@ -12676,7 +12676,7 @@ binary_search_in_array(longlong array_handle, uint *search_key, uint64 PARAM_SEA
         if (middle_index < 0) {
           return ERROR_CODE_INVALID;
         }
-        utility_operation_status = retrieve_array_element_data(array_handle, middle_index, 0, PARAM_SEARCH_DATA_OFFSET, param4, param5);
+        utility_operation_status = retrieve_array_element_data(array_handle, middle_index, 0, PARAM_SEARCH_DATA_OFFSET, PARAM_SEARCH_FLAGS, PARAM_SEARCH_CONTEXT);
         return utility_operation_status;
       }
       rightBound = middle_index + -1;
