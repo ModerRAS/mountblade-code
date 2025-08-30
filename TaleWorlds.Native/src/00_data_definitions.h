@@ -3649,7 +3649,7 @@ int initialize_scaling_system(void)
   system_thread_flag_2 = SYSTEM_THREAD_FLAG_ENABLED;
   system_thread_flag_1 = SYSTEM_ZERO_VALUE;
   SYSTEM_TEMP_STACK_ARRAY[0] = GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL);
-  initialize_core_system(handle_param,system_temporary_stack_array);
+  initialize_core_system(handle_param,SYSTEM_TEMP_STACK_ARRAY);
   initialize_subsystem_modules();
   initialize_service_layer();
   return;
@@ -3660,7 +3660,7 @@ void WotsMainNativeSDLL(unsigned long long handle_param)
   system_thread_flag_2 = SYSTEM_ZERO_VALUE;
   system_thread_flag_1 = SYSTEM_ZERO_VALUE;
   SYSTEM_TEMP_STACK_ARRAY[0] = GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL);
-  initialize_core_system(handle_param,system_temporary_stack_array);
+  initialize_core_system(handle_param,SYSTEM_TEMP_STACK_ARRAY);
   initialize_subsystem_modules();
   initialize_service_layer();
   return;
@@ -3755,7 +3755,7 @@ section_processing_jump_label_:
   system_thread_flag_2 = SYSTEM_THREAD_FLAG_ENABLED;
   system_thread_flag_1 = SYSTEM_ZERO_VALUE;
   SYSTEM_TEMP_STACK_ARRAY[0] = GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL);
-  initialize_core_system(handle_param,system_temporary_stack_array);
+  initialize_core_system(handle_param,SYSTEM_TEMP_STACK_ARRAY);
   initialize_subsystem_modules();
   initialize_service_layer();
   return;
@@ -3766,7 +3766,7 @@ void WotsMainNative(unsigned long long handle_param)
   system_thread_flag_2 = SYSTEM_ZERO_VALUE;
   system_thread_flag_1 = SYSTEM_ZERO_VALUE;
   SYSTEM_TEMP_STACK_ARRAY[0] = GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL);
-  initialize_core_system(handle_param,system_temporary_stack_array);
+  initialize_core_system(handle_param,SYSTEM_TEMP_STACK_ARRAY);
   initialize_subsystem_modules();
   initialize_service_layer();
   return;
@@ -3777,7 +3777,7 @@ void WotsMainNativeCoreCLR(unsigned long long handle_param)
   system_thread_flag_2 = SYSTEM_ZERO_VALUE;
   system_thread_flag_1 = SYSTEM_THREAD_FLAG_ENABLED;
   SYSTEM_TEMP_STACK_ARRAY[0] = GetModuleHandleA(SYSTEM_MODULE_HANDLE_NULL);
-  initialize_core_system(handle_param,system_temporary_stack_array);
+  initialize_core_system(handle_param,SYSTEM_TEMP_STACK_ARRAY);
   initialize_subsystem_modules();
   initialize_service_layer();
   return;
@@ -7270,7 +7270,7 @@ section_processing_jump_label_:
   }
   *thread_operation_flags = (long long)system_thread_operation_flags_ptr;
 code_r0x000180329ed1:
-  byte_validation_flag = (byte)system_temporary_stack_array[0];
+  byte_validation_flag = (byte)SYSTEM_TEMP_STACK_ARRAY[0];
   goto section_processing_jump_label_;
 }
 unsigned long long allocate_system_memory(long long handle_param,long long *thread_operation_flags,unsigned int *mutex_attr,uint mutex_type)
