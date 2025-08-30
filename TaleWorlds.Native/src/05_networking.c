@@ -125,6 +125,22 @@
 #define NETWORK_STATUS_OFFSET_570 0x570  // 网络状态偏移量570
 #define NETWORK_STATUS_OFFSET_5A0 0x5A0  // 网络状态偏移量5A0
 #define NETWORK_STATUS_OFFSET_660 0x660  // 网络状态偏移量660
+
+// 新增语义化常量定义 - 缓冲区大小
+#define NETWORK_BUFFER_SIZE_32 32  // 32字节缓冲区大小
+#define NETWORK_BUFFER_SIZE_256 256  // 256字节缓冲区大小
+#define NETWORK_BUFFER_SIZE_512 512  // 512字节缓冲区大小
+#define NETWORK_BUFFER_SIZE_1024 1024  // 1024字节缓冲区大小
+
+// 新增语义化常量定义 - 数组大小
+#define NETWORK_ARRAY_SIZE_2 2  // 大小为2的数组
+#define NETWORK_ARRAY_SIZE_4 4  // 大小为4的数组
+
+// 新增语义化常量定义 - 魔法数字
+#define NETWORK_MAGIC_NUMBER_4 4  // 魔法数字4
+#define NETWORK_MAGIC_NUMBER_8 8  // 魔法数字8
+#define NETWORK_MAGIC_NUMBER_32 32  // 魔法数字32
+#define NETWORK_MAGIC_NUMBER_256 256  // 魔法数字256
 #define NETWORK_STATUS_OFFSET_6F0 0x6F0  // 网络状态偏移量6F0
 #define NETWORK_STATUS_OFFSET_710 0x710  // 网络状态偏移量710
 #define NETWORK_STATUS_OFFSET_720 0x720  // 网络状态偏移量720
@@ -1713,7 +1729,7 @@ void NetworkBindSocket(uint64_t *network_socket_descriptor,int32_t network_buffe
 {
     int32_t socket_binding_status;
   int32_t connection_binding_state;
-  uint8_t socket_validation_buffer [32];
+  uint8_t socket_validation_buffer [NETWORK_BUFFER_SIZE_32];
   uint8_t *buffer_data_pointer;
   int32_t packet_information_array [2];
   int64_t socket_descriptor_storage;
@@ -1759,7 +1775,7 @@ void NetworkConnectSocket(uint64_t network_socket_descriptor,uint64_t *network_b
 {
     int32_t socket_connection_error;
   int32_t connection_establishment_result;
-  uint8_t connection_validation_buffer [32];
+  uint8_t connection_validation_buffer [NETWORK_BUFFER_SIZE_32];
   uint8_t *connection_buffer_pointer;
   int64_t socket_context_array [2];
   uint64_t *session_config_array [2];
@@ -1799,7 +1815,7 @@ void NetworkSendData(uint32_t network_socket_descriptor,int32_t network_buffer_p
   int64_t *timeout_config_ptr;
   int64_t network_primary_connection_data;
   int64_t network_data_buffer_ptr;
-  uint8_t encryption_temporary_buffer [32];
+  uint8_t encryption_temporary_buffer [NETWORK_BUFFER_SIZE_32];
   uint64_t network_connection_handler;
   int64_t network_socket_context_array_pointer;
   int64_t data_position_offset;
