@@ -81,8 +81,13 @@
 // 13. 添加了UTILITY_PROCESSING_BUFFER_START等处理缓冲区变量宏定义
 // 14. 将uRam0000000180d499c0等十六进制地址变量名替换为语义化名称
 // 15. 将lRam0000000180d49d68等十六进制地址变量名替换为语义化名称
+// 16. 将utility_temp_var_1替换为utility_temp_resource_index等语义化变量名
+// 17. 将utility_temp_var_2替换为utility_temp_buffer_size等描述性变量名
+// 18. 将utility_temp_var_3替换为utility_temp_counter等计数变量名
+// 19. 将utility_temp_var_4替换为utility_temp_validation_flag等标志变量名
 // 提高了代码的可读性和维护性
 // 保持代码语义不变
+// 这是简化实现，主要处理了工具系统中通用临时变量名的语义化替换
 // 这是简化实现，主要处理了工具系统中变量名的语义化替换
 
 // 新增语义化宏定义 - 替换事件回调变量名
