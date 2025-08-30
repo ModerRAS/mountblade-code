@@ -309,6 +309,7 @@
 #define NETWORK_SOCKET_DATA_PTR_OFFSET_9            9     // 套接字数据指针偏移量9
 #define NETWORK_CONNECTION_PROCESSOR_INCREMENT          5     // 连接处理器增量值
 #define NETWORK_CONFIG_DATA_OFFSET_5                5     // 配置数据偏移量5
+#define NETWORK_CONFIG_DATA_OFFSET_3                3     // 配置数据偏移量3
 // - 将硬编码的数组大小[NETWORK_ERROR_BUFFER_SIZE_16]替换为NETWORK_ARRAY_SIZE_16等语义化常量
 // - 将硬编码的数组大小[NETWORK_BUFFER_SIZE_32]替换为NETWORK_ARRAY_SIZE_32等语义化常量
 // - 将硬编码的数组大小[33]替换为NETWORK_ARRAY_SIZE_33等语义化常量
@@ -4327,7 +4328,7 @@ network_process_connection_validation_label:
     *(uint32_t *)(network_configuration_pointer + NETWORK_BUFFER_CAPACITY_MEDIUM) = NETWORK_OPERATION_STATUS_FAILURE;
     *(uint32_t *)(network_configuration_pointer + NETWORK_CONFIG_OFFSET) = NETWORK_SESSION_CONFIG_SIZE;
     *(uint32_t *)((longlong)network_configuration_pointer + SESSION_STRUCT_SIZE) = network_socket_handle_third;
-    memcpy(network_configuration_pointer + 3, network_buffer_pointer, (longlong)(network_operation_result + NETWORK_OPERATION_SUCCESS));
+    memcpy(network_configuration_pointer + NETWORK_CONFIG_DATA_OFFSET_3, network_buffer_pointer, (longlong)(network_operation_result + NETWORK_OPERATION_SUCCESS));
 network_validate_socket_connection_label:
   network_exit_on_error(&network_socket_handle_fourth);
 // 函数: void NetworkLogSecurity(uint64_t network_socket_handle)
