@@ -10,212 +10,212 @@
 #define RESOURCE_TYPE_AUDIO 12
 
 // 新增常量定义
-#define 资源类型字体 12
-#define 资源类型模型 28
-#define 资源类型动画 19
-#define 资源类型粒子 18
-#define 资源类型配置 23
-#define 资源类型存档 20
-#define 资源类型字符串管理器 28
-#define 资源类型物理 23
-#define 资源类型AI 31
-#define 资源类型UI 17
-#define 资源类型脚本 25
-#define 资源类型网络 35
-#define 资源类型安全 29
-#define 资源类型认证 30
-#define 资源类型权限 26
-#define 资源类型会话 24
-#define 资源类型用户配置 33
-#define 资源类型保存 21
-#define 资源类型成就 27
-#define 资源类型统计 28
-#define 资源类型分析 29
-#define 资源类型调试 17
-#define 资源类型性能分析 25
-#define 资源类型崩溃处理 21
-#define 资源类型错误报告 19
-#define 资源类型更新 33
-#define 资源类型补丁 35
-#define 资源类型诊断 21
-#define 资源类型监控 21
-#define 资源类型健康检查 15
-#define 资源类型备份 21
-#define 资源类型恢复 21
-#define 资源类型维护 24
-#define 资源类型优化 27
-#define 资源类型性能监控 20
-#define 资源类型负载均衡 18
-#define 资源类型扩展 15
+#define RESOURCE_TYPE_FONT 12
+#define RESOURCE_TYPE_MODEL 28
+#define RESOURCE_TYPE_ANIMATION 19
+#define RESOURCE_TYPE_PARTICLE 18
+#define RESOURCE_TYPE_CONFIG 23
+#define RESOURCE_TYPE_SAVE_GAME 20
+#define RESOURCE_TYPE_STRING_MANAGER 28
+#define RESOURCE_TYPE_PHYSICS 23
+#define RESOURCE_TYPE_AI 31
+#define RESOURCE_TYPE_UI 17
+#define RESOURCE_TYPE_SCRIPT 25
+#define RESOURCE_TYPE_NETWORK 35
+#define RESOURCE_TYPE_SECURITY 29
+#define RESOURCE_TYPE_AUTH 30
+#define RESOURCE_TYPE_PERMISSION 26
+#define RESOURCE_TYPE_SESSION 24
+#define RESOURCE_TYPE_USER_CONFIG 33
+#define RESOURCE_TYPE_SAVE 21
+#define RESOURCE_TYPE_ACHIEVEMENT 27
+#define RESOURCE_TYPE_STATISTICS 28
+#define RESOURCE_TYPE_ANALYTICS 29
+#define RESOURCE_TYPE_DEBUG 17
+#define RESOURCE_TYPE_PERFORMANCE_ANALYSIS 25
+#define RESOURCE_TYPE_CRASH_HANDLER 21
+#define RESOURCE_TYPE_ERROR_REPORT 19
+#define RESOURCE_TYPE_UPDATE 33
+#define RESOURCE_TYPE_PATCH 35
+#define RESOURCE_TYPE_DIAGNOSTICS 21
+#define RESOURCE_TYPE_MONITORING 21
+#define RESOURCE_TYPE_HEALTH_CHECK 15
+#define RESOURCE_TYPE_BACKUP 21
+#define RESOURCE_TYPE_RECOVERY 21
+#define RESOURCE_TYPE_MAINTENANCE 24
+#define RESOURCE_TYPE_OPTIMIZATION 27
+#define RESOURCE_TYPE_PERFORMANCE_MONITOR 20
+#define RESOURCE_TYPE_LOAD_BALANCING 18
+#define RESOURCE_TYPE_EXTENSION 15
 
 // 系统状态码
-#define 系统状态成功 0
-#define 系统状态失败 -1
+#define SYSTEM_STATUS_SUCCESS 0
+#define SYSTEM_STATUS_FAILURE -1
 
 // 地址常量定义
-#define 主线程池互斥锁地址 0x180c91970
-#define 渲染线程池互斥锁地址 0x180c91970
-#define 网络线程池互斥锁地址 0x180c91970
-#define IO线程池互斥锁地址 0x180c91970
-#define 字符串缓冲区大小1 0x80
-#define 字符串缓冲区大小2 0x80
-#define 线程栈大小 0x1fff
-#define 网络缓冲区大小 0xe8
-#define 系统配置缓冲区大小 0x238
-#define MAX_线程栈大小 0x1fff
+#define MAIN_THREAD_POOL_MUTEX_ADDR 0x180c91970
+#define RENDER_THREAD_POOL_MUTEX_ADDR 0x180c91970
+#define NETWORK_THREAD_POOL_MUTEX_ADDR 0x180c91970
+#define IO_THREAD_POOL_MUTEX_ADDR 0x180c91970
+#define STRING_BUFFER_SIZE_1 0x80
+#define STRING_BUFFER_SIZE_2 0x80
+#define THREAD_STACK_SIZE 0x1fff
+#define NETWORK_BUFFER_SIZE 0xe8
+#define SYSTEM_CONFIG_BUFFER_SIZE 0x238
+#define MAX_THREAD_STACK_SIZE 0x1fff
 
 // 标志常量定义
-#define 标志已初始化 0x13
-#define 标志纹理资源 0xd
-#define 标志着色器资源 0x17
-#define 标志音频资源 0xd
-#define 标志字体资源 0xc
-#define 标志模型资源 0x1f
-#define 标志动画资源 0x17
-#define 标志粒子资源 0x13
-#define 标志配置资源 0x14
-#define 标志存档资源 0x1b
-#define 标志字符串管理器资源 0x19
-#define 标志物理资源 0x12
-#define 标志AI资源 0x19
-#define 标志UI资源 0x11
-#define 标志脚本资源 0x18
-#define 标志网络资源 0x13
-#define 标志安全资源 0x16
-#define 标志认证资源 0xf
-#define 标志权限资源 0x14
-#define 标志会话资源 0x16
-#define 标志用户配置资源 0xf
-#define 标志保存资源 0xb
-#define 标志成就资源 0x13
-#define 标志统计资源 0xd
-#define 标志分析资源 0x17
-#define 标志调试资源 0xd
-#define 标志性能分析资源 0xc
-#define 标志崩溃处理资源 0x16
-#define 标志错误报告资源 0x13
-#define 标志更新资源 0xf
-#define 标志补丁资源 0xb
-#define 标志诊断资源 0x1b
-#define 标志监控资源 0x19
-#define 标志健康检查资源 0x1f
-#define 标志备份资源 0x1b
-#define 标志恢复资源 0x13
-#define 标志维护资源 0xe
-#define 标志优化资源 0xe
-#define 标志性能监控资源 0xf
-#define 标志负载均衡资源 0xd
-#define 标志扩展资源 0x13
+#define FLAG_INITIALIZED 0x13
+#define FLAG_TEXTURE_RESOURCE 0xd
+#define FLAG_SHADER_RESOURCE 0x17
+#define FLAG_AUDIO_RESOURCE 0xd
+#define FLAG_FONT_RESOURCE 0xc
+#define FLAG_MODEL_RESOURCE 0x1f
+#define FLAG_ANIMATION_RESOURCE 0x17
+#define FLAG_PARTICLE_RESOURCE 0x13
+#define FLAG_CONFIG_RESOURCE 0x14
+#define FLAG_SAVE_GAME_RESOURCE 0x1b
+#define FLAG_STRING_MANAGER_RESOURCE 0x19
+#define FLAG_PHYSICS_RESOURCE 0x12
+#define FLAG_AI_RESOURCE 0x19
+#define FLAG_UI_RESOURCE 0x11
+#define FLAG_SCRIPT_RESOURCE 0x18
+#define FLAG_NETWORK_RESOURCE 0x13
+#define FLAG_SECURITY_RESOURCE 0x16
+#define FLAG_AUTH_RESOURCE 0xf
+#define FLAG_PERMISSION_RESOURCE 0x14
+#define FLAG_SESSION_RESOURCE 0x16
+#define FLAG_USER_CONFIG_RESOURCE 0xf
+#define FLAG_SAVE_RESOURCE 0xb
+#define FLAG_ACHIEVEMENT_RESOURCE 0x13
+#define FLAG_STATISTICS_RESOURCE 0xd
+#define FLAG_ANALYTICS_RESOURCE 0x17
+#define FLAG_DEBUG_RESOURCE 0xd
+#define FLAG_PERFORMANCE_ANALYSIS_RESOURCE 0xc
+#define FLAG_CRASH_HANDLER_RESOURCE 0x16
+#define FLAG_ERROR_REPORT_RESOURCE 0x13
+#define FLAG_UPDATE_RESOURCE 0xf
+#define FLAG_PATCH_RESOURCE 0xb
+#define FLAG_DIAGNOSTICS_RESOURCE 0x1b
+#define FLAG_MONITORING_RESOURCE 0x19
+#define FLAG_HEALTH_CHECK_RESOURCE 0x1f
+#define FLAG_BACKUP_RESOURCE 0x1b
+#define FLAG_RECOVERY_RESOURCE 0x13
+#define FLAG_MAINTENANCE_RESOURCE 0xe
+#define FLAG_OPTIMIZATION_RESOURCE 0xe
+#define FLAG_PERFORMANCE_MONITOR_RESOURCE 0xf
+#define FLAG_LOAD_BALANCING_RESOURCE 0xd
+#define FLAG_EXTENSION_RESOURCE 0x13
 
 // 浮点数常量
-#define 浮点数一 0x3f800000
-#define 浮点数最大正常值 0x7f7fffff
-#define 浮点数PI除以4 0x3d088889
+#define FLOAT_ONE 0x3f800000
+#define FLOAT_MAX_NORMAL 0x7f7fffff
+#define FLOAT_PI_DIV_4 0x3d088889
 
 // 整数常量
-#define 无符号32位整数最大值 0xffffffff
-#define 无符号64位整数最大值 0xffffffffffffffff
-#define 32位整数掩码 0xffffffff
-#define 64位整数掩码 0xffffffff00000000
+#define UINT32_MAX 0xffffffff
+#define UINT64_MAX 0xffffffffffffffff
+#define INT32_MASK 0xffffffff
+#define INT64_MASK 0xffffffff00000000
 
 // 系统函数地址常量
-#define 主互斥锁地址 0x180c91970
-#define 条件变量地址 0x180c91240
-#define 清理函数地址 0x180c911a0
-#define 第二互斥锁地址 0x180c91f70
-#define 第三互斥锁地址 0x180c91ff0
-#define 字符串偏移地址 0x180c82871
+#define MAIN_MUTEX_ADDR 0x180c91970
+#define CONDITION_VARIABLE_ADDR 0x180c91240
+#define CLEANUP_FUNCTION_ADDR 0x180c911a0
+#define SECOND_MUTEX_ADDR 0x180c91f70
+#define THIRD_MUTEX_ADDR 0x180c91ff0
+#define STRING_OFFSET_ADDR 0x180c82871
 
 // 函数地址常量
-#define 渲染引擎函数 0x00018005c480
-#define 系统初始化函数 0x00018024f7f0
-#define 标志处理函数 0x0001800e2850
-#define 内存分配函数 0x00018066bd70
-#define 浮点数转换函数 0x0001800adf40
-#define 互斥锁设置函数 0x000180220c90
-#define 线程处理函数 0x0001800ab000
-#define 模块加载函数 0x00018013d940
-#define 数据处理函数 0x0001804ca2d0
-#define 系统验证函数 0x0001800a1eb0
+#define RENDER_ENGINE_FUNCTION 0x00018005c480
+#define SYSTEM_INIT_FUNCTION 0x00018024f7f0
+#define FLAG_HANDLER_FUNCTION 0x0001800e2850
+#define MEMORY_ALLOC_FUNCTION 0x00018066bd70
+#define FLOAT_CONVERT_FUNCTION 0x0001800adf40
+#define MUTEX_SET_FUNCTION 0x000180220c90
+#define THREAD_HANDLER_FUNCTION 0x0001800ab000
+#define MODULE_LOAD_FUNCTION 0x00018013d940
+#define DATA_HANDLER_FUNCTION 0x0001804ca2d0
+#define SYSTEM_VALIDATE_FUNCTION 0x0001800a1eb0
 
 // 内存管理地址
-#define 内存池地址1 0x180d496e0
-#define 内存池地址2 0x180d497e0
-#define 模块数据地址 0x180c95bf8
-#define 模块互斥锁地址 0x180c95d70
-#define 模块处理地址 0x180c95de0
-#define 模块配置地址 0x180c95fc8
+#define MEMORY_POOL_ADDR_1 0x180d496e0
+#define MEMORY_POOL_ADDR_2 0x180d497e0
+#define MODULE_DATA_ADDR 0x180c95bf8
+#define MODULE_MUTEX_ADDR 0x180c95d70
+#define MODULE_HANDLER_ADDR 0x180c95de0
+#define MODULE_CONFIG_ADDR 0x180c95fc8
 
 // 系统模块类型常量
-#define 模块类型音频 0xb
-#define 模块类型视频 0xc
-#define 模块类型输入 0xd
-#define 模块类型网络 0xe
-#define 模块类型物理 0x11
-#define 模块类型AI 0x13
-#define 模块类型UI 0x14
-#define 模块类型脚本 0x15
-#define 模块类型配置 0x16
-#define 模块类型资源缓存 0x17
-#define 模块类型资源加载器 0x18
-#define 模块类型着色器 0x19
-#define 模块类型纹理 0x1a
-#define 模块类型网格 0x1b
-#define 模块类型动画 0x1c
-#define 模块类型粒子 0x1d
-#define 模块类型物理_ENGINE 0x1e
-#define 模块类型碰撞 0x1f
-#define 模块类型AI_SYSTEM 0x21
-#define 模块类型导航 0x23
-#define 模块类型UI_FRAMEWORK 0x25
-#define 模块类型脚本_ENGINE 0x27
-#define 模块类型数据库 0x28
-#define 模块类型网络_MANAGER 0x2a
-#define 模块类型安全 0x2c
-#define 模块类型加密 0x2d
-#define 模块类型认证 0x2e
-#define 模块类型权限 0x2f
-#define 模块类型会话 0x30
-#define 模块类型用户配置 0x31
-#define 模块类型保存 0x32
-#define 模块类型成就 0x33
-#define 模块类型统计 0x34
-#define 模块类型分析 0x35
-#define 模块类型调试 0x36
-#define 模块类型性能分析 0x37
-#define 模块类型崩溃处理 0x38
-#define 模块类型错误报告 0x39
-#define 模块类型更新 0x3a
-#define 模块类型补丁 0x3b
-#define 模块类型诊断 0x3c
-#define 模块类型监控 0x3d
-#define 模块类型健康检查 0x3e
+#define MODULE_TYPE_AUDIO 0xb
+#define MODULE_TYPE_VIDEO 0xc
+#define MODULE_TYPE_INPUT 0xd
+#define MODULE_TYPE_NETWORK 0xe
+#define MODULE_TYPE_PHYSICS 0x11
+#define MODULE_TYPE_AI 0x13
+#define MODULE_TYPE_UI 0x14
+#define MODULE_TYPE_SCRIPT 0x15
+#define MODULE_TYPE_CONFIG 0x16
+#define MODULE_TYPE_RESOURCE_CACHE 0x17
+#define MODULE_TYPE_RESOURCE_LOADER 0x18
+#define MODULE_TYPE_SHADER 0x19
+#define MODULE_TYPE_TEXTURE 0x1a
+#define MODULE_TYPE_MESH 0x1b
+#define MODULE_TYPE_ANIMATION 0x1c
+#define MODULE_TYPE_PARTICLE 0x1d
+#define MODULE_TYPE_PHYSICS_ENGINE 0x1e
+#define MODULE_TYPE_COLLISION 0x1f
+#define MODULE_TYPE_AI_SYSTEM 0x21
+#define MODULE_TYPE_NAVIGATION 0x23
+#define MODULE_TYPE_UI_FRAMEWORK 0x25
+#define MODULE_TYPE_SCRIPT_ENGINE 0x27
+#define MODULE_TYPE_DATABASE 0x28
+#define MODULE_TYPE_NETWORK_MANAGER 0x2a
+#define MODULE_TYPE_SECURITY 0x2c
+#define MODULE_TYPE_ENCRYPTION 0x2d
+#define MODULE_TYPE_AUTH 0x2e
+#define MODULE_TYPE_PERMISSION 0x2f
+#define MODULE_TYPE_SESSION 0x30
+#define MODULE_TYPE_USER_CONFIG 0x31
+#define MODULE_TYPE_SAVE 0x32
+#define MODULE_TYPE_ACHIEVEMENT 0x33
+#define MODULE_TYPE_STATISTICS 0x34
+#define MODULE_TYPE_ANALYTICS 0x35
+#define MODULE_TYPE_DEBUG 0x36
+#define MODULE_TYPE_PERFORMANCE_ANALYSIS 0x37
+#define MODULE_TYPE_CRASH_HANDLER 0x38
+#define MODULE_TYPE_ERROR_REPORT 0x39
+#define MODULE_TYPE_UPDATE 0x3a
+#define MODULE_TYPE_PATCH 0x3b
+#define MODULE_TYPE_DIAGNOSTICS 0x3c
+#define MODULE_TYPE_MONITORING 0x3d
+#define MODULE_TYPE_HEALTH_CHECK 0x3e
 
 // 全局数据定义 - 从原始文件中提取
-void* g_全局系统数据;
-void* g_系统配置数据;
+void* g_global_system_data;
+void* g_system_config_data;
 
 // 系统地址常量定义 - 美化后的变量名
 // 原始名称: unknown_180a1b368 - 句柄管理器地址
-void* g_句柄管理器地址_180a1b368 = (void*)0x180a1b368;
+void* g_handle_manager_addr_180a1b368 = (void*)0x180a1b368;
 // 原始名称: unknown_180a1b3f0 - 内存管理器地址
-void* g_内存管理器地址_180a1b3f0 = (void*)0x180a1b3f0;
+void* g_memory_manager_addr_180a1b3f0 = (void*)0x180a1b3f0;
 // 原始名称: unknown_180a02fc8 - UI互斥锁属性地址
-void* g_UI互斥锁属性地址_180a02fc8 = (void*)0x180a02fc8;
+void* g_ui_mutex_attr_addr_180a02fc8 = (void*)0x180a02fc8;
 // 原始名称: unknown_180a02fa0 - UI互斥锁类型地址
-void* g_UI互斥锁类型地址_180a02fa0 = (void*)0x180a02fa0;
+void* g_ui_mutex_type_addr_180a02fa0 = (void*)0x180a02fa0;
 // 原始名称: unknown_18045f210 - 栈数据地址1
-void* g_栈数据地址_18045f210 = (void*)0x18045f210;
+void* g_stack_data_addr_18045f210 = (void*)0x18045f210;
 // 原始名称: unknown_18045f200 - 栈数据地址2
-void* g_栈数据地址_18045f200 = (void*)0x18045f200;
+void* g_stack_data_addr_18045f200 = (void*)0x18045f200;
 
 // 初始化系统配置
-int 初始化系统配置(void)
+int initialize_system_config(void)
 {
   int is_system_enabled = 1;
   int operation_count = 0;
-  long long max_allowed_value = 最大系统值;
-  int system_status = 系统状态成功;
+  long long max_allowed_value = MAX_SYSTEM_VALUE;
+  int system_status = SYSTEM_STATUS_SUCCESS;
   int init_result = initialize_system(system_configuration_init_function);
   return (init_result != 0) - 1;
 }
@@ -289,11 +289,11 @@ int initialize_physics_system(void)
 int initialize_main_thread_pool(void* handle, void* flags, void* mutex_attr, int mutex_type)
 {
   long long init_result;
-  unsigned long long pool_flags = 线程池默认标志;
+  unsigned long long pool_flags = THREAD_POOL_DEFAULT_FLAG;
   
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(主线程池互斥锁地址, 2, mutex_attr, mutex_type, pool_flags);
-  main_thread_pool_status = 系统状态成功;
+  _Mtx_init_in_situ(MAIN_THREAD_POOL_MUTEX_ADDR, 2, mutex_attr, mutex_type, pool_flags);
+  main_thread_pool_status = SYSTEM_STATUS_SUCCESS;
   init_result = execute_function(main_thread_pool_init_function);
   return (init_result != 0) - 1;
 }
@@ -301,11 +301,11 @@ int initialize_main_thread_pool(void* handle, void* flags, void* mutex_attr, int
 int initialize_rendering_thread_pool(void* handle, void* flags, void* mutex_attr, int mutex_type)
 {
   long long init_result;
-  unsigned long long pool_flags = 线程池默认标志;
+  unsigned long long pool_flags = THREAD_POOL_DEFAULT_FLAG;
   
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(渲染线程池互斥锁地址, 2, mutex_attr, mutex_type, pool_flags);
-  render_thread_pool_status = 系统状态成功;
+  _Mtx_init_in_situ(RENDER_THREAD_POOL_MUTEX_ADDR, 2, mutex_attr, mutex_type, pool_flags);
+  render_thread_pool_status = SYSTEM_STATUS_SUCCESS;
   init_result = execute_function(rendering_thread_pool_init_function);
   return (init_result != 0) - 1;
 }
@@ -313,11 +313,11 @@ int initialize_rendering_thread_pool(void* handle, void* flags, void* mutex_attr
 int initialize_network_thread_pool(void* handle, void* flags, void* mutex_attr, int mutex_type)
 {
   long long init_result;
-  unsigned long long pool_flags = 线程池默认标志;
+  unsigned long long pool_flags = THREAD_POOL_DEFAULT_FLAG;
   
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(网络线程池互斥锁地址, 2, mutex_attr, mutex_type, pool_flags);
-  network_thread_pool_status = 系统状态成功;
+  _Mtx_init_in_situ(NETWORK_THREAD_POOL_MUTEX_ADDR, 2, mutex_attr, mutex_type, pool_flags);
+  network_thread_pool_status = SYSTEM_STATUS_SUCCESS;
   init_result = execute_function(network_thread_pool_init_function);
   return (init_result != 0) - 1;
 }
@@ -325,11 +325,11 @@ int initialize_network_thread_pool(void* handle, void* flags, void* mutex_attr, 
 int initialize_io_thread_pool(void* handle, void* flags, void* mutex_attr, int mutex_type)
 {
   long long init_result;
-  unsigned long long pool_flags = 线程池默认标志;
+  unsigned long long pool_flags = THREAD_POOL_DEFAULT_FLAG;
   
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(IO线程池互斥锁地址, 2, mutex_attr, mutex_type, pool_flags);
-  io_thread_pool_status = 系统状态成功;
+  _Mtx_init_in_situ(IO_THREAD_POOL_MUTEX_ADDR, 2, mutex_attr, mutex_type, pool_flags);
+  io_thread_pool_status = SYSTEM_STATUS_SUCCESS;
   init_result = execute_function(io_thread_pool_init_function);
   return (init_result != 0) - 1;
 }
@@ -340,7 +340,7 @@ int initialize_base_resource_manager(void)
   unsigned long long str_length;
   g_resource_string_1 = 0;
   g_resource_id_1 = 6;
-  strcpy_s(&g_resource_string_1,STRING_BUFFER_SIZE,&string_source_001,str_length,线程池默认标志);
+  strcpy_s(&g_resource_string_1,STRING_BUFFER_SIZE,&string_source_001,str_length,THREAD_POOL_DEFAULT_FLAG);
   init_result = execute_function(base_resource_manager_init_function);
   return (init_result != 0) - 1;
 }
