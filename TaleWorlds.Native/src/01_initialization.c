@@ -48,16 +48,23 @@
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了硬编码十六进制常量和数组索引的语义化替换
 
+// 系统数组索引语义化常量
+#define SYSTEM_ARRAY_INDEX_SYSTEM_FLAGS_23 0x23
+#define SYSTEM_ARRAY_INDEX_GUARD_CHECK_2C 0x2c
+#define SYSTEM_ARRAY_INDEX_INIT_FLAG_2F 0x2f
+#define SYSTEM_ARRAY_INDEX_HANDLE_ID_9F 0x9f
+#define SYSTEM_ARRAY_INDEX_HANDLE_ID_A3 0xa3
+#define SYSTEM_ARRAY_INDEX_HANDLE_ID_A7 0xa7
+
 // 本次美化内容：
-// - 添加了SYSTEM_OFFSET_C、SYSTEM_OFFSET_B、SYSTEM_OFFSET_BF、SYSTEM_OFFSET_65、SYSTEM_OFFSET_67等系统偏移量语义化常量
-// - 将函数中的硬编码偏移量0xc替换为SYSTEM_OFFSET_C
-// - 将硬编码偏移量0x79替换为SYSTEM_DATA_BLOCK_SIZE_79
-// - 将硬编码偏移量0xbf替换为SYSTEM_OFFSET_BF
-// - 将硬编码值0x65替换为SYSTEM_OFFSET_65
-// - 将硬编码值0x67替换为SYSTEM_OFFSET_67
+// - 添加了SYSTEM_ARRAY_INDEX_SYSTEM_FLAGS_23等系统数组索引语义化常量
+// - 将硬编码数组索引[0x23]替换为[SYSTEM_ARRAY_INDEX_SYSTEM_FLAGS_23]等语义化常量
+// - 将硬编码数组索引[0x2c]替换为[SYSTEM_ARRAY_INDEX_GUARD_CHECK_2C]等语义化常量
+// - 将硬编码数组索引[0x2f]替换为[SYSTEM_ARRAY_INDEX_INIT_FLAG_2F]等语义化常量
+// - 将硬编码数组索引[0x9f]替换为[SYSTEM_ARRAY_INDEX_HANDLE_ID_9F]等语义化常量
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
-// - 这是简化实现，主要处理了函数中硬编码偏移量的语义化替换
+// - 这是简化实现，主要处理了硬编码数组索引的语义化替换
 
 // 系统常量语义化定义
 #define SYSTEM_INVALID_HANDLE_VALUE 0xFFFFFFFFFFFFFFFF
@@ -41691,14 +41698,14 @@ InitializeFontSystem(longlong *handleIdentifier,uint64_t *resourceIdentifier,uin
         system_ptr_value = (void *)system_pointer_var[SYSTEM_OFFSET_2A];
       }
       strcpy_s(systemFlags[1],SYSTEM_DATA_COMPARE_SIZE0,system_pointer_var);
-      systemFlags[0x23] = system_pointer_var[-8];
+      systemFlags[SYSTEM_ARRAY_INDEX_SYSTEM_FLAGS_23] = system_pointer_var[-8];
       systemFlags[SYSTEM_DATA_OFFSET_24] = system_pointer_var[-7];
       systemFlags[SYSTEM_DATA_OFFSET_25] = system_pointer_var[-6];
       systemFlags[SYSTEM_DATA_OFFSET_26] = system_pointer_var[-5];
       systemFlags[SYSTEM_DATA_OFFSET_27] = system_pointer_var[-4];
       *(uint8_t *)(systemFlags + SYSTEM_OBJECT_OFFSET_28) = *(uint8_t *)(system_pointer_var + -3);
       systemFlags[SYSTEM_OBJECT_OFFSET_2B] = 0;
-      systemFlags[0x2c] = _guard_check_icall;
+      systemFlags[SYSTEM_ARRAY_INDEX_GUARD_CHECK_2C] = _guard_check_icall;
       if (systemFlags + 0x29 != system_pointer_var + -2) {
         ptr_system_init_flag = (code *)*system_ptr_value;
         if (ptr_system_init_flag != (code *)0x0) {
@@ -41706,11 +41713,11 @@ InitializeFontSystem(longlong *handleIdentifier,uint64_t *resourceIdentifier,uin
           ptr_system_init_flag = (code *)*system_ptr_value;
         }
         systemFlags[SYSTEM_OBJECT_OFFSET_2B] = ptr_system_init_flag;
-        systemFlags[0x2c] = system_pointer_var[1];
+        systemFlags[SYSTEM_ARRAY_INDEX_GUARD_CHECK_2C] = system_pointer_var[1];
         *system_ptr_value = 0;
         system_pointer_var[1] = _guard_check_icall;
       }
-      systemFlags[0x2f] = 0;
+      systemFlags[SYSTEM_ARRAY_INDEX_INIT_FLAG_2F] = 0;
       systemFlags[SYSTEM_MEMORY_SIZE_30] = _guard_check_icall;
       if (systemFlags + SYSTEM_OFFSET_2D != system_pointer_var + 2) {
         ptr_system_init_flag = (code *)system_pointer_var[4];
@@ -41718,7 +41725,7 @@ InitializeFontSystem(longlong *handleIdentifier,uint64_t *resourceIdentifier,uin
           (*ptr_system_init_flag)(systemFlags + SYSTEM_OFFSET_2D,system_pointer_var + 2,2);
           ptr_system_init_flag = (code *)system_pointer_var[4];
         }
-        systemFlags[0x2f] = ptr_system_init_flag;
+        systemFlags[SYSTEM_ARRAY_INDEX_INIT_FLAG_2F] = ptr_system_init_flag;
         systemFlags[SYSTEM_MEMORY_SIZE_30] = system_pointer_var[5];
         system_pointer_var[4] = 0;
         system_pointer_var[5] = _guard_check_icall;
@@ -47953,7 +47960,7 @@ float * HandleSystemOperation16(float *handleIdentifier)
     init_float_pointer_temp = handleIdentifier + 0x9d;
     init_float_pointer_temp[0] = 1e+08;
     init_float_pointer_temp[1] = 1e+08;
-    handleIdentifier[0x9f] = 1e+08;
+    handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_9F] = 1e+08;
     handleIdentifier[0xa0] = 3.4028235e+38;
     handleIdentifier[0xa1] = -1e+08;
     handleIdentifier[0xa2] = -1e+08;
@@ -47980,8 +47987,8 @@ float * HandleSystemOperation16(float *handleIdentifier)
           init_float_stack_a4 = handleIdentifier[0x9e];
         }
         init_float_stack_a0 = init_float_pointer_temp[2];
-        if (handleIdentifier[0x9f] < init_float_stack_a0) {
-          init_float_stack_a0 = handleIdentifier[0x9f];
+        if (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_9F] < init_float_stack_a0) {
+          init_float_stack_a0 = handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_9F];
         }
         *(ulonglong *)init_float_pointer_temp = CONCAT44(init_float_stack_a4,init_float_stack_a8);
         *(ulonglong *)(handleIdentifier + 0x9f) = CONCAT44(uintStack_9c,init_float_stack_a0);
@@ -48049,7 +48056,7 @@ float * HandleSystemOperation16(float *handleIdentifier)
       handleIdentifier[0xa9] = 0.0;
       init_float_pointer_temp[0] = 0.0;
       init_float_pointer_temp[1] = 0.0;
-      handleIdentifier[0x9f] = 0.0;
+      handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_9F] = 0.0;
       handleIdentifier[0xa0] = 0.0;
       handleIdentifier[0xa1] = 0.0;
       handleIdentifier[0xa2] = 0.0;
@@ -53574,7 +53581,7 @@ float * InitializeResourceSystem(float *handleIdentifier)
     init_float_pointer_temp = handleIdentifier + 0x9d;
     init_float_pointer_temp[0] = 1e+08;
     init_float_pointer_temp[1] = 1e+08;
-    handleIdentifier[0x9f] = 1e+08;
+    handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_9F] = 1e+08;
     handleIdentifier[0xa0] = 3.4028235e+38;
     handleIdentifier[0xa1] = -1e+08;
     handleIdentifier[0xa2] = -1e+08;
@@ -53601,8 +53608,8 @@ float * InitializeResourceSystem(float *handleIdentifier)
           init_float_stack_a4 = handleIdentifier[0x9e];
         }
         init_float_stack_a0 = init_float_pointer_temp[2];
-        if (handleIdentifier[0x9f] < init_float_stack_a0) {
-          init_float_stack_a0 = handleIdentifier[0x9f];
+        if (handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_9F] < init_float_stack_a0) {
+          init_float_stack_a0 = handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_9F];
         }
         *(ulonglong *)init_float_pointer_temp = CONCAT44(init_float_stack_a4,init_float_stack_a8);
         *(ulonglong *)(handleIdentifier + 0x9f) = CONCAT44(uintStack_9c,init_float_stack_a0);
@@ -53667,7 +53674,7 @@ float * InitializeResourceSystem(float *handleIdentifier)
       handleIdentifier[0xa9] = 0.0;
       init_float_pointer_temp[0] = 0.0;
       init_float_pointer_temp[1] = 0.0;
-      handleIdentifier[0x9f] = 0.0;
+      handleIdentifier[SYSTEM_ARRAY_INDEX_HANDLE_ID_9F] = 0.0;
       handleIdentifier[0xa0] = 0.0;
       handleIdentifier[0xa1] = 0.0;
       handleIdentifier[0xa2] = 0.0;
