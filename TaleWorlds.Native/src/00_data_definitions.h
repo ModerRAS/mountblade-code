@@ -4786,7 +4786,7 @@ section_processing_jump_label_:
     str_len_counter = str_len_counter + -1;
   } while (str_len_counter != 0);
 section_processing_jump_label_:
-  string_input_pointer = (unsigned long long *)system_global_data_pointer[1];
+  string_input_pointer = (unsigned long long *)system_global_data_pointer[SYSTEM_GLOBAL_DATA_INDEX_STRING_POINTER];
   thread_result_status = _Mtx_lock(ADDR_MAIN_MUTEX);
   if (thread_result_status != 0) {
     __Throw_C_error_std__YAXH_Z(thread_result_status);
@@ -5005,7 +5005,7 @@ section_processing_jump_label_:
   (**(code **)(**(long long **)(handle_param + SYSTEM_OFFSET_MODULE_FUNCTION) + SYSTEM_OFFSET_FUNCTION_TABLE))(*(long long **)(handle_param + SYSTEM_OFFSET_MODULE_FUNCTION),thread_operation_flags);
   if (((*(int *)(handle_param + SYSTEM_CONFIG_OFFSET_MODULE_HANDLE0) != 0) && (system_global_data_pointer != (long long *)0x0)) &&
      (system_char_variable = (**(code **)(*system_global_data_pointer + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG))(), system_char_variable != '\0')) {
-    (*(code *)system_global_data_pointer[7])();
+    (*(code *)system_global_data_pointer[SYSTEM_GLOBAL_DATA_INDEX_MODULE_HANDLE])();
   }
   if (((*(int *)(handle_param + SYSTEM_CONFIG_OFFSET_MODULE_HANDLE0) != 0) && (system_global_data_pointer != (long long *)0x0)) &&
      (system_char_variable = (**(code **)(*system_global_data_pointer + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG))(), system_char_variable != '\0')) {
@@ -5473,7 +5473,7 @@ section_processing_jump_label_:
   psystem_initialization_result7 = system_global_data_pointer;
   maximum_stack_size = SYSTEM_ZERO_VALUE;
   thread_operation_flags = *(unsigned int *)(pplStack_220 + 3);
-  *(int *)(pplStack_220 + 3) = (int)system_global_data_pointer[10];
+  *(int *)(pplStack_220 + 3) = (int)system_global_data_pointer[SYSTEM_GLOBAL_DATA_INDEX_CONFIG_VALUE];
   *(unsigned int *)(psystem_initialization_result7 + 10) = thread_operation_flags;
   system_initialization_result6 = (long long)pplStack_220[1];
   pplStack_220[1] = (long long *)psystem_initialization_result7[8];
@@ -14437,3 +14437,10 @@ void system_data_initialization_cleanup(void)
 #define SYSTEM_FLOAT_COLOR_LUMINANCE_RED_COMPONENT 0.2126    // 红色分量
 #define SYSTEM_FLOAT_COLOR_LUMINANCE_GREEN_COMPONENT 0.7152  // 绿色分量
 #define SYSTEM_FLOAT_COLOR_LUMINANCE_BLUE_COMPONENT 0.0722   // 蓝色分量
+
+// 全局数据指针索引常量 - 美化硬编码数组索引（2025年8月30日最终批次）
+// 简化实现：仅将常见的硬编码数组索引替换为语义化常量
+// 原本实现：完全重构所有数组索引体系
+#define SYSTEM_GLOBAL_DATA_INDEX_STRING_POINTER 1            // 字符串指针索引
+#define SYSTEM_GLOBAL_DATA_INDEX_MODULE_HANDLE 7             // 模块句柄索引
+#define SYSTEM_GLOBAL_DATA_INDEX_CONFIG_VALUE 10              // 配置值索引
