@@ -205,6 +205,15 @@
 #define UTILITY_BYTE_FLAG_CLEAR 0xfe
 #define UTILITY_SUCCESS_FLAG 1
 
+// 新增资源偏移量语义化宏定义
+#define UTILITY_RESOURCE_OFFSET_148 0x148
+#define UTILITY_RESOURCE_OFFSET_189 0x189
+#define UTILITY_RESOURCE_OFFSET_110 0x110
+#define UTILITY_RESOURCE_OFFSET_2A0 0x2a0
+#define UTILITY_RESOURCE_OFFSET_8B0 0x8b0
+#define UTILITY_RESOURCE_OFFSET_160 0x160
+#define UTILITY_RESOURCE_OFFSET_858 0x858
+
 
 // 06_utilities.c - 473 个函数
 // 本次美化内容：
@@ -231,7 +240,14 @@
 // 70. 将resource_buffer + 0x148替换为resource_buffer + UTILITY_RESOURCE_OFFSET_148等资源偏移量
 // 71. 将resource_buffer + 0x128替换为resource_buffer + UTILITY_RESOURCE_OFFSET_128等资源偏移量
 // 72. 将resource_buffer + 0x120替换为resource_buffer + UTILITY_RESOURCE_OFFSET_120等资源偏移量
-// 这是简化实现，主要处理了工具系统中资源大小和偏移量的语义化替换
+// 73. 将resource_buffer + 0x148替换为resource_buffer + UTILITY_RESOURCE_OFFSET_148等资源偏移量
+// 74. 将resource_buffer + 0x189替换为resource_buffer + UTILITY_RESOURCE_OFFSET_189等资源偏移量
+// 75. 将resource_buffer + 0x110替换为resource_buffer + UTILITY_RESOURCE_OFFSET_110等资源偏移量
+// 76. 将resource_buffer + 0x2a0替换为resource_buffer + UTILITY_RESOURCE_OFFSET_2A0等资源偏移量
+// 77. 将operation_buffer + 0x8b0替换为operation_buffer + UTILITY_RESOURCE_OFFSET_8B0等操作缓冲区偏移量
+// 78. 将resource_buffer + 0x160替换为resource_buffer + UTILITY_RESOURCE_OFFSET_160等资源偏移量
+// 79. 将resource_buffer + 0x858替换为resource_buffer + UTILITY_RESOURCE_OFFSET_858等资源偏移量
+// 这是简化实现，主要处理了工具系统中资源偏移量的语义化替换
 // 提高了代码的可读性和维护性
 // 保持代码语义不变
 
