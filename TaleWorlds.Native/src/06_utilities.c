@@ -188,7 +188,21 @@
 // 56. 将*(uint16_t *)(plocalIndex + 2) = 0x508替换为语义化常量
 // 57. 将*pbooleanFlag & 0xfe替换为*pbooleanFlag & UTILITY_BYTE_FLAG_CLEAR等位操作常量
 // 58. 将硬编码的偏移量8替换为UTILITY_OFFSET_ERROR_COUNTER等语义化名称
-// 这是简化实现，主要处理了工具系统中硬编码数组索引和十六进制偏移量的语义化替换
+// 59. 添加了UTILITY_RESOURCE_SIZE_UNIT等资源大小语义化宏定义
+// 60. 添加了UTILITY_RESOURCE_SIZE_THRESHOLD等资源大小阈值语义化宏定义
+// 61. 添加了UTILITY_RESOURCE_OFFSET_*等资源偏移量语义化宏定义
+// 62. 将0x278替换为UTILITY_RESOURCE_SIZE_UNIT等资源大小常量
+// 63. 将0x3ff替换为UTILITY_RESOURCE_SIZE_THRESHOLD等资源大小阈值常量
+// 64. 将resource_buffer + 0x210替换为resource_buffer + UTILITY_RESOURCE_OFFSET_210等资源偏移量
+// 65. 将resource_buffer + 0x2f4替换为resource_buffer + UTILITY_RESOURCE_OFFSET_2F4等资源偏移量
+// 66. 将resource_buffer + 0x21c替换为resource_buffer + UTILITY_RESOURCE_OFFSET_21C等资源偏移量
+// 67. 将resource_buffer + 0x2b8替换为resource_buffer + UTILITY_RESOURCE_OFFSET_2B8等资源偏移量
+// 68. 将resource_buffer + 0x140替换为resource_buffer + UTILITY_RESOURCE_OFFSET_140等资源偏移量
+// 69. 将resource_buffer + 0x188替换为resource_buffer + UTILITY_RESOURCE_OFFSET_188等资源偏移量
+// 70. 将resource_buffer + 0x148替换为resource_buffer + UTILITY_RESOURCE_OFFSET_148等资源偏移量
+// 71. 将resource_buffer + 0x128替换为resource_buffer + UTILITY_RESOURCE_OFFSET_128等资源偏移量
+// 72. 将resource_buffer + 0x120替换为resource_buffer + UTILITY_RESOURCE_OFFSET_120等资源偏移量
+// 这是简化实现，主要处理了工具系统中资源大小和偏移量的语义化替换
 // 提高了代码的可读性和维护性
 // 保持代码语义不变
 
