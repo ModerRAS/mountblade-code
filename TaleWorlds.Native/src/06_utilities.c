@@ -5021,32 +5021,32 @@ void utilityInitializeResourceComponent(int resource_handle_identifier,int resou
     if (utility_operation_result < 8) {
       utility_operation_result = 8;
     }
-    if (utility_operation_result < resource_handle_identifier) goto handle_valueuffer_datarror;
+    if (utility_operation_result < resource_handle_identifier) goto handle_buffer_data_error;
     if (utility_operation_result != 0) {
-      if (MAX_SIZE_MASK < utility_operation_result * UTILITY_DOUBLE_WORD_SIZE - 1U) goto handle_valueuffer_datarror;
-      cpu_register_variable_valueontext = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),utility_operation_result * UTILITY_DOUBLE_WORD_SIZE,&utilityMemoryDataBuffer,
+      if (MAX_SIZE_MASK < utility_operation_result * UTILITY_DOUBLE_WORD_SIZE - 1U) goto handle_buffer_data_error;
+      cpu_register_context = utilityAccessSystemResource(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),utility_operation_result * UTILITY_DOUBLE_WORD_SIZE,&utilityMemoryDataBuffer,
                                 MEMORY_ACCESS_FLAG_2);
-      if (cpu_register_variable_valueontext == 0) goto handle_valueuffer_datarror;
+      if (cpu_register_context == 0) goto handle_buffer_data_error;
       if (*(int *)(utility_base_register_pointer + second_byte_offset) != 0) {
                     // WARNING: Subroutine does not return
-        memcpy(cpu_register_variable_valueontext,*(uint64 *)(utility_base_register_pointer + POINTER_DATA_OFFSET),(longlong)*(int *)(utility_base_register_pointer + second_byte_offset) << 3
+        memcpy(cpu_register_context,*(uint64 *)(utility_base_register_pointer + POINTER_DATA_OFFSET),(longlong)*(int *)(utility_base_register_pointer + second_byte_offset) << 3
               );
       }
     }
     if ((0 < *(int *)(utility_base_register_pointer + FIELD_OFFSET_4)) && (*(longlong *)(utility_base_register_pointer + POINTER_DATA_OFFSET) != 0)) {
                     // WARNING: Subroutine does not return
       utilityWriteMemoryData(*(uint64 *)(utilitySystemDataTable + SYSTEM_TABLE_OFFSET),*(longlong *)(utility_base_register_pointer + POINTER_DATA_OFFSET),
-                    &utilityMemoryDataBuffer,resource_handle_valueta_offset_zero,1);
+                    &utilityMemoryDataBuffer,resource_handle_offset_zero,1);
     }
-    *(longlong *)(utility_base_register_pointer + POINTER_DATA_OFFSET) = cpu_register_variable_valueontext;
+    *(longlong *)(utility_base_register_pointer + POINTER_DATA_OFFSET) = cpu_register_context;
     *(int *)(utility_base_register_pointer + FIELD_OFFSET_4) = utility_operation_result;
   }
   *(uint64 *)(*(longlong *)(utility_base_register_pointer + POINTER_DATA_OFFSET) + (longlong)*(int *)(utility_base_register_pointer + second_byte_offset) * UTILITY_DOUBLE_WORD_SIZE) =
-       in_stack_60;
+       stack_parameter_60;
   *(int *)(utility_base_register_pointer + second_byte_offset) = *(int *)(utility_base_register_pointer + second_byte_offset) + 1;
-handle_valueuffer_datarror:
+handle_buffer_data_error:
                     // WARNING: Subroutine does not return
-  utilityReleaseResourceHandle(*(uint64 *)(cpu_register_variable_valueontext + RESOURCE_UTILITY_HANDLE_DATA_OFFSET));
+  utilityReleaseResourceHandle(*(uint64 *)(cpu_register_context + RESOURCE_UTILITY_HANDLE_DATA_OFFSET));
 }
 
 
