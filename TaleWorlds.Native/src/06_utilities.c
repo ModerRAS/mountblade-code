@@ -2019,11 +2019,11 @@ dataValue g_config_system_accessibility_settings;           // 配置系统无�
 dataValue g_config_system_backup_settings;             // 配置系统备份设置
 dataValue g_config_system_update_settings;             // 配置系统更新设置
 dataValue g_config_system_mod_settings;              // 配置系统Mod设置
-dataValue configSystemCloudSettings;
-dataValue configSystemSocialSettings;
-dataValue g_system_module_config_primary;
-dataValue g_system_module_configuration_secondary;
-dataValue g_system_module_configuration_tertiary;
+dataValue g_config_system_cloud_settings;             // 配置系统云设置
+dataValue g_config_system_social_settings;            // 配置系统社交设置
+dataValue g_system_module_config_primary;            // 系统模块配置主缓冲区
+dataValue g_system_module_config_secondary;         // 系统模块配置次缓冲区
+dataValue g_system_module_config_tertiary;          // 系统模块配置第三缓冲区
 dataValue g_system_module_status_core;
 dataValue g_system_module_status_memory;
 dataValue g_system_module_status_thread;
@@ -4127,6 +4127,24 @@ uint64 g_system_global_counter_temp;              // 系统全局计数器3
 uint64 g_system_global_counter_backup;              // 系统全局计数器4
 uint64 g_systemLockCounter;                 // 系统锁定计数器
 uint64 g_systemEventHandle;                 // 系统事件句柄
+
+// 新增语义化宏定义 - 美化剩余的硬编码十六进制值
+#define UTILITY_INTEGRITY_CHECK_OFFSET_7D 0x7d
+#define UTILITY_SIZE_THRESHOLD_31 0x31
+#define UTILITY_SECURITY_TOKEN_MASK_3F 0x3f
+#define UTILITY_OPERATION_RESULT_INDEX_14 0xe
+#define UTILITY_OPERATION_RESULT_INDEX_25 0x19
+#define UTILITY_OPERATION_RESULT_INDEX_13 0xd
+#define UTILITY_OPERATION_RESULT_INDEX_18 0x12
+#define UTILITY_RESOURCE_CALLBACK_OFFSET_288 0x288
+#define UTILITY_MEMORY_DATA_OFFSET_328 0x328
+#define UTILITY_CONTEXT_MODULE_OFFSET_500 0x500
+#define UTILITY_RESOURCE_BUFFER_OFFSET_168 0x168
+#define UTILITY_RESOURCE_BUFFER_OFFSET_1F8 0x1f8
+#define UTILITY_RESOURCE_BUFFER_OFFSET_298 0x298
+#define UTILITY_RESOURCE_BUFFER_OFFSET_310 0x310
+#define UTILITY_RESOURCE_BUFFER_OFFSET_3B8 0x3b8
+#define UTILITY_POINTER_SIZE_OFFSET_BYTE 1
 
 // 函数: void utility_process_memory_allocation(longlong resource_handle_identifier,longlong resource_buffer)
 // 处理内存分配函数
@@ -25999,7 +26017,7 @@ uint64 cleanupResourceMemory(longlong resource_handle_identifier,longlong *memor
         return utility_operation_status;
       }
     }
-    utility_operation_status = GetIntegrityStatus2(resource_buffer,resource_handle_identifier + UTILITY_BOOLEAN_FLAG_OFFSET_ALT,0x7d);
+    utility_operation_status = GetIntegrityStatus2(resource_buffer,resource_handle_identifier + UTILITY_BOOLEAN_FLAG_OFFSET_ALT,UTILITY_INTEGRITY_CHECK_OFFSET_7D);
     return utility_operation_status;
   }
   return utility_operation_status;
@@ -26044,7 +26062,7 @@ uint64 processMemoryAllocation(uint64 resource_handle_identifier,longlong resour
   uint64 utility_operation_status;
   byte UTILITY_LOCAL_SECURITY_BUFFER [32];
   
-  if (*(uint *)(resource_buffer + UTILITY_BUFFER_SIZE_DATA_OFFSET) < 0x31) {
+  if (*(uint *)(resource_buffer + UTILITY_BUFFER_SIZE_DATA_OFFSET) < UTILITY_SIZE_THRESHOLD_31) {
     utility_operation_status = allocateMemoryWithType(resource_handle_identifier,resource_buffer,UTILITY_RESOURCE_SIGNATURE_TNVE);
     if ((int)utility_operation_status == 0) {
       utility_operation_status = 0;
@@ -26444,7 +26462,7 @@ void ResetSystemSecondaryCounterAndProcessEvent(void)
     ResetEvent(g_systemEventHandle);
     return;
   }
-  boolean_result_flag = (byte)g_security_token_mask & 0x3f;
+  boolean_result_flag = (byte)g_security_token_mask & UTILITY_SECURITY_TOKEN_MASK_3F;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
   (*(code *)((g_security_token_mask ^ g_systemFunctionPointer) >> boolean_result_flag |
@@ -26473,7 +26491,7 @@ void ResetSystemTempCounterAndProcessEvent(void)
     ResetEvent(g_systemEventHandle);
     return;
   }
-  boolean_result_flag = (byte)g_security_token_mask & 0x3f;
+  boolean_result_flag = (byte)g_security_token_mask & UTILITY_SECURITY_TOKEN_MASK_3F;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
   (*(code *)((g_security_token_mask ^ g_systemFunctionPointer) >> boolean_result_flag |
@@ -29148,9 +29166,9 @@ void UtilityUnwindExceptionHandlerSanitizeZeroZeroAllZero(uint64 resource_handle
     _Cnd_destroy_in_situ(utility_operation_result + UTILITY_CONTEXT_LOCK_OFFSET);
     _Mtx_destroy_in_situ();
     ProcessSystemOperation();
-    if (utility_operation_result[0xe] != 0) {
-      *(uint64 *)(utility_operation_result[0xe] + RESOURCE_UTILITY_HANDLE_DATA_OFFSET) = 0;
-      *(byte *)(utility_operation_result[0xe] + UTILITY_POINTER_SIZE_OFFSET) = 1;
+    if (utility_operation_result[UTILITY_OPERATION_RESULT_INDEX_14] != 0) {
+      *(uint64 *)(utility_operation_result[UTILITY_OPERATION_RESULT_INDEX_14] + RESOURCE_UTILITY_HANDLE_DATA_OFFSET) = 0;
+      *(byte *)(utility_operation_result[UTILITY_OPERATION_RESULT_INDEX_14] + UTILITY_POINTER_SIZE_OFFSET) = 1;
     }
     utility_operation_result[2] = &thread_local_storage_cleanup;
     return;
@@ -31585,15 +31603,15 @@ void UtilityUnwindFunction610(uint64 resource_handle_identifier,longlong resourc
   utility_operation_result = *(uint64 **)(resource_buffer + UTILITY_BUFFER_SIZE_DATA_OFFSET);
   *utility_operation_result = &g_system_data_texture_buffer;
   utility_operation_result[RESOURCE_HANDLE_OFFSET] = &thread_local_storage_data;
-  if (utility_operation_result[0x19] != 0) {
+  if (utility_operation_result[UTILITY_OPERATION_RESULT_INDEX_25] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  utility_operation_result[0x19] = 0;
+  utility_operation_result[UTILITY_OPERATION_RESULT_INDEX_25] = 0;
   *(uint32 *)(utility_operation_result + UTILITY_CHECK_FLAG) = 0;
   utility_operation_result[RESOURCE_HANDLE_OFFSET] = &thread_local_storage_cleanup;
   RegisterResourceFunction(utility_operation_result + 0x12,utility_operation_result[RESOURCE_DATA_IDX],resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
-  if (utility_operation_result[0xd] != 0) {
+  if (utility_operation_result[UTILITY_OPERATION_RESULT_INDEX_13] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -31946,15 +31964,15 @@ void UtilityUnwindFunction760(uint64 resource_handle_identifier,longlong resourc
   utility_operation_result = *(uint64 **)(resource_buffer + utility_buffer_offset);
   *utility_operation_result = &g_system_data_texture_buffer;
   utility_operation_result[RESOURCE_HANDLE_OFFSET] = &thread_local_storage_data;
-  if (utility_operation_result[0x19] != 0) {
+  if (utility_operation_result[UTILITY_OPERATION_RESULT_INDEX_25] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
-  utility_operation_result[0x19] = 0;
+  utility_operation_result[UTILITY_OPERATION_RESULT_INDEX_25] = 0;
   *(uint32 *)(utility_operation_result + UTILITY_CHECK_FLAG) = 0;
   utility_operation_result[RESOURCE_HANDLE_OFFSET] = &thread_local_storage_cleanup;
   RegisterResourceFunction(utility_operation_result + 0x12,utility_operation_result[RESOURCE_DATA_IDX],resourceOperationFlags,resourceCallbackFunction,UTILITY_SYSTEM_END_FLAG_EXTENDED);
-  if (utility_operation_result[0xd] != 0) {
+  if (utility_operation_result[UTILITY_OPERATION_RESULT_INDEX_13] != 0) {
                     // WARNING: Subroutine does not return
     HandleCriticalError();
   }
@@ -37622,9 +37640,9 @@ void UtilityUnwindAdvancedFunctionab0(uint64 resource_handle_identifier,longlong
     _Cnd_destroy_in_situ(utility_operation_result + UTILITY_CONTEXT_LOCK_OFFSET);
     _Mtx_destroy_in_situ();
     ProcessSystemOperation();
-    if (utility_operation_result[0xe] != 0) {
-      *(uint64 *)(utility_operation_result[0xe] + RESOURCE_UTILITY_HANDLE_DATA_OFFSET) = 0;
-      *(byte *)(utility_operation_result[0xe] + UTILITY_POINTER_SIZE_OFFSET) = 1;
+    if (utility_operation_result[UTILITY_OPERATION_RESULT_INDEX_14] != 0) {
+      *(uint64 *)(utility_operation_result[UTILITY_OPERATION_RESULT_INDEX_14] + RESOURCE_UTILITY_HANDLE_DATA_OFFSET) = 0;
+      *(byte *)(utility_operation_result[UTILITY_OPERATION_RESULT_INDEX_14] + UTILITY_POINTER_SIZE_OFFSET) = 1;
     }
     utility_operation_result[2] = &thread_local_storage_cleanup;
     return;
@@ -37690,9 +37708,9 @@ void UtilityUnwindAdvancedFunctionaf0(uint64 resource_handle_identifier,longlong
     _Cnd_destroy_in_situ(utility_operation_result + UTILITY_CONTEXT_LOCK_OFFSET);
     _Mtx_destroy_in_situ();
     ProcessSystemOperation();
-    if (utility_operation_result[0xe] != 0) {
-      *(uint64 *)(utility_operation_result[0xe] + RESOURCE_UTILITY_HANDLE_DATA_OFFSET) = 0;
-      *(byte *)(utility_operation_result[0xe] + UTILITY_POINTER_SIZE_OFFSET) = 1;
+    if (utility_operation_result[UTILITY_OPERATION_RESULT_INDEX_14] != 0) {
+      *(uint64 *)(utility_operation_result[UTILITY_OPERATION_RESULT_INDEX_14] + RESOURCE_UTILITY_HANDLE_DATA_OFFSET) = 0;
+      *(byte *)(utility_operation_result[UTILITY_OPERATION_RESULT_INDEX_14] + UTILITY_POINTER_SIZE_OFFSET) = 1;
     }
     utility_operation_result[2] = &thread_local_storage_cleanup;
     return;
@@ -38038,9 +38056,9 @@ void UtilityUnwindAdvancedFunctione40(uint64 resource_handle_identifier,longlong
     _Cnd_destroy_in_situ(utility_operation_result + UTILITY_CONTEXT_LOCK_OFFSET);
     _Mtx_destroy_in_situ();
     ProcessSystemOperation();
-    if (utility_operation_result[0xe] != 0) {
-      *(uint64 *)(utility_operation_result[0xe] + RESOURCE_UTILITY_HANDLE_DATA_OFFSET) = 0;
-      *(byte *)(utility_operation_result[0xe] + UTILITY_POINTER_SIZE_OFFSET) = 1;
+    if (utility_operation_result[UTILITY_OPERATION_RESULT_INDEX_14] != 0) {
+      *(uint64 *)(utility_operation_result[UTILITY_OPERATION_RESULT_INDEX_14] + RESOURCE_UTILITY_HANDLE_DATA_OFFSET) = 0;
+      *(byte *)(utility_operation_result[UTILITY_OPERATION_RESULT_INDEX_14] + UTILITY_POINTER_SIZE_OFFSET) = 1;
     }
     utility_operation_result[2] = &thread_local_storage_cleanup;
     return;
@@ -44633,7 +44651,7 @@ void UtilityFunctionHandler00(void)
     ResetEvent(g_systemEventHandle);
     return;
   }
-  boolean_result_flag = (byte)g_security_token_mask & 0x3f;
+  boolean_result_flag = (byte)g_security_token_mask & UTILITY_SECURITY_TOKEN_MASK_3F;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
   (*(code *)((g_security_token_mask ^ g_systemFunctionPointer) >> boolean_result_flag |
@@ -46155,7 +46173,7 @@ void UtilityUnwindSystemPhase13(void)
     ResetEvent(g_systemEventHandle);
     return;
   }
-  boolean_result_flag = (byte)g_security_token_mask & 0x3f;
+  boolean_result_flag = (byte)g_security_token_mask & UTILITY_SECURITY_TOKEN_MASK_3F;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
   (*(code *)((g_security_token_mask ^ g_systemFunctionPointer) >> boolean_result_flag |
@@ -49313,7 +49331,7 @@ void UtilityUnwindCleanupPhase04(void)
     ResetEvent(g_systemEventHandle);
     return;
   }
-  boolean_result_flag = (byte)g_security_token_mask & 0x3f;
+  boolean_result_flag = (byte)g_security_token_mask & UTILITY_SECURITY_TOKEN_MASK_3F;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
   (*(code *)((g_security_token_mask ^ g_systemFunctionPointer) >> boolean_result_flag |
@@ -51661,7 +51679,7 @@ void UtilityUnwindCleanupPhaseStage33(void)
     ResetEvent(g_systemEventHandle);
     return;
   }
-  boolean_result_flag = (byte)g_security_token_mask & 0x3f;
+  boolean_result_flag = (byte)g_security_token_mask & UTILITY_SECURITY_TOKEN_MASK_3F;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
   (*(code *)((g_security_token_mask ^ g_systemFunctionPointer) >> boolean_result_flag |
@@ -56240,7 +56258,7 @@ void UtilityUnwindSystemFunctiona6e0(void)
     ResetEvent(g_systemEventHandle);
     return;
   }
-  boolean_result_flag = (byte)g_security_token_mask & 0x3f;
+  boolean_result_flag = (byte)g_security_token_mask & UTILITY_SECURITY_TOKEN_MASK_3F;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
   (*(code *)((g_security_token_mask ^ g_systemFunctionPointer) >> boolean_result_flag |
@@ -81637,7 +81655,7 @@ void UtilityUnwindFinalFunction27d0(void)
     ResetEvent(g_systemEventHandle);
     return;
   }
-  boolean_result_flag = (byte)g_security_token_mask & 0x3f;
+  boolean_result_flag = (byte)g_security_token_mask & UTILITY_SECURITY_TOKEN_MASK_3F;
                     // WARNING: Could not recover jumptable at 0x0001808ffe70. Too many branches
                     // WARNING: Treating indirect jump as call
   (*(code *)((g_security_token_mask ^ g_systemFunctionPointer) >> boolean_result_flag |
