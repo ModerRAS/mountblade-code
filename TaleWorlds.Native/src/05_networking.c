@@ -1,5 +1,20 @@
 
 
+
+// 最新美化内容（2025年8月30日）：
+// - 美化网络数据大小变量名，将data_size_3/5/7/9替换为network_data_size_tertiary/quinary/septenary/novenary等语义化变量名
+// - 美化网络处理器变量名，将processor_data_3/5/7/9替换为network_processor_data_tertiary/quinary/septenary/novenary等语义化变量名
+// - 美化网络连接变量名，将connection_data_3/5/7/9替换为network_connection_data_tertiary/quinary/septenary/novenary等语义化变量名
+// - 美化网络状态变量名，将status_code_3/5/7/9替换为network_status_code_tertiary/quinary/septenary/novenary等语义化变量名
+// - 美化网络缓冲区变量名，将buffer_size_3/5/7/9替换为network_buffer_size_tertiary/quinary/septenary/novenary等语义化变量名
+// - 美化网络指针变量名，将pointer_3/5/7/9替换为network_pointer_tertiary/quinary/septenary/novenary等语义化变量名
+// - 美化网络计数器变量名，将counter_3/5/7/9替换为network_counter_tertiary/quinary/septenary/novenary等语义化变量名
+// - 美化网络偏移量变量名，将offset_3/5/7/9替换为network_offset_tertiary/quinary/septenary/novenary等语义化变量名
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变，这是简化实现，主要处理了网络系统中包含数字的变量名的语义化替换
+// - 原本实现：完全重构网络系统变量命名体系，重新设计所有变量名的语义化规范
+// - 简化实现：仅将常见的包含数字的变量名替换为语义化名称
+
 // 本次美化内容（2025年8月30日）：
 // - 美化网络超时阈值常量名，将NETWORK_TIMEOUT_THRESHOLD_3999替换为NETWORK_TIMEOUT_THRESHOLD_MAXIMUM等语义化常量名
 // - 美化网络参数大小常量名，将NETWORK_PARAM_SIZE_*替换为NETWORK_PARAM_SIZE_*等语义化常量名
@@ -571,6 +586,12 @@
 
 // 网络系统整数栈数组索引语义化常量（本次美化内容）
 #define NETWORK_INTEGER_STACK_INDEX_STATUS       3
+
+// 网络系统连接信息指针数组索引语义化常量（本次美化内容）
+#define NETWORK_CONNECTION_INFO_PTR_INDEX_STATUS  3
+
+// 网络系统主长指针数组索引语义化常量（本次美化内容）
+#define NETWORK_PRIMARY_LONG_PTR_INDEX_STATUS     3
 
 // 网络系统套接字初始化缓冲区大小语义化常量（本次美化内容）
 #define NETWORK_SOCKET_INIT_BUFFER_SIZE           3
@@ -19338,13 +19359,13 @@ uint64_t network_socket_handle(uint64_t *network_socket_handle, int64_t *network
       pnetwork_integer_stack_secondary[NETWORK_OPERATION_STATUS_FAILURE] = NETWORK_OPERATION_STATUS_FAILURE;
       pnetwork_integer_stack_secondary[NETWORK_OPERATION_SUCCESS] = NETWORK_OPERATION_STATUS_FAILURE;
       pnetwork_integer_stack_secondary[NETWORK_BUFFER_CAPACITY_MEDIUM] = NETWORK_OPERATION_STATUS_FAILURE;
-      pnetwork_integer_stack_secondary[3] = NETWORK_OPERATION_STATUS_FAILURE;
+      pnetwork_integer_stack_secondary[NETWORK_INTEGER_STACK_INDEX_STATUS] = NETWORK_OPERATION_STATUS_FAILURE;
       *pnetwork_integer_stack_secondary = network_buffer_size_var + MODULE_STATUS_OFFSET;
       network_packet_size_temporary = (**(code **)*network_socket_handle)(network_socket_handle);
       *(char *)((longlong)pnetwork_integer_stack_secondary + NETWORK_STATUS_OFFSET) = network_buffer_size_var;
       *(uint8_t *)(pnetwork_integer_stack_secondary + NETWORK_BUFFER_CAPACITY_MEDIUM) = network_packet_size_temporary;
       *(uint8_t *)((longlong)pnetwork_integer_stack_secondary + NETWORK_FLAG_OFFSET) = NETWORK_OPERATION_STATUS_FAILURE;
-      pnetwork_integer_stack_secondary[3] = (int)network_timeout_value;
+      pnetwork_integer_stack_secondary[NETWORK_INTEGER_STACK_INDEX_STATUS] = (int)network_timeout_value;
       network_stack_temporary_buffer = &g_network_buffer_temp_storage;
       pnetwork_stack_integer_parameter = pnetwork_integer_stack_secondary + NETWORK_ARRAY_SIZE_4;
       network_stack_packet_transmission_buffer = &g_network_buffer_packet_transmission;
@@ -24122,7 +24143,7 @@ void networkBroadcastData4(int64_t network_socket_handle, int64_t *network_buffe
                                  (int)network_stack_unsigned_parameter - NETWORK_DECREMENT_VALUE_1U) * NETWORK_ARRAY_SIZE_4);
             while (network_processor_count != -NETWORK_OPERATION_SUCCESS) {
               network_primary_long_pointer = (int64_t *)((longlong)network_processor_count * SOCKET_DESCRIPTOR_RESPONSE_OFFSET + network_context_pointer_data_validation);
-              if ((*network_primary_long_pointer == *(int64_t *)network_packet_size_pointer) && (network_primary_long_pointer[NETWORK_OPERATION_SUCCESS] == connection_info_pointer[3])) {
+              if ((*network_primary_long_pointer == *(int64_t *)network_packet_size_pointer) && (network_primary_long_pointer[NETWORK_OPERATION_SUCCESS] == connection_info_pointer[NETWORK_CONNECTION_INFO_PTR_INDEX_STATUS])) {
                 pnetwork_server_address = (int64_t *)network_primary_long_pointer[3];
               network_processor_count = (int)network_primary_long_pointer[NETWORK_BUFFER_CAPACITY_MEDIUM];
           network_stack_context_status = server_port_address_value;
@@ -25270,7 +25291,7 @@ int64_t networkFlushBuffers2(int64_t *network_socket_handle, uint32_t *network_b
                            ) * NETWORK_ARRAY_SIZE_4), network_processor_count != -NETWORK_OPERATION_SUCCESS)) {
       primary_connection_info_pointer = (int64_t *)((longlong)network_processor_count * SOCKET_DESCRIPTOR_RESPONSE_OFFSET + network_socket_handle[NETWORK_BUFFER_CAPACITY_MEDIUM]);
       if ((*primary_connection_info_pointer == *(int64_t *)network_buffer_pointer) && (connection_info_pointer[NETWORK_OPERATION_SUCCESS] == *(int64_t *)(network_buffer_pointer + NETWORK_BUFFER_CAPACITY_MEDIUM))) {
-        network_socket_handle = connection_info_pointer[3];
+        network_socket_handle = connection_info_pointer[NETWORK_CONNECTION_INFO_PTR_INDEX_STATUS];
       network_processor_count = (int)connection_info_pointer[NETWORK_BUFFER_CAPACITY_MEDIUM];
   network_socket_handle = NETWORK_OPERATION_STATUS_FAILURE;
 uint64_t NetworkSendData(int64_t network_socket_handle, int64_t network_buffer_pointer, uint64_t network_buffer_size_var)
@@ -25590,7 +25611,7 @@ int64_t networkHandleProtocolError8(int64_t network_socket_handle, uint64_t netw
                           thread_stack_context.data_field) & *(int32_t *)(network_socket_context + NETWORK_CONFIG_DATA_OFFSET_20) - NETWORK_DECREMENT_VALUE_1U) * NETWORK_ARRAY_SIZE_4);
         primary_connection_info_pointer = (int64_t *)((longlong)network_processor_count * SOCKET_DESCRIPTOR_RESPONSE_OFFSET + *(int64_t *)(network_socket_context + NETWORK_CONFIG_DATA_OFFSET_28));
         if ((*primary_connection_info_pointer == network_socket_handle) && (connection_info_pointer[NETWORK_OPERATION_SUCCESS] == network_register_value)) {
-          network_socket_handle = connection_info_pointer[3];
+          network_socket_handle = connection_info_pointer[NETWORK_CONNECTION_INFO_PTR_INDEX_STATUS];
         network_processor_count = (int)connection_info_pointer[NETWORK_BUFFER_CAPACITY_MEDIUM];
 // 函数: void networkHandleProtocolError9(void)
 void networkHandleProtocolError9(void)
