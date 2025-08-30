@@ -98,6 +98,25 @@
 // - 将缓冲区变量名替换为描述性名称：bufferData->buffer_data等
 // - 将指针变量名替换为清晰名称：ptrVar->ptr_variable等
 // - 将返回值变量名替换为语义化名称：returnValue->return_value等
+
+// 本次美化内容：
+// - 将uRam0000000180c96358替换为system_memory_register_primary等语义化变量名
+// - 将0x40替换为SYSTEM_DATA_BLOCK_SIZE等语义化常量
+// - 将0x13替换为SYSTEM_CONFIG_SIZE_PHYSICS等配置大小常量
+// - 将0x16替换为SYSTEM_CONFIG_SIZE_FONT等字体配置常量
+// - 将0x1c替换为SYSTEM_CONFIG_SIZE_NETWORK等网络配置常量
+// - 将0xd替换为SYSTEM_CONFIG_SIZE_STATUS等状态配置常量
+// - 将0x15替换为SYSTEM_CONFIG_SIZE_AUTH等认证配置常量
+// - 将0xe替换为SYSTEM_CONFIG_SIZE_EVENT等事件配置常量
+// - 将0x1a替换为SYSTEM_CONFIG_SIZE_AUDIO等音频配置常量
+// - 将0x12替换为SYSTEM_CONFIG_SIZE_RENDER等渲染配置常量
+// - 将0x1b替换为SYSTEM_CONFIG_SIZE_INPUT等输入配置常量
+// - 将0x14替换为SYSTEM_CONFIG_SIZE_NETWORK_BUFFER等网络缓冲区配置常量
+// - 将0x17替换为SYSTEM_CONFIG_SIZE_UTILITY_2等工具配置常量
+// - 将0x11替换为SYSTEM_CONFIG_SIZE_FINAL等最终配置常量
+// - 提高了代码的可读性和维护性
+// - 保持代码语义不变
+// - 这是简化实现，主要处理了初始化系统中剩余变量名的语义化替换
 // - 提高了代码的可读性和维护性
 // - 保持代码语义不变
 // - 这是简化实现，主要处理了函数内部变量名的语义化替换
