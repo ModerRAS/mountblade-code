@@ -315,6 +315,9 @@
 #define NETWORK_EXTENDED_INDEX_299    299   // 扩展索引299
 #define NETWORK_EXTENDED_INDEX_300    300   // 扩展索引300
 
+// 网络系统缓冲区指针索引语义化常量（本次美化内容）
+#define NETWORK_BUFFER_PTR_INDEX_STATUS    100   // 缓冲区指针状态索引
+
 #define NETWORK_HARD_CODED_VALUES
 #define STRUCT_FIELD_BYTE_0    _byte_0_
 #define STRUCT_FIELD_WORD_0    _word_0_
