@@ -511,15 +511,15 @@ uint64_t g_performance_counter;
 uint32_t g_debug_flags;
 uint32_t g_log_level;
 uint64_t g_memory_usage;
-float g_cpu_usage;
+float system_cpu_usage;
 void ValidateInitialization;
 void system_input_processing_context;
 void system_network_init_data;
 void* system_network_init_pointer;
-float g_gpu_usage;
-float g_frame_rate;
-float g_render_time;
-float g_physics_time;
+float system_gpu_usage;
+float system_frame_rate;
+float system_render_time;
+float system_physics_time;
 
 // 函数: void InitializePhysicsSystem;
 void InitializePhysicsSystem;
@@ -16188,7 +16188,7 @@ int InitializeSystemCore(void)
 {
   longlong system_allocation_result;
   
-  func_SYSTEM_INIT_VALUE_CHAR_NULL00180741c80(SYSTEM_INIT_FLAG_OCTONARY_ENABLED0c0c340);
+  system_init_function_core_primary(SYSTEM_INIT_FLAG_OCTONARY_ENABLED0c0c340);
   system_allocation_result = system_allocate_memory(&g_system_context);
   return (system_allocation_result != 0) - 1;
 }
@@ -16347,7 +16347,7 @@ int InitializeSystemCore(void)
   system_context_pointer = (system_uint64_t *)SYSTEM_INIT_FLAG_OCTONARY_ENABLED0c35590;
   system_loop_counter = SYSTEM_INIT_SIZE_COMPARE;
   do {
-    func_SYSTEM_INIT_VALUE_CHAR_NULL00180767970(system_context_pointer);
+    system_init_function_context_setup(system_context_pointer);
     *system_context_pointer = &g_system_context;
     system_context_pointer = system_context_pointer + SYSTEM_INIT_FLAG_INITIALIZEDb;
     system_loop_counter = system_loop_counter + -1;
@@ -17764,7 +17764,7 @@ void InitializeResourceManager(ulonglong *system_context_param)
       }
     }
     else {
-      func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_temp_counter,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_temp_counter + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+      system_init_function_stack_handler(system_temp_counter,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_temp_counter + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                           system_buffer_pointer,system_temp_counter,SYSTEM_INIT_VALUE_HANDLE_INVALID);
     }
   }
@@ -18706,7 +18706,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
         system_stack_char_pointer_a0 = (char *)SYSTEM_INIT_VALUE_CHAR_NULL;
         system_stack_temp_value = system_stack_temp_value & SYSTEM_INIT_ERROR_GENERIC00000000;
         puStack_a8 = &g_system_context;
-        system_allocation_result1 = func_SYSTEM_INIT_VALUE_CHAR_NULL0018066bd70(system_allocation_result1);
+        system_allocation_result1 = system_init_function_memory_manager(system_allocation_result1);
         system_temp_counter = system_ulong_var_16;
       }
       system_process_service(system_ptr_pool,&g_system_initialized);
@@ -18849,7 +18849,7 @@ void InitializeSystemCore(ulonglong *system_context_param)
       }
     }
     else {
-      func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_temp_counter,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_temp_counter + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+      system_init_function_stack_handler(system_temp_counter,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_temp_counter + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                           system_buffer_pointer,system_temp_counter,SYSTEM_INIT_VALUE_HANDLE_INVALID);
     }
   }
@@ -19021,7 +19021,7 @@ LAB_180048dba:
     }
   }
   else {
-    system_context_base_pointer = (longlong *)func_SYSTEM_INIT_VALUE_CHAR_NULL0018066bd70(system_thread_param);
+    system_context_base_pointer = (longlong *)system_init_function_memory_manager(system_thread_param);
     if (*(int *)(system_param_5 + SYSTEM_INIT_SIZE_COMPARE) != 0) {
       if ((int)system_thread_param[SYSTEM_ARRAY_INDEX_SEVENTH] != 0) {
         system_byte_pointer_5 = *(byte **)(system_param_5 + 8);
@@ -19085,7 +19085,7 @@ LAB_180048e00:
   system_context_base_pointer = system_secondary_long_pointer;
   if (system_validation_flag_2) {
     if (system_secondary_long_pointer != (longlong *)system_context_param[SYSTEM_ARRAY_INDEX_SECOND]) {
-      system_context_base_pointer = (longlong *)func_SYSTEM_INIT_VALUE_CHAR_NULL0018066b9a0(system_secondary_long_pointer);
+      system_context_base_pointer = (longlong *)system_init_function_pointer_converter(system_secondary_long_pointer);
       goto LAB_180048e20;
     }
   }
@@ -20902,7 +20902,7 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
   system_stack_value_328 = _g_system_initialized ^ (ulonglong)auStack_78;
   system_stack_initialization_counter = system_memory_param;
   system_stack_uint_20 = system_thread_param;
-  system_memory_pointer = (ulonglong *)func_SYSTEM_INIT_VALUE_CHAR_NULL0018004b9a0();
+  system_memory_pointer = (ulonglong *)system_init_function_buffer_allocator();
   system_stack_value_secondary = SYSTEM_INIT_VALUE_ZERO;
   psystem_stack_union_50 = &system_stack_initialization_counter;
   __stdio_common_vsprintf(*system_memory_pointer | 1,acStack_48,SYSTEM_INIT_OFFSET_STACK_PARAM,system_config_param);
@@ -20953,7 +20953,7 @@ int InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t sy
   int system_int_param;
   ulonglong *system_buffer_pointer;
   
-  system_buffer_pointer = (ulonglong *)func_SYSTEM_INIT_VALUE_CHAR_NULL0018004b9a0();
+  system_buffer_pointer = (ulonglong *)system_init_function_buffer_allocator();
   system_int_param = __stdio_common_vsprintf(*system_buffer_pointer | 1,system_context_param,system_config_param,system_memory_param,0,system_thread_param);
   if (system_int_param < 0) {
     system_int_param = -1;
@@ -21330,7 +21330,7 @@ void InitializeSystemCore(longlong system_context_param)
         }
       }
       else {
-        func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_init_flag_6,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_init_flag_6 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+        system_init_function_stack_handler(system_init_flag_6,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_init_flag_6 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                             system_memory_pointer,system_init_flag_6,SYSTEM_INIT_VALUE_HANDLE_INVALID);
       }
     }
@@ -21462,7 +21462,7 @@ void InitializeSystemCore(longlong system_context_param)
         }
       }
       else {
-        func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_init_flag_6,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_init_flag_6 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+        system_init_function_stack_handler(system_init_flag_6,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_init_flag_6 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                             system_memory_pointer,system_init_flag_6,SYSTEM_INIT_VALUE_HANDLE_INVALID);
       }
     }
@@ -21526,7 +21526,7 @@ void InitializeSystemCore(ulonglong *system_context_param)
       }
     }
     else {
-      func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_temp_counter,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_temp_counter + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+      system_init_function_stack_handler(system_temp_counter,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_temp_counter + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                           system_buffer_pointer,system_temp_counter,SYSTEM_INIT_VALUE_HANDLE_INVALID);
     }
   }
@@ -22229,8 +22229,8 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   ulonglong system_secondary_uint_var_9;
   uint system_tertiary_uint_var;
   bool system_bool_var_31;
-  system_uint32_t extraout_XMM0_Da;
-  system_uint32_t extraout_XMM0_Da_00;
+  system_uint32_t system_register_xmm0_output_primary;
+  system_uint32_t system_register_xmm0_output_secondary;
   system_uint8_t auStack_368 [32];
   system_uint8_t uStack_348;
   char cStack_338;
@@ -22366,7 +22366,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
           system_loop_counter4 = *(longlong *)(system_context_handle + SYSTEM_INIT_FLAG_INITIALIZED8) - (longlong)system_byte_ptr_primary5;
           goto LAB_18004d1a2;
         }
-        InitializeSystemCore(extraout_XMM0_Da,system_context_handle);
+        InitializeSystemCore(system_register_xmm0_output_primary,system_context_handle);
         if (system_init_flag_network == 8) {
           system_int_size = strcmp(system_system_uint8_t_pointer_var_11,&g_system_context);
           system_bool_var_31 = system_int_size == 0;
@@ -22874,7 +22874,7 @@ void InitializeSystemCore(longlong system_context_param)
         }
       }
       else {
-        func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_init_flag_6,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_init_flag_6 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+        system_init_function_stack_handler(system_init_flag_6,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_init_flag_6 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                             system_memory_pointer,system_init_flag_6,SYSTEM_INIT_VALUE_HANDLE_INVALID);
       }
     }
@@ -22929,7 +22929,7 @@ void InitializeSystemCore(longlong system_context_param)
         }
       }
       else {
-        func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_init_flag_6,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_init_flag_6 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+        system_init_function_stack_handler(system_init_flag_6,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_init_flag_6 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                             system_memory_pointer,system_init_flag_6,SYSTEM_INIT_VALUE_HANDLE_INVALID);
       }
     }
@@ -23429,7 +23429,7 @@ void SetupFileSystem(longlong system_context_param)
       }
     }
     else {
-      func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_max_iterations,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_max_iterations + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+      system_init_function_stack_handler(system_max_iterations,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_max_iterations + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                           system_buffer_pointer,system_max_iterations,SYSTEM_INIT_VALUE_HANDLE_INVALID);
     }
   }
@@ -24719,7 +24719,7 @@ LAB_18005419d:
       system_ulonglong_var_14 = system_ulonglong_var_14 + 1;
     } while (system_init_flag_network < uStack_60);
   }
-  system_calculation_temp = func_SYSTEM_INIT_VALUE_CHAR_NULL001800464d0(&puStack_70);
+  system_calculation_temp = system_init_function_calculator(&puStack_70);
   psystem_ulong_var_16 = (system_uint64_t *)&g_system_context;
   do {
     psystem_check_char = (char *)*psystem_ulong_var_16;
@@ -25612,7 +25612,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint32_t s
   system_code *system_char_pointer_1;
   
   if (_g_system_initialized != 0) {
-    func_SYSTEM_INIT_VALUE_CHAR_NULL0018005a410(_g_system_initialized + 8);
+    system_init_function_system_initializer(_g_system_initialized + 8);
   }
   Sleep(2000);
   _Exit(system_config_param);
@@ -25656,11 +25656,11 @@ void InitializeSystemCore(void)
     system_generic_function_(&g_system_context,*(system_uint32_t *)(system_char_pointer_var_3 + SYSTEM_INIT_FLAG_QUATERNARY_ENABLED));
     system_generic_function_(&g_system_context,*(system_uint32_t *)(system_char_pointer_var_3 + SYSTEM_INIT_FLAG_OCTONARY_ENABLED));
     for (system_char_pointer_var_5 = *(char **)(system_char_pointer_var_3 + SYSTEM_INIT_FLAG_INITIALIZED8); system_char_pointer_var_5 != system_char_pointer_var_3 + SYSTEM_INIT_OFFSET_STACK_PARAM;
-        system_char_pointer_var_5 = (char *)func_SYSTEM_INIT_VALUE_CHAR_NULL0018066bd70(system_char_pointer_var_5)) {
+        system_char_pointer_var_5 = (char *)system_init_function_memory_manager(system_char_pointer_var_5)) {
       system_generic_function_(&g_system_context,*(system_uint32_t *)(system_char_pointer_var_5 + SYSTEM_INIT_OFFSET_STACK_PARAM),*(system_uint32_t *)(system_char_pointer_var_5 + SYSTEM_INIT_FLAG_INITIALIZED4));
     }
     for (system_char_pointer_var_5 = *(char **)(system_char_pointer_var_3 + SYSTEM_INIT_OFFSET_0X58); system_char_pointer_var_5 != system_char_pointer_var_3 + SYSTEM_INIT_OFFSET_0X50;
-        system_char_pointer_var_5 = (char *)func_SYSTEM_INIT_VALUE_CHAR_NULL0018066bd70(system_char_pointer_var_5)) {
+        system_char_pointer_var_5 = (char *)system_init_function_memory_manager(system_char_pointer_var_5)) {
       system_generic_function_(&g_system_context,*(system_uint32_t *)(system_char_pointer_var_5 + SYSTEM_INIT_OFFSET_STACK_PARAM),*(system_uint32_t *)(system_char_pointer_var_5 + SYSTEM_INIT_FLAG_INITIALIZED4));
     }
     system_generic_function_(&g_system_context,*(system_uint32_t *)(system_char_pointer_var_3 + SYSTEM_INIT_SIZE_BUFFER_SMALL));
@@ -26874,7 +26874,7 @@ void InitializeSystemCore(longlong system_context_param)
         }
       }
       else {
-        func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_init_flag_6,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_init_flag_6 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+        system_init_function_stack_handler(system_init_flag_6,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_init_flag_6 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                             system_memory_pointer,system_init_flag_6,SYSTEM_INIT_VALUE_HANDLE_INVALID);
       }
     }
@@ -26929,7 +26929,7 @@ void InitializeSystemCore(longlong system_context_param)
         }
       }
       else {
-        func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_init_flag_6,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_init_flag_6 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+        system_init_function_stack_handler(system_init_flag_6,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_init_flag_6 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                             system_memory_pointer,system_init_flag_6,SYSTEM_INIT_VALUE_HANDLE_INVALID);
       }
     }
@@ -26982,7 +26982,7 @@ void InitializeSystemCore(void)
         }
       }
       else {
-        func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_max_iterations,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_max_iterations + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+        system_init_function_stack_handler(system_max_iterations,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_max_iterations + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                             system_buffer_pointer,system_max_iterations,SYSTEM_INIT_VALUE_HANDLE_INVALID);
       }
     }
@@ -27023,7 +27023,7 @@ void InitializeSystemCore(void)
         }
       }
       else {
-        func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_max_iterations,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_max_iterations + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+        system_init_function_stack_handler(system_max_iterations,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_max_iterations + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                             system_buffer_pointer,system_max_iterations,SYSTEM_INIT_VALUE_HANDLE_INVALID);
       }
     }
@@ -27064,7 +27064,7 @@ void InitializeSystemCore(void)
       }
     }
     else {
-      func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_max_iterations,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_max_iterations + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+      system_init_function_stack_handler(system_max_iterations,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_max_iterations + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                           system_buffer_pointer,system_max_iterations,SYSTEM_INIT_VALUE_HANDLE_INVALID);
     }
   }
@@ -27210,7 +27210,7 @@ void InitializeSystemCore(longlong system_context_param)
         }
       }
       else {
-        func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_init_flag_6,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_init_flag_6 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+        system_init_function_stack_handler(system_init_flag_6,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_init_flag_6 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                             system_memory_pointer,system_init_flag_6,SYSTEM_INIT_VALUE_HANDLE_INVALID);
       }
     }
@@ -27265,7 +27265,7 @@ void InitializeSystemCore(longlong system_context_param)
         }
       }
       else {
-        func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_init_flag_6,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_init_flag_6 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+        system_init_function_stack_handler(system_init_flag_6,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_init_flag_6 + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                             system_memory_pointer,system_init_flag_6,SYSTEM_INIT_VALUE_HANDLE_INVALID);
       }
     }
@@ -27318,7 +27318,7 @@ void InitializeSystemCore(void)
         }
       }
       else {
-        func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_max_iterations,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_max_iterations + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+        system_init_function_stack_handler(system_max_iterations,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_max_iterations + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                             system_buffer_pointer,system_max_iterations,SYSTEM_INIT_VALUE_HANDLE_INVALID);
       }
     }
@@ -27359,7 +27359,7 @@ void InitializeSystemCore(void)
         }
       }
       else {
-        func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_max_iterations,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_max_iterations + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+        system_init_function_stack_handler(system_max_iterations,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_max_iterations + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                             system_buffer_pointer,system_max_iterations,SYSTEM_INIT_VALUE_HANDLE_INVALID);
       }
     }
@@ -27400,7 +27400,7 @@ void InitializeSystemCore(void)
       }
     }
     else {
-      func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_max_iterations,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_max_iterations + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+      system_init_function_stack_handler(system_max_iterations,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_max_iterations + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                           system_buffer_pointer,system_max_iterations,SYSTEM_INIT_VALUE_HANDLE_INVALID);
     }
   }
@@ -27483,7 +27483,7 @@ void InitializeSystemCore(void)
       }
     }
     else {
-      func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_max_iterations,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_max_iterations + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+      system_init_function_stack_handler(system_max_iterations,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_max_iterations + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                           system_buffer_pointer,system_max_iterations,SYSTEM_INIT_VALUE_HANDLE_INVALID);
     }
   }
@@ -27968,7 +27968,7 @@ void InitializeSystemCore(ulonglong *system_context_param)
       }
     }
     else {
-      func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_init_flag_audio,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_init_flag_audio + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+      system_init_function_stack_handler(system_init_flag_audio,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_init_flag_audio + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                           system_ptr_data,system_init_flag_audio,SYSTEM_INIT_VALUE_HANDLE_INVALID);
     }
   }
@@ -29165,7 +29165,7 @@ void InitializeSystemCore(longlong *system_context_param)
              (system_allocation_result2 = system_allocation_result0, *(int *)(system_sextuple_pointer_fourth + 6) != 0)) {
             if ((system_sextuple_pointer_fourth != (system_uint64_t *******)ppppppuStack_360) &&
                (system_sextuple_pointer_fourth != &ppppppuStack_360)) {
-              func_SYSTEM_INIT_VALUE_CHAR_NULL0018066bd70(system_sextuple_pointer_fourth);
+              system_init_function_memory_manager(system_sextuple_pointer_fourth);
             }
             system_bool_var_26 = system_true;
             system_sextuple_pointer_fourth = &ppppppuStack_360;
@@ -29209,7 +29209,7 @@ void InitializeSystemCore(longlong *system_context_param)
                     // WARNING: Subroutine does not return
                 system_execute_task(system_allocation_result0,system_sextuple_pointer_fourth,&ppppppuStack_360,system_init_flag_audio);
               }
-              system_sextuple_pointer_fourth = (system_uint64_t *******)func_SYSTEM_INIT_VALUE_CHAR_NULL0018066b9a0(system_sextuple_pointer_fourth);
+              system_sextuple_pointer_fourth = (system_uint64_t *******)system_init_function_pointer_converter(system_sextuple_pointer_fourth);
               system_allocation_result2 = lStack_2c8;
               system_int_value = iStack_374;
             }
@@ -29409,7 +29409,7 @@ void InitializeSystemCore(longlong *system_context_param)
           puStack_330 = &g_system_context;
         }
       }
-      system_sextuple_pointer_fourth = (system_uint64_t *******)func_SYSTEM_INIT_VALUE_CHAR_NULL0018066bd70(system_sextuple_pointer_fourth);
+      system_sextuple_pointer_fourth = (system_uint64_t *******)system_init_function_memory_manager(system_sextuple_pointer_fourth);
     } while (system_sextuple_pointer_fourth != &ppppppuStack_360);
   }
   InitializeSystemCore(&ppppppuStack_360);
@@ -29465,7 +29465,7 @@ LAB_1800590e2:
       *system_config_param = 1;
       return system_memory_pointer;
     }
-    system_ptr_data = (system_uint64_t *)func_SYSTEM_INIT_VALUE_CHAR_NULL0018066b9a0(system_memory_pointer);
+    system_ptr_data = (system_uint64_t *)system_init_function_pointer_converter(system_memory_pointer);
   }
   if (*(int *)(system_memory_param + SYSTEM_INIT_SIZE_COMPARE) != 0) {
     if (*(int *)(system_ptr_data + 6) != 0) {
@@ -30062,7 +30062,7 @@ void InitializePhysicsSystem(system_uint64_t *system_context_param)
       }
     }
     else {
-      func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_param_value,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_param_value + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+      system_init_function_stack_handler(system_param_value,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_param_value + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                           system_context_param,system_param_value,SYSTEM_INIT_VALUE_HANDLE_INVALID);
     }
   }
@@ -30246,7 +30246,7 @@ void InitializeSystemCore(longlong *system_context_param)
       }
     }
     else {
-      func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_ulong_temp,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_ulong_temp + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+      system_init_function_stack_handler(system_ulong_temp,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_ulong_temp + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                           system_memory_pointer,system_ulong_temp,SYSTEM_INIT_VALUE_HANDLE_INVALID);
     }
   }
@@ -30307,7 +30307,7 @@ void InitializeSystemCore(longlong *system_context_param)
       }
     }
     else {
-      func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_ulong_temp,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_ulong_temp + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+      system_init_function_stack_handler(system_ulong_temp,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_ulong_temp + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                           system_memory_pointer,system_ulong_temp,SYSTEM_INIT_VALUE_HANDLE_INVALID);
     }
   }
@@ -30376,7 +30376,7 @@ void InitializeSystemCore(void)
         }
       }
       else {
-        func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_calculation_result,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_calculation_result + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+        system_init_function_stack_handler(system_calculation_result,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_calculation_result + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                             system_memory_pointer,system_calculation_result,SYSTEM_INIT_VALUE_HANDLE_INVALID);
       }
     }
@@ -30411,7 +30411,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
       }
     }
     else {
-      func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_param_value,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_param_value + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+      system_init_function_stack_handler(system_param_value,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_param_value + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                           system_context_param,system_param_value,SYSTEM_INIT_VALUE_HANDLE_INVALID);
     }
   }
@@ -30474,7 +30474,7 @@ void InitializeSystemCore(longlong *system_context_param)
       }
     }
     else {
-      func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_ulong_temp,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_ulong_temp + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+      system_init_function_stack_handler(system_ulong_temp,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_ulong_temp + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                           system_memory_pointer,system_ulong_temp,SYSTEM_INIT_VALUE_HANDLE_INVALID);
     }
   }
@@ -30512,7 +30512,7 @@ void InitializeSystemCore(longlong system_context_param)
       }
     }
     else {
-      func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_temp_counter,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_temp_counter + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+      system_init_function_stack_handler(system_temp_counter,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_temp_counter + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                           system_buffer_pointer,system_temp_counter,SYSTEM_INIT_VALUE_HANDLE_INVALID);
     }
   }
@@ -30586,7 +30586,7 @@ void InitializeSystemCore(longlong system_context_param)
         }
       }
       else {
-        func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_temp_counter,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_temp_counter + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+        system_init_function_stack_handler(system_temp_counter,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_temp_counter + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                             system_buffer_pointer,system_temp_counter,SYSTEM_INIT_VALUE_HANDLE_INVALID);
       }
     }
@@ -30625,7 +30625,7 @@ void InitializeSystemCore(longlong system_context_param)
         }
       }
       else {
-        func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_temp_counter,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_temp_counter + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+        system_init_function_stack_handler(system_temp_counter,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_temp_counter + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                             system_buffer_pointer,system_temp_counter,SYSTEM_INIT_VALUE_HANDLE_INVALID);
       }
     }
@@ -30664,7 +30664,7 @@ void InitializeSystemCore(longlong system_context_param)
         }
       }
       else {
-        func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_temp_counter,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_temp_counter + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+        system_init_function_stack_handler(system_temp_counter,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_temp_counter + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                             system_buffer_pointer,system_temp_counter,SYSTEM_INIT_VALUE_HANDLE_INVALID);
       }
     }
@@ -30716,7 +30716,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
   system_calculation_temp = SYSTEM_INIT_OFFSET_STACK_PARAM;
   system_config_data_pointer = system_ptr_pool;
   do {
-    func_SYSTEM_INIT_VALUE_CHAR_NULL00180059bb0(system_config_data_pointer);
+    system_init_function_data_processor(system_config_data_pointer);
     system_config_data_pointer = system_config_data_pointer + 2;
     system_calculation_temp = system_calculation_temp + -1;
   } while (system_calculation_temp != 0);
@@ -31675,7 +31675,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t 
   system_ptr_pool = system_memory_pointer;
   if (system_validation_flag_2) {
     if (system_memory_pointer == (system_uint64_t *)system_context_param[SYSTEM_ARRAY_INDEX_SECOND]) goto LAB_18005c9be;
-    system_ptr_pool = (system_uint64_t *)func_SYSTEM_INIT_VALUE_CHAR_NULL0018066b9a0(system_memory_pointer);
+    system_ptr_pool = (system_uint64_t *)system_init_function_pointer_converter(system_memory_pointer);
   }
   if (*(int *)(system_buffer_pointer + SYSTEM_INIT_OFFSET_STACK_PARAM) <= *(int *)(system_ptr_pool + 4)) {
                     // WARNING: Subroutine does not return
@@ -32071,7 +32071,7 @@ void InitializeSystemCore(ulonglong system_context_param,longlong system_config_
   system_stack_uint_20 = (ulonglong)(uint)(int)system_char_check;
   dStackX_18 = (double)(system_divider * system_coefficient_a0);
   uStack_38 = _g_system_initialized ^ (ulonglong)auStack_478;
-  system_ptr_data = (ulonglong *)func_SYSTEM_INIT_VALUE_CHAR_NULL0018004b9a0();
+  system_ptr_data = (ulonglong *)system_init_function_buffer_allocator();
   system_initialization_result = SYSTEM_INIT_VALUE_ZERO;
   system_stack_value_458 = SYSTEM_INIT_VALUE_ZERO;
   system_stack_double_pointer_450 = &dStackX_18;
@@ -32229,7 +32229,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
   system_stack_initialization_counter = system_memory_param;
   system_stack_uint_20 = system_thread_param;
   system_flags_mask = __acrt_iob_func(1);
-  system_buffer_pointer = (system_uint64_t *)func_SYSTEM_INIT_VALUE_CHAR_NULL0018004b9a0();
+  system_buffer_pointer = (system_uint64_t *)system_init_function_buffer_allocator();
   __stdio_common_vfprintf(*system_buffer_pointer,system_flags_mask,system_context_param,0,&system_stack_uint_10);
   return;
 }
@@ -33609,7 +33609,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param)
   system_function_result = SYSTEM_INIT_OFFSET_STACK_PARAM;
   system_module_data_pointer = system_memory_pointer;
   do {
-    func_SYSTEM_INIT_VALUE_CHAR_NULL00180059bb0(system_module_data_pointer);
+    system_init_function_data_processor(system_module_data_pointer);
     system_module_data_pointer = system_module_data_pointer + 2;
     system_function_result = system_function_result + -1;
   } while (system_function_result != 0);
@@ -35018,7 +35018,7 @@ joined_rSYSTEM_INIT_VALUE_CHAR_NULL0018005fdcd:
     psystem_initialization_result = *(longlong **)(system_context_param + SYSTEM_INIT_OFFSET_0X60);
     psystem_initialization_result[SYSTEM_ARRAY_INDEX_SECOND] = psystem_initialization_result[SYSTEM_ARRAY_INDEX_SECOND] - 1U & *psystem_initialization_result - 1U;
   }
-  system_ulong_var_13 = func_SYSTEM_INIT_VALUE_CHAR_NULL00180060150(*(system_uint64_t *)(system_context_param + SYSTEM_INIT_OFFSET_0X50),system_init_flag_audio);
+  system_ulong_var_13 = system_init_function_resource_handler(*(system_uint64_t *)(system_context_param + SYSTEM_INIT_OFFSET_0X50),system_init_flag_audio);
   *(ulonglong *)(system_context_param + SYSTEM_INIT_OFFSET_HEADER) = system_primary_config_7;
   return system_ulong_var_13 & SYSTEM_INIT_ERROR_GENERICffffff00;
 }
@@ -35498,7 +35498,7 @@ int InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t sy
   
   system_stack_initialization_counter = system_memory_param;
   system_stack_uint_20 = system_thread_param;
-  system_buffer_pointer = (ulonglong *)func_SYSTEM_INIT_VALUE_CHAR_NULL0018004b9a0();
+  system_buffer_pointer = (ulonglong *)system_init_function_buffer_allocator();
   system_int_param = __stdio_common_vsprintf(*system_buffer_pointer | 1,system_context_param,SYSTEM_INIT_ERROR_GENERICffffffff,system_config_param,0,&system_stack_initialization_counter);
   if (system_int_param < 0) {
     system_int_param = -1;
@@ -35827,7 +35827,7 @@ system_uint64_t InitializeSystemCore(longlong system_context_param,system_uint64
       UNLOCK();
       if (system_initialization_result == SYSTEM_INIT_FLAG_ENABLEDf) {
         *(system_uint64_t *)(system_temp_storage + 8) = SYSTEM_INIT_VALUE_ZERO;
-        func_SYSTEM_INIT_VALUE_CHAR_NULL00180060c10(*(system_uint64_t *)(system_context_param + SYSTEM_INIT_OFFSET_0X50),system_calculation_temp);
+        system_init_function_config_manager(*(system_uint64_t *)(system_context_param + SYSTEM_INIT_OFFSET_0X50),system_calculation_temp);
       }
       return 1;
     }
@@ -35909,7 +35909,7 @@ system_uint64_t InitializeSystemCore(void)
   UNLOCK();
   if (system_temp_storage == SYSTEM_INIT_FLAG_ENABLEDf) {
     *(system_uint64_t *)(system_initialization_result + 8) = SYSTEM_INIT_VALUE_ZERO;
-    func_SYSTEM_INIT_VALUE_CHAR_NULL00180060c10(*(system_uint64_t *)(system_register_rdi_input + SYSTEM_INIT_OFFSET_0X50),system_calculation_temp);
+    system_init_function_config_manager(*(system_uint64_t *)(system_register_rdi_input + SYSTEM_INIT_OFFSET_0X50),system_calculation_temp);
   }
   return 1;
 }
@@ -36915,7 +36915,7 @@ int InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t sy
   system_uint64_t system_stack_uint_20;
   
   system_stack_uint_20 = system_thread_param;
-  system_buffer_pointer = (system_uint64_t *)func_SYSTEM_INIT_VALUE_CHAR_NULL0018004b9a0();
+  system_buffer_pointer = (system_uint64_t *)system_init_function_buffer_allocator();
   system_int_param = __stdio_common_vsprintf_s(*system_buffer_pointer,system_context_param,system_config_param,system_memory_param,0,&system_stack_uint_20);
   if (system_int_param < 0) {
     system_int_param = -1;
@@ -36994,7 +36994,7 @@ int InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t sy
   int system_int_param;
   ulonglong *system_buffer_pointer;
   
-  system_buffer_pointer = (ulonglong *)func_SYSTEM_INIT_VALUE_CHAR_NULL0018004b9a0();
+  system_buffer_pointer = (ulonglong *)system_init_function_buffer_allocator();
   system_int_param = __stdio_common_vsprintf(*system_buffer_pointer | 2,system_context_param,system_config_param,system_memory_param,0,system_thread_param);
   if (system_int_param < 0) {
     system_int_param = -1;
@@ -40135,7 +40135,7 @@ system_uint64_t InitializeSystemCore(ulonglong *system_context_param,system_uint
           UNLOCK();
           if (system_buffer_pointer == SYSTEM_INIT_FLAG_ENABLEDf) {
             *(system_uint64_t *)(system_temp_storage + 8) = SYSTEM_INIT_VALUE_ZERO;
-            func_SYSTEM_INIT_VALUE_CHAR_NULL00180060c10(*(system_uint64_t *)(system_primary_config + SYSTEM_INIT_OFFSET_0X50));
+            system_init_function_config_manager(*(system_uint64_t *)(system_primary_config + SYSTEM_INIT_OFFSET_0X50));
           }
           system_validation_flag_6 = system_true;
         }
@@ -40231,7 +40231,7 @@ system_uint64_t InitializeSystemCore(longlong system_context_param,system_uint64
       UNLOCK();
       if (system_temp_storage == SYSTEM_INIT_FLAG_ENABLEDf) {
         *(system_uint64_t *)(system_initialization_result + 8) = SYSTEM_INIT_VALUE_ZERO;
-        func_SYSTEM_INIT_VALUE_CHAR_NULL00180060c10(*(system_uint64_t *)(system_context_param + SYSTEM_INIT_OFFSET_0X50));
+        system_init_function_config_manager(*(system_uint64_t *)(system_context_param + SYSTEM_INIT_OFFSET_0X50));
       }
       return 1;
     }
@@ -41543,7 +41543,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
   system_ptr_data = system_ptr_pool;
   system_stack_pointer_60 = system_context_param;
   do {
-    func_SYSTEM_INIT_VALUE_CHAR_NULL00180059bb0(system_ptr_data);
+    system_init_function_data_processor(system_ptr_data);
     system_ptr_data = system_ptr_data + 2;
     system_calculation_temp = system_calculation_temp + -1;
   } while (system_calculation_temp != 0);
@@ -43669,7 +43669,7 @@ void InitializeSystemCore(longlong *system_context_param)
       }
     }
     else {
-      func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_ulong_temp,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_ulong_temp + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+      system_init_function_stack_handler(system_ulong_temp,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_ulong_temp + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                           system_memory_pointer,system_ulong_temp,SYSTEM_INIT_VALUE_HANDLE_INVALID);
     }
   }
@@ -43730,7 +43730,7 @@ void InitializeSystemCore(longlong *system_context_param)
       }
     }
     else {
-      func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_ulong_temp,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_ulong_temp + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+      system_init_function_stack_handler(system_ulong_temp,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_ulong_temp + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                           system_memory_pointer,system_ulong_temp,SYSTEM_INIT_VALUE_HANDLE_INVALID);
     }
   }
@@ -43799,7 +43799,7 @@ void InitializeSystemCore(void)
         }
       }
       else {
-        func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_calculation_result,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_calculation_result + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+        system_init_function_stack_handler(system_calculation_result,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_calculation_result + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                             system_memory_pointer,system_calculation_result,SYSTEM_INIT_VALUE_HANDLE_INVALID);
       }
     }
@@ -43834,7 +43834,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
       }
     }
     else {
-      func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_param_value,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_param_value + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+      system_init_function_stack_handler(system_param_value,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_param_value + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                           system_context_param,system_param_value,SYSTEM_INIT_VALUE_HANDLE_INVALID);
     }
   }
@@ -43897,7 +43897,7 @@ void InitializeSystemCore(longlong *system_context_param)
       }
     }
     else {
-      func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_ulong_temp,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_ulong_temp + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+      system_init_function_stack_handler(system_ulong_temp,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_ulong_temp + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                           system_memory_pointer,system_ulong_temp,SYSTEM_INIT_VALUE_HANDLE_INVALID);
     }
   }
@@ -43970,7 +43970,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,sys
   system_buffer_pointer = SYSTEM_INIT_OFFSET_STACK_PARAM;
   system_ptr_pool = system_module_data_pointer;
   do {
-    func_SYSTEM_INIT_VALUE_CHAR_NULL00180059bb0(system_ptr_pool);
+    system_init_function_data_processor(system_ptr_pool);
     system_ptr_pool = system_ptr_pool + 2;
     system_buffer_pointer = system_buffer_pointer + -1;
   } while (system_buffer_pointer != 0);
@@ -45210,7 +45210,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
     InitializeSystemCore();
   }
   else {
-    system_init_flag_audio = func_SYSTEM_INIT_VALUE_CHAR_NULL001800464d0(&puStack_70);
+    system_init_flag_audio = system_init_function_calculator(&puStack_70);
     system_generic_function_(system_init_flag_audio);
   }
   InitializeSystemCore(&g_file_system,1);
@@ -50678,7 +50678,7 @@ int InitializeSystemCore(longlong system_context_param,longlong *system_config_p
   ulonglong *psystem_ulong_result;
   uint system_ulong_var_13;
   ulonglong system_ulonglong_var_14;
-  system_uint32_t extraout_XMM0_Da;
+  system_uint32_t system_register_xmm0_output_primary;
   system_uint32_t system_ulong_var_15;
   system_uint64_t system_stack_uint_var_8;
   system_uint64_t *system_stack_frame_pointer;
@@ -50708,7 +50708,7 @@ int InitializeSystemCore(longlong system_context_param,longlong *system_config_p
         system_stack_long_pointer_78 = (longlong *)SYSTEM_INIT_VALUE_CHAR_NULL;
         system_stack_char_pointer_70 = (system_code *)SYSTEM_INIT_VALUE_CHAR_NULL;
         system_stack_char_pointer_68 = _guard_check_icall;
-        InitializeSystemCore(extraout_XMM0_Da,system_context_param,&puStack_80);
+        InitializeSystemCore(system_register_xmm0_output_primary,system_context_param,&puStack_80);
         if (system_stack_char_pointer_70 != (system_code *)SYSTEM_INIT_VALUE_CHAR_NULL) {
           (*system_stack_char_pointer_70)(&puStack_80,0,0);
         }
@@ -51189,7 +51189,7 @@ void InitializeSystemCore(longlong system_context_param)
       }
     }
     else {
-      func_SYSTEM_INIT_VALUE_CHAR_NULL0018064e870(system_temp_counter,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_temp_counter + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
+      system_init_function_stack_handler(system_temp_counter,CONCAT71(SYSTEM_INIT_STACK_VALUE_EXTENDEDf000000,*(void ***)(system_temp_counter + SYSTEM_INIT_OFFSET_0X70) == &ExceptionList),
                           system_buffer_pointer,system_temp_counter,SYSTEM_INIT_VALUE_HANDLE_INVALID);
     }
   }
