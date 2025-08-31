@@ -97,7 +97,23 @@ void *utility_data_buffer_secondary;
 #define UTILITY_NULL_CONTEXT_ADDRESS UTILITY_NULL_CONTEXT_BASE_ADDRESS
 
 // 操作标志常量
-#define UTILITY_CLEANUP_FLAG UTILITY_CLEANUP_FLAG
+#define UTILITY_CLEANUP_FLAG 0x80000000
+
+// 代码中使用的偏移量常量
+#define UTILITY_OFFSET_8_BYTES 0x8
+#define UTILITY_OFFSET_16_BYTES 0x10
+#define UTILITY_OFFSET_64_BYTES 0x40
+#define UTILITY_OFFSET_72_BYTES 0x48
+#define UTILITY_OFFSET_80_BYTES 0x50
+#define UTILITY_OFFSET_104_BYTES 0x68
+#define UTILITY_OFFSET_144_BYTES 0x90
+#define UTILITY_OFFSET_728_BYTES 0x2d8
+
+// 代码中使用的标志常量
+#define UTILITY_STACK_FLAG_MASK 0xffffffc0
+#define UTILITY_FLAG_HIGH_BIT 0x80000000
+#define UTILITY_FLAG_HIGH_BIT_MASK 0x7fffffff
+#define UTILITY_FLAG_SECOND_HIGHEST_BIT 0x40000000
 
 // 全局数据地址常量
 #define UTILITY_GLOBAL_DATA_PROCESS_CONTEXT_PRIMARY 0x180982240
@@ -2510,7 +2526,7 @@ void cleanup_utility_system(void)
   int utility_system_item_count;
   void **utility_buffer_ptr;
   int utility_buffer_index;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
   ulong long utility_security_cookie;
   
   if (*(long long *)(utility_context_handle + 8) != 0) {
@@ -4606,11 +4622,11 @@ void context_pointer_process_data(long long context_pointer,void * data_ptr)
   int utility_result_code;
   void * utility_temp_array_8 [4];
   void * utility_temp_array [2];
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
+  void * utility_temp_var;
   
-  utility_temp_var_1 = *(void **)(context_pointer + UTILITY_OFFSET_16_BYTES);
-  utility_temp_var_2 = *(void **)(context_pointer + UTILITY_THREAD_TLS_CONTEXT_OFFSET);
+  utility_temp_var = *(void **)(context_pointer + UTILITY_OFFSET_16_BYTES);
+  utility_temp_var = *(void **)(context_pointer + UTILITY_THREAD_TLS_CONTEXT_OFFSET);
   utility_temp_array[0] = 2;
   utility_result_code = system_call_function(data_ptr,utility_temp_array,*(void **)(context_pointer + 0x1c),utility_temp_array_8);
   if (utility_result_code == 0) {
@@ -4785,7 +4801,7 @@ int utility_status_manager_handle_error(void * context_pointer)
   long long global_register_rdi;
   void * utility_result_ptr;
   long long utility_utility_stack_long;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
   
   utility_temp_long_var = 0;
   if (utility_register_eax == 0) {
@@ -7097,14 +7113,14 @@ void * utility_data_mapper_transform(long long context_pointer,long long data_pt
 {
   long long context_handle;
   void * utility_result_ptr;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
+  void * utility_temp_var;
+  void * utility_temp_var;
   void * system_temp_register_c;
   
-  utility_temp_var_1 = *(void **)(context_pointer + UTILITY_OFFSET_16_BYTES);
+  utility_temp_var = *(void **)(context_pointer + UTILITY_OFFSET_16_BYTES);
   utility_temp_var = *(void **)(context_pointer + 0x14);
-  utility_temp_var_2 = *(void **)(context_pointer + UTILITY_THREAD_TLS_CONTEXT_OFFSET);
+  utility_temp_var = *(void **)(context_pointer + UTILITY_THREAD_TLS_CONTEXT_OFFSET);
   system_temp_register_c = *(void **)(context_pointer + 0x1c);
   context_handle = (**(code **)(**(long long **)(data_ptr + 800) + 600))
                     (*(long long **)(data_ptr + 800),&utility_temp_var,1);
@@ -7128,14 +7144,14 @@ void * context_pointer_process_data(long long context_pointer,long long data_ptr
 {
   long long context_handle;
   void * utility_result_ptr;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
+  void * utility_temp_var;
+  void * utility_temp_var;
   void * system_temp_register_c;
   
-  utility_temp_var_1 = *(void **)(context_pointer + UTILITY_OFFSET_16_BYTES);
+  utility_temp_var = *(void **)(context_pointer + UTILITY_OFFSET_16_BYTES);
   utility_temp_var = *(void **)(context_pointer + 0x14);
-  utility_temp_var_2 = *(void **)(context_pointer + UTILITY_THREAD_TLS_CONTEXT_OFFSET);
+  utility_temp_var = *(void **)(context_pointer + UTILITY_THREAD_TLS_CONTEXT_OFFSET);
   system_temp_register_c = *(void **)(context_pointer + 0x1c);
   context_handle = (**(code **)(**(long long **)(data_ptr + 800) + 600))
                     (*(long long **)(data_ptr + 800),&utility_temp_var,1);
@@ -7456,7 +7472,7 @@ void * utility_file_manager_flush(void * context_pointer,void * data_ptr)
   long long system_data_pointer;
   long long utility_global_register_rsi;
   float utility_temp_float;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
   
   utility_temp_var = 0;
   utility_result_ptr = context_pointer_process_data(utility_global_register_rsi + 0x60,data_ptr,&utility_work_buffer);
@@ -8070,7 +8086,7 @@ void utility_buffer_manager_handle(long long context_pointer,void **data_ptr,lon
   uint utility_temp_var;
   uint utility_temp_var;
   uint utility_temp_var;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
   uint utility_temp_var;
   uint utility_temp_var;
   uint utility_temp_var;
@@ -8150,7 +8166,7 @@ void utility_buffer_validator_check(void)
   uint utility_temp_var;
   uint utility_temp_var;
   uint utility_temp_var;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
   uint utility_temp_var;
   uint utility_temp_var;
   uint utility_temp_var;
@@ -8244,7 +8260,7 @@ UTILITY_LABEL_MEMORY_ALLOC:
   uint utility_temp_var;
   uint utility_temp_var;
   uint utility_temp_var;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
   uint utility_temp_var;
   uint utility_temp_var;
   uint utility_temp_var;
@@ -9249,7 +9265,7 @@ void * context_pointer_process_data(long long context_pointer,void * data_ptr,lo
   void **utility_pointer_var;
   int *global_register_rdi;
   long long in_R10;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
   
   return_value = *(void **)(context_pointer + 8 + utility_context_handle * 8);
   utility_temp_var._4_4_ = (int)((ulong long)return_value >> UTILITY_THREAD_TLS_DATA_OFFSET);
@@ -9379,7 +9395,7 @@ void * context_pointer_process_data(void * context_pointer,int data_ptr)
   long long *global_register_rdi;
   void **utility_global_register_r14;
   void **utility_global_register_r15;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
   
   putility_result_code1 = (int *)(*global_register_rdi + (long long)utility_register_eax * 4);
   utility_status_code = *(int *)(*global_register_rdi + (long long)utility_register_eax * 4);
@@ -9453,7 +9469,7 @@ void * utility_cache_manager_lookup(void * context_pointer,void * data_ptr)
   long long global_register_rdi;
   void **utility_global_register_r14;
   void **utility_global_register_r15;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
   
   utility_result_code = *(int *)(global_register_rdi + UTILITY_THREAD_TLS_DATA_OFFSET);
   if (utility_result_code == -1) {
@@ -9788,20 +9804,20 @@ ulong long utility_thread_scheduler_manage(long long context_pointer)
   ulong long system_temp_var0;
   int autility_utility_stack_int_f8 [2];
   void **psystem_temp_var;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
+  void * utility_temp_var;
   void **psystem_temp_var;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
+  void * utility_temp_var;
+  void * utility_temp_var;
   void **psystem_temp_var;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
+  void * utility_temp_var;
   uint utility_temp_var;
   void **psystem_temp_var;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
+  void * utility_temp_var;
+  void * utility_temp_var;
   void * utility_temp_array [8];
   void * utility_temp_array [8];
   void * utility_temp_array [40];
@@ -11015,10 +11031,10 @@ void utility_thread_pauser_suspend(void)
   void * system_temp_var4;
   void **psystem_temp_var8;
   void * system_temp_var0;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
+  void * utility_temp_var;
+  void * utility_temp_var;
+  void * utility_temp_var;
   void * utility_temp_array [136];
   ulong long utility_temp_var;
   
@@ -12015,9 +12031,9 @@ void * context_pointer_process_data(long long *context_pointer)
   void * utility_result_ptr;
   void * utility_result_ptr;
   void **psystem_temp_var;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
+  void * utility_temp_var;
+  void * utility_temp_var;
   
   utility_temp_var = 0;
   psystem_temp_var = &UNK_180986408;
@@ -12548,7 +12564,7 @@ void * context_pointer_process_data(long long *context_pointer,char data_ptr)
   void * system_temp_register_8;
   long long utility_utility_stack_long_var_array_var [2];
   void **psystem_temp_var;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
   ulong long utility_temp_var;
   
   *(void **)(context_pointer + 4) = 1;
@@ -14542,7 +14558,7 @@ void * context_pointer_process_data(void)
   long long utility_global_register_rsi;
   int utility_result_code;
   float utility_temp_float;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
   
   utility_result_code = 0;
   if (0 < *(short *)(utility_global_register_rsi + UTILITY_OFFSET_16_BYTES4)) {
@@ -15977,9 +15993,9 @@ ulong long context_pointer_process_data(long long context_pointer,void **data_pt
   ulong long utility_result_ptr;
   uint utility_result_ptr;
   void * utility_security_cookie;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
+  void * utility_temp_var;
+  void * utility_temp_var;
   void * utility_temp_array [32];
   
   utility_pointer_var = (void **)context_pointer_process_data();
@@ -16455,7 +16471,7 @@ void * context_pointer_process_data(int context_pointer)
   char utility_buffer_ptr;
   void * utility_utility_stack_param;
   uint utility_temp_var;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
   
   if (context_pointer != 0) {
     return 0x1c;
@@ -16515,7 +16531,7 @@ void utility_cache_manager_clear(void)
   long long *system_data_pointer;
   long long global_register_rdi;
   char utility_buffer_ptr;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
   uint utility_temp_var;
   
   context_data_pointer = (long long *)*system_data_pointer;
@@ -17790,11 +17806,11 @@ ulong long context_pointer_process_data(long long context_pointer,void **data_pt
   int utility_result_code3;
   void **psystem_temp_register_18;
   void **psystem_temp_var;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
+  void * utility_temp_var;
+  void * utility_temp_var;
+  void * utility_temp_var;
+  void * utility_temp_var;
   void * utility_temp_array [32];
   void * utility_temp_array [32];
   
@@ -22317,11 +22333,11 @@ ulong long context_pointer_process_data(long long context_pointer,void **data_pt
   void **utility_pointer_var;
   long long utility_temp_long_var;
   void **psystem_temp_var;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
+  void * utility_temp_var;
+  void * utility_temp_var;
+  void * utility_temp_var;
+  void * utility_temp_var;
   void * utility_temp_array [32];
   void * asystem_security_cookie [32];
   
@@ -24191,10 +24207,10 @@ ulong long context_pointer_process_data(long long context_pointer,long long *dat
   void * temp_array [4];
   void * temp_array [4];
   void * utility_temp_array [2];
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
+  void * utility_temp_var;
+  void * utility_temp_var;
+  void * utility_temp_var;
   void * utility_temp_array [40];
   
   utility_pointer_var = (void **)context_pointer_process_data();
@@ -24272,9 +24288,9 @@ ulong long context_pointer_process_data(void)
   uint unaff_ESI;
   long long *global_register_rdi;
   void * utility_buffer_ptr;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
+  void * utility_temp_var;
+  void * utility_temp_var;
   void * utility_utility_stack_param;
   void * utility_utility_stack_param;
   
@@ -24344,9 +24360,9 @@ ulong long context_pointer_process_data(void)
   uint unaff_ESI;
   long long *global_register_rdi;
   void * utility_buffer_ptr;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
-  void * utility_temp_var_1;
+  void * utility_temp_var;
+  void * utility_temp_var;
+  void * utility_temp_var;
   void * utility_utility_stack_param;
   void * utility_utility_stack_param;
   
