@@ -21547,3 +21547,104 @@ void system_initialize_thread_pool(void)
   
   thread_parent_context[SYSTEM_COMPONENT_ID_INDEX] = SYSTEM_THREAD_POOL_ID;
   thread_parent_context[SYSTEM_COMPONENT_SECONDARY_ID_INDEX] = SYSTEM_THREAD_POOL_ID_SECONDARY;
+  thread_parent_context[SYSTEM_COMPONENT_HANDLER_INDEX] = &system_handler_database;
+  thread_parent_context[SYSTEM_COMPONENT_STATUS_INDEX] = 1;
+  thread_parent_context[SYSTEM_COMPONENT_INIT_FLAG_INDEX] = thread_pool_initialization_flag;
+  return;
+}
+/**
+ * @brief 初始化系统资源管理器
+ * 
+ * 初始化系统的资源管理器，设置资源加载、缓存和释放机制。
+ * 该函数负责创建和配置资源管理所需的核心数据结构，
+ * 包括资源分配、跟踪和回收等功能。资源管理器是游戏引擎的核心组件，
+ * 管理游戏中的各种资源（音频、纹理、模型等），确保资源的高效加载和内存管理。
+ * 为系统提供统一的资源管理服务，支持资源的动态加载和释放。
+ *
+ * @return void
+ */
+void system_initialize_resource_manager(void)
+{
+  char resource_initialization_status;
+  uint64_t *system_context;
+  int resource_config_comparison_result;
+  longlong *global_context;
+  longlong resource_allocation_identifier;
+  uint64_t *resource_context_node;
+  uint64_t *resource_parent_context;
+  uint64_t *resource_child_context;
+  uint64_t *new_resource_context_pointer;
+  uint64_t initialization_flag;
+  
+  global_context = (longlong *)system_get_global_context();
+  system_context = (uint64_t *)*global_context;
+  resource_initialization_status = *(char *)((longlong)system_context[1] + SYSTEM_STATUS_FLAG_OFFSET);
+  initialization_flag = 0;
+  resource_parent_context = system_context;
+  resource_context_node = (uint64_t *)system_context[1];
+  
+  while (resource_initialization_status == '\0') {
+    resource_config_comparison_result = memcmp(resource_context_node + 4, &system_config_ptr, SYSTEM_CONFIG_DATA_SIZE);
+    if (resource_config_comparison_result < 0) {
+      resource_child_context = (uint64_t *)resource_context_node[2];
+      resource_context_node = resource_parent_context;
+    }
+    else {
+      resource_child_context = (uint64_t *)*resource_context_node;
+    }
+    resource_parent_context = resource_context_node;
+    resource_context_node = resource_child_context;
+    resource_initialization_status = *(char *)((longlong)resource_child_context + SYSTEM_STATUS_FLAG_OFFSET);
+  }
+  
+  if ((resource_parent_context == system_context) || (resource_config_comparison_result = memcmp(&system_config_ptr, resource_parent_context + 4, SYSTEM_CONFIG_DATA_SIZE), resource_config_comparison_result < 0)) {
+    resource_allocation_identifier = system_allocate_resource_block(global_context);
+    system_initialize_resource_block(global_context, &new_resource_context_pointer, resource_parent_context, resource_allocation_identifier + SYSTEM_RESOURCE_BLOCK_OFFSET, resource_allocation_identifier);
+    resource_parent_context = new_resource_context_pointer;
+  }
+  
+  resource_parent_context[SYSTEM_COMPONENT_ID_INDEX] = SYSTEM_RESOURCE_MANAGER_ID;
+  resource_parent_context[SYSTEM_COMPONENT_SECONDARY_ID_INDEX] = SYSTEM_RESOURCE_MANAGER_ID_SECONDARY;
+  resource_parent_context[SYSTEM_COMPONENT_HANDLER_INDEX] = &system_handler_config;
+  resource_parent_context[SYSTEM_COMPONENT_STATUS_INDEX] = 0;
+  resource_parent_context[10] = initialization_flag;
+  return;
+}
+/**
+ * 
+ * 初始化系统回调机制，负责处理异步事件和函数调用。
+ * 该函数创建回调系统的核心数据结构，设置事件回调注册和处理机制。
+ * 回调系统允许系统在特定事件发生时执行预定义的函数，支持异步处理。
+ *
+ * @return 无返回值
+/**
+ * 
+ * 建立系统回调机制，配置回调函数注册和调用流程。
+ * 支持事件驱动的系统通信。
+ *
+ * @return void
+/**
+ * @return 无返回值
+/**
+ * 初始化系统回调机制
+ * 
+ * 设置回调函数注册、调用和管理机制
+ * 为系统提供事件驱动的编程支持
+ *
+ * @return 无返回值
+ */
+/**
+ * @brief 初始化系统回调机制
+ * @return 无返回值
+ * 
+ * 该函数负责初始化系统的回调机制，包括：
+ * 1. 建立回调函数注册表
+ * 2. 初始化回调队列和调度器
+ * 3. 设置回调执行策略
+ * 4. 配置回调参数传递机制
+ *
+ * 回调系统是系统组件间通信的重要机制。
+ */
+/**
+ * @brief 初始化系统回调系统
+ * 
