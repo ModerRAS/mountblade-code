@@ -52,8 +52,8 @@ void *utility_network_context_secondary;
 void *utility_network_context_tertiary;
 void *utility_network_context_quaternary;
 // 资源管理 - 系统资源分配和跟踪
-void *utility_resource_primary;
-void *utility_resource_secondary;
+void *utility_resource_main;
+void *utility_resource_config;
 void *utility_resource_tertiary;
 void *utility_resource_quaternary;
 void *utility_resource_manager;
