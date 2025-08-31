@@ -116,7 +116,7 @@ void render_cleanup_context_object(uint64_t *renderContextPtr)
  * 
  * 简化实现：添加函数文档注释，保持代码结构不变
  */
-uint64_t *render_init_context_function(uint64_t *render_context)
+uint64_t *render_init_context_object(uint64_t *render_context)
 {
     if (render_context == NULL) {
         return NULL;
