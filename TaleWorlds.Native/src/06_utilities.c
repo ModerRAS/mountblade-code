@@ -22021,7 +22021,7 @@ void utility_unwind_exception_handler_wipe_all_zero(uint64 utility_resource_prim
   }
   return;
 }
-void utilityunwindexceptionhandlerscrubzerozerozeroallzero(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
+void utility_unwind_exception_handler_scrub_all_zero(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
 {
   longlong *utility_resource_data_ptr;
   utility_resource_data_ptr = *(longlong **)(*(longlong *)(utility_resource_context_handle + utility_buffer_size_thread_handler_offset) + utility_memory_offset_primary_operation);
