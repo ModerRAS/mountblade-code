@@ -1074,17 +1074,15 @@ uint64_t create_thread(int64_t context_pointer)
 float utility_float_param_secondary;
     uint8_t resource_context_data_ptr_status [16];
 int64_t stack_pointer;
-    status = handle_service_request;(*(uint32_t *)(context_pointer + UTILITY_STATUS_THREAD_CREATED),&stack_pointer);
+    status = handle_service_request(*(uint32_t *)(context_pointer + UTILITY_STATUS_THREAD_CREATED), &stack_pointer);
     if ((int)status != UTILITY_STATUS_OPERATION_FAILED) {
     return status;
 }
     loop_counter = 0;
     if (loop_counter < max_iterations) {
     network_float_value = *(float *)(context_pointer + UTILITY_THREAD_DATA_OFFSET);
-for (context_pointer = *uint64_t **(loop_counter ) = 0;
-(*uint64_t **(loop_counter ) = 0;
-(context_pointer < *uint64_t **(loop_counter ) = 0;
-    utility_resource_ctx_handle = utility_process_resource(*data_storage_pointer,network_float_value,0);
+    for (loop_counter = 0; loop_counter < max_iterations; loop_counter++) {
+        utility_resource_ctx_handle = utility_process_resource(*data_storage_pointer, network_float_value, 0);
     if ((int)status != UTILITY_STATUS_OPERATION_FAILED) {
     return status;
 }
