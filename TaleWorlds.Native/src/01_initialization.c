@@ -826,49 +826,61 @@ void system_initialize_main(void)
 
 
 
+/**
+ * 系统子系统初始化函数
+ * 初始化系统的各个子系统组件
+ * 
+ * 功能：
+ * - 获取系统上下文管理器
+ * - 初始化子系统配置数据
+ * - 分配内存并设置子系统上下文
+ * - 设置子系统初始化参数
+ * 
+ * 简化实现：仅保留核心子系统初始化逻辑
+ */
 void system_initialize_subsystem(void)
 
 {
-  char cVar1;
-  uint8_t *puVar2;
-  int iVar3;
-  int64_t *plVar4;
-  int64_t lVar5;
-  uint8_t *puVar6;
-  uint8_t *puVar7;
-  uint8_t *puVar8;
-  uint8_t *puStackX_10;
-  uint8_t uStackX_18;
+  char subsystem_status_flag;
+  uint8_t *subsystem_manager_ptr;
+  int subsystem_compare_result;
+  int64_t *subsystem_memory_ptr;
+  int64_t subsystem_allocated_size;
+  uint8_t *subsystem_node_ptr;
+  uint8_t *subsystem_prev_ptr;
+  uint8_t *subsystem_next_ptr;
+  uint8_t *subsystem_buffer_ptr;
+  uint8_t subsystem_init_flag;
   
-  plVar4 = (int64_t *)system_get_context_manager();
-  puVar2 = (uint8_t *)*plVar4;
-  cVar1 = *(char *)((int64_t)puVar2[1] + 0x19);
-  uStackX_18 = 0;
-  puVar7 = puVar2;
-  puVar6 = (uint8_t *)puVar2[1];
-  while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&system_global_data_ptr,0x10);
-    if (iVar3 < 0) {
-      puVar8 = (uint8_t *)puVar6[2];
-      puVar6 = puVar7;
+  subsystem_memory_ptr = (int64_t *)system_get_context_manager();
+  subsystem_manager_ptr = (uint8_t *)*subsystem_memory_ptr;
+  subsystem_status_flag = *(char *)((int64_t)subsystem_manager_ptr[1] + 0x19);
+  subsystem_init_flag = 0;
+  subsystem_prev_ptr = subsystem_manager_ptr;
+  subsystem_node_ptr = (uint8_t *)subsystem_manager_ptr[1];
+  while (subsystem_status_flag == '\0') {
+    subsystem_compare_result = memcmp(subsystem_node_ptr + 4,&system_global_data_ptr,0x10);
+    if (subsystem_compare_result < 0) {
+      subsystem_next_ptr = (uint8_t *)subsystem_node_ptr[2];
+      subsystem_node_ptr = subsystem_prev_ptr;
     }
     else {
-      puVar8 = (uint8_t *)*puVar6;
+      subsystem_next_ptr = (uint8_t *)*subsystem_node_ptr;
     }
-    puVar7 = puVar6;
-    puVar6 = puVar8;
-    cVar1 = *(char *)((int64_t)puVar8 + 0x19);
+    subsystem_prev_ptr = subsystem_node_ptr;
+    subsystem_node_ptr = subsystem_next_ptr;
+    subsystem_status_flag = *(char *)((int64_t)subsystem_next_ptr + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_global_data_ptr,puVar7 + 4,0x10), iVar3 < 0)) {
-    lVar5 = system_allocate_memory(plVar4);
-    system_initialize_context(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
-    puVar7 = puStackX_10;
+  if ((subsystem_prev_ptr == subsystem_manager_ptr) || (subsystem_compare_result = memcmp(&system_global_data_ptr,subsystem_prev_ptr + 4,0x10), subsystem_compare_result < 0)) {
+    subsystem_allocated_size = system_allocate_memory(subsystem_memory_ptr);
+    system_initialize_context(subsystem_memory_ptr,&subsystem_buffer_ptr,subsystem_prev_ptr,subsystem_allocated_size + 0x20,subsystem_allocated_size);
+    subsystem_prev_ptr = subsystem_buffer_ptr;
   }
-  puVar7[6] = 0x4770584fbb1df897;
-  puVar7[7] = 0x47f249e43f66f2ab;
-  puVar7[8] = &system_unknown_ptr_7a0;
-  puVar7[9] = 1;
-  puVar7[10] = uStackX_18;
+  subsystem_prev_ptr[6] = 0x4770584fbb1df897;
+  subsystem_prev_ptr[7] = 0x47f249e43f66f2ab;
+  subsystem_prev_ptr[8] = &system_unknown_ptr_7a0;
+  subsystem_prev_ptr[9] = 1;
+  subsystem_prev_ptr[10] = subsystem_init_flag;
   return;
 }
 

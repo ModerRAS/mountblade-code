@@ -199,24 +199,24 @@ void ShutdownRenderEngine(void);
 
 // 网络系统数据
 void* InitializeNetworkEngine;                             // 网络引擎初始化函数指针
-void* g_network_socket_pointer;                             // 网络套接字数据指针
-void* g_network_buffer_pointer;                             // 网络缓冲区数据指针
-void* g_network_config_pointer;                             // 网络配置数据指针
-void* g_network_state_pointer;                              // 网络状态数据指针
-void* g_network_timeout_pointer;                            // 网络超时数据指针
-void* g_network_connection_pointer;                         // 网络连接数据指针
-void* g_network_buffer_size_pointer;                        // 网络缓冲区大小数据指针
-void* g_network_packet_pointer;                             // 网络数据包数据指针
+void* g_network_socket;                                     // 网络套接字数据指针
+void* g_network_buffer;                                     // 网络缓冲区数据指针
+void* g_network_config;                                     // 网络配置数据指针
+void* g_network_state;                                      // 网络状态数据指针
+void* g_network_timeout;                                    // 网络超时数据指针
+void* g_network_connection;                                 // 网络连接数据指针
+void* g_network_buffer_size;                                // 网络缓冲区大小数据指针
+void* g_network_packet;                                     // 网络数据包数据指针
 
 // 系统管理数据
 void* InitializeSubSystem;                                 // 初始化子系统函数指针
-void* g_network_config_secondary_pointer;                    // 网络配置数据(次要)指针
-void* g_system_memory_pool_pointer;                          // 系统内存池数据指针
-uint64_t g_system_main_engine_status_flag;                    // 系统主引擎状态标志
-void* g_system_state_pointer;                                // 系统状态数据指针
-void* g_system_config_pointer;                               // 系统配置数据指针
-void* g_system_error_pointer;                                // 系统错误数据指针
-void* g_system_debug_pointer;                                // 系统调试数据指针
+void* g_network_config_secondary;                           // 网络配置数据(次要)指针
+void* g_system_memory_pool;                                 // 系统内存池数据指针
+uint64_t g_system_main_engine_status;                       // 系统主引擎状态标志
+void* g_system_state;                                       // 系统状态数据指针
+void* g_system_config;                                      // 系统配置数据指针
+void* g_system_error;                                       // 系统错误数据指针
+void* g_system_debug;                                       // 系统调试数据指针
 
 /**
  * @brief 引擎主线程管理函数
