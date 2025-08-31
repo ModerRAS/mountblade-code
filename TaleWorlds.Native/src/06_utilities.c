@@ -1,7 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 06_utilities.c - 473 个函数
-
 // 函数: undefined FUN_1809414f0;
 undefined FUN_1809414f0;
 undefined DAT_180bf5290;
