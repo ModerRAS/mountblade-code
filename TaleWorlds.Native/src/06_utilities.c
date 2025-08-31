@@ -168,7 +168,6 @@
 #define UTILITY_STATUS_ENABLED_FLAG_PRIMARY 0x1
 #define UTILITY_STATUS_ENABLED_FLAG_SECONDARY 0x2
 #define UTILITY_STATUS_ENABLED_FLAG_TERTIARY UTILITY_STATUS_ENABLED_FLAG_QUATERNARY_VALUE
-#define UTILITY_STATUS_ENABLED_FLAG_QUATERNARY UTILITY_STATUS_FLAG_MASK_8_BIT_VALUE
 #define UTILITY_SERVICE_HANDLER_OFFSET_SECONDARY 0x600
 #define UTILITY_SERVICE_CONTEXT_OFFSET_MEDIUM 0x2e8
 #define UTILITY_STREAM_TYPE_ROOT 0x1
@@ -2020,6 +2019,18 @@ utility_execute_resource_command(utility_context_ptr,utility_stack_int_data,*(ui
 }
 return;
 }
+/**
+ * @brief 上下文数据指针管理器
+ * 
+ * 管理和操作上下文数据指针，包括分配、释放和验证操作
+ * 
+ * @param resource_count 资源数量，指定要管理的资源范围
+ * @param utility_context_ptr 工具上下文指针，包含管理所需的配置信息
+ * @return uint64_t 管理结果标识符，用于跟踪操作状态
+ * 
+ * 原本实现：完全重构上下文数据指针管理逻辑，建立统一的指针管理规范
+ * 简化实现：仅将非语义化变量名替换为语义化名称，为函数添加详细文档注释
+ */
 uint64_t utility_context_data_ptr_manager(int64_t resource_count,uint64_t utility_context_ptr)
 {
 uint32_t utility_context_data_ptr;
@@ -2209,6 +2220,17 @@ utility_context_ptr = (int64_t *)&utility_global_context_ptr;
 }
 utility_stack_cleanup_resources(utility_stack_buffer);
 }
+/**
+ * @brief 上下文数据指针处理器
+ * 
+ * 处理上下文数据指针，包括数据访问、修改和验证操作
+ * 
+ * @param utility_context_ptr 工具上下文指针，包含处理所需的配置和状态信息
+ * @return uint64_t 处理结果标识符，用于跟踪操作状态
+ * 
+ * 原本实现：完全重构上下文数据指针处理逻辑，建立统一的指针处理规范
+ * 简化实现：仅将非语义化变量名替换为语义化名称，为函数添加详细文档注释
+ */
 uint64_t utility_context_data_ptr_processor(int64_t utility_context_ptr)
 {
 uint64_t utility_resource_identifier;
@@ -4263,6 +4285,18 @@ return utility_resource_identifier;
 }
 return utility_resource_identifier;
 }
+/**
+ * @brief 资源数据处理器
+ * 
+ * 处理和操作资源数据，包括数据提取、验证和转换
+ * 
+ * @param resource_count 资源数量，指定要处理的资源范围
+ * @param utility_context_ptr 工具上下文指针，包含处理所需的配置和状态信息
+ * @return uint64_t 处理结果标识符，用于跟踪操作状态
+ * 
+ * 原本实现：完全重构资源数据处理逻辑，建立统一的数据处理规范
+ * 简化实现：仅将非语义化变量名替换为语义化名称，为函数添加详细文档注释
+ */
 uint64_t utility_resource_data_processor(int64_t resource_count,int64_t utility_context_ptr)
 {
 int64_t utility_loop_counter;
