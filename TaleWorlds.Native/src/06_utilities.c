@@ -2172,8 +2172,8 @@ void utility_validate_resource_state(void)
 }
 uint64_t utility_process_pointer(longlong utility_pointer_param)
 {
-  longlong utility_iteration_count;
-  longlong utility_iteration_count;
+  longlong utility_iteration_count_primary;
+  longlong utility_iteration_count_secondary;
   int utility_operation_result;;
   long long utility_resource_context;
   long long utility_resource_context;
