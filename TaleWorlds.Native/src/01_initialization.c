@@ -1545,12 +1545,14 @@ void system_initialize_memory_manager(void)
   return;
 }
 /**
- * 初始化系统线程池
+ * @brief 初始化系统线程池
  * 
- * 创建并初始化系统线程池，配置线程数量、优先级和调度策略
- * 为多任务处理提供线程资源管理
+ * 创建并初始化系统线程池，配置线程数量、优先级和调度策略。
+ * 为多任务处理提供线程资源管理。该函数负责创建线程池的核心数据结构，
+ * 设置线程的创建、销毁和调度机制。线程池是系统并发处理的基础组件，
+ * 能够有效管理和复用线程资源，提高系统性能。
  *
- * @return 无返回值
+ * @return void
  */
 void system_initialize_thread_pool(void)
 {
@@ -1611,48 +1613,50 @@ void system_initialize_thread_pool(void)
  * @return void
  */
 void system_initialize_resource_manager(void)
-
 {
-  char resource_manager_init_status;
-  uint64_t *system_system_data_context;
-  int config_comparison_result;
-  longlong *global_context_pointer;
-  longlong resource_allocation_id;
-  uint64_t *resource_node_pointer;
-  uint64_t *resource_parent_pointer;
-  uint64_t *resource_child_pointer;
-  uint64_t *new_resource_pointer;
-  uint64_t component_initialization_flag_temp;
+  char resource_init_status;
+  uint64_t *system_context;
+  int config_compare_result;
+  longlong *global_context;
+  longlong resource_id;
+  uint64_t *resource_node;
+  uint64_t *resource_parent;
+  uint64_t *resource_child;
+  uint64_t *new_resource;
+  uint64_t init_flag;
   
-  global_context_pointer = (longlong *)system_get_global_context();
-  system_system_data_context = (uint64_t *)*global_context_pointer;
-  resource_manager_init_status = *(char *)((longlong)system_system_data_context[1] + SYSTEM_STATUS_FLAG_OFFSET);
-  component_initialization_flag_temp = 0;
-  resource_parent_pointer = system_system_data_context;
-  resource_node_pointer = (uint64_t *)system_system_data_context[1];
-  while (resource_manager_init_status == '\0') {
-    config_comparison_result = memcmp(resource_node_pointer + 4,&system_config_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (config_comparison_result < 0) {
-      resource_child_pointer = (uint64_t *)resource_node_pointer[2];
-      resource_node_pointer = resource_parent_pointer;
+  global_context = (longlong *)system_get_global_context();
+  system_context = (uint64_t *)*global_context;
+  resource_init_status = *(char *)((longlong)system_context[1] + SYSTEM_STATUS_FLAG_OFFSET);
+  init_flag = 0;
+  resource_parent = system_context;
+  resource_node = (uint64_t *)system_context[1];
+  
+  while (resource_init_status == '\0') {
+    config_compare_result = memcmp(resource_node + 4, &system_config_ptr, SYSTEM_CONFIG_DATA_SIZE_16);
+    if (config_compare_result < 0) {
+      resource_child = (uint64_t *)resource_node[2];
+      resource_node = resource_parent;
     }
     else {
-      resource_child_pointer = (uint64_t *)*resource_node_pointer;
+      resource_child = (uint64_t *)*resource_node;
     }
-    resource_parent_pointer = resource_node_pointer;
-    resource_node_pointer = resource_child_pointer;
-    resource_manager_init_status = *(char *)((longlong)resource_child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
+    resource_parent = resource_node;
+    resource_node = resource_child;
+    resource_init_status = *(char *)((longlong)resource_child + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((resource_parent_pointer == system_system_data_context) || (config_comparison_result = memcmp(&system_config_ptr,resource_parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), config_comparison_result < 0)) {
-    resource_allocation_id = system_allocate_resource_block(global_context_pointer);
-    system_initialize_resource_block(global_context_pointer,&new_resource_pointer,resource_parent_pointer,resource_allocation_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,resource_allocation_id);
-    resource_parent_pointer = new_resource_pointer;
+  
+  if ((resource_parent == system_context) || (config_compare_result = memcmp(&system_config_ptr, resource_parent + 4, SYSTEM_CONFIG_DATA_SIZE_16), config_compare_result < 0)) {
+    resource_id = system_allocate_resource_block(global_context);
+    system_initialize_resource_block(global_context, &new_resource, resource_parent, resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20, resource_id);
+    resource_parent = new_resource;
   }
-  resource_parent_pointer[6] = SYSTEM_RESOURCE_MANAGER_MAGIC;
-  resource_parent_pointer[0x03] = SYSTEM_RESOURCE_MANAGER_MAGIC_SECONDARY;
-  resource_parent_pointer[0x01] = &system_handler_config;
-  resource_parent_pointer[0x02] = 0;
-  resource_parent_pointer[10] = component_initialization_flag_temp;
+  
+  resource_parent[6] = SYSTEM_RESOURCE_MANAGER_MAGIC;
+  resource_parent[0x03] = SYSTEM_RESOURCE_MANAGER_MAGIC_SECONDARY;
+  resource_parent[0x01] = &system_handler_config;
+  resource_parent[0x02] = 0;
+  resource_parent[10] = init_flag;
   return;
 }
 /**
