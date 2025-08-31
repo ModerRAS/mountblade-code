@@ -857,7 +857,7 @@ utility_loop_index = *(int64_t *)(utility_stack_buffer[0] + UTILITY_THREAD_HANDL
 if (utility_loop_index != UTILITY_BOOLEAN_FALSE) {
     
 }
-*(int *)(utility_loop_index + 500) = *(int *)(utility_loop_index + 500) + 1;
+*(int *)(utility_loop_index + UTILITY_CONTEXT_OFFSET_PRIMARY) = *(int *)(utility_loop_index + UTILITY_CONTEXT_OFFSET_PRIMARY) + 1;
 if ((*(char *)(utility_loop_index + UTILITY_THREAD_DATA_OFFSET_SECONDARY) != '\0') && (utility_context_data = utility_check_resource_status(), (int)utility_resource_handle != UTILITY_BOOLEAN_FALSE)) {
 return utility_resource_id;
 }
