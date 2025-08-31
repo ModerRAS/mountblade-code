@@ -726,6 +726,8 @@ uint64_t resource_handle_semaphore_pointer(int64_t context_data_pointer)
 {
     // 基本框架实现
     return UTILITY_STATUS_SUCCESS;
+}
+
 /**
  * 资源操作处理器
  *
