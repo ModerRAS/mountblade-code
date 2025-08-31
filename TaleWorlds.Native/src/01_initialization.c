@@ -27,7 +27,8 @@
 #define SYSTEM_INIT_OFFSET_STACK_PARAM         SYSTEM_INIT_OFFSET_HEADER    // 栈参数偏移量
 #define SYSTEM_INIT_SIZE_BUFFER_SMALL          0x80    // 小缓冲区大小
 #define SYSTEM_INIT_VALUE_SEMAPHORE_MAX        0x7fffffff // 信号量最大值
-#define SYSTEM_INIT_VALUE_HANDLE_INVALID      SYSTEM_INIT_VALUE_MUTEX_MASK
+#define SYSTEM_INIT_VALUE_HANDLE_INVALID      SYSTEM_INIT_VALUE_MUTEX_MASK // 无效句柄值
+#define SYSTEM_INIT_VALUE_ZERO                 0        // 零值常量
 
 // 系统魔法数字常量
 #define SYSTEM_INIT_MAGIC_COOKIE_BASIC_PRIMARY     0xfc124d2010d41985f // 系统魔法cookie 1
@@ -101,10 +102,11 @@ int SystemInitializationMain(void);
  * 
  * 这是简化实现中的系统核心初始化函数，负责初始化系统的基本组件。
  * 主要功能包括：
- * - 验证系统上下文
- * - 配置系统缓冲区
+ * - 验证系统上下文有效性
+ * - 配置系统缓冲区和模块数据
  * - 初始化系统核心功能
  * - 设置系统魔法cookie
+ * - 调用带参数的初始化函数完成具体初始化
  * 
  * @note 这是简化实现，原本实现完全重构了初始化系统所有命名体系
  */
@@ -296,7 +298,8 @@ void CleanupSystemResources(void)
 }
 
 // 系统初始化完成标志
-#define SYSTEM_INIT_COMPLETE 1
+#define SYSTEM_INIT_COMPLETE          1     // 初始化完成标志
+#define SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN  10  // 配置指针索引10
 
 /**
  * @brief 系统初始化主入口点
@@ -319,17 +322,17 @@ int SystemInitializationMain(void)
   // 调用核心初始化函数
   InitializeSystemCore();
   
-  // 初始化栈内存
-  InitializeSystemStackMemory();
-  
-  // 检查初始化状态
-  initialization_result = CheckSystemInitializationStatus((void**)&g_system_context);
-  
-  // 处理初始化错误
-  if (initialization_result != SYSTEM_INIT_COMPLETE) {
-    CleanupSystemResources();
-    return SYSTEM_INIT_ERROR_GENERIC;
-  }
+    // 初始化栈内存
+    InitializeSystemStackMemory();
+    
+    // 检查初始化状态
+    initialization_result = CheckSystemInitializationStatus((void**)&g_system_context);
+    
+    // 处理初始化错误
+    if (initialization_result != SYSTEM_INIT_COMPLETE) {
+      CleanupSystemResources();
+      return SYSTEM_INIT_ERROR_GENERIC;
+    }
   
   return SYSTEM_INIT_COMPLETE;
 }
