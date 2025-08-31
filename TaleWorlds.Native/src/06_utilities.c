@@ -144,7 +144,7 @@ static uint64_t UTILITY_EXTENDED_DATA_PTR = 0;
  * - 数据库操作工具
  *
  * 简化实现（2025年8月31日最新批次完成）：
- * - 美化函数名，将utility_config_function_121等替换为utility_config_handler_primary等语义化函数名
+ * - 美化函数名，将utility_config_function_121等替换为utility_config_handler等语义化函数名
  * - 美化函数名，将utility_system_validator_septenary等替换为utility_system_validator等语义化函数名
  * - 美化函数名，将utility_system_cleaner_primary等替换为utility_system_cleaner等语义化函数名
  * - 美化函数名，将utility_system_manager_primary等替换为utility_system_manager等语义化函数名
@@ -291,7 +291,7 @@ uint64_t utility_context_manager(void)
  *
  * 简化实现：提供基本的资源配置功能。
  */
-uint64_t utility_config_handler_primary(void)
+uint64_t utility_config_handler(void)
 {
   return UTILITY_ZERO;
 }
