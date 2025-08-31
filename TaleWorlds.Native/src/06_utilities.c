@@ -252,7 +252,10 @@ uint64_t utility_resource_data_processor(void)
  * 该函数负责验证系统资源的有效性，包括资源检查和状态验证。
  * 主要用于系统资源管理和状态监控。
  *
- * 简化实现：提供基本的验证功能。
+ * @note 简化实现：提供基本的验证功能，原本实现应包含完整的资源验证逻辑。
+ * @see utility_resource_manager
+ *
+ * @return UTILITY_ZERO 表示验证成功，UTILITY_ERROR_CODE_INVALID 表示验证失败
  */
 uint64_t utility_system_validator(void)
 {

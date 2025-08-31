@@ -204,7 +204,7 @@ void* g_network_config_data;                      // 网络配置数据指针
 void* g_network_state_data;                       // 网络状态数据指针
 void* g_network_timeout_data;                     // 网络超时数据指针
 void* g_network_connection_data;                  // 网络连接数据指针
-void* g_network_buffer_size_data;                     // 网络缓冲区大小数据指针
+void* g_network_buffer_size_data;                   // 网络缓冲区大小数据指针
 void* g_network_packet_data;                      // 网络数据包数据指针
 
 // 系统管理数据
