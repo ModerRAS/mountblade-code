@@ -95,42 +95,42 @@
 #define UTILITY_LIST_DATA_OFFSET 0x14                              // 列表数据偏移量
 
 // 全局变量声明
-static int64_t utility_system_resource_handle = 0;                 /**< 系统资源句柄 */
-static uint32_t_t utility_stack_processing_buffer[16] = {0};          /**< 栈处理缓冲区 */
-static uint32_t_t utility_stack_buffer_array[16] = {0};               /**< 栈缓冲区数组 */
-static uint32_t_t utility_stack_data[16] = {0};                       /**< 栈数据 */
-static float utility_float_primary_value = 0.0f;                     /**< 主浮点数值 */
-static uint32_t_t utility_status_value = 0;                          /**< 状态值 */
-static int utility_counter = 0;                                     /**< 计数器 */
-static uint32_t_t utility_state = 0;                                  /**< 状态标志 */
-static uint32_t_t *utility_ptr_buffer = NULL;                         /**< 指针缓冲区 */
-static int64_t utility_temporary_long_storage = 0;                  /**< 临时长整型存储 */
-static uint32_t_t *utility_generic_data_pointer = NULL;               /**< 通用数据指针 */
-static int *utility_result_pointer = NULL;                         /**< 结果指针 */
-static uint32_t_t *utility_cpu_register_rax = NULL;                  /**< CPU寄存器RAX */
-static int64_t utility_data_pointer_primary_extended = 0;          /**< 主扩展数据指针 */
-static uint32_t_t *utility_system_memory_handle = NULL;               /**< 系统内存句柄 */
-static int64_t utility_resource_cache = 0;                         /**< 资源缓存 */
-static uint32_t_t utility_buffer[1024] = {0};                        /**< 缓冲区 */
-static uint32_t_t utility_processing_buffer[1024] = {0};             /**< 处理缓冲区 */
-static uint32_t_t utility_resource_size_limit = 1024;                /**< 资源大小限制 */
-static int64_t utility_resource_context_handle = 0;                 /**< 资源上下文句柄 */
-static uint32_t_t utility_resource_buffer = 0;                       /**< 资源缓冲区 */
-static uint32_t_t utility_boundary_two = 2;                          /**< 边界值2 */
-static uint32_t_t utility_resource_config_offset = 0;                 /**< 资源配置偏移量 */
-static uint32_t_t utility_resource_table_offset = 0;                  /**< 资源表偏移量 */
-static int64_t utility_frame_ptr = 0;                              /**< 帧指针 */
-static int64_t utility_file_data_offset = 0;                        /**< 文件数据偏移量 */
-static uint32_t_t utility_file_handle_offset = 0;                     /**< 文件句柄偏移量 */
-static uint64_t_t utility_file_position_offset = 0;                   /**< 文件位置偏移量 */
-static float utility_resource_data_buffer_position = 0.0f;          /**< 资源数据缓冲区位置 */
-static int64_t utility_data_buffer_primary = 0;                     /**< 主数据缓冲区 */
-static uint32_t_t utility_local_integer_value = 0;                    /**< 局部整数值 */
-static int64_t utility_buffer_position = 0;                         /**< 缓冲区位置 */
-static uint64_t_t utility_result = 0;                                 /**< 操作结果 */
-static uint32_t_t utility_thread_offset = 0;                          /**< 线程偏移量 */
-static uint64_t_t utility_file_size_param = 0;                        /**< 文件大小参数 */
-static uint64_t_t utility_extended_data_ptr = 0;                      /**< 扩展数据指针 */
+static longlong utility_system_resource_handle = 0;
+static uint32 UTILITY_STACK_PROCESSING_BUFFER[16] = {0};
+static uint32 UTILITY_STACK_BUFFER_ARRAY[16] = {0};
+static uint32 UTILITY_STACK_DATA[16] = {0};
+static float UTILITY_FLOAT_PRIMARY_VALUE = 0.0f;
+static uint32 UTILITY_STATUS_VALUE = 0;
+static int UTILITY_COUNTER = 0;
+static uint32 UTILITY_STATE = 0;
+static uint32 *UTILITY_PTR_BUFFER = NULL;
+static longlong UTILITY_TEMPORARY_LONG_STORAGE = 0;
+static uint32 *UTILITY_GENERIC_DATA_POINTER = NULL;
+static int *UTILITY_RESULT_POINTER = NULL;
+static uint32 *UTILITY_CPU_REGISTER_RAX = NULL;
+static longlong UTILITY_DATA_POINTER_PRIMARY_EXTENDED = 0;
+static uint32 *UTILITY_SYSTEM_MEMORY_HANDLE = NULL;
+static longlong utility_resource_cache = 0;
+static uint32 utility_buffer[1024] = {0};
+static uint32 utility_processing_buffer[1024] = {0};
+static uint32 g_utility_resource_size_limit = 1024;
+static longlong utility_resource_context_handle = 0;
+static uint32 UTILITY_RESOURCE_BUFFER = 0;
+static uint32 UTILITY_BOUNDARY_TWO = 2;
+static uint32 UTILITY_RESOURCE_CONFIG_OFFSET = 0;
+static uint32 UTILITY_RESOURCE_TABLE_OFFSET = 0;
+static longlong UTILITY_FRAME_PTR = 0;
+static longlong UTILITY_FILE_DATA_OFFSET = 0;
+static uint32 UTILITY_FILE_HANDLE_OFFSET = 0;
+static uint64 UTILITY_FILE_POSITION_OFFSET = 0;
+static float UTILITY_RESOURCE_DATA_BUFFER_POSITION = 0.0f;
+static longlong UTILITY_DATA_BUFFER_PRIMARY = 0;
+static uint32 UTILITY_LOCAL_INTEGER_VALUE = 0;
+static longlong UTILITY_BUFFER_POSITION = 0;
+static uint64 UTILITY_RESULT = 0;
+static uint32 UTILITY_THREAD_OFFSET = 0;
+static uint64 UTILITY_FILE_SIZE_PARAM = 0;
+static ulonglong utility_extended_data_ptr = 0;
 
 /**
  * @file 06_utilities.c - 工具函数库
@@ -202,17 +202,17 @@ void utility_memory_cleanup_handler(void)
 /**
  * @brief 处理资源数据
  * @param utility_resource_primary_handle 主要资源句柄
- * @return uint64_t 操作结果状态码
+ * @return uint64 操作结果状态码
  *
  * 该函数负责处理系统资源数据，包括：
  * - 执行系统内存操作
  * - 验证操作结果状态
  * - 返回处理结果
  */
-uint64_t_t utility_process_resource_data(int64_t utility_resource_primary_handle)
+uint64 utility_process_resource_data(longlong utility_resource_primary_handle)
 {
-  uint64_t_t utility_result;
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -222,27 +222,27 @@ uint64_t_t utility_process_resource_data(int64_t utility_resource_primary_handle
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
  *
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
-uint64_t utility_resource_data_processor(void)
+uint64 utility_resource_data_processor(void)
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -252,10 +252,10 @@ uint64_t utility_resource_data_processor(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -264,22 +264,22 @@ uint64_t utility_resource_data_processor(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
-uint32_t utility_get_memory_usage(void)
+uint32 utility_get_memory_usage(void)
 {
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
  * 简化实现：提供基本的上下文管理功能。
  */
-uint64_t utility_context_manager(void)
+uint64 utility_context_manager(void)
 {
   return UTILITY_ZERO;
 }
@@ -293,16 +293,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -310,9 +310,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -322,10 +322,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -334,7 +334,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -342,7 +342,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -361,16 +361,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -378,9 +378,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -390,10 +390,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -402,7 +402,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -410,7 +410,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -429,16 +429,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -446,9 +446,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -458,10 +458,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -470,7 +470,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -478,7 +478,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -497,16 +497,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -514,9 +514,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -526,10 +526,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -538,7 +538,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -546,7 +546,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -565,16 +565,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -582,9 +582,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -594,10 +594,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -606,7 +606,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -614,7 +614,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -633,16 +633,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -650,9 +650,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -662,10 +662,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -674,7 +674,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -682,7 +682,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -701,16 +701,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -718,9 +718,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -730,10 +730,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -742,7 +742,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -750,7 +750,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -769,16 +769,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -786,9 +786,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -798,10 +798,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -810,7 +810,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -818,7 +818,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -837,16 +837,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -854,9 +854,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -866,10 +866,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -878,7 +878,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -886,7 +886,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -905,16 +905,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -922,9 +922,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -934,10 +934,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -946,7 +946,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -954,7 +954,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -973,16 +973,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -990,9 +990,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1002,10 +1002,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1014,7 +1014,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1022,7 +1022,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1041,16 +1041,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1058,9 +1058,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1070,10 +1070,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1082,7 +1082,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1090,7 +1090,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1109,16 +1109,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1126,9 +1126,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1138,10 +1138,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1150,7 +1150,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1158,7 +1158,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1177,16 +1177,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1194,9 +1194,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1206,10 +1206,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1218,7 +1218,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1226,7 +1226,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1245,16 +1245,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1262,9 +1262,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1274,10 +1274,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1286,7 +1286,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1294,7 +1294,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1313,16 +1313,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1330,9 +1330,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1342,10 +1342,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1354,7 +1354,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1362,7 +1362,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1381,16 +1381,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1398,9 +1398,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1410,10 +1410,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1422,7 +1422,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1430,7 +1430,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1449,16 +1449,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1466,9 +1466,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1478,10 +1478,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1490,7 +1490,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1498,7 +1498,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1517,16 +1517,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1534,9 +1534,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1546,10 +1546,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1558,7 +1558,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1566,7 +1566,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1585,16 +1585,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1602,9 +1602,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1614,10 +1614,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1626,7 +1626,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1634,7 +1634,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1653,16 +1653,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1670,9 +1670,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1682,10 +1682,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1694,7 +1694,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1702,7 +1702,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1721,16 +1721,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1738,9 +1738,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1750,10 +1750,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1762,7 +1762,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1770,7 +1770,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1789,16 +1789,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1806,9 +1806,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1818,10 +1818,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1830,7 +1830,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1838,7 +1838,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1857,16 +1857,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1874,9 +1874,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1886,10 +1886,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1898,7 +1898,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1906,7 +1906,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1925,16 +1925,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1942,9 +1942,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -1954,10 +1954,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -1966,7 +1966,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -1974,7 +1974,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1993,16 +1993,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2010,9 +2010,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2022,10 +2022,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2034,7 +2034,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2042,7 +2042,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2061,16 +2061,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2078,9 +2078,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2090,10 +2090,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2102,7 +2102,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2110,7 +2110,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2129,16 +2129,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2146,9 +2146,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2158,10 +2158,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2170,7 +2170,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2178,7 +2178,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2197,16 +2197,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2214,9 +2214,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2226,10 +2226,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2238,7 +2238,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2246,7 +2246,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2265,16 +2265,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2282,9 +2282,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2294,10 +2294,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2306,7 +2306,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2314,7 +2314,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2333,16 +2333,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2350,9 +2350,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2362,10 +2362,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2374,7 +2374,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2382,7 +2382,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2401,16 +2401,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2418,9 +2418,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2430,10 +2430,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2442,7 +2442,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2450,7 +2450,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2469,16 +2469,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2486,9 +2486,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2498,10 +2498,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2510,7 +2510,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2518,7 +2518,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2537,16 +2537,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2554,9 +2554,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2566,10 +2566,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2578,7 +2578,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2586,7 +2586,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2605,16 +2605,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2622,9 +2622,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2634,10 +2634,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2646,7 +2646,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2654,7 +2654,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2673,16 +2673,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2690,9 +2690,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2702,10 +2702,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2714,7 +2714,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2722,7 +2722,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2741,16 +2741,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2758,9 +2758,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2770,10 +2770,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2782,7 +2782,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2790,7 +2790,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2809,16 +2809,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2826,9 +2826,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2838,10 +2838,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2850,7 +2850,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2858,7 +2858,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2877,16 +2877,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2894,9 +2894,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2906,10 +2906,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2918,7 +2918,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2926,7 +2926,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2945,16 +2945,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2962,9 +2962,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -2974,10 +2974,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -2986,7 +2986,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -2994,7 +2994,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3013,16 +3013,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3030,9 +3030,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3042,10 +3042,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3054,7 +3054,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3062,7 +3062,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3081,16 +3081,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3098,9 +3098,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3110,10 +3110,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3122,7 +3122,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3130,7 +3130,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3149,16 +3149,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3166,9 +3166,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3178,10 +3178,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3190,7 +3190,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3198,7 +3198,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3217,16 +3217,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3234,9 +3234,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3246,10 +3246,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3258,7 +3258,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3266,7 +3266,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3285,16 +3285,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3302,9 +3302,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3314,10 +3314,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3326,7 +3326,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3334,7 +3334,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3353,16 +3353,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3370,9 +3370,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3382,10 +3382,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3394,7 +3394,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3402,7 +3402,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3421,16 +3421,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3438,9 +3438,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3450,10 +3450,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3462,7 +3462,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3470,7 +3470,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3489,16 +3489,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3506,9 +3506,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3518,10 +3518,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3530,7 +3530,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3538,7 +3538,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3557,16 +3557,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3574,9 +3574,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3586,10 +3586,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3598,7 +3598,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3606,7 +3606,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3625,16 +3625,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3642,9 +3642,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3654,10 +3654,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3666,7 +3666,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3674,7 +3674,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3693,16 +3693,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3710,9 +3710,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3722,10 +3722,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3734,7 +3734,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3742,7 +3742,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3761,16 +3761,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3778,9 +3778,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3790,10 +3790,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3802,7 +3802,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3810,7 +3810,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3829,16 +3829,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3846,9 +3846,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3858,10 +3858,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3870,7 +3870,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3878,7 +3878,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3897,16 +3897,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3914,9 +3914,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3926,10 +3926,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -3938,7 +3938,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -3946,7 +3946,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3965,16 +3965,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3982,9 +3982,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -3994,10 +3994,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4006,7 +4006,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4014,7 +4014,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4033,16 +4033,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4050,9 +4050,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4062,10 +4062,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4074,7 +4074,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4082,7 +4082,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4101,16 +4101,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4118,9 +4118,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4130,10 +4130,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4142,7 +4142,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4150,7 +4150,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4169,16 +4169,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4186,9 +4186,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4198,10 +4198,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4210,7 +4210,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4218,7 +4218,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4237,16 +4237,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4254,9 +4254,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4266,10 +4266,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4278,7 +4278,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4286,7 +4286,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4305,16 +4305,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4322,9 +4322,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4334,10 +4334,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4346,7 +4346,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4354,7 +4354,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4373,16 +4373,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4390,9 +4390,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4402,10 +4402,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4414,7 +4414,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4422,7 +4422,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4441,16 +4441,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4458,9 +4458,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4470,10 +4470,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4482,7 +4482,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4490,7 +4490,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4509,16 +4509,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4526,9 +4526,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4538,10 +4538,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4550,7 +4550,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4558,7 +4558,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4577,16 +4577,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4594,9 +4594,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4606,10 +4606,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4618,7 +4618,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4626,7 +4626,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4645,16 +4645,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4662,9 +4662,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4674,10 +4674,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4686,7 +4686,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4694,7 +4694,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4713,16 +4713,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4730,9 +4730,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4742,10 +4742,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4754,7 +4754,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4762,7 +4762,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4781,16 +4781,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4798,9 +4798,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4810,10 +4810,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4822,7 +4822,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4830,7 +4830,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4849,16 +4849,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4866,9 +4866,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4878,10 +4878,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4890,7 +4890,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4898,7 +4898,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4917,16 +4917,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4934,9 +4934,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -4946,10 +4946,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -4958,7 +4958,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -4966,7 +4966,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4985,16 +4985,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5002,9 +5002,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5014,10 +5014,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5026,7 +5026,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5034,7 +5034,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5053,16 +5053,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5070,9 +5070,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5082,10 +5082,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5094,7 +5094,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5102,7 +5102,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5121,16 +5121,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5138,9 +5138,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5150,10 +5150,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5162,7 +5162,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5170,7 +5170,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5189,16 +5189,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5206,9 +5206,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5218,10 +5218,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5230,7 +5230,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5238,7 +5238,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5257,16 +5257,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5274,9 +5274,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5286,10 +5286,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5298,7 +5298,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5306,7 +5306,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5325,16 +5325,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5342,9 +5342,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5354,10 +5354,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5366,7 +5366,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5374,7 +5374,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5393,16 +5393,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5410,9 +5410,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5422,10 +5422,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5434,7 +5434,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5442,7 +5442,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5461,16 +5461,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5478,9 +5478,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5490,10 +5490,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5502,7 +5502,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5510,7 +5510,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5529,16 +5529,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5546,9 +5546,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5558,10 +5558,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5570,7 +5570,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5578,7 +5578,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5597,16 +5597,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5614,9 +5614,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5626,10 +5626,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5638,7 +5638,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5646,7 +5646,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5665,16 +5665,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5682,9 +5682,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5694,10 +5694,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5706,7 +5706,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5714,7 +5714,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5733,16 +5733,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5750,9 +5750,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5762,10 +5762,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5774,7 +5774,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5782,7 +5782,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5801,16 +5801,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5818,9 +5818,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5830,10 +5830,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5842,7 +5842,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5850,7 +5850,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5869,16 +5869,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5886,9 +5886,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5898,10 +5898,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5910,7 +5910,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5918,7 +5918,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5937,16 +5937,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5954,9 +5954,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -5966,10 +5966,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -5978,7 +5978,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -5986,7 +5986,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6005,16 +6005,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6022,9 +6022,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6034,10 +6034,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6046,7 +6046,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6054,7 +6054,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6073,16 +6073,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6090,9 +6090,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6102,10 +6102,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6114,7 +6114,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6122,7 +6122,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6141,16 +6141,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6158,9 +6158,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6170,10 +6170,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6182,7 +6182,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6190,7 +6190,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6209,16 +6209,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6226,9 +6226,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6238,10 +6238,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6250,7 +6250,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6258,7 +6258,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6277,16 +6277,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6294,9 +6294,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6306,10 +6306,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6318,7 +6318,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6326,7 +6326,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6345,16 +6345,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6362,9 +6362,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6374,10 +6374,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6386,7 +6386,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6394,7 +6394,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6413,16 +6413,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6430,9 +6430,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6442,10 +6442,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6454,7 +6454,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6462,7 +6462,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6481,16 +6481,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6498,9 +6498,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6510,10 +6510,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6522,7 +6522,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6530,7 +6530,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6549,16 +6549,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6566,9 +6566,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6578,10 +6578,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6590,7 +6590,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6598,7 +6598,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6617,16 +6617,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6634,9 +6634,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6646,10 +6646,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6658,7 +6658,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6666,7 +6666,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6685,16 +6685,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6702,9 +6702,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6714,10 +6714,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6726,7 +6726,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6734,7 +6734,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6753,16 +6753,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6770,9 +6770,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6782,10 +6782,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6794,7 +6794,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6802,7 +6802,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6821,16 +6821,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6838,9 +6838,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6850,10 +6850,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6862,7 +6862,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6870,7 +6870,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6889,16 +6889,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6906,9 +6906,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6918,10 +6918,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6930,7 +6930,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -6938,7 +6938,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6957,16 +6957,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6974,9 +6974,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -6986,10 +6986,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -6998,7 +6998,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7006,7 +7006,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7025,16 +7025,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7042,9 +7042,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7054,10 +7054,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7066,7 +7066,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7074,7 +7074,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7093,16 +7093,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7110,9 +7110,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7122,10 +7122,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7134,7 +7134,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7142,7 +7142,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7161,16 +7161,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7178,9 +7178,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7190,10 +7190,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7202,7 +7202,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7210,7 +7210,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7229,16 +7229,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7246,9 +7246,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7258,10 +7258,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7270,7 +7270,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7278,7 +7278,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7297,16 +7297,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7314,9 +7314,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7326,10 +7326,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7338,7 +7338,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7346,7 +7346,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7365,16 +7365,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7382,9 +7382,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7394,10 +7394,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7406,7 +7406,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7414,7 +7414,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7433,16 +7433,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7450,9 +7450,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7462,10 +7462,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7474,7 +7474,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7482,7 +7482,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7501,16 +7501,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7518,9 +7518,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7530,10 +7530,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7542,7 +7542,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7550,7 +7550,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7569,16 +7569,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7586,9 +7586,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7598,10 +7598,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7610,7 +7610,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7618,7 +7618,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7637,16 +7637,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7654,9 +7654,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7666,10 +7666,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7678,7 +7678,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7686,7 +7686,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7705,16 +7705,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7722,9 +7722,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7734,10 +7734,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7746,7 +7746,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7754,7 +7754,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7773,16 +7773,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7790,9 +7790,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7802,10 +7802,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7814,7 +7814,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7822,7 +7822,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7841,16 +7841,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7858,9 +7858,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7870,10 +7870,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7882,7 +7882,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7890,7 +7890,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7909,16 +7909,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7926,9 +7926,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -7938,10 +7938,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -7950,7 +7950,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -7958,7 +7958,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7977,16 +7977,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7994,9 +7994,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8006,10 +8006,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8018,7 +8018,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8026,7 +8026,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8045,16 +8045,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8062,9 +8062,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8074,10 +8074,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8086,7 +8086,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8094,7 +8094,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8113,16 +8113,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8130,9 +8130,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8142,10 +8142,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8154,7 +8154,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8162,7 +8162,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8181,16 +8181,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8198,9 +8198,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8210,10 +8210,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8222,7 +8222,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8230,7 +8230,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8249,16 +8249,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8266,9 +8266,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8278,10 +8278,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8290,7 +8290,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8298,7 +8298,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8317,16 +8317,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8334,9 +8334,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8346,10 +8346,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8358,7 +8358,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8366,7 +8366,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8385,16 +8385,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8402,9 +8402,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8414,10 +8414,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8426,7 +8426,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8434,7 +8434,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8453,16 +8453,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8470,9 +8470,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8482,10 +8482,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8494,7 +8494,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8502,7 +8502,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8521,16 +8521,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8538,9 +8538,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8550,10 +8550,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8562,7 +8562,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8570,7 +8570,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8589,16 +8589,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8606,9 +8606,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8618,10 +8618,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8630,7 +8630,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8638,7 +8638,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8657,16 +8657,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8674,9 +8674,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8686,10 +8686,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8698,7 +8698,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8706,7 +8706,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8725,16 +8725,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8742,9 +8742,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8754,10 +8754,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8766,7 +8766,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8774,7 +8774,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8793,16 +8793,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8810,9 +8810,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8822,10 +8822,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8834,7 +8834,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8842,7 +8842,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8861,16 +8861,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8878,9 +8878,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8890,10 +8890,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8902,7 +8902,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8910,7 +8910,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8929,16 +8929,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8946,9 +8946,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -8958,10 +8958,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -8970,7 +8970,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -8978,7 +8978,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8997,16 +8997,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9014,9 +9014,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9026,10 +9026,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9038,7 +9038,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9046,7 +9046,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9065,16 +9065,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9082,9 +9082,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9094,10 +9094,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9106,7 +9106,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9114,7 +9114,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9133,16 +9133,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9150,9 +9150,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9162,10 +9162,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9174,7 +9174,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9182,7 +9182,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9201,16 +9201,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9218,9 +9218,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9230,10 +9230,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9242,7 +9242,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9250,7 +9250,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9269,16 +9269,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9286,9 +9286,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9298,10 +9298,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9310,7 +9310,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9318,7 +9318,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9337,16 +9337,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9354,9 +9354,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9366,10 +9366,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9378,7 +9378,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9386,7 +9386,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9405,16 +9405,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9422,9 +9422,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9434,10 +9434,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9446,7 +9446,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9454,7 +9454,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9473,16 +9473,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9490,9 +9490,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9502,10 +9502,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9514,7 +9514,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9522,7 +9522,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9541,16 +9541,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9558,9 +9558,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9570,10 +9570,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9582,7 +9582,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9590,7 +9590,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9609,16 +9609,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9626,9 +9626,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9638,10 +9638,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9650,7 +9650,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9658,7 +9658,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9677,16 +9677,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9694,9 +9694,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9706,10 +9706,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9718,7 +9718,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9726,7 +9726,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9745,16 +9745,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9762,9 +9762,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9774,10 +9774,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9786,7 +9786,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9794,7 +9794,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9813,16 +9813,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9830,9 +9830,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9842,10 +9842,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9854,7 +9854,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9862,7 +9862,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9881,16 +9881,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9898,9 +9898,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9910,10 +9910,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9922,7 +9922,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9930,7 +9930,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9949,16 +9949,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9966,9 +9966,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -9978,10 +9978,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -9990,7 +9990,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -9998,7 +9998,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10017,16 +10017,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10034,9 +10034,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10046,10 +10046,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10058,7 +10058,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10066,7 +10066,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10085,16 +10085,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10102,9 +10102,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10114,10 +10114,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10126,7 +10126,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10134,7 +10134,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10153,16 +10153,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10170,9 +10170,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10182,10 +10182,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10194,7 +10194,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10202,7 +10202,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10221,16 +10221,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10238,9 +10238,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10250,10 +10250,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10262,7 +10262,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10270,7 +10270,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10289,16 +10289,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10306,9 +10306,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10318,10 +10318,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10330,7 +10330,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10338,7 +10338,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10357,16 +10357,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10374,9 +10374,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10386,10 +10386,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10398,7 +10398,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10406,7 +10406,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10425,16 +10425,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10442,9 +10442,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10454,10 +10454,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10466,7 +10466,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10474,7 +10474,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10493,16 +10493,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10510,9 +10510,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10522,10 +10522,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10534,7 +10534,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10542,7 +10542,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10561,16 +10561,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10578,9 +10578,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10590,10 +10590,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10602,7 +10602,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10610,7 +10610,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10629,16 +10629,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10646,9 +10646,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10658,10 +10658,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10670,7 +10670,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10678,7 +10678,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10697,16 +10697,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10714,9 +10714,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10726,10 +10726,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10738,7 +10738,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10746,7 +10746,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10765,16 +10765,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10782,9 +10782,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10794,10 +10794,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10806,7 +10806,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10814,7 +10814,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10833,16 +10833,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10850,9 +10850,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10862,10 +10862,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10874,7 +10874,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10882,7 +10882,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10901,16 +10901,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10918,9 +10918,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10930,10 +10930,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -10942,7 +10942,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -10950,7 +10950,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10969,16 +10969,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10986,9 +10986,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -10998,10 +10998,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11010,7 +11010,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11018,7 +11018,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11037,16 +11037,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11054,9 +11054,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11066,10 +11066,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11078,7 +11078,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11086,7 +11086,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11105,16 +11105,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11122,9 +11122,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11134,10 +11134,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11146,7 +11146,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11154,7 +11154,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11173,16 +11173,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11190,9 +11190,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11202,10 +11202,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11214,7 +11214,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11222,7 +11222,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11241,16 +11241,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11258,9 +11258,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11270,10 +11270,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11282,7 +11282,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11290,7 +11290,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11309,16 +11309,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11326,9 +11326,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11338,10 +11338,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11350,7 +11350,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11358,7 +11358,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11377,16 +11377,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11394,9 +11394,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11406,10 +11406,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11418,7 +11418,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11426,7 +11426,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11445,16 +11445,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11462,9 +11462,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11474,10 +11474,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11486,7 +11486,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11494,7 +11494,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11513,16 +11513,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11530,9 +11530,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11542,10 +11542,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11554,7 +11554,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11562,7 +11562,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11581,16 +11581,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11598,9 +11598,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11610,10 +11610,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11622,7 +11622,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11630,7 +11630,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11649,16 +11649,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11666,9 +11666,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11678,10 +11678,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11690,7 +11690,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11698,7 +11698,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11717,16 +11717,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11734,9 +11734,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11746,10 +11746,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11758,7 +11758,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11766,7 +11766,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11785,16 +11785,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11802,9 +11802,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11814,10 +11814,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11826,7 +11826,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11834,7 +11834,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11853,16 +11853,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11870,9 +11870,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11882,10 +11882,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11894,7 +11894,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11902,7 +11902,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11921,16 +11921,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11938,9 +11938,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -11950,10 +11950,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -11962,7 +11962,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -11970,7 +11970,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11989,16 +11989,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12006,9 +12006,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12018,10 +12018,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12030,7 +12030,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12038,7 +12038,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12057,16 +12057,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12074,9 +12074,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12086,10 +12086,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12098,7 +12098,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12106,7 +12106,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12125,16 +12125,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12142,9 +12142,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12154,10 +12154,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12166,7 +12166,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12174,7 +12174,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12193,16 +12193,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12210,9 +12210,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12222,10 +12222,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12234,7 +12234,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12242,7 +12242,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12261,16 +12261,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12278,9 +12278,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12290,10 +12290,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12302,7 +12302,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12310,7 +12310,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12329,16 +12329,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12346,9 +12346,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12358,10 +12358,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12370,7 +12370,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12378,7 +12378,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12397,16 +12397,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12414,9 +12414,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12426,10 +12426,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12438,7 +12438,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12446,7 +12446,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12465,16 +12465,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12482,9 +12482,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12494,10 +12494,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12506,7 +12506,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12514,7 +12514,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12533,16 +12533,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12550,9 +12550,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12562,10 +12562,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12574,7 +12574,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12582,7 +12582,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12601,16 +12601,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12618,9 +12618,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12630,10 +12630,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12642,7 +12642,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12650,7 +12650,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12669,16 +12669,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12686,9 +12686,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12698,10 +12698,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12710,7 +12710,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12718,7 +12718,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12737,16 +12737,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12754,9 +12754,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12766,10 +12766,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12778,7 +12778,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12786,7 +12786,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12805,16 +12805,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12822,9 +12822,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12834,10 +12834,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12846,7 +12846,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12854,7 +12854,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12873,16 +12873,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12890,9 +12890,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12902,10 +12902,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12914,7 +12914,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12922,7 +12922,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12941,16 +12941,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12958,9 +12958,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -12970,10 +12970,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -12982,7 +12982,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -12990,7 +12990,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13009,16 +13009,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13026,9 +13026,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13038,10 +13038,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13050,7 +13050,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13058,7 +13058,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13077,16 +13077,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13094,9 +13094,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13106,10 +13106,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13118,7 +13118,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13126,7 +13126,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13145,16 +13145,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13162,9 +13162,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13174,10 +13174,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13186,7 +13186,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13194,7 +13194,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13213,16 +13213,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13230,9 +13230,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13242,10 +13242,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13254,7 +13254,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13262,7 +13262,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13281,16 +13281,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13298,9 +13298,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13310,10 +13310,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13322,7 +13322,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13330,7 +13330,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13349,16 +13349,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13366,9 +13366,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13378,10 +13378,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13390,7 +13390,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13398,7 +13398,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13417,16 +13417,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13434,9 +13434,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13446,10 +13446,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13458,7 +13458,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13466,7 +13466,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13485,16 +13485,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13502,9 +13502,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13514,10 +13514,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13526,7 +13526,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13534,7 +13534,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13553,16 +13553,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13570,9 +13570,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13582,10 +13582,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13594,7 +13594,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13602,7 +13602,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13621,16 +13621,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13638,9 +13638,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13650,10 +13650,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13662,7 +13662,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13670,7 +13670,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13689,16 +13689,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13706,9 +13706,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13718,10 +13718,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13730,7 +13730,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13738,7 +13738,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13757,16 +13757,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13774,9 +13774,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13786,10 +13786,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13798,7 +13798,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13806,7 +13806,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13825,16 +13825,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13842,9 +13842,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13854,10 +13854,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13866,7 +13866,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13874,7 +13874,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13893,16 +13893,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13910,9 +13910,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13922,10 +13922,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -13934,7 +13934,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -13942,7 +13942,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13961,16 +13961,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13978,9 +13978,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -13990,10 +13990,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14002,7 +14002,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14010,7 +14010,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14029,16 +14029,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14046,9 +14046,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14058,10 +14058,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14070,7 +14070,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14078,7 +14078,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14097,16 +14097,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14114,9 +14114,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14126,10 +14126,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14138,7 +14138,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14146,7 +14146,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14165,16 +14165,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14182,9 +14182,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14194,10 +14194,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14206,7 +14206,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14214,7 +14214,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14233,16 +14233,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14250,9 +14250,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14262,10 +14262,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14274,7 +14274,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14282,7 +14282,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14301,16 +14301,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14318,9 +14318,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14330,10 +14330,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14342,7 +14342,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14350,7 +14350,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14369,16 +14369,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14386,9 +14386,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14398,10 +14398,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14410,7 +14410,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14418,7 +14418,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14437,16 +14437,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14454,9 +14454,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14466,10 +14466,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14478,7 +14478,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14486,7 +14486,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14505,16 +14505,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14522,9 +14522,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14534,10 +14534,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14546,7 +14546,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14554,7 +14554,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14573,16 +14573,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14590,9 +14590,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14602,10 +14602,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14614,7 +14614,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14622,7 +14622,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14641,16 +14641,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14658,9 +14658,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14670,10 +14670,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14682,7 +14682,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14690,7 +14690,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14709,16 +14709,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14726,9 +14726,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14738,10 +14738,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14750,7 +14750,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14758,7 +14758,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14777,16 +14777,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14794,9 +14794,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14806,10 +14806,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14818,7 +14818,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14826,7 +14826,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14845,16 +14845,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14862,9 +14862,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14874,10 +14874,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14886,7 +14886,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14894,7 +14894,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14913,16 +14913,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14930,9 +14930,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -14942,10 +14942,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -14954,7 +14954,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -14962,7 +14962,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14981,16 +14981,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14998,9 +14998,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -15010,10 +15010,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15022,7 +15022,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -15030,7 +15030,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -15049,16 +15049,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -15066,9 +15066,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -15078,10 +15078,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15090,7 +15090,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -15098,7 +15098,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -15117,16 +15117,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -15134,9 +15134,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -15146,10 +15146,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15158,7 +15158,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -15166,7 +15166,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -15185,16 +15185,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -15202,9 +15202,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -15214,10 +15214,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15226,7 +15226,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -15234,7 +15234,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -15253,16 +15253,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -15270,9 +15270,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -15282,10 +15282,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15294,7 +15294,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -15302,7 +15302,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -15321,16 +15321,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -15338,9 +15338,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -15350,10 +15350,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15362,7 +15362,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -15370,7 +15370,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -15389,16 +15389,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -15406,9 +15406,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -15418,10 +15418,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15430,7 +15430,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -15438,7 +15438,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -15457,16 +15457,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -15474,9 +15474,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -15486,10 +15486,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15498,7 +15498,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -15506,7 +15506,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -15525,16 +15525,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -15542,9 +15542,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -15554,10 +15554,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15566,7 +15566,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -15574,7 +15574,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -15593,16 +15593,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -15610,9 +15610,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -15622,10 +15622,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15634,7 +15634,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -15642,7 +15642,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -15661,16 +15661,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -15678,9 +15678,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -15690,10 +15690,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15702,7 +15702,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -15710,7 +15710,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -15729,16 +15729,16 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64_t 处理结果状态码
+ * @return uint64 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -15746,9 +15746,9 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64_t_t utility_result;
-  int64_t utility_resource_primary_handle = 0; // 假设的默认值
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
+  uint64 utility_result;
+  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
@@ -15758,10 +15758,10 @@ uint64_t utility_context_manager(void)
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
-  utility_free_memory(*(int64_t *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
 }
 
@@ -15770,7 +15770,7 @@ uint64_t utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
   return UTILITY_ZERO;
@@ -15778,7 +15778,7 @@ uint64_t utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
