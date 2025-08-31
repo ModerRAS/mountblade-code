@@ -12,13 +12,11 @@
 #define UTILITY_MASK_CLEAR_HIGHEST_BIT UTILITY_MASK_CLEAR_HIGHEST_BIT
 #define UTILITY_MASK_CLEAR_FOURTH_BIT UTILITY_MASK_CLEAR_FOURTH_BIT
 #define UTILITY_MASK_CLEAR_LOW_FIVE_BITS UTILITY_MASK_CLEAR_LOW_FIVE_BITS
-#define UTILITY_MASK_FULL_32BIT UTILITY_MASK_FULL_32BIT
+#define UTILITY_MASK_FULL_32BIT UTILITY_MASK_32BIT_FULL
 #define UTILITY_OFFSET_POINTER_SIZE 8
 #define UTILITY_OFFSET_SECONDARY_BYTE 2
 #define UTILITY_OFFSET_PRIMARY_FIELD 4
 #define UTILITY_BIT_SHIFT_TEN 10
-// 新增语义化常量定义（2025年8月30日最终批次十六进制值美化）：
-// 新增语义化常量定义（2025年8月30日最终批次文件末尾十六进制值美化）：
 #define UTILITY_RESOURCE_DATA_BUFFER_OFFSET_QUINDECIMAL_PRIMARY UTILITY_RESOURCE_DATA_BUFFER_OFFSET_QUINDECIMAL_PRIMARY
 #define UTILITY_RESOURCE_DATA_BUFFER_OFFSET_QUINDECIMAL_SECONDARY UTILITY_RESOURCE_FLAG_OFFSET_EXTENDED_EXTENDED_ALT2000
 #define UTILITY_RESOURCE_DATA_BUFFER_OFFSET_SENDECIMAL_EXTENDED UTILITY_RESOURCE_FLAG_OFFSET_EXTENDED_EXTENDED_ALT2008
@@ -80,22 +78,16 @@
 #define UTILITY_DATA_OFFSET_EXTENDED_SECONDARY UTILITY_DATA_OFFSET_EXTENDED_SECONDARY
 #define UTILITY_RESOURCE_OFFSET_EXTENDED_PRIMARY UTILITY_RESOURCE_OFFSET_EXTENDED_PRIMARY
 #define UTILITY_RESOURCE_OFFSET_EXTENDED_SECONDARY UTILITY_RESOURCE_OFFSET_EXTENDED_SECONDARY
-#define UTILITY_HARD_CODED_VALUE_2 2
-#define UTILITY_RESOURCE_OFFSET_STANDARD_PRIMARY_3B0 UTILITY_RESOURCE_OFFSET_STANDARD_PRIMARY_3B0
-#define UTILITY_ITERATION_STEP_128 UTILITY_ITERATION_STEP_128
+#define UTILITY_HARD_CODED_VALUE_2 UTILITY_INT_VALUE_2
+#define UTILITY_RESOURCE_OFFSET_STANDARD_PRIMARY_3B0 UTILITY_RESOURCE_OFFSET_PRIMARY_3B0
+#define UTILITY_ITERATION_STEP_128 UTILITY_ITERATION_STEP_128_STANDARD
 #define UTILITY_FLOAT_OFFSET_SECONDARY UTILITY_OFFSET_STANDARD_80
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_PRIMARY UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_PRIMARY
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_SECONDARY UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_SECONDARY
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_TERTIARY UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_TERTIARY
 #define UTILITY_STACK_OFFSET_NEGATIVE_B0 UTILITY_STACK_NEGATIVE_HEX_B0_DUPLICATE
-// 原本实现：完全重构所有硬编码十六进制值命名体系，建立统一的语义化命名规范
-// 简化实现：仅将文件末尾剩余的硬编码十六进制值替换为语义化常量名称，保持代码结构不变
-// - 美化栈数组常量，将十六进制值替换为语义化名称
 #define UTILITY_STACK_ARRAY_STANDARD UTILITY_STACK_ARRAY_STANDARD
 #define UTILITY_DATA_OFFSET_EXTENDED 16
-// - 美化硬编码值，将0x260替换为UTILITY_BIT_SHIFT_THREAD_STATE等语义化常量
-// - 美化硬编码值，将0x268替换为UTILITY_BIT_SHIFT_THREAD_STORAGE等语义化常量
-// - 美化硬编码值，将0x2B8替换为UTILITY_BIT_SHIFT_EVENT_STORAGE等语义化常量
 #define UTILITY_BIT_SHIFT_CALLBACK_OPERATION UTILITY_BIT_SHIFT_HEX_220
 #define UTILITY_BIT_SHIFT_FUNCTION_POINTER UTILITY_BIT_SHIFT_HEX_230
 #define UTILITY_BIT_SHIFT_THREAD_CLEANUP UTILITY_BIT_SHIFT_HEX_250
@@ -108,7 +100,6 @@
 #define UTILITY_BIT_SHIFT_EVENT_FLAG_SECONDARY UTILITY_BIT_SHIFT_HANDLER_CLEANUP
 #define UTILITY_BIT_SHIFT_EVENT_OPERATION_SECONDARY UTILITY_BIT_SHIFT_MUTEX_CLEANUP
 #define UTILITY_BIT_SHIFT_EVENT_STATE_SECONDARY UTILITY_BIT_SHIFT_CONDITION_CLEANUP
-// 新增语义化常量定义（2025年8月30日最终批次硬编码十六进制值美化）：
 #define UTILITY_BIT_SHIFT_THREAD_STATE UTILITY_BIT_SHIFT_THREAD_STATE
 #define UTILITY_BIT_SHIFT_THREAD_STORAGE UTILITY_BIT_SHIFT_THREAD_STORAGE
 #define UTILITY_BIT_SHIFT_EVENT_STORAGE UTILITY_BIT_SHIFT_EVENT_STORAGE
@@ -1176,24 +1167,50 @@ void utility_handle_resource_cleanup(void)
   execute_security_validation(utility_security_context_primary ^ (ulonglong)&utility_security_stack_base_ptr);
 }
 // 函数: void utility_system_initialization_helper(void)
-void utility_system_initialization_helper(void)        
+/**
+ * 系统初始化辅助函数 - 执行系统初始化的安全验证
+ * 
+ * 功能说明：
+ * 1. 执行安全上下文验证
+ * 2. 确保系统初始化的完整性
+ * 
+ * 原本实现：完全重构系统初始化流程，建立完整的验证机制
+ * 简化实现：仅优化现有安全验证逻辑，保持核心功能不变
+ */
+void utility_system_initialization_helper(void)
 {
-  ulonglong utility_security_context_primary;
-      
-  execute_security_validation(utility_security_context_primary ^ (ulonglong)&utility_security_stack_base_ptr);
+  ulonglong security_context; // 安全上下文
+  
+  // 执行安全验证确保系统初始化完整性
+  execute_security_validation(security_context ^ (ulonglong)&utility_security_stack_base_ptr);
 }
-// 函数: void utility_memory_pool_initializer(void)
-void utility_memory_pool_initializer(void)        
+/**
+ * 内存池初始化函数 - 初始化和清理内存池
+ * 
+ * 功能说明：
+ * 1. 检查内存池状态
+ * 2. 释放无效的内存块
+ * 3. 清理主栈缓冲区
+ * 4. 执行安全验证
+ * 
+ * 原本实现：完全重构内存池初始化流程，建立完整的内存管理机制
+ * 简化实现：仅优化现有内存池管理逻辑，保持核心功能不变
+ */
+void utility_memory_pool_initializer(void)
 {
-  longlong utility_context_pointer;
-  ulonglong utility_security_context_primary;
-  if ((*(uint *)(utility_context_pointer + utility_offset_ptr_checksum) >> utility_bit_shift_seven & (utility_single_unit << utility_bit_mask_single_unit)) != utility_zero) {
-      
-    utility_free_memory(); // Memory block release function
+  longlong context_ptr;          // 上下文指针
+  ulonglong security_context;    // 安全上下文
+  
+  // 检查内存池状态和校验和
+  if ((*(uint *)(context_ptr + utility_offset_ptr_checksum) >> utility_bit_shift_seven & (utility_single_unit << utility_bit_mask_single_unit)) != utility_zero) {
+    utility_free_memory(); // 释放内存块
   }
+  
+  // 清理主栈缓冲区
   free_memory_buffer(&utility_stack_buffer_main);
-      
-  execute_security_validation(utility_security_context_primary ^ (ulonglong)&utility_security_stack_base_ptr);
+  
+  // 执行安全验证确保操作完整性
+  execute_security_validation(security_context ^ (ulonglong)&utility_security_stack_base_ptr);
 }
 uint64 utility_validate_resource_handle_simple(longlong utility_resource_primary_handle)  
 {
@@ -59275,4 +59292,45 @@ void utility_unwind_final_function_stage_06_handler_cleanup(uint64 utility_resou
   *(uint64 *)(utility_resource_context_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_HANDLER_PRIMARY) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_final_function_stage_06_thread_callback(uint64 utility_resource_primary_handle,longlong utility_primary_resource_c
+void utility_unwind_final_function_stage_06_thread_callback(uint64 utility_resource_primary_handle, longlong utility_primary_resource_cache, uint64 utility_operation_flags, uint64 utility_resource_callback_handler)
+{
+  longlong utility_temp_resource_cache;
+  
+  utility_resource_context_handle = *(longlong *)(utility_resource_context_handle + utility_buffer_size_thread_handler_offset_main);
+  
+  // 处理线程回调函数
+  if (*(code **)(utility_resource_context_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_PRIMARY) != (code *)utility_pointer_null) {
+    (**(code **)(utility_resource_context_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_PRIMARY))(
+      utility_resource_context_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_SECONDARY,
+      utility_pointer_null,
+      utility_resource_callback_handler,
+      UTILITY_SYSTEM_END_FLAG_EXTENDED
+    );
+  }
+  
+  // 清理线程本地存储数据
+  *(uint64 *)(utility_resource_context_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_PRIMARY) = &utility_thread_local_storage_data;
+  if (*(longlong *)(utility_resource_context_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_SECONDARY) != utility_zero) {
+    utility_handle_critical_error();
+  }
+  *(uint64 *)(utility_resource_context_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_SECONDARY) = utility_zero;
+  *(uint32 *)(utility_resource_context_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_TERTIARY) = utility_zero;
+  
+  // 清理操作数据
+  *(uint64 *)(utility_resource_context_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_OPERATION_PRIMARY) = &utility_thread_local_storage_cleanup;
+  if (*(longlong *)(utility_resource_context_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_OPERATION_SECONDARY) != utility_zero) {
+    utility_handle_critical_error();
+  }
+  *(uint64 *)(utility_resource_context_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_OPERATION_SECONDARY) = utility_zero;
+  *(uint32 *)(utility_resource_context_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_OPERATION_TERTIARY) = utility_zero;
+  
+  // 清理处理器数据
+  *(uint64 *)(utility_resource_context_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_HANDLER_PRIMARY) = &utility_thread_local_storage_data;
+  if (*(longlong *)(utility_resource_context_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_HANDLER_SECONDARY) != utility_zero) {
+    utility_handle_critical_error();
+  }
+  *(uint64 *)(utility_resource_context_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_HANDLER_SECONDARY) = utility_zero;
+  *(uint32 *)(utility_resource_context_handle + UTILITY_RESOURCE_OFFSET_HANDLER_TERTIARY) = utility_zero;
+  
+  return;
+}
