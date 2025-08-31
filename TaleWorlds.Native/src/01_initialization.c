@@ -340,9 +340,9 @@ char system_reserved_char_aa69;
 // 系统未知对象指针13
 void* system_reserved_object_system_pointer_ff538;
 // 系统未知对象指针14
-void* system_unknown_object_system_ptr_varff550;
+void* system_object_ptr_550;
 // 系统未知对象指针15
-void* system_unknown_object_system_ptr_varff5b0;
+void* system_object_ptr_5b0;
 // 系统未知对象指针16
 void* system_unknown_object_system_ptr_varff5b8;
 // 系统未知对象指针17
@@ -397,48 +397,48 @@ void* system_unknown_object_system_ptr_varff958;
 void* system_unknown_object_system_ptr_varff9a8;
 // 系统未知对象指针39
 void* system_unknown_object_system_ptr_varffa18;
-void* system_memory_system_ptr_varab;
-void* system_memory_system_ptr_varac;
-void* system_memory_system_ptr_varad;
-void* system_memory_system_ptr_varae;
-void* system_memory_system_ptr_varaf;
+void* system_memory_ptr_ab;
+void* system_memory_ptr_ac;
+void* system_memory_ptr_ad;
+void* system_memory_ptr_ae;
+void* system_memory_ptr_af;
 
 void* system_initialize_module_a;
-void* system_memory_system_ptr_varag;
-void* system_memory_system_ptr_varah;
-void* system_memory_system_ptr_varai;
+void* system_memory_ptr_ag;
+void* system_memory_ptr_ah;
+void* system_memory_ptr_ai;
 void* system_global_data_ptr_varaa;
-void* system_memory_system_ptr_varaj;
+void* system_memory_ptr_aj;
 void* system_global_data_ptr_varab;
 
 void* system_initialize_module_b;
-void* system_memory_system_ptr_varak;
+void* system_memory_ptr_ak;
 
 void* system_initialize_module_c;
 
 void* system_initialize_module_d;
 
 void* system_initialize_module_e;
-void* system_handler_system_ptr_vara;
-void* system_handler_system_ptr_varb;
-void* system_handler_system_ptr_varc;
-void* system_handler_system_ptr_vard;
-void* system_handler_system_ptr_vare;
-void* system_handler_system_ptr_varf;
+void* system_handler_ptr_a;
+void* system_handler_ptr_b;
+void* system_handler_ptr_c;
+void* system_handler_ptr_d;
+void* system_handler_ptr_e;
+void* system_handler_ptr_f;
 
 void* system_initialize_module_f;
-void* system_resource_system_ptr_vara;
-void* system_resource_system_ptr_varb;
-void* system_resource_system_ptr_varc;
-void* system_resource_system_ptr_vard;
+void* system_resource_ptr_a;
+void* system_resource_ptr_b;
+void* system_resource_ptr_c;
+void* system_resource_ptr_d;
 char system_data_system_buffer_system_ptr_varb;
-void* system_resource_system_ptr_vare;
-void* system_resource_system_ptr_varf;
+void* system_resource_ptr_e;
+void* system_resource_ptr_f;
 void* system_global_data_ptr_varac;
-void* system_resource_system_ptr_varg;
-void* system_resource_system_ptr_varh;
-void* system_resource_system_ptr_vari;
-void* system_resource_system_ptr_varj;
+void* system_resource_ptr_g;
+void* system_resource_ptr_h;
+void* system_resource_ptr_i;
+void* system_resource_ptr_j;
 void* system_global_data_ptr_varad;
 void* system_global_data_ptr_varae;
 void* system_global_data_ptr_varaf;
@@ -585,68 +585,68 @@ void* system_audio_system_ptr_varae;
 void* system_audio_system_ptr_varaf;
 void* system_audio_system_ptr_varag;
 void* system_audio_system_ptr_varah;
-void* system_resource_system_ptr_varaa;
-void* system_resource_system_ptr_varab;
-void* system_resource_system_ptr_varac;
-void* system_resource_system_ptr_varad;
-void* system_resource_system_ptr_varae;
-void* system_resource_system_ptr_varaf;
-void* system_resource_system_ptr_varag;
-void* system_resource_system_ptr_varah;
-void* system_resource_system_ptr_varai;
-void* system_resource_system_ptr_varaj;
-void* system_resource_system_ptr_varak;
-void* system_resource_system_ptr_varal;
-void* system_resource_system_ptr_varam;
-void* system_resource_system_ptr_varan;
-void* system_resource_system_ptr_varao;
-void* system_resource_system_ptr_varap;
-void* system_resource_system_ptr_varaq;
-void* system_resource_system_ptr_varar;
-void* system_resource_system_ptr_varas;
-void* system_resource_system_ptr_varat;
-void* system_resource_system_ptr_varau;
-void* system_resource_system_ptr_varav;
-void* system_resource_system_ptr_varaw;
-void* system_resource_system_ptr_varax;
-void* system_resource_system_ptr_varay;
-void* system_resource_system_ptr_varaz;
-void* system_resource_system_ptr_varba;
-void* system_resource_system_ptr_varbb;
-void* system_resource_system_ptr_varbc;
-void* system_resource_system_ptr_varbd;
-void* system_resource_system_ptr_varbe;
-void* system_resource_system_ptr_varbf;
-void* system_resource_system_ptr_varbg;
+void* system_resource_ptr_aa;
+void* system_resource_ptr_ab;
+void* system_resource_ptr_ac;
+void* system_resource_ptr_ad;
+void* system_resource_ptr_ae;
+void* system_resource_ptr_af;
+void* system_resource_ptr_ag;
+void* system_resource_ptr_ah;
+void* system_resource_ptr_ai;
+void* system_resource_ptr_aj;
+void* system_resource_ptr_ak;
+void* system_resource_ptr_al;
+void* system_resource_ptr_am;
+void* system_resource_ptr_an;
+void* system_resource_ptr_ao;
+void* system_resource_ptr_ap;
+void* system_resource_ptr_aq;
+void* system_resource_ptr_ar;
+void* system_resource_ptr_as;
+void* system_resource_ptr_at;
+void* system_resource_ptr_au;
+void* system_resource_ptr_av;
+void* system_resource_ptr_aw;
+void* system_resource_ptr_ax;
+void* system_resource_ptr_ay;
+void* system_resource_ptr_az;
+void* system_resource_ptr_ba;
+void* system_resource_ptr_bb;
+void* system_resource_ptr_bc;
+void* system_resource_ptr_bd;
+void* system_resource_ptr_be;
+void* system_resource_ptr_bf;
+void* system_resource_ptr_bg;
 void* system_resource_system_ptr_varsystem_data_a;
-void* system_resource_system_ptr_varbh;
-void* system_resource_system_ptr_varbi;
-void* system_resource_system_ptr_varbj;
-void* system_resource_system_ptr_varbk;
-void* system_resource_system_ptr_varbl;
-void* system_resource_system_ptr_varbm;
-void* system_resource_system_ptr_varbn;
-void* system_resource_system_ptr_varbo;
-void* system_resource_system_ptr_varbp;
-void* system_resource_system_ptr_varbq;
-void* system_resource_system_ptr_varbr;
-void* system_resource_system_ptr_varbs;
-void* system_resource_system_ptr_varbt;
+void* system_resource_ptr_bh;
+void* system_resource_ptr_bi;
+void* system_resource_ptr_bj;
+void* system_resource_ptr_bk;
+void* system_resource_ptr_bl;
+void* system_resource_ptr_bm;
+void* system_resource_ptr_bn;
+void* system_resource_ptr_bo;
+void* system_resource_ptr_bp;
+void* system_resource_ptr_bq;
+void* system_resource_ptr_br;
+void* system_resource_ptr_bs;
+void* system_resource_ptr_bt;
 void* system_data_resource_a;
 void* system_data_resource_b;
-void* system_resource_system_ptr_varbu;
-void* system_resource_system_ptr_varbv;
-void* system_resource_system_ptr_varbw;
-void* system_resource_system_ptr_varbx;
-void* system_resource_system_ptr_varby;
-void* system_resource_system_ptr_varbz;
-void* system_resource_system_ptr_varca;
-void* system_resource_system_ptr_varcb;
-void* system_resource_system_ptr_varcc;
-void* system_resource_system_ptr_varcd;
-void* system_resource_system_ptr_varce;
-void* system_resource_system_ptr_varcf;
-void* system_resource_system_ptr_varcg;
+void* system_resource_ptr_bu;
+void* system_resource_ptr_bv;
+void* system_resource_ptr_bw;
+void* system_resource_ptr_bx;
+void* system_resource_ptr_by;
+void* system_resource_ptr_bz;
+void* system_resource_ptr_ca;
+void* system_resource_ptr_cb;
+void* system_resource_ptr_cc;
+void* system_resource_ptr_cd;
+void* system_resource_ptr_ce;
+void* system_resource_ptr_cf;
+void* system_resource_ptr_cg;
 void* system_data_resource_c;
 void* system_data_resource_d;
 void* system_data_resource_e;
@@ -654,85 +654,85 @@ void* system_data_resource_f;
 void* system_data_resource_g;
 
 void* system_internal_functioninitialize_resource;
-void* system_resource_system_ptr_varch;
+void* system_resource_ptr_ch;
 void* system_data_resource_h;
-void* system_resource_system_ptr_varci;
-void* system_resource_system_ptr_varcj;
-void* system_resource_system_ptr_varck;
-void* system_resource_system_ptr_varcl;
-void* system_resource_system_ptr_varcm;
-void* system_resource_system_ptr_varcn;
-void* system_resource_system_ptr_varco;
+void* system_resource_ptr_ci;
+void* system_resource_ptr_cj;
+void* system_resource_ptr_ck;
+void* system_resource_ptr_cl;
+void* system_resource_ptr_cm;
+void* system_resource_ptr_cn;
+void* system_resource_ptr_co;
 void* system_data_resource_i;
-void* system_resource_system_ptr_varcp;
-void* system_resource_system_ptr_varcq;
-void* system_resource_system_ptr_varcr;
-void* system_resource_system_ptr_varcs;
-void* system_resource_system_ptr_varct;
-void* system_resource_system_ptr_varcu;
+void* system_resource_ptr_cp;
+void* system_resource_ptr_cq;
+void* system_resource_ptr_cr;
+void* system_resource_ptr_cs;
+void* system_resource_ptr_ct;
+void* system_resource_ptr_cu;
 void* system_data_resource_j;
-void* system_resource_system_ptr_varcv;
-void* system_resource_system_ptr_varcw;
-void* system_resource_system_ptr_varcx;
-void* system_resource_system_ptr_varcy;
-void* system_resource_system_ptr_varcz;
-void* system_resource_system_ptr_varda;
-void* system_resource_system_ptr_vardb;
-void* system_resource_system_ptr_vardc;
-void* system_resource_system_ptr_vardd;
-void* system_resource_system_ptr_varde;
-void* system_resource_system_ptr_vardf;
-void* system_resource_system_ptr_vardg;
-void* system_resource_system_ptr_vardh;
-void* system_resource_system_ptr_vardi;
-void* system_resource_system_ptr_vardj;
-void* system_resource_system_ptr_vardk;
-void* system_resource_system_ptr_vardl;
-void* system_resource_system_ptr_vardm;
-void* system_resource_system_ptr_vardn;
-void* system_resource_system_ptr_vardo;
-void* system_resource_system_ptr_vardp;
-void* system_resource_system_ptr_vardq;
-void* system_resource_system_ptr_vardr;
-void* system_resource_system_ptr_vards;
-void* system_resource_system_ptr_vardt;
-void* system_resource_system_ptr_vardu;
-void* system_resource_system_ptr_vardv;
-void* system_resource_system_ptr_vardw;
-void* system_resource_system_ptr_vardx;
-void* system_resource_system_ptr_vardy;
-void* system_resource_system_ptr_vardz;
-void* system_resource_system_ptr_varea;
-void* system_resource_system_ptr_vareb;
-void* system_resource_system_ptr_varec;
+void* system_resource_ptr_cv;
+void* system_resource_ptr_cw;
+void* system_resource_ptr_cx;
+void* system_resource_ptr_cy;
+void* system_resource_ptr_cz;
+void* system_resource_ptr_da;
+void* system_resource_ptr_db;
+void* system_resource_ptr_dc;
+void* system_resource_ptr_dd;
+void* system_resource_ptr_de;
+void* system_resource_ptr_df;
+void* system_resource_ptr_dg;
+void* system_resource_ptr_dh;
+void* system_resource_ptr_di;
+void* system_resource_ptr_dj;
+void* system_resource_ptr_dk;
+void* system_resource_ptr_dl;
+void* system_resource_ptr_dm;
+void* system_resource_ptr_dn;
+void* system_resource_ptr_do;
+void* system_resource_ptr_dp;
+void* system_resource_ptr_dq;
+void* system_resource_ptr_dr;
+void* system_resource_ptr_ds;
+void* system_resource_ptr_dt;
+void* system_resource_ptr_du;
+void* system_resource_ptr_dv;
+void* system_resource_ptr_dw;
+void* system_resource_ptr_dx;
+void* system_resource_ptr_dy;
+void* system_resource_ptr_dz;
+void* system_resource_ptr_ea;
+void* system_resource_ptr_eb;
+void* system_resource_ptr_ec;
 void* system_data_resource_k;
 void* system_data_resource_l;
 void* system_data_resource_m;
 void* system_data_resource_n;
-void* system_resource_system_ptr_vared;
+void* system_resource_ptr_ed;
 void* system_data_resource_o;
-void* system_resource_system_ptr_varee;
-void* system_resource_system_ptr_varef;
-void* system_resource_system_ptr_vareg;
-void* system_resource_system_ptr_vareh;
-void* system_resource_system_ptr_varei;
-void* system_resource_system_ptr_varej;
+void* system_resource_ptr_ee;
+void* system_resource_ptr_ef;
+void* system_resource_ptr_eg;
+void* system_resource_ptr_eh;
+void* system_resource_ptr_ei;
+void* system_resource_ptr_ej;
 void* system_data_resource_p;
 void* system_data_resource_q;
 void* system_data_resource_r;
-void* system_resource_system_ptr_varek;
-void* system_resource_system_ptr_varel;
-void* system_resource_system_ptr_varem;
-void* system_resource_system_ptr_varen;
-void* system_resource_system_ptr_vareo;
-void* system_resource_system_ptr_varep;
-void* system_resource_system_ptr_vareq;
-void* system_resource_system_ptr_varer;
-void* system_resource_system_ptr_vares;
-void* system_resource_system_ptr_varet;
-void* system_resource_system_ptr_vareu;
-void* system_resource_system_ptr_varev;
-void* system_resource_system_ptr_varew;
+void* system_resource_ptr_ek;
+void* system_resource_ptr_el;
+void* system_resource_ptr_em;
+void* system_resource_ptr_en;
+void* system_resource_ptr_eo;
+void* system_resource_ptr_ep;
+void* system_resource_ptr_eq;
+void* system_resource_ptr_er;
+void* system_resource_ptr_es;
+void* system_resource_ptr_et;
+void* system_resource_ptr_eu;
+void* system_resource_ptr_ev;
+void* system_resource_ptr_ew;
 
 void* system_get_system_init_function;
 
@@ -44226,7 +44226,7 @@ void system_internal_function(int64_t system_context_ptr)
     *psystem_long_var_3 = (int64_t)&system_data_ptr;
     *psystem_long_var_3 = (int64_t)&system_data_ptr;
     *(uint32_t* *)(psystem_long_var_3 + 1) = 0;
-    *psystem_long_var_3 = (int64_t)&system_memory_system_ptr_varab;
+    *psystem_long_var_3 = (int64_t)&system_memory_ptr_ab;
     psystem_long_var_3[2] = (int64_t)&system_data_ptr;
     psystem_long_var_3[3] = 0;
     *(uint32_t* *)(psystem_long_var_3 + 4) = 0;
@@ -44238,7 +44238,7 @@ void system_internal_function(int64_t system_context_ptr)
     *(uint32_t* *)(psystem_long_var_3 + 1) = 0;
     *(void*2 *)(psystem_long_var_3 + 0x16) = 0;
     psystem_long_var_3[0x15] = 0;
-    *psystem_long_var_3 = (int64_t)&system_memory_system_ptr_varac;
+    *psystem_long_var_3 = (int64_t)&system_memory_ptr_ac;
     psystem_long_var_3[0x15] = 0;
     *(uint8_t* *)(psystem_long_var_3 + 0x17) = 0;
     (**(code **)(*psystem_long_var_3 + 0x28))(psystem_long_var_3);
@@ -44690,7 +44690,7 @@ uint8_t * system_internal_function(uint8_t *system_context_ptr,char system_confi
   *system_context_ptr = &system_data_ptr;
   *system_context_ptr = &system_data_ptr;
   *(uint32_t* *)(system_context_ptr + 1) = 0;
-  *system_context_ptr = &system_memory_system_ptr_varab;
+  *system_context_ptr = &system_memory_ptr_ab;
   system_context_ptr[2] = &system_data_ptr;
   system_context_ptr[3] = 0;
   *(uint32_t* *)(system_context_ptr + 4) = 0;
@@ -44702,7 +44702,7 @@ uint8_t * system_internal_function(uint8_t *system_context_ptr,char system_confi
   *(uint32_t* *)(system_context_ptr + 1) = 0;
   *(void*2 *)(system_context_ptr + 0x16) = 0;
   system_context_ptr[0x15] = 0;
-  *system_context_ptr = &system_memory_system_ptr_varae;
+  *system_context_ptr = &system_memory_ptr_ae;
   system_function(system_context_ptr + 0x19);
   *(uint32_t* *)(system_context_ptr + 0x1e) = 0;
   LOCK();
@@ -44840,7 +44840,7 @@ uint8_t * system_internal_function(uint8_t *system_context_ptr,char system_confi
   *psystem_long_var_3 = (int64_t)&system_data_ptr;
   *psystem_long_var_3 = (int64_t)&system_data_ptr;
   *(uint32_t* *)(psystem_long_var_3 + 1) = 0;
-  *psystem_long_var_3 = (int64_t)&system_memory_system_ptr_varad;
+  *psystem_long_var_3 = (int64_t)&system_memory_ptr_ad;
   psystem_long_var_3[4] = (int64_t)&system_data_ptr;
   psystem_long_var_3[5] = 0;
   *(uint32_t* *)(psystem_long_var_3 + 6) = 0;
@@ -44950,7 +44950,7 @@ void system_internal_function(int64_t system_context_ptr,uint8_t *system_config_
   *(uint32_t* *)(system_context_ptr + 0x158) = system_uint_value_e;
   *(uint32_t* *)(system_context_ptr + 0x15c) = system_uint_var_f;
   if (psystem_long_value_2 != (int64_t *)0x0) {
-    if (*(code **)(*psystem_long_value_2 + 0x160) == (code *)&system_memory_system_ptr_varaf) {
+    if (*(code **)(*psystem_long_value_2 + 0x160) == (code *)&system_memory_ptr_af) {
       system_context_ptr_1 = (uint8_t *)((int64_t)psystem_long_value_2 + 0x214);
       *(uint32_t* *)((int64_t)psystem_long_value_2 + 0x244) = 0;
       if (psystem_long_value_2[8] - psystem_long_value_2[7] >> 4 == 0) {
@@ -45078,7 +45078,7 @@ void system_internal_function(uint8_t *system_context_ptr)
   int64_t *psystem_long_value_2;
   
   system_uint_value_d = 0xfffffffffffffffe;
-  *system_context_ptr = &system_memory_system_ptr_varae;
+  *system_context_ptr = &system_memory_ptr_ae;
   system_context_ptr[0x39] = 0;
   if (system_context_ptr[0x59] != 0) {
                     // WARNING: Subroutine does not return
@@ -45176,7 +45176,7 @@ void system_internal_function(uint8_t *system_context_ptr)
   if ((int64_t *)system_context_ptr[0x23] != (int64_t *)0x0) {
     (**(code **)(*(int64_t *)system_context_ptr[0x23] + 0x38))();
   }
-  *system_context_ptr = &system_memory_system_ptr_varab;
+  *system_context_ptr = &system_memory_ptr_ab;
   system_context_ptr[2] = &system_data_ptr;
   *system_context_ptr = &system_data_ptr;
   *system_context_ptr = &system_data_ptr;
@@ -46255,7 +46255,7 @@ void system_internal_function(int64_t *system_context_ptr)
   system_stack_byte_ptr = auStack_40;
   auStack_40[0] = auStack_40[0] & 0xffffffffffffff00;
   system_stack_uint_value._0_4_ = 0x12;
-  system_strcpy_s(auStack_40,0x20,&system_memory_system_ptr_varag);
+  system_strcpy_s(auStack_40,0x20,&system_memory_ptr_ag);
   system_uint_var_c = system_internal_function(system_uint_var_a,&system_stack_byte_ptr,0);
   system_stack_byte_ptr = &system_data_ptr;
   if (system_uint_var_c != 0) {
@@ -46379,7 +46379,7 @@ uint8_t system_internal_function(int64_t system_context_ptr,int64_t system_confi
       bVar5 = false;
       if ((*(byte *)(system_context_ptr + 0xfd) & 8) != 0) {
         system_long_var = 0xb8;
-        system_status_system_flag_e = (code *)&system_memory_system_ptr_varah;
+        system_status_system_flag_e = (code *)&system_memory_ptr_ah;
         do {
           system_long_var = *(int64_t *)(system_long_var + *(int64_t *)(system_context_ptr + 0x1b8));
           if (((system_long_var != 0) && (system_long_var = *(int64_t *)(system_long_var + 0x370), system_long_var != 0)) &&
@@ -46430,7 +46430,7 @@ uint8_t system_internal_function(int64_t system_context_ptr,int64_t system_confi
             *(int64_t *)
              (*(int64_t *)(system_long_var + 0x3f70 + system_long_result_14 * 8) + (uint64_t)(system_uint_var_c + system_uint_var * -0x400) * 8)
                  = system_long_var;
-            system_status_system_flag_e = (code *)&system_memory_system_ptr_varah;
+            system_status_system_flag_e = (code *)&system_memory_ptr_ah;
           }
           system_long_var = system_long_var + 8;
         } while (system_long_var < 0x138);
@@ -48153,7 +48153,7 @@ uint8_t * system_internal_function(uint8_t *system_context_ptr,uint64_t system_c
 {
   
   system_uint_var_a = 0xfffffffffffffffe;
-  *system_context_ptr = &system_memory_system_ptr_varai;
+  *system_context_ptr = &system_memory_ptr_ai;
   system_internal_function();
   system_internal_func_8a8(system_context_ptr + 1,8,7,system_initialize_resource,system_uint_var_a);
   if ((system_config_flags & 1) != 0) {
@@ -48213,7 +48213,7 @@ void system_internal_function(uint8_t *system_context_ptr,uint8_t system_config_
   *(uint32_t* *)((int64_t)system_context_ptr + 0x74) = 0;
   *(uint32_t* *)(system_context_ptr + 0xf) = 0;
   *(uint32_t* *)((int64_t)system_context_ptr + 0x7c) = 0x3f800000;
-  if ((void* *)*system_context_ptr == &system_memory_system_ptr_varai) {
+  if ((void* *)*system_context_ptr == &system_memory_ptr_ai) {
     system_context_ptr[0x10] = system_context_ptr[8];
     system_context_ptr[0x11] = system_context_ptr[9];
     system_context_ptr[0x12] = system_context_ptr[10];
@@ -48283,7 +48283,7 @@ void system_internal_function(uint8_t *system_context_ptr,int64_t system_config_
       if (*(void* **)(system_long_var + 0x18) != (void* *)0x0) {
         data_buffer_ptr = *(void* **)(system_long_var + 0x18);
       }
-      system_internal_function(&system_memory_system_ptr_varaj,data_buffer_ptr);
+      system_internal_function(&system_memory_ptr_aj,data_buffer_ptr);
     }
     system_int_var_9 = system_int_var_9 + 1;
     psystem_long_var = psystem_long_var + 1;
@@ -48449,7 +48449,7 @@ void system_internal_function(uint8_t *system_context_ptr,int64_t system_config_
     system_stack_uint_value = *(uint8_t *)(system_config_flags + 0x308);
   }
   system_internal_function(system_context_ptr + 8,&system_stack_uint_value,&system_stack_uint_value_x,auStackX_10,&system_stack_long_ptr_x);
-  if ((void* *)*system_context_ptr == &system_memory_system_ptr_varai) {
+  if ((void* *)*system_context_ptr == &system_memory_ptr_ai) {
     system_float_ptr_quinary = (float *)(system_context_ptr + 0x10);
     *(uint8_t *)system_float_ptr_quinary = system_context_ptr[8];
     system_context_ptr[0x11] = system_context_ptr[9];
@@ -52379,7 +52379,7 @@ void system_internal_function(int64_t *system_context_ptr,byte system_config_fla
   }
   system_stack_uint_value = CONCAT31(system_stack_uint_value._1_3_,system_config_flags);
   system_stack_uint_value = system_context_ptr;
-  if ((void* *)*system_context_ptr == &system_memory_system_ptr_varae) {
+  if ((void* *)*system_context_ptr == &system_memory_ptr_ae) {
     LOCK();
     *(int *)(system_context_ptr + 1) = (int)system_context_ptr[1] + 1;
     UNLOCK();
@@ -55896,8 +55896,8 @@ void* system_internal_function;
 
 void* system_internal_function;
 uint32_t* system_data_ptr;
-void* system_resource_system_ptr_varex;
-void* system_resource_system_ptr_varey;
+void* system_resource_ptr_ex;
+void* system_resource_ptr_ey;
 
 uint8_t system_internal_function(void)
 
