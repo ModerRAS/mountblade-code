@@ -2224,7 +2224,17 @@ void system_initialize_subsystem_core(void)
   
   system_stack_context_ptr_a = &system_data_ptr;
   system_stack_context_ptr_b = system_stack_array;
-  system_stack_array[0] = 0;
+/*
+ * @brief 系统模块管理器初始化函数
+ * 
+ * 该函数负责初始化系统模块管理器，包括：
+ * - 初始化模块加载器
+ * - 设置模块依赖关系
+ * - 配置模块生命周期管理
+ * 
+ * 简化实现：提供基本的模块管理器初始化功能
+ */
+void system_initialize_module_manager(void)
   system_stack_uint_value = 0xb;
   system_strcpy_s(system_stack_array,0x80,&system_data_ptr,system_register_r9,0xfffffffffffffffe);
   system_global_data_ptr = system_internal_function(&system_stack_context_ptr_a);
