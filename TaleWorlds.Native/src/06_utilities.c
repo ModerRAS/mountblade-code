@@ -1025,18 +1025,22 @@ return utility_resource_value;
  * 
  * @return 事件系统初始化结果，0表示失败，非0表示成功
  */
+/**
+ * 初始化事件系统
+ * 创建和管理系统事件机制，用于线程间通信和同步
+ * 
+ * @return 事件系统初始化结果，0表示失败，非0表示成功
+ */
 uint64_t utility_initialize_event_system(void)
 {
-int64_t utility_loop_counter;
-int utility_operation_result;;
-int64_t utility_context_pointer;
-uint64_t utility_resource_value;
-uint32_t *buffer_pointer;
-uint64_t utility_resource_data;
-int64_t utility_register_rsi_value;
-uint utility_resource_data;
-uint64_t utility_resource_data;
-int64_t utility_loop_counter;
+    int64_t utility_loop_counter;
+    int utility_operation_result;
+    int64_t utility_context_pointer;
+    uint64_t utility_resource_value;
+    uint32_t *buffer_pointer;
+    uint64_t utility_resource_data;
+    int64_t utility_register_rsi_value;
+    uint utility_temp_data;
 utility_resource_data = 0;
 utility_resource_data = utility_context_pointer - 8;
 if (utility_context_pointer == 0) {
