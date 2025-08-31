@@ -1286,23 +1286,23 @@ void system_initialize_input(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int system_initialize_system_internal_function(void)
+int system_initialize_subsystem_internal(void)
 
 {
   int64_t system_context_data_handle;
   
   _system_bf_system_data_ = 0;
   _system_bf_system_data_ = 0;
-  uRam0000000180bf5278 = 0;
+  system_memory_flag = 0;
   _system_bf_system_data_ = 3;
   _system_bf_system_data_ = 0;
-  system_static_system_data_ = 0;
-  uRam0000000180bf5298 = 0;
-  system_static_system_data_a0 = 3;
-  system_static_system_data_c0 = &system_null_ptr;
-  system_static_system_data_d8 = 0;
-  system_static_system_data_c8 = 0;
-  system_static_system_data_d0 = 0;
+  system_static_data_ = 0;
+  system_thread_flag = 0;
+  system_static_data_flags = 3;
+  system_static_data_ptr = &system_null_ptr;
+  system_static_data_offset = 0;
+  system_static_data_size = 0;
+  system_static_data_count = 0;
 
 void system_initialize_module(void)
 
@@ -1340,7 +1340,7 @@ void system_initialize_module(void)
   }
   context_current_ptr[6] = 0x42bea5b911d9c4bf;
   context_current_ptr[7] = 0x1aa83fc0020dc1b6;
-  context_current_ptr[8] = &system_unknown_ptr;
+  context_current_ptr[8] = &system_render_data_ptr;
   context_current_ptr[9] = 0;
   context_current_ptr[10] = system_stack_function;
   return;
@@ -1348,7 +1348,7 @@ void system_initialize_module(void)
 
 
 
-int system_initialize_system_internal_function(void)
+int system_initialize_subsystem_internal(void)
 
 {
   
@@ -1359,7 +1359,7 @@ int system_initialize_system_internal_function(void)
 
 
 
-int system_initialize_system_internal_function(void)
+int system_initialize_subsystem_internal(void)
 
 {
   
@@ -1372,7 +1372,7 @@ int system_initialize_system_internal_function(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int system_initialize_system_internal_function(void)
+int system_initialize_subsystem_internal(void)
 
 {
   
@@ -1402,7 +1402,7 @@ void system_initialize_plugin(void)
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_compare_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_varff9e8,0x10);
+    system_memory_compare_result = memcmp(system_buffer_pointer + 4,&system_plugin_data_ptr,0x10);
     if (system_memory_compare_result < 0) {
       system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
       system_buffer_pointer = context_current_ptr;
@@ -1414,7 +1414,7 @@ void system_initialize_plugin(void)
     system_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
-  if ((context_current_ptr == system_context_base) || (system_memory_compare_result = memcmp(&system_global_data_ptr_varff9e8,context_current_ptr + 4,0x10), system_memory_compare_result < 0)) {
+  if ((context_current_ptr == system_context_base) || (system_memory_compare_result = memcmp(&system_plugin_data_ptr,context_current_ptr + 4,0x10), system_memory_compare_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
     context_init_function(system_global_context,&stack_context_result,context_current_ptr,system_context_offset + 0x20,system_context_offset);
     context_current_ptr = stack_context_result;
@@ -1467,7 +1467,7 @@ void system_initialize_security(void)
   }
   context_current_ptr[6] = 0x40afa5469b6ac06d;
   context_current_ptr[7] = 0x2f4bab01d34055a5;
-  context_current_ptr[8] = &system_graphics_unknown_ptr;
+  context_current_ptr[8] = &system_render_data_ptr;
   context_current_ptr[9] = 3;
   context_current_ptr[10] = system_stack_function_ptr;
   return;
@@ -1475,7 +1475,7 @@ void system_initialize_security(void)
 
 
 
-int system_initialize_system_internal_function(uint8_t system_context_ptr,uint8_t system_config_array,uint8_t system_thread_count,uint8_t system_memory_size_array)
+int system_initialize_subsystem_internal(uint8_t system_context_ptr,uint8_t system_config_array,uint8_t system_thread_count,uint8_t system_memory_size_array)
 
 {
   
@@ -1503,7 +1503,7 @@ void system_initialize_debug(void)
   system_stack_data_array[0] = 0;
   system_stack_uint_value = 7;
   system_strcpy_s(system_stack_data_array,0x80,&system_null_ptr,system_cpu_register_r9,0xfffffffffffffffe);
-  system_static_system_data_c = system_internal_call(&system_stack_context_ptr_a);
+  system_static_data_c = system_internal_call(&system_stack_context_ptr_a);
   return;
 }
 
@@ -1939,7 +1939,7 @@ void system_initialize_func_ee0(void)
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_compare_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_varff9e8,0x10);
+    system_memory_compare_result = memcmp(system_buffer_pointer + 4,&system_plugin_data_ptr,0x10);
     if (system_memory_compare_result < 0) {
       system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
       system_buffer_pointer = context_current_ptr;
@@ -1951,7 +1951,7 @@ void system_initialize_func_ee0(void)
     system_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
-  if ((context_current_ptr == system_context_base) || (system_memory_compare_result = memcmp(&system_global_data_ptr_varff9e8,context_current_ptr + 4,0x10), system_memory_compare_result < 0)) {
+  if ((context_current_ptr == system_context_base) || (system_memory_compare_result = memcmp(&system_plugin_data_ptr,context_current_ptr + 4,0x10), system_memory_compare_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
     context_init_function(system_global_context,&stack_context_result,context_current_ptr,system_context_offset + 0x20,system_context_offset);
     context_current_ptr = stack_context_result;
@@ -2004,7 +2004,7 @@ void system_initialize_func_fe0(void)
   }
   context_current_ptr[6] = 0x40afa5469b6ac06d;
   context_current_ptr[7] = 0x2f4bab01d34055a5;
-  context_current_ptr[8] = &system_graphics_unknown_ptr;
+  context_current_ptr[8] = &system_render_data_ptr;
   context_current_ptr[9] = 3;
   context_current_ptr[10] = system_stack_function_ptr;
   return;
@@ -2060,7 +2060,7 @@ void system_initialize_context_manager(void)
   }
   context_current_ptr[6] = 0x42bea5b911d9c4bf;
   context_current_ptr[7] = 0x1aa83fc0020dc1b6;
-  context_current_ptr[8] = &system_unknown_ptr;
+  context_current_ptr[8] = &system_render_data_ptr;
   context_current_ptr[9] = 0;
   context_current_ptr[10] = system_stack_function;
   return;
@@ -3297,7 +3297,7 @@ void system_internal_call(void)
   }
   context_current_ptr[6] = 0x42bea5b911d9c4bf;
   context_current_ptr[7] = 0x1aa83fc0020dc1b6;
-  context_current_ptr[8] = &system_unknown_ptr;
+  context_current_ptr[8] = &system_render_data_ptr;
   context_current_ptr[9] = 0;
   context_current_ptr[10] = system_stack_function;
   return;
@@ -3718,7 +3718,7 @@ void system_internal_call(void)
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_compare_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_varff9e8,0x10);
+    system_memory_compare_result = memcmp(system_buffer_pointer + 4,&system_plugin_data_ptr,0x10);
     if (system_memory_compare_result < 0) {
       system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
       system_buffer_pointer = context_current_ptr;
@@ -3730,7 +3730,7 @@ void system_internal_call(void)
     system_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
-  if ((context_current_ptr == system_context_base) || (system_memory_compare_result = memcmp(&system_global_data_ptr_varff9e8,context_current_ptr + 4,0x10), system_memory_compare_result < 0)) {
+  if ((context_current_ptr == system_context_base) || (system_memory_compare_result = memcmp(&system_plugin_data_ptr,context_current_ptr + 4,0x10), system_memory_compare_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
     context_init_function(system_global_context,&stack_context_result,context_current_ptr,system_context_offset + 0x20,system_context_offset);
     context_current_ptr = stack_context_result;
@@ -3783,7 +3783,7 @@ void system_internal_call(void)
   }
   context_current_ptr[6] = 0x40afa5469b6ac06d;
   context_current_ptr[7] = 0x2f4bab01d34055a5;
-  context_current_ptr[8] = &system_graphics_unknown_ptr;
+  context_current_ptr[8] = &system_render_data_ptr;
   context_current_ptr[9] = 3;
   context_current_ptr[10] = system_stack_function_ptr;
   return;
@@ -3810,7 +3810,7 @@ void system_internal_call(void)
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_compare_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_varff9e8,0x10);
+    system_memory_compare_result = memcmp(system_buffer_pointer + 4,&system_plugin_data_ptr,0x10);
     if (system_memory_compare_result < 0) {
       system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
       system_buffer_pointer = context_current_ptr;
@@ -3822,7 +3822,7 @@ void system_internal_call(void)
     system_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
-  if ((context_current_ptr == system_context_base) || (system_memory_compare_result = memcmp(&system_global_data_ptr_varff9e8,context_current_ptr + 4,0x10), system_memory_compare_result < 0)) {
+  if ((context_current_ptr == system_context_base) || (system_memory_compare_result = memcmp(&system_plugin_data_ptr,context_current_ptr + 4,0x10), system_memory_compare_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
     context_init_function(system_global_context,&stack_context_result,context_current_ptr,system_context_offset + 0x20,system_context_offset);
     context_current_ptr = stack_context_result;
@@ -3875,7 +3875,7 @@ void system_internal_call(void)
   }
   context_current_ptr[6] = 0x40afa5469b6ac06d;
   context_current_ptr[7] = 0x2f4bab01d34055a5;
-  context_current_ptr[8] = &system_graphics_unknown_ptr;
+  context_current_ptr[8] = &system_render_data_ptr;
   context_current_ptr[9] = 3;
   context_current_ptr[10] = system_stack_function_ptr;
   return;
@@ -5581,7 +5581,7 @@ void system_internal_call(void)
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_compare_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_varff9e8,0x10);
+    system_memory_compare_result = memcmp(system_buffer_pointer + 4,&system_plugin_data_ptr,0x10);
     if (system_memory_compare_result < 0) {
       system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
       system_buffer_pointer = context_current_ptr;
@@ -5593,7 +5593,7 @@ void system_internal_call(void)
     system_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
-  if ((context_current_ptr == system_context_base) || (system_memory_compare_result = memcmp(&system_global_data_ptr_varff9e8,context_current_ptr + 4,0x10), system_memory_compare_result < 0)) {
+  if ((context_current_ptr == system_context_base) || (system_memory_compare_result = memcmp(&system_plugin_data_ptr,context_current_ptr + 4,0x10), system_memory_compare_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
     context_init_function(system_global_context,&stack_context_result,context_current_ptr,system_context_offset + 0x20,system_context_offset);
     context_current_ptr = stack_context_result;
@@ -5646,7 +5646,7 @@ void system_internal_call(void)
   }
   context_current_ptr[6] = 0x40afa5469b6ac06d;
   context_current_ptr[7] = 0x2f4bab01d34055a5;
-  context_current_ptr[8] = &system_graphics_unknown_ptr;
+  context_current_ptr[8] = &system_render_data_ptr;
   context_current_ptr[9] = 3;
   context_current_ptr[10] = system_stack_function_ptr;
   return;
@@ -6605,7 +6605,7 @@ void system_internal_call(void)
   }
   context_current_ptr[6] = 0x42bea5b911d9c4bf;
   context_current_ptr[7] = 0x1aa83fc0020dc1b6;
-  context_current_ptr[8] = &system_unknown_ptr;
+  context_current_ptr[8] = &system_render_data_ptr;
   context_current_ptr[9] = 0;
   context_current_ptr[10] = system_stack_function;
   return;
@@ -7357,7 +7357,7 @@ void system_internal_call(void)
   }
   context_current_ptr[6] = 0x42bea5b911d9c4bf;
   context_current_ptr[7] = 0x1aa83fc0020dc1b6;
-  context_current_ptr[8] = &system_unknown_ptr;
+  context_current_ptr[8] = &system_render_data_ptr;
   context_current_ptr[9] = 0;
   context_current_ptr[10] = system_stack_function;
   return;
@@ -12701,7 +12701,7 @@ void system_internal_call(void)
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_compare_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_varff9e8,0x10);
+    system_memory_compare_result = memcmp(system_buffer_pointer + 4,&system_plugin_data_ptr,0x10);
     if (system_memory_compare_result < 0) {
       system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
       system_buffer_pointer = context_current_ptr;
@@ -12713,7 +12713,7 @@ void system_internal_call(void)
     system_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
-  if ((context_current_ptr == system_context_base) || (system_memory_compare_result = memcmp(&system_global_data_ptr_varff9e8,context_current_ptr + 4,0x10), system_memory_compare_result < 0)) {
+  if ((context_current_ptr == system_context_base) || (system_memory_compare_result = memcmp(&system_plugin_data_ptr,context_current_ptr + 4,0x10), system_memory_compare_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
     context_init_function(system_global_context,&stack_context_result,context_current_ptr,system_context_offset + 0x20,system_context_offset);
     context_current_ptr = stack_context_result;
@@ -12766,7 +12766,7 @@ void system_internal_call(void)
   }
   context_current_ptr[6] = 0x40afa5469b6ac06d;
   context_current_ptr[7] = 0x2f4bab01d34055a5;
-  context_current_ptr[8] = &system_graphics_unknown_ptr;
+  context_current_ptr[8] = &system_render_data_ptr;
   context_current_ptr[9] = 3;
   context_current_ptr[10] = system_stack_function_ptr;
   return;
@@ -13130,7 +13130,7 @@ void system_internal_call(void)
   }
   context_current_ptr[6] = 0x42bea5b911d9c4bf;
   context_current_ptr[7] = 0x1aa83fc0020dc1b6;
-  context_current_ptr[8] = &system_unknown_ptr;
+  context_current_ptr[8] = &system_render_data_ptr;
   context_current_ptr[9] = 0;
   context_current_ptr[10] = system_stack_function;
   return;
@@ -13586,7 +13586,7 @@ void system_internal_call(void)
   context_current_ptr = system_context_base;
   system_buffer_pointer = (uint8_t *)system_context_base[1];
   while (system_initialization_status == '\0') {
-    system_memory_compare_result = memcmp(system_buffer_pointer + 4,&system_global_data_ptr_varff9e8,0x10);
+    system_memory_compare_result = memcmp(system_buffer_pointer + 4,&system_plugin_data_ptr,0x10);
     if (system_memory_compare_result < 0) {
       system_next_context_ptr = (uint8_t *)system_buffer_pointer[2];
       system_buffer_pointer = context_current_ptr;
@@ -13598,7 +13598,7 @@ void system_internal_call(void)
     system_buffer_pointer = system_next_context_ptr;
     system_initialization_status = *(char *)((int64_t)system_next_context_ptr + 0x19);
   }
-  if ((context_current_ptr == system_context_base) || (system_memory_compare_result = memcmp(&system_global_data_ptr_varff9e8,context_current_ptr + 4,0x10), system_memory_compare_result < 0)) {
+  if ((context_current_ptr == system_context_base) || (system_memory_compare_result = memcmp(&system_plugin_data_ptr,context_current_ptr + 4,0x10), system_memory_compare_result < 0)) {
     system_context_offset = allocate_memory(system_global_context);
     context_init_function(system_global_context,&stack_context_result,context_current_ptr,system_context_offset + 0x20,system_context_offset);
     context_current_ptr = stack_context_result;
@@ -13651,7 +13651,7 @@ void system_internal_call(void)
   }
   context_current_ptr[6] = 0x40afa5469b6ac06d;
   context_current_ptr[7] = 0x2f4bab01d34055a5;
-  context_current_ptr[8] = &system_graphics_unknown_ptr;
+  context_current_ptr[8] = &system_render_data_ptr;
   context_current_ptr[9] = 3;
   context_current_ptr[10] = system_stack_function_ptr;
   return;
@@ -16488,8 +16488,8 @@ void system_internal_call(void)
   system_float_var_l = (float)system_internal_call(system_uint_var,&system_stack_byte_ptr);
   system_stack_byte_ptr = &system_null_ptr;
   system_uint_value_e = system_internal_call();
-  if (0 < system_static_system_data_d0) {
-    system_internal_call(&system_data_bf52c0,&system_stack_byte_ptr,0,system_static_system_data_d0 + -1);
+  if (0 < system_static_data_count) {
+    system_internal_call(&system_data_bf52c0,&system_stack_byte_ptr,0,system_static_data_count + -1);
     system_stack_varint_var = system_stack_varint_var + -1;
     system_context_base_value = (int64_t)system_stack_varint_var;
     system_memory_compare_result = -1;
