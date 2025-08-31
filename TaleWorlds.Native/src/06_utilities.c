@@ -537,12 +537,17 @@ uint64 utility_initialize_resource_management_system(void)
 }
 
 /**
- * @brief 分配系统资源 - 为系统分配所需的资源
- * @param utility_resource_primary_handle 资源句柄
+ * @brief 分配系统资源 - 为系统分配必要的资源
+ * @param utility_resource_primary_handle 主要资源句柄
  * @return uint64 分配结果状态码
  * 
- * 该函数用于为系统分配所需的资源，包括内存分配和资源初始化。
+ * 该函数负责为系统分配必要的资源，包括：
+ * - 内存资源分配
+ * - 资源句柄管理
+ * - 安全令牌处理
+ * - 状态值管理
  * 
+ * 简化实现：处理基本的资源分配逻辑，包括安全性和状态管理
  */
 uint64 utility_allocate_system_resources(longlong utility_resource_primary_handle)
 {
