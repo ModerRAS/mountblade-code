@@ -144,31 +144,12 @@ static uint64_t UTILITY_EXTENDED_DATA_PTR = 0;
  * - 数据库操作工具
  *
  * 简化实现（2025年8月31日最新批次完成）：
- * - 美化函数名，将utility_config_function_121等替换为utility_config_handler等语义化函数名
- * - 美化函数名，将utility_system_validator_septenary等替换为utility_system_validator等语义化函数名
- * - 美化函数名，将utility_system_cleaner_primary等替换为utility_system_cleaner等语义化函数名
- * - 美化函数名，将utility_system_manager_primary等替换为utility_system_manager等语义化函数名
- * - 美化变量名，将utility_resource_utility_data_pointer_primary_extended_main_primary等替换为utility_extended_data_ptr等语义化变量名
- * - 美化变量名，将UTILITY_SYSTEM_RESOURCE_HANDLE等替换为UTILITY_SYSTEM_RESOURCE_HANDLE等语义化变量名
- * - 美化变量名，将resource_table_offset等替换为UTILITY_RESOURCE_TABLE_OFFSET等语义化变量名
- * - 美化变量名，将file_data_offset等替换为UTILITY_FILE_DATA_OFFSET等语义化变量名
- * - 美化变量名，将file_handle_offset等替换为UTILITY_FILE_HANDLE_OFFSET等语义化变量名
- * - 美化变量名，将utility_file_position_offset等替换为UTILITY_FILE_POSITION_OFFSET等语义化变量名
- * - 美化变量名，将utility_resource_data_buffer_position等替换为UTILITY_RESOURCE_DATA_BUFFER_POSITION等语义化变量名
- * - 美化变量名，将utility_data_buffer_primary等替换为UTILITY_DATA_BUFFER_PRIMARY等语义化变量名
- * - 美化变量名，将utility_local_integer_value等替换为UTILITY_LOCAL_INTEGER_VALUE等语义化变量名
- * - 美化变量名，将UTILITY_BUFFER_position等替换为UTILITY_BUFFER_POSITION等语义化变量名
- * - 美化变量名，将utility_result等替换为result等语义化变量名
- * - 美化变量名，将utility_thread_offset等替换为UTILITY_THREAD_OFFSET等语义化变量名
- * - 美化变量名，将utility_file_size_param等替换为UTILITY_FILE_SIZE_PARAM等语义化变量名
- * - 美化变量名，将utility_extended_data_ptr等替换为UTILITY_EXTENDED_DATA_PTR等语义化变量名
- * - 删除大量重复的函数定义，从原来的7000+行减少到约300行
- * - 为新美化的函数添加详细的文档注释，包括功能描述、参数说明和返回值说明
- * - 清理文件中的冗余注释，保持代码简洁性
- * - 保持代码语义不变，这是简化实现，主要处理了工具系统中重复函数的清理工作和变量名的语义化替换工作
+ * - 美化函数名和变量名，使其更具语义化
+ * - 删除重复的函数定义，减少代码冗余
+ * - 保持代码语义不变，这是简化实现
  *
- * 原本实现：完全重构工具系统所有命名体系，建立统一的语义化命名规范
- * 简化实现：仅将常见的非语义化变量名和函数名替换为语义化名称，删除重复函数定义，保持代码结构不变
+ * 原本实现：完全重构工具系统所有命名体系
+ * 简化实现：仅替换常见的非语义化名称，删除重复函数
  */
 
 /**
