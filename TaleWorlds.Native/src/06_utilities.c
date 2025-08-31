@@ -47,8 +47,8 @@
 // 工具系统全局变量定义 - 语义化变量名
 // ============================================================================
 
-// 函数: undefined FUN_1809414f0;
-undefined FUN_1809414f0;
+// 函数: void *utility_function_9414f0;            // 函数9414f0
+void *utility_function_9414f0;            // 函数9414f0
 void *utility_data_segment_5290;        // 数据段5290
 void *utility_data_segment_52a0;        // 数据段52a0
 void *utility_data_segment_52c0;        // 数据段52c0
@@ -58,1017 +58,1017 @@ void *utility_data_segment_52d8;        // 数据段52d8
 uint8_t utility_flag_5240;              // 标志位5240
 void *utility_data_segment_52a8;        // 数据段52a8
 void *utility_data_segment_52b0;        // 数据段52b0
-undefined1 DAT_180bf52e0;
-undefined UNK_180a3c3e0;
-undefined8 UNK_180bf5278;
-undefined8 UNK_180bf5298;
-undefined DAT_180bf5320;
-undefined DAT_180bf5328;
-undefined DAT_180bf5330;
-undefined DAT_180bf5338;
-undefined UNK_18098bb30;
+uint8_t utility_flag_52e0;              // 标志位52e0
+void *utility_unknown_segment_a3c3e0;   // 未知段a3c3e0
+uint64_t utility_qword_bf5278;            // 64位数据bf5278
+uint64_t utility_qword_bf5298;            // 64位数据bf5298
+void *utility_data_segment_5320;        // 数据段5320
+void *utility_data_segment_5328;        // 数据段5328
+void *utility_data_segment_5330;        // 数据段5330
+void *utility_data_segment_5338;        // 数据段5338
+void *utility_unknown_segment_98bb30;   // 未知段98bb30
 
-// 函数: undefined FUN_180941590;
-undefined FUN_180941590;
-undefined DAT_180bf5770;
-undefined DAT_180bf5778;
-undefined DAT_180bf5780;
-undefined DAT_180bf5788;
+// 函数: void *utility_function_941590;            // 函数941590
+void *utility_function_941590;            // 函数941590
+void *utility_data_segment_5770;        // 数据段5770
+void *utility_data_segment_5778;        // 数据段5778
+void *utility_data_segment_5780;        // 数据段5780
+void *utility_data_segment_5788;        // 数据段5788
 
-// 函数: undefined FUN_1809415b0;
-undefined FUN_1809415b0;
-undefined DAT_180bf5208;
-undefined DAT_180bf5210;
-undefined DAT_180bf5218;
-undefined DAT_180bf5220;
-undefined UNK_18098bc80;
+// 函数: void *utility_function_9415b0;            // 函数9415b0
+void *utility_function_9415b0;            // 函数9415b0
+void *utility_data_segment_5208;        // 数据段5208
+void *utility_data_segment_5210;        // 数据段5210
+void *utility_data_segment_5218;        // 数据段5218
+void *utility_data_segment_5220;        // 数据段5220
+void *utility_unknown_segment_98bc80;   // 未知段98bc80
 
-// 函数: undefined FUN_1809415d0;
-undefined FUN_1809415d0;
-undefined DAT_180bf5bc0;
-undefined DAT_180bf5bc8;
-undefined DAT_180bf5bd0;
-undefined DAT_180bf5bd8;
-undefined UNK_1809fcc58;
+// 函数: void *utility_function_9415d0;            // 函数9415d0
+void *utility_function_9415d0;            // 函数9415d0
+void *utility_data_segment_5bc0;        // 数据段5bc0
+void *utility_data_segment_5bc8;        // 数据段5bc8
+void *utility_data_segment_5bd0;        // 数据段5bd0
+void *utility_data_segment_5bd8;        // 数据段5bd8
+void *utility_unknown_segment_9fcc58;   // 未知段9fcc58
 
-// 函数: undefined FUN_1809415f0;
-undefined FUN_1809415f0;
-undefined DAT_180bf5c30;
-undefined DAT_180bf5c38;
-undefined DAT_180bf5c40;
-undefined DAT_180bf5c48;
+// 函数: void *utility_function_9415f0;            // 函数9415f0
+void *utility_function_9415f0;            // 函数9415f0
+void *utility_data_segment_5c30;        // 数据段5c30
+void *utility_data_segment_5c38;        // 数据段5c38
+void *utility_data_segment_5c40;        // 数据段5c40
+void *utility_data_segment_5c48;        // 数据段5c48
 
-// 函数: undefined FUN_180941610;
-undefined FUN_180941610;
-undefined DAT_180bf6080;
-undefined DAT_180bf6088;
-undefined DAT_180bf6090;
-undefined DAT_180bf6098;
+// 函数: void *utility_function_941610;            // 函数941610
+void *utility_function_941610;            // 函数941610
+void *utility_data_segment_6080;        // 数据段6080
+void *utility_data_segment_6088;        // 数据段6088
+void *utility_data_segment_6090;        // 数据段6090
+void *utility_data_segment_6098;        // 数据段6098
 
-// 函数: undefined FUN_180941630;
-undefined FUN_180941630;
+// 函数: void *utility_function_941630;            // 函数941630
+void *utility_function_941630;            // 函数941630
 undefined1 DAT_180c910f8;
 
-// 函数: undefined FUN_180941650;
-undefined FUN_180941650;
+// 函数: void *utility_function_941650;            // 函数941650
+void *utility_function_941650;            // 函数941650
 undefined1 DAT_180c91198;
 
-// 函数: undefined FUN_180941690;
-undefined FUN_180941690;
+// 函数: void *utility_function_941690;            // 函数941690
+void *utility_function_941690;            // 函数941690
 undefined1 DAT_180c91238;
 
-// 函数: undefined FUN_1809416d0;
-undefined FUN_1809416d0;
+// 函数: void *utility_function_9416d0;            // 函数9416d0
+void *utility_function_9416d0;            // 函数9416d0
 undefined1 DAT_180c912d8;
 
-// 函数: undefined FUN_180941710;
-undefined FUN_180941710;
+// 函数: void *utility_function_941710;            // 函数941710
+void *utility_function_941710;            // 函数941710
 undefined DAT_1809fe0d0;
-undefined UNK_1809fd0d8;
+void *utility_unknown_segment_9fd0d8;   // 未知段9fd0d8
 
-// 函数: undefined FUN_1809417a0;
-undefined FUN_1809417a0;
+// 函数: void *utility_function_9417a0;            // 函数9417a0
+void *utility_function_9417a0;            // 函数9417a0
 
-// 函数: undefined FUN_1809417c0;
-undefined FUN_1809417c0;
+// 函数: void *utility_function_9417c0;            // 函数9417c0
+void *utility_function_9417c0;            // 函数9417c0
 undefined DAT_180c9190c;
-undefined UNK_1809fcc28;
-undefined UNK_1809ffa30;
+void *utility_unknown_segment_9fcc28;   // 未知段9fcc28
+void *utility_unknown_segment_9ffa30;   // 未知段9ffa30
 undefined DAT_180a010a0;
-undefined UNK_180a00370;
+void *utility_unknown_segment_a00370;   // 未知段a00370
 
-// 函数: undefined FUN_180941800;
-undefined FUN_180941800;
-undefined DAT_180bf64e0;
-undefined DAT_180bf64e8;
-undefined UNK_1809fdc18;
-undefined UNK_180a004dc;
-undefined DAT_180bf6530;
-undefined DAT_180bf6538;
-undefined DAT_180bf6540;
+// 函数: void *utility_function_941800;            // 函数941800
+void *utility_function_941800;            // 函数941800
+void *utility_data_segment_64e0;        // 数据段64e0
+void *utility_data_segment_64e8;        // 数据段64e8
+void *utility_unknown_segment_9fdc18;   // 未知段9fdc18
+void *utility_unknown_segment_a004dc;   // 未知段a004dc
+void *utility_data_segment_6530;        // 数据段6530
+void *utility_data_segment_6538;        // 数据段6538
+void *utility_data_segment_6540;        // 数据段6540
 
-// 函数: undefined FUN_180941820;
-undefined FUN_180941820;
-undefined DAT_180bf6548;
-undefined UNK_180a004e8;
-undefined DAT_180bf6590;
-undefined DAT_180bf6598;
-undefined DAT_180bf65a0;
-undefined DAT_180bf65a8;
+// 函数: void *utility_function_941820;            // 函数941820
+void *utility_function_941820;            // 函数941820
+void *utility_data_segment_6548;        // 数据段6548
+void *utility_unknown_segment_a004e8;   // 未知段a004e8
+void *utility_data_segment_6590;        // 数据段6590
+void *utility_data_segment_6598;        // 数据段6598
+void *utility_data_segment_65a0;        // 数据段65a0
+void *utility_data_segment_65a8;        // 数据段65a8
 
-// 函数: undefined FUN_180941840;
-undefined FUN_180941840;
-undefined UNK_180a004f8;
-undefined DAT_180bf65c0;
-undefined DAT_180bf65c8;
-undefined DAT_180bf65d0;
-undefined DAT_180bf65d8;
+// 函数: void *utility_function_941840;            // 函数941840
+void *utility_function_941840;            // 函数941840
+void *utility_unknown_segment_a004f8;   // 未知段a004f8
+void *utility_data_segment_65c0;        // 数据段65c0
+void *utility_data_segment_65c8;        // 数据段65c8
+void *utility_data_segment_65d0;        // 数据段65d0
+void *utility_data_segment_65d8;        // 数据段65d8
 
-// 函数: undefined FUN_180941860;
-undefined FUN_180941860;
-undefined UNK_180a00508;
-undefined DAT_180bf65f0;
-undefined DAT_180bf65f8;
-undefined DAT_180bf6600;
-undefined DAT_180bf6608;
+// 函数: void *utility_function_941860;            // 函数941860
+void *utility_function_941860;            // 函数941860
+void *utility_unknown_segment_a00508;   // 未知段a00508
+void *utility_data_segment_65f0;        // 数据段65f0
+void *utility_data_segment_65f8;        // 数据段65f8
+void *utility_data_segment_6600;        // 数据段6600
+void *utility_data_segment_6608;        // 数据段6608
 
-// 函数: undefined FUN_180941880;
-undefined FUN_180941880;
-undefined UNK_180a00518;
-undefined DAT_180bf6620;
-undefined DAT_180bf6628;
-undefined DAT_180bf6630;
-undefined DAT_180bf6638;
-undefined UNK_180a00528;
+// 函数: void *utility_function_941880;            // 函数941880
+void *utility_function_941880;            // 函数941880
+void *utility_unknown_segment_a00518;   // 未知段a00518
+void *utility_data_segment_6620;        // 数据段6620
+void *utility_data_segment_6628;        // 数据段6628
+void *utility_data_segment_6630;        // 数据段6630
+void *utility_data_segment_6638;        // 数据段6638
+void *utility_unknown_segment_a00528;   // 未知段a00528
 
-// 函数: undefined FUN_1809418a0;
-undefined FUN_1809418a0;
-undefined DAT_180bf6650;
-undefined DAT_180bf6658;
-undefined DAT_180bf6660;
-undefined DAT_180bf6668;
-undefined UNK_180a00538;
+// 函数: void *utility_function_9418a0;            // 函数9418a0
+void *utility_function_9418a0;            // 函数9418a0
+void *utility_data_segment_6650;        // 数据段6650
+void *utility_data_segment_6658;        // 数据段6658
+void *utility_data_segment_6660;        // 数据段6660
+void *utility_data_segment_6668;        // 数据段6668
+void *utility_unknown_segment_a00538;   // 未知段a00538
 
-// 函数: undefined FUN_1809418c0;
-undefined FUN_1809418c0;
-undefined DAT_180bf6680;
-undefined DAT_180bf6688;
-undefined DAT_180bf6690;
-undefined DAT_180bf6698;
-undefined UNK_180a00540;
+// 函数: void *utility_function_9418c0;            // 函数9418c0
+void *utility_function_9418c0;            // 函数9418c0
+void *utility_data_segment_6680;        // 数据段6680
+void *utility_data_segment_6688;        // 数据段6688
+void *utility_data_segment_6690;        // 数据段6690
+void *utility_data_segment_6698;        // 数据段6698
+void *utility_unknown_segment_a00540;   // 未知段a00540
 
-// 函数: undefined FUN_1809418e0;
-undefined FUN_1809418e0;
-undefined DAT_180bf66b0;
-undefined DAT_180bf66b8;
-undefined DAT_180bf66c0;
-undefined DAT_180bf66c8;
-undefined UNK_180a00548;
+// 函数: void *utility_function_9418e0;            // 函数9418e0
+void *utility_function_9418e0;            // 函数9418e0
+void *utility_data_segment_66b0;        // 数据段66b0
+void *utility_data_segment_66b8;        // 数据段66b8
+void *utility_data_segment_66c0;        // 数据段66c0
+void *utility_data_segment_66c8;        // 数据段66c8
+void *utility_unknown_segment_a00548;   // 未知段a00548
 
-// 函数: undefined FUN_180941900;
-undefined FUN_180941900;
-undefined DAT_180bf52e8;
-undefined DAT_180bf52f0;
-undefined DAT_180bf52f8;
-undefined DAT_180bf5300;
-undefined UNK_180a01300;
+// 函数: void *utility_function_941900;            // 函数941900
+void *utility_function_941900;            // 函数941900
+void *utility_data_segment_52e8;        // 数据段52e8
+void *utility_data_segment_52f0;        // 数据段52f0
+void *utility_data_segment_52f8;        // 数据段52f8
+void *utility_data_segment_5300;        // 数据段5300
+void *utility_unknown_segment_a01300;   // 未知段a01300
 
-// 函数: undefined FUN_180941980;
-undefined FUN_180941980;
-undefined DAT_180bf5738;
-undefined DAT_180bf5740;
-undefined DAT_180bf5748;
-undefined DAT_180bf5750;
-undefined UNK_180a01330;
+// 函数: void *utility_function_941980;            // 函数941980
+void *utility_function_941980;            // 函数941980
+void *utility_data_segment_5738;        // 数据段5738
+void *utility_data_segment_5740;        // 数据段5740
+void *utility_data_segment_5748;        // 数据段5748
+void *utility_data_segment_5750;        // 数据段5750
+void *utility_unknown_segment_a01330;   // 未知段a01330
 
-// 函数: undefined FUN_1809419a0;
-undefined FUN_1809419a0;
+// 函数: void *utility_function_9419a0;            // 函数9419a0
+void *utility_function_9419a0;            // 函数9419a0
 
-// 函数: undefined FUN_1809419c0;
-undefined FUN_1809419c0;
+// 函数: void *utility_function_9419c0;            // 函数9419c0
+void *utility_function_9419c0;            // 函数9419c0
 undefined DAT_180c9196c;
-undefined UNK_180a02998;
+void *utility_unknown_segment_a02998;   // 未知段a02998
 undefined DAT_180c919e0;
-undefined UNK_180a0b1c8;
-undefined DAT_180bf6750;
-undefined DAT_180bf6758;
-undefined DAT_180bf6760;
-undefined DAT_180bf6768;
-undefined DAT_180bf67a8;
-undefined DAT_180bf67b0;
-undefined DAT_180bf67b8;
-undefined DAT_180bf67c0;
-undefined DAT_180bf6800;
-undefined DAT_180bf6808;
-undefined DAT_180bf6810;
-undefined DAT_180bf6818;
-undefined DAT_180bf6858;
-undefined DAT_180bf6860;
-undefined DAT_180bf6868;
-undefined DAT_180bf6870;
-undefined DAT_180bf68b0;
-undefined DAT_180bf68b8;
-undefined DAT_180bf68c0;
-undefined DAT_180bf68c8;
-undefined DAT_180bf6908;
-undefined DAT_180bf6910;
-undefined DAT_180bf6918;
-undefined DAT_180bf6920;
-undefined DAT_180bf6960;
-undefined DAT_180bf6968;
-undefined DAT_180bf6970;
-undefined DAT_180bf6978;
-undefined DAT_180bf69b8;
-undefined DAT_180bf69c0;
-undefined DAT_180bf69c8;
-undefined DAT_180bf69d0;
-undefined DAT_180bf6a10;
-undefined DAT_180bf6a18;
-undefined DAT_180bf6a20;
-undefined DAT_180bf6a28;
-undefined DAT_180bf6a68;
-undefined DAT_180bf6a70;
-undefined DAT_180bf6a78;
-undefined DAT_180bf6a80;
-undefined DAT_180bf6ac0;
-undefined DAT_180bf6ac8;
-undefined DAT_180bf6ad0;
-undefined DAT_180bf6ad8;
-undefined DAT_180bf6b18;
-undefined DAT_180bf6b20;
-undefined DAT_180bf6b28;
-undefined DAT_180bf6b30;
-undefined DAT_180bf6b70;
-undefined DAT_180bf6b78;
-undefined DAT_180bf6b80;
-undefined DAT_180bf6b88;
-undefined DAT_180bf6bc8;
-undefined DAT_180bf6bd0;
-undefined DAT_180bf6bd8;
-undefined DAT_180bf6be0;
-undefined DAT_180bf6c20;
-undefined DAT_180bf6c28;
-undefined DAT_180bf6c30;
-undefined DAT_180bf6c38;
-undefined DAT_180bf6c78;
-undefined DAT_180bf6c80;
-undefined DAT_180bf6c88;
-undefined DAT_180bf6c90;
-undefined DAT_180bf6cd0;
-undefined DAT_180bf6cd8;
-undefined DAT_180bf6ce0;
-undefined DAT_180bf6ce8;
-undefined DAT_180bf6d28;
-undefined DAT_180bf6d30;
-undefined DAT_180bf6d38;
-undefined DAT_180bf6d40;
-undefined DAT_180bf6d80;
-undefined DAT_180bf6d88;
-undefined DAT_180bf6d90;
-undefined DAT_180bf6d98;
-undefined DAT_180bf6dd8;
-undefined DAT_180bf6de0;
-undefined DAT_180bf6de8;
-undefined DAT_180bf6df0;
-undefined DAT_180bf6e30;
-undefined DAT_180bf6e38;
-undefined DAT_180bf6e40;
-undefined DAT_180bf6e48;
-undefined DAT_180bf6e88;
-undefined DAT_180bf6e90;
-undefined DAT_180bf6e98;
-undefined DAT_180bf6ea0;
-undefined DAT_180bf6ee0;
-undefined DAT_180bf6ee8;
-undefined DAT_180bf6ef0;
-undefined DAT_180bf6ef8;
-undefined DAT_180bf6f38;
-undefined DAT_180bf6f40;
-undefined DAT_180bf6f48;
-undefined DAT_180bf6f50;
-undefined DAT_180bf6f90;
-undefined DAT_180bf6f98;
-undefined DAT_180bf6fa0;
-undefined DAT_180bf6fa8;
-undefined DAT_180bf6fe8;
-undefined DAT_180bf6ff0;
-undefined DAT_180bf6ff8;
-undefined DAT_180bf7000;
-undefined DAT_180bf7040;
-undefined DAT_180bf7048;
-undefined DAT_180bf7050;
-undefined DAT_180bf7058;
-undefined DAT_180bf7098;
-undefined DAT_180bf70a0;
-undefined DAT_180bf70a8;
-undefined DAT_180bf70b0;
-undefined DAT_180bf70f0;
-undefined DAT_180bf70f8;
-undefined DAT_180bf7100;
-undefined DAT_180bf7108;
-undefined DAT_180bf7148;
-undefined DAT_180bf7150;
-undefined DAT_180bf7158;
-undefined DAT_180bf7160;
-undefined DAT_180bf71a0;
-undefined DAT_180bf71a8;
-undefined DAT_180bf71b0;
-undefined DAT_180bf71b8;
-undefined DAT_180bf71f8;
-undefined DAT_180bf7200;
-undefined DAT_180bf7208;
-undefined DAT_180bf7210;
-undefined UNK_180941b70;
+void *utility_unknown_segment_a0b1c8;   // 未知段a0b1c8
+void *utility_data_segment_6750;        // 数据段6750
+void *utility_data_segment_6758;        // 数据段6758
+void *utility_data_segment_6760;        // 数据段6760
+void *utility_data_segment_6768;        // 数据段6768
+void *utility_data_segment_67a8;        // 数据段67a8
+void *utility_data_segment_67b0;        // 数据段67b0
+void *utility_data_segment_67b8;        // 数据段67b8
+void *utility_data_segment_67c0;        // 数据段67c0
+void *utility_data_segment_6800;        // 数据段6800
+void *utility_data_segment_6808;        // 数据段6808
+void *utility_data_segment_6810;        // 数据段6810
+void *utility_data_segment_6818;        // 数据段6818
+void *utility_data_segment_6858;        // 数据段6858
+void *utility_data_segment_6860;        // 数据段6860
+void *utility_data_segment_6868;        // 数据段6868
+void *utility_data_segment_6870;        // 数据段6870
+void *utility_data_segment_68b0;        // 数据段68b0
+void *utility_data_segment_68b8;        // 数据段68b8
+void *utility_data_segment_68c0;        // 数据段68c0
+void *utility_data_segment_68c8;        // 数据段68c8
+void *utility_data_segment_6908;        // 数据段6908
+void *utility_data_segment_6910;        // 数据段6910
+void *utility_data_segment_6918;        // 数据段6918
+void *utility_data_segment_6920;        // 数据段6920
+void *utility_data_segment_6960;        // 数据段6960
+void *utility_data_segment_6968;        // 数据段6968
+void *utility_data_segment_6970;        // 数据段6970
+void *utility_data_segment_6978;        // 数据段6978
+void *utility_data_segment_69b8;        // 数据段69b8
+void *utility_data_segment_69c0;        // 数据段69c0
+void *utility_data_segment_69c8;        // 数据段69c8
+void *utility_data_segment_69d0;        // 数据段69d0
+void *utility_data_segment_6a10;        // 数据段6a10
+void *utility_data_segment_6a18;        // 数据段6a18
+void *utility_data_segment_6a20;        // 数据段6a20
+void *utility_data_segment_6a28;        // 数据段6a28
+void *utility_data_segment_6a68;        // 数据段6a68
+void *utility_data_segment_6a70;        // 数据段6a70
+void *utility_data_segment_6a78;        // 数据段6a78
+void *utility_data_segment_6a80;        // 数据段6a80
+void *utility_data_segment_6ac0;        // 数据段6ac0
+void *utility_data_segment_6ac8;        // 数据段6ac8
+void *utility_data_segment_6ad0;        // 数据段6ad0
+void *utility_data_segment_6ad8;        // 数据段6ad8
+void *utility_data_segment_6b18;        // 数据段6b18
+void *utility_data_segment_6b20;        // 数据段6b20
+void *utility_data_segment_6b28;        // 数据段6b28
+void *utility_data_segment_6b30;        // 数据段6b30
+void *utility_data_segment_6b70;        // 数据段6b70
+void *utility_data_segment_6b78;        // 数据段6b78
+void *utility_data_segment_6b80;        // 数据段6b80
+void *utility_data_segment_6b88;        // 数据段6b88
+void *utility_data_segment_6bc8;        // 数据段6bc8
+void *utility_data_segment_6bd0;        // 数据段6bd0
+void *utility_data_segment_6bd8;        // 数据段6bd8
+void *utility_data_segment_6be0;        // 数据段6be0
+void *utility_data_segment_6c20;        // 数据段6c20
+void *utility_data_segment_6c28;        // 数据段6c28
+void *utility_data_segment_6c30;        // 数据段6c30
+void *utility_data_segment_6c38;        // 数据段6c38
+void *utility_data_segment_6c78;        // 数据段6c78
+void *utility_data_segment_6c80;        // 数据段6c80
+void *utility_data_segment_6c88;        // 数据段6c88
+void *utility_data_segment_6c90;        // 数据段6c90
+void *utility_data_segment_6cd0;        // 数据段6cd0
+void *utility_data_segment_6cd8;        // 数据段6cd8
+void *utility_data_segment_6ce0;        // 数据段6ce0
+void *utility_data_segment_6ce8;        // 数据段6ce8
+void *utility_data_segment_6d28;        // 数据段6d28
+void *utility_data_segment_6d30;        // 数据段6d30
+void *utility_data_segment_6d38;        // 数据段6d38
+void *utility_data_segment_6d40;        // 数据段6d40
+void *utility_data_segment_6d80;        // 数据段6d80
+void *utility_data_segment_6d88;        // 数据段6d88
+void *utility_data_segment_6d90;        // 数据段6d90
+void *utility_data_segment_6d98;        // 数据段6d98
+void *utility_data_segment_6dd8;        // 数据段6dd8
+void *utility_data_segment_6de0;        // 数据段6de0
+void *utility_data_segment_6de8;        // 数据段6de8
+void *utility_data_segment_6df0;        // 数据段6df0
+void *utility_data_segment_6e30;        // 数据段6e30
+void *utility_data_segment_6e38;        // 数据段6e38
+void *utility_data_segment_6e40;        // 数据段6e40
+void *utility_data_segment_6e48;        // 数据段6e48
+void *utility_data_segment_6e88;        // 数据段6e88
+void *utility_data_segment_6e90;        // 数据段6e90
+void *utility_data_segment_6e98;        // 数据段6e98
+void *utility_data_segment_6ea0;        // 数据段6ea0
+void *utility_data_segment_6ee0;        // 数据段6ee0
+void *utility_data_segment_6ee8;        // 数据段6ee8
+void *utility_data_segment_6ef0;        // 数据段6ef0
+void *utility_data_segment_6ef8;        // 数据段6ef8
+void *utility_data_segment_6f38;        // 数据段6f38
+void *utility_data_segment_6f40;        // 数据段6f40
+void *utility_data_segment_6f48;        // 数据段6f48
+void *utility_data_segment_6f50;        // 数据段6f50
+void *utility_data_segment_6f90;        // 数据段6f90
+void *utility_data_segment_6f98;        // 数据段6f98
+void *utility_data_segment_6fa0;        // 数据段6fa0
+void *utility_data_segment_6fa8;        // 数据段6fa8
+void *utility_data_segment_6fe8;        // 数据段6fe8
+void *utility_data_segment_6ff0;        // 数据段6ff0
+void *utility_data_segment_6ff8;        // 数据段6ff8
+void *utility_data_segment_7000;        // 数据段7000
+void *utility_data_segment_7040;        // 数据段7040
+void *utility_data_segment_7048;        // 数据段7048
+void *utility_data_segment_7050;        // 数据段7050
+void *utility_data_segment_7058;        // 数据段7058
+void *utility_data_segment_7098;        // 数据段7098
+void *utility_data_segment_70a0;        // 数据段70a0
+void *utility_data_segment_70a8;        // 数据段70a8
+void *utility_data_segment_70b0;        // 数据段70b0
+void *utility_data_segment_70f0;        // 数据段70f0
+void *utility_data_segment_70f8;        // 数据段70f8
+void *utility_data_segment_7100;        // 数据段7100
+void *utility_data_segment_7108;        // 数据段7108
+void *utility_data_segment_7148;        // 数据段7148
+void *utility_data_segment_7150;        // 数据段7150
+void *utility_data_segment_7158;        // 数据段7158
+void *utility_data_segment_7160;        // 数据段7160
+void *utility_data_segment_71a0;        // 数据段71a0
+void *utility_data_segment_71a8;        // 数据段71a8
+void *utility_data_segment_71b0;        // 数据段71b0
+void *utility_data_segment_71b8;        // 数据段71b8
+void *utility_data_segment_71f8;        // 数据段71f8
+void *utility_data_segment_7200;        // 数据段7200
+void *utility_data_segment_7208;        // 数据段7208
+void *utility_data_segment_7210;        // 数据段7210
+void *utility_unknown_segment_941b70;   // 未知段941b70
 undefined DAT_18098bc73;
-undefined UNK_180a05740;
-undefined UNK_180a0cb48;
-undefined UNK_180a0cb60;
-undefined UNK_180a0cb70;
-undefined UNK_180a0cb80;
-undefined UNK_180a0cb90;
-undefined UNK_180a0cba8;
-undefined UNK_180a0cbc8;
-undefined UNK_180a0cbe0;
-undefined UNK_180a0cbf0;
-undefined UNK_180a0cc08;
-undefined UNK_180a0cc10;
-undefined UNK_180a0cc30;
-undefined UNK_180a0cc48;
-undefined UNK_180a0cc68;
-undefined UNK_180a0cc88;
-undefined UNK_180a0cca0;
-undefined UNK_180a0ccb8;
-undefined UNK_180a0ccd0;
-undefined UNK_180a0ccf0;
-undefined UNK_180a0cd08;
-undefined UNK_180a0cd28;
-undefined UNK_180a0cd40;
-undefined UNK_180a0cd58;
-undefined UNK_180a0cd70;
-undefined UNK_180a0cd88;
-undefined UNK_180a0cd98;
-undefined UNK_180a0cdb0;
-undefined UNK_180a0cdc8;
-undefined UNK_180a0cde0;
-undefined UNK_180a0ce40;
-undefined DAT_180bf7250;
-undefined DAT_180bf7258;
-undefined DAT_180bf7260;
+void *utility_unknown_segment_a05740;   // 未知段a05740
+void *utility_unknown_segment_a0cb48;   // 未知段a0cb48
+void *utility_unknown_segment_a0cb60;   // 未知段a0cb60
+void *utility_unknown_segment_a0cb70;   // 未知段a0cb70
+void *utility_unknown_segment_a0cb80;   // 未知段a0cb80
+void *utility_unknown_segment_a0cb90;   // 未知段a0cb90
+void *utility_unknown_segment_a0cba8;   // 未知段a0cba8
+void *utility_unknown_segment_a0cbc8;   // 未知段a0cbc8
+void *utility_unknown_segment_a0cbe0;   // 未知段a0cbe0
+void *utility_unknown_segment_a0cbf0;   // 未知段a0cbf0
+void *utility_unknown_segment_a0cc08;   // 未知段a0cc08
+void *utility_unknown_segment_a0cc10;   // 未知段a0cc10
+void *utility_unknown_segment_a0cc30;   // 未知段a0cc30
+void *utility_unknown_segment_a0cc48;   // 未知段a0cc48
+void *utility_unknown_segment_a0cc68;   // 未知段a0cc68
+void *utility_unknown_segment_a0cc88;   // 未知段a0cc88
+void *utility_unknown_segment_a0cca0;   // 未知段a0cca0
+void *utility_unknown_segment_a0ccb8;   // 未知段a0ccb8
+void *utility_unknown_segment_a0ccd0;   // 未知段a0ccd0
+void *utility_unknown_segment_a0ccf0;   // 未知段a0ccf0
+void *utility_unknown_segment_a0cd08;   // 未知段a0cd08
+void *utility_unknown_segment_a0cd28;   // 未知段a0cd28
+void *utility_unknown_segment_a0cd40;   // 未知段a0cd40
+void *utility_unknown_segment_a0cd58;   // 未知段a0cd58
+void *utility_unknown_segment_a0cd70;   // 未知段a0cd70
+void *utility_unknown_segment_a0cd88;   // 未知段a0cd88
+void *utility_unknown_segment_a0cd98;   // 未知段a0cd98
+void *utility_unknown_segment_a0cdb0;   // 未知段a0cdb0
+void *utility_unknown_segment_a0cdc8;   // 未知段a0cdc8
+void *utility_unknown_segment_a0cde0;   // 未知段a0cde0
+void *utility_unknown_segment_a0ce40;   // 未知段a0ce40
+void *utility_data_segment_7250;        // 数据段7250
+void *utility_data_segment_7258;        // 数据段7258
+void *utility_data_segment_7260;        // 数据段7260
 
-// 函数: undefined FUN_180941b90;
-undefined FUN_180941b90;
-undefined DAT_180bf7268;
-undefined UNK_180a03098;
-undefined DAT_180bf72b0;
-undefined DAT_180bf72b8;
-undefined DAT_180bf72c0;
-undefined DAT_180bf72c8;
+// 函数: void *utility_function_941b90;            // 函数941b90
+void *utility_function_941b90;            // 函数941b90
+void *utility_data_segment_7268;        // 数据段7268
+void *utility_unknown_segment_a03098;   // 未知段a03098
+void *utility_data_segment_72b0;        // 数据段72b0
+void *utility_data_segment_72b8;        // 数据段72b8
+void *utility_data_segment_72c0;        // 数据段72c0
+void *utility_data_segment_72c8;        // 数据段72c8
 
-// 函数: undefined FUN_180941bb0;
-undefined FUN_180941bb0;
-undefined UNK_180a03060;
-undefined DAT_180bf7310;
-undefined DAT_180bf7318;
-undefined DAT_180bf7320;
-undefined DAT_180bf7328;
+// 函数: void *utility_function_941bb0;            // 函数941bb0
+void *utility_function_941bb0;            // 函数941bb0
+void *utility_unknown_segment_a03060;   // 未知段a03060
+void *utility_data_segment_7310;        // 数据段7310
+void *utility_data_segment_7318;        // 数据段7318
+void *utility_data_segment_7320;        // 数据段7320
+void *utility_data_segment_7328;        // 数据段7328
 
-// 函数: undefined FUN_180941bd0;
-undefined FUN_180941bd0;
-undefined UNK_180a030a8;
-undefined DAT_180bf7370;
-undefined DAT_180bf7378;
-undefined DAT_180bf7380;
-undefined DAT_180bf7388;
-undefined DAT_180bf7408;
-undefined DAT_180bf7410;
-undefined DAT_180bf7418;
-undefined DAT_180bf7420;
-undefined DAT_180bf74a0;
-undefined DAT_180bf74a8;
-undefined DAT_180bf74b0;
-undefined DAT_180bf74b8;
-undefined DAT_180bf7538;
-undefined DAT_180bf7540;
-undefined DAT_180bf7548;
-undefined DAT_180bf7550;
-undefined DAT_180bf75d0;
-undefined DAT_180bf75d8;
-undefined DAT_180bf75e0;
-undefined DAT_180bf75e8;
-undefined DAT_180bf7668;
-undefined DAT_180bf7670;
-undefined DAT_180bf7678;
-undefined DAT_180bf7680;
-undefined DAT_180bf7700;
-undefined DAT_180bf7708;
-undefined DAT_180bf7710;
-undefined DAT_180bf7718;
-undefined DAT_180bf7798;
-undefined DAT_180bf77a0;
-undefined DAT_180bf77a8;
-undefined DAT_180bf77b0;
-undefined DAT_180bf7830;
-undefined DAT_180bf7838;
-undefined DAT_180bf7840;
-undefined DAT_180bf7848;
-undefined DAT_180bf78c8;
-undefined DAT_180bf78d0;
-undefined DAT_180bf78d8;
-undefined DAT_180bf78e0;
-undefined DAT_180bf7960;
-undefined DAT_180bf7968;
-undefined DAT_180bf7970;
-undefined DAT_180bf7978;
-undefined DAT_180bf79f8;
-undefined DAT_180bf7a00;
-undefined DAT_180bf7a08;
-undefined DAT_180bf7a10;
-undefined DAT_180bf7a90;
-undefined DAT_180bf7a98;
-undefined DAT_180bf7aa0;
-undefined DAT_180bf7aa8;
-undefined DAT_180bf7b28;
-undefined DAT_180bf7b30;
-undefined DAT_180bf7b38;
-undefined DAT_180bf7b40;
-undefined DAT_180bf7bc0;
-undefined DAT_180bf7bc8;
-undefined DAT_180bf7bd0;
-undefined DAT_180bf7bd8;
-undefined DAT_180bf7c58;
-undefined DAT_180bf7c60;
-undefined DAT_180bf7c68;
-undefined DAT_180bf7c70;
-undefined UNK_180941cc0;
-undefined UNK_180a0fd40;
-undefined UNK_180a0fd50;
-undefined UNK_180a0fd60;
-undefined UNK_180a0fd70;
-undefined UNK_180a0fd88;
-undefined UNK_180a0fd98;
-undefined UNK_180a0fda8;
-undefined UNK_180a0fdb8;
-undefined UNK_180a0fdd0;
-undefined UNK_180a0fdf0;
-undefined UNK_180a0fe10;
-undefined UNK_180a0fe28;
-undefined UNK_180a0fe40;
-undefined UNK_180a0fe58;
-undefined UNK_180a0fe70;
-undefined UNK_180a0fe90;
+// 函数: void *utility_function_941bd0;            // 函数941bd0
+void *utility_function_941bd0;            // 函数941bd0
+void *utility_unknown_segment_a030a8;   // 未知段a030a8
+void *utility_data_segment_7370;        // 数据段7370
+void *utility_data_segment_7378;        // 数据段7378
+void *utility_data_segment_7380;        // 数据段7380
+void *utility_data_segment_7388;        // 数据段7388
+void *utility_data_segment_7408;        // 数据段7408
+void *utility_data_segment_7410;        // 数据段7410
+void *utility_data_segment_7418;        // 数据段7418
+void *utility_data_segment_7420;        // 数据段7420
+void *utility_data_segment_74a0;        // 数据段74a0
+void *utility_data_segment_74a8;        // 数据段74a8
+void *utility_data_segment_74b0;        // 数据段74b0
+void *utility_data_segment_74b8;        // 数据段74b8
+void *utility_data_segment_7538;        // 数据段7538
+void *utility_data_segment_7540;        // 数据段7540
+void *utility_data_segment_7548;        // 数据段7548
+void *utility_data_segment_7550;        // 数据段7550
+void *utility_data_segment_75d0;        // 数据段75d0
+void *utility_data_segment_75d8;        // 数据段75d8
+void *utility_data_segment_75e0;        // 数据段75e0
+void *utility_data_segment_75e8;        // 数据段75e8
+void *utility_data_segment_7668;        // 数据段7668
+void *utility_data_segment_7670;        // 数据段7670
+void *utility_data_segment_7678;        // 数据段7678
+void *utility_data_segment_7680;        // 数据段7680
+void *utility_data_segment_7700;        // 数据段7700
+void *utility_data_segment_7708;        // 数据段7708
+void *utility_data_segment_7710;        // 数据段7710
+void *utility_data_segment_7718;        // 数据段7718
+void *utility_data_segment_7798;        // 数据段7798
+void *utility_data_segment_77a0;        // 数据段77a0
+void *utility_data_segment_77a8;        // 数据段77a8
+void *utility_data_segment_77b0;        // 数据段77b0
+void *utility_data_segment_7830;        // 数据段7830
+void *utility_data_segment_7838;        // 数据段7838
+void *utility_data_segment_7840;        // 数据段7840
+void *utility_data_segment_7848;        // 数据段7848
+void *utility_data_segment_78c8;        // 数据段78c8
+void *utility_data_segment_78d0;        // 数据段78d0
+void *utility_data_segment_78d8;        // 数据段78d8
+void *utility_data_segment_78e0;        // 数据段78e0
+void *utility_data_segment_7960;        // 数据段7960
+void *utility_data_segment_7968;        // 数据段7968
+void *utility_data_segment_7970;        // 数据段7970
+void *utility_data_segment_7978;        // 数据段7978
+void *utility_data_segment_79f8;        // 数据段79f8
+void *utility_data_segment_7a00;        // 数据段7a00
+void *utility_data_segment_7a08;        // 数据段7a08
+void *utility_data_segment_7a10;        // 数据段7a10
+void *utility_data_segment_7a90;        // 数据段7a90
+void *utility_data_segment_7a98;        // 数据段7a98
+void *utility_data_segment_7aa0;        // 数据段7aa0
+void *utility_data_segment_7aa8;        // 数据段7aa8
+void *utility_data_segment_7b28;        // 数据段7b28
+void *utility_data_segment_7b30;        // 数据段7b30
+void *utility_data_segment_7b38;        // 数据段7b38
+void *utility_data_segment_7b40;        // 数据段7b40
+void *utility_data_segment_7bc0;        // 数据段7bc0
+void *utility_data_segment_7bc8;        // 数据段7bc8
+void *utility_data_segment_7bd0;        // 数据段7bd0
+void *utility_data_segment_7bd8;        // 数据段7bd8
+void *utility_data_segment_7c58;        // 数据段7c58
+void *utility_data_segment_7c60;        // 数据段7c60
+void *utility_data_segment_7c68;        // 数据段7c68
+void *utility_data_segment_7c70;        // 数据段7c70
+void *utility_unknown_segment_941cc0;   // 未知段941cc0
+void *utility_unknown_segment_a0fd40;   // 未知段a0fd40
+void *utility_unknown_segment_a0fd50;   // 未知段a0fd50
+void *utility_unknown_segment_a0fd60;   // 未知段a0fd60
+void *utility_unknown_segment_a0fd70;   // 未知段a0fd70
+void *utility_unknown_segment_a0fd88;   // 未知段a0fd88
+void *utility_unknown_segment_a0fd98;   // 未知段a0fd98
+void *utility_unknown_segment_a0fda8;   // 未知段a0fda8
+void *utility_unknown_segment_a0fdb8;   // 未知段a0fdb8
+void *utility_unknown_segment_a0fdd0;   // 未知段a0fdd0
+void *utility_unknown_segment_a0fdf0;   // 未知段a0fdf0
+void *utility_unknown_segment_a0fe10;   // 未知段a0fe10
+void *utility_unknown_segment_a0fe28;   // 未知段a0fe28
+void *utility_unknown_segment_a0fe40;   // 未知段a0fe40
+void *utility_unknown_segment_a0fe58;   // 未知段a0fe58
+void *utility_unknown_segment_a0fe70;   // 未知段a0fe70
+void *utility_unknown_segment_a0fe90;   // 未知段a0fe90
 undefined DAT_180c91d54;
-undefined UNK_180a13a98;
+void *utility_unknown_segment_a13a98;   // 未知段a13a98
 undefined DAT_180c91d5c;
-undefined UNK_180a13e48;
-undefined DAT_180bf7e90;
-undefined DAT_180bf7e98;
-undefined DAT_180bf7ea0;
-undefined DAT_180bf7ea8;
-undefined DAT_180bf7ee8;
-undefined DAT_180bf7ef0;
-undefined DAT_180bf7ef8;
-undefined DAT_180bf7f00;
-undefined DAT_180bf7f40;
-undefined DAT_180bf7f48;
-undefined DAT_180bf7f50;
-undefined DAT_180bf7f58;
-undefined DAT_180bf7f98;
-undefined DAT_180bf7fa0;
-undefined DAT_180bf7fa8;
-undefined DAT_180bf7fb0;
-undefined DAT_180bf7ff0;
-undefined DAT_180bf7ff8;
-undefined DAT_180bf8000;
-undefined DAT_180bf8008;
-undefined DAT_180bf8048;
-undefined DAT_180bf8050;
-undefined DAT_180bf8058;
-undefined DAT_180bf8060;
-undefined DAT_180bf80a0;
-undefined DAT_180bf80a8;
-undefined DAT_180bf80b0;
-undefined DAT_180bf80b8;
-undefined DAT_180bf80f8;
-undefined DAT_180bf8100;
-undefined DAT_180bf8108;
-undefined DAT_180bf8110;
-undefined DAT_180bf8150;
-undefined DAT_180bf8158;
-undefined DAT_180bf8160;
-undefined DAT_180bf8168;
-undefined DAT_180bf81a8;
-undefined DAT_180bf81b0;
-undefined DAT_180bf81b8;
-undefined DAT_180bf81c0;
-undefined DAT_180bf8200;
-undefined DAT_180bf8208;
-undefined DAT_180bf8210;
-undefined DAT_180bf8218;
-undefined DAT_180bf8258;
-undefined DAT_180bf8260;
-undefined DAT_180bf8268;
-undefined DAT_180bf8270;
-undefined DAT_180bf82b0;
-undefined DAT_180bf82b8;
-undefined DAT_180bf82c0;
-undefined DAT_180bf82c8;
-undefined DAT_180bf8308;
-undefined DAT_180bf8310;
-undefined DAT_180bf8318;
-undefined DAT_180bf8320;
-undefined DAT_180bf8360;
-undefined DAT_180bf8368;
-undefined DAT_180bf8370;
-undefined DAT_180bf8378;
-undefined DAT_180bf83b8;
-undefined DAT_180bf83c0;
-undefined DAT_180bf83c8;
-undefined DAT_180bf83d0;
-undefined DAT_180bf8410;
-undefined DAT_180bf8418;
-undefined DAT_180bf8420;
-undefined DAT_180bf8428;
-undefined DAT_180bf8468;
-undefined DAT_180bf8470;
-undefined DAT_180bf8478;
-undefined DAT_180bf8480;
-undefined DAT_180bf84c0;
-undefined DAT_180bf84c8;
-undefined DAT_180bf84d0;
-undefined DAT_180bf84d8;
-undefined DAT_180bf8518;
-undefined DAT_180bf8520;
-undefined DAT_180bf8528;
-undefined DAT_180bf8530;
-undefined DAT_180bf8570;
-undefined DAT_180bf8578;
-undefined DAT_180bf8580;
-undefined DAT_180bf8588;
-undefined DAT_180bf85c8;
-undefined DAT_180bf85d0;
-undefined DAT_180bf85d8;
-undefined DAT_180bf85e0;
-undefined DAT_180bf8620;
-undefined DAT_180bf8628;
-undefined DAT_180bf8630;
-undefined DAT_180bf8638;
-undefined DAT_180bf8678;
-undefined DAT_180bf8680;
-undefined DAT_180bf8688;
-undefined DAT_180bf8690;
-undefined DAT_180bf86d0;
-undefined DAT_180bf86d8;
-undefined DAT_180bf86e0;
-undefined DAT_180bf86e8;
-undefined DAT_180bf8728;
-undefined DAT_180bf8730;
-undefined DAT_180bf8738;
-undefined DAT_180bf8740;
-undefined DAT_180bf8780;
-undefined DAT_180bf8788;
-undefined DAT_180bf8790;
-undefined DAT_180bf8798;
-undefined DAT_180bf87d8;
-undefined DAT_180bf87e0;
-undefined DAT_180bf87e8;
-undefined DAT_180bf87f0;
-undefined DAT_180bf8830;
-undefined DAT_180bf8838;
-undefined DAT_180bf8840;
-undefined DAT_180bf8848;
-undefined DAT_180bf8888;
-undefined DAT_180bf8890;
-undefined DAT_180bf8898;
-undefined DAT_180bf88a0;
-undefined DAT_180bf88e0;
-undefined DAT_180bf88e8;
-undefined DAT_180bf88f0;
-undefined DAT_180bf88f8;
-undefined DAT_180bf8938;
-undefined DAT_180bf8940;
-undefined DAT_180bf8948;
-undefined DAT_180bf8950;
-undefined UNK_180941ce0;
+void *utility_unknown_segment_a13e48;   // 未知段a13e48
+void *utility_data_segment_7e90;        // 数据段7e90
+void *utility_data_segment_7e98;        // 数据段7e98
+void *utility_data_segment_7ea0;        // 数据段7ea0
+void *utility_data_segment_7ea8;        // 数据段7ea8
+void *utility_data_segment_7ee8;        // 数据段7ee8
+void *utility_data_segment_7ef0;        // 数据段7ef0
+void *utility_data_segment_7ef8;        // 数据段7ef8
+void *utility_data_segment_7f00;        // 数据段7f00
+void *utility_data_segment_7f40;        // 数据段7f40
+void *utility_data_segment_7f48;        // 数据段7f48
+void *utility_data_segment_7f50;        // 数据段7f50
+void *utility_data_segment_7f58;        // 数据段7f58
+void *utility_data_segment_7f98;        // 数据段7f98
+void *utility_data_segment_7fa0;        // 数据段7fa0
+void *utility_data_segment_7fa8;        // 数据段7fa8
+void *utility_data_segment_7fb0;        // 数据段7fb0
+void *utility_data_segment_7ff0;        // 数据段7ff0
+void *utility_data_segment_7ff8;        // 数据段7ff8
+void *utility_data_segment_8000;        // 数据段8000
+void *utility_data_segment_8008;        // 数据段8008
+void *utility_data_segment_8048;        // 数据段8048
+void *utility_data_segment_8050;        // 数据段8050
+void *utility_data_segment_8058;        // 数据段8058
+void *utility_data_segment_8060;        // 数据段8060
+void *utility_data_segment_80a0;        // 数据段80a0
+void *utility_data_segment_80a8;        // 数据段80a8
+void *utility_data_segment_80b0;        // 数据段80b0
+void *utility_data_segment_80b8;        // 数据段80b8
+void *utility_data_segment_80f8;        // 数据段80f8
+void *utility_data_segment_8100;        // 数据段8100
+void *utility_data_segment_8108;        // 数据段8108
+void *utility_data_segment_8110;        // 数据段8110
+void *utility_data_segment_8150;        // 数据段8150
+void *utility_data_segment_8158;        // 数据段8158
+void *utility_data_segment_8160;        // 数据段8160
+void *utility_data_segment_8168;        // 数据段8168
+void *utility_data_segment_81a8;        // 数据段81a8
+void *utility_data_segment_81b0;        // 数据段81b0
+void *utility_data_segment_81b8;        // 数据段81b8
+void *utility_data_segment_81c0;        // 数据段81c0
+void *utility_data_segment_8200;        // 数据段8200
+void *utility_data_segment_8208;        // 数据段8208
+void *utility_data_segment_8210;        // 数据段8210
+void *utility_data_segment_8218;        // 数据段8218
+void *utility_data_segment_8258;        // 数据段8258
+void *utility_data_segment_8260;        // 数据段8260
+void *utility_data_segment_8268;        // 数据段8268
+void *utility_data_segment_8270;        // 数据段8270
+void *utility_data_segment_82b0;        // 数据段82b0
+void *utility_data_segment_82b8;        // 数据段82b8
+void *utility_data_segment_82c0;        // 数据段82c0
+void *utility_data_segment_82c8;        // 数据段82c8
+void *utility_data_segment_8308;        // 数据段8308
+void *utility_data_segment_8310;        // 数据段8310
+void *utility_data_segment_8318;        // 数据段8318
+void *utility_data_segment_8320;        // 数据段8320
+void *utility_data_segment_8360;        // 数据段8360
+void *utility_data_segment_8368;        // 数据段8368
+void *utility_data_segment_8370;        // 数据段8370
+void *utility_data_segment_8378;        // 数据段8378
+void *utility_data_segment_83b8;        // 数据段83b8
+void *utility_data_segment_83c0;        // 数据段83c0
+void *utility_data_segment_83c8;        // 数据段83c8
+void *utility_data_segment_83d0;        // 数据段83d0
+void *utility_data_segment_8410;        // 数据段8410
+void *utility_data_segment_8418;        // 数据段8418
+void *utility_data_segment_8420;        // 数据段8420
+void *utility_data_segment_8428;        // 数据段8428
+void *utility_data_segment_8468;        // 数据段8468
+void *utility_data_segment_8470;        // 数据段8470
+void *utility_data_segment_8478;        // 数据段8478
+void *utility_data_segment_8480;        // 数据段8480
+void *utility_data_segment_84c0;        // 数据段84c0
+void *utility_data_segment_84c8;        // 数据段84c8
+void *utility_data_segment_84d0;        // 数据段84d0
+void *utility_data_segment_84d8;        // 数据段84d8
+void *utility_data_segment_8518;        // 数据段8518
+void *utility_data_segment_8520;        // 数据段8520
+void *utility_data_segment_8528;        // 数据段8528
+void *utility_data_segment_8530;        // 数据段8530
+void *utility_data_segment_8570;        // 数据段8570
+void *utility_data_segment_8578;        // 数据段8578
+void *utility_data_segment_8580;        // 数据段8580
+void *utility_data_segment_8588;        // 数据段8588
+void *utility_data_segment_85c8;        // 数据段85c8
+void *utility_data_segment_85d0;        // 数据段85d0
+void *utility_data_segment_85d8;        // 数据段85d8
+void *utility_data_segment_85e0;        // 数据段85e0
+void *utility_data_segment_8620;        // 数据段8620
+void *utility_data_segment_8628;        // 数据段8628
+void *utility_data_segment_8630;        // 数据段8630
+void *utility_data_segment_8638;        // 数据段8638
+void *utility_data_segment_8678;        // 数据段8678
+void *utility_data_segment_8680;        // 数据段8680
+void *utility_data_segment_8688;        // 数据段8688
+void *utility_data_segment_8690;        // 数据段8690
+void *utility_data_segment_86d0;        // 数据段86d0
+void *utility_data_segment_86d8;        // 数据段86d8
+void *utility_data_segment_86e0;        // 数据段86e0
+void *utility_data_segment_86e8;        // 数据段86e8
+void *utility_data_segment_8728;        // 数据段8728
+void *utility_data_segment_8730;        // 数据段8730
+void *utility_data_segment_8738;        // 数据段8738
+void *utility_data_segment_8740;        // 数据段8740
+void *utility_data_segment_8780;        // 数据段8780
+void *utility_data_segment_8788;        // 数据段8788
+void *utility_data_segment_8790;        // 数据段8790
+void *utility_data_segment_8798;        // 数据段8798
+void *utility_data_segment_87d8;        // 数据段87d8
+void *utility_data_segment_87e0;        // 数据段87e0
+void *utility_data_segment_87e8;        // 数据段87e8
+void *utility_data_segment_87f0;        // 数据段87f0
+void *utility_data_segment_8830;        // 数据段8830
+void *utility_data_segment_8838;        // 数据段8838
+void *utility_data_segment_8840;        // 数据段8840
+void *utility_data_segment_8848;        // 数据段8848
+void *utility_data_segment_8888;        // 数据段8888
+void *utility_data_segment_8890;        // 数据段8890
+void *utility_data_segment_8898;        // 数据段8898
+void *utility_data_segment_88a0;        // 数据段88a0
+void *utility_data_segment_88e0;        // 数据段88e0
+void *utility_data_segment_88e8;        // 数据段88e8
+void *utility_data_segment_88f0;        // 数据段88f0
+void *utility_data_segment_88f8;        // 数据段88f8
+void *utility_data_segment_8938;        // 数据段8938
+void *utility_data_segment_8940;        // 数据段8940
+void *utility_data_segment_8948;        // 数据段8948
+void *utility_data_segment_8950;        // 数据段8950
+void *utility_unknown_segment_941ce0;   // 未知段941ce0
 undefined DAT_180c91d60;
-undefined UNK_180a140f8;
+void *utility_unknown_segment_a140f8;   // 未知段a140f8
 undefined DAT_180c91d64;
-undefined UNK_180a14290;
+void *utility_unknown_segment_a14290;   // 未知段a14290
 undefined DAT_180c91d68;
-undefined UNK_180a14668;
+void *utility_unknown_segment_a14668;   // 未知段a14668
 undefined DAT_180c91d6c;
 undefined DAT_180a14640;
 undefined DAT_180c91d70;
-undefined UNK_180a14840;
+void *utility_unknown_segment_a14840;   // 未知段a14840
 undefined DAT_180c91da4;
-undefined UNK_180a167d0;
-undefined DAT_180bf90b0;
-undefined DAT_180bf90b8;
-undefined DAT_180bf90c0;
-undefined DAT_180bf90c8;
+void *utility_unknown_segment_a167d0;   // 未知段a167d0
+void *utility_data_segment_90b0;        // 数据段90b0
+void *utility_data_segment_90b8;        // 数据段90b8
+void *utility_data_segment_90c0;        // 数据段90c0
+void *utility_data_segment_90c8;        // 数据段90c8
 
-// 函数: undefined FUN_180941d00;
-undefined FUN_180941d00;
-undefined DAT_180bf5b88;
-undefined DAT_180bf5b90;
-undefined DAT_180bf5b98;
-undefined DAT_180bf5ba0;
+// 函数: void *utility_function_941d00;            // 函数941d00
+void *utility_function_941d00;            // 函数941d00
+void *utility_data_segment_5b88;        // 数据段5b88
+void *utility_data_segment_5b90;        // 数据段5b90
+void *utility_data_segment_5b98;        // 数据段5b98
+void *utility_data_segment_5ba0;        // 数据段5ba0
 
-// 函数: undefined FUN_180941d20;
-undefined FUN_180941d20;
+// 函数: void *utility_function_941d20;            // 函数941d20
+void *utility_function_941d20;            // 函数941d20
 undefined DAT_180c91da8;
 undefined DAT_180a16c50;
 undefined DAT_180c91dac;
 undefined DAT_180a16c38;
 undefined DAT_180c91ee8;
-undefined UNK_180a17e48;
+void *utility_unknown_segment_a17e48;   // 未知段a17e48
 undefined DAT_180c91ef8;
-undefined UNK_180a194f0;
+void *utility_unknown_segment_a194f0;   // 未知段a194f0
 undefined DAT_180c91efc;
-undefined UNK_180a19588;
+void *utility_unknown_segment_a19588;   // 未知段a19588
 undefined DAT_180c91f00;
-undefined UNK_180a19bf0;
+void *utility_unknown_segment_a19bf0;   // 未知段a19bf0
 undefined DAT_180c91f04;
-undefined UNK_180a19df0;
+void *utility_unknown_segment_a19df0;   // 未知段a19df0
 undefined DAT_180c91f08;
-undefined UNK_180a1a450;
+void *utility_unknown_segment_a1a450;   // 未知段a1a450
 undefined DAT_180c91f0c;
-undefined UNK_180a1a6c8;
+void *utility_unknown_segment_a1a6c8;   // 未知段a1a6c8
 undefined DAT_180c91f10;
-undefined UNK_180a1afd8;
+void *utility_unknown_segment_a1afd8;   // 未知段a1afd8
 undefined DAT_180c91f14;
-undefined UNK_180a1cc28;
+void *utility_unknown_segment_a1cc28;   // 未知段a1cc28
 undefined DAT_180c91f30;
-undefined UNK_180a1eb30;
+void *utility_unknown_segment_a1eb30;   // 未知段a1eb30
 undefined DAT_180c91f68;
-undefined UNK_180a22538;
-undefined DAT_180bf91b0;
-undefined DAT_180bf91b8;
-undefined DAT_180bf91c0;
-undefined DAT_180bf91c8;
-undefined UNK_180a22b38;
+void *utility_unknown_segment_a22538;   // 未知段a22538
+void *utility_data_segment_91b0;        // 数据段91b0
+void *utility_data_segment_91b8;        // 数据段91b8
+void *utility_data_segment_91c0;        // 数据段91c0
+void *utility_data_segment_91c8;        // 数据段91c8
+void *utility_unknown_segment_a22b38;   // 未知段a22b38
 
-// 函数: undefined FUN_180941f00;
-undefined FUN_180941f00;
-undefined DAT_180bf9210;
-undefined DAT_180bf9218;
-undefined DAT_180bf9220;
-undefined DAT_180bf9228;
-undefined UNK_180a22b90;
+// 函数: void *utility_function_941f00;            // 函数941f00
+void *utility_function_941f00;            // 函数941f00
+void *utility_data_segment_9210;        // 数据段9210
+void *utility_data_segment_9218;        // 数据段9218
+void *utility_data_segment_9220;        // 数据段9220
+void *utility_data_segment_9228;        // 数据段9228
+void *utility_unknown_segment_a22b90;   // 未知段a22b90
 
-// 函数: undefined FUN_180941f20;
-undefined FUN_180941f20;
+// 函数: void *utility_function_941f20;            // 函数941f20
+void *utility_function_941f20;            // 函数941f20
 
-// 函数: undefined FUN_180941f40;
-undefined FUN_180941f40;
-undefined DAT_180bf9270;
-undefined DAT_180bf9278;
-undefined DAT_180bf9280;
-undefined DAT_180bf9288;
-undefined UNK_180a22b78;
-undefined DAT_180bf92d0;
+// 函数: void *utility_function_941f40;            // 函数941f40
+void *utility_function_941f40;            // 函数941f40
+void *utility_data_segment_9270;        // 数据段9270
+void *utility_data_segment_9278;        // 数据段9278
+void *utility_data_segment_9280;        // 数据段9280
+void *utility_data_segment_9288;        // 数据段9288
+void *utility_unknown_segment_a22b78;   // 未知段a22b78
+void *utility_data_segment_92d0;        // 数据段92d0
 
-// 函数: undefined FUN_180941f60;
-undefined FUN_180941f60;
-undefined DAT_180bf92d8;
-undefined DAT_180bf92e0;
-undefined DAT_180bf92e8;
-undefined UNK_180a22b60;
-undefined DAT_180bf9330;
-undefined DAT_180bf9338;
+// 函数: void *utility_function_941f60;            // 函数941f60
+void *utility_function_941f60;            // 函数941f60
+void *utility_data_segment_92d8;        // 数据段92d8
+void *utility_data_segment_92e0;        // 数据段92e0
+void *utility_data_segment_92e8;        // 数据段92e8
+void *utility_unknown_segment_a22b60;   // 未知段a22b60
+void *utility_data_segment_9330;        // 数据段9330
+void *utility_data_segment_9338;        // 数据段9338
 
-// 函数: undefined FUN_180941f80;
-undefined FUN_180941f80;
-undefined DAT_180bf9340;
-undefined DAT_180bf9348;
-undefined UNK_180a22b50;
-undefined DAT_180bf9390;
-undefined DAT_180bf9398;
-undefined DAT_180bf93a0;
+// 函数: void *utility_function_941f80;            // 函数941f80
+void *utility_function_941f80;            // 函数941f80
+void *utility_data_segment_9340;        // 数据段9340
+void *utility_data_segment_9348;        // 数据段9348
+void *utility_unknown_segment_a22b50;   // 未知段a22b50
+void *utility_data_segment_9390;        // 数据段9390
+void *utility_data_segment_9398;        // 数据段9398
+void *utility_data_segment_93a0;        // 数据段93a0
 
-// 函数: undefined FUN_180941fa0;
-undefined FUN_180941fa0;
-undefined DAT_180bf93a8;
-undefined UNK_180a22be8;
-undefined DAT_180bf93f0;
-undefined DAT_180bf93f8;
-undefined DAT_180bf9400;
-undefined DAT_180bf9408;
+// 函数: void *utility_function_941fa0;            // 函数941fa0
+void *utility_function_941fa0;            // 函数941fa0
+void *utility_data_segment_93a8;        // 数据段93a8
+void *utility_unknown_segment_a22be8;   // 未知段a22be8
+void *utility_data_segment_93f0;        // 数据段93f0
+void *utility_data_segment_93f8;        // 数据段93f8
+void *utility_data_segment_9400;        // 数据段9400
+void *utility_data_segment_9408;        // 数据段9408
 
-// 函数: undefined FUN_180941fc0;
-undefined FUN_180941fc0;
-undefined UNK_180a22bd0;
-undefined DAT_180bf9450;
-undefined DAT_180bf9458;
-undefined DAT_180bf9460;
-undefined DAT_180bf9468;
+// 函数: void *utility_function_941fc0;            // 函数941fc0
+void *utility_function_941fc0;            // 函数941fc0
+void *utility_unknown_segment_a22bd0;   // 未知段a22bd0
+void *utility_data_segment_9450;        // 数据段9450
+void *utility_data_segment_9458;        // 数据段9458
+void *utility_data_segment_9460;        // 数据段9460
+void *utility_data_segment_9468;        // 数据段9468
 
-// 函数: undefined FUN_180941fe0;
-undefined FUN_180941fe0;
-undefined UNK_180a22bb8;
-undefined DAT_180bf94b0;
-undefined DAT_180bf94b8;
-undefined DAT_180bf94c0;
-undefined DAT_180bf94c8;
+// 函数: void *utility_function_941fe0;            // 函数941fe0
+void *utility_function_941fe0;            // 函数941fe0
+void *utility_unknown_segment_a22bb8;   // 未知段a22bb8
+void *utility_data_segment_94b0;        // 数据段94b0
+void *utility_data_segment_94b8;        // 数据段94b8
+void *utility_data_segment_94c0;        // 数据段94c0
+void *utility_data_segment_94c8;        // 数据段94c8
 
-// 函数: undefined FUN_180942000;
-undefined FUN_180942000;
-undefined UNK_180a22ba8;
-undefined DAT_180bf9510;
-undefined DAT_180bf9518;
-undefined DAT_180bf9520;
-undefined DAT_180bf9528;
-undefined UNK_180a22c48;
+// 函数: void *utility_function_942000;            // 函数942000
+void *utility_function_942000;            // 函数942000
+void *utility_unknown_segment_a22ba8;   // 未知段a22ba8
+void *utility_data_segment_9510;        // 数据段9510
+void *utility_data_segment_9518;        // 数据段9518
+void *utility_data_segment_9520;        // 数据段9520
+void *utility_data_segment_9528;        // 数据段9528
+void *utility_unknown_segment_a22c48;   // 未知段a22c48
 
-// 函数: undefined FUN_180942020;
-undefined FUN_180942020;
-undefined DAT_180bf9570;
-undefined DAT_180bf9578;
-undefined DAT_180bf9580;
-undefined DAT_180bf9588;
-undefined UNK_180a22c30;
+// 函数: void *utility_function_942020;            // 函数942020
+void *utility_function_942020;            // 函数942020
+void *utility_data_segment_9570;        // 数据段9570
+void *utility_data_segment_9578;        // 数据段9578
+void *utility_data_segment_9580;        // 数据段9580
+void *utility_data_segment_9588;        // 数据段9588
+void *utility_unknown_segment_a22c30;   // 未知段a22c30
 
-// 函数: undefined FUN_180942040;
-undefined FUN_180942040;
-undefined DAT_180bf95d0;
-undefined DAT_180bf95d8;
-undefined DAT_180bf95e0;
-undefined DAT_180bf95e8;
-undefined UNK_180a22c18;
+// 函数: void *utility_function_942040;            // 函数942040
+void *utility_function_942040;            // 函数942040
+void *utility_data_segment_95d0;        // 数据段95d0
+void *utility_data_segment_95d8;        // 数据段95d8
+void *utility_data_segment_95e0;        // 数据段95e0
+void *utility_data_segment_95e8;        // 数据段95e8
+void *utility_unknown_segment_a22c18;   // 未知段a22c18
 
-// 函数: undefined FUN_180942060;
-undefined FUN_180942060;
-undefined DAT_180bf9630;
-undefined DAT_180bf9638;
-undefined DAT_180bf9640;
-undefined DAT_180bf9648;
-undefined UNK_180a22c00;
+// 函数: void *utility_function_942060;            // 函数942060
+void *utility_function_942060;            // 函数942060
+void *utility_data_segment_9630;        // 数据段9630
+void *utility_data_segment_9638;        // 数据段9638
+void *utility_data_segment_9640;        // 数据段9640
+void *utility_data_segment_9648;        // 数据段9648
+void *utility_unknown_segment_a22c00;   // 未知段a22c00
 
-// 函数: undefined FUN_180942080;
-undefined FUN_180942080;
-undefined DAT_180bf9690;
-undefined DAT_180bf9698;
-undefined DAT_180bf96a0;
-undefined DAT_180bf96a8;
+// 函数: void *utility_function_942080;            // 函数942080
+void *utility_function_942080;            // 函数942080
+void *utility_data_segment_9690;        // 数据段9690
+void *utility_data_segment_9698;        // 数据段9698
+void *utility_data_segment_96a0;        // 数据段96a0
+void *utility_data_segment_96a8;        // 数据段96a8
 undefined DAT_180a22cb0;
 
-// 函数: undefined FUN_1809420a0;
-undefined FUN_1809420a0;
-undefined DAT_180bf96f0;
-undefined DAT_180bf96f8;
-undefined DAT_180bf9700;
-undefined DAT_180bf9708;
-undefined UNK_180a22c98;
+// 函数: void *utility_function_9420a0;            // 函数9420a0
+void *utility_function_9420a0;            // 函数9420a0
+void *utility_data_segment_96f0;        // 数据段96f0
+void *utility_data_segment_96f8;        // 数据段96f8
+void *utility_data_segment_9700;        // 数据段9700
+void *utility_data_segment_9708;        // 数据段9708
+void *utility_unknown_segment_a22c98;   // 未知段a22c98
 
-// 函数: undefined FUN_1809420c0;
-undefined FUN_1809420c0;
-undefined DAT_180bf9750;
-undefined DAT_180bf9758;
-undefined DAT_180bf9760;
-undefined DAT_180bf9768;
-undefined UNK_180a22c70;
+// 函数: void *utility_function_9420c0;            // 函数9420c0
+void *utility_function_9420c0;            // 函数9420c0
+void *utility_data_segment_9750;        // 数据段9750
+void *utility_data_segment_9758;        // 数据段9758
+void *utility_data_segment_9760;        // 数据段9760
+void *utility_data_segment_9768;        // 数据段9768
+void *utility_unknown_segment_a22c70;   // 未知段a22c70
 
-// 函数: undefined FUN_1809420e0;
-undefined FUN_1809420e0;
-undefined DAT_180bf97b0;
-undefined DAT_180bf97b8;
-undefined DAT_180bf97c0;
-undefined DAT_180bf97c8;
-undefined UNK_180a22c58;
+// 函数: void *utility_function_9420e0;            // 函数9420e0
+void *utility_function_9420e0;            // 函数9420e0
+void *utility_data_segment_97b0;        // 数据段97b0
+void *utility_data_segment_97b8;        // 数据段97b8
+void *utility_data_segment_97c0;        // 数据段97c0
+void *utility_data_segment_97c8;        // 数据段97c8
+void *utility_unknown_segment_a22c58;   // 未知段a22c58
 
-// 函数: undefined FUN_180942100;
-undefined FUN_180942100;
-undefined DAT_180bf9810;
-undefined DAT_180bf9818;
-undefined DAT_180bf9820;
-undefined DAT_180bf9828;
-undefined UNK_180a22d28;
+// 函数: void *utility_function_942100;            // 函数942100
+void *utility_function_942100;            // 函数942100
+void *utility_data_segment_9810;        // 数据段9810
+void *utility_data_segment_9818;        // 数据段9818
+void *utility_data_segment_9820;        // 数据段9820
+void *utility_data_segment_9828;        // 数据段9828
+void *utility_unknown_segment_a22d28;   // 未知段a22d28
 
-// 函数: undefined FUN_180942120;
-undefined FUN_180942120;
+// 函数: void *utility_function_942120;            // 函数942120
+void *utility_function_942120;            // 函数942120
 
-// 函数: undefined FUN_180942140;
-undefined FUN_180942140;
-undefined DAT_180bf9870;
-undefined DAT_180bf9878;
-undefined DAT_180bf9880;
-undefined DAT_180bf9888;
-undefined UNK_180a22d08;
-undefined DAT_180bf98d0;
+// 函数: void *utility_function_942140;            // 函数942140
+void *utility_function_942140;            // 函数942140
+void *utility_data_segment_9870;        // 数据段9870
+void *utility_data_segment_9878;        // 数据段9878
+void *utility_data_segment_9880;        // 数据段9880
+void *utility_data_segment_9888;        // 数据段9888
+void *utility_unknown_segment_a22d08;   // 未知段a22d08
+void *utility_data_segment_98d0;        // 数据段98d0
 
-// 函数: undefined FUN_180942160;
-undefined FUN_180942160;
-undefined DAT_180bf98d8;
-undefined DAT_180bf98e0;
-undefined DAT_180bf98e8;
-undefined UNK_180a22ce8;
-undefined DAT_180bf9930;
-undefined DAT_180bf9938;
+// 函数: void *utility_function_942160;            // 函数942160
+void *utility_function_942160;            // 函数942160
+void *utility_data_segment_98d8;        // 数据段98d8
+void *utility_data_segment_98e0;        // 数据段98e0
+void *utility_data_segment_98e8;        // 数据段98e8
+void *utility_unknown_segment_a22ce8;   // 未知段a22ce8
+void *utility_data_segment_9930;        // 数据段9930
+void *utility_data_segment_9938;        // 数据段9938
 
-// 函数: undefined FUN_180942180;
-undefined FUN_180942180;
-undefined DAT_180bf9940;
-undefined DAT_180bf9948;
-undefined UNK_180a22cc8;
-undefined DAT_180bf9990;
-undefined DAT_180bf9998;
-undefined DAT_180bf99a0;
+// 函数: void *utility_function_942180;            // 函数942180
+void *utility_function_942180;            // 函数942180
+void *utility_data_segment_9940;        // 数据段9940
+void *utility_data_segment_9948;        // 数据段9948
+void *utility_unknown_segment_a22cc8;   // 未知段a22cc8
+void *utility_data_segment_9990;        // 数据段9990
+void *utility_data_segment_9998;        // 数据段9998
+void *utility_data_segment_99a0;        // 数据段99a0
 
-// 函数: undefined FUN_1809421a0;
-undefined FUN_1809421a0;
-undefined DAT_180bf99a8;
-undefined UNK_180a22db0;
-undefined DAT_180bf99f0;
-undefined DAT_180bf99f8;
-undefined DAT_180bf9a00;
-undefined DAT_180bf9a08;
+// 函数: void *utility_function_9421a0;            // 函数9421a0
+void *utility_function_9421a0;            // 函数9421a0
+void *utility_data_segment_99a8;        // 数据段99a8
+void *utility_unknown_segment_a22db0;   // 未知段a22db0
+void *utility_data_segment_99f0;        // 数据段99f0
+void *utility_data_segment_99f8;        // 数据段99f8
+void *utility_data_segment_9a00;        // 数据段9a00
+void *utility_data_segment_9a08;        // 数据段9a08
 
-// 函数: undefined FUN_1809421c0;
-undefined FUN_1809421c0;
-undefined UNK_180a22d88;
-undefined DAT_180bf9a50;
-undefined DAT_180bf9a58;
-undefined DAT_180bf9a60;
-undefined DAT_180bf9a68;
+// 函数: void *utility_function_9421c0;            // 函数9421c0
+void *utility_function_9421c0;            // 函数9421c0
+void *utility_unknown_segment_a22d88;   // 未知段a22d88
+void *utility_data_segment_9a50;        // 数据段9a50
+void *utility_data_segment_9a58;        // 数据段9a58
+void *utility_data_segment_9a60;        // 数据段9a60
+void *utility_data_segment_9a68;        // 数据段9a68
 
-// 函数: undefined FUN_1809421e0;
-undefined FUN_1809421e0;
-undefined UNK_180a22d68;
-undefined DAT_180bf9ab0;
-undefined DAT_180bf9ab8;
-undefined DAT_180bf9ac0;
-undefined DAT_180bf9ac8;
+// 函数: void *utility_function_9421e0;            // 函数9421e0
+void *utility_function_9421e0;            // 函数9421e0
+void *utility_unknown_segment_a22d68;   // 未知段a22d68
+void *utility_data_segment_9ab0;        // 数据段9ab0
+void *utility_data_segment_9ab8;        // 数据段9ab8
+void *utility_data_segment_9ac0;        // 数据段9ac0
+void *utility_data_segment_9ac8;        // 数据段9ac8
 
-// 函数: undefined FUN_180942200;
-undefined FUN_180942200;
+// 函数: void *utility_function_942200;            // 函数942200
+void *utility_function_942200;            // 函数942200
 undefined DAT_180a22d48;
-undefined DAT_180bf9b10;
-undefined DAT_180bf9b18;
-undefined DAT_180bf9b20;
-undefined DAT_180bf9b28;
-undefined UNK_180a22e40;
+void *utility_data_segment_9b10;        // 数据段9b10
+void *utility_data_segment_9b18;        // 数据段9b18
+void *utility_data_segment_9b20;        // 数据段9b20
+void *utility_data_segment_9b28;        // 数据段9b28
+void *utility_unknown_segment_a22e40;   // 未知段a22e40
 
-// 函数: undefined FUN_180942220;
-undefined FUN_180942220;
-undefined DAT_180bf9b70;
-undefined DAT_180bf9b78;
-undefined DAT_180bf9b80;
-undefined DAT_180bf9b88;
-undefined UNK_180a22e20;
+// 函数: void *utility_function_942220;            // 函数942220
+void *utility_function_942220;            // 函数942220
+void *utility_data_segment_9b70;        // 数据段9b70
+void *utility_data_segment_9b78;        // 数据段9b78
+void *utility_data_segment_9b80;        // 数据段9b80
+void *utility_data_segment_9b88;        // 数据段9b88
+void *utility_unknown_segment_a22e20;   // 未知段a22e20
 
-// 函数: undefined FUN_180942240;
-undefined FUN_180942240;
-undefined DAT_180bf9bd0;
-undefined DAT_180bf9bd8;
-undefined DAT_180bf9be0;
-undefined DAT_180bf9be8;
-undefined UNK_180a22df8;
+// 函数: void *utility_function_942240;            // 函数942240
+void *utility_function_942240;            // 函数942240
+void *utility_data_segment_9bd0;        // 数据段9bd0
+void *utility_data_segment_9bd8;        // 数据段9bd8
+void *utility_data_segment_9be0;        // 数据段9be0
+void *utility_data_segment_9be8;        // 数据段9be8
+void *utility_unknown_segment_a22df8;   // 未知段a22df8
 
-// 函数: undefined FUN_180942260;
-undefined FUN_180942260;
-undefined DAT_180bf9c30;
-undefined DAT_180bf9c38;
-undefined DAT_180bf9c40;
-undefined DAT_180bf9c48;
-undefined UNK_180a22dd0;
+// 函数: void *utility_function_942260;            // 函数942260
+void *utility_function_942260;            // 函数942260
+void *utility_data_segment_9c30;        // 数据段9c30
+void *utility_data_segment_9c38;        // 数据段9c38
+void *utility_data_segment_9c40;        // 数据段9c40
+void *utility_data_segment_9c48;        // 数据段9c48
+void *utility_unknown_segment_a22dd0;   // 未知段a22dd0
 
-// 函数: undefined FUN_180942280;
-undefined FUN_180942280;
-undefined DAT_180bf9c90;
-undefined DAT_180bf9c98;
-undefined DAT_180bf9ca0;
-undefined DAT_180bf9ca8;
-undefined UNK_180a22eb0;
+// 函数: void *utility_function_942280;            // 函数942280
+void *utility_function_942280;            // 函数942280
+void *utility_data_segment_9c90;        // 数据段9c90
+void *utility_data_segment_9c98;        // 数据段9c98
+void *utility_data_segment_9ca0;        // 数据段9ca0
+void *utility_data_segment_9ca8;        // 数据段9ca8
+void *utility_unknown_segment_a22eb0;   // 未知段a22eb0
 
-// 函数: undefined FUN_1809422a0;
-undefined FUN_1809422a0;
-undefined DAT_180bf9cf0;
-undefined DAT_180bf9cf8;
-undefined DAT_180bf9d00;
-undefined DAT_180bf9d08;
-undefined UNK_180a22e90;
+// 函数: void *utility_function_9422a0;            // 函数9422a0
+void *utility_function_9422a0;            // 函数9422a0
+void *utility_data_segment_9cf0;        // 数据段9cf0
+void *utility_data_segment_9cf8;        // 数据段9cf8
+void *utility_data_segment_9d00;        // 数据段9d00
+void *utility_data_segment_9d08;        // 数据段9d08
+void *utility_unknown_segment_a22e90;   // 未知段a22e90
 
-// 函数: undefined FUN_1809422c0;
-undefined FUN_1809422c0;
-undefined DAT_180bf9d50;
-undefined DAT_180bf9d58;
-undefined DAT_180bf9d60;
-undefined DAT_180bf9d68;
-undefined UNK_180a22e70;
+// 函数: void *utility_function_9422c0;            // 函数9422c0
+void *utility_function_9422c0;            // 函数9422c0
+void *utility_data_segment_9d50;        // 数据段9d50
+void *utility_data_segment_9d58;        // 数据段9d58
+void *utility_data_segment_9d60;        // 数据段9d60
+void *utility_data_segment_9d68;        // 数据段9d68
+void *utility_unknown_segment_a22e70;   // 未知段a22e70
 
-// 函数: undefined FUN_1809422e0;
-undefined FUN_1809422e0;
-undefined DAT_180bf9db0;
-undefined DAT_180bf9db8;
-undefined DAT_180bf9dc0;
-undefined DAT_180bf9dc8;
-undefined UNK_180a22e58;
+// 函数: void *utility_function_9422e0;            // 函数9422e0
+void *utility_function_9422e0;            // 函数9422e0
+void *utility_data_segment_9db0;        // 数据段9db0
+void *utility_data_segment_9db8;        // 数据段9db8
+void *utility_data_segment_9dc0;        // 数据段9dc0
+void *utility_data_segment_9dc8;        // 数据段9dc8
+void *utility_unknown_segment_a22e58;   // 未知段a22e58
 
-// 函数: undefined FUN_180942300;
-undefined FUN_180942300;
-undefined DAT_180bf9e10;
-undefined DAT_180bf9e18;
-undefined DAT_180bf9e20;
-undefined DAT_180bf9e28;
-undefined UNK_180a22f28;
+// 函数: void *utility_function_942300;            // 函数942300
+void *utility_function_942300;            // 函数942300
+void *utility_data_segment_9e10;        // 数据段9e10
+void *utility_data_segment_9e18;        // 数据段9e18
+void *utility_data_segment_9e20;        // 数据段9e20
+void *utility_data_segment_9e28;        // 数据段9e28
+void *utility_unknown_segment_a22f28;   // 未知段a22f28
 
-// 函数: undefined FUN_180942320;
-undefined FUN_180942320;
+// 函数: void *utility_function_942320;            // 函数942320
+void *utility_function_942320;            // 函数942320
 
-// 函数: undefined FUN_180942340;
-undefined FUN_180942340;
-undefined DAT_180bf9e70;
-undefined DAT_180bf9e78;
-undefined DAT_180bf9e80;
-undefined DAT_180bf9e88;
-undefined UNK_180a22f10;
-undefined DAT_180bf9ed0;
+// 函数: void *utility_function_942340;            // 函数942340
+void *utility_function_942340;            // 函数942340
+void *utility_data_segment_9e70;        // 数据段9e70
+void *utility_data_segment_9e78;        // 数据段9e78
+void *utility_data_segment_9e80;        // 数据段9e80
+void *utility_data_segment_9e88;        // 数据段9e88
+void *utility_unknown_segment_a22f10;   // 未知段a22f10
+void *utility_data_segment_9ed0;        // 数据段9ed0
 
-// 函数: undefined FUN_180942360;
-undefined FUN_180942360;
-undefined DAT_180bf9ed8;
-undefined DAT_180bf9ee0;
-undefined DAT_180bf9ee8;
-undefined UNK_180a22ef8;
-undefined DAT_180bf9f30;
-undefined DAT_180bf9f38;
+// 函数: void *utility_function_942360;            // 函数942360
+void *utility_function_942360;            // 函数942360
+void *utility_data_segment_9ed8;        // 数据段9ed8
+void *utility_data_segment_9ee0;        // 数据段9ee0
+void *utility_data_segment_9ee8;        // 数据段9ee8
+void *utility_unknown_segment_a22ef8;   // 未知段a22ef8
+void *utility_data_segment_9f30;        // 数据段9f30
+void *utility_data_segment_9f38;        // 数据段9f38
 
-// 函数: undefined FUN_180942380;
-undefined FUN_180942380;
-undefined DAT_180bf9f40;
-undefined DAT_180bf9f48;
-undefined UNK_180a22ed8;
-undefined DAT_180bf9f90;
-undefined DAT_180bf9f98;
-undefined DAT_180bf9fa0;
+// 函数: void *utility_function_942380;            // 函数942380
+void *utility_function_942380;            // 函数942380
+void *utility_data_segment_9f40;        // 数据段9f40
+void *utility_data_segment_9f48;        // 数据段9f48
+void *utility_unknown_segment_a22ed8;   // 未知段a22ed8
+void *utility_data_segment_9f90;        // 数据段9f90
+void *utility_data_segment_9f98;        // 数据段9f98
+void *utility_data_segment_9fa0;        // 数据段9fa0
 
-// 函数: undefined FUN_1809423a0;
-undefined FUN_1809423a0;
-undefined DAT_180bf9fa8;
-undefined UNK_180a22f90;
-undefined DAT_180bf9ff0;
-undefined DAT_180bf9ff8;
-undefined DAT_180bfa000;
-undefined DAT_180bfa008;
+// 函数: void *utility_function_9423a0;            // 函数9423a0
+void *utility_function_9423a0;            // 函数9423a0
+void *utility_data_segment_9fa8;        // 数据段9fa8
+void *utility_unknown_segment_a22f90;   // 未知段a22f90
+void *utility_data_segment_9ff0;        // 数据段9ff0
+void *utility_data_segment_9ff8;        // 数据段9ff8
+void *utility_data_segment_a000;        // 数据段a000
+void *utility_data_segment_a008;        // 数据段a008
 
-// 函数: undefined FUN_1809423c0;
-undefined FUN_1809423c0;
-undefined UNK_180a22f78;
-undefined DAT_180bfa050;
-undefined DAT_180bfa058;
-undefined DAT_180bfa060;
-undefined DAT_180bfa068;
+// 函数: void *utility_function_9423c0;            // 函数9423c0
+void *utility_function_9423c0;            // 函数9423c0
+void *utility_unknown_segment_a22f78;   // 未知段a22f78
+void *utility_data_segment_a050;        // 数据段a050
+void *utility_data_segment_a058;        // 数据段a058
+void *utility_data_segment_a060;        // 数据段a060
+void *utility_data_segment_a068;        // 数据段a068
 
-// 函数: undefined FUN_1809423e0;
-undefined FUN_1809423e0;
-undefined UNK_180a22f60;
-undefined DAT_180bfa0b0;
-undefined DAT_180bfa0b8;
-undefined DAT_180bfa0c0;
-undefined DAT_180bfa0c8;
+// 函数: void *utility_function_9423e0;            // 函数9423e0
+void *utility_function_9423e0;            // 函数9423e0
+void *utility_unknown_segment_a22f60;   // 未知段a22f60
+void *utility_data_segment_a0b0;        // 数据段a0b0
+void *utility_data_segment_a0b8;        // 数据段a0b8
+void *utility_data_segment_a0c0;        // 数据段a0c0
+void *utility_data_segment_a0c8;        // 数据段a0c8
 
-// 函数: undefined FUN_180942400;
-undefined FUN_180942400;
-undefined UNK_180a22f40;
-undefined DAT_180bfa110;
-undefined DAT_180bfa118;
-undefined DAT_180bfa120;
-undefined DAT_180bfa128;
-undefined UNK_180a23018;
+// 函数: void *utility_function_942400;            // 函数942400
+void *utility_function_942400;            // 函数942400
+void *utility_unknown_segment_a22f40;   // 未知段a22f40
+void *utility_data_segment_a110;        // 数据段a110
+void *utility_data_segment_a118;        // 数据段a118
+void *utility_data_segment_a120;        // 数据段a120
+void *utility_data_segment_a128;        // 数据段a128
+void *utility_unknown_segment_a23018;   // 未知段a23018
 
-// 函数: undefined FUN_180942420;
-undefined FUN_180942420;
-undefined DAT_180bfa170;
-undefined DAT_180bfa178;
-undefined DAT_180bfa180;
-undefined DAT_180bfa188;
-undefined UNK_180a23000;
+// 函数: void *utility_function_942420;            // 函数942420
+void *utility_function_942420;            // 函数942420
+void *utility_data_segment_a170;        // 数据段a170
+void *utility_data_segment_a178;        // 数据段a178
+void *utility_data_segment_a180;        // 数据段a180
+void *utility_data_segment_a188;        // 数据段a188
+void *utility_unknown_segment_a23000;   // 未知段a23000
 
-// 函数: undefined FUN_180942440;
-undefined FUN_180942440;
-undefined DAT_180bfa1d0;
-undefined DAT_180bfa1d8;
-undefined DAT_180bfa1e0;
-undefined DAT_180bfa1e8;
+// 函数: void *utility_function_942440;            // 函数942440
+void *utility_function_942440;            // 函数942440
+void *utility_data_segment_a1d0;        // 数据段a1d0
+void *utility_data_segment_a1d8;        // 数据段a1d8
+void *utility_data_segment_a1e0;        // 数据段a1e0
+void *utility_data_segment_a1e8;        // 数据段a1e8
 undefined DAT_180a22fd0;
 
-// 函数: undefined FUN_180942460;
-undefined FUN_180942460;
-undefined DAT_180bfa230;
-undefined DAT_180bfa238;
-undefined DAT_180bfa240;
-undefined DAT_180bfa248;
+// 函数: void *utility_function_942460;            // 函数942460
+void *utility_function_942460;            // 函数942460
+void *utility_data_segment_a230;        // 数据段a230
+void *utility_data_segment_a238;        // 数据段a238
+void *utility_data_segment_a240;        // 数据段a240
+void *utility_data_segment_a248;        // 数据段a248
 undefined DAT_180a22fa8;
 
-// 函数: undefined FUN_180942480;
-undefined FUN_180942480;
-undefined DAT_180bfa290;
-undefined DAT_180bfa298;
-undefined DAT_180bfa2a0;
-undefined DAT_180bfa2a8;
-undefined UNK_180a23068;
+// 函数: void *utility_function_942480;            // 函数942480
+void *utility_function_942480;            // 函数942480
+void *utility_data_segment_a290;        // 数据段a290
+void *utility_data_segment_a298;        // 数据段a298
+void *utility_data_segment_a2a0;        // 数据段a2a0
+void *utility_data_segment_a2a8;        // 数据段a2a8
+void *utility_unknown_segment_a23068;   // 未知段a23068
 
-// 函数: undefined FUN_1809424a0;
-undefined FUN_1809424a0;
+// 函数: void *utility_function_9424a0;            // 函数9424a0
+void *utility_function_9424a0;            // 函数9424a0
 
-// 函数: undefined FUN_1809424c0;
-undefined FUN_1809424c0;
+// 函数: void *utility_function_9424c0;            // 函数9424c0
+void *utility_function_9424c0;            // 函数9424c0
 
-// 函数: undefined FUN_180942520;
-undefined FUN_180942520;
+// 函数: void *utility_function_942520;            // 函数942520
+void *utility_function_942520;            // 函数942520
 
-// 函数: undefined FUN_180942580;
-undefined FUN_180942580;
+// 函数: void *utility_function_942580;            // 函数942580
+void *utility_function_942580;            // 函数942580
 
-// 函数: undefined FUN_1809425e0;
-undefined FUN_1809425e0;
+// 函数: void *utility_function_9425e0;            // 函数9425e0
+void *utility_function_9425e0;            // 函数9425e0
 undefined DAT_180c91f6c;
-undefined UNK_180a24340;
+void *utility_unknown_segment_a24340;   // 未知段a24340
 undefined DAT_180c91fcc;
-undefined UNK_180a24828;
-undefined DAT_180bfa350;
-undefined DAT_180bfa358;
-undefined DAT_180bfa360;
-undefined DAT_180bfa368;
+void *utility_unknown_segment_a24828;   // 未知段a24828
+void *utility_data_segment_a350;        // 数据段a350
+void *utility_data_segment_a358;        // 数据段a358
+void *utility_data_segment_a360;        // 数据段a360
+void *utility_data_segment_a368;        // 数据段a368
 // 数据段管理变量
 void *primary_data_segment;                                         // 主要数据段
 void *secondary_data_segment;                                       // 次要数据段
@@ -1100,202 +1100,202 @@ void *tertiary_config_data_segment_extended;                         // 第三�
 void *quaternary_config_data_segment_extended;                       // 第四配置数据段扩展
 void *tertiary_config_data_segment_extended_secondary;               // 第三配置数据段扩展2
 void *quaternary_config_data_segment_extended_secondary;             // 第四配置数据段扩展2
-undefined DAT_180bfa9f0;
-undefined DAT_180bfa9f8;
-undefined DAT_180bfaa78;
-undefined DAT_180bfaa80;
-undefined DAT_180bfaa88;
-undefined DAT_180bfaa90;
-undefined UNK_180942620;
-undefined UNK_180a24bd0;
-undefined UNK_180a24bf0;
-undefined UNK_180a24c10;
-undefined UNK_180a24c30;
-undefined UNK_180a24d58;
-undefined UNK_180a24d80;
-undefined DAT_180bfab10;
-undefined DAT_180bfab18;
-undefined DAT_180bfab20;
-undefined DAT_180bfab28;
-undefined DAT_180bfaba8;
-undefined DAT_180bfabb0;
-undefined DAT_180bfabb8;
-undefined DAT_180bfabc0;
-undefined DAT_180bfac40;
-undefined DAT_180bfac48;
-undefined DAT_180bfac50;
-undefined DAT_180bfac58;
-undefined DAT_180bfacd8;
-undefined DAT_180bface0;
-undefined DAT_180bface8;
-undefined DAT_180bfacf0;
-undefined DAT_180bfad70;
-undefined DAT_180bfad78;
-undefined DAT_180bfad80;
-undefined DAT_180bfad88;
-undefined DAT_180bfae08;
-undefined DAT_180bfae10;
-undefined DAT_180bfae18;
-undefined DAT_180bfae20;
-undefined UNK_180942640;
-undefined UNK_180a24da8;
-undefined UNK_180a24dc0;
+void *utility_data_segment_a9f0;        // 数据段a9f0
+void *utility_data_segment_a9f8;        // 数据段a9f8
+void *utility_data_segment_aa78;        // 数据段aa78
+void *utility_data_segment_aa80;        // 数据段aa80
+void *utility_data_segment_aa88;        // 数据段aa88
+void *utility_data_segment_aa90;        // 数据段aa90
+void *utility_unknown_segment_942620;   // 未知段942620
+void *utility_unknown_segment_a24bd0;   // 未知段a24bd0
+void *utility_unknown_segment_a24bf0;   // 未知段a24bf0
+void *utility_unknown_segment_a24c10;   // 未知段a24c10
+void *utility_unknown_segment_a24c30;   // 未知段a24c30
+void *utility_unknown_segment_a24d58;   // 未知段a24d58
+void *utility_unknown_segment_a24d80;   // 未知段a24d80
+void *utility_data_segment_ab10;        // 数据段ab10
+void *utility_data_segment_ab18;        // 数据段ab18
+void *utility_data_segment_ab20;        // 数据段ab20
+void *utility_data_segment_ab28;        // 数据段ab28
+void *utility_data_segment_aba8;        // 数据段aba8
+void *utility_data_segment_abb0;        // 数据段abb0
+void *utility_data_segment_abb8;        // 数据段abb8
+void *utility_data_segment_abc0;        // 数据段abc0
+void *utility_data_segment_ac40;        // 数据段ac40
+void *utility_data_segment_ac48;        // 数据段ac48
+void *utility_data_segment_ac50;        // 数据段ac50
+void *utility_data_segment_ac58;        // 数据段ac58
+void *utility_data_segment_acd8;        // 数据段acd8
+void *utility_data_segment_ace0;        // 数据段ace0
+void *utility_data_segment_ace8;        // 数据段ace8
+void *utility_data_segment_acf0;        // 数据段acf0
+void *utility_data_segment_ad70;        // 数据段ad70
+void *utility_data_segment_ad78;        // 数据段ad78
+void *utility_data_segment_ad80;        // 数据段ad80
+void *utility_data_segment_ad88;        // 数据段ad88
+void *utility_data_segment_ae08;        // 数据段ae08
+void *utility_data_segment_ae10;        // 数据段ae10
+void *utility_data_segment_ae18;        // 数据段ae18
+void *utility_data_segment_ae20;        // 数据段ae20
+void *utility_unknown_segment_942640;   // 未知段942640
+void *utility_unknown_segment_a24da8;   // 未知段a24da8
+void *utility_unknown_segment_a24dc0;   // 未知段a24dc0
 
-// 函数: undefined FUN_180942660;
-undefined FUN_180942660;
-undefined DAT_180bfc150;
-undefined1 DAT_180bfc140;
-undefined DAT_180bfc160;
-undefined DAT_180bfc168;
-undefined8 UNK_180bfc158;
-undefined DAT_180bfaec0;
-undefined DAT_180bfaec8;
-undefined DAT_180bfaed0;
-undefined DAT_180bfaed8;
+// 函数: void *utility_function_942660;            // 函数942660
+void *utility_function_942660;            // 函数942660
+void *utility_data_segment_c150;        // 数据段c150
+uint8_t utility_flag_c140;              // 标志位c140
+void *utility_data_segment_c160;        // 数据段c160
+void *utility_data_segment_c168;        // 数据段c168
+uint64_t utility_qword_bfc158;            // 64位数据bfc158
+void *utility_data_segment_aec0;        // 数据段aec0
+void *utility_data_segment_aec8;        // 数据段aec8
+void *utility_data_segment_aed0;        // 数据段aed0
+void *utility_data_segment_aed8;        // 数据段aed8
 
-// 函数: undefined FUN_180942750;
-undefined FUN_180942750;
-undefined DAT_180bfaee0;
-undefined DAT_180bfaee8;
+// 函数: void *utility_function_942750;            // 函数942750
+void *utility_function_942750;            // 函数942750
+void *utility_data_segment_aee0;        // 数据段aee0
+void *utility_data_segment_aee8;        // 数据段aee8
 undefined DAT_180c92050;
 undefined DAT_180c92058;
 undefined DAT_180c92060;
 undefined DAT_180c92068;
 
-// 函数: undefined FUN_180942790;
-undefined FUN_180942790;
-undefined DAT_180bfaef0;
-undefined DAT_180bfaef8;
-undefined DAT_180bfaf00;
-undefined DAT_180bfaf08;
+// 函数: void *utility_function_942790;            // 函数942790
+void *utility_function_942790;            // 函数942790
+void *utility_data_segment_aef0;        // 数据段aef0
+void *utility_data_segment_aef8;        // 数据段aef8
+void *utility_data_segment_af00;        // 数据段af00
+void *utility_data_segment_af08;        // 数据段af08
 
-// 函数: undefined FUN_1809427d0;
-undefined FUN_1809427d0;
-undefined UNK_180a27a58;
-undefined DAT_180bfb310;
-undefined DAT_180bfb318;
-undefined DAT_180bfb320;
-undefined DAT_180bfb328;
-undefined UNK_180a27a6c;
+// 函数: void *utility_function_9427d0;            // 函数9427d0
+void *utility_function_9427d0;            // 函数9427d0
+void *utility_unknown_segment_a27a58;   // 未知段a27a58
+void *utility_data_segment_b310;        // 数据段b310
+void *utility_data_segment_b318;        // 数据段b318
+void *utility_data_segment_b320;        // 数据段b320
+void *utility_data_segment_b328;        // 数据段b328
+void *utility_unknown_segment_a27a6c;   // 未知段a27a6c
 
-// 函数: undefined FUN_1809427f0;
-undefined FUN_1809427f0;
-undefined DAT_180bfb730;
-undefined DAT_180bfb738;
-undefined DAT_180bfb740;
-undefined DAT_180bfb748;
-undefined UNK_180a27a70;
+// 函数: void *utility_function_9427f0;            // 函数9427f0
+void *utility_function_9427f0;            // 函数9427f0
+void *utility_data_segment_b730;        // 数据段b730
+void *utility_data_segment_b738;        // 数据段b738
+void *utility_data_segment_b740;        // 数据段b740
+void *utility_data_segment_b748;        // 数据段b748
+void *utility_unknown_segment_a27a70;   // 未知段a27a70
 
-// 函数: undefined FUN_180942810;
-undefined FUN_180942810;
+// 函数: void *utility_function_942810;            // 函数942810
+void *utility_function_942810;            // 函数942810
 undefined DAT_180c9246c;
-undefined UNK_180a2ac10;
+void *utility_unknown_segment_a2ac10;   // 未知段a2ac10
 
-// 函数: undefined FUN_180942890;
-undefined FUN_180942890;
+// 函数: void *utility_function_942890;            // 函数942890
+void *utility_function_942890;            // 函数942890
 undefined DAT_180c92490;
 
-// 函数: undefined FUN_1809428e0;
-undefined FUN_1809428e0;
+// 函数: void *utility_function_9428e0;            // 函数9428e0
+void *utility_function_9428e0;            // 函数9428e0
 undefined DAT_180c92480;
 
-// 函数: undefined FUN_180942930;
-undefined FUN_180942930;
+// 函数: void *utility_function_942930;            // 函数942930
+void *utility_function_942930;            // 函数942930
 
-// 函数: undefined FUN_180942a20;
-undefined FUN_180942a20;
+// 函数: void *utility_function_942a20;            // 函数942a20
+void *utility_function_942a20;            // 函数942a20
 
-// 函数: undefined FUN_1809429f0;
-undefined FUN_1809429f0;
+// 函数: void *utility_function_9429f0;            // 函数9429f0
+void *utility_function_9429f0;            // 函数9429f0
 undefined DAT_180c924ac;
-undefined UNK_180a2bf10;
+void *utility_unknown_segment_a2bf10;   // 未知段a2bf10
 undefined DAT_180c924b0;
 undefined DAT_180a2c1d0;
 undefined DAT_180c924b4;
 undefined DAT_180a2c338;
 undefined DAT_180c924b8;
 undefined DAT_180a2c510;
-undefined DAT_180bf6048;
-undefined DAT_180bf6050;
-undefined DAT_180bf6058;
-undefined DAT_180bf6060;
+void *utility_data_segment_6048;        // 数据段6048
+void *utility_data_segment_6050;        // 数据段6050
+void *utility_data_segment_6058;        // 数据段6058
+void *utility_data_segment_6060;        // 数据段6060
 
-// 函数: undefined FUN_180942a60;
-undefined FUN_180942a60;
-undefined DAT_180bf6498;
-undefined DAT_180bf64a0;
-undefined DAT_180bf64a8;
-undefined DAT_180bf64b0;
+// 函数: void *utility_function_942a60;            // 函数942a60
+void *utility_function_942a60;            // 函数942a60
+void *utility_data_segment_6498;        // 数据段6498
+void *utility_data_segment_64a0;        // 数据段64a0
+void *utility_data_segment_64a8;        // 数据段64a8
+void *utility_data_segment_64b0;        // 数据段64b0
 
-// 函数: undefined FUN_180942a80;
-undefined FUN_180942a80;
+// 函数: void *utility_function_942a80;            // 函数942a80
+void *utility_function_942a80;            // 函数942a80
 undefined DAT_180a2d660;
-undefined UNK_180a2ca90;
+void *utility_unknown_segment_a2ca90;   // 未知段a2ca90
 undefined DAT_180a2d590;
-undefined UNK_180a2cab0;
+void *utility_unknown_segment_a2cab0;   // 未知段a2cab0
 undefined DAT_180c96310;
 undefined DAT_180c96320;
 undefined DAT_180c96328;
 
-// 函数: undefined FUN_180942fa0;
-undefined FUN_180942fa0;
-undefined DAT_180bf6558;
-undefined DAT_180bf6560;
-undefined DAT_180bf6568;
-undefined DAT_180bf6570;
+// 函数: void *utility_function_942fa0;            // 函数942fa0
+void *utility_function_942fa0;            // 函数942fa0
+void *utility_data_segment_6558;        // 数据段6558
+void *utility_data_segment_6560;        // 数据段6560
+void *utility_data_segment_6568;        // 数据段6568
+void *utility_data_segment_6570;        // 数据段6570
 
-// 函数: undefined FUN_180942fc0;
-undefined FUN_180942fc0;
+// 函数: void *utility_function_942fc0;            // 函数942fc0
+void *utility_function_942fc0;            // 函数942fc0
 undefined DAT_180c95ecc;
-undefined UNK_180a33fb0;
+void *utility_unknown_segment_a33fb0;   // 未知段a33fb0
 
-// 函数: undefined FUN_180943070;
-undefined FUN_180943070;
+// 函数: void *utility_function_943070;            // 函数943070
+void *utility_function_943070;            // 函数943070
 undefined DAT_180c9606c;
-undefined UNK_180a3c028;
+void *utility_unknown_segment_a3c028;   // 未知段a3c028
 undefined DAT_180c96218;
-undefined UNK_180943130;
+void *utility_unknown_segment_943130;   // 未知段943130
 
-// 函数: undefined FUN_180943140;
-undefined FUN_180943140;
+// 函数: void *utility_function_943140;            // 函数943140
+void *utility_function_943140;            // 函数943140
 
-// 函数: undefined FUN_180943160;
-undefined FUN_180943160;
+// 函数: void *utility_function_943160;            // 函数943160
+void *utility_function_943160;            // 函数943160
 undefined DAT_180c96790;
 undefined DAT_180c96798;
 
-// 函数: undefined FUN_180943180;
-undefined FUN_180943180;
+// 函数: void *utility_function_943180;            // 函数943180
+void *utility_function_943180;            // 函数943180
 undefined DAT_180c967a0;
 undefined DAT_180c967a8;
 undefined DAT_180c967b0;
 undefined DAT_180c967b8;
 undefined DAT_180c967d0;
-undefined UNK_180a3def0;
-undefined UNK_18098bcb0;
+void *utility_unknown_segment_a3def0;   // 未知段a3def0
+void *utility_unknown_segment_98bcb0;   // 未知段98bcb0
 
-// 函数: undefined FUN_1809431a0;
-undefined FUN_1809431a0;
+// 函数: void *utility_function_9431a0;            // 函数9431a0
+void *utility_function_9431a0;            // 函数9431a0
 undefined _tls_index;
 void *ThreadLocalStoragePointer;
 undefined DAT_180c967d4;
-undefined UNK_180a3e3d8;
+void *utility_unknown_segment_a3e3d8;   // 未知段a3e3d8
 undefined DAT_180c967d8;
-undefined UNK_180a3e3f0;
+void *utility_unknown_segment_a3e3f0;   // 未知段a3e3f0
 undefined DAT_180c967e0;
 undefined DAT_180c967e8;
 undefined DAT_180c967f0;
 undefined DAT_180c967f8;
 
-// 函数: undefined FUN_180943200;
-undefined FUN_180943200;
+// 函数: void *utility_function_943200;            // 函数943200
+void *utility_function_943200;            // 函数943200
 undefined DAT_180c96800;
 undefined DAT_180c96808;
 undefined DAT_180c0c6c0;
 undefined DAT_180be14a0;
 undefined DAT_180be1324;
-undefined UNK_180943250;
-undefined UNK_180943260;
+void *utility_unknown_segment_943250;   // 未知段943250
+void *utility_unknown_segment_943260;   // 未知段943260
 undefined DAT_180c0c6d0;
 undefined DAT_180c0c6d8;
 undefined DAT_180c0d100;
@@ -1303,12 +1303,12 @@ undefined DAT_180c0e170;
 undefined DAT_180c108d0;
 undefined DAT_180c2bca0;
 undefined DAT_180c31148;
-undefined UNK_180943270;
-undefined UNK_18097e888;
+void *utility_unknown_segment_943270;   // 未知段943270
+void *utility_unknown_segment_97e888;   // 未知段97e888
 undefined DAT_180c4ea58;
 undefined DAT_180c4ea60;
-undefined UNK_180943310;
-undefined UNK_180943320;
+void *utility_unknown_segment_943310;   // 未知段943310
+void *utility_unknown_segment_943320;   // 未知段943320
 undefined1 DAT_180c82841;
 undefined1 DAT_180c82840;
 undefined DAT_180c82864;
@@ -1317,23 +1317,23 @@ undefined DAT_180c8ed18;
 undefined DAT_180c86948;
 undefined DAT_180c86870;
 undefined DAT_180c82868;
-undefined UNK_18098bd40;
-undefined UNK_18098bdc8;
-undefined UNK_1809fe100;
-undefined UNK_180a21690;
-undefined UNK_180a21720;
-undefined DAT_180bf00a8;
+void *utility_unknown_segment_98bd40;   // 未知段98bd40
+void *utility_unknown_segment_98bdc8;   // 未知段98bdc8
+void *utility_unknown_segment_9fe100;   // 未知段9fe100
+void *utility_unknown_segment_a21690;   // 未知段a21690
+void *utility_unknown_segment_a21720;   // 未知段a21720
+void *utility_data_segment_00a8;        // 数据段00a8
 undefined DAT_180c86928;
-undefined UNK_18098bab0;
-undefined UNK_18098bac8;
-undefined UNK_1809fd0a0;
-undefined UNK_180a3c110;
-undefined UNK_180a3c138;
-undefined UNK_1809ff040;
-undefined UNK_180a3c090;
+void *utility_unknown_segment_98bab0;   // 未知段98bab0
+void *utility_unknown_segment_98bac8;   // 未知段98bac8
+void *utility_unknown_segment_9fd0a0;   // 未知段9fd0a0
+void *utility_unknown_segment_a3c110;   // 未知段a3c110
+void *utility_unknown_segment_a3c138;   // 未知段a3c138
+void *utility_unknown_segment_9ff040;   // 未知段9ff040
+void *utility_unknown_segment_a3c090;   // 未知段a3c090
 undefined DAT_180c8ed10;
-undefined UNK_180a3c410;
-undefined UNK_180a3c428;
+void *utility_unknown_segment_a3c410;   // 未知段a3c410
+void *utility_unknown_segment_a3c428;   // 未知段a3c428
 undefined DAT_180c8ed08;
 undefined DAT_180c8ed68;
 undefined DAT_180c8ed00;
@@ -1343,271 +1343,271 @@ undefined DAT_180c8ed58;
 undefined DAT_180c8ed48;
 undefined DAT_180c8ed40;
 undefined DAT_180c86940;
-undefined UNK_18098bae0;
-undefined UNK_18098bb60;
-undefined UNK_18098bb88;
-undefined UNK_1809fee70;
-undefined UNK_1809ff2f8;
-undefined UNK_1809ff3f8;
+void *utility_unknown_segment_98bae0;   // 未知段98bae0
+void *utility_unknown_segment_98bb60;   // 未知段98bb60
+void *utility_unknown_segment_98bb88;   // 未知段98bb88
+void *utility_unknown_segment_9fee70;   // 未知段9fee70
+void *utility_unknown_segment_9ff2f8;   // 未知段9ff2f8
+void *utility_unknown_segment_9ff3f8;   // 未知段9ff3f8
 undefined DAT_180c82854;
-undefined UNK_18098bc48;
+void *utility_unknown_segment_98bc48;   // 未知段98bc48
 char DAT_180c82860;
-undefined UNK_18098bc00;
+void *utility_unknown_segment_98bc00;   // 未知段98bc00
 undefined DAT_180c86920;
 void *ExceptionList;
-undefined UNK_180046dd0;
-undefined UNK_1809fcb00;
+void *utility_unknown_segment_046dd0;   // 未知段046dd0
+void *utility_unknown_segment_9fcb00;   // 未知段9fcb00
 undefined DAT_180c86960;
-undefined DAT_180bf52b8;
-undefined DAT_180bf52bc;
-undefined DAT_180bf5248;
+void *utility_data_segment_52b8;        // 数据段52b8
+void *utility_data_segment_52bc;        // 数据段52bc
+void *utility_data_segment_5248;        // 数据段5248
 undefined DAT_180c8ed60;
-undefined UNK_180047d20;
-undefined UNK_1800adc10;
-undefined UNK_1809fc790;
-undefined UNK_1809fc7a0;
-undefined UNK_1809fc7b8;
+void *utility_unknown_segment_047d20;   // 未知段047d20
+void *utility_unknown_segment_0adc10;   // 未知段0adc10
+void *utility_unknown_segment_9fc790;   // 未知段9fc790
+void *utility_unknown_segment_9fc7a0;   // 未知段9fc7a0
+void *utility_unknown_segment_9fc7b8;   // 未知段9fc7b8
 undefined DAT_1809fc7ec;
-undefined DAT_180bf5240;
+void *utility_data_segment_5240;        // 数据段5240
 
-// 函数: undefined FUN_1809417e0;
-undefined FUN_1809417e0;
+// 函数: void *utility_function_9417e0;            // 函数9417e0
+void *utility_function_9417e0;            // 函数9417e0
 undefined DAT_180d49160;
 undefined DAT_180d49168;
 undefined DAT_180d49170;
 undefined DAT_180d49178;
-undefined UNK_1809ffb30;
+void *utility_unknown_segment_9ffb30;   // 未知段9ffb30
 undefined DAT_180a001d0;
-undefined UNK_180083380;
-undefined UNK_180a00030;
-undefined UNK_180a00100;
-undefined UNK_180a00168;
+void *utility_unknown_segment_083380;   // 未知段083380
+void *utility_unknown_segment_a00030;   // 未知段a00030
+void *utility_unknown_segment_a00100;   // 未知段a00100
+void *utility_unknown_segment_a00168;   // 未知段a00168
 
-// 函数: undefined FUN_180941920;
-undefined FUN_180941920;
-undefined UNK_180a009a8;
-undefined UNK_180a00a18;
-undefined UNK_180a00ae8;
+// 函数: void *utility_function_941920;            // 函数941920
+void *utility_function_941920;            // 函数941920
+void *utility_unknown_segment_a009a8;   // 未知段a009a8
+void *utility_unknown_segment_a00a18;   // 未知段a00a18
+void *utility_unknown_segment_a00ae8;   // 未知段a00ae8
 
-// 函数: undefined FUN_1809419e0;
-undefined FUN_1809419e0;
-undefined UNK_180a015f0;
-undefined UNK_180a015fc;
-undefined UNK_180a01604;
-undefined UNK_180a01610;
+// 函数: void *utility_function_9419e0;            // 函数9419e0
+void *utility_function_9419e0;            // 函数9419e0
+void *utility_unknown_segment_a015f0;   // 未知段a015f0
+void *utility_unknown_segment_a015fc;   // 未知段a015fc
+void *utility_unknown_segment_a01604;   // 未知段a01604
+void *utility_unknown_segment_a01610;   // 未知段a01610
 undefined DAT_180a01440;
 undefined DAT_180d48d38;
-undefined UNK_180a01668;
-undefined UNK_18098b928;
-undefined UNK_180a01638;
-undefined UNK_180a01650;
+void *utility_unknown_segment_a01668;   // 未知段a01668
+void *utility_unknown_segment_98b928;   // 未知段98b928
+void *utility_unknown_segment_a01638;   // 未知段a01638
+void *utility_unknown_segment_a01650;   // 未知段a01650
 undefined DAT_180d48d30;
 undefined *PTR_?id@?$codecvt@DDU_Mbstatet@@@std@@2V0locale@2@A_180944718;
-undefined UNK_180bd8990;
-undefined UNK_180a01630;
-undefined UNK_18009ee10;
-undefined UNK_18009edf0;
-undefined UNK_1800a1660;
-undefined UNK_180a01620;
-undefined UNK_180a016e0;
-undefined UNK_180a02740;
-undefined UNK_180a01748;
-undefined UNK_180a02710;
-undefined UNK_180a02718;
-undefined UNK_180a02728;
-undefined UNK_180a028c8;
+void *utility_unknown_segment_bd8990;   // 未知段bd8990
+void *utility_unknown_segment_a01630;   // 未知段a01630
+void *utility_unknown_segment_09ee10;   // 未知段09ee10
+void *utility_unknown_segment_09edf0;   // 未知段09edf0
+void *utility_unknown_segment_0a1660;   // 未知段0a1660
+void *utility_unknown_segment_a01620;   // 未知段a01620
+void *utility_unknown_segment_a016e0;   // 未知段a016e0
+void *utility_unknown_segment_a02740;   // 未知段a02740
+void *utility_unknown_segment_a01748;   // 未知段a01748
+void *utility_unknown_segment_a02710;   // 未知段a02710
+void *utility_unknown_segment_a02718;   // 未知段a02718
+void *utility_unknown_segment_a02728;   // 未知段a02728
+void *utility_unknown_segment_a028c8;   // 未知段a028c8
 
-// 函数: undefined FUN_180941a30;
-undefined FUN_180941a30;
+// 函数: void *utility_function_941a30;            // 函数941a30
+void *utility_function_941a30;            // 函数941a30
 undefined DAT_180d49238;
 undefined DAT_180d49250;
 undefined DAT_180d49248;
 undefined DAT_180d49240;
 undefined DAT_180d49258;
 undefined DAT_180d4925c;
-undefined UNK_180a02c10;
+void *utility_unknown_segment_a02c10;   // 未知段a02c10
 
-// 函数: undefined FUN_180941ad0;
-undefined FUN_180941ad0;
-undefined UNK_180a07328;
-undefined UNK_180a07370;
-undefined UNK_180a18a00;
-undefined UNK_180a18a20;
-undefined UNK_180a18a40;
-undefined UNK_180a18a58;
-undefined UNK_180a18a78;
-undefined UNK_1801527b4;
-undefined UNK_180a07340;
-undefined UNK_180a07378;
+// 函数: void *utility_function_941ad0;            // 函数941ad0
+void *utility_function_941ad0;            // 函数941ad0
+void *utility_unknown_segment_a07328;   // 未知段a07328
+void *utility_unknown_segment_a07370;   // 未知段a07370
+void *utility_unknown_segment_a18a00;   // 未知段a18a00
+void *utility_unknown_segment_a18a20;   // 未知段a18a20
+void *utility_unknown_segment_a18a40;   // 未知段a18a40
+void *utility_unknown_segment_a18a58;   // 未知段a18a58
+void *utility_unknown_segment_a18a78;   // 未知段a18a78
+void *utility_unknown_segment_1527b4;   // 未知段1527b4
+void *utility_unknown_segment_a07340;   // 未知段a07340
+void *utility_unknown_segment_a07378;   // 未知段a07378
 longlong UNK_180c961a8;
 uint UNK_180d48d44;
 double UNK_180d48d48;
 double UNK_180d48d50;
 int UNK_180d49260;
 double UNK_180d49268;
-undefined UNK_180a073d8;
-undefined UNK_180a073b8;
-undefined UNK_180155fc0;
-undefined UNK_180155fe0;
-undefined UNK_180156000;
-undefined UNK_180156020;
-undefined UNK_180156040;
-undefined UNK_180156060;
-undefined UNK_180156080;
-undefined UNK_1801560a0;
-undefined UNK_1801560c0;
-undefined UNK_1801560e0;
-undefined UNK_180156100;
-undefined UNK_180156120;
-undefined UNK_180156140;
-undefined UNK_180156160;
-undefined UNK_180156180;
-undefined UNK_1801561a0;
-undefined UNK_1801561c0;
-undefined UNK_1801561e0;
-undefined UNK_180156200;
-undefined UNK_180156220;
-undefined UNK_180156240;
-undefined UNK_180156260;
-undefined UNK_180156280;
-undefined UNK_1801562a0;
-undefined UNK_1801562c0;
-undefined UNK_1801562e0;
-undefined UNK_180a073f0;
-undefined UNK_180a07400;
-undefined UNK_180a07420;
-undefined UNK_180a07438;
-undefined UNK_180a07450;
-undefined UNK_180a07470;
-undefined UNK_180a07490;
-undefined UNK_180a074b8;
-undefined UNK_180a074d8;
-undefined UNK_180a074f8;
-undefined UNK_180a07518;
-undefined UNK_180a07530;
-undefined UNK_180a07548;
-undefined UNK_180a07568;
-undefined UNK_180a07580;
-undefined UNK_180a075a0;
-undefined UNK_180a075b0;
-undefined UNK_180a075d0;
-undefined UNK_180a075f0;
-undefined UNK_180a07610;
-undefined UNK_180a07628;
-undefined UNK_180a07640;
-undefined UNK_180a07650;
-undefined UNK_180a07668;
-undefined UNK_180a07688;
-undefined UNK_180a076a0;
-undefined UNK_180a076c0;
-undefined UNK_180a076d8;
-undefined UNK_180a076f8;
-undefined UNK_180a07720;
-undefined UNK_180a07748;
-undefined UNK_180a07760;
-undefined UNK_180a07cd0;
-undefined UNK_180a1afb8;
-undefined UNK_180a079c0;
-undefined UNK_180a07b48;
-undefined UNK_180a3c313;
-undefined UNK_18098d6d0;
-undefined UNK_180a078fc;
-undefined UNK_180a07804;
-undefined UNK_18098d6b0;
-undefined UNK_18015c090;
+void *utility_unknown_segment_a073d8;   // 未知段a073d8
+void *utility_unknown_segment_a073b8;   // 未知段a073b8
+void *utility_unknown_segment_155fc0;   // 未知段155fc0
+void *utility_unknown_segment_155fe0;   // 未知段155fe0
+void *utility_unknown_segment_156000;   // 未知段156000
+void *utility_unknown_segment_156020;   // 未知段156020
+void *utility_unknown_segment_156040;   // 未知段156040
+void *utility_unknown_segment_156060;   // 未知段156060
+void *utility_unknown_segment_156080;   // 未知段156080
+void *utility_unknown_segment_1560a0;   // 未知段1560a0
+void *utility_unknown_segment_1560c0;   // 未知段1560c0
+void *utility_unknown_segment_1560e0;   // 未知段1560e0
+void *utility_unknown_segment_156100;   // 未知段156100
+void *utility_unknown_segment_156120;   // 未知段156120
+void *utility_unknown_segment_156140;   // 未知段156140
+void *utility_unknown_segment_156160;   // 未知段156160
+void *utility_unknown_segment_156180;   // 未知段156180
+void *utility_unknown_segment_1561a0;   // 未知段1561a0
+void *utility_unknown_segment_1561c0;   // 未知段1561c0
+void *utility_unknown_segment_1561e0;   // 未知段1561e0
+void *utility_unknown_segment_156200;   // 未知段156200
+void *utility_unknown_segment_156220;   // 未知段156220
+void *utility_unknown_segment_156240;   // 未知段156240
+void *utility_unknown_segment_156260;   // 未知段156260
+void *utility_unknown_segment_156280;   // 未知段156280
+void *utility_unknown_segment_1562a0;   // 未知段1562a0
+void *utility_unknown_segment_1562c0;   // 未知段1562c0
+void *utility_unknown_segment_1562e0;   // 未知段1562e0
+void *utility_unknown_segment_a073f0;   // 未知段a073f0
+void *utility_unknown_segment_a07400;   // 未知段a07400
+void *utility_unknown_segment_a07420;   // 未知段a07420
+void *utility_unknown_segment_a07438;   // 未知段a07438
+void *utility_unknown_segment_a07450;   // 未知段a07450
+void *utility_unknown_segment_a07470;   // 未知段a07470
+void *utility_unknown_segment_a07490;   // 未知段a07490
+void *utility_unknown_segment_a074b8;   // 未知段a074b8
+void *utility_unknown_segment_a074d8;   // 未知段a074d8
+void *utility_unknown_segment_a074f8;   // 未知段a074f8
+void *utility_unknown_segment_a07518;   // 未知段a07518
+void *utility_unknown_segment_a07530;   // 未知段a07530
+void *utility_unknown_segment_a07548;   // 未知段a07548
+void *utility_unknown_segment_a07568;   // 未知段a07568
+void *utility_unknown_segment_a07580;   // 未知段a07580
+void *utility_unknown_segment_a075a0;   // 未知段a075a0
+void *utility_unknown_segment_a075b0;   // 未知段a075b0
+void *utility_unknown_segment_a075d0;   // 未知段a075d0
+void *utility_unknown_segment_a075f0;   // 未知段a075f0
+void *utility_unknown_segment_a07610;   // 未知段a07610
+void *utility_unknown_segment_a07628;   // 未知段a07628
+void *utility_unknown_segment_a07640;   // 未知段a07640
+void *utility_unknown_segment_a07650;   // 未知段a07650
+void *utility_unknown_segment_a07668;   // 未知段a07668
+void *utility_unknown_segment_a07688;   // 未知段a07688
+void *utility_unknown_segment_a076a0;   // 未知段a076a0
+void *utility_unknown_segment_a076c0;   // 未知段a076c0
+void *utility_unknown_segment_a076d8;   // 未知段a076d8
+void *utility_unknown_segment_a076f8;   // 未知段a076f8
+void *utility_unknown_segment_a07720;   // 未知段a07720
+void *utility_unknown_segment_a07748;   // 未知段a07748
+void *utility_unknown_segment_a07760;   // 未知段a07760
+void *utility_unknown_segment_a07cd0;   // 未知段a07cd0
+void *utility_unknown_segment_a1afb8;   // 未知段a1afb8
+void *utility_unknown_segment_a079c0;   // 未知段a079c0
+void *utility_unknown_segment_a07b48;   // 未知段a07b48
+void *utility_unknown_segment_a3c313;   // 未知段a3c313
+void *utility_unknown_segment_98d6d0;   // 未知段98d6d0
+void *utility_unknown_segment_a078fc;   // 未知段a078fc
+void *utility_unknown_segment_a07804;   // 未知段a07804
+void *utility_unknown_segment_98d6b0;   // 未知段98d6b0
+void *utility_unknown_segment_15c090;   // 未知段15c090
 
-// 函数: undefined FUN_180941b20;
-undefined FUN_180941b20;
+// 函数: void *utility_function_941b20;            // 函数941b20
+void *utility_function_941b20;            // 函数941b20
 undefined DAT_180d49648;
 undefined DAT_180d49640;
 undefined DAT_180d49650;
-undefined UNK_180a0b650;
+void *utility_unknown_segment_a0b650;   // 未知段a0b650
 undefined DAT_180d49638;
-undefined UNK_180a0c258;
-undefined UNK_1801bc7a0;
-undefined UNK_1801bc7e0;
-undefined UNK_180a0b640;
-undefined UNK_180a0b660;
-undefined UNK_180a0b670;
-undefined UNK_1801bc6b0;
-undefined UNK_180a0b680;
-undefined UNK_180a0b690;
+void *utility_unknown_segment_a0c258;   // 未知段a0c258
+void *utility_unknown_segment_1bc7a0;   // 未知段1bc7a0
+void *utility_unknown_segment_1bc7e0;   // 未知段1bc7e0
+void *utility_unknown_segment_a0b640;   // 未知段a0b640
+void *utility_unknown_segment_a0b660;   // 未知段a0b660
+void *utility_unknown_segment_a0b670;   // 未知段a0b670
+void *utility_unknown_segment_1bc6b0;   // 未知段1bc6b0
+void *utility_unknown_segment_a0b680;   // 未知段a0b680
+void *utility_unknown_segment_a0b690;   // 未知段a0b690
 
-// 函数: undefined FUN_180941d50;
-undefined FUN_180941d50;
-undefined UNK_180bd8a60;
-undefined UNK_180a185f0;
-undefined UNK_180a18618;
-undefined UNK_180a18630;
-undefined UNK_180a18860;
-undefined UNK_180a18888;
+// 函数: void *utility_function_941d50;            // 函数941d50
+void *utility_function_941d50;            // 函数941d50
+void *utility_unknown_segment_bd8a60;   // 未知段bd8a60
+void *utility_unknown_segment_a185f0;   // 未知段a185f0
+void *utility_unknown_segment_a18618;   // 未知段a18618
+void *utility_unknown_segment_a18630;   // 未知段a18630
+void *utility_unknown_segment_a18860;   // 未知段a18860
+void *utility_unknown_segment_a18888;   // 未知段a18888
 undefined DAT_180a06b58;
-undefined UNK_180a18870;
-undefined UNK_180a18898;
-undefined UNK_180a06b98;
-undefined UNK_180a18880;
-undefined UNK_180a188a8;
-undefined UNK_180a188c0;
-undefined UNK_180a188d8;
-undefined UNK_180a188e0;
-undefined UNK_180a188f8;
-undefined UNK_180a18908;
-undefined UNK_180a18918;
-undefined UNK_180a1892c;
-undefined UNK_180a18938;
-undefined UNK_180a18980;
-undefined UNK_180a18998;
-undefined UNK_180a18968;
-undefined UNK_180a189b8;
+void *utility_unknown_segment_a18870;   // 未知段a18870
+void *utility_unknown_segment_a18898;   // 未知段a18898
+void *utility_unknown_segment_a06b98;   // 未知段a06b98
+void *utility_unknown_segment_a18880;   // 未知段a18880
+void *utility_unknown_segment_a188a8;   // 未知段a188a8
+void *utility_unknown_segment_a188c0;   // 未知段a188c0
+void *utility_unknown_segment_a188d8;   // 未知段a188d8
+void *utility_unknown_segment_a188e0;   // 未知段a188e0
+void *utility_unknown_segment_a188f8;   // 未知段a188f8
+void *utility_unknown_segment_a18908;   // 未知段a18908
+void *utility_unknown_segment_a18918;   // 未知段a18918
+void *utility_unknown_segment_a1892c;   // 未知段a1892c
+void *utility_unknown_segment_a18938;   // 未知段a18938
+void *utility_unknown_segment_a18980;   // 未知段a18980
+void *utility_unknown_segment_a18998;   // 未知段a18998
+void *utility_unknown_segment_a18968;   // 未知段a18968
+void *utility_unknown_segment_a189b8;   // 未知段a189b8
 undefined DAT_180c96830;
-undefined UNK_180a189f8;
-undefined UNK_180a18a98;
-undefined UNK_180a18aa8;
-undefined UNK_180a18ab8;
-undefined UNK_180a18ad0;
-undefined UNK_180a18ae8;
-undefined UNK_180a18af8;
-undefined UNK_180a18b10;
-undefined UNK_180a18b40;
-undefined UNK_180a18b50;
-undefined UNK_180a18b68;
-undefined UNK_180a18b6c;
-undefined UNK_180a18b88;
-undefined UNK_180a18ba0;
-undefined UNK_180a18bb0;
-undefined UNK_180a18bc4;
-undefined UNK_180a18bc8;
-undefined UNK_180a18c08;
-undefined UNK_180a18c20;
-undefined UNK_180a18c78;
-undefined UNK_180a18ca0;
-undefined UNK_180a18cd8;
-undefined UNK_180a18d20;
-undefined UNK_180a18d48;
-undefined UNK_180a18d00;
-undefined UNK_180a18d10;
-undefined UNK_180a18d68;
-undefined UNK_180a18e08;
-undefined UNK_180a18de8;
-undefined UNK_180a18df8;
-undefined UNK_180a18e20;
+void *utility_unknown_segment_a189f8;   // 未知段a189f8
+void *utility_unknown_segment_a18a98;   // 未知段a18a98
+void *utility_unknown_segment_a18aa8;   // 未知段a18aa8
+void *utility_unknown_segment_a18ab8;   // 未知段a18ab8
+void *utility_unknown_segment_a18ad0;   // 未知段a18ad0
+void *utility_unknown_segment_a18ae8;   // 未知段a18ae8
+void *utility_unknown_segment_a18af8;   // 未知段a18af8
+void *utility_unknown_segment_a18b10;   // 未知段a18b10
+void *utility_unknown_segment_a18b40;   // 未知段a18b40
+void *utility_unknown_segment_a18b50;   // 未知段a18b50
+void *utility_unknown_segment_a18b68;   // 未知段a18b68
+void *utility_unknown_segment_a18b6c;   // 未知段a18b6c
+void *utility_unknown_segment_a18b88;   // 未知段a18b88
+void *utility_unknown_segment_a18ba0;   // 未知段a18ba0
+void *utility_unknown_segment_a18bb0;   // 未知段a18bb0
+void *utility_unknown_segment_a18bc4;   // 未知段a18bc4
+void *utility_unknown_segment_a18bc8;   // 未知段a18bc8
+void *utility_unknown_segment_a18c08;   // 未知段a18c08
+void *utility_unknown_segment_a18c20;   // 未知段a18c20
+void *utility_unknown_segment_a18c78;   // 未知段a18c78
+void *utility_unknown_segment_a18ca0;   // 未知段a18ca0
+void *utility_unknown_segment_a18cd8;   // 未知段a18cd8
+void *utility_unknown_segment_a18d20;   // 未知段a18d20
+void *utility_unknown_segment_a18d48;   // 未知段a18d48
+void *utility_unknown_segment_a18d00;   // 未知段a18d00
+void *utility_unknown_segment_a18d10;   // 未知段a18d10
+void *utility_unknown_segment_a18d68;   // 未知段a18d68
+void *utility_unknown_segment_a18e08;   // 未知段a18e08
+void *utility_unknown_segment_a18de8;   // 未知段a18de8
+void *utility_unknown_segment_a18df8;   // 未知段a18df8
+void *utility_unknown_segment_a18e20;   // 未知段a18e20
 
-// 函数: undefined FUN_180941da0;
-undefined FUN_180941da0;
-undefined UNK_180a19fd8;
-undefined UNK_180a19eb0;
-undefined UNK_180302310;
-undefined UNK_180a19e28;
-undefined UNK_180a19e38;
-undefined UNK_1803048b0;
-undefined UNK_180a19e88;
+// 函数: void *utility_function_941da0;            // 函数941da0
+void *utility_function_941da0;            // 函数941da0
+void *utility_unknown_segment_a19fd8;   // 未知段a19fd8
+void *utility_unknown_segment_a19eb0;   // 未知段a19eb0
+void *utility_unknown_segment_302310;   // 未知段302310
+void *utility_unknown_segment_a19e28;   // 未知段a19e28
+void *utility_unknown_segment_a19e38;   // 未知段a19e38
+void *utility_unknown_segment_3048b0;   // 未知段3048b0
+void *utility_unknown_segment_a19e88;   // 未知段a19e88
 
-// 函数: undefined FUN_180941dd0;
-undefined FUN_180941dd0;
+// 函数: void *utility_function_941dd0;            // 函数941dd0
+void *utility_function_941dd0;            // 函数941dd0
 undefined DAT_180d497d0;
 
-// 函数: undefined FUN_180941e00;
-undefined FUN_180941e00;
+// 函数: void *utility_function_941e00;            // 函数941e00
+void *utility_function_941e00;            // 函数941e00
 undefined DAT_180d49990;
 undefined DAT_180d48de0;
 undefined DAT_180d48de8;
@@ -1619,57 +1619,57 @@ undefined DAT_180c918d8;
 undefined DAT_180d48e10;
 undefined DAT_180d48e18;
 undefined DAT_180c918c0;
-undefined UNK_180a1b150;
-undefined UNK_180a1b118;
-undefined UNK_18033cd70;
+void *utility_unknown_segment_a1b150;   // 未知段a1b150
+void *utility_unknown_segment_a1b118;   // 未知段a1b118
+void *utility_unknown_segment_33cd70;   // 未知段33cd70
 
-// 函数: undefined FUN_180942830;
-undefined FUN_180942830;
-undefined UNK_180a02fc8;
-undefined UNK_180a02fa0;
+// 函数: void *utility_function_942830;            // 函数942830
+void *utility_function_942830;            // 函数942830
+void *utility_unknown_segment_a02fc8;   // 未知段a02fc8
+void *utility_unknown_segment_a02fa0;   // 未知段a02fa0
 undefined DAT_180d49d08;
 undefined DAT_180d49bf0;
 undefined DAT_180d49bf8;
 undefined DAT_180d49c00;
 undefined DAT_180d49c08;
-undefined UNK_18045f200;
-undefined UNK_18045f210;
+void *utility_unknown_segment_45f200;   // 未知段45f200
+void *utility_unknown_segment_45f210;   // 未知段45f210
 
-// 函数: undefined FUN_180942850;
-undefined FUN_180942850;
+// 函数: void *utility_function_942850;            // 函数942850
+void *utility_function_942850;            // 函数942850
 undefined DAT_180c91038;
-undefined UNK_180a3e440;
-undefined UNK_180a2a8a0;
-undefined UNK_18045f1a0;
-undefined UNK_18045f1c0;
-undefined UNK_18045f140;
-undefined UNK_18045f160;
-undefined UNK_180a2c548;
-undefined UNK_180a2a8c0;
-undefined UNK_180a2a8e0;
-undefined UNK_180a2a900;
-undefined UNK_180a2a920;
-undefined UNK_180a2a948;
-undefined UNK_180a2a968;
-undefined UNK_180462fc0;
-undefined UNK_180462ff0;
-undefined UNK_180463030;
-undefined UNK_180463060;
-undefined UNK_180a2aa08;
-undefined UNK_180a2a9a0;
-undefined UNK_180a2aa68;
-undefined UNK_180a2abb0;
-undefined UNK_18098be5c;
-undefined UNK_180a2aac8;
-undefined UNK_180a2aad0;
-undefined UNK_180a2aa78;
-undefined UNK_180a2aa90;
-undefined UNK_180a2aaa8;
-undefined UNK_180a2aab8;
-undefined UNK_180a2aae0;
-undefined UNK_180a2aaf0;
-undefined UNK_180a2ab48;
-undefined UNK_180a2ab58;
+void *utility_unknown_segment_a3e440;   // 未知段a3e440
+void *utility_unknown_segment_a2a8a0;   // 未知段a2a8a0
+void *utility_unknown_segment_45f1a0;   // 未知段45f1a0
+void *utility_unknown_segment_45f1c0;   // 未知段45f1c0
+void *utility_unknown_segment_45f140;   // 未知段45f140
+void *utility_unknown_segment_45f160;   // 未知段45f160
+void *utility_unknown_segment_a2c548;   // 未知段a2c548
+void *utility_unknown_segment_a2a8c0;   // 未知段a2a8c0
+void *utility_unknown_segment_a2a8e0;   // 未知段a2a8e0
+void *utility_unknown_segment_a2a900;   // 未知段a2a900
+void *utility_unknown_segment_a2a920;   // 未知段a2a920
+void *utility_unknown_segment_a2a948;   // 未知段a2a948
+void *utility_unknown_segment_a2a968;   // 未知段a2a968
+void *utility_unknown_segment_462fc0;   // 未知段462fc0
+void *utility_unknown_segment_462ff0;   // 未知段462ff0
+void *utility_unknown_segment_463030;   // 未知段463030
+void *utility_unknown_segment_463060;   // 未知段463060
+void *utility_unknown_segment_a2aa08;   // 未知段a2aa08
+void *utility_unknown_segment_a2a9a0;   // 未知段a2a9a0
+void *utility_unknown_segment_a2aa68;   // 未知段a2aa68
+void *utility_unknown_segment_a2abb0;   // 未知段a2abb0
+void *utility_unknown_segment_98be5c;   // 未知段98be5c
+void *utility_unknown_segment_a2aac8;   // 未知段a2aac8
+void *utility_unknown_segment_a2aad0;   // 未知段a2aad0
+void *utility_unknown_segment_a2aa78;   // 未知段a2aa78
+void *utility_unknown_segment_a2aa90;   // 未知段a2aa90
+void *utility_unknown_segment_a2aaa8;   // 未知段a2aaa8
+void *utility_unknown_segment_a2aab8;   // 未知段a2aab8
+void *utility_unknown_segment_a2aae0;   // 未知段a2aae0
+void *utility_unknown_segment_a2aaf0;   // 未知段a2aaf0
+void *utility_unknown_segment_a2ab48;   // 未知段a2ab48
+void *utility_unknown_segment_a2ab58;   // 未知段a2ab58
 undefined DAT_180d49d0c;
 undefined DAT_180d49d10;
 undefined DAT_180d49d18;
@@ -1679,743 +1679,743 @@ undefined DAT_180d49d30;
 undefined DAT_180d49d38;
 undefined DAT_180d49d40;
 undefined DAT_180d49d48;
-undefined UNK_180942870;
+void *utility_unknown_segment_942870;   // 未知段942870
 undefined4 UNK_180d49d2c;
 undefined4 UNK_180d49d4c;
-undefined UNK_180a2ae38;
+void *utility_unknown_segment_a2ae38;   // 未知段a2ae38
 undefined DAT_180c8ecd4;
-undefined UNK_1809f7770;
-undefined UNK_18046df70;
-undefined DAT_180bfbb50;
-undefined DAT_180bfbb60;
-undefined DAT_180bfbb70;
-undefined DAT_180bfbb80;
+void *utility_unknown_segment_9f7770;   // 未知段9f7770
+void *utility_unknown_segment_46df70;   // 未知段46df70
+void *utility_data_segment_bb50;        // 数据段bb50
+void *utility_data_segment_bb60;        // 数据段bb60
+void *utility_data_segment_bb70;        // 数据段bb70
+void *utility_data_segment_bb80;        // 数据段bb80
 
-// 函数: undefined FUN_180942a40;
-undefined FUN_180942a40;
+// 函数: void *utility_function_942a40;            // 函数942a40
+void *utility_function_942a40;            // 函数942a40
 
-// 函数: undefined FUN_180942aa0;
-undefined FUN_180942aa0;
+// 函数: void *utility_function_942aa0;            // 函数942aa0
+void *utility_function_942aa0;            // 函数942aa0
 undefined DAT_180a2de40;
 undefined1 DAT_180d49e30;
-undefined UNK_180a2dfd0;
-undefined UNK_180a2e018;
-undefined UNK_180a2e040;
-undefined UNK_180a2e070;
-undefined UNK_180a2e088;
+void *utility_unknown_segment_a2dfd0;   // 未知段a2dfd0
+void *utility_unknown_segment_a2e018;   // 未知段a2e018
+void *utility_unknown_segment_a2e040;   // 未知段a2e040
+void *utility_unknown_segment_a2e070;   // 未知段a2e070
+void *utility_unknown_segment_a2e088;   // 未知段a2e088
 
-// 函数: undefined FUN_180943020;
-undefined FUN_180943020;
-undefined UNK_180a30ce8;
-undefined UNK_180a30d28;
+// 函数: void *utility_function_943020;            // 函数943020
+void *utility_function_943020;            // 函数943020
+void *utility_unknown_segment_a30ce8;   // 未知段a30ce8
+void *utility_unknown_segment_a30d28;   // 未知段a30d28
 undefined DAT_180c96128;
-undefined UNK_180a30d40;
+void *utility_unknown_segment_a30d40;   // 未知段a30d40
 undefined DAT_180c9612c;
 undefined DAT_180c96410;
-undefined UNK_180a30c98;
-undefined UNK_180a30cb0;
+void *utility_unknown_segment_a30c98;   // 未知段a30c98
+void *utility_unknown_segment_a30cb0;   // 未知段a30cb0
 undefined DAT_180d49ec0;
 undefined DAT_180d49ec4;
 undefined DAT_180c9642c;
 undefined DAT_180c96430;
 
-// 函数: undefined FUN_180943040;
-undefined FUN_180943040;
+// 函数: void *utility_function_943040;            // 函数943040
+void *utility_function_943040;            // 函数943040
 undefined DAT_180c963e8;
 undefined DAT_180d49f60;
 undefined DAT_180d49f64;
-undefined UNK_180a30dc0;
-undefined UNK_180a30e10;
-undefined UNK_180a30e38;
-undefined UNK_180a30e60;
-undefined UNK_180a2fca0;
-undefined UNK_180a2fcd8;
-undefined UNK_1809f89f8;
-undefined UNK_1809f8a08;
-undefined UNK_1809f8a18;
-undefined UNK_1809f8a28;
-undefined UNK_1809f8a38;
-undefined UNK_1809f8a48;
-undefined UNK_1809f8a58;
-undefined UNK_1809f8a68;
-undefined UNK_1809f8a78;
-undefined UNK_1809f8a88;
-undefined UNK_1809f8a98;
-undefined UNK_1809f8aa8;
+void *utility_unknown_segment_a30dc0;   // 未知段a30dc0
+void *utility_unknown_segment_a30e10;   // 未知段a30e10
+void *utility_unknown_segment_a30e38;   // 未知段a30e38
+void *utility_unknown_segment_a30e60;   // 未知段a30e60
+void *utility_unknown_segment_a2fca0;   // 未知段a2fca0
+void *utility_unknown_segment_a2fcd8;   // 未知段a2fcd8
+void *utility_unknown_segment_9f89f8;   // 未知段9f89f8
+void *utility_unknown_segment_9f8a08;   // 未知段9f8a08
+void *utility_unknown_segment_9f8a18;   // 未知段9f8a18
+void *utility_unknown_segment_9f8a28;   // 未知段9f8a28
+void *utility_unknown_segment_9f8a38;   // 未知段9f8a38
+void *utility_unknown_segment_9f8a48;   // 未知段9f8a48
+void *utility_unknown_segment_9f8a58;   // 未知段9f8a58
+void *utility_unknown_segment_9f8a68;   // 未知段9f8a68
+void *utility_unknown_segment_9f8a78;   // 未知段9f8a78
+void *utility_unknown_segment_9f8a88;   // 未知段9f8a88
+void *utility_unknown_segment_9f8a98;   // 未知段9f8a98
+void *utility_unknown_segment_9f8aa8;   // 未知段9f8aa8
 undefined DAT_180c963d4;
 undefined DAT_180c963dc;
 undefined DAT_180c963d8;
 undefined DAT_180c9644c;
 undefined DAT_180c96450;
-undefined UNK_180a30ee8;
-undefined UNK_180a30ef8;
-undefined UNK_180a30ec8;
-undefined UNK_180a30ed8;
-undefined UNK_180a30f00;
+void *utility_unknown_segment_a30ee8;   // 未知段a30ee8
+void *utility_unknown_segment_a30ef8;   // 未知段a30ef8
+void *utility_unknown_segment_a30ec8;   // 未知段a30ec8
+void *utility_unknown_segment_a30ed8;   // 未知段a30ed8
+void *utility_unknown_segment_a30f00;   // 未知段a30f00
 undefined DAT_180d49128;
-undefined UNK_180943060;
-undefined UNK_1809fa490;
-undefined UNK_180a30280;
-undefined UNK_180a302c0;
-undefined UNK_180a301c8;
-undefined UNK_180a301f8;
-undefined UNK_180a30230;
-undefined UNK_180a30378;
-undefined UNK_180a303f8;
-undefined UNK_180a303c8;
-undefined UNK_180a30330;
-undefined UNK_180a30368;
-undefined UNK_1809fa470;
-undefined UNK_1809fa480;
-undefined DAT_180bfbcc0;
-undefined UNK_1809fa360;
-undefined UNK_1809fa370;
-undefined UNK_180a30568;
-undefined UNK_180a305a0;
-undefined UNK_1809fa350;
-undefined UNK_180a305f8;
-undefined UNK_180a30638;
-undefined UNK_180a30660;
-undefined UNK_180a306a8;
-undefined UNK_1809fa550;
-undefined UNK_180a31018;
-undefined UNK_180a31040;
-undefined UNK_180a31058;
-undefined UNK_180a31078;
-undefined UNK_180a310a0;
-undefined UNK_180a310d0;
-undefined UNK_180a31110;
-undefined UNK_180a31138;
-undefined UNK_180a31158;
-undefined UNK_180a31178;
-undefined UNK_180a31198;
-undefined UNK_180a311d8;
-undefined UNK_180a311f8;
-undefined UNK_180a31228;
-undefined UNK_180a31250;
-undefined UNK_180a31288;
-undefined UNK_180a312b0;
-undefined UNK_180a312d8;
-undefined UNK_180a312f8;
-undefined UNK_180a31320;
-undefined UNK_180a31348;
-undefined UNK_180a31380;
-undefined UNK_180a313a8;
-undefined UNK_180a313d0;
-undefined UNK_180a313f8;
-undefined UNK_180a31420;
-undefined UNK_180a31448;
-undefined UNK_180a31478;
-undefined UNK_180a31498;
-undefined UNK_180a314c8;
-undefined UNK_180a31500;
-undefined UNK_180a31530;
-undefined UNK_180a31560;
-undefined UNK_180a31598;
-undefined UNK_180a315c0;
-undefined UNK_180a315f8;
-undefined UNK_180a31620;
-undefined UNK_180a31638;
-undefined UNK_180a31660;
-undefined UNK_180a31688;
-undefined UNK_180a316b0;
-undefined UNK_180a316c8;
-undefined UNK_180a316f8;
-undefined UNK_180a31720;
-undefined UNK_180a31740;
-undefined UNK_180a31770;
-undefined UNK_180a31790;
-undefined UNK_180a317b8;
-undefined UNK_180a317e0;
-undefined UNK_180a317f8;
-undefined UNK_180a31820;
-undefined UNK_180a31850;
-undefined UNK_180a31878;
-undefined UNK_180a318a8;
-undefined UNK_180a318d0;
-undefined UNK_180a31918;
-undefined UNK_180a31948;
-undefined UNK_180a31978;
-undefined UNK_180a319a0;
-undefined UNK_180a319b8;
-undefined UNK_180a319e8;
-undefined UNK_180a31a00;
-undefined UNK_180a31a30;
-undefined UNK_180a31a60;
-undefined UNK_180a31a80;
-undefined UNK_180a31ab8;
-undefined UNK_180a31af0;
-undefined UNK_180a31b10;
-undefined UNK_180a31b48;
-undefined UNK_180a31b80;
-undefined UNK_180a31bb0;
-undefined UNK_180a31bd8;
-undefined UNK_180a31c08;
-undefined UNK_180a31c40;
-undefined UNK_180a31c70;
-undefined UNK_180a31ca0;
-undefined UNK_180a31cd0;
-undefined UNK_180a31cf8;
-undefined UNK_180a31d18;
-undefined UNK_180a31d40;
-undefined UNK_180a31d58;
-undefined UNK_180a31d80;
-undefined UNK_180a31da8;
-undefined UNK_180a31dc8;
-undefined UNK_180a31de8;
-undefined UNK_180a31e08;
-undefined UNK_180a31e28;
-undefined UNK_180a31e48;
-undefined UNK_180a31e68;
-undefined UNK_180a31e88;
-undefined UNK_180a31eb0;
-undefined UNK_180a31ed0;
-undefined UNK_180a31ef0;
-undefined UNK_180a31f38;
-undefined UNK_180a31f58;
-undefined UNK_180a31f80;
-undefined UNK_180a31fc8;
-undefined UNK_180a31ff0;
-undefined UNK_180a32010;
-undefined UNK_180a32040;
-undefined UNK_180a32070;
-undefined UNK_180a320b0;
-undefined UNK_180a320d8;
-undefined UNK_180a32120;
-undefined UNK_180a32168;
-undefined UNK_180a32180;
-undefined UNK_180a32198;
-undefined UNK_180a321c8;
-undefined UNK_180a321f8;
-undefined UNK_180a32240;
-undefined UNK_180a32288;
-undefined UNK_180a322d0;
-undefined UNK_180a32318;
-undefined UNK_180a32350;
-undefined UNK_180a32398;
-undefined UNK_180a323e0;
-undefined UNK_180a32428;
-undefined UNK_180a32470;
-undefined UNK_180a324b8;
-undefined UNK_180a324f0;
-undefined UNK_180a32538;
-undefined UNK_180a32580;
-undefined UNK_180a325c8;
-undefined UNK_180a32610;
-undefined UNK_180a32658;
-undefined UNK_180a326a0;
-undefined UNK_180a326e8;
-undefined UNK_180a32730;
-undefined UNK_180a32778;
-undefined UNK_180a327b0;
-undefined UNK_180a327f8;
-undefined UNK_180a32830;
-undefined UNK_180a32870;
-undefined UNK_180a328a0;
-undefined UNK_180a328e8;
-undefined UNK_180a32920;
-undefined UNK_180a32960;
-undefined UNK_180a329a0;
-undefined UNK_180a329e8;
-undefined UNK_180a32a30;
-undefined UNK_180a32a78;
-undefined UNK_180a32ab0;
-undefined UNK_180a32af0;
-undefined UNK_180a32b30;
-undefined UNK_180a32b70;
-undefined UNK_180a32ba8;
-undefined UNK_180a32be8;
-undefined UNK_180a32c20;
-undefined UNK_180a32c60;
-undefined UNK_180a32c98;
-undefined UNK_180a32cd8;
-undefined UNK_180a32d10;
-undefined UNK_180a32d58;
-undefined UNK_180a32d90;
-undefined UNK_180a32dd0;
-undefined UNK_180a32e08;
-undefined UNK_180a32e48;
-undefined UNK_180a32e70;
-undefined UNK_180a32eb8;
-undefined UNK_180a32ee0;
-undefined UNK_180a32f10;
-undefined UNK_180a32f50;
-undefined UNK_180a32f90;
-undefined UNK_180a32fd0;
-undefined UNK_180a33020;
-undefined UNK_180a33060;
-undefined UNK_180a330b0;
-undefined UNK_180a330f0;
-undefined UNK_180a33140;
-undefined UNK_180a33188;
-undefined UNK_180a331c0;
-undefined UNK_180a33200;
-undefined UNK_180a33250;
-undefined UNK_180a33280;
-undefined UNK_180a332c8;
-undefined UNK_180a332f8;
-undefined UNK_180a33330;
-undefined UNK_180a33370;
-undefined UNK_180a333c0;
-undefined UNK_180a33400;
-undefined UNK_180a33450;
-undefined UNK_180a334a0;
-undefined UNK_180a334f0;
-undefined UNK_180a33540;
-undefined UNK_180a33590;
-undefined UNK_180a335d8;
-undefined UNK_180a33610;
-undefined UNK_180a33660;
-undefined UNK_180a336b0;
-undefined UNK_180a336f0;
-undefined UNK_180a33740;
-undefined UNK_180a33780;
-undefined UNK_180a337d0;
-undefined UNK_180a33820;
-undefined UNK_180a33870;
-undefined UNK_180a338e0;
-undefined UNK_180a33930;
-undefined UNK_180a2c968;
-undefined UNK_180a33988;
-undefined UNK_180a339b0;
-undefined UNK_180a339c0;
-undefined UNK_180a339e0;
-undefined UNK_180a339e8;
-undefined UNK_180a33a60;
-undefined UNK_180a33c10;
-undefined UNK_180a33c90;
-undefined UNK_18053f010;
-undefined UNK_18053f040;
-undefined UNK_18053f080;
-undefined UNK_18053f090;
+void *utility_unknown_segment_943060;   // 未知段943060
+void *utility_unknown_segment_9fa490;   // 未知段9fa490
+void *utility_unknown_segment_a30280;   // 未知段a30280
+void *utility_unknown_segment_a302c0;   // 未知段a302c0
+void *utility_unknown_segment_a301c8;   // 未知段a301c8
+void *utility_unknown_segment_a301f8;   // 未知段a301f8
+void *utility_unknown_segment_a30230;   // 未知段a30230
+void *utility_unknown_segment_a30378;   // 未知段a30378
+void *utility_unknown_segment_a303f8;   // 未知段a303f8
+void *utility_unknown_segment_a303c8;   // 未知段a303c8
+void *utility_unknown_segment_a30330;   // 未知段a30330
+void *utility_unknown_segment_a30368;   // 未知段a30368
+void *utility_unknown_segment_9fa470;   // 未知段9fa470
+void *utility_unknown_segment_9fa480;   // 未知段9fa480
+void *utility_data_segment_bcc0;        // 数据段bcc0
+void *utility_unknown_segment_9fa360;   // 未知段9fa360
+void *utility_unknown_segment_9fa370;   // 未知段9fa370
+void *utility_unknown_segment_a30568;   // 未知段a30568
+void *utility_unknown_segment_a305a0;   // 未知段a305a0
+void *utility_unknown_segment_9fa350;   // 未知段9fa350
+void *utility_unknown_segment_a305f8;   // 未知段a305f8
+void *utility_unknown_segment_a30638;   // 未知段a30638
+void *utility_unknown_segment_a30660;   // 未知段a30660
+void *utility_unknown_segment_a306a8;   // 未知段a306a8
+void *utility_unknown_segment_9fa550;   // 未知段9fa550
+void *utility_unknown_segment_a31018;   // 未知段a31018
+void *utility_unknown_segment_a31040;   // 未知段a31040
+void *utility_unknown_segment_a31058;   // 未知段a31058
+void *utility_unknown_segment_a31078;   // 未知段a31078
+void *utility_unknown_segment_a310a0;   // 未知段a310a0
+void *utility_unknown_segment_a310d0;   // 未知段a310d0
+void *utility_unknown_segment_a31110;   // 未知段a31110
+void *utility_unknown_segment_a31138;   // 未知段a31138
+void *utility_unknown_segment_a31158;   // 未知段a31158
+void *utility_unknown_segment_a31178;   // 未知段a31178
+void *utility_unknown_segment_a31198;   // 未知段a31198
+void *utility_unknown_segment_a311d8;   // 未知段a311d8
+void *utility_unknown_segment_a311f8;   // 未知段a311f8
+void *utility_unknown_segment_a31228;   // 未知段a31228
+void *utility_unknown_segment_a31250;   // 未知段a31250
+void *utility_unknown_segment_a31288;   // 未知段a31288
+void *utility_unknown_segment_a312b0;   // 未知段a312b0
+void *utility_unknown_segment_a312d8;   // 未知段a312d8
+void *utility_unknown_segment_a312f8;   // 未知段a312f8
+void *utility_unknown_segment_a31320;   // 未知段a31320
+void *utility_unknown_segment_a31348;   // 未知段a31348
+void *utility_unknown_segment_a31380;   // 未知段a31380
+void *utility_unknown_segment_a313a8;   // 未知段a313a8
+void *utility_unknown_segment_a313d0;   // 未知段a313d0
+void *utility_unknown_segment_a313f8;   // 未知段a313f8
+void *utility_unknown_segment_a31420;   // 未知段a31420
+void *utility_unknown_segment_a31448;   // 未知段a31448
+void *utility_unknown_segment_a31478;   // 未知段a31478
+void *utility_unknown_segment_a31498;   // 未知段a31498
+void *utility_unknown_segment_a314c8;   // 未知段a314c8
+void *utility_unknown_segment_a31500;   // 未知段a31500
+void *utility_unknown_segment_a31530;   // 未知段a31530
+void *utility_unknown_segment_a31560;   // 未知段a31560
+void *utility_unknown_segment_a31598;   // 未知段a31598
+void *utility_unknown_segment_a315c0;   // 未知段a315c0
+void *utility_unknown_segment_a315f8;   // 未知段a315f8
+void *utility_unknown_segment_a31620;   // 未知段a31620
+void *utility_unknown_segment_a31638;   // 未知段a31638
+void *utility_unknown_segment_a31660;   // 未知段a31660
+void *utility_unknown_segment_a31688;   // 未知段a31688
+void *utility_unknown_segment_a316b0;   // 未知段a316b0
+void *utility_unknown_segment_a316c8;   // 未知段a316c8
+void *utility_unknown_segment_a316f8;   // 未知段a316f8
+void *utility_unknown_segment_a31720;   // 未知段a31720
+void *utility_unknown_segment_a31740;   // 未知段a31740
+void *utility_unknown_segment_a31770;   // 未知段a31770
+void *utility_unknown_segment_a31790;   // 未知段a31790
+void *utility_unknown_segment_a317b8;   // 未知段a317b8
+void *utility_unknown_segment_a317e0;   // 未知段a317e0
+void *utility_unknown_segment_a317f8;   // 未知段a317f8
+void *utility_unknown_segment_a31820;   // 未知段a31820
+void *utility_unknown_segment_a31850;   // 未知段a31850
+void *utility_unknown_segment_a31878;   // 未知段a31878
+void *utility_unknown_segment_a318a8;   // 未知段a318a8
+void *utility_unknown_segment_a318d0;   // 未知段a318d0
+void *utility_unknown_segment_a31918;   // 未知段a31918
+void *utility_unknown_segment_a31948;   // 未知段a31948
+void *utility_unknown_segment_a31978;   // 未知段a31978
+void *utility_unknown_segment_a319a0;   // 未知段a319a0
+void *utility_unknown_segment_a319b8;   // 未知段a319b8
+void *utility_unknown_segment_a319e8;   // 未知段a319e8
+void *utility_unknown_segment_a31a00;   // 未知段a31a00
+void *utility_unknown_segment_a31a30;   // 未知段a31a30
+void *utility_unknown_segment_a31a60;   // 未知段a31a60
+void *utility_unknown_segment_a31a80;   // 未知段a31a80
+void *utility_unknown_segment_a31ab8;   // 未知段a31ab8
+void *utility_unknown_segment_a31af0;   // 未知段a31af0
+void *utility_unknown_segment_a31b10;   // 未知段a31b10
+void *utility_unknown_segment_a31b48;   // 未知段a31b48
+void *utility_unknown_segment_a31b80;   // 未知段a31b80
+void *utility_unknown_segment_a31bb0;   // 未知段a31bb0
+void *utility_unknown_segment_a31bd8;   // 未知段a31bd8
+void *utility_unknown_segment_a31c08;   // 未知段a31c08
+void *utility_unknown_segment_a31c40;   // 未知段a31c40
+void *utility_unknown_segment_a31c70;   // 未知段a31c70
+void *utility_unknown_segment_a31ca0;   // 未知段a31ca0
+void *utility_unknown_segment_a31cd0;   // 未知段a31cd0
+void *utility_unknown_segment_a31cf8;   // 未知段a31cf8
+void *utility_unknown_segment_a31d18;   // 未知段a31d18
+void *utility_unknown_segment_a31d40;   // 未知段a31d40
+void *utility_unknown_segment_a31d58;   // 未知段a31d58
+void *utility_unknown_segment_a31d80;   // 未知段a31d80
+void *utility_unknown_segment_a31da8;   // 未知段a31da8
+void *utility_unknown_segment_a31dc8;   // 未知段a31dc8
+void *utility_unknown_segment_a31de8;   // 未知段a31de8
+void *utility_unknown_segment_a31e08;   // 未知段a31e08
+void *utility_unknown_segment_a31e28;   // 未知段a31e28
+void *utility_unknown_segment_a31e48;   // 未知段a31e48
+void *utility_unknown_segment_a31e68;   // 未知段a31e68
+void *utility_unknown_segment_a31e88;   // 未知段a31e88
+void *utility_unknown_segment_a31eb0;   // 未知段a31eb0
+void *utility_unknown_segment_a31ed0;   // 未知段a31ed0
+void *utility_unknown_segment_a31ef0;   // 未知段a31ef0
+void *utility_unknown_segment_a31f38;   // 未知段a31f38
+void *utility_unknown_segment_a31f58;   // 未知段a31f58
+void *utility_unknown_segment_a31f80;   // 未知段a31f80
+void *utility_unknown_segment_a31fc8;   // 未知段a31fc8
+void *utility_unknown_segment_a31ff0;   // 未知段a31ff0
+void *utility_unknown_segment_a32010;   // 未知段a32010
+void *utility_unknown_segment_a32040;   // 未知段a32040
+void *utility_unknown_segment_a32070;   // 未知段a32070
+void *utility_unknown_segment_a320b0;   // 未知段a320b0
+void *utility_unknown_segment_a320d8;   // 未知段a320d8
+void *utility_unknown_segment_a32120;   // 未知段a32120
+void *utility_unknown_segment_a32168;   // 未知段a32168
+void *utility_unknown_segment_a32180;   // 未知段a32180
+void *utility_unknown_segment_a32198;   // 未知段a32198
+void *utility_unknown_segment_a321c8;   // 未知段a321c8
+void *utility_unknown_segment_a321f8;   // 未知段a321f8
+void *utility_unknown_segment_a32240;   // 未知段a32240
+void *utility_unknown_segment_a32288;   // 未知段a32288
+void *utility_unknown_segment_a322d0;   // 未知段a322d0
+void *utility_unknown_segment_a32318;   // 未知段a32318
+void *utility_unknown_segment_a32350;   // 未知段a32350
+void *utility_unknown_segment_a32398;   // 未知段a32398
+void *utility_unknown_segment_a323e0;   // 未知段a323e0
+void *utility_unknown_segment_a32428;   // 未知段a32428
+void *utility_unknown_segment_a32470;   // 未知段a32470
+void *utility_unknown_segment_a324b8;   // 未知段a324b8
+void *utility_unknown_segment_a324f0;   // 未知段a324f0
+void *utility_unknown_segment_a32538;   // 未知段a32538
+void *utility_unknown_segment_a32580;   // 未知段a32580
+void *utility_unknown_segment_a325c8;   // 未知段a325c8
+void *utility_unknown_segment_a32610;   // 未知段a32610
+void *utility_unknown_segment_a32658;   // 未知段a32658
+void *utility_unknown_segment_a326a0;   // 未知段a326a0
+void *utility_unknown_segment_a326e8;   // 未知段a326e8
+void *utility_unknown_segment_a32730;   // 未知段a32730
+void *utility_unknown_segment_a32778;   // 未知段a32778
+void *utility_unknown_segment_a327b0;   // 未知段a327b0
+void *utility_unknown_segment_a327f8;   // 未知段a327f8
+void *utility_unknown_segment_a32830;   // 未知段a32830
+void *utility_unknown_segment_a32870;   // 未知段a32870
+void *utility_unknown_segment_a328a0;   // 未知段a328a0
+void *utility_unknown_segment_a328e8;   // 未知段a328e8
+void *utility_unknown_segment_a32920;   // 未知段a32920
+void *utility_unknown_segment_a32960;   // 未知段a32960
+void *utility_unknown_segment_a329a0;   // 未知段a329a0
+void *utility_unknown_segment_a329e8;   // 未知段a329e8
+void *utility_unknown_segment_a32a30;   // 未知段a32a30
+void *utility_unknown_segment_a32a78;   // 未知段a32a78
+void *utility_unknown_segment_a32ab0;   // 未知段a32ab0
+void *utility_unknown_segment_a32af0;   // 未知段a32af0
+void *utility_unknown_segment_a32b30;   // 未知段a32b30
+void *utility_unknown_segment_a32b70;   // 未知段a32b70
+void *utility_unknown_segment_a32ba8;   // 未知段a32ba8
+void *utility_unknown_segment_a32be8;   // 未知段a32be8
+void *utility_unknown_segment_a32c20;   // 未知段a32c20
+void *utility_unknown_segment_a32c60;   // 未知段a32c60
+void *utility_unknown_segment_a32c98;   // 未知段a32c98
+void *utility_unknown_segment_a32cd8;   // 未知段a32cd8
+void *utility_unknown_segment_a32d10;   // 未知段a32d10
+void *utility_unknown_segment_a32d58;   // 未知段a32d58
+void *utility_unknown_segment_a32d90;   // 未知段a32d90
+void *utility_unknown_segment_a32dd0;   // 未知段a32dd0
+void *utility_unknown_segment_a32e08;   // 未知段a32e08
+void *utility_unknown_segment_a32e48;   // 未知段a32e48
+void *utility_unknown_segment_a32e70;   // 未知段a32e70
+void *utility_unknown_segment_a32eb8;   // 未知段a32eb8
+void *utility_unknown_segment_a32ee0;   // 未知段a32ee0
+void *utility_unknown_segment_a32f10;   // 未知段a32f10
+void *utility_unknown_segment_a32f50;   // 未知段a32f50
+void *utility_unknown_segment_a32f90;   // 未知段a32f90
+void *utility_unknown_segment_a32fd0;   // 未知段a32fd0
+void *utility_unknown_segment_a33020;   // 未知段a33020
+void *utility_unknown_segment_a33060;   // 未知段a33060
+void *utility_unknown_segment_a330b0;   // 未知段a330b0
+void *utility_unknown_segment_a330f0;   // 未知段a330f0
+void *utility_unknown_segment_a33140;   // 未知段a33140
+void *utility_unknown_segment_a33188;   // 未知段a33188
+void *utility_unknown_segment_a331c0;   // 未知段a331c0
+void *utility_unknown_segment_a33200;   // 未知段a33200
+void *utility_unknown_segment_a33250;   // 未知段a33250
+void *utility_unknown_segment_a33280;   // 未知段a33280
+void *utility_unknown_segment_a332c8;   // 未知段a332c8
+void *utility_unknown_segment_a332f8;   // 未知段a332f8
+void *utility_unknown_segment_a33330;   // 未知段a33330
+void *utility_unknown_segment_a33370;   // 未知段a33370
+void *utility_unknown_segment_a333c0;   // 未知段a333c0
+void *utility_unknown_segment_a33400;   // 未知段a33400
+void *utility_unknown_segment_a33450;   // 未知段a33450
+void *utility_unknown_segment_a334a0;   // 未知段a334a0
+void *utility_unknown_segment_a334f0;   // 未知段a334f0
+void *utility_unknown_segment_a33540;   // 未知段a33540
+void *utility_unknown_segment_a33590;   // 未知段a33590
+void *utility_unknown_segment_a335d8;   // 未知段a335d8
+void *utility_unknown_segment_a33610;   // 未知段a33610
+void *utility_unknown_segment_a33660;   // 未知段a33660
+void *utility_unknown_segment_a336b0;   // 未知段a336b0
+void *utility_unknown_segment_a336f0;   // 未知段a336f0
+void *utility_unknown_segment_a33740;   // 未知段a33740
+void *utility_unknown_segment_a33780;   // 未知段a33780
+void *utility_unknown_segment_a337d0;   // 未知段a337d0
+void *utility_unknown_segment_a33820;   // 未知段a33820
+void *utility_unknown_segment_a33870;   // 未知段a33870
+void *utility_unknown_segment_a338e0;   // 未知段a338e0
+void *utility_unknown_segment_a33930;   // 未知段a33930
+void *utility_unknown_segment_a2c968;   // 未知段a2c968
+void *utility_unknown_segment_a33988;   // 未知段a33988
+void *utility_unknown_segment_a339b0;   // 未知段a339b0
+void *utility_unknown_segment_a339c0;   // 未知段a339c0
+void *utility_unknown_segment_a339e0;   // 未知段a339e0
+void *utility_unknown_segment_a339e8;   // 未知段a339e8
+void *utility_unknown_segment_a33a60;   // 未知段a33a60
+void *utility_unknown_segment_a33c10;   // 未知段a33c10
+void *utility_unknown_segment_a33c90;   // 未知段a33c90
+void *utility_unknown_segment_53f010;   // 未知段53f010
+void *utility_unknown_segment_53f040;   // 未知段53f040
+void *utility_unknown_segment_53f080;   // 未知段53f080
+void *utility_unknown_segment_53f090;   // 未知段53f090
 byte DAT_180c91d14;
 undefined DAT_180c91d18;
-undefined UNK_180a33ca8;
-undefined UNK_18053eee0;
-undefined UNK_18053efd0;
+void *utility_unknown_segment_a33ca8;   // 未知段a33ca8
+void *utility_unknown_segment_53eee0;   // 未知段53eee0
+void *utility_unknown_segment_53efd0;   // 未知段53efd0
 
-// 函数: undefined FUN_180943090;
-undefined FUN_180943090;
+// 函数: void *utility_function_943090;            // 函数943090
+void *utility_function_943090;            // 函数943090
 undefined DAT_180d49ff8;
 
-// 函数: undefined FUN_1809430b0;
-undefined FUN_1809430b0;
-undefined UNK_180a38958;
-undefined UNK_180a38978;
-undefined UNK_180a38988;
-undefined UNK_180a389b0;
-undefined UNK_180a389d8;
-undefined UNK_180a389f0;
-undefined UNK_180a38a08;
-undefined UNK_180a38a20;
-undefined UNK_180a38a3c;
-undefined UNK_180a38a48;
-undefined UNK_180a38a60;
-undefined UNK_180a38a78;
-undefined UNK_180a38a88;
-undefined UNK_180a38aa8;
-undefined UNK_180a38ac0;
-undefined UNK_180a38ad8;
-undefined UNK_180a38ae8;
-undefined UNK_180a38b20;
-undefined UNK_180a38b48;
-undefined UNK_180a38b60;
-undefined UNK_180a38b70;
-undefined UNK_180a38b88;
-undefined UNK_180a38ba0;
-undefined UNK_180a38bb8;
-undefined UNK_180a38bd0;
-undefined UNK_180a38be0;
-undefined UNK_180a38be8;
-undefined UNK_180a38c08;
-undefined UNK_180a38c28;
-undefined UNK_180a38c40;
-undefined UNK_180a38c58;
-undefined UNK_180a38c78;
-undefined UNK_180a38c98;
-undefined UNK_180a38ca8;
-undefined UNK_180a38cc0;
-undefined UNK_180a38ce8;
-undefined UNK_180a38d10;
-undefined UNK_180a38d20;
-undefined UNK_180a38d38;
-undefined UNK_180a38d58;
-undefined UNK_180a38d80;
-undefined UNK_180a38d98;
-undefined UNK_180a38db8;
-undefined UNK_180a38dc8;
-undefined UNK_180a38dd8;
-undefined UNK_180a38de8;
-undefined UNK_180a38df8;
-undefined UNK_180a38e10;
-undefined UNK_180a38e28;
-undefined UNK_180a38e38;
-undefined UNK_180a38e50;
-undefined UNK_180a38e60;
-undefined UNK_180a38e78;
-undefined UNK_180a38e90;
-undefined UNK_180a38ea0;
-undefined UNK_180a38ec0;
-undefined UNK_180a38f10;
-undefined UNK_180a38f30;
-undefined UNK_180a04be8;
-undefined UNK_180a2e9e0;
-undefined UNK_180a38ed0;
-undefined UNK_180a38ee0;
-undefined UNK_180a38ef0;
-undefined UNK_180a38f00;
-undefined UNK_180a38f40;
-undefined UNK_180a38f50;
-undefined UNK_180a38f60;
-undefined UNK_180a38f78;
-undefined UNK_180a38f90;
-undefined UNK_180a38fa8;
-undefined UNK_180a38fc0;
-undefined UNK_180a38fd8;
-undefined UNK_180a38ff0;
-undefined UNK_180a39008;
-undefined UNK_180a39020;
-undefined UNK_180a39030;
-undefined UNK_180a39058;
-undefined UNK_180a39078;
-undefined UNK_180a39090;
-undefined UNK_180a390b8;
-undefined UNK_180a390d0;
-undefined UNK_180a390f0;
-undefined UNK_180a39110;
-undefined UNK_180a39128;
-undefined UNK_180a39148;
-undefined UNK_180a39170;
-undefined UNK_180a39188;
-undefined UNK_180a391b8;
-undefined UNK_180a391e8;
-undefined UNK_180a39210;
-undefined UNK_180a39230;
-undefined UNK_180a39250;
-undefined UNK_180a39270;
-undefined UNK_180a39298;
-undefined UNK_180a392b8;
-undefined UNK_180a392d0;
-undefined UNK_180a392e8;
-undefined UNK_180a39308;
-undefined UNK_180a39328;
-undefined UNK_180a39348;
-undefined UNK_180a39360;
-undefined UNK_180a39378;
-undefined UNK_180a39390;
-undefined UNK_180a393a8;
-undefined UNK_180a393d0;
-undefined UNK_180a393f0;
-undefined UNK_180a39408;
-undefined UNK_180a39428;
-undefined UNK_180a39450;
-undefined UNK_180a39468;
-undefined UNK_180a39480;
-undefined UNK_180a394a0;
-undefined UNK_180a394b8;
-undefined UNK_180a394e0;
-undefined UNK_180a39500;
-undefined UNK_180a39518;
-undefined UNK_180a39538;
-undefined UNK_180a39568;
-undefined UNK_180a39598;
-undefined UNK_180a395c0;
-undefined UNK_180a395e0;
-undefined UNK_180a39600;
-undefined UNK_180a39628;
-undefined UNK_180a39640;
-undefined UNK_180a39660;
-undefined UNK_180a39688;
-undefined UNK_180a396b0;
-undefined UNK_180a396c8;
-undefined UNK_180a396f0;
-undefined UNK_180a39710;
-undefined UNK_180a39728;
-undefined UNK_180a39740;
-undefined UNK_180a39758;
-undefined UNK_180a39768;
-undefined UNK_180a39788;
-undefined UNK_180a397a8;
-undefined UNK_180a397c8;
-undefined UNK_180a397d8;
-undefined UNK_180a397e8;
-undefined UNK_180a397f8;
-undefined UNK_180a39820;
-undefined UNK_180a39850;
-undefined UNK_180a39864;
-undefined UNK_180a39870;
-undefined UNK_180a39888;
-undefined UNK_180a398a8;
-undefined UNK_180a398b8;
-undefined UNK_180a398d8;
-undefined UNK_180a398f0;
-undefined UNK_180a39910;
-undefined UNK_180a39920;
-undefined UNK_180a39940;
-undefined UNK_180a39970;
-undefined UNK_180a39988;
-undefined UNK_180a399a8;
-undefined UNK_180a399c0;
-undefined UNK_180a399e0;
-undefined UNK_180a399f0;
-undefined UNK_180a39a18;
-undefined UNK_180a39a28;
-undefined UNK_180a39a40;
-undefined UNK_180a39a60;
-undefined UNK_180a39a70;
-undefined UNK_180a39a88;
-undefined UNK_180a39aa0;
-undefined UNK_180a39ab8;
-undefined UNK_180a39ad8;
-undefined UNK_180a39af0;
-undefined UNK_180a39b00;
-undefined UNK_180a39b18;
-undefined UNK_180a39b30;
-undefined UNK_180a39b48;
-undefined UNK_180a39b68;
-undefined UNK_180a39b78;
-undefined UNK_180a39b88;
-undefined UNK_180a39ba0;
-undefined UNK_180a39bc0;
-undefined UNK_180a39bd8;
-undefined UNK_180a39bf0;
-undefined UNK_180a39c10;
-undefined UNK_180a39c30;
-undefined UNK_180a39c50;
-undefined UNK_180a39c60;
-undefined UNK_180a39c80;
-undefined UNK_180a39c98;
-undefined UNK_180a39cb8;
-undefined UNK_180a39ccc;
-undefined UNK_180a39cd0;
-undefined UNK_180a39cd4;
-undefined UNK_180a39cd8;
-undefined UNK_180a39ce0;
-undefined UNK_180a39cf8;
-undefined UNK_180a39d10;
-undefined UNK_180a39d28;
-undefined UNK_180a39d40;
-undefined UNK_180a39d58;
-undefined UNK_180a39d70;
-undefined UNK_180a39d88;
-undefined UNK_180a39d98;
-undefined UNK_180a39da8;
-undefined UNK_180a39db0;
-undefined UNK_180a39dc0;
-undefined UNK_180a39dd0;
-undefined UNK_180a39de0;
-undefined UNK_180a39df0;
-undefined UNK_180a39e08;
-undefined UNK_180a39e18;
-undefined UNK_180a39e30;
-undefined UNK_180a39e48;
-undefined UNK_180a39e58;
-undefined UNK_180a39e78;
-undefined UNK_180a39e90;
-undefined UNK_180a39ea8;
-undefined UNK_180a39eb8;
-undefined UNK_180a39ed0;
-undefined UNK_180a39ee0;
-undefined UNK_180a39ef0;
-undefined UNK_180a39f00;
-undefined UNK_180a39f18;
-undefined UNK_180a39f28;
-undefined UNK_180a39f50;
-undefined UNK_180a39f60;
-undefined UNK_180a39f78;
-undefined UNK_180a39f88;
-undefined UNK_180a39f98;
-undefined UNK_180a39fb0;
-undefined UNK_180a39fc0;
-undefined UNK_180a39fe0;
-undefined UNK_180a39ff8;
-undefined UNK_180a3a018;
-undefined UNK_180a3a038;
-undefined UNK_180a3a048;
-undefined UNK_180a3a058;
-undefined UNK_180a3a068;
-undefined UNK_180a3a078;
-undefined UNK_180a3a098;
-undefined UNK_180a3a0b8;
-undefined UNK_180a3a0d0;
-undefined UNK_180a3a0f0;
-undefined UNK_180a3a118;
-undefined UNK_180a3a140;
-undefined UNK_180a3a158;
-undefined UNK_180a3a178;
-undefined UNK_180a3a188;
-undefined UNK_180a3a1a8;
-undefined UNK_180a3a1b8;
-undefined UNK_180a3a1c8;
-undefined UNK_180a3a1e8;
-undefined UNK_180a3a208;
-undefined UNK_180a3a220;
-undefined UNK_180a3a240;
-undefined UNK_180a3a250;
-undefined UNK_180a3a260;
-undefined UNK_180a3a278;
-undefined UNK_180a3a298;
-undefined UNK_180a3a2b0;
-undefined UNK_180a3a2c0;
-undefined UNK_180a3a2d8;
-undefined UNK_180a3a2e8;
-undefined UNK_180a3a2f8;
-undefined UNK_180a3a300;
-undefined UNK_180a3a310;
-undefined UNK_180a3a320;
-undefined UNK_180a3a348;
-undefined UNK_180a3a370;
-undefined UNK_180a3a398;
-undefined UNK_180a3a3c0;
-undefined UNK_180a3a3d0;
-undefined UNK_180a3a3e8;
-undefined UNK_180a3a3f8;
-undefined UNK_180a3a408;
-undefined UNK_180a3a418;
-undefined UNK_180a3a428;
-undefined UNK_180a3a440;
-undefined UNK_180a3a458;
-undefined UNK_180a3a468;
-undefined UNK_180a3a478;
-undefined UNK_180a3a498;
-undefined UNK_180a3a4a8;
-undefined UNK_180a3a4c0;
-undefined UNK_180a3a4d0;
-undefined UNK_180a3a4e0;
-undefined UNK_180a3a4f8;
-undefined UNK_180a3a508;
-undefined UNK_180a3a520;
-undefined UNK_180a3a530;
-undefined UNK_180a3a540;
-undefined UNK_180a3a560;
-undefined UNK_180a3a580;
-undefined UNK_180a3a5a8;
-undefined UNK_180a3a5c0;
-undefined UNK_180a3a5d0;
-undefined UNK_180a3a5e0;
-undefined UNK_180a3a600;
-undefined UNK_180a3a620;
-undefined UNK_180a3a630;
-undefined UNK_180a3a640;
-undefined UNK_180a3a650;
-undefined UNK_180a3a660;
-undefined UNK_180a3a670;
-undefined UNK_180a3a688;
-undefined UNK_180a3a6a0;
-undefined UNK_180a3a6c0;
-undefined UNK_180a3a6e0;
-undefined UNK_180a3a6f8;
-undefined UNK_180a3a708;
-undefined UNK_180a3a720;
-undefined UNK_180a3a738;
-undefined UNK_180a3a748;
-undefined UNK_180a3a754;
-undefined UNK_180a3a758;
-undefined UNK_180a3a768;
-undefined UNK_180a3a778;
-undefined UNK_180a3a788;
-undefined UNK_180a3a798;
-undefined UNK_180a3a7a8;
-undefined UNK_180a3a7b8;
-undefined UNK_180a3a7d0;
-undefined UNK_180a3a7e0;
-undefined UNK_180a3a7f0;
-undefined UNK_180a3a800;
-undefined UNK_180a3a820;
-undefined UNK_180a3a830;
-undefined UNK_180a3a850;
-undefined UNK_180a3a860;
-undefined UNK_180a3a870;
-undefined UNK_180a3a880;
-undefined UNK_180a3a898;
-undefined UNK_180a3a8b0;
-undefined UNK_180a3a8c0;
-undefined UNK_180a3a8d8;
-undefined UNK_180a3a8f0;
-undefined UNK_180a3a900;
-undefined UNK_180a3a910;
-undefined UNK_180a3a920;
-undefined UNK_180a3a938;
-undefined UNK_180a3a948;
-undefined UNK_180a3a960;
-undefined UNK_180a3a970;
-undefined UNK_180a3a988;
-undefined UNK_180a3a998;
-undefined UNK_180a3a9b0;
-undefined UNK_180a3a9c8;
-undefined UNK_180a3a9d8;
-undefined UNK_180a3a9e0;
-undefined UNK_180a3a9f0;
-undefined UNK_180a3aa08;
-undefined UNK_180a3aa20;
-undefined UNK_180a3aa38;
-undefined UNK_180a3aa50;
-undefined UNK_180a3aa70;
-undefined UNK_180a3aa98;
-undefined UNK_180a3aab0;
-undefined UNK_180a3aac0;
-undefined UNK_180a3aad8;
-undefined UNK_180a3aae8;
-undefined UNK_180a3aaf8;
-undefined UNK_180a3ab08;
-undefined UNK_180a3ab18;
-undefined UNK_180a3ab28;
-undefined UNK_180a3ab38;
-undefined UNK_180a3ab50;
-undefined UNK_180a3ab60;
-undefined UNK_180a3ab70;
-undefined UNK_180a3ab80;
-undefined UNK_180a3ab90;
-undefined UNK_180a3aba0;
-undefined UNK_180a3abb0;
-undefined UNK_180a3abc0;
-undefined UNK_180a3abd0;
-undefined UNK_180a3abe0;
-undefined UNK_180a3abe8;
-undefined UNK_180a3ac00;
-undefined UNK_180a3ac10;
-undefined UNK_180a3ac18;
-undefined UNK_180a3ac30;
-undefined UNK_180a3ac48;
-undefined UNK_180a3ac68;
-undefined UNK_180a3ac80;
-undefined UNK_180a3ac90;
-undefined UNK_180a3aca8;
-undefined UNK_180a3acc8;
-undefined UNK_180a3acd8;
-undefined UNK_180a3acf8;
-undefined UNK_180a3ad18;
-undefined UNK_180a3ad30;
-undefined UNK_180a3ad60;
-undefined UNK_180a3ad88;
-undefined UNK_180a3ada0;
-undefined UNK_180a3adb8;
-undefined UNK_180a3add0;
-undefined UNK_180a3ade8;
-undefined UNK_180a3ae00;
-undefined UNK_180a3ae18;
-undefined UNK_180a2eac0;
+// 函数: void *utility_function_9430b0;            // 函数9430b0
+void *utility_function_9430b0;            // 函数9430b0
+void *utility_unknown_segment_a38958;   // 未知段a38958
+void *utility_unknown_segment_a38978;   // 未知段a38978
+void *utility_unknown_segment_a38988;   // 未知段a38988
+void *utility_unknown_segment_a389b0;   // 未知段a389b0
+void *utility_unknown_segment_a389d8;   // 未知段a389d8
+void *utility_unknown_segment_a389f0;   // 未知段a389f0
+void *utility_unknown_segment_a38a08;   // 未知段a38a08
+void *utility_unknown_segment_a38a20;   // 未知段a38a20
+void *utility_unknown_segment_a38a3c;   // 未知段a38a3c
+void *utility_unknown_segment_a38a48;   // 未知段a38a48
+void *utility_unknown_segment_a38a60;   // 未知段a38a60
+void *utility_unknown_segment_a38a78;   // 未知段a38a78
+void *utility_unknown_segment_a38a88;   // 未知段a38a88
+void *utility_unknown_segment_a38aa8;   // 未知段a38aa8
+void *utility_unknown_segment_a38ac0;   // 未知段a38ac0
+void *utility_unknown_segment_a38ad8;   // 未知段a38ad8
+void *utility_unknown_segment_a38ae8;   // 未知段a38ae8
+void *utility_unknown_segment_a38b20;   // 未知段a38b20
+void *utility_unknown_segment_a38b48;   // 未知段a38b48
+void *utility_unknown_segment_a38b60;   // 未知段a38b60
+void *utility_unknown_segment_a38b70;   // 未知段a38b70
+void *utility_unknown_segment_a38b88;   // 未知段a38b88
+void *utility_unknown_segment_a38ba0;   // 未知段a38ba0
+void *utility_unknown_segment_a38bb8;   // 未知段a38bb8
+void *utility_unknown_segment_a38bd0;   // 未知段a38bd0
+void *utility_unknown_segment_a38be0;   // 未知段a38be0
+void *utility_unknown_segment_a38be8;   // 未知段a38be8
+void *utility_unknown_segment_a38c08;   // 未知段a38c08
+void *utility_unknown_segment_a38c28;   // 未知段a38c28
+void *utility_unknown_segment_a38c40;   // 未知段a38c40
+void *utility_unknown_segment_a38c58;   // 未知段a38c58
+void *utility_unknown_segment_a38c78;   // 未知段a38c78
+void *utility_unknown_segment_a38c98;   // 未知段a38c98
+void *utility_unknown_segment_a38ca8;   // 未知段a38ca8
+void *utility_unknown_segment_a38cc0;   // 未知段a38cc0
+void *utility_unknown_segment_a38ce8;   // 未知段a38ce8
+void *utility_unknown_segment_a38d10;   // 未知段a38d10
+void *utility_unknown_segment_a38d20;   // 未知段a38d20
+void *utility_unknown_segment_a38d38;   // 未知段a38d38
+void *utility_unknown_segment_a38d58;   // 未知段a38d58
+void *utility_unknown_segment_a38d80;   // 未知段a38d80
+void *utility_unknown_segment_a38d98;   // 未知段a38d98
+void *utility_unknown_segment_a38db8;   // 未知段a38db8
+void *utility_unknown_segment_a38dc8;   // 未知段a38dc8
+void *utility_unknown_segment_a38dd8;   // 未知段a38dd8
+void *utility_unknown_segment_a38de8;   // 未知段a38de8
+void *utility_unknown_segment_a38df8;   // 未知段a38df8
+void *utility_unknown_segment_a38e10;   // 未知段a38e10
+void *utility_unknown_segment_a38e28;   // 未知段a38e28
+void *utility_unknown_segment_a38e38;   // 未知段a38e38
+void *utility_unknown_segment_a38e50;   // 未知段a38e50
+void *utility_unknown_segment_a38e60;   // 未知段a38e60
+void *utility_unknown_segment_a38e78;   // 未知段a38e78
+void *utility_unknown_segment_a38e90;   // 未知段a38e90
+void *utility_unknown_segment_a38ea0;   // 未知段a38ea0
+void *utility_unknown_segment_a38ec0;   // 未知段a38ec0
+void *utility_unknown_segment_a38f10;   // 未知段a38f10
+void *utility_unknown_segment_a38f30;   // 未知段a38f30
+void *utility_unknown_segment_a04be8;   // 未知段a04be8
+void *utility_unknown_segment_a2e9e0;   // 未知段a2e9e0
+void *utility_unknown_segment_a38ed0;   // 未知段a38ed0
+void *utility_unknown_segment_a38ee0;   // 未知段a38ee0
+void *utility_unknown_segment_a38ef0;   // 未知段a38ef0
+void *utility_unknown_segment_a38f00;   // 未知段a38f00
+void *utility_unknown_segment_a38f40;   // 未知段a38f40
+void *utility_unknown_segment_a38f50;   // 未知段a38f50
+void *utility_unknown_segment_a38f60;   // 未知段a38f60
+void *utility_unknown_segment_a38f78;   // 未知段a38f78
+void *utility_unknown_segment_a38f90;   // 未知段a38f90
+void *utility_unknown_segment_a38fa8;   // 未知段a38fa8
+void *utility_unknown_segment_a38fc0;   // 未知段a38fc0
+void *utility_unknown_segment_a38fd8;   // 未知段a38fd8
+void *utility_unknown_segment_a38ff0;   // 未知段a38ff0
+void *utility_unknown_segment_a39008;   // 未知段a39008
+void *utility_unknown_segment_a39020;   // 未知段a39020
+void *utility_unknown_segment_a39030;   // 未知段a39030
+void *utility_unknown_segment_a39058;   // 未知段a39058
+void *utility_unknown_segment_a39078;   // 未知段a39078
+void *utility_unknown_segment_a39090;   // 未知段a39090
+void *utility_unknown_segment_a390b8;   // 未知段a390b8
+void *utility_unknown_segment_a390d0;   // 未知段a390d0
+void *utility_unknown_segment_a390f0;   // 未知段a390f0
+void *utility_unknown_segment_a39110;   // 未知段a39110
+void *utility_unknown_segment_a39128;   // 未知段a39128
+void *utility_unknown_segment_a39148;   // 未知段a39148
+void *utility_unknown_segment_a39170;   // 未知段a39170
+void *utility_unknown_segment_a39188;   // 未知段a39188
+void *utility_unknown_segment_a391b8;   // 未知段a391b8
+void *utility_unknown_segment_a391e8;   // 未知段a391e8
+void *utility_unknown_segment_a39210;   // 未知段a39210
+void *utility_unknown_segment_a39230;   // 未知段a39230
+void *utility_unknown_segment_a39250;   // 未知段a39250
+void *utility_unknown_segment_a39270;   // 未知段a39270
+void *utility_unknown_segment_a39298;   // 未知段a39298
+void *utility_unknown_segment_a392b8;   // 未知段a392b8
+void *utility_unknown_segment_a392d0;   // 未知段a392d0
+void *utility_unknown_segment_a392e8;   // 未知段a392e8
+void *utility_unknown_segment_a39308;   // 未知段a39308
+void *utility_unknown_segment_a39328;   // 未知段a39328
+void *utility_unknown_segment_a39348;   // 未知段a39348
+void *utility_unknown_segment_a39360;   // 未知段a39360
+void *utility_unknown_segment_a39378;   // 未知段a39378
+void *utility_unknown_segment_a39390;   // 未知段a39390
+void *utility_unknown_segment_a393a8;   // 未知段a393a8
+void *utility_unknown_segment_a393d0;   // 未知段a393d0
+void *utility_unknown_segment_a393f0;   // 未知段a393f0
+void *utility_unknown_segment_a39408;   // 未知段a39408
+void *utility_unknown_segment_a39428;   // 未知段a39428
+void *utility_unknown_segment_a39450;   // 未知段a39450
+void *utility_unknown_segment_a39468;   // 未知段a39468
+void *utility_unknown_segment_a39480;   // 未知段a39480
+void *utility_unknown_segment_a394a0;   // 未知段a394a0
+void *utility_unknown_segment_a394b8;   // 未知段a394b8
+void *utility_unknown_segment_a394e0;   // 未知段a394e0
+void *utility_unknown_segment_a39500;   // 未知段a39500
+void *utility_unknown_segment_a39518;   // 未知段a39518
+void *utility_unknown_segment_a39538;   // 未知段a39538
+void *utility_unknown_segment_a39568;   // 未知段a39568
+void *utility_unknown_segment_a39598;   // 未知段a39598
+void *utility_unknown_segment_a395c0;   // 未知段a395c0
+void *utility_unknown_segment_a395e0;   // 未知段a395e0
+void *utility_unknown_segment_a39600;   // 未知段a39600
+void *utility_unknown_segment_a39628;   // 未知段a39628
+void *utility_unknown_segment_a39640;   // 未知段a39640
+void *utility_unknown_segment_a39660;   // 未知段a39660
+void *utility_unknown_segment_a39688;   // 未知段a39688
+void *utility_unknown_segment_a396b0;   // 未知段a396b0
+void *utility_unknown_segment_a396c8;   // 未知段a396c8
+void *utility_unknown_segment_a396f0;   // 未知段a396f0
+void *utility_unknown_segment_a39710;   // 未知段a39710
+void *utility_unknown_segment_a39728;   // 未知段a39728
+void *utility_unknown_segment_a39740;   // 未知段a39740
+void *utility_unknown_segment_a39758;   // 未知段a39758
+void *utility_unknown_segment_a39768;   // 未知段a39768
+void *utility_unknown_segment_a39788;   // 未知段a39788
+void *utility_unknown_segment_a397a8;   // 未知段a397a8
+void *utility_unknown_segment_a397c8;   // 未知段a397c8
+void *utility_unknown_segment_a397d8;   // 未知段a397d8
+void *utility_unknown_segment_a397e8;   // 未知段a397e8
+void *utility_unknown_segment_a397f8;   // 未知段a397f8
+void *utility_unknown_segment_a39820;   // 未知段a39820
+void *utility_unknown_segment_a39850;   // 未知段a39850
+void *utility_unknown_segment_a39864;   // 未知段a39864
+void *utility_unknown_segment_a39870;   // 未知段a39870
+void *utility_unknown_segment_a39888;   // 未知段a39888
+void *utility_unknown_segment_a398a8;   // 未知段a398a8
+void *utility_unknown_segment_a398b8;   // 未知段a398b8
+void *utility_unknown_segment_a398d8;   // 未知段a398d8
+void *utility_unknown_segment_a398f0;   // 未知段a398f0
+void *utility_unknown_segment_a39910;   // 未知段a39910
+void *utility_unknown_segment_a39920;   // 未知段a39920
+void *utility_unknown_segment_a39940;   // 未知段a39940
+void *utility_unknown_segment_a39970;   // 未知段a39970
+void *utility_unknown_segment_a39988;   // 未知段a39988
+void *utility_unknown_segment_a399a8;   // 未知段a399a8
+void *utility_unknown_segment_a399c0;   // 未知段a399c0
+void *utility_unknown_segment_a399e0;   // 未知段a399e0
+void *utility_unknown_segment_a399f0;   // 未知段a399f0
+void *utility_unknown_segment_a39a18;   // 未知段a39a18
+void *utility_unknown_segment_a39a28;   // 未知段a39a28
+void *utility_unknown_segment_a39a40;   // 未知段a39a40
+void *utility_unknown_segment_a39a60;   // 未知段a39a60
+void *utility_unknown_segment_a39a70;   // 未知段a39a70
+void *utility_unknown_segment_a39a88;   // 未知段a39a88
+void *utility_unknown_segment_a39aa0;   // 未知段a39aa0
+void *utility_unknown_segment_a39ab8;   // 未知段a39ab8
+void *utility_unknown_segment_a39ad8;   // 未知段a39ad8
+void *utility_unknown_segment_a39af0;   // 未知段a39af0
+void *utility_unknown_segment_a39b00;   // 未知段a39b00
+void *utility_unknown_segment_a39b18;   // 未知段a39b18
+void *utility_unknown_segment_a39b30;   // 未知段a39b30
+void *utility_unknown_segment_a39b48;   // 未知段a39b48
+void *utility_unknown_segment_a39b68;   // 未知段a39b68
+void *utility_unknown_segment_a39b78;   // 未知段a39b78
+void *utility_unknown_segment_a39b88;   // 未知段a39b88
+void *utility_unknown_segment_a39ba0;   // 未知段a39ba0
+void *utility_unknown_segment_a39bc0;   // 未知段a39bc0
+void *utility_unknown_segment_a39bd8;   // 未知段a39bd8
+void *utility_unknown_segment_a39bf0;   // 未知段a39bf0
+void *utility_unknown_segment_a39c10;   // 未知段a39c10
+void *utility_unknown_segment_a39c30;   // 未知段a39c30
+void *utility_unknown_segment_a39c50;   // 未知段a39c50
+void *utility_unknown_segment_a39c60;   // 未知段a39c60
+void *utility_unknown_segment_a39c80;   // 未知段a39c80
+void *utility_unknown_segment_a39c98;   // 未知段a39c98
+void *utility_unknown_segment_a39cb8;   // 未知段a39cb8
+void *utility_unknown_segment_a39ccc;   // 未知段a39ccc
+void *utility_unknown_segment_a39cd0;   // 未知段a39cd0
+void *utility_unknown_segment_a39cd4;   // 未知段a39cd4
+void *utility_unknown_segment_a39cd8;   // 未知段a39cd8
+void *utility_unknown_segment_a39ce0;   // 未知段a39ce0
+void *utility_unknown_segment_a39cf8;   // 未知段a39cf8
+void *utility_unknown_segment_a39d10;   // 未知段a39d10
+void *utility_unknown_segment_a39d28;   // 未知段a39d28
+void *utility_unknown_segment_a39d40;   // 未知段a39d40
+void *utility_unknown_segment_a39d58;   // 未知段a39d58
+void *utility_unknown_segment_a39d70;   // 未知段a39d70
+void *utility_unknown_segment_a39d88;   // 未知段a39d88
+void *utility_unknown_segment_a39d98;   // 未知段a39d98
+void *utility_unknown_segment_a39da8;   // 未知段a39da8
+void *utility_unknown_segment_a39db0;   // 未知段a39db0
+void *utility_unknown_segment_a39dc0;   // 未知段a39dc0
+void *utility_unknown_segment_a39dd0;   // 未知段a39dd0
+void *utility_unknown_segment_a39de0;   // 未知段a39de0
+void *utility_unknown_segment_a39df0;   // 未知段a39df0
+void *utility_unknown_segment_a39e08;   // 未知段a39e08
+void *utility_unknown_segment_a39e18;   // 未知段a39e18
+void *utility_unknown_segment_a39e30;   // 未知段a39e30
+void *utility_unknown_segment_a39e48;   // 未知段a39e48
+void *utility_unknown_segment_a39e58;   // 未知段a39e58
+void *utility_unknown_segment_a39e78;   // 未知段a39e78
+void *utility_unknown_segment_a39e90;   // 未知段a39e90
+void *utility_unknown_segment_a39ea8;   // 未知段a39ea8
+void *utility_unknown_segment_a39eb8;   // 未知段a39eb8
+void *utility_unknown_segment_a39ed0;   // 未知段a39ed0
+void *utility_unknown_segment_a39ee0;   // 未知段a39ee0
+void *utility_unknown_segment_a39ef0;   // 未知段a39ef0
+void *utility_unknown_segment_a39f00;   // 未知段a39f00
+void *utility_unknown_segment_a39f18;   // 未知段a39f18
+void *utility_unknown_segment_a39f28;   // 未知段a39f28
+void *utility_unknown_segment_a39f50;   // 未知段a39f50
+void *utility_unknown_segment_a39f60;   // 未知段a39f60
+void *utility_unknown_segment_a39f78;   // 未知段a39f78
+void *utility_unknown_segment_a39f88;   // 未知段a39f88
+void *utility_unknown_segment_a39f98;   // 未知段a39f98
+void *utility_unknown_segment_a39fb0;   // 未知段a39fb0
+void *utility_unknown_segment_a39fc0;   // 未知段a39fc0
+void *utility_unknown_segment_a39fe0;   // 未知段a39fe0
+void *utility_unknown_segment_a39ff8;   // 未知段a39ff8
+void *utility_unknown_segment_a3a018;   // 未知段a3a018
+void *utility_unknown_segment_a3a038;   // 未知段a3a038
+void *utility_unknown_segment_a3a048;   // 未知段a3a048
+void *utility_unknown_segment_a3a058;   // 未知段a3a058
+void *utility_unknown_segment_a3a068;   // 未知段a3a068
+void *utility_unknown_segment_a3a078;   // 未知段a3a078
+void *utility_unknown_segment_a3a098;   // 未知段a3a098
+void *utility_unknown_segment_a3a0b8;   // 未知段a3a0b8
+void *utility_unknown_segment_a3a0d0;   // 未知段a3a0d0
+void *utility_unknown_segment_a3a0f0;   // 未知段a3a0f0
+void *utility_unknown_segment_a3a118;   // 未知段a3a118
+void *utility_unknown_segment_a3a140;   // 未知段a3a140
+void *utility_unknown_segment_a3a158;   // 未知段a3a158
+void *utility_unknown_segment_a3a178;   // 未知段a3a178
+void *utility_unknown_segment_a3a188;   // 未知段a3a188
+void *utility_unknown_segment_a3a1a8;   // 未知段a3a1a8
+void *utility_unknown_segment_a3a1b8;   // 未知段a3a1b8
+void *utility_unknown_segment_a3a1c8;   // 未知段a3a1c8
+void *utility_unknown_segment_a3a1e8;   // 未知段a3a1e8
+void *utility_unknown_segment_a3a208;   // 未知段a3a208
+void *utility_unknown_segment_a3a220;   // 未知段a3a220
+void *utility_unknown_segment_a3a240;   // 未知段a3a240
+void *utility_unknown_segment_a3a250;   // 未知段a3a250
+void *utility_unknown_segment_a3a260;   // 未知段a3a260
+void *utility_unknown_segment_a3a278;   // 未知段a3a278
+void *utility_unknown_segment_a3a298;   // 未知段a3a298
+void *utility_unknown_segment_a3a2b0;   // 未知段a3a2b0
+void *utility_unknown_segment_a3a2c0;   // 未知段a3a2c0
+void *utility_unknown_segment_a3a2d8;   // 未知段a3a2d8
+void *utility_unknown_segment_a3a2e8;   // 未知段a3a2e8
+void *utility_unknown_segment_a3a2f8;   // 未知段a3a2f8
+void *utility_unknown_segment_a3a300;   // 未知段a3a300
+void *utility_unknown_segment_a3a310;   // 未知段a3a310
+void *utility_unknown_segment_a3a320;   // 未知段a3a320
+void *utility_unknown_segment_a3a348;   // 未知段a3a348
+void *utility_unknown_segment_a3a370;   // 未知段a3a370
+void *utility_unknown_segment_a3a398;   // 未知段a3a398
+void *utility_unknown_segment_a3a3c0;   // 未知段a3a3c0
+void *utility_unknown_segment_a3a3d0;   // 未知段a3a3d0
+void *utility_unknown_segment_a3a3e8;   // 未知段a3a3e8
+void *utility_unknown_segment_a3a3f8;   // 未知段a3a3f8
+void *utility_unknown_segment_a3a408;   // 未知段a3a408
+void *utility_unknown_segment_a3a418;   // 未知段a3a418
+void *utility_unknown_segment_a3a428;   // 未知段a3a428
+void *utility_unknown_segment_a3a440;   // 未知段a3a440
+void *utility_unknown_segment_a3a458;   // 未知段a3a458
+void *utility_unknown_segment_a3a468;   // 未知段a3a468
+void *utility_unknown_segment_a3a478;   // 未知段a3a478
+void *utility_unknown_segment_a3a498;   // 未知段a3a498
+void *utility_unknown_segment_a3a4a8;   // 未知段a3a4a8
+void *utility_unknown_segment_a3a4c0;   // 未知段a3a4c0
+void *utility_unknown_segment_a3a4d0;   // 未知段a3a4d0
+void *utility_unknown_segment_a3a4e0;   // 未知段a3a4e0
+void *utility_unknown_segment_a3a4f8;   // 未知段a3a4f8
+void *utility_unknown_segment_a3a508;   // 未知段a3a508
+void *utility_unknown_segment_a3a520;   // 未知段a3a520
+void *utility_unknown_segment_a3a530;   // 未知段a3a530
+void *utility_unknown_segment_a3a540;   // 未知段a3a540
+void *utility_unknown_segment_a3a560;   // 未知段a3a560
+void *utility_unknown_segment_a3a580;   // 未知段a3a580
+void *utility_unknown_segment_a3a5a8;   // 未知段a3a5a8
+void *utility_unknown_segment_a3a5c0;   // 未知段a3a5c0
+void *utility_unknown_segment_a3a5d0;   // 未知段a3a5d0
+void *utility_unknown_segment_a3a5e0;   // 未知段a3a5e0
+void *utility_unknown_segment_a3a600;   // 未知段a3a600
+void *utility_unknown_segment_a3a620;   // 未知段a3a620
+void *utility_unknown_segment_a3a630;   // 未知段a3a630
+void *utility_unknown_segment_a3a640;   // 未知段a3a640
+void *utility_unknown_segment_a3a650;   // 未知段a3a650
+void *utility_unknown_segment_a3a660;   // 未知段a3a660
+void *utility_unknown_segment_a3a670;   // 未知段a3a670
+void *utility_unknown_segment_a3a688;   // 未知段a3a688
+void *utility_unknown_segment_a3a6a0;   // 未知段a3a6a0
+void *utility_unknown_segment_a3a6c0;   // 未知段a3a6c0
+void *utility_unknown_segment_a3a6e0;   // 未知段a3a6e0
+void *utility_unknown_segment_a3a6f8;   // 未知段a3a6f8
+void *utility_unknown_segment_a3a708;   // 未知段a3a708
+void *utility_unknown_segment_a3a720;   // 未知段a3a720
+void *utility_unknown_segment_a3a738;   // 未知段a3a738
+void *utility_unknown_segment_a3a748;   // 未知段a3a748
+void *utility_unknown_segment_a3a754;   // 未知段a3a754
+void *utility_unknown_segment_a3a758;   // 未知段a3a758
+void *utility_unknown_segment_a3a768;   // 未知段a3a768
+void *utility_unknown_segment_a3a778;   // 未知段a3a778
+void *utility_unknown_segment_a3a788;   // 未知段a3a788
+void *utility_unknown_segment_a3a798;   // 未知段a3a798
+void *utility_unknown_segment_a3a7a8;   // 未知段a3a7a8
+void *utility_unknown_segment_a3a7b8;   // 未知段a3a7b8
+void *utility_unknown_segment_a3a7d0;   // 未知段a3a7d0
+void *utility_unknown_segment_a3a7e0;   // 未知段a3a7e0
+void *utility_unknown_segment_a3a7f0;   // 未知段a3a7f0
+void *utility_unknown_segment_a3a800;   // 未知段a3a800
+void *utility_unknown_segment_a3a820;   // 未知段a3a820
+void *utility_unknown_segment_a3a830;   // 未知段a3a830
+void *utility_unknown_segment_a3a850;   // 未知段a3a850
+void *utility_unknown_segment_a3a860;   // 未知段a3a860
+void *utility_unknown_segment_a3a870;   // 未知段a3a870
+void *utility_unknown_segment_a3a880;   // 未知段a3a880
+void *utility_unknown_segment_a3a898;   // 未知段a3a898
+void *utility_unknown_segment_a3a8b0;   // 未知段a3a8b0
+void *utility_unknown_segment_a3a8c0;   // 未知段a3a8c0
+void *utility_unknown_segment_a3a8d8;   // 未知段a3a8d8
+void *utility_unknown_segment_a3a8f0;   // 未知段a3a8f0
+void *utility_unknown_segment_a3a900;   // 未知段a3a900
+void *utility_unknown_segment_a3a910;   // 未知段a3a910
+void *utility_unknown_segment_a3a920;   // 未知段a3a920
+void *utility_unknown_segment_a3a938;   // 未知段a3a938
+void *utility_unknown_segment_a3a948;   // 未知段a3a948
+void *utility_unknown_segment_a3a960;   // 未知段a3a960
+void *utility_unknown_segment_a3a970;   // 未知段a3a970
+void *utility_unknown_segment_a3a988;   // 未知段a3a988
+void *utility_unknown_segment_a3a998;   // 未知段a3a998
+void *utility_unknown_segment_a3a9b0;   // 未知段a3a9b0
+void *utility_unknown_segment_a3a9c8;   // 未知段a3a9c8
+void *utility_unknown_segment_a3a9d8;   // 未知段a3a9d8
+void *utility_unknown_segment_a3a9e0;   // 未知段a3a9e0
+void *utility_unknown_segment_a3a9f0;   // 未知段a3a9f0
+void *utility_unknown_segment_a3aa08;   // 未知段a3aa08
+void *utility_unknown_segment_a3aa20;   // 未知段a3aa20
+void *utility_unknown_segment_a3aa38;   // 未知段a3aa38
+void *utility_unknown_segment_a3aa50;   // 未知段a3aa50
+void *utility_unknown_segment_a3aa70;   // 未知段a3aa70
+void *utility_unknown_segment_a3aa98;   // 未知段a3aa98
+void *utility_unknown_segment_a3aab0;   // 未知段a3aab0
+void *utility_unknown_segment_a3aac0;   // 未知段a3aac0
+void *utility_unknown_segment_a3aad8;   // 未知段a3aad8
+void *utility_unknown_segment_a3aae8;   // 未知段a3aae8
+void *utility_unknown_segment_a3aaf8;   // 未知段a3aaf8
+void *utility_unknown_segment_a3ab08;   // 未知段a3ab08
+void *utility_unknown_segment_a3ab18;   // 未知段a3ab18
+void *utility_unknown_segment_a3ab28;   // 未知段a3ab28
+void *utility_unknown_segment_a3ab38;   // 未知段a3ab38
+void *utility_unknown_segment_a3ab50;   // 未知段a3ab50
+void *utility_unknown_segment_a3ab60;   // 未知段a3ab60
+void *utility_unknown_segment_a3ab70;   // 未知段a3ab70
+void *utility_unknown_segment_a3ab80;   // 未知段a3ab80
+void *utility_unknown_segment_a3ab90;   // 未知段a3ab90
+void *utility_unknown_segment_a3aba0;   // 未知段a3aba0
+void *utility_unknown_segment_a3abb0;   // 未知段a3abb0
+void *utility_unknown_segment_a3abc0;   // 未知段a3abc0
+void *utility_unknown_segment_a3abd0;   // 未知段a3abd0
+void *utility_unknown_segment_a3abe0;   // 未知段a3abe0
+void *utility_unknown_segment_a3abe8;   // 未知段a3abe8
+void *utility_unknown_segment_a3ac00;   // 未知段a3ac00
+void *utility_unknown_segment_a3ac10;   // 未知段a3ac10
+void *utility_unknown_segment_a3ac18;   // 未知段a3ac18
+void *utility_unknown_segment_a3ac30;   // 未知段a3ac30
+void *utility_unknown_segment_a3ac48;   // 未知段a3ac48
+void *utility_unknown_segment_a3ac68;   // 未知段a3ac68
+void *utility_unknown_segment_a3ac80;   // 未知段a3ac80
+void *utility_unknown_segment_a3ac90;   // 未知段a3ac90
+void *utility_unknown_segment_a3aca8;   // 未知段a3aca8
+void *utility_unknown_segment_a3acc8;   // 未知段a3acc8
+void *utility_unknown_segment_a3acd8;   // 未知段a3acd8
+void *utility_unknown_segment_a3acf8;   // 未知段a3acf8
+void *utility_unknown_segment_a3ad18;   // 未知段a3ad18
+void *utility_unknown_segment_a3ad30;   // 未知段a3ad30
+void *utility_unknown_segment_a3ad60;   // 未知段a3ad60
+void *utility_unknown_segment_a3ad88;   // 未知段a3ad88
+void *utility_unknown_segment_a3ada0;   // 未知段a3ada0
+void *utility_unknown_segment_a3adb8;   // 未知段a3adb8
+void *utility_unknown_segment_a3add0;   // 未知段a3add0
+void *utility_unknown_segment_a3ade8;   // 未知段a3ade8
+void *utility_unknown_segment_a3ae00;   // 未知段a3ae00
+void *utility_unknown_segment_a3ae18;   // 未知段a3ae18
+void *utility_unknown_segment_a2eac0;   // 未知段a2eac0
 undefined DAT_180c92510;
 char DAT_180c8aa68;
-undefined UNK_180a3e5e8;
+void *utility_unknown_segment_a3e5e8;   // 未知段a3e5e8
 
-// 函数: undefined FUN_1809430e0;
-undefined FUN_1809430e0;
-undefined1 DAT_180bf66d8;
+// 函数: void *utility_function_9430e0;            // 函数9430e0
+void *utility_function_9430e0;            // 函数9430e0
+uint8_t utility_flag_66d8;              // 标志位66d8
 undefined DAT_180c96858;
-undefined DAT_180bfbf64;
-undefined DAT_180bfbf7c;
-undefined DAT_180bfbf60;
-undefined DAT_180bf7308;
-undefined DAT_180bfbf78;
-undefined DAT_180bf72a8;
+void *utility_data_segment_bf64;        // 数据段bf64
+void *utility_data_segment_bf7c;        // 数据段bf7c
+void *utility_data_segment_bf60;        // 数据段bf60
+void *utility_data_segment_7308;        // 数据段7308
+void *utility_data_segment_bf78;        // 数据段bf78
+void *utility_data_segment_72a8;        // 数据段72a8
 char DAT_180c8efc8;
-undefined UNK_18064ffc0;
-undefined UNK_180a3c8c8;
-undefined UNK_180a3c908;
-undefined UNK_180a3d970;
-undefined UNK_180a3db60;
-undefined DAT_180bfbd80;
+void *utility_unknown_segment_64ffc0;   // 未知段64ffc0
+void *utility_unknown_segment_a3c8c8;   // 未知段a3c8c8
+void *utility_unknown_segment_a3c908;   // 未知段a3c908
+void *utility_unknown_segment_a3d970;   // 未知段a3d970
+void *utility_unknown_segment_a3db60;   // 未知段a3db60
+void *utility_data_segment_bd80;        // 数据段bd80
 
 // 函数: void initialize_utility_system(longlong context_handle,longlong data_pointer)
 void initialize_utility_system(longlong context_handle,longlong data_pointer)
