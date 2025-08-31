@@ -452,7 +452,7 @@ void utility_process_thread_local_storage(int64_t thread_handle, int64_t context
                     }
                     
                     utility_items_processed = utility_processed_count + 1;
-                    utility_iteration_index = utility_loop_counter + UTILITY_POINTER_OFFSET;
+                    utility_iteration_index = utility_iteration_index + UTILITY_POINTER_OFFSET;
                 } while (utility_processed_count < utility_resource_counter);
             }
             // 清理缓冲区管理器
@@ -520,7 +520,7 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
                         utility_context_manager_activate(utility_resource_value, 1);
                     }
                     
-                    utility_iteration_index = utility_loop_counter + UTILITY_POINTER_OFFSET;
+                    utility_iteration_index = utility_iteration_index + UTILITY_POINTER_OFFSET;
                 } while (utility_loop_counter < utility_process_count);
             }
             // 清理缓冲区管理器
@@ -7137,7 +7137,7 @@ utility_stack_uint_checksum_value = utility_reserved_memory ^ (uint64_t)utility_
 utility_iteration_index = *(int64_t *)(context_handle + UTILITY_MEMORY_POINTER_OFFSET0);
 utility_loop_index = UTILITY_BOOLEAN_FALSE;
 utility_stack_uint_1c8 = UTILITY_BOOLEAN_FALSE;
-utility_iteration_index = utility_loop_counter + UTILITY_POINTER_OFFSET;
+utility_iteration_index = utility_iteration_index + UTILITY_POINTER_OFFSET;
 if (utility_loop_counter == UTILITY_BOOLEAN_FALSE) {
 }
 utility_stack_long_180 = context_handle;
