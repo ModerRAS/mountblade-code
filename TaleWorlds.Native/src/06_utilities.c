@@ -1,9 +1,8 @@
 // 06_utilities.c - 工具系统模块
-// 简化实现说明：主要处理工具系统中变量名和常量的语义化替换
+// 简化实现：主要处理工具系统中变量名和常量的语义化替换
 // 原本实现：完全重构工具系统所有命名体系，建立统一的语义化命名规范
 
-// 新增硬编码值语义化常量定义（2025年8月31日最新批次完成）
-// 资源属性偏移量硬编码值
+// 硬编码值语义化常量定义
 #define UTILITY_HARD_CODED_RESOURCE_PROPERTY_PRIMARY 0xC525443
 #define UTILITY_HARD_CODED_RESOURCE_PROPERTY_SECONDARY 0xF525443
 #define UTILITY_HARD_CODED_RESOURCE_PROPERTY_TERTIARY 0x2495645
