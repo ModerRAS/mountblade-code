@@ -3265,39 +3265,45 @@ void * get_utility_thread_info(long long utility_context_pointer)
  (ram,0x0001808d74a4)
  (ram,0x0001808d74b1)
 
+/**
+ * 函数: set_utility_thread_priority
+ * 功能: 设置线程优先级
+ * 参数: utility_context_pointer - 上下文指针
+ * 返回值: 设置结果
+ */
 void * set_utility_thread_priority(long long utility_context_pointer)
 
 {
   long long context_handle;
-  uint utility_result_ptr;
-  uint utility_result_ptr;
-  void * utility_result_ptr;
+  uint utility_result_code;
+  uint utility_result_value;
+  void * utility_result_pointer;
   void **utility_ptr_var;
   int utility_result_int;
   float utility_float_var;
-  void * autility_result_ptr [16];
-  long long utility_utility_stack_long_variable_8;
+  void * utility_result_array [16];
+  long long utility_stack_long_variable_8;
   
-  utility_result_ptr = system_call_function(*(void **)(utility_context_pointer + 0x1c),&utility_utility_stack_long_variable_8);
-  if ((int)utility_result_ptr != 0) {
-    return utility_result_ptr;
+  utility_result_code = system_call_function(*(void **)(utility_context_pointer + 0x1c),&utility_stack_long_variable_8);
+  if ((int)utility_result_code != 0) {
+    return utility_result_code;
   }
-  context_handle = *(long long *)(utility_utility_stack_long_variable_8 + 8);
+  context_handle = *(long long *)(utility_stack_long_variable_8 + 8);
   if (context_handle != 0) {
     utility_float_var = *(float *)(utility_context_pointer + UTILITY_THREAD_TLS_DATA_OFFSET);
     for (utility_ptr_var = *(void ***)(context_handle + 0x48);
         (*(void ***)(context_handle + 0x48) <= utility_ptr_var &&
         (utility_ptr_var < *(void ***)(context_handle + 0x48) + *(int *)(context_handle + 0x50))); utility_ptr_var = utility_ptr_var + 1) {
-      utility_result_ptr = utility_data_serialize(*utility_ptr_var,utility_float_var,0);
-      if ((int)utility_result_ptr != 0) {
-        return utility_result_ptr;
+      utility_result_value = utility_data_serialize(*utility_ptr_var,utility_float_var,0);
+      if ((int)utility_result_value != 0) {
+        return utility_result_value;
       }
     }
     if ((*(char *)(context_handle + 0x34) == '\0') ||
        ((*(uint *)(*(long long *)(context_handle + UTILITY_THREAD_TLS_CONTEXT_OFFSET) + 0x34) >> 1 & 1) == 0)) {
-      utility_result_ptr = *(uint *)(*(long long *)(context_handle + UTILITY_THREAD_TLS_CONTEXT_OFFSET) + 0x34);
-      utility_result_ptr = utility_result_ptr >> 4;
-      if ((utility_result_ptr & 1) == 0) {
+      utility_result_value = *(uint *)(*(long long *)(context_handle + UTILITY_THREAD_TLS_CONTEXT_OFFSET) + 0x34);
+      utility_result_value = utility_result_value >> 4;
+      if ((utility_result_value & 1) == 0) {
         if ((((utility_result_ptr >> 3 & 1) != 0) && (utility_result_int = (int)utility_float_var, utility_result_int != -0x80000000)) &&
            ((float)utility_result_int != utility_float_var)) {
           autility_result_ptr._4_4_ = utility_float_var;
