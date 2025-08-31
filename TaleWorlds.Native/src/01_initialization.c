@@ -22450,7 +22450,7 @@ void system_monitor_tuning_effects(longlong system_context_parameter)
   uint64_t *node_pointer;
   longlong system_audio_long_value;
   void **system_manager_ptr;
-  uint32_t asystem_context_id_c1 [0x040];
+  uint32_t system_cache_data_buffer [0x040];
   uint32_t system_context_id_a1;
   uint32_t system_context_id_a0;
   void **system_buffer_pointer;
@@ -22463,7 +22463,7 @@ void system_monitor_tuning_effects(longlong system_context_parameter)
   ulonglong system_context_id;
   
   asystem_stack_long_int_0x030[1] = SYSTEM_INVALID_HANDLE_VALUE;
-  system_context_id = _system_data_memory_pool0bf00a1 ^ (ulonglong)asystem_context_id_c1;
+  system_context_id = _system_data_memory_pool0bf00a1 ^ (ulonglong)system_cache_data_buffer;
   system_audio_buffer_pointer = system_timer_base_memory_pool;
   if (system_timer_base_memory_pool == 0) {
     QueryPerformanceCounter(&system_stack_long_int_0x03001);
@@ -22480,7 +22480,7 @@ void system_monitor_tuning_effects(longlong system_context_parameter)
     do {
       if (*(int *)(system_context_parameter + 0x04c) == 0) {
                     // WARNING: Subroutine does not return
-        system_calculate_checksum(system_context_id ^ (ulonglong)asystem_context_id_c1);
+        system_calculate_checksum(system_context_id ^ (ulonglong)system_cache_data_buffer);
       }
       Sleep(10);
       system_audio_buffer_pointer = system_timer_base_memory_pool;
