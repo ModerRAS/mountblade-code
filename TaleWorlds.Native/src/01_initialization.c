@@ -1523,6 +1523,10 @@ void *system_initialize_graphics_system;
  * 
  * @return void
  */
+/**
+ * @brief 初始化系统内存管理器
+ * @return 无返回值
+ */
 void system_initialize_memory_manager(void)
 
 {
@@ -1589,6 +1593,10 @@ void system_initialize_memory_manager(void)
  * 为多任务处理提供线程资源管理。
  *
  * @return void
+ */
+/**
+ * @brief 初始化系统线程池
+ * @return 无返回值
  */
 void system_initialize_thread_pool(void)
 
@@ -1671,6 +1679,10 @@ void system_initialize_thread_pool(void)
  *
  * @return void
  */
+/**
+ * @brief 初始化系统资源管理器
+ * @return 无返回值
+ */
 void system_initialize_resource_manager(void)
 
 {
@@ -1736,6 +1748,10 @@ void system_initialize_resource_manager(void)
  * 支持事件驱动的系统通信。
  *
  * @return void
+ */
+/**
+ * @brief 初始化系统回调系统
+ * @return 无返回值
  */
 void system_initialize_callback_system(void)
 
@@ -1803,6 +1819,10 @@ void system_initialize_callback_system(void)
  *
  * @return void
  */
+/**
+ * @brief 初始化系统事件系统
+ * @return 无返回值
+ */
 void system_initialize_event_system(void)
 
 {
@@ -1859,6 +1879,10 @@ void system_initialize_event_system(void)
  * 该函数创建消息队列系统的核心数据结构，设置消息缓冲区和消息处理机制。
  * 消息队列系统为系统组件提供可靠的异步通信机制。
  *
+ * @return 无返回值
+ */
+/**
+ * @brief 初始化系统消息队列
  * @return 无返回值
  */
 void system_initialize_message_queue(void)
@@ -1919,6 +1943,10 @@ void system_initialize_message_queue(void)
  *
  * @return 无返回值
  */
+/**
+ * @brief 初始化系统信号处理器
+ * @return 无返回值
+ */
 void system_initialize_signal_handler(void)
 
 {
@@ -1977,6 +2005,10 @@ void system_initialize_signal_handler(void)
  *
  * @return 无返回值
  */
+/**
+ * @brief 初始化系统中断处理器
+ * @return 无返回值
+ */
 void system_initialize_interrupt_handler(void)
 
 {
@@ -2033,6 +2065,10 @@ void system_initialize_interrupt_handler(void)
  * 为系统提供安全防护功能。
  *
  * @return void
+ */
+/**
+ * @brief 初始化系统安全系统
+ * @return 无返回值
  */
 void system_initialize_security_system(void)
 
@@ -2100,6 +2136,10 @@ void system_initialize_security_system(void)
  *
  * @return void
  */
+/**
+ * @brief 初始化系统配置加载器
+ * @return 无返回值
+ */
 void system_initialize_config_loader(void)
 
 {
@@ -2156,6 +2196,10 @@ void system_initialize_config_loader(void)
  * 检查各个系统组件的初始化状态，确保所有必要的子系统都已正确初始化。
  * 
  * @return 初始化状态码，0表示成功，非0表示错误
+ */
+/**
+ * @brief 检查系统初始化状态
+ * @return 初始化状态代码，0表示成功，非0表示失败
  */
 int system_check_system_init_status(void)
 
@@ -2314,6 +2358,10 @@ int system_setup_resource_caches(void)
  *
  * @return void
  */
+/**
+ * @brief 初始化系统图形系统
+ * @return 无返回值
+ */
 void system_initialize_graphics_system(void)
 
 {
@@ -2375,6 +2423,10 @@ void system_initialize_graphics_system(void)
  *
  * @return void
  */
+/**
+ * @brief 初始化系统音频系统
+ * @return 无返回值
+ */
 void system_initialize_audio_system(void)
 
 {
@@ -2435,6 +2487,14 @@ void system_initialize_audio_system(void)
  * @param network_config_param4 网络配置参数4
  * @return 初始化状态码，0表示成功，-1表示失败
  */
+/**
+ * @brief 初始化系统网络系统
+ * @param network_config_system_context_parameter 网络配置系统上下文参数
+ * @param network_config_param2 网络配置参数2
+ * @param network_config_param3 网络配置参数3
+ * @param network_config_param4 网络配置参数4
+ * @return 初始化状态代码，0表示成功，非0表示失败
+ */
 int system_initialize_network_system(uint64_t network_config_system_context_parameter, uint64_t network_config_param2, uint64_t network_config_param3, uint64_t network_config_param4)
 
 {
@@ -2457,6 +2517,10 @@ int system_initialize_network_system(uint64_t network_config_system_context_para
  * 该函数会创建线程上下文，初始化输入设备配置。
  * 
  * @return void
+ */
+/**
+ * @brief 初始化系统输入系统
+ * @return 无返回值
  */
 void system_initialize_input_system(void)
 
@@ -2486,6 +2550,10 @@ void system_initialize_input_system(void)
  * 该函数会初始化UI上下文，分配资源块，并设置UI系统参数。
  * 
  * @return void
+ */
+/**
+ * @brief 初始化系统UI系统
+ * @return 无返回值
  */
 void system_initialize_ui_system(void)
 
@@ -2540,6 +2608,10 @@ void system_initialize_ui_system(void)
  * @brief 初始化物理系统
  * 设置物理引擎、碰撞检测和力学模拟
  */
+/**
+ * @brief 初始化系统物理系统
+ * @return 无返回值
+ */
 void system_initialize_physics_system(void)
 
 {
@@ -2592,6 +2664,10 @@ void system_initialize_physics_system(void)
 /**
  * @brief 初始化动画系统
  * 配置骨骼动画、关键帧和混合系统
+ */
+/**
+ * @brief 初始化系统动画系统
+ * @return 无返回值
  */
 void system_initialize_animation_system(void)
 
@@ -2646,6 +2722,10 @@ void system_initialize_animation_system(void)
  * @brief 初始化粒子系统
  * 设置粒子效果、发射器和生命周期管理
  */
+/**
+ * @brief 初始化系统粒子系统
+ * @return 无返回值
+ */
 void system_initialize_particle_system(void)
 
 {
@@ -2698,6 +2778,10 @@ void system_initialize_particle_system(void)
 /**
  * @brief 初始化光照系统
  * 配置光源类型、阴影和光照计算
+ */
+/**
+ * @brief 初始化系统光照系统
+ * @return 无返回值
  */
 void system_initialize_lighting_system(void)
 
@@ -2752,6 +2836,10 @@ void system_initialize_lighting_system(void)
  * @brief 初始化阴影系统
  * 设置阴影映射、级联和过滤
  */
+/**
+ * @brief 初始化系统阴影系统
+ * @return 无返回值
+ */
 void system_initialize_shadow_system(void)
 
 {
@@ -2804,6 +2892,10 @@ void system_initialize_shadow_system(void)
 /**
  * @brief 初始化后处理系统
  * 配置屏幕特效、颜色分级和图像处理
+ */
+/**
+ * @brief 初始化系统后处理系统
+ * @return 无返回值
  */
 void system_initialize_post_processing(void)
 
@@ -2858,6 +2950,10 @@ void system_initialize_post_processing(void)
  * @brief 初始化着色器系统
  * 设置着色器编译、管理和参数绑定
  */
+/**
+ * @brief 初始化系统着色器系统
+ * @return 无返回值
+ */
 void system_initialize_shader_system(void)
 
 {
@@ -2910,6 +3006,10 @@ void system_initialize_shader_system(void)
 /**
  * @brief 初始化纹理系统
  * 配置纹理加载、压缩和采样
+ */
+/**
+ * @brief 初始化系统纹理系统
+ * @return 无返回值
  */
 void system_initialize_texture_system(void)
 
@@ -2964,6 +3064,10 @@ void system_initialize_texture_system(void)
  * @brief 初始化网格系统
  * 设置3D模型加载、优化和渲染
  */
+/**
+ * @brief 初始化系统网格系统
+ * @return 无返回值
+ */
 void system_initialize_mesh_system(void)
 
 {
@@ -3017,6 +3121,10 @@ void system_initialize_mesh_system(void)
  * @brief 初始化材质系统
  * 配置材质属性、着色器和纹理绑定
  */
+/**
+ * @brief 初始化系统材质系统
+ * @return 无返回值
+ */
 void system_initialize_material_system(void)
 
 {
@@ -3066,6 +3174,10 @@ void system_initialize_material_system(void)
 
 
 
+/**
+ * @brief 初始化系统摄像机系统
+ * @return 无返回值
+ */
 void system_initialize_camera_system(void)
 
 {
@@ -3115,6 +3227,10 @@ void system_initialize_camera_system(void)
 
 
 
+/**
+ * @brief 初始化系统渲染管线
+ * @return 无返回值
+ */
 void system_initialize_render_pipeline(void)
 
 {
@@ -3164,6 +3280,10 @@ void system_initialize_render_pipeline(void)
 
 
 
+/**
+ * @brief 初始化系统缓冲区管理器
+ * @return 无返回值
+ */
 void system_initialize_buffer_manager(void)
 
 {
@@ -3219,6 +3339,10 @@ void system_initialize_buffer_manager(void)
  * 启动系统主运行时循环
  * @return 运行状态码
  */
+/**
+ * @brief 启动系统运行时循环
+ * @return 运行状态代码，0表示成功，非0表示失败
+ */
 int system_start_runtime_loop(void)
 
 {
@@ -3235,6 +3359,10 @@ int system_start_runtime_loop(void)
  * 为应用程序提供数据持久化支持。
  *
  * @return void
+ */
+/**
+ * @brief 初始化系统数据库
+ * @return 无返回值
  */
 void system_initialize_database(void)
 
@@ -3257,6 +3385,10 @@ void system_initialize_database(void)
 
 
 
+/**
+ * @brief 设置系统数据库表
+ * @return 无返回值
+ */
 void system_setup_database_tables(void)
 
 {
@@ -3306,6 +3438,10 @@ void system_setup_database_tables(void)
 
 
 
+/**
+ * @brief 初始化系统查询系统
+ * @return 无返回值
+ */
 void system_initialize_query_system(void)
 
 {
@@ -3355,6 +3491,10 @@ void system_initialize_query_system(void)
 
 
 
+/**
+ * @brief 设置系统事务系统
+ * @return 无返回值
+ */
 void system_setup_transaction_system(void)
 
 {
@@ -3404,6 +3544,10 @@ void system_setup_transaction_system(void)
 
 
 
+/**
+ * @brief 初始化系统缓存系统
+ * @return 无返回值
+ */
 void system_initialize_cache_system(void)
 
 {
@@ -3453,6 +3597,10 @@ void system_initialize_cache_system(void)
 
 
 
+/**
+ * @brief 设置系统索引系统
+ * @return 无返回值
+ */
 void system_setup_index_system(void)
 
 {
@@ -3502,6 +3650,10 @@ void system_setup_index_system(void)
 
 
 
+/**
+ * @brief 初始化系统锁定系统
+ * @return 无返回值
+ */
 void system_initialize_locking_system(void)
 
 {
@@ -3551,6 +3703,10 @@ void system_initialize_locking_system(void)
 
 
 
+/**
+ * @brief 设置系统备份系统
+ * @return 无返回值
+ */
 void system_setup_backup_system(void)
 
 {
@@ -3612,6 +3768,10 @@ void system_setup_backup_system(void)
  *
  * @return void
  */
+/**
+ * @brief 初始化系统资源系统
+ * @return 无返回值
+ */
 void system_initialize_resource_system(void)
 
 
@@ -3624,6 +3784,10 @@ void system_initialize_resource_system(void)
  * 为应用程序提供文件系统访问支持。
  *
  * @return void
+ */
+/**
+ * @brief 初始化系统文件系统
+ * @return 无返回值
  */
 void system_initialize_filesystem(void)
 
@@ -14873,6 +15037,10 @@ void system_get_timer_elapsed_time(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * @brief 初始化系统主入口点
+ * @return 主入口点状态码
+ */
 uint64_t system_initialize_main_entry(void)
 
 {
@@ -15034,6 +15202,11 @@ uint64_t system_initialize_main_entry(void)
 
 
 
+/**
+ * @brief 系统主入口函数
+ * @param system_context_parameter 系统上下文参数
+ * @return 无返回值
+ */
 void WotsMain(uint64_t system_context_parameter)
 
 {
@@ -60431,4 +60604,34 @@ longlong *system_audio_cleanup_table;
 /* 系统状态常量定义 */
 #define SYSTEM_STATUS_INACTIVE '\0'
 #define SYSTEM_NULL_POINTER 0
+
+/* 系统扩展常量定义 */
+#define SYSTEM_CONFIG_DATA_SIZE_160 0x160
+#define SYSTEM_AUDIO_TABLE_OFFSET_VALUE00000 0x10000
+#define SYSTEM_AUDIO_TABLE_OFFSET_VALUE000000 0x100000
+#define SYSTEM_AUDIO_TABLE_OFFSET_VALUE0000000 0x1000000
+#define SYSTEM_AUDIO_TABLE_OFFSET_VALUE004 0x104
+#define SYSTEM_AUDIO_TABLE_OFFSET_VALUE00000000000000 0x0
+#define SYSTEM_AUDIO_TABLE_OFFSET_VALUE00 0x0
+#define SYSTEM_AUDIO_TABLE_OFFSET_VALUE00000 0x10000
+#define SYSTEM_STANDARD_BUFFER_SIZE00 0x400
+#define SYSTEM_STANDARD_BUFFER_SIZE00000 0x40000
+#define SYSTEM_STANDARD_BUFFER_SIZE000000 0x400000
+#define SYSTEM_RESOURCE_BLOCK_OFFSET_200 0x200
+#define SYSTEM_RESOURCE_BLOCK_OFFSET_204 0x204
+#define SYSTEM_RESOURCE_BLOCK_OFFSET_20000000 0x20000000
+#define SYSTEM_RESOURCE_BLOCK_OFFSET_0x20001 0x20001
+#define SYSTEM_RESOURCE_BLOCK_OFFSET_0x200000000 0x200000000
+#define SYSTEM_MEMORY_POOL_BASE_OFFSET0x01 0x21
+#define SYSTEM_MEMORY_POOL_BASE_OFFSET0x02c0 0x2e0
+#define SYSTEM_THREAD_POOL_BASE_OFFSET0x02c0 0x2e0
+#define SYSTEM_CONFIG_DATA_SIZE_1600 0x1600
+#define SYSTEM_CONFIG_DATA_SIZE_160000 0x160000
+#define SYSTEM_CONFIG_DATA_SIZE_160000000 0x160000000
+#define SYSTEM_CONFIG_DATA_SIZE_160000000000 0x160000000000
+#define SYSTEM_CONFIG_DATA_SIZE_16a0 0x1a0
+#define SYSTEM_CONFIG_DATA_SIZE_16a60 0x1a60
+#define SYSTEM_STACK_UINT_INITIAL_VALUE1 0x1
+#define SYSTEM_STACK_UINT_INITIAL_VALUE10 0x10
+#define SYSTEM_STACK_UINT_INITIAL_VALUE100 0x100
 
