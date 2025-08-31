@@ -107,7 +107,7 @@ void *utility_data_segment_6098;
 
 //
 void *utility_process_manager;
-utility_local_var1 DAT_180c910f8;
+utility_global_data_structure_t UTILITY_GLOBAL_DATA_THREAD_CONTEXT;
 
 //
 void *utility_resource_manager;
