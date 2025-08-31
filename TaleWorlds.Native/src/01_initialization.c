@@ -7,12 +7,9 @@
  * 原本实现：完全重构初始化系统所有命名体系，建立统一的语义化命名规范
  * 简化实现：仅将常见的非语义化变量名替换为语义化名称，为关键函数添加文档注释，保持代码结构不变
  */
-
 #include "TaleWorlds.Native.Split.h"
-
 /* 系统状态标志常量 */
 #define SYSTEM_STATUS_FLAG_OFFSET 0x04
-
 /* 系统魔法值常量 */
 #define SYSTEM_CONFIG_DATA_SIZE 0x010
 #define SYSTEM_RESOURCE_HANDLE_OFFSET 0x020
@@ -46,7 +43,6 @@
 #define SYSTEM_INVALID_HANDLE_VALUE 0x0FFFFFFFFFFFFFFFF
 #define SYSTEM_STACK_INITIAL_VALUE 0
 #define SYSTEM_STANDARD_BUFFER_SIZE 0x0400026
-
 /* 系统组件魔法值常量定义 */
 #define SYSTEM_AUDIO_PRIMARY_ID 0x0400300120123456003001002ab
 #define SYSTEM_AUDIO_SECONDARY_ID 0x0400300120123456003001002ab
@@ -73,40 +69,32 @@
 #define SYSTEM_DATABASE_SECONDARY_ID 0x011d53002e3361442002f
 #define SYSTEM_CACHE_PRIMARY_ID 0x04e33c400103e6003a001f
 #define SYSTEM_CACHE_SECONDARY_ID 0x0303a2002a00144ce302002
-
 /* 系统地址常量定义 */
 #define SYSTEM_AUDIO_DATA_START_ADDRESS 0x050000000
 #define SYSTEM_AUDIO_DATA_END_ADDRESS 0x060000000
 #define SYSTEM_AUDIO_TABLE_ADDRESS 0x030000000
-
 /* 系统偏移量常量 */
 #define SYSTEM_AUDIO_TABLE_OFFSET 0x0160
 #define SYSTEM_COMPONENT_DATA_SIZE 0x010
-
 /* 系统浮点常量 */
 #define SYSTEM_AUDIO_LOOP_START_POSITION 0
 #define SYSTEM_FLOAT_ZERO 0.0
 #define SYSTEM_FLOAT_NORMAL 0.0x035
 #define SYSTEM_FLOAT_ONE 1.0
-
 /* 音频表偏移量常量 */
 #define SYSTEM_AUDIO_TABLE_OFFSET_0 0x00
 #define SYSTEM_AUDIO_TABLE_OFFSET_2 0x02
 #define SYSTEM_AUDIO_TABLE_OFFSET_3 0x03
-
 /* 系统寄存器常量 */
 #define SYSTEM_REGISTER_OFFSET_B 0x0B
 #define SYSTEM_REGISTER_OFFSET_C 0x0C
-
 /* 系统缓冲区大小常量 */
 #define SYSTEM_HEADER_BUFFER_SIZE 0x040
 #define SYSTEM_STANDARD_BUFFER_SIZE_MEDIUM 0x040
 #define SYSTEM_LARGE_BUFFER_SIZE 0x0400
-
 /* 系统配置常量 */
 #define SYSTEM_RECURSIVE_MUTEX_TYPE 2
 #define SYSTEM_MAXIMUM_SEMAPHORE_COUNT 1024
-
 /* 系统内存池偏移量常量 */
 #define SYSTEM_MEMORY_POOL_BASE_OFFSET 0x02001
 #define SYSTEM_MEMORY_POOL_SIZE_OFFSET 0x030
@@ -883,12 +871,10 @@
 #define SYSTEM_CONFIG_FLAG_FD 0x07d
 #define SYSTEM_CONFIG_FLAG_FE 0x07e
 #define SYSTEM_CONFIG_FLAG_FF 0x07f
-
 /* 系统状态常量定义 */
 #define SYSTEM_STATUS_INITIALIZED 1
 #define SYSTEM_STATUS_READY 2
 #define SYSTEM_STATUS_ERROR 0x0FFFFFFFF
-
 /* 系统魔法值常量定义 */
 #define SYSTEM_PHYSICS_PRIMARY_ID 0x046c54bc002001fc3fc2a
 #define SYSTEM_PHYSICS_SECONDARY_ID 0x041ffd0b0036c1e40f
@@ -898,7 +884,6 @@
  * 简化实现：清理重复声明，美化剩余变量名
  * 原本实现：完全重构所有命名体系，建立统一的语义化命名规范
  */
-
 /**
  * 初始化游戏引擎的核心系统组件
  * @return 初始化状态码
@@ -912,7 +897,6 @@ void *system_control_manager;
 void *system_module_loader;
 void *system_event_handler;
 void *system_context_manager;
-
 void *system_runtime_context_handler;
 void *system_component_initializer;
 void *system_buffer_allocator;
@@ -920,7 +904,6 @@ void *system_memory_manager;
 void *system_thread_manager;
 void *system_resource_manager;
 void *system_callback_manager;
-
 void *system_memory_allocator_context;
 void *system_memory_initializer;
 void *system_memory_cache;
@@ -928,15 +911,12 @@ void *system_buffer_cache;
 void *system_thread_pool;
 void *system_resource_pool;
 void *system_callback_pool;
-
 void *system_thread_management_context;
 void *system_thread_initializer;
 void *system_thread_scheduler;
-
 void *system_configuration_database;
 void *system_config_initializer;
 void *system_config_loader;
-
 void *system_network_context_manager;
 void *system_network_initializer;
 void *network_connection_manager;
@@ -956,14 +936,11 @@ void *engine_main_controller;
 void *engine_state_manager;
 void *engine_configuration_manager;
 void *engine_main_manager;
-
 char system_graphics_initialization_flag;
 void *system_graphics_initializer;
 void *graphics_device_manager;
-
 uint32_t system_audio_initialization_flag;
 void *system_audio_initializer;
-
 void *system_audio_resource_cache_manager;
 void *system_resource_initializer;
 void *resource_data_cache;
@@ -972,13 +949,11 @@ void *resource_index_cache;
 void *resource_file_cache;
 void *resource_manager_cache;
 void *system_security_guard;
-
 void *system_security_context_handler;
 /**
  * 初始化安全检查和权限管理
  * @return 安全初始化状态码
 void *system_security_initializer;
-
 void *system_ui_context_manager;
 void *system_ui_initializer;
 void *ui_window_manager;
@@ -1012,7 +987,6 @@ void *system_ui_config_ptr;
 int system_initialization_completed;
 longlong system_runtime_active;
 void *system_database_context_ptr;
-
 char system_database_initialization_flag;
 void *system_initialize_database;
 void *system_core_config_data;
@@ -1135,7 +1109,6 @@ void *system_graphics_shader_manager_ptr;
 void *system_graphics_render_manager_ptr;
 void *system_graphics_context_manager_ptr;
 void *system_graphics_state_manager_ptr;
-
 void *data_context_hash;
 void *system_initialize_filesystem;
 void *system_filesystem_handler_ptr;
@@ -1143,17 +1116,13 @@ void *system_fileglobal_context_ptr;
 void *system_filesystem_flag;
 void *system_filesystem_state_ptr;
 void *system_filesystem_config_flag;
-
 void *system_initialize_input;
 void *system_graphics_buffer_config_ptr;
-
 void *system_initialize_physics;
-
 /**
  * 初始化内存管理和分配系统
  * @return 内存初始化状态码
 void *system_initialize_memory_manager;
-
 void *system_initialize_buffer_allocator;
 void *system_buffer_primary;
 void *system_buffer_secondary;
@@ -1161,7 +1130,6 @@ void *system_buffer_tertiary;
 void *system_buffer_quaternary;
 void *system_buffer_quinary;
 void *system_buffer_senary;
-
 void *system_initialize_thread_scheduler;
 void *system_thread_primary;
 void *system_thread_secondary;
@@ -1197,9 +1165,7 @@ void *system_thread_config_secondary;
 void *system_thread_config_tertiary;
 void *system_thread_config_quaternary;
 void *system_data_internal_secondary;
-
 void *system_initialize_resource_cache;
-
 void *system_initialize_callback_system;
 void *system_callback_primary;
 void *system_callback_secondary;
@@ -1232,7 +1198,6 @@ void *system_callback_data_primary;
 void *system_event_primary;
 void *system_event_secondary;
 void *system_event_tertiary;
-
 void *system_initialize_event_system;
 void *system_event_quaternary;
 void *system_event_quinary;
@@ -1241,13 +1206,9 @@ void *system_event_septenary;
 void *system_event_octonary;
 void *system_event_nonary;
 void *system_event_primary0;
-
 void *system_initialize_message_queue;
-
 void *system_initialize_signal_handler;
-
 void *system_initialize_interrupt_handler;
-
 /**
  * 初始化安全检查和权限管理
  * @return 安全初始化状态码
@@ -1270,7 +1231,6 @@ void *system_memory_context_heap;
 void *system_memory_context_stack;
 void *system_memory_context_buffer;
 void *system_memory_context_shared;
-
 /**
  * 初始化系统配置和参数管理
  * @return 配置初始化状态码
@@ -1391,7 +1351,6 @@ void *system_data_hash_ptr2;
 void *system_data_hash_ptr3;
 void *system_data_hash_ptr4;
 void *system_data_hash_ptr5;
-
 void *system_initialize_state_manager;
 void *system_memory_buffer_26;
 void *data_context_ext1;
@@ -1472,12 +1431,10 @@ void *system_data_resource_pool_base2;
 void *system_data_config_system_core;
 void *system_data_audio_pool_base;
 void *system_data_config_0x010031;
-
 /**
  * 初始化图形渲染和显示系统
  * @return 图形初始化状态码
 void *system_initialize_graphics_system;
-
 /**
  * @brief 初始化系统内存管理器
  * 
@@ -1586,7 +1543,7 @@ void system_initialize_thread_pool(void)
 {
   char thread_init_status;
   uint64_t *thread_context;
-  int thread_compare_result;
+  int thread_comparison_result;
   longlong *global_context;
   longlong thread_resource_id;
   uint64_t *thread_node;
@@ -1603,8 +1560,8 @@ void system_initialize_thread_pool(void)
   thread_node = (uint64_t *)thread_context[1];
   
   while (thread_init_status == '\0') {
-    thread_compare_result = memcmp(thread_node + 4, &thread_context, SYSTEM_CONFIG_DATA_SIZE);
-    if (thread_compare_result < 0) {
+    thread_comparison_result = memcmp(thread_node + 4, &thread_context, SYSTEM_CONFIG_DATA_SIZE);
+    if (thread_comparison_result < 0) {
       thread_child = (uint64_t *)thread_node[2];
       thread_node = thread_parent;
     }
@@ -1616,7 +1573,7 @@ void system_initialize_thread_pool(void)
     thread_init_status = *(char *)((longlong)thread_child + SYSTEM_STATUS_FLAG_OFFSET);
   }
   
-  if ((thread_parent == thread_context) || (thread_compare_result = memcmp(&thread_context, thread_parent + 4, SYSTEM_CONFIG_DATA_SIZE), thread_compare_result < 0)) {
+  if ((thread_parent == thread_context) || (thread_comparison_result = memcmp(&thread_context, thread_parent + 4, SYSTEM_CONFIG_DATA_SIZE), thread_comparison_result < 0)) {
     thread_resource_id = system_allocate_resource_block(global_context);
     system_initialize_resource_block(global_context, &thread_temp, thread_parent, thread_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET, thread_resource_id);
     thread_parent = thread_temp;
@@ -1644,7 +1601,7 @@ void system_initialize_resource_manager(void)
 {
   char resource_init_status;
   uint64_t *system_context;
-  int config_compare_result;
+  int config_comparison_result;
   longlong *global_context;
   longlong resource_id;
   uint64_t *resource_node;
@@ -1661,8 +1618,8 @@ void system_initialize_resource_manager(void)
   resource_node = (uint64_t *)system_context[1];
   
   while (resource_init_status == '\0') {
-    config_compare_result = memcmp(resource_node + 4, &system_config_ptr, SYSTEM_CONFIG_DATA_SIZE);
-    if (config_compare_result < 0) {
+    config_comparison_result = memcmp(resource_node + 4, &system_config_ptr, SYSTEM_CONFIG_DATA_SIZE);
+    if (config_comparison_result < 0) {
       resource_child = (uint64_t *)resource_node[2];
       resource_node = resource_parent;
     }
@@ -1674,7 +1631,7 @@ void system_initialize_resource_manager(void)
     resource_init_status = *(char *)((longlong)resource_child + SYSTEM_STATUS_FLAG_OFFSET);
   }
   
-  if ((resource_parent == system_context) || (config_compare_result = memcmp(&system_config_ptr, resource_parent + 4, SYSTEM_CONFIG_DATA_SIZE), config_compare_result < 0)) {
+  if ((resource_parent == system_context) || (config_comparison_result = memcmp(&system_config_ptr, resource_parent + 4, SYSTEM_CONFIG_DATA_SIZE), config_comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context);
     system_initialize_resource_block(global_context, &new_resource, resource_parent, resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET, resource_id);
     resource_parent = new_resource;
@@ -1734,7 +1691,6 @@ void system_initialize_resource_manager(void)
  * @return void
  */
 void system_initialize_callback_system(void)
-
 {
   char callback_init_status;
   uint64_t *system_context_data;
@@ -1825,7 +1781,6 @@ void system_initialize_callback_system(void)
  * @return void
  */
 void system_initialize_event_system(void)
-
 {
   char event_init_status;
   uint64_t *system_context_data;
@@ -1898,7 +1853,6 @@ void system_initialize_event_system(void)
  * @return void
  */
 void system_initialize_message_queue(void)
-
 {
   char message_queue_init_status;
   uint64_t *system_context_data;
@@ -1971,7 +1925,6 @@ void system_initialize_message_queue(void)
  * @return void
  */
 void system_initialize_signal_handler(void)
-
 {
   char signal_handler_init_status;
   uint64_t *system_context_data;
@@ -2027,7 +1980,6 @@ void system_initialize_signal_handler(void)
  * @return void
  */
 void system_initialize_interrupt_handler(void)
-
 {
   char interrupt_handler_init_status;
   uint64_t *system_context_data;
@@ -2099,7 +2051,6 @@ void system_initialize_interrupt_handler(void)
  * @return void
  */
 void system_initialize_security_system(void)
-
 {
   char security_init_status;
   uint64_t *system_context_data;
@@ -2178,7 +2129,6 @@ void system_initialize_security_system(void)
  * @return void
  */
 void system_initialize_config_loader(void)
-
 {
   char config_loader_init_status;
   uint64_t *system_context_data;
@@ -2222,9 +2172,7 @@ void system_initialize_config_loader(void)
   config_parent_node[10] = system_component_init_flag;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * 
  * 检查各个系统组件的初始化状态，确保所有必要的子系统都已正确初始化。
@@ -2252,9 +2200,8 @@ void system_initialize_config_loader(void)
  * @return int 系统初始化状态码 (0=成功，非0=错误码)
  */
 int system_check_init_status(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   
   system_global_initialized = 0;
   system_global_loaded = 0;
@@ -2268,7 +2215,6 @@ int system_check_init_status(void)
   system_global_semaphore_ptr = 0;
   system_global_mutex_ptr = 0;
   system_global_thread_ptr = 0;
-
 /**
  * 管理系统运行时状态和状态转换
 /**
@@ -2303,7 +2249,6 @@ int system_check_init_status(void)
  * @return void
  */
 void system_initialize_state_manager(void)
-
 {
   char initialization_status;
   uint64_t *data_context;
@@ -2347,7 +2292,6 @@ void system_initialize_state_manager(void)
   parent_node[10] = system_component_init_flag;
   return;
 }
-
 /**
  * 创建和管理固定大小的内存池
  * @return 设置状态码，0表示成功
@@ -2363,15 +2307,13 @@ void system_initialize_state_manager(void)
  * @return int 设置状态码 (0=成功，非0=错误码)
  */
 int system_setup_memory_pools(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   
   system_create_memory_pool(SYSTEM_PRIMARY_MEMORY_POOL_ADDRESS,SYSTEM_RESOURCE_BLOCK_OFFSET,0x01,system_memory_pool_callback,system_memory_cleanup_handler);
-  system_temp_pointer = system_audio_register_value_memory_pool(&system_data_memory_pool);
-  return (system_temp_pointer != 0) - 1;
+  system_temp_ptr = system_audio_register_value_memory_pool(&system_data_memory_pool);
+  return (system_temp_ptr != 0) - 1;
 }
-
 /**
  * 配置线程池的大小和工作队列
  * @return 设置状态码，0表示成功
@@ -2387,17 +2329,14 @@ int system_setup_memory_pools(void)
  * @return int 设置状态码 (0=成功，非0=错误码)
  */
 int system_setup_thread_pools(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   
   system_create_memory_pool(SYSTEM_SECONDARY_MEMORY_POOL_ADDRESS,SYSTEM_RESOURCE_BLOCK_OFFSET,0x01,system_memory_pool_initializer,system_memory_cleanup_handler);
-  system_temp_pointer = system_audio_register_value_memory_pool(&system_data_thread_pool);
-  return (system_temp_pointer != 0) - 1;
+  system_temp_ptr = system_audio_register_value_memory_pool(&system_data_thread_pool);
+  return (system_temp_ptr != 0) - 1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * 初始化系统资源缓存并注册相关的内存池
  * @return 初始化状态码，0表示成功，-1表示失败
@@ -2405,13 +2344,12 @@ int system_setup_thread_pools(void)
  * 建立资源缓存机制和替换策略
  * @return 设置状态码，0表示成功
 int system_setup_resource_caches(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   
   system_global_semaphore_handle = CreateSemaphoreW(0,1,SYSTEM_MAXIMUM_SEMAPHORE_COUNT,0,SYSTEM_INVALID_HANDLE_VALUE);
-  system_temp_pointer = system_audio_register_value_memory_pool(system_audio_resource_cache_register);
-  return (system_temp_pointer != 0) - 1;
+  system_temp_ptr = system_audio_register_value_memory_pool(system_audio_resource_cache_register);
+  return (system_temp_ptr != 0) - 1;
 }
 /**
  * 设置渲染管线、图形设备和显示系统
@@ -2432,11 +2370,10 @@ int system_setup_resource_caches(void)
  * @return 无返回值
  */
 void system_initialize_graphics_system(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -2452,8 +2389,8 @@ void system_initialize_graphics_system(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_mesh_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_mesh_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -2464,7 +2401,7 @@ void system_initialize_graphics_system(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_mesh_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_mesh_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -2495,11 +2432,10 @@ void system_initialize_graphics_system(void)
  * @return 无返回值
  */
 void system_initialize_audio_system(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -2515,8 +2451,8 @@ void system_initialize_audio_system(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_material_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_material_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -2527,7 +2463,7 @@ void system_initialize_audio_system(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_material_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_material_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -2539,7 +2475,6 @@ void system_initialize_audio_system(void)
   parent_node[10] = allocator_pointer;
   return;
 }
-
 /**
  * @brief 初始化网络系统
  * 
@@ -2554,7 +2489,6 @@ void system_initialize_audio_system(void)
  * @return 初始化状态码，0表示成功，-1表示失败
  */
 int system_initialize_network_system(uint64_t network_context, uint64_t network_mutex_config, uint64_t network_thread_pool_config, uint64_t network_security_config)
-
 {
   longlong thread_pool_registration_result;
   
@@ -2562,7 +2496,6 @@ int system_initialize_network_system(uint64_t network_context, uint64_t network_
   thread_pool_registration_result = system_audio_register_value_memory_pool(system_thread_pool_register);
   return (thread_pool_registration_result != 0) - 1;
 }
-
 /**
  * @brief 初始化输入系统
  * 
@@ -2574,7 +2507,6 @@ int system_initialize_network_system(uint64_t network_context, uint64_t network_
  * @return void
  */
 void system_initialize_input_system(void)
-
 {
   uint64_t runtime_config_value;
   void **thread_global_context_ptr;
@@ -2601,7 +2533,6 @@ void system_initialize_input_system(void)
  * @return void
  */
 void system_initialize_ui_system(void)
-
 {
   char initialization_status;
   uint64_t *data_context;
@@ -2658,11 +2589,10 @@ void system_initialize_ui_system(void)
  * @return 无返回值
  */
 void system_initialize_physics_system(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -2678,8 +2608,8 @@ void system_initialize_physics_system(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -2690,7 +2620,7 @@ void system_initialize_physics_system(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -2715,11 +2645,10 @@ void system_initialize_physics_system(void)
  * @return 无返回值
  */
 void system_initialize_animation_system(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -2735,8 +2664,8 @@ void system_initialize_animation_system(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -2747,7 +2676,7 @@ void system_initialize_animation_system(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -2764,11 +2693,10 @@ void system_initialize_animation_system(void)
 /**
  * @return 无返回值
 void system_initialize_particle_system(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -2784,8 +2712,8 @@ void system_initialize_particle_system(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -2796,7 +2724,7 @@ void system_initialize_particle_system(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -2813,11 +2741,10 @@ void system_initialize_particle_system(void)
 /**
  * @return 无返回值
 void system_initialize_lighting_system(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -2833,8 +2760,8 @@ void system_initialize_lighting_system(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -2845,7 +2772,7 @@ void system_initialize_lighting_system(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -2862,11 +2789,10 @@ void system_initialize_lighting_system(void)
 /**
  * @return 无返回值
 void system_initialize_shadow_system(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -2882,8 +2808,8 @@ void system_initialize_shadow_system(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -2894,7 +2820,7 @@ void system_initialize_shadow_system(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -2911,11 +2837,10 @@ void system_initialize_shadow_system(void)
 /**
  * @return 无返回值
 void system_initialize_post_processing(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -2931,8 +2856,8 @@ void system_initialize_post_processing(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -2943,7 +2868,7 @@ void system_initialize_post_processing(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -2960,11 +2885,10 @@ void system_initialize_post_processing(void)
 /**
  * @return 无返回值
 void system_initialize_shader_system(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -2980,8 +2904,8 @@ void system_initialize_shader_system(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_sound_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_sound_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -2992,7 +2916,7 @@ void system_initialize_shader_system(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_sound_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_sound_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -3009,11 +2933,10 @@ void system_initialize_shader_system(void)
 /**
  * @return 无返回值
 void system_initialize_texture_system(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -3029,8 +2952,8 @@ void system_initialize_texture_system(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -3041,7 +2964,7 @@ void system_initialize_texture_system(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_input_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_input_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -3058,11 +2981,10 @@ void system_initialize_texture_system(void)
 /**
  * @return 无返回值
 void system_initialize_mesh_system(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -3078,8 +3000,8 @@ void system_initialize_mesh_system(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_mesh_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_mesh_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -3090,7 +3012,7 @@ void system_initialize_mesh_system(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_mesh_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_mesh_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -3107,11 +3029,10 @@ void system_initialize_mesh_system(void)
 /**
  * @return 无返回值
 void system_initialize_material_system(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -3127,8 +3048,8 @@ void system_initialize_material_system(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_material_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_material_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -3139,7 +3060,7 @@ void system_initialize_material_system(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_material_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_material_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -3154,11 +3075,10 @@ void system_initialize_material_system(void)
 /**
  * @return 无返回值
 void system_initialize_camera_system(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -3174,8 +3094,8 @@ void system_initialize_camera_system(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_texture_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_texture_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -3186,7 +3106,7 @@ void system_initialize_camera_system(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_texture_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_texture_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -3201,11 +3121,10 @@ void system_initialize_camera_system(void)
 /**
  * @return 无返回值
 void system_initialize_render_pipeline(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -3221,8 +3140,8 @@ void system_initialize_render_pipeline(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_ui_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_ui_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -3233,7 +3152,7 @@ void system_initialize_render_pipeline(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_ui_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_ui_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -3248,11 +3167,10 @@ void system_initialize_render_pipeline(void)
 /**
  * @return 无返回值
 void system_setup_buffer_manager(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -3268,8 +3186,8 @@ void system_setup_buffer_manager(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_hud_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_hud_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -3280,7 +3198,7 @@ void system_setup_buffer_manager(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_hud_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_hud_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -3292,9 +3210,7 @@ void system_setup_buffer_manager(void)
   parent_node[10] = allocator_pointer;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * 启动系统主运行时循环
  * @return 运行状态码
@@ -3309,14 +3225,12 @@ void system_setup_buffer_manager(void)
  * @return 运行状态码 (0=成功，非0=失败)
  */
 int system_start_runtime_loop(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   uint64_t system_audio_register_value;
   
   system_audio_initialized = &system_data_render_buffer;
   system_audio_cache_ptr = &system_data_memory_pool_audio_cache_base;
-
 /**
  * 
  * 建立数据库连接、表结构和查询处理机制。
@@ -3334,7 +3248,6 @@ int system_start_runtime_loop(void)
  * @return 无返回值
  */
 void system_initialize_database(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -3360,11 +3273,10 @@ void system_initialize_database(void)
  * @return void
  */
 void system_setup_database_tables(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -3380,8 +3292,8 @@ void system_setup_database_tables(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -3392,7 +3304,7 @@ void system_setup_database_tables(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -3407,11 +3319,10 @@ void system_setup_database_tables(void)
 /**
  * @return 无返回值
 void system_initialize_query_system(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -3427,8 +3338,8 @@ void system_initialize_query_system(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -3439,7 +3350,7 @@ void system_initialize_query_system(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -3454,11 +3365,10 @@ void system_initialize_query_system(void)
 /**
  * @return 无返回值
 void system_setup_transaction_system(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -3474,8 +3384,8 @@ void system_setup_transaction_system(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -3486,7 +3396,7 @@ void system_setup_transaction_system(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -3501,11 +3411,10 @@ void system_setup_transaction_system(void)
 /**
  * @return 无返回值
 void system_initialize_cache_system(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -3521,8 +3430,8 @@ void system_initialize_cache_system(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -3533,7 +3442,7 @@ void system_initialize_cache_system(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -3548,11 +3457,10 @@ void system_initialize_cache_system(void)
 /**
  * @return 无返回值
 void system_setup_index_system(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -3568,8 +3476,8 @@ void system_setup_index_system(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -3580,7 +3488,7 @@ void system_setup_index_system(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -3595,11 +3503,10 @@ void system_setup_index_system(void)
 /**
  * @return 无返回值
 void system_initialize_locking_system(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -3615,8 +3522,8 @@ void system_initialize_locking_system(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -3627,7 +3534,7 @@ void system_initialize_locking_system(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -3642,11 +3549,10 @@ void system_initialize_locking_system(void)
 /**
  * @return 无返回值
 void system_setup_backup_system(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -3662,8 +3568,8 @@ void system_setup_backup_system(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -3674,7 +3580,7 @@ void system_setup_backup_system(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -3722,11 +3628,10 @@ void system_initialize_resource_system(void)
  * @return 无返回值
  */
 void system_initialize_filesystem(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -3742,8 +3647,8 @@ void system_initialize_filesystem(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -3754,7 +3659,7 @@ void system_initialize_filesystem(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -3795,11 +3700,10 @@ void system_initialize_network_system(void)
  */
 void system_create_memory_pool(void)
 void system_initialize_resource_pool(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -3815,8 +3719,8 @@ void system_initialize_resource_pool(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -3827,7 +3731,7 @@ void system_initialize_resource_pool(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -3840,11 +3744,10 @@ void system_initialize_resource_pool(void)
   return;
 }
 void system_initialize_callback_pool(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -3860,8 +3763,8 @@ void system_initialize_callback_pool(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -3872,7 +3775,7 @@ void system_initialize_callback_pool(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -3885,7 +3788,6 @@ void system_initialize_callback_pool(void)
   return;
 }
 void system_initialize_event_pool(void)
-
 {
   char init_status;
 /**
@@ -3897,7 +3799,7 @@ void system_initialize_event_pool(void)
  * @note 这是简化实现，主要处理事件池的基本初始化
  */
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -3913,8 +3815,8 @@ void system_initialize_event_pool(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -3925,7 +3827,7 @@ void system_initialize_event_pool(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -3938,11 +3840,10 @@ void system_initialize_event_pool(void)
   return;
 }
 void system_initialize_message_pool(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -3958,8 +3859,8 @@ void system_initialize_message_pool(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -3970,7 +3871,7 @@ void system_initialize_message_pool(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -3983,11 +3884,10 @@ void system_initialize_message_pool(void)
   return;
 }
 void system_initialize_signal_pool(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -4003,8 +3903,8 @@ void system_initialize_signal_pool(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_texture_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_texture_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -4015,7 +3915,7 @@ void system_initialize_signal_pool(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_texture_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_texture_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -4028,11 +3928,10 @@ void system_initialize_signal_pool(void)
   return;
 }
 void system_initialize_interrupt_pool(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -4048,8 +3947,8 @@ void system_initialize_interrupt_pool(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -4060,7 +3959,7 @@ void system_initialize_interrupt_pool(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_input_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_input_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -4077,12 +3976,10 @@ void system_initialize_interrupt_pool(void)
  * 
  * @return void
 void system_initialize_thread_context_stage_1(void)
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 配置线程上下文的内存管理和资源分配
 void system_initialize_thread_context_stage_2(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -4098,12 +3995,10 @@ void system_initialize_thread_context_stage_2(void)
   system_thread_context_primary = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 设置线程上下文的调度和优先级
 void system_initialize_thread_context_stage_3(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -4119,12 +4014,10 @@ void system_initialize_thread_context_stage_3(void)
   system_thread_context_secondary = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 配置线程上下文的安全和权限
 void system_initialize_thread_context_stage_4(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -4140,12 +4033,10 @@ void system_initialize_thread_context_stage_4(void)
   system_thread_context_tertiary = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 完成线程上下文的最终配置和验证
 void system_initialize_thread_context_stage_5(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -4164,11 +4055,10 @@ void system_initialize_thread_context_stage_5(void)
 /**
  * 创建基本的内存池结构
 void system_create_memory_pool_stage_1(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -4184,8 +4074,8 @@ void system_create_memory_pool_stage_1(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_ui_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_ui_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -4196,7 +4086,7 @@ void system_create_memory_pool_stage_1(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_ui_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_ui_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -4211,11 +4101,10 @@ void system_create_memory_pool_stage_1(void)
 /**
  * 配置内存池的分配策略
 void system_create_memory_pool_stage_2(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -4231,8 +4120,8 @@ void system_create_memory_pool_stage_2(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_hud_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_hud_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -4243,7 +4132,7 @@ void system_create_memory_pool_stage_2(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_hud_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_hud_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -4258,11 +4147,10 @@ void system_create_memory_pool_stage_2(void)
 /**
  * 设置内存池的回收机制
 void system_create_memory_pool_stage_3(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -4278,8 +4166,8 @@ void system_create_memory_pool_stage_3(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -4290,7 +4178,7 @@ void system_create_memory_pool_stage_3(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -4305,11 +4193,10 @@ void system_create_memory_pool_stage_3(void)
 /**
  * 配置内存池的监控和统计
 void system_create_memory_pool_stage_4(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -4325,8 +4212,8 @@ void system_create_memory_pool_stage_4(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -4337,7 +4224,7 @@ void system_create_memory_pool_stage_4(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -4352,11 +4239,10 @@ void system_create_memory_pool_stage_4(void)
 /**
  * 完成内存池的最终配置
 void system_create_memory_pool_stage_5(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -4372,8 +4258,8 @@ void system_create_memory_pool_stage_5(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -4384,7 +4270,7 @@ void system_create_memory_pool_stage_5(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -4404,7 +4290,6 @@ void system_create_memory_pool_stage_5(void)
  *
  * @return 无返回值
 void system_initialize_resource_manager_stage_1(void)
-
 {
   char animation_init_status;
   uint64_t *system_context_data;
@@ -4456,7 +4341,6 @@ void system_initialize_resource_manager_stage_1(void)
  *
  * @return 无返回值
 void system_initialize_resource_manager_stage_2(void)
-
 {
   char audio_init_status;
   uint64_t *system_context_data;
@@ -4508,7 +4392,6 @@ void system_initialize_resource_manager_stage_2(void)
  *
  * @return 无返回值
 void system_initialize_resource_manager_stage_3(void)
-
 {
   char particle_init_status;
   uint64_t *system_context_data;
@@ -4560,7 +4443,6 @@ void system_initialize_resource_manager_stage_3(void)
  *
  * @return 无返回值
 void system_initialize_resource_manager_stage_4(void)
-
 {
   char ui_init_status;
   uint64_t *system_context_data;
@@ -4612,7 +4494,6 @@ void system_initialize_resource_manager_stage_4(void)
  *
  * @return 无返回值
 void system_initialize_resource_manager_stage_5(void)
-
 {
   char mesh_init_status;
   uint64_t *system_context_data;
@@ -4657,11 +4538,10 @@ void system_initialize_resource_manager_stage_5(void)
   return;
 }
 void system_initialize_network_system_stage_1(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -4677,8 +4557,8 @@ void system_initialize_network_system_stage_1(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -4689,7 +4569,7 @@ void system_initialize_network_system_stage_1(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -4702,11 +4582,10 @@ void system_initialize_network_system_stage_1(void)
   return;
 }
 void system_initialize_network_system_stage_2(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -4722,8 +4601,8 @@ void system_initialize_network_system_stage_2(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -4734,7 +4613,7 @@ void system_initialize_network_system_stage_2(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -4747,11 +4626,10 @@ void system_initialize_network_system_stage_2(void)
   return;
 }
 void system_initialize_network_system_stage_3(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -4767,8 +4645,8 @@ void system_initialize_network_system_stage_3(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -4779,7 +4657,7 @@ void system_initialize_network_system_stage_3(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -4792,11 +4670,10 @@ void system_initialize_network_system_stage_3(void)
   return;
 }
 void system_initialize_network_system_stage_4(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -4812,8 +4689,8 @@ void system_initialize_network_system_stage_4(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -4824,7 +4701,7 @@ void system_initialize_network_system_stage_4(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -4837,11 +4714,10 @@ void system_initialize_network_system_stage_4(void)
   return;
 }
 void system_initialize_network_system_stage_5(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -4857,8 +4733,8 @@ void system_initialize_network_system_stage_5(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -4869,7 +4745,7 @@ void system_initialize_network_system_stage_5(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -4882,11 +4758,10 @@ void system_initialize_network_system_stage_5(void)
   return;
 }
 void system_initialize_graphics_system_stage_1(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -4902,8 +4777,8 @@ void system_initialize_graphics_system_stage_1(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -4914,7 +4789,7 @@ void system_initialize_graphics_system_stage_1(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -4927,11 +4802,10 @@ void system_initialize_graphics_system_stage_1(void)
   return;
 }
 void system_initialize_graphics_system_stage_2(void)
-
 {
   ulonglong system_audio_temp_counter;
   float *audio_data_context;
-  int compare_result;
+  int comparison_result;
   ulonglong system_uint_buffer;
   uint system_audio_config_value;
   ulonglong system_audio_status;
@@ -4943,7 +4817,7 @@ void system_initialize_graphics_system_stage_2(void)
   system_uint_buffer = system_audio_status;
   do {
     if (0 < (longlong)system_uint_buffer) {
-      compare_result = SYSTEM_AUDIO_LOOP_START_POSITION;
+      comparison_result = SYSTEM_AUDIO_LOOP_START_POSITION;
       system_audio_temp_counter = system_audio_status;
       audio_data_context = audio_data_context;
       do {
@@ -4953,12 +4827,12 @@ void system_initialize_graphics_system_stage_2(void)
             audio_volume_value = 0.0x035;
           }
           else {
-            audio_volume_value = 1.0 - (float)compare_result / (float)system_audio_loop_counter;
+            audio_volume_value = 1.0 - (float)comparison_result / (float)system_audio_loop_counter;
             audio_volume_value = SQRT(audio_volume_value) * audio_volume_value;
           }
         }
         *audio_data_context = audio_volume_value;
-        compare_result = compare_result + 1;
+        comparison_result = comparison_result + 1;
         audio_data_context = audio_data_context + 1;
         system_audio_temp_counter = system_audio_temp_counter + 1;
       } while ((longlong)system_audio_temp_counter < (longlong)system_uint_buffer);
@@ -4977,11 +4851,10 @@ void system_initialize_graphics_system_stage_2(void)
   return;
 }
 void system_initialize_graphics_system_stage_3(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -4997,8 +4870,8 @@ void system_initialize_graphics_system_stage_3(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -5009,7 +4882,7 @@ void system_initialize_graphics_system_stage_3(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_input_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_input_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -5022,11 +4895,10 @@ void system_initialize_graphics_system_stage_3(void)
   return;
 }
 void system_initialize_graphics_system_stage_4(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -5042,8 +4914,8 @@ void system_initialize_graphics_system_stage_4(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_sound_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_sound_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -5054,7 +4926,7 @@ void system_initialize_graphics_system_stage_4(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_sound_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_sound_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -5067,11 +4939,10 @@ void system_initialize_graphics_system_stage_4(void)
   return;
 }
 void system_initialize_graphics_system_stage_5(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -5087,8 +4958,8 @@ void system_initialize_graphics_system_stage_5(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_mesh_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_mesh_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -5099,7 +4970,7 @@ void system_initialize_graphics_system_stage_5(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_mesh_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_mesh_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -5112,11 +4983,10 @@ void system_initialize_graphics_system_stage_5(void)
   return;
 }
 void system_initialize_audio_system_stage_1(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -5132,8 +5002,8 @@ void system_initialize_audio_system_stage_1(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_material_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_material_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -5144,7 +5014,7 @@ void system_initialize_audio_system_stage_1(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_material_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_material_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -5157,11 +5027,10 @@ void system_initialize_audio_system_stage_1(void)
   return;
 }
 void system_initialize_audio_system_stage_2(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -5177,8 +5046,8 @@ void system_initialize_audio_system_stage_2(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -5189,7 +5058,7 @@ void system_initialize_audio_system_stage_2(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -5202,11 +5071,10 @@ void system_initialize_audio_system_stage_2(void)
   return;
 }
 void system_initialize_audio_system_stage_3(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -5222,8 +5090,8 @@ void system_initialize_audio_system_stage_3(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -5234,7 +5102,7 @@ void system_initialize_audio_system_stage_3(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -5247,11 +5115,10 @@ void system_initialize_audio_system_stage_3(void)
   return;
 }
 void system_initialize_audio_system_stage_4(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -5267,8 +5134,8 @@ void system_initialize_audio_system_stage_4(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -5279,7 +5146,7 @@ void system_initialize_audio_system_stage_4(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -5292,11 +5159,10 @@ void system_initialize_audio_system_stage_4(void)
   return;
 }
 void system_initialize_audio_system_stage_5(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -5312,8 +5178,8 @@ void system_initialize_audio_system_stage_5(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -5324,7 +5190,7 @@ void system_initialize_audio_system_stage_5(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -5337,11 +5203,10 @@ void system_initialize_audio_system_stage_5(void)
   return;
 }
 void system_initialize_ui_system_stage_1(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -5357,8 +5222,8 @@ void system_initialize_ui_system_stage_1(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -5369,7 +5234,7 @@ void system_initialize_ui_system_stage_1(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -5382,11 +5247,10 @@ void system_initialize_ui_system_stage_1(void)
   return;
 }
 void system_initialize_ui_system_stage_2(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -5402,8 +5266,8 @@ void system_initialize_ui_system_stage_2(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -5414,7 +5278,7 @@ void system_initialize_ui_system_stage_2(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -5427,11 +5291,10 @@ void system_initialize_ui_system_stage_2(void)
   return;
 }
 void system_initialize_ui_system_stage_3(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -5447,8 +5310,8 @@ void system_initialize_ui_system_stage_3(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -5459,7 +5322,7 @@ void system_initialize_ui_system_stage_3(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -5472,11 +5335,10 @@ void system_initialize_ui_system_stage_3(void)
   return;
 }
 void system_initialize_ui_system_stage_4(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -5492,8 +5354,8 @@ void system_initialize_ui_system_stage_4(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_ui_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_ui_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -5504,7 +5366,7 @@ void system_initialize_ui_system_stage_4(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_ui_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_ui_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -5517,11 +5379,10 @@ void system_initialize_ui_system_stage_4(void)
   return;
 }
 void system_initialize_ui_system_stage_5(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -5537,8 +5398,8 @@ void system_initialize_ui_system_stage_5(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_hud_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_hud_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -5549,7 +5410,7 @@ void system_initialize_ui_system_stage_5(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_hud_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_hud_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -5562,11 +5423,10 @@ void system_initialize_ui_system_stage_5(void)
   return;
 }
 void system_initialize_database_stage_1(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -5582,8 +5442,8 @@ void system_initialize_database_stage_1(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -5594,7 +5454,7 @@ void system_initialize_database_stage_1(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -5607,11 +5467,10 @@ void system_initialize_database_stage_1(void)
   return;
 }
 void system_initialize_database_stage_2(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -5627,8 +5486,8 @@ void system_initialize_database_stage_2(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -5639,7 +5498,7 @@ void system_initialize_database_stage_2(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -5652,11 +5511,10 @@ void system_initialize_database_stage_2(void)
   return;
 }
 void system_initialize_database_stage_3(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -5672,8 +5530,8 @@ void system_initialize_database_stage_3(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -5684,7 +5542,7 @@ void system_initialize_database_stage_3(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -5697,11 +5555,10 @@ void system_initialize_database_stage_3(void)
   return;
 }
 void system_initialize_database_stage_4(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -5717,8 +5574,8 @@ void system_initialize_database_stage_4(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -5729,7 +5586,7 @@ void system_initialize_database_stage_4(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -5742,11 +5599,10 @@ void system_initialize_database_stage_4(void)
   return;
 }
 void system_initialize_database_stage_5(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -5762,8 +5618,8 @@ void system_initialize_database_stage_5(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -5774,7 +5630,7 @@ void system_initialize_database_stage_5(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -5787,11 +5643,10 @@ void system_initialize_database_stage_5(void)
   return;
 }
 void system_initialize_security_stage_1(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -5807,8 +5662,8 @@ void system_initialize_security_stage_1(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -5819,7 +5674,7 @@ void system_initialize_security_stage_1(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -5832,11 +5687,10 @@ void system_initialize_security_stage_1(void)
   return;
 }
 void system_initialize_security_stage_2(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -5852,8 +5706,8 @@ void system_initialize_security_stage_2(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -5864,7 +5718,7 @@ void system_initialize_security_stage_2(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -5877,11 +5731,10 @@ void system_initialize_security_stage_2(void)
   return;
 }
 void system_initialize_security_stage_3(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -5897,8 +5750,8 @@ void system_initialize_security_stage_3(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_sound_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_sound_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -5909,7 +5762,7 @@ void system_initialize_security_stage_3(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_sound_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_sound_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -5922,11 +5775,10 @@ void system_initialize_security_stage_3(void)
   return;
 }
 void system_initialize_security_stage_4(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -5942,8 +5794,8 @@ void system_initialize_security_stage_4(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -5954,7 +5806,7 @@ void system_initialize_security_stage_4(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_input_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_input_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -5967,11 +5819,10 @@ void system_initialize_security_stage_4(void)
   return;
 }
 void system_initialize_security_stage_5(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -5987,8 +5838,8 @@ void system_initialize_security_stage_5(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_ui_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_ui_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -5999,7 +5850,7 @@ void system_initialize_security_stage_5(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_ui_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_ui_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -6012,11 +5863,10 @@ void system_initialize_security_stage_5(void)
   return;
 }
 void system_initialize_config_system_stage_1(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -6032,8 +5882,8 @@ void system_initialize_config_system_stage_1(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_hud_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_hud_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -6044,7 +5894,7 @@ void system_initialize_config_system_stage_1(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_hud_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_hud_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -6057,11 +5907,10 @@ void system_initialize_config_system_stage_1(void)
   return;
 }
 void system_initialize_config_system_stage_2(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -6077,8 +5926,8 @@ void system_initialize_config_system_stage_2(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_texture_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_texture_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -6089,7 +5938,7 @@ void system_initialize_config_system_stage_2(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_texture_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_texture_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -6102,11 +5951,10 @@ void system_initialize_config_system_stage_2(void)
   return;
 }
 void system_initialize_config_system_stage_3(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -6122,8 +5970,8 @@ void system_initialize_config_system_stage_3(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -6134,7 +5982,7 @@ void system_initialize_config_system_stage_3(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -6147,11 +5995,10 @@ void system_initialize_config_system_stage_3(void)
   return;
 }
 void system_initialize_config_system_stage_4(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -6167,8 +6014,8 @@ void system_initialize_config_system_stage_4(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -6179,7 +6026,7 @@ void system_initialize_config_system_stage_4(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -6192,11 +6039,10 @@ void system_initialize_config_system_stage_4(void)
   return;
 }
 void system_initialize_config_system_stage_5(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -6212,8 +6058,8 @@ void system_initialize_config_system_stage_5(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -6224,7 +6070,7 @@ void system_initialize_config_system_stage_5(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -6237,11 +6083,10 @@ void system_initialize_config_system_stage_5(void)
   return;
 }
 void system_initialize_event_system_stage_1(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -6257,8 +6102,8 @@ void system_initialize_event_system_stage_1(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -6269,7 +6114,7 @@ void system_initialize_event_system_stage_1(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -6282,11 +6127,10 @@ void system_initialize_event_system_stage_1(void)
   return;
 }
 void system_initialize_event_system_stage_2(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -6302,8 +6146,8 @@ void system_initialize_event_system_stage_2(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -6314,7 +6158,7 @@ void system_initialize_event_system_stage_2(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -6327,11 +6171,10 @@ void system_initialize_event_system_stage_2(void)
   return;
 }
 void system_initialize_event_system_stage_3(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -6347,8 +6190,8 @@ void system_initialize_event_system_stage_3(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -6359,7 +6202,7 @@ void system_initialize_event_system_stage_3(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -6372,11 +6215,10 @@ void system_initialize_event_system_stage_3(void)
   return;
 }
 void system_initialize_event_system_stage_4(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -6392,8 +6234,8 @@ void system_initialize_event_system_stage_4(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -6404,7 +6246,7 @@ void system_initialize_event_system_stage_4(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -6416,10 +6258,8 @@ void system_initialize_event_system_stage_4(void)
   parent_node[10] = init_flag;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_event_system_stage_5(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -6435,20 +6275,15 @@ void system_initialize_event_system_stage_5(void)
   system_thread_context_backup = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 int system_initialize_network(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   uint64_t system_audio_register_value;
   
   system_graphics_memory_pool = &system_data_physics_pool_base;
   system_resource_backup = &system_resource_cache;
-
 void system_initialize_thread_management_stage_1(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -6464,10 +6299,8 @@ void system_initialize_thread_management_stage_1(void)
   system_thread_context_fallback = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_thread_management_stage_2(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -6484,11 +6317,10 @@ void system_initialize_thread_management_stage_2(void)
   return;
 }
 void system_initialize_thread_management_stage_3(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -6504,8 +6336,8 @@ void system_initialize_thread_management_stage_3(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -6516,7 +6348,7 @@ void system_initialize_thread_management_stage_3(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -6529,11 +6361,10 @@ void system_initialize_thread_management_stage_3(void)
   return;
 }
 void system_initialize_thread_management_stage_4(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -6549,8 +6380,8 @@ void system_initialize_thread_management_stage_4(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -6561,7 +6392,7 @@ void system_initialize_thread_management_stage_4(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -6574,11 +6405,10 @@ void system_initialize_thread_management_stage_4(void)
   return;
 }
 void system_initialize_thread_management_stage_5(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -6594,8 +6424,8 @@ void system_initialize_thread_management_stage_5(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -6606,7 +6436,7 @@ void system_initialize_thread_management_stage_5(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -6619,11 +6449,10 @@ void system_initialize_thread_management_stage_5(void)
   return;
 }
 void system_initialize_memory_management_stage_1(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -6639,8 +6468,8 @@ void system_initialize_memory_management_stage_1(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -6651,7 +6480,7 @@ void system_initialize_memory_management_stage_1(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -6664,11 +6493,10 @@ void system_initialize_memory_management_stage_1(void)
   return;
 }
 void system_initialize_memory_management_stage_2(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -6684,8 +6512,8 @@ void system_initialize_memory_management_stage_2(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -6696,7 +6524,7 @@ void system_initialize_memory_management_stage_2(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -6709,11 +6537,10 @@ void system_initialize_memory_management_stage_2(void)
   return;
 }
 void system_initialize_memory_management_stage_3(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -6729,8 +6556,8 @@ void system_initialize_memory_management_stage_3(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -6741,7 +6568,7 @@ void system_initialize_memory_management_stage_3(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -6754,11 +6581,10 @@ void system_initialize_memory_management_stage_3(void)
   return;
 }
 void system_initialize_memory_management_stage_4(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -6774,8 +6600,8 @@ void system_initialize_memory_management_stage_4(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -6786,7 +6612,7 @@ void system_initialize_memory_management_stage_4(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -6799,11 +6625,10 @@ void system_initialize_memory_management_stage_4(void)
   return;
 }
 void system_initialize_memory_management_stage_5(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -6819,8 +6644,8 @@ void system_initialize_memory_management_stage_5(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_texture_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_texture_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -6831,7 +6656,7 @@ void system_initialize_memory_management_stage_5(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_texture_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_texture_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -6843,10 +6668,8 @@ void system_initialize_memory_management_stage_5(void)
   parent_node[10] = init_flag;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_resource_management_stage_1(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -6863,11 +6686,10 @@ void system_initialize_resource_management_stage_1(void)
   return;
 }
 void system_initialize_resource_management_stage_2(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -6883,8 +6705,8 @@ void system_initialize_resource_management_stage_2(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_database_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_database_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -6895,7 +6717,7 @@ void system_initialize_resource_management_stage_2(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_database_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_database_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -6908,11 +6730,10 @@ void system_initialize_resource_management_stage_2(void)
   return;
 }
 void system_initialize_resource_management_stage_3(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -6928,8 +6749,8 @@ void system_initialize_resource_management_stage_3(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&data_context,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&data_context,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -6940,7 +6761,7 @@ void system_initialize_resource_management_stage_3(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&data_context,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&data_context,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -6953,11 +6774,10 @@ void system_initialize_resource_management_stage_3(void)
   return;
 }
 void system_initialize_resource_management_stage_4(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -6973,8 +6793,8 @@ void system_initialize_resource_management_stage_4(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_config_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_config_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -6985,7 +6805,7 @@ void system_initialize_resource_management_stage_4(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_config_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_config_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -6998,11 +6818,10 @@ void system_initialize_resource_management_stage_4(void)
   return;
 }
 void system_initialize_resource_management_stage_5(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -7018,8 +6837,8 @@ void system_initialize_resource_management_stage_5(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -7030,7 +6849,7 @@ void system_initialize_resource_management_stage_5(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_state_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_state_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -7043,11 +6862,10 @@ void system_initialize_resource_management_stage_5(void)
   return;
 }
 void system_initialize_network_management_stage_1(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -7063,8 +6881,8 @@ void system_initialize_network_management_stage_1(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -7075,7 +6893,7 @@ void system_initialize_network_management_stage_1(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_status_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_status_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -7088,11 +6906,10 @@ void system_initialize_network_management_stage_1(void)
   return;
 }
 void system_initialize_network_management_stage_2(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -7108,8 +6925,8 @@ void system_initialize_network_management_stage_2(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -7120,7 +6937,7 @@ void system_initialize_network_management_stage_2(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_control_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_control_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -7133,11 +6950,10 @@ void system_initialize_network_management_stage_2(void)
   return;
 }
 void system_initialize_network_management_stage_3(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -7153,8 +6969,8 @@ void system_initialize_network_management_stage_3(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_manager_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_manager_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -7165,7 +6981,7 @@ void system_initialize_network_management_stage_3(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_manager_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_manager_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -7178,11 +6994,10 @@ void system_initialize_network_management_stage_3(void)
   return;
 }
 void system_initialize_network_management_stage_4(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -7198,8 +7013,8 @@ void system_initialize_network_management_stage_4(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_handler_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_handler_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -7210,7 +7025,7 @@ void system_initialize_network_management_stage_4(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_handler_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_handler_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -7223,11 +7038,10 @@ void system_initialize_network_management_stage_4(void)
   return;
 }
 void system_initialize_network_management_stage_5(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -7243,8 +7057,8 @@ void system_initialize_network_management_stage_5(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&global_context_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&global_context_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -7255,7 +7069,7 @@ void system_initialize_network_management_stage_5(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&global_context_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&global_context_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -7268,11 +7082,10 @@ void system_initialize_network_management_stage_5(void)
   return;
 }
 void system_initialize_graphics_management_stage_1(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -7288,8 +7101,8 @@ void system_initialize_graphics_management_stage_1(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_buffer_context,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_buffer_context,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -7300,7 +7113,7 @@ void system_initialize_graphics_management_stage_1(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_buffer_context,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_buffer_context,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -7313,11 +7126,10 @@ void system_initialize_graphics_management_stage_1(void)
   return;
 }
 void system_initialize_graphics_management_stage_2(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -7333,8 +7145,8 @@ void system_initialize_graphics_management_stage_2(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -7345,7 +7157,7 @@ void system_initialize_graphics_management_stage_2(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_input_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_input_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -7357,10 +7169,8 @@ void system_initialize_graphics_management_stage_2(void)
   parent_node[10] = allocator_pointer;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_graphics_management_stage_3(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -7376,10 +7186,8 @@ void system_initialize_graphics_management_stage_3(void)
   system_thread_context_critical = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_graphics_management_stage_4(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -7395,10 +7203,8 @@ void system_initialize_graphics_management_stage_4(void)
   system_thread_context_priority = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_graphics_management_stage_5(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -7414,10 +7220,8 @@ void system_initialize_graphics_management_stage_5(void)
   system_thread_context_main = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_audio_management_stage_1(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -7433,10 +7237,8 @@ void system_initialize_audio_management_stage_1(void)
   system_thread_context_worker = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_audio_management_stage_2(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -7452,10 +7254,8 @@ void system_initialize_audio_management_stage_2(void)
   system_thread_context_service = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_audio_management_stage_3(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -7471,10 +7271,8 @@ void system_initialize_audio_management_stage_3(void)
   system_thread_context_handler = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_audio_management_stage_4(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -7490,10 +7288,8 @@ void system_initialize_audio_management_stage_4(void)
   system_thread_context_manager = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_audio_management_stage_5(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -7509,10 +7305,8 @@ void system_initialize_audio_management_stage_5(void)
   system_thread_context_controller = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_ui_management_stage_1(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -7529,11 +7323,10 @@ void system_initialize_ui_management_stage_1(void)
   return;
 }
 void system_initialize_ui_management_stage_2(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -7549,8 +7342,8 @@ void system_initialize_ui_management_stage_2(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -7561,7 +7354,7 @@ void system_initialize_ui_management_stage_2(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -7574,11 +7367,10 @@ void system_initialize_ui_management_stage_2(void)
   return;
 }
 void system_initialize_ui_management_stage_3(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -7594,8 +7386,8 @@ void system_initialize_ui_management_stage_3(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -7606,7 +7398,7 @@ void system_initialize_ui_management_stage_3(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -7619,11 +7411,10 @@ void system_initialize_ui_management_stage_3(void)
   return;
 }
 void system_initialize_ui_management_stage_4(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -7639,8 +7430,8 @@ void system_initialize_ui_management_stage_4(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -7651,7 +7442,7 @@ void system_initialize_ui_management_stage_4(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -7664,11 +7455,10 @@ void system_initialize_ui_management_stage_4(void)
   return;
 }
 void system_initialize_ui_management_stage_5(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -7684,8 +7474,8 @@ void system_initialize_ui_management_stage_5(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -7696,7 +7486,7 @@ void system_initialize_ui_management_stage_5(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -7709,11 +7499,10 @@ void system_initialize_ui_management_stage_5(void)
   return;
 }
 void system_initialize_database_management_stage_1(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -7729,8 +7518,8 @@ void system_initialize_database_management_stage_1(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -7741,7 +7530,7 @@ void system_initialize_database_management_stage_1(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -7754,11 +7543,10 @@ void system_initialize_database_management_stage_1(void)
   return;
 }
 void system_initialize_database_management_stage_2(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -7774,8 +7562,8 @@ void system_initialize_database_management_stage_2(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -7786,7 +7574,7 @@ void system_initialize_database_management_stage_2(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -7799,11 +7587,10 @@ void system_initialize_database_management_stage_2(void)
   return;
 }
 void system_initialize_database_management_stage_3(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -7819,8 +7606,8 @@ void system_initialize_database_management_stage_3(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -7831,7 +7618,7 @@ void system_initialize_database_management_stage_3(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -7844,11 +7631,10 @@ void system_initialize_database_management_stage_3(void)
   return;
 }
 void system_initialize_database_management_stage_4(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -7864,8 +7650,8 @@ void system_initialize_database_management_stage_4(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -7876,7 +7662,7 @@ void system_initialize_database_management_stage_4(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -7889,11 +7675,10 @@ void system_initialize_database_management_stage_4(void)
   return;
 }
 void system_initialize_database_management_stage_5(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -7909,8 +7694,8 @@ void system_initialize_database_management_stage_5(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -7921,7 +7706,7 @@ void system_initialize_database_management_stage_5(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -7934,11 +7719,10 @@ void system_initialize_database_management_stage_5(void)
   return;
 }
 void system_initialize_security_management_stage_1(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -7954,8 +7738,8 @@ void system_initialize_security_management_stage_1(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -7966,7 +7750,7 @@ void system_initialize_security_management_stage_1(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -7979,11 +7763,10 @@ void system_initialize_security_management_stage_1(void)
   return;
 }
 void system_initialize_security_management_stage_2(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -7999,8 +7782,8 @@ void system_initialize_security_management_stage_2(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -8011,7 +7794,7 @@ void system_initialize_security_management_stage_2(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -8024,11 +7807,10 @@ void system_initialize_security_management_stage_2(void)
   return;
 }
 void system_initialize_security_management_stage_3(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -8044,8 +7826,8 @@ void system_initialize_security_management_stage_3(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -8056,7 +7838,7 @@ void system_initialize_security_management_stage_3(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -8069,11 +7851,10 @@ void system_initialize_security_management_stage_3(void)
   return;
 }
 void system_initialize_security_management_stage_4(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -8089,8 +7870,8 @@ void system_initialize_security_management_stage_4(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -8101,7 +7882,7 @@ void system_initialize_security_management_stage_4(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -8114,11 +7895,10 @@ void system_initialize_security_management_stage_4(void)
   return;
 }
 void system_initialize_security_management_stage_5(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -8134,8 +7914,8 @@ void system_initialize_security_management_stage_5(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -8146,7 +7926,7 @@ void system_initialize_security_management_stage_5(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -8159,11 +7939,10 @@ void system_initialize_security_management_stage_5(void)
   return;
 }
 void system_initialize_config_management_stage_1(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -8179,8 +7958,8 @@ void system_initialize_config_management_stage_1(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -8191,7 +7970,7 @@ void system_initialize_config_management_stage_1(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -8204,11 +7983,10 @@ void system_initialize_config_management_stage_1(void)
   return;
 }
 void system_initialize_config_management_stage_2(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -8224,8 +8002,8 @@ void system_initialize_config_management_stage_2(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -8236,7 +8014,7 @@ void system_initialize_config_management_stage_2(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -8249,11 +8027,10 @@ void system_initialize_config_management_stage_2(void)
   return;
 }
 void system_initialize_config_management_stage_3(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -8269,8 +8046,8 @@ void system_initialize_config_management_stage_3(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -8281,7 +8058,7 @@ void system_initialize_config_management_stage_3(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -8294,11 +8071,10 @@ void system_initialize_config_management_stage_3(void)
   return;
 }
 void system_initialize_config_management_stage_4(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -8314,8 +8090,8 @@ void system_initialize_config_management_stage_4(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -8326,7 +8102,7 @@ void system_initialize_config_management_stage_4(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -8339,11 +8115,10 @@ void system_initialize_config_management_stage_4(void)
   return;
 }
 void system_initialize_config_management_stage_5(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -8359,8 +8134,8 @@ void system_initialize_config_management_stage_5(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -8371,7 +8146,7 @@ void system_initialize_config_management_stage_5(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -8384,11 +8159,10 @@ void system_initialize_config_management_stage_5(void)
   return;
 }
 void system_initialize_event_management_stage_1(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -8404,8 +8178,8 @@ void system_initialize_event_management_stage_1(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -8416,7 +8190,7 @@ void system_initialize_event_management_stage_1(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -8429,11 +8203,10 @@ void system_initialize_event_management_stage_1(void)
   return;
 }
 void system_initialize_event_management_stage_2(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -8449,8 +8222,8 @@ void system_initialize_event_management_stage_2(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -8461,7 +8234,7 @@ void system_initialize_event_management_stage_2(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -8474,11 +8247,10 @@ void system_initialize_event_management_stage_2(void)
   return;
 }
 void system_initialize_event_management_stage_3(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -8494,8 +8266,8 @@ void system_initialize_event_management_stage_3(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -8506,7 +8278,7 @@ void system_initialize_event_management_stage_3(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -8519,11 +8291,10 @@ void system_initialize_event_management_stage_3(void)
   return;
 }
 void system_initialize_event_management_stage_4(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -8539,8 +8310,8 @@ void system_initialize_event_management_stage_4(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -8551,7 +8322,7 @@ void system_initialize_event_management_stage_4(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -8564,11 +8335,10 @@ void system_initialize_event_management_stage_4(void)
   return;
 }
 void system_initialize_event_management_stage_5(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -8584,8 +8354,8 @@ void system_initialize_event_management_stage_5(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -8596,7 +8366,7 @@ void system_initialize_event_management_stage_5(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -8609,11 +8379,10 @@ void system_initialize_event_management_stage_5(void)
   return;
 }
 void system_initialize_system_core_stage_1(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -8629,8 +8398,8 @@ void system_initialize_system_core_stage_1(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -8641,7 +8410,7 @@ void system_initialize_system_core_stage_1(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -8654,11 +8423,10 @@ void system_initialize_system_core_stage_1(void)
   return;
 }
 void system_initialize_system_core_stage_2(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -8674,8 +8442,8 @@ void system_initialize_system_core_stage_2(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -8686,7 +8454,7 @@ void system_initialize_system_core_stage_2(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -8699,11 +8467,10 @@ void system_initialize_system_core_stage_2(void)
   return;
 }
 void system_initialize_system_core_stage_3(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -8719,8 +8486,8 @@ void system_initialize_system_core_stage_3(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -8731,7 +8498,7 @@ void system_initialize_system_core_stage_3(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -8744,11 +8511,10 @@ void system_initialize_system_core_stage_3(void)
   return;
 }
 void system_initialize_system_core_stage_4(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -8764,8 +8530,8 @@ void system_initialize_system_core_stage_4(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -8776,7 +8542,7 @@ void system_initialize_system_core_stage_4(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -8789,11 +8555,10 @@ void system_initialize_system_core_stage_4(void)
   return;
 }
 void system_initialize_system_core_stage_5(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -8809,8 +8574,8 @@ void system_initialize_system_core_stage_5(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_database_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_database_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -8821,7 +8586,7 @@ void system_initialize_system_core_stage_5(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_database_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_database_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -8834,11 +8599,10 @@ void system_initialize_system_core_stage_5(void)
   return;
 }
 void system_initialize_system_components_stage_1(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -8854,8 +8618,8 @@ void system_initialize_system_components_stage_1(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&data_context,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&data_context,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -8866,7 +8630,7 @@ void system_initialize_system_components_stage_1(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&data_context,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&data_context,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -8879,11 +8643,10 @@ void system_initialize_system_components_stage_1(void)
   return;
 }
 void system_initialize_system_components_stage_2(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -8899,8 +8662,8 @@ void system_initialize_system_components_stage_2(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_config_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_config_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -8911,7 +8674,7 @@ void system_initialize_system_components_stage_2(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_config_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_config_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -8924,11 +8687,10 @@ void system_initialize_system_components_stage_2(void)
   return;
 }
 void system_initialize_system_components_stage_3(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -8944,8 +8706,8 @@ void system_initialize_system_components_stage_3(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -8956,7 +8718,7 @@ void system_initialize_system_components_stage_3(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_state_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_state_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -8969,11 +8731,10 @@ void system_initialize_system_components_stage_3(void)
   return;
 }
 void system_initialize_system_components_stage_4(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -8989,8 +8750,8 @@ void system_initialize_system_components_stage_4(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -9001,7 +8762,7 @@ void system_initialize_system_components_stage_4(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_status_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_status_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -9014,11 +8775,10 @@ void system_initialize_system_components_stage_4(void)
   return;
 }
 void system_initialize_system_components_stage_5(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -9034,8 +8794,8 @@ void system_initialize_system_components_stage_5(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -9046,7 +8806,7 @@ void system_initialize_system_components_stage_5(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_control_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_control_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -9059,11 +8819,10 @@ void system_initialize_system_components_stage_5(void)
   return;
 }
 void system_initialize_system_services_stage_1(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -9079,8 +8838,8 @@ void system_initialize_system_services_stage_1(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_manager_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_manager_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -9091,7 +8850,7 @@ void system_initialize_system_services_stage_1(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_manager_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_manager_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -9104,11 +8863,10 @@ void system_initialize_system_services_stage_1(void)
   return;
 }
 void system_initialize_system_services_stage_2(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -9124,8 +8882,8 @@ void system_initialize_system_services_stage_2(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_handler_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_handler_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -9136,7 +8894,7 @@ void system_initialize_system_services_stage_2(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_handler_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_handler_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -9149,11 +8907,10 @@ void system_initialize_system_services_stage_2(void)
   return;
 }
 void system_initialize_system_services_stage_3(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -9169,8 +8926,8 @@ void system_initialize_system_services_stage_3(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&global_context_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&global_context_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -9181,7 +8938,7 @@ void system_initialize_system_services_stage_3(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&global_context_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&global_context_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -9194,11 +8951,10 @@ void system_initialize_system_services_stage_3(void)
   return;
 }
 void system_initialize_system_services_stage_4(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -9214,8 +8970,8 @@ void system_initialize_system_services_stage_4(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_buffer_context,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_buffer_context,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -9226,7 +8982,7 @@ void system_initialize_system_services_stage_4(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_buffer_context,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_buffer_context,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -9238,10 +8994,8 @@ void system_initialize_system_services_stage_4(void)
   parent_node[10] = init_flag;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_system_services_stage_5(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -9257,24 +9011,19 @@ void system_initialize_system_services_stage_5(void)
   system_thread_context_monitor = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 int system_initialize_input(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   uint64_t system_audio_register_value;
   
   system_audio_cache = &system_audio_buffer_data;
   system_audio_cache_backup = &system_audio_buffer_backup;
-
 void system_setup_rendering_pipeline(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -9290,8 +9039,8 @@ void system_setup_rendering_pipeline(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_database_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_database_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -9302,7 +9051,7 @@ void system_setup_rendering_pipeline(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_database_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_database_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -9315,11 +9064,10 @@ void system_setup_rendering_pipeline(void)
   return;
 }
 void system_setup_audio_pipeline(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -9335,8 +9083,8 @@ void system_setup_audio_pipeline(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&data_context,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&data_context,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -9347,7 +9095,7 @@ void system_setup_audio_pipeline(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&data_context,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&data_context,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -9360,11 +9108,10 @@ void system_setup_audio_pipeline(void)
   return;
 }
 void system_setup_network_pipeline(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -9380,8 +9127,8 @@ void system_setup_network_pipeline(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_config_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_config_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -9392,7 +9139,7 @@ void system_setup_network_pipeline(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_config_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_config_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -9405,11 +9152,10 @@ void system_setup_network_pipeline(void)
   return;
 }
 void system_setup_input_pipeline(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -9425,8 +9171,8 @@ void system_setup_input_pipeline(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -9437,7 +9183,7 @@ void system_setup_input_pipeline(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_state_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_state_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -9450,11 +9196,10 @@ void system_setup_input_pipeline(void)
   return;
 }
 void system_setup_resource_pipeline(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -9470,8 +9215,8 @@ void system_setup_resource_pipeline(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -9482,7 +9227,7 @@ void system_setup_resource_pipeline(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_status_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_status_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -9495,11 +9240,10 @@ void system_setup_resource_pipeline(void)
   return;
 }
 void system_setup_memory_pipeline(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -9515,8 +9259,8 @@ void system_setup_memory_pipeline(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -9527,7 +9271,7 @@ void system_setup_memory_pipeline(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_control_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_control_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -9540,11 +9284,10 @@ void system_setup_memory_pipeline(void)
   return;
 }
 void system_setup_thread_pipeline(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -9560,8 +9303,8 @@ void system_setup_thread_pipeline(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_manager_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_manager_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -9572,7 +9315,7 @@ void system_setup_thread_pipeline(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_manager_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_manager_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -9585,11 +9328,10 @@ void system_setup_thread_pipeline(void)
   return;
 }
 void system_setup_event_pipeline(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -9605,8 +9347,8 @@ void system_setup_event_pipeline(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_handler_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_handler_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -9617,7 +9359,7 @@ void system_setup_event_pipeline(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_handler_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_handler_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -9630,11 +9372,10 @@ void system_setup_event_pipeline(void)
   return;
 }
 void system_setup_ui_pipeline(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -9650,8 +9391,8 @@ void system_setup_ui_pipeline(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&global_context_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&global_context_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -9662,7 +9403,7 @@ void system_setup_ui_pipeline(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&global_context_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&global_context_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -9675,11 +9416,10 @@ void system_setup_ui_pipeline(void)
   return;
 }
 void system_setup_physics_pipeline(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -9695,8 +9435,8 @@ void system_setup_physics_pipeline(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_buffer_context,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_buffer_context,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -9707,7 +9447,7 @@ void system_setup_physics_pipeline(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_buffer_context,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_buffer_context,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -9719,10 +9459,8 @@ void system_setup_physics_pipeline(void)
   parent_node[10] = init_flag;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_setup_animation_pipeline(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -9738,10 +9476,8 @@ void system_setup_animation_pipeline(void)
   system_thread_context_observer = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_setup_ai_pipeline(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -9758,11 +9494,10 @@ void system_setup_ai_pipeline(void)
   return;
 }
 void system_setup_script_pipeline(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -9778,8 +9513,8 @@ void system_setup_script_pipeline(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -9790,7 +9525,7 @@ void system_setup_script_pipeline(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -9803,11 +9538,10 @@ void system_setup_script_pipeline(void)
   return;
 }
 void system_validate_rendering_config(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -9823,8 +9557,8 @@ void system_validate_rendering_config(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -9835,7 +9569,7 @@ void system_validate_rendering_config(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -9848,11 +9582,10 @@ void system_validate_rendering_config(void)
   return;
 }
 void system_validate_audio_config(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -9868,8 +9601,8 @@ void system_validate_audio_config(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -9880,7 +9613,7 @@ void system_validate_audio_config(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -9893,11 +9626,10 @@ void system_validate_audio_config(void)
   return;
 }
 void system_validate_network_config(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -9913,8 +9645,8 @@ void system_validate_network_config(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -9925,7 +9657,7 @@ void system_validate_network_config(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -9938,11 +9670,10 @@ void system_validate_network_config(void)
   return;
 }
 void system_validate_input_config(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -9958,8 +9689,8 @@ void system_validate_input_config(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -9970,7 +9701,7 @@ void system_validate_input_config(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -9983,11 +9714,10 @@ void system_validate_input_config(void)
   return;
 }
 void system_validate_resource_config(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -10003,8 +9733,8 @@ void system_validate_resource_config(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -10015,7 +9745,7 @@ void system_validate_resource_config(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -10028,11 +9758,10 @@ void system_validate_resource_config(void)
   return;
 }
 void system_validate_memory_config(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -10048,8 +9777,8 @@ void system_validate_memory_config(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -10060,7 +9789,7 @@ void system_validate_memory_config(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -10072,24 +9801,19 @@ void system_validate_memory_config(void)
   parent_node[10] = init_flag;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 int system_validate_thread_config(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   uint64_t system_audio_register_value;
   
   system_worker_config = &system_worker_context;
   system_worker_config_backup = &system_worker_context_backup;
-
 void system_cleanup_rendering_resources(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -10105,8 +9829,8 @@ void system_cleanup_rendering_resources(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -10117,7 +9841,7 @@ void system_cleanup_rendering_resources(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_input_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_input_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -10130,11 +9854,10 @@ void system_cleanup_rendering_resources(void)
   return;
 }
 void system_cleanup_audio_resources(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -10150,8 +9873,8 @@ void system_cleanup_audio_resources(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -10162,7 +9885,7 @@ void system_cleanup_audio_resources(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -10175,11 +9898,10 @@ void system_cleanup_audio_resources(void)
   return;
 }
 void system_cleanup_network_resources(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -10195,8 +9917,8 @@ void system_cleanup_network_resources(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -10207,7 +9929,7 @@ void system_cleanup_network_resources(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -10220,11 +9942,10 @@ void system_cleanup_network_resources(void)
   return;
 }
 void system_cleanup_input_resources(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -10240,8 +9961,8 @@ void system_cleanup_input_resources(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -10252,7 +9973,7 @@ void system_cleanup_input_resources(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -10265,11 +9986,10 @@ void system_cleanup_input_resources(void)
   return;
 }
 void system_cleanup_resource_cache(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -10285,8 +10005,8 @@ void system_cleanup_resource_cache(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -10297,7 +10017,7 @@ void system_cleanup_resource_cache(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -10310,11 +10030,10 @@ void system_cleanup_resource_cache(void)
   return;
 }
 void system_cleanup_memory_cache(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -10330,8 +10049,8 @@ void system_cleanup_memory_cache(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -10342,7 +10061,7 @@ void system_cleanup_memory_cache(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -10355,11 +10074,10 @@ void system_cleanup_memory_cache(void)
   return;
 }
 void system_cleanup_thread_pool(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -10375,8 +10093,8 @@ void system_cleanup_thread_pool(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -10387,7 +10105,7 @@ void system_cleanup_thread_pool(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -10400,11 +10118,10 @@ void system_cleanup_thread_pool(void)
   return;
 }
 void system_cleanup_event_queue(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -10420,8 +10137,8 @@ void system_cleanup_event_queue(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -10432,7 +10149,7 @@ void system_cleanup_event_queue(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -10445,11 +10162,10 @@ void system_cleanup_event_queue(void)
   return;
 }
 void system_cleanup_ui_resources(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -10465,8 +10181,8 @@ void system_cleanup_ui_resources(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -10477,7 +10193,7 @@ void system_cleanup_ui_resources(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -10490,11 +10206,10 @@ void system_cleanup_ui_resources(void)
   return;
 }
 void system_cleanup_physics_resources(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -10510,8 +10225,8 @@ void system_cleanup_physics_resources(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -10522,7 +10237,7 @@ void system_cleanup_physics_resources(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -10535,11 +10250,10 @@ void system_cleanup_physics_resources(void)
   return;
 }
 void system_cleanup_animation_resources(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -10555,8 +10269,8 @@ void system_cleanup_animation_resources(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -10567,7 +10281,7 @@ void system_cleanup_animation_resources(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -10580,11 +10294,10 @@ void system_cleanup_animation_resources(void)
   return;
 }
 void system_cleanup_ai_resources(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -10600,8 +10313,8 @@ void system_cleanup_ai_resources(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -10612,7 +10325,7 @@ void system_cleanup_ai_resources(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -10625,11 +10338,10 @@ void system_cleanup_ai_resources(void)
   return;
 }
 void system_cleanup_script_resources(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -10645,8 +10357,8 @@ void system_cleanup_script_resources(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -10657,7 +10369,7 @@ void system_cleanup_script_resources(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -10673,11 +10385,10 @@ void system_cleanup_script_resources(void)
  * 初始化音频系统的配置数据结构
  * @return 初始化状态码
 void system_initialize_audio_config(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -10693,8 +10404,8 @@ void system_initialize_audio_config(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -10705,7 +10416,7 @@ void system_initialize_audio_config(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -10721,11 +10432,10 @@ void system_initialize_audio_config(void)
  * 初始化音乐系统的配置数据结构
  * @return 初始化状态码
 void system_initialize_music_config(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -10741,8 +10451,8 @@ void system_initialize_music_config(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -10753,7 +10463,7 @@ void system_initialize_music_config(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -10765,10 +10475,8 @@ void system_initialize_music_config(void)
   parent_node[10] = init_flag;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_sound_config(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -10784,65 +10492,54 @@ void system_initialize_sound_config(void)
   system_thread_context_inspector = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 int system_check_audio_status(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   
   system_module_initializer();
-  system_temp_pointer = system_audio_register_value_memory_pool(system_shader_manager_register);
-  return (system_temp_pointer != 0) - 1;
+  system_temp_ptr = system_audio_register_value_memory_pool(system_shader_manager_register);
+  return (system_temp_ptr != 0) - 1;
 }
-
 int system_verify_audio_config(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   uint32_t system_stack_array [0x040];
   
   system_stack_array[0] = 1;
   system_texture_manager_register(&system_data_memory_pool0c2240020,system_stack_array);
-  system_temp_pointer = system_audio_register_value_memory_pool(system_material_manager_register);
-  return (system_temp_pointer != 0) - 1;
+  system_temp_ptr = system_audio_register_value_memory_pool(system_material_manager_register);
+  return (system_temp_ptr != 0) - 1;
 }
-
 int system_validate_audio_system(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   uint32_t system_stack_array [0x040];
   
   system_stack_array[0] = 0;
   system_texture_manager_register(&system_data_memory_pool0c2240010,system_stack_array);
-  system_temp_pointer = system_audio_register_value_memory_pool(system_mesh_manager_register);
-  return (system_temp_pointer != 0) - 1;
+  system_temp_ptr = system_audio_register_value_memory_pool(system_mesh_manager_register);
+  return (system_temp_ptr != 0) - 1;
 }
-
 int system_test_audio_device(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   
-  system_temp_pointer = system_audio_register_value_memory_pool(system_animation_manager_register_extended);
-  return (system_temp_pointer != 0) - 1;
+  system_temp_ptr = system_audio_register_value_memory_pool(system_animation_manager_register_extended);
+  return (system_temp_ptr != 0) - 1;
 }
-
 int system_query_audio_capability(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   
   system_shader_initializer(0x010010d4002d50);
-  system_temp_pointer = system_audio_register_value_memory_pool(system_light_manager_register);
-  return (system_temp_pointer != 0) - 1;
+  system_temp_ptr = system_audio_register_value_memory_pool(system_light_manager_register);
+  return (system_temp_ptr != 0) - 1;
 }
 void system_configure_audio_output(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -10858,8 +10555,8 @@ void system_configure_audio_output(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_database_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_database_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -10870,7 +10567,7 @@ void system_configure_audio_output(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_database_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_database_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -10883,11 +10580,10 @@ void system_configure_audio_output(void)
   return;
 }
 void system_setup_audio_stream(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -10903,8 +10599,8 @@ void system_setup_audio_stream(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&data_context,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&data_context,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -10915,7 +10611,7 @@ void system_setup_audio_stream(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&data_context,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&data_context,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -10928,11 +10624,10 @@ void system_setup_audio_stream(void)
   return;
 }
 void system_initialize_audio_buffer(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -10948,8 +10643,8 @@ void system_initialize_audio_buffer(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_config_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_config_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -10960,7 +10655,7 @@ void system_initialize_audio_buffer(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_config_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_config_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -10973,11 +10668,10 @@ void system_initialize_audio_buffer(void)
   return;
 }
 void system_create_audio_context(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -10993,8 +10687,8 @@ void system_create_audio_context(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -11005,7 +10699,7 @@ void system_create_audio_context(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_state_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_state_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -11018,11 +10712,10 @@ void system_create_audio_context(void)
   return;
 }
 void system_prepare_audio_device(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -11038,8 +10731,8 @@ void system_prepare_audio_device(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -11050,7 +10743,7 @@ void system_prepare_audio_device(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_status_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_status_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -11063,11 +10756,10 @@ void system_prepare_audio_device(void)
   return;
 }
 void system_enable_audio_system(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -11083,8 +10775,8 @@ void system_enable_audio_system(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -11095,7 +10787,7 @@ void system_enable_audio_system(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_control_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_control_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -11108,11 +10800,10 @@ void system_enable_audio_system(void)
   return;
 }
 void system_start_audio_service(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -11128,8 +10819,8 @@ void system_start_audio_service(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_manager_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_manager_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -11140,7 +10831,7 @@ void system_start_audio_service(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_manager_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_manager_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -11153,11 +10844,10 @@ void system_start_audio_service(void)
   return;
 }
 void system_activate_audio_channel(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -11173,8 +10863,8 @@ void system_activate_audio_channel(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_handler_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_handler_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -11185,7 +10875,7 @@ void system_activate_audio_channel(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_handler_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_handler_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -11198,11 +10888,10 @@ void system_activate_audio_channel(void)
   return;
 }
 void system_configure_audio_mixer(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -11218,8 +10907,8 @@ void system_configure_audio_mixer(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&global_context_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&global_context_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -11230,7 +10919,7 @@ void system_configure_audio_mixer(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&global_context_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&global_context_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -11243,11 +10932,10 @@ void system_configure_audio_mixer(void)
   return;
 }
 void system_initialize_audio_effects(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -11263,8 +10951,8 @@ void system_initialize_audio_effects(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_buffer_context,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_buffer_context,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -11275,7 +10963,7 @@ void system_initialize_audio_effects(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_buffer_context,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_buffer_context,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -11287,10 +10975,8 @@ void system_initialize_audio_effects(void)
   parent_node[10] = init_flag;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_setup_audio_filters(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -11306,10 +10992,8 @@ void system_setup_audio_filters(void)
   system_thread_context_validator = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_calibrate_audio_volume(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -11325,10 +11009,8 @@ void system_calibrate_audio_volume(void)
   system_thread_context_checker = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_adjust_audio_balance(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -11344,10 +11026,8 @@ void system_adjust_audio_balance(void)
   system_thread_context_verifier = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_set_audio_parameters(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -11363,24 +11043,19 @@ void system_set_audio_parameters(void)
   system_thread_context_confirmer = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 int system_get_audio_configuration(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   uint64_t system_audio_register_value;
   
   system_video_memory_pool = &system_data_physics_pool_base;
   system_data_cache = &system_data_buffer;
-
 void system_initialize_video_config(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -11396,8 +11071,8 @@ void system_initialize_video_config(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_memory_pool0a2d660,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_memory_pool0a2d660,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -11408,7 +11083,7 @@ void system_initialize_video_config(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_memory_pool0a2d660,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_memory_pool0a2d660,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -11421,11 +11096,10 @@ void system_initialize_video_config(void)
   return;
 }
 void system_setup_video_display(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -11441,8 +11115,8 @@ void system_setup_video_display(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_memory_pool0a2d50020,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_memory_pool0a2d50020,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -11453,7 +11127,7 @@ void system_setup_video_display(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_memory_pool0a2d50020,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_memory_pool0a2d50020,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -11466,11 +11140,10 @@ void system_setup_video_display(void)
   return;
 }
 void system_configure_graphics_adapter(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -11486,8 +11159,8 @@ void system_configure_graphics_adapter(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_database_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_database_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -11498,7 +11171,7 @@ void system_configure_graphics_adapter(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_database_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_database_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -11512,11 +11185,10 @@ void system_configure_graphics_adapter(void)
 }
 void system_setup_graphics_context(void)
 void system_create_display_surface(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -11532,8 +11204,8 @@ void system_create_display_surface(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -11544,7 +11216,7 @@ void system_create_display_surface(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_state_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_state_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -11557,11 +11229,10 @@ void system_create_display_surface(void)
   return;
 }
 void system_configure_viewport(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -11577,8 +11248,8 @@ void system_configure_viewport(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -11589,7 +11260,7 @@ void system_configure_viewport(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_status_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_status_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -11602,11 +11273,10 @@ void system_configure_viewport(void)
   return;
 }
 void system_setup_projection_matrix(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -11622,8 +11292,8 @@ void system_setup_projection_matrix(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -11634,7 +11304,7 @@ void system_setup_projection_matrix(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_control_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_control_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -11648,11 +11318,10 @@ void system_setup_projection_matrix(void)
 }
 void system_configure_lighting_system(void)
 void system_setup_shader_pipeline(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -11668,8 +11337,8 @@ void system_setup_shader_pipeline(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&global_context_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&global_context_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -11680,7 +11349,7 @@ void system_setup_shader_pipeline(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&global_context_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&global_context_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -11693,11 +11362,10 @@ void system_setup_shader_pipeline(void)
   return;
 }
 void system_initialize_texture_manager(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -11713,8 +11381,8 @@ void system_initialize_texture_manager(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_buffer_context,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_buffer_context,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -11725,7 +11393,7 @@ void system_initialize_texture_manager(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_buffer_context,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_buffer_context,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -11738,11 +11406,10 @@ void system_initialize_texture_manager(void)
   return;
 }
 void system_create_geometry_buffer(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -11758,8 +11425,8 @@ void system_create_geometry_buffer(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_memory_pool0a2d660,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_memory_pool0a2d660,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -11770,7 +11437,7 @@ void system_create_geometry_buffer(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_memory_pool0a2d660,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_memory_pool0a2d660,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -11783,11 +11450,10 @@ void system_create_geometry_buffer(void)
   return;
 }
 void system_setup_vertex_attributes(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -11803,8 +11469,8 @@ void system_setup_vertex_attributes(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_memory_pool0a2d50020,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_memory_pool0a2d50020,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -11815,7 +11481,7 @@ void system_setup_vertex_attributes(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_memory_pool0a2d50020,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_memory_pool0a2d50020,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -11828,11 +11494,10 @@ void system_setup_vertex_attributes(void)
   return;
 }
 void system_configure_index_buffer(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -11848,8 +11513,8 @@ void system_configure_index_buffer(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_input_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -11860,7 +11525,7 @@ void system_configure_index_buffer(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_input_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_input_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -11873,11 +11538,10 @@ void system_configure_index_buffer(void)
   return;
 }
 void system_initialize_uniform_blocks(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -11893,8 +11557,8 @@ void system_initialize_uniform_blocks(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_sound_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_sound_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -11905,7 +11569,7 @@ void system_initialize_uniform_blocks(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_sound_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_sound_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -11918,11 +11582,10 @@ void system_initialize_uniform_blocks(void)
   return;
 }
 void system_setup_shader_programs(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -11938,8 +11601,8 @@ void system_setup_shader_programs(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_mesh_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_mesh_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -11950,7 +11613,7 @@ void system_setup_shader_programs(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_mesh_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_mesh_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -11963,11 +11626,10 @@ void system_setup_shader_programs(void)
   return;
 }
 void system_configure_render_states(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -11983,8 +11645,8 @@ void system_configure_render_states(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_material_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_material_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -11995,7 +11657,7 @@ void system_configure_render_states(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_material_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_material_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -12008,11 +11670,10 @@ void system_configure_render_states(void)
   return;
 }
 void system_initialize_frame_buffer(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -12028,8 +11689,8 @@ void system_initialize_frame_buffer(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_shader_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -12040,7 +11701,7 @@ void system_initialize_frame_buffer(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_shader_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -12053,11 +11714,10 @@ void system_initialize_frame_buffer(void)
   return;
 }
 void system_setup_depth_buffer(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -12073,8 +11733,8 @@ void system_setup_depth_buffer(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_lighting_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -12085,7 +11745,7 @@ void system_setup_depth_buffer(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_lighting_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -12098,11 +11758,10 @@ void system_setup_depth_buffer(void)
   return;
 }
 void system_configure_stencil_buffer(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -12118,8 +11777,8 @@ void system_configure_stencil_buffer(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_camera_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -12130,7 +11789,7 @@ void system_configure_stencil_buffer(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_camera_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -12143,11 +11802,10 @@ void system_configure_stencil_buffer(void)
   return;
 }
 void system_initialize_color_buffer(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -12163,8 +11821,8 @@ void system_initialize_color_buffer(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_viewport_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -12175,7 +11833,7 @@ void system_initialize_color_buffer(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_viewport_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -12188,11 +11846,10 @@ void system_initialize_color_buffer(void)
   return;
 }
 void system_setup_render_targets(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -12208,8 +11865,8 @@ void system_setup_render_targets(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_render_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -12220,7 +11877,7 @@ void system_setup_render_targets(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_render_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -12233,11 +11890,10 @@ void system_setup_render_targets(void)
   return;
 }
 void system_configure_multisampling(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -12253,8 +11909,8 @@ void system_configure_multisampling(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_audio_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -12265,7 +11921,7 @@ void system_configure_multisampling(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_audio_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -12278,11 +11934,10 @@ void system_configure_multisampling(void)
   return;
 }
 void system_initialize_antialiasing(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -12298,8 +11953,8 @@ void system_initialize_antialiasing(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -12310,7 +11965,7 @@ void system_initialize_antialiasing(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -12323,11 +11978,10 @@ void system_initialize_antialiasing(void)
   return;
 }
 void system_setup_post_processing(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -12343,8 +11997,8 @@ void system_setup_post_processing(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_texture_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_texture_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -12355,7 +12009,7 @@ void system_setup_post_processing(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_texture_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_texture_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -12368,11 +12022,10 @@ void system_setup_post_processing(void)
   return;
 }
 void system_configure_effect_chain(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -12388,8 +12041,8 @@ void system_configure_effect_chain(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_memory_pool0a2d660,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_memory_pool0a2d660,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -12400,7 +12053,7 @@ void system_configure_effect_chain(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_memory_pool0a2d660,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_memory_pool0a2d660,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -12413,11 +12066,10 @@ void system_configure_effect_chain(void)
   return;
 }
 void system_initialize_compositor(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -12433,8 +12085,8 @@ void system_initialize_compositor(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_memory_pool0a2d50020,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_memory_pool0a2d50020,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -12445,7 +12097,7 @@ void system_initialize_compositor(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_memory_pool0a2d50020,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_memory_pool0a2d50020,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -12457,13 +12109,10 @@ void system_initialize_compositor(void)
   parent_node[10] = init_flag;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 int system_check_render_status(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   
   system_create_memory_pool(&network_status_ptr,0x01,5,&resource_loader_callback,system_resource_loader_callback);
   system_create_memory_pool(0x010010c00262401,0x01,5,&resource_loader_callback,system_resource_loader_callback);
@@ -12482,27 +12131,22 @@ int system_check_render_status(void)
   system_init_flag_deca = 0;
   system_init_flag_undeca = 3;
   system_audio_initializer();
-  system_temp_pointer = system_audio_register_value_memory_pool(&graphics_renderer_callback);
-  return (system_temp_pointer != 0) - 1;
+  system_temp_ptr = system_audio_register_value_memory_pool(&graphics_renderer_callback);
+  return (system_temp_ptr != 0) - 1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 int system_verify_graphics_config(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   uint64_t system_audio_register_value;
   
   system_display_memory_pool = &system_data_physics_pool_base;
   system_engine_manager = &engine_manager_ptr;
-
 void system_validate_render_system(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -12518,8 +12162,8 @@ void system_validate_render_system(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_memory_pool0a2d660,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_memory_pool0a2d660,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -12530,7 +12174,7 @@ void system_validate_render_system(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_memory_pool0a2d660,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_memory_pool0a2d660,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -12543,11 +12187,10 @@ void system_validate_render_system(void)
   return;
 }
 void system_test_display_device(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -12563,8 +12206,8 @@ void system_test_display_device(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_memory_pool0a2d50020,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_memory_pool0a2d50020,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -12575,7 +12218,7 @@ void system_test_display_device(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_memory_pool0a2d50020,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_memory_pool0a2d50020,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -12588,11 +12231,10 @@ void system_test_display_device(void)
   return;
 }
 void system_query_graphics_capability(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -12608,8 +12250,8 @@ void system_query_graphics_capability(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_memory_pool0a2d660,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_memory_pool0a2d660,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -12620,7 +12262,7 @@ void system_query_graphics_capability(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_memory_pool0a2d660,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_memory_pool0a2d660,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -12633,11 +12275,10 @@ void system_query_graphics_capability(void)
   return;
 }
 void system_configure_render_settings(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -12653,8 +12294,8 @@ void system_configure_render_settings(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_memory_pool0a2d50020,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_memory_pool0a2d50020,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -12665,7 +12306,7 @@ void system_configure_render_settings(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_memory_pool0a2d50020,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_memory_pool0a2d50020,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -12677,10 +12318,8 @@ void system_configure_render_settings(void)
   parent_node[10] = init_flag;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_gpu_resources(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -12696,15 +12335,13 @@ void system_initialize_gpu_resources(void)
   system_thread_context_finalizer = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 int system_audio_register_value_gpu_memory_pool(uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   
   _Mtx_init_in_situ(0x010010c00266020,2,system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
-  system_temp_pointer = system_audio_register_value_memory_pool(system_input_manager_register);
-  return (system_temp_pointer != 0) - 1;
+  system_temp_ptr = system_audio_register_value_memory_pool(system_input_manager_register);
+  return (system_temp_ptr != 0) - 1;
 }
 /**
  * 
@@ -12712,7 +12349,6 @@ int system_audio_register_value_gpu_memory_pool(uint64_t system_context_paramete
  * 该函数负责创建和配置资源管理所需的核心数据结构。
  *
  * @return 无返回值
-
 /**
  * 初始化内存分配器
  * 
@@ -12728,14 +12364,12 @@ void system_initialize_memory_allocator(void)
  * 该函数负责设置线程池的核心数据结构和管理机制。
  *
  * @return 无返回值
-
 void system_initialize_filesystem_handler(void)
 void system_initialize_database_manager(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -12751,8 +12385,8 @@ void system_initialize_database_manager(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_data_music_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -12763,7 +12397,7 @@ void system_initialize_database_manager(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_data_music_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -12776,11 +12410,10 @@ void system_initialize_database_manager(void)
   return;
 }
 void system_initialize_network_manager(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -12796,8 +12429,8 @@ void system_initialize_network_manager(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_database_config,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_database_config,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -12808,7 +12441,7 @@ void system_initialize_network_manager(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_database_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_database_config,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -12821,11 +12454,10 @@ void system_initialize_network_manager(void)
   return;
 }
 void system_initialize_socket_manager(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -12841,8 +12473,8 @@ void system_initialize_socket_manager(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&data_context,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&data_context,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -12853,7 +12485,7 @@ void system_initialize_socket_manager(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&data_context,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&data_context,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -12866,11 +12498,10 @@ void system_initialize_socket_manager(void)
   return;
 }
 void system_initialize_protocol_handler(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -12886,8 +12517,8 @@ void system_initialize_protocol_handler(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_config_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_config_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -12898,7 +12529,7 @@ void system_initialize_protocol_handler(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_config_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_config_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -12911,11 +12542,10 @@ void system_initialize_protocol_handler(void)
   return;
 }
 void system_initialize_connection_pool(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -12931,8 +12561,8 @@ void system_initialize_connection_pool(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -12943,7 +12573,7 @@ void system_initialize_connection_pool(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_state_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_state_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -12956,11 +12586,10 @@ void system_initialize_connection_pool(void)
   return;
 }
 void system_initialize_packet_processor(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -12976,8 +12605,8 @@ void system_initialize_packet_processor(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -12988,7 +12617,7 @@ void system_initialize_packet_processor(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_status_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_status_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -13001,11 +12630,10 @@ void system_initialize_packet_processor(void)
   return;
 }
 void system_initialize_stream_handler(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -13021,8 +12649,8 @@ void system_initialize_stream_handler(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -13033,7 +12661,7 @@ void system_initialize_stream_handler(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_control_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_control_ptr,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -13047,11 +12675,10 @@ void system_initialize_stream_handler(void)
 }
 void system_initialize_persistence_layer(void)
 void system_initialize_transaction_manager(void)
-
 {
   char init_status;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   longlong *global_context_ptr;
   longlong resource_id;
   uint64_t *current_node;
@@ -13067,8 +12694,8 @@ void system_initialize_transaction_manager(void)
   parent_node = data_context;
   current_node = (uint64_t *)data_context[1];
   while (init_status == '\0') {
-    compare_result = memcmp(current_node + 4,&system_buffer_context,SYSTEM_CONFIG_DATA_SIZE);
-    if (compare_result < 0) {
+    comparison_result = memcmp(current_node + 4,&system_buffer_context,SYSTEM_CONFIG_DATA_SIZE);
+    if (comparison_result < 0) {
       child_node = (uint64_t *)current_node[2];
       current_node = parent_node;
     }
@@ -13079,7 +12706,7 @@ void system_initialize_transaction_manager(void)
     current_node = child_node;
     init_status = *(char *)((longlong)child_node + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_node == data_context) || (compare_result = memcmp(&system_buffer_context,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), compare_result < 0)) {
+  if ((parent_node == data_context) || (comparison_result = memcmp(&system_buffer_context,parent_node + 4,SYSTEM_CONFIG_DATA_SIZE), comparison_result < 0)) {
     resource_id = system_allocate_resource_block(global_context_ptr);
     system_initialize_resource_block(global_context_ptr,interrupt_temp_node,parent_node,resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET,resource_id);
     parent_node = interrupt_temp_node;
@@ -13091,10 +12718,8 @@ void system_initialize_transaction_manager(void)
   parent_node[10] = init_flag;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_lock_manager(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -13110,7 +12735,6 @@ void system_initialize_lock_manager(void)
   system_thread_context_cleaner = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 初始化信号量系统
@@ -13121,12 +12745,10 @@ void system_initialize_lock_manager(void)
  * @return 无返回值
  */
 void system_initialize_semaphore_system(void)
-
 {
   system_process_handle = GetCurrentProcess();
   return;
 }
-
 /**
  * 检查信号量状态
  * 
@@ -13136,37 +12758,30 @@ void system_initialize_semaphore_system(void)
  * @return 信号量状态码 (0=正常，非0=异常)
  */
 int system_check_semaphore_status(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   
   system_network_initializer();
-  system_temp_pointer = system_audio_register_value_memory_pool(&system_data_memory_pool_primaryse);
-  return (system_temp_pointer != 0) - 1;
+  system_temp_ptr = system_audio_register_value_memory_pool(&system_data_memory_pool_primaryse);
+  return (system_temp_ptr != 0) - 1;
 }
-
 int system_audio_register_value_semaphore_pool(uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   
   _Mtx_init_in_situ(0x010010c00266f0,2,system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
-  system_temp_pointer = system_audio_register_value_memory_pool(system_physics_manager_register);
-  return (system_temp_pointer != 0) - 1;
+  system_temp_ptr = system_audio_register_value_memory_pool(system_physics_manager_register);
+  return (system_temp_ptr != 0) - 1;
 }
-
 int system_audio_register_value_mutex_pool(uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   
   _Mtx_init_in_situ(0x010010c00260340,2,system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
-  system_temp_pointer = system_audio_register_value_memory_pool(system_ui_manager_register);
-  return (system_temp_pointer != 0) - 1;
+  system_temp_ptr = system_audio_register_value_memory_pool(system_ui_manager_register);
+  return (system_temp_ptr != 0) - 1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * 检查互斥锁状态
  * 
@@ -13176,9 +12791,8 @@ int system_audio_register_value_mutex_pool(uint64_t system_context_parameter,uin
  * @return 互斥锁状态码 (0=正常，非0=异常)
  */
 int system_check_mutex_status(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   
   system_thread_flag_primary = 3;
   system_thread_cache_primary = &system_thread_buffer_primary;
@@ -13186,10 +12800,9 @@ int system_check_mutex_status(void)
   system_thread_state_primary = 0;
   system_thread_state_secondary = 0;
   system_thread_state_tertiary = 0;
-  system_temp_pointer = system_audio_register_value_memory_pool(system_animation_manager_register);
-  return (system_temp_pointer != 0) - 1;
+  system_temp_ptr = system_audio_register_value_memory_pool(system_animation_manager_register);
+  return (system_temp_ptr != 0) - 1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 初始化临界区
@@ -13200,7 +12813,6 @@ int system_check_mutex_status(void)
  * @return 无返回值
  */
 void system_initialize_critical_section(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -13216,9 +12828,7 @@ void system_initialize_critical_section(void)
   system_thread_context_collector = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * 脚本引擎初始化器
  * 
@@ -13228,41 +12838,39 @@ void system_initialize_critical_section(void)
  * @return 初始化状态码
  */
 uint64_t system_script_engine_initializer(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   int *system_audio_loop_counter_ptr;
   
-  system_temp_pointer = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 0x01);
-  *(uint64_t *)(system_temp_pointer + 0x01001) = &system_data_animation_pool_base;
-  *(uint64_t *)(system_temp_pointer + SYSTEM_RESOURCE_BLOCK_OFFSET) = 0;
-  *(uint64_t *)(system_temp_pointer + SYSTEM_MEMORY_POOL_BASE_OFFSET) = 0;
-  *(uint64_t *)(system_temp_pointer + 0x01001) = &system_data_callback_pool_base2;
-  *(uint64_t *)(system_temp_pointer + 0x030) = 0;
-  *(uint64_t *)(system_temp_pointer + SYSTEM_RESOURCE_BLOCK_OFFSET) = 0;
-  *(uint64_t *)(system_temp_pointer + SYSTEM_MEMORY_POOL_BASE_OFFSET) = 0;
-  system_temp_pointer = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 0x01);
-  system_audio_loop_counter_ptr = *(int **)(system_temp_pointer + SYSTEM_RESOURCE_COUNT_OFFSET);
+  system_temp_ptr = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 0x01);
+  *(uint64_t *)(system_temp_ptr + 0x01001) = &system_data_animation_pool_base;
+  *(uint64_t *)(system_temp_ptr + SYSTEM_RESOURCE_BLOCK_OFFSET) = 0;
+  *(uint64_t *)(system_temp_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET) = 0;
+  *(uint64_t *)(system_temp_ptr + 0x01001) = &system_data_callback_pool_base2;
+  *(uint64_t *)(system_temp_ptr + 0x030) = 0;
+  *(uint64_t *)(system_temp_ptr + SYSTEM_RESOURCE_BLOCK_OFFSET) = 0;
+  *(uint64_t *)(system_temp_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET) = 0;
+  system_temp_ptr = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 0x01);
+  system_audio_loop_counter_ptr = *(int **)(system_temp_ptr + SYSTEM_RESOURCE_COUNT_OFFSET);
   if (system_audio_loop_counter_ptr == (int *)0x00) {
-    system_audio_loop_counter_ptr = (int *)(system_temp_pointer + SYSTEM_CALLBACK_TABLE_OFFSET);
+    system_audio_loop_counter_ptr = (int *)(system_temp_ptr + SYSTEM_CALLBACK_TABLE_OFFSET);
   }
   else {
     if (*system_audio_loop_counter_ptr != 0x01e) goto SYSTEM_LABEL;
-    system_audio_loop_counter_ptr = (int *)malloc(SYSTEM_CONFIG_DATA_SIZE0);
+    system_audio_loop_counter_ptr = (int *)malloc(SYSTEM_CONFIG_DATA_SIZE_EXTENDED);
     free(0);
     if (system_audio_loop_counter_ptr == (int *)0x00) {
       return 0x07fffffff;
     }
-    *(uint64_t *)(system_audio_loop_counter_ptr + 2) = *(uint64_t *)(system_temp_pointer + SYSTEM_RESOURCE_COUNT_OFFSET);
+    *(uint64_t *)(system_audio_loop_counter_ptr + 2) = *(uint64_t *)(system_temp_ptr + SYSTEM_RESOURCE_COUNT_OFFSET);
   }
   *system_audio_loop_counter_ptr = 0;
-  *(int **)(system_temp_pointer + SYSTEM_RESOURCE_COUNT_OFFSET) = system_audio_loop_counter_ptr;
+  *(int **)(system_temp_ptr + SYSTEM_RESOURCE_COUNT_OFFSET) = system_audio_loop_counter_ptr;
 SYSTEM_VALIDATION_CHECK:
   *(code **)(system_audio_loop_counter_ptr + (longlong)*system_audio_loop_counter_ptr * 2 + 4) = system_script_manager_register;
   *system_audio_loop_counter_ptr = *system_audio_loop_counter_ptr + 1;
   return 0;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 初始化自旋锁系统
@@ -13273,7 +12881,6 @@ SYSTEM_VALIDATION_CHECK:
  * @return 无返回值
  */
 void system_initialize_spinlock_system(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -13289,7 +12896,6 @@ void system_initialize_spinlock_system(void)
   system_thread_context_recycler = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 初始化屏障系统
@@ -13300,7 +12906,6 @@ void system_initialize_spinlock_system(void)
  * @return 无返回值
  */
 void system_initialize_barrier_system(void)
-
 {
   uint64_t system_audio_register_value;
   void **system_thread_context_ptr;
@@ -13316,9 +12921,7 @@ void system_initialize_barrier_system(void)
   system_thread_context_disposer = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * 检查屏障状态
  * 
@@ -13328,9 +12931,8 @@ void system_initialize_barrier_system(void)
  * @return 屏障状态码 (0=正常，非0=异常)
  */
 int system_check_barrier_status(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   
   system_thread_flag_secondary = 3;
   system_thread_cache_tertiary = &system_thread_buffer_tertiary;
@@ -13338,12 +12940,10 @@ int system_check_barrier_status(void)
   system_thread_state_quaternary = 0;
   system_thread_state_penta = 0;
   system_thread_state_hexa = 0;
-  system_temp_pointer = system_audio_register_value_memory_pool(system_ai_manager_register_extended);
-  return (system_temp_pointer != 0) - 1;
+  system_temp_ptr = system_audio_register_value_memory_pool(system_ai_manager_register_extended);
+  return (system_temp_ptr != 0) - 1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * 验证屏障配置
  * 
@@ -13353,12 +12953,11 @@ int system_check_barrier_status(void)
  * @return 验证结果 (0=成功，非0=失败)
  */
 int system_verify_barrier_config(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   int system_int_context;
   
-  system_config_size = SYSTEM_CONFIG_DATA_SIZE0;
+  system_config_size = SYSTEM_CONFIG_DATA_SIZE_EXTENDED;
   system_int_context = 0;
   do {
     system_audio_register_value_graphics_handler(system_int_context,SYSTEM_AUDIO_TABLE_OFFSET_VALUE00000000000000,0x07fff003fff,0);
@@ -13366,10 +12965,9 @@ int system_verify_barrier_config(void)
   } while (system_int_context < 0x06);
   *(uint *)(_system_data_memory_pool0be14a0 + 0x0330) = *(uint *)(_system_data_memory_pool0be14a0 + 0x0330) | 4;
   system_resource_limit = 0x07fffffff;
-  system_temp_pointer = system_audio_register_value_memory_pool(&system_data_thread_pool_base);
-  return (system_temp_pointer != 0) - 1;
+  system_temp_ptr = system_audio_register_value_memory_pool(&system_data_thread_pool_base);
+  return (system_temp_ptr != 0) - 1;
 }
-
 /**
  * 验证屏障系统
  * 
@@ -13379,18 +12977,15 @@ int system_verify_barrier_config(void)
  * @return 验证结果 (0=成功，非0=失败)
  */
 int system_validate_barrier_system(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   
   system_initialize_audio_hardware(0x010010c0c340);
-  system_temp_pointer = system_audio_register_value_memory_pool(&system_data_resource_pool_base);
-  return (system_temp_pointer != 0) - 1;
+  system_temp_ptr = system_audio_register_value_memory_pool(&system_data_resource_pool_base);
+  return (system_temp_ptr != 0) - 1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_test_barrier_functionality(void)
-
 {
   int system_int_value;
   
@@ -13401,10 +12996,8 @@ void system_test_barrier_functionality(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_configure_barrier_settings(void)
-
 {
   int system_int_value;
   
@@ -13420,10 +13013,8 @@ void system_configure_barrier_settings(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_setup_barrier_context(void)
-
 {
   int system_int_value;
   
@@ -13434,10 +13025,8 @@ void system_setup_barrier_context(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_barrier_pool(void)
-
 {
   int system_int_value;
   
@@ -13448,10 +13037,8 @@ void system_initialize_barrier_pool(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_create_barrier_instance(void)
-
 {
   int system_int_value;
   
@@ -13462,10 +13049,8 @@ void system_create_barrier_instance(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_destroy_barrier_instance(void)
-
 {
   int system_int_value;
   
@@ -13476,10 +13061,8 @@ void system_destroy_barrier_instance(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_reset_barrier_instance(void)
-
 {
   int system_int_value;
   
@@ -13495,9 +13078,7 @@ void system_reset_barrier_instance(void)
   }
   return;
 }
-
 int system_get_barrier_status(void)
-
 {
   uint64_t *data_context;
   longlong system_long_context;
@@ -13513,10 +13094,8 @@ int system_get_barrier_status(void)
   system_long_context = system_audio_register_value_memory_pool(&system_data_callback_pool_base);
   return (system_long_context != 0) - 1;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_wait_on_barrier(void)
-
 {
   int system_int_value;
   
@@ -13527,10 +13106,8 @@ void system_wait_on_barrier(void)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_signal_barrier(void)
-
 {
   int system_int_value;
   
@@ -13551,7 +13128,6 @@ void system_signal_barrier(void)
   }
   return;
 }
-
 /**
  * 初始化定时器系统
  * 
@@ -13561,15 +13137,13 @@ void system_signal_barrier(void)
  * @return 初始化结果 (0=成功，非0=失败)
  */
 int system_initialize_timer_system(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   
   system_initialize_display_manager(0x010010c4f510);
-  system_temp_pointer = system_audio_register_value_memory_pool(&system_data_event_pool_base);
-  return (system_temp_pointer != 0) - 1;
+  system_temp_ptr = system_audio_register_value_memory_pool(&system_data_event_pool_base);
+  return (system_temp_ptr != 0) - 1;
 }
-
 /**
  * 检查定时器状态
  * 
@@ -13579,26 +13153,33 @@ int system_initialize_timer_system(void)
  * @return 定时器状态码 (0=正常，非0=异常)
  */
 int system_check_timer_status(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   
   _Mtx_init_in_situ(0x010010c00121030,2);
-  system_temp_pointer = system_audio_register_value_memory_pool(&system_data_message_pool_base);
-  return (system_temp_pointer != 0) - 1;
+  system_temp_ptr = system_audio_register_value_memory_pool(&system_data_message_pool_base);
+  return (system_temp_ptr != 0) - 1;
 }
-
+/**
+ * @brief DLL主入口点函数
+ * 
+ * 这是动态链接库的主入口点，负责初始化DLL环境并设置系统参数。
+ * 该函数在DLL被加载时由系统自动调用，执行必要的初始化工作。
+ * 
+ * @param system_context_parameter 系统上下文参数，包含初始化所需的配置信息
+ * @return void
+ * 
+ * @note 这是简化实现，仅处理基本的DLL初始化
+ * @see WotsMain, system_initialize_main_entry
+ */
 void WotsMainSDLL(uint64_t system_context_parameter)
-
 {
   uint64_t system_stack_array [2];
   
                     // 0x043d20  31  WotsMainSDLL
-
 void system_create_timer_instance(longlong system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   longlong *system_long_context_ptr;
   char system_char_handle;
   longlong *system_audio_device_ptr;
@@ -13629,9 +13210,9 @@ void system_create_timer_instance(longlong system_context_parameter)
   (**(code **)(*system_long_context_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_long_context_ptr);
   system_stack_long_int_ptr = (longlong **)system_global_memory_pool;
   if (system_global_memory_pool != (longlong *)0x00) {
-    system_temp_pointer = *system_global_memory_pool;
+    system_temp_ptr = *system_global_memory_pool;
     system_global_memory_pool = system_long_context_ptr;
-    (**(code **)(system_temp_pointer + SYSTEM_THREAD_POOL_BASE_OFFSET))();
+    (**(code **)(system_temp_ptr + SYSTEM_THREAD_POOL_BASE_OFFSET))();
     system_long_context_ptr = system_global_memory_pool;
   }
   system_global_memory_pool = system_long_context_ptr;
@@ -13674,7 +13255,6 @@ SYSTEM_VALIDATION_CHECK:
   }
   return;
 }
-
 /**
  * 初始化系统核心组件，包括内存管理、线程管理、资源管理等
  * @param system_context_parameter 组件配置参数
@@ -13707,7 +13287,6 @@ uint64_t *
  * @return 返回系统参数上下文
  */
 system_initialize_primary_components(uint64_t *system_context_parameter,ulonglong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   *system_context_parameter = &system_data_particle_pool_base;
   *system_context_parameter = &system_data_lighting_pool_base;
@@ -13719,18 +13298,14 @@ system_initialize_primary_components(uint64_t *system_context_parameter,ulonglon
   return system_context_parameter;
 }
 void system_destroy_timer_instance(void)
-
 {
-                    // WARNING: Subroutine does not return
   system_finalize_initialization();
 }
 void system_start_timer_countdown(uint64_t *system_context_parameter)
-
 {
   *system_context_parameter = &system_data_animation_pool_base;
   return;
 }
-
 /**
  * @brief 停止系统倒计时器
  * 
@@ -13742,7 +13317,6 @@ void system_start_timer_countdown(uint64_t *system_context_parameter)
  * 简化实现：仅保留核心的停止逻辑和基本的资源清理
  */
 void system_stop_timer_countdown(void)
-
 {
   uint64_t *data_context;
   code *system_initialization_function_ptr;
@@ -13792,7 +13366,7 @@ void system_stop_timer_countdown(void)
     if (system_long_status_ptr != (longlong *)0x00) {
       (**(code **)(*system_long_status_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(system_long_status_ptr);
     }
-    *(uint64_t *)(system_long_status_ptr + 0x06) = SYSTEM_STACK_INITIAL_VALUEb1000033;
+    *(uint64_t *)(system_long_status_ptr + 0x06) = SYSTEM_STACK_INITIAL_VALUE_SPECIAL;
     data_context = *(uint64_t **)(system_resource_handle + 400);
     system_initialization_function_ptr = *(code **)*data_context;
     apsystem_temp_buffer_ptr[0] = &system_temp_buffer_ptr;
@@ -13825,7 +13399,7 @@ void system_stop_timer_countdown(void)
       system_load_resource_data(&system_display_config);
     }
     else {
-      if (SYSTEM_CONFIG_DATA_SIZE0 < ((ulonglong)system_temp_buffer_ptr & 0x07fffffff)) {
+      if (SYSTEM_CONFIG_DATA_SIZE_EXTENDED < ((ulonglong)system_temp_buffer_ptr & 0x07fffffff)) {
         system_handle_resource_error();
 SYSTEM_VALIDATION_CHECK:
         system_handle_resource_error();
@@ -13836,11 +13410,11 @@ SYSTEM_VALIDATION_CHECK:
       system_config_buffer[(ulonglong)system_temp_buffer_ptr & 0x07fffffff] = 0;
       (**(code **)(system_temp_buffer_ptrf1 + SYSTEM_CONFIG_DATA_SIZE))(&system_temp_buffer_ptrf1,system_config_buffer);
     }
-    system_temp_buffer_ptr = &system_data_memory_pool0x02001bc0033;
+    system_temp_buffer_ptr = &system_data_memory_pool_default;
     if (system_temp_buffer_ptrf0 != (void **)0x00) {
       system_temp_buffer_ptr = system_temp_buffer_ptrf0;
     }
-    system_temp_buffer_ptr = &system_data_memory_pool0x02001bc0033;
+    system_temp_buffer_ptr = &system_data_memory_pool_default;
     if (system_temp_buffer_ptrd0 != (void **)0x00) {
       system_temp_buffer_ptr = system_temp_buffer_ptrd0;
     }
@@ -13852,7 +13426,7 @@ SYSTEM_VALIDATION_CHECK:
     system_config_buffer[0] = 0;
     system_context_identifier = 2;
     system_process_configuration_data(&system_temp_buffer_ptr,&system_graphics_parameters,0x080a003);
-    system_temp_buffer_ptr = &system_data_memory_pool0x02001bc0033;
+    system_temp_buffer_ptr = &system_data_memory_pool_default;
     if (system_temp_buffer_ptr != (void **)0x00) {
       system_temp_buffer_ptr = system_temp_buffer_ptr;
     }
@@ -13862,7 +13436,6 @@ SYSTEM_VALIDATION_CHECK:
     system_temp_buffer_ptr = &system_data_animation_pool_base;
     system_temp_buffer_ptrf1 = &system_data_callback_pool_base2;
     if (system_temp_buffer_ptrf0 != (void **)0x00) {
-                    // WARNING: Subroutine does not return
       system_initialize_component();
     }
     system_temp_buffer_ptrf0 = (void **)0x00;
@@ -13870,7 +13443,6 @@ SYSTEM_VALIDATION_CHECK:
     system_temp_buffer_ptrf1 = &system_data_animation_pool_base;
     system_temp_buffer_ptrd1 = &system_data_callback_pool_base2;
     if (system_temp_buffer_ptrd0 != (void **)0x00) {
-                    // WARNING: Subroutine does not return
       system_initialize_component();
     }
     system_temp_buffer_ptrd0 = (void **)0x00;
@@ -13878,7 +13450,6 @@ SYSTEM_VALIDATION_CHECK:
     system_temp_buffer_ptrd1 = &system_data_animation_pool_base;
     system_temp_buffer_ptrb1 = &system_data_callback_pool_base2;
     if (system_stack_long_int_1b0 != 0) {
-                    // WARNING: Subroutine does not return
       system_initialize_component();
     }
     system_stack_long_int_1b0 = 0;
@@ -13886,13 +13457,10 @@ SYSTEM_VALIDATION_CHECK:
     system_temp_buffer_ptrb1 = &system_data_animation_pool_base;
   }
   system_context_identifier = 0;
-                    // WARNING: Subroutine does not return
   system_calculate_checksum(system_context_identifier ^ (ulonglong)system_config_buffer);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_reset_timer_instance(uint64_t system_context_parameter,longlong system_context_parameter)
-
 {
   longlong **system_long_ptr_ptr;
   int system_int_context;
@@ -13900,14 +13468,14 @@ void system_reset_timer_instance(uint64_t system_context_parameter,longlong syst
   uint64_t system_uint_buffer;
   uint64_t system_audio_config_value;
   longlong *system_long_status_ptr;
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   uint64_t *child_node;
   uint64_t *system_manager_ptr;
   uint64_t *system_handler_ptr;
   uint32_t *system_control_ptr;
   char *pinit_status2;
   void **system_uint_pointer;
-  ulonglong system_temp_value;
+  ulonglong system_temp_val;
   char init_status6;
   longlong *system_temp_buffer_pointer;
   longlong **system_stack_long_pointer_array;
@@ -13945,37 +13513,35 @@ void system_reset_timer_instance(uint64_t system_context_parameter,longlong syst
   }
   SymSetOptions(SYSTEM_RESOURCE_BLOCK_OFFSET_0x0201003);
   system_process_stack_data(&system_thread_context_ptr);
-  system_uint_pointer = &system_data_memory_pool0x02001bc0033;
+  system_uint_pointer = &system_data_memory_pool_default;
   if (system_thread_context_ptr != (void **)0x00) {
     system_uint_pointer = system_thread_context_ptr;
   }
   SymSetSearchPath(_system_data_memory_pool0c2621001,system_uint_pointer);
-  system_temp_pointer = system_long_status_ptr[SYSTEM_STACK_INITIAL_VALUE];
-  if (system_temp_pointer == 0) {
-    system_temp_pointer = LoadLibraryA(&system_data_callback_pool_base4);
-    system_long_status_ptr[SYSTEM_STACK_INITIAL_VALUE] = system_temp_pointer;
-    if (system_temp_pointer != 0) goto SYSTEM_LABEL;
+  system_temp_ptr = system_long_status_ptr[SYSTEM_STACK_INITIAL_VALUE];
+  if (system_temp_ptr == 0) {
+    system_temp_ptr = LoadLibraryA(&system_data_callback_pool_base4);
+    system_long_status_ptr[SYSTEM_STACK_INITIAL_VALUE] = system_temp_ptr;
+    if (system_temp_ptr != 0) goto SYSTEM_LABEL;
     system_thread_context_ptr = &system_data_callback_pool_base2;
     if (system_thread_context_ptr != (void **)0x00) {
-                    // WARNING: Subroutine does not return
       system_initialize_component();
     }
   }
   else {
 SYSTEM_VALIDATION_CHECK:
     if (system_long_status_ptr[0x04] == 0) {
-      system_temp_pointer = GetProcAddress(system_temp_pointer,&system_data_callback_pool_base3);
-      system_long_status_ptr[0x04] = system_temp_pointer;
-      if (system_temp_pointer == 0) {
+      system_temp_ptr = GetProcAddress(system_temp_ptr,&system_data_callback_pool_base3);
+      system_long_status_ptr[0x04] = system_temp_ptr;
+      if (system_temp_ptr == 0) {
         system_thread_context_ptr = &system_data_callback_pool_base2;
         if (system_thread_context_ptr != (void **)0x00) {
-                    // WARNING: Subroutine does not return
           system_initialize_component();
         }
         goto SYSTEM_LABEL;
       }
     }
-    system_uint_pointer = &system_data_memory_pool0x02001bc0033;
+    system_uint_pointer = &system_data_memory_pool_default;
     if (system_thread_context_ptr != (void **)0x00) {
       system_uint_pointer = system_thread_context_ptr;
     }
@@ -13983,7 +13549,6 @@ SYSTEM_VALIDATION_CHECK:
     if (system_int_context == 0) {
       system_thread_context_ptr = &system_data_callback_pool_base2;
       if (system_thread_context_ptr != (void **)0x00) {
-                    // WARNING: Subroutine does not return
         system_initialize_component();
       }
     }
@@ -13991,7 +13556,6 @@ SYSTEM_VALIDATION_CHECK:
       *(char *)system_long_status_ptr = '\x1';
       system_thread_context_ptr = &system_data_callback_pool_base2;
       if (system_thread_context_ptr != (void **)0x00) {
-                    // WARNING: Subroutine does not return
         system_initialize_component();
       }
     }
@@ -14035,9 +13599,7 @@ SYSTEM_VALIDATION_CHECK:
   }
   system_timer_base_memory_pool = 0;
   system_timer_current_memory_pool = system_timer_performance_counter;
-
 void system_get_timer_elapsed_time(void)
-
 {
   uint64_t system_temp_uint_value;
   uint64_t system_audio_context_id;
@@ -14062,10 +13624,8 @@ void system_get_timer_elapsed_time(void)
   system_thread_temp_handle = GetCurrentThread();
   system_create_memory_pool(system_thread_temp_handle,&system_temp_buffer_ptr);
   system_temp_buffer_ptr = &system_data_callback_pool_base2;
-                    // WARNING: Subroutine does not return
   system_initialize_component(system_handle_ptr);
 }
-
 /**
  * @brief 初始化系统主入口点
  * 
@@ -14079,7 +13639,6 @@ void system_get_timer_elapsed_time(void)
  * 简化实现：仅保留核心的初始化逻辑和基本的错误处理
  */
 uint64_t system_initialize_main_entry(void)
-
 {
   uint64_t *data_context;
   code *system_initialization_function_ptr;
@@ -14087,20 +13646,20 @@ uint64_t system_initialize_main_entry(void)
   uint64_t system_uint_buffer;
   int system_config_value;
   longlong ****ppsystem_long_ptr_ptr;
-  uint64_t system_temp_value;
+  uint64_t system_temp_val;
   longlong ****ppsystem_long_ptr_ptr;
   longlong ***psystem_long_ptr_ptr;
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   char init_status1;
   longlong ****ppsystem_stack_long_int_ptr;
   longlong ***psystem_stack_long_int_ptr;
   longlong **system_stack_long_int_ptr;
   longlong ***psystem_stack_long_int_ptr;
-  uint64_t system_temp_value;
+  uint64_t system_temp_val;
   longlong *****pppsystem_long_ptr_ptr;
   longlong ****ppsystem_long_ptr_ptr;
   
-  system_temp_value = SYSTEM_INVALID_HANDLE_VALUE;
+  system_temp_val = SYSTEM_INVALID_HANDLE_VALUE;
   if (system_global_memory_pool != (uint64_t *)0x00) {
     while( true ) {
       if ((void **)*system_global_memory_pool == &system_data_main_context) {
@@ -14113,17 +13672,17 @@ uint64_t system_initialize_main_entry(void)
       Sleep(1);
     }
   }
-  ppsystem_long_ptr_ptr = (longlong ****)system_allocate_memory_context(system_context_memory_pool,0x040,0x01,3,system_temp_value);
+  ppsystem_long_ptr_ptr = (longlong ****)system_allocate_memory_context(system_context_memory_pool,0x040,0x01,3,system_temp_val);
   ppsystem_stack_long_int_ptr = ppsystem_long_ptr_ptr;
   system_create_memory_table(ppsystem_long_ptr_ptr);
   *ppsystem_long_ptr_ptr = (longlong ***)&system_data_thread_scheduler;
   psystem_stack_long_int_ptr = (longlong ***)ppsystem_long_ptr_ptr;
   (*(code *)(*ppsystem_long_ptr_ptr)[5])(ppsystem_long_ptr_ptr);
-  system_temp_pointer = system_resource_memory_pool;
+  system_temp_ptr = system_resource_memory_pool;
   pppsystem_long_ptr_ptr = &ppsystem_stack_long_int_ptr;
   ppsystem_stack_long_int_ptr = ppsystem_long_ptr_ptr;
   (*(code *)(*ppsystem_long_ptr_ptr)[5])(ppsystem_long_ptr_ptr);
-  system_process_resource_request(system_temp_pointer,&ppsystem_stack_long_int_ptr);
+  system_process_resource_request(system_temp_ptr,&ppsystem_stack_long_int_ptr);
   while( true ) {
     if (*ppsystem_long_ptr_ptr == (longlong ***)&system_data_thread_scheduler) {
       init_status1 = *(char *)(ppsystem_long_ptr_ptr + 2) != '\0';
@@ -14135,14 +13694,14 @@ uint64_t system_initialize_main_entry(void)
     Sleep(1);
   }
   system_start_initialization_sequence();
-  system_temp_pointer = system_memory_pool_config;
-  system_temp_value = system_allocate_memory_context(system_context_memory_pool,0x030,0x01,3);
-  ppsystem_long_ptr_ptr = (longlong ****)system_create_resource_context(system_temp_value,2,system_temp_pointer);
+  system_temp_ptr = system_memory_pool_config;
+  system_temp_val = system_allocate_memory_context(system_context_memory_pool,0x030,0x01,3);
+  ppsystem_long_ptr_ptr = (longlong ****)system_create_resource_context(system_temp_val,2,system_temp_ptr);
   ppsystem_long_ptr_ptr = ppsystem_long_ptr_ptr;
   if (ppsystem_long_ptr_ptr != (longlong ****)0x00) {
     (*(code *)(*ppsystem_long_ptr_ptr)[5])(ppsystem_long_ptr_ptr);
   }
-  data_context = *(uint64_t **)(system_temp_pointer + 400);
+  data_context = *(uint64_t **)(system_temp_ptr + 400);
   system_initialization_function_ptr = *(code **)*data_context;
   ppsystem_stack_long_int_ptr = &psystem_stack_long_int_ptr;
   psystem_stack_long_int_ptr = (longlong ***)ppsystem_long_ptr_ptr;
@@ -14150,12 +13709,12 @@ uint64_t system_initialize_main_entry(void)
     (*(code *)(*ppsystem_long_ptr_ptr)[5])(ppsystem_long_ptr_ptr);
   }
   (*system_initialization_function_ptr)(data_context,&psystem_stack_long_int_ptr);
-  system_temp_value = system_allocate_memory_context(system_context_memory_pool,0x030,0x01,3,system_temp_value,pppsystem_long_ptr_ptr,ppsystem_long_ptr_ptr);
-  psystem_long_ptr_ptr = (longlong ***)system_create_resource_context(system_temp_value,0,system_temp_pointer);
+  system_temp_val = system_allocate_memory_context(system_context_memory_pool,0x030,0x01,3,system_temp_val,pppsystem_long_ptr_ptr,ppsystem_long_ptr_ptr);
+  psystem_long_ptr_ptr = (longlong ***)system_create_resource_context(system_temp_val,0,system_temp_ptr);
   if (psystem_long_ptr_ptr != (longlong ***)0x00) {
     (*(code *)(*psystem_long_ptr_ptr)[5])(psystem_long_ptr_ptr);
   }
-  data_context = *(uint64_t **)(system_temp_pointer + 400);
+  data_context = *(uint64_t **)(system_temp_ptr + 400);
   system_initialization_function_ptr = *(code **)*data_context;
   ppsystem_stack_long_int_ptr = (longlong ****)&system_stack_long_int_ptr;
   system_stack_long_int_ptr = (longlong **)psystem_long_ptr_ptr;
@@ -14163,7 +13722,7 @@ uint64_t system_initialize_main_entry(void)
     (*(code *)(*psystem_long_ptr_ptr)[5])(psystem_long_ptr_ptr);
   }
   (*system_initialization_function_ptr)(data_context,&system_stack_long_int_ptr);
-  system_load_engine_module(*(uint64_t *)(system_temp_pointer + 400));
+  system_load_engine_module(*(uint64_t *)(system_temp_ptr + 400));
   if (psystem_long_ptr_ptr != (longlong ***)0x00) {
     (*(code *)(*psystem_long_ptr_ptr)[0x03])(psystem_long_ptr_ptr);
   }
@@ -14186,13 +13745,12 @@ uint64_t system_initialize_main_entry(void)
   }
   ppsystem_stack_long_int_ptr = system_callback_memory_pool;
   if (system_callback_memory_pool != (longlong ****)0x00) {
-    system_temp_pointer = __RTCastToVoid(system_callback_memory_pool);
+    system_temp_ptr = __RTCastToVoid(system_callback_memory_pool);
     *ppsystem_long_ptr_ptr = (longlong ***)&system_data_memory_allocator;
     PostQueuedCompletionStatus(ppsystem_long_ptr_ptr[0x04260016],0,0x07fffffffffffffff);
     CloseHandle(ppsystem_long_ptr_ptr[0x04260016]);
     psystem_stack_long_int_ptr = (longlong ***)(ppsystem_long_ptr_ptr + 0x0426001003);
     if ((longlong ***)*psystem_stack_long_int_ptr != (longlong ***)0x00) {
-                    // WARNING: Subroutine does not return
       system_initialize_component();
     }
     psystem_stack_long_int_ptr = (longlong ***)(ppsystem_long_ptr_ptr + 0x0426003c);
@@ -14200,18 +13758,16 @@ uint64_t system_initialize_main_entry(void)
     psystem_stack_long_int_ptr = (longlong ***)(ppsystem_long_ptr_ptr + SYSTEM_AUDIO_TABLE_OFFSET_VALUE30);
     _Mtx_destroy_in_situ();
     system_initialize_threading(ppsystem_long_ptr_ptr);
-    if (system_temp_pointer != 0) {
-                    // WARNING: Subroutine does not return
-      system_initialize_component(system_temp_pointer);
+    if (system_temp_ptr != 0) {
+      system_initialize_component(system_temp_ptr);
     }
   }
   ppsystem_long_ptr_ptr = system_pointer_table;
-  system_temp_pointer = system_resource_memory_pool;
+  system_temp_ptr = system_resource_memory_pool;
   system_callback_memory_pool = (longlong ****)0x00;
   if (system_resource_memory_pool != 0) {
     system_initialize_audio_system(system_resource_memory_pool);
-                    // WARNING: Subroutine does not return
-    system_initialize_component(system_temp_pointer);
+    system_initialize_component(system_temp_ptr);
   }
   system_resource_memory_pool = 0;
   *(uint64_t *)(system_pointer_table + 0x02d) = 2;
@@ -14222,10 +13778,10 @@ uint64_t system_initialize_main_entry(void)
     do {
       system_config_value = ReleaseSemaphore(system_global_semaphore_handle,1);
     } while (system_config_value == 0);
-    system_temp_value = __acrt_iob_func(1);
-    fflush(system_temp_value);
-    system_temp_value = __acrt_iob_func(2);
-    fflush(system_temp_value);
+    system_temp_val = __acrt_iob_func(1);
+    fflush(system_temp_val);
+    system_temp_val = __acrt_iob_func(2);
+    fflush(system_temp_val);
     system_uint_buffer = _system_data_memory_pool0c1200154;
     (*(code *)(*ppsystem_long_ptr_ptr)[0x03])(ppsystem_long_ptr_ptr);
     return system_uint_buffer;
@@ -14233,10 +13789,8 @@ uint64_t system_initialize_main_entry(void)
   system_audio_register_value_event_handler(ppsystem_long_ptr_ptr + 0x01e);
   system_audio_register_value_event_handler(ppsystem_long_ptr_ptr + 0x07);
   system_audio_register_value_event_handler(ppsystem_long_ptr_ptr);
-                    // WARNING: Subroutine does not return
   system_initialize_component(ppsystem_long_ptr_ptr);
 }
-
 /**
  * @param system_context_parameter 系统上下文参数
  * @return 无返回值
@@ -14250,12 +13804,10 @@ uint64_t system_initialize_main_entry(void)
  * @return 无返回值
  */
 void WotsMain(uint64_t system_context_parameter)
-
 {
   uint64_t system_stack_array [2];
   
                     // 0x045a00  0x02003  WotsMain
-
 /**
  * 设置定时器回调函数
  * 
@@ -14266,7 +13818,6 @@ void WotsMain(uint64_t system_context_parameter)
  * @return 无返回值
  */
 void system_set_timer_callback(longlong *system_context_parameter)
-
 {
   if ((longlong *)*system_context_parameter != (longlong *)0x00) {
     (**(code **)(*(longlong *)*system_context_parameter + SYSTEM_THREAD_POOL_BASE_OFFSET))();
@@ -14284,27 +13835,26 @@ void system_set_timer_callback(longlong *system_context_parameter)
  * @return 无返回值
  */
 void system_clear_timer_callback(longlong system_context_parameter,longlong system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   
   if (system_context_parameter == 0) {
     *(uint64_t *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = 0;
     **(uint32_t **)(system_context_parameter + 0x01) = 0;
     return;
   }
-  system_temp_pointer = -1;
+  system_temp_ptr = -1;
   do {
-    system_temp_pointer = system_temp_pointer + 1;
-  } while (*(char *)(system_context_parameter + system_temp_pointer) != '\0');
-  if ((int)system_temp_pointer < SYSTEM_CONFIG_DATA_SIZE00) {
-    *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = (int)system_temp_pointer;
+    system_temp_ptr = system_temp_ptr + 1;
+  } while (*(char *)(system_context_parameter + system_temp_ptr) != '\0');
+  if ((int)system_temp_ptr < SYSTEM_CONFIG_DATA_SIZE_EXTENDED0) {
+    *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = (int)system_temp_ptr;
                     // WARNING: Could not recover jumptable at 0x010010045b5002. Too many branches
                     // WARNING: Treating indirect jump as call
-    strcpy_s(*(uint64_t *)(system_context_parameter + 0x01),SYSTEM_CONFIG_DATA_SIZE00);
+    strcpy_s(*(uint64_t *)(system_context_parameter + 0x01),SYSTEM_CONFIG_DATA_SIZE_EXTENDED0);
     return;
   }
-  system_allocate_buffer_memory(&system_data_ui_pool_base,SYSTEM_CONFIG_DATA_SIZE00,system_context_parameter);
+  system_allocate_buffer_memory(&system_data_ui_pool_base,SYSTEM_CONFIG_DATA_SIZE_EXTENDED0,system_context_parameter);
   *(uint64_t *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = 0;
   **(uint32_t **)(system_context_parameter + 0x01) = 0;
   return;
@@ -14321,10 +13871,8 @@ void system_clear_timer_callback(longlong system_context_parameter,longlong syst
  * @return 无返回值
  */
 void system_configure_timer_interval(longlong system_context_parameter,uint64_t system_context_parameter,int system_context_parameter)
-
 {
-  if (system_context_parameter + 1 < SYSTEM_CONFIG_DATA_SIZE00) {
-                    // WARNING: Subroutine does not return
+  if (system_context_parameter + 1 < SYSTEM_CONFIG_DATA_SIZE_EXTENDED0) {
     memcpy(*(uint32_t **)(system_context_parameter + 0x01),system_context_parameter,(longlong)system_context_parameter);
   }
   **(uint32_t **)(system_context_parameter + 0x01) = 0;
@@ -14332,9 +13880,7 @@ void system_configure_timer_interval(longlong system_context_parameter,uint64_t 
   return;
 }
 void system_check_timer_overflow(void)
-
 {
-                    // WARNING: Subroutine does not return
   memcpy();
 }
 /**
@@ -14347,7 +13893,6 @@ void system_check_timer_overflow(void)
  * @return 无返回值
  */
 void system_handle_timer_interrupt(uint32_t *system_context_parameter)
-
 {
   longlong system_audio_register_value;
   
@@ -14364,12 +13909,9 @@ void system_handle_timer_interrupt(uint32_t *system_context_parameter)
  * @return 无返回值
  */
 void system_initialize_clock_system(void)
-
 {
-                    // WARNING: Subroutine does not return
   system_finalize_initialization();
 }
-
 /**
  * 处理内存分配请求
  * 
@@ -14395,7 +13937,6 @@ uint64_t *
  * @return 分配的内存块指针
  */
 system_allocate_memory_resources(uint64_t *system_context_parameter,ulonglong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   *system_context_parameter = &system_data_animation_pool_base;
   if ((system_context_parameter & 1) != 0) {
@@ -14403,7 +13944,6 @@ system_allocate_memory_resources(uint64_t *system_context_parameter,ulonglong sy
   }
   return system_context_parameter;
 }
-
 /**
  * 分配内存块
  * 
@@ -14415,13 +13955,11 @@ system_allocate_memory_resources(uint64_t *system_context_parameter,ulonglong sy
  * @return 分配的内存块指针
  */
 uint64_t * system_allocate_memory_block(uint64_t *system_context_parameter,uint system_context_parameter)
-
 {
   *system_context_parameter = &system_data_memory_allocator;
   PostQueuedCompletionStatus(system_context_parameter[0x04260016],0,0x07fffffffffffffff,0,SYSTEM_INVALID_HANDLE_VALUE);
   CloseHandle(system_context_parameter[0x04260016]);
   if (system_context_parameter[0x0426001003] != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   _Mtx_destroy_in_situ();
@@ -14432,7 +13970,6 @@ uint64_t * system_allocate_memory_block(uint64_t *system_context_parameter,uint 
   }
   return system_context_parameter;
 }
-
 /**
  * 系统安全守护
  * 
@@ -14442,14 +13979,11 @@ uint64_t * system_allocate_memory_block(uint64_t *system_context_parameter,uint 
  * @return 无返回值
  */
 void system_security_guard(void)
-
 {
   return;
 }
-
 uint64_t *
 system_create_memory_pool(uint64_t *system_context_parameter,ulonglong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   *system_context_parameter = &system_data_animation_pool_base;
   if ((system_context_parameter & 1) != 0) {
@@ -14458,21 +13992,20 @@ system_create_memory_pool(uint64_t *system_context_parameter,ulonglong system_co
   return system_context_parameter;
 }
 void system_synchronize_clock_sources(longlong system_context_parameter,longlong system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   
   if (system_context_parameter == 0) {
     *(uint64_t *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = 0;
     **(uint32_t **)(system_context_parameter + 0x01) = 0;
     return;
   }
-  system_temp_pointer = -1;
+  system_temp_ptr = -1;
   do {
-    system_temp_pointer = system_temp_pointer + 1;
-  } while (*(char *)(system_context_parameter + system_temp_pointer) != '\0');
-  if ((int)system_temp_pointer < SYSTEM_AUDIO_TABLE_OFFSET_VALUE0) {
-    *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = (int)system_temp_pointer;
+    system_temp_ptr = system_temp_ptr + 1;
+  } while (*(char *)(system_context_parameter + system_temp_ptr) != '\0');
+  if ((int)system_temp_ptr < SYSTEM_AUDIO_TABLE_OFFSET_VALUE0) {
+    *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = (int)system_temp_ptr;
                                         // WARNING: Treating indirect jump as call
     strcpy_s(*(uint64_t *)(system_context_parameter + 0x01),SYSTEM_AUDIO_TABLE_OFFSET_VALUE0);
     return;
@@ -14483,10 +14016,8 @@ void system_synchronize_clock_sources(longlong system_context_parameter,longlong
   return;
 }
 void system_calibrate_clock_frequency(longlong system_context_parameter,uint64_t system_context_parameter,int system_context_parameter)
-
 {
   if (system_context_parameter + 1 < SYSTEM_AUDIO_TABLE_OFFSET_VALUE0) {
-                    // WARNING: Subroutine does not return
     memcpy(*(uint32_t **)(system_context_parameter + 0x01),system_context_parameter,(longlong)system_context_parameter);
   }
   **(uint32_t **)(system_context_parameter + 0x01) = 0;
@@ -14494,13 +14025,10 @@ void system_calibrate_clock_frequency(longlong system_context_parameter,uint64_t
   return;
 }
 void system_check_clock_accuracy(void)
-
 {
-                    // WARNING: Subroutine does not return
   memcpy();
 }
 void system_adjust_clock_drift(uint32_t *system_context_parameter)
-
 {
   longlong system_audio_register_value;
   
@@ -14508,12 +14036,10 @@ void system_adjust_clock_drift(uint32_t *system_context_parameter)
   *(uint64_t *)(system_audio_register_value + SYSTEM_CONFIG_DATA_SIZE) = 0;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_timekeeping(longlong system_context_parameter,longlong system_context_parameter,longlong system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   longlong system_long_context;
   longlong system_resource_handle;
   uint32_t system_config_buffer [0x040];
@@ -14530,8 +14056,8 @@ void system_initialize_timekeeping(longlong system_context_parameter,longlong sy
   system_temp_buffer_ptr = system_config_buffer;
   system_context_identifier = 0;
   system_config_buffer[0] = 0;
-  system_temp_pointer = strstr(*(uint64_t *)(system_context_parameter + 0x01));
-  if (system_temp_pointer != 0) {
+  system_temp_ptr = strstr(*(uint64_t *)(system_context_parameter + 0x01));
+  if (system_temp_ptr != 0) {
     system_long_context = -1;
     system_resource_handle = -1;
     do {
@@ -14540,11 +14066,9 @@ void system_initialize_timekeeping(longlong system_context_parameter,longlong sy
     do {
       system_long_context = system_long_context + 1;
     } while (*(char *)(system_long_context + system_context_parameter) != '\0');
-                    // WARNING: Subroutine does not return
-    memcpy(system_temp_buffer_ptr,*(longlong *)(system_context_parameter + 0x01),system_temp_pointer - *(longlong *)(system_context_parameter + 0x01));
+    memcpy(system_temp_buffer_ptr,*(longlong *)(system_context_parameter + 0x01),system_temp_ptr - *(longlong *)(system_context_parameter + 0x01));
   }
   system_temp_buffer_ptr = &system_data_animation_pool_base;
-                    // WARNING: Subroutine does not return
   system_calculate_checksum(system_context_identifier ^ (ulonglong)system_config_buffer);
 }
 /**
@@ -14558,7 +14082,6 @@ void system_initialize_timekeeping(longlong system_context_parameter,longlong sy
  * @return 无返回值
  */
 void system_setup_timestamp_system(uint64_t *system_context_parameter,uint64_t system_context_parameter)
-
 {
   int system_int_value;
   
@@ -14577,7 +14100,6 @@ void system_setup_timestamp_system(uint64_t *system_context_parameter,uint64_t s
  * @return 无返回值
  */
 void system_create_timestamp_instance(uint64_t *system_context_parameter)
-
 {
   int system_int_value;
   
@@ -14589,7 +14111,6 @@ void system_create_timestamp_instance(uint64_t *system_context_parameter)
   }
   return;
 }
-
 /**
  * 
  * 设置和配置系统内存管理器的运行参数，包括内存池大小、分配策略等。
@@ -14613,7 +14134,6 @@ void system_create_timestamp_instance(uint64_t *system_context_parameter)
  * @return 设置结果状态码
  */
 uint64_t system_setup_memory_manager(longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   char init_status;
   int system_int_context;
@@ -14645,7 +14165,6 @@ uint64_t system_setup_memory_manager(longlong system_context_parameter,uint64_t 
   }
   return 1;
 }
-
 /**
  * 
  * 验证系统内存指针的有效性和安全性，确保指针指向的内存区域是可访问的。
@@ -14665,7 +14184,6 @@ uint64_t system_setup_memory_manager(longlong system_context_parameter,uint64_t 
  * @return 验证结果 (0=有效，非0=无效)
  */
 longlong system_validate_memory_pointers(uint64_t *system_context_parameter,uint64_t *system_context_parameter)
-
 {
   uint64_t system_temp_uint_value;
   char system_char_data;
@@ -14675,7 +14193,7 @@ longlong system_validate_memory_pointers(uint64_t *system_context_parameter,uint
     system_char_data = (**(code **)(system_context_parameter + 0x01a))(system_context_parameter,system_context_parameter + 0x014);
     if (system_char_data == '\0') {
       if (system_audio_config_flag == '\0') {
-        system_handle_ptr = &system_data_memory_pool0x02001bc0033;
+        system_handle_ptr = &system_data_memory_pool_default;
         if (*(void ***)(system_context_parameter + 4) != (void **)0x00) {
           system_handle_ptr = *(void ***)(system_context_parameter + 4);
         }
@@ -14689,7 +14207,6 @@ longlong system_validate_memory_pointers(uint64_t *system_context_parameter,uint
   *system_context_parameter = system_temp_uint_value;
   return CONCAT0x031((uint0x03)(uint3)((uint)system_temp_uint_value >> 0x01),1);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 记录时间戳事件
@@ -14702,34 +14219,31 @@ longlong system_validate_memory_pointers(uint64_t *system_context_parameter,uint
  * @return 无返回值
  */
 void system_record_timestamp_event(uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   char system_char_data;
   void **system_handle_ptr;
   uint64_t system_stack_array [6];
   
-  system_temp_pointer = system_graphics_context;
+  system_temp_ptr = system_graphics_context;
   if ((*(longlong *)(_system_data_memory_pool0c1600220 + 0x022f0) != 0) &&
      (system_stack_array[0] = system_context_parameter, system_char_data = (**(code **)(_system_data_memory_pool0c1600220 + 0x022f001))(system_stack_array),
      system_context_parameter = system_stack_array[0], system_char_data == '\0')) {
     if (system_audio_config_flag == '\0') {
-      system_handle_ptr = &system_data_memory_pool0x02001bc0033;
-      if (*(void ***)(system_temp_pointer + 0x022a0) != (void **)0x00) {
-        system_handle_ptr = *(void ***)(system_temp_pointer + 0x022a0);
+      system_handle_ptr = &system_data_memory_pool_default;
+      if (*(void ***)(system_temp_ptr + 0x022a0) != (void **)0x00) {
+        system_handle_ptr = *(void ***)(system_temp_ptr + 0x022a0);
       }
       system_allocate_buffer_memory(&system_data_input_pool_base,system_handle_ptr);
     }
-    *(uint64_t *)(system_temp_pointer + 0x0220020) = *(uint64_t *)(system_temp_pointer + 0x022d001);
+    *(uint64_t *)(system_temp_ptr + 0x0220020) = *(uint64_t *)(system_temp_ptr + 0x022d001);
     return;
   }
-  *(uint64_t *)(system_temp_pointer + 0x0220020) = system_context_parameter;
+  *(uint64_t *)(system_temp_ptr + 0x0220020) = system_context_parameter;
   return;
 }
-
 uint64_t *
 system_setup_buffer_manager(uint64_t *system_context_parameter,ulonglong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   *system_context_parameter = &system_data_animation_pool_base;
   if ((system_context_parameter & 1) != 0) {
@@ -14738,21 +14252,20 @@ system_setup_buffer_manager(uint64_t *system_context_parameter,ulonglong system_
   return system_context_parameter;
 }
 void system_compare_timestamp_values(longlong system_context_parameter,longlong system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   
   if (system_context_parameter == 0) {
     *(uint64_t *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = 0;
     **(uint32_t **)(system_context_parameter + 0x01) = 0;
     return;
   }
-  system_temp_pointer = -1;
+  system_temp_ptr = -1;
   do {
-    system_temp_pointer = system_temp_pointer + 1;
-  } while (*(char *)(system_context_parameter + system_temp_pointer) != '\0');
-  if ((int)system_temp_pointer < SYSTEM_RESOURCE_BLOCK_OFFSET) {
-    *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = (int)system_temp_pointer;
+    system_temp_ptr = system_temp_ptr + 1;
+  } while (*(char *)(system_context_parameter + system_temp_ptr) != '\0');
+  if ((int)system_temp_ptr < SYSTEM_RESOURCE_BLOCK_OFFSET) {
+    *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = (int)system_temp_ptr;
                                         // WARNING: Treating indirect jump as call
     strcpy_s(*(uint64_t *)(system_context_parameter + 0x01),SYSTEM_RESOURCE_BLOCK_OFFSET);
     return;
@@ -14774,10 +14287,8 @@ void system_compare_timestamp_values(longlong system_context_parameter,longlong 
  * @return 无返回值
  */
 void system_calculate_time_difference(longlong system_context_parameter,uint64_t system_context_parameter,int system_context_parameter)
-
 {
   if (system_context_parameter + 1 < SYSTEM_RESOURCE_BLOCK_OFFSET) {
-                    // WARNING: Subroutine does not return
     memcpy(*(uint32_t **)(system_context_parameter + 0x01),system_context_parameter,(longlong)system_context_parameter);
   }
   **(uint32_t **)(system_context_parameter + 0x01) = 0;
@@ -14785,13 +14296,10 @@ void system_calculate_time_difference(longlong system_context_parameter,uint64_t
   return;
 }
 void system_check_timestamp_overflow(void)
-
 {
-                    // WARNING: Subroutine does not return
   memcpy();
 }
 void system_handle_timestamp_error(uint32_t *system_context_parameter)
-
 {
   longlong system_audio_register_value;
   
@@ -14799,9 +14307,7 @@ void system_handle_timestamp_error(uint32_t *system_context_parameter)
   *(uint64_t *)(system_audio_register_value + SYSTEM_CONFIG_DATA_SIZE) = 0;
   return;
 }
-
 uint64_t * system_get_buffer_pointer(uint64_t *system_context_parameter)
-
 {
   *system_context_parameter = &system_data_animation_pool_base;
   system_context_parameter[1] = 0;
@@ -14812,7 +14318,6 @@ uint64_t * system_get_buffer_pointer(uint64_t *system_context_parameter)
   *(uint32_t *)(system_context_parameter + 3) = 0;
   return system_context_parameter;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 初始化性能分析系统
@@ -14826,9 +14331,8 @@ uint64_t * system_get_buffer_pointer(uint64_t *system_context_parameter)
  * @return 无返回值
  */
 void system_initialize_profiling_system(longlong system_context_parameter,longlong system_context_parameter,longlong system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   longlong system_long_context;
   longlong system_resource_handle;
   uint32_t system_stack_byte_array_a1 [0x040];
@@ -14845,8 +14349,8 @@ void system_initialize_profiling_system(longlong system_context_parameter,longlo
   system_temp_buffer_ptr = system_config_buffer;
   system_context_identifier = 0;
   system_config_buffer[0] = 0;
-  system_temp_pointer = strstr(*(uint64_t *)(system_context_parameter + 0x01));
-  if (system_temp_pointer != 0) {
+  system_temp_ptr = strstr(*(uint64_t *)(system_context_parameter + 0x01));
+  if (system_temp_ptr != 0) {
     system_long_context = -1;
     system_resource_handle = -1;
     do {
@@ -14855,16 +14359,12 @@ void system_initialize_profiling_system(longlong system_context_parameter,longlo
     do {
       system_long_context = system_long_context + 1;
     } while (*(char *)(system_long_context + system_context_parameter) != '\0');
-                    // WARNING: Subroutine does not return
-    memcpy(system_temp_buffer_ptr,*(longlong *)(system_context_parameter + 0x01),system_temp_pointer - *(longlong *)(system_context_parameter + 0x01));
+    memcpy(system_temp_buffer_ptr,*(longlong *)(system_context_parameter + 0x01),system_temp_ptr - *(longlong *)(system_context_parameter + 0x01));
   }
   system_temp_buffer_ptr = &system_data_animation_pool_base;
-                    // WARNING: Subroutine does not return
   system_calculate_checksum(system_context_identifier ^ (ulonglong)system_stack_byte_array_a1);
 }
-
 uint64_t * system_resize_buffer(uint64_t *system_context_parameter,ulonglong system_context_parameter)
-
 {
   *system_context_parameter = &system_data_animation_pool_base;
   if ((system_context_parameter & 1) != 0) {
@@ -14882,7 +14382,6 @@ uint64_t * system_resize_buffer(uint64_t *system_context_parameter,ulonglong sys
  * @return 无返回值
  */
 void system_start_profiling_session(uint64_t *system_context_parameter)
-
 {
   int system_int_value;
   
@@ -14902,7 +14401,6 @@ void system_start_profiling_session(uint64_t *system_context_parameter)
  * @return 无返回值
  */
 void system_stop_profiling_session(longlong system_context_parameter)
-
 {
   int system_int_value;
   
@@ -14931,17 +14429,14 @@ void system_stop_profiling_session(longlong system_context_parameter)
  * @return 无返回值
  */
 void system_record_profiling_event(uint64_t *system_context_parameter)
-
 {
   *system_context_parameter = &system_data_lighting_pool_base;
   *system_context_parameter = &system_data_secondary_context;
   *system_context_parameter = &system_data_primary_context;
   return;
 }
-
 uint64_t *
 system_handle_buffer_operation(uint64_t *system_context_parameter,ulonglong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   *system_context_parameter = &system_data_lighting_pool_base;
   *system_context_parameter = &system_data_secondary_context;
@@ -14952,23 +14447,20 @@ system_handle_buffer_operation(uint64_t *system_context_parameter,ulonglong syst
   return system_context_parameter;
 }
 void system_analyze_profiling_data(longlong *system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   longlong system_long_context;
   
-  system_temp_pointer = system_context_parameter[1];
-  for (system_long_context = *system_context_parameter; system_long_context != system_temp_pointer; system_long_context = system_long_context + SYSTEM_CONFIG_DATA_SIZE0) {
+  system_temp_ptr = system_context_parameter[1];
+  for (system_long_context = *system_context_parameter; system_long_context != system_temp_ptr; system_long_context = system_long_context + SYSTEM_CONFIG_DATA_SIZE_EXTENDED) {
     system_initialize_system_context(system_long_context);
   }
   if (*system_context_parameter == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_initialize_component();
 }
 void system_generate_profiling_report(longlong *system_context_parameter)
-
 {
   uint64_t *data_context;
   uint64_t *data_context;
@@ -14977,7 +14469,6 @@ void system_generate_profiling_report(longlong *system_context_parameter)
   for (data_context = (uint64_t *)*system_context_parameter; data_context != data_context; data_context = data_context + 5) {
     *data_context = &system_data_callback_pool_base2;
     if (data_context[1] != 0) {
-                    // WARNING: Subroutine does not return
       system_initialize_component();
     }
     data_context[1] = 0;
@@ -14985,7 +14476,6 @@ void system_generate_profiling_report(longlong *system_context_parameter)
     *data_context = &system_data_animation_pool_base;
   }
   if (*system_context_parameter != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   return;
@@ -15000,7 +14490,6 @@ void system_generate_profiling_report(longlong *system_context_parameter)
  * @return 无返回值
  */
 void system_initialize_security(ulonglong *system_context_parameter)
-
 {
   int *system_audio_loop_counter_ptr;
   uint64_t *data_context;
@@ -15032,9 +14521,7 @@ void system_initialize_security(ulonglong *system_context_parameter)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * 计算性能指标
  * 
@@ -15046,7 +14533,6 @@ void system_initialize_security(ulonglong *system_context_parameter)
  * @return 计算结果状态码
  */
 int system_calculate_performance_metrics(longlong system_context_parameter,longlong system_context_parameter)
-
 {
   uint64_t ***ppsystem_uint_pointer;
   longlong system_long_context;
@@ -15054,8 +14540,8 @@ int system_calculate_performance_metrics(longlong system_context_parameter,longl
   longlong system_audio_buffer_pointer;
   int system_config_value;
   longlong system_long_status;
-  longlong system_temp_pointer;
-  ulonglong system_temp_value;
+  longlong system_temp_ptr;
+  ulonglong system_temp_val;
   uint64_t ****pppsystem_uint_pointer;
   uint64_t ***ppcontext_buffer;
   uint64_t *system_temp_buffer_ptr;
@@ -15111,7 +14597,7 @@ int system_calculate_performance_metrics(longlong system_context_parameter,longl
   system_context_identifier = 0;
   system_context_identifier = 0;
   system_context_identifier = 0;
-  system_handle_ptr = &system_data_memory_pool0x02001bc0033;
+  system_handle_ptr = &system_data_memory_pool_default;
   if (*(void ***)(system_context_parameter + 0x01) != (void **)0x00) {
     system_handle_ptr = *(void ***)(system_context_parameter + 0x01);
   }
@@ -15132,27 +14618,27 @@ int system_calculate_performance_metrics(longlong system_context_parameter,longl
   system_context_identifier = 0;
   system_context_identifier = 0;
   system_context_identifier = 0;
-  system_temp_value = *(ulonglong *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE);
-  if (system_temp_value < *(ulonglong *)(system_context_parameter + 0x01001)) {
-    *(ulonglong *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = system_temp_value + SYSTEM_CONFIG_DATA_SIZE0;
-    system_handle_memory_operation(system_temp_value,&system_temp_buffer_ptr);
+  system_temp_val = *(ulonglong *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE);
+  if (system_temp_val < *(ulonglong *)(system_context_parameter + 0x01001)) {
+    *(ulonglong *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = system_temp_val + SYSTEM_CONFIG_DATA_SIZE_EXTENDED;
+    system_handle_memory_operation(system_temp_val,&system_temp_buffer_ptr);
     pppsystem_uint_pointer = *(uint64_t *****)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE);
     goto SYSTEM_LABEL;
   }
   system_audio_buffer_pointer = *(longlong *)(system_context_parameter + 0x01);
-  system_temp_pointer = (longlong)(system_temp_value - system_audio_buffer_pointer) >> 0x01;
-  if (system_temp_pointer == 0) {
-    system_temp_pointer = 1;
+  system_temp_ptr = (longlong)(system_temp_val - system_audio_buffer_pointer) >> 0x01;
+  if (system_temp_ptr == 0) {
+    system_temp_ptr = 1;
 SYSTEM_VALIDATION_CHECK:
-    system_long_context = system_allocate_resource_block(system_context_memory_pool,system_temp_pointer << 0x01,*(uint32_t *)(system_context_parameter + SYSTEM_RESOURCE_BLOCK_OFFSET));
-    system_temp_value = *(ulonglong *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE);
+    system_long_context = system_allocate_resource_block(system_context_memory_pool,system_temp_ptr << 0x01,*(uint32_t *)(system_context_parameter + SYSTEM_RESOURCE_BLOCK_OFFSET));
+    system_temp_val = *(ulonglong *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE);
     system_audio_buffer_pointer = *(longlong *)(system_context_parameter + 0x01);
   }
   else {
-    system_temp_pointer = system_temp_pointer * 2;
-    if (system_temp_pointer != 0) goto SYSTEM_LABEL;
+    system_temp_ptr = system_temp_ptr * 2;
+    if (system_temp_ptr != 0) goto SYSTEM_LABEL;
   }
-  system_configure_memory_context(&ppcontext_buffer,system_audio_buffer_pointer,system_temp_value,system_long_context);
+  system_configure_memory_context(&ppcontext_buffer,system_audio_buffer_pointer,system_temp_val,system_long_context);
   ppsystem_uint_pointer = ppcontext_buffer;
   system_handle_memory_operation(ppcontext_buffer,&system_temp_buffer_ptr);
   pppsystem_uint_pointer = (uint64_t ****)(ppsystem_uint_pointer + SYSTEM_RESOURCE_BLOCK_OFFSET);
@@ -15161,17 +14647,16 @@ SYSTEM_VALIDATION_CHECK:
   if (system_long_status != system_audio_buffer_pointer) {
     do {
       system_initialize_system_context(system_long_status);
-      system_long_status = system_long_status + SYSTEM_CONFIG_DATA_SIZE0;
+      system_long_status = system_long_status + SYSTEM_CONFIG_DATA_SIZE_EXTENDED;
     } while (system_long_status != system_audio_buffer_pointer);
     system_long_status = *(longlong *)(system_context_parameter + 0x01);
   }
   if (system_long_status != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component(system_long_status);
   }
   *(longlong *)(system_context_parameter + 0x01) = system_long_context;
   *(uint64_t *****)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = pppsystem_uint_pointer;
-  *(longlong *)(system_context_parameter + 0x01001) = system_temp_pointer * SYSTEM_CONFIG_DATA_SIZE0 + system_long_context;
+  *(longlong *)(system_context_parameter + 0x01001) = system_temp_ptr * SYSTEM_CONFIG_DATA_SIZE_EXTENDED + system_long_context;
 SYSTEM_VALIDATION_CHECK:
   system_config_value = (int)((ulonglong)((longlong)pppsystem_uint_pointer - *(longlong *)(system_context_parameter + 0x01)) >> 0x01) + -1;
   *(int *)(system_context_parameter + SYSTEM_EVENT_QUEUE_OFFSET) = system_config_value;
@@ -15182,7 +14667,6 @@ SYSTEM_VALIDATION_CHECK:
   if (system_memory_allocation_size == 0) {
     return system_config_value;
   }
-                    // WARNING: Subroutine does not return
   system_initialize_component();
 }
 /**
@@ -15198,12 +14682,10 @@ SYSTEM_VALIDATION_CHECK:
  * @return 无返回值
  */
 void system_initialize_monitoring_system(uint64_t *system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   system_create_resource_handle(system_context_parameter + 0x01a,system_context_parameter[0x0A],system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
   *system_context_parameter = &system_data_callback_pool_base2;
   if (system_context_parameter[1] != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   system_context_parameter[1] = 0;
@@ -15211,7 +14693,6 @@ void system_initialize_monitoring_system(uint64_t *system_context_parameter,uint
   *system_context_parameter = &system_data_animation_pool_base;
   return;
 }
-
 /**
  * 比较内存块
  * 
@@ -15223,7 +14704,6 @@ void system_initialize_monitoring_system(uint64_t *system_context_parameter,uint
  * @return 比较结果 (0=相同，非0=不同)
  */
 ulonglong system_compare_memory_blocks(longlong system_context_parameter,longlong system_context_parameter)
-
 {
   byte *system_byte_pointer;
   int system_int_context;
@@ -15231,22 +14711,22 @@ ulonglong system_compare_memory_blocks(longlong system_context_parameter,longlon
   byte *system_byte_pointer;
   int system_config_value;
   int system_return_code;
-  ulonglong system_temp_value;
-  longlong system_temp_pointer;
-  ulonglong system_temp_value;
-  ulonglong system_temp_value;
+  ulonglong system_temp_val;
+  longlong system_temp_ptr;
+  ulonglong system_temp_val;
+  ulonglong system_temp_val;
   
-  system_temp_value = (ulonglong)*(int *)(system_context_parameter + SYSTEM_EVENT_QUEUE_OFFSET);
+  system_temp_val = (ulonglong)*(int *)(system_context_parameter + SYSTEM_EVENT_QUEUE_OFFSET);
   system_resource_handle = *(longlong *)(system_context_parameter + 0x01);
-  if (system_temp_value < (ulonglong)(*(longlong *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) - system_resource_handle >> 0x01)) {
+  if (system_temp_val < (ulonglong)(*(longlong *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) - system_resource_handle >> 0x01)) {
     system_config_value = *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE);
-    system_int_context = *(int *)(system_temp_value * SYSTEM_CONFIG_DATA_SIZE0 + SYSTEM_CONFIG_DATA_SIZE + system_resource_handle);
+    system_int_context = *(int *)(system_temp_val * SYSTEM_CONFIG_DATA_SIZE_EXTENDED + SYSTEM_CONFIG_DATA_SIZE + system_resource_handle);
     if (system_int_context == system_config_value) {
       if (system_int_context != 0) {
-        system_byte_pointer = *(byte **)(system_temp_value * SYSTEM_CONFIG_DATA_SIZE0 + 0x01 + system_resource_handle);
-        system_temp_pointer = *(longlong *)(system_context_parameter + 0x01) - (longlong)system_byte_pointer;
+        system_byte_pointer = *(byte **)(system_temp_val * SYSTEM_CONFIG_DATA_SIZE_EXTENDED + 0x01 + system_resource_handle);
+        system_temp_ptr = *(longlong *)(system_context_parameter + 0x01) - (longlong)system_byte_pointer;
         do {
-          system_byte_pointer = system_byte_pointer + system_temp_pointer;
+          system_byte_pointer = system_byte_pointer + system_temp_ptr;
           system_config_value = (uint)*system_byte_pointer - (uint)*system_byte_pointer;
           if (system_config_value != 0) break;
           system_byte_pointer = system_byte_pointer + 1;
@@ -15256,24 +14736,24 @@ ulonglong system_compare_memory_blocks(longlong system_context_parameter,longlon
     else if (system_int_context != 0) goto SYSTEM_LABEL;
     if (system_config_value == 0) {
 SYSTEM_VALIDATION_CHECK:
-      return system_temp_value & 0x07fffffff;
+      return system_temp_val & 0x07fffffff;
     }
   }
 SYSTEM_VALIDATION_CHECK:
-  system_temp_value = 0;
-  system_temp_value = *(longlong *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) - system_resource_handle >> 0x01;
-  if (system_temp_value != 0) {
+  system_temp_val = 0;
+  system_temp_val = *(longlong *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) - system_resource_handle >> 0x01;
+  if (system_temp_val != 0) {
     system_config_value = *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE);
-    system_temp_value = system_temp_value;
+    system_temp_val = system_temp_val;
     do {
-      system_int_context = *(int *)(system_temp_value + SYSTEM_CONFIG_DATA_SIZE + system_resource_handle);
+      system_int_context = *(int *)(system_temp_val + SYSTEM_CONFIG_DATA_SIZE + system_resource_handle);
       system_return_code = system_config_value;
       if (system_int_context == system_config_value) {
         if (system_int_context != 0) {
-          system_byte_pointer = *(byte **)(system_temp_value + 0x01 + system_resource_handle);
-          system_temp_pointer = *(longlong *)(system_context_parameter + 0x01) - (longlong)system_byte_pointer;
+          system_byte_pointer = *(byte **)(system_temp_val + 0x01 + system_resource_handle);
+          system_temp_ptr = *(longlong *)(system_context_parameter + 0x01) - (longlong)system_byte_pointer;
           do {
-            system_byte_pointer = system_byte_pointer + system_temp_pointer;
+            system_byte_pointer = system_byte_pointer + system_temp_ptr;
             system_return_code = (uint)*system_byte_pointer - (uint)*system_byte_pointer;
             if (system_return_code != 0) break;
             system_byte_pointer = system_byte_pointer + 1;
@@ -15281,19 +14761,18 @@ SYSTEM_VALIDATION_CHECK:
         }
 SYSTEM_VALIDATION_CHECK:
         if (system_return_code == 0) {
-          *(int *)(system_context_parameter + SYSTEM_EVENT_QUEUE_OFFSET) = (int)system_temp_value;
+          *(int *)(system_context_parameter + SYSTEM_EVENT_QUEUE_OFFSET) = (int)system_temp_val;
           goto SYSTEM_LABEL;
         }
       }
       else if (system_int_context == 0) goto SYSTEM_LABEL;
-      system_temp_value = (int)system_temp_value + 1;
-      system_temp_value = (ulonglong)system_temp_value;
-      system_temp_value = system_temp_value + SYSTEM_CONFIG_DATA_SIZE0;
-    } while ((ulonglong)(longlong)(int)system_temp_value < system_temp_value);
+      system_temp_val = (int)system_temp_val + 1;
+      system_temp_val = (ulonglong)system_temp_val;
+      system_temp_val = system_temp_val + SYSTEM_CONFIG_DATA_SIZE_EXTENDED;
+    } while ((ulonglong)(longlong)(int)system_temp_val < system_temp_val);
   }
   return 0x07fffffff;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 设置性能计数器
@@ -15306,7 +14785,6 @@ SYSTEM_VALIDATION_CHECK:
  * @return 无返回值
  */
 void system_setup_performance_counters(longlong *system_context_parameter,uint64_t *system_context_parameter)
-
 {
   longlong *system_long_data_ptr;
   longlong *system_audio_device_ptr;
@@ -15338,7 +14816,6 @@ void system_setup_performance_counters(longlong *system_context_parameter,uint64
   system_setup_rendering_context(&system_data_memory_pool0bf52c0,system_context_parameter);
   *system_context_parameter = &system_data_callback_pool_base2;
   if (system_context_parameter[1] != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   system_context_parameter[1] = 0;
@@ -15346,31 +14823,29 @@ void system_setup_performance_counters(longlong *system_context_parameter,uint64
   *system_context_parameter = &system_data_animation_pool_base;
   return;
 }
-
  (ram,0x010010040032a0)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_metrics_collector(void)
-
 {
   uint64_t system_temp_uint_value;
   char system_char_data;
-  int compare_result;
+  int comparison_result;
   longlong ***ppglobal_context_ptr;
   ulonglong system_audio_config_value;
   longlong system_long_status;
   uint64_t *parent_node;
   uint64_t *child_node;
   uint32_t *system_manager_ptr;
-  uint64_t system_temp_value;
+  uint64_t system_temp_val;
   uint32_t system_config_buffer [0x040];
-  longlong system_stack_system_local_variable;
+  longlong system_stack_local_config;
   longlong system_config_data_buffer;
   int system_config_data_size;
   void **system_temp_buffer_ptr;
   uint32_t *system_temp_buffer_ptr;
   uint system_context_identifier;
   ulonglong system_context_identifier;
-  uint64_t system_context_identifierb1;
+  uint64_t system_context_identifier_secondary;
   longlong ***ppsystem_temp_buffer_ptr;
   longlong **psystem_temp_buffer_ptr;
   longlong ****pppsystem_temp_buffer_ptr;
@@ -15388,10 +14863,10 @@ void system_initialize_metrics_collector(void)
   longlong ***appsystem_temp_buffer_ptr [2];
   void **system_temp_buffer_ptr;
   code *pcStack_500;
-  uint64_t system_context_identifierf1;
+  uint64_t system_context_identifier_graphics;
   longlong **psystem_temp_buffer_ptrf0;
-  void **system_temp_buffer_ptre1;
-  uint32_t *system_temp_buffer_ptre0;
+  void **system_temp_buffer_ptr_ui;
+  uint32_t *system_temp_buffer_ptr_ui_secondary;
   uint64_t system_context_identifierd1;
   uint32_t system_config_bufferd0 [0x032];
   void **system_temp_buffer_ptr;
@@ -15402,9 +14877,9 @@ void system_initialize_metrics_collector(void)
   uint32_t *system_temp_buffer_ptr;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [0x032];
-  void **system_temp_buffer_ptrc1;
-  uint32_t *system_temp_buffer_ptrc0;
-  uint64_t system_context_identifierb1;
+  void **system_temp_buffer_ptr_animation;
+  uint32_t *system_temp_buffer_ptr_audio;
+  uint64_t system_context_identifier_secondary;
   uint32_t system_config_buffer_secondary [0x032];
   void **system_temp_buffer_ptr;
   uint32_t *system_temp_buffer_ptr;
@@ -15412,15 +14887,14 @@ void system_initialize_metrics_collector(void)
   uint32_t system_config_buffer [0x032];
   void **system_temp_buffer_ptr;
   uint32_t *system_temp_buffer_ptr;
-  uint64_t system_context_identifierf1;
+  uint64_t system_context_identifier_graphics;
   uint32_t system_config_buffer_graphics [0x064001];
   ulonglong system_context_identifier;
   
-  system_context_identifierf1 = SYSTEM_INVALID_HANDLE_VALUE;
+  system_context_identifier_graphics = SYSTEM_INVALID_HANDLE_VALUE;
   system_context_identifier = _system_data_memory_pool0bf00a1 ^ (ulonglong)system_config_buffer;
-  system_context_identifierb1 = 0;
+  system_context_identifier_secondary = 0;
   if (*(int *)(system_main_context + 0x0224) - system_render_offset < 0x07b) {
-                    // WARNING: Subroutine does not return
     system_calculate_checksum(system_context_identifier ^ (ulonglong)system_config_buffer);
   }
   *(uint32_t *)(system_memory_pool_data + 0x03002) = 1;
@@ -15432,90 +14906,90 @@ void system_initialize_metrics_collector(void)
   psystem_temp_buffer_ptrf0 = (longlong **)ppglobal_context_ptr;
   (*(code *)(*ppglobal_context_ptr)[5])(ppglobal_context_ptr);
   system_resource_temp_handle = system_resource_memory_pool;
-  system_context_identifierb1 = 1;
+  system_context_identifier_secondary = 1;
   ppsystem_temp_buffer_ptr = &psystem_temp_buffer_ptr;
   psystem_temp_buffer_ptr = (longlong **)ppglobal_context_ptr;
   (*(code *)(*ppglobal_context_ptr)[5])(ppglobal_context_ptr);
   system_process_resource_request(system_resource_temp_handle,&psystem_temp_buffer_ptr);
-  system_context_identifierb1 = 0;
+  system_context_identifier_secondary = 0;
   (*(code *)(*ppglobal_context_ptr)[0x03])(ppglobal_context_ptr);
-  system_initialize_ui_components(&system_stack_system_local_variable,&system_data_memory_pool0bf52c0);
+  system_initialize_ui_components(&system_stack_local_config,&system_data_memory_pool0bf52c0);
   if (system_stack_int_0x066001 == 0) {
-    (**(code **)(system_stack_system_local_variable + SYSTEM_CONFIG_DATA_SIZE))(&system_stack_system_local_variable,&system_data_timer_pool_base);
-    system_char_data = system_create_ui_window(&system_stack_system_local_variable);
+    (**(code **)(system_stack_local_config + SYSTEM_CONFIG_DATA_SIZE))(&system_stack_local_config,&system_data_timer_pool_base);
+    system_char_data = system_create_ui_window(&system_stack_local_config);
     if (system_char_data == '\0') {
-      system_setup_ui_event_handlers(&system_stack_system_local_variable);
+      system_setup_ui_event_handlers(&system_stack_local_config);
     }
   }
-  system_char_data = system_create_ui_window(&system_stack_system_local_variable);
+  system_char_data = system_create_ui_window(&system_stack_local_config);
   if (system_char_data == '\0') {
-    system_setup_ui_event_handlers(&system_stack_system_local_variable);
+    system_setup_ui_event_handlers(&system_stack_local_config);
   }
-  system_temp_buffer_ptre1 = &system_data_audio_buffer;
-  system_temp_buffer_ptre0 = system_config_bufferd0;
+  system_temp_buffer_ptr_ui = &system_data_audio_buffer;
+  system_temp_buffer_ptr_ui_secondary = system_config_bufferd0;
   system_config_bufferd0[0] = 0;
   system_context_identifierd1 = 0x01001;
   strcpy_s(system_config_bufferd0,SYSTEM_AUDIO_TABLE_OFFSET_VALUE,&system_data_clock_pool_base);
-  system_audio_register_value_ui_callback(system_memory_pool_data,&system_temp_buffer_ptre1,&system_stack_system_local_variable);
-  system_temp_buffer_ptre1 = &system_data_animation_pool_base;
+  system_audio_register_value_ui_callback(system_memory_pool_data,&system_temp_buffer_ptr_ui,&system_stack_local_config);
+  system_temp_buffer_ptr_ui = &system_data_animation_pool_base;
   system_temp_buffer_ptr = &system_data_audio_buffer;
   system_temp_buffer_ptr = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = SYSTEM_STACK_INITIAL_VALUE;
   strcpy_s(system_config_buffer,SYSTEM_AUDIO_TABLE_OFFSET_VALUE,&system_data_audio_buffer_base);
-  system_audio_register_value_ui_callback(system_memory_pool_data,&system_temp_buffer_ptr,&system_stack_system_local_variable);
+  system_audio_register_value_ui_callback(system_memory_pool_data,&system_temp_buffer_ptr,&system_stack_local_config);
   system_temp_buffer_ptr = &system_data_animation_pool_base;
   system_temp_buffer_ptr = &system_data_audio_buffer;
   system_temp_buffer_ptr = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x01001;
-  system_temp_value = strcpy_s(system_config_buffer,SYSTEM_AUDIO_TABLE_OFFSET_VALUE,&system_data_clock_pool_base);
-  _system_data_memory_pool_ui_scale_factor = (float)system_load_ui_resources(system_temp_value,&system_temp_buffer_ptr);
+  system_temp_val = strcpy_s(system_config_buffer,SYSTEM_AUDIO_TABLE_OFFSET_VALUE,&system_data_clock_pool_base);
+  _system_data_memory_pool_ui_scale_factor = (float)system_load_ui_resources(system_temp_val,&system_temp_buffer_ptr);
   _system_data_memory_pool_ui_scale_factor = 1.0 / _system_data_memory_pool_ui_scale_factor;
   system_temp_buffer_ptr = &system_data_animation_pool_base;
-  system_temp_buffer_ptrc1 = &system_data_audio_buffer;
-  system_temp_buffer_ptrc0 = system_config_buffer_secondary;
+  system_temp_buffer_ptr_animation = &system_data_audio_buffer;
+  system_temp_buffer_ptr_audio = system_config_buffer_secondary;
   system_config_buffer_secondary[0] = 0;
-  system_context_identifierb1 = SYSTEM_STACK_INITIAL_VALUE;
-  system_temp_value = strcpy_s(system_config_buffer_secondary,SYSTEM_AUDIO_TABLE_OFFSET_VALUE,&system_data_audio_buffer_base);
-  _system_data_memory_pool0bf52bc = (float)system_load_ui_resources(system_temp_value,&system_temp_buffer_ptrc1);
+  system_context_identifier_secondary = SYSTEM_STACK_INITIAL_VALUE;
+  system_temp_val = strcpy_s(system_config_buffer_secondary,SYSTEM_AUDIO_TABLE_OFFSET_VALUE,&system_data_audio_buffer_base);
+  _system_data_memory_pool0bf52bc = (float)system_load_ui_resources(system_temp_val,&system_temp_buffer_ptr_animation);
   _system_data_memory_pool0bf52bc = 1.0 / _system_data_memory_pool0bf52bc;
-  system_temp_buffer_ptrc1 = &system_data_animation_pool_base;
+  system_temp_buffer_ptr_animation = &system_data_animation_pool_base;
   system_temp_buffer_ptr = &system_data_audio_buffer;
   system_temp_buffer_ptr = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = SYSTEM_STACK_INITIAL_VALUE;
-  system_temp_value = strcpy_s(system_config_buffer,SYSTEM_AUDIO_TABLE_OFFSET_VALUE,&system_data_audio_buffer_base);
-  audio_volume_value = (float)system_process_ui_assets(system_temp_value,&system_temp_buffer_ptr);
+  system_temp_val = strcpy_s(system_config_buffer,SYSTEM_AUDIO_TABLE_OFFSET_VALUE,&system_data_audio_buffer_base);
+  audio_volume_value = (float)system_process_ui_assets(system_temp_val,&system_temp_buffer_ptr);
   system_temp_buffer_ptr = &system_data_animation_pool_base;
   system_temp_buffer_ptr = &system_data_audio_buffer;
   system_temp_buffer_ptr = system_config_buffer_graphics;
   system_config_buffer_graphics[0] = 0;
-  system_context_identifierf1 = 0x01001;
-  system_temp_value = strcpy_s(system_config_buffer_graphics,SYSTEM_AUDIO_TABLE_OFFSET_VALUE,&system_data_clock_pool_base);
-  audio_volume_value = (float)system_process_ui_assets(system_temp_value,&system_temp_buffer_ptr);
+  system_context_identifier_graphics = 0x01001;
+  system_temp_val = strcpy_s(system_config_buffer_graphics,SYSTEM_AUDIO_TABLE_OFFSET_VALUE,&system_data_clock_pool_base);
+  audio_volume_value = (float)system_process_ui_assets(system_temp_val,&system_temp_buffer_ptr);
   system_temp_buffer_ptr = &system_data_animation_pool_base;
   system_audio_config_value = system_get_graphics_config();
   if (0 < system_global_thread_ptr) {
     system_initialize_ui_theme(&system_data_memory_pool0bf52c0,&system_temp_buffer_ptr,0,system_global_thread_ptr + -1);
-    system_stack_int_0x054001 = system_stack_int_0x054001 + -1;
-    system_long_status = (longlong)system_stack_int_0x054001;
-    compare_result = -1;
-    if (-1 < system_stack_int_0x054001) {
+    system_stack_file_path_counter = system_stack_file_path_counter + -1;
+    system_long_status = (longlong)system_stack_file_path_counter;
+    comparison_result = -1;
+    if (-1 < system_stack_file_path_counter) {
       do {
-        compare_result = system_stack_int_0x054001;
+        comparison_result = system_stack_file_path_counter;
         if (*(char *)(system_file_path_buffer + system_long_status) == '/') break;
-        system_stack_int_0x054001 = system_stack_int_0x054001 + -1;
+        system_stack_file_path_counter = system_stack_file_path_counter + -1;
         system_long_status = system_long_status + -1;
-        compare_result = -1;
+        comparison_result = -1;
       } while (-1 < system_long_status);
     }
-    system_initialize_ui_theme(&system_temp_buffer_ptr,&system_temp_buffer_ptr,compare_result + 1,0x07fffffff);
-    compare_result = system_compare_memory_blocks(&system_data_memory_pool0bf5240,&system_temp_buffer_ptr);
-    if (compare_result == -1) {
-      compare_result = system_validate_ui_config(&system_data_memory_pool0bf5240,&system_temp_buffer_ptr);
+    system_initialize_ui_theme(&system_temp_buffer_ptr,&system_temp_buffer_ptr,comparison_result + 1,0x07fffffff);
+    comparison_result = system_compare_memory_blocks(&system_data_memory_pool0bf5240,&system_temp_buffer_ptr);
+    if (comparison_result == -1) {
+      comparison_result = system_validate_ui_config(&system_data_memory_pool0bf5240,&system_temp_buffer_ptr);
     }
-    system_long_status = (longlong)compare_result * SYSTEM_CONFIG_DATA_SIZE0;
+    system_long_status = (longlong)comparison_result * SYSTEM_CONFIG_DATA_SIZE_EXTENDED;
     ppsystem_temp_buffer_ptr = (longlong ***)(_system_data_memory_pool0bf524001 + 0x030 + system_long_status);
     pppsystem_temp_buffer_ptr = appsystem_temp_buffer_ptr;
     system_temp_buffer_ptr = &system_data_thread_pool_base;
@@ -15529,7 +15003,6 @@ void system_initialize_metrics_collector(void)
     *(double *)(system_long_status + SYSTEM_RESOURCE_BLOCK_OFFSET + _system_data_memory_pool0bf524001) = (double)(system_audio_config_value >> 0x014);
     system_temp_buffer_ptr = &system_data_callback_pool_base2;
     if (system_file_handle != 0) {
-                    // WARNING: Subroutine does not return
       system_initialize_component();
     }
     system_file_handle = 0;
@@ -15537,7 +15010,6 @@ void system_initialize_metrics_collector(void)
     system_temp_buffer_ptr = &system_data_animation_pool_base;
     system_temp_buffer_ptr = &system_data_callback_pool_base2;
     if (system_file_path_buffer != 0) {
-                    // WARNING: Subroutine does not return
       system_initialize_component();
     }
     system_file_path_buffer = 0;
@@ -15554,7 +15026,6 @@ void system_initialize_metrics_collector(void)
   system_context_identifier = 0;
   system_set_ui_parameter(&system_temp_buffer_ptr,system_stack_int_0x066001);
   if (system_config_data_size != 0) {
-                    // WARNING: Subroutine does not return
     memcpy(system_temp_buffer_ptr,system_config_data_buffer,system_config_data_size + 1);
   }
   if (system_config_data_buffer != 0) {
@@ -15564,24 +15035,24 @@ void system_initialize_metrics_collector(void)
     }
     system_context_identifier = system_context_identifier & 0x07fffffff;
   }
-  system_setup_ui_layout(&system_stack_system_local_variable,1);
-  compare_result = system_context_identifier + 0x011;
-  system_set_ui_parameter(&system_temp_buffer_ptr,compare_result);
+  system_setup_ui_layout(&system_stack_local_config,1);
+  comparison_result = system_context_identifier + 0x011;
+  system_set_ui_parameter(&system_temp_buffer_ptr,comparison_result);
   child_node = (uint64_t *)(system_temp_buffer_ptr + system_context_identifier);
   *child_node = 0x0600260036e65;
   child_node[1] = 0x0635f656e;
   child_node[2] = 0x06002666e6f;
   child_node[3] = 0x0300100342e603;
   *(uint16_t *)(child_node + 4) = 0x034;
-  system_context_identifier = compare_result;
+  system_context_identifier = comparison_result;
   parent_node = (uint64_t *)system_allocate_memory_context(system_context_memory_pool,0x01001,0x01,3);
-  system_manager_ptr = &system_data_memory_pool0x02001bc0033;
+  system_manager_ptr = &system_data_memory_pool_default;
   if (system_temp_buffer_ptr != (uint32_t *)0x00) {
     system_manager_ptr = system_temp_buffer_ptr;
   }
   *parent_node = 0;
   *(uint32_t *)(parent_node + 2) = 0;
-  system_audio_register_value_ui_service(parent_node,system_manager_ptr,&system_data_memory_pool0x02fc003ec);
+  system_audio_register_value_ui_service(parent_node,system_manager_ptr,&system_data_memory_pool_ui_service);
   system_initialize_ui_manager(_system_data_memory_pool0c1600220,parent_node);
   if (parent_node[1] != 0) {
     fclose();
@@ -15597,13 +15068,10 @@ void system_initialize_metrics_collector(void)
       UNLOCK();
     }
   }
-                    // WARNING: Subroutine does not return
   system_initialize_component(parent_node);
 }
-
 uint64_t *
 system_duplicate_memory_data(uint64_t *system_context_parameter,uint64_t *system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   *system_context_parameter = *system_context_parameter;
   *(uint64_t *)(system_context_parameter + 1) = *(uint64_t *)(system_context_parameter + 1);
@@ -15621,40 +15089,36 @@ system_duplicate_memory_data(uint64_t *system_context_parameter,uint64_t *system
   return system_context_parameter;
 }
 void system_collect_system_metrics(longlong system_context_parameter)
-
 {
   *(void ***)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = &system_data_animation_pool_base;
   return;
 }
 void system_process_metric_data(uint64_t *system_context_parameter)
-
 {
   *system_context_parameter = &system_data_animation_pool_base;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_aggregate_performance_stats(uint64_t system_context_parameter,uint64_t system_context_parameter,longlong system_context_parameter,uint64_t system_context_parameter)
-
 {
   byte system_byte_value;
   bool system_byte_context;
-  int compare_result;
+  int comparison_result;
   uint64_t *system_buffer_context;
   uint system_audio_config_value;
   byte *system_byte_pointer;
   uint64_t *parent_node;
   uint64_t *child_node;
   uint64_t *system_manager_ptr;
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   uint64_t system_context_identifier_0x01;
   
   system_context_identifier_0x01 = system_context_parameter;
-  compare_result = system_compare_memory_blocks(&system_data_memory_pool0bf5240);
-  if (compare_result == -1) {
-    compare_result = system_validate_ui_config(&system_data_memory_pool0bf5240,system_context_parameter);
+  comparison_result = system_compare_memory_blocks(&system_data_memory_pool0bf5240);
+  if (comparison_result == -1) {
+    comparison_result = system_validate_ui_config(&system_data_memory_pool0bf5240,system_context_parameter);
   }
-  parent_node = (uint64_t *)(_system_data_memory_pool0bf524001 + SYSTEM_CONTEXT_OFFSET_D0 + (longlong)compare_result * SYSTEM_CONFIG_DATA_SIZE0);
+  parent_node = (uint64_t *)(_system_data_memory_pool0bf524001 + SYSTEM_CONTEXT_OFFSET_D0 + (longlong)comparison_result * SYSTEM_CONFIG_DATA_SIZE_EXTENDED);
   system_buffer_context = parent_node;
   if ((uint64_t *)parent_node[2] != (uint64_t *)0x00) {
     child_node = (uint64_t *)parent_node[2];
@@ -15669,15 +15133,15 @@ void system_aggregate_performance_stats(uint64_t system_context_parameter,uint64
         }
         else {
           system_byte_pointer = *(byte **)(system_context_parameter + 0x01);
-          system_temp_pointer = child_node[5] - (longlong)system_byte_pointer;
+          system_temp_ptr = child_node[5] - (longlong)system_byte_pointer;
           do {
-            system_audio_config_value = (uint)system_byte_pointer[system_temp_pointer];
-            compare_result = *system_byte_pointer - system_audio_config_value;
+            system_audio_config_value = (uint)system_byte_pointer[system_temp_ptr];
+            comparison_result = *system_byte_pointer - system_audio_config_value;
             if (*system_byte_pointer != system_audio_config_value) break;
             system_byte_pointer = system_byte_pointer + 1;
           } while (system_audio_config_value != 0);
-          system_byte_context = 0 < compare_result;
-          if (compare_result < 1) {
+          system_byte_context = 0 < comparison_result;
+          if (comparison_result < 1) {
             system_manager_ptr = (uint64_t *)child_node[1];
             goto SYSTEM_LABEL;
           }
@@ -15696,10 +15160,10 @@ SYSTEM_VALIDATION_CHECK:
     if (*(int *)(system_buffer_context + 6) == 0) goto SYSTEM_LABEL;
     if (*(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) != 0) {
       system_byte_pointer = (byte *)system_buffer_context[5];
-      system_temp_pointer = *(longlong *)(system_context_parameter + 0x01) - (longlong)system_byte_pointer;
+      system_temp_ptr = *(longlong *)(system_context_parameter + 0x01) - (longlong)system_byte_pointer;
       do {
         system_byte_value = *system_byte_pointer;
-        system_audio_config_value = (uint)system_byte_pointer[system_temp_pointer];
+        system_audio_config_value = (uint)system_byte_pointer[system_temp_ptr];
         if (system_byte_value != system_audio_config_value) break;
         system_byte_pointer = system_byte_pointer + 1;
       } while (system_audio_config_value != 0);
@@ -15713,7 +15177,6 @@ SYSTEM_VALIDATION_CHECK:
   system_buffer_context[0x04] = system_context_parameter;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
  * 根据系统参数配置UI组件的各种属性和设置
@@ -15726,7 +15189,6 @@ SYSTEM_VALIDATION_CHECK:
  * 原本实现：完全重构系统配置函数，建立统一的语义化命名规范
  * 简化实现：保持原有函数名，添加详细文档注释
 void system_generate_performance_report(uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   double system_double_value1;
   char system_char_data;
@@ -15734,21 +15196,21 @@ void system_generate_performance_report(uint64_t system_context_parameter,uint64
   uint system_uint_buffer;
   uint64_t *system_config_ptr;
   longlong system_long_status;
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   uint64_t *child_node;
   void **system_manager_ptr;
-  ulonglong system_temp_value;
-  longlong system_temp_pointer;
-  ulonglong system_temp_value;
-  longlong system_temp_pointer;
-  char *pinit_status4;
+  ulonglong system_temp_val;
+  longlong system_temp_ptr;
+  ulonglong system_temp_val;
+  longlong system_temp_ptr;
+  char *system_init_status_ptr_4;
   void **system_uint_pointer;
   void **system_thread_context_ptr;
   void **system_thread_context_ptr;
   uint system_context_identifier_b1;
   uint64_t system_context_identifier_b0;
   void **system_thread_context_ptr;
-  char *pcStack_a0;
+  char *system_stack_char_buffer_secondary;
   uint64_t system_context_identifier;
   ulonglong system_context_identifier;
   void **system_temp_buffer_ptr;
@@ -15756,8 +15218,8 @@ void system_generate_performance_report(uint64_t system_context_parameter,uint64
   uint64_t system_context_identifier;
   ulonglong system_context_identifier;
   
-  system_temp_pointer = system_main_context;
-  system_temp_value = 0;
+  system_temp_ptr = system_main_context;
+  system_temp_val = 0;
   if (system_data_memory_pool0bf5240 == '\0') {
     return;
   }
@@ -15765,20 +15227,19 @@ void system_generate_performance_report(uint64_t system_context_parameter,uint64
   system_context_identifier_b0 = 0;
   system_thread_context_ptr = (void **)0x00;
   system_context_identifier_b1 = 0;
-  system_temp_value = *(uint *)(system_main_context + 0x010010);
-  system_temp_value = (ulonglong)system_temp_value;
+  system_temp_val = *(uint *)(system_main_context + 0x010010);
+  system_temp_val = (ulonglong)system_temp_val;
   if (*(longlong *)(system_main_context + 0x01003001) != 0) {
-    system_set_ui_parameter(&system_thread_context_ptr,system_temp_value,system_context_parameter,system_context_parameter,1,SYSTEM_INVALID_HANDLE_VALUE);
+    system_set_ui_parameter(&system_thread_context_ptr,system_temp_val,system_context_parameter,system_context_parameter,1,SYSTEM_INVALID_HANDLE_VALUE);
   }
-  if (system_temp_value != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(system_thread_context_ptr,*(uint64_t *)(system_temp_pointer + 0x01003001),system_temp_value);
+  if (system_temp_val != 0) {
+    memcpy(system_thread_context_ptr,*(uint64_t *)(system_temp_ptr + 0x01003001),system_temp_val);
   }
   if (system_thread_context_ptr != (void **)0x00) {
-    system_thread_context_ptr[system_temp_value] = 0;
+    system_thread_context_ptr[system_temp_val] = 0;
   }
-  system_context_identifier_b0 = CONCAT44(*(uint64_t *)(system_temp_pointer + 0x01001c),(uint64_t)system_context_identifier_b0);
-  system_context_identifier_b1 = system_temp_value;
+  system_context_identifier_b0 = CONCAT44(*(uint64_t *)(system_temp_ptr + 0x01001c),(uint64_t)system_context_identifier_b0);
+  system_context_identifier_b1 = system_temp_val;
   system_set_ui_parameter(&system_thread_context_ptr,5);
   *(uint64_t *)(system_thread_context_ptr + system_context_identifier_b1) = 0x03360036f6c;
   *(uint16_t *)((longlong)(system_thread_context_ptr + system_context_identifier_b1) + 4) = 0x02f;
@@ -15792,30 +15253,29 @@ void system_generate_performance_report(uint64_t system_context_parameter,uint64
   child_node[4] = 0x034003001034;
   system_context_identifier_b1 = 0x01001;
   system_config_ptr = (uint64_t *)system_allocate_memory_context(system_context_memory_pool,0x01001,0x01,3);
-  system_manager_ptr = &system_data_memory_pool0x02001bc0033;
+  system_manager_ptr = &system_data_memory_pool_default;
   if (system_thread_context_ptr != (void **)0x00) {
     system_manager_ptr = system_thread_context_ptr;
   }
   *system_config_ptr = 0;
   *(uint32_t *)(system_config_ptr + 2) = 0;
-  system_audio_register_value_ui_service(system_config_ptr,system_manager_ptr,&system_data_memory_pool0x02fc003ec);
-  system_temp_value = 0;
-  system_temp_value = system_temp_value;
+  system_audio_register_value_ui_service(system_config_ptr,system_manager_ptr,&system_data_memory_pool_ui_service);
+  system_temp_val = 0;
+  system_temp_val = system_temp_val;
   if (_system_data_memory_pool0bf5250 - _system_data_memory_pool0bf524001 >> 0x01 != 0) {
     do {
-      system_temp_pointer = _system_data_memory_pool0bf524001;
-      system_temp_pointer = 0;
+      system_temp_ptr = _system_data_memory_pool0bf524001;
+      system_temp_ptr = 0;
       system_temp_buffer_ptr = &system_data_callback_pool_base2;
       system_context_identifier = 0;
       system_stack_char_buffer_primary = (char *)0x00;
       system_context_identifier = 0;
-      system_set_ui_parameter(&system_temp_buffer_ptr,*(uint64_t *)(_system_data_memory_pool0bf524001 + SYSTEM_CONFIG_DATA_SIZE + system_temp_value));
-      system_audio_loop_counter = *(int *)(system_temp_pointer + SYSTEM_CONFIG_DATA_SIZE + system_temp_value);
+      system_set_ui_parameter(&system_temp_buffer_ptr,*(uint64_t *)(_system_data_memory_pool0bf524001 + SYSTEM_CONFIG_DATA_SIZE + system_temp_val));
+      system_audio_loop_counter = *(int *)(system_temp_ptr + SYSTEM_CONFIG_DATA_SIZE + system_temp_val);
       if (system_audio_loop_counter != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(system_stack_char_buffer_primary,*(uint64_t *)(system_temp_pointer + 0x01 + system_temp_value),system_audio_loop_counter + 1);
+        memcpy(system_stack_char_buffer_primary,*(uint64_t *)(system_temp_ptr + 0x01 + system_temp_val),system_audio_loop_counter + 1);
       }
-      if (*(longlong *)(system_temp_pointer + 0x01 + system_temp_value) != 0) {
+      if (*(longlong *)(system_temp_ptr + 0x01 + system_temp_val) != 0) {
         system_context_identifier = 0;
         if (system_stack_char_buffer_primary != (char *)0x00) {
           *system_stack_char_buffer_primary = '\0';
@@ -15824,199 +15284,196 @@ void system_generate_performance_report(uint64_t system_context_parameter,uint64
       }
       system_char_data = *system_stack_char_buffer_primary;
       while (system_char_data != '\0') {
-        system_long_status = strchr(&system_data_memory_pool_string_table,(int)system_stack_char_buffer_primary[system_temp_pointer]);
+        system_long_status = strchr(&system_data_memory_pool_string_table,(int)system_stack_char_buffer_primary[system_temp_ptr]);
         if (system_long_status != 0) {
-          system_stack_char_buffer_primary[system_temp_pointer] = '_';
+          system_stack_char_buffer_primary[system_temp_ptr] = '_';
         }
-        system_temp_pointer = system_temp_pointer + 1;
-        system_char_data = system_stack_char_buffer_primary[system_temp_pointer];
+        system_temp_ptr = system_temp_ptr + 1;
+        system_char_data = system_stack_char_buffer_primary[system_temp_ptr];
       }
-      pinit_status4 = "";
+      system_init_status_ptr_4 = "";
       if (system_stack_char_buffer_primary != (char *)0x00) {
-        pinit_status4 = system_stack_char_buffer_primary;
+        system_init_status_ptr_4 = system_stack_char_buffer_primary;
       }
-      system_configure_ui_component(system_config_ptr,&system_data_profiling_pool_base,pinit_status4);
-      system_double_value1 = *(double *)(system_temp_pointer + SYSTEM_CONTEXT_OFFSET_A0 + system_temp_value);
-      system_double_value3 = (double)*(uint *)(system_temp_pointer + SYSTEM_STACK_INITIAL_VALUE0 + system_temp_value);
+      system_configure_ui_component(system_config_ptr,&system_data_profiling_pool_base,system_init_status_ptr_4);
+      system_double_value1 = *(double *)(system_temp_ptr + SYSTEM_CONTEXT_OFFSET_A0 + system_temp_val);
+      system_double_value3 = (double)*(uint *)(system_temp_ptr + SYSTEM_STACK_INITIAL_VALUE0 + system_temp_val);
       if (system_double_value3 != SYSTEM_FLOAT_ZERO) {
-        system_configure_ui_component(system_config_ptr,&system_data_43,&system_data_42,system_double_value3);
+        system_configure_ui_component(system_config_ptr,&system_data_ui_component_config,&system_data_42,system_double_value3);
       }
       if (system_double_value1 != SYSTEM_FLOAT_ZERO) {
-        system_configure_ui_component(system_config_ptr,&system_data_43,&system_data_44,system_double_value1);
+        system_configure_ui_component(system_config_ptr,&system_data_ui_component_config,&system_data_44,system_double_value1);
       }
-      system_double_value1 = *(double *)(system_temp_pointer + SYSTEM_STACK_INITIAL_VALUE1 + system_temp_value);
-      system_double_value3 = (double)*(uint *)(system_temp_pointer + 200 + system_temp_value);
+      system_double_value1 = *(double *)(system_temp_ptr + SYSTEM_STACK_INITIAL_VALUE1 + system_temp_val);
+      system_double_value3 = (double)*(uint *)(system_temp_ptr + 200 + system_temp_val);
       if (system_double_value3 != SYSTEM_FLOAT_ZERO) {
-        system_configure_ui_component(system_config_ptr,&system_data_43,&system_data_45,system_double_value3);
+        system_configure_ui_component(system_config_ptr,&system_data_ui_component_config,&system_data_45,system_double_value3);
       }
       if (system_double_value1 != SYSTEM_FLOAT_ZERO) {
-        system_configure_ui_component(system_config_ptr,&system_data_43,&system_data_46,system_double_value1);
+        system_configure_ui_component(system_config_ptr,&system_data_ui_component_config,&system_data_46,system_double_value1);
       }
-      system_double_value1 = *(double *)(system_temp_pointer + SYSTEM_RESOURCE_BLOCK_OFFSET + system_temp_value);
+      system_double_value1 = *(double *)(system_temp_ptr + SYSTEM_RESOURCE_BLOCK_OFFSET + system_temp_val);
       if (system_double_value1 != SYSTEM_FLOAT_ZERO) {
-        system_configure_ui_component(system_config_ptr,&system_data_43,&system_data_ui_config_primary,system_double_value1);
+        system_configure_ui_component(system_config_ptr,&system_data_ui_component_config,&system_data_ui_config_primary,system_double_value1);
       }
-      system_double_value1 = *(double *)(system_temp_pointer + SYSTEM_MEMORY_POOL_BASE_OFFSET + system_temp_value);
+      system_double_value1 = *(double *)(system_temp_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET + system_temp_val);
       if (system_double_value1 != SYSTEM_FLOAT_ZERO) {
-        system_configure_ui_component(system_config_ptr,&system_data_43,&system_data_ui_config_secondary,system_double_value1);
+        system_configure_ui_component(system_config_ptr,&system_data_ui_component_config,&system_data_ui_config_secondary,system_double_value1);
       }
-      system_temp_pointer = *(longlong *)(system_temp_pointer + 0x030 + system_temp_value);
-      system_double_value1 = (double)system_temp_pointer;
-      if (system_temp_pointer < 0) {
+      system_temp_ptr = *(longlong *)(system_temp_ptr + 0x030 + system_temp_val);
+      system_double_value1 = (double)system_temp_ptr;
+      if (system_temp_ptr < 0) {
         system_double_value1 = system_double_value1 + 1.0x014460034400033030002552e+0x01002;
       }
-      system_configure_ui_component(system_config_ptr,&system_data_50,&system_data_ui_config_tertiary,
+      system_configure_ui_component(system_config_ptr,&system_data_graphics_component_config,&system_data_ui_config_tertiary,
                     (double)(float)(system_double_value1 * 0x02.0x0536003431640625e-0x03));
-      system_temp_pointer = *(longlong *)(system_temp_pointer + SYSTEM_THREAD_POOL_BASE_OFFSET + system_temp_value);
-      system_double_value1 = (double)system_temp_pointer;
-      if (system_temp_pointer < 0) {
+      system_temp_ptr = *(longlong *)(system_temp_ptr + SYSTEM_THREAD_POOL_BASE_OFFSET + system_temp_val);
+      system_double_value1 = (double)system_temp_ptr;
+      if (system_temp_ptr < 0) {
         system_double_value1 = system_double_value1 + 1.0x014460034400033030002552e+0x01002;
       }
-      system_configure_ui_component(system_config_ptr,&system_data_50,&system_data_51,
+      system_configure_ui_component(system_config_ptr,&system_data_graphics_component_config,&system_data_51,
                     (double)(float)(system_double_value1 * 0x02.0x0536003431640625e-0x03));
-      system_temp_pointer = *(longlong *)(system_temp_pointer + SYSTEM_AUDIO_TABLE_OFFSET_VALUE + system_temp_value);
-      system_double_value1 = (double)system_temp_pointer;
-      if (system_temp_pointer < 0) {
+      system_temp_ptr = *(longlong *)(system_temp_ptr + SYSTEM_AUDIO_TABLE_OFFSET_VALUE + system_temp_val);
+      system_double_value1 = (double)system_temp_ptr;
+      if (system_temp_ptr < 0) {
         system_double_value1 = system_double_value1 + 1.0x014460034400033030002552e+0x01002;
       }
-      system_configure_ui_component(system_config_ptr,&system_data_50,&system_data_52,
+      system_configure_ui_component(system_config_ptr,&system_data_graphics_component_config,&system_data_52,
                     (double)(float)(system_double_value1 * 0x02.0x0536003431640625e-0x03));
-      system_temp_pointer = *(longlong *)(system_temp_pointer + SYSTEM_RESOURCE_TABLE_OFFSET + system_temp_value);
-      system_double_value1 = (double)system_temp_pointer;
-      if (system_temp_pointer < 0) {
+      system_temp_ptr = *(longlong *)(system_temp_ptr + SYSTEM_RESOURCE_TABLE_OFFSET + system_temp_val);
+      system_double_value1 = (double)system_temp_ptr;
+      if (system_temp_ptr < 0) {
         system_double_value1 = system_double_value1 + 1.0x014460034400033030002552e+0x01002;
       }
-      system_configure_ui_component(system_config_ptr,&system_data_50,&system_data_53,
+      system_configure_ui_component(system_config_ptr,&system_data_graphics_component_config,&system_data_53,
                     (double)(float)(system_double_value1 * 0x02.0x0536003431640625e-0x03));
-      system_temp_pointer = *(longlong *)(system_temp_pointer + SYSTEM_RESOURCE_COUNT_OFFSET + system_temp_value);
-      system_double_value1 = (double)system_temp_pointer;
-      if (system_temp_pointer < 0) {
+      system_temp_ptr = *(longlong *)(system_temp_ptr + SYSTEM_RESOURCE_COUNT_OFFSET + system_temp_val);
+      system_double_value1 = (double)system_temp_ptr;
+      if (system_temp_ptr < 0) {
         system_double_value1 = system_double_value1 + 1.0x014460034400033030002552e+0x01002;
       }
-      system_configure_ui_component(system_config_ptr,&system_data_50,&system_data_54,
+      system_configure_ui_component(system_config_ptr,&system_data_graphics_component_config,&system_data_54,
                     (double)(float)(system_double_value1 * 0x02.0x0536003431640625e-0x03));
-      system_temp_pointer = *(longlong *)(system_temp_pointer + 0x05001 + system_temp_value);
-      system_double_value1 = (double)system_temp_pointer;
-      if (system_temp_pointer < 0) {
+      system_temp_ptr = *(longlong *)(system_temp_ptr + 0x05001 + system_temp_val);
+      system_double_value1 = (double)system_temp_ptr;
+      if (system_temp_ptr < 0) {
         system_double_value1 = system_double_value1 + 1.0x014460034400033030002552e+0x01002;
       }
-      system_configure_ui_component(system_config_ptr,&system_data_50,&system_data_55,
+      system_configure_ui_component(system_config_ptr,&system_data_graphics_component_config,&system_data_55,
                     (double)(float)(system_double_value1 * 0x02.0x0536003431640625e-0x03));
-      system_temp_pointer = *(longlong *)(system_temp_pointer + SYSTEM_CALLBACK_TABLE_OFFSET + system_temp_value);
-      system_double_value1 = (double)system_temp_pointer;
-      if (system_temp_pointer < 0) {
+      system_temp_ptr = *(longlong *)(system_temp_ptr + SYSTEM_CALLBACK_TABLE_OFFSET + system_temp_val);
+      system_double_value1 = (double)system_temp_ptr;
+      if (system_temp_ptr < 0) {
         system_double_value1 = system_double_value1 + 1.0x014460034400033030002552e+0x01002;
       }
-      system_configure_ui_component(system_config_ptr,&system_data_50,&system_data_56,
+      system_configure_ui_component(system_config_ptr,&system_data_graphics_component_config,&system_data_56,
                     (double)(float)(system_double_value1 * 0x02.0x0536003431640625e-0x03));
-      system_temp_pointer = *(longlong *)(system_temp_pointer + SYSTEM_EVENT_QUEUE_OFFSET + system_temp_value);
-      system_double_value1 = (double)system_temp_pointer;
-      if (system_temp_pointer < 0) {
+      system_temp_ptr = *(longlong *)(system_temp_ptr + SYSTEM_EVENT_QUEUE_OFFSET + system_temp_val);
+      system_double_value1 = (double)system_temp_ptr;
+      if (system_temp_ptr < 0) {
         system_double_value1 = system_double_value1 + 1.0x014460034400033030002552e+0x01002;
       }
-      system_configure_ui_component(system_config_ptr,&system_data_50,&system_data_ui_theme_tertiary,
+      system_configure_ui_component(system_config_ptr,&system_data_graphics_component_config,&system_data_ui_theme_tertiary,
                     (double)(float)(system_double_value1 * 0x02.0x0536003431640625e-0x03));
-      system_temp_pointer = *(longlong *)(system_temp_pointer + SYSTEM_MESSAGE_BUFFER_OFFSET + system_temp_value);
-      system_double_value1 = (double)system_temp_pointer;
-      if (system_temp_pointer < 0) {
+      system_temp_ptr = *(longlong *)(system_temp_ptr + SYSTEM_MESSAGE_BUFFER_OFFSET + system_temp_val);
+      system_double_value1 = (double)system_temp_ptr;
+      if (system_temp_ptr < 0) {
         system_double_value1 = system_double_value1 + 1.0x014460034400033030002552e+0x01002;
       }
-      system_configure_ui_component(system_config_ptr,&system_data_50,&system_data_ui_theme_primary,
+      system_configure_ui_component(system_config_ptr,&system_data_graphics_component_config,&system_data_ui_theme_primary,
                     (double)(float)(system_double_value1 * 0x02.0x0536003431640625e-0x03));
-      system_double_value1 = *(double *)(system_temp_pointer + SYSTEM_SIGNAL_HANDLER_OFFSET + system_temp_value);
+      system_double_value1 = *(double *)(system_temp_ptr + SYSTEM_SIGNAL_HANDLER_OFFSET + system_temp_val);
       if (system_double_value1 != SYSTEM_FLOAT_ZERO) {
-        system_configure_ui_component(system_config_ptr,&system_data_43,&system_data_ui_theme_secondary,system_double_value1);
+        system_configure_ui_component(system_config_ptr,&system_data_ui_component_config,&system_data_ui_theme_secondary,system_double_value1);
       }
-      system_double_value1 = *(double *)(system_temp_pointer + SYSTEM_STANDARD_BUFFER_SIZE + system_temp_value);
+      system_double_value1 = *(double *)(system_temp_ptr + SYSTEM_STANDARD_BUFFER_SIZE + system_temp_val);
       if (system_double_value1 != SYSTEM_FLOAT_ZERO) {
-        system_configure_ui_component(system_config_ptr,&system_data_43,&system_data_60,system_double_value1);
+        system_configure_ui_component(system_config_ptr,&system_data_ui_component_config,&system_data_60,system_double_value1);
       }
-      system_temp_pointer = system_temp_value + SYSTEM_CONTEXT_OFFSET_D0 + system_temp_pointer;
-      system_temp_pointer = *(longlong *)(system_temp_pointer + 0x01);
-      system_uint_buffer = (uint)system_temp_value;
-      while (system_temp_pointer != system_temp_pointer) {
+      system_temp_ptr = system_temp_val + SYSTEM_CONTEXT_OFFSET_D0 + system_temp_ptr;
+      system_temp_ptr = *(longlong *)(system_temp_ptr + 0x01);
+      system_uint_buffer = (uint)system_temp_val;
+      while (system_temp_ptr != system_temp_ptr) {
         system_long_status = 0;
         system_thread_context_ptr = &system_data_callback_pool_base2;
         system_context_identifier = 0;
-        pcStack_a0 = (char *)0x00;
+        system_stack_char_buffer_secondary = (char *)0x00;
         system_context_identifier = 0;
-        system_set_ui_parameter(&system_thread_context_ptr,*(uint64_t *)(system_temp_pointer + SYSTEM_RESOURCE_COUNT_OFFSET));
-        if (*(int *)(system_temp_pointer + SYSTEM_RESOURCE_COUNT_OFFSET) != 0) {
-                    // WARNING: Subroutine does not return
-          memcpy(pcStack_a0,*(uint64_t *)(system_temp_pointer + SYSTEM_RESOURCE_TABLE_OFFSET),*(int *)(system_temp_pointer + SYSTEM_RESOURCE_COUNT_OFFSET) + 1);
+        system_set_ui_parameter(&system_thread_context_ptr,*(uint64_t *)(system_temp_ptr + SYSTEM_RESOURCE_COUNT_OFFSET));
+        if (*(int *)(system_temp_ptr + SYSTEM_RESOURCE_COUNT_OFFSET) != 0) {
+          memcpy(system_stack_char_buffer_secondary,*(uint64_t *)(system_temp_ptr + SYSTEM_RESOURCE_TABLE_OFFSET),*(int *)(system_temp_ptr + SYSTEM_RESOURCE_COUNT_OFFSET) + 1);
         }
-        if (*(longlong *)(system_temp_pointer + SYSTEM_RESOURCE_TABLE_OFFSET) != 0) {
+        if (*(longlong *)(system_temp_ptr + SYSTEM_RESOURCE_TABLE_OFFSET) != 0) {
           system_context_identifier = 0;
-          if (pcStack_a0 != (char *)0x00) {
-            *pcStack_a0 = '\0';
+          if (system_stack_char_buffer_secondary != (char *)0x00) {
+            *system_stack_char_buffer_secondary = '\0';
           }
           system_context_identifier = system_context_identifier & 0x07fffffff;
         }
-        system_char_data = *pcStack_a0;
+        system_char_data = *system_stack_char_buffer_secondary;
         while (system_char_data != '\0') {
-          system_temp_pointer = strchr(&system_data_memory_pool_string_table,(int)pcStack_a0[system_long_status]);
-          if (system_temp_pointer != 0) {
-            pcStack_a0[system_long_status] = '_';
+          system_temp_ptr = strchr(&system_data_memory_pool_string_table,(int)system_stack_char_buffer_secondary[system_long_status]);
+          if (system_temp_ptr != 0) {
+            system_stack_char_buffer_secondary[system_long_status] = '_';
           }
           system_long_status = system_long_status + 1;
-          system_char_data = pcStack_a0[system_long_status];
+          system_char_data = system_stack_char_buffer_secondary[system_long_status];
         }
-        pinit_status4 = "";
-        if (pcStack_a0 != (char *)0x00) {
-          pinit_status4 = pcStack_a0;
+        system_init_status_ptr_4 = "";
+        if (system_stack_char_buffer_secondary != (char *)0x00) {
+          system_init_status_ptr_4 = system_stack_char_buffer_secondary;
         }
-        system_configure_ui_component(system_config_ptr,&system_data_43,pinit_status4,*(uint64_t *)(system_temp_pointer + SYSTEM_CALLBACK_TABLE_OFFSET));
+        system_configure_ui_component(system_config_ptr,&system_data_ui_component_config,system_init_status_ptr_4,*(uint64_t *)(system_temp_ptr + SYSTEM_CALLBACK_TABLE_OFFSET));
         system_thread_context_ptr = &system_data_callback_pool_base2;
-        if (pcStack_a0 != (char *)0x00) {
-                    // WARNING: Subroutine does not return
+        if (system_stack_char_buffer_secondary != (char *)0x00) {
           system_initialize_component();
         }
-        pcStack_a0 = (char *)0x00;
+        system_stack_char_buffer_secondary = (char *)0x00;
         system_context_identifier = system_context_identifier & 0x07fffffff00000000;
         system_thread_context_ptr = &system_data_animation_pool_base;
-        system_temp_pointer = system_get_next_resource_node(system_temp_pointer);
-        system_uint_buffer = system_temp_value;
+        system_temp_ptr = system_get_next_resource_node(system_temp_ptr);
+        system_uint_buffer = system_temp_val;
       }
       system_configure_ui_component(system_config_ptr,&system_data_memory_pool0x02fcc1001);
       system_temp_buffer_ptr = &system_data_callback_pool_base2;
       if (system_stack_char_buffer_primary != (char *)0x00) {
-                    // WARNING: Subroutine does not return
         system_initialize_component();
       }
       system_stack_char_buffer_primary = (char *)0x00;
       system_context_identifier = system_context_identifier & 0x07fffffff00000000;
       system_temp_buffer_ptr = &system_data_animation_pool_base;
-      system_temp_value = system_uint_buffer + 1;
-      system_temp_value = (ulonglong)system_temp_value;
-      system_temp_value = system_temp_value + SYSTEM_CONFIG_DATA_SIZE0;
-    } while ((ulonglong)(longlong)(int)system_temp_value < (ulonglong)(_system_data_memory_pool0bf5250 - _system_data_memory_pool0bf524001 >> 0x01));
+      system_temp_val = system_uint_buffer + 1;
+      system_temp_val = (ulonglong)system_temp_val;
+      system_temp_val = system_temp_val + SYSTEM_CONFIG_DATA_SIZE_EXTENDED;
+    } while ((ulonglong)(longlong)(int)system_temp_val < (ulonglong)(_system_data_memory_pool0bf5250 - _system_data_memory_pool0bf524001 >> 0x01));
   }
   system_audio_loop_counter = 0;
   system_configure_ui_component(system_config_ptr,&system_data_61);
   if ((system_global_loaded - system_global_initialized) / 0x02001 != 0) {
-    system_temp_pointer = 0;
+    system_temp_ptr = 0;
     do {
       system_long_status = system_global_initialized;
-      system_temp_pointer = 0;
-      pinit_status4 = *(char **)(system_global_initialized + 0x01 + system_temp_pointer);
-      system_char_data = *pinit_status4;
+      system_temp_ptr = 0;
+      system_init_status_ptr_4 = *(char **)(system_global_initialized + 0x01 + system_temp_ptr);
+      system_char_data = *system_init_status_ptr_4;
       while (system_char_data != '\0') {
-        system_temp_pointer = strchr(&system_data_memory_pool_string_table,(int)pinit_status4[system_temp_pointer]);
-        if (system_temp_pointer != 0) {
-          *(uint32_t *)(system_temp_pointer + *(longlong *)(system_long_status + 0x01 + system_temp_pointer)) = 0x05f;
+        system_temp_ptr = strchr(&system_data_memory_pool_string_table,(int)system_init_status_ptr_4[system_temp_ptr]);
+        if (system_temp_ptr != 0) {
+          *(uint32_t *)(system_temp_ptr + *(longlong *)(system_long_status + 0x01 + system_temp_ptr)) = 0x05f;
         }
-        system_temp_pointer = system_temp_pointer + 1;
-        pinit_status4 = *(char **)(system_long_status + 0x01 + system_temp_pointer);
-        system_char_data = pinit_status4[system_temp_pointer];
+        system_temp_ptr = system_temp_ptr + 1;
+        system_init_status_ptr_4 = *(char **)(system_long_status + 0x01 + system_temp_ptr);
+        system_char_data = system_init_status_ptr_4[system_temp_ptr];
       }
-      system_manager_ptr = *(void ***)(system_global_initialized + 0x01 + system_temp_pointer);
-      system_uint_pointer = &system_data_memory_pool0x02001bc0033;
+      system_manager_ptr = *(void ***)(system_global_initialized + 0x01 + system_temp_ptr);
+      system_uint_pointer = &system_data_memory_pool_default;
       if (system_manager_ptr != (void **)0x00) {
         system_uint_pointer = system_manager_ptr;
       }
-      system_configure_ui_component(system_config_ptr,&system_data_43,system_uint_pointer,*(uint64_t *)(system_global_initialized + SYSTEM_RESOURCE_BLOCK_OFFSET + system_temp_pointer));
+      system_configure_ui_component(system_config_ptr,&system_data_ui_component_config,system_uint_pointer,*(uint64_t *)(system_global_initialized + SYSTEM_RESOURCE_BLOCK_OFFSET + system_temp_ptr));
       system_audio_loop_counter = system_audio_loop_counter + 1;
-      system_temp_pointer = system_temp_pointer + SYSTEM_MEMORY_POOL_BASE_OFFSET;
+      system_temp_ptr = system_temp_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET;
     } while ((ulonglong)(longlong)system_audio_loop_counter < (ulonglong)((system_global_loaded - system_global_initialized) / 0x02001));
   }
   if (system_config_ptr[1] != 0) {
@@ -16033,27 +15490,23 @@ void system_generate_performance_report(uint64_t system_context_parameter,uint64
       UNLOCK();
     }
   }
-                    // WARNING: Subroutine does not return
   system_initialize_component(system_config_ptr);
 }
 void system_initialize_diagnostic_system(longlong *system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   longlong system_long_context;
   
-  system_temp_pointer = system_context_parameter[1];
-  for (system_long_context = *system_context_parameter; system_long_context != system_temp_pointer; system_long_context = system_long_context + SYSTEM_CONFIG_DATA_SIZE0) {
+  system_temp_ptr = system_context_parameter[1];
+  for (system_long_context = *system_context_parameter; system_long_context != system_temp_ptr; system_long_context = system_long_context + SYSTEM_CONFIG_DATA_SIZE_EXTENDED) {
     system_initialize_system_context(system_long_context);
   }
   if (*system_context_parameter == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_initialize_component();
 }
 void system_run_diagnostic_tests(longlong *system_context_parameter)
-
 {
   uint64_t *data_context;
   uint64_t *data_context;
@@ -16062,7 +15515,6 @@ void system_run_diagnostic_tests(longlong *system_context_parameter)
   for (data_context = (uint64_t *)*system_context_parameter; data_context != data_context; data_context = data_context + 5) {
     *data_context = &system_data_callback_pool_base2;
     if (data_context[1] != 0) {
-                    // WARNING: Subroutine does not return
       system_initialize_component();
     }
     data_context[1] = 0;
@@ -16070,13 +15522,11 @@ void system_run_diagnostic_tests(longlong *system_context_parameter)
     *data_context = &system_data_animation_pool_base;
   }
   if (*system_context_parameter != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   return;
 }
 void system_validate_system_health(ulonglong *system_context_parameter)
-
 {
   int *system_audio_loop_counter_ptr;
   uint64_t *data_context;
@@ -16108,10 +15558,8 @@ void system_validate_system_health(ulonglong *system_context_parameter)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_generate_diagnostic_report(longlong system_context_parameter)
-
 {
   if (system_context_parameter != 0) {
     if (*(longlong *)(system_context_parameter + 0x01) != 0) {
@@ -16121,14 +15569,11 @@ void system_generate_diagnostic_report(longlong system_context_parameter)
       system_reference_count = system_reference_count + -1;
       UNLOCK();
     }
-                    // WARNING: Subroutine does not return
     system_initialize_component(system_context_parameter);
   }
   return;
 }
-
 longlong system_handle_memory_operation(longlong system_context_parameter,longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   uint64_t *data_context;
   uint64_t system_audio_context_id;
@@ -16139,9 +15584,9 @@ longlong system_handle_memory_operation(longlong system_context_parameter,longlo
   uint64_t *parent_node;
   uint64_t *child_node;
   uint64_t *system_manager_ptr;
-  uint64_t system_temp_value;
+  uint64_t system_temp_val;
   
-  system_temp_value = SYSTEM_INVALID_HANDLE_VALUE;
+  system_temp_val = SYSTEM_INVALID_HANDLE_VALUE;
   system_initialize_ui_components();
   *(uint64_t *)(system_context_parameter + SYSTEM_RESOURCE_BLOCK_OFFSET) = *(uint64_t *)(system_context_parameter + SYSTEM_RESOURCE_BLOCK_OFFSET);
   *(uint64_t *)(system_context_parameter + SYSTEM_MEMORY_POOL_BASE_OFFSET) = *(uint64_t *)(system_context_parameter + SYSTEM_MEMORY_POOL_BASE_OFFSET);
@@ -16189,7 +15634,7 @@ longlong system_handle_memory_operation(longlong system_context_parameter,longlo
   *(uint32_t *)(system_context_parameter + 0x05001) = 0;
   *(uint64_t *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_F0) = 0;
   if (*(longlong *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_E0) != 0) {
-    system_manager_ptr = (uint64_t *)system_resolve_memory_reference(data_context,*(longlong *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_E0),data_context,system_context_parameter,system_temp_value)
+    system_manager_ptr = (uint64_t *)system_resolve_memory_reference(data_context,*(longlong *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_E0),data_context,system_context_parameter,system_temp_val)
     ;
     *(uint64_t **)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_E0) = system_manager_ptr;
     child_node = (uint64_t *)*system_manager_ptr;
@@ -16209,9 +15654,7 @@ longlong system_handle_memory_operation(longlong system_context_parameter,longlo
   }
   return system_context_parameter;
 }
-
 uint64_t system_execute_memory_command(uint64_t system_context_parameter,ulonglong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   uint64_t system_temp_uint_value;
   
@@ -16222,11 +15665,9 @@ uint64_t system_execute_memory_command(uint64_t system_context_parameter,ulonglo
   }
   return system_context_parameter;
 }
-
 uint64_t *
 system_handle_memory_request(longlong *system_context_parameter,uint64_t *system_context_parameter,uint64_t system_context_parameter,longlong *system_context_parameter,
              longlong system_param_)
-
 {
   byte system_byte_value;
   bool system_byte_context;
@@ -16234,8 +15675,8 @@ system_handle_memory_request(longlong *system_context_parameter,uint64_t *system
   longlong *global_context_ptr;
   byte *system_byte_pointer;
   uint system_audio_status;
-  longlong system_temp_pointer;
-  uint64_t system_temp_value;
+  longlong system_temp_ptr;
+  uint64_t system_temp_val;
   longlong *system_audio_device_ptr;
   
   global_context_ptr = (longlong *)*system_context_parameter;
@@ -16244,20 +15685,20 @@ system_handle_memory_request(longlong *system_context_parameter,uint64_t *system
       system_context_parameter = global_context_ptr;
       if (*(int *)(global_context_ptr + 6) != 0) {
         system_byte_pointer = *(byte **)(system_param_ + 0x01);
-        system_temp_pointer = global_context_ptr[5] - (longlong)system_byte_pointer;
+        system_temp_ptr = global_context_ptr[5] - (longlong)system_byte_pointer;
         do {
           system_byte_value = *system_byte_pointer;
-          system_audio_status = (uint)system_byte_pointer[system_temp_pointer];
+          system_audio_status = (uint)system_byte_pointer[system_temp_ptr];
           if (system_byte_value != system_audio_status) break;
           system_byte_pointer = system_byte_pointer + 1;
         } while (system_audio_status != 0);
         if ((int)(system_byte_value - system_audio_status) < 1) goto SYSTEM_LABEL;
       }
 SYSTEM_VALIDATION_CHECK:
-      system_temp_value = 0;
+      system_temp_val = 0;
 SYSTEM_VALIDATION_CHECK:
       if (system_context_parameter != (longlong *)0x00) {
-        system_create_graphics_buffer(system_context_parameter,system_context_parameter,system_context_parameter,system_temp_value,system_param_);
+        system_create_graphics_buffer(system_context_parameter,system_context_parameter,system_context_parameter,system_temp_val,system_param_);
         return system_context_parameter;
       }
     }
@@ -16267,10 +15708,10 @@ SYSTEM_VALIDATION_CHECK:
     if (*(int *)(system_param_ + SYSTEM_CONFIG_DATA_SIZE) != 0) {
       if ((int)system_context_parameter[6] != 0) {
         system_byte_pointer = *(byte **)(system_param_ + 0x01);
-        system_temp_pointer = system_context_parameter[5] - (longlong)system_byte_pointer;
+        system_temp_ptr = system_context_parameter[5] - (longlong)system_byte_pointer;
         do {
           system_byte_value = *system_byte_pointer;
-          system_audio_status = (uint)system_byte_pointer[system_temp_pointer];
+          system_audio_status = (uint)system_byte_pointer[system_temp_ptr];
           if (system_byte_value != system_audio_status) break;
           system_byte_pointer = system_byte_pointer + 1;
         } while (system_audio_status != 0);
@@ -16278,16 +15719,16 @@ SYSTEM_VALIDATION_CHECK:
       }
       if ((int)global_context_ptr[6] != 0) {
         system_byte_pointer = (byte *)global_context_ptr[5];
-        system_temp_pointer = *(longlong *)(system_param_ + 0x01) - (longlong)system_byte_pointer;
+        system_temp_ptr = *(longlong *)(system_param_ + 0x01) - (longlong)system_byte_pointer;
         do {
           system_byte_value = *system_byte_pointer;
-          system_audio_status = (uint)system_byte_pointer[system_temp_pointer];
+          system_audio_status = (uint)system_byte_pointer[system_temp_ptr];
           if (system_byte_value != system_audio_status) break;
           system_byte_pointer = system_byte_pointer + 1;
         } while (system_audio_status != 0);
         if (0 < (int)(system_byte_value - system_audio_status)) {
           if (*system_context_parameter == 0) goto SYSTEM_LABEL;
-          system_temp_value = 1;
+          system_temp_val = 1;
           system_context_parameter = global_context_ptr;
           goto SYSTEM_LABEL;
         }
@@ -16311,10 +15752,10 @@ SYSTEM_VALIDATION_CHECK:
       }
       else {
         system_byte_pointer = (byte *)global_context_ptr[5];
-        system_temp_pointer = *(longlong *)(system_param_ + 0x01) - (longlong)system_byte_pointer;
+        system_temp_ptr = *(longlong *)(system_param_ + 0x01) - (longlong)system_byte_pointer;
         do {
           system_byte_value = *system_byte_pointer;
-          system_audio_status = (uint)system_byte_pointer[system_temp_pointer];
+          system_audio_status = (uint)system_byte_pointer[system_temp_ptr];
           if (system_byte_value != system_audio_status) break;
           system_byte_pointer = system_byte_pointer + 1;
         } while (system_audio_status != 0);
@@ -16336,10 +15777,10 @@ SYSTEM_VALIDATION_CHECK:
     if (*(int *)(system_param_ + SYSTEM_CONFIG_DATA_SIZE) == 0) goto SYSTEM_LABEL;
     if ((int)global_context_ptr[6] != 0) {
       system_byte_pointer = *(byte **)(system_param_ + 0x01);
-      system_temp_pointer = global_context_ptr[5] - (longlong)system_byte_pointer;
+      system_temp_ptr = global_context_ptr[5] - (longlong)system_byte_pointer;
       do {
         system_byte_value = *system_byte_pointer;
-        system_audio_status = (uint)system_byte_pointer[system_temp_pointer];
+        system_audio_status = (uint)system_byte_pointer[system_temp_ptr];
         if (system_byte_value != system_audio_status) break;
         system_byte_pointer = system_byte_pointer + 1;
       } while (system_audio_status != 0);
@@ -16352,12 +15793,10 @@ SYSTEM_VALIDATION_CHECK:
   *system_context_parameter = global_context_ptr;
   return system_context_parameter;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 // 函数: void system_initialize_debugging_system(longlong system_context_parameter,uint64_t system_context_parameter,longlong system_context_parameter,uint64_t system_context_parameter,
 void system_initialize_debugging_system(longlong system_context_parameter,uint64_t system_context_parameter,longlong system_context_parameter,uint64_t system_context_parameter,
                   longlong system_param_)
-
 {
   byte system_byte_value;
   byte *system_byte_pointer;
@@ -16365,9 +15804,9 @@ void system_initialize_debugging_system(longlong system_context_parameter,uint64
   uint64_t *system_buffer_context;
   longlong resource_id;
   uint64_t system_audio_status;
-  uint64_t system_temp_value;
+  uint64_t system_temp_val;
   
-  system_temp_value = SYSTEM_INVALID_HANDLE_VALUE;
+  system_temp_val = SYSTEM_INVALID_HANDLE_VALUE;
   system_audio_status = 0;
   if (((char)system_context_parameter != '\0') || (system_context_parameter == system_context_parameter)) goto SYSTEM_LABEL;
   if (*(int *)(system_context_parameter + 0x030) != 0) {
@@ -16398,14 +15837,10 @@ SYSTEM_VALIDATION_CHECK:
   *(uint64_t *)(resource_id + 0x05001) = 0;
   *(uint64_t *)(resource_id + SYSTEM_RESOURCE_TABLE_OFFSET) = 0;
   *(uint64_t *)(resource_id + SYSTEM_RESOURCE_COUNT_OFFSET) = 0;
-                    // WARNING: Subroutine does not return
-  system_setup_graphics_pipeline(resource_id,system_context_parameter,system_context_parameter,system_audio_status,system_temp_value,system_buffer_context);
+  system_setup_graphics_pipeline(resource_id,system_context_parameter,system_context_parameter,system_audio_status,system_temp_val,system_buffer_context);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 uint64_t * system_resolve_memory_reference(longlong system_context_parameter,longlong *system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   longlong *system_long_data_ptr;
   uint64_t *data_context;
@@ -16438,11 +15873,8 @@ uint64_t * system_resolve_memory_reference(longlong system_context_parameter,lon
   }
   return system_handle_ptr;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 uint64_t * system_allocate_memory_reference(longlong system_context_parameter,longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   uint64_t *data_context;
   
@@ -16458,10 +15890,8 @@ uint64_t * system_allocate_memory_reference(longlong system_context_parameter,lo
   *(uint32_t *)(data_context + 3) = *(uint32_t *)(system_context_parameter + 0x01001);
   return data_context;
 }
-
 uint64_t *
 system_configure_memory_context(uint64_t *system_context_parameter,longlong *system_context_parameter,longlong *system_context_parameter,uint64_t *system_context_parameter)
-
 {
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
@@ -16579,7 +16009,6 @@ system_configure_memory_context(uint64_t *system_context_parameter,longlong *sys
   return system_context_parameter;
 }
 void system_setup_debug_symbols(uint64_t *system_context_parameter)
-
 {
   *system_context_parameter = &system_data_resource_manager_base;
   _Mtx_destroy_in_situ();
@@ -16589,9 +16018,7 @@ void system_setup_debug_symbols(uint64_t *system_context_parameter)
   *system_context_parameter = &system_data_primary_context;
   return;
 }
-
 uint64_t system_get_memory_status(uint64_t system_context_parameter,ulonglong system_context_parameter)
-
 {
   system_complete_graphics_init();
   if ((system_context_parameter & 1) != 0) {
@@ -16600,7 +16027,6 @@ uint64_t system_get_memory_status(uint64_t system_context_parameter,ulonglong sy
   return system_context_parameter;
 }
 void system_configure_debug_breakpoints(longlong system_context_parameter,uint32_t system_context_parameter)
-
 {
   int system_int_value;
   
@@ -16615,10 +16041,8 @@ void system_configure_debug_breakpoints(longlong system_context_parameter,uint32
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_debug_console(uint64_t system_context_parameter,uint64_t *system_context_parameter,longlong *system_context_parameter)
-
 {
   int system_int_value;
   uint system_audio_context_id;
@@ -16647,12 +16071,9 @@ void system_initialize_debug_console(uint64_t system_context_parameter,uint64_t 
   if ((system_audio_context_id & 0x07ffffffd) != 0) {
     __Throw_C_error_std__YAXH_Z(system_audio_context_id);
   }
-                    // WARNING: Subroutine does not return
   system_calculate_checksum(system_context_identifier ^ (ulonglong)system_config_buffer);
 }
-
 uint32_t system_validate_memory_access(longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   uint32_t system_temp_uint_value;
   int system_int_context;
@@ -16687,40 +16108,33 @@ uint32_t system_validate_memory_access(longlong system_context_parameter,uint64_
   return system_temp_uint_value;
 }
 void system_start_debug_session(void)
-
 {
   _Cnd_destroy_in_situ();
   return;
 }
 void system_stop_debug_session(void)
-
 {
   _Cnd_destroy_in_situ();
   return;
 }
 void system_pause_debug_execution(void)
-
 {
   _Mtx_destroy_in_situ();
   return;
 }
 void system_resume_debug_execution(void)
-
 {
   _Mtx_destroy_in_situ();
   return;
 }
 void system_step_debug_execution(uint64_t system_context_parameter)
-
 {
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(system_context_parameter);
   return;
 }
-
 uint64_t *
 system_create_memory_table(uint64_t *system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   uint64_t system_temp_uint_value;
   
@@ -16739,10 +16153,8 @@ system_create_memory_table(uint64_t *system_context_parameter,uint64_t system_co
   *(uint32_t *)(system_context_parameter + 0x01003) = 0;
   return system_context_parameter;
 }
-
 uint64_t *
 system_clear_memory_table(uint64_t *system_context_parameter,ulonglong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   *system_context_parameter = &system_data_animation_pool_base;
   if ((system_context_parameter & 1) != 0) {
@@ -16751,10 +16163,8 @@ system_clear_memory_table(uint64_t *system_context_parameter,ulonglong system_co
   return system_context_parameter;
 }
 void system_initialize_breakpoint_system(longlong system_context_parameter,uint64_t system_context_parameter,int system_context_parameter)
-
 {
   if (system_context_parameter + 1 < SYSTEM_STANDARD_BUFFER_SIZE) {
-                    // WARNING: Subroutine does not return
     memcpy(*(uint32_t **)(system_context_parameter + 0x01),system_context_parameter,(longlong)system_context_parameter);
   }
   **(uint32_t **)(system_context_parameter + 0x01) = 0;
@@ -16762,13 +16172,10 @@ void system_initialize_breakpoint_system(longlong system_context_parameter,uint6
   return;
 }
 void system_check_breakpoint_status(void)
-
 {
-                    // WARNING: Subroutine does not return
   memcpy();
 }
 void system_handle_breakpoint_trigger(uint32_t *system_context_parameter)
-
 {
   longlong system_audio_register_value;
   
@@ -16776,9 +16183,7 @@ void system_handle_breakpoint_trigger(uint32_t *system_context_parameter)
   *(uint64_t *)(system_audio_register_value + SYSTEM_CONFIG_DATA_SIZE) = 0;
   return;
 }
-
 uint64_t * system_get_memory_table_entry(uint64_t *system_context_parameter)
-
 {
   *system_context_parameter = &system_data_animation_pool_base;
   system_context_parameter[1] = 0;
@@ -16789,12 +16194,10 @@ uint64_t * system_get_memory_table_entry(uint64_t *system_context_parameter)
   *(uint32_t *)(system_context_parameter + 3) = 0;
   return system_context_parameter;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_watchpoint_system(longlong system_context_parameter,longlong system_context_parameter,longlong system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   longlong system_long_context;
   longlong system_resource_handle;
   uint32_t system_config_buffer [0x040];
@@ -16811,8 +16214,8 @@ void system_initialize_watchpoint_system(longlong system_context_parameter,longl
   system_thread_context_ptr = context_buffer_d0;
   system_context_identifier_d1 = 0;
   context_buffer_d0[0] = 0;
-  system_temp_pointer = strstr(*(uint64_t *)(system_context_parameter + 0x01));
-  if (system_temp_pointer != 0) {
+  system_temp_ptr = strstr(*(uint64_t *)(system_context_parameter + 0x01));
+  if (system_temp_ptr != 0) {
     system_long_context = -1;
     system_resource_handle = -1;
     do {
@@ -16821,17 +16224,13 @@ void system_initialize_watchpoint_system(longlong system_context_parameter,longl
     do {
       system_long_context = system_long_context + 1;
     } while (*(char *)(system_long_context + system_context_parameter) != '\0');
-                    // WARNING: Subroutine does not return
-    memcpy(system_thread_context_ptr,*(longlong *)(system_context_parameter + 0x01),system_temp_pointer - *(longlong *)(system_context_parameter + 0x01));
+    memcpy(system_thread_context_ptr,*(longlong *)(system_context_parameter + 0x01),system_temp_ptr - *(longlong *)(system_context_parameter + 0x01));
   }
   system_thread_context_ptr = &system_data_animation_pool_base;
-                    // WARNING: Subroutine does not return
   system_calculate_checksum(system_context_identifier ^ (ulonglong)system_config_buffer);
 }
-
 uint64_t *
 system_update_memory_table(uint64_t *memory_table_ptr, longlong memory_size, uint64_t memory_flags, uint64_t memory_alignment)
-
 {
   void **data_context;
   
@@ -16843,17 +16242,15 @@ system_update_memory_table(uint64_t *memory_table_ptr, longlong memory_size, uin
   *(uint64_t *)(system_context_parameter + 2) = 0;
   *(uint32_t *)(system_context_parameter + 3) = 0;
   *(uint64_t *)(system_context_parameter + 2) = *(uint64_t *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE);
-  data_context = &system_data_memory_pool0x02001bc0033;
+  data_context = &system_data_memory_pool_default;
   if (*(void ***)(system_context_parameter + 0x01) != (void **)0x00) {
     data_context = *(void ***)(system_context_parameter + 0x01);
   }
   strcpy_s(system_context_parameter[1],SYSTEM_STANDARD_BUFFER_SIZE,data_context,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
   return system_context_parameter;
 }
-
 uint64_t *
 system_remove_memory_table_entry(uint64_t *memory_table_ptr, ulonglong entry_flags, uint64_t entry_size, uint64_t entry_alignment)
-
 {
   *memory_table_ptr = &system_data_animation_pool_base;
   if ((entry_flags & 1) != 0) {
@@ -16862,7 +16259,6 @@ system_remove_memory_table_entry(uint64_t *memory_table_ptr, ulonglong entry_fla
   return memory_table_ptr;
 }
 void system_setup_memory_watching(longlong memory_pool_size, longlong watch_flags)
-
 {
   longlong buffer_length;
   
@@ -16887,10 +16283,8 @@ void system_setup_memory_watching(longlong memory_pool_size, longlong watch_flag
   return;
 }
 void system_configure_data_breakpoints(longlong breakpoint_address, uint64_t breakpoint_flags, int breakpoint_type)
-
 {
   if (breakpoint_address + 1 < SYSTEM_AUDIO_TABLE_OFFSET_VALUE) {
-                    // WARNING: Subroutine does not return
     memcpy(*(uint32_t **)(breakpoint_flags + 0x01),breakpoint_address,(longlong)breakpoint_type);
   }
   **(uint32_t **)(breakpoint_flags + 0x01) = 0;
@@ -16898,13 +16292,10 @@ void system_configure_data_breakpoints(longlong breakpoint_address, uint64_t bre
   return;
 }
 void system_check_watchpoint_status(void)
-
 {
-                    // WARNING: Subroutine does not return
   memcpy();
 }
 void system_handle_watchpoint_trigger(uint32_t *system_context_parameter)
-
 {
   longlong system_audio_register_value;
   
@@ -16912,9 +16303,7 @@ void system_handle_watchpoint_trigger(uint32_t *system_context_parameter)
   *(uint64_t *)(system_audio_register_value + SYSTEM_CONFIG_DATA_SIZE) = 0;
   return;
 }
-
 uint64_t * system_find_memory_table_entry(uint64_t *system_context_parameter)
-
 {
   *system_context_parameter = &system_data_animation_pool_base;
   system_context_parameter[1] = 0;
@@ -16925,12 +16314,10 @@ uint64_t * system_find_memory_table_entry(uint64_t *system_context_parameter)
   *(uint32_t *)(system_context_parameter + 3) = 0;
   return system_context_parameter;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_tracing_system(longlong system_context_parameter,longlong system_context_parameter,longlong system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   longlong system_long_context;
   longlong system_resource_handle;
   uint32_t asystem_context_identifier_d1 [0x040];
@@ -16947,8 +16334,8 @@ void system_initialize_tracing_system(longlong system_context_parameter,longlong
   system_thread_context_ptr = system_config_buffer;
   system_context_identifier = 0;
   system_config_buffer[0] = 0;
-  system_temp_pointer = strstr(*(uint64_t *)(system_context_parameter + 0x01));
-  if (system_temp_pointer != 0) {
+  system_temp_ptr = strstr(*(uint64_t *)(system_context_parameter + 0x01));
+  if (system_temp_ptr != 0) {
     system_long_context = -1;
     system_resource_handle = -1;
     do {
@@ -16957,19 +16344,15 @@ void system_initialize_tracing_system(longlong system_context_parameter,longlong
     do {
       system_long_context = system_long_context + 1;
     } while (*(char *)(system_long_context + system_context_parameter) != '\0');
-                    // WARNING: Subroutine does not return
-    memcpy(system_thread_context_ptr,*(longlong *)(system_context_parameter + 0x01),system_temp_pointer - *(longlong *)(system_context_parameter + 0x01));
+    memcpy(system_thread_context_ptr,*(longlong *)(system_context_parameter + 0x01),system_temp_ptr - *(longlong *)(system_context_parameter + 0x01));
   }
   system_thread_context_ptr = &system_data_animation_pool_base;
-                    // WARNING: Subroutine does not return
   system_calculate_checksum(system_context_identifier ^ (ulonglong)asystem_context_identifier_d1);
 }
-
 uint64_t *
 system_process_memory_table_operation(uint64_t *system_context_parameter,longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   
   *system_context_parameter = &system_data_animation_pool_base;
   system_context_parameter[1] = 0;
@@ -16979,21 +16362,19 @@ system_process_memory_table_operation(uint64_t *system_context_parameter,longlon
   *(uint64_t *)(system_context_parameter + 2) = 0;
   *(uint32_t *)(system_context_parameter + 3) = 0;
   if (system_context_parameter != 0) {
-    system_temp_pointer = -1;
+    system_temp_ptr = -1;
     do {
-      system_temp_pointer = system_temp_pointer + 1;
-    } while (*(char *)(system_context_parameter + system_temp_pointer) != '\0');
-    *(int *)(system_context_parameter + 2) = (int)system_temp_pointer;
+      system_temp_ptr = system_temp_ptr + 1;
+    } while (*(char *)(system_context_parameter + system_temp_ptr) != '\0');
+    *(int *)(system_context_parameter + 2) = (int)system_temp_ptr;
     strcpy_s(system_context_parameter[1],SYSTEM_AUDIO_TABLE_OFFSET_VALUE,system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
   }
   return system_context_parameter;
 }
 void system_start_trace_capture(uint64_t *system_context_parameter)
-
 {
   system_context_parameter[4] = &system_data_callback_pool_base2;
   if (system_context_parameter[5] != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   system_context_parameter[5] = 0;
@@ -17001,7 +16382,6 @@ void system_start_trace_capture(uint64_t *system_context_parameter)
   system_context_parameter[4] = &system_data_animation_pool_base;
   *system_context_parameter = &system_data_callback_pool_base2;
   if (system_context_parameter[1] != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   system_context_parameter[1] = 0;
@@ -17010,7 +16390,6 @@ void system_start_trace_capture(uint64_t *system_context_parameter)
   return;
 }
 void system_stop_trace_capture(uint64_t system_context_parameter,uint64_t *system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   if (system_context_parameter == (uint64_t *)0x00) {
     return;
@@ -17018,7 +16397,6 @@ void system_stop_trace_capture(uint64_t system_context_parameter,uint64_t *syste
   system_create_resource_handle(system_context_parameter,*system_context_parameter,system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
   system_context_parameter[0x01] = &system_data_callback_pool_base2;
   if (system_context_parameter[0x02] != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   system_context_parameter[0x02] = 0;
@@ -17026,39 +16404,32 @@ void system_stop_trace_capture(uint64_t system_context_parameter,uint64_t *syste
   system_context_parameter[0x01] = &system_data_animation_pool_base;
   system_context_parameter[4] = &system_data_callback_pool_base2;
   if (system_context_parameter[5] != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   system_context_parameter[5] = 0;
   *(uint64_t *)(system_context_parameter + 0x03) = 0;
   system_context_parameter[4] = &system_data_animation_pool_base;
-                    // WARNING: Subroutine does not return
   system_initialize_component(system_context_parameter);
 }
 void system_initialize_logging_system(longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   system_create_resource_handle(system_context_parameter,*(uint64_t *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE),system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
   return;
 }
 void system_configure_log_levels(longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   system_create_resource_handle(system_context_parameter,*(uint64_t *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE),system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
   return;
 }
 void system_setup_log_targets(longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   system_create_resource_handle(system_context_parameter,*(uint64_t *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE),system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
   return;
 }
 void system_initialize_event_system(uint64_t *system_context_parameter)
-
 {
   *system_context_parameter = &system_data_callback_pool_base2;
   if (system_context_parameter[1] != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   system_context_parameter[1] = 0;
@@ -17067,21 +16438,20 @@ void system_initialize_event_system(uint64_t *system_context_parameter)
   return;
 }
 void system_write_log_entry(longlong system_context_parameter,longlong system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   
   if (system_context_parameter == 0) {
     *(uint64_t *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = 0;
     **(uint32_t **)(system_context_parameter + 0x01) = 0;
     return;
   }
-  system_temp_pointer = -1;
+  system_temp_ptr = -1;
   do {
-    system_temp_pointer = system_temp_pointer + 1;
-  } while (*(char *)(system_context_parameter + system_temp_pointer) != '\0');
-  if ((int)system_temp_pointer < SYSTEM_STANDARD_BUFFER_SIZE) {
-    *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = (int)system_temp_pointer;
+    system_temp_ptr = system_temp_ptr + 1;
+  } while (*(char *)(system_context_parameter + system_temp_ptr) != '\0');
+  if ((int)system_temp_ptr < SYSTEM_STANDARD_BUFFER_SIZE) {
+    *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = (int)system_temp_ptr;
                                         // WARNING: Treating indirect jump as call
     strcpy_s(*(uint64_t *)(system_context_parameter + 0x01),SYSTEM_STANDARD_BUFFER_SIZE);
     return;
@@ -17092,16 +16462,12 @@ void system_write_log_entry(longlong system_context_parameter,longlong system_co
   return;
 }
 void system_flush_log_buffer(void)
-
 {
   _Mtx_destroy_in_situ();
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 uint64_t system_allocate_table_entry(longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   int system_int_value;
   uint64_t system_audio_context_id;
@@ -17109,9 +16475,9 @@ uint64_t system_allocate_table_entry(longlong system_context_parameter,uint64_t 
   uint64_t *system_buffer_context;
   uint64_t *system_config_ptr;
   uint64_t *current_node;
-  uint64_t system_temp_value;
+  uint64_t system_temp_val;
   
-  system_temp_value = SYSTEM_INVALID_HANDLE_VALUE;
+  system_temp_val = SYSTEM_INVALID_HANDLE_VALUE;
   system_audio_context_id = system_allocate_resource_block(system_context_memory_pool,system_context_parameter,3,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
   system_int_value = _Mtx_lock(system_context_parameter + SYSTEM_MEMORY_POOL_BASE_OFFSET);
   if (system_int_value != 0) {
@@ -17129,7 +16495,7 @@ uint64_t system_allocate_table_entry(longlong system_context_parameter,uint64_t 
     system_resource_handle = 1;
 SYSTEM_VALIDATION_CHECK:
     system_buffer_context = (uint64_t *)
-             system_allocate_resource_block(system_context_memory_pool,system_resource_handle * 0x01,*(uint32_t *)(system_context_parameter + SYSTEM_RESOURCE_BLOCK_OFFSET),system_context_parameter,system_temp_value);
+             system_allocate_resource_block(system_context_memory_pool,system_resource_handle * 0x01,*(uint32_t *)(system_context_parameter + SYSTEM_RESOURCE_BLOCK_OFFSET),system_context_parameter,system_temp_val);
     current_node = *(uint64_t **)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE);
     system_config_ptr = *(uint64_t **)(system_context_parameter + 0x01);
   }
@@ -17139,12 +16505,10 @@ SYSTEM_VALIDATION_CHECK:
     system_buffer_context = (uint64_t *)0x00;
   }
   if (system_config_ptr != current_node) {
-                    // WARNING: Subroutine does not return
     memmove(system_buffer_context,system_config_ptr,(longlong)current_node - (longlong)system_config_ptr);
   }
   *system_buffer_context = system_audio_context_id;
   if (*(longlong *)(system_context_parameter + 0x01) != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   *(uint64_t **)(system_context_parameter + 0x01) = system_buffer_context;
@@ -17158,20 +16522,16 @@ SYSTEM_VALIDATION_CHECK:
   return system_audio_context_id;
 }
 void system_initialize_error_handling(uint64_t *system_context_parameter)
-
 {
   *system_context_parameter = &system_data_graphics_texture_base;
   _Mtx_destroy_in_situ();
   if (system_context_parameter[1] != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   *system_context_parameter = &system_graphics_service_handler;
   return;
 }
-
 uint64_t system_free_table_entry(uint64_t system_context_parameter,ulonglong system_context_parameter)
-
 {
   system_initialize_graphics_driver();
   if ((system_context_parameter & 1) != 0) {
@@ -17180,17 +16540,13 @@ uint64_t system_free_table_entry(uint64_t system_context_parameter,ulonglong sys
   return system_context_parameter;
 }
 void system_setup_error_codes(uint64_t *system_context_parameter)
-
 {
   *system_context_parameter = &system_audio_service_handler;
   *system_context_parameter = &system_data_graphics_buffer_base;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 uint64_t system_validate_table_entry(longlong system_context_parameter,uint64_t system_context_parameter)
-
 {
   uint64_t system_temp_uint_value;
   longlong system_long_context;
@@ -17201,22 +16557,18 @@ uint64_t system_validate_table_entry(longlong system_context_parameter,uint64_t 
   return system_temp_uint_value;
 }
 void system_audio_register_value_error_handler(longlong system_context_parameter,longlong system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   
-  system_temp_pointer = system_get_resource_context(system_context_parameter);
-  *(longlong *)(system_context_parameter + 0x01) = *(longlong *)(system_context_parameter + 0x01) - system_temp_pointer;
+  system_temp_ptr = system_get_resource_context(system_context_parameter);
+  *(longlong *)(system_context_parameter + 0x01) = *(longlong *)(system_context_parameter + 0x01) - system_temp_ptr;
   if (system_context_parameter != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component(system_context_parameter);
   }
   return;
 }
-
 uint64_t *
 system_setup_table_entry(uint64_t *system_context_parameter,ulonglong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   *system_context_parameter = &system_audio_service_handler;
   *system_context_parameter = &system_data_graphics_buffer_base;
@@ -17225,11 +16577,8 @@ system_setup_table_entry(uint64_t *system_context_parameter,ulonglong system_con
   }
   return system_context_parameter;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 bool system_check_init_status(void)
-
 {
   char init_status;
   uint64_t *data_context;
@@ -17253,7 +16602,7 @@ bool system_check_init_status(void)
   *(uint16_t *)(data_context + 4) = 0x034;
   system_context_identifier = 0;
   system_render_state_handle = 0;
-  system_handle_ptr = &system_data_memory_pool0x02001bc0033;
+  system_handle_ptr = &system_data_memory_pool_default;
   if (system_temp_buffer_ptr != (void **)0x00) {
     system_handle_ptr = system_temp_buffer_ptr;
   }
@@ -17282,15 +16631,12 @@ bool system_check_init_status(void)
   }
   system_temp_buffer_ptr = &system_data_callback_pool_base2;
   if (system_temp_buffer_ptr != (void **)0x00) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   return system_byte_config;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_exception_system(void)
-
 {
   char init_status;
   uint64_t *data_context;
@@ -17335,7 +16681,7 @@ void system_initialize_exception_system(void)
   data_context[3] = 0x034003001034;
   system_context_identifier = system_config_value;
   system_handle_ptr = (uint64_t *)system_allocate_memory_context(system_context_memory_pool,0x01001,0x01,3);
-  system_buffer_context = &system_data_memory_pool0x02001bc0033;
+  system_buffer_context = &system_data_memory_pool_default;
   if (system_temp_buffer_ptr != (void **)0x00) {
     system_buffer_context = system_temp_buffer_ptr;
   }
@@ -17343,7 +16689,6 @@ void system_initialize_exception_system(void)
   *(uint32_t *)(system_handle_ptr + 2) = 0;
   system_audio_register_value_ui_service(system_handle_ptr,system_buffer_context,&system_ui_service_handler);
   if (system_handle_ptr[1] == 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component(system_handle_ptr);
   }
   system_validate_render_config(_system_data_memory_pool0c16001b0,system_handle_ptr);
@@ -17355,13 +16700,10 @@ void system_initialize_exception_system(void)
     system_reference_count = system_reference_count + -1;
     UNLOCK();
   }
-                    // WARNING: Subroutine does not return
   system_initialize_component(system_handle_ptr);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_setup_exception_handlers(void)
-
 {
   uint64_t system_temp_uint_value;
   
@@ -17370,13 +16712,10 @@ void system_setup_exception_handlers(void)
   system_temp_uint_value = system_allocate_memory_context(system_context_memory_pool,0x08001,0x01,3);
   _system_data_memory_pool0c16001a001 = system_get_screen_resolution(system_temp_uint_value);
   system_temp_uint_value = system_allocate_memory_context(system_context_memory_pool,0x050,0x01,3);
-                    // WARNING: Subroutine does not return
   memset(system_temp_uint_value,0,0x050);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_configure_exception_filters(void)
-
 {
   char init_status;
   uint64_t *data_context;
@@ -17385,13 +16724,13 @@ void system_configure_exception_filters(void)
   longlong resource_id;
   longlong system_long_status;
   void **parent_node;
-  ulonglong system_temp_value;
+  ulonglong system_temp_val;
   void **system_temp_buffer_ptr;
   uint system_context_identifier;
   
   system_start_graphics_pipeline();
   system_audio_loop_counter = 0;
-  system_temp_value = 0;
+  system_temp_val = 0;
   if (system_context_identifier != 0) {
     resource_id = 0;
     system_long_status = 0;
@@ -17406,14 +16745,14 @@ void system_configure_exception_filters(void)
         system_audio_loop_counter = system_audio_loop_counter + 1;
         resource_id = resource_id + 1;
       }
-      system_temp_value = (int)system_temp_value + 1;
-      system_temp_value = (ulonglong)system_temp_value;
+      system_temp_val = (int)system_temp_val + 1;
+      system_temp_val = (ulonglong)system_temp_val;
       system_long_status = system_long_status + 1;
-    } while (system_temp_value < system_context_identifier);
+    } while (system_temp_val < system_context_identifier);
   }
   system_temp_buffer_ptr[system_audio_loop_counter] = 0;
-  data_context = (uint64_t *)system_allocate_memory_context(system_context_memory_pool,0x02001,0x01,CONCAT0x031((int0x03)(system_temp_value >> 0x01),3));
-  parent_node = &system_data_memory_pool0x02001bc0033;
+  data_context = (uint64_t *)system_allocate_memory_context(system_context_memory_pool,0x02001,0x01,CONCAT0x031((int0x03)(system_temp_val >> 0x01),3));
+  parent_node = &system_data_memory_pool_default;
   if (system_temp_buffer_ptr != (void **)0x00) {
     parent_node = system_temp_buffer_ptr;
   }
@@ -17434,16 +16773,14 @@ void system_configure_exception_filters(void)
   _system_data_memory_pool0c120015001 = data_context;
   if (system_data_memory_pool0bf0101 != '\0') {
     GetLastError();
-    parent_node = &system_data_memory_pool0x02001bc0033;
+    parent_node = &system_data_memory_pool_default;
     if ((void **)data_context[2] != (void **)0x00) {
       parent_node = (void **)data_context[2];
     }
     system_uint_buffer = CreateMutexA(0,0,parent_node);
     *data_context = system_uint_buffer;
     system_audio_loop_counter = GetLastError();
-
 void system_initialize_panic_handler(void)
-
 {
   longlong *system_long_data_ptr;
   longlong system_long_context;
@@ -17463,7 +16800,6 @@ void system_initialize_panic_handler(void)
     system_resource_handle = __RTCastToVoid(system_long_data_ptr);
     (**(code **)(*system_long_data_ptr + SYSTEM_CONFIG_DATA_SIZE))(system_long_data_ptr,0,*(code **)(*system_long_data_ptr + SYSTEM_CONFIG_DATA_SIZE),system_audio_register_value,system_uint_buffer);
     if (system_resource_handle != 0) {
-                    // WARNING: Subroutine does not return
       system_initialize_component(system_resource_handle);
     }
   }
@@ -17480,7 +16816,6 @@ void system_initialize_panic_handler(void)
     *(uint64_t *)(system_long_context + SYSTEM_CONFIG_DATA_SIZE) = &system_audio_service_handler;
     *(uint64_t *)(system_long_context + SYSTEM_CONFIG_DATA_SIZE) = &system_data_graphics_buffer_base;
     *(void ***)(system_long_context + 0x01) = &system_network_service_handler;
-                    // WARNING: Subroutine does not return
     system_initialize_component(system_long_context);
   }
   _system_data_memory_pool0c1a0020020 = 0;
@@ -17488,20 +16823,17 @@ void system_initialize_panic_handler(void)
   system_long_context = _system_data_memory_pool0c1600230;
   if (_system_data_memory_pool0c1600230 != 0) {
     system_create_render_context(_system_data_memory_pool0c1600230);
-                    // WARNING: Subroutine does not return
     system_initialize_component(system_long_context);
   }
   _system_data_memory_pool0c1600230 = 0;
   return;
 }
-
 uint64_t *
 system_set_initialization_flag(uint64_t *system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   uint64_t *data_context;
   uint64_t *data_context;
-  int compare_result;
+  int comparison_result;
   int system_buffer_size;
   uint64_t system_audio_config_value;
   
@@ -17519,13 +16851,13 @@ system_set_initialization_flag(uint64_t *system_context_parameter,uint64_t syste
     *(uint32_t *)system_context_parameter[1] = 0;
   }
   system_buffer_size = *(int *)(system_context_parameter + 2);
-  compare_result = system_buffer_size + 6;
-  system_set_ui_parameter(system_context_parameter,compare_result,system_context_parameter,system_context_parameter,1,system_audio_config_value);
+  comparison_result = system_buffer_size + 6;
+  system_set_ui_parameter(system_context_parameter,comparison_result,system_context_parameter,system_context_parameter,1,system_audio_config_value);
   data_context = (uint64_t *)((ulonglong)*(uint *)(system_context_parameter + 2) + system_context_parameter[1]);
   *data_context = 0x02e2f2e2e;
   *(uint16_t *)(data_context + 1) = 0x02f2e;
   *(uint32_t *)((longlong)data_context + 6) = 0;
-  *(int *)(system_context_parameter + 2) = compare_result;
+  *(int *)(system_context_parameter + 2) = comparison_result;
   system_buffer_size = system_buffer_size + 0x02a;
   system_set_ui_parameter(system_context_parameter,system_buffer_size);
   data_context = (uint64_t *)((ulonglong)*(uint *)(system_context_parameter + 2) + system_context_parameter[1]);
@@ -17538,11 +16870,8 @@ system_set_initialization_flag(uint64_t *system_context_parameter,uint64_t syste
   *(int *)(system_context_parameter + 2) = system_buffer_size;
   return system_context_parameter;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 uint64_t system_process_initialization_step(char system_context_parameter)
-
 {
   longlong *system_long_data_ptr;
   char system_char_data;
@@ -17583,12 +16912,12 @@ uint64_t system_process_initialization_step(char system_context_parameter)
   *(uint16_t *)(system_handle_ptr + 4) = 0x034;
   system_context_identifier = 0;
   system_render_state_handle = 0;
-  system_buffer_context = &system_data_memory_pool0x02001bc0033;
+  system_buffer_context = &system_data_memory_pool_default;
   if (system_temp_buffer_ptr != (void **)0x00) {
     system_buffer_context = system_temp_buffer_ptr;
   }
   system_context_identifier = system_config_value;
-  system_audio_register_value_ui_service(&system_context_identifier,system_buffer_context,&system_data_memory_pool0x02fc003ec);
+  system_audio_register_value_ui_service(&system_context_identifier,system_buffer_context,&system_data_memory_pool_ui_service);
   system_long_data_ptr = _system_data_memory_pool0c1600220;
   if (system_render_state_handle == 0) {
     system_audio_status = 3;
@@ -17619,14 +16948,10 @@ uint64_t system_process_initialization_step(char system_context_parameter)
   if (system_temp_buffer_ptr == (void **)0x00) {
     return system_audio_status;
   }
-                    // WARNING: Subroutine does not return
   system_initialize_component();
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 bool system_validate_initialization_state(void)
-
 {
   int system_int_value;
   
@@ -17640,10 +16965,8 @@ bool system_validate_initialization_state(void)
   }
   return true;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_handle_system_panic(uint64_t *system_context_parameter)
-
 {
   uint system_temp_uint_value;
   int system_int_context;
@@ -17687,7 +17010,7 @@ void system_handle_system_panic(uint64_t *system_context_parameter)
   system_context_identifier = 3;
   system_temp_buffer_ptr = system_context_parameter;
   system_process_configuration_data(&system_temp_buffer_ptr,&system_graphics_parameters,0x080a003);
-  system_config_ptr = &system_data_memory_pool0x02001bc0033;
+  system_config_ptr = &system_data_memory_pool_default;
   if (system_temp_buffer_ptr != (void **)0x00) {
     system_config_ptr = system_temp_buffer_ptr;
   }
@@ -17697,19 +17020,14 @@ void system_handle_system_panic(uint64_t *system_context_parameter)
   } while (system_config_ptr[system_resource_handle] != '\0');
   system_int_context = (int)system_resource_handle;
   if ((0 < system_int_context) && (*(uint *)(system_context_parameter + 2) + system_int_context < 0x01f)) {
-                    // WARNING: Subroutine does not return
     memcpy((ulonglong)*(uint *)(system_context_parameter + 2) + system_context_parameter[1],system_config_ptr,(longlong)(system_int_context + 1));
   }
   system_context_identifier = 1;
   system_temp_buffer_ptr = &system_data_animation_pool_base;
-                    // WARNING: Subroutine does not return
   system_calculate_checksum(system_context_identifier ^ (ulonglong)system_config_buffer);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 longlong * system_initialize_component_handler(longlong *system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   *system_context_parameter = (longlong)&system_data_animation_pool_base;
   system_context_parameter[1] = 0;
@@ -17725,10 +17043,8 @@ longlong * system_initialize_component_handler(longlong *system_context_paramete
   (**(code **)(*system_context_parameter + SYSTEM_CONFIG_DATA_SIZE))(system_context_parameter,&system_input_service_handler,system_context_parameter,system_context_parameter,1,SYSTEM_INVALID_HANDLE_VALUE);
   return system_context_parameter;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_recover_from_panic(uint64_t *system_context_parameter)
-
 {
   int system_int_value;
   int system_int_context;
@@ -17740,10 +17056,8 @@ void system_recover_from_panic(uint64_t *system_context_parameter)
   }
   return;
 }
-
 uint64_t *
 system_process_component_operation(uint64_t *system_context_parameter,longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   void **data_context;
   
@@ -17755,7 +17069,7 @@ system_process_component_operation(uint64_t *system_context_parameter,longlong s
   *(uint64_t *)(system_context_parameter + 2) = 0;
   *(uint32_t *)(system_context_parameter + 3) = 0;
   *(uint64_t *)(system_context_parameter + 2) = *(uint64_t *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE);
-  data_context = &system_data_memory_pool0x02001bc0033;
+  data_context = &system_data_memory_pool_default;
   if (*(void ***)(system_context_parameter + 0x01) != (void **)0x00) {
     data_context = *(void ***)(system_context_parameter + 0x01);
   }
@@ -17763,83 +17077,68 @@ system_process_component_operation(uint64_t *system_context_parameter,longlong s
   return system_context_parameter;
 }
 void system_initialize_recovery_system(uint64_t *system_context_parameter)
-
 {
   *system_context_parameter = &system_network_service_handler;
   return;
 }
 void system_setup_recovery_procedures(uint64_t *system_context_parameter)
-
 {
   *system_context_parameter = &system_data_graphics_context_base;
   return;
 }
 void system_configure_recovery_parameters(longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   uint64_t *data_context;
   
   data_context = *(uint64_t **)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE);
   if (data_context != (uint64_t *)0x00) {
     system_initialize_service_registry(system_context_parameter,*data_context,system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
-                    // WARNING: Subroutine does not return
     system_initialize_component(data_context);
   }
   return;
 }
 void system_execute_recovery_plan(longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   uint64_t *data_context;
   
   data_context = *(uint64_t **)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE);
   if (data_context != (uint64_t *)0x00) {
     system_initialize_service_registry(system_context_parameter,*data_context,system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
-                    // WARNING: Subroutine does not return
     system_initialize_component(data_context);
   }
   return;
 }
 void system_validate_recovery_state(longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   uint64_t *data_context;
   
   data_context = *(uint64_t **)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE);
   if (data_context != (uint64_t *)0x00) {
     system_initialize_service_registry(system_context_parameter,*data_context,system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
-                    // WARNING: Subroutine does not return
     system_initialize_component(data_context);
   }
   return;
 }
 void system_rollback_system_state(uint64_t system_context_parameter,uint64_t *system_context_parameter)
-
 {
   if (system_context_parameter != (uint64_t *)0x00) {
     system_initialize_service_registry(system_context_parameter,*system_context_parameter);
-                    // WARNING: Subroutine does not return
     system_initialize_component(system_context_parameter);
   }
   return;
 }
 void system_check_recovery_progress(uint64_t system_context_parameter)
-
 {
   uint64_t *system_audio_register_value;
   
   system_initialize_service_registry(system_context_parameter,*system_audio_register_value);
-                    // WARNING: Subroutine does not return
   system_initialize_component();
 }
 void system_complete_recovery_process(void)
-
 {
   return;
 }
-
 uint64_t * system_get_component_pointer(uint64_t *system_context_parameter,ulonglong system_context_parameter)
-
 {
   *system_context_parameter = &system_data_graphics_context_base;
   if ((system_context_parameter & 1) != 0) {
@@ -17847,9 +17146,7 @@ uint64_t * system_get_component_pointer(uint64_t *system_context_parameter,ulong
   }
   return system_context_parameter;
 }
-
 uint64_t * system_set_component_pointer(uint64_t *system_context_parameter,ulonglong system_context_parameter)
-
 {
   *system_context_parameter = &system_network_service_handler;
   if ((system_context_parameter & 1) != 0) {
@@ -17857,12 +17154,10 @@ uint64_t * system_set_component_pointer(uint64_t *system_context_parameter,ulong
   }
   return system_context_parameter;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_backup_system(longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   int system_int_context;
   ulonglong *system_handle_ptr;
   longlong system_audio_buffer_pointer;
@@ -17881,23 +17176,19 @@ void system_initialize_backup_system(longlong system_context_parameter,uint64_t 
   system_context_identifier = 0;
   system_temp_buffer_ptr = &system_context_identifier_0x01001;
   __stdio_common_vsprintf(*system_handle_ptr | 1,system_stack_char_0x04001,SYSTEM_RESOURCE_BLOCK_OFFSET,system_context_parameter);
-  system_temp_pointer = -1;
+  system_temp_ptr = -1;
   do {
-    system_audio_buffer_pointer = system_temp_pointer;
-    system_temp_pointer = system_audio_buffer_pointer + 1;
+    system_audio_buffer_pointer = system_temp_ptr;
+    system_temp_ptr = system_audio_buffer_pointer + 1;
   } while (system_stack_char_0x04001[system_audio_buffer_pointer + 1] != '\0');
   system_int_context = (int)(system_audio_buffer_pointer + 1);
   if ((0 < system_int_context) && (*(uint *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) + system_int_context < 0x01f)) {
-                    // WARNING: Subroutine does not return
     memcpy((ulonglong)*(uint *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) + *(longlong *)(system_context_parameter + 0x01),system_stack_char_0x04001,
            (longlong)((int)system_audio_buffer_pointer + 2));
   }
-                    // WARNING: Subroutine does not return
   system_calculate_checksum(system_context_identifier ^ (ulonglong)system_config_buffer);
 }
-
 uint64_t * system_find_component_entry(uint64_t *system_context_parameter,ulonglong system_context_parameter)
-
 {
   *system_context_parameter = &system_data_graphics_buffer_base;
   if ((system_context_parameter & 1) != 0) {
@@ -17905,9 +17196,7 @@ uint64_t * system_find_component_entry(uint64_t *system_context_parameter,ulongl
   }
   return system_context_parameter;
 }
-
 uint64_t * system_process_component_request(uint64_t *system_context_parameter,ulonglong system_context_parameter)
-
 {
   *system_context_parameter = &system_graphics_service_handler;
   if ((system_context_parameter & 1) != 0) {
@@ -17915,9 +17204,7 @@ uint64_t * system_process_component_request(uint64_t *system_context_parameter,u
   }
   return system_context_parameter;
 }
-
 int system_create_system_backup(uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   int system_int_value;
   ulonglong *data_context;
@@ -17930,21 +17217,17 @@ int system_create_system_backup(uint64_t system_context_parameter,uint64_t syste
   return system_int_value;
 }
 void system_restore_system_backup(longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   system_create_texture_resource(system_context_parameter,*(uint64_t *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE),system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
   return;
 }
 void system_verify_backup_integrity(longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   system_create_texture_resource(system_context_parameter,*(uint64_t *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE),system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_cleanup_backup_files(uint64_t *system_context_parameter)
-
 {
   int system_int_value;
   
@@ -17956,49 +17239,42 @@ void system_cleanup_backup_files(uint64_t *system_context_parameter)
   return;
 }
 void system_schedule_backup_task(longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   system_load_texture_data(system_context_parameter,*(uint64_t *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE),system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
   return;
 }
 void system_compress_backup_data(longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   system_load_texture_data(system_context_parameter,*(uint64_t *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE),system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
   return;
 }
 void system_resource_cleanup_handler(longlong system_context_parameter)
-
 {
   system_setup_texture_format(system_context_parameter + SYSTEM_CALLBACK_TABLE_OFFSET);
   return;
 }
 void system_encrypt_backup_archive(longlong system_context_parameter)
-
 {
   system_setup_texture_format(system_context_parameter + SYSTEM_CALLBACK_TABLE_OFFSET);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_decrypt_backup_archive(uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   uint64_t *data_context;
   longlong system_long_context;
-  int compare_result;
+  int comparison_result;
   longlong system_audio_buffer_pointer;
   
   system_long_context = _system_data_memory_pool0c1a002f0;
-  compare_result = (int)(*(longlong *)(_system_data_memory_pool0c1a002f0 + SYSTEM_THREAD_POOL_BASE_OFFSET) - *(longlong *)(_system_data_memory_pool0c1a002f0 + 0x030) >> 3);
+  comparison_result = (int)(*(longlong *)(_system_data_memory_pool0c1a002f0 + SYSTEM_THREAD_POOL_BASE_OFFSET) - *(longlong *)(_system_data_memory_pool0c1a002f0 + 0x030) >> 3);
   system_audio_buffer_pointer = 0;
-  if (0 < compare_result) {
+  if (0 < comparison_result) {
     do {
       data_context = *(uint64_t **)(*(longlong *)(system_long_context + 0x030) + system_audio_buffer_pointer * 0x01);
       if (data_context != (uint64_t *)0x00) {
         data_context[4] = &system_data_callback_pool_base2;
         if (data_context[5] != 0) {
-                    // WARNING: Subroutine does not return
           system_initialize_component();
         }
         data_context[5] = 0;
@@ -18009,15 +17285,13 @@ void system_decrypt_backup_archive(uint64_t system_context_parameter,uint64_t sy
           data_context[1] = 0;
           *(uint64_t *)(data_context + 3) = 0;
           *data_context = &system_data_animation_pool_base;
-                    // WARNING: Subroutine does not return
           system_initialize_component(data_context);
         }
-                    // WARNING: Subroutine does not return
         system_initialize_component();
       }
       *(uint64_t *)(*(longlong *)(system_long_context + 0x030) + system_audio_buffer_pointer * 0x01) = 0;
       system_audio_buffer_pointer = system_audio_buffer_pointer + 1;
-    } while (system_audio_buffer_pointer < compare_result);
+    } while (system_audio_buffer_pointer < comparison_result);
   }
   *(uint64_t *)(system_long_context + SYSTEM_THREAD_POOL_BASE_OFFSET) = *(uint64_t *)(system_long_context + 0x030);
   system_audio_buffer_pointer = system_long_context + SYSTEM_RESOURCE_COUNT_OFFSET;
@@ -18030,20 +17304,16 @@ void system_decrypt_backup_archive(uint64_t system_context_parameter,uint64_t sy
   return;
 }
 void system_decompress_backup_data(longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   system_audio_register_value_system_service(system_context_parameter,*(uint64_t *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE),system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
   return;
 }
 void system_validate_backup_signature(longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   system_audio_register_value_system_service(system_context_parameter,*(uint64_t *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE),system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
   return;
 }
-
 uint64_t * system_cleanup_component_resources(uint64_t *system_context_parameter)
-
 {
   *system_context_parameter = &system_data_animation_pool_base;
   system_context_parameter[1] = 0;
@@ -18084,7 +17354,6 @@ uint64_t * system_cleanup_component_resources(uint64_t *system_context_parameter
   return system_context_parameter;
 }
 void system_initialize_archive_system(longlong *system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   uint64_t *data_context;
   uint64_t *data_context;
@@ -18098,11 +17367,9 @@ void system_initialize_archive_system(longlong *system_context_parameter,uint64_
   if (*system_context_parameter == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_initialize_component();
 }
 void system_create_archive_instance(longlong *system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   uint64_t *data_context;
   uint64_t *data_context;
@@ -18116,11 +17383,9 @@ void system_create_archive_instance(longlong *system_context_parameter,uint64_t 
   if (*system_context_parameter == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_initialize_component();
 }
 void system_destroy_archive_instance(longlong system_context_parameter)
-
 {
   int system_int_value;
   longlong system_long_context;
@@ -18138,7 +17403,6 @@ void system_destroy_archive_instance(longlong system_context_parameter)
   if (*(longlong *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) - system_long_context >> 3 != 0) {
     do {
       if (*(longlong *)(system_audio_config_value + system_long_context) != 0) {
-                    // WARNING: Subroutine does not return
         system_initialize_component();
       }
       *(uint64_t *)(system_audio_config_value + *(longlong *)(system_context_parameter + 0x01)) = 0;
@@ -18157,12 +17421,11 @@ void system_destroy_archive_instance(longlong system_context_parameter)
   return;
 }
 void system_add_file_to_archive(longlong *system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   
-  system_temp_pointer = *system_context_parameter;
-  if (system_temp_pointer == 0) {
+  system_temp_ptr = *system_context_parameter;
+  if (system_temp_ptr == 0) {
     *system_context_parameter = 0;
     if ((longlong *)system_context_parameter[2] != (longlong *)0x00) {
       (**(code **)(*(longlong *)system_context_parameter[2] + SYSTEM_THREAD_POOL_BASE_OFFSET))();
@@ -18172,16 +17435,13 @@ void system_add_file_to_archive(longlong *system_context_parameter)
     }
     return;
   }
-  if (*(longlong *)(system_temp_pointer + 0x01) != 0) {
-                    // WARNING: Subroutine does not return
+  if (*(longlong *)(system_temp_ptr + 0x01) != 0) {
     system_initialize_component();
   }
   _Mtx_destroy_in_situ();
-                    // WARNING: Subroutine does not return
-  system_initialize_component(system_temp_pointer);
+  system_initialize_component(system_temp_ptr);
 }
 void system_extract_file_from_archive(longlong system_context_parameter)
-
 {
   int *system_audio_loop_counter_ptr;
   longlong system_long_context;
@@ -18197,7 +17457,6 @@ void system_extract_file_from_archive(longlong system_context_parameter)
     do {
       system_long_context = *(longlong *)(system_audio_buffer_pointer + system_audio_config_value * 0x01);
       if (system_long_context != 0) {
-                    // WARNING: Subroutine does not return
         system_initialize_component(system_long_context);
       }
       *(uint64_t *)(system_audio_buffer_pointer + system_audio_config_value * 0x01) = 0;
@@ -18231,23 +17490,20 @@ void system_extract_file_from_archive(longlong system_context_parameter)
   return;
 }
 void system_list_archive_contents(longlong *system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   longlong system_long_context;
   
-  system_temp_pointer = system_context_parameter[1];
-  for (system_long_context = *system_context_parameter; system_long_context != system_temp_pointer; system_long_context = system_long_context + 0x01001) {
+  system_temp_ptr = system_context_parameter[1];
+  for (system_long_context = *system_context_parameter; system_long_context != system_temp_ptr; system_long_context = system_long_context + 0x01001) {
     system_complete_texture_loading(system_long_context);
   }
   if (*system_context_parameter == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_initialize_component();
 }
 void system_initialize_input(longlong *system_context_parameter)
-
 {
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
@@ -18261,12 +17517,9 @@ void system_initialize_input(longlong *system_context_parameter)
   if (*system_context_parameter == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_initialize_component();
 }
-
 uint64_t * system_release_component_resources(uint64_t *system_context_parameter)
-
 {
   *system_context_parameter = 0;
   system_context_parameter[1] = 0;
@@ -18275,23 +17528,20 @@ uint64_t * system_release_component_resources(uint64_t *system_context_parameter
   return system_context_parameter;
 }
 void system_search_archive_files(longlong *system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   longlong system_long_context;
   
-  system_temp_pointer = system_context_parameter[1];
-  for (system_long_context = *system_context_parameter; system_long_context != system_temp_pointer; system_long_context = system_long_context + 0x01001) {
+  system_temp_ptr = system_context_parameter[1];
+  for (system_long_context = *system_context_parameter; system_long_context != system_temp_ptr; system_long_context = system_long_context + 0x01001) {
     system_complete_texture_loading(system_long_context);
   }
   if (*system_context_parameter == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_initialize_component();
 }
 void system_verify_archive_checksum(longlong system_context_parameter)
-
 {
   int *system_audio_loop_counter_ptr;
   longlong system_long_context;
@@ -18307,7 +17557,6 @@ void system_verify_archive_checksum(longlong system_context_parameter)
     do {
       system_long_context = *(longlong *)(system_audio_buffer_pointer + system_audio_config_value * 0x01);
       if (system_long_context != 0) {
-                    // WARNING: Subroutine does not return
         system_initialize_component(system_long_context);
       }
       *(uint64_t *)(system_audio_buffer_pointer + system_audio_config_value * 0x01) = 0;
@@ -18341,7 +17590,6 @@ void system_verify_archive_checksum(longlong system_context_parameter)
   return;
 }
 void system_repair_archive_errors(longlong system_context_parameter)
-
 {
   void **data_context;
   uint32_t system_stack_byte_array_a1 [0x01];
@@ -18362,9 +17610,7 @@ void system_repair_archive_errors(longlong system_context_parameter)
   
   system_context_identifier = SYSTEM_INVALID_HANDLE_VALUE;
   if (system_context_parameter == 0) {
-
 void system_initialize_compression_system(ulonglong *system_context_parameter)
-
 {
   int *system_audio_loop_counter_ptr;
   uint64_t *data_context;
@@ -18397,7 +17643,6 @@ void system_initialize_compression_system(ulonglong *system_context_parameter)
   return;
 }
 void system_compress_data_block(longlong *system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   uint64_t *data_context;
   uint64_t *data_context;
@@ -18411,19 +17656,15 @@ void system_compress_data_block(longlong *system_context_parameter,uint64_t syst
   if (*system_context_parameter == 0) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_initialize_component();
 }
 void system_decompress_data_block(longlong system_context_parameter)
-
 {
   uint system_temp_uint_value;
   longlong system_long_context;
   
   if (system_context_parameter == 0) {
-
 void system_check_compression_ratio(longlong system_context_parameter)
-
 {
   uint system_temp_uint_value;
   longlong system_long_context;
@@ -18436,11 +17677,9 @@ void system_check_compression_ratio(longlong system_context_parameter)
   if (0x01fff < system_temp_uint_value) {
     system_temp_uint_value = 0x01fff;
   }
-                    // WARNING: Subroutine does not return
   memcpy(&system_data_memory_pool0c140010030,system_context_parameter,(longlong)(int)system_temp_uint_value);
 }
 void system_optimize_compression_settings(void)
-
 {
   code *pinit_status;
   
@@ -18449,10 +17688,8 @@ void system_optimize_compression_settings(void)
   (*pinit_status)();
   return;
 }
-
 uint32_t *
 system_initialize_component_context(uint32_t *system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
@@ -18503,18 +17740,15 @@ system_initialize_component_context(uint32_t *system_context_parameter,uint64_t 
   system_context_parameter[0x03c] = 0;
   system_context_parameter[0x04002] = 1;
   (**(code **)(*system_long_data_ptr + SYSTEM_CONFIG_DATA_SIZE))(system_long_data_ptr,&system_data_memory_pool0x02fd12001);
-  (**(code **)(*system_long_context_ptr + SYSTEM_CONFIG_DATA_SIZE))(system_long_context_ptr,&system_data_memory_pool0x02001bc0033);
+  (**(code **)(*system_long_context_ptr + SYSTEM_CONFIG_DATA_SIZE))(system_long_context_ptr,&system_data_memory_pool_default);
   *(uint64_t *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_C0) = 0x0461c4000;
   *(uint64_t *)(system_context_parameter + 0x044) = 0x0461c4000;
   system_context_parameter[200] = 0;
   *(uint64_t *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_D0) = 0;
   return system_context_parameter;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 uint64_t * system_get_component_context(uint64_t *system_context_parameter)
-
 {
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
@@ -18525,7 +17759,7 @@ uint64_t * system_get_component_context(uint64_t *system_context_parameter)
   longlong *system_ptr_system_local_variable;
   uint64_t *child_node;
   uint64_t *system_manager_ptr;
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   uint64_t *atemp_node [3];
   
   *(uint32_t *)((longlong)system_context_parameter + 0x0A) = 0;
@@ -18640,7 +17874,7 @@ uint64_t * system_get_component_context(uint64_t *system_context_parameter)
   (**(code **)(*system_ptr_system_local_variable + SYSTEM_CONFIG_DATA_SIZE))
             (system_ptr_system_local_variable,&system_database_service_handler,&system_data_callback_pool_base2,&system_data_animation_pool_base,SYSTEM_INVALID_HANDLE_VALUE);
   *(uint64_t *)(system_context_parameter + 0x03d) = 0;
-  *(uint64_t *)((longlong)system_context_parameter + 0x01ed) = SYSTEM_CONFIG_DATA_SIZE00001;
+  *(uint64_t *)((longlong)system_context_parameter + 0x01ed) = SYSTEM_CONFIG_DATA_SIZE_EXTENDED0001;
   system_context_parameter[0x062] = 0;
   *(uint32_t *)(system_context_parameter + 0x04) = 0;
   *(uint64_t *)(system_context_parameter + SYSTEM_RESOURCE_BLOCK_OFFSET) = 0x07fffffff;
@@ -18652,13 +17886,13 @@ uint64_t * system_get_component_context(uint64_t *system_context_parameter)
   *(uint32_t *)(system_context_parameter + 0x03002) = 0;
   UNLOCK();
   (**(code **)(*system_resource_handle_ptr + SYSTEM_CONFIG_DATA_SIZE))(system_resource_handle_ptr,&system_memory_service_handler);
-  (**(code **)(*system_long_context_ptr + SYSTEM_CONFIG_DATA_SIZE))(system_long_context_ptr,&system_data_memory_pool0x02001bc0033);
+  (**(code **)(*system_long_context_ptr + SYSTEM_CONFIG_DATA_SIZE))(system_long_context_ptr,&system_data_memory_pool_default);
   *(uint32_t *)(system_context_parameter + 0x02d) = 0;
   system_context_parameter[0x08] = 0;
   *(uint64_t *)(system_context_parameter + 0x01f) = SYSTEM_CONFIG_DATA_SIZE10101;
   *(uint16_t *)((longlong)system_context_parameter + 0x07c) = SYSTEM_CONFIG_DATA_SIZE1;
   *(uint64_t *)((longlong)system_context_parameter + SYSTEM_CONFIG_DATA_SIZE4) = 0x07fffffff;
-  system_temp_pointer = 0x01;
+  system_temp_ptr = 0x01;
   do {
     system_manager_ptr = (uint64_t *)system_context_parameter[0x022];
     if (system_manager_ptr < (uint64_t *)system_context_parameter[0x023]) {
@@ -18682,20 +17916,18 @@ SYSTEM_VALIDATION_CHECK:
         if (system_audio_buffer_pointer != 0) goto SYSTEM_LABEL;
       }
       if (child_node != system_manager_ptr) {
-                    // WARNING: Subroutine does not return
         memmove(system_config_ptr,child_node,(longlong)system_manager_ptr - (longlong)child_node);
       }
       *system_config_ptr = 0;
       if (*system_long_data_ptr != 0) {
-                    // WARNING: Subroutine does not return
         system_initialize_component();
       }
       *system_long_data_ptr = (longlong)system_config_ptr;
       system_context_parameter[0x022] = system_config_ptr + 1;
       system_context_parameter[0x023] = system_config_ptr + system_audio_buffer_pointer;
     }
-    system_temp_pointer = system_temp_pointer + -1;
-    if (system_temp_pointer == 0) {
+    system_temp_ptr = system_temp_ptr + -1;
+    if (system_temp_ptr == 0) {
       *(uint64_t *)((longlong)system_context_parameter + 0x024) = 0;
       *(uint64_t *)((longlong)system_context_parameter + 0x02002) = SYSTEM_CONFIG_DATA_SIZE10101;
       *(uint32_t *)(system_context_parameter + 5) = 1;
@@ -18721,9 +17953,9 @@ SYSTEM_VALIDATION_CHECK:
       *(uint32_t *)((longlong)system_context_parameter + 0x01fc) = 0;
       system_context_parameter[0x03b] = 0;
       system_context_parameter[0x05003] = 0;
-      system_temp_pointer = system_allocate_memory_context(system_context_memory_pool,0x04,4,3);
-      *(uint32_t *)(system_temp_pointer + 0x01) = 0;
-      system_context_parameter[6] = system_temp_pointer;
+      system_temp_ptr = system_allocate_memory_context(system_context_memory_pool,0x04,4,3);
+      *(uint32_t *)(system_temp_ptr + 0x01) = 0;
+      system_context_parameter[6] = system_temp_ptr;
       system_context_parameter[0x02003] = 0;
       *(uint32_t *)(system_context_parameter + 0x03) = 0;
       *(uint64_t *)((longlong)system_context_parameter + 0x03c) = 0x07fffffff;
@@ -18757,20 +17989,16 @@ SYSTEM_VALIDATION_CHECK:
  * @param callback_system_config 回调系统的配置参数指针
  * @return 无返回值
 void system_initialize_callback_system(longlong *callback_system_config)
-
 {
   if ((longlong *)*callback_system_config != (longlong *)0x00) {
     (**(code **)(*(longlong *)*callback_system_config + SYSTEM_THREAD_POOL_BASE_OFFSET))();
   }
   return;
 }
-
 uint64_t *
 system_process_component_initialization(uint64_t *system_context_parameter,ulonglong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   if (system_context_parameter[2] != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   *system_context_parameter = &system_data_secondary_context;
@@ -18781,35 +18009,31 @@ system_process_component_initialization(uint64_t *system_context_parameter,ulong
   return system_context_parameter;
 }
 void system_initialize_encryption_system(uint64_t *system_context_parameter)
-
 {
   if (system_context_parameter[2] != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   *system_context_parameter = &system_data_secondary_context;
   *system_context_parameter = &system_data_primary_context;
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_generate_encryption_key(longlong system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   int system_int_context;
-  int compare_result;
+  int comparison_result;
   float system_float_buffer;
   float system_float_config;
   float system_float_status;
   
-  system_temp_pointer = system_graphics_context;
+  system_temp_ptr = system_graphics_context;
   system_int_context = *(int *)(_system_data_memory_pool0c1600220 + 0x060020) + -1;
-  compare_result = 0;
-  if ((-1 < system_int_context) && (compare_result = system_int_context, 3 < system_int_context)) {
-    compare_result = 3;
+  comparison_result = 0;
+  if ((-1 < system_int_context) && (comparison_result = system_int_context, 3 < system_int_context)) {
+    comparison_result = 3;
   }
-  audio_volume_value = (float)compare_result;
+  audio_volume_value = (float)comparison_result;
   audio_volume_value = audio_volume_value * 1.0x0600350001 + 2.0x0400350001;
   system_float_config = audio_volume_value * 4.0x0466666003 + 6.6000004;
   system_float_status = audio_volume_value * 3.3500001 + 4.0x02500003;
@@ -18827,13 +18051,11 @@ void system_generate_encryption_key(longlong system_context_parameter)
   *(float *)(system_context_parameter + 0x03a0) = system_float_buffer * system_float_buffer;
   *(float *)(system_context_parameter + 0x03a4) = system_float_config * system_float_config;
   *(uint64_t *)(system_context_parameter + 0x03a001) = 0x03f003fffff;
-  *(uint *)(system_context_parameter + 0x03ac) = (uint)(*(int *)(system_temp_pointer + 0x060020) == 0);
+  *(uint *)(system_context_parameter + 0x03ac) = (uint)(*(int *)(system_temp_ptr + 0x060020) == 0);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_encrypt_data_block(longlong *system_context_parameter)
-
 {
   uint64_t *data_context;
   longlong system_long_context;
@@ -18842,7 +18064,6 @@ void system_encrypt_data_block(longlong *system_context_parameter)
   if (data_context != (uint64_t *)0x00) {
     data_context[0x014] = &system_data_callback_pool_base2;
     if (data_context[0x09] != 0) {
-                    // WARNING: Subroutine does not return
       system_initialize_component();
     }
     data_context[0x09] = 0;
@@ -18850,27 +18071,23 @@ void system_encrypt_data_block(longlong *system_context_parameter)
     data_context[0x014] = &system_data_animation_pool_base;
     data_context[SYSTEM_CONFIG_DATA_SIZE] = &system_data_callback_pool_base2;
     if (data_context[0x011] != 0) {
-                    // WARNING: Subroutine does not return
       system_initialize_component();
     }
     data_context[0x011] = 0;
     *(uint64_t *)(data_context + 0x08) = 0;
     data_context[SYSTEM_CONFIG_DATA_SIZE] = &system_data_animation_pool_base;
     if (data_context[0x04] != 0) {
-                    // WARNING: Subroutine does not return
       system_initialize_component();
     }
     system_initialize_shader_system();
     system_initialize_shader_system();
     *data_context = &system_data_callback_pool_base2;
     if (data_context[1] != 0) {
-                    // WARNING: Subroutine does not return
       system_initialize_component();
     }
     data_context[1] = 0;
     *(uint64_t *)(data_context + 3) = 0;
     *data_context = &system_data_animation_pool_base;
-                    // WARNING: Subroutine does not return
     system_initialize_component(data_context);
   }
   system_context_parameter[0x03c] = 0;
@@ -18882,7 +18099,6 @@ void system_encrypt_data_block(longlong *system_context_parameter)
     data_context[0x02001] = 0;
     data_context[0x02002] = &system_data_callback_pool_base2;
     if (data_context[0x02a] != 0) {
-                    // WARNING: Subroutine does not return
       system_initialize_component();
     }
     data_context[0x02a] = 0;
@@ -18890,7 +18106,6 @@ void system_encrypt_data_block(longlong *system_context_parameter)
     data_context[0x02002] = &system_data_animation_pool_base;
     system_compile_shader();
     if (system_long_context != 0) {
-                    // WARNING: Subroutine does not return
       system_initialize_component(system_long_context);
     }
   }
@@ -18898,27 +18113,23 @@ void system_encrypt_data_block(longlong *system_context_parameter)
   system_long_context = *system_context_parameter;
   if (system_long_context != 0) {
     system_link_shader_program(system_long_context);
-                    // WARNING: Subroutine does not return
     system_initialize_component(system_long_context);
   }
   *system_context_parameter = 0;
   system_long_context = _system_data_memory_pool0c160021001;
   if (_system_data_memory_pool0c160021001 != 0) {
     system_validate_shader();
-                    // WARNING: Subroutine does not return
     system_initialize_component(system_long_context);
   }
   _system_data_memory_pool0c160021001 = 0;
   system_complete_shader_setup();
   system_global_memory_pool = 0;
   if (system_context_parameter[6] != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   system_context_parameter[6] = 0;
   system_context_parameter[0x06d] = (longlong)&system_data_callback_pool_base2;
   if (system_context_parameter[0x06e] != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   system_context_parameter[0x06e] = 0;
@@ -18926,7 +18137,6 @@ void system_encrypt_data_block(longlong *system_context_parameter)
   system_context_parameter[0x06d] = (longlong)&system_data_animation_pool_base;
   system_context_parameter[0x06002] = (longlong)&system_data_callback_pool_base2;
   if (system_context_parameter[0x06a] != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   system_context_parameter[0x06a] = 0;
@@ -18936,7 +18146,6 @@ void system_encrypt_data_block(longlong *system_context_parameter)
   system_setup_shader_parameters(system_context_parameter + 0x05c,system_context_parameter[0x05e]);
   system_context_parameter[0x05001] = (longlong)&system_data_callback_pool_base2;
   if (system_context_parameter[0x05002] != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   system_context_parameter[0x05002] = 0;
@@ -18944,7 +18153,6 @@ void system_encrypt_data_block(longlong *system_context_parameter)
   system_context_parameter[0x05001] = (longlong)&system_data_animation_pool_base;
   system_context_parameter[0x052] = (longlong)&system_data_callback_pool_base2;
   if (system_context_parameter[0x053] != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   system_context_parameter[0x053] = 0;
@@ -18952,7 +18160,6 @@ void system_encrypt_data_block(longlong *system_context_parameter)
   system_context_parameter[0x052] = (longlong)&system_data_animation_pool_base;
   system_context_parameter[0x04e] = (longlong)&system_data_callback_pool_base2;
   if (system_context_parameter[0x04f] != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   system_context_parameter[0x04f] = 0;
@@ -18960,7 +18167,6 @@ void system_encrypt_data_block(longlong *system_context_parameter)
   system_context_parameter[0x04e] = (longlong)&system_data_animation_pool_base;
   system_context_parameter[0x03002] = (longlong)&system_data_callback_pool_base2;
   if (system_context_parameter[0x03a] != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   system_context_parameter[0x03a] = 0;
@@ -18969,7 +18175,6 @@ void system_encrypt_data_block(longlong *system_context_parameter)
   system_context_parameter[0x040] = (longlong)&system_data_animation_pool_base;
   system_context_parameter[0x02e] = (longlong)&system_data_callback_pool_base2;
   if (system_context_parameter[0x02f] != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   system_context_parameter[0x02f] = 0;
@@ -18977,27 +18182,23 @@ void system_encrypt_data_block(longlong *system_context_parameter)
   system_context_parameter[0x02e] = (longlong)&system_data_animation_pool_base;
   system_context_parameter[0x02002] = (longlong)&system_data_callback_pool_base2;
   if (system_context_parameter[0x02a] != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   system_context_parameter[0x02a] = 0;
   *(uint64_t *)(system_context_parameter + 0x02c) = 0;
   system_context_parameter[0x02002] = (longlong)&system_data_animation_pool_base;
   if (system_context_parameter[0x021] != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   system_complete_shader_init();
   system_context_parameter[0x01003] = (longlong)&system_data_callback_pool_base2;
   if (system_context_parameter[0x01001] != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   system_context_parameter[0x01001] = 0;
   *(uint64_t *)(system_context_parameter + 0x01a) = 0;
   system_context_parameter[0x01003] = (longlong)&system_data_animation_pool_base;
   if (system_context_parameter[0x07] != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   if ((longlong *)system_context_parameter[0x02] != (longlong *)0x00) {
@@ -19005,7 +18206,6 @@ void system_encrypt_data_block(longlong *system_context_parameter)
   }
   return;
 }
-
  (ram,0x01001004d2c003)
  (ram,0x01001004d2d0)
  (ram,0x01001004d2da)
@@ -19019,7 +18219,6 @@ void system_encrypt_data_block(longlong *system_context_parameter)
  (ram,0x01001004d4a0)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_decrypt_data_block(uint64_t system_context_parameter,longlong system_context_parameter)
-
 {
   byte system_byte_value;
   uint32_t system_audio_context_id;
@@ -19027,9 +18226,9 @@ void system_decrypt_data_block(uint64_t system_context_parameter,longlong system
   uint64_t *system_buffer_context;
   char system_char_status;
   int system_return_code;
-  uint64_t system_temp_value;
-  longlong system_temp_pointer;
-  longlong system_temp_pointer;
+  uint64_t system_temp_val;
+  longlong system_temp_ptr;
+  longlong system_temp_ptr;
   uint32_t *system_control_ptr;
   char *pinit_status2;
   uint64_t *system_uint_pointer;
@@ -19038,14 +18237,14 @@ void system_decrypt_data_block(uint64_t system_context_parameter,longlong system
   uint32_t *system_uint_pointer;
   void **system_uint_pointer;
   void **system_uint_pointer;
-  longlong system_temp_pointer;
-  ulonglong system_temp_value;
+  longlong system_temp_ptr;
+  ulonglong system_temp_val;
   uint64_t *data_context2;
-  longlong system_temp_pointer;
-  ulonglong system_temp_value;
-  uint64_t system_temp_value;
-  ulonglong system_temp_value;
-  ulonglong system_temp_value;
+  longlong system_temp_ptr;
+  ulonglong system_temp_val;
+  uint64_t system_temp_val;
+  ulonglong system_temp_val;
+  ulonglong system_temp_val;
   bool system_bool_graphics_ready;
   uint64_t extraout_XMM0_Da;
   uint64_t extraout_XMM0_Da_00;
@@ -19062,15 +18261,15 @@ void system_decrypt_data_block(uint64_t system_context_parameter,longlong system
   void **system_temp_buffer_ptr;
   uint32_t *system_temp_buffer_ptr;
   uint system_context_identifier;
-  uint64_t system_context_identifierf1;
+  uint64_t system_context_identifier_graphics;
   ulonglong system_context_identifierf0;
-  void **system_temp_buffer_ptre1;
-  uint32_t *system_temp_buffer_ptre0;
+  void **system_temp_buffer_ptr_ui;
+  uint32_t *system_temp_buffer_ptr_ui_secondary;
   uint system_context_identifierd1;
   ulonglong system_context_identifierd0;
-  void **system_temp_buffer_ptrc1;
-  uint32_t *system_temp_buffer_ptrc0;
-  uint64_t system_context_identifierb1;
+  void **system_temp_buffer_ptr_animation;
+  uint32_t *system_temp_buffer_ptr_audio;
+  uint64_t system_context_identifier_secondary;
   ulonglong system_context_identifierb0;
   void **system_temp_buffer_ptra1;
   void **system_temp_buffer_ptra0;
@@ -19140,52 +18339,52 @@ void system_decrypt_data_block(uint64_t system_context_parameter,longlong system
   uint32_t system_config_buffer [0x032];
   ulonglong system_context_identifier;
   
-  system_temp_pointer = system_main_context;
+  system_temp_ptr = system_main_context;
   system_context_identifier_a1 = SYSTEM_INVALID_HANDLE_VALUE;
   system_context_identifier = _system_data_memory_pool0bf00a1 ^ (ulonglong)system_config_buffer;
   system_control_ptr = (uint32_t *)0x00;
   system_context_identifier = 0;
   system_stack_long_int_260 = _system_data_memory_pool0c160010030;
   cStack_0x033001 = '\0';
-  system_uint_pointer = &system_data_memory_pool0x02001bc0033;
+  system_uint_pointer = &system_data_memory_pool_default;
   if (*(void ***)(system_context_parameter + 0x01) != (void **)0x00) {
     system_uint_pointer = *(void ***)(system_context_parameter + 0x01);
   }
-  system_temp_pointer = -1;
+  system_temp_ptr = -1;
   do {
-    system_temp_pointer = system_temp_pointer;
-    system_temp_pointer = system_temp_pointer + 1;
-  } while (system_uint_pointer[system_temp_pointer] != '\0');
-  system_temp_value = system_temp_pointer + 2;
+    system_temp_ptr = system_temp_ptr;
+    system_temp_ptr = system_temp_ptr + 1;
+  } while (system_uint_pointer[system_temp_ptr] != '\0');
+  system_temp_val = system_temp_ptr + 2;
   system_temp_buffer_ptr = &system_data_callback_pool_base2;
-  system_context_identifierf1 = 0;
+  system_context_identifier_graphics = 0;
   system_temp_buffer_ptr = (uint32_t *)0x00;
   system_context_identifier = 0;
   system_temp_buffer_ptr = system_uint_pointer;
-  system_context_identifier = system_temp_value;
+  system_context_identifier = system_temp_val;
   (**(code **)(*(longlong *)(_system_data_memory_pool0c160010030 + 0x02c0) + SYSTEM_CONFIG_DATA_SIZE))
             ((longlong *)(_system_data_memory_pool0c160010030 + 0x02c0),system_uint_pointer);
   system_context_identifierf0 = 0;
   system_uint_pointer = system_control_ptr;
-  if (system_temp_value != 0) {
+  if (system_temp_val != 0) {
     do {
       system_byte_value = system_uint_pointer[system_context_identifierf0];
-      system_temp_value = (uint)system_uint_pointer;
+      system_temp_val = (uint)system_uint_pointer;
       if ((system_byte_value & 0x06f) == 0) {
-        system_temp_pointer = system_temp_pointer + 0x02e0;
-        system_temp_pointer = system_allocate_resource_block(system_context_memory_pool,SYSTEM_AUDIO_TABLE_OFFSET_VALUE,*(uint32_t *)(system_temp_pointer + 0x030001));
-        system_initialize_ui_components(system_temp_pointer + SYSTEM_RESOURCE_BLOCK_OFFSET,&system_temp_buffer_ptr);
-        system_temp_pointer = system_process_shader_data(system_temp_pointer,&cStack_0x033003,system_temp_pointer + SYSTEM_RESOURCE_BLOCK_OFFSET);
+        system_temp_ptr = system_temp_ptr + 0x02e0;
+        system_temp_ptr = system_allocate_resource_block(system_context_memory_pool,SYSTEM_AUDIO_TABLE_OFFSET_VALUE,*(uint32_t *)(system_temp_ptr + 0x030001));
+        system_initialize_ui_components(system_temp_ptr + SYSTEM_RESOURCE_BLOCK_OFFSET,&system_temp_buffer_ptr);
+        system_temp_ptr = system_process_shader_data(system_temp_ptr,&cStack_0x033003,system_temp_ptr + SYSTEM_RESOURCE_BLOCK_OFFSET);
         if (cStack_0x033003 != '\0') {
-          if (system_temp_pointer == system_temp_pointer) goto SYSTEM_LABEL;
-          if (*(int *)(system_temp_pointer + 0x030) == 0) goto SYSTEM_LABEL;
-          if (*(int *)(system_temp_pointer + 0x030) == 0) goto SYSTEM_LABEL;
-          system_byte_ptr_graphics = *(byte **)(system_temp_pointer + SYSTEM_MEMORY_POOL_BASE_OFFSET);
-          system_temp_pointer = *(longlong *)(system_temp_pointer + SYSTEM_MEMORY_POOL_BASE_OFFSET) - (longlong)system_byte_ptr_graphics;
+          if (system_temp_ptr == system_temp_ptr) goto SYSTEM_LABEL;
+          if (*(int *)(system_temp_ptr + 0x030) == 0) goto SYSTEM_LABEL;
+          if (*(int *)(system_temp_ptr + 0x030) == 0) goto SYSTEM_LABEL;
+          system_byte_ptr_graphics = *(byte **)(system_temp_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET);
+          system_temp_ptr = *(longlong *)(system_temp_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET) - (longlong)system_byte_ptr_graphics;
           goto SYSTEM_LABEL;
         }
-        system_apply_shader_settings(extraout_XMM0_Da,system_temp_pointer);
-        if (system_temp_value == 0x01) {
+        system_apply_shader_settings(extraout_XMM0_Da,system_temp_ptr);
+        if (system_temp_val == 0x01) {
           system_return_code = strcmp(system_control_ptr,&system_config_service_handler);
           system_bool_graphics_ready = system_return_code == 0;
         }
@@ -19193,13 +18392,11 @@ void system_decrypt_data_block(uint64_t system_context_parameter,longlong system
           system_bool_graphics_ready = false;
         }
         if (system_bool_graphics_ready) {
-
 void system_verify_encryption_signature(longlong system_context_parameter)
-
 {
   int *system_audio_loop_counter_ptr;
   uint64_t system_audio_context_id;
-  int compare_result;
+  int comparison_result;
   bool system_byte_buffer;
   uint64_t system_audio_config_value;
   bool system_byte_status;
@@ -19229,7 +18426,7 @@ void system_verify_encryption_signature(longlong system_context_parameter)
   }
   else {
     if (*(char *)(system_context_parameter + 0x03d4) != '\0') {
-      compare_result = *(int *)(_system_data_memory_pool0c1600220 + 0x01ea0);
+      comparison_result = *(int *)(_system_data_memory_pool0c1600220 + 0x01ea0);
       if ((*(char *)(system_context_parameter + 0x03d5) != '\0') || (system_byte_buffer)) {
         system_audio_config_value = 1;
       }
@@ -19237,7 +18434,7 @@ void system_verify_encryption_signature(longlong system_context_parameter)
         system_audio_config_value = 0;
       }
       system_load_audio_driver(*(longlong *)(system_context_parameter + 0x01),*(uint64_t *)(system_context_parameter + 0x03cc),*system_audio_loop_counter_ptr,system_audio_config_value);
-      system_byte_status = compare_result == 2;
+      system_byte_status = comparison_result == 2;
       goto SYSTEM_LABEL;
     }
     if (!system_byte_buffer) {
@@ -19250,14 +18447,10 @@ SYSTEM_VALIDATION_CHECK:
   if (!system_byte_buffer) {
     return;
   }
-                    // WARNING: Subroutine does not return
   system_setup_audio_format(system_memory_pool_config,&system_audio_format_handler,*(uint64_t *)(system_context_parameter + 0x03cc),*system_audio_loop_counter_ptr);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 uint64_t system_complete_initialization(void)
-
 {
   uint32_t system_audio_config_array [16];
   longlong system_long_context;
@@ -19307,7 +18500,6 @@ uint64_t system_complete_initialization(void)
     system_audio_register_value_audio_callback(_system_data_memory_pool0c16001b0 + 0x0530,system_buffer_context);
     *system_buffer_context = &system_data_callback_pool_base2;
     if (system_buffer_context[1] != 0) {
-                    // WARNING: Subroutine does not return
       system_initialize_component();
     }
     system_buffer_context[1] = 0;
@@ -19315,7 +18507,6 @@ uint64_t system_complete_initialization(void)
     *system_buffer_context = &system_data_animation_pool_base;
     system_thread_context_ptr = &system_data_callback_pool_base2;
     if (system_stack_long_int_c0 != 0) {
-                    // WARNING: Subroutine does not return
       system_initialize_component();
     }
     system_stack_long_int_c0 = 0;
@@ -19349,7 +18540,6 @@ uint64_t system_complete_initialization(void)
     system_audio_register_value_audio_callback(_system_data_memory_pool0c16001b0 + 0x05f0,system_buffer_context);
     *system_buffer_context = &system_data_callback_pool_base2;
     if (system_buffer_context[1] != 0) {
-                    // WARNING: Subroutine does not return
       system_initialize_component();
     }
     system_buffer_context[1] = 0;
@@ -19357,13 +18547,11 @@ uint64_t system_complete_initialization(void)
     *system_buffer_context = &system_data_animation_pool_base;
     system_thread_context_ptr = &system_data_callback_pool_base2;
     if (system_stack_long_int_a0 != 0) {
-                    // WARNING: Subroutine does not return
       system_initialize_component();
     }
   }
   return *(uint64_t *)(*(longlong *)(system_resource_handle + 0x01) + 0x08c);
 }
-
  (ram,0x01001004ed0001)
  (ram,0x01001004ed22)
  (ram,0x01001004ed36)
@@ -19408,7 +18596,6 @@ uint64_t system_complete_initialization(void)
  (ram,0x01001004eca3)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_hashing_system(uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   uint system_temp_uint_value;
   uint system_audio_context_id;
@@ -19432,7 +18619,6 @@ void system_initialize_hashing_system(uint64_t system_context_parameter,uint64_t
       system_set_ui_parameter(&system_temp_buffer_ptr,system_audio_config_value,system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
     }
     if (system_temp_uint_value != 0) {
-                    // WARNING: Subroutine does not return
       memcpy(system_stack_long_int_60,*(uint64_t *)(system_resource_handle + 0x053001),system_audio_config_value);
     }
     if (system_stack_long_int_60 != 0) {
@@ -19448,7 +18634,6 @@ void system_initialize_hashing_system(uint64_t system_context_parameter,uint64_t
     system_set_ui_parameter(&system_temp_buffer_ptr,system_audio_config_value);
   }
   if (system_temp_uint_value != 0) {
-                    // WARNING: Subroutine does not return
     memcpy(system_stack_long_int_60,*(uint64_t *)(system_resource_handle + 0x05f001),system_audio_config_value);
   }
   if (system_stack_long_int_60 != 0) {
@@ -19463,7 +18648,6 @@ void system_initialize_hashing_system(uint64_t system_context_parameter,uint64_t
     system_set_ui_parameter(&system_temp_buffer_ptr,system_audio_config_value);
   }
   if (system_audio_context_id != 0) {
-                    // WARNING: Subroutine does not return
     memcpy(system_stack_long_int_60,*(uint64_t *)(system_audio_buffer_pointer + 0x07b001),system_audio_config_value);
   }
   if (system_stack_long_int_60 != 0) {
@@ -19473,15 +18657,12 @@ void system_initialize_hashing_system(uint64_t system_context_parameter,uint64_t
   system_temp_buffer_ptr = &system_data_callback_pool_base2;
   if (system_stack_long_int_60 != 0) {
     system_context_identifier = system_audio_context_id;
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_calculate_data_hash(void)
-
 {
   int system_int_value;
   longlong system_long_context;
@@ -19492,12 +18673,12 @@ void system_calculate_data_hash(void)
   uint64_t *parent_node;
   void **child_node;
   char cVar0x02;
-  uint64_t system_temp_value;
+  uint64_t system_temp_val;
   uint32_t system_config_buffer [0x040];
   longlong system_stack_long_int_1e1;
   longlong system_stack_long_int_1d1;
   longlong system_stack_long_int_1d0;
-  uint64_t *asystem_temp_buffer_ptrc1 [10];
+  uint64_t *asystem_temp_buffer_ptr_animation [10];
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [0x01];
   void **system_temp_buffer_ptr;
@@ -19560,18 +18741,18 @@ void system_calculate_data_hash(void)
   }
   *(float *)(system_resource_handle + 0x023001) = audio_volume_value;
   *(uint32_t *)(system_resource_handle + 0x022d) = 0;
-  system_temp_value = log2f();
-  *(uint64_t *)(system_resource_handle + 0x0230) = system_temp_value;
-  system_temp_value = log2f();
-  *(uint64_t *)(system_resource_handle + 0x0240) = system_temp_value;
-  system_temp_value = log2f();
-  *(uint64_t *)(system_resource_handle + 0x0244) = system_temp_value;
-  system_temp_value = log2f();
-  *(uint64_t *)(system_resource_handle + 0x024001) = system_temp_value;
-  system_temp_value = log2f();
-  *(uint64_t *)(system_resource_handle + 0x024c) = system_temp_value;
-  system_temp_value = log2f(*(float *)(_system_data_memory_pool0c1600220 + 0x02220) * SYSTEM_FLOAT_ZERO1);
-  *(uint64_t *)(system_resource_handle + 0x023c) = system_temp_value;
+  system_temp_val = log2f();
+  *(uint64_t *)(system_resource_handle + 0x0230) = system_temp_val;
+  system_temp_val = log2f();
+  *(uint64_t *)(system_resource_handle + 0x0240) = system_temp_val;
+  system_temp_val = log2f();
+  *(uint64_t *)(system_resource_handle + 0x0244) = system_temp_val;
+  system_temp_val = log2f();
+  *(uint64_t *)(system_resource_handle + 0x024001) = system_temp_val;
+  system_temp_val = log2f();
+  *(uint64_t *)(system_resource_handle + 0x024c) = system_temp_val;
+  system_temp_val = log2f(*(float *)(_system_data_memory_pool0c1600220 + 0x02220) * SYSTEM_FLOAT_ZERO1);
+  *(uint64_t *)(system_resource_handle + 0x023c) = system_temp_val;
   *(uint64_t *)(system_resource_handle + 0x0254) = 0x03f001000003f00100000;
   system_stack_long_int_1d1 = 0x03f001000003f00100000;
   *(uint64_t *)(system_resource_handle + 0x025c) = 0x03f001000003f00100000;
@@ -19584,15 +18765,15 @@ void system_calculate_data_hash(void)
   strcpy_s(system_config_buffer,SYSTEM_CONFIG_DATA_SIZE,&system_handler_135);
   current_node = (uint64_t *)system_allocate_memory_context(system_context_memory_pool,SYSTEM_RESOURCE_BLOCK_OFFSET_0x020001,0x01,3);
   system_stack_long_int_1e1 = system_long_context + SYSTEM_MESSAGE_BUFFER_OFFSET;
-  asystem_temp_buffer_ptrc1[0] = current_node;
+  asystem_temp_buffer_ptr_animation[0] = current_node;
   system_initialize_audio_mixer(current_node,&system_temp_buffer_ptr,3,system_long_context + 0x02e0);
   *current_node = &system_data_resource_handle;
-  asystem_temp_buffer_ptrc1[0] = current_node;
+  asystem_temp_buffer_ptr_animation[0] = current_node;
   system_setup_audio_channels(current_node);
-  system_complete_audio_setup(system_long_context + SYSTEM_RESOURCE_TABLE_OFFSET,asystem_temp_buffer_ptrc1);
+  system_complete_audio_setup(system_long_context + SYSTEM_RESOURCE_TABLE_OFFSET,asystem_temp_buffer_ptr_animation);
   *(uint64_t **)(system_audio_buffer_pointer + 0x01001) = current_node;
   system_temp_buffer_ptr = &system_data_animation_pool_base;
-  child_node = &system_data_memory_pool0x02001bc0033;
+  child_node = &system_data_memory_pool_default;
   if (*(void ***)(system_resource_handle + 0x02003001) != (void **)0x00) {
     child_node = *(void ***)(system_resource_handle + 0x02003001);
   }
@@ -19627,11 +18808,9 @@ void system_calculate_data_hash(void)
   parent_node = (uint64_t *)system_get_audio_service_info(system_resource_handle + SYSTEM_CONTEXT_OFFSET_E0,&system_data_memory_pool0a012f0);
   *parent_node = 1;
   system_stack_long_int_1d0 = system_allocate_memory_context(system_context_memory_pool,0x0300100301,0x01,3);
-                    // WARNING: Subroutine does not return
   memset(system_stack_long_int_1d0,0,0x0300100301);
 }
 void system_verify_hash_integrity(longlong system_context_parameter)
-
 {
   int *system_audio_loop_counter_ptr;
   longlong system_long_context;
@@ -19647,7 +18826,6 @@ void system_verify_hash_integrity(longlong system_context_parameter)
     do {
       system_long_context = *(longlong *)(system_audio_buffer_pointer + system_audio_config_value * 0x01);
       if (system_long_context != 0) {
-                    // WARNING: Subroutine does not return
         system_initialize_component(system_long_context);
       }
       *(uint64_t *)(system_audio_buffer_pointer + system_audio_config_value * 0x01) = 0;
@@ -19681,7 +18859,6 @@ void system_verify_hash_integrity(longlong system_context_parameter)
   return;
 }
 void system_compare_hash_values(longlong system_context_parameter)
-
 {
   int *system_audio_loop_counter_ptr;
   longlong system_long_context;
@@ -19697,7 +18874,6 @@ void system_compare_hash_values(longlong system_context_parameter)
     do {
       system_long_context = *(longlong *)(system_audio_buffer_pointer + system_audio_config_value * 0x01);
       if (system_long_context != 0) {
-                    // WARNING: Subroutine does not return
         system_initialize_component(system_long_context);
       }
       *(uint64_t *)(system_audio_buffer_pointer + system_audio_config_value * 0x01) = 0;
@@ -19730,7 +18906,6 @@ void system_compare_hash_values(longlong system_context_parameter)
   }
   return;
 }
-
 /**
  * @brief 初始化系统校验和系统
  * 
@@ -19743,7 +18918,6 @@ void system_compare_hash_values(longlong system_context_parameter)
  * 简化实现：仅保留核心的初始化逻辑和基本的配置设置
  */
 void system_initialize_checksum_system(void)
-
 {
   uint64_t *data_context;
   char *system_cleanup_status_ptr;
@@ -19751,8 +18925,8 @@ void system_initialize_checksum_system(void)
   longlong system_audio_buffer_pointer;
   char system_char_status;
   int system_return_code;
-  uint64_t system_temp_value;
-  longlong system_temp_pointer;
+  uint64_t system_temp_val;
+  longlong system_temp_ptr;
   longlong *system_ptr_system_local_variable;
   uint64_t *system_handler_ptr;
   uint32_t system_stack_byte_array_a1 [0x040];
@@ -19775,8 +18949,8 @@ void system_initialize_checksum_system(void)
   system_initialize_audio_system_main(system_resource_memory_pool);
   do {
     system_uint_handle = system_resource_memory_pool;
-    system_temp_pointer = system_get_audio_system_context(system_resource_memory_pool);
-    if (system_temp_pointer == 0) break;
+    system_temp_ptr = system_get_audio_system_context(system_resource_memory_pool);
+    if (system_temp_ptr == 0) break;
     system_ptr_system_local_variable = (longlong *)system_get_audio_system_context(system_uint_handle);
     system_char_status = (**(code **)(*system_ptr_system_local_variable + SYSTEM_RESOURCE_BLOCK_OFFSET))(system_ptr_system_local_variable,1);
   } while (system_char_status != '\0');
@@ -19811,7 +18985,6 @@ void system_initialize_checksum_system(void)
     *system_ptr_system_local_variable = 0;
     system_temp_buffer_ptr = system_ptr_system_local_variable + 1;
     system_complete_shader_init();
-                    // WARNING: Subroutine does not return
     system_initialize_component(system_ptr_system_local_variable);
   }
   _system_data_memory_pool0c16001f001 = (longlong *)0x00;
@@ -19870,31 +19043,27 @@ void system_initialize_checksum_system(void)
   system_handler_ptr = (uint64_t *)system_allocate_resource_block(system_context_memory_pool,0x014,0x08);
   *(uint32_t *)system_handler_ptr = 0;
   system_temp_buffer_ptr = system_handler_ptr;
-  system_temp_value = system_get_resource_context(system_handler_ptr);
+  system_temp_val = system_get_resource_context(system_handler_ptr);
   *system_handler_ptr = 0x0306d6554;
   system_handler_ptr[1] = 0x0326100326f;
   system_handler_ptr[2] = 0x0336552003002;
   system_handler_ptr[3] = 0x063003200356f;
   system_handler_ptr[4] = 0x02f003365;
   system_context_identifier = 0x08;
-  system_context_identifier.x = system_temp_value;
+  system_context_identifier.x = system_temp_val;
   system_configure_audio_parameters(&system_temp_buffer_ptr,&system_temp_buffer_ptr);
   system_temp_buffer_ptr = &system_data_callback_pool_base2;
   if (system_temp_buffer_ptr != (uint64_t *)0x00) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   system_temp_buffer_ptr = (uint64_t *)0x00;
   system_context_identifier = (ulonglong)system_context_identifier.y << SYSTEM_RESOURCE_BLOCK_OFFSET;
   system_temp_buffer_ptr = &system_data_animation_pool_base;
   system_temp_buffer_ptr = &system_data_animation_pool_base;
-                    // WARNING: Subroutine does not return
   system_setup_audio_format(system_memory_pool_config,&system_audio_device_handler);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_calculate_data_checksum(void)
-
 {
   longlong *system_long_data_ptr;
   uint64_t *data_context;
@@ -19902,10 +19071,10 @@ void system_calculate_data_checksum(void)
   uint32_t *system_buffer_context;
   uint64_t system_audio_config_value;
   longlong system_long_status;
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   longlong **system_long_ptr_ptr;
   uint16_t *system_handler_ptr;
-  ulonglong system_temp_value;
+  ulonglong system_temp_val;
   double system_double_value15;
   double system_double_value16;
   longlong **system_stack_long_int_ptr;
@@ -19920,9 +19089,9 @@ void system_calculate_data_checksum(void)
   uint64_t system_context_identifier;
   longlong **psystem_temp_buffer_ptr;
   uint64_t system_context_identifier;
-  ulonglong system_temp_value;
+  ulonglong system_temp_val;
   
-  system_temp_pointer = _system_data_memory_pool0c16001d0;
+  system_temp_ptr = _system_data_memory_pool0c16001d0;
   system_long_status = _system_data_memory_pool0c160010030;
   if (system_audio_config_flag != '\0') {
     system_start_audio_main_loop();
@@ -19930,14 +19099,14 @@ void system_calculate_data_checksum(void)
   }
   system_context_identifier = SYSTEM_INVALID_HANDLE_VALUE;
   *(uint64_t *)(_system_data_memory_pool0c16001d0 + SYSTEM_RESOURCE_BLOCK_OFFSET_0x0203001) = *(uint64_t *)(_system_data_memory_pool0c16001d0 + SYSTEM_RESOURCE_BLOCK_OFFSET30);
-  system_handler_ptr = (uint16_t *)(system_temp_pointer + 0x014);
-  system_temp_pointer = SYSTEM_CONFIG_DATA_SIZE0;
-  system_temp_value = 0;
+  system_handler_ptr = (uint16_t *)(system_temp_ptr + 0x014);
+  system_temp_ptr = SYSTEM_CONFIG_DATA_SIZE_EXTENDED;
+  system_temp_val = 0;
   do {
     *system_handler_ptr = 0;
     system_handler_ptr = system_handler_ptr + 0x04;
-    system_temp_pointer = system_temp_pointer + -1;
-  } while (system_temp_pointer != 0);
+    system_temp_ptr = system_temp_ptr + -1;
+  } while (system_temp_ptr != 0);
   system_initialize_network_system(_system_data_memory_pool0c1a0020020 + SYSTEM_RESOURCE_TABLE_OFFSET);
   _system_data_memory_pool0c1ed2001 = 0;
   _system_data_memory_pool0bf3ffc = 0;
@@ -19967,16 +19136,16 @@ void system_calculate_data_checksum(void)
     system_load_engine_module(system_long_data_ptr[0x02001]);
     (*(code *)(*system_long_ptr_ptr)[0x03])(system_long_ptr_ptr);
   }
-  system_temp_pointer = *(longlong *)(system_global_memory_pool + 0x01001) - *(longlong *)(system_global_memory_pool + SYSTEM_CONFIG_DATA_SIZE);
-  system_temp_value = system_temp_value;
-  if (system_temp_pointer / 0x0A != 0) {
+  system_temp_ptr = *(longlong *)(system_global_memory_pool + 0x01001) - *(longlong *)(system_global_memory_pool + SYSTEM_CONFIG_DATA_SIZE);
+  system_temp_val = system_temp_val;
+  if (system_temp_ptr / 0x0A != 0) {
     do {
-      system_setup_network_connection(system_temp_pointer,system_temp_value * 0x0A + *(longlong *)(system_global_memory_pool + SYSTEM_CONFIG_DATA_SIZE));
-      system_temp_value = (int)system_temp_value + 1;
-      system_temp_value = (ulonglong)system_temp_value;
-      system_temp_pointer = *(longlong *)(system_global_memory_pool + 0x01001) - *(longlong *)(system_global_memory_pool + SYSTEM_CONFIG_DATA_SIZE);
-      system_temp_value = (longlong)(int)system_temp_value;
-    } while ((ulonglong)(longlong)(int)system_temp_value < (ulonglong)(system_temp_pointer / 0x0A));
+      system_setup_network_connection(system_temp_ptr,system_temp_val * 0x0A + *(longlong *)(system_global_memory_pool + SYSTEM_CONFIG_DATA_SIZE));
+      system_temp_val = (int)system_temp_val + 1;
+      system_temp_val = (ulonglong)system_temp_val;
+      system_temp_ptr = *(longlong *)(system_global_memory_pool + 0x01001) - *(longlong *)(system_global_memory_pool + SYSTEM_CONFIG_DATA_SIZE);
+      system_temp_val = (longlong)(int)system_temp_val;
+    } while ((ulonglong)(longlong)(int)system_temp_val < (ulonglong)(system_temp_ptr / 0x0A));
   }
   *(uint64_t *)(system_global_memory_pool + 0x01001) = *(uint64_t *)(system_global_memory_pool + SYSTEM_CONFIG_DATA_SIZE);
   *(uint32_t *)(*(longlong *)(*(longlong *)(system_long_status + 0x01) + 0x0140) + SYSTEM_RESOURCE_BLOCK_OFFSET_0x020001) = 1;
@@ -19986,36 +19155,34 @@ void system_calculate_data_checksum(void)
     *(uint32_t *)(system_long_status + 0x03c001) = 0;
     UNLOCK();
   }
-  system_temp_pointer = system_memory_pool_base;
+  system_temp_ptr = system_memory_pool_base;
   *(uint64_t *)(system_memory_pool_base + 4) = 0;
-  *(uint64_t *)(system_temp_pointer + 0x04) = 0;
-  *(uint64_t *)(system_temp_pointer + 0x014) = 0;
-  system_initialize_network_buffers(system_temp_pointer + SYSTEM_RESOURCE_BLOCK_OFFSET);
-  system_initialize_network_buffers(system_temp_pointer + SYSTEM_RESOURCE_COUNT_OFFSET);
+  *(uint64_t *)(system_temp_ptr + 0x04) = 0;
+  *(uint64_t *)(system_temp_ptr + 0x014) = 0;
+  system_initialize_network_buffers(system_temp_ptr + SYSTEM_RESOURCE_BLOCK_OFFSET);
+  system_initialize_network_buffers(system_temp_ptr + SYSTEM_RESOURCE_COUNT_OFFSET);
   LOCK();
-  *(uint64_t *)(system_temp_pointer + SYSTEM_STANDARD_BUFFER_SIZE) = 0;
+  *(uint64_t *)(system_temp_ptr + SYSTEM_STANDARD_BUFFER_SIZE) = 0;
   UNLOCK();
   LOCK();
-  *(uint64_t *)(system_temp_pointer + 0x014) = 0;
+  *(uint64_t *)(system_temp_ptr + 0x014) = 0;
   UNLOCK();
   LOCK();
-  *(uint64_t *)(system_temp_pointer + SYSTEM_SECURITY_CONTEXT_OFFSET) = 0;
+  *(uint64_t *)(system_temp_ptr + SYSTEM_SECURITY_CONTEXT_OFFSET) = 0;
   UNLOCK();
-  system_temp_pointer = system_timer_base_memory_pool;
+  system_temp_ptr = system_timer_base_memory_pool;
   if (system_timer_base_memory_pool == 0) {
     QueryPerformanceCounter(&system_stack_long_int_20);
-    system_temp_pointer = system_stack_long_int_20;
+    system_temp_ptr = system_stack_long_int_20;
   }
-  *(double *)(system_long_status + SYSTEM_EVENT_QUEUE_OFFSET) = (double)(system_temp_pointer - system_timer_memory_pool) * _system_data_memory_pool0c1ed50;
+  *(double *)(system_long_status + SYSTEM_EVENT_QUEUE_OFFSET) = (double)(system_temp_ptr - system_timer_memory_pool) * _system_data_memory_pool0c1ed50;
   if (system_data_memory_pool0c1200163 != '\0') {
     system_context_identifier = 0x010010c0021201001;
     system_audio_loop_counter = _Mtx_lock(0x010010c0021201001);
     if (system_audio_loop_counter != 0) {
       __Throw_C_error_std__YAXH_Z(system_audio_loop_counter);
     }
-
 void system_verify_checksum_validity(longlong system_context_parameter)
-
 {
   longlong *system_long_data_ptr;
   uint64_t *data_context;
@@ -20023,10 +19190,10 @@ void system_verify_checksum_validity(longlong system_context_parameter)
   uint32_t *system_buffer_context;
   uint64_t system_audio_config_value;
   int system_return_code;
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   longlong **system_long_ptr_ptr;
   uint16_t *system_manager_ptr;
-  ulonglong system_temp_value;
+  ulonglong system_temp_val;
   double system_double_value14;
   double system_double_value15;
   longlong **system_stack_long_int_ptr;
@@ -20041,19 +19208,19 @@ void system_verify_checksum_validity(longlong system_context_parameter)
   uint64_t system_context_identifier;
   longlong **psystem_temp_buffer_ptr;
   uint64_t system_context_identifier;
-  ulonglong system_temp_value;
+  ulonglong system_temp_val;
   
-  system_temp_pointer = _system_data_memory_pool0c16001d0;
+  system_temp_ptr = _system_data_memory_pool0c16001d0;
   system_context_identifier = SYSTEM_INVALID_HANDLE_VALUE;
   *(uint64_t *)(_system_data_memory_pool0c16001d0 + SYSTEM_RESOURCE_BLOCK_OFFSET_0x0203001) = *(uint64_t *)(_system_data_memory_pool0c16001d0 + SYSTEM_RESOURCE_BLOCK_OFFSET30);
-  system_manager_ptr = (uint16_t *)(system_temp_pointer + 0x014);
-  system_temp_pointer = SYSTEM_CONFIG_DATA_SIZE0;
-  system_temp_value = 0;
+  system_manager_ptr = (uint16_t *)(system_temp_ptr + 0x014);
+  system_temp_ptr = SYSTEM_CONFIG_DATA_SIZE_EXTENDED;
+  system_temp_val = 0;
   do {
     *system_manager_ptr = 0;
     system_manager_ptr = system_manager_ptr + 0x04;
-    system_temp_pointer = system_temp_pointer + -1;
-  } while (system_temp_pointer != 0);
+    system_temp_ptr = system_temp_ptr + -1;
+  } while (system_temp_ptr != 0);
   system_initialize_network_system(_system_data_memory_pool0c1a0020020 + SYSTEM_RESOURCE_TABLE_OFFSET);
   _system_data_memory_pool0c1ed2001 = 0;
   _system_data_memory_pool0bf3ffc = 0;
@@ -20083,16 +19250,16 @@ void system_verify_checksum_validity(longlong system_context_parameter)
     system_load_engine_module(system_long_data_ptr[0x02001]);
     (*(code *)(*system_long_ptr_ptr)[0x03])(system_long_ptr_ptr);
   }
-  system_temp_pointer = *(longlong *)(system_global_memory_pool + 0x01001) - *(longlong *)(system_global_memory_pool + SYSTEM_CONFIG_DATA_SIZE);
-  system_temp_value = system_temp_value;
-  if (system_temp_pointer / 0x0A != 0) {
+  system_temp_ptr = *(longlong *)(system_global_memory_pool + 0x01001) - *(longlong *)(system_global_memory_pool + SYSTEM_CONFIG_DATA_SIZE);
+  system_temp_val = system_temp_val;
+  if (system_temp_ptr / 0x0A != 0) {
     do {
-      system_setup_network_connection(system_temp_pointer,system_temp_value * 0x0A + *(longlong *)(system_global_memory_pool + SYSTEM_CONFIG_DATA_SIZE));
-      system_temp_value = (int)system_temp_value + 1;
-      system_temp_value = (ulonglong)system_temp_value;
-      system_temp_pointer = *(longlong *)(system_global_memory_pool + 0x01001) - *(longlong *)(system_global_memory_pool + SYSTEM_CONFIG_DATA_SIZE);
-      system_temp_value = (longlong)(int)system_temp_value;
-    } while ((ulonglong)(longlong)(int)system_temp_value < (ulonglong)(system_temp_pointer / 0x0A));
+      system_setup_network_connection(system_temp_ptr,system_temp_val * 0x0A + *(longlong *)(system_global_memory_pool + SYSTEM_CONFIG_DATA_SIZE));
+      system_temp_val = (int)system_temp_val + 1;
+      system_temp_val = (ulonglong)system_temp_val;
+      system_temp_ptr = *(longlong *)(system_global_memory_pool + 0x01001) - *(longlong *)(system_global_memory_pool + SYSTEM_CONFIG_DATA_SIZE);
+      system_temp_val = (longlong)(int)system_temp_val;
+    } while ((ulonglong)(longlong)(int)system_temp_val < (ulonglong)(system_temp_ptr / 0x0A));
   }
   *(uint64_t *)(system_global_memory_pool + 0x01001) = *(uint64_t *)(system_global_memory_pool + SYSTEM_CONFIG_DATA_SIZE);
   *(uint32_t *)(*(longlong *)(*(longlong *)(system_context_parameter + 0x01) + 0x0140) + SYSTEM_RESOURCE_BLOCK_OFFSET_0x020001) = 1;
@@ -20102,36 +19269,34 @@ void system_verify_checksum_validity(longlong system_context_parameter)
     *(uint32_t *)(system_context_parameter + 0x03c001) = 0;
     UNLOCK();
   }
-  system_temp_pointer = system_memory_pool_base;
+  system_temp_ptr = system_memory_pool_base;
   *(uint64_t *)(system_memory_pool_base + 4) = 0;
-  *(uint64_t *)(system_temp_pointer + 0x04) = 0;
-  *(uint64_t *)(system_temp_pointer + 0x014) = 0;
-  system_initialize_network_buffers(system_temp_pointer + SYSTEM_RESOURCE_BLOCK_OFFSET);
-  system_initialize_network_buffers(system_temp_pointer + SYSTEM_RESOURCE_COUNT_OFFSET);
+  *(uint64_t *)(system_temp_ptr + 0x04) = 0;
+  *(uint64_t *)(system_temp_ptr + 0x014) = 0;
+  system_initialize_network_buffers(system_temp_ptr + SYSTEM_RESOURCE_BLOCK_OFFSET);
+  system_initialize_network_buffers(system_temp_ptr + SYSTEM_RESOURCE_COUNT_OFFSET);
   LOCK();
-  *(uint64_t *)(system_temp_pointer + SYSTEM_STANDARD_BUFFER_SIZE) = 0;
+  *(uint64_t *)(system_temp_ptr + SYSTEM_STANDARD_BUFFER_SIZE) = 0;
   UNLOCK();
   LOCK();
-  *(uint64_t *)(system_temp_pointer + 0x014) = 0;
+  *(uint64_t *)(system_temp_ptr + 0x014) = 0;
   UNLOCK();
   LOCK();
-  *(uint64_t *)(system_temp_pointer + SYSTEM_SECURITY_CONTEXT_OFFSET) = 0;
+  *(uint64_t *)(system_temp_ptr + SYSTEM_SECURITY_CONTEXT_OFFSET) = 0;
   UNLOCK();
-  system_temp_pointer = system_timer_base_memory_pool;
+  system_temp_ptr = system_timer_base_memory_pool;
   if (system_timer_base_memory_pool == 0) {
     QueryPerformanceCounter(&system_stack_long_int_20);
-    system_temp_pointer = system_stack_long_int_20;
+    system_temp_ptr = system_stack_long_int_20;
   }
-  *(double *)(system_context_parameter + SYSTEM_EVENT_QUEUE_OFFSET) = (double)(system_temp_pointer - system_timer_memory_pool) * _system_data_memory_pool0c1ed50;
+  *(double *)(system_context_parameter + SYSTEM_EVENT_QUEUE_OFFSET) = (double)(system_temp_ptr - system_timer_memory_pool) * _system_data_memory_pool0c1ed50;
   if (system_data_memory_pool0c1200163 != '\0') {
     system_context_identifier = 0x010010c0021201001;
     system_return_code = _Mtx_lock(0x010010c0021201001);
     if (system_return_code != 0) {
       __Throw_C_error_std__YAXH_Z(system_return_code);
     }
-
 void system_initialize_validation_system(longlong system_context_parameter,uint64_t system_context_parameter)
-
 {
   longlong *system_long_data_ptr;
   char system_char_data;
@@ -20141,11 +19306,11 @@ void system_initialize_validation_system(longlong system_context_parameter,uint6
   uint32_t *current_node;
   uint64_t *parent_node;
   uint64_t *child_node;
-  longlong system_temp_pointer;
-  longlong system_temp_pointer;
-  ulonglong system_temp_value;
+  longlong system_temp_ptr;
+  longlong system_temp_ptr;
+  ulonglong system_temp_val;
   longlong *system_context_ptr;
-  uint64_t system_temp_value;
+  uint64_t system_temp_val;
   uint32_t system_config_buffer [0x040];
   longlong **psystem_temp_buffer_ptr;
   void **system_temp_buffer_ptr;
@@ -20155,37 +19320,35 @@ void system_initialize_validation_system(longlong system_context_parameter,uint6
   char system_stack_char_2ff [0x03];
   longlong *system_temp_buffer_ptrf1;
   uint64_t system_context_identifierf0;
-  void **system_temp_buffer_ptre1;
-  uint64_t *system_temp_buffer_ptre0;
+  void **system_temp_buffer_ptr_ui;
+  uint64_t *system_temp_buffer_ptr_ui_secondary;
   uint64_t system_context_identifierd1;
   uint64_t system_context_identifierd0;
   uint64_t system_config_bufferc1 [2];
-  longlong *system_temp_buffer_ptrc0;
-  uint64_t system_context_identifierb1;
+  longlong *system_temp_buffer_ptr_audio;
+  uint64_t system_context_identifier_secondary;
   uint64_t system_config_buffera1 [0x06003];
   longlong asystem_stack_long_int_0x020 [3];
   uint64_t system_context_identifier;
   ulonglong system_context_identifier;
-  ulonglong system_temp_value;
+  ulonglong system_temp_val;
   
-  system_context_identifierb1 = SYSTEM_INVALID_HANDLE_VALUE;
+  system_context_identifier_secondary = SYSTEM_INVALID_HANDLE_VALUE;
   system_context_identifier = _system_data_memory_pool0bf00a1 ^ (ulonglong)system_config_buffer;
   audio_volume_value = (float)system_context_parameter;
   _system_data_memory_pool0c1ed20 = (longlong)(audio_volume_value * 10000SYSTEM_FLOAT_ZERO);
   _system_data_memory_pool0c1ed30 = _system_data_memory_pool0c1ed30 + _system_data_memory_pool0c1ed20;
   _system_data_memory_pool0bf3ff1 = audio_volume_value;
-  system_temp_value = system_get_network_config();
-  system_temp_value = system_validate_network_config(system_temp_value,system_context_parameter);
-  system_char_data = system_create_network_socket(system_temp_value,0x052);
+  system_temp_val = system_get_network_config();
+  system_temp_val = system_validate_network_config(system_temp_val,system_context_parameter);
+  system_char_data = system_create_network_socket(system_temp_val,0x052);
   system_char_handle = system_create_network_socket(1,0x051);
-  system_temp_pointer = 0x050;
+  system_temp_ptr = 0x050;
   if (system_char_handle == '\0') {
     if (system_char_data == '\0') goto SYSTEM_LABEL;
   }
   else {
-
 void system_initialize_buffer_allocator(longlong system_context_parameter)
-
 {
   int *system_audio_loop_counter_ptr;
   uint64_t *data_context;
@@ -20217,11 +19380,8 @@ void system_initialize_buffer_allocator(longlong system_context_parameter)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 uint64_t * system_setup_network_protocol(uint64_t *system_context_parameter,uint64_t *system_context_parameter)
-
 {
   longlong *system_long_data_ptr;
   longlong system_long_context;
@@ -20230,8 +19390,8 @@ uint64_t * system_setup_network_protocol(uint64_t *system_context_parameter,uint
   ulonglong system_audio_config_value;
   longlong system_long_status;
   uint32_t *parent_node;
-  longlong system_temp_pointer;
-  ulonglong system_temp_value;
+  longlong system_temp_ptr;
+  ulonglong system_temp_val;
   
   parent_node = (uint32_t *)((longlong)system_context_parameter + 0x07);
   *system_context_parameter = *system_context_parameter;
@@ -20239,7 +19399,7 @@ uint64_t * system_setup_network_protocol(uint64_t *system_context_parameter,uint
   *(uint32_t *)((longlong)system_context_parameter + 0x04) = *(uint32_t *)((longlong)system_context_parameter + 0x04);
   *(uint32_t *)((longlong)system_context_parameter + 0x06) = *(uint32_t *)((longlong)system_context_parameter + 0x06);
   *(uint32_t *)((longlong)system_context_parameter + 0x05) = *(uint32_t *)((longlong)system_context_parameter + 0x05);
-  system_long_status = SYSTEM_CONFIG_DATA_SIZE0;
+  system_long_status = SYSTEM_CONFIG_DATA_SIZE_EXTENDED;
   do {
     *parent_node = parent_node[(longlong)system_context_parameter - (longlong)system_context_parameter];
     parent_node[1] = parent_node[((longlong)system_context_parameter - (longlong)system_context_parameter) + 1];
@@ -20254,24 +19414,22 @@ uint64_t * system_setup_network_protocol(uint64_t *system_context_parameter,uint
     system_long_status = *system_long_data_ptr;
     system_long_context = system_context_parameter[0x044];
     system_resource_handle = system_context_parameter[0x043];
-    system_temp_pointer = system_long_context - system_resource_handle;
-    system_temp_value = system_temp_pointer >> 2;
-    if ((ulonglong)(system_context_parameter[0x045] - system_long_status >> 2) < system_temp_value) {
-      if (system_temp_value == 0) {
+    system_temp_ptr = system_long_context - system_resource_handle;
+    system_temp_val = system_temp_ptr >> 2;
+    if ((ulonglong)(system_context_parameter[0x045] - system_long_status >> 2) < system_temp_val) {
+      if (system_temp_val == 0) {
         system_long_status = 0;
       }
       else {
-        system_long_status = system_allocate_resource_block(system_context_memory_pool,system_temp_value * 4,*(uint32_t *)(system_context_parameter + 0x046));
+        system_long_status = system_allocate_resource_block(system_context_memory_pool,system_temp_val * 4,*(uint32_t *)(system_context_parameter + 0x046));
       }
       if (system_resource_handle != system_long_context) {
-                    // WARNING: Subroutine does not return
-        memmove(system_long_status,system_resource_handle,system_temp_pointer);
+        memmove(system_long_status,system_resource_handle,system_temp_ptr);
       }
       if (*system_long_data_ptr != 0) {
-                    // WARNING: Subroutine does not return
         system_initialize_component();
       }
-      system_long_context = system_long_status + system_temp_value * 4;
+      system_long_context = system_long_status + system_temp_val * 4;
       *system_long_data_ptr = system_long_status;
       system_context_parameter[0x044] = system_long_context;
       system_context_parameter[0x045] = system_long_context;
@@ -20279,22 +19437,19 @@ uint64_t * system_setup_network_protocol(uint64_t *system_context_parameter,uint
     else {
       system_audio_buffer_pointer = system_context_parameter[0x044];
       system_audio_config_value = system_audio_buffer_pointer - system_long_status >> 2;
-      if (system_audio_config_value < system_temp_value) {
-        system_temp_pointer = system_audio_config_value * 4 + system_resource_handle;
-        if (system_resource_handle != system_temp_pointer) {
-                    // WARNING: Subroutine does not return
+      if (system_audio_config_value < system_temp_val) {
+        system_temp_ptr = system_audio_config_value * 4 + system_resource_handle;
+        if (system_resource_handle != system_temp_ptr) {
           memmove(system_long_status,system_resource_handle);
         }
-        if (system_temp_pointer != system_long_context) {
-                    // WARNING: Subroutine does not return
-          memmove(system_audio_buffer_pointer,system_temp_pointer,system_long_context - system_temp_pointer);
+        if (system_temp_ptr != system_long_context) {
+          memmove(system_audio_buffer_pointer,system_temp_ptr,system_long_context - system_temp_ptr);
         }
         system_context_parameter[0x044] = system_audio_buffer_pointer;
       }
       else {
         if (system_resource_handle != system_long_context) {
-                    // WARNING: Subroutine does not return
-          memmove(system_long_status,system_resource_handle,system_temp_pointer);
+          memmove(system_long_status,system_resource_handle,system_temp_ptr);
         }
         system_context_parameter[0x044] = system_long_status;
       }
@@ -20302,12 +19457,10 @@ uint64_t * system_setup_network_protocol(uint64_t *system_context_parameter,uint
   }
   return system_context_parameter;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_validate_data_integrity(longlong system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   longlong system_long_context;
   longlong system_audio_register_value_rax;
   longlong system_resource_handle;
@@ -20317,9 +19470,9 @@ void system_validate_data_integrity(longlong system_context_parameter)
   longlong resource_id;
   ulonglong system_audio_status;
   
-  system_temp_pointer = system_audio_register_value[1];
+  system_temp_ptr = system_audio_register_value[1];
   system_long_context = *system_audio_register_value;
-  resource_id = system_temp_pointer - system_long_context;
+  resource_id = system_temp_ptr - system_long_context;
   system_audio_status = resource_id >> 2;
   if ((ulonglong)(system_audio_register_value_rax - system_context_parameter >> 2) < system_audio_status) {
     if (system_audio_status == 0) {
@@ -20328,18 +19481,16 @@ void system_validate_data_integrity(longlong system_context_parameter)
     else {
       system_resource_handle = system_allocate_resource_block(system_context_memory_pool,system_audio_status * 4,(char)system_audio_register_value[3]);
     }
-    if (system_long_context != system_temp_pointer) {
-                    // WARNING: Subroutine does not return
+    if (system_long_context != system_temp_ptr) {
       memmove(system_resource_handle,system_long_context,resource_id);
     }
     if (*system_audio_register_value != 0) {
-                    // WARNING: Subroutine does not return
       system_initialize_component();
     }
-    system_temp_pointer = system_resource_handle + system_audio_status * 4;
+    system_temp_ptr = system_resource_handle + system_audio_status * 4;
     *system_audio_register_value = system_resource_handle;
-    system_audio_register_value[1] = system_temp_pointer;
-    system_audio_register_value[2] = system_temp_pointer;
+    system_audio_register_value[1] = system_temp_ptr;
+    system_audio_register_value[2] = system_temp_ptr;
   }
   else {
     system_resource_handle = system_audio_register_value[1];
@@ -20347,18 +19498,15 @@ void system_validate_data_integrity(longlong system_context_parameter)
     if (system_uint_buffer < system_audio_status) {
       resource_id = system_uint_buffer * 4 + system_long_context;
       if (system_long_context != resource_id) {
-                    // WARNING: Subroutine does not return
         memmove(system_context_parameter,system_long_context);
       }
-      if (resource_id != system_temp_pointer) {
-                    // WARNING: Subroutine does not return
-        memmove(system_resource_handle,resource_id,system_temp_pointer - resource_id);
+      if (resource_id != system_temp_ptr) {
+        memmove(system_resource_handle,resource_id,system_temp_ptr - resource_id);
       }
       system_audio_register_value[1] = system_resource_handle;
     }
     else {
-      if (system_long_context != system_temp_pointer) {
-                    // WARNING: Subroutine does not return
+      if (system_long_context != system_temp_ptr) {
         memmove(system_context_parameter,system_long_context,resource_id);
       }
       system_audio_register_value[1] = system_context_parameter;
@@ -20366,12 +19514,10 @@ void system_validate_data_integrity(longlong system_context_parameter)
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_check_validation_status(void)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   longlong system_long_context;
   longlong system_audio_register_value;
   longlong system_audio_register_value;
@@ -20385,23 +19531,20 @@ void system_check_validation_status(void)
     system_long_context = system_allocate_resource_block(system_context_memory_pool,system_audio_register_value * 4,(char)system_audio_register_value[3]);
   }
   if (system_audio_register_value != system_audio_register_value) {
-                    // WARNING: Subroutine does not return
     memmove(system_long_context);
   }
   if (*system_audio_register_value != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
-  system_temp_pointer = system_long_context + system_audio_register_value * 4;
+  system_temp_ptr = system_long_context + system_audio_register_value * 4;
   *system_audio_register_value = system_long_context;
-  system_audio_register_value[1] = system_temp_pointer;
-  system_audio_register_value[2] = system_temp_pointer;
+  system_audio_register_value[1] = system_temp_ptr;
+  system_audio_register_value[2] = system_temp_ptr;
   return;
 }
 void system_handle_validation_errors(longlong system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   longlong system_long_context;
   ulonglong system_uint_handle;
   longlong system_audio_register_value;
@@ -20412,20 +19555,17 @@ void system_handle_validation_errors(longlong system_context_parameter)
   system_long_context = *(longlong *)(system_audio_register_value + 0x01);
   system_uint_handle = system_long_context - system_context_parameter >> 2;
   if (system_uint_handle < system_audio_register_value) {
-    system_temp_pointer = system_uint_handle * 4 + system_audio_register_value;
-    if (system_audio_register_value != system_temp_pointer) {
-                    // WARNING: Subroutine does not return
+    system_temp_ptr = system_uint_handle * 4 + system_audio_register_value;
+    if (system_audio_register_value != system_temp_ptr) {
       memmove();
     }
-    if (system_temp_pointer != system_audio_register_value) {
-                    // WARNING: Subroutine does not return
-      memmove(system_long_context,system_temp_pointer,system_audio_register_value - system_temp_pointer);
+    if (system_temp_ptr != system_audio_register_value) {
+      memmove(system_long_context,system_temp_ptr,system_audio_register_value - system_temp_ptr);
     }
     *(longlong *)(system_audio_register_value + 0x01) = system_long_context;
   }
   else {
     if (system_audio_register_value != system_audio_register_value) {
-                    // WARNING: Subroutine does not return
       memmove();
     }
     *(longlong *)(system_audio_register_value + 0x01) = system_context_parameter;
@@ -20433,13 +19573,10 @@ void system_handle_validation_errors(longlong system_context_parameter)
   return;
 }
 void system_complete_validation_process(void)
-
 {
   return;
 }
-
 bool system_validate_network_connection(longlong system_context_parameter)
-
 {
   uint64_t *data_context;
   byte system_byte_context;
@@ -20447,7 +19584,7 @@ bool system_validate_network_connection(longlong system_context_parameter)
   byte *system_byte_pointer;
   uint system_audio_config_value;
   int system_return_code;
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   uint64_t *child_node;
   uint64_t *system_manager_ptr;
   uint64_t *system_handler_ptr;
@@ -20498,10 +19635,10 @@ SYSTEM_VALIDATION_CHECK:
       if (*(int *)(system_handler_ptr + 6) == 0) goto SYSTEM_LABEL;
       if (system_stack_int_20 != 0) {
         system_byte_pointer = (byte *)system_handler_ptr[5];
-        system_temp_pointer = (longlong)pbStack_0x02001 - (longlong)system_byte_pointer;
+        system_temp_ptr = (longlong)pbStack_0x02001 - (longlong)system_byte_pointer;
         do {
           system_byte_context = *system_byte_pointer;
-          system_audio_config_value = (uint)system_byte_pointer[system_temp_pointer];
+          system_audio_config_value = (uint)system_byte_pointer[system_temp_ptr];
           if (system_byte_context != system_audio_config_value) break;
           system_byte_pointer = system_byte_pointer + 1;
         } while (system_audio_config_value != 0);
@@ -20515,23 +19652,17 @@ SYSTEM_VALIDATION_CHECK:
   if (pbStack_0x02001 == (byte *)0x00) {
     return system_handler_ptr != data_context;
   }
-                    // WARNING: Subroutine does not return
   system_initialize_component();
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 uint64_t
 system_initialize_network_stream(uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   system_initialize_ui_components(system_context_parameter,_system_data_memory_pool0c160010030 + 0x02c0,system_context_parameter,system_context_parameter,0,SYSTEM_INVALID_HANDLE_VALUE);
   return system_context_parameter;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_verification_system(longlong system_context_parameter)
-
 {
   uint64_t *data_context;
   int system_int_context;
@@ -20554,21 +19685,18 @@ void system_initialize_verification_system(longlong system_context_parameter)
   *data_context = 0x02f003365600103361003263;
   *(uint32_t *)(data_context + 1) = 0;
   *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = system_int_context;
-                    // WARNING: Subroutine does not return
   memset(system_stack_byte_array_a1,0,SYSTEM_STANDARD_BUFFER_SIZE);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_verify_system_compatibility(longlong system_context_parameter,longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   longlong *system_long_data_ptr;
   uint64_t system_audio_context_id;
-  int compare_result;
+  int comparison_result;
   uint64_t *system_buffer_context;
   ulonglong system_audio_config_value;
   longlong system_long_status;
-  uint64_t system_temp_value;
+  uint64_t system_temp_val;
   void **system_temp_buffer_ptr;
   uint64_t *system_temp_buffer_ptr;
   uint64_t system_context_identifier;
@@ -20578,7 +19706,7 @@ void system_verify_system_compatibility(longlong system_context_parameter,longlo
   uint64_t system_context_identifier;
   uint64_t system_context_identifier;
   
-  system_temp_value = SYSTEM_INVALID_HANDLE_VALUE;
+  system_temp_val = SYSTEM_INVALID_HANDLE_VALUE;
   system_long_data_ptr = (longlong *)(system_context_parameter + 0x06001);
   system_long_status = 0;
   if ((*(longlong *)(system_context_parameter + SYSTEM_CONTEXT_OFFSET_E0) - *system_long_data_ptr & 0x07fffffffffffffe0U) != 0) {
@@ -20613,13 +19741,13 @@ void system_verify_system_compatibility(longlong system_context_parameter,longlo
   *(uint16_t *)(system_buffer_context + 1) = 0x02a5f;
   *(uint32_t *)((longlong)system_buffer_context + 10) = 0;
   system_context_identifier = 10;
-  compare_result = system_validate_network_stream(system_context_parameter + 0x02c0,&system_temp_buffer_ptr);
-  if (-1 < compare_result) {
+  comparison_result = system_validate_network_stream(system_context_parameter + 0x02c0,&system_temp_buffer_ptr);
+  if (-1 < comparison_result) {
     system_temp_buffer_ptr = &system_data_callback_pool_base2;
     system_context_identifier = 0;
     system_temp_buffer_ptr = (uint64_t *)0x00;
     system_context_identifier = 0;
-    system_buffer_context = (uint64_t *)system_allocate_resource_block(system_context_memory_pool,SYSTEM_CONFIG_DATA_SIZE,0x08,system_context_parameter,system_temp_value);
+    system_buffer_context = (uint64_t *)system_allocate_resource_block(system_context_memory_pool,SYSTEM_CONFIG_DATA_SIZE,0x08,system_context_parameter,system_temp_val);
     *(uint32_t *)system_buffer_context = 0;
     system_temp_buffer_ptr = system_buffer_context;
     system_audio_context_id = system_get_resource_context(system_buffer_context);
@@ -20630,27 +19758,22 @@ void system_verify_system_compatibility(longlong system_context_parameter,longlo
     system_context_identifier = 10;
     system_validate_network_stream(system_context_parameter + 0x02c0,&system_temp_buffer_ptr);
     system_temp_buffer_ptr = &system_data_callback_pool_base2;
-                    // WARNING: Subroutine does not return
     system_initialize_component(system_buffer_context);
   }
   system_temp_buffer_ptr = &system_data_callback_pool_base2;
-                    // WARNING: Subroutine does not return
   system_initialize_component(system_buffer_context);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
  * 初始化系统的内存管理和上下文配置
  * @param system_context_parameter 系统参数1，用于配置内存池
  * @param system_context_parameter 系统参数2，用于配置上下文
  * @return 初始化成功后的内存上下文指针
 uint64_t system_initialize_memory_context(uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   uint64_t system_audio_context_id;
-  int compare_result;
+  int comparison_result;
   uint64_t *system_buffer_context;
   void **system_temp_buffer_ptr;
   uint64_t *system_temp_buffer_ptr;
@@ -20661,7 +19784,7 @@ uint64_t system_initialize_memory_context(uint64_t system_context_parameter,uint
   uint64_t system_context_identifier;
   uint64_t system_context_identifier;
   
-  system_temp_pointer = system_main_context;
+  system_temp_ptr = system_main_context;
   if (*(int *)(_system_data_memory_pool0c160010030 + 200) != 0) {
     system_initialize_ui_components(system_context_parameter,_system_data_memory_pool0c160010030 + SYSTEM_STACK_INITIAL_VALUE1);
     return system_context_parameter;
@@ -20679,8 +19802,8 @@ uint64_t system_initialize_memory_context(uint64_t system_context_parameter,uint
   *(uint16_t *)(system_buffer_context + 1) = 0x02a5f;
   *(uint32_t *)((longlong)system_buffer_context + 10) = 0;
   system_context_identifier = 10;
-  compare_result = system_validate_network_stream(system_temp_pointer + 0x02c0,&system_temp_buffer_ptr);
-  if (-1 < compare_result) {
+  comparison_result = system_validate_network_stream(system_temp_ptr + 0x02c0,&system_temp_buffer_ptr);
+  if (-1 < comparison_result) {
     system_temp_buffer_ptr = &system_data_callback_pool_base2;
     system_context_identifier = 0;
     system_temp_buffer_ptr = (uint64_t *)0x00;
@@ -20694,19 +19817,15 @@ uint64_t system_initialize_memory_context(uint64_t system_context_parameter,uint
     *(uint16_t *)(system_buffer_context + 1) = 0x05f53;
     *(uint32_t *)((longlong)system_buffer_context + 10) = 0;
     system_context_identifier = 10;
-    system_validate_network_stream(system_temp_pointer + 0x02c0,&system_temp_buffer_ptr);
+    system_validate_network_stream(system_temp_ptr + 0x02c0,&system_temp_buffer_ptr);
     system_temp_buffer_ptr = &system_data_callback_pool_base2;
-                    // WARNING: Subroutine does not return
     system_initialize_component(system_buffer_context);
   }
   system_temp_buffer_ptr = &system_data_callback_pool_base2;
-                    // WARNING: Subroutine does not return
   system_initialize_component(system_buffer_context);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_check_version_compatibility(longlong system_context_parameter,float system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   ulonglong system_audio_temp_counter;
   float system_audio_target_value;
@@ -20714,15 +19833,15 @@ void system_check_version_compatibility(longlong system_context_parameter,float 
   ulonglong system_uint_buffer;
   ulonglong system_audio_config_value;
   int system_return_code;
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   uint64_t system_audio_register_value_rdx;
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   bool system_bool_14;
-  uint64_t system_temp_value;
+  uint64_t system_temp_val;
   float system_stack_float_0x01;
   float system_stack_float_c;
   
-  system_temp_pointer = system_graphics_context;
+  system_temp_ptr = system_graphics_context;
   if ((*(longlong *)(_system_data_memory_pool0c160010020 + 0x03ab001) == 0) || (*(int *)(_system_data_memory_pool0c1600220 + 0x0540) < 1)) {
     system_bool_14 = *(int *)(_system_data_memory_pool0c1600220 + 0x02140) != 0;
   }
@@ -20732,8 +19851,8 @@ void system_check_version_compatibility(longlong system_context_parameter,float 
   if (system_bool_14) {
     audio_volume_value = (float)exp2f(_system_data_memory_pool0c1600220,system_audio_register_value_rdx,system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
     if (*(char *)(system_context_parameter + 0x022d) == '\0') {
-      system_temp_pointer = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 0x01);
-      if ((*(int *)(system_temp_pointer + SYSTEM_RESOURCE_TABLE_OFFSET) < _system_data_memory_pool0d4002140) &&
+      system_temp_ptr = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 0x01);
+      if ((*(int *)(system_temp_ptr + SYSTEM_RESOURCE_TABLE_OFFSET) < _system_data_memory_pool0d4002140) &&
          (system_check_init_status(&system_data_memory_pool0d4002140), _system_data_memory_pool0d4002140 == -1)) {
         _system_data_memory_pool0d4002144 = system_context_parameter;
         system_set_init_status(&system_data_memory_pool0d4002140);
@@ -20756,7 +19875,7 @@ void system_check_version_compatibility(longlong system_context_parameter,float 
       if (system_audio_target_value <= (float)((int)audio_volume_value + -1)) {
         system_audio_offset_value = system_audio_target_value;
       }
-      if ((*(int *)(system_temp_pointer + SYSTEM_RESOURCE_TABLE_OFFSET) < _system_data_memory_pool0d400214001) &&
+      if ((*(int *)(system_temp_ptr + SYSTEM_RESOURCE_TABLE_OFFSET) < _system_data_memory_pool0d400214001) &&
          (system_check_init_status(&system_data_memory_pool0d400214001), _system_data_memory_pool0d400214001 == -1)) {
         _system_data_memory_pool0d400214c = system_audio_offset_value;
         system_set_init_status(&system_data_memory_pool0d400214001);
@@ -20775,26 +19894,26 @@ void system_check_version_compatibility(longlong system_context_parameter,float 
         audio_volume_value = 1.0;
       }
       *(float *)(system_context_parameter + 0x023001) = audio_volume_value;
-      system_temp_value = log2f();
-      *(uint64_t *)(system_context_parameter + 0x024001) = system_temp_value;
+      system_temp_val = log2f();
+      *(uint64_t *)(system_context_parameter + 0x024001) = system_temp_val;
       *(float *)(system_context_parameter + 0x0250) = _system_data_memory_pool0d4002144;
-      system_temp_pointer = system_global_memory_pool;
+      system_temp_ptr = system_global_memory_pool;
       *(uint32_t *)(system_global_memory_pool + 0x0162b) = 1;
-      system_temp_pointer = system_graphics_context;
+      system_temp_ptr = system_graphics_context;
     }
     else {
       *(float *)(system_context_parameter + 0x023001) = audio_volume_value;
-      system_temp_pointer = system_graphics_context;
-      system_temp_pointer = system_global_memory_pool;
+      system_temp_ptr = system_graphics_context;
+      system_temp_ptr = system_global_memory_pool;
     }
   }
   else {
     *(uint64_t *)(system_context_parameter + 0x023001) = 0x03f00100000;
-    system_temp_pointer = system_global_memory_pool;
+    system_temp_ptr = system_global_memory_pool;
   }
-  if ((*(longlong *)(_system_data_memory_pool0c160010020 + 0x03ab001) == 0) || (*(int *)(system_temp_pointer + 0x0540) < 1)) {
-    if (*(int *)(system_temp_pointer + 0x02140) == 0) {
-      audio_volume_value = *(float *)(system_temp_pointer + SYSTEM_RESOURCE_BLOCK_OFFSETd0);
+  if ((*(longlong *)(_system_data_memory_pool0c160010020 + 0x03ab001) == 0) || (*(int *)(system_temp_ptr + 0x0540) < 1)) {
+    if (*(int *)(system_temp_ptr + 0x02140) == 0) {
+      audio_volume_value = *(float *)(system_temp_ptr + SYSTEM_RESOURCE_BLOCK_OFFSETd0);
     }
     else {
       audio_volume_value = 10SYSTEM_FLOAT_ZERO;
@@ -20805,38 +19924,38 @@ void system_check_version_compatibility(longlong system_context_parameter,float 
     audio_volume_value = 1.0;
   }
   *(float *)(system_context_parameter + 0x0234) = audio_volume_value;
-  system_temp_value = (uint)*(float *)(system_temp_pointer + 0x01003ec);
-  system_temp_value = (uint)*(float *)(system_temp_pointer + 0x01003f0);
-  system_temp_value = system_temp_value;
-  system_temp_value = system_temp_value;
+  system_temp_val = (uint)*(float *)(system_temp_ptr + 0x01003ec);
+  system_temp_val = (uint)*(float *)(system_temp_ptr + 0x01003f0);
+  system_temp_val = system_temp_val;
+  system_temp_val = system_temp_val;
   if (1.0 <= audio_volume_value) {
     system_stack_float_0x01 = 1.0;
     system_stack_float_c = 1.0;
   }
   else {
-    while (0 < (int)system_temp_value) {
-      system_temp_value = (int)system_temp_value % (int)system_temp_value;
-      system_temp_value = system_temp_value;
-      system_temp_value = system_temp_value;
+    while (0 < (int)system_temp_val) {
+      system_temp_val = (int)system_temp_val % (int)system_temp_val;
+      system_temp_val = system_temp_val;
+      system_temp_val = system_temp_val;
     }
-    system_return_code = (int)system_temp_value / (int)system_temp_value;
-    system_stack_float_0x01 = (float)(int)system_temp_value;
+    system_return_code = (int)system_temp_val / (int)system_temp_val;
+    system_stack_float_0x01 = (float)(int)system_temp_val;
     do {
-      system_temp_value = (uint)(system_stack_float_0x01 * audio_volume_value);
+      system_temp_val = (uint)(system_stack_float_0x01 * audio_volume_value);
       if (1 < system_return_code) {
-        system_temp_value = ((system_temp_value - 1) - (int)(system_temp_value - 1) % system_return_code) + system_return_code;
+        system_temp_val = ((system_temp_val - 1) - (int)(system_temp_val - 1) % system_return_code) + system_return_code;
       }
-      system_temp_uint_value = (longlong)(int)(((int)system_temp_value / (int)system_temp_value) * system_temp_value) / (longlong)system_return_code;
-      system_temp_value = (uint)system_temp_uint_value;
-      if (((system_temp_value & 1) == 0) && ((system_temp_uint_value & 1) == 0)) goto SYSTEM_LABEL;
+      system_temp_uint_value = (longlong)(int)(((int)system_temp_val / (int)system_temp_val) * system_temp_val) / (longlong)system_return_code;
+      system_temp_val = (uint)system_temp_uint_value;
+      if (((system_temp_val & 1) == 0) && ((system_temp_uint_value & 1) == 0)) goto SYSTEM_LABEL;
       audio_volume_value = audio_volume_value + SYSTEM_FLOAT_ZERO1;
       *(float *)(system_context_parameter + 0x0234) = audio_volume_value;
     } while (audio_volume_value <= 1.0);
     *(uint64_t *)(system_context_parameter + 0x0234) = 0x03f00100000;
 SYSTEM_VALIDATION_CHECK:
-    system_stack_float_0x01 = (float)(int)system_temp_value / system_stack_float_0x01;
-    system_stack_float_c = (float)(int)system_temp_value / (float)(int)system_temp_value;
-    system_temp_value = system_temp_value;
+    system_stack_float_0x01 = (float)(int)system_temp_val / system_stack_float_0x01;
+    system_stack_float_c = (float)(int)system_temp_val / (float)(int)system_temp_val;
+    system_temp_val = system_temp_val;
   }
   *(ulonglong *)(system_context_parameter + 0x0254) = CONCAT44(system_stack_float_c,system_stack_float_0x01);
   audio_volume_value = *(float *)(system_context_parameter + 0x023001);
@@ -20845,40 +19964,38 @@ SYSTEM_VALIDATION_CHECK:
     system_stack_float_c = 1.0;
   }
   else {
-    system_audio_config_value = (ulonglong)system_temp_value;
-    system_temp_uint_value = (ulonglong)system_temp_value;
-    system_temp_value = system_temp_value;
-    system_temp_value = system_temp_value;
-    while (system_uint_buffer = system_audio_config_value, 0 < (int)system_temp_value) {
-      system_temp_value = (uint)system_uint_buffer;
-      system_temp_uint_value = (longlong)(int)system_temp_uint_value % (longlong)(int)system_temp_value;
-      system_temp_value = (uint)system_temp_uint_value;
+    system_audio_config_value = (ulonglong)system_temp_val;
+    system_temp_uint_value = (ulonglong)system_temp_val;
+    system_temp_val = system_temp_val;
+    system_temp_val = system_temp_val;
+    while (system_uint_buffer = system_audio_config_value, 0 < (int)system_temp_val) {
+      system_temp_val = (uint)system_uint_buffer;
+      system_temp_uint_value = (longlong)(int)system_temp_uint_value % (longlong)(int)system_temp_val;
+      system_temp_val = (uint)system_temp_uint_value;
       system_audio_config_value = system_temp_uint_value & 0x07fffffff;
       system_temp_uint_value = system_uint_buffer;
     }
-    system_return_code = (int)system_temp_value / (int)system_temp_value;
+    system_return_code = (int)system_temp_val / (int)system_temp_val;
     do {
-      system_temp_value = (uint)(audio_volume_value * (float)(int)system_temp_value);
+      system_temp_val = (uint)(audio_volume_value * (float)(int)system_temp_val);
       if (1 < system_return_code) {
-        system_temp_value = ((system_temp_value - 1) - (int)(system_temp_value - 1) % system_return_code) + system_return_code;
+        system_temp_val = ((system_temp_val - 1) - (int)(system_temp_val - 1) % system_return_code) + system_return_code;
       }
-      system_temp_uint_value = (longlong)(int)(((int)system_temp_value / (int)system_temp_value) * system_temp_value) / (longlong)system_return_code;
-      if (((system_temp_value & 1) == 0) && ((system_temp_uint_value & 1) == 0)) goto SYSTEM_LABEL;
+      system_temp_uint_value = (longlong)(int)(((int)system_temp_val / (int)system_temp_val) * system_temp_val) / (longlong)system_return_code;
+      if (((system_temp_val & 1) == 0) && ((system_temp_uint_value & 1) == 0)) goto SYSTEM_LABEL;
       audio_volume_value = audio_volume_value + SYSTEM_FLOAT_ZERO1;
       *(float *)(system_context_parameter + 0x023001) = audio_volume_value;
     } while (audio_volume_value <= 1.0);
     *(uint64_t *)(system_context_parameter + 0x023001) = 0x03f00100000;
 SYSTEM_VALIDATION_CHECK:
-    system_stack_float_0x01 = (float)(int)system_temp_value / (float)(int)system_temp_value;
-    system_stack_float_c = (float)(int)system_temp_uint_value / (float)(int)system_temp_value;
+    system_stack_float_0x01 = (float)(int)system_temp_val / (float)(int)system_temp_val;
+    system_stack_float_c = (float)(int)system_temp_uint_value / (float)(int)system_temp_val;
   }
   *(ulonglong *)(system_context_parameter + 0x025c) = CONCAT44(system_stack_float_c,system_stack_float_0x01);
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_validate_platform_requirements(longlong *system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint32_t system_context_parameter)
-
 {
   int system_int_value;
   longlong system_long_context;
@@ -20886,9 +20003,9 @@ void system_validate_platform_requirements(longlong *system_context_parameter,ui
   uint64_t system_uint_buffer;
   longlong *presource_id;
   int *system_audio_loop_counter_ptr;
-  longlong system_temp_pointer;
-  ulonglong system_temp_value;
-  ulonglong system_temp_value;
+  longlong system_temp_ptr;
+  ulonglong system_temp_val;
+  ulonglong system_temp_val;
   longlong *system_audio_device_ptr;
   longlong *system_temp_buffer_ptr_10;
   longlong **system_stack_long_int_ptr;
@@ -20906,20 +20023,20 @@ void system_validate_platform_requirements(longlong *system_context_parameter,ui
   }
   system_resource_handle = system_global_memory_pool;
   if (system_global_memory_pool != 0) {
-    system_temp_value = 0;
-    system_temp_pointer = *(longlong *)(system_global_memory_pool + 0x010016001);
-    system_temp_value = system_temp_value;
-    if (*(longlong *)(system_global_memory_pool + 0x010010030) - system_temp_pointer >> 3 != 0) {
+    system_temp_val = 0;
+    system_temp_ptr = *(longlong *)(system_global_memory_pool + 0x010016001);
+    system_temp_val = system_temp_val;
+    if (*(longlong *)(system_global_memory_pool + 0x010010030) - system_temp_ptr >> 3 != 0) {
       do {
-        if (*(longlong **)(system_temp_value + system_temp_pointer) != (longlong *)0x00) {
-          (**(code **)(**(longlong **)(system_temp_value + system_temp_pointer) + SYSTEM_CONFIG_DATA_SIZE_0x016001))();
+        if (*(longlong **)(system_temp_val + system_temp_ptr) != (longlong *)0x00) {
+          (**(code **)(**(longlong **)(system_temp_val + system_temp_ptr) + SYSTEM_CONFIG_DATA_SIZE_0x016001))();
         }
-        system_temp_value = (int)system_temp_value + 1;
-        system_temp_value = system_temp_value + 0x01;
-        system_temp_pointer = *(longlong *)(system_resource_handle + 0x010016001);
-        system_temp_value = (ulonglong)system_temp_value;
-      } while ((ulonglong)(longlong)(int)system_temp_value <
-               (ulonglong)(*(longlong *)(system_resource_handle + 0x010010030) - system_temp_pointer >> 3));
+        system_temp_val = (int)system_temp_val + 1;
+        system_temp_val = system_temp_val + 0x01;
+        system_temp_ptr = *(longlong *)(system_resource_handle + 0x010016001);
+        system_temp_val = (ulonglong)system_temp_val;
+      } while ((ulonglong)(longlong)(int)system_temp_val <
+               (ulonglong)(*(longlong *)(system_resource_handle + 0x010010030) - system_temp_ptr >> 3));
     }
     (**(code **)(_system_data_memory_pool0c1a002c0 + SYSTEM_AUDIO_TABLE_OFFSET_VALUE))();
   }
@@ -20998,14 +20115,12 @@ void system_validate_platform_requirements(longlong *system_context_parameter,ui
   }
   return;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_initialize_testing_system(uint64_t system_context_parameter,longlong system_context_parameter)
-
 {
   uint64_t *data_context;
   int system_int_context;
-  int compare_result;
+  int comparison_result;
   uint32_t system_config_bufferc1 [0x040];
   void ***psystem_temp_buffer_ptra1;
   uint64_t system_context_identifiera0;
@@ -21030,30 +20145,28 @@ void system_initialize_testing_system(uint64_t system_context_parameter,longlong
     **(uint32_t **)(system_context_parameter + 0x01) = 0;
     system_int_context = *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE);
   }
-  compare_result = system_int_context + 5;
-  system_set_ui_parameter(system_context_parameter,compare_result);
+  comparison_result = system_int_context + 5;
+  system_set_ui_parameter(system_context_parameter,comparison_result);
   data_context = (uint64_t *)((ulonglong)*(uint *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) + *(longlong *)(system_context_parameter + 0x01));
   *data_context = 0x03a00350030603;
   *(uint16_t *)(data_context + 1) = SYSTEM_RESOURCE_BLOCK_OFFSET;
-  *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = compare_result;
+  *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = comparison_result;
   if (0 < system_stack_int_c1) {
-    system_set_ui_parameter(system_context_parameter,compare_result + system_stack_int_c1);
-                    // WARNING: Subroutine does not return
+    system_set_ui_parameter(system_context_parameter,comparison_result + system_stack_int_c1);
     memcpy((ulonglong)*(uint *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) + *(longlong *)(system_context_parameter + 0x01),system_context_identifier_d0,
            (longlong)(system_stack_int_c1 + 1));
   }
   system_set_ui_parameter(system_context_parameter,system_int_context + 6);
   *(uint16_t *)((ulonglong)*(uint *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) + *(longlong *)(system_context_parameter + 0x01)) = 10;
   *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = system_int_context + 6;
-  compare_result = system_int_context + SYSTEM_STACK_INITIAL_VALUE;
-  system_set_ui_parameter(system_context_parameter,compare_result);
+  comparison_result = system_int_context + SYSTEM_STACK_INITIAL_VALUE;
+  system_set_ui_parameter(system_context_parameter,comparison_result);
   data_context = (uint64_t *)((ulonglong)*(uint *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) + *(longlong *)(system_context_parameter + 0x01));
   *data_context = 0x03a0035003063;
   *(uint16_t *)(data_context + 1) = SYSTEM_RESOURCE_BLOCK_OFFSET;
-  *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = compare_result;
+  *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = comparison_result;
   if (0 < system_stack_int_0x01001001) {
-    system_set_ui_parameter(system_context_parameter,compare_result + system_stack_int_0x01001001);
-                    // WARNING: Subroutine does not return
+    system_set_ui_parameter(system_context_parameter,comparison_result + system_stack_int_0x01001001);
     memcpy((ulonglong)*(uint *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) + *(longlong *)(system_context_parameter + 0x01),system_context_identifier,
            (longlong)(system_stack_int_0x01001001 + 1));
   }
@@ -21063,10 +20176,8 @@ void system_initialize_testing_system(uint64_t system_context_parameter,longlong
   system_temp_buffer_ptr = &system_data_animation_pool_base;
   psystem_temp_buffer_ptra1 = &system_thread_context_ptr;
   system_thread_context_ptr = &system_data_animation_pool_base;
-                    // WARNING: Subroutine does not return
   system_calculate_checksum(system_context_identifier ^ (ulonglong)system_config_bufferc1);
 }
-
  (ram,0x01001005366001)
  (ram,0x0100100536a5)
  (ram,0x0100100536a002)
@@ -21213,21 +20324,20 @@ void system_initialize_testing_system(uint64_t system_context_parameter,longlong
  (ram,0x0100100540e1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_run_unit_tests(uint64_t system_context_parameter,uint64_t system_context_parameter,longlong system_context_parameter)
-
 {
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   longlong system_long_context;
   uint64_t system_uint_handle;
   int system_buffer_size;
   uint system_audio_config_value;
   uint system_audio_status;
   uint32_t *parent_node;
-  ulonglong system_temp_value;
+  ulonglong system_temp_val;
   void **system_manager_ptr;
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   uint32_t system_config_buffer [0x040];
   uint32_t system_context_identifier;
-  uint64_t system_context_identifierf1;
+  uint64_t system_context_identifier_graphics;
   uint64_t system_context_identifierf4;
   void **system_temp_buffer_ptrb0;
   uint32_t *system_temp_buffer_ptra1;
@@ -21251,7 +20361,7 @@ void system_run_unit_tests(uint64_t system_context_parameter,uint64_t system_con
   system_context_identifier = SYSTEM_INVALID_HANDLE_VALUE;
   system_context_identifier = _system_data_memory_pool0bf00a1 ^ (ulonglong)system_config_buffer;
   parent_node = (uint32_t *)0x00;
-  system_context_identifierf1 = 0;
+  system_context_identifier_graphics = 0;
   system_context_identifier_d0 = system_context_parameter;
   system_context_identifier = system_context_parameter;
   system_uint_handle = GetCurrentProcessId();
@@ -21260,22 +20370,21 @@ void system_run_unit_tests(uint64_t system_context_parameter,uint64_t system_con
   system_stack_long_int_e1 = 0;
   system_context_identifier_e0 = 0;
   system_set_ui_parameter(&system_thread_context_ptr,6);
-  system_temp_pointer = system_stack_long_int_e1;
-  system_temp_value = (ulonglong)system_context_identifier_e0;
-  *(uint64_t *)(system_temp_value + system_stack_long_int_e1) = 0x04440025020;
-  *(uint16_t *)(system_temp_value + 4 + system_stack_long_int_e1) = SYSTEM_RESOURCE_BLOCK_OFFSET3a;
-  *(uint32_t *)(system_temp_value + 6 + system_stack_long_int_e1) = 0;
+  system_temp_ptr = system_stack_long_int_e1;
+  system_temp_val = (ulonglong)system_context_identifier_e0;
+  *(uint64_t *)(system_temp_val + system_stack_long_int_e1) = 0x04440025020;
+  *(uint16_t *)(system_temp_val + 4 + system_stack_long_int_e1) = SYSTEM_RESOURCE_BLOCK_OFFSET3a;
+  *(uint32_t *)(system_temp_val + 6 + system_stack_long_int_e1) = 0;
   system_context_identifier_e0 = 6;
   system_initialize_graphics_context(system_stack_char_0x05001,&system_graphics_parameters,system_uint_handle);
   system_long_context = -1;
   do {
-    system_temp_pointer = system_long_context;
-    system_long_context = system_temp_pointer + 1;
-  } while (system_stack_char_0x05001[system_temp_pointer + 1] != '\0');
-  if (0 < (int)(system_temp_pointer + 1)) {
-    system_set_ui_parameter(&system_thread_context_ptr,(int)system_temp_pointer + 0x03);
-                    // WARNING: Subroutine does not return
-    memcpy((ulonglong)system_context_identifier_e0 + system_stack_long_int_e1,system_stack_char_0x05001,(longlong)((int)system_temp_pointer + 2));
+    system_temp_ptr = system_long_context;
+    system_long_context = system_temp_ptr + 1;
+  } while (system_stack_char_0x05001[system_temp_ptr + 1] != '\0');
+  if (0 < (int)(system_temp_ptr + 1)) {
+    system_set_ui_parameter(&system_thread_context_ptr,(int)system_temp_ptr + 0x03);
+    memcpy((ulonglong)system_context_identifier_e0 + system_stack_long_int_e1,system_stack_char_0x05001,(longlong)((int)system_temp_ptr + 2));
   }
   system_manager_ptr = &system_data_memory_pool0x02fd12001;
   if (system_audio_config_char != '\0') {
@@ -21287,20 +20396,19 @@ void system_run_unit_tests(uint64_t system_context_parameter,uint64_t system_con
   system_context_identifier_c0 = 0;
   system_context_identifier_b1 = 0;
   system_temp_buffer_ptrb0 = &system_data_callback_pool_base2;
-  system_temp_value = 0;
+  system_temp_val = 0;
   system_context_identifier = 0;
   system_temp_buffer_ptra1 = (uint32_t *)0x00;
   system_context_identifiera0 = 0;
-  system_context_identifierf1 = 2;
+  system_context_identifier_graphics = 2;
   system_audio_status = *(uint *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE);
-  system_temp_value = (ulonglong)system_audio_status;
+  system_temp_val = (ulonglong)system_audio_status;
   system_audio_config_value = 0;
   if (*(longlong *)(system_context_parameter + 0x01) == 0) {
 SYSTEM_VALIDATION_CHECK:
-    system_temp_value = system_audio_config_value;
+    system_temp_val = system_audio_config_value;
     if (system_audio_status != 0) {
-                    // WARNING: Subroutine does not return
-      memcpy(parent_node,*(uint64_t *)(system_context_parameter + 0x01),system_temp_value);
+      memcpy(parent_node,*(uint64_t *)(system_context_parameter + 0x01),system_temp_val);
     }
   }
   else if (system_audio_status != 0) {
@@ -21316,7 +20424,7 @@ SYSTEM_VALIDATION_CHECK:
     goto SYSTEM_LABEL;
   }
   if (parent_node != (uint32_t *)0x00) {
-    parent_node[system_temp_value] = 0;
+    parent_node[system_temp_val] = 0;
   }
   system_context_identifierf4 = *(uint64_t *)(system_context_parameter + 0x0A);
   system_context_identifier = CONCAT44(system_context_identifierf4,(uint64_t)system_context_identifier);
@@ -21331,7 +20439,7 @@ SYSTEM_VALIDATION_CHECK:
       *parent_node = 0;
     }
     else {
-      if (system_audio_status <= system_temp_value) goto SYSTEM_LABEL;
+      if (system_audio_status <= system_temp_val) goto SYSTEM_LABEL;
       system_context_identifier = 0x08;
       parent_node = (uint32_t *)system_create_component_instance(system_context_memory_pool,parent_node,system_audio_status,SYSTEM_CONFIG_DATA_SIZE);
     }
@@ -21340,15 +20448,11 @@ SYSTEM_VALIDATION_CHECK:
     system_context_identifier = CONCAT44(system_context_identifier.y,system_uint_handle);
   }
 SYSTEM_VALIDATION_CHECK:
-                    // WARNING: Subroutine does not return
-  memcpy(parent_node + system_temp_value,system_temp_pointer,0x03);
+  memcpy(parent_node + system_temp_val,system_temp_ptr,0x03);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 uint64_t
 system_initialize_service_registry(uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
-
 {
   char init_status;
   char system_char_data;
@@ -21358,13 +20462,13 @@ system_initialize_service_registry(uint64_t system_context_parameter,uint64_t sy
   longlong system_long_status;
   char *string_compare_pointer;
   int *system_audio_loop_counter_ptr;
-  ulonglong system_temp_value;
-  uint64_t system_temp_value;
-  ulonglong system_temp_value;
-  ulonglong system_temp_value;
-  longlong system_temp_pointer;
+  ulonglong system_temp_val;
+  uint64_t system_temp_val;
+  ulonglong system_temp_val;
+  ulonglong system_temp_val;
+  longlong system_temp_ptr;
   uint64_t *system_uint_pointer;
-  ulonglong system_temp_value;
+  ulonglong system_temp_val;
   void **system_temp_buffer_ptr;
   uint32_t *system_temp_buffer_ptr;
   uint system_context_identifier;
@@ -21373,33 +20477,32 @@ system_initialize_service_registry(uint64_t system_context_parameter,uint64_t sy
   uint64_t *system_temp_buffer_ptr;
   uint64_t system_context_identifier;
   uint64_t system_context_identifier;
-  ulonglong system_temp_value;
+  ulonglong system_temp_val;
   
   system_temp_buffer_ptr = (uint64_t *)0x00;
   system_temp_buffer_ptr = (uint64_t *)0x00;
-  system_temp_value = 0;
+  system_temp_val = 0;
   system_context_identifier = 0;
   system_context_identifier = 3;
   system_initialize_module_manager(_system_data_memory_pool0c160010030,&system_temp_buffer_ptr,system_context_parameter,system_context_parameter,SYSTEM_INVALID_HANDLE_VALUE);
   system_config_ptr = system_temp_buffer_ptr;
   system_buffer_context = system_temp_buffer_ptr;
-  system_temp_value = (longlong)system_temp_buffer_ptr - (longlong)system_temp_buffer_ptr >> 5;
+  system_temp_val = (longlong)system_temp_buffer_ptr - (longlong)system_temp_buffer_ptr >> 5;
   system_handle_ptr = system_buffer_context;
-  if (system_temp_value == 0) {
+  if (system_temp_val == 0) {
 SYSTEM_VALIDATION_CHECK:
-    system_temp_value = 0;
+    system_temp_val = 0;
 joined_r0x01001005430b:
     for (; system_handle_ptr != system_config_ptr; system_handle_ptr = system_handle_ptr + 4) {
       (**(code **)*system_handle_ptr)(system_handle_ptr,0);
     }
     if (system_buffer_context != (uint64_t *)0x00) {
-                    // WARNING: Subroutine does not return
       system_initialize_component(system_buffer_context);
     }
-    return system_temp_value;
+    return system_temp_val;
   }
   system_audio_loop_counter_ptr = (int *)(system_temp_buffer_ptr + 2);
-  system_temp_value = system_temp_value;
+  system_temp_val = system_temp_val;
 SYSTEM_VALIDATION_CHECK:
   system_temp_buffer_ptr = &system_data_callback_pool_base2;
   system_context_identifier = 0;
@@ -21407,7 +20510,6 @@ SYSTEM_VALIDATION_CHECK:
   system_context_identifier = 0;
   system_set_ui_parameter(&system_temp_buffer_ptr,*system_audio_loop_counter_ptr);
   if (*system_audio_loop_counter_ptr != 0) {
-                    // WARNING: Subroutine does not return
     memcpy(system_temp_buffer_ptr,*(uint64_t *)(system_audio_loop_counter_ptr + -2),*system_audio_loop_counter_ptr + 1);
   }
   if (*(longlong *)(system_audio_loop_counter_ptr + -2) != 0) {
@@ -21417,26 +20519,26 @@ SYSTEM_VALIDATION_CHECK:
     }
     system_context_identifier = system_context_identifier & 0x07fffffff;
   }
-  system_temp_value = system_temp_value;
-  system_temp_value = system_temp_value;
+  system_temp_val = system_temp_val;
+  system_temp_val = system_temp_val;
   if (system_context_identifier != 0) {
     do {
-      if ((byte)(system_temp_buffer_ptr[system_temp_value] + SYSTEM_STACK_INITIAL_VALUE) < 0x01a) {
-        system_temp_buffer_ptr[system_temp_value] = system_temp_buffer_ptr[system_temp_value] + ' ';
+      if ((byte)(system_temp_buffer_ptr[system_temp_val] + SYSTEM_STACK_INITIAL_VALUE) < 0x01a) {
+        system_temp_buffer_ptr[system_temp_val] = system_temp_buffer_ptr[system_temp_val] + ' ';
       }
-      system_temp_value = (int)system_temp_value + 1;
-      system_temp_value = (ulonglong)system_temp_value;
-      system_temp_value = system_temp_value + 1;
-    } while (system_temp_value < system_context_identifier);
+      system_temp_val = (int)system_temp_val + 1;
+      system_temp_val = (ulonglong)system_temp_val;
+      system_temp_val = system_temp_val + 1;
+    } while (system_temp_val < system_context_identifier);
   }
   system_long_status = system_calculate_string_hash(&system_temp_buffer_ptr);
   system_uint_pointer = (uint64_t *)&system_data_104;
   do {
     string_compare_pointer = (char *)*system_uint_pointer;
-    system_temp_pointer = system_long_status - (longlong)string_compare_pointer;
+    system_temp_ptr = system_long_status - (longlong)string_compare_pointer;
     do {
       init_status = *string_compare_pointer;
-      system_char_data = string_compare_pointer[system_temp_pointer];
+      system_char_data = string_compare_pointer[system_temp_ptr];
       if (init_status != system_char_data) break;
       string_compare_pointer = string_compare_pointer + 1;
     } while (system_char_data != '\0');
@@ -21445,34 +20547,30 @@ SYSTEM_VALIDATION_CHECK:
     if (0x010010002fde01003 < (longlong)system_uint_pointer) {
       system_temp_buffer_ptr = &system_data_callback_pool_base2;
       if (system_temp_buffer_ptr != (uint32_t *)0x00) {
-                    // WARNING: Subroutine does not return
         system_initialize_component();
       }
       system_temp_buffer_ptr = (uint32_t *)0x00;
       system_context_identifier = (ulonglong)system_context_identifier.y << SYSTEM_RESOURCE_BLOCK_OFFSET;
       system_temp_buffer_ptr = &system_data_animation_pool_base;
-      system_temp_value = 1;
+      system_temp_val = 1;
       goto joined_r0x01001005430b;
     }
   } while( true );
   system_temp_buffer_ptr = &system_data_callback_pool_base2;
   if (system_temp_buffer_ptr != (uint32_t *)0x00) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   system_temp_buffer_ptr = (uint32_t *)0x00;
   system_context_identifier = (ulonglong)system_context_identifier.y << SYSTEM_RESOURCE_BLOCK_OFFSET;
   system_temp_buffer_ptr = &system_data_animation_pool_base;
-  system_temp_value = (int)system_temp_value + 1;
-  system_temp_value = (ulonglong)system_temp_value;
+  system_temp_val = (int)system_temp_val + 1;
+  system_temp_val = (ulonglong)system_temp_val;
   system_audio_loop_counter_ptr = system_audio_loop_counter_ptr + 0x01;
-  if (system_temp_value <= (ulonglong)(longlong)(int)system_temp_value) goto SYSTEM_LABEL;
+  if (system_temp_val <= (ulonglong)(longlong)(int)system_temp_val) goto SYSTEM_LABEL;
   goto SYSTEM_LABEL;
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_execute_integration_tests(longlong *system_context_parameter,longlong system_context_parameter)
-
 {
   uint system_temp_uint_value;
   int system_int_context;
@@ -21480,7 +20578,7 @@ void system_execute_integration_tests(longlong *system_context_parameter,longlon
   longlong *global_context_ptr;
   void **system_config_ptr;
   longlong system_long_status;
-  ulonglong system_temp_value;
+  ulonglong system_temp_val;
   uint32_t system_config_buffer [0x040];
   uint64_t system_context_identifier;
   void **system_temp_buffer_ptr;
@@ -21488,11 +20586,11 @@ void system_execute_integration_tests(longlong *system_context_parameter,longlon
   uint system_context_identifier_flag;
   uint64_t system_context_identifierf0;
   uint64_t system_context_identifiere1;
-  void **system_temp_buffer_ptre0;
+  void **system_temp_buffer_ptr_ui_secondary;
   longlong system_stack_long_int_1d1;
   uint system_context_identifierd0;
   uint64_t system_context_identifierc1;
-  void **system_temp_buffer_ptrc0;
+  void **system_temp_buffer_ptr_audio;
   longlong system_stack_long_int_1b1;
   uint64_t system_context_identifierb0;
   ulonglong system_context_identifiera1;
@@ -21538,23 +20636,23 @@ void system_execute_integration_tests(longlong *system_context_parameter,longlon
   system_context_identifier_f1 = SYSTEM_INVALID_HANDLE_VALUE;
   system_context_identifier = _system_data_memory_pool0bf00a1 ^ (ulonglong)system_config_buffer;
   system_context_identifiere1 = 0;
-  psystem_thread_context_ptr = &system_temp_buffer_ptrc0;
-  system_temp_buffer_ptrc0 = &system_data_callback_pool_base2;
+  psystem_thread_context_ptr = &system_temp_buffer_ptr_audio;
+  system_temp_buffer_ptr_audio = &system_data_callback_pool_base2;
   system_context_identifiera1 = 0;
   system_stack_long_int_1b1 = 0;
   system_context_identifierb0 = 0;
-  system_context_identifierc = SYSTEM_CONFIG_DATA_SIZE0;
+  system_context_identifierc = SYSTEM_CONFIG_DATA_SIZE_EXTENDED;
   system_context_identifier = 0;
   system_context_identifier = 0;
-  system_config_ptr = &system_data_memory_pool0x02001bc0033;
+  system_config_ptr = &system_data_memory_pool_default;
   if (*(void ***)(system_context_parameter + 0x01) != (void **)0x00) {
     system_config_ptr = *(void ***)(system_context_parameter + 0x01);
   }
-  system_setup_main_loop(&system_temp_buffer_ptrc0,system_config_ptr);
+  system_setup_main_loop(&system_temp_buffer_ptr_audio,system_config_ptr);
   system_context_identifiera0 = 0;
   system_context_identifierc = system_context_identifierc & 0x07fffff00;
   system_uint_handle = system_allocate_memory_context(system_context_memory_pool,0x060d30,SYSTEM_CONFIG_DATA_SIZE,0x01f);
-  global_context_ptr = (longlong *)system_allocate_memory_pool(system_uint_handle,&system_temp_buffer_ptrc0);
+  global_context_ptr = (longlong *)system_allocate_memory_pool(system_uint_handle,&system_temp_buffer_ptr_audio);
   psystem_temp_buffer_ptr = (void ***)global_context_ptr;
   if (global_context_ptr != (longlong *)0x00) {
     (**(code **)(*global_context_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET))(global_context_ptr);
@@ -21582,14 +20680,14 @@ void system_execute_integration_tests(longlong *system_context_parameter,longlon
   system_thread_context_ptr = context_buffer_d0;
   context_buffer_d0[0] = 0;
   system_context_identifier_d1 = *(uint64_t *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE);
-  system_config_ptr = &system_data_memory_pool0x02001bc0033;
+  system_config_ptr = &system_data_memory_pool_default;
   if (*(void ***)(system_context_parameter + 0x01) != (void **)0x00) {
     system_config_ptr = *(void ***)(system_context_parameter + 0x01);
   }
   strcpy_s(context_buffer_d0,SYSTEM_STANDARD_BUFFER_SIZE,system_config_ptr);
   system_configure_memory_allocator(&system_temp_buffer_ptr,&system_thread_context_ptr);
   system_thread_context_ptr = &system_data_animation_pool_base;
-  system_temp_buffer_ptre0 = &system_data_callback_pool_base2;
+  system_temp_buffer_ptr_ui_secondary = &system_data_callback_pool_base2;
   system_context_identifierc1 = 0;
   system_stack_long_int_1d1 = 0;
   system_context_identifierd0 = 0;
@@ -21598,7 +20696,6 @@ void system_execute_integration_tests(longlong *system_context_parameter,longlon
   system_int_context = system_create_thread_context(system_long_status,&system_temp_buffer_ptr);
   system_temp_buffer_ptr = &system_data_callback_pool_base2;
   if (system_stack_long_int_160 != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   system_stack_long_int_160 = 0;
@@ -21615,30 +20712,28 @@ void system_execute_integration_tests(longlong *system_context_parameter,longlon
   system_temp_buffer_ptr = &system_data_callback_pool_base2;
   system_context_identifierf0 = 0;
   system_memory_buffer = 0;
-  system_context_identifierf1 = 0;
+  system_context_identifier_graphics = 0;
   system_context_identifiere1 = 1;
   system_temp_uint_value = *(uint *)(system_long_status + SYSTEM_CONFIG_DATA_SIZE);
-  system_temp_value = (ulonglong)system_temp_uint_value;
+  system_temp_val = (ulonglong)system_temp_uint_value;
   if (*(longlong *)(system_long_status + 0x01) != 0) {
-    system_set_ui_parameter(&system_temp_buffer_ptr,system_temp_value);
+    system_set_ui_parameter(&system_temp_buffer_ptr,system_temp_val);
   }
   if (system_temp_uint_value != 0) {
-                    // WARNING: Subroutine does not return
-    memcpy(system_stack_long_int_200,*(uint64_t *)(system_long_status + 0x01),system_temp_value);
+    memcpy(system_stack_long_int_200,*(uint64_t *)(system_long_status + 0x01),system_temp_val);
   }
   if (system_stack_long_int_200 != 0) {
-    *(uint32_t *)(system_temp_value + system_stack_long_int_200) = 0;
+    *(uint32_t *)(system_temp_val + system_stack_long_int_200) = 0;
   }
   system_context_identifierf0 = CONCAT44(*(uint *)(system_long_status + 0x0A),(uint64_t)system_context_identifierf0);
   if (0 < system_stack_int_0x010010) {
-    system_context_identifierf1 = system_temp_uint_value;
+    system_context_identifier_graphics = system_temp_uint_value;
     system_set_ui_parameter(&system_temp_buffer_ptr,system_stack_int_0x010010);
-                    // WARNING: Subroutine does not return
-    memcpy((ulonglong)system_context_identifierf1 + system_stack_long_int_200,system_stack_long_int_0x01001001,(longlong)(system_stack_int_0x010010 + 1));
+    memcpy((ulonglong)system_context_identifier_graphics + system_stack_long_int_200,system_stack_long_int_0x01001001,(longlong)(system_stack_int_0x010010 + 1));
   }
   system_stack_long_int_1d1 = system_stack_long_int_200;
   system_context_identifierc1.x = (uint64_t)system_context_identifierf0;
-  system_context_identifierf1 = 0;
+  system_context_identifier_graphics = 0;
   system_context_identifiere1 = 0;
   system_memory_buffer = 0;
   system_context_identifierf0 = 0;
@@ -21646,24 +20741,22 @@ void system_execute_integration_tests(longlong *system_context_parameter,longlon
   system_context_identifier = 0x07fffffff;
   system_context_identifierd0 = system_temp_uint_value;
   system_context_identifierc1.y = *(uint *)(system_long_status + 0x0A);
-  system_initialize_database_connection(global_context_ptr,_system_data_memory_pool0c16001e001,&system_temp_buffer_ptre0,&system_context_identifier);
+  system_initialize_database_connection(global_context_ptr,_system_data_memory_pool0c16001e001,&system_temp_buffer_ptr_ui_secondary,&system_context_identifier);
   system_activate_database_context(global_context_ptr);
   (**(code **)(*(longlong *)system_context_parameter[0x056] + 0x08001))((longlong *)system_context_parameter[0x056],global_context_ptr);
   system_configure_database_settings(global_context_ptr,0x03d00032b02,1);
   system_validate_database_schema(global_context_ptr);
   (**(code **)(*(longlong *)system_context_parameter[0x056] + 0x0140))((longlong *)system_context_parameter[0x056],global_context_ptr);
   Sleep(1000);
-  system_temp_buffer_ptre0 = &system_data_callback_pool_base2;
+  system_temp_buffer_ptr_ui_secondary = &system_data_callback_pool_base2;
   if (system_stack_long_int_1d1 != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   system_stack_long_int_1d1 = 0;
   system_context_identifierc1 = (ulonglong)system_context_identifierc1.y << SYSTEM_RESOURCE_BLOCK_OFFSET;
-  system_temp_buffer_ptre0 = &system_data_animation_pool_base;
+  system_temp_buffer_ptr_ui_secondary = &system_data_animation_pool_base;
   system_temp_buffer_ptr = &system_data_callback_pool_base2;
   if (system_stack_long_int_0x01001001 != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   system_stack_long_int_0x01001001 = 0;
@@ -21672,22 +20765,18 @@ void system_execute_integration_tests(longlong *system_context_parameter,longlon
   if (global_context_ptr != (longlong *)0x00) {
     (**(code **)(*global_context_ptr + SYSTEM_THREAD_POOL_BASE_OFFSET))(global_context_ptr);
   }
-  psystem_temp_buffer_ptr = &system_temp_buffer_ptrc0;
-  system_temp_buffer_ptrc0 = &system_data_callback_pool_base2;
+  psystem_temp_buffer_ptr = &system_temp_buffer_ptr_audio;
+  system_temp_buffer_ptr_audio = &system_data_callback_pool_base2;
   if (system_stack_long_int_1b1 != 0) {
-                    // WARNING: Subroutine does not return
     system_initialize_component();
   }
   system_stack_long_int_1b1 = 0;
   system_context_identifiera1 = system_context_identifiera1 & 0x07fffffff00000000;
-  system_temp_buffer_ptrc0 = &system_data_animation_pool_base;
-                    // WARNING: Subroutine does not return
+  system_temp_buffer_ptr_audio = &system_data_animation_pool_base;
   system_calculate_checksum(system_context_identifier ^ (ulonglong)system_config_buffer);
 }
-
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void system_generate_test_report(void)
-
 {
   uint system_temp_uint_value;
   longlong *system_long_context_ptr;
@@ -21696,13 +20785,13 @@ void system_generate_test_report(void)
   uint64_t *system_config_ptr;
   uint32_t *current_node;
   uint64_t *parent_node;
-  longlong system_temp_pointer;
-  ulonglong system_temp_value;
+  longlong system_temp_ptr;
+  ulonglong system_temp_val;
   uint64_t *system_uint_pointer;
-  longlong system_temp_pointer;
+  longlong system_temp_ptr;
   uint *system_uint_pointer;
   void **system_uint_pointer;
-  uint64_t system_temp_value;
+  uint64_t system_temp_val;
   uint32_t system_config_buffer [0x040];
   void **system_temp_buffer_ptr;
   uint32_t *system_temp_buffer_ptr;
@@ -21743,33 +20832,32 @@ void system_generate_test_report(void)
   system_context_identifier = SYSTEM_INVALID_HANDLE_VALUE;
   system_context_identifier = _system_data_memory_pool0bf00a1 ^ (ulonglong)system_config_buffer;
   psystem_stack_long_int_a1 = _system_data_memory_pool0c160010030;
-  system_temp_pointer = *(longlong *)(*_system_data_memory_pool0c160010030 + 0x010020) - *(longlong *)(*_system_data_memory_pool0c160010030 + SYSTEM_SECURITY_CONTEXT_OFFSET0x01) >> 5;
+  system_temp_ptr = *(longlong *)(*_system_data_memory_pool0c160010030 + 0x010020) - *(longlong *)(*_system_data_memory_pool0c160010030 + SYSTEM_SECURITY_CONTEXT_OFFSET0x01) >> 5;
   system_stack_int_f1 = 0;
-  system_stack_long_int_a0 = system_temp_pointer;
-  if (0 < (int)system_temp_pointer) {
+  system_stack_long_int_a0 = system_temp_ptr;
+  if (0 < (int)system_temp_ptr) {
     do {
       system_audio_loop_counter = system_stack_int_f1;
       system_audio_loop_counter = 0;
       if (system_stack_int_f1 < 0) {
 SYSTEM_VALIDATION_CHECK:
-        system_temp_pointer = system_get_runtime_status();
+        system_temp_ptr = system_get_runtime_status();
       }
       else {
-        system_temp_pointer = *(longlong *)(*_system_data_memory_pool0c160010030 + SYSTEM_SECURITY_CONTEXT_OFFSET0x01);
-        if ((ulonglong)(*(longlong *)(*_system_data_memory_pool0c160010030 + 0x010020) - system_temp_pointer >> 5) <=
+        system_temp_ptr = *(longlong *)(*_system_data_memory_pool0c160010030 + SYSTEM_SECURITY_CONTEXT_OFFSET0x01);
+        if ((ulonglong)(*(longlong *)(*_system_data_memory_pool0c160010030 + 0x010020) - system_temp_ptr >> 5) <=
             (ulonglong)(longlong)system_stack_int_f1) goto SYSTEM_LABEL;
-        system_temp_pointer = (longlong)system_stack_int_f1 * SYSTEM_RESOURCE_BLOCK_OFFSET + system_temp_pointer;
+        system_temp_ptr = (longlong)system_stack_int_f1 * SYSTEM_RESOURCE_BLOCK_OFFSET + system_temp_ptr;
       }
       system_temp_buffer_ptr = &system_data_callback_pool_base2;
       system_context_identifier = 0;
       system_temp_buffer_ptr = (uint32_t *)0x00;
       system_context_identifier = 0;
-      system_set_ui_parameter(&system_temp_buffer_ptr,*(uint64_t *)(system_temp_pointer + SYSTEM_CONFIG_DATA_SIZE));
-      if (*(int *)(system_temp_pointer + SYSTEM_CONFIG_DATA_SIZE) != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(system_temp_buffer_ptr,*(uint64_t *)(system_temp_pointer + 0x01),*(int *)(system_temp_pointer + SYSTEM_CONFIG_DATA_SIZE) + 1);
+      system_set_ui_parameter(&system_temp_buffer_ptr,*(uint64_t *)(system_temp_ptr + SYSTEM_CONFIG_DATA_SIZE));
+      if (*(int *)(system_temp_ptr + SYSTEM_CONFIG_DATA_SIZE) != 0) {
+        memcpy(system_temp_buffer_ptr,*(uint64_t *)(system_temp_ptr + 0x01),*(int *)(system_temp_ptr + SYSTEM_CONFIG_DATA_SIZE) + 1);
       }
-      if (*(longlong *)(system_temp_pointer + 0x01) != 0) {
+      if (*(longlong *)(system_temp_ptr + 0x01) != 0) {
         system_context_identifier = 0;
         if (system_temp_buffer_ptr != (uint32_t *)0x00) {
           *system_temp_buffer_ptr = 0;
@@ -21778,24 +20866,23 @@ SYSTEM_VALIDATION_CHECK:
       }
       if (system_audio_loop_counter < 0) {
 SYSTEM_VALIDATION_CHECK:
-        system_temp_pointer = system_get_runtime_status();
+        system_temp_ptr = system_get_runtime_status();
       }
       else {
-        system_temp_pointer = *(longlong *)(*_system_data_memory_pool0c160010030 + 0x01a001);
-        if ((ulonglong)(*(longlong *)(*_system_data_memory_pool0c160010030 + 0x01b0) - system_temp_pointer >> 5) <
+        system_temp_ptr = *(longlong *)(*_system_data_memory_pool0c160010030 + 0x01a001);
+        if ((ulonglong)(*(longlong *)(*_system_data_memory_pool0c160010030 + 0x01b0) - system_temp_ptr >> 5) <
             (ulonglong)(longlong)system_audio_loop_counter) goto SYSTEM_LABEL;
-        system_temp_pointer = (longlong)system_audio_loop_counter * SYSTEM_RESOURCE_BLOCK_OFFSET + system_temp_pointer;
+        system_temp_ptr = (longlong)system_audio_loop_counter * SYSTEM_RESOURCE_BLOCK_OFFSET + system_temp_ptr;
       }
       system_temp_buffer_ptr = &system_data_callback_pool_base2;
       system_context_identifier = 0;
       system_temp_buffer_ptr = (uint32_t *)0x00;
       system_context_identifier = 0;
-      system_set_ui_parameter(&system_temp_buffer_ptr,*(uint64_t *)(system_temp_pointer + SYSTEM_CONFIG_DATA_SIZE));
-      if (*(int *)(system_temp_pointer + SYSTEM_CONFIG_DATA_SIZE) != 0) {
-                    // WARNING: Subroutine does not return
-        memcpy(system_temp_buffer_ptr,*(uint64_t *)(system_temp_pointer + 0x01),*(int *)(system_temp_pointer + SYSTEM_CONFIG_DATA_SIZE) + 1);
+      system_set_ui_parameter(&system_temp_buffer_ptr,*(uint64_t *)(system_temp_ptr + SYSTEM_CONFIG_DATA_SIZE));
+      if (*(int *)(system_temp_ptr + SYSTEM_CONFIG_DATA_SIZE) != 0) {
+        memcpy(system_temp_buffer_ptr,*(uint64_t *)(system_temp_ptr + 0x01),*(int *)(system_temp_ptr + SYSTEM_CONFIG_DATA_SIZE) + 1);
       }
-      if (*(longlong *)(system_temp_pointer + 0x01) != 0) {
+      if (*(longlong *)(system_temp_ptr + 0x01) != 0) {
         system_context_identifier = 0;
         if (system_temp_buffer_ptr != (uint32_t *)0x00) {
           *system_temp_buffer_ptr = 0;
@@ -21811,7 +20898,6 @@ SYSTEM_VALIDATION_CHECK:
       if (system_current_character == '\0') {
         system_temp_buffer_ptr = &system_data_callback_pool_base2;
         if (system_temp_buffer_ptr != (uint32_t *)0x00) {
-                    // WARNING: Subroutine does not return
           system_initialize_component();
         }
         system_temp_buffer_ptr = (uint32_t *)0x00;
@@ -21819,7 +20905,6 @@ SYSTEM_VALIDATION_CHECK:
         system_temp_buffer_ptr = &system_data_animation_pool_base;
         system_temp_buffer_ptr = &system_data_callback_pool_base2;
         if (system_temp_buffer_ptr != (uint32_t *)0x00) {
-                    // WARNING: Subroutine does not return
           system_initialize_component();
         }
       }
@@ -21831,9 +20916,9 @@ SYSTEM_VALIDATION_CHECK:
         system_cleanup_network_buffer(&system_temp_buffer_ptr,&system_temp_buffer_ptr);
         system_config_ptr = system_temp_buffer_ptr;
         system_handle_ptr = system_temp_buffer_ptr;
-        system_temp_pointer = (longlong)system_temp_buffer_ptr - (longlong)system_temp_buffer_ptr;
+        system_temp_ptr = (longlong)system_temp_buffer_ptr - (longlong)system_temp_buffer_ptr;
         system_set_initialization_flag(&system_thread_context_ptr);
-        current_node = &system_data_memory_pool0x02001bc0033;
+        current_node = &system_data_memory_pool_default;
         if (system_temp_buffer_ptr != (uint32_t *)0x00) {
           current_node = system_temp_buffer_ptr;
         }
@@ -21843,8 +20928,8 @@ SYSTEM_VALIDATION_CHECK:
           system_setup_ui_event_handlers(&system_thread_context_ptr);
         }
         system_long_context_ptr = psystem_stack_long_int_a1;
-        system_audio_loop_counter = (int)(system_temp_pointer >> 5);
-        system_temp_pointer = (longlong)system_audio_loop_counter;
+        system_audio_loop_counter = (int)(system_temp_ptr >> 5);
+        system_temp_ptr = (longlong)system_audio_loop_counter;
         if (0 < system_audio_loop_counter) {
           system_uint_pointer = (uint *)(system_handle_ptr + 2);
           do {
@@ -21857,7 +20942,6 @@ SYSTEM_VALIDATION_CHECK:
             system_context_identifier = 0;
             system_set_ui_parameter(&system_temp_buffer_ptr,*system_uint_pointer);
             if (*system_uint_pointer != 0) {
-                    // WARNING: Subroutine does not return
               memcpy(system_temp_buffer_ptr,*(uint64_t *)(system_uint_pointer + -2),*system_uint_pointer + 1);
             }
             if (*(longlong *)(system_uint_pointer + -2) != 0) {
@@ -21873,37 +20957,37 @@ SYSTEM_VALIDATION_CHECK:
             *system_config_ptr = SYSTEM_AUDIO_TABLE_OFFSET_VALUE2e656e6563003040f;
             *(uint64_t *)(system_config_ptr + 1) = 0x06e65630033;
             *(uint16_t *)((longlong)system_config_ptr + 0x04) = 0x065;
-            current_node = &system_data_memory_pool0x02001bc0033;
+            current_node = &system_data_memory_pool_default;
             if (system_temp_buffer_ptr != (uint32_t *)0x00) {
               current_node = system_temp_buffer_ptr;
             }
             system_context_identifier = system_audio_loop_counter;
-            system_temp_pointer = strstr(current_node,&system_network_string_handler_a);
-            if (system_temp_pointer == 0) {
-              current_node = &system_data_memory_pool0x02001bc0033;
+            system_temp_ptr = strstr(current_node,&system_network_string_handler_a);
+            if (system_temp_ptr == 0) {
+              current_node = &system_data_memory_pool_default;
               if (system_temp_buffer_ptr != (uint32_t *)0x00) {
                 current_node = system_temp_buffer_ptr;
               }
-              system_temp_pointer = strstr(current_node,&system_network_string_handler_b);
-              if (system_temp_pointer != 0) goto SYSTEM_LABEL;
-              current_node = &system_data_memory_pool0x02001bc0033;
+              system_temp_ptr = strstr(current_node,&system_network_string_handler_b);
+              if (system_temp_ptr != 0) goto SYSTEM_LABEL;
+              current_node = &system_data_memory_pool_default;
               if (system_temp_buffer_ptr != (uint32_t *)0x00) {
                 current_node = system_temp_buffer_ptr;
               }
-              system_temp_pointer = strstr(current_node,&system_network_string_handler_c);
-              if (system_temp_pointer != 0) goto SYSTEM_LABEL;
-              current_node = &system_data_memory_pool0x02001bc0033;
+              system_temp_ptr = strstr(current_node,&system_network_string_handler_c);
+              if (system_temp_ptr != 0) goto SYSTEM_LABEL;
+              current_node = &system_data_memory_pool_default;
               if (system_temp_buffer_ptr != (uint32_t *)0x00) {
                 current_node = system_temp_buffer_ptr;
               }
-              system_temp_pointer = strstr(current_node,&system_data_temp_buffer_15);
-              if (system_temp_pointer != 0) goto SYSTEM_LABEL;
-              current_node = &system_data_memory_pool0x02001bc0033;
+              system_temp_ptr = strstr(current_node,&system_data_temp_buffer_network_a);
+              if (system_temp_ptr != 0) goto SYSTEM_LABEL;
+              current_node = &system_data_memory_pool_default;
               if (system_temp_buffer_ptr != (uint32_t *)0x00) {
                 current_node = system_temp_buffer_ptr;
               }
-              system_temp_pointer = strstr(current_node,&system_data_temp_buffer_16);
-              if (system_temp_pointer != 0) goto SYSTEM_LABEL;
+              system_temp_ptr = strstr(current_node,&system_data_temp_buffer_network_b);
+              if (system_temp_ptr != 0) goto SYSTEM_LABEL;
               system_current_character = system_create_string_buffer(&system_temp_buffer_ptr);
               if (system_current_character == '\0') {
                 system_context_identifier = 0;
@@ -21911,16 +20995,15 @@ SYSTEM_VALIDATION_CHECK:
                   *system_temp_buffer_ptr = 0;
                 }
                 system_temp_uint_value = *system_uint_pointer;
-                system_temp_value = (ulonglong)system_temp_uint_value;
+                system_temp_val = (ulonglong)system_temp_uint_value;
                 if (*(longlong *)(system_uint_pointer + -2) != 0) {
-                  system_set_ui_parameter(&system_temp_buffer_ptr,system_temp_value);
+                  system_set_ui_parameter(&system_temp_buffer_ptr,system_temp_val);
                 }
                 if (system_temp_uint_value != 0) {
-                    // WARNING: Subroutine does not return
-                  memcpy(system_temp_buffer_ptr,*(uint64_t *)(system_uint_pointer + -2),system_temp_value);
+                  memcpy(system_temp_buffer_ptr,*(uint64_t *)(system_uint_pointer + -2),system_temp_val);
                 }
                 if (system_temp_buffer_ptr != (uint32_t *)0x00) {
-                  system_temp_buffer_ptr[system_temp_value] = 0;
+                  system_temp_buffer_ptr[system_temp_val] = 0;
                 }
                 system_context_identifier.y = system_uint_pointer[3];
                 system_context_identifier = system_temp_uint_value;
@@ -21937,7 +21020,6 @@ SYSTEM_VALIDATION_CHECK:
                 if (system_current_character != '\0') goto SYSTEM_LABEL;
                 system_temp_buffer_ptr = &system_data_callback_pool_base2;
                 if (system_temp_buffer_ptr != (uint32_t *)0x00) {
-                    // WARNING: Subroutine does not return
                   system_initialize_component();
                 }
                 system_context_identifier = (ulonglong)system_context_identifier.y << SYSTEM_RESOURCE_BLOCK_OFFSET;
@@ -21946,6 +21028,6 @@ SYSTEM_VALIDATION_CHECK:
 SYSTEM_VALIDATION_CHECK:
                 system_audio_loop_counter = *system_uint_pointer - 1;
                 if (-1 < system_audio_loop_counter) {
-                  system_temp_pointer = (longlong)system_audio_loop_counter;
+                  system_temp_ptr = (longlong)system_audio_loop_counter;
                   do {
-                    if (*(char *)(system_temp_pointer + *(longlong *)(system_uint_pointer + -2)) == '/') goto
+                    if (*(char *)(system_temp_ptr + *(longlong *)(system_uint_pointer + -2)) == '/') goto
