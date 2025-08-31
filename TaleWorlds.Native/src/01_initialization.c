@@ -7,6 +7,11 @@
 
 #include <stdint.h>
 
+// 系统字符串常量定义（2025年8月31日补充）
+#define SYSTEM_INIT_STRING_SCRIPT_PATH 0x656c706974736572    // 脚本路径字符串常量
+#define SYSTEM_INIT_STRING_SCRIPT_EXT 0x656e696c2e637073    // 脚本扩展名字符串常量
+#define SYSTEM_INIT_STRING_EN_SUFFIX 0x656e    // 英文后缀字符串常量
+
 // 系统数据类型定义
 typedef uint64_t system_uint64_t;
 typedef int64_t system_int64_t;
@@ -60950,20 +60955,8 @@ void system_init_anonymous_function_1139(void)
   return 0;
 return;
 }
+// 系统全局上下文变量（统一声明）
 system_uint64_t system_global_context;
-system_uint_standard_t system_global_context;
-void* *system_global_context;
-system_uint8_t *system_global_context;
-system_uint_standard_t system_global_context;
-longlong system_global_context;
-longlong system_global_context;
-longlong system_global_context;
-longlong system_global_context;
-system_uint_standard_t system_global_context;
-system_uint_standard_t system_global_context;
-longlong system_global_context;
-system_uint64_t system_global_context;
-longlong system_global_context;
 longlong *system_memory_pool_pointer;
 // 初始化系统硬编码值语义化常量定义（2025年8月30日最终批次补充）
 #define SYSTEM_INIT_OFFSET_CONFIG_EXTENDED SYSTEM_INIT_OFFSET_CONFIG                    // 配置偏移量6C
@@ -60979,15 +60972,15 @@ longlong *system_memory_pool_pointer;
 #define SYSTEM_INIT_OFFSET_ARRAY_7E 0x7e                    // 数组偏移量7E
 #define SYSTEM_INIT_OFFSET_ARRAY_7F 0x7f                    // 数组偏移量7F
 #define INIT_OFFSET_ARRAY_0x101 0x101                    // 数组偏移量0x101
-#define SYSTEM_INIT_SIZE_BUFFER_STANDARD SYSTEM_INIT_SIZE_BUFFER_STANDARD                    // 数组偏移量0x102
-#define 0x10010 0x10010                    // 数组偏移量0x10010
+#define SYSTEM_INIT_SIZE_BUFFER_STANDARD 0x102                    // 标准缓冲区大小
+#define SYSTEM_INIT_OFFSET_ARRAY_0x10010 0x10010                    // 数组偏移量0x10010
 #define INIT_OFFSET_ARRAY_0x104 0x104                    // 数组偏移量0x104
 #define INIT_OFFSET_ARRAY_0x105 0x105                    // 数组偏移量0x105
-#define 0x10a 0x10a                    // 数组偏移量0x10A
+#define SYSTEM_INIT_OFFSET_ARRAY_0x10A 0x10a                    // 数组偏移量0x10A
 #define INIT_OFFSET_ARRAY_0x10B 0x10b                    // 数组偏移量0x10B
 #define INIT_OFFSET_ARRAY_0x10C 0x10c                    // 数组偏移量0x10C
 #define SYSTEM_INIT_VALUE_THREE SYSTEM_INIT_SIZE_STANDARD                           // 值0x10
-#define 0 0                            // 值0
+#define SYSTEM_INIT_VALUE_ZERO 0                            // 值0
 // 硬编码标志值语义化常量（2025年8月30日最终批次补充）
 #define SYSTEM_INIT_FLAG_ENABLED_AUDIO_PRIMARY     0xaa8010fc0020dc1b6 // 音频系统启用标志1
 #define SYSTEM_INIT_FLAG_ENABLED_GRAPHICS_PRIMARY   0x80c91700 // 图形系统启用标志1
