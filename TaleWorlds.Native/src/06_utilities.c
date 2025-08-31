@@ -505,11 +505,9 @@ context_handle = (int64_t *)(*buffer_pointer + -UTILITY_THREAD_CONTEXT_OFFSET);
 if (*buffer_pointer == 0) {
 context_handle = context_handle;
 }
-context_handle = context_handle;
-context_handle = context_handle;
-context_handle = context_handle;
-if (context_handle != (int64_t *)0x0) {
-context_handle = context_handle + 3;
+// 简化实现：删除无用的赋值语句
+if (utility_resource_data != 0) {
+    return utility_resource_value;
 }
 while( true ) {
 if (context_handle == context_handle) {
@@ -8157,7 +8155,7 @@ long long utility_stack_large_value;
 long long utility_stack_large_offset;
 uint32_t utility_stack_uint_2a4;
 uint32_t utility_stack_uint_data;
-uint32_t utility_stack_uint_29c;
+uint32_t utility_stack_uint_size;
 uint32_t utility_stack_uint_298;
 int64_t utility_stack_long_294;
 uint utility_stack_uint_28c;
