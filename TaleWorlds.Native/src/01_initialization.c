@@ -74,19 +74,19 @@ extern system_uint8_t system_initialized[];         // 系统初始化状态数�
 extern system_code system_register_input_r9;        // 系统寄存器输入R9
 
 // 函数前向声明
-longlong* system_allocate_memory(system_code* device_function);
-int system_check_initialization(void** context_pointer);
+longlong* system_allocate_memory(system_code* device_function);           // 系统内存分配函数
+int system_check_initialization(void** context_pointer);                  // 系统初始化检查函数
 void _Mtx_init_in_situ(system_uint64_t flag, int alignment, system_uint64_t memory_param, 
-                      system_uint64_t thread_param, system_uint64_t handle_value);
+                      system_uint64_t thread_param, system_uint64_t handle_value); // 互斥体初始化函数
 
 // 系统初始化函数声明
-void InitializeSystemCore(void);
+void InitializeSystemCore(void);                                                  // 系统核心初始化函数（无参数版本）
 int InitializeSystemCore(system_uint64_t context_param, system_uint64_t config_param, 
-                        system_uint64_t memory_param, system_uint64_t thread_param);
-void InitializeSystemStackMemory(void);
-int CheckSystemInitializationStatus(void** context_ptr);
-void CleanupSystemResources(void);
-int SystemInitializationMain(void);
+                        system_uint64_t memory_param, system_uint64_t thread_param); // 系统核心初始化函数（带参数版本）
+void InitializeSystemStackMemory(void);                                           // 系统栈内存初始化函数
+int CheckSystemInitializationStatus(void** context_ptr);                         // 系统初始化状态检查函数
+void CleanupSystemResources(void);                                               // 系统资源清理函数
+int SystemInitializationMain(void);                                            // 系统初始化主入口函数
 
 // 系统初始化函数实现
 /**
