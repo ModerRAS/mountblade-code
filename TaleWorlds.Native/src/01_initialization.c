@@ -160,13 +160,13 @@ static uint32_t octonary_config_data;
  * 简化实现：仅进行基本的配置验证，保持代码结构不变
  */
 int32_t system_validate_configuration(void);
-static void *config_pointer;
-static uint32_t nonary_config_data;
-static uint64_t config_qword;
-static uint32_t primary_registry_data;
-static uint32_t secondary_registry_data;
-static uint32_t tertiary_registry_data;
-static uint32_t quaternary_registry_data;
+static void *config_ptr;
+static uint32_t config_data_nonary;
+static uint64_t config_qword_value;
+static uint32_t registry_data_primary;
+static uint32_t registry_data_secondary;
+static uint32_t registry_data_tertiary;
+static uint32_t registry_data_quaternary;
 /**
  * @brief 初始化系统服务
  * 
@@ -180,7 +180,7 @@ static uint32_t quaternary_registry_data;
  * 简化实现：仅初始化基本的服务功能，保持代码结构不变
  */
 int32_t system_initialize_services(void);
-static void *primary_service_pointer;
+static void *service_ptr_primary;
 /**
  * @brief 初始化系统组件
  * 
