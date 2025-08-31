@@ -3,7 +3,7 @@
  * @brief 工具系统实现文件
  * 
  * 原本实现：完全重构工具系统所有命名体系，建立统一的语义化命名规范
- * 简化实现：仅将常见的非语义化函数名替换为语义化名称，为关键函数添加文档注释，保持代码结构不变
+ * 简化实现：仅修复语法错误，优化变量命名，为关键函数添加文档注释，保持代码结构不变
  */
 
 #include "TaleWorlds.Native.Split.h"
@@ -77,7 +77,7 @@
 #define UTILITY_MAX_OPERATION_RANGE_VALUE 0x1000
 #define UTILITY_MAX_OPERATION_RANGE 0x1000
 #define UTILITY_STATUS_ENABLED_FLAG_QUATERNARY 0x4
-#define UTILITY_STATUS_FLAG_MASK_7C 0x7c
+#define UTILITY_STATUS_FLAG_MASK_COMPLETE 0x7c
 #define UTILITY_STATUS_ENABLED_FLAG_NONARY 0x9
 #define UTILITY_STATUS_ENABLED_FLAG_FULL_ACCESS 0xf
 #define UTILITY_STATUS_FLAG_MASK_8_BIT 0x8
@@ -2586,11 +2586,6 @@ utility_resource_ctx_handle = utility_resource_ptr + UTILITY_THREAD_CONTEXT_OFFS
 }
 return UTILITY_STATUS_RESOURCE_NOT_FOUND;
 }
-* @brief 初始化共享内存
-* 创建并初始化共享内存区域，用于进程间通信
-* @return 无返回值
-*/
-void InitializeSharedMemory(void)
 * @brief 初始化共享内存
 * 创建并初始化共享内存区域，用于进程间通信
 * @return 无返回值
@@ -5247,9 +5242,6 @@ utility_checksum_calculator(*(uint64_t *)(utility_context_base + UTILITY_CHECKSU
 }
 * @brief 初始化套接字
 * 创建并初始化网络套接字，用于网络通信
-* @return 无返回值
-*/
-void InitializeSocket(void)
 * @brief 初始化套接字
 * 创建并初始化网络套接字，用于网络通信
 * @return 无返回值
