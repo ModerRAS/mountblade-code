@@ -456,6 +456,13 @@ return 0;
 }
 return utility_resource_value;
 }
+/**
+ * @brief 验证资源上下文
+ * 验证主要资源上下文的有效性和状态
+ * @param resource_count 资源数量参数
+ * @param context_handle 上下文句柄
+ * @return 验证结果状态码，0表示成功，非0表示失败
+ */
 uint64_t utility_validate_resource_context_primary(int64_t resource_count,int64_t context_handle)
 {
 int64_t utility_loop_counter;
@@ -483,6 +490,12 @@ utility_stack_cleanup_operation(utility_stack_buffer_array);
 }
 return 0;
 }
+/**
+ * @brief 初始化资源上下文
+ * 初始化主要资源上下文，为资源分配和管理做准备
+ * @param context_handle 上下文句柄
+ * @return 初始化结果状态码，0表示成功，非0表示失败
+ */
 uint64_t utility_initialize_resource_context_primary(int64_t context_handle)
 {
 uint *buffer_pointer;
