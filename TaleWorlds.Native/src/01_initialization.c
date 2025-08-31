@@ -1679,7 +1679,6 @@ void system_init_subsystem_16(void)
   _Mtx_init_in_situ(0x01,2,system_memory_param,system_thread_param,INIT_VALUE_HANDLE_INVALID_DEFAULT);
   system_memory_allocation_result = system_allocate_memory(GetAudioDevice);
   return (system_memory_allocation_result != 0) - 1;
-return;
 }
 /**
  * @brief 系统初始化占位函数
