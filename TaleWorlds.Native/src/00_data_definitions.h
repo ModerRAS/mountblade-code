@@ -18,11 +18,11 @@
 #define SYSTEM_CONFIG_VALUE_0X17        0x17    // 系统配置值0x17 - AI配置参数
 #define SYSTEM_CONFIG_VALUE_0X1B        0x1B    // 系统配置值0x1B - 高级配置参数
 #define SYSTEM_CONFIG_VALUE_0X1D        0x1D    // 系统配置值0x1D - 调试配置参数
-#define SYSTEM_CONFIG_VALUE_0X1E        0x1E    // 系统配置值0x1E - 性能配置参数
-#define SYSTEM_CONFIG_VALUE_0X1F        0x1F    // 系统配置值0x1F - 安全配置参数
-#define SYSTEM_CONFIG_VALUE_0X21        0x21    // 系统配置值0x21 - 内存配置参数
-#define SYSTEM_CONFIG_VALUE_0X23        0x23    // 系统配置值0x23 - 线程配置参数
-#define SYSTEM_CONFIG_VALUE_0X25        0x25    // 系统配置值0x25 - 文件配置参数
+#define SYSTEM_CONFIG_VALUE_0X1E        0x1E    // 系统配置值0X1E - 性能配置参数
+#define SYSTEM_CONFIG_VALUE_0X1F        0x1F    // 系统配置值0X1F - 安全配置参数
+#define SYSTEM_CONFIG_VALUE_0X21        0x21    // 系统配置值0X21 - 内存配置参数
+#define SYSTEM_CONFIG_VALUE_0X23        0x23    // 系统配置值0X23 - 线程配置参数
+#define SYSTEM_CONFIG_VALUE_0X25        0x25    // 系统配置值0X25 - 文件配置参数
 
 // 内存偏移量常量
 #define SYSTEM_MEMORY_OFFSET_0X7B4      0x7B4   // 内存偏移0x7B4 - 渲染缓冲区
@@ -45,18 +45,18 @@
 // 标志位常量
 #define SYSTEM_FLAG_ENABLED             0x01    // 系统使能标志
 // 栈浮点变量语义化定义
-#define fStack0000000000000050 system_stack_float_offset_50
-#define fStack0000000000000054 system_stack_float_offset_54
-#define fStack0000000000000058 system_stack_float_offset_58
-#define fStack000000000000005c system_stack_float_offset_5c
-#define fStack0000000000000060 system_stack_float_offset_60
-#define fStack0000000000000064 system_stack_float_offset_64
-#define fStack0000000000000068 system_stack_float_offset_68
-#define fStack000000000000006c system_stack_float_offset_6c
-#define fStack0000000000000070 system_stack_float_offset_70
-#define fStack0000000000000074 system_stack_float_offset_74
-#define fStack0000000000000078 system_stack_float_offset_78
-#define fStack000000000000007c system_stack_float_offset_7c
+#define fStack0000000000000050 system_stack_texture_coord_u1
+#define fStack0000000000000054 system_stack_texture_coord_v1
+#define fStack0000000000000058 system_stack_texture_coord_u2
+#define fStack000000000000005c system_stack_texture_coord_v2
+#define fStack0000000000000060 system_stack_matrix_element_0
+#define fStack0000000000000064 system_stack_matrix_element_1
+#define fStack0000000000000068 system_stack_matrix_element_2
+#define fStack000000000000006c system_stack_matrix_element_3
+#define fStack0000000000000070 system_stack_color_component_r
+#define fStack0000000000000074 system_stack_color_component_g
+#define fStack0000000000000078 system_stack_color_component_b
+#define fStack000000000000007c system_stack_color_component_a
 
 // 系统函数语义化定义
 #define system_process_temporary_data system_memory_manager_initialize
