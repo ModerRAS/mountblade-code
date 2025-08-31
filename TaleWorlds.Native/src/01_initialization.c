@@ -642,19 +642,27 @@ undefined system_function_06b8f0;
  * @brief 内存管理器初始化函数
  * 初始化系统内存管理和分配器
  */
+/**
+ * @brief 内存管理器初始化函数
+ * 初始化系统内存管理器，负责内存分配、释放和管理
+ * 此函数会创建内存池、设置内存分配策略、初始化内存管理结构
+ * 
+ * 简化实现：为内存管理器添加详细文档注释
+ * 原本实现：完全重构内存管理器初始化流程和命名体系
+ */
 void system_initialize_memory_manager(void)
 
 {
-  char cVar1;
-  undefined8 *puVar2;
-  int iVar3;
-  longlong *plVar4;
-  longlong lVar5;
-  undefined8 *puVar6;
-  undefined8 *puVar7;
-  undefined8 *puVar8;
-  undefined8 *puStackX_10;
-  code *pcStackX_18;
+  char node_flag;
+  undefined8 *global_context_ptr;
+  int compare_result;
+  longlong *context_handle;
+  longlong resource_handle;
+  undefined8 *current_node;
+  undefined8 *previous_node;
+  undefined8 *next_node;
+  undefined8 *stack_buffer;
+  code *memory_allocator_ptr;
   
   plVar4 = (longlong *)system_get_global_context();
   puVar2 = (undefined8 *)*plVar4;
