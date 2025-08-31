@@ -11,2392 +11,2392 @@
 // 06_utilities.c - 473 个函数
 
 // Utility address marker
-undefined utility_global_data_primary;
-undefined utility_global_data_secondary;
-undefined utility_global_data_tertiary;
-undefined utility_global_data_quaternary;
-undefined utility_global_data_auxiliary;
-undefined utility_global_data_backup;
-undefined1 utility_global_status_flag_primary;
-undefined utility_global_pointer_primary;
-undefined utility_global_pointer_secondary;
-undefined1 utility_global_status_flag_secondary;
-undefined utility_system_context;
-undefined8 utility_configuration_data;
-undefined8 utility_state_machine_data;
-undefined utility_buffer_primary;
-undefined utility_buffer_secondary;
-undefined utility_buffer_tertiary;
-undefined utility_buffer_quaternary;
-undefined utility_context_manager;
+void *utility_global_data_primary;
+void *utility_global_data_secondary;
+void *utility_global_data_tertiary;
+void *utility_global_data_quaternary;
+void *utility_global_data_auxiliary;
+void *utility_global_data_backup;
+int utility_global_status_flag_primary;
+void *utility_global_pointer_primary;
+void *utility_global_pointer_secondary;
+int utility_global_status_flag_secondary;
+void *utility_system_context;
+long long utility_configuration_data;
+long long utility_state_machine_data;
+void *utility_buffer_primary;
+void *utility_buffer_secondary;
+void *utility_buffer_tertiary;
+void *utility_buffer_quaternary;
+void *utility_context_manager;
 
 // Utility address marker
 // Utility address marker
-undefined utility_network_data_a;
-undefined utility_network_data_b;
-undefined utility_network_data_c;
-undefined utility_network_data_d;
+void *utility_network_context_primary;
+void *utility_network_context_secondary;
+void *utility_network_context_tertiary;
+void *utility_network_context_quaternary;
 
 // Utility address marker
 // Utility address marker
-undefined utility_resource_a;
-undefined utility_resource_b;
-undefined utility_resource_c;
-undefined utility_resource_d;
-undefined utility_resource_context;
+void *utility_resource_primary;
+void *utility_resource_secondary;
+void *utility_resource_tertiary;
+void *utility_resource_quaternary;
+void *utility_resource_manager;
 
 // Utility address marker
 // Utility address marker
-undefined utility_memory_a;
-undefined utility_memory_b;
-undefined utility_memory_c;
-undefined utility_memory_d;
-undefined utility_memory_context;
+void *utility_memory_a;
+void *utility_memory_b;
+void *utility_memory_c;
+void *utility_memory_d;
+void *utility_memory_context;
 
 // Utility address marker
 // Utility address marker
-undefined utility_thread_a;
-undefined utility_thread_b;
-undefined utility_thread_c;
-undefined utility_thread_d;
+void *utility_thread_a;
+void *utility_thread_b;
+void *utility_thread_c;
+void *utility_thread_d;
 
 // Utility address marker
 // Utility address marker
-undefined utility_event_a;
-undefined utility_event_b;
-undefined utility_event_c;
-undefined utility_event_d;
+void *utility_event_a;
+void *utility_event_b;
+void *utility_event_c;
+void *utility_event_d;
 
 // Utility address marker
 // Utility address marker
-undefined1 utility_system_flag_a;
+int utility_system_flag_a;
 
 // Utility address marker
 // Utility address marker
-undefined1 utility_system_flag_b;
+int utility_system_flag_b;
 
 // Utility address marker
 // Utility address marker
-undefined1 utility_system_flag_c;
+int utility_system_flag_c;
 
 // Utility address marker
 // Utility address marker
-undefined1 utility_system_flag_d;
+int utility_system_flag_d;
 
 // Utility address marker
 // Utility address marker
-undefined utility_interface_a;
-undefined utility_interface_b;
+void *utility_interface_a;
+void *utility_interface_b;
 
 // Utility address marker
 // Utility address marker
 
 // Utility address marker
 // Utility address marker
-undefined utility_handler_a;
-undefined utility_handler_b;
-undefined utility_callback_a;
-undefined utility_callback_b;
-undefined utility_callback_c;
+void *utility_handler_a;
+void *utility_handler_b;
+void *utility_callback_a;
+void *utility_callback_b;
+void *utility_callback_c;
 
 // Utility address marker
 // Utility address marker
-undefined utility_queue_a;
-undefined utility_queue_b;
-undefined utility_queue_context;
-undefined utility_cache_data;
-undefined utility_stream_data;
-undefined g_180bf6538;
-undefined g_180bf6540;
+void *utility_queue_a;
+void *utility_queue_b;
+void *utility_queue_context;
+void *utility_cache_data;
+void *utility_stream_data;
+void *utility_buffer_extended_5;
+void *utility_buffer_extended_6;
 
 // Utility address marker
 // Utility address marker
-undefined g_180bf6548;
-undefined g_180a004e8;
-undefined g_180bf6590;
-undefined g_180bf6598;
-undefined g_180bf65a0;
-undefined g_180bf65a8;
+void *utility_buffer_extended_7;
+void *utility_buffer_extended_8;
+void *utility_buffer_extended_9;
+void *utility_buffer_extended_10;
+void *utility_buffer_extended_11;
+void *utility_buffer_extended_12;
 
 // Utility address marker
 // Utility address marker
-undefined g_180a004f8;
-undefined g_180bf65c0;
-undefined g_180bf65c8;
-undefined g_180bf65d0;
-undefined g_180bf65d8;
+void *g_180a004f8;
+void *g_180bf65c0;
+void *g_180bf65c8;
+void *g_180bf65d0;
+void *g_180bf65d8;
 
 // Utility address marker
 // Utility address marker
-undefined g_180a00508;
-undefined g_180bf65f0;
-undefined g_180bf65f8;
-undefined g_180bf6600;
-undefined g_180bf6608;
-
-// Utility address marker
-// Utility address marker
-undefined g_180a00518;
-undefined g_180bf6620;
-undefined g_180bf6628;
-undefined g_180bf6630;
-undefined g_180bf6638;
-undefined g_180a00528;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf6650;
-undefined g_180bf6658;
-undefined g_180bf6660;
-undefined g_180bf6668;
-undefined g_180a00538;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf6680;
-undefined g_180bf6688;
-undefined g_180bf6690;
-undefined g_180bf6698;
-undefined g_180a00540;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf66b0;
-undefined g_180bf66b8;
-undefined g_180bf66c0;
-undefined g_180bf66c8;
-undefined g_180a00548;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf52e8;
-undefined g_180bf52f0;
-undefined g_180bf52f8;
-undefined g_180bf5300;
-undefined g_180a01300;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf5738;
-undefined g_180bf5740;
-undefined g_180bf5748;
-undefined g_180bf5750;
-undefined g_180a01330;
-
-// Utility address marker
-// Utility address marker
-
-// Utility address marker
-// Utility address marker
-undefined g_180c9196c;
-undefined g_180a02998;
-undefined g_180c919e0;
-undefined g_180a0b1c8;
-undefined g_180bf6750;
-undefined g_180bf6758;
-undefined g_180bf6760;
-undefined g_180bf6768;
-undefined g_180bf67a8;
-undefined g_180bf67b0;
-undefined g_180bf67b8;
-undefined g_180bf67c0;
-undefined g_180bf6800;
-undefined g_180bf6808;
-undefined g_180bf6810;
-undefined g_180bf6818;
-undefined g_180bf6858;
-undefined g_180bf6860;
-undefined g_180bf6868;
-undefined g_180bf6870;
-undefined g_180bf68b0;
-undefined g_180bf68b8;
-undefined g_180bf68c0;
-undefined g_180bf68c8;
-undefined g_180bf6908;
-undefined g_180bf6910;
-undefined g_180bf6918;
-undefined g_180bf6920;
-undefined g_180bf6960;
-undefined g_180bf6968;
-undefined g_180bf6970;
-undefined g_180bf6978;
-undefined g_180bf69b8;
-undefined g_180bf69c0;
-undefined g_180bf69c8;
-undefined g_180bf69d0;
-undefined g_180bf6a10;
-undefined g_180bf6a18;
-undefined g_180bf6a20;
-undefined g_180bf6a28;
-undefined g_180bf6a68;
-undefined g_180bf6a70;
-undefined g_180bf6a78;
-undefined g_180bf6a80;
-undefined g_180bf6ac0;
-undefined g_180bf6ac8;
-undefined g_180bf6ad0;
-undefined g_180bf6ad8;
-undefined g_180bf6b18;
-undefined g_180bf6b20;
-undefined g_180bf6b28;
-undefined g_180bf6b30;
-undefined g_180bf6b70;
-undefined g_180bf6b78;
-undefined g_180bf6b80;
-undefined g_180bf6b88;
-undefined g_180bf6bc8;
-undefined g_180bf6bd0;
-undefined g_180bf6bd8;
-undefined g_180bf6be0;
-undefined g_180bf6c20;
-undefined g_180bf6c28;
-undefined g_180bf6c30;
-undefined g_180bf6c38;
-undefined g_180bf6c78;
-undefined g_180bf6c80;
-undefined g_180bf6c88;
-undefined g_180bf6c90;
-undefined g_180bf6cd0;
-undefined g_180bf6cd8;
-undefined g_180bf6ce0;
-undefined g_180bf6ce8;
-undefined g_180bf6d28;
-undefined g_180bf6d30;
-undefined g_180bf6d38;
-undefined g_180bf6d40;
-undefined g_180bf6d80;
-undefined g_180bf6d88;
-undefined g_180bf6d90;
-undefined g_180bf6d98;
-undefined g_180bf6dd8;
-undefined g_180bf6de0;
-undefined g_180bf6de8;
-undefined g_180bf6df0;
-undefined g_180bf6e30;
-undefined g_180bf6e38;
-undefined g_180bf6e40;
-undefined g_180bf6e48;
-undefined g_180bf6e88;
-undefined g_180bf6e90;
-undefined g_180bf6e98;
-undefined g_180bf6ea0;
-undefined g_180bf6ee0;
-undefined g_180bf6ee8;
-undefined g_180bf6ef0;
-undefined g_180bf6ef8;
-undefined g_180bf6f38;
-undefined g_180bf6f40;
-undefined g_180bf6f48;
-undefined g_180bf6f50;
-undefined g_180bf6f90;
-undefined g_180bf6f98;
-undefined g_180bf6fa0;
-undefined g_180bf6fa8;
-undefined g_180bf6fe8;
-undefined g_180bf6ff0;
-undefined g_180bf6ff8;
-undefined g_180bf7000;
-undefined g_180bf7040;
-undefined g_180bf7048;
-undefined g_180bf7050;
-undefined g_180bf7058;
-undefined g_180bf7098;
-undefined g_180bf70a0;
-undefined g_180bf70a8;
-undefined g_180bf70b0;
-undefined g_180bf70f0;
-undefined g_180bf70f8;
-undefined g_180bf7100;
-undefined g_180bf7108;
-undefined g_180bf7148;
-undefined g_180bf7150;
-undefined g_180bf7158;
-undefined g_180bf7160;
-undefined g_180bf71a0;
-undefined g_180bf71a8;
-undefined g_180bf71b0;
-undefined g_180bf71b8;
-undefined g_180bf71f8;
-undefined g_180bf7200;
-undefined g_180bf7208;
-undefined g_180bf7210;
-undefined g_180941b70;
-undefined g_18098bc73;
-undefined g_180a05740;
-undefined g_180a0cb48;
-undefined g_180a0cb60;
-undefined g_180a0cb70;
-undefined g_180a0cb80;
-undefined g_180a0cb90;
-undefined g_180a0cba8;
-undefined g_180a0cbc8;
-undefined g_180a0cbe0;
-undefined g_180a0cbf0;
-undefined g_180a0cc08;
-undefined g_180a0cc10;
-undefined g_180a0cc30;
-undefined g_180a0cc48;
-undefined g_180a0cc68;
-undefined g_180a0cc88;
-undefined g_180a0cca0;
-undefined g_180a0ccb8;
-undefined g_180a0ccd0;
-undefined g_180a0ccf0;
-undefined g_180a0cd08;
-undefined g_180a0cd28;
-undefined g_180a0cd40;
-undefined g_180a0cd58;
-undefined g_180a0cd70;
-undefined g_180a0cd88;
-undefined g_180a0cd98;
-undefined g_180a0cdb0;
-undefined g_180a0cdc8;
-undefined g_180a0cde0;
-undefined g_180a0ce40;
-undefined g_180bf7250;
-undefined g_180bf7258;
-undefined g_180bf7260;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf7268;
-undefined g_180a03098;
-undefined g_180bf72b0;
-undefined g_180bf72b8;
-undefined g_180bf72c0;
-undefined g_180bf72c8;
-
-// Utility address marker
-// Utility address marker
-undefined g_180a03060;
-undefined g_180bf7310;
-undefined g_180bf7318;
-undefined g_180bf7320;
-undefined g_180bf7328;
-
-// Utility address marker
-// Utility address marker
-undefined g_180a030a8;
-undefined g_180bf7370;
-undefined g_180bf7378;
-undefined g_180bf7380;
-undefined g_180bf7388;
-undefined g_180bf7408;
-undefined g_180bf7410;
-undefined g_180bf7418;
-undefined g_180bf7420;
-undefined g_180bf74a0;
-undefined g_180bf74a8;
-undefined g_180bf74b0;
-undefined g_180bf74b8;
-undefined g_180bf7538;
-undefined g_180bf7540;
-undefined g_180bf7548;
-undefined g_180bf7550;
-undefined g_180bf75d0;
-undefined g_180bf75d8;
-undefined g_180bf75e0;
-undefined g_180bf75e8;
-undefined g_180bf7668;
-undefined g_180bf7670;
-undefined g_180bf7678;
-undefined g_180bf7680;
-undefined g_180bf7700;
-undefined g_180bf7708;
-undefined g_180bf7710;
-undefined g_180bf7718;
-undefined g_180bf7798;
-undefined g_180bf77a0;
-undefined g_180bf77a8;
-undefined g_180bf77b0;
-undefined g_180bf7830;
-undefined g_180bf7838;
-undefined g_180bf7840;
-undefined g_180bf7848;
-undefined g_180bf78c8;
-undefined g_180bf78d0;
-undefined g_180bf78d8;
-undefined g_180bf78e0;
-undefined g_180bf7960;
-undefined g_180bf7968;
-undefined g_180bf7970;
-undefined g_180bf7978;
-undefined g_180bf79f8;
-undefined g_180bf7a00;
-undefined g_180bf7a08;
-undefined g_180bf7a10;
-undefined g_180bf7a90;
-undefined g_180bf7a98;
-undefined g_180bf7aa0;
-undefined g_180bf7aa8;
-undefined g_180bf7b28;
-undefined g_180bf7b30;
-undefined g_180bf7b38;
-undefined g_180bf7b40;
-undefined g_180bf7bc0;
-undefined g_180bf7bc8;
-undefined g_180bf7bd0;
-undefined g_180bf7bd8;
-undefined g_180bf7c58;
-undefined g_180bf7c60;
-undefined g_180bf7c68;
-undefined g_180bf7c70;
-undefined g_180941cc0;
-undefined g_180a0fd40;
-undefined g_180a0fd50;
-undefined g_180a0fd60;
-undefined g_180a0fd70;
-undefined g_180a0fd88;
-undefined g_180a0fd98;
-undefined g_180a0fda8;
-undefined g_180a0fdb8;
-undefined g_180a0fdd0;
-undefined g_180a0fdf0;
-undefined g_180a0fe10;
-undefined g_180a0fe28;
-undefined g_180a0fe40;
-undefined g_180a0fe58;
-undefined g_180a0fe70;
-undefined g_180a0fe90;
-undefined g_180c91d54;
-undefined g_180a13a98;
-undefined g_180c91d5c;
-undefined g_180a13e48;
-undefined g_180bf7e90;
-undefined g_180bf7e98;
-undefined g_180bf7ea0;
-undefined g_180bf7ea8;
-undefined g_180bf7ee8;
-undefined g_180bf7ef0;
-undefined g_180bf7ef8;
-undefined g_180bf7f00;
-undefined g_180bf7f40;
-undefined g_180bf7f48;
-undefined g_180bf7f50;
-undefined g_180bf7f58;
-undefined g_180bf7f98;
-undefined g_180bf7fa0;
-undefined g_180bf7fa8;
-undefined g_180bf7fb0;
-undefined g_180bf7ff0;
-undefined g_180bf7ff8;
-undefined g_180bf8000;
-undefined g_180bf8008;
-undefined g_180bf8048;
-undefined g_180bf8050;
-undefined g_180bf8058;
-undefined g_180bf8060;
-undefined g_180bf80a0;
-undefined g_180bf80a8;
-undefined g_180bf80b0;
-undefined g_180bf80b8;
-undefined g_180bf80f8;
-undefined g_180bf8100;
-undefined g_180bf8108;
-undefined g_180bf8110;
-undefined g_180bf8150;
-undefined g_180bf8158;
-undefined g_180bf8160;
-undefined g_180bf8168;
-undefined g_180bf81a8;
-undefined g_180bf81b0;
-undefined g_180bf81b8;
-undefined g_180bf81c0;
-undefined g_180bf8200;
-undefined g_180bf8208;
-undefined g_180bf8210;
-undefined g_180bf8218;
-undefined g_180bf8258;
-undefined g_180bf8260;
-undefined g_180bf8268;
-undefined g_180bf8270;
-undefined g_180bf82b0;
-undefined g_180bf82b8;
-undefined g_180bf82c0;
-undefined g_180bf82c8;
-undefined g_180bf8308;
-undefined g_180bf8310;
-undefined g_180bf8318;
-undefined g_180bf8320;
-undefined g_180bf8360;
-undefined g_180bf8368;
-undefined g_180bf8370;
-undefined g_180bf8378;
-undefined g_180bf83b8;
-undefined g_180bf83c0;
-undefined g_180bf83c8;
-undefined g_180bf83d0;
-undefined g_180bf8410;
-undefined g_180bf8418;
-undefined g_180bf8420;
-undefined g_180bf8428;
-undefined g_180bf8468;
-undefined g_180bf8470;
-undefined g_180bf8478;
-undefined g_180bf8480;
-undefined g_180bf84c0;
-undefined g_180bf84c8;
-undefined g_180bf84d0;
-undefined g_180bf84d8;
-undefined g_180bf8518;
-undefined g_180bf8520;
-undefined g_180bf8528;
-undefined g_180bf8530;
-undefined g_180bf8570;
-undefined g_180bf8578;
-undefined g_180bf8580;
-undefined g_180bf8588;
-undefined g_180bf85c8;
-undefined g_180bf85d0;
-undefined g_180bf85d8;
-undefined g_180bf85e0;
-undefined g_180bf8620;
-undefined g_180bf8628;
-undefined g_180bf8630;
-undefined g_180bf8638;
-undefined g_180bf8678;
-undefined g_180bf8680;
-undefined g_180bf8688;
-undefined g_180bf8690;
-undefined g_180bf86d0;
-undefined g_180bf86d8;
-undefined g_180bf86e0;
-undefined g_180bf86e8;
-undefined g_180bf8728;
-undefined g_180bf8730;
-undefined g_180bf8738;
-undefined g_180bf8740;
-undefined g_180bf8780;
-undefined g_180bf8788;
-undefined g_180bf8790;
-undefined g_180bf8798;
-undefined g_180bf87d8;
-undefined g_180bf87e0;
-undefined g_180bf87e8;
-undefined g_180bf87f0;
-undefined g_180bf8830;
-undefined g_180bf8838;
-undefined g_180bf8840;
-undefined g_180bf8848;
-undefined g_180bf8888;
-undefined g_180bf8890;
-undefined g_180bf8898;
-undefined g_180bf88a0;
-undefined g_180bf88e0;
-undefined g_180bf88e8;
-undefined g_180bf88f0;
-undefined g_180bf88f8;
-undefined g_180bf8938;
-undefined g_180bf8940;
-undefined g_180bf8948;
-undefined g_180bf8950;
-undefined g_180941ce0;
-undefined g_180c91d60;
-undefined g_180a140f8;
-undefined g_180c91d64;
-undefined g_180a14290;
-undefined g_180c91d68;
-undefined g_180a14668;
-undefined g_180c91d6c;
-undefined g_180a14640;
-undefined g_180c91d70;
-undefined g_180a14840;
-undefined g_180c91da4;
-undefined g_180a167d0;
-undefined g_180bf90b0;
-undefined g_180bf90b8;
-undefined g_180bf90c0;
-undefined g_180bf90c8;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf5b88;
-undefined g_180bf5b90;
-undefined g_180bf5b98;
-undefined g_180bf5ba0;
-
-// Utility address marker
-// Utility address marker
-undefined g_180c91da8;
-undefined g_180a16c50;
-undefined g_180c91dac;
-undefined g_180a16c38;
-undefined g_180c91ee8;
-undefined g_180a17e48;
-undefined g_180c91ef8;
-undefined g_180a194f0;
-undefined g_180c91efc;
-undefined g_180a19588;
-undefined g_180c91f00;
-undefined g_180a19bf0;
-undefined g_180c91f04;
-undefined g_180a19df0;
-undefined g_180c91f08;
-undefined g_180a1a450;
-undefined g_180c91f0c;
-undefined g_180a1a6c8;
-undefined g_180c91f10;
-undefined g_180a1afd8;
-undefined g_180c91f14;
-undefined g_180a1cc28;
-undefined g_180c91f30;
-undefined g_180a1eb30;
-undefined g_180c91f68;
-undefined g_180a22538;
-undefined g_180bf91b0;
-undefined g_180bf91b8;
-undefined g_180bf91c0;
-undefined g_180bf91c8;
-undefined g_180a22b38;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf9210;
-undefined g_180bf9218;
-undefined g_180bf9220;
-undefined g_180bf9228;
-undefined g_180a22b90;
-
-// Utility address marker
-// Utility address marker
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf9270;
-undefined g_180bf9278;
-undefined g_180bf9280;
-undefined g_180bf9288;
-undefined g_180a22b78;
-undefined g_180bf92d0;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf92d8;
-undefined g_180bf92e0;
-undefined g_180bf92e8;
-undefined g_180a22b60;
-undefined g_180bf9330;
-undefined g_180bf9338;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf9340;
-undefined g_180bf9348;
-undefined g_180a22b50;
-undefined g_180bf9390;
-undefined g_180bf9398;
-undefined g_180bf93a0;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf93a8;
-undefined g_180a22be8;
-undefined g_180bf93f0;
-undefined g_180bf93f8;
-undefined g_180bf9400;
-undefined g_180bf9408;
-
-// Utility address marker
-// Utility address marker
-undefined g_180a22bd0;
-undefined g_180bf9450;
-undefined g_180bf9458;
-undefined g_180bf9460;
-undefined g_180bf9468;
-
-// Utility address marker
-// Utility address marker
-undefined g_180a22bb8;
-undefined g_180bf94b0;
-undefined g_180bf94b8;
-undefined g_180bf94c0;
-undefined g_180bf94c8;
-
-// Utility address marker
-// Utility address marker
-undefined g_180a22ba8;
-undefined g_180bf9510;
-undefined g_180bf9518;
-undefined g_180bf9520;
-undefined g_180bf9528;
-undefined g_180a22c48;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf9570;
-undefined g_180bf9578;
-undefined g_180bf9580;
-undefined g_180bf9588;
-undefined g_180a22c30;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf95d0;
-undefined g_180bf95d8;
-undefined g_180bf95e0;
-undefined g_180bf95e8;
-undefined g_180a22c18;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf9630;
-undefined g_180bf9638;
-undefined g_180bf9640;
-undefined g_180bf9648;
-undefined g_180a22c00;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf9690;
-undefined g_180bf9698;
-undefined g_180bf96a0;
-undefined g_180bf96a8;
-undefined g_180a22cb0;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf96f0;
-undefined g_180bf96f8;
-undefined g_180bf9700;
-undefined g_180bf9708;
-undefined g_180a22c98;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf9750;
-undefined g_180bf9758;
-undefined g_180bf9760;
-undefined g_180bf9768;
-undefined g_180a22c70;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf97b0;
-undefined g_180bf97b8;
-undefined g_180bf97c0;
-undefined g_180bf97c8;
-undefined g_180a22c58;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf9810;
-undefined g_180bf9818;
-undefined g_180bf9820;
-undefined g_180bf9828;
-undefined g_180a22d28;
-
-// Utility address marker
-// Utility address marker
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf9870;
-undefined g_180bf9878;
-undefined g_180bf9880;
-undefined g_180bf9888;
-undefined g_180a22d08;
-undefined g_180bf98d0;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf98d8;
-undefined g_180bf98e0;
-undefined g_180bf98e8;
-undefined g_180a22ce8;
-undefined g_180bf9930;
-undefined g_180bf9938;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf9940;
-undefined g_180bf9948;
-undefined g_180a22cc8;
-undefined g_180bf9990;
-undefined g_180bf9998;
-undefined g_180bf99a0;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf99a8;
-undefined g_180a22db0;
-undefined g_180bf99f0;
-undefined g_180bf99f8;
-undefined g_180bf9a00;
-undefined g_180bf9a08;
-
-// Utility address marker
-// Utility address marker
-undefined g_180a22d88;
-undefined g_180bf9a50;
-undefined g_180bf9a58;
-undefined g_180bf9a60;
-undefined g_180bf9a68;
-
-// Utility address marker
-// Utility address marker
-undefined g_180a22d68;
-undefined g_180bf9ab0;
-undefined g_180bf9ab8;
-undefined g_180bf9ac0;
-undefined g_180bf9ac8;
-
-// Utility address marker
-// Utility address marker
-undefined g_180a22d48;
-undefined g_180bf9b10;
-undefined g_180bf9b18;
-undefined g_180bf9b20;
-undefined g_180bf9b28;
-undefined g_180a22e40;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf9b70;
-undefined g_180bf9b78;
-undefined g_180bf9b80;
-undefined g_180bf9b88;
-undefined g_180a22e20;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf9bd0;
-undefined g_180bf9bd8;
-undefined g_180bf9be0;
-undefined g_180bf9be8;
-undefined g_180a22df8;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf9c30;
-undefined g_180bf9c38;
-undefined g_180bf9c40;
-undefined g_180bf9c48;
-undefined g_180a22dd0;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf9c90;
-undefined g_180bf9c98;
-undefined g_180bf9ca0;
-undefined g_180bf9ca8;
-undefined g_180a22eb0;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf9cf0;
-undefined g_180bf9cf8;
-undefined g_180bf9d00;
-undefined g_180bf9d08;
-undefined g_180a22e90;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf9d50;
-undefined g_180bf9d58;
-undefined g_180bf9d60;
-undefined g_180bf9d68;
-undefined g_180a22e70;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf9db0;
-undefined g_180bf9db8;
-undefined g_180bf9dc0;
-undefined g_180bf9dc8;
-undefined g_180a22e58;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf9e10;
-undefined g_180bf9e18;
-undefined g_180bf9e20;
-undefined g_180bf9e28;
-undefined g_180a22f28;
-
-// Utility address marker
-// Utility address marker
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf9e70;
-undefined g_180bf9e78;
-undefined g_180bf9e80;
-undefined g_180bf9e88;
-undefined g_180a22f10;
-undefined g_180bf9ed0;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf9ed8;
-undefined g_180bf9ee0;
-undefined g_180bf9ee8;
-undefined g_180a22ef8;
-undefined g_180bf9f30;
-undefined g_180bf9f38;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf9f40;
-undefined g_180bf9f48;
-undefined g_180a22ed8;
-undefined g_180bf9f90;
-undefined g_180bf9f98;
-undefined g_180bf9fa0;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf9fa8;
-undefined g_180a22f90;
-undefined g_180bf9ff0;
-undefined g_180bf9ff8;
-undefined g_180bfa000;
-undefined g_180bfa008;
-
-// Utility address marker
-// Utility address marker
-undefined g_180a22f78;
-undefined g_180bfa050;
-undefined g_180bfa058;
-undefined g_180bfa060;
-undefined g_180bfa068;
-
-// Utility address marker
-// Utility address marker
-undefined g_180a22f60;
-undefined g_180bfa0b0;
-undefined g_180bfa0b8;
-undefined g_180bfa0c0;
-undefined g_180bfa0c8;
-
-// Utility address marker
-// Utility address marker
-undefined g_180a22f40;
-undefined g_180bfa110;
-undefined g_180bfa118;
-undefined g_180bfa120;
-undefined g_180bfa128;
-undefined g_180a23018;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bfa170;
-undefined g_180bfa178;
-undefined g_180bfa180;
-undefined g_180bfa188;
-undefined g_180a23000;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bfa1d0;
-undefined g_180bfa1d8;
-undefined g_180bfa1e0;
-undefined g_180bfa1e8;
-undefined g_180a22fd0;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bfa230;
-undefined g_180bfa238;
-undefined g_180bfa240;
-undefined g_180bfa248;
-undefined g_180a22fa8;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bfa290;
-undefined g_180bfa298;
-undefined g_180bfa2a0;
-undefined g_180bfa2a8;
-undefined g_180a23068;
-
-// Utility address marker
-// Utility address marker
-
-// Utility address marker
-// Utility address marker
-
-// Utility address marker
-// Utility address marker
-
-// Utility address marker
-// Utility address marker
-
-// Utility address marker
-// Utility address marker
-undefined g_180c91f6c;
-undefined g_180a24340;
-undefined g_180c91fcc;
-undefined g_180a24828;
-undefined g_180bfa350;
-undefined g_180bfa358;
-undefined g_180bfa360;
-undefined g_180bfa368;
-undefined g_180bfa3e8;
-undefined g_180bfa3f0;
-undefined g_180bfa3f8;
-undefined g_180bfa400;
-undefined g_180bfa480;
-undefined g_180bfa488;
-undefined g_180bfa490;
-undefined g_180bfa498;
-undefined g_180bfa518;
-undefined g_180bfa520;
-undefined g_180bfa528;
-undefined g_180bfa530;
-undefined g_180bfa5b0;
-undefined g_180bfa5b8;
-undefined g_180bfa5c0;
-undefined g_180bfa5c8;
-undefined g_180bfa648;
-undefined g_180bfa650;
-undefined g_180bfa658;
-undefined g_180bfa660;
-undefined g_180bfa6e0;
-undefined g_180bfa6e8;
-undefined g_180bfa6f0;
-undefined g_180bfa6f8;
-undefined g_180942600;
-undefined g_180a0f168;
-undefined g_180a0f178;
-undefined g_180a0f188;
-undefined g_180a0f190;
-undefined g_180a0f5b8;
-undefined g_180a24c50;
-undefined g_180a24c60;
-undefined g_180bfa780;
-undefined g_180bfa788;
-undefined g_180bfa790;
-undefined g_180bfa798;
-undefined g_180bfa818;
-undefined g_180bfa820;
-undefined g_180bfa828;
-undefined g_180bfa830;
-undefined g_180bfa8b0;
-undefined g_180bfa8b8;
-undefined g_180bfa8c0;
-undefined g_180bfa8c8;
-undefined g_180bfa948;
-undefined g_180bfa950;
-undefined g_180bfa958;
-undefined g_180bfa960;
-undefined g_180bfa9e0;
-undefined g_180bfa9e8;
-undefined g_180bfa9f0;
-undefined g_180bfa9f8;
-undefined g_180bfaa78;
-undefined g_180bfaa80;
-undefined g_180bfaa88;
-undefined g_180bfaa90;
-undefined g_180942620;
-undefined g_180a24bd0;
-undefined g_180a24bf0;
-undefined g_180a24c10;
-undefined g_180a24c30;
-undefined g_180a24d58;
-undefined g_180a24d80;
-undefined g_180bfab10;
-undefined g_180bfab18;
-undefined g_180bfab20;
-undefined g_180bfab28;
-undefined g_180bfaba8;
-undefined g_180bfabb0;
-undefined g_180bfabb8;
-undefined g_180bfabc0;
-undefined g_180bfac40;
-undefined g_180bfac48;
-undefined g_180bfac50;
-undefined g_180bfac58;
-undefined g_180bfacd8;
-undefined g_180bface0;
-undefined g_180bface8;
-undefined g_180bfacf0;
-undefined g_180bfad70;
-undefined g_180bfad78;
-undefined g_180bfad80;
-undefined g_180bfad88;
-undefined g_180bfae08;
-undefined g_180bfae10;
-undefined g_180bfae18;
-undefined g_180bfae20;
-undefined g_180942640;
-undefined g_180a24da8;
-undefined g_180a24dc0;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bfc150;
-undefined1 g_180bfc140;
-undefined g_180bfc160;
-undefined g_180bfc168;
-undefined8 g_180bfc158;
-undefined g_180bfaec0;
-undefined g_180bfaec8;
-undefined g_180bfaed0;
-undefined g_180bfaed8;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bfaee0;
-undefined g_180bfaee8;
-undefined g_180c92050;
-undefined g_180c92058;
-undefined g_180c92060;
-undefined g_180c92068;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bfaef0;
-undefined g_180bfaef8;
-undefined g_180bfaf00;
-undefined g_180bfaf08;
-
-// Utility address marker
-// Utility address marker
-undefined g_180a27a58;
-undefined g_180bfb310;
-undefined g_180bfb318;
-undefined g_180bfb320;
-undefined g_180bfb328;
-undefined g_180a27a6c;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bfb730;
-undefined g_180bfb738;
-undefined g_180bfb740;
-undefined g_180bfb748;
-undefined g_180a27a70;
-
-// Utility address marker
-// Utility address marker
-undefined g_180c9246c;
-undefined g_180a2ac10;
-
-// Utility address marker
-// Utility address marker
-undefined g_180c92490;
-
-// Utility address marker
-// Utility address marker
-undefined g_180c92480;
-
-// Utility address marker
-// Utility address marker
-
-// Utility address marker
-// Utility address marker
-
-// Utility address marker
-// Utility address marker
-undefined g_180c924ac;
-undefined g_180a2bf10;
-undefined g_180c924b0;
-undefined g_180a2c1d0;
-undefined g_180c924b4;
-undefined g_180a2c338;
-undefined g_180c924b8;
-undefined g_180a2c510;
-undefined g_180bf6048;
-undefined g_180bf6050;
-undefined g_180bf6058;
-undefined g_180bf6060;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf6498;
-undefined g_180bf64a0;
-undefined g_180bf64a8;
-undefined g_180bf64b0;
-
-// Utility address marker
-// Utility address marker
-undefined g_180a2d660;
-undefined g_180a2ca90;
-undefined g_180a2d590;
-undefined g_180a2cab0;
-undefined g_180c96310;
-undefined g_180c96320;
-undefined g_180c96328;
-
-// Utility address marker
-// Utility address marker
-undefined g_180bf6558;
-undefined g_180bf6560;
-undefined g_180bf6568;
-undefined g_180bf6570;
-
-// Utility address marker
-// Utility address marker
-undefined g_180c95ecc;
-undefined g_180a33fb0;
-
-// Utility address marker
-// Utility address marker
-undefined g_180c9606c;
-undefined g_180a3c028;
-undefined g_180c96218;
-undefined g_180943130;
-
-// Utility address marker
-// Utility address marker
-
-// Utility address marker
-// Utility address marker
-undefined g_180c96790;
-undefined g_180c96798;
-
-// Utility address marker
-// Utility address marker
-undefined g_180c967a0;
-undefined g_180c967a8;
-undefined g_180c967b0;
-undefined g_180c967b8;
-undefined g_180c967d0;
-undefined g_180a3def0;
-undefined g_18098bcb0;
-
-// Utility address marker
-// Utility address marker
-undefined _tls_index;
+void *g_180a00508;
+void *g_180bf65f0;
+void *g_180bf65f8;
+void *g_180bf6600;
+void *g_180bf6608;
+
+// Utility address marker
+// Utility address marker
+void *g_180a00518;
+void *g_180bf6620;
+void *g_180bf6628;
+void *g_180bf6630;
+void *g_180bf6638;
+void *g_180a00528;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf6650;
+void *g_180bf6658;
+void *g_180bf6660;
+void *g_180bf6668;
+void *g_180a00538;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf6680;
+void *g_180bf6688;
+void *g_180bf6690;
+void *g_180bf6698;
+void *g_180a00540;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf66b0;
+void *g_180bf66b8;
+void *g_180bf66c0;
+void *g_180bf66c8;
+void *g_180a00548;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf52e8;
+void *g_180bf52f0;
+void *g_180bf52f8;
+void *g_180bf5300;
+void *g_180a01300;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf5738;
+void *g_180bf5740;
+void *g_180bf5748;
+void *g_180bf5750;
+void *g_180a01330;
+
+// Utility address marker
+// Utility address marker
+
+// Utility address marker
+// Utility address marker
+void *g_180c9196c;
+void *g_180a02998;
+void *g_180c919e0;
+void *g_180a0b1c8;
+void *g_180bf6750;
+void *g_180bf6758;
+void *g_180bf6760;
+void *g_180bf6768;
+void *g_180bf67a8;
+void *g_180bf67b0;
+void *g_180bf67b8;
+void *g_180bf67c0;
+void *g_180bf6800;
+void *g_180bf6808;
+void *g_180bf6810;
+void *g_180bf6818;
+void *g_180bf6858;
+void *g_180bf6860;
+void *g_180bf6868;
+void *g_180bf6870;
+void *g_180bf68b0;
+void *g_180bf68b8;
+void *g_180bf68c0;
+void *g_180bf68c8;
+void *g_180bf6908;
+void *g_180bf6910;
+void *g_180bf6918;
+void *g_180bf6920;
+void *g_180bf6960;
+void *g_180bf6968;
+void *g_180bf6970;
+void *g_180bf6978;
+void *g_180bf69b8;
+void *g_180bf69c0;
+void *g_180bf69c8;
+void *g_180bf69d0;
+void *g_180bf6a10;
+void *g_180bf6a18;
+void *g_180bf6a20;
+void *g_180bf6a28;
+void *g_180bf6a68;
+void *g_180bf6a70;
+void *g_180bf6a78;
+void *g_180bf6a80;
+void *g_180bf6ac0;
+void *g_180bf6ac8;
+void *g_180bf6ad0;
+void *g_180bf6ad8;
+void *g_180bf6b18;
+void *g_180bf6b20;
+void *g_180bf6b28;
+void *g_180bf6b30;
+void *g_180bf6b70;
+void *g_180bf6b78;
+void *g_180bf6b80;
+void *g_180bf6b88;
+void *g_180bf6bc8;
+void *g_180bf6bd0;
+void *g_180bf6bd8;
+void *g_180bf6be0;
+void *g_180bf6c20;
+void *g_180bf6c28;
+void *g_180bf6c30;
+void *g_180bf6c38;
+void *g_180bf6c78;
+void *g_180bf6c80;
+void *g_180bf6c88;
+void *g_180bf6c90;
+void *g_180bf6cd0;
+void *g_180bf6cd8;
+void *g_180bf6ce0;
+void *g_180bf6ce8;
+void *g_180bf6d28;
+void *g_180bf6d30;
+void *g_180bf6d38;
+void *g_180bf6d40;
+void *g_180bf6d80;
+void *g_180bf6d88;
+void *g_180bf6d90;
+void *g_180bf6d98;
+void *g_180bf6dd8;
+void *g_180bf6de0;
+void *g_180bf6de8;
+void *g_180bf6df0;
+void *g_180bf6e30;
+void *g_180bf6e38;
+void *g_180bf6e40;
+void *g_180bf6e48;
+void *g_180bf6e88;
+void *g_180bf6e90;
+void *g_180bf6e98;
+void *g_180bf6ea0;
+void *g_180bf6ee0;
+void *g_180bf6ee8;
+void *g_180bf6ef0;
+void *g_180bf6ef8;
+void *g_180bf6f38;
+void *g_180bf6f40;
+void *g_180bf6f48;
+void *g_180bf6f50;
+void *g_180bf6f90;
+void *g_180bf6f98;
+void *g_180bf6fa0;
+void *g_180bf6fa8;
+void *g_180bf6fe8;
+void *g_180bf6ff0;
+void *g_180bf6ff8;
+void *g_180bf7000;
+void *g_180bf7040;
+void *g_180bf7048;
+void *g_180bf7050;
+void *g_180bf7058;
+void *g_180bf7098;
+void *g_180bf70a0;
+void *g_180bf70a8;
+void *g_180bf70b0;
+void *g_180bf70f0;
+void *g_180bf70f8;
+void *g_180bf7100;
+void *g_180bf7108;
+void *g_180bf7148;
+void *g_180bf7150;
+void *g_180bf7158;
+void *g_180bf7160;
+void *g_180bf71a0;
+void *g_180bf71a8;
+void *g_180bf71b0;
+void *g_180bf71b8;
+void *g_180bf71f8;
+void *g_180bf7200;
+void *g_180bf7208;
+void *g_180bf7210;
+void *g_180941b70;
+void *g_18098bc73;
+void *g_180a05740;
+void *g_180a0cb48;
+void *g_180a0cb60;
+void *g_180a0cb70;
+void *g_180a0cb80;
+void *g_180a0cb90;
+void *g_180a0cba8;
+void *g_180a0cbc8;
+void *g_180a0cbe0;
+void *g_180a0cbf0;
+void *g_180a0cc08;
+void *g_180a0cc10;
+void *g_180a0cc30;
+void *g_180a0cc48;
+void *g_180a0cc68;
+void *g_180a0cc88;
+void *g_180a0cca0;
+void *g_180a0ccb8;
+void *g_180a0ccd0;
+void *g_180a0ccf0;
+void *g_180a0cd08;
+void *g_180a0cd28;
+void *g_180a0cd40;
+void *g_180a0cd58;
+void *g_180a0cd70;
+void *g_180a0cd88;
+void *g_180a0cd98;
+void *g_180a0cdb0;
+void *g_180a0cdc8;
+void *g_180a0cde0;
+void *g_180a0ce40;
+void *g_180bf7250;
+void *g_180bf7258;
+void *g_180bf7260;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf7268;
+void *g_180a03098;
+void *g_180bf72b0;
+void *g_180bf72b8;
+void *g_180bf72c0;
+void *g_180bf72c8;
+
+// Utility address marker
+// Utility address marker
+void *g_180a03060;
+void *g_180bf7310;
+void *g_180bf7318;
+void *g_180bf7320;
+void *g_180bf7328;
+
+// Utility address marker
+// Utility address marker
+void *g_180a030a8;
+void *g_180bf7370;
+void *g_180bf7378;
+void *g_180bf7380;
+void *g_180bf7388;
+void *g_180bf7408;
+void *g_180bf7410;
+void *g_180bf7418;
+void *g_180bf7420;
+void *g_180bf74a0;
+void *g_180bf74a8;
+void *g_180bf74b0;
+void *g_180bf74b8;
+void *g_180bf7538;
+void *g_180bf7540;
+void *g_180bf7548;
+void *g_180bf7550;
+void *g_180bf75d0;
+void *g_180bf75d8;
+void *g_180bf75e0;
+void *g_180bf75e8;
+void *g_180bf7668;
+void *g_180bf7670;
+void *g_180bf7678;
+void *g_180bf7680;
+void *g_180bf7700;
+void *g_180bf7708;
+void *g_180bf7710;
+void *g_180bf7718;
+void *g_180bf7798;
+void *g_180bf77a0;
+void *g_180bf77a8;
+void *g_180bf77b0;
+void *g_180bf7830;
+void *g_180bf7838;
+void *g_180bf7840;
+void *g_180bf7848;
+void *g_180bf78c8;
+void *g_180bf78d0;
+void *g_180bf78d8;
+void *g_180bf78e0;
+void *g_180bf7960;
+void *g_180bf7968;
+void *g_180bf7970;
+void *g_180bf7978;
+void *g_180bf79f8;
+void *g_180bf7a00;
+void *g_180bf7a08;
+void *g_180bf7a10;
+void *g_180bf7a90;
+void *g_180bf7a98;
+void *g_180bf7aa0;
+void *g_180bf7aa8;
+void *g_180bf7b28;
+void *g_180bf7b30;
+void *g_180bf7b38;
+void *g_180bf7b40;
+void *g_180bf7bc0;
+void *g_180bf7bc8;
+void *g_180bf7bd0;
+void *g_180bf7bd8;
+void *g_180bf7c58;
+void *g_180bf7c60;
+void *g_180bf7c68;
+void *g_180bf7c70;
+void *g_180941cc0;
+void *g_180a0fd40;
+void *g_180a0fd50;
+void *g_180a0fd60;
+void *g_180a0fd70;
+void *g_180a0fd88;
+void *g_180a0fd98;
+void *g_180a0fda8;
+void *g_180a0fdb8;
+void *g_180a0fdd0;
+void *g_180a0fdf0;
+void *g_180a0fe10;
+void *g_180a0fe28;
+void *g_180a0fe40;
+void *g_180a0fe58;
+void *g_180a0fe70;
+void *g_180a0fe90;
+void *g_180c91d54;
+void *g_180a13a98;
+void *g_180c91d5c;
+void *g_180a13e48;
+void *g_180bf7e90;
+void *g_180bf7e98;
+void *g_180bf7ea0;
+void *g_180bf7ea8;
+void *g_180bf7ee8;
+void *g_180bf7ef0;
+void *g_180bf7ef8;
+void *g_180bf7f00;
+void *g_180bf7f40;
+void *g_180bf7f48;
+void *g_180bf7f50;
+void *g_180bf7f58;
+void *g_180bf7f98;
+void *g_180bf7fa0;
+void *g_180bf7fa8;
+void *g_180bf7fb0;
+void *g_180bf7ff0;
+void *g_180bf7ff8;
+void *g_180bf8000;
+void *g_180bf8008;
+void *g_180bf8048;
+void *g_180bf8050;
+void *g_180bf8058;
+void *g_180bf8060;
+void *g_180bf80a0;
+void *g_180bf80a8;
+void *g_180bf80b0;
+void *g_180bf80b8;
+void *g_180bf80f8;
+void *g_180bf8100;
+void *g_180bf8108;
+void *g_180bf8110;
+void *g_180bf8150;
+void *g_180bf8158;
+void *g_180bf8160;
+void *g_180bf8168;
+void *g_180bf81a8;
+void *g_180bf81b0;
+void *g_180bf81b8;
+void *g_180bf81c0;
+void *g_180bf8200;
+void *g_180bf8208;
+void *g_180bf8210;
+void *g_180bf8218;
+void *g_180bf8258;
+void *g_180bf8260;
+void *g_180bf8268;
+void *g_180bf8270;
+void *g_180bf82b0;
+void *g_180bf82b8;
+void *g_180bf82c0;
+void *g_180bf82c8;
+void *g_180bf8308;
+void *g_180bf8310;
+void *g_180bf8318;
+void *g_180bf8320;
+void *g_180bf8360;
+void *g_180bf8368;
+void *g_180bf8370;
+void *g_180bf8378;
+void *g_180bf83b8;
+void *g_180bf83c0;
+void *g_180bf83c8;
+void *g_180bf83d0;
+void *g_180bf8410;
+void *g_180bf8418;
+void *g_180bf8420;
+void *g_180bf8428;
+void *g_180bf8468;
+void *g_180bf8470;
+void *g_180bf8478;
+void *g_180bf8480;
+void *g_180bf84c0;
+void *g_180bf84c8;
+void *g_180bf84d0;
+void *g_180bf84d8;
+void *g_180bf8518;
+void *g_180bf8520;
+void *g_180bf8528;
+void *g_180bf8530;
+void *g_180bf8570;
+void *g_180bf8578;
+void *g_180bf8580;
+void *g_180bf8588;
+void *g_180bf85c8;
+void *g_180bf85d0;
+void *g_180bf85d8;
+void *g_180bf85e0;
+void *g_180bf8620;
+void *g_180bf8628;
+void *g_180bf8630;
+void *g_180bf8638;
+void *g_180bf8678;
+void *g_180bf8680;
+void *g_180bf8688;
+void *g_180bf8690;
+void *g_180bf86d0;
+void *g_180bf86d8;
+void *g_180bf86e0;
+void *g_180bf86e8;
+void *g_180bf8728;
+void *g_180bf8730;
+void *g_180bf8738;
+void *g_180bf8740;
+void *g_180bf8780;
+void *g_180bf8788;
+void *g_180bf8790;
+void *g_180bf8798;
+void *g_180bf87d8;
+void *g_180bf87e0;
+void *g_180bf87e8;
+void *g_180bf87f0;
+void *g_180bf8830;
+void *g_180bf8838;
+void *g_180bf8840;
+void *g_180bf8848;
+void *g_180bf8888;
+void *g_180bf8890;
+void *g_180bf8898;
+void *g_180bf88a0;
+void *g_180bf88e0;
+void *g_180bf88e8;
+void *g_180bf88f0;
+void *g_180bf88f8;
+void *g_180bf8938;
+void *g_180bf8940;
+void *g_180bf8948;
+void *g_180bf8950;
+void *g_180941ce0;
+void *g_180c91d60;
+void *g_180a140f8;
+void *g_180c91d64;
+void *g_180a14290;
+void *g_180c91d68;
+void *g_180a14668;
+void *g_180c91d6c;
+void *g_180a14640;
+void *g_180c91d70;
+void *g_180a14840;
+void *g_180c91da4;
+void *g_180a167d0;
+void *g_180bf90b0;
+void *g_180bf90b8;
+void *g_180bf90c0;
+void *g_180bf90c8;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf5b88;
+void *g_180bf5b90;
+void *g_180bf5b98;
+void *g_180bf5ba0;
+
+// Utility address marker
+// Utility address marker
+void *g_180c91da8;
+void *g_180a16c50;
+void *g_180c91dac;
+void *g_180a16c38;
+void *g_180c91ee8;
+void *g_180a17e48;
+void *g_180c91ef8;
+void *g_180a194f0;
+void *g_180c91efc;
+void *g_180a19588;
+void *g_180c91f00;
+void *g_180a19bf0;
+void *g_180c91f04;
+void *g_180a19df0;
+void *g_180c91f08;
+void *g_180a1a450;
+void *g_180c91f0c;
+void *g_180a1a6c8;
+void *g_180c91f10;
+void *g_180a1afd8;
+void *g_180c91f14;
+void *g_180a1cc28;
+void *g_180c91f30;
+void *g_180a1eb30;
+void *g_180c91f68;
+void *g_180a22538;
+void *g_180bf91b0;
+void *g_180bf91b8;
+void *g_180bf91c0;
+void *g_180bf91c8;
+void *g_180a22b38;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf9210;
+void *g_180bf9218;
+void *g_180bf9220;
+void *g_180bf9228;
+void *g_180a22b90;
+
+// Utility address marker
+// Utility address marker
+
+// Utility address marker
+// Utility address marker
+void *g_180bf9270;
+void *g_180bf9278;
+void *g_180bf9280;
+void *g_180bf9288;
+void *g_180a22b78;
+void *g_180bf92d0;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf92d8;
+void *g_180bf92e0;
+void *g_180bf92e8;
+void *g_180a22b60;
+void *g_180bf9330;
+void *g_180bf9338;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf9340;
+void *g_180bf9348;
+void *g_180a22b50;
+void *g_180bf9390;
+void *g_180bf9398;
+void *g_180bf93a0;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf93a8;
+void *g_180a22be8;
+void *g_180bf93f0;
+void *g_180bf93f8;
+void *g_180bf9400;
+void *g_180bf9408;
+
+// Utility address marker
+// Utility address marker
+void *g_180a22bd0;
+void *g_180bf9450;
+void *g_180bf9458;
+void *g_180bf9460;
+void *g_180bf9468;
+
+// Utility address marker
+// Utility address marker
+void *g_180a22bb8;
+void *g_180bf94b0;
+void *g_180bf94b8;
+void *g_180bf94c0;
+void *g_180bf94c8;
+
+// Utility address marker
+// Utility address marker
+void *g_180a22ba8;
+void *g_180bf9510;
+void *g_180bf9518;
+void *g_180bf9520;
+void *g_180bf9528;
+void *g_180a22c48;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf9570;
+void *g_180bf9578;
+void *g_180bf9580;
+void *g_180bf9588;
+void *g_180a22c30;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf95d0;
+void *g_180bf95d8;
+void *g_180bf95e0;
+void *g_180bf95e8;
+void *g_180a22c18;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf9630;
+void *g_180bf9638;
+void *g_180bf9640;
+void *g_180bf9648;
+void *g_180a22c00;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf9690;
+void *g_180bf9698;
+void *g_180bf96a0;
+void *g_180bf96a8;
+void *g_180a22cb0;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf96f0;
+void *g_180bf96f8;
+void *g_180bf9700;
+void *g_180bf9708;
+void *g_180a22c98;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf9750;
+void *g_180bf9758;
+void *g_180bf9760;
+void *g_180bf9768;
+void *g_180a22c70;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf97b0;
+void *g_180bf97b8;
+void *g_180bf97c0;
+void *g_180bf97c8;
+void *g_180a22c58;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf9810;
+void *g_180bf9818;
+void *g_180bf9820;
+void *g_180bf9828;
+void *g_180a22d28;
+
+// Utility address marker
+// Utility address marker
+
+// Utility address marker
+// Utility address marker
+void *g_180bf9870;
+void *g_180bf9878;
+void *g_180bf9880;
+void *g_180bf9888;
+void *g_180a22d08;
+void *g_180bf98d0;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf98d8;
+void *g_180bf98e0;
+void *g_180bf98e8;
+void *g_180a22ce8;
+void *g_180bf9930;
+void *g_180bf9938;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf9940;
+void *g_180bf9948;
+void *g_180a22cc8;
+void *g_180bf9990;
+void *g_180bf9998;
+void *g_180bf99a0;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf99a8;
+void *g_180a22db0;
+void *g_180bf99f0;
+void *g_180bf99f8;
+void *g_180bf9a00;
+void *g_180bf9a08;
+
+// Utility address marker
+// Utility address marker
+void *g_180a22d88;
+void *g_180bf9a50;
+void *g_180bf9a58;
+void *g_180bf9a60;
+void *g_180bf9a68;
+
+// Utility address marker
+// Utility address marker
+void *g_180a22d68;
+void *g_180bf9ab0;
+void *g_180bf9ab8;
+void *g_180bf9ac0;
+void *g_180bf9ac8;
+
+// Utility address marker
+// Utility address marker
+void *g_180a22d48;
+void *g_180bf9b10;
+void *g_180bf9b18;
+void *g_180bf9b20;
+void *g_180bf9b28;
+void *g_180a22e40;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf9b70;
+void *g_180bf9b78;
+void *g_180bf9b80;
+void *g_180bf9b88;
+void *g_180a22e20;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf9bd0;
+void *g_180bf9bd8;
+void *g_180bf9be0;
+void *g_180bf9be8;
+void *g_180a22df8;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf9c30;
+void *g_180bf9c38;
+void *g_180bf9c40;
+void *g_180bf9c48;
+void *g_180a22dd0;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf9c90;
+void *g_180bf9c98;
+void *g_180bf9ca0;
+void *g_180bf9ca8;
+void *g_180a22eb0;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf9cf0;
+void *g_180bf9cf8;
+void *g_180bf9d00;
+void *g_180bf9d08;
+void *g_180a22e90;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf9d50;
+void *g_180bf9d58;
+void *g_180bf9d60;
+void *g_180bf9d68;
+void *g_180a22e70;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf9db0;
+void *g_180bf9db8;
+void *g_180bf9dc0;
+void *g_180bf9dc8;
+void *g_180a22e58;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf9e10;
+void *g_180bf9e18;
+void *g_180bf9e20;
+void *g_180bf9e28;
+void *g_180a22f28;
+
+// Utility address marker
+// Utility address marker
+
+// Utility address marker
+// Utility address marker
+void *g_180bf9e70;
+void *g_180bf9e78;
+void *g_180bf9e80;
+void *g_180bf9e88;
+void *g_180a22f10;
+void *g_180bf9ed0;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf9ed8;
+void *g_180bf9ee0;
+void *g_180bf9ee8;
+void *g_180a22ef8;
+void *g_180bf9f30;
+void *g_180bf9f38;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf9f40;
+void *g_180bf9f48;
+void *g_180a22ed8;
+void *g_180bf9f90;
+void *g_180bf9f98;
+void *g_180bf9fa0;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf9fa8;
+void *g_180a22f90;
+void *g_180bf9ff0;
+void *g_180bf9ff8;
+void *g_180bfa000;
+void *g_180bfa008;
+
+// Utility address marker
+// Utility address marker
+void *g_180a22f78;
+void *g_180bfa050;
+void *g_180bfa058;
+void *g_180bfa060;
+void *g_180bfa068;
+
+// Utility address marker
+// Utility address marker
+void *g_180a22f60;
+void *g_180bfa0b0;
+void *g_180bfa0b8;
+void *g_180bfa0c0;
+void *g_180bfa0c8;
+
+// Utility address marker
+// Utility address marker
+void *g_180a22f40;
+void *g_180bfa110;
+void *g_180bfa118;
+void *g_180bfa120;
+void *g_180bfa128;
+void *g_180a23018;
+
+// Utility address marker
+// Utility address marker
+void *g_180bfa170;
+void *g_180bfa178;
+void *g_180bfa180;
+void *g_180bfa188;
+void *g_180a23000;
+
+// Utility address marker
+// Utility address marker
+void *g_180bfa1d0;
+void *g_180bfa1d8;
+void *g_180bfa1e0;
+void *g_180bfa1e8;
+void *g_180a22fd0;
+
+// Utility address marker
+// Utility address marker
+void *g_180bfa230;
+void *g_180bfa238;
+void *g_180bfa240;
+void *g_180bfa248;
+void *g_180a22fa8;
+
+// Utility address marker
+// Utility address marker
+void *g_180bfa290;
+void *g_180bfa298;
+void *g_180bfa2a0;
+void *g_180bfa2a8;
+void *g_180a23068;
+
+// Utility address marker
+// Utility address marker
+
+// Utility address marker
+// Utility address marker
+
+// Utility address marker
+// Utility address marker
+
+// Utility address marker
+// Utility address marker
+
+// Utility address marker
+// Utility address marker
+void *g_180c91f6c;
+void *g_180a24340;
+void *g_180c91fcc;
+void *g_180a24828;
+void *g_180bfa350;
+void *g_180bfa358;
+void *g_180bfa360;
+void *g_180bfa368;
+void *g_180bfa3e8;
+void *g_180bfa3f0;
+void *g_180bfa3f8;
+void *g_180bfa400;
+void *g_180bfa480;
+void *g_180bfa488;
+void *g_180bfa490;
+void *g_180bfa498;
+void *g_180bfa518;
+void *g_180bfa520;
+void *g_180bfa528;
+void *g_180bfa530;
+void *g_180bfa5b0;
+void *g_180bfa5b8;
+void *g_180bfa5c0;
+void *g_180bfa5c8;
+void *g_180bfa648;
+void *g_180bfa650;
+void *g_180bfa658;
+void *g_180bfa660;
+void *g_180bfa6e0;
+void *g_180bfa6e8;
+void *g_180bfa6f0;
+void *g_180bfa6f8;
+void *g_180942600;
+void *g_180a0f168;
+void *g_180a0f178;
+void *g_180a0f188;
+void *g_180a0f190;
+void *g_180a0f5b8;
+void *g_180a24c50;
+void *g_180a24c60;
+void *g_180bfa780;
+void *g_180bfa788;
+void *g_180bfa790;
+void *g_180bfa798;
+void *g_180bfa818;
+void *g_180bfa820;
+void *g_180bfa828;
+void *g_180bfa830;
+void *g_180bfa8b0;
+void *g_180bfa8b8;
+void *g_180bfa8c0;
+void *g_180bfa8c8;
+void *g_180bfa948;
+void *g_180bfa950;
+void *g_180bfa958;
+void *g_180bfa960;
+void *g_180bfa9e0;
+void *g_180bfa9e8;
+void *g_180bfa9f0;
+void *g_180bfa9f8;
+void *g_180bfaa78;
+void *g_180bfaa80;
+void *g_180bfaa88;
+void *g_180bfaa90;
+void *g_180942620;
+void *g_180a24bd0;
+void *g_180a24bf0;
+void *g_180a24c10;
+void *g_180a24c30;
+void *g_180a24d58;
+void *g_180a24d80;
+void *g_180bfab10;
+void *g_180bfab18;
+void *g_180bfab20;
+void *g_180bfab28;
+void *g_180bfaba8;
+void *g_180bfabb0;
+void *g_180bfabb8;
+void *g_180bfabc0;
+void *g_180bfac40;
+void *g_180bfac48;
+void *g_180bfac50;
+void *g_180bfac58;
+void *g_180bfacd8;
+void *g_180bface0;
+void *g_180bface8;
+void *g_180bfacf0;
+void *g_180bfad70;
+void *g_180bfad78;
+void *g_180bfad80;
+void *g_180bfad88;
+void *g_180bfae08;
+void *g_180bfae10;
+void *g_180bfae18;
+void *g_180bfae20;
+void *g_180942640;
+void *g_180a24da8;
+void *g_180a24dc0;
+
+// Utility address marker
+// Utility address marker
+void *g_180bfc150;
+int g_180bfc140;
+void *g_180bfc160;
+void *g_180bfc168;
+long long g_180bfc158;
+void *g_180bfaec0;
+void *g_180bfaec8;
+void *g_180bfaed0;
+void *g_180bfaed8;
+
+// Utility address marker
+// Utility address marker
+void *g_180bfaee0;
+void *g_180bfaee8;
+void *g_180c92050;
+void *g_180c92058;
+void *g_180c92060;
+void *g_180c92068;
+
+// Utility address marker
+// Utility address marker
+void *g_180bfaef0;
+void *g_180bfaef8;
+void *g_180bfaf00;
+void *g_180bfaf08;
+
+// Utility address marker
+// Utility address marker
+void *g_180a27a58;
+void *g_180bfb310;
+void *g_180bfb318;
+void *g_180bfb320;
+void *g_180bfb328;
+void *g_180a27a6c;
+
+// Utility address marker
+// Utility address marker
+void *g_180bfb730;
+void *g_180bfb738;
+void *g_180bfb740;
+void *g_180bfb748;
+void *g_180a27a70;
+
+// Utility address marker
+// Utility address marker
+void *g_180c9246c;
+void *g_180a2ac10;
+
+// Utility address marker
+// Utility address marker
+void *g_180c92490;
+
+// Utility address marker
+// Utility address marker
+void *g_180c92480;
+
+// Utility address marker
+// Utility address marker
+
+// Utility address marker
+// Utility address marker
+
+// Utility address marker
+// Utility address marker
+void *g_180c924ac;
+void *g_180a2bf10;
+void *g_180c924b0;
+void *g_180a2c1d0;
+void *g_180c924b4;
+void *g_180a2c338;
+void *g_180c924b8;
+void *g_180a2c510;
+void *g_180bf6048;
+void *g_180bf6050;
+void *g_180bf6058;
+void *g_180bf6060;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf6498;
+void *g_180bf64a0;
+void *g_180bf64a8;
+void *g_180bf64b0;
+
+// Utility address marker
+// Utility address marker
+void *g_180a2d660;
+void *g_180a2ca90;
+void *g_180a2d590;
+void *g_180a2cab0;
+void *g_180c96310;
+void *g_180c96320;
+void *g_180c96328;
+
+// Utility address marker
+// Utility address marker
+void *g_180bf6558;
+void *g_180bf6560;
+void *g_180bf6568;
+void *g_180bf6570;
+
+// Utility address marker
+// Utility address marker
+void *g_180c95ecc;
+void *g_180a33fb0;
+
+// Utility address marker
+// Utility address marker
+void *g_180c9606c;
+void *g_180a3c028;
+void *g_180c96218;
+void *g_180943130;
+
+// Utility address marker
+// Utility address marker
+
+// Utility address marker
+// Utility address marker
+void *g_180c96790;
+void *g_180c96798;
+
+// Utility address marker
+// Utility address marker
+void *g_180c967a0;
+void *g_180c967a8;
+void *g_180c967b0;
+void *g_180c967b8;
+void *g_180c967d0;
+void *g_180a3def0;
+void *g_18098bcb0;
+
+// Utility address marker
+// Utility address marker
+void *_tls_index;
 void *ThreadLocalStoragePointer;
-undefined g_180c967d4;
-undefined g_180a3e3d8;
-undefined g_180c967d8;
-undefined g_180a3e3f0;
-undefined g_180c967e0;
-undefined g_180c967e8;
-undefined g_180c967f0;
-undefined g_180c967f8;
+void *g_180c967d4;
+void *g_180a3e3d8;
+void *g_180c967d8;
+void *g_180a3e3f0;
+void *g_180c967e0;
+void *g_180c967e8;
+void *g_180c967f0;
+void *g_180c967f8;
 
 // Utility address marker
 // Utility address marker
-undefined g_180c96800;
-undefined g_180c96808;
-undefined g_180c0c6c0;
-undefined g_180be14a0;
-undefined g_180be1324;
-undefined g_180943250;
-undefined g_180943260;
-undefined g_180c0c6d0;
-undefined g_180c0c6d8;
-undefined g_180c0d100;
-undefined g_180c0e170;
-undefined g_180c108d0;
-undefined g_180c2bca0;
-undefined g_180c31148;
-undefined g_180943270;
-undefined g_18097e888;
-undefined g_180c4ea58;
-undefined g_180c4ea60;
-undefined g_180943310;
-undefined g_180943320;
-undefined1 g_180c82841;
-undefined1 g_180c82840;
-undefined g_180c82864;
-undefined g_180c91048;
-undefined g_180c8ed18;
-undefined g_180c86948;
-undefined g_180c86870;
-undefined g_180c82868;
-undefined g_18098bd40;
-undefined g_18098bdc8;
-undefined g_1809fe100;
-undefined g_180a21690;
-undefined g_180a21720;
-undefined g_180bf00a8;
-undefined g_180c86928;
-undefined g_18098bab0;
-undefined g_18098bac8;
-undefined g_1809fd0a0;
-undefined g_180a3c110;
-undefined g_180a3c138;
-undefined g_1809ff040;
-undefined g_180a3c090;
-undefined g_180c8ed10;
-undefined g_180a3c410;
-undefined g_180a3c428;
-undefined g_180c8ed08;
-undefined g_180c8ed68;
-undefined g_180c8ed00;
-undefined g_180c8ed50;
+void *g_180c96800;
+void *g_180c96808;
+void *g_180c0c6c0;
+void *g_180be14a0;
+void *g_180be1324;
+void *g_180943250;
+void *g_180943260;
+void *g_180c0c6d0;
+void *g_180c0c6d8;
+void *g_180c0d100;
+void *g_180c0e170;
+void *g_180c108d0;
+void *g_180c2bca0;
+void *g_180c31148;
+void *g_180943270;
+void *g_18097e888;
+void *g_180c4ea58;
+void *g_180c4ea60;
+void *g_180943310;
+void *g_180943320;
+int g_180c82841;
+int g_180c82840;
+void *g_180c82864;
+void *g_180c91048;
+void *g_180c8ed18;
+void *g_180c86948;
+void *g_180c86870;
+void *g_180c82868;
+void *g_18098bd40;
+void *g_18098bdc8;
+void *g_1809fe100;
+void *g_180a21690;
+void *g_180a21720;
+void *g_180bf00a8;
+void *g_180c86928;
+void *g_18098bab0;
+void *g_18098bac8;
+void *g_1809fd0a0;
+void *g_180a3c110;
+void *g_180a3c138;
+void *g_1809ff040;
+void *g_180a3c090;
+void *g_180c8ed10;
+void *g_180a3c410;
+void *g_180a3c428;
+void *g_180c8ed08;
+void *g_180c8ed68;
+void *g_180c8ed00;
+void *g_180c8ed50;
 char g_180bf0102;
-undefined g_180c8ed58;
-undefined g_180c8ed48;
-undefined g_180c8ed40;
-undefined g_180c86940;
-undefined g_18098bae0;
-undefined g_18098bb60;
-undefined g_18098bb88;
-undefined g_1809fee70;
-undefined g_1809ff2f8;
-undefined g_1809ff3f8;
-undefined g_180c82854;
-undefined g_18098bc48;
+void *g_180c8ed58;
+void *g_180c8ed48;
+void *g_180c8ed40;
+void *g_180c86940;
+void *g_18098bae0;
+void *g_18098bb60;
+void *g_18098bb88;
+void *g_1809fee70;
+void *g_1809ff2f8;
+void *g_1809ff3f8;
+void *g_180c82854;
+void *g_18098bc48;
 char g_180c82860;
-undefined g_18098bc00;
-undefined g_180c86920;
+void *g_18098bc00;
+void *g_180c86920;
 void *ExceptionList;
-undefined g_180046dd0;
-undefined g_1809fcb00;
-undefined g_180c86960;
-undefined g_180bf52b8;
-undefined g_180bf52bc;
-undefined g_180bf5248;
-undefined g_180c8ed60;
-undefined g_180047d20;
-undefined g_1800adc10;
-undefined g_1809fc790;
-undefined g_1809fc7a0;
-undefined g_1809fc7b8;
-undefined g_1809fc7ec;
-undefined utility_global_flag_a;
+void *g_180046dd0;
+void *g_1809fcb00;
+void *g_180c86960;
+void *g_180bf52b8;
+void *g_180bf52bc;
+void *g_180bf5248;
+void *g_180c8ed60;
+void *g_180047d20;
+void *g_1800adc10;
+void *g_1809fc790;
+void *g_1809fc7a0;
+void *g_1809fc7b8;
+void *g_1809fc7ec;
+void *utility_global_flag_a;
 
 // Utility address marker
 // Utility address marker
-undefined g_180d49160;
-undefined g_180d49168;
-undefined g_180d49170;
-undefined g_180d49178;
-undefined g_1809ffb30;
-undefined g_180a001d0;
-undefined g_180083380;
-undefined g_180a00030;
-undefined g_180a00100;
-undefined g_180a00168;
+void *g_180d49160;
+void *g_180d49168;
+void *g_180d49170;
+void *g_180d49178;
+void *g_1809ffb30;
+void *g_180a001d0;
+void *g_180083380;
+void *g_180a00030;
+void *g_180a00100;
+void *g_180a00168;
 
 // Utility address marker
 // Utility address marker
-undefined g_180a009a8;
-undefined g_180a00a18;
-undefined g_180a00ae8;
+void *g_180a009a8;
+void *g_180a00a18;
+void *g_180a00ae8;
 
 // Utility address marker
 // Utility address marker
-undefined g_180a015f0;
-undefined g_180a015fc;
-undefined g_180a01604;
-undefined g_180a01610;
-undefined g_180a01440;
-undefined g_180d48d38;
-undefined g_180a01668;
-undefined g_18098b928;
-undefined g_180a01638;
-undefined g_180a01650;
-undefined g_180d48d30;
+void *g_180a015f0;
+void *g_180a015fc;
+void *g_180a01604;
+void *g_180a01610;
+void *g_180a01440;
+void *g_180d48d38;
+void *g_180a01668;
+void *g_18098b928;
+void *g_180a01638;
+void *g_180a01650;
+void *g_180d48d30;
 undefined *PTR_?id@?$codecvt@DDU_Mbstatet@@@std@@2V0locale@2@A_180944718;
-undefined g_180bd8990;
-undefined g_180a01630;
-undefined g_18009ee10;
-undefined g_18009edf0;
-undefined g_1800a1660;
-undefined g_180a01620;
-undefined g_180a016e0;
-undefined g_180a02740;
-undefined g_180a01748;
-undefined g_180a02710;
-undefined g_180a02718;
-undefined g_180a02728;
-undefined g_180a028c8;
+void *g_180bd8990;
+void *g_180a01630;
+void *g_18009ee10;
+void *g_18009edf0;
+void *g_1800a1660;
+void *g_180a01620;
+void *g_180a016e0;
+void *g_180a02740;
+void *g_180a01748;
+void *g_180a02710;
+void *g_180a02718;
+void *g_180a02728;
+void *g_180a028c8;
 
 // Utility address marker
 // Utility address marker
-undefined g_180d49238;
-undefined g_180d49250;
-undefined g_180d49248;
-undefined g_180d49240;
-undefined g_180d49258;
-undefined g_180d4925c;
-undefined g_180a02c10;
+void *g_180d49238;
+void *g_180d49250;
+void *g_180d49248;
+void *g_180d49240;
+void *g_180d49258;
+void *g_180d4925c;
+void *g_180a02c10;
 
 // Utility address marker
 // Utility address marker
-undefined g_180a07328;
-undefined g_180a07370;
-undefined g_180a18a00;
-undefined g_180a18a20;
-undefined g_180a18a40;
-undefined g_180a18a58;
-undefined g_180a18a78;
-undefined g_1801527b4;
-undefined g_180a07340;
-undefined g_180a07378;
+void *g_180a07328;
+void *g_180a07370;
+void *g_180a18a00;
+void *g_180a18a20;
+void *g_180a18a40;
+void *g_180a18a58;
+void *g_180a18a78;
+void *g_1801527b4;
+void *g_180a07340;
+void *g_180a07378;
 longlong g_180c961a8;
 uint g_180d48d44;
 double g_180d48d48;
 double g_180d48d50;
 int g_180d49260;
 double g_180d49268;
-undefined g_180a073d8;
-undefined g_180a073b8;
-undefined g_180155fc0;
-undefined g_180155fe0;
-undefined g_180156000;
-undefined g_180156020;
-undefined g_180156040;
-undefined g_180156060;
-undefined g_180156080;
-undefined g_1801560a0;
-undefined g_1801560c0;
-undefined g_1801560e0;
-undefined g_180156100;
-undefined g_180156120;
-undefined g_180156140;
-undefined g_180156160;
-undefined g_180156180;
-undefined g_1801561a0;
-undefined g_1801561c0;
-undefined g_1801561e0;
-undefined g_180156200;
-undefined g_180156220;
-undefined g_180156240;
-undefined g_180156260;
-undefined g_180156280;
-undefined g_1801562a0;
-undefined g_1801562c0;
-undefined g_1801562e0;
-undefined g_180a073f0;
-undefined g_180a07400;
-undefined g_180a07420;
-undefined g_180a07438;
-undefined g_180a07450;
-undefined g_180a07470;
-undefined g_180a07490;
-undefined g_180a074b8;
-undefined g_180a074d8;
-undefined g_180a074f8;
-undefined g_180a07518;
-undefined g_180a07530;
-undefined g_180a07548;
-undefined g_180a07568;
-undefined g_180a07580;
-undefined g_180a075a0;
-undefined g_180a075b0;
-undefined g_180a075d0;
-undefined g_180a075f0;
-undefined g_180a07610;
-undefined g_180a07628;
-undefined g_180a07640;
-undefined g_180a07650;
-undefined g_180a07668;
-undefined g_180a07688;
-undefined g_180a076a0;
-undefined g_180a076c0;
-undefined g_180a076d8;
-undefined g_180a076f8;
-undefined g_180a07720;
-undefined g_180a07748;
-undefined g_180a07760;
-undefined g_180a07cd0;
-undefined g_180a1afb8;
-undefined g_180a079c0;
-undefined g_180a07b48;
-undefined g_180a3c313;
-undefined g_18098d6d0;
-undefined g_180a078fc;
-undefined g_180a07804;
-undefined g_18098d6b0;
-undefined g_18015c090;
+void *g_180a073d8;
+void *g_180a073b8;
+void *g_180155fc0;
+void *g_180155fe0;
+void *g_180156000;
+void *g_180156020;
+void *g_180156040;
+void *g_180156060;
+void *g_180156080;
+void *g_1801560a0;
+void *g_1801560c0;
+void *g_1801560e0;
+void *g_180156100;
+void *g_180156120;
+void *g_180156140;
+void *g_180156160;
+void *g_180156180;
+void *g_1801561a0;
+void *g_1801561c0;
+void *g_1801561e0;
+void *g_180156200;
+void *g_180156220;
+void *g_180156240;
+void *g_180156260;
+void *g_180156280;
+void *g_1801562a0;
+void *g_1801562c0;
+void *g_1801562e0;
+void *g_180a073f0;
+void *g_180a07400;
+void *g_180a07420;
+void *g_180a07438;
+void *g_180a07450;
+void *g_180a07470;
+void *g_180a07490;
+void *g_180a074b8;
+void *g_180a074d8;
+void *g_180a074f8;
+void *g_180a07518;
+void *g_180a07530;
+void *g_180a07548;
+void *g_180a07568;
+void *g_180a07580;
+void *g_180a075a0;
+void *g_180a075b0;
+void *g_180a075d0;
+void *g_180a075f0;
+void *g_180a07610;
+void *g_180a07628;
+void *g_180a07640;
+void *g_180a07650;
+void *g_180a07668;
+void *g_180a07688;
+void *g_180a076a0;
+void *g_180a076c0;
+void *g_180a076d8;
+void *g_180a076f8;
+void *g_180a07720;
+void *g_180a07748;
+void *g_180a07760;
+void *g_180a07cd0;
+void *g_180a1afb8;
+void *g_180a079c0;
+void *g_180a07b48;
+void *g_180a3c313;
+void *g_18098d6d0;
+void *g_180a078fc;
+void *g_180a07804;
+void *g_18098d6b0;
+void *g_18015c090;
 
 // Utility address marker
 // Utility address marker
-undefined g_180d49648;
-undefined g_180d49640;
-undefined g_180d49650;
-undefined g_180a0b650;
-undefined g_180d49638;
-undefined g_180a0c258;
-undefined g_1801bc7a0;
-undefined g_1801bc7e0;
-undefined g_180a0b640;
-undefined g_180a0b660;
-undefined g_180a0b670;
-undefined g_1801bc6b0;
-undefined g_180a0b680;
-undefined g_180a0b690;
+void *g_180d49648;
+void *g_180d49640;
+void *g_180d49650;
+void *g_180a0b650;
+void *g_180d49638;
+void *g_180a0c258;
+void *g_1801bc7a0;
+void *g_1801bc7e0;
+void *g_180a0b640;
+void *g_180a0b660;
+void *g_180a0b670;
+void *g_1801bc6b0;
+void *g_180a0b680;
+void *g_180a0b690;
 
 // Utility address marker
 // Utility address marker
-undefined g_180bd8a60;
-undefined g_180a185f0;
-undefined g_180a18618;
-undefined g_180a18630;
-undefined g_180a18860;
-undefined g_180a18888;
-undefined g_180a06b58;
-undefined g_180a18870;
-undefined g_180a18898;
-undefined g_180a06b98;
-undefined g_180a18880;
-undefined g_180a188a8;
-undefined g_180a188c0;
-undefined g_180a188d8;
-undefined g_180a188e0;
-undefined g_180a188f8;
-undefined g_180a18908;
-undefined g_180a18918;
-undefined g_180a1892c;
-undefined g_180a18938;
-undefined g_180a18980;
-undefined g_180a18998;
-undefined g_180a18968;
-undefined g_180a189b8;
-undefined g_180c96830;
-undefined g_180a189f8;
-undefined g_180a18a98;
-undefined g_180a18aa8;
-undefined g_180a18ab8;
-undefined g_180a18ad0;
-undefined g_180a18ae8;
-undefined g_180a18af8;
-undefined g_180a18b10;
-undefined g_180a18b40;
-undefined g_180a18b50;
-undefined g_180a18b68;
-undefined g_180a18b6c;
-undefined g_180a18b88;
-undefined g_180a18ba0;
-undefined g_180a18bb0;
-undefined g_180a18bc4;
-undefined g_180a18bc8;
-undefined g_180a18c08;
-undefined g_180a18c20;
-undefined g_180a18c78;
-undefined g_180a18ca0;
-undefined g_180a18cd8;
-undefined g_180a18d20;
-undefined g_180a18d48;
-undefined g_180a18d00;
-undefined g_180a18d10;
-undefined g_180a18d68;
-undefined g_180a18e08;
-undefined g_180a18de8;
-undefined g_180a18df8;
-undefined g_180a18e20;
+void *g_180bd8a60;
+void *g_180a185f0;
+void *g_180a18618;
+void *g_180a18630;
+void *g_180a18860;
+void *g_180a18888;
+void *g_180a06b58;
+void *g_180a18870;
+void *g_180a18898;
+void *g_180a06b98;
+void *g_180a18880;
+void *g_180a188a8;
+void *g_180a188c0;
+void *g_180a188d8;
+void *g_180a188e0;
+void *g_180a188f8;
+void *g_180a18908;
+void *g_180a18918;
+void *g_180a1892c;
+void *g_180a18938;
+void *g_180a18980;
+void *g_180a18998;
+void *g_180a18968;
+void *g_180a189b8;
+void *g_180c96830;
+void *g_180a189f8;
+void *g_180a18a98;
+void *g_180a18aa8;
+void *g_180a18ab8;
+void *g_180a18ad0;
+void *g_180a18ae8;
+void *g_180a18af8;
+void *g_180a18b10;
+void *g_180a18b40;
+void *g_180a18b50;
+void *g_180a18b68;
+void *g_180a18b6c;
+void *g_180a18b88;
+void *g_180a18ba0;
+void *g_180a18bb0;
+void *g_180a18bc4;
+void *g_180a18bc8;
+void *g_180a18c08;
+void *g_180a18c20;
+void *g_180a18c78;
+void *g_180a18ca0;
+void *g_180a18cd8;
+void *g_180a18d20;
+void *g_180a18d48;
+void *g_180a18d00;
+void *g_180a18d10;
+void *g_180a18d68;
+void *g_180a18e08;
+void *g_180a18de8;
+void *g_180a18df8;
+void *g_180a18e20;
 
 // Utility address marker
 // Utility address marker
-undefined g_180a19fd8;
-undefined g_180a19eb0;
-undefined g_180302310;
-undefined g_180a19e28;
-undefined g_180a19e38;
-undefined g_1803048b0;
-undefined g_180a19e88;
+void *g_180a19fd8;
+void *g_180a19eb0;
+void *g_180302310;
+void *g_180a19e28;
+void *g_180a19e38;
+void *g_1803048b0;
+void *g_180a19e88;
 
 // Utility address marker
 // Utility address marker
-undefined g_180d497d0;
+void *g_180d497d0;
 
 // Utility address marker
 // Utility address marker
-undefined g_180d49990;
-undefined g_180d48de0;
-undefined g_180d48de8;
-undefined g_180d48df0;
-undefined g_180d48df8;
-undefined g_180d48e00;
-undefined g_180d48e08;
-undefined g_180c918d8;
-undefined g_180d48e10;
-undefined g_180d48e18;
-undefined g_180c918c0;
-undefined g_180a1b150;
-undefined g_180a1b118;
-undefined g_18033cd70;
+void *g_180d49990;
+void *g_180d48de0;
+void *g_180d48de8;
+void *g_180d48df0;
+void *g_180d48df8;
+void *g_180d48e00;
+void *g_180d48e08;
+void *g_180c918d8;
+void *g_180d48e10;
+void *g_180d48e18;
+void *g_180c918c0;
+void *g_180a1b150;
+void *g_180a1b118;
+void *g_18033cd70;
 
 // Utility address marker
 // Utility address marker
-undefined g_180a02fc8;
-undefined g_180a02fa0;
-undefined g_180d49d08;
-undefined g_180d49bf0;
-undefined g_180d49bf8;
-undefined g_180d49c00;
-undefined g_180d49c08;
-undefined g_18045f200;
-undefined g_18045f210;
+void *g_180a02fc8;
+void *g_180a02fa0;
+void *g_180d49d08;
+void *g_180d49bf0;
+void *g_180d49bf8;
+void *g_180d49c00;
+void *g_180d49c08;
+void *g_18045f200;
+void *g_18045f210;
 
 // Utility address marker
 // Utility address marker
-undefined g_180c91038;
-undefined g_180a3e440;
-undefined g_180a2a8a0;
-undefined g_18045f1a0;
-undefined g_18045f1c0;
-undefined g_18045f140;
-undefined g_18045f160;
-undefined g_180a2c548;
-undefined g_180a2a8c0;
-undefined g_180a2a8e0;
-undefined g_180a2a900;
-undefined g_180a2a920;
-undefined g_180a2a948;
-undefined g_180a2a968;
-undefined g_180462fc0;
-undefined g_180462ff0;
-undefined g_180463030;
-undefined g_180463060;
-undefined g_180a2aa08;
-undefined g_180a2a9a0;
-undefined g_180a2aa68;
-undefined g_180a2abb0;
-undefined g_18098be5c;
-undefined g_180a2aac8;
-undefined g_180a2aad0;
-undefined g_180a2aa78;
-undefined g_180a2aa90;
-undefined g_180a2aaa8;
-undefined g_180a2aab8;
-undefined g_180a2aae0;
-undefined g_180a2aaf0;
-undefined g_180a2ab48;
-undefined g_180a2ab58;
-undefined g_180d49d0c;
-undefined g_180d49d10;
-undefined g_180d49d18;
-undefined g_180d49d20;
-undefined g_180d49d28;
-undefined g_180d49d30;
-undefined g_180d49d38;
-undefined g_180d49d40;
-undefined g_180d49d48;
-undefined g_180942870;
+void *g_180c91038;
+void *g_180a3e440;
+void *g_180a2a8a0;
+void *g_18045f1a0;
+void *g_18045f1c0;
+void *g_18045f140;
+void *g_18045f160;
+void *g_180a2c548;
+void *g_180a2a8c0;
+void *g_180a2a8e0;
+void *g_180a2a900;
+void *g_180a2a920;
+void *g_180a2a948;
+void *g_180a2a968;
+void *g_180462fc0;
+void *g_180462ff0;
+void *g_180463030;
+void *g_180463060;
+void *g_180a2aa08;
+void *g_180a2a9a0;
+void *g_180a2aa68;
+void *g_180a2abb0;
+void *g_18098be5c;
+void *g_180a2aac8;
+void *g_180a2aad0;
+void *g_180a2aa78;
+void *g_180a2aa90;
+void *g_180a2aaa8;
+void *g_180a2aab8;
+void *g_180a2aae0;
+void *g_180a2aaf0;
+void *g_180a2ab48;
+void *g_180a2ab58;
+void *g_180d49d0c;
+void *g_180d49d10;
+void *g_180d49d18;
+void *g_180d49d20;
+void *g_180d49d28;
+void *g_180d49d30;
+void *g_180d49d38;
+void *g_180d49d40;
+void *g_180d49d48;
+void *g_180942870;
 undefined4 g_180d49d2c;
 undefined4 g_180d49d4c;
-undefined g_180a2ae38;
-undefined g_180c8ecd4;
-undefined g_1809f7770;
-undefined g_18046df70;
-undefined g_180bfbb50;
-undefined g_180bfbb60;
-undefined g_180bfbb70;
-undefined g_180bfbb80;
+void *g_180a2ae38;
+void *g_180c8ecd4;
+void *g_1809f7770;
+void *g_18046df70;
+void *g_180bfbb50;
+void *g_180bfbb60;
+void *g_180bfbb70;
+void *g_180bfbb80;
 
 // Utility address marker
 // Utility address marker
 
 // Utility address marker
 // Utility address marker
-undefined g_180a2de40;
-undefined1 g_180d49e30;
-undefined g_180a2dfd0;
-undefined g_180a2e018;
-undefined g_180a2e040;
-undefined g_180a2e070;
-undefined g_180a2e088;
+void *g_180a2de40;
+int g_180d49e30;
+void *g_180a2dfd0;
+void *g_180a2e018;
+void *g_180a2e040;
+void *g_180a2e070;
+void *g_180a2e088;
 
 // Utility address marker
 // Utility address marker
-undefined g_180a30ce8;
-undefined g_180a30d28;
-undefined g_180c96128;
-undefined g_180a30d40;
-undefined g_180c9612c;
-undefined g_180c96410;
-undefined g_180a30c98;
-undefined g_180a30cb0;
-undefined g_180d49ec0;
-undefined g_180d49ec4;
-undefined g_180c9642c;
-undefined g_180c96430;
+void *g_180a30ce8;
+void *g_180a30d28;
+void *g_180c96128;
+void *g_180a30d40;
+void *g_180c9612c;
+void *g_180c96410;
+void *g_180a30c98;
+void *g_180a30cb0;
+void *g_180d49ec0;
+void *g_180d49ec4;
+void *g_180c9642c;
+void *g_180c96430;
 
 // Utility address marker
 // Utility address marker
-undefined g_180c963e8;
-undefined g_180d49f60;
-undefined g_180d49f64;
-undefined g_180a30dc0;
-undefined g_180a30e10;
-undefined g_180a30e38;
-undefined g_180a30e60;
-undefined g_180a2fca0;
-undefined g_180a2fcd8;
-undefined g_1809f89f8;
-undefined g_1809f8a08;
-undefined g_1809f8a18;
-undefined g_1809f8a28;
-undefined g_1809f8a38;
-undefined g_1809f8a48;
-undefined g_1809f8a58;
-undefined g_1809f8a68;
-undefined g_1809f8a78;
-undefined g_1809f8a88;
-undefined g_1809f8a98;
-undefined g_1809f8aa8;
-undefined g_180c963d4;
-undefined g_180c963dc;
-undefined g_180c963d8;
-undefined g_180c9644c;
-undefined g_180c96450;
-undefined g_180a30ee8;
-undefined g_180a30ef8;
-undefined g_180a30ec8;
-undefined g_180a30ed8;
-undefined g_180a30f00;
-undefined g_180d49128;
-undefined g_180943060;
-undefined g_1809fa490;
-undefined g_180a30280;
-undefined g_180a302c0;
-undefined g_180a301c8;
-undefined g_180a301f8;
-undefined g_180a30230;
-undefined g_180a30378;
-undefined g_180a303f8;
-undefined g_180a303c8;
-undefined g_180a30330;
-undefined g_180a30368;
-undefined g_1809fa470;
-undefined g_1809fa480;
-undefined g_180bfbcc0;
-undefined g_1809fa360;
-undefined g_1809fa370;
-undefined g_180a30568;
-undefined g_180a305a0;
-undefined g_1809fa350;
-undefined g_180a305f8;
-undefined g_180a30638;
-undefined g_180a30660;
-undefined g_180a306a8;
-undefined g_1809fa550;
-undefined g_180a31018;
-undefined g_180a31040;
-undefined g_180a31058;
-undefined g_180a31078;
-undefined g_180a310a0;
-undefined g_180a310d0;
-undefined g_180a31110;
-undefined g_180a31138;
-undefined g_180a31158;
-undefined g_180a31178;
-undefined g_180a31198;
-undefined g_180a311d8;
-undefined g_180a311f8;
-undefined g_180a31228;
-undefined g_180a31250;
-undefined g_180a31288;
-undefined g_180a312b0;
-undefined g_180a312d8;
-undefined g_180a312f8;
-undefined g_180a31320;
-undefined g_180a31348;
-undefined g_180a31380;
-undefined g_180a313a8;
-undefined g_180a313d0;
-undefined g_180a313f8;
-undefined g_180a31420;
-undefined g_180a31448;
-undefined g_180a31478;
-undefined g_180a31498;
-undefined g_180a314c8;
-undefined g_180a31500;
-undefined g_180a31530;
-undefined g_180a31560;
-undefined g_180a31598;
-undefined g_180a315c0;
-undefined g_180a315f8;
-undefined g_180a31620;
-undefined g_180a31638;
-undefined g_180a31660;
-undefined g_180a31688;
-undefined g_180a316b0;
-undefined g_180a316c8;
-undefined g_180a316f8;
-undefined g_180a31720;
-undefined g_180a31740;
-undefined g_180a31770;
-undefined g_180a31790;
-undefined g_180a317b8;
-undefined g_180a317e0;
-undefined g_180a317f8;
-undefined g_180a31820;
-undefined g_180a31850;
-undefined g_180a31878;
-undefined g_180a318a8;
-undefined g_180a318d0;
-undefined g_180a31918;
-undefined g_180a31948;
-undefined g_180a31978;
-undefined g_180a319a0;
-undefined g_180a319b8;
-undefined g_180a319e8;
-undefined g_180a31a00;
-undefined g_180a31a30;
-undefined g_180a31a60;
-undefined g_180a31a80;
-undefined g_180a31ab8;
-undefined g_180a31af0;
-undefined g_180a31b10;
-undefined g_180a31b48;
-undefined g_180a31b80;
-undefined g_180a31bb0;
-undefined g_180a31bd8;
-undefined g_180a31c08;
-undefined g_180a31c40;
-undefined g_180a31c70;
-undefined g_180a31ca0;
-undefined g_180a31cd0;
-undefined g_180a31cf8;
-undefined g_180a31d18;
-undefined g_180a31d40;
-undefined g_180a31d58;
-undefined g_180a31d80;
-undefined g_180a31da8;
-undefined g_180a31dc8;
-undefined g_180a31de8;
-undefined g_180a31e08;
-undefined g_180a31e28;
-undefined g_180a31e48;
-undefined g_180a31e68;
-undefined g_180a31e88;
-undefined g_180a31eb0;
-undefined g_180a31ed0;
-undefined g_180a31ef0;
-undefined g_180a31f38;
-undefined g_180a31f58;
-undefined g_180a31f80;
-undefined g_180a31fc8;
-undefined g_180a31ff0;
-undefined g_180a32010;
-undefined g_180a32040;
-undefined g_180a32070;
-undefined g_180a320b0;
-undefined g_180a320d8;
-undefined g_180a32120;
-undefined g_180a32168;
-undefined g_180a32180;
-undefined g_180a32198;
-undefined g_180a321c8;
-undefined g_180a321f8;
-undefined g_180a32240;
-undefined g_180a32288;
-undefined g_180a322d0;
-undefined g_180a32318;
-undefined g_180a32350;
-undefined g_180a32398;
-undefined g_180a323e0;
-undefined g_180a32428;
-undefined g_180a32470;
-undefined g_180a324b8;
-undefined g_180a324f0;
-undefined g_180a32538;
-undefined g_180a32580;
-undefined g_180a325c8;
-undefined g_180a32610;
-undefined g_180a32658;
-undefined g_180a326a0;
-undefined g_180a326e8;
-undefined g_180a32730;
-undefined g_180a32778;
-undefined g_180a327b0;
-undefined g_180a327f8;
-undefined g_180a32830;
-undefined g_180a32870;
-undefined g_180a328a0;
-undefined g_180a328e8;
-undefined g_180a32920;
-undefined g_180a32960;
-undefined g_180a329a0;
-undefined g_180a329e8;
-undefined g_180a32a30;
-undefined g_180a32a78;
-undefined g_180a32ab0;
-undefined g_180a32af0;
-undefined g_180a32b30;
-undefined g_180a32b70;
-undefined g_180a32ba8;
-undefined g_180a32be8;
-undefined g_180a32c20;
-undefined g_180a32c60;
-undefined g_180a32c98;
-undefined g_180a32cd8;
-undefined g_180a32d10;
-undefined g_180a32d58;
-undefined g_180a32d90;
-undefined g_180a32dd0;
-undefined g_180a32e08;
-undefined g_180a32e48;
-undefined g_180a32e70;
-undefined g_180a32eb8;
-undefined g_180a32ee0;
-undefined g_180a32f10;
-undefined g_180a32f50;
-undefined g_180a32f90;
-undefined g_180a32fd0;
-undefined g_180a33020;
-undefined g_180a33060;
-undefined g_180a330b0;
-undefined g_180a330f0;
-undefined g_180a33140;
-undefined g_180a33188;
-undefined g_180a331c0;
-undefined g_180a33200;
-undefined g_180a33250;
-undefined g_180a33280;
-undefined g_180a332c8;
-undefined g_180a332f8;
-undefined g_180a33330;
-undefined g_180a33370;
-undefined g_180a333c0;
-undefined g_180a33400;
-undefined g_180a33450;
-undefined g_180a334a0;
-undefined g_180a334f0;
-undefined g_180a33540;
-undefined g_180a33590;
-undefined g_180a335d8;
-undefined g_180a33610;
-undefined g_180a33660;
-undefined g_180a336b0;
-undefined g_180a336f0;
-undefined g_180a33740;
-undefined g_180a33780;
-undefined g_180a337d0;
-undefined g_180a33820;
-undefined g_180a33870;
-undefined g_180a338e0;
-undefined g_180a33930;
-undefined g_180a2c968;
-undefined g_180a33988;
-undefined g_180a339b0;
-undefined g_180a339c0;
-undefined g_180a339e0;
-undefined g_180a339e8;
-undefined g_180a33a60;
-undefined g_180a33c10;
-undefined g_180a33c90;
-undefined g_18053f010;
-undefined g_18053f040;
-undefined g_18053f080;
-undefined g_18053f090;
+void *g_180c963e8;
+void *g_180d49f60;
+void *g_180d49f64;
+void *g_180a30dc0;
+void *g_180a30e10;
+void *g_180a30e38;
+void *g_180a30e60;
+void *g_180a2fca0;
+void *g_180a2fcd8;
+void *g_1809f89f8;
+void *g_1809f8a08;
+void *g_1809f8a18;
+void *g_1809f8a28;
+void *g_1809f8a38;
+void *g_1809f8a48;
+void *g_1809f8a58;
+void *g_1809f8a68;
+void *g_1809f8a78;
+void *g_1809f8a88;
+void *g_1809f8a98;
+void *g_1809f8aa8;
+void *g_180c963d4;
+void *g_180c963dc;
+void *g_180c963d8;
+void *g_180c9644c;
+void *g_180c96450;
+void *g_180a30ee8;
+void *g_180a30ef8;
+void *g_180a30ec8;
+void *g_180a30ed8;
+void *g_180a30f00;
+void *g_180d49128;
+void *g_180943060;
+void *g_1809fa490;
+void *g_180a30280;
+void *g_180a302c0;
+void *g_180a301c8;
+void *g_180a301f8;
+void *g_180a30230;
+void *g_180a30378;
+void *g_180a303f8;
+void *g_180a303c8;
+void *g_180a30330;
+void *g_180a30368;
+void *g_1809fa470;
+void *g_1809fa480;
+void *g_180bfbcc0;
+void *g_1809fa360;
+void *g_1809fa370;
+void *g_180a30568;
+void *g_180a305a0;
+void *g_1809fa350;
+void *g_180a305f8;
+void *g_180a30638;
+void *g_180a30660;
+void *g_180a306a8;
+void *g_1809fa550;
+void *g_180a31018;
+void *g_180a31040;
+void *g_180a31058;
+void *g_180a31078;
+void *g_180a310a0;
+void *g_180a310d0;
+void *g_180a31110;
+void *g_180a31138;
+void *g_180a31158;
+void *g_180a31178;
+void *g_180a31198;
+void *g_180a311d8;
+void *g_180a311f8;
+void *g_180a31228;
+void *g_180a31250;
+void *g_180a31288;
+void *g_180a312b0;
+void *g_180a312d8;
+void *g_180a312f8;
+void *g_180a31320;
+void *g_180a31348;
+void *g_180a31380;
+void *g_180a313a8;
+void *g_180a313d0;
+void *g_180a313f8;
+void *g_180a31420;
+void *g_180a31448;
+void *g_180a31478;
+void *g_180a31498;
+void *g_180a314c8;
+void *g_180a31500;
+void *g_180a31530;
+void *g_180a31560;
+void *g_180a31598;
+void *g_180a315c0;
+void *g_180a315f8;
+void *g_180a31620;
+void *g_180a31638;
+void *g_180a31660;
+void *g_180a31688;
+void *g_180a316b0;
+void *g_180a316c8;
+void *g_180a316f8;
+void *g_180a31720;
+void *g_180a31740;
+void *g_180a31770;
+void *g_180a31790;
+void *g_180a317b8;
+void *g_180a317e0;
+void *g_180a317f8;
+void *g_180a31820;
+void *g_180a31850;
+void *g_180a31878;
+void *g_180a318a8;
+void *g_180a318d0;
+void *g_180a31918;
+void *g_180a31948;
+void *g_180a31978;
+void *g_180a319a0;
+void *g_180a319b8;
+void *g_180a319e8;
+void *g_180a31a00;
+void *g_180a31a30;
+void *g_180a31a60;
+void *g_180a31a80;
+void *g_180a31ab8;
+void *g_180a31af0;
+void *g_180a31b10;
+void *g_180a31b48;
+void *g_180a31b80;
+void *g_180a31bb0;
+void *g_180a31bd8;
+void *g_180a31c08;
+void *g_180a31c40;
+void *g_180a31c70;
+void *g_180a31ca0;
+void *g_180a31cd0;
+void *g_180a31cf8;
+void *g_180a31d18;
+void *g_180a31d40;
+void *g_180a31d58;
+void *g_180a31d80;
+void *g_180a31da8;
+void *g_180a31dc8;
+void *g_180a31de8;
+void *g_180a31e08;
+void *g_180a31e28;
+void *g_180a31e48;
+void *g_180a31e68;
+void *g_180a31e88;
+void *g_180a31eb0;
+void *g_180a31ed0;
+void *g_180a31ef0;
+void *g_180a31f38;
+void *g_180a31f58;
+void *g_180a31f80;
+void *g_180a31fc8;
+void *g_180a31ff0;
+void *g_180a32010;
+void *g_180a32040;
+void *g_180a32070;
+void *g_180a320b0;
+void *g_180a320d8;
+void *g_180a32120;
+void *g_180a32168;
+void *g_180a32180;
+void *g_180a32198;
+void *g_180a321c8;
+void *g_180a321f8;
+void *g_180a32240;
+void *g_180a32288;
+void *g_180a322d0;
+void *g_180a32318;
+void *g_180a32350;
+void *g_180a32398;
+void *g_180a323e0;
+void *g_180a32428;
+void *g_180a32470;
+void *g_180a324b8;
+void *g_180a324f0;
+void *g_180a32538;
+void *g_180a32580;
+void *g_180a325c8;
+void *g_180a32610;
+void *g_180a32658;
+void *g_180a326a0;
+void *g_180a326e8;
+void *g_180a32730;
+void *g_180a32778;
+void *g_180a327b0;
+void *g_180a327f8;
+void *g_180a32830;
+void *g_180a32870;
+void *g_180a328a0;
+void *g_180a328e8;
+void *g_180a32920;
+void *g_180a32960;
+void *g_180a329a0;
+void *g_180a329e8;
+void *g_180a32a30;
+void *g_180a32a78;
+void *g_180a32ab0;
+void *g_180a32af0;
+void *g_180a32b30;
+void *g_180a32b70;
+void *g_180a32ba8;
+void *g_180a32be8;
+void *g_180a32c20;
+void *g_180a32c60;
+void *g_180a32c98;
+void *g_180a32cd8;
+void *g_180a32d10;
+void *g_180a32d58;
+void *g_180a32d90;
+void *g_180a32dd0;
+void *g_180a32e08;
+void *g_180a32e48;
+void *g_180a32e70;
+void *g_180a32eb8;
+void *g_180a32ee0;
+void *g_180a32f10;
+void *g_180a32f50;
+void *g_180a32f90;
+void *g_180a32fd0;
+void *g_180a33020;
+void *g_180a33060;
+void *g_180a330b0;
+void *g_180a330f0;
+void *g_180a33140;
+void *g_180a33188;
+void *g_180a331c0;
+void *g_180a33200;
+void *g_180a33250;
+void *g_180a33280;
+void *g_180a332c8;
+void *g_180a332f8;
+void *g_180a33330;
+void *g_180a33370;
+void *g_180a333c0;
+void *g_180a33400;
+void *g_180a33450;
+void *g_180a334a0;
+void *g_180a334f0;
+void *g_180a33540;
+void *g_180a33590;
+void *g_180a335d8;
+void *g_180a33610;
+void *g_180a33660;
+void *g_180a336b0;
+void *g_180a336f0;
+void *g_180a33740;
+void *g_180a33780;
+void *g_180a337d0;
+void *g_180a33820;
+void *g_180a33870;
+void *g_180a338e0;
+void *g_180a33930;
+void *g_180a2c968;
+void *g_180a33988;
+void *g_180a339b0;
+void *g_180a339c0;
+void *g_180a339e0;
+void *g_180a339e8;
+void *g_180a33a60;
+void *g_180a33c10;
+void *g_180a33c90;
+void *g_18053f010;
+void *g_18053f040;
+void *g_18053f080;
+void *g_18053f090;
 byte g_180c91d14;
-undefined g_180c91d18;
-undefined g_180a33ca8;
-undefined g_18053eee0;
-undefined g_18053efd0;
+void *g_180c91d18;
+void *g_180a33ca8;
+void *g_18053eee0;
+void *g_18053efd0;
 
 // Utility address marker
 // Utility address marker
-undefined g_180d49ff8;
+void *g_180d49ff8;
 
 // Utility address marker
 // Utility address marker
-undefined g_180a38958;
-undefined g_180a38978;
-undefined g_180a38988;
-undefined g_180a389b0;
-undefined g_180a389d8;
-undefined g_180a389f0;
-undefined g_180a38a08;
-undefined g_180a38a20;
-undefined g_180a38a3c;
-undefined g_180a38a48;
-undefined g_180a38a60;
-undefined g_180a38a78;
-undefined g_180a38a88;
-undefined g_180a38aa8;
-undefined g_180a38ac0;
-undefined g_180a38ad8;
-undefined g_180a38ae8;
-undefined g_180a38b20;
-undefined g_180a38b48;
-undefined g_180a38b60;
-undefined g_180a38b70;
-undefined g_180a38b88;
-undefined g_180a38ba0;
-undefined g_180a38bb8;
-undefined g_180a38bd0;
-undefined g_180a38be0;
-undefined g_180a38be8;
-undefined g_180a38c08;
-undefined g_180a38c28;
-undefined g_180a38c40;
-undefined g_180a38c58;
-undefined g_180a38c78;
-undefined g_180a38c98;
-undefined g_180a38ca8;
-undefined g_180a38cc0;
-undefined g_180a38ce8;
-undefined g_180a38d10;
-undefined g_180a38d20;
-undefined g_180a38d38;
-undefined g_180a38d58;
-undefined g_180a38d80;
-undefined g_180a38d98;
-undefined g_180a38db8;
-undefined g_180a38dc8;
-undefined g_180a38dd8;
-undefined g_180a38de8;
-undefined g_180a38df8;
-undefined g_180a38e10;
-undefined g_180a38e28;
-undefined g_180a38e38;
-undefined g_180a38e50;
-undefined g_180a38e60;
-undefined g_180a38e78;
-undefined g_180a38e90;
-undefined g_180a38ea0;
-undefined g_180a38ec0;
-undefined g_180a38f10;
-undefined g_180a38f30;
-undefined g_180a04be8;
-undefined g_180a2e9e0;
-undefined g_180a38ed0;
-undefined g_180a38ee0;
-undefined g_180a38ef0;
-undefined g_180a38f00;
-undefined g_180a38f40;
-undefined g_180a38f50;
-undefined g_180a38f60;
-undefined g_180a38f78;
-undefined g_180a38f90;
-undefined g_180a38fa8;
-undefined g_180a38fc0;
-undefined g_180a38fd8;
-undefined g_180a38ff0;
-undefined g_180a39008;
-undefined g_180a39020;
-undefined g_180a39030;
-undefined g_180a39058;
-undefined g_180a39078;
-undefined g_180a39090;
-undefined g_180a390b8;
-undefined g_180a390d0;
-undefined g_180a390f0;
-undefined g_180a39110;
-undefined g_180a39128;
-undefined g_180a39148;
-undefined g_180a39170;
-undefined g_180a39188;
-undefined g_180a391b8;
-undefined g_180a391e8;
-undefined g_180a39210;
-undefined g_180a39230;
-undefined g_180a39250;
-undefined g_180a39270;
-undefined g_180a39298;
-undefined g_180a392b8;
-undefined g_180a392d0;
-undefined g_180a392e8;
-undefined g_180a39308;
-undefined g_180a39328;
-undefined g_180a39348;
-undefined g_180a39360;
-undefined g_180a39378;
-undefined g_180a39390;
-undefined g_180a393a8;
-undefined g_180a393d0;
-undefined g_180a393f0;
-undefined g_180a39408;
-undefined g_180a39428;
-undefined g_180a39450;
-undefined g_180a39468;
-undefined g_180a39480;
-undefined g_180a394a0;
-undefined g_180a394b8;
-undefined g_180a394e0;
-undefined g_180a39500;
-undefined g_180a39518;
-undefined g_180a39538;
-undefined g_180a39568;
-undefined g_180a39598;
-undefined g_180a395c0;
-undefined g_180a395e0;
-undefined g_180a39600;
-undefined g_180a39628;
-undefined g_180a39640;
-undefined g_180a39660;
-undefined g_180a39688;
-undefined g_180a396b0;
-undefined g_180a396c8;
-undefined g_180a396f0;
-undefined g_180a39710;
-undefined g_180a39728;
-undefined g_180a39740;
-undefined g_180a39758;
-undefined g_180a39768;
-undefined g_180a39788;
-undefined g_180a397a8;
-undefined g_180a397c8;
-undefined g_180a397d8;
-undefined g_180a397e8;
-undefined g_180a397f8;
-undefined g_180a39820;
-undefined g_180a39850;
-undefined g_180a39864;
-undefined g_180a39870;
-undefined g_180a39888;
-undefined g_180a398a8;
-undefined g_180a398b8;
-undefined g_180a398d8;
-undefined g_180a398f0;
-undefined g_180a39910;
-undefined g_180a39920;
-undefined g_180a39940;
-undefined g_180a39970;
-undefined g_180a39988;
-undefined g_180a399a8;
-undefined g_180a399c0;
-undefined g_180a399e0;
-undefined g_180a399f0;
-undefined g_180a39a18;
-undefined g_180a39a28;
-undefined g_180a39a40;
-undefined g_180a39a60;
-undefined g_180a39a70;
-undefined g_180a39a88;
-undefined g_180a39aa0;
-undefined g_180a39ab8;
-undefined g_180a39ad8;
-undefined g_180a39af0;
-undefined g_180a39b00;
-undefined g_180a39b18;
-undefined g_180a39b30;
-undefined g_180a39b48;
-undefined g_180a39b68;
-undefined g_180a39b78;
-undefined g_180a39b88;
-undefined g_180a39ba0;
-undefined g_180a39bc0;
-undefined g_180a39bd8;
-undefined g_180a39bf0;
-undefined g_180a39c10;
-undefined g_180a39c30;
-undefined g_180a39c50;
-undefined g_180a39c60;
-undefined g_180a39c80;
-undefined g_180a39c98;
-undefined g_180a39cb8;
-undefined g_180a39ccc;
-undefined g_180a39cd0;
-undefined g_180a39cd4;
-undefined g_180a39cd8;
-undefined g_180a39ce0;
-undefined g_180a39cf8;
-undefined g_180a39d10;
-undefined g_180a39d28;
-undefined g_180a39d40;
-undefined g_180a39d58;
-undefined g_180a39d70;
-undefined g_180a39d88;
-undefined g_180a39d98;
-undefined g_180a39da8;
-undefined g_180a39db0;
-undefined g_180a39dc0;
-undefined g_180a39dd0;
-undefined g_180a39de0;
-undefined g_180a39df0;
-undefined g_180a39e08;
-undefined g_180a39e18;
-undefined g_180a39e30;
-undefined g_180a39e48;
-undefined g_180a39e58;
-undefined g_180a39e78;
-undefined g_180a39e90;
-undefined g_180a39ea8;
-undefined g_180a39eb8;
-undefined g_180a39ed0;
-undefined g_180a39ee0;
-undefined g_180a39ef0;
-undefined g_180a39f00;
-undefined g_180a39f18;
-undefined g_180a39f28;
-undefined g_180a39f50;
-undefined g_180a39f60;
-undefined g_180a39f78;
-undefined g_180a39f88;
-undefined g_180a39f98;
-undefined g_180a39fb0;
-undefined g_180a39fc0;
-undefined g_180a39fe0;
-undefined g_180a39ff8;
-undefined g_180a3a018;
-undefined g_180a3a038;
-undefined g_180a3a048;
-undefined g_180a3a058;
-undefined g_180a3a068;
-undefined g_180a3a078;
-undefined g_180a3a098;
-undefined g_180a3a0b8;
-undefined g_180a3a0d0;
-undefined g_180a3a0f0;
-undefined g_180a3a118;
-undefined g_180a3a140;
-undefined g_180a3a158;
-undefined g_180a3a178;
-undefined g_180a3a188;
-undefined g_180a3a1a8;
-undefined g_180a3a1b8;
-undefined g_180a3a1c8;
-undefined g_180a3a1e8;
-undefined g_180a3a208;
-undefined g_180a3a220;
-undefined g_180a3a240;
-undefined g_180a3a250;
-undefined g_180a3a260;
-undefined g_180a3a278;
-undefined g_180a3a298;
-undefined g_180a3a2b0;
-undefined g_180a3a2c0;
-undefined g_180a3a2d8;
-undefined g_180a3a2e8;
-undefined g_180a3a2f8;
-undefined g_180a3a300;
-undefined g_180a3a310;
-undefined g_180a3a320;
-undefined g_180a3a348;
-undefined g_180a3a370;
-undefined g_180a3a398;
-undefined g_180a3a3c0;
-undefined g_180a3a3d0;
-undefined g_180a3a3e8;
-undefined g_180a3a3f8;
-undefined g_180a3a408;
-undefined g_180a3a418;
-undefined g_180a3a428;
-undefined g_180a3a440;
-undefined g_180a3a458;
-undefined g_180a3a468;
-undefined g_180a3a478;
-undefined g_180a3a498;
-undefined g_180a3a4a8;
-undefined g_180a3a4c0;
-undefined g_180a3a4d0;
-undefined g_180a3a4e0;
-undefined g_180a3a4f8;
-undefined g_180a3a508;
-undefined g_180a3a520;
-undefined g_180a3a530;
-undefined g_180a3a540;
-undefined g_180a3a560;
-undefined g_180a3a580;
-undefined g_180a3a5a8;
-undefined g_180a3a5c0;
-undefined g_180a3a5d0;
-undefined g_180a3a5e0;
-undefined g_180a3a600;
-undefined g_180a3a620;
-undefined g_180a3a630;
-undefined g_180a3a640;
-undefined g_180a3a650;
-undefined g_180a3a660;
-undefined g_180a3a670;
-undefined g_180a3a688;
-undefined g_180a3a6a0;
-undefined g_180a3a6c0;
-undefined g_180a3a6e0;
-undefined g_180a3a6f8;
-undefined g_180a3a708;
-undefined g_180a3a720;
-undefined g_180a3a738;
-undefined g_180a3a748;
-undefined g_180a3a754;
-undefined g_180a3a758;
-undefined g_180a3a768;
-undefined g_180a3a778;
-undefined g_180a3a788;
-undefined g_180a3a798;
-undefined g_180a3a7a8;
-undefined g_180a3a7b8;
-undefined g_180a3a7d0;
-undefined g_180a3a7e0;
-undefined g_180a3a7f0;
-undefined g_180a3a800;
-undefined g_180a3a820;
-undefined g_180a3a830;
-undefined g_180a3a850;
-undefined g_180a3a860;
-undefined g_180a3a870;
-undefined g_180a3a880;
-undefined g_180a3a898;
-undefined g_180a3a8b0;
-undefined g_180a3a8c0;
-undefined g_180a3a8d8;
-undefined g_180a3a8f0;
-undefined g_180a3a900;
-undefined g_180a3a910;
-undefined g_180a3a920;
-undefined g_180a3a938;
-undefined g_180a3a948;
-undefined g_180a3a960;
-undefined g_180a3a970;
-undefined g_180a3a988;
-undefined g_180a3a998;
-undefined g_180a3a9b0;
-undefined g_180a3a9c8;
-undefined g_180a3a9d8;
-undefined g_180a3a9e0;
-undefined g_180a3a9f0;
-undefined g_180a3aa08;
-undefined g_180a3aa20;
-undefined g_180a3aa38;
-undefined g_180a3aa50;
-undefined g_180a3aa70;
-undefined g_180a3aa98;
-undefined g_180a3aab0;
-undefined g_180a3aac0;
-undefined g_180a3aad8;
-undefined g_180a3aae8;
-undefined g_180a3aaf8;
-undefined g_180a3ab08;
-undefined g_180a3ab18;
-undefined g_180a3ab28;
-undefined g_180a3ab38;
-undefined g_180a3ab50;
-undefined g_180a3ab60;
-undefined g_180a3ab70;
-undefined g_180a3ab80;
-undefined g_180a3ab90;
-undefined g_180a3aba0;
-undefined g_180a3abb0;
-undefined g_180a3abc0;
-undefined g_180a3abd0;
-undefined g_180a3abe0;
-undefined g_180a3abe8;
-undefined g_180a3ac00;
-undefined g_180a3ac10;
-undefined g_180a3ac18;
-undefined g_180a3ac30;
-undefined g_180a3ac48;
-undefined g_180a3ac68;
-undefined g_180a3ac80;
-undefined g_180a3ac90;
-undefined g_180a3aca8;
-undefined g_180a3acc8;
-undefined g_180a3acd8;
-undefined g_180a3acf8;
-undefined g_180a3ad18;
-undefined g_180a3ad30;
-undefined g_180a3ad60;
-undefined g_180a3ad88;
-undefined g_180a3ada0;
-undefined g_180a3adb8;
-undefined g_180a3add0;
-undefined g_180a3ade8;
-undefined g_180a3ae00;
-undefined g_180a3ae18;
-undefined g_180a2eac0;
-undefined g_180c92510;
+void *g_180a38958;
+void *g_180a38978;
+void *g_180a38988;
+void *g_180a389b0;
+void *g_180a389d8;
+void *g_180a389f0;
+void *g_180a38a08;
+void *g_180a38a20;
+void *g_180a38a3c;
+void *g_180a38a48;
+void *g_180a38a60;
+void *g_180a38a78;
+void *g_180a38a88;
+void *g_180a38aa8;
+void *g_180a38ac0;
+void *g_180a38ad8;
+void *g_180a38ae8;
+void *g_180a38b20;
+void *g_180a38b48;
+void *g_180a38b60;
+void *g_180a38b70;
+void *g_180a38b88;
+void *g_180a38ba0;
+void *g_180a38bb8;
+void *g_180a38bd0;
+void *g_180a38be0;
+void *g_180a38be8;
+void *g_180a38c08;
+void *g_180a38c28;
+void *g_180a38c40;
+void *g_180a38c58;
+void *g_180a38c78;
+void *g_180a38c98;
+void *g_180a38ca8;
+void *g_180a38cc0;
+void *g_180a38ce8;
+void *g_180a38d10;
+void *g_180a38d20;
+void *g_180a38d38;
+void *g_180a38d58;
+void *g_180a38d80;
+void *g_180a38d98;
+void *g_180a38db8;
+void *g_180a38dc8;
+void *g_180a38dd8;
+void *g_180a38de8;
+void *g_180a38df8;
+void *g_180a38e10;
+void *g_180a38e28;
+void *g_180a38e38;
+void *g_180a38e50;
+void *g_180a38e60;
+void *g_180a38e78;
+void *g_180a38e90;
+void *g_180a38ea0;
+void *g_180a38ec0;
+void *g_180a38f10;
+void *g_180a38f30;
+void *g_180a04be8;
+void *g_180a2e9e0;
+void *g_180a38ed0;
+void *g_180a38ee0;
+void *g_180a38ef0;
+void *g_180a38f00;
+void *g_180a38f40;
+void *g_180a38f50;
+void *g_180a38f60;
+void *g_180a38f78;
+void *g_180a38f90;
+void *g_180a38fa8;
+void *g_180a38fc0;
+void *g_180a38fd8;
+void *g_180a38ff0;
+void *g_180a39008;
+void *g_180a39020;
+void *g_180a39030;
+void *g_180a39058;
+void *g_180a39078;
+void *g_180a39090;
+void *g_180a390b8;
+void *g_180a390d0;
+void *g_180a390f0;
+void *g_180a39110;
+void *g_180a39128;
+void *g_180a39148;
+void *g_180a39170;
+void *g_180a39188;
+void *g_180a391b8;
+void *g_180a391e8;
+void *g_180a39210;
+void *g_180a39230;
+void *g_180a39250;
+void *g_180a39270;
+void *g_180a39298;
+void *g_180a392b8;
+void *g_180a392d0;
+void *g_180a392e8;
+void *g_180a39308;
+void *g_180a39328;
+void *g_180a39348;
+void *g_180a39360;
+void *g_180a39378;
+void *g_180a39390;
+void *g_180a393a8;
+void *g_180a393d0;
+void *g_180a393f0;
+void *g_180a39408;
+void *g_180a39428;
+void *g_180a39450;
+void *g_180a39468;
+void *g_180a39480;
+void *g_180a394a0;
+void *g_180a394b8;
+void *g_180a394e0;
+void *g_180a39500;
+void *g_180a39518;
+void *g_180a39538;
+void *g_180a39568;
+void *g_180a39598;
+void *g_180a395c0;
+void *g_180a395e0;
+void *g_180a39600;
+void *g_180a39628;
+void *g_180a39640;
+void *g_180a39660;
+void *g_180a39688;
+void *g_180a396b0;
+void *g_180a396c8;
+void *g_180a396f0;
+void *g_180a39710;
+void *g_180a39728;
+void *g_180a39740;
+void *g_180a39758;
+void *g_180a39768;
+void *g_180a39788;
+void *g_180a397a8;
+void *g_180a397c8;
+void *g_180a397d8;
+void *g_180a397e8;
+void *g_180a397f8;
+void *g_180a39820;
+void *g_180a39850;
+void *g_180a39864;
+void *g_180a39870;
+void *g_180a39888;
+void *g_180a398a8;
+void *g_180a398b8;
+void *g_180a398d8;
+void *g_180a398f0;
+void *g_180a39910;
+void *g_180a39920;
+void *g_180a39940;
+void *g_180a39970;
+void *g_180a39988;
+void *g_180a399a8;
+void *g_180a399c0;
+void *g_180a399e0;
+void *g_180a399f0;
+void *g_180a39a18;
+void *g_180a39a28;
+void *g_180a39a40;
+void *g_180a39a60;
+void *g_180a39a70;
+void *g_180a39a88;
+void *g_180a39aa0;
+void *g_180a39ab8;
+void *g_180a39ad8;
+void *g_180a39af0;
+void *g_180a39b00;
+void *g_180a39b18;
+void *g_180a39b30;
+void *g_180a39b48;
+void *g_180a39b68;
+void *g_180a39b78;
+void *g_180a39b88;
+void *g_180a39ba0;
+void *g_180a39bc0;
+void *g_180a39bd8;
+void *g_180a39bf0;
+void *g_180a39c10;
+void *g_180a39c30;
+void *g_180a39c50;
+void *g_180a39c60;
+void *g_180a39c80;
+void *g_180a39c98;
+void *g_180a39cb8;
+void *g_180a39ccc;
+void *g_180a39cd0;
+void *g_180a39cd4;
+void *g_180a39cd8;
+void *g_180a39ce0;
+void *g_180a39cf8;
+void *g_180a39d10;
+void *g_180a39d28;
+void *g_180a39d40;
+void *g_180a39d58;
+void *g_180a39d70;
+void *g_180a39d88;
+void *g_180a39d98;
+void *g_180a39da8;
+void *g_180a39db0;
+void *g_180a39dc0;
+void *g_180a39dd0;
+void *g_180a39de0;
+void *g_180a39df0;
+void *g_180a39e08;
+void *g_180a39e18;
+void *g_180a39e30;
+void *g_180a39e48;
+void *g_180a39e58;
+void *g_180a39e78;
+void *g_180a39e90;
+void *g_180a39ea8;
+void *g_180a39eb8;
+void *g_180a39ed0;
+void *g_180a39ee0;
+void *g_180a39ef0;
+void *g_180a39f00;
+void *g_180a39f18;
+void *g_180a39f28;
+void *g_180a39f50;
+void *g_180a39f60;
+void *g_180a39f78;
+void *g_180a39f88;
+void *g_180a39f98;
+void *g_180a39fb0;
+void *g_180a39fc0;
+void *g_180a39fe0;
+void *g_180a39ff8;
+void *g_180a3a018;
+void *g_180a3a038;
+void *g_180a3a048;
+void *g_180a3a058;
+void *g_180a3a068;
+void *g_180a3a078;
+void *g_180a3a098;
+void *g_180a3a0b8;
+void *g_180a3a0d0;
+void *g_180a3a0f0;
+void *g_180a3a118;
+void *g_180a3a140;
+void *g_180a3a158;
+void *g_180a3a178;
+void *g_180a3a188;
+void *g_180a3a1a8;
+void *g_180a3a1b8;
+void *g_180a3a1c8;
+void *g_180a3a1e8;
+void *g_180a3a208;
+void *g_180a3a220;
+void *g_180a3a240;
+void *g_180a3a250;
+void *g_180a3a260;
+void *g_180a3a278;
+void *g_180a3a298;
+void *g_180a3a2b0;
+void *g_180a3a2c0;
+void *g_180a3a2d8;
+void *g_180a3a2e8;
+void *g_180a3a2f8;
+void *g_180a3a300;
+void *g_180a3a310;
+void *g_180a3a320;
+void *g_180a3a348;
+void *g_180a3a370;
+void *g_180a3a398;
+void *g_180a3a3c0;
+void *g_180a3a3d0;
+void *g_180a3a3e8;
+void *g_180a3a3f8;
+void *g_180a3a408;
+void *g_180a3a418;
+void *g_180a3a428;
+void *g_180a3a440;
+void *g_180a3a458;
+void *g_180a3a468;
+void *g_180a3a478;
+void *g_180a3a498;
+void *g_180a3a4a8;
+void *g_180a3a4c0;
+void *g_180a3a4d0;
+void *g_180a3a4e0;
+void *g_180a3a4f8;
+void *g_180a3a508;
+void *g_180a3a520;
+void *g_180a3a530;
+void *g_180a3a540;
+void *g_180a3a560;
+void *g_180a3a580;
+void *g_180a3a5a8;
+void *g_180a3a5c0;
+void *g_180a3a5d0;
+void *g_180a3a5e0;
+void *g_180a3a600;
+void *g_180a3a620;
+void *g_180a3a630;
+void *g_180a3a640;
+void *g_180a3a650;
+void *g_180a3a660;
+void *g_180a3a670;
+void *g_180a3a688;
+void *g_180a3a6a0;
+void *g_180a3a6c0;
+void *g_180a3a6e0;
+void *g_180a3a6f8;
+void *g_180a3a708;
+void *g_180a3a720;
+void *g_180a3a738;
+void *g_180a3a748;
+void *g_180a3a754;
+void *g_180a3a758;
+void *g_180a3a768;
+void *g_180a3a778;
+void *g_180a3a788;
+void *g_180a3a798;
+void *g_180a3a7a8;
+void *g_180a3a7b8;
+void *g_180a3a7d0;
+void *g_180a3a7e0;
+void *g_180a3a7f0;
+void *g_180a3a800;
+void *g_180a3a820;
+void *g_180a3a830;
+void *g_180a3a850;
+void *g_180a3a860;
+void *g_180a3a870;
+void *g_180a3a880;
+void *g_180a3a898;
+void *g_180a3a8b0;
+void *g_180a3a8c0;
+void *g_180a3a8d8;
+void *g_180a3a8f0;
+void *g_180a3a900;
+void *g_180a3a910;
+void *g_180a3a920;
+void *g_180a3a938;
+void *g_180a3a948;
+void *g_180a3a960;
+void *g_180a3a970;
+void *g_180a3a988;
+void *g_180a3a998;
+void *g_180a3a9b0;
+void *g_180a3a9c8;
+void *g_180a3a9d8;
+void *g_180a3a9e0;
+void *g_180a3a9f0;
+void *g_180a3aa08;
+void *g_180a3aa20;
+void *g_180a3aa38;
+void *g_180a3aa50;
+void *g_180a3aa70;
+void *g_180a3aa98;
+void *g_180a3aab0;
+void *g_180a3aac0;
+void *g_180a3aad8;
+void *g_180a3aae8;
+void *g_180a3aaf8;
+void *g_180a3ab08;
+void *g_180a3ab18;
+void *g_180a3ab28;
+void *g_180a3ab38;
+void *g_180a3ab50;
+void *g_180a3ab60;
+void *g_180a3ab70;
+void *g_180a3ab80;
+void *g_180a3ab90;
+void *g_180a3aba0;
+void *g_180a3abb0;
+void *g_180a3abc0;
+void *g_180a3abd0;
+void *g_180a3abe0;
+void *g_180a3abe8;
+void *g_180a3ac00;
+void *g_180a3ac10;
+void *g_180a3ac18;
+void *g_180a3ac30;
+void *g_180a3ac48;
+void *g_180a3ac68;
+void *g_180a3ac80;
+void *g_180a3ac90;
+void *g_180a3aca8;
+void *g_180a3acc8;
+void *g_180a3acd8;
+void *g_180a3acf8;
+void *g_180a3ad18;
+void *g_180a3ad30;
+void *g_180a3ad60;
+void *g_180a3ad88;
+void *g_180a3ada0;
+void *g_180a3adb8;
+void *g_180a3add0;
+void *g_180a3ade8;
+void *g_180a3ae00;
+void *g_180a3ae18;
+void *g_180a2eac0;
+void *g_180c92510;
 char g_180c8aa68;
-undefined g_180a3e5e8;
+void *g_180a3e5e8;
 
 // Utility address marker
 // Utility address marker
-undefined1 g_180bf66d8;
-undefined g_180c96858;
-undefined g_180bfbf64;
-undefined g_180bfbf7c;
-undefined g_180bfbf60;
-undefined g_180bf7308;
-undefined g_180bfbf78;
-undefined g_180bf72a8;
+int g_180bf66d8;
+void *g_180c96858;
+void *g_180bfbf64;
+void *g_180bfbf7c;
+void *g_180bfbf60;
+void *g_180bf7308;
+void *g_180bfbf78;
+void *g_180bf72a8;
 char g_180c8efc8;
-undefined g_18064ffc0;
-undefined g_180a3c8c8;
-undefined g_180a3c908;
-undefined g_180a3d970;
-undefined g_180a3db60;
-undefined g_180bfbd80;
+void *g_18064ffc0;
+void *g_180a3c8c8;
+void *g_180a3c908;
+void *g_180a3d970;
+void *g_180a3db60;
+void *g_180bfbd80;
 
 /**
  * 处理线程本地存储的初始化和清理
@@ -2406,7 +2406,7 @@ undefined g_180bfbd80;
 void ProcessThreadLocalStorage(longlong threadHandle, longlong contextData)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   int operation_result;
   longlong loop_counter;
   int item_count;
@@ -2461,7 +2461,7 @@ void ProcessThreadLocalStorage(longlong threadHandle, longlong contextData)
 void CleanupThreadResources(void)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   int operation_result;
   longlong context_ptr;
   longlong resource_ptr;
@@ -2543,8 +2543,8 @@ undefined8 FUN_180890270(longlong param)
   longlong loop_counter;
   longlong loop_counter;
   int operation_result;
-  undefined8 resource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
+  long long resource_handle;
   longlong *ploop_counter;
   int operation_result;
   ulonglong resource_handle;
@@ -2726,7 +2726,7 @@ undefined8 FUN_180890450(longlong param,longlong param)
 {
   longlong loop_counter;
   int operation_result;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong alStackX_8 [2];
   
   resource_handle = func_0x00018088c530(*(undefined4 *)(param + 0x10),alStackX_8);
@@ -2760,7 +2760,7 @@ undefined8 FUN_180890490(longlong param)
 {
   uint *presource_handle;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong *ploop_counter;
   longlong alStackX_8 [4];
   
@@ -2788,7 +2788,7 @@ undefined8 FUN_180890500(longlong param,undefined8 param)
 
 {
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   int operation_result;
   longlong alStackX_8 [2];
   
@@ -2827,7 +2827,7 @@ undefined8 FUN_180890540(longlong param)
 
 {
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong alStackX_8 [4];
   
   resource_handle = func_0x00018088c530(*(undefined4 *)(param + 0x10),alStackX_8);
@@ -2853,7 +2853,7 @@ undefined8 FUN_180890540(longlong param)
 undefined8 FUN_180890590(longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong lStackX_8;
   
   resource_handle = func_0x00018088c530(*(undefined4 *)(param + 0x10),&lStackX_8);
@@ -2921,7 +2921,7 @@ void InitializeMemoryPool(void)
 undefined8 FUN_180890650(longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong lStackX_8;
   
   resource_handle = func_0x00018088c530(*(undefined4 *)(param + 0x10),&lStackX_8);
@@ -2988,7 +2988,7 @@ void FreeMemoryBlock(void)
 undefined8 FUN_180890700(longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong lStackX_8;
   
   resource_handle = func_0x00018088c530(*(undefined4 *)(param + 0x10),&lStackX_8);
@@ -3055,7 +3055,7 @@ void CleanupThreadLocal(void)
 undefined8 FUN_1808907b0(longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong alStackX_8 [2];
   longlong alStackX_18 [2];
   
@@ -3091,7 +3091,7 @@ undefined8 FUN_1808907b0(longlong param)
 undefined8 FUN_180890830(longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong alStackX_8 [2];
   longlong alStackX_18 [2];
   
@@ -3134,7 +3134,7 @@ undefined8 FUN_1808908b0(longlong param)
   longlong loop_counter;
   uint resource_handle;
   uint resource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined8 *presource_handle;
   int operation_result;
   float fVar7;
@@ -3191,7 +3191,7 @@ undefined8 FUN_180890900(longlong param)
 {
   longlong loop_counter;
   int operation_result;
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined4 *presource_handle;
   ulonglong resource_handle;
   uint resource_handle;
@@ -3239,7 +3239,7 @@ undefined8 FUN_180890923(void)
   longlong loop_counter;
   int operation_result;
   longlong context_ptr;
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined4 *presource_handle;
   ulonglong resource_handle;
   longlong unaff_RSI;
@@ -3300,7 +3300,7 @@ undefined8 FUN_1808909ba(void)
 undefined8 FUN_1808909d0(longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   int *poperation_result;
   undefined4 *presource_handle;
   uint resource_handle;
@@ -3354,7 +3354,7 @@ undefined8 FUN_1808909f3(void)
 
 {
   longlong context_ptr;
-  undefined8 resource_handle;
+  long long resource_handle;
   int *poperation_result;
   longlong unaff_RBP;
   undefined4 *presource_handle;
@@ -3420,7 +3420,7 @@ undefined8 FUN_180890ac7(void)
 undefined8 FUN_180890ad0(longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong lStackX_8;
   
   resource_handle = func_0x00018088c530(*(undefined4 *)(param + 0x10),&lStackX_8);
@@ -3487,7 +3487,7 @@ void DeleteCriticalSection(void)
 undefined8 FUN_180890b70(longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong lStackX_8;
   
   resource_handle = func_0x00018088c530(*(undefined4 *)(param + 0x10),&lStackX_8);
@@ -3554,7 +3554,7 @@ void SetEvent(void)
 undefined8 FUN_180890c10(longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   longlong lStackX_8;
   
@@ -3618,7 +3618,7 @@ void WaitForEvent(void)
 undefined8 FUN_180890d60(longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong lStackX_8;
   
   resource_handle = func_0x00018088c530(*(undefined4 *)(param + 0x10),&lStackX_8);
@@ -3685,7 +3685,7 @@ void InitializeMutex(void)
 undefined8 FUN_180890e10(longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong lStackX_8;
   
   resource_handle = func_0x00018088c530(*(undefined4 *)(param + 0x10),&lStackX_8);
@@ -3752,7 +3752,7 @@ void UnlockMutex(void)
 undefined8 FUN_180890ee0(longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong lStackX_8;
   
   resource_handle = func_0x00018088c530(*(undefined4 *)(param + 0x10),&lStackX_8);
@@ -3819,7 +3819,7 @@ void WaitForMutex(void)
 undefined8 FUN_180890f90(longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong lStackX_8;
   
   resource_handle = func_0x00018088c530(*(undefined4 *)(param + 0x10),&lStackX_8);
@@ -3890,7 +3890,7 @@ void WaitForSemaphore(void)
 undefined8 FUN_180891090(longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong lStackX_8;
   
   resource_handle = func_0x00018088c530(*(undefined4 *)(param + 0x10),&lStackX_8);
@@ -3966,7 +3966,7 @@ void TerminateThread(longlong param,undefined8 param)
   int operation_result;
   undefined8 auStackX_8 [4];
   undefined4 stack_buffer_58 [2];
-  undefined8 stack_uint_50;
+  long long stack_uint_50;
   undefined4 stack_uint_48;
   
   stack_uint_50 = *(undefined8 *)(param + 0x10);
@@ -3991,7 +3991,7 @@ undefined8 FUN_180891210(longlong param)
   longlong loop_counter;
   uint resource_handle;
   uint resource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined8 *presource_handle;
   int operation_result;
   float fVar7;
@@ -4080,7 +4080,7 @@ int FUN_180891280(longlong param)
 void SuspendThread(longlong param,undefined8 param)
 
 {
-  undefined8 uStackX_8;
+  long long uStackX_8;
   int astack_int_58 [2];
   longlong lStack_50;
   
@@ -4102,7 +4102,7 @@ ulonglong FUN_1808913c0(longlong param,undefined8 param)
   uint resource_handle;
   ulonglong resource_handle;
   longlong loop_counter;
-  undefined8 uStackX_8;
+  long long uStackX_8;
   undefined4 stack_buffer_58 [2];
   longlong lStack_50;
   int stack_int_48;
@@ -4240,7 +4240,7 @@ void GetThreadContext(longlong param,longlong param)
 undefined8 FUN_180891650(longlong param,longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   int *poperation_result;
   undefined4 *presource_handle;
   int operation_result;
@@ -4323,7 +4323,7 @@ void SetThreadContext(longlong param,longlong param)
 undefined8 FUN_180891820(longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong alStackX_8 [4];
   
   resource_handle = func_0x00018088c530(*(undefined4 *)(param + 0x10),alStackX_8);
@@ -4345,7 +4345,7 @@ void QueueUserAPC(longlong param,longlong param)
 
 {
   int operation_result;
-  undefined8 uStackX_8;
+  long long uStackX_8;
   
   if (*(int *)(param + 0x2c) == 0) {
     operation_result = InitializeAsyncIO(param,param + 0x1c,&uStackX_8);
@@ -4411,7 +4411,7 @@ void SwitchToFiber(longlong param,longlong param)
 
 {
   int operation_result;
-  undefined8 uStackX_8;
+  long long uStackX_8;
   
   operation_result = func_0x00018088c530(*(undefined4 *)(param + 0x10),&uStackX_8);
   if (operation_result == 0) {
@@ -4431,7 +4431,7 @@ void DeleteFiber(longlong param,longlong param)
 
 {
   int operation_result;
-  undefined8 uStackX_8;
+  long long uStackX_8;
   
   if (*(int *)(param + 0x2c) == 0) {
     operation_result = PostCompletionPort(param,param + 0x1c,&uStackX_8);
@@ -4452,7 +4452,7 @@ undefined8 FUN_180891a80(longlong param,longlong param)
 
 {
   int operation_result;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong lStackX_8;
   
   resource_handle = func_0x00018088c530(*(undefined4 *)(param + 0x10),&lStackX_8);
@@ -4496,7 +4496,7 @@ undefined8 FUN_180891b40(longlong param,longlong param)
 
 {
   int operation_result;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong lStackX_8;
   
   resource_handle = func_0x00018088c530(*(undefined4 *)(param + 0x10),&lStackX_8);
@@ -4526,7 +4526,7 @@ undefined8 FUN_180891b40(longlong param,longlong param)
 undefined8 FUN_180891bd0(longlong param,longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong lStackX_8;
   
   resource_handle = func_0x00018088c530(*(undefined4 *)(param + 0x10),&lStackX_8);
@@ -4545,7 +4545,7 @@ undefined8 FUN_180891bd0(longlong param,longlong param)
 undefined8 FUN_180891c40(longlong param,longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong lStackX_8;
   
   resource_handle = func_0x00018088c530(*(undefined4 *)(param + 0x10),&lStackX_8);
@@ -4603,7 +4603,7 @@ void GetFiberData(longlong param,longlong param)
 undefined8 FUN_180891d40(longlong param,longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   uint uStackX_8;
   undefined4 uStackX_c;
   
@@ -4625,7 +4625,7 @@ undefined8 FUN_180891d40(longlong param,longlong param)
 undefined8 FUN_180891de0(longlong param,longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong lStackX_8;
   
   resource_handle = func_0x00018088c530(*(undefined4 *)(param + 0x10),&lStackX_8);
@@ -4797,7 +4797,7 @@ void CancelTimer(void)
   uint resource_handle;
   longlong resource_ptr;
   longlong unaff_R14;
-  undefined8 stack_param;
+  long long stack_param;
   
   loop_counter = 0;
   loop_counter = context_ptr + 8;
@@ -4861,7 +4861,7 @@ void WaitForTimer(int param,int param)
   longlong unaff_RSI;
   int operation_result;
   longlong unaff_R14;
-  undefined8 stack_param;
+  long long stack_param;
   
   operation_result = param + 1;
   if (in_EAX - param < operation_result) {
@@ -4938,7 +4938,7 @@ void CloseThreadPool(longlong param,longlong param)
 
 {
   int operation_result;
-  undefined8 uStackX_8;
+  long long uStackX_8;
   
   operation_result = func_0x00018088c530(*(undefined4 *)(param + 0x10),&uStackX_8);
   if (operation_result == 0) {
@@ -4974,7 +4974,7 @@ void InitializeFileMapping(void)
   int operation_result;
   longlong unaff_RBP;
   longlong unaff_RSI;
-  undefined8 stack_param;
+  long long stack_param;
   
   operation_result = func_0x0001808c8710(stack_param);
   if (operation_result < 1) {
@@ -5015,7 +5015,7 @@ void UnmapViewOfFile(longlong param,longlong param)
 
 {
   int operation_result;
-  undefined8 uStackX_8;
+  long long uStackX_8;
   
   operation_result = func_0x00018088c530(*(undefined4 *)(param + 0x10),&uStackX_8);
   if (operation_result == 0) {
@@ -5054,7 +5054,7 @@ void OpenFileMapping(longlong param,longlong param)
 
 {
   int operation_result;
-  undefined8 uStackX_8;
+  long long uStackX_8;
   
   operation_result = func_0x00018088c530(*(undefined4 *)(param + 0x10),&uStackX_8);
   if (operation_result == 0) {
@@ -5072,7 +5072,7 @@ void OpenFileMapping(longlong param,longlong param)
 undefined8 FUN_180892170(longlong param,longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong lStackX_8;
   
   resource_handle = func_0x00018088c530(*(undefined4 *)(param + 0x10),&lStackX_8);
@@ -5095,7 +5095,7 @@ undefined8 FUN_180892170(longlong param,longlong param)
 undefined8 FUN_1808921f0(longlong param,longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong lStackX_8;
   
   resource_handle = func_0x00018088c530(*(undefined4 *)(param + 0x10),&lStackX_8);
@@ -5122,7 +5122,7 @@ undefined8 FUN_180892270(longlong param,longlong param)
 {
   longlong loop_counter;
   int operation_result;
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined *presource_handle;
   uint resource_handle;
   ulonglong resource_handle;
@@ -5181,7 +5181,7 @@ undefined8 FUN_1808922ad(void)
 {
   longlong loop_counter;
   int operation_result;
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined *presource_handle;
   uint resource_handle;
   ulonglong resource_handle;
@@ -5261,7 +5261,7 @@ undefined8 FUN_180892370(longlong param,longlong param)
 
 {
   int operation_result;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   longlong lStackX_8;
   
@@ -5396,7 +5396,7 @@ undefined8 FUN_1808924f0(longlong param,longlong param)
   undefined4 resource_handle;
   undefined4 resource_handle;
   undefined4 resource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   int operation_result;
   int operation_result;
   int operation_result;
@@ -5531,7 +5531,7 @@ void InitializeConditionVariable(longlong param,longlong param)
 {
   int operation_result;
   longlong loop_counter;
-  undefined8 uStackX_8;
+  long long uStackX_8;
   
   operation_result = func_0x00018088c530(*(undefined4 *)(param + 0x10));
   if (operation_result == 0) {
@@ -5555,7 +5555,7 @@ undefined8 FUN_180892780(longlong param,longlong param)
 {
   float fVar1;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   float fVar4;
   longlong lStackX_8;
   longlong alStackX_18 [2];
@@ -5607,7 +5607,7 @@ undefined8 FUN_180892880(longlong param,longlong param)
 {
   float fVar1;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong lStackX_8;
   longlong alStackX_18 [2];
   
@@ -5656,7 +5656,7 @@ undefined8 FUN_1808928d3(void)
 {
   float fVar1;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong unaff_RBP;
   longlong unaff_RDI;
   longlong stack_param;
@@ -5693,7 +5693,7 @@ undefined8 FUN_1808928f1(void)
 {
   float fVar1;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong resource_ptr;
   longlong unaff_RBP;
   longlong unaff_RDI;
@@ -5727,7 +5727,7 @@ undefined8 FUN_180892909(undefined4 param)
 
 {
   float fVar1;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong resource_ptr;
   longlong unaff_RBP;
   longlong unaff_RDI;
@@ -5757,7 +5757,7 @@ undefined8 FUN_180892920(undefined4 param)
 
 {
   float fVar1;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong resource_ptr;
   longlong unaff_RBP;
   longlong unaff_RDI;
@@ -5804,7 +5804,7 @@ undefined8 FUN_180892990(longlong param,longlong param)
   float fVar1;
   longlong loop_counter;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   float fVar6;
   uint auStackX_8 [2];
@@ -5860,7 +5860,7 @@ undefined8 FUN_180892ac0(longlong param,longlong param)
   float fVar1;
   longlong loop_counter;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   longlong loop_counter;
   int aiStackX_8 [2];
@@ -5915,9 +5915,9 @@ undefined8 FUN_180892bd0(longlong param,longlong param,undefined8 param,undefine
   float fVar1;
   int operation_result;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
-  undefined8 unaff_RDI;
+  long long unaff_RDI;
   float fVar6;
   longlong lStackX_8;
   
@@ -5984,7 +5984,7 @@ undefined8 FUN_180892cc0(longlong param,longlong param)
 {
   int operation_result;
   int operation_result;
-  undefined8 resource_handle;
+  long long resource_handle;
   float *pfVar4;
   longlong loop_counter;
   ulonglong resource_handle;
@@ -6167,7 +6167,7 @@ void SleepConditionVariableCS(longlong param,undefined8 param)
   bool bVar4;
   longlong stack_array_58 [3];
   longlong lStack_40;
-  undefined8 stack_uint_38;
+  long long stack_uint_38;
   ulonglong stack_uint_30;
   
   stack_uint_30 = g_180bf00a8 ^ (ulonglong)stack_array_58;
@@ -6201,7 +6201,7 @@ void InitializeSRWLock(longlong param,longlong param)
 {
   int operation_result;
   longlong loop_counter;
-  undefined8 uStackX_8;
+  long long uStackX_8;
   
   operation_result = func_0x00018088c530(*(undefined4 *)(param + 0x10));
   if (operation_result == 0) {
@@ -6224,9 +6224,9 @@ undefined8 FUN_1808930e0(longlong param,longlong param,undefined8 param,undefine
 
 {
   float fVar1;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
-  undefined8 unaff_RDI;
+  long long unaff_RDI;
   longlong lStackX_8;
   
   fVar1 = *(float *)(param + 0x18);
@@ -6274,7 +6274,7 @@ undefined8 FUN_180893190(longlong param,longlong param)
 
 {
   float fVar1;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   longlong lStackX_8;
   
@@ -6342,7 +6342,7 @@ code_r0x00018089322c:
 undefined8 FUN_180893290(longlong param,longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   longlong lStackX_8;
   
@@ -6390,7 +6390,7 @@ undefined8 FUN_180893290(longlong param,longlong param)
 undefined8 FUN_180893330(longlong param,longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   uint uStackX_8;
   undefined4 uStackX_c;
@@ -6467,7 +6467,7 @@ undefined8 FUN_180893480(longlong param,longlong param)
 {
   float fVar1;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   float fVar4;
   uint uStackX_8;
   undefined4 uStackX_c;
@@ -6505,7 +6505,7 @@ undefined8 FUN_180893540(longlong param,longlong param)
 
 {
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined4 stack_uint_18;
   undefined4 stack_uint_14;
   undefined4 stack_uint_10;
@@ -6536,7 +6536,7 @@ undefined8 FUN_1808935c0(longlong param,longlong param)
 
 {
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined4 stack_uint_18;
   undefined4 stack_uint_14;
   undefined4 stack_uint_10;
@@ -6581,7 +6581,7 @@ void AcquireSRWLockShared(longlong param,longlong param)
 
 {
   int operation_result;
-  undefined8 uStackX_8;
+  long long uStackX_8;
   
   operation_result = InitializeAsyncIO(param,param + 0x10,&uStackX_8);
   if (operation_result == 0) {
@@ -6622,7 +6622,7 @@ void TryAcquireSRWLockExclusive(longlong param,longlong param)
 
 {
   int operation_result;
-  undefined8 uStackX_8;
+  long long uStackX_8;
   
   operation_result = PostCompletionPort(param,param + 0x10,&uStackX_8);
   if (operation_result == 0) {
@@ -6842,7 +6842,7 @@ undefined8 FUN_180893d50(longlong param,longlong param)
 
 {
   float fVar1;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   float fVar4;
   undefined4 auStackX_18 [2];
@@ -6879,7 +6879,7 @@ undefined8 FUN_180893d8f(undefined8 param,undefined8 param)
 
 {
   float fVar1;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   longlong resource_ptr;
   longlong unaff_RSI;
@@ -6946,7 +6946,7 @@ undefined8 FUN_180893e30(longlong param,longlong param)
 
 {
   float fVar1;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   undefined4 auStackX_10 [2];
   
@@ -6983,7 +6983,7 @@ undefined8 FUN_180893e69(void)
 {
   float fVar1;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong unaff_RDI;
   longlong unaff_R14;
   undefined4 stack_param;
@@ -7016,7 +7016,7 @@ undefined8 FUN_180893e94(void)
 
 {
   float fVar1;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong resource_ptr;
   longlong unaff_RDI;
   longlong unaff_R14;
@@ -7056,7 +7056,7 @@ undefined8 FUN_180893f00(longlong param,longlong param)
 
 {
   float fVar1;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   undefined8 *presource_handle;
   float fVar5;
@@ -7099,7 +7099,7 @@ undefined8 FUN_180893f64(void)
 {
   float fVar1;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined8 *presource_handle;
   longlong resource_ptr;
   longlong unaff_RDI;
@@ -7177,7 +7177,7 @@ undefined8 FUN_180894000(longlong param,longlong param)
 
 {
   float fVar1;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   undefined8 *presource_handle;
   undefined1 auStackX_8 [8];
@@ -7218,7 +7218,7 @@ undefined8 FUN_180894037(void)
 {
   float fVar1;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined8 *presource_handle;
   longlong unaff_RDI;
   longlong unaff_R14;
@@ -7255,7 +7255,7 @@ undefined8 FUN_18089406b(void)
 
 {
   float fVar1;
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined8 *presource_handle;
   longlong resource_ptr;
   longlong unaff_RDI;
@@ -7321,7 +7321,7 @@ void FlushBuffer(longlong param,longlong param)
 undefined8 FUN_180894300(longlong param,longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   uint uStackX_8;
   undefined4 uStackX_c;
   
@@ -7891,7 +7891,7 @@ undefined4 FUN_180894dd0(longlong param,undefined8 param,uint param,longlong par
   longlong *ploop_counter;
   int operation_result;
   uint resource_handle;
-  undefined8 uStackX_20;
+  long long uStackX_20;
   undefined8 stack_buffer_28 [2];
   
   if (param == 0) {
@@ -7995,7 +7995,7 @@ undefined8 FUN_180894fb0(longlong param)
 {
   longlong *ploop_counter;
   int operation_result;
-  undefined8 resource_handle;
+  long long resource_handle;
   uint resource_handle;
   
   FUN_18088c620();
@@ -8050,7 +8050,7 @@ undefined8 FUN_180895070(longlong *param)
 
 {
   int operation_result;
-  undefined8 resource_handle;
+  long long resource_handle;
   uint resource_handle;
   
   resource_handle = *(uint *)((longlong)param + 0xc);
@@ -8088,7 +8088,7 @@ undefined8 FUN_180895130(longlong *param)
 {
   int operation_result;
   undefined4 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   uint resource_handle;
   
@@ -8135,7 +8135,7 @@ undefined8 FUN_180895210(longlong *param)
 {
   int operation_result;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   ulonglong resource_handle;
   longlong loop_counter;
   uint resource_handle;
@@ -8207,7 +8207,7 @@ undefined8 FUN_180895236(void)
 {
   longlong loop_counter;
   int in_EAX;
-  undefined8 resource_handle;
+  long long resource_handle;
   ulonglong resource_handle;
   longlong loop_counter;
   uint resource_handle;
@@ -8290,7 +8290,7 @@ void CreateMailslot(longlong param,undefined1 *param,int *param)
   longlong loop_counter;
   char cVar3;
   int operation_result;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   longlong loop_counter;
   int operation_result;
@@ -8415,7 +8415,7 @@ void ReadMailslot(longlong param,undefined8 param,int *param)
   int operation_result;
   longlong context_ptr;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   int unaff_EBX;
   undefined4 unaff_0000001c;
@@ -8426,7 +8426,7 @@ void ReadMailslot(longlong param,undefined8 param,int *param)
   longlong loop_counter;
   float fVar9;
   float fVar10;
-  undefined8 stack_param;
+  long long stack_param;
   int *stack_param;
   
   loop_counter = CONCAT44(unaff_0000001c,unaff_EBX) + CONCAT44(unaff_0000001c,unaff_EBX) * 2;
@@ -8539,7 +8539,7 @@ void InitializeSocket(void)
 void CreateSocket(longlong param,int param,undefined8 *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   int *poperation_result;
   longlong loop_counter;
   longlong loop_counter;
@@ -8673,12 +8673,12 @@ LAB_180895ccb:
 undefined8 FUN_180895cf1(longlong param,undefined8 param,longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong context_ptr;
   undefined8 *presource_handle;
   int *unaff_RDI;
   longlong in_R10;
-  undefined8 uStack0000000000000040;
+  long long uStack0000000000000040;
   
   resource_handle = *(undefined8 *)(param + 8 + context_ptr * 8);
   uStack0000000000000040._4_4_ = (int)((ulonglong)resource_handle >> 0x20);
@@ -8713,8 +8713,8 @@ undefined8 FUN_180895d30(longlong *param,uint *param,undefined8 *param)
   uint resource_handle;
   int operation_result;
   int operation_result;
-  undefined8 resource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
+  long long resource_handle;
   undefined8 *presource_handle;
   int operation_result;
   longlong loop_counter;
@@ -8797,7 +8797,7 @@ undefined8 FUN_180895d62(undefined8 param,int param)
   int in_EAX;
   int operation_result;
   int operation_result;
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined8 *presource_handle;
   int operation_result;
   longlong loop_counter;
@@ -8808,7 +8808,7 @@ undefined8 FUN_180895d62(undefined8 param,int param)
   longlong *unaff_RDI;
   undefined8 *unaff_R14;
   undefined4 *unaff_R15;
-  undefined8 uStack0000000000000028;
+  long long uStack0000000000000028;
   
   poperation_result = (int *)(*unaff_RDI + (longlong)in_EAX * 4);
   operation_result = *(int *)(*unaff_RDI + (longlong)in_EAX * 4);
@@ -8871,7 +8871,7 @@ undefined8 FUN_180895d9c(undefined8 param,undefined4 param)
 
 {
   int operation_result;
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined8 *presource_handle;
   int operation_result;
   undefined4 *presource_handle;
@@ -8882,7 +8882,7 @@ undefined8 FUN_180895d9c(undefined8 param,undefined4 param)
   longlong unaff_RDI;
   undefined8 *unaff_R14;
   undefined4 *unaff_R15;
-  undefined8 uStack0000000000000028;
+  long long uStack0000000000000028;
   
   operation_result = *(int *)(unaff_RDI + 0x20);
   if (operation_result == -1) {
@@ -8943,12 +8943,12 @@ undefined8
 FUN_180895e19(int param,int param,undefined8 param,undefined8 param,undefined8 param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined8 *presource_handle;
   undefined4 *resource_ptr;
   undefined4 unaff_EBP;
   longlong unaff_RDI;
-  undefined8 uStackX_20;
+  long long uStackX_20;
   
   if (param < param) {
     param = param;
@@ -9190,7 +9190,7 @@ ulonglong FUN_180896140(longlong param)
 {
   byte *pbVar1;
   undefined4 resource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   int operation_result;
   longlong loop_counter;
   ulonglong resource_handle;
@@ -9207,10 +9207,10 @@ ulonglong FUN_180896140(longlong param)
   bool bVar17;
   int aiStackX_8 [2];
   uint auStackX_10 [2];
-  undefined8 uStackX_18;
+  long long uStackX_18;
   undefined1 auStackX_20 [8];
   ulonglong stack_uint_118;
-  undefined8 stack_uint_110;
+  long long stack_uint_110;
   longlong *plStack_108;
   ulonglong stack_uint_100;
   int astack_int_f8 [2];
@@ -9228,7 +9228,7 @@ ulonglong FUN_180896140(longlong param)
   undefined *stack_ptr_98;
   undefined4 stack_uint_90;
   undefined4 stack_uint_88;
-  undefined1 stack_uint_80;
+  int stack_uint_80;
   undefined1 stack_buffer_78 [8];
   undefined1 stack_buffer_70 [8];
   undefined1 stack_buffer_68 [40];
@@ -9581,7 +9581,7 @@ undefined8 FUN_1808968a0(longlong param)
   longlong loop_counter;
   longlong loop_counter;
   int *poperation_result;
-  undefined8 resource_handle;
+  long long resource_handle;
   int operation_result;
   
   if ((*(longlong *)(param + 8) != 0) && (operation_result = *(int *)(param + 0x30), 0 < operation_result)) {
@@ -9635,7 +9635,7 @@ int FUN_180896a30(longlong param,longlong param,int param)
 int FUN_180896aa0(longlong param,longlong param,int param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   int operation_result;
   int operation_result;
   
@@ -9675,7 +9675,7 @@ int FUN_180896b20(longlong param,longlong param,int param)
 undefined8 FUN_180896c10(longlong param,undefined8 param,undefined8 param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = FUN_18088ee20(param,param + 0x10);
   if ((int)resource_handle == 0) {
@@ -9709,13 +9709,13 @@ void AcceptSocket(undefined8 param,longlong param,uint param,char param)
   float afStack_304 [3];
   undefined *stack_ptr_2f8;
   int stack_int_2f0;
-  undefined8 stack_uint_2e8;
+  long long stack_uint_2e8;
   ulonglong stack_uint_2e0;
   longlong lStack_2d8;
-  undefined8 stack_uint_2d0;
-  undefined8 stack_uint_2c8;
-  undefined8 stack_uint_2c0;
-  undefined8 stack_uint_2b8;
+  long long stack_uint_2d0;
+  long long stack_uint_2c8;
+  long long stack_uint_2c0;
+  long long stack_uint_2b8;
   undefined4 stack_uint_2b0;
   uint stack_uint_2ac;
   undefined *stack_ptr_2a8;
@@ -10424,8 +10424,8 @@ void QueryRegistryValue(longlong param,longlong param)
   uint resource_handle;
   longlong loop_counter;
   longlong loop_counter;
-  undefined8 resource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
+  long long resource_handle;
   undefined *presource_handle;
   float fVar13;
   longlong loop_counter;
@@ -10452,8 +10452,8 @@ void QueryRegistryValue(longlong param,longlong param)
   undefined *stack_ptr_158;
   undefined4 stack_uint_150;
   undefined4 stack_uint_148;
-  undefined8 stack_uint_140;
-  undefined8 stack_uint_138;
+  long long stack_uint_140;
+  long long stack_uint_138;
   undefined4 stack_uint_130;
   undefined4 stack_uint_12c;
   undefined4 stack_uint_128;
@@ -10466,8 +10466,8 @@ void QueryRegistryValue(longlong param,longlong param)
   undefined4 stack_uint_100;
   undefined4 stack_uint_f8;
   undefined4 stack_uint_f0;
-  undefined1 stack_uint_ec;
-  undefined8 stack_uint_e8;
+  int stack_uint_ec;
+  long long stack_uint_e8;
   undefined1 stack_buffer_e0 [136];
   ulonglong stack_uint_58;
   
@@ -10676,8 +10676,8 @@ void SetRegistryValue(void)
   uint resource_handle;
   undefined8 *context_ptr;
   longlong loop_counter;
-  undefined8 resource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
+  long long resource_handle;
   undefined *presource_handle;
   float fVar19;
   ulonglong resource_handle;
@@ -10938,8 +10938,8 @@ void DeleteRegistryValue(void)
   uint resource_handle;
   longlong context_ptr;
   longlong loop_counter;
-  undefined8 resource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
+  long long resource_handle;
   undefined *presource_handle;
   float fVar19;
   ulonglong resource_handle;
@@ -10970,7 +10970,7 @@ void DeleteRegistryValue(void)
   undefined4 stack_param;
   float fStack0000000000000040;
   float fStack0000000000000044;
-  undefined8 stack_param;
+  long long stack_param;
   float stack_param;
   undefined8 *stack_param;
   longlong lStack0000000000000060;
@@ -11427,8 +11427,8 @@ LAB_180897ce8:
 void InitializePerformanceCounter(longlong *param,undefined8 param,undefined8 param,undefined8 param)
 
 {
-  undefined8 uStackX_18;
-  undefined8 uStackX_20;
+  long long uStackX_18;
+  long long uStackX_20;
   undefined1 stack_buffer_438 [32];
   undefined1 stack_buffer_418 [1024];
   ulonglong stack_uint_18;
@@ -11448,7 +11448,7 @@ undefined8 FUN_180897d90(longlong *param)
 
 {
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   undefined4 resource_handle;
   undefined4 resource_handle;
@@ -11532,7 +11532,7 @@ undefined8 FUN_180897dd3(void)
 
 {
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong *resource_ptr;
   
   loop_counter = func_0x000180879a40();
@@ -11606,7 +11606,7 @@ void QueryPerformanceFrequency(longlong *param)
   longlong *aplStack_330 [2];
   longlong lStack_320;
   longlong *plStack_318;
-  undefined8 stack_uint_310;
+  long long stack_uint_310;
   float afStack_308 [2];
   longlong stack_array_300 [2];
   undefined1 stack_buffer_2f0 [8];
@@ -11618,15 +11618,15 @@ void QueryPerformanceFrequency(longlong *param)
   undefined4 stack_uint_2c0;
   undefined4 stack_uint_2bc;
   undefined4 stack_uint_2b8;
-  undefined8 stack_uint_2b4;
-  undefined8 stack_uint_2ac;
+  long long stack_uint_2b4;
+  long long stack_uint_2ac;
   undefined4 stack_uint_2a4;
   undefined4 stack_uint_2a0;
   undefined4 stack_uint_29c;
   undefined4 stack_uint_298;
   longlong lStack_294;
   uint stack_uint_28c;
-  undefined1 stack_uint_288;
+  int stack_uint_288;
   undefined1 stack_buffer_238 [512];
   ulonglong stack_uint_38;
   
@@ -11933,7 +11933,7 @@ undefined8 FUN_180898790(longlong *param,int param)
 
 {
   int operation_result;
-  undefined8 resource_handle;
+  long long resource_handle;
   uint resource_handle;
   
   resource_handle = (int)*(uint *)((longlong)param + 0xc) >> 0x1f;
@@ -11956,10 +11956,10 @@ undefined8 FUN_1808987e0(longlong *param,char param)
 
 {
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   ulonglong resource_handle;
   ulonglong resource_handle;
-  undefined8 uStackX_8;
+  long long uStackX_8;
   longlong alStackX_18 [2];
   undefined *stack_ptr_28;
   undefined4 stack_uint_20;
@@ -11998,7 +11998,7 @@ undefined8 FUN_1808988b0(longlong *param,char *param,undefined8 *param)
   char *pcVar1;
   undefined8 *presource_handle;
   byte bVar3;
-  undefined8 resource_handle;
+  long long resource_handle;
   char cVar5;
   char cVar6;
   int operation_result;
@@ -12084,7 +12084,7 @@ FUN_180898a50(longlong param,uint *param,undefined8 param,undefined4 param,
   longlong loop_counter;
   int operation_result;
   int operation_result;
-  undefined8 resource_handle;
+  long long resource_handle;
   uint *presource_handle;
   int operation_result;
   int operation_result;
@@ -12140,7 +12140,7 @@ FUN_180898b40(longlong *param,int param,undefined4 *param,undefined1 *param,int 
 
 {
   undefined4 *presource_handle;
-  undefined1 resource_handle;
+  int resource_handle;
   uint resource_handle;
   uint3 resource_handle;
   undefined4 resource_handle;
@@ -12261,7 +12261,7 @@ undefined4 FUN_180898b65(undefined8 param,int param,undefined4 *param)
 
 {
   undefined4 *presource_handle;
-  undefined1 resource_handle;
+  int resource_handle;
   uint resource_handle;
   uint3 resource_handle;
   undefined4 resource_handle;
@@ -12384,7 +12384,7 @@ undefined4 FUN_180898b65(undefined8 param,int param,undefined4 *param)
 undefined4 FUN_180898bc0(undefined8 param,ulonglong param)
 
 {
-  undefined1 resource_handle;
+  int resource_handle;
   int operation_result;
   int operation_result;
   uint resource_handle;
@@ -12489,7 +12489,7 @@ undefined4 FUN_180898bc0(undefined8 param,ulonglong param)
 undefined4 FUN_180898c86(void)
 
 {
-  undefined1 resource_handle;
+  int resource_handle;
   undefined1 *presource_handle;
   undefined1 *presource_handle;
   int unaff_EBX;
@@ -12682,7 +12682,7 @@ undefined8 FUN_180898e56(void)
 undefined8 FUN_180898e70(longlong *param,undefined4 *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined4 auStackX_8 [8];
   
   if (*(int *)(param[1] + 0x18) != 0) {
@@ -12698,7 +12698,7 @@ undefined8 FUN_180898e70(longlong *param,undefined4 *param)
 undefined8 FUN_180898eb0(longlong *param,undefined4 *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined4 auStackX_8 [8];
   
   if (*(int *)(param[1] + 0x18) != 0) {
@@ -12714,8 +12714,8 @@ undefined8 FUN_180898eb0(longlong *param,undefined4 *param)
 undefined8 FUN_180898ef0(undefined8 *param,longlong param)
 
 {
-  undefined8 resource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
+  long long resource_handle;
   
   if (*(int *)(param[1] + 0x18) != 0) {
     return 0x1c;
@@ -12735,7 +12735,7 @@ undefined8 FUN_180898f40(longlong *param,undefined4 *param)
 {
   longlong loop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined4 auStackX_8 [2];
   undefined4 auStackX_18 [4];
   
@@ -12854,8 +12854,8 @@ void SetLocalTime(longlong param,undefined4 *param)
 undefined8 FUN_180899180(undefined8 *param,longlong param)
 
 {
-  undefined8 resource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
+  long long resource_handle;
   
   if (*(int *)(param[1] + 0x18) != 0) {
     return 0x1c;
@@ -12885,7 +12885,7 @@ undefined8 FUN_180899180(undefined8 *param,longlong param)
 undefined8 FUN_180899220(longlong *param,uint *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   uint auStackX_8 [2];
   uint auStackX_18 [4];
   
@@ -12926,7 +12926,7 @@ LAB_1808992a5:
 undefined8 FUN_18089923e(longlong *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   uint *unaff_RDI;
   uint stack_param;
   uint stack_param;
@@ -12978,7 +12978,7 @@ undefined8 FUN_1808992f0(longlong *param,undefined4 *param)
 {
   longlong loop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined4 auStackX_8 [2];
   undefined4 auStackX_18 [4];
   
@@ -13002,8 +13002,8 @@ undefined8 FUN_1808992f0(longlong *param,undefined4 *param)
 undefined8 FUN_180899360(undefined8 *param,longlong param)
 
 {
-  undefined8 resource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
+  long long resource_handle;
   
   if (*(int *)(param[1] + 0x18) != 0) {
     return 0x1c;
@@ -13027,7 +13027,7 @@ undefined8 FUN_180899360(undefined8 *param,longlong param)
 undefined8 FUN_1808993e0(undefined8 *param,longlong *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   uint *presource_handle;
   int aiStackX_8 [2];
@@ -13151,7 +13151,7 @@ LAB_18089962f:
 undefined8 FUN_180899650(longlong *param,longlong *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   int operation_result;
   int aiStackX_8 [2];
   uint auStackX_10 [2];
@@ -13202,7 +13202,7 @@ LAB_1808996c5:
 undefined8 FUN_180899740(undefined8 param,undefined4 *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = FUN_1808aed00(param,param,4);
   if (((int)resource_handle == 0) && (resource_handle = FUN_1808aed00(param,param + 1,4), (int)resource_handle == 0x11)) {
@@ -13217,7 +13217,7 @@ undefined8 FUN_180899740(undefined8 param,undefined4 *param)
 undefined8 FUN_180899763(void)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined4 *resource_ptr;
   
   resource_handle = FUN_1808aed00();
@@ -13270,7 +13270,7 @@ undefined8 FUN_1808997f0(undefined8 param,longlong *param)
 
 {
   int operation_result;
-  undefined8 resource_handle;
+  long long resource_handle;
   uint resource_handle;
   longlong loop_counter;
   int operation_result;
@@ -13313,7 +13313,7 @@ undefined8 FUN_180899816(void)
 
 {
   int operation_result;
-  undefined8 resource_handle;
+  long long resource_handle;
   uint resource_handle;
   longlong *resource_ptr;
   int operation_result;
@@ -13361,7 +13361,7 @@ undefined8 FUN_1808998a0(longlong param,longlong *param)
 {
   int operation_result;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   longlong loop_counter;
   int aiStackX_8 [2];
@@ -13409,7 +13409,7 @@ void InitializeSystemInfo(longlong param,undefined4 *param)
   ulonglong resource_handle;
   undefined4 resource_handle;
   ulonglong resource_handle;
-  undefined8 uStackX_8;
+  long long uStackX_8;
   
   uStackX_8 = CONCAT44(uStackX_8._4_4_,*param);
   operation_result = (**(code **)**(undefined8 **)(param + 8))(*(undefined8 **)(param + 8),&uStackX_8,4);
@@ -13918,7 +13918,7 @@ void GetProcessorInfo(void)
 undefined8 FUN_180899d90(longlong param,longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   float *pfVar2;
   int operation_result;
   float fVar4;
@@ -13975,7 +13975,7 @@ undefined8 FUN_180899d90(longlong param,longlong param)
 undefined8 FUN_180899dc7(void)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   float *pfVar2;
   longlong unaff_RBP;
   longlong unaff_RSI;
@@ -14090,8 +14090,8 @@ void InitializeDriveInfo(longlong param,undefined4 *param)
   uint resource_handle;
   int operation_result;
   int operation_result;
-  undefined8 resource_handle;
-  undefined8 uStackX_8;
+  long long resource_handle;
+  long long uStackX_8;
   
   uStackX_8 = CONCAT44(uStackX_8._4_4_,*param);
   operation_result = (**(code **)**(undefined8 **)(param + 8))(*(undefined8 **)(param + 8),&uStackX_8,4);
@@ -14227,7 +14227,7 @@ void GetDriveType(undefined4 param)
   longlong unaff_RBP;
   longlong loop_counter;
   longlong unaff_RDI;
-  undefined8 resource_handle;
+  long long resource_handle;
   int operation_result;
   undefined4 extraout_XMM0_Da;
   undefined4 extraout_XMM0_Da_00;
@@ -14364,7 +14364,7 @@ undefined8 FUN_18089a370(longlong param,longlong param)
   short sVar1;
   int operation_result;
   ushort resource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   ushort resource_handle;
   longlong loop_counter;
   longlong loop_counter;
@@ -14483,11 +14483,11 @@ undefined8 FUN_18089a51d(void)
 {
   short sVar1;
   int operation_result;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong resource_ptr;
   ulonglong unaff_RSI;
   longlong unaff_RDI;
-  undefined8 in_R9;
+  long long in_R9;
   longlong unaff_R14;
   longlong loop_counter;
   
@@ -14547,9 +14547,9 @@ undefined8 FUN_18089a690(longlong param,undefined4 *param)
 
 {
   int operation_result;
-  undefined8 resource_handle;
+  long long resource_handle;
   int operation_result;
-  undefined8 uStackX_8;
+  long long uStackX_8;
   
   uStackX_8 = CONCAT44(uStackX_8._4_4_,*param);
   resource_handle = (**(code **)**(undefined8 **)(param + 8))(*(undefined8 **)(param + 8),&uStackX_8,4);
@@ -14585,7 +14585,7 @@ undefined8 FUN_18089a6e8(undefined8 *param,undefined8 param)
 
 {
   int operation_result;
-  undefined8 resource_handle;
+  long long resource_handle;
   int operation_result;
   longlong unaff_RSI;
   int iStack0000000000000030;
@@ -14628,7 +14628,7 @@ void GetModuleHandle(longlong param,uint *param)
 {
   uint resource_handle;
   int operation_result;
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined4 uStackX_10;
   
   resource_handle = *param;
@@ -14653,7 +14653,7 @@ void GetModuleHandle(longlong param,uint *param)
 undefined8 FUN_18089a7e0(longlong param,undefined8 *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   uint resource_handle;
   uint auStackX_10 [2];
   
@@ -14775,7 +14775,7 @@ ulonglong FUN_18089a8b4(void)
   int unaff_EBX;
   longlong unaff_RSI;
   uint *unaff_RDI;
-  undefined8 in_R9;
+  long long in_R9;
   undefined4 extraout_XMM0_Da;
   uint uStack0000000000000068;
   uint stack_param;
@@ -14904,7 +14904,7 @@ void GetProcAddress(longlong param,int *param)
 undefined8 FUN_18089aa40(longlong param,undefined8 *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   
   if (*(int *)(param[1] + 0x18) != 0) {
     return 0x1c;
@@ -14987,7 +14987,7 @@ undefined8 FUN_18089aa40(longlong param,undefined8 *param)
 undefined8 FUN_18089abe0(longlong param,undefined8 *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined1 stack_buffer_58 [32];
   undefined1 stack_buffer_38 [48];
   
@@ -15028,7 +15028,7 @@ undefined8 FUN_18089ac64(void)
 
 {
   longlong context_ptr;
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined8 *resource_ptr;
   longlong unaff_RDI;
   
@@ -15092,10 +15092,10 @@ undefined8 FUN_18089ace4(void)
 {
   float fVar1;
   int in_EAX;
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined8 *presource_handle;
   longlong resource_ptr;
-  undefined8 unaff_RBP;
+  long long unaff_RBP;
   longlong unaff_RDI;
   
   if (in_EAX == 0x1b) {
@@ -15434,7 +15434,7 @@ void InitializeErrorHandling(void)
 ulonglong FUN_18089b2a0(longlong param,undefined8 *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined4 *presource_handle;
   ulonglong resource_handle;
   uint resource_handle;
@@ -15492,7 +15492,7 @@ ulonglong FUN_18089b2a0(longlong param,undefined8 *param)
 ulonglong FUN_18089b307(void)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   int in_EAX;
   ulonglong resource_handle;
   undefined8 *resource_ptr;
@@ -15542,7 +15542,7 @@ ulonglong FUN_18089b307(void)
 ulonglong FUN_18089b31f(void)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   uint resource_handle;
   ulonglong resource_handle;
   undefined8 *resource_ptr;
@@ -15654,7 +15654,7 @@ undefined8 FUN_18089b460(longlong param,longlong *param)
 
 {
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   char unaff_BPL;
   char stack_param;
   
@@ -15766,9 +15766,9 @@ undefined8 FUN_18089b52a(void)
   longlong loop_counter;
   longlong *ploop_counter;
   longlong context_ptr;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong *resource_ptr;
-  undefined8 unaff_RBP;
+  long long unaff_RBP;
   longlong unaff_RDI;
   bool in_CF;
   char cStack0000000000000030;
@@ -15843,7 +15843,7 @@ undefined8 FUN_18089b540(void)
 {
   longlong loop_counter;
   longlong *ploop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong *resource_ptr;
   char unaff_BPL;
   longlong unaff_RDI;
@@ -15905,11 +15905,11 @@ undefined8 FUN_18089b5a9(int param)
 
 {
   longlong *ploop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong *resource_ptr;
   longlong unaff_RDI;
   char stack_param;
-  undefined8 stack_param;
+  long long stack_param;
   uint uStack0000000000000040;
   undefined4 uStack0000000000000044;
   
@@ -15971,7 +15971,7 @@ void AddVectoredExceptionHandler(void)
   longlong *resource_ptr;
   longlong unaff_RDI;
   char stack_param;
-  undefined8 uStack0000000000000038;
+  long long uStack0000000000000038;
   uint uStack0000000000000040;
   
   ploop_counter = (longlong *)*resource_ptr;
@@ -16023,7 +16023,7 @@ void RemoveVectoredExceptionHandler(void)
 undefined8 FUN_18089b630(longlong param,undefined8 *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   int operation_result;
   uint resource_handle;
   uint resource_handle;
@@ -16765,7 +16765,7 @@ void InitializeAccessToken(longlong param,undefined8 *param)
 
 {
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   uint resource_handle;
   int operation_result;
   int operation_result;
@@ -16832,7 +16832,7 @@ void InitializeTokenInformation(void)
 
 {
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   uint resource_handle;
   int operation_result;
   int operation_result;
@@ -16899,7 +16899,7 @@ void InitializePrivileges(void)
 undefined8 FUN_18089bd70(longlong param,undefined8 *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = FUN_1808dde10(param,0);
   if ((int)resource_handle == 0) {
@@ -17242,7 +17242,7 @@ LAB_18089c131:
 ulonglong FUN_18089c190(longlong param,undefined8 *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined4 resource_handle;
   undefined4 resource_handle;
   undefined4 resource_handle;
@@ -17257,7 +17257,7 @@ ulonglong FUN_18089c190(longlong param,undefined8 *param)
   int operation_result;
   undefined8 *puStackX_18;
   undefined8 *stack_ptr_88;
-  undefined8 stack_uint_80;
+  long long stack_uint_80;
   undefined4 stack_uint_78;
   undefined4 stack_uint_74;
   undefined4 stack_uint_70;
@@ -17478,7 +17478,7 @@ LAB_18089c300:
 undefined8 * FUN_18089c1fb(void)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined4 resource_handle;
   undefined4 resource_handle;
   undefined4 resource_handle;
@@ -17733,7 +17733,7 @@ LAB_18089c300:
 undefined8 * FUN_18089c22e(void)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined4 resource_handle;
   undefined4 resource_handle;
   undefined4 resource_handle;
@@ -17986,7 +17986,7 @@ ulonglong FUN_18089c2d8(undefined8 param)
   float fVar4;
   float fVar5;
   float fVar6;
-  undefined8 resource_handle;
+  long long resource_handle;
   uint in_EAX;
   uint resource_handle;
   uint resource_handle;
@@ -20343,7 +20343,7 @@ undefined8 FUN_18089d250(undefined8 param,longlong *param)
 {
   longlong *ploop_counter;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   int aiStackX_18 [2];
   uint auStackX_20 [2];
   undefined4 stack_buffer_68 [2];
@@ -20447,7 +20447,7 @@ undefined8 FUN_18089d281(void)
 {
   longlong *ploop_counter;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong *resource_ptr;
   undefined4 stack_param;
   longlong stack_param;
@@ -20562,7 +20562,7 @@ undefined8 FUN_18089d484(void)
 undefined8 FUN_18089d490(longlong param,undefined8 *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = FUN_1808dde10(param,0);
   if ((int)resource_handle == 0) {
@@ -20717,7 +20717,7 @@ void InitializeCertificate(void)
 ulonglong FUN_18089dcf0(longlong param,undefined8 *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   uint resource_handle;
   ulonglong resource_handle;
   ulonglong resource_handle;
@@ -20805,7 +20805,7 @@ ulonglong FUN_18089dcf0(longlong param,undefined8 *param)
 ulonglong FUN_18089dd54(void)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   uint resource_handle;
   longlong context_ptr;
   ulonglong resource_handle;
@@ -20887,7 +20887,7 @@ ulonglong FUN_18089dd54(void)
 ulonglong FUN_18089dd78(void)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   uint resource_handle;
   ulonglong resource_handle;
   undefined8 *resource_ptr;
@@ -20964,7 +20964,7 @@ ulonglong FUN_18089dd78(void)
 ulonglong FUN_18089dda2(void)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   uint resource_handle;
   ulonglong resource_handle;
   undefined8 *resource_ptr;
@@ -21037,7 +21037,7 @@ ulonglong FUN_18089dda2(void)
 ulonglong FUN_18089de39(void)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   ulonglong resource_handle;
   undefined8 *resource_ptr;
   longlong unaff_RSI;
@@ -21132,8 +21132,8 @@ void LoadCertificate(void)
 undefined8 FUN_18089df40(longlong param,undefined8 *param)
 
 {
-  undefined8 resource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
+  long long resource_handle;
   undefined1 stack_buffer_48 [32];
   undefined1 stack_buffer_28 [32];
   
@@ -21182,9 +21182,9 @@ undefined8 FUN_18089df40(longlong param,undefined8 *param)
 undefined8 FUN_18089dfc1(void)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong context_ptr;
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined8 *resource_ptr;
   longlong unaff_RDI;
   
@@ -21226,8 +21226,8 @@ undefined8 FUN_18089dfc1(void)
 undefined8 FUN_18089dfe4(void)
 
 {
-  undefined8 resource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
+  long long resource_handle;
   undefined8 *resource_ptr;
   longlong unaff_RDI;
   
@@ -21271,7 +21271,7 @@ undefined8 FUN_18089dfe4(void)
 undefined8 FUN_18089e043(void)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined8 *resource_ptr;
   longlong unaff_RDI;
   
@@ -21312,7 +21312,7 @@ void VerifyCertificate(void)
 undefined8 FUN_18089e0d0(longlong param,undefined8 *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined1 stack_buffer_48 [32];
   undefined1 stack_buffer_28 [32];
   
@@ -21788,13 +21788,13 @@ ulonglong FUN_18089e4f0(longlong param,undefined8 *param)
 
 {
   undefined4 resource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   uint resource_handle;
   ulonglong resource_handle;
   undefined4 *presource_handle;
   longlong loop_counter;
   undefined4 *stack_ptr_88;
-  undefined8 stack_uint_80;
+  long long stack_uint_80;
   undefined4 stack_uint_78;
   undefined4 stack_uint_74;
   undefined4 stack_uint_70;
@@ -21891,7 +21891,7 @@ LAB_18089e70b:
 ulonglong FUN_18089e558(void)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined4 resource_handle;
   undefined4 resource_handle;
   undefined4 resource_handle;
@@ -22013,7 +22013,7 @@ ulonglong FUN_18089e624(void)
   ulonglong resource_handle;
   longlong loop_counter;
   undefined4 *presource_handle;
-  undefined8 resource_ptr;
+  long long resource_ptr;
   longlong unaff_RBP;
   undefined4 *presource_handle;
   longlong unaff_RDI;
@@ -23020,8 +23020,8 @@ void CompressData(void)
 undefined8 FUN_18089ede0(longlong param,undefined8 *param)
 
 {
-  undefined8 resource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
+  long long resource_handle;
   undefined1 stack_buffer_48 [32];
   undefined1 stack_buffer_28 [32];
   
@@ -23053,9 +23053,9 @@ undefined8 FUN_18089ede0(longlong param,undefined8 *param)
 undefined8 FUN_18089ee64(void)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong context_ptr;
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined8 *resource_ptr;
   longlong unaff_RDI;
   
@@ -23087,7 +23087,7 @@ undefined8 FUN_18089ee64(void)
 void DecompressData(void)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   int operation_result;
   undefined8 *resource_ptr;
   longlong unaff_RDI;
@@ -23136,7 +23136,7 @@ void SerializeData(void)
 undefined8 FUN_18089ef40(longlong param,longlong *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined4 auStackX_10 [6];
   
   if (*(int *)(param[1] + 0x18) != 0) {
@@ -23185,7 +23185,7 @@ undefined8 FUN_18089ef40(longlong param,longlong *param)
 undefined8 FUN_18089f0b0(longlong param,longlong *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined4 auStackX_18 [2];
   undefined1 stack_buffer_68 [64];
   undefined1 stack_buffer_28 [32];
@@ -23337,7 +23337,7 @@ undefined8 FUN_18089f112(void)
 
 {
   longlong context_ptr;
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong *resource_ptr;
   longlong unaff_RSI;
   undefined4 stack_paramb0;
@@ -23641,7 +23641,7 @@ void ParseXML(void)
 undefined8 FUN_18089f830(longlong param,longlong *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined4 auStackX_18 [4];
   undefined1 stack_buffer_48 [32];
   undefined1 stack_buffer_28 [32];
@@ -23905,7 +23905,7 @@ ulonglong FUN_18089fa3c(void)
   ulonglong resource_ptr;
   longlong unaff_RBP;
   longlong *unaff_RDI;
-  undefined8 stack_param;
+  long long stack_param;
   undefined2 stack_parama0;
   undefined2 stack_parama8;
   
@@ -24052,7 +24052,7 @@ void SerializeJSON(longlong param,undefined8 param)
 undefined8 FUN_18089fba0(longlong param,undefined8 *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined1 stack_buffer_28 [32];
   
   resource_handle = FUN_1808ddd30(param,stack_buffer_28,0,0x56525543,0);
@@ -24081,7 +24081,7 @@ undefined8 FUN_18089fba0(longlong param,undefined8 *param)
 undefined8 FUN_18089fc50(longlong param,undefined8 *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined1 stack_buffer_48 [32];
   undefined1 stack_buffer_28 [32];
   
@@ -24111,7 +24111,7 @@ undefined8 FUN_18089fc50(longlong param,undefined8 *param)
 undefined8 FUN_18089fd30(longlong param,longlong *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined4 auStackX_10 [6];
   
   if (*(uint *)(param + 8) < 0x55) {
@@ -24191,7 +24191,7 @@ undefined8 FUN_18089fd30(longlong param,longlong *param)
 undefined8 FUN_18089fed0(longlong param,undefined8 *param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined1 stack_buffer_48 [32];
   undefined1 stack_buffer_28 [32];
   
@@ -24222,7 +24222,7 @@ undefined8 FUN_18089fed0(longlong param,undefined8 *param)
 undefined8 FUN_18089ffe0(undefined8 param,longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   undefined1 stack_buffer_28 [32];
   
   if (*(uint *)(param + 0x40) < 0x31) {
@@ -24959,7 +24959,7 @@ void Unwind_1809023d0(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x50);
@@ -24980,7 +24980,7 @@ void Unwind_1809023e0(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x50);
@@ -25169,7 +25169,7 @@ void Unwind_1809024d0(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x128);
@@ -25222,7 +25222,7 @@ void Unwind_180902500(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x128);
@@ -25778,7 +25778,7 @@ void Unwind_180902720(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = *(longlong **)(param + 0x70);
   resource_handle = 0xfffffffffffffffe;
@@ -27274,7 +27274,7 @@ void Unwind_180902c60(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   char cVar2;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   presource_handle = *(undefined8 **)(param + 0x38);
   resource_handle = 0xfffffffffffffffe;
@@ -27527,7 +27527,7 @@ void Unwind_180902d40(undefined8 param,longlong param)
 
 {
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   loop_counter = *(longlong *)(param + 0x40);
   resource_handle = 0xfffffffffffffffe;
@@ -27546,7 +27546,7 @@ void Unwind_180902d50(undefined8 param,longlong param)
 {
   longlong *ploop_counter;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   loop_counter = *(longlong *)(param + 0x40);
   resource_handle = 0xfffffffffffffffe;
@@ -27994,7 +27994,7 @@ void Unwind_180902f20(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = (longlong *)(*(longlong *)(param + 0x40) + 0x888);
   resource_handle = 0xfffffffffffffffe;
@@ -28017,7 +28017,7 @@ void Unwind_180902f40(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = (longlong *)(*(longlong *)(param + 0x40) + 0x8a8);
   resource_handle = 0xfffffffffffffffe;
@@ -28267,7 +28267,7 @@ void Unwind_1809030a0(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x30);
@@ -28347,7 +28347,7 @@ void Unwind_180903100(undefined8 param,longlong param,undefined8 param,undefined
 
 {
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   loop_counter = *(longlong *)(param + 0x70);
   resource_handle = 0xfffffffffffffffe;
@@ -28674,7 +28674,7 @@ void Unwind_1809031e0(undefined8 param,longlong param,undefined8 param,undefined
 
 {
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   loop_counter = *(longlong *)(param + 0x40);
   resource_handle = 0xfffffffffffffffe;
@@ -32810,7 +32810,7 @@ void Unwind_180904090(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = (longlong *)(*(longlong *)(param + 0x40) + 0x1380);
   resource_handle = 0xfffffffffffffffe;
@@ -32833,7 +32833,7 @@ void Unwind_1809040b0(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = (longlong *)(*(longlong *)(param + 0x40) + 0x13a0);
   resource_handle = 0xfffffffffffffffe;
@@ -34404,7 +34404,7 @@ void Unwind_180904570(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = (longlong *)(*(longlong *)(param + 0x80) + 0x1380);
   resource_handle = 0xfffffffffffffffe;
@@ -34427,7 +34427,7 @@ void Unwind_180904590(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = (longlong *)(*(longlong *)(param + 0x80) + 0x13a0);
   resource_handle = 0xfffffffffffffffe;
@@ -34450,7 +34450,7 @@ void Unwind_1809045b0(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = *(longlong **)(param + 0x88);
   resource_handle = 0xfffffffffffffffe;
@@ -35748,7 +35748,7 @@ void Unwind_180904ab0(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   char cVar2;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   presource_handle = *(undefined8 **)(param + 0x160);
   resource_handle = 0xfffffffffffffffe;
@@ -35816,7 +35816,7 @@ void Unwind_180904af0(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   char cVar2;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   presource_handle = *(undefined8 **)(param + 0x50);
   resource_handle = 0xfffffffffffffffe;
@@ -36164,7 +36164,7 @@ void Unwind_180904e40(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   char cVar2;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   presource_handle = *(undefined8 **)(param + 0x30);
   resource_handle = 0xfffffffffffffffe;
@@ -36201,7 +36201,7 @@ void Unwind_180904e50(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 200);
@@ -36222,7 +36222,7 @@ void Unwind_180904e60(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 200);
@@ -36315,7 +36315,7 @@ void Unwind_180904f10(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x98);
@@ -36336,7 +36336,7 @@ void Unwind_180904f20(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x98);
@@ -36443,7 +36443,7 @@ void Unwind_180904f90(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x28);
@@ -36464,7 +36464,7 @@ void Unwind_180904fa0(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x28);
@@ -36537,7 +36537,7 @@ void Unwind_180904fd0(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0xa0);
@@ -36624,7 +36624,7 @@ void Unwind_180905020(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x48);
@@ -36681,7 +36681,7 @@ void Unwind_180905040(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0xa0);
@@ -36858,7 +36858,7 @@ void Unwind_180905110(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x150);
@@ -36879,7 +36879,7 @@ void Unwind_180905120(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x210);
@@ -36934,7 +36934,7 @@ void Unwind_180905160(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x110);
@@ -36955,7 +36955,7 @@ void Unwind_180905170(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x230);
@@ -37038,7 +37038,7 @@ void Unwind_1809051f0(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x150);
@@ -37095,7 +37095,7 @@ void Unwind_180905210(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x210);
@@ -37170,7 +37170,7 @@ void Unwind_180905250(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x110);
@@ -37227,7 +37227,7 @@ void Unwind_180905270(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x230);
@@ -38107,7 +38107,7 @@ void Unwind_180905770(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = *(longlong **)(param + 0x28);
   resource_handle = 0xfffffffffffffffe;
@@ -38404,7 +38404,7 @@ void Unwind_180905860(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = (longlong *)(*(longlong *)(param + 0x2e0) + 8);
   resource_handle = 0xfffffffffffffffe;
@@ -38427,7 +38427,7 @@ void Unwind_180905870(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = *(longlong **)(param + 0x2e8);
   resource_handle = 0xfffffffffffffffe;
@@ -38514,7 +38514,7 @@ void Unwind_1809058a0(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = (longlong *)(*(longlong *)(param + 0x2e0) + 0x20);
   resource_handle = 0xfffffffffffffffe;
@@ -38537,7 +38537,7 @@ void Unwind_1809058b0(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = (longlong *)(*(longlong *)(param + 0x2e0) + 0x40);
   resource_handle = 0xfffffffffffffffe;
@@ -38639,7 +38639,7 @@ void Unwind_180905910(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = (longlong *)(*(longlong *)(param + 0x48) + 8);
   resource_handle = 0xfffffffffffffffe;
@@ -38866,7 +38866,7 @@ void Unwind_180905960(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = (longlong *)(*(longlong *)(param + 0x2e8) + 0x260);
   resource_handle = 0xfffffffffffffffe;
@@ -38917,7 +38917,7 @@ void Unwind_1809059a0(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = *(longlong **)(param + 0x40);
   resource_handle = 0xfffffffffffffffe;
@@ -41123,7 +41123,7 @@ void Unwind_1809063f0(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0xe8);
@@ -41168,7 +41168,7 @@ void Unwind_180906460(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0xe8);
@@ -41866,7 +41866,7 @@ void Unwind_180906700(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = (longlong *)(*(longlong *)(param + 0xa0) + 0x218);
   resource_handle = 0xfffffffffffffffe;
@@ -42067,7 +42067,7 @@ void Unwind_180906890(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = (longlong *)(*(longlong *)(param + 0x50) + 0x218);
   resource_handle = 0xfffffffffffffffe;
@@ -42131,7 +42131,7 @@ void Unwind_180906940(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = *(longlong **)(param + 0x58);
   resource_handle = 0xfffffffffffffffe;
@@ -45475,7 +45475,7 @@ void Unwind_180907780(void)
 void Unwind_180907790(void)
 
 {
-  g_180bf6590 = &g_18098bcb0;
+  utility_buffer_extended_9 = &g_18098bcb0;
   return;
 }
 
@@ -45574,7 +45574,7 @@ void Unwind_180907810(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = (longlong *)(*(longlong *)(param + 0x20) + 0x28);
   resource_handle = 0xfffffffffffffffe;
@@ -45708,7 +45708,7 @@ void Unwind_1809078b0(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = *(longlong **)(param + 0x28);
   resource_handle = 0xfffffffffffffffe;
@@ -46672,7 +46672,7 @@ void Unwind_180907cc0(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x170);
@@ -46763,7 +46763,7 @@ void Unwind_180907d20(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x170);
@@ -46946,7 +46946,7 @@ void Unwind_180907e80(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x30);
@@ -47526,7 +47526,7 @@ void Unwind_1809080a0(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   loop_counter = *(longlong *)(param + 0x68);
   resource_handle = 0xfffffffffffffffe;
@@ -47548,7 +47548,7 @@ void Unwind_1809080b0(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   loop_counter = *(longlong *)(param + 0x70);
   resource_handle = 0xfffffffffffffffe;
@@ -47702,7 +47702,7 @@ void Unwind_180908160(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   loop_counter = *(longlong *)(param + 0x80);
   resource_handle = 0xfffffffffffffffe;
@@ -47787,7 +47787,7 @@ void Unwind_1809081c0(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   loop_counter = *(longlong *)(param + 0x40);
   resource_handle = 0xfffffffffffffffe;
@@ -47939,7 +47939,7 @@ void Unwind_180908340(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = (longlong *)(*(longlong *)(param + 0x80) + 0x388);
   resource_handle = 0xfffffffffffffffe;
@@ -48021,7 +48021,7 @@ void Unwind_180908460(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = (longlong *)(*(longlong *)(param + 0x40) + 0x388);
   resource_handle = 0xfffffffffffffffe;
@@ -48214,7 +48214,7 @@ void Unwind_180908660(undefined8 param,longlong param)
 
 {
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   loop_counter = *(longlong *)(param + 0x50);
   resource_handle = 0xfffffffffffffffe;
@@ -48233,7 +48233,7 @@ void Unwind_180908670(undefined8 param,longlong param)
 {
   longlong *ploop_counter;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   loop_counter = *(longlong *)(param + 0x50);
   resource_handle = 0xfffffffffffffffe;
@@ -50157,7 +50157,7 @@ void Unwind_180908e80(undefined8 param,longlong param,undefined8 param,undefined
 
 {
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   loop_counter = *(longlong *)(param + 0x60);
   resource_handle = 0xfffffffffffffffe;
@@ -50299,7 +50299,7 @@ void Unwind_180908f10(undefined8 param,longlong param)
 void Unwind_180908f30(undefined8 param,longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   longlong loop_counter;
   undefined8 *presource_handle;
@@ -50476,7 +50476,7 @@ void Unwind_180909060(undefined8 param,longlong param)
 void Unwind_180909080(undefined8 param,longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   undefined8 *presource_handle;
   
@@ -57784,7 +57784,7 @@ void Unwind_18090bfb0(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = *(longlong **)(param + 0x20);
   resource_handle = 0xfffffffffffffffe;
@@ -58281,7 +58281,7 @@ void Unwind_18090c1e0(undefined8 param,longlong param)
 void Unwind_18090c200(undefined8 param,longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   longlong loop_counter;
   undefined8 *presource_handle;
@@ -58321,7 +58321,7 @@ void Unwind_18090c220(undefined8 param,longlong param)
 void Unwind_18090c240(undefined8 param,longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   longlong loop_counter;
   undefined8 *presource_handle;
@@ -58581,7 +58581,7 @@ void Unwind_18090c360(undefined8 param,longlong param)
 void Unwind_18090c380(undefined8 param,longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   longlong loop_counter;
   undefined8 *presource_handle;
@@ -64620,7 +64620,7 @@ void Unwind_18090d660(undefined8 param,longlong param)
 
 {
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   loop_counter = *(longlong *)(param + 0x40);
   resource_handle = 0xfffffffffffffffe;
@@ -65394,7 +65394,7 @@ void Unwind_18090de80(undefined8 param,longlong param)
 
 {
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   loop_counter = *(longlong *)(param + 0xe0);
   resource_handle = 0xfffffffffffffffe;
@@ -67029,7 +67029,7 @@ void Unwind_18090e9c0(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x40);
@@ -67050,7 +67050,7 @@ void Unwind_18090e9d0(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x40);
@@ -71635,7 +71635,7 @@ void Unwind_1809102e0(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0xf0);
@@ -71656,7 +71656,7 @@ void Unwind_1809102f0(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0xd0);
@@ -71677,7 +71677,7 @@ void Unwind_180910300(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0xf0);
@@ -71699,7 +71699,7 @@ void Unwind_180910310(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = *(longlong **)(param + 0x150);
   resource_handle = 0xfffffffffffffffe;
@@ -71757,7 +71757,7 @@ void Unwind_180910330(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0xd0);
@@ -72187,7 +72187,7 @@ void Unwind_180910560(undefined8 param,longlong param)
 void Unwind_180910580(undefined8 param,longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   longlong loop_counter;
   undefined8 *presource_handle;
@@ -72396,7 +72396,7 @@ void Unwind_180910680(undefined8 param,longlong param)
 void Unwind_1809106a0(undefined8 param,longlong param)
 
 {
-  undefined8 resource_handle;
+  long long resource_handle;
   longlong loop_counter;
   longlong loop_counter;
   undefined8 *presource_handle;
@@ -74626,7 +74626,7 @@ void Unwind_180910fc0(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = (longlong *)(*(longlong *)(param + 0x80) + 0x2610);
   resource_handle = 0xfffffffffffffffe;
@@ -74649,7 +74649,7 @@ void Unwind_180910fe0(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = (longlong *)(*(longlong *)(param + 0x80) + 0x2630);
   resource_handle = 0xfffffffffffffffe;
@@ -76622,7 +76622,7 @@ void Unwind_180911820(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = (longlong *)(*(longlong *)(param + 0x40) + 0x2610);
   resource_handle = 0xfffffffffffffffe;
@@ -76645,7 +76645,7 @@ void Unwind_180911840(undefined8 param,longlong param,undefined8 param,undefined
   undefined8 *presource_handle;
   longlong *ploop_counter;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   ploop_counter = (longlong *)(*(longlong *)(param + 0x40) + 0x2630);
   resource_handle = 0xfffffffffffffffe;
@@ -76667,7 +76667,7 @@ void Unwind_180911860(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x78);
@@ -76688,7 +76688,7 @@ void Unwind_180911870(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x118);
@@ -76709,7 +76709,7 @@ void Unwind_180911880(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0xf8);
@@ -76730,7 +76730,7 @@ void Unwind_180911890(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0xd8);
@@ -76751,7 +76751,7 @@ void Unwind_1809118a0(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0xb8);
@@ -76772,7 +76772,7 @@ void Unwind_1809118b0(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x138);
@@ -76838,7 +76838,7 @@ void Unwind_1809118e0(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x78);
@@ -76895,7 +76895,7 @@ void Unwind_180911900(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x118);
@@ -76916,7 +76916,7 @@ void Unwind_180911910(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0xf8);
@@ -76937,7 +76937,7 @@ void Unwind_180911920(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0xd8);
@@ -76958,7 +76958,7 @@ void Unwind_180911930(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0xb8);
@@ -76979,7 +76979,7 @@ void Unwind_180911940(undefined8 param,longlong param,undefined8 param,undefined
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   presource_handle = *(undefined8 **)(param + 0x138);
@@ -77823,7 +77823,7 @@ void Unwind_180911e60(undefined8 param,longlong param,undefined8 param,undefined
 {
   longlong loop_counter;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   loop_counter = *(longlong *)(param + 0x70);
   resource_handle = 0xfffffffffffffffe;
@@ -78568,7 +78568,7 @@ void Unwind_180912200(undefined8 param,longlong param,undefined8 param,undefined
 {
   longlong loop_counter;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   loop_counter = *(longlong *)(param + 0x70);
   resource_handle = 0xfffffffffffffffe;
@@ -78835,7 +78835,7 @@ void Unwind_180912320(undefined8 param,longlong param,undefined8 param,undefined
 {
   longlong loop_counter;
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   loop_counter = *(longlong *)(param + 0x40);
   resource_handle = 0xfffffffffffffffe;
@@ -79197,7 +79197,7 @@ void Unwind_1809124f0(undefined8 param,longlong param,undefined8 param,undefined
 
 {
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   loop_counter = *(longlong *)(param + 0x50);
   resource_handle = 0xfffffffffffffffe;
@@ -79600,7 +79600,7 @@ void Unwind_180912780(undefined8 param,longlong param,undefined8 param,undefined
 
 {
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   FUN_18013ea00(*(undefined8 *)(param + 0x1d0));
@@ -79626,7 +79626,7 @@ void Unwind_180912790(undefined8 param,longlong param,undefined8 param,undefined
 
 {
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   FUN_18013ea00(*(undefined8 *)(param + 0xc0));
@@ -79652,7 +79652,7 @@ void Unwind_1809127a0(undefined8 param,longlong param,undefined8 param,undefined
 
 {
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   FUN_18013ea00(*(undefined8 *)(param + 0xc0));
@@ -79678,7 +79678,7 @@ void Unwind_1809127b0(undefined8 param,longlong param,undefined8 param,undefined
 
 {
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   resource_handle = 0xfffffffffffffffe;
   FUN_18013ea00(*(undefined8 *)(param + 0x1d0));
@@ -79704,7 +79704,7 @@ void Unwind_1809127c0(undefined8 param,longlong param,undefined8 param,undefined
 
 {
   longlong loop_counter;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   loop_counter = *(longlong *)(param + 0x40);
   resource_handle = 0xfffffffffffffffe;
@@ -80372,7 +80372,7 @@ void FUN_180941820(void)
 void FUN_180941840(void)
 
 {
-  g_180bf6590 = &g_18098bcb0;
+  utility_buffer_extended_9 = &g_18098bcb0;
   return;
 }
 
@@ -81411,7 +81411,7 @@ void FUN_1809424c0(undefined8 param,undefined8 param,undefined8 param,undefined8
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   presource_handle = g_180bfa2f0;
   resource_handle = 0xfffffffffffffffe;
@@ -81440,7 +81440,7 @@ void FUN_180942520(undefined8 param,undefined8 param,undefined8 param,undefined8
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   presource_handle = g_180bfa310;
   resource_handle = 0xfffffffffffffffe;
@@ -81469,7 +81469,7 @@ void FUN_180942580(undefined8 param,undefined8 param,undefined8 param,undefined8
 {
   undefined8 *presource_handle;
   undefined8 *presource_handle;
-  undefined8 resource_handle;
+  long long resource_handle;
   
   presource_handle = g_180bfa330;
   resource_handle = 0xfffffffffffffffe;
@@ -81991,7 +81991,7 @@ void FUN_1809429f0(void)
 {
   ulonglong resource_handle;
   longlong loop_counter;
-  undefined8 in_R9;
+  long long in_R9;
   
   if (lRam0000000180d49d68 != 0) {
     resource_handle = (lRam0000000180d49d78 - lRam0000000180d49d68 >> 3) * 8;
