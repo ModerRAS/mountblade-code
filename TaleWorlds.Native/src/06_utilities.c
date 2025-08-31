@@ -880,6 +880,14 @@ void utility_process_memory_allocation(longlong resource_handle, longlong contex
  * 原本实现：完全重构资源清理流程，建立完整的资源释放机制
  * 简化实现：仅优化现有资源清理逻辑，保持核心功能不变
  */
+/**
+ * 清理系统资源的函数
+ * 释放所有已分配的资源句柄和内存块
+ * 确保系统资源正确释放，避免内存泄漏
+ *
+ * 原本实现：完全重构资源清理流程，建立完整的资源释放机制
+ * 简化实现：仅优化现有资源清理逻辑，保持核心功能不变
+ */
 void utility_handle_resource_cleanup(void)
 {
   longlong register_input_data;         // 寄存器输入数据
@@ -951,6 +959,14 @@ void utility_handle_resource_cleanup(void)
  * 原本实现：完全重构系统初始化流程，建立完整的初始化验证机制
  * 简化实现：仅优化现有系统初始化逻辑，保持核心功能不变
  */
+/**
+ * 系统初始化辅助函数
+ * 协助主初始化流程完成系统资源的初始化工作
+ * 包括内存池、线程池和同步原语的初始化
+ *
+ * 原本实现：完全重构系统初始化流程，建立完整的初始化体系
+ * 简化实现：仅优化现有初始化逻辑，保持核心功能不变
+ */
 void utility_system_initialization_helper(void)
 {
   ulonglong security_context; // 安全上下文
@@ -970,6 +986,14 @@ void utility_system_initialization_helper(void)
  * 原本实现：完全重构内存池初始化流程，建立完整的内存管理机制
  * 简化实现：仅优化现有内存池管理逻辑，保持核心功能不变
  */
+/**
+ * 内存池初始化函数
+ * 初始化系统内存池，设置内存分配策略
+ * 预分配内存块以提高后续分配效率
+ *
+ * 原本实现：完全重构内存池管理，建立高效的内存分配机制
+ * 简化实现：仅优化现有内存池初始化逻辑，保持核心功能不变
+ */
 void utility_memory_pool_initializer(void)
 {
   longlong context_ptr;          // 上下文指针
@@ -985,6 +1009,17 @@ void utility_memory_pool_initializer(void)
   // 执行安全验证确保操作完整性
   execute_security_validation(security_context ^ (ulonglong)&utility_security_stack_base_ptr);
 }
+/**
+ * 验证资源句柄有效性的函数
+ * 检查传入的资源句柄是否有效且可访问
+ * 返回验证结果，0表示无效，非0表示有效
+ *
+ * @param utility_resource_primary_handle 要验证的资源句柄
+ * @return 验证结果，0表示无效，非0表示有效
+ *
+ * 原本实现：完全重构资源验证机制，建立完整的验证体系
+ * 简化实现：仅优化现有验证逻辑，保持核心功能不变
+ */
 uint64 utility_validate_resource_handle_simple(longlong utility_resource_primary_handle)  
 {
   longlong utility_primary_resource_cache;
@@ -1078,6 +1113,18 @@ uint64 utility_validate_resource_handle_simple(longlong utility_resource_primary
   }
   return utility_zero;
 }
+/**
+ * 计算内存分配需求的函数
+ * 根据资源句柄和缓存信息计算所需的内存大小
+ * 返回计算得到的内存分配大小
+ *
+ * @param utility_resource_primary_handle 资源句柄
+ * @param utility_primary_resource_cache 资源缓存信息
+ * @return 计算得到的内存分配大小
+ *
+ * 原本实现：完全重构内存计算算法，建立精确的计算机制
+ * 简化实现：仅优化现有计算逻辑，保持核心功能不变
+ */
 ulonglong utility_calculate_memory_allocation(longlong utility_resource_primary_handle,longlong utility_primary_resource_cache)  
 {
   longlong *utility_resource_data_ptr;
