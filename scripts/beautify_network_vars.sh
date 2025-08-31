@@ -32,6 +32,9 @@ declare -A VAR_MAPPINGS=(
     ["network_stack_templong_temp_config"]="network_stack_temporary_config_data"
     ["network_stack_templong_primary_buffer"]="network_stack_temporary_primary_buffer"
     ["network_pointer_connection_status_flag"]="network_connection_status_flag_pointer"
+    ["network_stack_templong_connection_data"]="network_stack_temporary_connection_data"
+    ["network_stack_templong_transfer_data"]="network_stack_temporary_transfer_data"
+    ["network_stack_validation_buffer"]="network_stack_temporary_validation_buffer"
 )
 
 # 遍历所有变量名映射并进行替换

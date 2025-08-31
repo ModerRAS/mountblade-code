@@ -1000,6 +1000,21 @@ void system_thread_init_function(void)
 
 
 
+/**
+ * @brief 系统配置初始化函数
+ * 
+ * 初始化系统配置模块，设置配置管理器和参数。
+ * 
+ * @details 功能说明：
+ * - 获取系统上下文管理器
+ * - 遍历配置数据
+ * - 分配配置管理空间
+ * - 初始化配置管理器上下文
+ * - 设置配置管理参数
+ * 
+ * @note 简化实现：保留核心配置初始化逻辑，删除冗余代码
+ * @return void
+ */
 void system_initialize_config(void)
 
 {

@@ -47,32 +47,31 @@
 #define UTILITY_CHECK_FLAG_224 0xE0                               // 检查标志224
 #define UTILITY_CHECK_FLAG_240 0xF0                               // 检查标志240
 
-// 新增语义化偏移量常量
-#define UTILITY_OFFSET_LIST_HANDLE 0x4                           // 列表句柄偏移量
-#define UTILITY_OFFSET_STRUCT_ONE 0x8                             // 结构体偏移量1
-#define UTILITY_OFFSET_PTR_CHECKSUM 0xC                           // 校验和指针偏移量
-#define UTILITY_OFFSET_SECONDARY_BYTE 0x10                        // 次要字节偏移量
+// 语义化偏移量常量
+#define UTILITY_LIST_HANDLE_OFFSET 0x4                           // 列表句柄偏移量
+#define UTILITY_STRUCT_PRIMARY_OFFSET 0x8                        // 主要结构体偏移量
+#define UTILITY_CHECKSUM_POINTER_OFFSET 0xC                      // 校验和指针偏移量
+#define UTILITY_BYTE_SECONDARY_OFFSET 0x10                       // 次要字节偏移量
 
 // 内存操作常量
-#define UTILITY_MEMORY_OFFSET_NEGATIVE -1                          // 内存偏移量负值
 #define UTILITY_MEMORY_NEGATIVE_OFFSET -1                          // 内存负偏移量
-#define UTILITY_MEMORY_FLAG 0x1                                    // 内存操作标志
+#define UTILITY_MEMORY_OPERATION_FLAG 0x1                          // 内存操作标志
 #define UTILITY_MEMORY_STANDARD_OFFSET 0x4                         // 内存标准偏移量
 #define UTILITY_ZERO 0                                             // 零值常量
-#define UTILITY_OFFSET_FLAG 0x10                                   // 偏移量标志
+#define UTILITY_FLAG_OFFSET 0x10                                   // 标志偏移量
 
 // 数据偏移量常量
-#define UTILITY_DATA_OFFSET 0x10                                   // 数据偏移量
-#define UTILITY_OFFSET_RESOURCE_PTR 0x8                            // 资源指针偏移量
+#define UTILITY_PRIMARY_DATA_OFFSET 0x10                          // 主要数据偏移量
+#define UTILITY_RESOURCE_POINTER_OFFSET 0x8                       // 资源指针偏移量
 
 // 错误代码常量
-#define UTILITY_ERROR_FLAG 0xFFFFFFFF                              // 错误标志
+#define UTILITY_ERROR_CODE_INVALID 0xFFFFFFFF                     // 无效错误代码
 #define UTILITY_ERROR_INVALID_HANDLE 0xFFFFFFFE                    // 无效句柄错误
-#define UTILITY_ERROR_OFFSET 0x4                                  // 错误偏移量
+#define UTILITY_ERROR_OFFSET 0x4                                   // 错误偏移量
 
 // 索引常量
-#define UTILITY_INDEX_ONE 0x1                                      // 索引1
-#define UTILITY_INDEX_ZERO 0x0                                     // 索引0
+#define UTILITY_INDEX_PRIMARY 0x1                                 // 主要索引
+#define UTILITY_INDEX_ZERO 0x0                                     // 零索引
 
 // 大小限制常量
 #define UTILITY_SIZE_OFFSET 0x8                                    // 大小偏移量
