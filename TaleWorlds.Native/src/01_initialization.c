@@ -97,12 +97,21 @@
 #define SYSTEM_POINTER_BUFFER_PRIMARY system_ptr_buffer_primary    // 主缓冲区指针
 #define SYSTEM_POINTER_BUFFER_SECONDARY system_ptr_buffer_secondary // 次缓冲区指针
 #define SYSTEM_POINTER_HANDLER_DEFAULT system_ptr_handler_default  // 默认处理器指针
+
+// 系统十六进制变量名语义化常量定义
+#define SYSTEM_POINTER_BUFFER_CONFIG SYSTEM_POINTER_BUFFER_CONFIG      // 缓冲区配置指针
+#define SYSTEM_POINTER_HANDLER_PRIMARY system_ptr_uint_1d8   // 主处理器指针
+#define SYSTEM_POINTER_DATA_PRIMARY system_ptr_uint_1d0      // 主数据指针
+#define SYSTEM_POINTER_HANDLER_SECONDARY system_ptr_uint_1f8  // 次处理器指针
+#define SYSTEM_POINTER_DATA_SECONDARY system_ptr_uint_1f0     // 次数据指针
+#define SYSTEM_POINTER_CONFIG_TERTIARY system_ptr_uint_218    // 第三配置指针
+
 // 系统初始化全局变量声明
 static uint32_t system_context_primary_data;
 static void *system_context_primary_pointer;
 static uint32_t system_context_secondary_data;
 static void *system_context_secondary_pointer;
-static uint32_t tertiary_context_data;
+static uint32_t system_context_tertiary_data;
 static void *tertiary_system_context_ptr;
 static uint32_t quaternary_context_data;
 static void *quaternary_system_context_ptr;
@@ -10238,9 +10247,9 @@ void system_configure_paths(void)
   stack_uint_28 = system_config_data_35 ^ (ulonglong)system_stack_uint_248;
   stack_uint_200 = 0;
   if (*(char *)(system_config_data_104 + 0x18) == '\0') {
-    system_initialize_buffer_type5(&system_ptr_uint_1b8);
+    system_initialize_buffer_type5(&SYSTEM_POINTER_BUFFER_CONFIG);
     (**(code **)(**(longlong **)(system_config_data_88 + 0x2b0) + 0x98))
-              (*(longlong **)(system_config_data_88 + 0x2b0),&system_ptr_uint_1b8);
+              (*(longlong **)(system_config_data_88 + 0x2b0),&SYSTEM_POINTER_BUFFER_CONFIG);
     system_utility_initialize_system_config();
     system_memory_result = system_config_data_104;
     system_vertex_offset = system_utility_create_object(system_memory_allocator_config,0x70,8,3);
@@ -10331,13 +10340,13 @@ LAB_CONFIG_VALIDATION_FAILED:
     system_ptr_uint_1d0 = (void *)0x0;
     stack_uint_1c0 = stack_uint_1c0 & 0xffffffff00000000;
     system_ptr_uint_1d8 = &SYSTEM_DATABASE_CURSOR_TYPE;
-    system_ptr_uint_1b8 = &system_config_default_handler;
+    SYSTEM_POINTER_BUFFER_CONFIG = &system_config_default_handler;
     if (lStack_1b0 != 0) {
       system_processor_cleanup();
     }
     lStack_1b0 = 0;
     stack_uint_1a0 = 0;
-    system_ptr_uint_1b8 = &SYSTEM_DATABASE_CURSOR_TYPE;
+    SYSTEM_POINTER_BUFFER_CONFIG = &SYSTEM_DATABASE_CURSOR_TYPE;
   }
   stack_uint_200 = 0;
   system_runtime_execute_operation(stack_uint_28 ^ (ulonglong)system_stack_uint_248);
@@ -28406,8 +28415,8 @@ void system_util_180065160(uint64_t system_context_ptr)
   system_ptr_uint_348 = &SYSTEM_CONFIG_DATA_TYPE_2;
   system_module_180628040(&system_ptr_uint_330,&SYSTEM_STRING_DEFAULT1,&system_string_empty6,&system_string_empty7);
   system_ptr_uint_348 = &SYSTEM_CONFIG_DATA_TYPE_3;
-  if (system_ptr_uint_1b8 != (void *)0x0) {
-    system_ptr_uint_348 = system_ptr_uint_1b8;
+  if (SYSTEM_POINTER_BUFFER_CONFIG != (void *)0x0) {
+    system_ptr_uint_348 = SYSTEM_POINTER_BUFFER_CONFIG;
   }
   system_module_180628040(&system_ptr_uint_330,&SYSTEM_STRING_DEFAULT1,&system_string_empty6,&system_string_null0);
   system_ptr_uint_348 = &SYSTEM_CONFIG_DATA_TYPE_3;
@@ -28423,10 +28432,10 @@ void system_util_180065160(uint64_t system_context_ptr)
   stack_uint_1c8 = 0;
   stack_uint_1e0 = &SYSTEM_DATABASE_CURSOR_TYPE;
   stack_uint_1c0 = &system_config_default_handler;
-  if (system_ptr_uint_1b8 != (void *)0x0) {
+  if (SYSTEM_POINTER_BUFFER_CONFIG != (void *)0x0) {
     system_processor_cleanup();
   }
-  system_ptr_uint_1b8 = (void *)0x0;
+  SYSTEM_POINTER_BUFFER_CONFIG = (void *)0x0;
   stack_uint_1a8 = 0;
   stack_uint_1c0 = &SYSTEM_DATABASE_CURSOR_TYPE;
   system_ptr_uint_2c0 = &system_config_default_handler;
@@ -28999,15 +29008,15 @@ void system_util_180066320(uint64_t system_context_ptr,uint64_t system_flags_var
   system_config_status = (**(code **)**(uint64_t **)(system_config_data_126 + 0x18))();
   integer_value_var = 0;
   if (system_config_status != '\0') {
-    system_module_180627910(&system_ptr_uint_1b8,&SYSTEM_CONFIG_DATA_TYPE_87);
-    system_util_180065f00(&system_ptr_uint_1b8,0);
-    system_ptr_uint_1b8 = &system_config_default_handler;
+    system_module_180627910(&SYSTEM_POINTER_BUFFER_CONFIG,&SYSTEM_CONFIG_DATA_TYPE_87);
+    system_util_180065f00(&SYSTEM_POINTER_BUFFER_CONFIG,0);
+    SYSTEM_POINTER_BUFFER_CONFIG = &system_config_default_handler;
     if (lStack_1b0 != 0) {
       system_processor_cleanup();
     }
     lStack_1b0 = 0;
     stack_uint_1a0 = (ulonglong)stack_uint_1a0._4_4_ << SYSTEM_CONFIG_BLOCK_SIZE;
-    system_ptr_uint_1b8 = &SYSTEM_DATABASE_CURSOR_TYPE;
+    SYSTEM_POINTER_BUFFER_CONFIG = &SYSTEM_DATABASE_CURSOR_TYPE;
     goto LAB_180066971;
   }
   if (((SYSTEM_CONFIG_DATA_TYPE_76 != '\0') || (SYSTEM_CONFIG_DATA_TYPE_78 != '\0')) ||
@@ -29061,7 +29070,7 @@ LAB_18006650a:
     stack_uint_120 = 0;
     system_ptr_uint_138 = &SYSTEM_DATABASE_CURSOR_TYPE;
     system_module_180629a40(&system_ptr_uint_198,&system_ptr_uint_d0,integer_value_var + 7,0xffffffff);
-    system_ptr_uint_1b8 = &system_config_default_handler;
+    SYSTEM_POINTER_BUFFER_CONFIG = &system_config_default_handler;
     stack_uint_1a0 = 0;
     lStack_1b0 = 0;
     stack_uint_1a8 = 0;
@@ -29165,7 +29174,7 @@ LAB_18006650a:
     system_ptr_uint_158 = &SYSTEM_DATABASE_CURSOR_TYPE;
     lStack_1b0 = 0;
     stack_uint_1a0 = stack_uint_1a0 & 0xffffffff00000000;
-    system_ptr_uint_1b8 = &SYSTEM_DATABASE_CURSOR_TYPE;
+    SYSTEM_POINTER_BUFFER_CONFIG = &SYSTEM_DATABASE_CURSOR_TYPE;
     system_ptr_uint_d0 = &system_config_default_handler;
     if (pstack_variable_uint_c8 != (void *)0x0) {
       system_processor_cleanup();
