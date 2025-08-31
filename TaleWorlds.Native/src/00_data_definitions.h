@@ -1402,13 +1402,13 @@ extern char mutex_attribute_buffer;                                   // 互斥�
 extern char system_global_mutex_buffer;                               // 系统全局互斥锁缓冲区
 extern char filesystem_path_buffer;                                   // 文件系统路径缓冲区
 extern char string_handle_manager_buffer;                             // 字符串句柄管理器缓冲区
-extern char system_thread_data_buffer_global;
-extern char config_data_buffer;
-extern char constant_string_buffer;
-extern char system_global_thread_data_buffer_primary;
-extern char system_string_buffer;
-extern char system_data_buffer_primary;
-extern char resource_data_buffer;
+extern char system_thread_data_buffer_global;                            // 系统线程数据全局缓冲区
+extern char config_data_buffer;                                           // 配置数据缓冲区
+extern char constant_string_buffer;                                       // 常量字符串缓冲区
+extern char system_global_thread_data_buffer_primary;                     // 系统全局线程数据主缓冲区
+extern char system_string_buffer;                                          // 系统字符串缓冲区
+extern char system_data_buffer_primary;                                    // 系统数据主缓冲区
+extern char resource_data_buffer;                                          // 资源数据缓冲区
 extern char resource_default_config_string;                            // 资源默认配置字符串
 extern char system_handle_manager_address;                               // 系统句柄管理器地址
 extern char system_memory_manager_address;                               // 系统内存管理器地址
@@ -1437,10 +1437,10 @@ extern char system_thread_state_flag_buffer;                              // 系
 extern char system_memory_pool_flag_buffer;                              // 系统内存池标志缓冲区
 extern char system_thread_data_global_encoding_buffer;                     // 系统线程数据全局编码缓冲区
 extern char system_data_buffer_pointer;                                   // 系统数据缓冲区指针
-extern char system_flag_buffer_network_config;
-extern char system_flag_buffer_render_context;
-extern char system_flag_buffer_input_handler;
-extern char system_flag_buffer_audio_processor;
+extern char system_flag_buffer_network_config;                           // 系统标志缓冲区网络配置
+extern char system_flag_buffer_render_context;                           // 系统标志缓冲区渲染上下文
+extern char system_flag_buffer_input_handler;                            // 系统标志缓冲区输入处理器
+extern char system_flag_buffer_audio_processor;                          // 系统标志缓冲区音频处理器
 extern char system_physics_engine_flag_buffer;                            // 系统物理引擎标志缓冲区
 extern char system_ui_system_flag_buffer;                                 // 系统UI系统标志缓冲区
 extern char system_resource_manager_flag_buffer;                          // 系统资源管理器标志缓冲区
