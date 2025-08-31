@@ -227,6 +227,19 @@ typedef unsigned long ulonglong;
 #define SYSTEM_INIT_HANDLE_INVALID 0xFFFFFFFF             // 无效句柄值
 #define SYSTEM_INIT_PTR_NULL 0x0                         // 空指针值
 
+// 系统边界值常量（2025年8月31日补充）
+#define SYSTEM_INIT_BOUNDARY_UNSIGNED_MAX 0x10ffffff      // 无符号整数最大边界值
+#define SYSTEM_INIT_BOUNDARY_SIGNED_MAX_1 -0x10fffff0010 // 有符号整数最大边界值1
+#define SYSTEM_INIT_BOUNDARY_SIGNED_MAX_2 -0x10ffffffb    // 有符号整数最大边界值2
+
+// 系统浮点常量（2025年8月31日补充）
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_1 0x10fc90fdb      // 浮点系数1（用于初始化系统核心）
+#define SYSTEM_INIT_FLOAT_COEFFICIENT_2 0x10f800000      // 浮点系数2（用于计算系数和初始化）
+
+// 系统哈希常量（2025年8月31日补充）
+#define SYSTEM_INIT_HASH_MULTIPLIER_1 0x7a14010595       // 哈希乘数1（用于配置计算）
+#define SYSTEM_INIT_HASH_MULTIPLIER_2 0x10D4d51cb        // 哈希乘数2（用于配置计算）
+
 /**
  * @brief 系统核心初始化函数
  * 
@@ -938,7 +951,6 @@ void system_init_subsystem_1(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_2(void)
 {
   char system_init_validation_flag;
@@ -997,7 +1009,6 @@ void system_init_subsystem_2(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_3(void)
 {
   char system_init_validation_flag;
@@ -1043,20 +1054,12 @@ void system_init_subsystem_3(void)
   return;
 }
 /**
- * @brief 系统初始化占位函数
- * 
- * 原本实现应该为每个不同的初始化阶段创建特定的函数。
- * 
- * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
- */
-/**
  * @brief 系统初始化完成函数
  * 
  * 原本实现应该为每个不同的初始化阶段创建特定的函数。
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_4(void)
 {
   char system_init_validation_flag;
@@ -1115,7 +1118,6 @@ void system_init_subsystem_4(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_5(void)
 {
   char system_init_validation_flag;
@@ -1174,7 +1176,6 @@ void system_init_subsystem_5(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_6(void)
 {
   char system_init_validation_flag;
@@ -1233,7 +1234,6 @@ void system_init_subsystem_6(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_7(void)
 {
   char system_init_validation_flag;
@@ -1292,7 +1292,6 @@ void system_init_subsystem_7(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_8(void)
 {
   char system_init_validation_flag;
@@ -1354,6 +1353,13 @@ void system_init_subsystem_8(void)
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
 
 
+/**
+ * @brief 系统初始化子系统9函数
+ * 
+ * 原本实现应该为每个不同的初始化阶段创建特定的函数。
+ * 
+ * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
+ */
 int system_init_status_check_function(void)
 void system_init_subsystem_9(void)
 {
@@ -1385,7 +1391,6 @@ void system_init_subsystem_9(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_10(void)
 {
   char system_init_validation_flag;
@@ -1446,7 +1451,6 @@ void system_init_subsystem_10(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_11(void)
 {
   longlong system_memory_allocation_result;
@@ -1472,7 +1476,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_12(void)
 {
   longlong system_memory_allocation_result;
@@ -1498,7 +1501,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_13(void)
 {
   longlong system_memory_allocation_result;
@@ -1522,7 +1524,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_14(void)
 {
   char system_init_validation_flag;
@@ -1581,7 +1582,6 @@ void system_init_subsystem_14(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_15(void)
 {
   char system_init_validation_flag;
@@ -1684,7 +1684,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_17(void)
 {
   void* register_r9_value;
@@ -1715,7 +1714,6 @@ void system_init_subsystem_17(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_18(void)
 {
   char system_init_validation_flag;
@@ -1774,7 +1772,6 @@ void system_init_subsystem_18(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_19(void)
 {
   char system_init_validation_flag;
@@ -1833,7 +1830,6 @@ void system_init_subsystem_19(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_20(void)
 {
   char system_init_validation_flag;
@@ -1892,7 +1888,6 @@ void system_init_subsystem_20(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_21(void)
 {
   char system_init_validation_flag;
@@ -1951,7 +1946,6 @@ void system_init_subsystem_21(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_22(void)
 {
   char system_init_validation_flag;
@@ -2010,7 +2004,6 @@ void system_init_subsystem_22(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_23(void)
 {
   char system_init_validation_flag;
@@ -2069,7 +2062,6 @@ void system_init_subsystem_23(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_24(void)
 {
   char system_init_validation_flag;
@@ -2128,7 +2120,6 @@ void system_init_subsystem_24(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_25(void)
 {
   char system_init_validation_flag;
@@ -2187,7 +2178,6 @@ void system_init_subsystem_25(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_26(void)
 {
   char system_init_validation_flag;
@@ -2246,7 +2236,6 @@ void system_init_subsystem_26(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_27(void)
 {
   char system_init_validation_flag;
@@ -2305,7 +2294,6 @@ void system_init_subsystem_27(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_28(void)
 {
   char system_init_validation_flag;
@@ -2364,7 +2352,6 @@ void system_init_subsystem_28(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_29(void)
 {
   char system_init_validation_flag;
@@ -2423,7 +2410,6 @@ void system_init_subsystem_29(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_30(void)
 {
   char system_init_validation_flag;
@@ -2482,7 +2468,6 @@ void system_init_subsystem_30(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_31(void)
 {
   char system_init_validation_flag;
@@ -2543,7 +2528,6 @@ void system_init_subsystem_31(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_32(void)
 {
   longlong system_memory_allocation_result;
@@ -2565,7 +2549,6 @@ void system_init_subsystem_32(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_33(void)
 {
   void* register_r9_value;
@@ -2596,7 +2579,6 @@ void system_init_subsystem_33(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_34(void)
 {
   char system_init_validation_flag;
@@ -2655,7 +2637,6 @@ void system_init_subsystem_34(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_35(void)
 {
   char system_init_validation_flag;
@@ -2714,7 +2695,6 @@ void system_init_subsystem_35(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_36(void)
 {
   char system_init_validation_flag;
@@ -2773,7 +2753,6 @@ void system_init_subsystem_36(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_37(void)
 {
   char system_init_validation_flag;
@@ -2832,7 +2811,6 @@ void system_init_subsystem_37(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_38(void)
 {
   char system_init_validation_flag;
@@ -2891,7 +2869,6 @@ void system_init_subsystem_38(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_39(void)
 {
   char system_init_validation_flag;
@@ -2950,7 +2927,6 @@ void system_init_subsystem_39(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_40(void)
 {
   char system_init_validation_flag;
@@ -3009,7 +2985,6 @@ void system_init_subsystem_40(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_41(void)
 {
   char system_init_validation_flag;
@@ -3068,7 +3043,6 @@ void system_init_subsystem_41(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_42(void)
 {
   char system_init_validation_flag;
@@ -3127,7 +3101,6 @@ void system_init_subsystem_42(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_43(void)
 {
   char system_init_validation_flag;
@@ -3186,7 +3159,6 @@ void system_init_subsystem_43(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_44(void)
 {
   char system_init_validation_flag;
@@ -3245,7 +3217,6 @@ void system_init_subsystem_44(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_45(void)
 {
   char system_init_validation_flag;
@@ -3304,7 +3275,6 @@ void system_init_subsystem_45(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_46(void)
 {
   char system_init_validation_flag;
@@ -3363,7 +3333,6 @@ void system_init_subsystem_46(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_47(void)
 {
   char system_init_validation_flag;
@@ -3422,7 +3391,6 @@ void system_init_subsystem_47(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_48(void)
 {
   char system_init_validation_flag;
@@ -3481,7 +3449,6 @@ void system_init_subsystem_48(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_49(void)
 {
   char system_init_validation_flag;
@@ -3540,7 +3507,6 @@ void system_init_subsystem_49(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_50(void)
 {
   char system_init_validation_flag;
@@ -3599,7 +3565,6 @@ void system_init_subsystem_50(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_51(void)
 {
   char system_init_validation_flag;
@@ -3658,7 +3623,6 @@ void system_init_subsystem_51(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_52(void)
 {
   char system_init_validation_flag;
@@ -3717,7 +3681,6 @@ void system_init_subsystem_52(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_53(void)
 {
   char system_init_validation_flag;
@@ -3776,7 +3739,6 @@ void system_init_subsystem_53(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_54(void)
 {
   char system_init_validation_flag;
@@ -3835,7 +3797,6 @@ void system_init_subsystem_54(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_55(void)
 {
   char system_init_validation_flag;
@@ -3894,7 +3855,6 @@ void system_init_subsystem_55(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_56(void)
 {
   char system_init_validation_flag;
@@ -3953,7 +3913,6 @@ void system_init_subsystem_56(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_57(void)
 {
   char system_init_validation_flag;
@@ -4012,7 +3971,6 @@ void system_init_subsystem_57(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_58(void)
 {
   char system_init_validation_flag;
@@ -4071,7 +4029,6 @@ void system_init_subsystem_58(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_59(void)
 {
   char system_init_validation_flag;
@@ -4130,7 +4087,6 @@ void system_init_subsystem_59(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_60(void)
 {
   char system_init_validation_flag;
@@ -4189,7 +4145,6 @@ void system_init_subsystem_60(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_61(void)
 {
   char system_init_validation_flag;
@@ -4248,7 +4203,6 @@ void system_init_subsystem_61(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_62(void)
 {
   char system_init_validation_flag;
@@ -4307,7 +4261,6 @@ void system_init_subsystem_62(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_63(void)
 {
   char system_init_validation_flag;
@@ -4366,7 +4319,6 @@ void system_init_subsystem_63(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_64(void)
 {
   char system_init_validation_flag;
@@ -4425,7 +4377,6 @@ void system_init_subsystem_64(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_65(void)
 {
   void* register_r9_value;
@@ -4458,7 +4409,6 @@ void system_init_subsystem_65(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_66(void)
 {
   longlong system_memory_allocation_result;
@@ -4480,7 +4430,6 @@ void system_init_subsystem_66(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_67(void)
 {
   char system_init_validation_flag;
@@ -4539,7 +4488,6 @@ void system_init_subsystem_67(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_68(void)
 {
   char system_init_validation_flag;
@@ -4598,7 +4546,6 @@ void system_init_subsystem_68(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_69(void)
 {
   char system_init_validation_flag;
@@ -4657,7 +4604,6 @@ void system_init_subsystem_69(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_70(void)
 {
   char system_init_validation_flag;
@@ -4716,7 +4662,6 @@ void system_init_subsystem_70(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_71(void)
 {
   char system_init_validation_flag;
@@ -4775,7 +4720,6 @@ void system_init_subsystem_71(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_72(void)
 {
   char system_init_validation_flag;
@@ -4834,7 +4778,6 @@ void system_init_subsystem_72(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_73(void)
 {
   char system_init_validation_flag;
@@ -4893,7 +4836,6 @@ void system_init_subsystem_73(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_74(void)
 {
   char system_init_validation_flag;
@@ -4952,7 +4894,6 @@ void system_init_subsystem_74(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_75(void)
 {
   char system_init_validation_flag;
@@ -5011,7 +4952,6 @@ void system_init_subsystem_75(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_76(void)
 {
   char system_init_validation_flag;
@@ -5070,7 +5010,6 @@ void system_init_subsystem_76(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_77(void)
 {
   char system_init_validation_flag;
@@ -5129,7 +5068,6 @@ void system_init_subsystem_77(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_78(void)
 {
   void* register_r9_value;
@@ -5160,7 +5098,6 @@ void system_init_subsystem_78(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_79(void)
 {
   char system_init_validation_flag;
@@ -5219,7 +5156,6 @@ void system_init_subsystem_79(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_80(void)
 {
   char system_init_validation_flag;
@@ -5278,7 +5214,6 @@ void system_init_subsystem_80(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_81(void)
 {
   char system_init_validation_flag;
@@ -5337,7 +5272,6 @@ void system_init_subsystem_81(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_82(void)
 {
   char system_init_validation_flag;
@@ -5396,7 +5330,6 @@ void system_init_subsystem_82(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_83(void)
 {
   char system_init_validation_flag;
@@ -5455,7 +5388,6 @@ void system_init_subsystem_83(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_84(void)
 {
   char system_init_validation_flag;
@@ -5514,7 +5446,6 @@ void system_init_subsystem_84(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_85(void)
 {
   char system_init_validation_flag;
@@ -5573,7 +5504,6 @@ void system_init_subsystem_85(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_86(void)
 {
   void* register_r9_value;
@@ -5606,7 +5536,6 @@ void system_init_subsystem_86(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_87(void)
 {
   longlong system_memory_allocation_result;
@@ -5628,7 +5557,6 @@ void system_init_subsystem_87(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_88(void)
 {
   void* register_r9_value;
@@ -5659,7 +5587,6 @@ void system_init_subsystem_88(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_89(void)
 {
   void* register_r9_value;
@@ -5690,7 +5617,6 @@ void system_init_subsystem_89(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_90(void)
 {
   void* register_r9_value;
@@ -5721,7 +5647,6 @@ void system_init_subsystem_90(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_91(void)
 {
   void* register_r9_value;
@@ -5752,7 +5677,6 @@ void system_init_subsystem_91(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_92(void)
 {
   void* register_r9_value;
@@ -5783,7 +5707,6 @@ void system_init_subsystem_92(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_93(void)
 {
   char system_init_validation_flag;
@@ -5842,7 +5765,6 @@ void system_init_subsystem_93(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_94(void)
 {
   char system_init_validation_flag;
@@ -5901,7 +5823,6 @@ void system_init_subsystem_94(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_95(void)
 {
   char system_init_validation_flag;
@@ -5960,7 +5881,6 @@ void system_init_subsystem_95(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_96(void)
 {
   char system_init_validation_flag;
@@ -6019,7 +5939,6 @@ void system_init_subsystem_96(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_97(void)
 {
   char system_init_validation_flag;
@@ -6078,7 +5997,6 @@ void system_init_subsystem_97(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_98(void)
 {
   char system_init_validation_flag;
@@ -6137,7 +6055,6 @@ void system_init_subsystem_98(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_99(void)
 {
   char system_init_validation_flag;
@@ -6196,7 +6113,6 @@ void system_init_subsystem_99(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_100(void)
 {
   char system_init_validation_flag;
@@ -6255,7 +6171,6 @@ void system_init_subsystem_100(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_101(void)
 {
   char system_init_validation_flag;
@@ -6314,7 +6229,6 @@ void system_init_subsystem_101(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_102(void)
 {
   char system_init_validation_flag;
@@ -6373,7 +6287,6 @@ void system_init_subsystem_102(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_103(void)
 {
   char system_init_validation_flag;
@@ -6432,7 +6345,6 @@ void system_init_subsystem_103(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_104(void)
 {
   char system_init_validation_flag;
@@ -6491,7 +6403,6 @@ void system_init_subsystem_104(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_105(void)
 {
   char system_init_validation_flag;
@@ -6550,7 +6461,6 @@ void system_init_subsystem_105(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_106(void)
 {
   char system_init_validation_flag;
@@ -6609,7 +6519,6 @@ void system_init_subsystem_106(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_107(void)
 {
   char system_init_validation_flag;
@@ -6668,7 +6577,6 @@ void system_init_subsystem_107(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_108(void)
 {
   char system_init_validation_flag;
@@ -6727,7 +6635,6 @@ void system_init_subsystem_108(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_109(void)
 {
   ulonglong system_initialization_loop_counter;
@@ -6793,7 +6700,6 @@ void system_init_subsystem_109(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_110(void)
 {
   char system_init_validation_flag;
@@ -6852,7 +6758,6 @@ void system_init_subsystem_110(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_111(void)
 {
   char system_init_validation_flag;
@@ -6911,7 +6816,6 @@ void system_init_subsystem_111(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_112(void)
 {
   char system_init_validation_flag;
@@ -6970,7 +6874,6 @@ void system_init_subsystem_112(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_113(void)
 {
   char system_init_validation_flag;
@@ -7029,7 +6932,6 @@ void system_init_subsystem_113(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_114(void)
 {
   char system_init_validation_flag;
@@ -7088,7 +6990,6 @@ void system_init_subsystem_114(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_115(void)
 {
   char system_init_validation_flag;
@@ -7147,7 +7048,6 @@ void system_init_subsystem_115(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_116(void)
 {
   char system_init_validation_flag;
@@ -7206,7 +7106,6 @@ void system_init_subsystem_116(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_117(void)
 {
   char system_init_validation_flag;
@@ -7265,7 +7164,6 @@ void system_init_subsystem_117(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_118(void)
 {
   char system_init_validation_flag;
@@ -7324,7 +7222,6 @@ void system_init_subsystem_118(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_119(void)
 {
   char system_init_validation_flag;
@@ -7383,7 +7280,6 @@ void system_init_subsystem_119(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_120(void)
 {
   char system_init_validation_flag;
@@ -7442,7 +7338,6 @@ void system_init_subsystem_120(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_121(void)
 {
   char system_init_validation_flag;
@@ -7501,7 +7396,6 @@ void system_init_subsystem_121(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_122(void)
 {
   char system_init_validation_flag;
@@ -7560,7 +7454,6 @@ void system_init_subsystem_122(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_123(void)
 {
   char system_init_validation_flag;
@@ -7619,7 +7512,6 @@ void system_init_subsystem_123(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_124(void)
 {
   char system_init_validation_flag;
@@ -7678,7 +7570,6 @@ void system_init_subsystem_124(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_125(void)
 {
   char system_init_validation_flag;
@@ -7737,7 +7628,6 @@ void system_init_subsystem_125(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_126(void)
 {
   char system_init_validation_flag;
@@ -7796,7 +7686,6 @@ void system_init_subsystem_126(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_127(void)
 {
   char system_init_validation_flag;
@@ -7855,7 +7744,6 @@ void system_init_subsystem_127(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_128(void)
 {
   char system_init_validation_flag;
@@ -7914,7 +7802,6 @@ void system_init_subsystem_128(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_129(void)
 {
   char system_init_validation_flag;
@@ -7973,7 +7860,6 @@ void system_init_subsystem_129(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_130(void)
 {
   char system_init_validation_flag;
@@ -8032,7 +7918,6 @@ void system_init_subsystem_130(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_131(void)
 {
   char system_init_validation_flag;
@@ -8091,7 +7976,6 @@ void system_init_subsystem_131(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_132(void)
 {
   char system_init_validation_flag;
@@ -8150,7 +8034,6 @@ void system_init_subsystem_132(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_133(void)
 {
   char system_init_validation_flag;
@@ -8209,7 +8092,6 @@ void system_init_subsystem_133(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_134(void)
 {
   char system_init_validation_flag;
@@ -8268,7 +8150,6 @@ void system_init_subsystem_134(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_135(void)
 {
   char system_init_validation_flag;
@@ -8327,7 +8208,6 @@ void system_init_subsystem_135(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_136(void)
 {
   char system_init_validation_flag;
@@ -8386,7 +8266,6 @@ void system_init_subsystem_136(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_137(void)
 {
   char system_init_validation_flag;
@@ -8445,7 +8324,6 @@ void system_init_subsystem_137(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_138(void)
 {
   char system_init_validation_flag;
@@ -8504,7 +8382,6 @@ void system_init_subsystem_138(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_139(void)
 {
   char system_init_validation_flag;
@@ -8563,7 +8440,6 @@ void system_init_subsystem_139(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_140(void)
 {
   char system_init_validation_flag;
@@ -8622,7 +8498,6 @@ void system_init_subsystem_140(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_141(void)
 {
   char system_init_validation_flag;
@@ -8681,7 +8556,6 @@ void system_init_subsystem_141(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_142(void)
 {
   void* register_r9_value;
@@ -8714,7 +8588,6 @@ void system_init_subsystem_142(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_143(void)
 {
   longlong system_memory_allocation_result;
@@ -8736,7 +8609,6 @@ void system_init_subsystem_143(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_144(void)
 {
   void* register_r9_value;
@@ -8767,7 +8639,6 @@ void system_init_subsystem_144(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_145(void)
 {
   void* register_r9_value;
@@ -8798,7 +8669,6 @@ void system_init_subsystem_145(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_146(void)
 {
   char system_init_validation_flag;
@@ -8857,7 +8727,6 @@ void system_init_subsystem_146(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_147(void)
 {
   char system_init_validation_flag;
@@ -8916,7 +8785,6 @@ void system_init_subsystem_147(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_148(void)
 {
   char system_init_validation_flag;
@@ -8975,7 +8843,6 @@ void system_init_subsystem_148(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_149(void)
 {
   char system_init_validation_flag;
@@ -9034,7 +8901,6 @@ void system_init_subsystem_149(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_150(void)
 {
   char system_init_validation_flag;
@@ -9093,7 +8959,6 @@ void system_init_subsystem_150(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_151(void)
 {
   char system_init_validation_flag;
@@ -9152,7 +9017,6 @@ void system_init_subsystem_151(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_152(void)
 {
   char system_init_validation_flag;
@@ -9211,7 +9075,6 @@ void system_init_subsystem_152(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_153(void)
 {
   char system_init_validation_flag;
@@ -9270,7 +9133,6 @@ void system_init_subsystem_153(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_154(void)
 {
   void* register_r9_value;
@@ -9301,7 +9163,6 @@ void system_init_subsystem_154(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_155(void)
 {
   char system_init_validation_flag;
@@ -9360,7 +9221,6 @@ void system_init_subsystem_155(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_156(void)
 {
   char system_init_validation_flag;
@@ -9419,7 +9279,6 @@ void system_init_subsystem_156(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_157(void)
 {
   char system_init_validation_flag;
@@ -9478,7 +9337,6 @@ void system_init_subsystem_157(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_158(void)
 {
   char system_init_validation_flag;
@@ -9537,7 +9395,6 @@ void system_init_subsystem_158(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_159(void)
 {
   char system_init_validation_flag;
@@ -9596,7 +9453,6 @@ void system_init_subsystem_159(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_160(void)
 {
   char system_init_validation_flag;
@@ -9655,7 +9511,6 @@ void system_init_subsystem_160(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_161(void)
 {
   char system_init_validation_flag;
@@ -9714,7 +9569,6 @@ void system_init_subsystem_161(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_162(void)
 {
   char system_init_validation_flag;
@@ -9773,7 +9627,6 @@ void system_init_subsystem_162(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_163(void)
 {
   char system_init_validation_flag;
@@ -9832,7 +9685,6 @@ void system_init_subsystem_163(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_164(void)
 {
   char system_init_validation_flag;
@@ -9891,7 +9743,6 @@ void system_init_subsystem_164(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_165(void)
 {
   char system_init_validation_flag;
@@ -9950,7 +9801,6 @@ void system_init_subsystem_165(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_166(void)
 {
   void* register_r9_value;
@@ -9981,7 +9831,6 @@ void system_init_subsystem_166(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_167(void)
 {
   void* register_r9_value;
@@ -10012,7 +9861,6 @@ void system_init_subsystem_167(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_168(void)
 {
   void* register_r9_value;
@@ -10043,7 +9891,6 @@ void system_init_subsystem_168(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_169(void)
 {
   void* register_r9_value;
@@ -10074,7 +9921,6 @@ void system_init_subsystem_169(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_170(void)
 {
   void* register_r9_value;
@@ -10105,7 +9951,6 @@ void system_init_subsystem_170(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_171(void)
 {
   void* register_r9_value;
@@ -10136,7 +9981,6 @@ void system_init_subsystem_171(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_172(void)
 {
   void* register_r9_value;
@@ -10167,7 +10011,6 @@ void system_init_subsystem_172(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_173(void)
 {
   void* register_r9_value;
@@ -10198,7 +10041,6 @@ void system_init_subsystem_173(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_174(void)
 {
   void* register_r9_value;
@@ -10229,7 +10071,6 @@ void system_init_subsystem_174(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_175(void)
 {
   char system_init_validation_flag;
@@ -10288,7 +10129,6 @@ void system_init_subsystem_175(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_176(void)
 {
   char system_init_validation_flag;
@@ -10347,7 +10187,6 @@ void system_init_subsystem_176(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_177(void)
 {
   char system_init_validation_flag;
@@ -10406,7 +10245,6 @@ void system_init_subsystem_177(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_178(void)
 {
   char system_init_validation_flag;
@@ -10465,7 +10303,6 @@ void system_init_subsystem_178(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_179(void)
 {
   char system_init_validation_flag;
@@ -10524,7 +10361,6 @@ void system_init_subsystem_179(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_180(void)
 {
   char system_init_validation_flag;
@@ -10583,7 +10419,6 @@ void system_init_subsystem_180(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_181(void)
 {
   char system_init_validation_flag;
@@ -10642,7 +10477,6 @@ void system_init_subsystem_181(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_182(void)
 {
   char system_init_validation_flag;
@@ -10701,7 +10535,6 @@ void system_init_subsystem_182(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_183(void)
 {
   char system_init_validation_flag;
@@ -10760,7 +10593,6 @@ void system_init_subsystem_183(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_184(void)
 {
   char system_init_validation_flag;
@@ -10819,7 +10651,6 @@ void system_init_subsystem_184(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_185(void)
 {
   char system_init_validation_flag;
@@ -10878,7 +10709,6 @@ void system_init_subsystem_185(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_186(void)
 {
   char system_init_validation_flag;
@@ -10937,7 +10767,6 @@ void system_init_subsystem_186(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_187(void)
 {
   char system_init_validation_flag;
@@ -10996,7 +10825,6 @@ void system_init_subsystem_187(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_188(void)
 {
   char system_init_validation_flag;
@@ -11055,7 +10883,6 @@ void system_init_subsystem_188(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_189(void)
 {
   char system_init_validation_flag;
@@ -11114,7 +10941,6 @@ void system_init_subsystem_189(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_190(void)
 {
   char system_init_validation_flag;
@@ -11173,7 +10999,6 @@ void system_init_subsystem_190(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_191(void)
 {
   char system_init_validation_flag;
@@ -11232,7 +11057,6 @@ void system_init_subsystem_191(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_192(void)
 {
   char system_init_validation_flag;
@@ -11291,7 +11115,6 @@ void system_init_subsystem_192(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_193(void)
 {
   char system_init_validation_flag;
@@ -11350,7 +11173,6 @@ void system_init_subsystem_193(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_194(void)
 {
   char system_init_validation_flag;
@@ -11409,7 +11231,6 @@ void system_init_subsystem_194(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_195(void)
 {
   char system_init_validation_flag;
@@ -11468,7 +11289,6 @@ void system_init_subsystem_195(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_196(void)
 {
   char system_init_validation_flag;
@@ -11527,7 +11347,6 @@ void system_init_subsystem_196(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_197(void)
 {
   char system_init_validation_flag;
@@ -11586,7 +11405,6 @@ void system_init_subsystem_197(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_198(void)
 {
   char system_init_validation_flag;
@@ -11645,7 +11463,6 @@ void system_init_subsystem_198(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_199(void)
 {
   char system_init_validation_flag;
@@ -11704,7 +11521,6 @@ void system_init_subsystem_199(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_200(void)
 {
   char system_init_validation_flag;
@@ -11763,7 +11579,6 @@ void system_init_subsystem_200(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_201(void)
 {
   char system_init_validation_flag;
@@ -11822,7 +11637,6 @@ void system_init_subsystem_201(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_202(void)
 {
   char system_init_validation_flag;
@@ -11881,7 +11695,6 @@ void system_init_subsystem_202(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_203(void)
 {
   char system_init_validation_flag;
@@ -11940,7 +11753,6 @@ void system_init_subsystem_203(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_204(void)
 {
   char system_init_validation_flag;
@@ -11999,7 +11811,6 @@ void system_init_subsystem_204(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_205(void)
 {
   char system_init_validation_flag;
@@ -12058,7 +11869,6 @@ void system_init_subsystem_205(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_206(void)
 {
   char system_init_validation_flag;
@@ -12117,7 +11927,6 @@ void system_init_subsystem_206(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_207(void)
 {
   char system_init_validation_flag;
@@ -12176,7 +11985,6 @@ void system_init_subsystem_207(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_208(void)
 {
   char system_init_validation_flag;
@@ -12235,7 +12043,6 @@ void system_init_subsystem_208(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_209(void)
 {
   char system_init_validation_flag;
@@ -12294,7 +12101,6 @@ void system_init_subsystem_209(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_210(void)
 {
   char system_init_validation_flag;
@@ -12353,7 +12159,6 @@ void system_init_subsystem_210(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_211(void)
 {
   char system_init_validation_flag;
@@ -12412,7 +12217,6 @@ void system_init_subsystem_211(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_212(void)
 {
   char system_init_validation_flag;
@@ -12471,7 +12275,6 @@ void system_init_subsystem_212(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_213(void)
 {
   void* register_r9_value;
@@ -12504,7 +12307,6 @@ void system_init_subsystem_213(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_214(void)
 {
   longlong system_memory_allocation_result;
@@ -12526,7 +12328,6 @@ void system_init_subsystem_214(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_215(void)
 {
   char system_init_validation_flag;
@@ -12585,7 +12386,6 @@ void system_init_subsystem_215(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_216(void)
 {
   char system_init_validation_flag;
@@ -12644,7 +12444,6 @@ void system_init_subsystem_216(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_217(void)
 {
   char system_init_validation_flag;
@@ -12703,7 +12502,6 @@ void system_init_subsystem_217(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_218(void)
 {
   char system_init_validation_flag;
@@ -12762,7 +12560,6 @@ void system_init_subsystem_218(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_219(void)
 {
   char system_init_validation_flag;
@@ -12821,7 +12618,6 @@ void system_init_subsystem_219(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_220(void)
 {
   char system_init_validation_flag;
@@ -12880,7 +12676,6 @@ void system_init_subsystem_220(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_221(void)
 {
   char system_init_validation_flag;
@@ -12939,7 +12734,6 @@ void system_init_subsystem_221(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_222(void)
 {
   char system_init_validation_flag;
@@ -12998,7 +12792,6 @@ void system_init_subsystem_222(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_223(void)
 {
   char system_init_validation_flag;
@@ -13057,7 +12850,6 @@ void system_init_subsystem_223(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_224(void)
 {
   char system_init_validation_flag;
@@ -13116,7 +12908,6 @@ void system_init_subsystem_224(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_225(void)
 {
   void* register_r9_value;
@@ -13147,7 +12938,6 @@ void system_init_subsystem_225(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_226(void)
 {
   void* register_r9_value;
@@ -13178,7 +12968,6 @@ void system_init_subsystem_226(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_227(void)
 {
   char system_init_validation_flag;
@@ -13237,7 +13026,6 @@ void system_init_subsystem_227(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_228(void)
 {
   char system_init_validation_flag;
@@ -13296,7 +13084,6 @@ void system_init_subsystem_228(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_229(void)
 {
   char system_init_validation_flag;
@@ -13355,7 +13142,6 @@ void system_init_subsystem_229(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_230(void)
 {
   char system_init_validation_flag;
@@ -13414,7 +13200,6 @@ void system_init_subsystem_230(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_231(void)
 {
   char system_init_validation_flag;
@@ -13473,7 +13258,6 @@ void system_init_subsystem_231(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_232(void)
 {
   char system_init_validation_flag;
@@ -13532,7 +13316,6 @@ void system_init_subsystem_232(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_233(void)
 {
   char system_init_validation_flag;
@@ -13593,7 +13376,6 @@ void system_init_subsystem_233(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_234(void)
 {
   longlong system_memory_allocation_result;
@@ -13615,7 +13397,6 @@ void system_init_subsystem_234(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_235(void)
 {
   char system_init_validation_flag;
@@ -13674,7 +13455,6 @@ void system_init_subsystem_235(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_236(void)
 {
   char system_init_validation_flag;
@@ -13733,7 +13513,6 @@ void system_init_subsystem_236(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_237(void)
 {
   char system_init_validation_flag;
@@ -13792,7 +13571,6 @@ void system_init_subsystem_237(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_238(void)
 {
   char system_init_validation_flag;
@@ -13851,7 +13629,6 @@ void system_init_subsystem_238(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_239(void)
 {
   char system_init_validation_flag;
@@ -13910,7 +13687,6 @@ void system_init_subsystem_239(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_240(void)
 {
   char system_init_validation_flag;
@@ -13969,7 +13745,6 @@ void system_init_subsystem_240(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_241(void)
 {
   char system_init_validation_flag;
@@ -14028,7 +13803,6 @@ void system_init_subsystem_241(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_242(void)
 {
   char system_init_validation_flag;
@@ -14087,7 +13861,6 @@ void system_init_subsystem_242(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_243(void)
 {
   char system_init_validation_flag;
@@ -14146,7 +13919,6 @@ void system_init_subsystem_243(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_244(void)
 {
   char system_init_validation_flag;
@@ -14205,7 +13977,6 @@ void system_init_subsystem_244(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_245(void)
 {
   char system_init_validation_flag;
@@ -14264,7 +14035,6 @@ void system_init_subsystem_245(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_246(void)
 {
   char system_init_validation_flag;
@@ -14323,7 +14093,6 @@ void system_init_subsystem_246(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_247(void)
 {
   char system_init_validation_flag;
@@ -14382,7 +14151,6 @@ void system_init_subsystem_247(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_248(void)
 {
   char system_init_validation_flag;
@@ -14441,7 +14209,6 @@ void system_init_subsystem_248(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_249(void)
 {
   char system_init_validation_flag;
@@ -14500,7 +14267,6 @@ void system_init_subsystem_249(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_250(void)
 {
   void* register_r9_value;
@@ -14533,7 +14299,6 @@ void system_init_subsystem_250(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_251(void)
 {
   longlong system_memory_allocation_result;
@@ -14559,7 +14324,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_252(void)
 {
   longlong system_memory_allocation_result;
@@ -14587,7 +14351,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_253(void)
 {
   longlong system_memory_allocation_result;
@@ -14615,7 +14378,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_254(void)
 {
   longlong system_memory_allocation_result;
@@ -14640,7 +14402,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_255(void)
 {
   longlong system_memory_allocation_result;
@@ -14664,7 +14425,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_256(void)
 {
   char system_init_validation_flag;
@@ -14723,7 +14483,6 @@ void system_init_subsystem_256(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_257(void)
 {
   char system_init_validation_flag;
@@ -14782,7 +14541,6 @@ void system_init_subsystem_257(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_258(void)
 {
   char system_init_validation_flag;
@@ -14841,7 +14599,6 @@ void system_init_subsystem_258(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_259(void)
 {
   char system_init_validation_flag;
@@ -14900,7 +14657,6 @@ void system_init_subsystem_259(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_260(void)
 {
   char system_init_validation_flag;
@@ -14959,7 +14715,6 @@ void system_init_subsystem_260(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_261(void)
 {
   char system_init_validation_flag;
@@ -15018,7 +14773,6 @@ void system_init_subsystem_261(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_262(void)
 {
   char system_init_validation_flag;
@@ -15077,7 +14831,6 @@ void system_init_subsystem_262(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_263(void)
 {
   char system_init_validation_flag;
@@ -15136,7 +14889,6 @@ void system_init_subsystem_263(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_264(void)
 {
   char system_init_validation_flag;
@@ -15195,7 +14947,6 @@ void system_init_subsystem_264(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_265(void)
 {
   char system_init_validation_flag;
@@ -15254,7 +15005,6 @@ void system_init_subsystem_265(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_266(void)
 {
   void* register_r9_value;
@@ -15285,7 +15035,6 @@ void system_init_subsystem_266(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_267(void)
 {
   void* register_r9_value;
@@ -15316,7 +15065,6 @@ void system_init_subsystem_267(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_268(void)
 {
   void* register_r9_value;
@@ -15347,7 +15095,6 @@ void system_init_subsystem_268(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_269(void)
 {
   void* register_r9_value;
@@ -15380,7 +15127,6 @@ void system_init_subsystem_269(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_270(void)
 {
   longlong system_memory_allocation_result;
@@ -15402,7 +15148,6 @@ void system_init_subsystem_270(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_271(void)
 {
   char system_init_validation_flag;
@@ -15461,7 +15206,6 @@ void system_init_subsystem_271(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_272(void)
 {
   char system_init_validation_flag;
@@ -15520,7 +15264,6 @@ void system_init_subsystem_272(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_273(void)
 {
   char system_init_validation_flag;
@@ -15579,7 +15322,6 @@ void system_init_subsystem_273(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_274(void)
 {
   char system_init_validation_flag;
@@ -15638,7 +15380,6 @@ void system_init_subsystem_274(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_275(void)
 {
   char system_init_validation_flag;
@@ -15697,7 +15438,6 @@ void system_init_subsystem_275(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_276(void)
 {
   char system_init_validation_flag;
@@ -15756,7 +15496,6 @@ void system_init_subsystem_276(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_277(void)
 {
   char system_init_validation_flag;
@@ -15815,7 +15554,6 @@ void system_init_subsystem_277(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_278(void)
 {
   char system_init_validation_flag;
@@ -15874,7 +15612,6 @@ void system_init_subsystem_278(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_279(void)
 {
   char system_init_validation_flag;
@@ -15933,7 +15670,6 @@ void system_init_subsystem_279(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_280(void)
 {
   char system_init_validation_flag;
@@ -15992,7 +15728,6 @@ void system_init_subsystem_280(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_281(void)
 {
   char system_init_validation_flag;
@@ -16051,7 +15786,6 @@ void system_init_subsystem_281(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_282(void)
 {
   char system_init_validation_flag;
@@ -16110,7 +15844,6 @@ void system_init_subsystem_282(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_283(void)
 {
   char system_init_validation_flag;
@@ -16169,7 +15902,6 @@ void system_init_subsystem_283(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_284(void)
 {
   char system_init_validation_flag;
@@ -16228,7 +15960,6 @@ void system_init_subsystem_284(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_285(void)
 {
   char system_init_validation_flag;
@@ -16287,7 +16018,6 @@ void system_init_subsystem_285(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_286(void)
 {
   char system_init_validation_flag;
@@ -16346,7 +16076,6 @@ void system_init_subsystem_286(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_287(void)
 {
   char system_init_validation_flag;
@@ -16405,7 +16134,6 @@ void system_init_subsystem_287(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_288(void)
 {
   char system_init_validation_flag;
@@ -16464,7 +16192,6 @@ void system_init_subsystem_288(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_289(void)
 {
   char system_init_validation_flag;
@@ -16523,7 +16250,6 @@ void system_init_subsystem_289(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_290(void)
 {
   char system_init_validation_flag;
@@ -16582,7 +16308,6 @@ void system_init_subsystem_290(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_291(void)
 {
   char system_init_validation_flag;
@@ -16641,7 +16366,6 @@ void system_init_subsystem_291(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_292(void)
 {
   char system_init_validation_flag;
@@ -16700,7 +16424,6 @@ void system_init_subsystem_292(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_293(void)
 {
   char system_init_validation_flag;
@@ -16759,7 +16482,6 @@ void system_init_subsystem_293(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_294(void)
 {
   char system_init_validation_flag;
@@ -16818,7 +16540,6 @@ void system_init_subsystem_294(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_295(void)
 {
   char system_init_validation_flag;
@@ -16877,7 +16598,6 @@ void system_init_subsystem_295(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_296(void)
 {
   char system_init_validation_flag;
@@ -16936,7 +16656,6 @@ void system_init_subsystem_296(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_297(void)
 {
   char system_init_validation_flag;
@@ -16995,7 +16714,6 @@ void system_init_subsystem_297(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_298(void)
 {
   char system_init_validation_flag;
@@ -17056,7 +16774,6 @@ void system_init_subsystem_298(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_299(void)
 {
   longlong system_memory_allocation_result;
@@ -17098,7 +16815,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_300(void)
 {
   longlong system_memory_allocation_result;
@@ -17120,7 +16836,6 @@ void system_init_subsystem_300(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_301(void)
 {
   char system_init_validation_flag;
@@ -17179,7 +16894,6 @@ void system_init_subsystem_301(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_302(void)
 {
   char system_init_validation_flag;
@@ -17238,7 +16952,6 @@ void system_init_subsystem_302(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_303(void)
 {
   char system_init_validation_flag;
@@ -17297,7 +17010,6 @@ void system_init_subsystem_303(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_304(void)
 {
   char system_init_validation_flag;
@@ -17356,7 +17068,6 @@ void system_init_subsystem_304(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_305(void)
 {
   void* register_r9_value;
@@ -17396,7 +17107,6 @@ void system_init_subsystem_305(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_306(void)
 {
   longlong system_memory_allocation_result;
@@ -17420,7 +17130,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_307(void)
 {
   char system_init_validation_flag;
@@ -17479,7 +17188,6 @@ void system_init_subsystem_307(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_308(void)
 {
   char system_init_validation_flag;
@@ -17538,7 +17246,6 @@ void system_init_subsystem_308(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_309(void)
 {
   char system_init_validation_flag;
@@ -17597,7 +17304,6 @@ void system_init_subsystem_309(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_310(void)
 {
   char system_init_validation_flag;
@@ -17656,7 +17362,6 @@ void system_init_subsystem_310(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_311(void)
 {
   char system_init_validation_flag;
@@ -17715,7 +17420,6 @@ void system_init_subsystem_311(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_312(void)
 {
   char system_init_validation_flag;
@@ -17774,7 +17478,6 @@ void system_init_subsystem_312(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_313(void)
 {
   char system_init_validation_flag;
@@ -17833,7 +17536,6 @@ void system_init_subsystem_313(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_314(void)
 {
   char system_init_validation_flag;
@@ -17892,7 +17594,6 @@ void system_init_subsystem_314(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_315(void)
 {
   char system_init_validation_flag;
@@ -17951,7 +17652,6 @@ void system_init_subsystem_315(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_316(void)
 {
   char system_init_validation_flag;
@@ -18010,7 +17710,6 @@ void system_init_subsystem_316(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_317(void)
 {
   char system_init_validation_flag;
@@ -18069,7 +17768,6 @@ void system_init_subsystem_317(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_318(void)
 {
   char system_init_validation_flag;
@@ -18128,7 +17826,6 @@ void system_init_subsystem_318(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_319(void)
 {
   char system_init_validation_flag;
@@ -18187,7 +17884,6 @@ void system_init_subsystem_319(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_320(void)
 {
   char system_init_validation_flag;
@@ -18246,7 +17942,6 @@ void system_init_subsystem_320(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_321(void)
 {
   char system_init_validation_flag;
@@ -18305,7 +18000,6 @@ void system_init_subsystem_321(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_322(void)
 {
   char system_init_validation_flag;
@@ -18364,7 +18058,6 @@ void system_init_subsystem_322(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_323(void)
 {
   char system_init_validation_flag;
@@ -18423,7 +18116,6 @@ void system_init_subsystem_323(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_324(void)
 {
   char system_init_validation_flag;
@@ -18482,7 +18174,6 @@ void system_init_subsystem_324(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_325(void)
 {
   char system_init_validation_flag;
@@ -18541,7 +18232,6 @@ void system_init_subsystem_325(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_326(void)
 {
   char system_init_validation_flag;
@@ -18600,7 +18290,6 @@ void system_init_subsystem_326(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_327(void)
 {
   char system_init_validation_flag;
@@ -18659,7 +18348,6 @@ void system_init_subsystem_327(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_328(void)
 {
   void* register_r9_value;
@@ -18690,7 +18378,6 @@ void system_init_subsystem_328(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_329(void)
 {
   system_initialization_flag = GetCurrentProcess();
@@ -18712,7 +18399,6 @@ void system_init_subsystem_329(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_330(void)
 {
   longlong system_memory_allocation_result;
@@ -18745,7 +18431,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_331(void)
 {
   longlong system_memory_allocation_result;
@@ -18778,7 +18463,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_332(void)
 {
   longlong system_memory_allocation_result;
@@ -18804,7 +18488,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_333(void)
 {
   longlong system_memory_allocation_result;
@@ -18833,7 +18516,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_334(void)
 {
   void* register_r9_value;
@@ -18915,7 +18597,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_336(void)
 {
   void* register_r9_value;
@@ -18946,7 +18627,6 @@ void system_init_subsystem_336(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_337(void)
 {
   void* register_r9_value;
@@ -18979,7 +18659,6 @@ void system_init_subsystem_337(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_338(void)
 {
   longlong system_memory_allocation_result;
@@ -19010,7 +18689,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_339(void)
 {
   longlong system_memory_allocation_result;
@@ -19044,7 +18722,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_340(void)
 {
   longlong system_memory_allocation_result;
@@ -19068,7 +18745,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_341(void)
 {
   int system_initialization_parameter;
@@ -19094,7 +18770,6 @@ void system_init_subsystem_341(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_342(void)
 {
   int system_initialization_parameter;
@@ -19125,7 +18800,6 @@ void system_init_subsystem_342(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_343(void)
 {
   int system_initialization_parameter;
@@ -19151,7 +18825,6 @@ void system_init_subsystem_343(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_344(void)
 {
   int system_initialization_parameter;
@@ -19177,7 +18850,6 @@ void system_init_subsystem_344(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_345(void)
 {
   int system_initialization_parameter;
@@ -19203,7 +18875,6 @@ void system_init_subsystem_345(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_346(void)
 {
   int system_initialization_parameter;
@@ -19229,7 +18900,6 @@ void system_init_subsystem_346(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_347(void)
 {
   int system_initialization_parameter;
@@ -19262,7 +18932,6 @@ void system_init_subsystem_347(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_348(void)
 {
   system_uint64_t *system_context_pointer;
@@ -19294,7 +18963,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_349(void)
 {
   int system_initialization_parameter;
@@ -19320,7 +18988,6 @@ void system_init_subsystem_349(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_350(void)
 {
   int system_initialization_parameter;
@@ -19358,7 +19025,6 @@ void system_init_subsystem_350(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_351(void)
 {
   longlong system_memory_allocation_result;
@@ -19384,7 +19050,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_352(void)
 {
   longlong system_memory_allocation_result;
@@ -19557,7 +19222,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_356(void)
 {
                     // WARNING: Subroutine does not return
@@ -19605,7 +19269,6 @@ void system_init_subsystem_357(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_358(void)
 {
   system_uint64_t *system_context_pointer;
@@ -19926,7 +19589,6 @@ system_init_label_resource_check:
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_360(void)
 {
   system_uint64_t system_initialization_loop_counter;
@@ -20202,7 +19864,6 @@ void system_init_subsystem_365(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_366(void)
 {
                     // WARNING: Subroutine does not return
@@ -20232,7 +19893,6 @@ void system_init_subsystem_367(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_368(void)
 {
                     // WARNING: Subroutine does not return
@@ -20347,7 +20007,6 @@ void system_init_subsystem_374(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_375(void)
 {
                     // WARNING: Subroutine does not return
@@ -20586,7 +20245,6 @@ void system_init_subsystem_385(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_386(void)
 {
                     // WARNING: Subroutine does not return
@@ -21084,7 +20742,6 @@ void system_init_subsystem_401(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_402(void)
 {
   system_uint64_t system_initialization_loop_counter;
@@ -22419,7 +22076,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_424(void)
 {
   _Cnd_destroy_in_situ();
@@ -22439,7 +22095,6 @@ void system_init_subsystem_424(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_425(void)
 {
   _Cnd_destroy_in_situ();
@@ -22459,7 +22114,6 @@ void system_init_subsystem_425(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_426(void)
 {
   _Mtx_destroy_in_situ();
@@ -22479,7 +22133,6 @@ void system_init_subsystem_426(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_427(void)
 {
   _Mtx_destroy_in_situ();
@@ -22550,7 +22203,6 @@ void system_init_subsystem_431(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_432(void)
 {
                     // WARNING: Subroutine does not return
@@ -22701,7 +22353,6 @@ void system_init_subsystem_439(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_440(void)
 {
                     // WARNING: Subroutine does not return
@@ -22931,7 +22582,6 @@ void system_init_subsystem_451(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_452(void)
 {
   _Mtx_destroy_in_situ();
@@ -23135,7 +22785,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_461(void)
 {
   char system_init_validation_flag;
@@ -23219,7 +22868,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_462(void)
 {
   system_uint64_t system_initialization_loop_counter;
@@ -23247,7 +22895,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_463(void)
 {
   char system_init_validation_flag;
@@ -23329,7 +22976,6 @@ void system_init_subsystem_463(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_464(void)
 {
   longlong *system_primary_longptr;
@@ -23726,7 +23372,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_480(void)
 {
   return;
@@ -23831,7 +23476,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_486(void)
 {
   int system_initialization_parameter;
@@ -24383,7 +24027,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_513(void)
 {
   system_code *system_char_pointer_offset;
@@ -25448,7 +25091,6 @@ void system_init_subsystem_524(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_525(void)
 {
   int system_initialization_parameter;
@@ -25715,7 +25357,6 @@ void system_init_subsystem_527(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_528(void)
 {
   system_uint64_t *system_context_pointer;
@@ -25879,7 +25520,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_529(void)
 {
   longlong *system_primary_longptr;
@@ -26367,7 +26007,6 @@ void system_init_subsystem_534(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_535(void)
 {
   longlong system_memory_allocation_result;
@@ -26445,7 +26084,6 @@ void system_init_subsystem_536(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_537(void)
 {
   return;
@@ -27721,7 +27359,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_549(void)
 {
   uint system_initialization_loop_counter;
@@ -28127,7 +27764,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_550(void)
 {
   system_uint64_t *system_context_pointer;
@@ -28340,7 +27976,6 @@ void system_init_subsystem_558(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_559(void)
 {
   system_uint64_t *system_context_pointer;
@@ -28956,7 +28591,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_569(void)
 {
   InitializeSystemCore();
@@ -29099,7 +28733,6 @@ void system_init_subsystem_575(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_576(void)
 {
   longlong system_register_rsi_input;
@@ -29248,7 +28881,6 @@ void system_init_subsystem_581(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_582(void)
 {
   InitializeSystemCore();
@@ -29270,7 +28902,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_583(void)
 {
   longlong system_register_rbx_input;
@@ -29405,7 +29036,6 @@ void system_init_subsystem_585(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_586(void)
 {
   longlong system_register_rbx_input;
@@ -29576,7 +29206,6 @@ void system_init_subsystem_593(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_594(void)
 {
   int *system_int_ptr_main;
@@ -29638,7 +29267,6 @@ void system_init_subsystem_594(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_595(void)
 {
   int *system_int_ptr_main;
@@ -29688,7 +29316,6 @@ void system_init_subsystem_595(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_596(void)
 {
   int *system_int_ptr_main;
@@ -29911,7 +29538,6 @@ void system_init_subsystem_602(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_603(void)
 {
   int *system_int_ptr_main;
@@ -29973,7 +29599,6 @@ void system_init_subsystem_603(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_604(void)
 {
   int *system_int_ptr_main;
@@ -30023,7 +29648,6 @@ void system_init_subsystem_604(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_605(void)
 {
   int *system_int_ptr_main;
@@ -30090,7 +29714,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_607(void)
 {
   int *system_int_ptr_main;
@@ -30802,7 +30425,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_631(void)
 {
   return;
@@ -30963,7 +30585,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_635(void)
 {
   system_uint64_t *system_context_pointer;
@@ -31013,7 +30634,6 @@ void system_init_subsystem_635(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_636(void)
 {
   longlong system_memory_allocation_result;
@@ -31235,7 +30855,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_641(void)
 {
   return;
@@ -31254,7 +30873,6 @@ void system_init_subsystem_641(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_642(void)
 {
   return;
@@ -31646,7 +31264,7 @@ void system_init_subsystem_652(void)
               system_uint_ptr_secondary = (uint *)(system_memory_allocation_result_primary - (ulonglong)*(uint *)(system_memory_allocation_result_primary + INIT_SIZE_COMPARE));
               if ((*(byte *)((longlong)system_uint_ptr_secondary + ) & 2) == 0) {
                 system_primary_unsigned_long = system_uint_ptr_secondary[SYSTEM_ARRAY_INDEX_EIGHTH];
-                if (0x10ffffff < system_primary_unsigned_long) {
+                if (SYSTEM_INIT_BOUNDARY_UNSIGNED_MAX < system_primary_unsigned_long) {
                   system_primary_unsigned_long = *system_uint_ptr_secondary << INIT_SIZE_COMPARE;
                 }
               }
@@ -31658,7 +31276,7 @@ void system_init_subsystem_652(void)
                 else {
                   system_uint_temp_secondary = (ulonglong)*system_uint_ptr_secondary << INIT_SIZE_COMPARE;
                 }
-                if (0x10ffffff < system_primary_unsigned_long) {
+                if (SYSTEM_INIT_BOUNDARY_UNSIGNED_MAX < system_primary_unsigned_long) {
                   system_primary_unsigned_long = *system_uint_ptr_secondary << INIT_SIZE_COMPARE;
                 }
                 system_primary_unsigned_long = system_primary_unsigned_long - (int)(((longlong)psystem_stack_uint_0x1028 -
@@ -31830,7 +31448,7 @@ void system_init_subsystem_653(void)
                 system_uint_ptr_secondary = (uint *)(system_memory_allocation_result2 - (ulonglong)*(uint *)(system_memory_allocation_result2 + INIT_SIZE_COMPARE));
                 if ((*(byte *)((longlong)system_uint_ptr_secondary + ) & 2) == 0) {
                   system_primary_unsigned_long = system_uint_ptr_secondary[SYSTEM_ARRAY_INDEX_EIGHTH];
-                  if (0x10ffffff < system_primary_unsigned_long) {
+                  if (SYSTEM_INIT_BOUNDARY_UNSIGNED_MAX < system_primary_unsigned_long) {
                     system_primary_unsigned_long = *system_uint_ptr_secondary << INIT_SIZE_COMPARE;
                   }
                 }
@@ -31842,7 +31460,7 @@ void system_init_subsystem_653(void)
                   else {
                     system_ulonglong_secondary = (ulonglong)*system_uint_ptr_secondary << INIT_SIZE_COMPARE;
                   }
-                  if (0x10ffffff < system_primary_unsigned_long) {
+                  if (SYSTEM_INIT_BOUNDARY_UNSIGNED_MAX < system_primary_unsigned_long) {
                     system_primary_unsigned_long = *system_uint_ptr_secondary << INIT_SIZE_COMPARE;
                   }
                   system_primary_unsigned_long = system_primary_unsigned_long - (int)(((longlong)psystem_stack_uint_0x1090 -
@@ -32107,7 +31725,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_659(void)
 {
   return;
@@ -32425,7 +32042,6 @@ void system_init_subsystem_674(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_675(void)
 {
                     // WARNING: Subroutine does not return
@@ -32524,7 +32140,6 @@ void system_init_subsystem_678(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_679(void)
 {
   longlong system_memory_allocation_result;
@@ -32766,7 +32381,6 @@ void system_init_subsystem_681(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_682(void)
 {
   system_uint64_t *system_register_rbx_input;
@@ -32793,7 +32407,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_683(void)
 {
   int *system_int_ptr_main;
@@ -34265,7 +33878,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_729(void)
 {
   longlong system_memory_allocation_result;
@@ -35016,7 +34628,6 @@ void system_init_subsystem_752(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_753(void)
 {
   longlong system_memory_allocation_result;
@@ -35049,7 +34660,6 @@ void system_init_subsystem_753(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_754(void)
 {
   return;
@@ -35090,7 +34700,6 @@ void system_init_subsystem_755(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_756(void)
 {
   longlong system_memory_allocation_result;
@@ -35123,7 +34732,6 @@ void system_init_subsystem_756(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_757(void)
 {
   return;
@@ -35142,7 +34750,6 @@ void system_init_subsystem_757(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_758(void)
 {
   longlong *system_primary_longptr;
@@ -35621,7 +35228,6 @@ void system_init_subsystem_768(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_769(void)
 {
   longlong system_memory_allocation_result;
@@ -35917,8 +35523,8 @@ void system_init_subsystem_776(void)
   char acStackX_8 [16];
   
   system_temporary_unsigned_long = GetCurrentThreadId();
-  system_primary_config = (system_temporary_unsigned_long >> INIT_SIZE_COMPARE ^ system_temporary_unsigned_long) * -0x7a14010595;
-  system_primary_config = (system_primary_config >>  ^ system_primary_config) * -SYSTEM_INIT_OFFSET_STACK_FRAME_0x10D4d51cb;
+  system_primary_config = (system_temporary_unsigned_long >> INIT_SIZE_COMPARE ^ system_temporary_unsigned_long) * -SYSTEM_INIT_HASH_MULTIPLIER_1;
+  system_primary_config = (system_primary_config >>  ^ system_primary_config) * -SYSTEM_INIT_HASH_MULTIPLIER_2;
   system_init_flag_primary = (ulonglong)(system_primary_config >> INIT_SIZE_COMPARE ^ system_primary_config);
   system_init_config_pointer = *(ulonglong **)(system_context_param + INIT_OFFSET_BASE);
   for (memory_pointer = system_init_config_pointer; system_primary_initialization_flag = system_init_flag_primary, memory_pointer != (ulonglong *)SYSTEM_INIT_VALUE_NULL; memory_pointer = (ulonglong *)memory_pointer[SYSTEM_ARRAY_INDEX_TERTIARY])
@@ -36681,7 +36287,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_787(void)
 {
   return;
@@ -37638,7 +37243,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_799(void)
 {
   int system_initialization_parameter;
@@ -38538,7 +38142,6 @@ void system_init_subsystem_818(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_819(void)
 {
                     // WARNING: Subroutine does not return
@@ -38585,7 +38188,6 @@ void system_init_subsystem_822(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_823(void)
 {
   InitializeSystemCore();
@@ -38605,7 +38207,6 @@ void system_init_subsystem_823(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_824(void)
 {
   InitializeSystemCore();
@@ -38661,7 +38262,6 @@ void system_init_subsystem_825(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_826(void)
 {
   system_uint8_t asystem_stack_primary_config_value8 [48];
@@ -39015,7 +38615,6 @@ code_rSYSTEM_INIT_VALUE_NULLx100e9:
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_830(void)
 {
   int system_initialization_parameter;
@@ -39095,7 +38694,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_832(void)
 {
   InitializeSystemCore();
@@ -39124,7 +38722,6 @@ void system_init_subsystem_832(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_833(void)
 {
   int system_initialization_parameter;
@@ -39296,7 +38893,6 @@ void system_init_subsystem_839(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_840(void)
 {
   void* *system_context_pointer;
@@ -39585,7 +39181,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_843(void)
 {
                     // WARNING: Subroutine does not return
@@ -40539,7 +40134,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_847(void)
 {
   system_uint8_t asystem_stack_initialization_flag_secondary [104];
@@ -41217,7 +40811,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_856(void)
 {
   system_code *system_char_pointer_offset;
@@ -41266,7 +40859,6 @@ void system_init_subsystem_857(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_858(void)
 {
   InitializeSystemCore();
@@ -41286,7 +40878,6 @@ void system_init_subsystem_858(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_859(void)
 {
   system_code *system_char_pointer_offset;
@@ -41430,7 +41021,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_864(void)
 {
   return;
@@ -41449,7 +41039,6 @@ void system_init_subsystem_864(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_865(void)
 {
                     // WARNING: Subroutine does not return
@@ -41470,7 +41059,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_866(void)
 {
   system_code *system_char_pointer_offset;
@@ -41761,7 +41349,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_872(void)
 {
   _Mtx_destroy_in_situ();
@@ -41781,7 +41368,6 @@ void system_init_subsystem_872(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_873(void)
 {
   _Mtx_destroy_in_situ();
@@ -42528,7 +42114,6 @@ void system_init_subsystem_889(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_890(void)
 {
                     // WARNING: Subroutine does not return
@@ -42793,8 +42378,8 @@ void system_init_subsystem_901(void)
   bool system_initialization_complete_flag;
   
   system_temporary_unsigned_long = GetCurrentThreadId();
-  system_ulonglong_primary = (system_temporary_unsigned_long >> INIT_SIZE_COMPARE ^ system_temporary_unsigned_long) * -0x7a14010595;
-  system_ulonglong_primary = (system_ulonglong_primary >>  ^ system_ulonglong_primary) * -SYSTEM_INIT_OFFSET_STACK_FRAME_0x10D4d51cb;
+  system_ulonglong_primary = (system_temporary_unsigned_long >> INIT_SIZE_COMPARE ^ system_temporary_unsigned_long) * -SYSTEM_INIT_HASH_MULTIPLIER_1;
+  system_ulonglong_primary = (system_ulonglong_primary >>  ^ system_ulonglong_primary) * -SYSTEM_INIT_HASH_MULTIPLIER_2;
   system_primary_unsigned_long_extended = (ulonglong)(system_ulonglong_primary >> INIT_SIZE_COMPARE ^ system_ulonglong_primary);
   system_init_config_pointer = (ulonglong *)system_context_param[SYSTEM_ARRAY_INDEX_SEVENTH];
   for (memory_pointer = system_init_config_pointer; system_primary_initialization_flag = system_primary_unsigned_long_extended, memory_pointer != (ulonglong *)SYSTEM_INIT_VALUE_NULL; memory_pointer = (ulonglong *)memory_pointer[SYSTEM_ARRAY_INDEX_TERTIARY])
@@ -43107,7 +42692,7 @@ return;
 system_uint64_t InitializeSystemCore(int system_context_param)
 void system_init_subsystem_909(void)
 {
-  if ((system_context_param != -0x10fffff0010) && (system_context_param != -0x10ffffffb)) {
+  if ((system_context_param != SYSTEM_INIT_BOUNDARY_SIGNED_MAX_1) && (system_context_param != SYSTEM_INIT_BOUNDARY_SIGNED_MAX_2)) {
     return 0;
   }
   (**(system_code **)(*(longlong *)*system_initialization_flag + ))();
@@ -43467,7 +43052,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_921(void)
 {
   longlong *system_primary_longptr;
@@ -44396,7 +43980,6 @@ system_init_label_potential_release:
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_933(void)
 {
                     // WARNING: Subroutine does not return
@@ -44570,8 +44153,8 @@ void system_init_subsystem_936(void)
   bool system_initialization_complete_flag;
   
   system_temporary_unsigned_long = GetCurrentThreadId();
-  system_ulonglong_primary = (system_temporary_unsigned_long >> INIT_SIZE_COMPARE ^ system_temporary_unsigned_long) * -0x7a14010595;
-  system_ulonglong_primary = (system_ulonglong_primary >>  ^ system_ulonglong_primary) * -SYSTEM_INIT_OFFSET_STACK_FRAME_0x10D4d51cb;
+  system_ulonglong_primary = (system_temporary_unsigned_long >> INIT_SIZE_COMPARE ^ system_temporary_unsigned_long) * -SYSTEM_INIT_HASH_MULTIPLIER_1;
+  system_ulonglong_primary = (system_ulonglong_primary >>  ^ system_ulonglong_primary) * -SYSTEM_INIT_HASH_MULTIPLIER_2;
   system_primary_unsigned_long_extended = (ulonglong)(system_ulonglong_primary >> INIT_SIZE_COMPARE ^ system_ulonglong_primary);
   system_init_config_pointer = (ulonglong *)system_context_param[SYSTEM_ARRAY_INDEX_SEVENTH];
   for (memory_pointer = system_init_config_pointer; system_primary_initialization_flag = system_primary_unsigned_long_extended, memory_pointer != (ulonglong *)SYSTEM_INIT_VALUE_NULL; memory_pointer = (ulonglong *)memory_pointer[SYSTEM_ARRAY_INDEX_TERTIARY])
@@ -45400,7 +44983,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_951(void)
 {
   longlong system_memory_allocation_result;
@@ -45652,7 +45234,6 @@ void system_init_subsystem_954(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_955(void)
 {
   system_uint64_t *system_register_rbx_input;
@@ -45679,7 +45260,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_956(void)
 {
   int *system_int_ptr_main;
@@ -45976,7 +45556,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_963(void)
 {
   longlong system_memory_allocation_result;
@@ -46282,7 +45861,6 @@ void system_init_subsystem_973(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_974(void)
 {
   longlong system_memory_allocation_result;
@@ -46310,7 +45888,6 @@ void system_init_subsystem_974(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_975(void)
 {
   return;
@@ -49614,7 +49191,6 @@ void system_init_subsystem_997(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_998(void)
 {
   ushort system_initialization_loop_counter;
@@ -49704,7 +49280,6 @@ void system_init_subsystem_998(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_999(void)
 {
   ushort system_initialization_loop_counter;
@@ -50330,7 +49905,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1004(void)
 {
   system_uint64_t system_initialization_loop_counter;
@@ -51631,7 +51205,7 @@ void system_init_subsystem_1024(void)
         system_stack_float_param_50x10 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_SECONDARY];
         system_stack_frame_primary = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_CONTEXT_INDEX_RESOURCE_SIZE);
         system_stack_uint_config = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_OFFSET_STACK_56);
-        InitializeSystemCore(&system_stack_uint_size_standard,0x10fc90fdb);
+        InitializeSystemCore(&system_stack_uint_size_standard,SYSTEM_INIT_FLOAT_COEFFICIENT_1);
         system_init_calculate_coefficients(system_coefficient_pointer_a,system_coefficient_pointer_a,&system_stack_uint_size_standard);
         system_stack_uint_size_standard = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_ACTIVE_DEFAULT);
         system_stack_uint_size_small = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_ACTIVE_DEFAULT);
@@ -53228,7 +52802,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1039(void)
 {
   uint system_initialization_loop_counter;
@@ -53566,7 +53139,6 @@ void system_init_subsystem_1039(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1040(void)
 {
   float system_coefficient_a;
@@ -53838,7 +53410,6 @@ void system_init_subsystem_1040(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1041(void)
 {
   float system_coefficient_a;
@@ -53999,7 +53570,6 @@ void system_init_subsystem_1041(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1042(void)
 {
   float system_coefficient_a;
@@ -54178,7 +53748,6 @@ void system_init_subsystem_1042(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1043(void)
 {
   int system_initialization_parameter;
@@ -54455,7 +54024,7 @@ void system_init_subsystem_1046(void)
   system_stack_param_5c = 0;
   system_stack_param_4c = 0;
   system_stack_param_0x10c = 0;
-  system_init_calculate_coefficients(0x10f800000,system_coefficient_a * system_offset_value,system_register_r14d,&stackSYSTEM_INIT_VALUE_NULLx100,system_stack_uint0x102_param_1);
+  system_init_calculate_coefficients(SYSTEM_INIT_FLOAT_COEFFICIENT_2,system_coefficient_a * system_offset_value,system_register_r14d,&stackSYSTEM_INIT_VALUE_NULLx100,system_stack_uint0x102_param_1);
   return;
 }
 /**
@@ -54472,7 +54041,6 @@ void system_init_subsystem_1046(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1047(void)
 {
   system_uint64_t *system_register_rdi_input;
@@ -54502,7 +54070,7 @@ void system_init_subsystem_1047(void)
   system_stack_uint64_58 = system_register_rdi_input[SYSTEM_ARRAY_INDEX_SIXTH] & SYSTEM_INIT_ERROR_GENERIC;
   system_stack_uint64_48 = system_register_rdi_input[SYSTEM_ARRAY_INDEX_FOURTH] & SYSTEM_INIT_ERROR_GENERIC;
   system_stack_uint64_0x108 = system_register_rdi_input[SYSTEM_ARRAY_INDEX_SECONDARY] & SYSTEM_INIT_ERROR_GENERIC;
-  system_init_calculate_coefficients(0x10f800000,system_stack_uint0x102_60,system_register_r14d,&stackSYSTEM_INIT_VALUE_NULLx100,system_stack_uint0x102_param_1);
+  system_init_calculate_coefficients(SYSTEM_INIT_FLOAT_COEFFICIENT_2,system_stack_uint0x102_60,system_register_r14d,&stackSYSTEM_INIT_VALUE_NULLx100,system_stack_uint0x102_param_1);
   return;
 }
 void system_init_with_context(longlong system_context_param)
@@ -54892,7 +54460,6 @@ system_init_label_talk_start:
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1052(void)
 {
   system_uint64_t *system_context_pointer;
@@ -56266,7 +55833,6 @@ void system_init_subsystem_1060(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1061(void)
 {
   longlong *system_primary_longptr;
@@ -56848,7 +56414,6 @@ void system_init_subsystem_1062(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1063(void)
 {
   longlong *system_primary_longptr;
@@ -57135,7 +56700,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1067(void)
 {
   return;
@@ -57318,7 +56882,7 @@ void system_init_subsystem_1069(void)
         system_stack_float_param_50x10 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_SECONDARY];
         psystem_stack_frame_primary = *(void* **)(system_context_param + SYSTEM_INIT_CONTEXT_INDEX_RESOURCE_SIZE);
         system_stack_uint_config = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_OFFSET_STACK_56);
-        InitializeSystemCore(&system_stack_uint_size_standard,0x10fc90fdb);
+        InitializeSystemCore(&system_stack_uint_size_standard,SYSTEM_INIT_FLOAT_COEFFICIENT_1);
         system_init_calculate_coefficients(system_coefficient_pointer_a,system_coefficient_pointer_a,&system_stack_uint_size_standard);
         system_stack_uint_size_standard = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_ACTIVE_DEFAULT);
         system_stack_uint_size_small = *(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_ACTIVE_DEFAULT);
@@ -60280,7 +59844,7 @@ code_rSYSTEM_INIT_VALUE_NULL:
       if (*(int *)(system_config_param + INIT_SIZE_MEMORY_CHUNK_STANDARD) < 1) {
         system_initialization_loop_counter5 = INIT_FLAG_OCTONARY_ENABLED_STANDARD;
       }
-      system_primary_initialization_flag = system_init_function_float_converter(0x10f800000);
+      system_primary_initialization_flag = system_init_function_float_converter(SYSTEM_INIT_FLOAT_COEFFICIENT_2);
       system_uint_temp_primary = (ulonglong)system_primary_initialization_flag;
       do {
         system_initialization_loop_counter2 = *(longlong *)(system_config_param + );
@@ -60775,7 +60339,6 @@ void system_init_subsystem_1092(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1093(void)
 {
   system_uint64_t system_initialization_loop_counter;
@@ -60799,7 +60362,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1094(void)
 {
   return;
@@ -61255,7 +60817,6 @@ void system_init_subsystem_1101(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1102(void)
 {
   return;
@@ -61274,7 +60835,6 @@ void system_init_subsystem_1102(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1103(void)
 {
   return;
@@ -61369,7 +60929,6 @@ void system_init_subsystem_1105(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1106(void)
 {
   int *system_int_ptr_main;
@@ -61446,7 +61005,6 @@ void system_init_subsystem_1106(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1107(void)
 {
   int *system_int_ptr_main;
@@ -61500,7 +61058,6 @@ void system_init_subsystem_1107(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1108(void)
 {
   longlong system_register_rbx_input;
@@ -61534,7 +61091,6 @@ void system_init_subsystem_1108(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1109(void)
 {
   longlong system_register_rdi_input;
@@ -61816,7 +61372,6 @@ system_init_label_expose_uncover:
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1116(void)
 {
   InitializeSystemCore();
@@ -62559,7 +62114,6 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1121(void)
 {
   longlong *system_primary_longptr;
@@ -62749,7 +62303,6 @@ void system_init_subsystem_1121(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1122(void)
 {
   longlong *system_primary_longptr;
@@ -62940,7 +62493,6 @@ void system_init_subsystem_1122(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1123(void)
 {
   system_uint_standard_t system_initialization_loop_counter;
@@ -63042,7 +62594,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1124(void)
 {
   system_uint_standard_t system_initialization_loop_counter;
@@ -63105,7 +62656,6 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1126(void)
 {
   return;
@@ -63124,7 +62674,6 @@ void system_init_subsystem_1126(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1127(void)
 {
   return;
@@ -63143,7 +62692,6 @@ void system_init_subsystem_1127(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1128(void)
 {
   return;
@@ -63162,7 +62710,6 @@ void system_init_subsystem_1128(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1129(void)
 {
   system_uint_standard_t system_initialization_loop_counter;
@@ -63200,7 +62747,6 @@ void system_init_subsystem_1129(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_complete(void)
 void system_init_subsystem_1130(void)
 {
   longlong system_register_rdi_input;
