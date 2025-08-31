@@ -2490,11 +2490,6 @@ uint64_t utility_toggle_resource_state(char utility_parameter)
   }
   return 0;
 }
- void InitializeMemoryPool(void)
-/**
- * @brief 初始化内存池
- * 负责初始化系统内存池，准备内存分配
- */
 void InitializeMemoryPool(void)
 {
   return;
