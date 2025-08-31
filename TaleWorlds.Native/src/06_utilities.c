@@ -393,7 +393,7 @@ uint8_t utility_context_system_extended;
 void utility_process_thread_data(int64_t thread_handle, int64_t context_data)
 {
     uint64_t utility_resource_handle_value;
-    int utility_result;
+    int utility_result = UTILITY_FALSE;
     int64_t utility_loop_index = 0;
     int utility_processed_count;
     uint8_t utility_thread_workspace_buffer[32];
@@ -727,7 +727,7 @@ utility_stack_data[0] = UTILITY_FALSE;
 utility_status_code = utility_stack_processor_main(utility_stack_data);
 if (utility_status_code == UTILITY_FALSE) {
 utility_status_code = utility_stack_operation_secondary(utility_loop_index);
-*(uint64_t *)(utility_context_input_data + 800));
+*(uint64_t *)(utility_context_input_data + 800) = 0;
 if (utility_status_code == UTILITY_FALSE) {
 utility_cleanup_stack_handler(utility_stack_data);
 }
@@ -805,6 +805,8 @@ utility_cleanup_stack_handler(utility_stack_data);
 }
 }
 utility_cleanup_stack_handler(utility_stack_data);
+}
+return 0;
 }
 /**
  * @brief 检查资源状态
