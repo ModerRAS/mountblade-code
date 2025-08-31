@@ -127,9 +127,9 @@ static float UTILITY_RESOURCE_DATA_BUFFER_POSITION = 0.0f;
 static longlong UTILITY_DATA_BUFFER_PRIMARY = 0;
 static uint32 UTILITY_LOCAL_INTEGER_VALUE = 0;
 static longlong UTILITY_BUFFER_POSITION = 0;
-static uint64 utility_result = 0;
-static uint32 utility_thread_offset = 0;
-static uint64 utility_file_size_param = 0;
+static uint64 UTILITY_RESULT = 0;
+static uint32 UTILITY_THREAD_OFFSET = 0;
+static uint64 UTILITY_FILE_SIZE_PARAM = 0;
 static ulonglong utility_extended_data_ptr = 0;
 
 /**
