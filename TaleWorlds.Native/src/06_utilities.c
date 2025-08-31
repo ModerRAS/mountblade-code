@@ -110,11 +110,11 @@ static int *UTILITY_RESULT_POINTER = NULL;
 static uint32 *UTILITY_CPU_REGISTER_RAX = NULL;
 static longlong UTILITY_DATA_POINTER_PRIMARY_EXTENDED = 0;
 static uint32 *UTILITY_SYSTEM_MEMORY_HANDLE = NULL;
-static longlong utility_resource_cache = 0;
-static uint32 utility_buffer[1024] = {0};
-static uint32 utility_processing_buffer[1024] = {0};
-static uint32 g_utility_resource_size_limit = 1024;
-static longlong utility_resource_context_handle = 0;
+static longlong UTILITY_RESOURCE_CACHE = 0;
+static uint32 UTILITY_BUFFER[1024] = {0}
+static uint32 UTILITY_PROCESSING_BUFFER[1024] = {0}
+static uint32 UTILITY_RESOURCE_SIZE_LIMIT = 1024;
+static longlong UTILITY_RESOURCE_CONTEXT_HANDLE = 0;
 static uint32 UTILITY_RESOURCE_BUFFER = 0;
 static uint32 UTILITY_BOUNDARY_TWO = 2;
 static uint32 UTILITY_RESOURCE_CONFIG_OFFSET = 0;
@@ -130,7 +130,7 @@ static longlong UTILITY_BUFFER_POSITION = 0;
 static uint64 UTILITY_RESULT = 0;
 static uint32 UTILITY_THREAD_OFFSET = 0;
 static uint64 UTILITY_FILE_SIZE_PARAM = 0;
-static ulonglong utility_extended_data_ptr = 0;
+static ulonglong UTILITY_EXTENDED_DATA_PTR = 0;
 
 /**
  * @file 06_utilities.c - 工具函数库
