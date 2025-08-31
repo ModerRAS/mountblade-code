@@ -4843,11 +4843,11 @@ void utility_status_manager_update_state(long long context_pointer,long long dat
     result_int = utility_buffer_manager_handle(data_ptr,context_pointer + 0x1c,&system_temp_var_8);
     if (result_int == 0) {
       result_int = system_call_function(system_temp_var_8,context_pointer + 0x2c);
-      if (result_int == 0) goto LAB_1808918d2;
+      if (result_int == 0) goto UTILITY_LABEL_SYSTEM_NOTIFY;
     }
     return;
   }
-LAB_1808918d2:
+UTILITY_LABEL_SYSTEM_NOTIFY:
   utility_system_notify_handler(*(void **)(data_ptr + 0x98),context_pointer);
 }
 
@@ -4928,11 +4928,11 @@ void context_pointer_process_data(long long context_pointer,long long data_ptr)
     result_int = context_pointer_process_data(data_ptr,context_pointer + 0x1c,&system_temp_var_8);
     if (result_int == 0) {
       result_int = system_call_function(system_temp_var_8,context_pointer + 0x2c);
-      if (result_int == 0) goto LAB_180891a52;
+      if (result_int == 0) goto UTILITY_LABEL_FILE_READ;
     }
     return;
   }
-LAB_180891a52:
+UTILITY_LABEL_FILE_READ:
   utility_system_notify_handler(*(void **)(data_ptr + 0x98),context_pointer);
 }
 

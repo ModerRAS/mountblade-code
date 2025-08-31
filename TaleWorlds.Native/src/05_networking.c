@@ -31188,8 +31188,17 @@ uint64_t network_error_code_critical_handler_func(uint64_t network_context_point
     }
   }
   return network_connection_state_code;
-uint64_t network_create_network_socket_handle_ptr_handle,config_data)
+}
 
+/**
+ * @brief 网络套接字句柄创建函数
+ * 创建网络套接字句柄并配置相关参数
+ * @param network_context_pointer 网络上下文指针
+ * @param config_data 配置数据
+ * @return 创建结果，0表示成功，非0表示失败
+ */
+uint64_t network_create_network_socket_handle_ptr_handle(uint64_t network_context_pointer, uint64_t config_data)
+{
   int32_t network_operation_status;
   uint64_t network_connection_state_code;
   int64_t config_data;
