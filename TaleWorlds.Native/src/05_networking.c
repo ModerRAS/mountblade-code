@@ -273,117 +273,68 @@ int network_config_register_secondary;
 /** 第三网络配置寄存器 */
 int network_config_register_tertiary;
 
-/**
- * 扩展主网络连接上下文
- * 存储扩展主网络连接的上下文信息
- */
+/* 扩展网络连接上下文 */
+/** 扩展主网络连接上下文 */
 void *network_connection_context_primary_extended;
 
-/**
- * 扩展辅助网络连接上下文
- * 存储扩展辅助网络连接的上下文信息
- */
+/** 扩展辅助网络连接上下文 */
 void *network_connection_context_secondary_extended;
 
-/**
- * 扩展第三网络连接上下文
- * 存储扩展第三网络连接的上下文信息
- */
+/** 扩展第三网络连接上下文 */
 void *network_connection_context_tertiary_extended;
 
-/**
- * 扩展第四网络连接上下文
- * 存储扩展第四网络连接的上下文信息
- */
+/** 扩展第四网络连接上下文 */
 void *network_connection_context_quaternary_extended;
 
-/**
- * 扩展第五网络连接上下文
- * 存储扩展第五网络连接的上下文信息
- */
+/** 扩展第五网络连接上下文 */
 void *network_connection_context_quinary_extended;
 
-/**
- * 扩展第六网络连接上下文
- * 存储扩展第六网络连接的上下文信息
- */
+/** 扩展第六网络连接上下文 */
 void *network_connection_context_senary_extended;
 
-/**
- * 扩展第七网络连接上下文
- * 存储扩展第七网络连接的上下文信息
- */
+/** 扩展第七网络连接上下文 */
 void *network_connection_context_septenary_extended;
 
+/* 网络数据传输管理 */
 /**
  * @brief 网络数据传输初始化函数
  * 负责初始化网络数据传输
  */
 void *network_initialize_data_transfer;
-/**
- * 主网络缓冲区
- * 主要网络通信的数据缓冲区
- */
+
+/* 网络缓冲区管理 */
+/** 主网络缓冲区 */
 void *network_buffer_primary;
 
-/**
- * 辅助网络缓冲区
- * 辅助网络通信的数据缓冲区
- */
+/** 辅助网络缓冲区 */
 void *network_buffer_secondary;
 
-/**
- * 第三网络缓冲区
- * 第三网络通信的数据缓冲区
- */
+/** 第三网络缓冲区 */
 void *network_buffer_tertiary;
 
-/**
- * 第四网络缓冲区
- * 第四网络通信的数据缓冲区
- */
+/** 第四网络缓冲区 */
 void *network_buffer_quaternary;
 
-/**
- * 第五网络缓冲区
- * 第五网络通信的数据缓冲区
- */
+/** 第五网络缓冲区 */
 void *network_buffer_quinary;
 
-/**
- * 第六网络缓冲区
- * 第六网络通信的数据缓冲区
- */
+/** 第六网络缓冲区 */
 void *network_buffer_senary;
 
-/**
- * 第七网络缓冲区
- * 第七网络通信的数据缓冲区
- */
+/** 第七网络缓冲区 */
 void *network_buffer_septenary;
 
-/**
- * 静态主网络缓冲区
- * 静态分配的主网络缓冲区
- */
+/* 静态网络缓冲区 */
+/** 静态主网络缓冲区 */
 void *network_buffer_static_primary;
 
-/**
- * 静态辅助网络缓冲区
- * 静态分配的辅助网络缓冲区
- */
+/** 静态辅助网络缓冲区 */
 void *network_buffer_static_secondary;
 
-/**
- * 静态第三网络缓冲区
- * 静态分配的第三网络缓冲区
- */
+/** 静态第三网络缓冲区 */
 void *network_buffer_static_tertiary;
 
-/**
- * 静态第四网络缓冲区
- * 静态分配的第四网络缓冲区
- */
+/** 静态第四网络缓冲区 */
 void *network_buffer_static_quaternary;
 
 /**

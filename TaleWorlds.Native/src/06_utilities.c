@@ -7134,11 +7134,11 @@ void utility_setup_memory_configuration(uint64 utility_resource_primary_handle,l
   int utility_buffer_index;
   int utility_main_iteration_counter;
   int utility_main_iteration_counter;
-  resource_data **putility_primary_validation_array;
+  resource_data **utility_primary_validation_array_ptr;
   int utility_resource_count;
   byte utility_local_security_buffer [utility_structure_size_medium];
   uint32 utility_temp_loop_counter;
-  float float_array_stack_processing[UTILITY_SIZE_MULTIPLIER_TRIPLE];
+  float utility_stack_processing_float_array[UTILITY_SIZE_MULTIPLIER_TRIPLE];
   resource_data *utility_local_data_pointer_cache;
   int utility_temp_signed_integer;
   uint64 utility_temp_resource_count;
@@ -7176,15 +7176,15 @@ void utility_setup_memory_configuration(uint64 utility_resource_primary_handle,l
       utility_temp_security_register = utility_zero;
       utility_temp_security_register = utility_operation_flags;
       utility_buffer_data_copy_function(utility_process_buffer,*(uint64 *)(utility_resource_context_handle + utility_resource_data_offset),utility_buffer_size_standard);
-      putility_primary_validation_array = &utility_local_data_pointer_cache;
+      utility_primary_validation_array_ptr = &utility_local_data_pointer_cache;
 utility_process_resource_iteration:
-      utility_buffer_index = validate_resource_access(utility_resource_primary_handle,putility_primary_validation_array);
+      utility_buffer_index = validate_resource_access(utility_resource_primary_handle,utility_primary_validation_array_ptr);
     }
     else {
       utility_local_int_var = utility_zero;
       if (utility_array_index_increment < utility_buffer_index - UTILITY_INTEGER_DECREMENT_ONE) {
         utility_local_data_pointer_cache = &g_system_data_local_pointer_secondary;
-        putility_primary_validation_array = &utility_local_data_pointer_cache;
+        utility_primary_validation_array_ptr = &utility_local_data_pointer_cache;
         utility_temp_security_register = utility_zero;
         utility_temp_security_register = utility_zero;
         utility_temp_security_register = utility_zero;
