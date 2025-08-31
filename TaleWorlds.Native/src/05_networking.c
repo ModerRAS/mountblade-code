@@ -8395,7 +8395,7 @@ void network_packet_data_deserialize(uint64_t network_context_pointer[NETWORK_CO
   uint32_t network_packet_buffer_offset;
   uint32_t network_data_packet_buffer_working_offset_aux;
   uint32_t network_data_packet_buffer_offset_tertiary;
-  uint32_t network_data_packet_buffer_working_offset_secondary;
+  uint32_t network_buffer_offset_secondary;
   uint32_t network_buffer_connection_flag;
   uint32_t network_stack_offset_management;
   uint32_t network_packet_offset_extended;
@@ -8416,7 +8416,7 @@ void network_packet_data_deserialize(uint64_t network_context_pointer[NETWORK_CO
       network_packet_offset_extended = (uint32_t)*(uint8_t *)((int64_t)network_security_allocator + NETWORK_OFFSET_DECIMAL_PACKET_ID);
       network_stack_offset_management = (uint32_t)*(uint8_t *)(network_security_allocator + 3);
       network_buffer_connection_flag = (uint32_t)*(uint8_t *)((int64_t)network_security_allocator + SOCKET_OP_CODE_CONNECTION);
-      network_data_packet_buffer_working_offset_secondary = (uint32_t)*(uint8_t *)((int64_t)network_security_allocator + 10);
+      network_buffer_offset_secondary = (uint32_t)*(uint8_t *)((int64_t)network_security_allocator + 10);
       network_data_packet_buffer_offset_tertiary = (uint32_t)*(uint8_t *)((int64_t)network_security_allocator + 9);
       network_data_packet_buffer_working_offset_aux = (uint32_t)*(uint8_t *)(network_security_allocator + 2);
       network_socket_id_buffer = (uint32_t)*(uint16_t *)((int64_t)network_security_allocator + 6);
@@ -8486,7 +8486,7 @@ void network_protocol_handler_network_buffer_management_handler(int64_t network_
   uint8_t network_data_packet_buffer_secondary [32];
   uint32_t network_data_packet_buffer_working_offset_aux;
   uint32_t network_data_packet_buffer_offset_tertiary;
-  uint32_t network_data_packet_buffer_working_offset_secondary;
+  uint32_t network_buffer_offset_secondary;
   uint32_t network_buffer_connection_flag;
   uint32_t network_stack_offset_management;
   uint32_t network_packet_offset_extended;
@@ -8515,7 +8515,7 @@ void network_protocol_handler_network_buffer_management_handler(int64_t network_
       network_packet_offset_extended = (uint32_t)*(uint8_t *)((int64_t)network_security_allocator + SOCKET_OP_CODE_CONNECTION);
       network_stack_offset_management = (uint32_t)*(uint8_t *)((int64_t)network_security_allocator + 10);
       network_buffer_connection_flag = (uint32_t)*(uint8_t *)((int64_t)network_security_allocator + 9);
-      network_data_packet_buffer_working_offset_secondary = (uint32_t)*(uint8_t *)(network_security_allocator + 2);
+      network_buffer_offset_secondary = (uint32_t)*(uint8_t *)(network_security_allocator + 2);
       network_data_packet_buffer_offset_tertiary = (uint32_t)*(uint16_t *)((int64_t)network_security_allocator + 6);
       network_data_packet_buffer_working_offset_aux = (uint32_t)*(uint16_t *)(network_security_allocator + 1);
       network_packet_alloc_memory(network_connection_config_buffer,MEMORY_POOL_SIZE_MINIMAL,&network_protocol_ptr,*network_security_allocator);
@@ -8565,7 +8565,7 @@ void network_packet_data_compress(int64_t *network_context_pointer[NETWORK_CONFI
   uint32_t network_packet_buffer_offset;
   uint32_t network_data_packet_buffer_working_offset_aux;
   uint32_t network_data_packet_buffer_offset_tertiary;
-  uint32_t network_data_packet_buffer_working_offset_secondary;
+  uint32_t network_buffer_offset_secondary;
   uint32_t network_buffer_connection_flag;
   uint32_t network_stack_offset_management;
   uint32_t network_packet_offset_extended;
@@ -8597,7 +8597,7 @@ NETWORK_SEND_START:
         network_packet_offset_extended = (uint32_t)network_operation_status_flag;
         network_stack_offset_management = (uint32_t)network_operation_status_flag;
         network_buffer_connection_flag = (uint32_t)network_operation_status_flag;
-        network_data_packet_buffer_working_offset_secondary = (uint32_t)network_operation_status_flag;
+        network_buffer_offset_secondary = (uint32_t)network_operation_status_flag;
         network_data_packet_buffer_offset_tertiary = (uint32_t)network_operation_status_flag;
         network_data_packet_buffer_working_offset_aux = (uint32_t)network_operation_status_flag;
         network_socket_id_buffer = (uint32_t)network_operation_status_flag;
@@ -8649,7 +8649,7 @@ void network_protocol_handler_network_packet_data_compress(int64_t network_conte
   uint32_t network_packet_buffer_offset;
   uint32_t network_data_packet_buffer_working_offset_aux;
   uint32_t network_data_packet_buffer_offset_tertiary;
-  uint32_t network_data_packet_buffer_working_offset_secondary;
+  uint32_t network_buffer_offset_secondary;
   uint32_t network_buffer_connection_flag;
   uint32_t network_stack_offset_management;
   uint32_t network_packet_offset_extended;
@@ -8673,7 +8673,7 @@ void network_protocol_handler_network_packet_data_compress(int64_t network_conte
         network_packet_offset_extended = (uint32_t)*(uint8_t *)((int64_t)network_security_allocator + NETWORK_OFFSET_DECIMAL_PACKET_ID);
         network_stack_offset_management = (uint32_t)*(uint8_t *)(network_security_allocator + 3);
         network_buffer_connection_flag = (uint32_t)*(uint8_t *)((int64_t)network_security_allocator + SOCKET_OP_CODE_CONNECTION);
-        network_data_packet_buffer_working_offset_secondary = (uint32_t)*(uint8_t *)((int64_t)network_security_allocator + 10);
+        network_buffer_offset_secondary = (uint32_t)*(uint8_t *)((int64_t)network_security_allocator + 10);
         network_data_packet_buffer_offset_tertiary = (uint32_t)*(uint8_t *)((int64_t)network_security_allocator + 9);
         network_data_packet_buffer_working_offset_aux = (uint32_t)*(uint8_t *)(network_security_allocator + 2);
         network_socket_id_buffer = (uint32_t)*(uint16_t *)((int64_t)network_security_allocator + 6);
@@ -8753,7 +8753,7 @@ void network_packet_data_decompress(int64_t *network_context_pointer[NETWORK_CON
   uint32_t network_packet_buffer_offset;
   uint32_t network_data_packet_buffer_working_offset_aux;
   uint32_t network_data_packet_buffer_offset_tertiary;
-  uint32_t network_data_packet_buffer_working_offset_secondary;
+  uint32_t network_buffer_offset_secondary;
   uint32_t network_buffer_connection_flag;
   uint32_t network_stack_offset_management;
   uint32_t network_packet_offset_extended;
@@ -8791,7 +8791,7 @@ void network_packet_data_decompress(int64_t *network_context_pointer[NETWORK_CON
           network_packet_offset_extended = (uint32_t)*(uint8_t *)((int64_t)network_buffer_pointer + NETWORK_OFFSET_DECIMAL_SECURITY_KEY);
           network_stack_offset_management = (uint32_t)*(uint8_t *)((int64_t)network_buffer_pointer + CONTEXT_OFFSET_VALIDATION_BASE);
           network_buffer_connection_flag = (uint32_t)*(uint8_t *)((int64_t)network_buffer_pointer + NETWORK_OFFSET_DECIMAL_PACKET_ID);
-          network_data_packet_buffer_working_offset_secondary = (uint32_t)*(uint8_t *)(network_buffer_pointer + 3);
+          network_buffer_offset_secondary = (uint32_t)*(uint8_t *)(network_buffer_pointer + 3);
           network_data_packet_buffer_offset_tertiary = (uint32_t)*(uint8_t *)((int64_t)network_buffer_pointer + SOCKET_OP_CODE_CONNECTION);
           network_data_packet_buffer_working_offset_aux = (uint32_t)*(uint8_t *)((int64_t)network_buffer_pointer + 10);
           network_socket_id_buffer = (uint32_t)*(uint8_t *)((int64_t)network_buffer_pointer + 9);
@@ -13751,7 +13751,7 @@ void execute_network_operation(int64_t *network_context_pointer[NETWORK_CONFIG_I
   uint32_t network_data_packet_buffer_value_d0;
   uint32_t network_operation_control_flag8;
   uint32_t network_operation_control_flag0;
-  uint32_t network_data_packet_buffer_value_b8;
+  uint32_t network_buffer_value;
   uint32_t network_data_packet_buffer_value_b0;
   int64_t network_buffer_management_handlera8;
   int64_t *network_context_pointer_pointer_stack_context_a0;
@@ -13778,7 +13778,7 @@ void execute_network_operation(int64_t *network_context_pointer[NETWORK_CONFIG_I
       network_buffer_management_handler90 = primary_network_context;
       if (primary_network_context == 0) {
         network_data_packet_buffer_value_b0 = (uint32_t)*(uint8_t *)((int64_t)network_buffer_pointer + NETWORK_OFFSET_DECIMAL_SECURITY_KEY);
-        network_data_packet_buffer_value_b8 = (uint32_t)*(uint8_t *)((int64_t)network_buffer_pointer + CONTEXT_OFFSET_VALIDATION_BASE);
+        network_buffer_value = (uint32_t)*(uint8_t *)((int64_t)network_buffer_pointer + CONTEXT_OFFSET_VALIDATION_BASE);
         network_operation_control_flag0 = (uint32_t)*(uint8_t *)((int64_t)network_buffer_pointer + NETWORK_OFFSET_DECIMAL_PACKET_ID);
         network_operation_control_flag8 = (uint32_t)*(uint8_t *)(network_buffer_pointer + 3);
         network_data_packet_buffer_value_d0 = (uint32_t)*(uint8_t *)((int64_t)network_buffer_pointer + SOCKET_OP_CODE_CONNECTION);
@@ -13887,7 +13887,7 @@ void network_initialize_network_buffer_management_handler(int64_t network_contex
   int32_t network_operation_status;
   uint64_t network_connection_id_duplicate;
   uint8_t network_control_flag_data_buffer [32];
-  uint64_t network_data_packet_buffer_working_offset_secondary;
+  uint64_t network_buffer_offset_secondary;
   uint64_t network_buffer_connection_flag;
   uint8_t network_working_buffer_secondary [40];
   uint64_t network_socket_handle_ptr_data_offset;
@@ -13906,9 +13906,9 @@ void network_initialize_network_buffer_management_handler(int64_t network_contex
         if (primary_network_context == 0) {
           conn_data(network_socket_id,encryption_buffer);
         }
-        network_data_packet_buffer_working_offset_secondary = *(uint64_t *)(primary_network_context + CONNECTION_CONTEXT_OFFSET_SECURITY_CONTEXT);
+        network_buffer_offset_secondary = *(uint64_t *)(primary_network_context + CONNECTION_CONTEXT_OFFSET_SECURITY_CONTEXT);
         network_buffer_connection_flag = *(uint64_t *)(primary_network_context + CONNECTION_CONTEXT_OFFSET_SESSION_CONTEXT);
-        network_socket_id = network_socket_get_address(&network_data_packet_buffer_working_offset_secondary);
+        network_socket_id = network_socket_get_address(&network_buffer_offset_secondary);
         network_operation_status = *(int32_t *)(network_context_pointer + NETWORK_PRIMARY_HANDLE_OFFSET) + 1;
         network_socket_id = (int32_t)*(uint32_t *)(network_context_pointer + 0x9c) >> CONNECTION_STATUS_CODE_MAX;
         network_connection_state_code = (*(uint32_t *)(network_context_pointer + 0x9c) ^ network_socket_id) - network_socket_id;
@@ -13976,9 +13976,9 @@ void execute_network_operation(int64_t network_context_pointer[NETWORK_CONFIG_IN
   int64_t *network_context_pointer_pointer_stack_context_num_98;
   int64_t network_buffer_management_handler90;
   int64_t network_buffer_management_handler88;
-  int64_t *network_context_pointer_pointer_stack_context_num_80;
-  uint64_t network_data_packet_buffer_working_offset_secondary;
-  int32_t network_working_buffer_index_num_70 [6];
+  int64_t *network_context_stack;
+  uint64_t network_buffer_offset_secondary;
+  int32_t network_working_buffer_index [6];
   uint64_t network_encryption_context;
 
   network_encryption_context = encryption_key ^ (uint64_t)conn_data;
@@ -14017,7 +14017,7 @@ void execute_network_operation(int64_t network_context_pointer[NETWORK_CONFIG_IN
             network_standard_network_data_packet_buffer_sz = (uint32_t)*(uint8_t *)(primary_network_context + 5);
             network_packet_temp_data = (uint32_t)*(uint16_t *)((int64_t)primary_network_context + 0x26);
             network_connection_context_buffer = (uint32_t)*(uint16_t *)((int64_t)primary_network_context + CONNECTION_BUFFER_OFFSET);
-            network_packet_alloc_memory(&network_context_pointer_pointer_stack_context_num_80,MEMORY_POOL_SIZE_MINIMAL,&network_protocol_ptr,(int32_t)primary_network_context[4]);
+            network_packet_alloc_memory(&network_context_stack,MEMORY_POOL_SIZE_MINIMAL,&network_protocol_ptr,(int32_t)primary_network_context[4]);
           }
           if ((data_processing_bufferindex_bc != 0) && ((int32_t)network_buffer_value_primary != 0)) {
             network_operation_status = *(int32_t *)(network_buffer_management_handler +
@@ -14098,12 +14098,12 @@ network_label_connection_closed:
     network_data_packet_buffer_config_standardcc0(&network_buffer_management_handler);
     network_security_handle_operation(network_encryption_context ^ (uint64_t)conn_data);
   }
-  network_context_pointer_pointer_stack_context_num_80 = &network_buffer_management_handler;
-  network_data_packet_buffer_working_offset_secondary = SOCKET_VALIDATE_MASK_UINT32_MAX;
-  network_working_buffer_index_num_70[0] = -1;
-  network_process_stack_data(execute_network_operation(&network_stack_ptrnetwork_bufferfer_manager,&network_data_packet_buffer_working_offset_secondary,network_working_buffer_index_num_70);
-  if (network_working_buffer_index_num_70[0] == -1) goto network_label_connection_closed;
-  primary_network_context = *(int64_t **)(network_context_pointer_pointer_stack_context_num_80[2] + PACKET_HEADER_SIZE_STANDARD + (int64_t)network_working_buffer_index_num_70[0] * SOCKET_BASE_ADDRESS);
+  network_context_stack = &network_buffer_management_handler;
+  network_buffer_offset_secondary = SOCKET_VALIDATE_MASK_UINT32_MAX;
+  network_working_buffer_index[0] = -1;
+  network_process_stack_data(execute_network_operation(&network_stack_ptrnetwork_bufferfer_manager,&network_buffer_offset_secondary,network_working_buffer_index);
+  if (network_working_buffer_index[0] == -1) goto network_label_connection_closed;
+  primary_network_context = *(int64_t **)(network_context_stack[2] + PACKET_HEADER_SIZE_STANDARD + (int64_t)network_working_buffer_index[0] * SOCKET_BASE_ADDRESS);
   network_result_secondary = *(uint32_t *)((int64_t)primary_network_context + PACKET_TYPE_CONTROL);
   network_socket_id = -network_result_secondary;
   if (-1 < (int32_t)network_result_secondary) {
@@ -14143,7 +14143,7 @@ void network_initialize_thread_pool(int64_t network_context_pointer[NETWORK_CONF
   uint32_t network_packet_buffer_offset;
   uint32_t network_data_packet_buffer_working_offset_aux;
   uint32_t network_data_packet_buffer_offset_tertiary;
-  uint32_t network_data_packet_buffer_working_offset_secondary;
+  uint32_t network_buffer_offset_secondary;
   uint32_t network_buffer_connection_flag;
   uint32_t network_stack_offset_management;
   uint32_t network_packet_offset_extended;
@@ -14159,7 +14159,7 @@ void network_initialize_thread_pool(int64_t network_context_pointer[NETWORK_CONF
       network_packet_offset_extended = (uint32_t)*(uint8_t *)((int64_t)network_buffer_pointer + NETWORK_OFFSET_DECIMAL_SECURITY_KEY);
       network_stack_offset_management = (uint32_t)*(uint8_t *)((int64_t)network_buffer_pointer + CONTEXT_OFFSET_VALIDATION_BASE);
       network_buffer_connection_flag = (uint32_t)*(uint8_t *)((int64_t)network_buffer_pointer + NETWORK_OFFSET_DECIMAL_PACKET_ID);
-      network_data_packet_buffer_working_offset_secondary = (uint32_t)*(uint8_t *)(network_buffer_pointer + 3);
+      network_buffer_offset_secondary = (uint32_t)*(uint8_t *)(network_buffer_pointer + 3);
       network_data_packet_buffer_offset_tertiary = (uint32_t)*(uint8_t *)((int64_t)network_buffer_pointer + SOCKET_OP_CODE_CONNECTION);
       network_data_packet_buffer_working_offset_aux = (uint32_t)*(uint8_t *)((int64_t)network_buffer_pointer + 10);
       network_socket_id_buffer = (uint32_t)*(uint8_t *)((int64_t)network_buffer_pointer + 9);
@@ -14298,7 +14298,7 @@ void execute_network_operation(int64_t network_context_pointer[NETWORK_CONFIG_IN
   uint32_t network_data_packet_buffer_value_d0;
   uint32_t network_operation_control_flag8;
   uint32_t network_operation_control_flag0;
-  uint32_t network_data_packet_buffer_value_b8;
+  uint32_t network_buffer_value;
   uint32_t network_data_packet_buffer_value_b0;
   int32_t data_processing_buffer_index_pair [2];
   int64_t network_buffer_context_primary;
@@ -14326,7 +14326,7 @@ void execute_network_operation(int64_t network_context_pointer[NETWORK_CONFIG_IN
       primary_network_context = (**(code **)(*network_context_pointer[NETWORK_CONFIG_INDEX_PRIMARY],network_buffer_pointer,1);
       if (primary_network_context == 0) {
         network_data_packet_buffer_value_b0 = (uint32_t)*(uint8_t *)(primary_network_context + 0x6f);
-        network_data_packet_buffer_value_b8 = (uint32_t)*(uint8_t *)(primary_network_context + 0x6e);
+        network_buffer_value = (uint32_t)*(uint8_t *)(primary_network_context + 0x6e);
         network_operation_control_flag0 = (uint32_t)*(uint8_t *)(primary_network_context + 0x6d);
         network_operation_control_flag8 = (uint32_t)*(uint8_t *)(primary_network_context + 0x6c);
         network_data_packet_buffer_value_d0 = (uint32_t)*(uint8_t *)(primary_network_context + 0x6b);
@@ -14338,12 +14338,12 @@ void execute_network_operation(int64_t network_context_pointer[NETWORK_CONFIG_IN
         network_packet_alloc_memory(&network_context_secondary_stack_ptr,MEMORY_POOL_SIZE_MINIMAL,&network_protocol_ptr,*(int32_t *)network_buffer_pointer);
       }
       if (*(int32_t *)(primary_network_context + SOCKET_CONTEXT_OFFSET_SESSION_TOKEN) != CONNECTION_STATUS_CODE_MAX) goto network_exit_connection_failed;
-      adata_processing_bufferindex_a8[0] = 0;
+      network_processing_buffer_index[0] = 0;
       network_packet_buffer_temp[0] = primary_network_context + 0x70;
       network_connection_pointer7 = network_packet_buffer_temp;
-      adata_processing_bufferindex_a8[1] = 1;
+      network_processing_buffer_index[1] = 1;
       network_packet_buffer_temp[1] = primary_network_context + NETWORK_SECONDARY_KEY_OFFSET;
-      network_connection_ref_count5 = adata_processing_bufferindex_a8;
+      network_connection_ref_count5 = network_processing_buffer_index;
       network_result_code_six = 0;
       do {
         primary_network_context = *(int64_t *)(*(int64_t *)(primary_network_context + PACKET_SIZE_MAXIMUM) + (int64_t)*network_connection_ref_count5 * 8);
@@ -14366,15 +14366,15 @@ void execute_network_operation(int64_t network_context_pointer[NETWORK_CONFIG_IN
   }
   if (data_processing_bufferindex_7c != 0) {
     network_packet_offset_extended = SOCKET_VALIDATE_MASK_UINT32_MAX;
-    adata_processing_bufferindex_num_58[0] = -1;
+    network_processing_buffer_temp[0] = -1;
     network_context_secondary_stack_ptr = network_context_pointer;
-    execute_network_operation(network_context_pointer,&network_packet_offset_extended,adata_processing_bufferindex_num_58);
+    execute_network_operation(network_context_pointer,&network_packet_offset_extended,network_processing_buffer_temp);
     primary_network_context = network_data_packet_buffer_num_90[0];
-    adata_processing_bufferindex_a8[0] = adata_processing_bufferindex_num_58[0];
-    if (adata_processing_bufferindex_num_58[0] != -1) {
+    network_processing_buffer_index[0] = network_processing_buffer_temp[0];
+    if (network_processing_buffer_temp[0] != -1) {
       network_operation_status_three = (int32_t)network_packet_offset_extended;
 network_label_session_validation_failed:
-      network_packet_buffer_temp[0] = (int64_t)adata_processing_bufferindex_a8[0] * SOCKET_BASE_ADDRESS;
+      network_packet_buffer_temp[0] = (int64_t)network_processing_buffer_index[0] * SOCKET_BASE_ADDRESS;
       primary_network_context = *(int64_t *)(network_packet_buffer_temp[0] + PACKET_HEADER_SIZE_STANDARD + network_context_secondary_stack_ptr[2]);
       network_conn_buffer_ptr4 = *(uint32_t **)(primary_network_context + PACKET_SIZE_MAXIMUM);
 network_label_memory_allocation_failed:
@@ -14467,8 +14467,8 @@ NETWORK_ERROR_HANDLER:
   network_data_packet_buffer_config_standardcc0(&network_buffer_context_primary);
   network_security_handle_operation(network_socket_handle_ptr_data_offset ^ (uint64_t)network_data_packet_buffer);
 network_label_buffer_overflow:
-  if ((adata_processing_bufferindex_a8[0] != -1) &&
-     (adata_processing_bufferindex_a8[0] = *(int32_t *)(network_packet_buffer_temp[0] + NETWORK_GLOBAL_DATA_FLAG_OFFSET + network_context_secondary_stack_ptr[2]), adata_processing_bufferindex_a8[0] != -1))
+  if ((network_processing_buffer_index[0] != -1) &&
+     (network_processing_buffer_index[0] = *(int32_t *)(network_packet_buffer_temp[0] + NETWORK_GLOBAL_DATA_FLAG_OFFSET + network_context_secondary_stack_ptr[2]), network_processing_buffer_index[0] != -1))
   goto network_label_session_validation_failed;
   network_result_code_six = network_operation_status_three + 1;
   network_operation_status_flag = network_operation_status_three != -1;
@@ -14480,17 +14480,17 @@ network_label_buffer_overflow:
     primary_network_context = (int64_t)network_operation_status_three;
     do {
       if (*(int32_t *)(*network_context_secondary_stack_ptr + primary_network_context * 4) != -1) {
-        adata_processing_bufferindex_a8[0] = *(int32_t *)(*network_context_secondary_stack_ptr + (int64_t)network_operation_status_three * 4);
+        network_processing_buffer_index[0] = *(int32_t *)(*network_context_secondary_stack_ptr + (int64_t)network_operation_status_three * 4);
         goto network_exit_operation_failed;
       }
       network_operation_status_three = network_operation_status_three + 1;
       primary_network_context = primary_network_context + 1;
     } while (primary_network_context != (int32_t)network_context_secondary_stack_ptr[1]);
   }
-  adata_processing_bufferindex_a8[0] = -1;
+  network_processing_buffer_index[0] = -1;
   network_operation_status_three = -1;
 NETWORK_ERROR_HANDLER:
-  if (adata_processing_bufferindex_a8[0] == -1) goto network_exit_connection_failed;
+  if (network_processing_buffer_index[0] == -1) goto network_exit_connection_failed;
   goto network_label_session_validation_failed;
 /**
  * @brief 网络操作执行函数
@@ -14885,7 +14885,7 @@ void execute_network_operation(int64_t network_context_pointer[NETWORK_CONFIG_IN
   uint32_t network_data_packet_buffer_value_d0;
   int32_t data_processing_index_secondary;
   uint64_t network_operation_control_flag0;
-  uint64_t network_data_packet_buffer_value_b8;
+  uint64_t network_buffer_value;
   int32_t data_processing_buffer_index_alt_pair [2];
   uint32_t network_data_packet_buffer_value_secondary;
   uint64_t *data_processing_bufferpointer_a0;
@@ -14902,14 +14902,14 @@ void execute_network_operation(int64_t network_context_pointer[NETWORK_CONFIG_IN
   network_buffer_management_handler88 = network_context_pointer;
   if (network_context_pointer != 0) {
     if (*(int8_t *)(network_context_pointer + 0x2f8) != '\0') {
-      network_data_packet_buffer_value_b8 = SOCKET_VALIDATE_MASK_UINT32_MAX;
-      adata_processing_bufferindex_b0[0] = -1;
+      network_buffer_value = SOCKET_VALIDATE_MASK_UINT32_MAX;
+      network_processing_buffer_secondary[0] = -1;
       network_operation_control_flag0 = network_context_pointer;
-      execute_network_operation(network_context_pointer,&network_data_packet_buffer_value_b8,adata_processing_bufferindex_b0);
+      execute_network_operation(network_context_pointer,&network_buffer_value,network_processing_buffer_secondary);
       primary_network_context = network_operation_control_flag0;
-      if (adata_processing_bufferindex_b0[0] != -1) {
-        network_operation_status = adata_processing_bufferindex_b0[0];
-        network_operation_status_three = (int32_t)network_data_packet_buffer_value_b8;
+      if (network_processing_buffer_secondary[0] != -1) {
+        network_operation_status = network_processing_buffer_secondary[0];
+        network_operation_status_three = (int32_t)network_buffer_value;
         do {
           do {
             network_operation_status = execute_network_operation(*(uint64_t *)((int64_t)network_operation_status * SOCKET_BASE_ADDRESS + PACKET_HEADER_SIZE_STANDARD + primary_network_context[2]),network_context_pointer
@@ -15163,19 +15163,19 @@ network_label_authentication_failed:
                                     ((int64_t)*(int32_t *)(primary_network_context + SOCKET_CONTEXT_OFFSET_SECURITY_KEY) * NETWORK_OPERATION_SUCCESS + (int64_t)network_buffer_pointer))))
                   {
                     network_operation_control_flag0 = (int64_t *)*data_processing_buffer_ptr_pointer9;
-                    network_data_packet_buffer_value_b8 = data_processing_buffer_ptr_pointer9[1];
+                    network_buffer_value = data_processing_buffer_ptr_pointer9[1];
                     network_buffer_management_handler90 = (**(code **)(*network_context_pointer + CONTEXT_BASE_OFFSET_VERSION_MINOR8))
                                           (network_context_pointer,&network_operation_control_flag0,
                                            network_combine_7bit_with_flag((int8_t)((uint64_t)data_processing_buffer_ptr_pointer9 >> 8),1));
                     if (network_buffer_management_handler90 == 0) {
-                      network_data_packet_buffer_value_d0 = (uint32_t)network_data_packet_buffer_value_b8.bit_field_7;
-                      network_buffer_value_primary = (uint32_t)network_data_packet_buffer_value_b8.bit_field_6;
-                      network_data_packet_buffer_value_e0 = (uint32_t)network_data_packet_buffer_value_b8.bit_field_5;
-                      network_data_packet_buffer_value_e8 = (uint32_t)network_data_packet_buffer_value_b8.bit_field_4;
-                      network_operation_status_flag = (uint32_t)network_data_packet_buffer_value_b8.bit_field_3;
-                      network_connection_timeout_control_flag = (uint32_t)network_data_packet_buffer_value_b8.bit_field_2;
-                      network_data_packet_buffer_flags0 = (uint32_t)network_data_packet_buffer_value_b8.bit_field_1;
-                      network_data_packet_buffer_flags8 = (uint32_t)(uint8_t)network_data_packet_buffer_value_b8;
+                      network_data_packet_buffer_value_d0 = (uint32_t)network_buffer_value.bit_field_7;
+                      network_buffer_value_primary = (uint32_t)network_buffer_value.bit_field_6;
+                      network_data_packet_buffer_value_e0 = (uint32_t)network_buffer_value.bit_field_5;
+                      network_data_packet_buffer_value_e8 = (uint32_t)network_buffer_value.bit_field_4;
+                      network_operation_status_flag = (uint32_t)network_buffer_value.bit_field_3;
+                      network_connection_timeout_control_flag = (uint32_t)network_buffer_value.bit_field_2;
+                      network_data_packet_buffer_flags0 = (uint32_t)network_buffer_value.bit_field_1;
+                      network_data_packet_buffer_flags8 = (uint32_t)(uint8_t)network_buffer_value;
                       network_data_packet_buffer_value_num_110 = (uint32_t)network_operation_control_flag0.primary_value;
                       network_buffer_management_handler118 = compute_network_address(network_buffer_management_handler118.secondary,(uint32_t)network_operation_control_flag0.half_word_2);
                       network_packet_alloc_memory(network_data_packet_buffer_num_80,MEMORY_POOL_SIZE_MINIMAL,&network_protocol_ptr,(uint64_t)network_operation_control_flag0 & SOCKET_VALIDATE_MASK
@@ -15505,7 +15505,7 @@ void execute_network_operation(int64_t network_context_pointer[NETWORK_CONFIG_IN
   int64_t primary_network_context;
   int32_t *network_security_allocator;
   uint8_t network_data_packet_buffer_d8 [32];
-  uint32_t network_data_packet_buffer_value_b8;
+  uint32_t network_buffer_value;
   uint32_t network_data_packet_buffer_value_b0;
   uint32_t network_data_packet_buffer_value_secondary;
   uint32_t network_data_packet_buffer_value_primary;
@@ -15513,7 +15513,7 @@ void execute_network_operation(int64_t network_context_pointer[NETWORK_CONFIG_IN
   uint32_t network_packet_buffer_offset;
   uint32_t network_data_packet_buffer_working_offset_aux;
   uint32_t network_data_packet_buffer_offset_tertiary;
-  uint32_t network_data_packet_buffer_working_offset_secondary;
+  uint32_t network_buffer_offset_secondary;
   uint32_t network_buffer_connection_flag;
   uint8_t network_working_buffer_secondary [40];
   uint64_t network_socket_handle_ptr_data_offset;
@@ -15528,7 +15528,7 @@ void execute_network_operation(int64_t network_context_pointer[NETWORK_CONFIG_IN
                       (network_context_pointer,network_security_allocator,network_combine_7bit_with_flag((int8_t)((uint64_t)network_buffer_pointer >> 8),1));
     if (primary_network_context == 0) {
       network_buffer_connection_flag = (uint32_t)*(uint8_t *)((int64_t)network_security_allocator + NETWORK_OFFSET_DECIMAL_SECURITY_KEY);
-      network_data_packet_buffer_working_offset_secondary = (uint32_t)*(uint8_t *)((int64_t)network_security_allocator + CONTEXT_OFFSET_VALIDATION_BASE);
+      network_buffer_offset_secondary = (uint32_t)*(uint8_t *)((int64_t)network_security_allocator + CONTEXT_OFFSET_VALIDATION_BASE);
       network_data_packet_buffer_offset_tertiary = (uint32_t)*(uint8_t *)((int64_t)network_security_allocator + NETWORK_OFFSET_DECIMAL_PACKET_ID);
       network_data_packet_buffer_working_offset_aux = (uint32_t)*(uint8_t *)(network_security_allocator + 3);
       network_socket_id_buffer = (uint32_t)*(uint8_t *)((int64_t)network_security_allocator + SOCKET_OP_CODE_CONNECTION);
@@ -15536,7 +15536,7 @@ void execute_network_operation(int64_t network_context_pointer[NETWORK_CONFIG_IN
       network_data_packet_buffer_value_primary = (uint32_t)*(uint8_t *)((int64_t)network_security_allocator + 9);
       network_data_packet_buffer_value_secondary = (uint32_t)*(uint8_t *)(network_security_allocator + 2);
       network_data_packet_buffer_value_b0 = (uint32_t)*(uint16_t *)((int64_t)network_security_allocator + 6);
-      network_data_packet_buffer_value_b8 = (uint32_t)*(uint16_t *)(network_security_allocator + 1);
+      network_buffer_value = (uint32_t)*(uint16_t *)(network_security_allocator + 1);
       network_packet_alloc_memory(encryption_buffer,MEMORY_POOL_SIZE_MINIMAL,&network_protocol_ptr,*network_security_allocator);
     }
     if (*(int32_t *)(primary_network_context + BUFFER_CONTEXT_OFFSET_DATA_BLOCK) == -1) break;
@@ -19119,7 +19119,7 @@ int32_t network_memory_reallocate_buffer(int64_t network_context_pointer[NETWORK
   int64_t network_connection_config_buffer [2];
 
   network_result_secondary = network_context_pointer & SOCKET_VALIDATE_MASK;
-  network_operation_status = network_data_packet_buffer_3a4c0(*(uint64_t *)(network_context_pointer + CONNECTION_TABLE_SIZE_MIN),network_bufferfer_context);
+  network_operation_status = network_buffer_allocate_primary_secure(*(uint64_t *)(network_context_pointer + CONNECTION_TABLE_SIZE_MIN),network_bufferfer_context);
   primary_network_context = network_context_pointer;
   if (network_operation_status != 0) goto network_label_socket_validation_failed;
   if ((network_bufferfer_context[0] - 4U < 2) && ((network_context_pointer & 4) == 0)) {
@@ -19133,11 +19133,11 @@ int32_t network_memory_reallocate_buffer(int64_t network_context_pointer[NETWORK
     network_connection_index = network_context_pointer;
   }
   network_packet_count = network_connection_index | (network_socket_id & SOCKET_BASE_ADDRESS | 1) << 0x11;
-  network_operation_status = network_data_packet_buffer_3ab80(*(uint64_t *)(network_context_pointer[NETWORK_CONFIG_INDEX_PRIMARY]);
+  network_operation_status = network_buffer_initialize_secure(*(uint64_t *)(network_context_pointer[NETWORK_CONFIG_INDEX_PRIMARY]);
   if ((network_operation_status != 0) &&
      ((((*(uint8_t *)(network_context_pointer + CONTEXT_MESSAGE_OFFSET) & 1) == 0 ||
-       (network_operation_status = network_data_packet_buffer_3bcf0(*(uint64_t *)(network_context_pointer + CONNECTION_TABLE_SIZE_MIN),2), network_operation_status != 0)) ||
-      (network_operation_status = network_data_packet_buffer_3ab80(*(uint64_t *)(network_context_pointer[NETWORK_CONFIG_INDEX_PRIMARY]), network_operation_status != 0))))
+       (network_operation_status = network_buffer_configure_secure(*(uint64_t *)(network_context_pointer + CONNECTION_TABLE_SIZE_MIN),2), network_operation_status != 0)) ||
+      (network_operation_status = network_buffer_initialize_secure(*(uint64_t *)(network_context_pointer[NETWORK_CONFIG_INDEX_PRIMARY]), network_operation_status != 0))))
   goto network_label_socket_validation_failed;
   network_operation_status_flag = ~(uint8_t)(network_result_secondary >> 2) & 1;
   network_operation_status = execute_network_operation(*(int32_t *)(network_context_pointer + SOCKET_OFFSET_CONNECTION_DATA),*(int32_t *)(network_context_pointer + CONTEXT_OFFSET_SOCKET_TYPE8));
@@ -19473,7 +19473,7 @@ NETWORK_ADDRESS_LABEL_18087d6de:
     *(uint8_t *)(global_data_table + 0x158) = 1;
     network_connection_config_buffer[0] = 0;
     network_operation_status = network_data_packet_buffer_49e60(*(uint64_t *)(network_context_pointer + CONNECTION_TABLE_SIZE_MIN),network_connection_config_buffer, MEMORY_ZERO_PATTERN);
-    if ((network_operation_status != 0) || (network_operation_status = network_data_packet_buffer_455f0(network_connection_config_buffer[0]), network_operation_status != 0)) goto network_label_socket_validation_failed;
+    if ((network_operation_status != 0) || (network_operation_status = network_buffer_validate_secure(network_connection_config_buffer[0]), network_operation_status != 0)) goto network_label_socket_validation_failed;
     if ((*(uint8_t *)(network_context_pointer + CONTEXT_MESSAGE_OFFSET) & 1) == 0) goto NETWORK_ADDRESS_LABEL_18087d6de;
 NETWORK_ADDRESS_LABEL_18087d6e3:
     network_connection_config_buffer[0] = 0;
@@ -23156,7 +23156,7 @@ void network_connection_cleanup(int64_t network_context_pointer){
   int32_t network_operation_status;
   _Bool network_connection_flag;
   uint8_t network_control_flag_data_buffer [32];
-  uint64_t network_data_packet_buffer_working_offset_secondary;
+  uint64_t network_buffer_offset_secondary;
   uint64_t network_buffer_connection_flag;
   int64_t network_packet_mgr_tertiary;
   void *network_config_data_buffer_ptr;
@@ -23185,8 +23185,8 @@ void network_connection_cleanup(int64_t network_context_pointer){
           network_buffer_connection_flag = compute_network_address(network_operation_status,(int32_t)network_buffer_connection_flag);
         }
         if ((network_packet_mgr_tertiary != 0) && (primary_network_context = *(int64_t *)(network_packet_mgr_tertiary + 0x2e8), primary_network_context != 0)) {
-          network_data_packet_buffer_working_offset_secondary = 0;
-          network_operation_status = validate_connection(&network_data_packet_buffer_working_offset_secondary,network_context_pointer);
+          network_buffer_offset_secondary = 0;
+          network_operation_status = validate_connection(&network_buffer_offset_secondary,network_context_pointer);
           if (network_operation_status == 0) {
             if (*(int32_t *)(*(int64_t *)(network_context_pointer + NETWORK_PRIMARY_HANDLE_OFFSET) + CONNECTION_CONTEXT_OFFSET_BASE_EXTENDED) != 0) {
               primary_network_context = *(int64_t *)(primary_network_context + PACKET_HEADER_SIZE_STANDARD);
@@ -23216,11 +23216,11 @@ void network_connection_cleanup(int64_t network_context_pointer){
               }
               *(int32_t *)(primary_network_context + CONTEXT_OFFSET_CONNECTION_FLAGS) = network_operation_status;
               *(uint32_t *)(primary_network_context + CONNECTION_CONTEXT_OFFSET_SECURITY_CONTEXT) = *(uint32_t *)(primary_network_context + CONNECTION_CONTEXT_OFFSET_SECURITY_CONTEXT) & NETWORK_PACKET_VALIDATE_FLAG;
-              handle_network_connection_error(&network_data_packet_buffer_working_offset_secondary);
+              handle_network_connection_error(&network_buffer_offset_secondary);
             }
           }
 NETWORK_ADDRESS_LABEL_18088254f:
-          handle_network_connection_error(&network_data_packet_buffer_working_offset_secondary);
+          handle_network_connection_error(&network_buffer_offset_secondary);
         }
       }
       else {
@@ -30423,7 +30423,7 @@ int32_t execute_network_operation(int64_t network_context_pointer){
   int32_t data_processing_bufferindex_6c;
   int64_t *network_context_secondary_stack_ptr;
   uint64_t network_packet_offset_extended;
-  int32_t adata_processing_bufferindex_num_58 [8];
+  int32_t network_processing_buffer_temp [8];
 
   primary_network_context = *(int64_t *)(network_context_pointer + NETWORK_SECONDARY_HANDLE_OFFSET);
   network_packet_mgr_primary = 0;
@@ -30435,10 +30435,10 @@ int32_t execute_network_operation(int64_t network_context_pointer){
   network_operation_status = data_processing_bufferindex_6c;
   network_context_secondary_stack_ptr = (int64_t *)(network_context_pointer + 0x898);
   network_packet_offset_extended = SOCKET_VALIDATE_MASK_UINT32_MAX;
-  adata_processing_bufferindex_num_58[0] = -1;
-  network_process_data_pointer(network_context_secondary_stack_ptr,&network_packet_offset_extended,adata_processing_bufferindex_num_58);
-  if (adata_processing_bufferindex_num_58[0] != -1) {
-    network_result_secondary = adata_processing_bufferindex_num_58[0];
+  network_processing_buffer_temp[0] = -1;
+  network_process_data_pointer(network_context_secondary_stack_ptr,&network_packet_offset_extended,network_processing_buffer_temp);
+  if (network_processing_buffer_temp[0] != -1) {
+    network_result_secondary = network_processing_buffer_temp[0];
     network_operation_status = (int32_t)network_packet_offset_extended;
     do {
       do {

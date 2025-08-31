@@ -13482,7 +13482,7 @@ void system_initialize_advanced_operation(void)
   }
   system_memory_secondary = _SYSTEM_CONFIG_DATA_TYPE_112;
   if (_SYSTEM_CONFIG_DATA_TYPE_112 != 0) {
-    system_init_18004b730();
+    system_processor_cleanup_init_variant2();
     *(void **)(system_memory_secondary + 0xc0) = &SYSTEM_STRING_ENTITY;
     system_initialize_uint_ptr_3(system_memory_secondary + 0x48);
     *(uint64_t *)(system_memory_secondary + SYSTEM_CONFIG_SIGNATURE_SIZE) = &SYSTEM_STRING_CONFIG_PRIMARY;
