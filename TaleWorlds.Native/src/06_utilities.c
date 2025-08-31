@@ -75,21 +75,21 @@
 
 // 大小限制常量
 #define UTILITY_SIZE_OFFSET 0x8                                    // 大小偏移量
-#define UTILITY_SIZE_OFFSET_EXTENDED_BYTE 0x1                      // 扩展字节大小偏移量
-#define UTILITY_SIZE_STANDARD 0x4                                  // 标准大小
-#define UTILITY_SIZE_LIMIT_STANDARD 0x1000                         // 标准大小限制
+#define UTILITY_BYTE_SIZE_OFFSET 0x1                              // 字节大小偏移量
+#define UTILITY_STANDARD_SIZE 0x4                                  // 标准大小
+#define UTILITY_STANDARD_SIZE_LIMIT 0x1000                         // 标准大小限制
 
 // 字节掩码常量
-#define UTILITY_BYTE_MASK_EF 0xEF                                  // 字节掩码EF
-#define UTILITY_BYTE_MASK_DF 0xDF                                  // 字节掩码DF
-#define UTILITY_BYTE_MASK_BF 0xBF                                  // 字节掩码BF
-#define UTILITY_BYTE_MASK_EXTENDED_PRIMARY 0xFF                    // 扩展主字节掩码
-#define UTILITY_WORD_MASK_FEFF 0xFEFF                              // 字掩码FEFF
+#define UTILITY_BYTE_MASK_239 0xEF                                 // 字节掩码239
+#define UTILITY_BYTE_MASK_223 0xDF                                 // 字节掩码223
+#define UTILITY_BYTE_MASK_191 0xBF                                 // 字节掩码191
+#define UTILITY_BYTE_MASK_FULL 0xFF                                // 完整字节掩码
+#define UTILITY_WORD_MASK_65279 0xFEFF                             // 字掩码65279
 
 // 其他常量
-#define UTILITY_CHAR_NULL '\0'                                     // 空字符
-#define UTILITY_STACK_PRIMARY 0x1                                  // 主栈
-#define UTILITY_OFFSET_STRUCTURE 0x10                              // 结构体偏移量
+#define UTILITY_NULL_CHAR '\0'                                     // 空字符
+#define UTILITY_PRIMARY_STACK 0x1                                  // 主栈
+#define UTILITY_STRUCTURE_OFFSET 0x10                             // 结构体偏移量
 #define UTILITY_LIST_DATA_OFFSET 0x14                              // 列表数据偏移量
 
 // 全局变量声明
