@@ -1067,6 +1067,10 @@ void utility_data_validator(void)
  *
  */
 uint32 utility_get_thread_count(void)
+{
+  return UTILITY_ZERO;
+}
+
 /**
  * @brief 未命名函数 26 - 自动生成的工具函数
  * @return 无返回值
@@ -1089,6 +1093,8 @@ void utility_context_cleaner(void)
   }
 
   utility_free_memory(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_OFFSET_RESOURCE_PTR),UTILITY_MEMORY_FLAG);
+  return;
+}
 
 /**
  * @brief 销毁线程池 - 销毁系统的线程池
