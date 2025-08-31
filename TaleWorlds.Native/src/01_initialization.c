@@ -98,8 +98,8 @@
 #define SYSTEM_POINTER_BUFFER_SECONDARY system_ptr_buffer_secondary // 次缓冲区指针
 #define SYSTEM_POINTER_HANDLER_DEFAULT system_ptr_handler_default  // 默认处理器指针
 // 系统初始化全局变量声明
-static uint32_t primary_context_data;
-static void *primary_system_context_ptr;
+static uint32_t system_context_primary_data;
+static void *system_context_primary_pointer;
 static uint32_t secondary_context_data;
 static void *secondary_system_context_ptr;
 static uint32_t tertiary_context_data;
@@ -51073,3 +51073,4 @@ static int64_t system_initialization_primary_timestamp;
 static uint64_t system_initialization_primary_handle;
 static int64_t system_initialization_secondary_timestamp;
 longlong *system_string_config_ptr;
+#define SYSTEM_CONFIG_INITIALIZER_MAX_VALUE 0x00000051

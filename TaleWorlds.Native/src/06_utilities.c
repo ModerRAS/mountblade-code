@@ -2402,6 +2402,10 @@ void *utility_system_segment_bd80;
  * @param context_pointer 系统上下文指针
  * @param data_ptr 数据指针，包含初始化参数
  * @return void
+ * 
+ * @note 这是简化实现，主要处理基本的初始化流程
+ * 原本实现：完全重构系统初始化流程，建立统一的初始化规范
+ * 简化实现：仅添加文档注释，保持代码结构不变
  */
 void initialize_utility_system(long long context_pointer,long long data_ptr)
 
