@@ -12286,8 +12286,8 @@ int system_function_03ee40(void)
 {
   longlong lVar1;
   
-  FUN_1803f2eb0(0x180d49d50);
-  lVar1 = system_register_memory_pool(FUN_1809429f0);
+  system_shader_initializer(0x180d49d50);
+  lVar1 = system_register_memory_pool(system_light_manager_register);
   return (lVar1 != 0) - 1;
 }
 
@@ -15842,7 +15842,7 @@ int system_function_0438b0(void)
   _system_data_180c967f0 = 0;
   _system_data_180c967f8 = 0;
   _system_data_180c96800 = 0;
-  lVar1 = system_register_memory_pool(FUN_180943200);
+  lVar1 = system_register_memory_pool(system_ai_manager_register_extended);
   return (lVar1 != 0) - 1;
 }
 
