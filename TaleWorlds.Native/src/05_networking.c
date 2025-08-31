@@ -617,8 +617,8 @@ void execute_network_operation(uint64_t *context, uint64_t param1, uint64_t para
 // 网络系统十六进制地址标签常量定义
 #define NETWORK_LABEL_CONNECTION_ESTABLISH_FINAL network_label_connection_establish_final    // 网络连接处理标签
 #define NETWORK_LABEL_CODE_PROCESSING_PRIMARY network_label_code_processing_primary         // 网络代码处理标签
-#define NETWORK_LABEL_CODE_180882143 network_label_code_processing_secondary         // 网络代码处理标签
-#define NETWORK_LABEL_CODE_1808822D5 network_label_code_processing_tertiary         // 网络代码处理标签
+#define NETWORK_LABEL_CODE_PROCESSING_SECONDARY network_label_code_processing_secondary         // 网络代码处理标签
+#define NETWORK_LABEL_CODE_PROCESSING_TERTIARY network_label_code_processing_tertiary         // 网络代码处理标签
 
 // 网络系统硬编码偏移量常量定义
 #define NETWORK_CONTEXT_OFFSET_STATUS_CHECK 0x74          // 网络上下文状态检查偏移量
@@ -22904,7 +22904,7 @@ NETWORK_ADDRESS_LABEL_1808820fa:
       network_context_pointer = *network_registry_table;
       primary_network_context = (int64_t)network_connection_index;
       do {
-        if (*(int32_t *)(network_context_pointer + primary_network_context * 4) != -1) goto NETWORK_LABEL_CODE_180882143;
+        if (*(int32_t *)(network_context_pointer + primary_network_context * 4) != -1) goto NETWORK_LABEL_CODE_PROCESSING_SECONDARY;
         network_connection_index = network_connection_index + 1;
         primary_network_context = primary_network_context + 1;
       } while (primary_network_context != (int32_t)network_registry_table[1]);
@@ -23104,7 +23104,7 @@ NETWORK_ADDRESS_LABEL_18088229d:
       network_context_pointer = *network_registry_table;
       primary_network_context = (int64_t)network_connection_index;
       do {
-        if (*(int32_t *)(network_context_pointer + primary_network_context * 4) != -1) goto NETWORK_LABEL_CODE_1808822D5;
+        if (*(int32_t *)(network_context_pointer + primary_network_context * 4) != -1) goto NETWORK_LABEL_CODE_PROCESSING_TERTIARY;
         network_connection_index = network_connection_index + 1;
         primary_network_context = primary_network_context + 1;
       } while (primary_network_context != (int32_t)network_registry_table[1]);
@@ -32362,3 +32362,101 @@ uint64_t network_process_connection_timeout(uint64_t *network_context_pointer)
 #define NETWORK_VALIDATION_SESSION_SIZE NETWORK_OPERATION_STATUS_FLAG_BIT_MASK                       // 网络验证会话大小
 #define NETWORK_SECURITY_FLAG_BIT 0x400                            // 网络安全标志位
 
+
+// 网络系统套接字偏移量常量定义（2025年8月31日最新批次美化）
+#define SOCKET_OFFSET_CONNECTION_ID 0x15                    // 套接字连接ID偏移量
+#define SOCKET_OFFSET_SOCKET_ID 0x26                        // 套接字ID偏移量
+#define SOCKET_OFFSET_SOCKET_HANDLE 0x88                     // 套接字句柄偏移量
+#define SOCKET_OFFSET_DATA_BUFFER 0x15                      // 套接字数据缓冲区偏移量
+#define SOCKET_OFFSET_PRIMARY_CONNECTION 0x4                // 主连接偏移量
+#define SOCKET_OFFSET_NETWORK_STATE 0x2f0                   // 网络状态偏移量
+#define SOCKET_OFFSET_ENCRYPTION_IV 0x2e8                    // 加密IV偏移量
+#define SOCKET_OFFSET_SESSION_TOKEN 0x1b                    // 会话令牌偏移量
+#define SOCKET_OFFSET_SECURITY_CONTEXT 0x70                 // 安全上下文偏移量
+#define SOCKET_OFFSET_PACKET_SIZE 0xac                      // 数据包大小偏移量
+#define SOCKET_OFFSET_CONFIG_DATA 0x2f0                     // 配置数据偏移量
+
+// 网络系统上下文结构偏移量常量定义（2025年8月31日最新批次美化）
+#define NETWORK_CONTEXT_OFFSET_STATUS_CHECK 0x74             // 网络上下文状态检查偏移量
+#define NETWORK_CONTEXT_OFFSET_CONNECTION_POOL 0x1a8         // 网络上下文连接池偏移量
+#define NETWORK_CONTEXT_OFFSET_OPERATION_FLAG 0x55           // 网络上下文操作标志偏移量
+#define NETWORK_CONTEXT_OFFSET_STATUS_FLAG 0x71              // 网络上下文状态标志偏移量
+#define NETWORK_CONTEXT_OFFSET_DATA_SECONDARY 0x3d           // 网络上下文数据次偏移量
+#define NETWORK_CONTEXT_OFFSET_BUFFER_PRIMARY 0x59           // 网络上下文缓冲区主偏移量
+#define NETWORK_CONTEXT_OFFSET_BUFFER_SECONDARY 0x61         // 网络上下文缓冲区次偏移量
+#define NETWORK_CONTEXT_OFFSET_MEMORY_POOL_PRIMARY 0x378      // 网络上下文内存池主偏移量
+#define NETWORK_CONTEXT_OFFSET_MEMORY_POOL_SECONDARY 0x3f8    // 网络上下文内存池次偏移量
+#define NETWORK_CONTEXT_OFFSET_SOCKET_QUEUE 0x2e8            // 网络上下文套接字队列偏移量
+#define NETWORK_CONTEXT_OFFSET_CONNECTION_STATE 0x2b8        // 网络上下文连接状态偏移量
+#define NETWORK_CONTEXT_OFFSET_VALIDATION_FLAG 0x2d0        // 网络上下文验证标志偏移量
+#define NETWORK_CONTEXT_OFFSET_SCALE_FACTOR 0x314             // 网络上下文缩放因子偏移量
+#define NETWORK_CONTEXT_OFFSET_DATA_PROCESSOR 0x774          // 网络上下文数据处理器偏移量
+#define NETWORK_CONTEXT_OFFSET_SECONDARY_TABLE 0x2b0         // 网络上下文次表偏移量
+#define NETWORK_CONTEXT_OFFSET_REGISTRY_TABLE 0x898          // 网络上下文注册表偏移量
+#define NETWORK_CONTEXT_OFFSET_CONNECTION_INFO 0x9c           // 网络上下文连接信息偏移量
+#define NETWORK_CONTEXT_OFFSET_TEMP_DATA 0x218               // 网络上下文临时数据偏移量
+#define NETWORK_CONTEXT_OFFSET_PACKET_PROCESSOR 0x140        // 网络上下文数据包处理器偏移量
+#define NETWORK_CONTEXT_OFFSET_CONNECTION_TIMEOUT 0x2f8       // 网络上下文连接超时偏移量
+#define NETWORK_CONTEXT_OFFSET_CONNECTION_STATE_CODE 0x2f4    // 网络上下文连接状态码偏移量
+#define NETWORK_CONTEXT_OFFSET_BUFFER_MANAGEMENT 0x488        // 网络上下文缓冲区管理偏移量
+#define NETWORK_CONTEXT_OFFSET_PRIMARY_TABLE_SIZE 0x168       // 网络上下文主表大小偏移量
+#define NETWORK_CONTEXT_OFFSET_SECONDARY_TABLE_SIZE 0x1b8    // 网络上下文次表大小偏移量
+#define NETWORK_CONTEXT_OFFSET_TERTIARY_TABLE_SIZE 0x1b0      // 网络上下文第三表大小偏移量
+#define NETWORK_CONTEXT_OFFSET_GLOBAL_DATA 0xaa0              // 网络上下文全局数据偏移量
+#define NETWORK_CONTEXT_OFFSET_CONNECTION_MANAGER 0xaa8      // 网络上下文连接管理器偏移量
+#define NETWORK_CONTEXT_OFFSET_PACKET_DATA 0xad0             // 网络上下文数据包数据偏移量
+#define NETWORK_CONTEXT_OFFSET_PACKET_CONFIG 0xad8            // 网络上下文数据包配置偏移量
+#define NETWORK_CONTEXT_OFFSET_EVENT_DATA 0x328               // 网络上下文事件数据偏移量
+#define NETWORK_CONTEXT_OFFSET_SECURITY_DATA 0x358           // 网络上下文安全数据偏移量
+#define NETWORK_CONTEXT_OFFSET_ENCRYPTION_DATA 0x3b8         // 网络上下文加密数据偏移量
+#define NETWORK_CONTEXT_OFFSET_ERROR_HANDLER_DATA 0x3d0       // 网络上下文错误处理数据偏移量
+#define NETWORK_CONTEXT_OFFSET_NETWORK_BUFFER 0x4d8           // 网络上下文网络缓冲区偏移量
+
+// 网络系统缓冲区大小常量定义（2025年8月31日最新批次美化）
+#define NETWORK_BUFFER_SIZE_SMALL 0x62                       // 网络缓冲区小尺寸
+#define NETWORK_BUFFER_SIZE_MEDIUM 0x193                     // 网络缓冲区中等尺寸
+#define NETWORK_BUFFER_SIZE_LARGE 0xd1b                     // 网络缓冲区大尺寸
+#define NETWORK_BUFFER_SIZE_EXTRA_LARGE 0xa71                // 网络缓冲区超大尺寸
+
+// 网络系统连接状态常量定义（2025年8月31日最新批次美化）
+#define NETWORK_CONNECTION_STATE_MIN 0x35                    // 网络连接状态最小值
+#define NETWORK_CONNECTION_STATE_MAX 0x7a                     // 网络连接状态最大值
+#define NETWORK_CONNECTION_STATE_DISCONNECTED 0x26           // 网络连接状态已断开
+#define NETWORK_CONNECTION_STATE_CONNECTED 0x1b              // 网络连接状态已连接
+#define NETWORK_CONNECTION_STATE_INITIALIZING 0x37           // 网络连接状态初始化中
+#define NETWORK_CONNECTION_STATE_PROCESSING 0x4a             // 网络连接状态处理中
+#define NETWORK_CONNECTION_STATE_VALIDATING 0x54              // 网络连接状态验证中
+#define NETWORK_CONNECTION_STATE_ERROR 0x75                  // 网络连接状态错误
+#define NETWORK_CONNECTION_STATE_TIMEOUT 0x6e                 // 网络连接状态超时
+#define NETWORK_CONNECTION_STATE_SECURITY_CHECK 0x6d         // 网络连接状态安全检查
+#define NETWORK_CONNECTION_STATE_DATA_TRANSFER 0x6f            // 网络连接状态数据传输
+#define NETWORK_CONNECTION_STATE_FINALIZING 0x71              // 网络连接状态完成中
+#define NETWORK_CONNECTION_STATE_CLEANUP 0x73                 // 网络连接状态清理中
+
+// 网络系统操作状态常量定义（2025年8月31日最新批次美化）
+#define NETWORK_OPERATION_STATUS_INITIALIZING 0x2e           // 网络操作状态初始化中
+#define NETWORK_OPERATION_STATUS_CONNECTING 0x52               // 网络操作状态连接中
+#define NETWORK_OPERATION_STATUS_VALIDATING 0x54              // 网络操作状态验证中
+#define NETWORK_OPERATION_STATUS_SENDING 0x55                 // 网络操作状态发送中
+#define NETWORK_OPERATION_STATUS_RECEIVING 0x56               // 网络操作状态接收中
+#define NETWORK_OPERATION_STATUS_PROCESSING 0x6a              // 网络操作状态处理中
+#define NETWORK_OPERATION_STATUS_ERROR_HANDLING 0x6d         // 网络操作状态错误处理
+#define NETWORK_OPERATION_STATUS_TIMEOUT_HANDLING 0x6e       // 网络操作状态超时处理
+#define NETWORK_OPERATION_STATUS_DATA_PROCESSING 0x6f        // 网络操作状态数据处理
+#define NETWORK_OPERATION_STATUS_SECURITY_PROCESSING 0x71    // 网络操作状态安全处理
+#define NETWORK_OPERATION_STATUS_CLEANUP 0x73                 // 网络操作状态清理
+#define NETWORK_OPERATION_STATUS_BUFFER_MANAGEMENT 0x75       // 网络操作状态缓冲区管理
+
+// 网络系统数据包处理常量定义（2025年8月31日最新批次美化）
+#define NETWORK_PACKET_SIZE_MINIMUM 0x4                      // 网络数据包最小尺寸
+#define NETWORK_PACKET_SIZE_MAXIMUM 0x100                    // 网络数据包最大尺寸
+#define NETWORK_PACKET_HEADER_SIZE_STANDARD 0x100             // 网络数据包标准头部大小
+#define NETWORK_PACKET_DATA_SIZE_STANDARD 0x150               // 网络数据包标准数据大小
+#define NETWORK_PACKET_CONFIG_SIZE_STANDARD 0x1b0             // 网络数据包标准配置大小
+#define NETWORK_PACKET_ENCRYPTION_SIZE_STANDARD 0x1e0          // 网络数据包标准加密大小
+#define NETWORK_PACKET_VALIDATION_SIZE_STANDARD 0x1f0         // 网络数据包标准验证大小
+#define NETWORK_PACKET_PROCESSING_SIZE_STANDARD 0x150         // 网络数据包标准处理大小
+#define NETWORK_PACKET_ERROR_SIZE_STANDARD 0x70               // 网络数据包标准错误大小
+#define NETWORK_PACKET_TIMEOUT_SIZE_STANDARD 0xa0              // 网络数据包标准超时大小
+#define NETWORK_PACKET_MEMORY_SIZE_STANDARD 0xd0              // 网络数据包标准内存大小
+#define NETWORK_PACKET_NETWORK_SIZE_STANDARD 0xf0              // 网络数据包标准网络大小
