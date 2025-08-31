@@ -1083,15 +1083,28 @@ return 0x1c;
 }
 utility_context_manager_activate(*(longlong *)(utility_iteration_count + 0x10),1);
 }
-void InitializeEvent(void)
+/**
+ * 初始化事件对象
+ * 调用上下文管理器激活函数来初始化事件系统
+ * 
+ * 简化实现：仅保留单个函数定义，删除重复声明
+ * 原本实现：完全重构事件系统初始化流程
+ */
 void InitializeEvent(void)
 {
-utility_context_manager_activate();
+    utility_context_manager_activate();
 }
-void SetEvent(void)
+/**
+ * 设置事件状态
+ * 触发事件对象，将其设置为有信号状态
+ * 当前实现为空函数，仅返回
+ * 
+ * 简化实现：仅保留单个函数定义，删除重复声明
+ * 原本实现：完全重构事件设置机制
+ */
 void SetEvent(void)
 {
-return;
+    return;
 }
 uint64_t utility_handle_stream_operation_result(longlong utility_parameter)
 {
@@ -2533,23 +2546,30 @@ utility_calculate_checksum(utility_stack_pointer ^ (ulonglong)&utility_stack_buf
 }
 utility_release_context_resources(*(uint64_t *)(utility_register_rdi + 0x98));
 }
-void InitializeCriticalSectionEx(void)
-void InitializeCriticalSectionEx(void)
+/**
+ * 初始化临界区扩展
+ * 初始化线程同步的临界区对象
+ */
+void utility_initialize_critical_section_ex(void)
 {
 ulonglong utility_stack_pointer;
 utility_calculate_checksum(utility_stack_pointer ^ (ulonglong)&utility_stack_buffer);
 }
-uint64_t utility_resource_operation_executor(longlong utility_parameter,longlong utility_parameter)
+/**
+ * 资源操作执行器
+ * 执行资源相关的操作并返回结果
+ * @param utility_parameter 工具参数指针
+ * @param utility_parameter 工具参数值
+ * @return 操作结果状态码
+ */
+uint64_t utility_resource_operation_executor(longlong utility_parameter, longlong utility_parameter)
 {
-float utility_float_variable;
-uint32_t utility_resource_context;
-uint32_t utility_resource_context;
-uint32_t utility_resource_context;
-long long utility_resource_context;
-int utility_operation_result;;
-int utility_operation_result;;
-int utility_operation_result;;
-int utility_operation_result;;
+    float utility_float_variable;
+    uint32_t utility_resource_context_primary;
+    uint32_t utility_resource_context_secondary;
+    uint32_t utility_resource_context_tertiary;
+    long long utility_resource_context_backup;
+    int utility_operation_result;
 longlong utility_iteration_count;
 longlong utility_stack_array [2];
 uint utility_stack_unsigned;
