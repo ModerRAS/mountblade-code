@@ -640,12 +640,15 @@ uint64_t process_resource_pointer(int64_t context_pointer)
     return 0;
 }
 
- * 功能：处理资源分配请求，管理资源池和分配策略
+/** 处理资源分配请求
+ * 
+ * 该函数负责处理资源分配请求，管理资源池和分配策略
+ * 
  * @param resource_count 请求的资源数量
  * @param context_pointer 上下文参数
  * @return 分配的资源句柄，0表示失败
  */
-  uint64_t handle_resource(int64_t resource_count, int64_t context_pointer)
+uint64_t handle_resource(int64_t resource_count, int64_t context_pointer)
 {
 
     int64_t *resource_manager_ptr;
