@@ -1633,7 +1633,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x15;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X15;
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_result_code = system_register_callback(system_event_handler);
   return (system_result_code != 0) - 1;
@@ -1723,7 +1723,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x15;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X15;
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_result_code = system_register_callback(system_event_handler);
   return (system_result_code != 0) - 1;
