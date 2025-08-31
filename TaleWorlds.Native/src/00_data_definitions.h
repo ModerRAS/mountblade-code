@@ -168,21 +168,16 @@
 // - 原本实现：完全重构所有硬编码值体系，重新设计所有硬编码值的语义化规范
 // - 简化实现：仅将常见的硬编码十六进制值替换为语义化常量
 
-// 简化实现：仅将剩余的硬编码值替换为语义化常量
-// 原本实现：完全重构所有硬编码值体系
 #define SYSTEM_FLOAT_MAX_DOUBLE_VALUE 1.8446744e+19    // 最大双精度浮点数
 #define SYSTEM_FLOAT_MAX_VALUE 3.4028235e+38           // 最大浮点数
 #define SYSTEM_FLOAT_CONVERSION_FACTOR_BYTE_TO_FLOAT 0.003921569 // 字节转浮点数转换因子（0.003921569 = 1/255）
 
-// 颜色处理权重常量定义（2025年8月30日最终批次美化）
 #define SYSTEM_COLOR_WEIGHT_RED 0.2126      // 红色通道权重
 #define SYSTEM_COLOR_WEIGHT_GREEN 0.7152     // 绿色通道权重
 #define SYSTEM_COLOR_WEIGHT_BLUE 0.0722      // 蓝色通道权重
 
-// 浮点数精度比较常量定义（2025年8月30日最终批次美化）
 #define SYSTEM_FLOAT_PRECISION_THRESHOLD 0.0001  // 浮点数精度比较阈值
 
-// 数学计算常量定义（2025年8月30日最终批次美化）
 #define SYSTEM_FLOAT_HALF_CIRCLE 0.19634955    // 半圆弧度值 (π/16)
 #define SYSTEM_FLOAT_TWO_PI 6.2831855          // 2π值
 #define SYSTEM_FLOAT_PI 3.1415927              // π值
