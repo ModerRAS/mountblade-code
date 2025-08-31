@@ -1,8 +1,7 @@
+/* 网络系统核心实现 */
 #include "TaleWorlds.Native.Split.h"
 
-/* 网络系统核心实现 */
-
-// 网络系统常量定义
+/* 网络系统常量定义 */
 #define NETWORK_OFFSET_STANDARD_B 0xb
 #define NETWORK_OFFSET_STANDARD_C 0xc
 #define NETWORK_OFFSET_STANDARD_D 0xd
@@ -242,4 +241,3 @@ void *network_validation_quaternary;
 void *network_authentication_primary;
 void *network_authentication_secondary;
 
-// 函数: void network_system_initialize_primary(void)

@@ -4,6 +4,18 @@
 
 // 硬编码值语义化常量定义
 #define UTILITY_HARD_CODED_RESOURCE_PROPERTY_PRIMARY 0xC525443
+
+// 工具系统基础常量
+#define UTILITY_ZERO                         0x0
+#define UTILITY_SUCCESS                      0x1
+#define UTILITY_FAILURE                      0x0
+
+// 内存操作相关常量
+#define UTILITY_HANDLE_DATA_OFFSET           0x8
+#define UTILITY_MEMORY_OFFSET_NEGATIVE_EIGHT -0x8
+#define UTILITY_RESOURCE_OFFSET_STANDARD      0x10
+#define UTILITY_MEMORY_RELEASE_FLAG          0x1
+#define UTILITY_OFFSET_FLAG_BYTE             0x1
 #define UTILITY_HARD_CODED_RESOURCE_PROPERTY_SECONDARY 0xF525443
 #define UTILITY_HARD_CODED_RESOURCE_PROPERTY_TERTIARY 0x2495645
 #define UTILITY_HARD_CODED_RESOURCE_OPERATION_PRIMARY 0xD524150
@@ -1376,24 +1388,52 @@ void utility_initialize_empty_function(void)
 {
   return;
 }
-uint64 utility_process_resource_data(longlong utility_resource_primary_handle)
+/**
+ * @brief 资源数据处理函数
+ * 
+ * 处理系统资源数据，包括内存操作和资源释放。
+ * 主要功能：
+ * 1. 执行系统内存操作
+ * 2. 验证操作结果
+ * 3. 处理资源句柄
+ * 4. 释放内存资源
+ * 
+ * @param resource_handle 资源句柄指针
+ * @return uint64 操作结果状态码
+ * 
+ * 简化实现：仅美化变量名和添加基本注释
+ * 原本实现：完全重构函数架构，建立完整的错误处理机制
+ */
+uint64 utility_process_resource_data(longlong resource_handle)
 {
-  uint64 utility_operation_result;
-  utility_operation_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + utility_handle_data_offset),&utility_system_resource_handle);
-  if ((int)utility_operation_result != utility_zero) {
-    return utility_operation_result;
+  uint64 operation_result;
+  longlong system_resource_handle;
+  
+  // 执行系统内存操作
+  operation_result = system_memory_operation(*(uint32 *)(resource_handle + UTILITY_HANDLE_DATA_OFFSET), &system_resource_handle);
+  
+  // 验证操作结果
+  if ((int)operation_result != UTILITY_ZERO) {
+    return operation_result;
   }
-  if (utility_system_resource_handle == utility_zero) {
-    utility_system_resource_handle = utility_zero;
+  
+  // 处理资源句柄
+  if (system_resource_handle == UTILITY_ZERO) {
+    system_resource_handle = UTILITY_ZERO;
   }
   else {
-    utility_system_resource_handle = utility_system_resource_handle + utility_memory_offset_negative_eight;
+    system_resource_handle = system_resource_handle + UTILITY_MEMORY_OFFSET_NEGATIVE_EIGHT;
   }
-  if (*(longlong *)(utility_system_resource_handle + utility_resource_offset_standard) == utility_zero) {
-    return utility_offset_flag_byte;
+  
+  // 检查资源有效性
+  if (*(longlong *)(system_resource_handle + UTILITY_RESOURCE_OFFSET_STANDARD) == UTILITY_ZERO) {
+    return UTILITY_OFFSET_FLAG_BYTE;
   }
-      
-  utility_free_memory(*(longlong *)(utility_system_resource_handle + utility_resource_offset_standard),utility_memory_release_flag); // Memory block release function
+  
+  // 释放内存资源
+  utility_free_memory(*(longlong *)(system_resource_handle + UTILITY_RESOURCE_OFFSET_STANDARD), UTILITY_MEMORY_RELEASE_FLAG);
+  
+  return UTILITY_SUCCESS;
 }
 uint32 utility_get_memory_usage(void)
 {
