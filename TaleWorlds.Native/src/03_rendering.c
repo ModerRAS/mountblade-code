@@ -281,7 +281,6 @@ void* render_device_object_extensions;                               // 设备�
  * @brief 渲染系统核心函数声明
  * 
  * 包含渲染系统的主要功能函数声明。
- * 简化实现：提供基础的渲染功能接口。
  */
 
 /**
