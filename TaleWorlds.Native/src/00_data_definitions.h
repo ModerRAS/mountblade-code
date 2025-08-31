@@ -1489,7 +1489,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x23;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X23;
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_null_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_result_code = system_register_callback(system_event_handler);
   return (system_result_code != 0) - 1;
@@ -1759,7 +1759,7 @@ int system_initialize_function(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = 0x23;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X23;
   strcpy_s(&system_global_data_buffer,SYSTEM_BUFFER_SIZE_64,&system_global_data_buffer,system_config_parameter,SYSTEM_FLAG_MASK);
   system_result_code = system_register_callback(system_event_handler);
   return (system_result_code != 0) - 1;
@@ -2277,8 +2277,8 @@ void WotsMainNativeCoreCLR(uint64_t system_context)
     system_temp_long2 = system_temp_long2 + 1;
   } while (*(char *)(system_context + system_temp_long2) != '\0');
   system_temp_uint1 = (uint)system_temp_long2;
-  if (0x1fff < system_temp_uint1) {
-    system_temp_uint1 = 0x1fff;
+  if (SYSTEM_MAX_STACK_SIZE < system_temp_uint1) {
+    system_temp_uint1 = SYSTEM_MAX_STACK_SIZE;
   }
   system_memory_copy(&system_global_data_buffer,system_context,(long long)(int)system_temp_uint1);
 }
@@ -10708,8 +10708,8 @@ uint32_t system_event_handler(int system_context)
     system_temp_long2 = system_temp_long2 + 1;
   } while (*(char *)(system_context + system_temp_long2) != '\0');
   system_temp_uint1 = (uint)system_temp_long2;
-  if (0x1fff < system_temp_uint1) {
-    system_temp_uint1 = 0x1fff;
+  if (SYSTEM_MAX_STACK_SIZE < system_temp_uint1) {
+    system_temp_uint1 = SYSTEM_MAX_STACK_SIZE;
   }
   system_memory_copy(&system_global_data_buffer,system_context,(long long)(int)system_temp_uint1);
 }

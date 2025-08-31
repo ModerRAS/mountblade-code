@@ -612,17 +612,17 @@ uint64_t process_resource_pointer(int64_t context_pointer)
             } while ((int64_t)resource_handle_value < (int64_t)utility_status_code);
         }
         utility_status_code = utility_status_code + 1;
-        if (*(int *)(resource_current_counter + UTILITY_CALC_MULTIPLIER_OFFSET) < status_code) {
-            status_code = (int)((float)*(int *)(resource_current_counter + UTILITY_CALC_MULTIPLIER_OFFSET) * 1.5);
-            if (status_code < 8) {
-                status_code = 8;
+        if (*(int *)(resource_current_counter + UTILITY_CALC_MULTIPLIER_OFFSET) < utility_status_code) {
+            utility_status_code = (int)((float)*(int *)(resource_current_counter + UTILITY_CALC_MULTIPLIER_OFFSET) * 1.5);
+            if (utility_status_code < 8) {
+                utility_status_code = 8;
             }
-            else if (status_code < 1024) {
-                status_code = status_code;
+            else if (utility_status_code < 1024) {
+                utility_status_code = utility_status_code;
             }
         }
-        status_code = process_operation_result(resource_context_data, status_code);
-        if (status_code != UTILITY_STATUS_OPERATION_FAILED) {
+        utility_status_code = process_operation_result(resource_context_data, utility_status_code);
+        if (utility_status_code != UTILITY_STATUS_OPERATION_FAILED) {
             return 0;
         }
     }
