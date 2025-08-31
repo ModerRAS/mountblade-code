@@ -269,7 +269,7 @@ if ((utility_operation_result == 0) && (*(int64_t *)(utility_context_array[0] + 
 utility_buffer_ptr = utility_large_buffer;
 item_count = 0;
 utility_resource_count = 0;
-utility_buffer_flags = 0xffffffc0;
+utility_buffer_flags = UTILITY_BUFFER_FLAGS_DEFAULT;
 
 utility_resource_data = utility_resource_manager_create(*(uint64_t *)(contextData + UTILITY_RESOURCE_HANDLE_OFFSET), *(int64_t *)(utility_context_array[0] + 8), &utility_buffer_ptr);
 
@@ -319,7 +319,7 @@ void // 清理线程资源，释放线程相关内存
         utility_buffer_pointer = &utility_buffer_data;
         utility_operation_result = 0;
         utility_process_count = 0;
-        utility_status_flags = 0xffffffc0;
+        utility_status_flags = UTILITY_BUFFER_FLAGS_DEFAULT;
 
         utility_resource_data = utility_resource_manager_create(*(uint64_t *)(utility_resource_pointer + UTILITY_RESOURCE_HANDLE_OFFSET), *(int64_t *)(context_pointer + 8), &utility_buffer_data);
 
