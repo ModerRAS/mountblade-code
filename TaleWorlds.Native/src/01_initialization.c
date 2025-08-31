@@ -16857,19 +16857,19 @@ system_remove_memory_table_entry(uint64_t *memory_table_ptr, ulonglong entry_fla
 void system_setup_memory_watching(longlong memory_pool_size, longlong watch_flags)
 
 {
-  longlong system_audio_temp_pointer;
+  longlong buffer_length;
   
-  if (system_context_parameter == 0) {
-    *(uint64_t *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = 0;
-    **(uint32_t **)(system_context_parameter + 0x01) = 0;
+  if (memory_pool_size == 0) {
+    *(uint64_t *)(watch_flags + SYSTEM_CONFIG_DATA_SIZE) = 0;
+    **(uint32_t **)(watch_flags + 0x01) = 0;
     return;
   }
-  system_audio_temp_pointer = -1;
+  buffer_length = -1;
   do {
-    system_audio_temp_pointer = system_audio_temp_pointer + 1;
-  } while (*(char *)(system_context_parameter + system_audio_temp_pointer) != '\0');
-  if ((int)system_audio_temp_pointer < SYSTEM_AUDIO_TABLE_OFFSET_VALUE) {
-    *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = (int)system_audio_temp_pointer;
+    buffer_length = buffer_length + 1;
+  } while (*(char *)(watch_flags + buffer_length) != '\0');
+  if ((int)buffer_length < SYSTEM_AUDIO_TABLE_OFFSET_VALUE) {
+    *(int *)(watch_flags + SYSTEM_CONFIG_DATA_SIZE) = (int)buffer_length;
                     // WARNING: Could not recover jumptable at 0x01001004002c203. Too many branches
                     // WARNING: Treating indirect jump as call
     strcpy_s(*(uint64_t *)(system_context_parameter + 0x01),SYSTEM_AUDIO_TABLE_OFFSET_VALUE);

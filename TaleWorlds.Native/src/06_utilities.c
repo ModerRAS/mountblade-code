@@ -1083,9 +1083,10 @@ int64_t stack_pointer;
     network_float_value = *(float *)(context_pointer + UTILITY_THREAD_DATA_OFFSET);
     for (loop_counter = 0; loop_counter < max_iterations; loop_counter++) {
         utility_resource_ctx_handle = utility_process_resource(*data_storage_pointer, network_float_value, 0);
-    if ((int)status != UTILITY_STATUS_OPERATION_FAILED) {
-    return status;
-}
+        if ((int)status != UTILITY_STATUS_OPERATION_FAILED) {
+            return status;
+        }
+    }
 }
     if ((*char *(loop_counter ) = 0;
 ((*(uint *)(loop_counter = 0;
