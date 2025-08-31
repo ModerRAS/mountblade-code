@@ -999,20 +999,20 @@ void *utility_data_segment_a240;
 void *utility_data_segment_a248;
 void * utility_global_data_system_config_quaternary;
 
-void *utility_function_942480;
+void *utility_config_manager_main;
 void *utility_data_segment_a290;
 void *utility_data_segment_a298;
 void *utility_data_segment_a2a0;
 void *utility_data_segment_a2a8;
 void *utility_unknown_segment_a23068;
 
-void *utility_function_9424a0;
+void *utility_system_initializer_main;
 
 // 函数指针变量 - 系统核心功能
-void *utility_system_function_9424c0;                                  // 系统功能函数9424c0
-void *utility_system_function_942520;                                  // 系统功能函数942520
-void *utility_system_function_942580;                                  // 系统功能函数942580
-void *utility_system_function_9425e0;                                  // 系统功能函数9425e0
+void *utility_memory_manager_primary;                                  // 系统功能函数9424c0
+void *utility_thread_manager_primary;                                  // 系统功能函数942520
+void *utility_resource_manager_primary;                                  // 系统功能函数942580
+void *utility_event_manager_primary;                                  // 系统功能函数9425e0
 
 // 数据段变量 - 系统保留区域
 void *utility_reserved_data_segment_91f6c;                             // 保留数据段91f6c
@@ -1096,7 +1096,7 @@ void *utility_unknown_segment_a24da8;
 void *utility_unknown_segment_a24dc0;
 
 // 函数指针变量 - 系统管理功能
-void *utility_system_function_942660;                                  // 系统管理函数942660
+void *utility_file_manager_primary;                                  // 系统管理函数942660
 void *utility_data_segment_c150;                                        // 数据段c150
 uint8_t utility_system_flag_c140;                                       // 系统标志c140
 void *utility_data_segment_c160;                                        // 数据段c160
@@ -25162,7 +25162,7 @@ void utility_unwind_mutex_manager(void * utility_context_pointer,long long utili
 
 
 
-void Unwind_180902250(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_semaphore_handler(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   *(void ***)(utility_data_ptr + 0x118) = &UTILITY_NULL_CONTEXT_ADDRESS;
@@ -25171,7 +25171,7 @@ void Unwind_180902250(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_180902260(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_event_system(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   if ((*(uint *)(utility_data_ptr + UTILITY_THREAD_TLS_STATUS_OFFSET) & 8) != 0) {
@@ -25183,7 +25183,7 @@ void Unwind_180902260(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_180902290(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_condition_variable(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   *(void ***)(utility_data_ptr + 0xf8) = &UTILITY_NULL_CONTEXT_ADDRESS;
@@ -25192,7 +25192,7 @@ void Unwind_180902290(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_1809022a0(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_barrier_handler(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   if ((*(uint *)(utility_data_ptr + UTILITY_THREAD_TLS_STATUS_OFFSET) & 0x10) != 0) {
@@ -25204,7 +25204,7 @@ void Unwind_1809022a0(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_1809022d0(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_completion_port(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   if ((*(uint *)(utility_data_ptr + UTILITY_THREAD_TLS_STATUS_OFFSET) & UTILITY_THREAD_TLS_DATA_OFFSET) != 0) {
@@ -25216,7 +25216,7 @@ void Unwind_1809022d0(void * utility_context_pointer,long long utility_data_ptr)
 
 
 
-void Unwind_180902300(void * utility_context_pointer,long long utility_data_ptr)
+void utility_unwind_io_manager(void * utility_context_pointer,long long utility_data_ptr)
 
 {
   *(void ***)(utility_data_ptr + 0xd8) = &UTILITY_NULL_CONTEXT_ADDRESS;
