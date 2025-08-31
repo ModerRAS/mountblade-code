@@ -8130,7 +8130,7 @@ uint64_t network_protocol_handler_internal_primary(uint64_t network_context_poin
 {
   uint32_t network_operation_status;
   int32_t network_connection_state_code;
-  uint64_t network_connection_state_code;
+  uint64_t network_connection_result;
   int64_t network_data_packet_buffer_array_standard [2];
   uint64_t *network_standard_context_stack_ptr;
 

@@ -20060,10 +20060,10 @@ ulong long utility_process_context_data_return_ulong(long long context_pointer,l
   
   utility_result_value = utility_process_context_data_return_ulong(data_ptr,utility_security_cookie,0,0x46454d50);
   if ((int)utility_result_value != 0) {
-    return utility_result_ptr;
+    return utility_result_value;
   }
-  temp_array[0] = *(uint *)(context_pointer + 0x50);
-  utility_result_ptr = 0x1c;
+  utility_temp_array[0] = *(uint *)(context_pointer + 0x50);
+  utility_result_value = 0x1c;
   if (*(int *)(data_ptr[1] + UTILITY_THREAD_TLS_CONTEXT_OFFSET) == 0) {
     context_data_pointer = (long long *)*data_ptr;
     if (*context_data_pointer == 0) {
