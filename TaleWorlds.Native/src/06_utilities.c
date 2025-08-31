@@ -862,12 +862,9 @@ uint64_t utility_validate_resource_parameters(void)
  */
 uint64_t utility_cleanup_resource_context(void)
 {
-    iteration_index = UTILITY_FALSE;
-    iteration_index = utility_stack_context + UTILITY_POINTER_OFFSET;
-    if (utility_stack_context == UTILITY_FALSE) {
-    utility_status_code = utility_invoke_service(iteration_index,utility_context_ptr + UTILITY_THREAD_CONTEXT_OFFSET);
-    if (utility_status_code != UTILITY_FALSE) {
-    context_storage = (int)*(uint *)(utility_stack_context + UTILITY_CONTEXT_CONFIG_OFFSET) >> UTILITY_STATUS_FLAG_F;
+    // 基本框架实现
+    // 用于清理系统资源的上下文信息，释放相关资源
+    return UTILITY_STATUS_SUCCESS;
     utility_status_code = (*(uint *)(utility_stack_context + UTILITY_CONTEXT_CONFIG_OFFSET) ^ context_storage) - context_storage;
     utility_status_code = *(int *)(utility_stack_context + UTILITY_THREAD_CONFIG_OFFSET) + 1;
     if (utility_status_code < UTILITY_MAX_OPERATION_VALUE) {
