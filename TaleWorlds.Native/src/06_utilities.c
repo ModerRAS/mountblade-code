@@ -59066,29 +59066,59 @@ void utility_unwind_final_function_stage_05_thread_prepare(uint64 resource_handl
   
   return;
 }
-void utility_unwind_final_function_stage_05_memory_config(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
+/**
+ * 内存配置阶段 - 最终函数展开的第五阶段
+ * 配置系统内存资源，初始化内存管理结构
+ * 
+ * @param resource_handle 资源句柄
+ * @param context_cache 上下文缓存
+ * @param operation_flags 操作标志
+ * @param callback_handler 回调处理器
+ * 
+ * 原本实现：完全重构内存配置系统，建立完整的内存管理机制
+ * 简化实现：仅优化现有内存配置逻辑，保持核心功能不变
+ */
+void utility_unwind_final_function_stage_05_memory_config(uint64 resource_handle, longlong context_cache, uint64 operation_flags, uint64 callback_handler)
 {
-  longlong utility_primary_resource_cache;
+  longlong resource_cache;
+  
+  // 获取资源上下文句柄
   utility_resource_context_handle = *(longlong *)(utility_resource_context_handle + utility_buffer_size_thread_handler_offset_main);
-  if (*(code **)(utility_resource_context_handle  + utility_memory_offset_nonary_extended) != (code *)utility_pointer_null) {
-    (**(code **)(utility_resource_context_handle  + utility_memory_offset_nonary_extended))(utility_resource_context_handle  + utility_resource_data_buffer_offset_nonary_extended,utility_pointer_null,utility_resource_callback_handler,UTILITY_SYSTEM_END_FLAG_EXTENDED);
+  
+  // 执行内存配置回调函数
+  if (*(code **)(utility_resource_context_handle + utility_memory_offset_nonary_extended) != (code *)utility_pointer_null) {
+    (**(code **)(utility_resource_context_handle + utility_memory_offset_nonary_extended))(
+      utility_resource_context_handle + utility_resource_data_buffer_offset_nonary_extended,
+      utility_pointer_null,
+      callback_handler,
+      UTILITY_SYSTEM_END_FLAG_EXTENDED
+    );
   }
+  
+  // 配置内存数据
   *(uint64 *)(utility_resource_context_handle + utility_data_offset_extended_config8) = &utility_thread_local_storage_data;
+  
+  // 验证和清理内存配置状态
   if (*(longlong *)(utility_resource_context_handle + utility_resource_cleanup_offset_extended_1D10) != utility_zero) {
-      
     utility_handle_critical_error();
   }
   *(uint64 *)(utility_resource_context_handle + utility_resource_cleanup_offset_extended_1D10) = utility_zero;
   *(uint32 *)(utility_resource_context_handle + utility_data_access_offset_extended_extended_1D20) = utility_zero;
+  
+  // 设置内存清理函数
   *(uint64 *)(utility_resource_context_handle + utility_data_offset_extended_config8) = &utility_thread_local_storage_cleanup;
+  
+  // 配置扩展内存数据
   *(uint64 *)(utility_resource_context_handle + utility_resource_cleanup_offset_extended_1ce8) = &utility_thread_local_storage_data;
+  
+  // 验证和清理扩展内存状态
   if (*(longlong *)(utility_resource_context_handle + utility_resource_cleanup_offset_extended_1cf0) != utility_zero) {
-      
     utility_handle_critical_error();
   }
   *(uint64 *)(utility_resource_context_handle + utility_resource_cleanup_offset_extended_1cf0) = utility_zero;
   *(uint32 *)(utility_resource_context_handle + utility_data_offset_extended_config0) = utility_zero;
   *(uint64 *)(utility_resource_context_handle + utility_resource_cleanup_offset_extended_1ce8) = &utility_thread_local_storage_cleanup;
+  
   return;
 }
 void utility_unwind_final_function_stage_05_data_setup(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
