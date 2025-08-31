@@ -1,6 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
-/* 工具系统实现文件 */
-/* 工具系统核心常量定义 */
+/* 工具系统实现文件 - 语义化美化版本 */
 #define UTILITY_MAX_BUFFER_SIZE 0x1000
 #define UTILITY_MAX_THREADS 8
 #define UTILITY_MAX_EVENTS 16
@@ -20,6 +19,8 @@
 #define UTILITY_STATUS_RESOURCE_LOCKED 0x2e
 #define UTILITY_STATUS_RESOURCE_AVAILABLE 0x4c
 #define UTILITY_STATUS_OPERATION_SUCCESS 0x0
+#define UTILITY_STATUS_MEMORY_IN_USE 0x4e
+#define UTILITY_STATUS_RESOURCE_BUSY 0x4f
 /* 工具系统全局变量定义 */
 /* 全局数据管理 */
 void *utility_global_data_primary;
@@ -3747,6 +3748,15 @@ uint64_t utility_allocate_resource_memory(longlong utility_parameter,longlong ut
   }
   return utility_resource_context;
 }
+/**
+ * @brief 释放已分配的资源内存
+ * @param utility_parameter 第一个工具参数（内存释放参数）
+ * @param utility_parameter 第二个工具参数（释放标志）
+ * @return uint64_t 释放结果状态码
+ * 
+ * 该函数负责释放之前分配的资源内存块，包括内存引用计数检查、
+ * 资源状态验证和实际的内存释放操作。如果释放失败，返回相应的错误码。
+ */
 uint64_t utility_release_resource_memory(longlong utility_parameter,longlong utility_parameter)
 {
   long long utility_resource_context;
@@ -3756,7 +3766,7 @@ uint64_t utility_release_resource_memory(longlong utility_parameter,longlong uti
     return utility_resource_context;
   }
   if (*(char *)(utility_stack_variable + 0x2c) != '\0') {
-    return 0x4e;
+    return UTILITY_STATUS_MEMORY_IN_USE;
   }
   *(uint8_t *)(utility_stack_variable + 0x2c) = 1;
   utility_release_context_resources(*(uint64_t *)(utility_parameter + 0x98),utility_parameter);
