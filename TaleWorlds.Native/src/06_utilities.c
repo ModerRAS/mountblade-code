@@ -1005,6 +1005,15 @@ uint32 utility_start_timer(void)
  * 简化实现：添加函数文档注释，保持代码逻辑不变
  * 原本实现：完全重构函数文档体系，建立完整的文档规范
  */
+/**
+ * @brief 停止定时器 - 停止系统定时器
+ * @return 无返回值
+ * 
+ * 该函数负责停止系统定时器。
+ * 
+ * 简化实现：添加函数文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 void utility_stop_timer(void)
 {
       
@@ -1018,10 +1027,29 @@ void utility_stop_timer(void)
  * 简化实现：添加函数文档注释，保持代码逻辑不变
  * 原本实现：完全重构函数文档体系，建立完整的文档规范
  */
+/**
+ * @brief 销毁定时器 - 销毁系统定时器
+ * @return 无返回值
+ * 
+ * 该函数负责销毁系统定时器。
+ * 
+ * 简化实现：添加函数文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 void utility_destroy_timer(void)
 {
   return;
 }
+/**
+ * @brief 获取定时器经过时间 - 获取系统定时器经过时间
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @return uint64 经过时间状态码
+ * 
+ * 该函数负责获取系统定时器经过时间。
+ * 
+ * 简化实现：添加函数文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 uint64 utility_get_timer_elapsed(longlong utility_resource_primary_handle)
 {
   uint64 utility_operation_result;

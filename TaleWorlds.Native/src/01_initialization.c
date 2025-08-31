@@ -15859,7 +15859,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
   longlong *system_longlong_pointer_stack_temp;
   longlong **system_longlong_pointer_pointer_primary;
   longlong system_longlong_stack_counter_primary;
-  void* *system_void*_stack_pointer_b8;
+  void* *system_stack_pointer_buffer_b8;   // 栈指针缓冲区b8
   void* *system_void*_stack_pointer_b0;
   system_uint0x102_t system_unsigned_stack_a0;
   void* *system_void*_stack_pointer_98;
