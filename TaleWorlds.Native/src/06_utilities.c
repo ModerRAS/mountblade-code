@@ -8167,7 +8167,7 @@ uint32_t utility_stack_uint_data;
 uint32_t utility_stack_uint_size;
 uint32_t utility_stack_uint_count;
 int64_t utility_stack_long_index;
-uint utility_stack_uint_28c;
+uint utility_stack_uint_mask;
 int utility_stack_uint_288;
 uint8_t utility_large_buffer [512];
 uint64_t utility_checksum_value;
