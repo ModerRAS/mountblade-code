@@ -8141,8 +8141,8 @@ uint64_t network_protocol_handler_internal_primary(uint64_t network_context_poin
   if (network_operation_status != 0) {
     return (uint64_t)network_operation_status;
   }
-  network_connection_state_code = network_connection_create(*(uint64_t *)(network_data_packet_buffer_array_standard[0] + CONNECTION_CONTEXT_OFFSET_BASE_BASE), MEMORY_ZERO_PATTERN);
-  if ((int32_t)network_connection_state_code == 0) {
+  network_connection_result = network_connection_create(*(uint64_t *)(network_data_packet_buffer_array_standard[0] + CONNECTION_CONTEXT_OFFSET_BASE_BASE), MEMORY_ZERO_PATTERN);
+  if ((int32_t)network_connection_result == 0) {
     if (*(int32_t *)(*(int64_t *)(network_data_packet_buffer_array_standard[0] + CONNECTION_CONTEXT_OFFSET_BASE_BASE) + CONNECTION_CONTEXT_OFFSET_BASE_EXTENDED) != 0) {
       network_data_packet_buffer_array_standard[1] = 0;
       network_connection_state_code = validate_connection(network_data_packet_buffer_array_standard + 1);

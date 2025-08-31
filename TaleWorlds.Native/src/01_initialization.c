@@ -267,23 +267,23 @@ static void *primary_system_context_ptr;
 static void *secondary_system_context_ptr;
 static void *tertiary_system_context_ptr;
 static void *quaternary_system_context_ptr;
-static void *quinary_system_context_ptr;
-static void *memory_pool_ptr;
-static uint32_t initialization_flag;
-static void *resource_cache_ptr;
+static void *system_context_ptr_quinary;
+static void *memory_pool_ptr_primary;
+static uint32_t init_flag;
+static void *resource_cache_ptr_primary;
 static uint32_t context_status;
-static void *configuration_ptr;
+static void *config_ptr_system;
 static uint32_t memory_status;
-static void *service_manager_ptr;
+static void *service_mgr_ptr;
 static uint32_t thread_status;
 static uint32_t resource_count;
-static void *thread_manager_ptr;
-static void *event_handler_ptr;
-static void *event_queue_ptr;
-static void *allocator_ptr;
-static int32_t initialization_status;
-static int64_t performance_counter;
-static void *deallocator_ptr;
+static void *thread_mgr_ptr;
+static void *event_handler_ptr_system;
+static void *event_queue_ptr_system;
+static void *allocator_ptr_system;
+static int32_t init_status;
+static int64_t perf_counter;
+static void *deallocator_ptr_system;
 /**
  * @brief 初始化平台
  * 
