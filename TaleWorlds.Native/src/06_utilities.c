@@ -24434,22 +24434,34 @@ void utility_context_pointerr_process_data(void **utility_context_pointer)
 
 
 
-void Unwind_180901ee0(void * utility_context_pointer,long long utility_data_ptr)
+// 函数: void utility_cleanup_handler_ee0(void * context_ptr, long long data_ptr)
+// 功能：清理处理器函数ee0，用于处理上下文清理操作
+// 参数：context_ptr - 上下文指针，data_ptr - 数据指针
+// 返回值：无
+// 简化实现：仅美化函数名和变量名，添加必要的注释，保持代码结构不变
+// 原本实现：完全重构所有命名体系，建立统一的语义化命名规范
+void utility_cleanup_handler_ee0(void * context_ptr, long long data_ptr)
 
 {
-  if ((long long *)**(long long **)(utility_data_ptr + 0xc0) != (long long *)0x0) {
-    (**(code **)(*(long long *)**(long long **)(utility_data_ptr + 0xc0) + 0x38))();
+  if ((long long *)**(long long **)(data_ptr + 0xc0) != (long long *)0x0) {
+    (**(code **)(*(long long *)**(long long **)(data_ptr + 0xc0) + 0x38))();
   }
   return;
 }
 
 
 
-void Unwind_180901ef0(void * utility_context_pointer,long long utility_data_ptr)
+// 函数: void utility_cleanup_handler_ef0(void * context_ptr, long long data_ptr)
+// 功能：清理处理器函数ef0，用于处理上下文清理操作
+// 参数：context_ptr - 上下文指针，data_ptr - 数据指针
+// 返回值：无
+// 简化实现：仅美化函数名和变量名，添加必要的注释，保持代码结构不变
+// 原本实现：完全重构所有命名体系，建立统一的语义化命名规范
+void utility_cleanup_handler_ef0(void * context_ptr, long long data_ptr)
 
 {
-  if (*(long long **)(utility_data_ptr + 0x58) != (long long *)0x0) {
-    (**(code **)(**(long long **)(utility_data_ptr + 0x58) + 0x38))();
+  if (*(long long **)(data_ptr + 0x58) != (long long *)0x0) {
+    (**(code **)(**(long long **)(data_ptr + 0x58) + 0x38))();
   }
   return;
 }
