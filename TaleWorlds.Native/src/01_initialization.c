@@ -1664,6 +1664,14 @@ void system_init_subsystem_15(void)
 
 
 int InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+{
+  longlong system_memory_allocation_result;
+  
+  _Mtx_init_in_situ(0x01,2,system_memory_param,system_thread_param,INIT_VALUE_HANDLE_INVALID_DEFAULT);
+  system_memory_allocation_result = system_allocate_memory(GetAudioDevice);
+  return (system_memory_allocation_result != 0) - 1;
+}
+
 void system_init_subsystem_16(void)
 {
   longlong system_memory_allocation_result;
