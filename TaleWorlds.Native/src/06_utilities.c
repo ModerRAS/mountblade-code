@@ -103,11 +103,11 @@ void *utility_data_stream_tertiary;
 void *utility_data_stream_quaternary;
 void *utility_data_stream_auxiliary;
 void *utility_data_stream_backup;
-void *utility_pointer_;
-void *utility_pointer_;
-void *utility_pointer_;
-void *utility_pointer_;
-void *utility_pointer_;
+void *utility_process_pointer;
+void *utility_process_pointer;
+void *utility_process_pointer;
+void *utility_process_pointer;
+void *utility_process_pointer;
 void *utility_control_pointer_;
 void *utility_control_secondary;
 void *utility_control_tertiary;
@@ -140,11 +140,11 @@ void *utility_buffer_advanced_four;
 void *utility_buffer_advanced_five;
 void *utility_buffer_advanced_six;
 void *utility_buffer_advanced_seven;
-void *utility_pointer_;
-void *utility_pointer_;
-void *utility_pointer_;
-void *utility_pointer_;
-void *utility_pointer_;
+void *utility_process_pointer;
+void *utility_process_pointer;
+void *utility_process_pointer;
+void *utility_process_pointer;
+void *utility_process_pointer;
 void *utility_system_reserved_;
 void *utility_system_reserved_;
 void *utility_system_reserved_;
@@ -2066,7 +2066,7 @@ void *utility_system_reserved_;
 void ProcessThreadLocalStorage(longlong threadHandle, longlong contextData)
 {
   long long resource_context;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   int item_count;
   uint8_t stack_buffer_278 [32];
@@ -2077,21 +2077,21 @@ void ProcessThreadLocalStorage(longlong threadHandle, longlong contextData)
   uint8_t stack_buffer_238 [512];
   ulonglong stack_uint_38;
   stack_uint_38 = utility_system_reserved_ ^ (ulonglong)stack_buffer_278;
-  opointer_ = utility_system_function_primary(*(uint32_t *)(threadHandle + 0x10),stack_array_258);
-  if ((opointer_ == 0) && (*(longlong *)(stack_array_258[0] + 8) != 0)) {
+  operation_result = utility_system_function_primary(*(uint32_t *)(threadHandle + 0x10),stack_array_258);
+  if ((operation_result == 0) && (*(longlong *)(stack_array_258[0] + 8) != 0)) {
     stack_pointer_248 = stack_buffer_238;
     item_count = 0;
     stack_int_240 = 0;
     stack_uint_23c = 0xffffffc0;
     output_pointer = utility_resource_manager_create(*(uint64_t *)(contextData + 0x90),*(longlong *)(stack_array_258[0] + 8),
                           &stack_pointer_248);
-    if (opointer_ == 0) {
+    if (operation_result == 0) {
       if (0 < stack_int_240) {
         iteration_count = 0;
         do {
           resource_context = *(uint64_t *)(stack_pointer_248 + iteration_count);
           output_pointer = utility_context_manager_initialize(resource_context);
-          if (opointer_ != 2) {
+          if (operation_result != 2) {
             utility_context_manager_activate(resource_context,1);
           }
           item_count = item_count + 1;
@@ -2114,10 +2114,10 @@ void ProcessThreadLocalStorage(longlong threadHandle, longlong contextData)
  * @brief 清理线程资源
  * 负责释放和清理线程相关的所有资源
  */
-void Cleanupointer_(void)
+void CleanupResource(void)
 {
   long long resource_context;
-  int opointer_;
+  int operation_result;;
   longlong context_pointer_;
   longlong resource_pointer_;
   longlong iteration_count;
@@ -2128,23 +2128,23 @@ void Cleanupointer_(void)
   ulonglong stack_security_key;
   if (*(longlong *)(context_pointer_ + 8) != 0) {
     stack_pointer_ = &stack_buffer;
-    opointer_ = 0;
+    operation_result = 0;
     iStack0000000000000038 = 0;
     uStack000000000000003c = 0xffffffc0;
     output_pointer = utility_resource_manager_create(*(uint64_t *)(resource_pointer_ + 0x90),*(longlong *)(context_pointer_ + 8),
                           &stack_buffer);
-    if (opointer_ == 0) {
+    if (operation_result == 0) {
       if (0 < iStack0000000000000038) {
         iteration_count = 0;
         do {
           resource_context = *(uint64_t *)(stack_pointer_ + iteration_count);
           output_pointer = utility_context_manager_initialize(resource_context);
-          if (opointer_ != 2) {
+          if (operation_result != 2) {
             utility_context_manager_activate(resource_context,1);
           }
-          opointer_ = opointer_ + 1;
+          operation_result = operation_result + 1;
           iteration_count = iteration_count + 8;
-        } while (opointer_ < iStack0000000000000038);
+        } while (operation_result < iStack0000000000000038);
       }
       utility_buffer_manager_cleanup(&stack_buffer);
     }
@@ -2154,12 +2154,12 @@ void Cleanupointer_(void)
   }
   utility_calculate_checksum(stack_pointer_ ^ (ulonglong)&stack_buffer);
 }
- void Cleanupointer_(void)
+ void CleanupResource(void)
 /**
  * @brief 清理资源管理器
  * 负责释放资源管理器占用的所有资源
  */
-void Cleanupointer_(void)
+void CleanupResource(void)
 {
   ulonglong stack_pointer_;
   utility_calculate_checksum(stack_pointer_ ^ (ulonglong)&stack_buffer);
@@ -2179,19 +2179,19 @@ void ValidateResourceState(void)
   utility_buffer_manager_cleanup(&stack_buffer);
   utility_calculate_checksum(stack_pointer_ ^ (ulonglong)&stack_buffer);
 }
-uint64_t utility_pointer_(longlong pointer_)
+uint64_t utility_process_pointer(longlong pointer_)
 {
   longlong iteration_count;
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   long long resource_context;
   long long resource_context;
-  longlong *system_pointer;
-  int opointer_;
+  longlong *resource_manager;
+  int operation_result;;
   ulonglong resource_context;
-  int opointer_;
+  int operation_result;;
   ulonglong resource_context;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong stack_pointer_;
   char acstack_variable [16];
   resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_buffer);
@@ -2219,8 +2219,8 @@ uint64_t utility_pointer_(longlong pointer_)
       if (acstack_variable[0] == (char)resource_context) {
         pointer_ = (longlong *)(iteration_count + 0x4d8);
         resource_context = 0;
-        opointer_ = *(int *)(iteration_count + 0x4e4);
-        if (0 < opointer_) {
+        operation_result = *(int *)(iteration_count + 0x4e4);
+        if (0 < operation_result) {
           pointer_ = (longlong *)*pointer_;
           resource_context = resource_context;
           do {
@@ -2233,23 +2233,23 @@ uint64_t utility_pointer_(longlong pointer_)
             resource_context = (ulonglong)((int)resource_context + 1);
             resource_context = resource_context + 1;
             pointer_ = pointer_ + 1;
-          } while ((longlong)resource_context < (longlong)opointer_);
+          } while ((longlong)resource_context < (longlong)operation_result);
         }
-        opointer_ = opointer_ + 1;
-        if (*(int *)(iteration_count + 0x4e8) < opointer_) {
-          opointer_ = (int)((float)*(int *)(iteration_count + 0x4e8) * 1.5);
-          opointer_ = opointer_;
-          if (opointer_ <= opointer_) {
-            opointer_ = opointer_;
+        operation_result = operation_result + 1;
+        if (*(int *)(iteration_count + 0x4e8) < operation_result) {
+          operation_result = (int)((float)*(int *)(iteration_count + 0x4e8) * 1.5);
+          operation_result = operation_result;
+          if (operation_result <= operation_result) {
+            operation_result = operation_result;
           }
-          if (opointer_ < 8) {
-            opointer_ = 8;
+          if (operation_result < 8) {
+            operation_result = 8;
           }
-          else if (opointer_ < opointer_) {
-            opointer_ = opointer_;
+          else if (operation_result < operation_result) {
+            operation_result = operation_result;
           }
-          opointer_ = FUN_1808c17c0(pointer_,opointer_);
-          if (opointer_ != 0) {
+          operation_result = FUN_1808c17c0(pointer_,operation_result);
+          if (operation_result != 0) {
             return 0;
           }
         }
@@ -2267,43 +2267,43 @@ uint64_t utility_pointer_(longlong pointer_)
   }
   return 0;
 }
-ulonglong utility_handle_resource_request(longlong pointer_,longlong pointer_)
+ulonglong utility_handle_resource_request_primary(longlong pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
-  int opointer_;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  int operation_result;;
   uint resource_context;
   ulonglong resource_context;
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong lstack_variable;
-  longlong lstack_variable;
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x18),&lstack_variable);
-  opointer_ = (int)resource_context;
-  if (opointer_ == 0) {
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong stack_variable;
+  longlong stack_variable;
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x18),&stack_variable);
+  operation_result = (int)resource_context;
+  if (operation_result == 0) {
     pointer_ = (longlong *)0x0;
     pointer_ = pointer_;
-    if (lstack_variable != 0) {
-      pointer_ = (longlong *)(lstack_variable + -8);
+    if (stack_variable != 0) {
+      pointer_ = (longlong *)(stack_variable + -8);
     }
-    resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
-    opointer_ = (int)resource_context;
-    if (opointer_ == 0) {
-      lstack_variable = 0;
-      resource_context = utility_resource_handle_create(*(uint64_t *)(pointer_ + 0x90),*(longlong *)(lstack_variable + 8) + 0x10,
-                            &lstack_variable);
+    resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
+    operation_result = (int)resource_context;
+    if (operation_result == 0) {
+      stack_variable = 0;
+      resource_context = utility_resource_handle_create(*(uint64_t *)(pointer_ + 0x90),*(longlong *)(stack_variable + 8) + 0x10,
+                            &stack_variable);
       if (resource_context != 0) {
         FUN_180867d60(pointer_);
         return (ulonglong)resource_context;
       }
-      if (((*(uint *)(*(longlong *)(lstack_variable + 8) + 0xf8) >> 2 & 1) == 0) &&
-         (resource_context = func_0x000180861a30(lstack_variable), (int)resource_context != 0)) {
+      if (((*(uint *)(*(longlong *)(stack_variable + 8) + 0xf8) >> 2 & 1) == 0) &&
+         (resource_context = func_0x000180861a30(stack_variable), (int)resource_context != 0)) {
         return resource_context;
       }
-      pointer_ = (longlong *)(lstack_variable + 0x240);
+      pointer_ = (longlong *)(stack_variable + 0x240);
       pointer_ = (longlong *)(*pointer_ + -0x18);
       if (*pointer_ == 0) {
         pointer_ = pointer_;
@@ -2316,10 +2316,10 @@ ulonglong utility_handle_resource_request(longlong pointer_,longlong pointer_)
       }
       while( true ) {
         if (pointer_ == pointer_) {
-          *(longlong **)(lstack_variable + 0x80) = pointer_;
-          func_0x00018085eef0(lstack_variable,pointer_);
-          pointer_[2] = lstack_variable;
-          resource_context = FUN_18085ff30(lstack_variable);
+          *(longlong **)(stack_variable + 0x80) = pointer_;
+          func_0x00018085eef0(stack_variable,pointer_);
+          pointer_[2] = stack_variable;
+          resource_context = FUN_18085ff30(stack_variable);
           if ((int)resource_context == 0) {
             return 0;
           }
@@ -2348,53 +2348,53 @@ ulonglong utility_handle_resource_request(longlong pointer_,longlong pointer_)
       return 0x1c;
     }
   }
-  if (opointer_ == 0x1e) {
+  if (operation_result == 0x1e) {
     return 0;
   }
   return resource_context;
 }
-uint64_t utility_validate_resource_context(longlong pointer_,longlong pointer_)
+uint64_t utility_validate_resource_context_primary(longlong pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   long long resource_context;
-  longlong alstack_variable [2];
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),alstack_variable);
-  iteration_count = alstack_variable[0];
+  longlong astack_variable [2];
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),astack_variable);
+  iteration_count = astack_variable[0];
   if ((int)resource_context != 0) {
     return resource_context;
   }
-  *(int *)(alstack_variable[0] + 0x4c) = *(int *)(alstack_variable[0] + 0x4c) + 1;
-  if (*(int *)(alstack_variable[0] + 0x58) + *(int *)(alstack_variable[0] + 0x54) +
-      *(int *)(alstack_variable[0] + 0x4c) == 1) {
-    alstack_variable[0] = 0;
-    opointer_ = utility_stack_operation_primary(alstack_variable);
-    if (opointer_ == 0) {
-      opointer_ = utility_stack_operation_secondary(iteration_count,*(uint64_t *)(iteration_count + 8),*(uint64_t *)(pointer_ + 0x90),
+  *(int *)(astack_variable[0] + 0x4c) = *(int *)(astack_variable[0] + 0x4c) + 1;
+  if (*(int *)(astack_variable[0] + 0x58) + *(int *)(astack_variable[0] + 0x54) +
+      *(int *)(astack_variable[0] + 0x4c) == 1) {
+    astack_variable[0] = 0;
+    operation_result = utility_stack_operation_primary(astack_variable);
+    if (operation_result == 0) {
+      operation_result = utility_stack_operation_secondary(iteration_count,*(uint64_t *)(iteration_count + 8),*(uint64_t *)(pointer_ + 0x90),
                             *(uint64_t *)(pointer_ + 800));
-      if (opointer_ == 0) {
-        utility_stack_cleanup_operation(alstack_variable);
+      if (operation_result == 0) {
+        utility_stack_cleanup_operation(astack_variable);
       }
     }
-    utility_stack_cleanup_operation(alstack_variable);
+    utility_stack_cleanup_operation(astack_variable);
   }
   return 0;
 }
-uint64_t utility_initialize_resource_context(longlong pointer_)
+uint64_t utility_initialize_resource_context_primary(longlong pointer_)
 {
   uint *pointer_;
   longlong iteration_count;
   long long resource_context;
-  longlong *system_pointer;
-  longlong alstack_variable [4];
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),alstack_variable);
+  longlong *resource_manager;
+  longlong astack_variable [4];
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),astack_variable);
   if ((int)resource_context == 0) {
-    pointer_ = *(longlong **)(alstack_variable[0] + 0x20);
-    while ((*(longlong **)(alstack_variable[0] + 0x20) <= pointer_ &&
-           (pointer_ < *(longlong **)(alstack_variable[0] + 0x20) + *(int *)(alstack_variable[0] + 0x28)))) {
+    pointer_ = *(longlong **)(astack_variable[0] + 0x20);
+    while ((*(longlong **)(astack_variable[0] + 0x20) <= pointer_ &&
+           (pointer_ < *(longlong **)(astack_variable[0] + 0x20) + *(int *)(astack_variable[0] + 0x28)))) {
       iteration_count = *pointer_;
       pointer_ = pointer_ + 1;
-      if ((*(longlong *)(iteration_count + 0x18) == *(longlong *)(alstack_variable[0] + 8)) &&
+      if ((*(longlong *)(iteration_count + 0x18) == *(longlong *)(astack_variable[0] + 8)) &&
          (iteration_count = *(longlong *)(iteration_count + 0x10), iteration_count != 0)) {
         pointer_ = (uint *)(iteration_count + 0x2d8);
         *pointer_ = *pointer_ | 4;
@@ -2404,51 +2404,51 @@ uint64_t utility_initialize_resource_context(longlong pointer_)
   }
   return resource_context;
 }
-uint64_t utility_allocate_resource_buffer(longlong pointer_,uint64_t pointer_)
+uint64_t utility_allocate_resource_buffer_primary(longlong pointer_,uint64_t pointer_)
 {
   longlong iteration_count;
   long long resource_context;
-  int opointer_;
-  longlong alstack_variable [2];
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),alstack_variable);
-  iteration_count = alstack_variable[0];
+  int operation_result;;
+  longlong astack_variable [2];
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),astack_variable);
+  iteration_count = astack_variable[0];
   if ((int)resource_context != 0) {
     return resource_context;
   }
-  if (*(int *)(alstack_variable[0] + 0x4c) < 1) {
+  if (*(int *)(astack_variable[0] + 0x4c) < 1) {
     return 0x1c;
   }
-  opointer_ = *(int *)(alstack_variable[0] + 0x4c) + -1;
-  *(int *)(alstack_variable[0] + 0x4c) = opointer_;
-  if (*(int *)(alstack_variable[0] + 0x58) + *(int *)(alstack_variable[0] + 0x54) + opointer_ != 0) {
+  operation_result = *(int *)(astack_variable[0] + 0x4c) + -1;
+  *(int *)(astack_variable[0] + 0x4c) = operation_result;
+  if (*(int *)(astack_variable[0] + 0x58) + *(int *)(astack_variable[0] + 0x54) + operation_result != 0) {
     return 0;
   }
-  alstack_variable[0] = 0;
-  opointer_ = utility_stack_operation_primary(alstack_variable);
-  if (opointer_ == 0) {
-    opointer_ = utility_stack_operation_tertiary(iteration_count,0);
-    if (opointer_ == 0) {
-      opointer_ = utility_pointer_operation_primary(pointer_);
-      if (opointer_ == 0) {
-        utility_stack_cleanup_operation(alstack_variable);
+  astack_variable[0] = 0;
+  operation_result = utility_stack_operation_primary(astack_variable);
+  if (operation_result == 0) {
+    operation_result = utility_stack_operation_tertiary(iteration_count,0);
+    if (operation_result == 0) {
+      operation_result = utility_pointer_operation_primary(pointer_);
+      if (operation_result == 0) {
+        utility_stack_cleanup_operation(astack_variable);
       }
     }
   }
-  utility_stack_cleanup_operation(alstack_variable);
+  utility_stack_cleanup_operation(astack_variable);
 }
-uint64_t utility_check_resource_status(longlong pointer_)
+uint64_t utility_check_resource_status_primary(longlong pointer_)
 {
   longlong iteration_count;
   long long resource_context;
-  longlong alstack_variable [4];
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),alstack_variable);
+  longlong astack_variable [4];
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),astack_variable);
   if ((int)resource_context != 0) {
     return resource_context;
   }
-  if (alstack_variable[0] != 0) {
-    alstack_variable[0] = alstack_variable[0] + -8;
+  if (astack_variable[0] != 0) {
+    astack_variable[0] = astack_variable[0] + -8;
   }
-  iteration_count = *(longlong *)(alstack_variable[0] + 0x10);
+  iteration_count = *(longlong *)(astack_variable[0] + 0x10);
   if (iteration_count != 0) {
     *(int *)(iteration_count + 500) = *(int *)(iteration_count + 500) + 1;
     if ((*(char *)(iteration_count + 0x204) != '\0') && (resource_context = FUN_1808552c0(), (int)resource_context != 0)) {
@@ -2458,26 +2458,26 @@ uint64_t utility_check_resource_status(longlong pointer_)
   }
   return 0x1c;
 }
-uint64_t utility_activate_resource_context(longlong pointer_)
+uint64_t utility_activate_resource_context_primary(longlong pointer_)
 {
   long long resource_context;
-  longlong lstack_variable;
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  longlong stack_variable;
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context == 0) {
-    if (lstack_variable == 0) {
-      lstack_variable = 0;
+    if (stack_variable == 0) {
+      stack_variable = 0;
     }
     else {
-      lstack_variable = lstack_variable + -8;
+      stack_variable = stack_variable + -8;
     }
-    if (*(longlong *)(lstack_variable + 0x10) != 0) {
-      utility_context_manager_activate(*(longlong *)(lstack_variable + 0x10),1);
+    if (*(longlong *)(stack_variable + 0x10) != 0) {
+      utility_context_manager_activate(*(longlong *)(stack_variable + 0x10),1);
     }
     resource_context = 0;
   }
   return resource_context;
 }
-uint64_t utility_deactivate_resource_context(void)
+uint64_t utility_deactivate_resource_context_primary(void)
 {
   longlong context_pointer_;
   longlong iteration_count;
@@ -2508,24 +2508,24 @@ void InitializeMemoryPool(void)
 {
   return;
 }
-uint64_t utility_pointer_(longlong pointer_)
+uint64_t utility_process_pointer(longlong pointer_)
 {
   long long resource_context;
-  longlong lstack_variable;
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  longlong stack_variable;
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context != 0) {
     return resource_context;
   }
-  if (lstack_variable == 0) {
-    lstack_variable = 0;
+  if (stack_variable == 0) {
+    stack_variable = 0;
   }
   else {
-    lstack_variable = lstack_variable + -8;
+    stack_variable = stack_variable + -8;
   }
-  if (*(longlong *)(lstack_variable + 0x10) == 0) {
+  if (*(longlong *)(stack_variable + 0x10) == 0) {
     return 0x1c;
   }
-  utility_context_manager_activate(*(longlong *)(lstack_variable + 0x10),1);
+  utility_context_manager_activate(*(longlong *)(stack_variable + 0x10),1);
 }
 uint32_t utility_get_queue_status(void)
 {
@@ -2563,21 +2563,21 @@ void FreeMemoryBlock(void)
 uint64_t utility_handle_memory_allocation(longlong pointer_)
 {
   long long resource_context;
-  longlong lstack_variable;
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  longlong stack_variable;
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context != 0) {
     return resource_context;
   }
-  if (lstack_variable == 0) {
-    lstack_variable = 0;
+  if (stack_variable == 0) {
+    stack_variable = 0;
   }
   else {
-    lstack_variable = lstack_variable + -8;
+    stack_variable = stack_variable + -8;
   }
-  if (*(longlong *)(lstack_variable + 0x10) == 0) {
+  if (*(longlong *)(stack_variable + 0x10) == 0) {
     return 0x1c;
   }
-  utility_context_manager_activate(*(longlong *)(lstack_variable + 0x10),1);
+  utility_context_manager_activate(*(longlong *)(stack_variable + 0x10),1);
 }
 uint32_t utility_get_memory_status(void)
 {
@@ -2603,36 +2603,36 @@ void InitializeThreadLocal(void)
 {
   utility_context_manager_activate();
 }
- void Cleanupointer_(void)
+ void CleanupResource(void)
 /**
  * @brief 清理线程本地存储
  * 负责清理线程本地存储资源
  */
-void Cleanupointer_(void)
+void CleanupResource(void)
 {
   return;
 }
-uint64_t utility_pointer_(longlong pointer_)
+uint64_t utility_process_pointer(longlong pointer_)
 {
   long long resource_context;
-  longlong alstack_variable [2];
-  longlong alstack_variable [2];
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),alstack_variable);
+  longlong astack_variable [2];
+  longlong astack_variable [2];
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),astack_variable);
   if ((int)resource_context == 0) {
-    if (alstack_variable[0] == 0) {
-      alstack_variable[0] = 0;
+    if (astack_variable[0] == 0) {
+      astack_variable[0] = 0;
     }
     else {
-      alstack_variable[0] = alstack_variable[0] + -8;
+      astack_variable[0] = astack_variable[0] + -8;
     }
-    alstack_variable[0] = 0;
-    resource_context = FUN_1808681d0(alstack_variable[0],pointer_ + 0x18,alstack_variable);
+    astack_variable[0] = 0;
+    resource_context = FUN_1808681d0(astack_variable[0],pointer_ + 0x18,astack_variable);
     if ((int)resource_context == 0) {
-      if (alstack_variable[0] != 0) {
-        if (*(longlong *)(alstack_variable[0] + 8) == 0) {
+      if (astack_variable[0] != 0) {
+        if (*(longlong *)(astack_variable[0] + 8) == 0) {
           return 0x1c;
         }
-        resource_context = FUN_1808d73b0(*(longlong *)(alstack_variable[0] + 8),*(uint32_t *)(pointer_ + 0x20),
+        resource_context = FUN_1808d73b0(*(longlong *)(astack_variable[0] + 8),*(uint32_t *)(pointer_ + 0x20),
                               *(uint8_t *)(pointer_ + 0x24));
         if ((int)resource_context != 0) {
           return resource_context;
@@ -2646,24 +2646,24 @@ uint64_t utility_pointer_(longlong pointer_)
 uint64_t utility_handle_thread_creation(longlong pointer_)
 {
   long long resource_context;
-  longlong alstack_variable [2];
-  longlong alstack_variable [2];
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),alstack_variable);
+  longlong astack_variable [2];
+  longlong astack_variable [2];
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),astack_variable);
   if ((int)resource_context == 0) {
-    if (alstack_variable[0] == 0) {
-      alstack_variable[0] = 0;
+    if (astack_variable[0] == 0) {
+      astack_variable[0] = 0;
     }
     else {
-      alstack_variable[0] = alstack_variable[0] + -8;
+      astack_variable[0] = astack_variable[0] + -8;
     }
-    alstack_variable[0] = 0;
-    resource_context = FUN_1808681d0(alstack_variable[0],pointer_ + 0x20,alstack_variable);
+    astack_variable[0] = 0;
+    resource_context = FUN_1808681d0(astack_variable[0],pointer_ + 0x20,astack_variable);
     if ((int)resource_context == 0) {
-      if (alstack_variable[0] != 0) {
-        if (*(longlong *)(alstack_variable[0] + 8) == 0) {
+      if (astack_variable[0] != 0) {
+        if (*(longlong *)(astack_variable[0] + 8) == 0) {
           return 0x1c;
         }
-        resource_context = FUN_1808d73b0(*(longlong *)(alstack_variable[0] + 8),*(uint32_t *)(pointer_ + 0x18),
+        resource_context = FUN_1808d73b0(*(longlong *)(astack_variable[0] + 8),*(uint32_t *)(pointer_ + 0x18),
                               *(uint8_t *)(pointer_ + 0x1c));
         if ((int)resource_context != 0) {
           return resource_context;
@@ -2684,15 +2684,15 @@ uint64_t utility_manage_thread_synchronization(longlong pointer_)
   uint resource_context;
   long long resource_context;
   uint64_t *pointer_;
-  int opointer_;
+  int operation_result;;
   float fvariable;
   uint8_t aresource_context [16];
-  longlong lstack_variable;
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x1c),&lstack_variable);
+  longlong stack_variable;
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x1c),&stack_variable);
   if ((int)resource_context != 0) {
     return resource_context;
   }
-  iteration_count = *(longlong *)(lstack_variable + 8);
+  iteration_count = *(longlong *)(stack_variable + 8);
   if (iteration_count != 0) {
     fvariable = *(float *)(pointer_ + 0x20);
     for (pointer_ = *(uint64_t **)(iteration_count + 0x48);
@@ -2708,13 +2708,13 @@ uint64_t utility_manage_thread_synchronization(longlong pointer_)
       resource_context = *(uint *)(*(longlong *)(iteration_count + 0x18) + 0x34);
       resource_context = resource_context >> 4;
       if ((resource_context & 1) == 0) {
-        if ((((resource_context >> 3 & 1) != 0) && (opointer_ = (int)fvariable, opointer_ != -0x80000000)) &&
-           ((float)opointer_ != fvariable)) {
+        if ((((resource_context >> 3 & 1) != 0) && (operation_result = (int)fvariable, operation_result != -0x80000000)) &&
+           ((float)operation_result != fvariable)) {
           aresource_context._4_4_ = fvariable;
           aresource_context._0_4_ = fvariable;
           aresource_context._8_8_ = 0;
           resource_context = movmskpointer_(resource_context,aresource_context);
-          fvariable = (float)(int)(opointer_ - (resource_context & 1));
+          fvariable = (float)(int)(operation_result - (resource_context & 1));
         }
         fvariable = (float)func_0x00018084dcc0(*(longlong *)(iteration_count + 0x18),fvariable);
         if (((*(char *)(iteration_count + 0x34) == '\0') ||
@@ -2730,31 +2730,31 @@ uint64_t utility_manage_thread_synchronization(longlong pointer_)
   }
   return 0x1c;
 }
-uint64_t utility_pointer_(longlong pointer_)
+uint64_t utility_process_pointer(longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   long long resource_context;
   uint32_t *pointer_;
   ulonglong resource_context;
   uint resource_context;
   ulonglong resource_context;
   longlong iteration_count;
-  longlong lstack_variable;
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  longlong stack_variable;
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context == 0) {
     resource_context = 0;
-    resource_context = lstack_variable - 8;
-    if (lstack_variable == 0) {
+    resource_context = stack_variable - 8;
+    if (stack_variable == 0) {
       resource_context = resource_context;
     }
     pointer_ = (uint32_t *)(pointer_ + 0x20 + (longlong)*(int *)(pointer_ + 0x18) * 4);
     if (0 < *(int *)(pointer_ + 0x18)) {
       iteration_count = (pointer_ + 0x20) - (longlong)pointer_;
       do {
-        opointer_ = *(int *)(iteration_count + (longlong)pointer_);
-        if (opointer_ != -1) {
-          iteration_count = *(longlong *)(resource_context + 0x20) + (longlong)opointer_ * 0x18;
+        operation_result = *(int *)(iteration_count + (longlong)pointer_);
+        if (operation_result != -1) {
+          iteration_count = *(longlong *)(resource_context + 0x20) + (longlong)operation_result * 0x18;
           if ((iteration_count == 0) || (iteration_count = *(longlong *)(iteration_count + 8), iteration_count == 0)) {
             return 0x1c;
           }
@@ -2775,7 +2775,7 @@ uint64_t utility_pointer_(longlong pointer_)
 uint64_t utility_initialize_event_system(void)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong context_pointer_;
   long long resource_context;
   uint32_t *pointer_;
@@ -2793,9 +2793,9 @@ uint64_t utility_initialize_event_system(void)
   if (0 < *(int *)(unaff_RSI + 0x18)) {
     iteration_count = (unaff_RSI + 0x20) - (longlong)pointer_;
     do {
-      opointer_ = *(int *)(iteration_count + (longlong)pointer_);
-      if (opointer_ != -1) {
-        iteration_count = *(longlong *)(resource_context + 0x20) + (longlong)opointer_ * 0x18;
+      operation_result = *(int *)(iteration_count + (longlong)pointer_);
+      if (operation_result != -1) {
+        iteration_count = *(longlong *)(resource_context + 0x20) + (longlong)operation_result * 0x18;
         if ((iteration_count == 0) || (iteration_count = *(longlong *)(iteration_count + 8), iteration_count == 0)) {
           return 0x1c;
         }
@@ -2828,13 +2828,13 @@ uint64_t utility_handle_event_dispointer_(longlong pointer_)
   uint32_t *pointer_;
   uint resource_context;
   ulonglong resource_context;
-  longlong lstack_variable;
+  longlong stack_variable;
   ulonglong resource_context;
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context == 0) {
     resource_context = 0;
-    resource_context = lstack_variable - 8;
-    if (lstack_variable == 0) {
+    resource_context = stack_variable - 8;
+    if (stack_variable == 0) {
       resource_context = resource_context;
     }
     pointer_ = (uint32_t *)(pointer_ + 0x20 + (longlong)*(int *)(pointer_ + 0x18) * 8);
@@ -2842,16 +2842,16 @@ uint64_t utility_handle_event_dispointer_(longlong pointer_)
     if (0 < *(int *)(pointer_ + 0x18)) {
       do {
         if ((*pointer_ != utility_system_reserved_) || (pointer_[1] != utility_system_reserved_)) {
-          lstack_variable = 0;
-          resource_context = FUN_1808681d0(resource_context,(int *)(pointer_ + 0x20) + (longlong)(int)resource_context * 2,&lstack_variable)
+          stack_variable = 0;
+          resource_context = FUN_1808681d0(resource_context,(int *)(pointer_ + 0x20) + (longlong)(int)resource_context * 2,&stack_variable)
           ;
           if ((int)resource_context != 0) {
             return resource_context;
           }
-          if (*(longlong *)(lstack_variable + 8) == 0) {
+          if (*(longlong *)(stack_variable + 8) == 0) {
             return 0x1c;
           }
-          resource_context = FUN_1808d73b0(*(longlong *)(lstack_variable + 8),*pointer_,*(uint8_t *)(pointer_ + 0x1c)
+          resource_context = FUN_1808d73b0(*(longlong *)(stack_variable + 8),*pointer_,*(uint8_t *)(pointer_ + 0x1c)
                                );
           if ((int)resource_context != 0) {
             return resource_context;
@@ -2868,7 +2868,7 @@ uint64_t utility_handle_event_dispointer_(longlong pointer_)
   return resource_context;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
-uint64_t utility_pointer_(void)
+uint64_t utility_process_pointer(void)
 {
   longlong context_pointer_;
   long long resource_context;
@@ -2924,21 +2924,21 @@ uint64_t utility_initialize_callback_system(void)
 uint64_t utility_register_event_callback(longlong pointer_)
 {
   long long resource_context;
-  longlong lstack_variable;
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  longlong stack_variable;
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context != 0) {
     return resource_context;
   }
-  if (lstack_variable == 0) {
-    lstack_variable = 0;
+  if (stack_variable == 0) {
+    stack_variable = 0;
   }
   else {
-    lstack_variable = lstack_variable + -8;
+    stack_variable = stack_variable + -8;
   }
-  if (*(longlong *)(lstack_variable + 0x10) == 0) {
+  if (*(longlong *)(stack_variable + 0x10) == 0) {
     return 0x1c;
   }
-  utility_context_manager_activate(*(longlong *)(lstack_variable + 0x10),1);
+  utility_context_manager_activate(*(longlong *)(stack_variable + 0x10),1);
 }
 uint32_t utility_get_callback_status(void)
 {
@@ -2965,24 +2965,24 @@ void DeleteCriticalSection(void)
 {
   return;
 }
-uint64_t utility_pointer_(longlong pointer_)
+uint64_t utility_process_pointer(longlong pointer_)
 {
   long long resource_context;
-  longlong lstack_variable;
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  longlong stack_variable;
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context != 0) {
     return resource_context;
   }
-  if (lstack_variable == 0) {
-    lstack_variable = 0;
+  if (stack_variable == 0) {
+    stack_variable = 0;
   }
   else {
-    lstack_variable = lstack_variable + -8;
+    stack_variable = stack_variable + -8;
   }
-  if (*(longlong *)(lstack_variable + 0x10) == 0) {
+  if (*(longlong *)(stack_variable + 0x10) == 0) {
     return 0x1c;
   }
-  utility_context_manager_activate(*(longlong *)(lstack_variable + 0x10),1);
+  utility_context_manager_activate(*(longlong *)(stack_variable + 0x10),1);
 }
 uint32_t utility_get_buffer_status(void)
 {
@@ -3009,17 +3009,17 @@ void SetEvent(void)
 {
   return;
 }
-uint64_t utility_handle_stream_opointer_(longlong pointer_)
+uint64_t utility_handle_stream_operation_result(longlong pointer_)
 {
   long long resource_context;
   longlong iteration_count;
-  longlong lstack_variable;
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  longlong stack_variable;
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context != 0) {
     return resource_context;
   }
-  iteration_count = lstack_variable + -8;
-  if (lstack_variable == 0) {
+  iteration_count = stack_variable + -8;
+  if (stack_variable == 0) {
     iteration_count = 0;
   }
   if (*(longlong *)(iteration_count + 0x10) == 0) {
@@ -3050,24 +3050,24 @@ void WaitForEvent(void)
 {
   return;
 }
-uint64_t utility_pointer_(longlong pointer_)
+uint64_t utility_process_pointer(longlong pointer_)
 {
   long long resource_context;
-  longlong lstack_variable;
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  longlong stack_variable;
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context != 0) {
     return resource_context;
   }
-  if (lstack_variable == 0) {
-    lstack_variable = 0;
+  if (stack_variable == 0) {
+    stack_variable = 0;
   }
   else {
-    lstack_variable = lstack_variable + -8;
+    stack_variable = stack_variable + -8;
   }
-  if (*(longlong *)(lstack_variable + 0x10) == 0) {
+  if (*(longlong *)(stack_variable + 0x10) == 0) {
     return 0x1c;
   }
-  utility_context_manager_activate(*(longlong *)(lstack_variable + 0x10),1);
+  utility_context_manager_activate(*(longlong *)(stack_variable + 0x10),1);
 }
 uint32_t utility_get_cache_status(void)
 {
@@ -3094,24 +3094,24 @@ void InitializeMutex(void)
 {
   return;
 }
-uint64_t utility_handle_mutex_opointer_(longlong pointer_)
+uint64_t utility_handle_mutex_operation_result(longlong pointer_)
 {
   long long resource_context;
-  longlong lstack_variable;
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  longlong stack_variable;
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context != 0) {
     return resource_context;
   }
-  if (lstack_variable == 0) {
-    lstack_variable = 0;
+  if (stack_variable == 0) {
+    stack_variable = 0;
   }
   else {
-    lstack_variable = lstack_variable + -8;
+    stack_variable = stack_variable + -8;
   }
-  if (*(longlong *)(lstack_variable + 0x10) == 0) {
+  if (*(longlong *)(stack_variable + 0x10) == 0) {
     return 0x1c;
   }
-  utility_context_manager_activate(*(longlong *)(lstack_variable + 0x10),1);
+  utility_context_manager_activate(*(longlong *)(stack_variable + 0x10),1);
 }
 uint32_t utility_get_mutex_status(void)
 {
@@ -3138,24 +3138,24 @@ void UnlockMutex(void)
 {
   return;
 }
-uint64_t utility_pointer_(longlong pointer_)
+uint64_t utility_process_pointer(longlong pointer_)
 {
   long long resource_context;
-  longlong lstack_variable;
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  longlong stack_variable;
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context != 0) {
     return resource_context;
   }
-  if (lstack_variable == 0) {
-    lstack_variable = 0;
+  if (stack_variable == 0) {
+    stack_variable = 0;
   }
   else {
-    lstack_variable = lstack_variable + -8;
+    stack_variable = stack_variable + -8;
   }
-  if (*(longlong *)(lstack_variable + 0x10) == 0) {
+  if (*(longlong *)(stack_variable + 0x10) == 0) {
     return 0x1c;
   }
-  utility_context_manager_activate(*(longlong *)(lstack_variable + 0x10),1);
+  utility_context_manager_activate(*(longlong *)(stack_variable + 0x10),1);
 }
 uint32_t utility_get_condition_status(void)
 {
@@ -3185,18 +3185,18 @@ void WaitForMutex(void)
 uint64_t utility_handle_semapointer_(longlong pointer_)
 {
   long long resource_context;
-  longlong lstack_variable;
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  longlong stack_variable;
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context != 0) {
     return resource_context;
   }
-  if (lstack_variable != 0) {
-    lstack_variable = lstack_variable + -8;
+  if (stack_variable != 0) {
+    stack_variable = stack_variable + -8;
   }
-  if (*(longlong *)(lstack_variable + 0x10) == 0) {
+  if (*(longlong *)(stack_variable + 0x10) == 0) {
     return 0x1c;
   }
-  utility_context_manager_activate(*(longlong *)(lstack_variable + 0x10),1);
+  utility_context_manager_activate(*(longlong *)(stack_variable + 0x10),1);
 }
 uint32_t utility_get_semapointer_(void)
 {
@@ -3224,21 +3224,21 @@ void WaitForSemapointer_(void)
 {
   return;
 }
-uint64_t utility_pointer_(longlong pointer_)
+uint64_t utility_process_pointer(longlong pointer_)
 {
   long long resource_context;
-  longlong lstack_variable;
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  longlong stack_variable;
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context != 0) {
     return resource_context;
   }
-  if (lstack_variable != 0) {
-    lstack_variable = lstack_variable + -8;
+  if (stack_variable != 0) {
+    stack_variable = stack_variable + -8;
   }
-  if (*(longlong *)(lstack_variable + 0x10) == 0) {
+  if (*(longlong *)(stack_variable + 0x10) == 0) {
     return 0x1c;
   }
-  utility_context_manager_activate(*(longlong *)(lstack_variable + 0x10),1);
+  utility_context_manager_activate(*(longlong *)(stack_variable + 0x10),1);
 }
 uint32_t utility_get_timer_status(void)
 {
@@ -3269,7 +3269,7 @@ void ExitThread(void)
  void TerminateThread(longlong pointer_,uint64_t pointer_)
 void TerminateThread(longlong pointer_,uint64_t pointer_)
 {
-  int opointer_;
+  int operation_result;;
   uint64_t austack_variable [4];
   uint32_t stack_buffer_58 [2];
   long long stack_uint_50;
@@ -3277,8 +3277,8 @@ void TerminateThread(longlong pointer_,uint64_t pointer_)
   stack_uint_50 = *(uint64_t *)(pointer_ + 0x10);
   stack_uint_48 = *(uint32_t *)(pointer_ + 0x18);
   stack_buffer_58[0] = 2;
-  opointer_ = func_0x0001808757f0(pointer_,stack_buffer_58,*(uint32_t *)(pointer_ + 0x1c),austack_variable);
-  if (opointer_ == 0) {
+  operation_result = func_0x0001808757f0(pointer_,stack_buffer_58,*(uint32_t *)(pointer_ + 0x1c),austack_variable);
+  if (operation_result == 0) {
     FUN_180875fc0(pointer_,austack_variable[0]);
   }
   return;
@@ -3293,15 +3293,15 @@ uint64_t FUN_180891210(longlong pointer_)
   uint resource_context;
   long long resource_context;
   uint64_t *pointer_;
-  int opointer_;
+  int operation_result;;
   float fvariable;
   uint8_t aresource_context [16];
-  longlong lstack_variable;
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  longlong stack_variable;
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context != 0) {
     return resource_context;
   }
-  iteration_count = *(longlong *)(lstack_variable + 8);
+  iteration_count = *(longlong *)(stack_variable + 8);
   if (iteration_count != 0) {
     fvariable = *(float *)(pointer_ + 0x14);
     for (pointer_ = *(uint64_t **)(iteration_count + 0x48);
@@ -3317,13 +3317,13 @@ uint64_t FUN_180891210(longlong pointer_)
       resource_context = *(uint *)(*(longlong *)(iteration_count + 0x18) + 0x34);
       resource_context = resource_context >> 4;
       if ((resource_context & 1) == 0) {
-        if ((((resource_context >> 3 & 1) != 0) && (opointer_ = (int)fvariable, opointer_ != -0x80000000)) &&
-           ((float)opointer_ != fvariable)) {
+        if ((((resource_context >> 3 & 1) != 0) && (operation_result = (int)fvariable, operation_result != -0x80000000)) &&
+           ((float)operation_result != fvariable)) {
           aresource_context._4_4_ = fvariable;
           aresource_context._0_4_ = fvariable;
           aresource_context._8_8_ = 0;
           resource_context = movmskpointer_(resource_context,aresource_context);
-          fvariable = (float)(int)(opointer_ - (resource_context & 1));
+          fvariable = (float)(int)(operation_result - (resource_context & 1));
         }
         fvariable = (float)func_0x00018084dcc0(*(longlong *)(iteration_count + 0x18),fvariable);
         if (((*(char *)(iteration_count + 0x34) == '\0') ||
@@ -3342,7 +3342,7 @@ uint64_t FUN_180891210(longlong pointer_)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 int FUN_180891280(longlong pointer_)
 {
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   uint8_t austack_variable [8];
   uint8_t stack_buffer_50 [72];
@@ -3350,18 +3350,18 @@ int FUN_180891280(longlong pointer_)
   if (0 < *(int *)(pointer_ + 0x20)) {
     iteration_count = *(longlong *)(pointer_ + 0x18);
   }
-  opointer_ = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x4c),austack_variable);
-  if (opointer_ == 0) {
-    opointer_ = *(int *)(pointer_ + 0x10);
+  operation_result = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x4c),austack_variable);
+  if (operation_result == 0) {
+    operation_result = *(int *)(pointer_ + 0x10);
     if (0x38 < *(int *)(pointer_ + 0x10)) {
-      opointer_ = 0x38;
+      operation_result = 0x38;
     }
-    memcpointer_(stack_buffer_50,pointer_ + 0x10,(longlong)opointer_);
+    memcpointer_(stack_buffer_50,pointer_ + 0x10,(longlong)operation_result);
   }
   if (iteration_count != 0) {
     FUN_180742250(*(uint64_t *)(utility_system_reserved_ + 0x1a0),iteration_count,&utility_system_reserved_,0xb8,1);
   }
-  return opointer_;
+  return operation_result;
 }
  void Suspointer_(longlong pointer_,uint64_t pointer_)
 void Suspointer_(longlong pointer_,uint64_t pointer_)
@@ -3419,7 +3419,7 @@ ulonglong FUN_1808913c0(longlong pointer_,uint64_t pointer_)
 int FUN_1808913ff(uint32_t pointer_)
 {
   int in_EAX;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   longlong unaff_RDI;
   uint32_t resource_context;
@@ -3436,15 +3436,15 @@ int FUN_1808913ff(uint32_t pointer_)
     resource_context = 2;
   }
   uStack0000000000000030 = pointer_;
-  opointer_ = FUN_180894dd0();
-  if (opointer_ == 0) {
-    opointer_ = 0;
+  operation_result = FUN_180894dd0();
+  if (operation_result == 0) {
+    operation_result = 0;
   }
   else if (iteration_count != 0) {
     FUN_180741df0(*(uint64_t *)(utility_system_reserved_ + 0x1a0),iteration_count,&utility_system_reserved_,0xe9,resource_context);
-    return opointer_;
+    return operation_result;
   }
-  return opointer_;
+  return operation_result;
 }
 uint64_t FUN_180891492(void)
 {
@@ -3457,17 +3457,17 @@ uint64_t FUN_1808914ac(void)
  void ResumeThread(longlong pointer_,longlong pointer_)
 void ResumeThread(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
-  opointer_ = FUN_18073b5f0(*(uint64_t *)(pointer_ + 0x78),*(uint32_t *)(pointer_ + 0x10),
+  int operation_result;;
+  operation_result = FUN_18073b5f0(*(uint64_t *)(pointer_ + 0x78),*(uint32_t *)(pointer_ + 0x10),
                         pointer_ + 0x14,pointer_ + 0x20,pointer_ + 0x2c,pointer_ + 0x38);
-  if ((opointer_ == 0) &&
-     (opointer_ = func_0x0001808d2620((longlong)*(int *)(pointer_ + 0x10) * 0x44 +
-                                  *(longlong *)(pointer_ + 0x90) + 0x554,pointer_ + 0x14), opointer_ == 0)
+  if ((operation_result == 0) &&
+     (operation_result = func_0x0001808d2620((longlong)*(int *)(pointer_ + 0x10) * 0x44 +
+                                  *(longlong *)(pointer_ + 0x90) + 0x554,pointer_ + 0x14), operation_result == 0)
      ) {
     if ((*(char *)(pointer_ + 0x50) != '\0') &&
-       (opointer_ = func_0x0001808d2660((longlong)*(int *)(pointer_ + 0x10) * 0x44 +
+       (operation_result = func_0x0001808d2660((longlong)*(int *)(pointer_ + 0x10) * 0x44 +
                                     *(longlong *)(pointer_ + 0x90) + 0x554,pointer_ + 0x44),
-       opointer_ != 0)) {
+       operation_result != 0)) {
       return;
     }
     func_0x0001808d2830((longlong)*(int *)(pointer_ + 0x10) * 0x44 +
@@ -3478,9 +3478,9 @@ void ResumeThread(longlong pointer_,longlong pointer_)
  void GetThreadContext(longlong pointer_,longlong pointer_)
 void GetThreadContext(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
-  opointer_ = FUN_18073b810(*(uint64_t *)(pointer_ + 0x78),*(uint32_t *)(pointer_ + 0x10));
-  if (opointer_ == 0) {
+  int operation_result;;
+  operation_result = FUN_18073b810(*(uint64_t *)(pointer_ + 0x78),*(uint32_t *)(pointer_ + 0x10));
+  if (operation_result == 0) {
     func_0x0001808c2130(*(uint64_t *)(pointer_ + 0x90),*(uint32_t *)(pointer_ + 0x10));
   }
   return;
@@ -3491,37 +3491,37 @@ uint64_t FUN_180891650(longlong pointer_,longlong pointer_)
   long long resource_context;
   int *pointer_;
   uint32_t *pointer_;
-  int opointer_;
-  opointer_ = 0;
+  int operation_result;;
+  operation_result = 0;
   pointer_ = (uint32_t *)(pointer_ + 0x18 + (longlong)*(int *)(pointer_ + 0x10) * 8);
   pointer_ = (int *)(pointer_ + 0x18);
   if (0 < *(int *)(pointer_ + 0x10)) {
     do {
       if (((*pointer_ != utility_system_reserved_) || (pointer_[1] != utility_system_reserved_)) &&
-         (resource_context = FUN_1808678e0(pointer_ + 0x60,(int *)(pointer_ + 0x18) + (longlong)opointer_ * 2,*pointer_
+         (resource_context = FUN_1808678e0(pointer_ + 0x60,(int *)(pointer_ + 0x18) + (longlong)operation_result * 2,*pointer_
                                 ,*(uint8_t *)(pointer_ + 0x14)), (int)resource_context != 0)) {
         return resource_context;
       }
-      opointer_ = opointer_ + 1;
+      operation_result = operation_result + 1;
       pointer_ = pointer_ + 1;
       pointer_ = pointer_ + 2;
-    } while (opointer_ < *(int *)(pointer_ + 0x10));
+    } while (operation_result < *(int *)(pointer_ + 0x10));
   }
   return 0;
 }
  void SetThreadContext(longlong pointer_,longlong pointer_)
 void SetThreadContext(longlong pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  int opointer_;
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  int operation_result;;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   uint64_t austack_variable [2];
   pointer_ = (longlong *)0x0;
   austack_variable[0] = 0;
-  opointer_ = utility_stack_operation_primary(austack_variable);
-  if ((opointer_ == 0) && (opointer_ = FUN_1808bdd90(*(uint64_t *)(pointer_ + 0x90)), opointer_ == 0)) {
+  operation_result = utility_stack_operation_primary(austack_variable);
+  if ((operation_result == 0) && (operation_result = FUN_1808bdd90(*(uint64_t *)(pointer_ + 0x90)), operation_result == 0)) {
     pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x50) + -8);
     if (*(longlong *)(pointer_ + 0x50) == 0) {
       pointer_ = pointer_;
@@ -3553,18 +3553,18 @@ void SetThreadContext(longlong pointer_,longlong pointer_)
         pointer_ = (longlong *)&g_00000018;
       }
       pointer_ = pointer_;
-    } while ((*pointer_ == 0) || (opointer_ = FUN_18088aca0(pointer_), opointer_ == 0));
+    } while ((*pointer_ == 0) || (operation_result = FUN_18088aca0(pointer_), operation_result == 0));
   }
   utility_stack_cleanup_operation(austack_variable);
 }
 uint64_t FUN_180891820(longlong pointer_)
 {
   long long resource_context;
-  longlong alstack_variable [4];
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),alstack_variable);
+  longlong astack_variable [4];
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),astack_variable);
   if ((int)resource_context == 0) {
-    *(uint32_t *)(*(longlong *)(alstack_variable[0] + 0x10) + 0x50) = *(uint32_t *)(pointer_ + 0x18);
-    if ((*(longlong *)(alstack_variable[0] + 8) != 0) && (resource_context = FUN_1808c44f0(), (int)resource_context != 0)) {
+    *(uint32_t *)(*(longlong *)(astack_variable[0] + 0x10) + 0x50) = *(uint32_t *)(pointer_ + 0x18);
+    if ((*(longlong *)(astack_variable[0] + 8) != 0) && (resource_context = FUN_1808c44f0(), (int)resource_context != 0)) {
       return resource_context;
     }
     resource_context = 0;
@@ -3574,13 +3574,13 @@ uint64_t FUN_180891820(longlong pointer_)
  void QueueUserAPC(longlong pointer_,longlong pointer_)
 void QueueUserAPC(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
+  int operation_result;;
   long long ustack_variable;
   if (*(int *)(pointer_ + 0x2c) == 0) {
-    opointer_ = InitializeAsyncIO(pointer_,pointer_ + 0x1c,&ustack_variable);
-    if (opointer_ == 0) {
-      opointer_ = func_0x00018088c500(ustack_variable,pointer_ + 0x2c);
-      if (opointer_ == 0) goto LAB_1808918d2;
+    operation_result = InitializeAsyncIO(pointer_,pointer_ + 0x1c,&ustack_variable);
+    if (operation_result == 0) {
+      operation_result = func_0x00018088c500(ustack_variable,pointer_ + 0x2c);
+      if (operation_result == 0) goto LAB_1808918d2;
     }
     return;
   }
@@ -3590,15 +3590,15 @@ LAB_1808918d2:
  void GetAPCQueueStatus(longlong pointer_,longlong pointer_)
 void GetAPCQueueStatus(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
-  longlong lstack_variable;
+  int operation_result;;
+  longlong stack_variable;
   if (*(int *)(pointer_ + 0x2c) == 0) {
-    opointer_ = QueueAsyncIO(pointer_,pointer_ + 0x1c,&lstack_variable);
-    if (opointer_ != 0) {
+    operation_result = QueueAsyncIO(pointer_,pointer_ + 0x1c,&stack_variable);
+    if (operation_result != 0) {
       return;
     }
-    opointer_ = func_0x00018088c500(*(uint64_t *)(lstack_variable + 0xd0),pointer_ + 0x2c);
-    if (opointer_ != 0) {
+    operation_result = func_0x00018088c500(*(uint64_t *)(stack_variable + 0xd0),pointer_ + 0x2c);
+    if (operation_result != 0) {
       return;
     }
   }
@@ -3608,12 +3608,12 @@ void GetAPCQueueStatus(longlong pointer_,longlong pointer_)
  void InitializeFiber(longlong pointer_,longlong pointer_)
 void InitializeFiber(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
-  longlong lstack_variable;
-  opointer_ = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
-  if (opointer_ == 0) {
-    *(uint32_t *)(pointer_ + 0x18) = *(uint32_t *)(lstack_variable + 0x30);
-    *(uint32_t *)(pointer_ + 0x1c) = *(uint32_t *)(lstack_variable + 0x34);
+  int operation_result;;
+  longlong stack_variable;
+  operation_result = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
+  if (operation_result == 0) {
+    *(uint32_t *)(pointer_ + 0x18) = *(uint32_t *)(stack_variable + 0x30);
+    *(uint32_t *)(pointer_ + 0x1c) = *(uint32_t *)(stack_variable + 0x34);
     FUN_18088d7c0(*(uint64_t *)(pointer_ + 0x98),pointer_);
   }
   return;
@@ -3621,12 +3621,12 @@ void InitializeFiber(longlong pointer_,longlong pointer_)
  void SwitchToFiber(longlong pointer_,longlong pointer_)
 void SwitchToFiber(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
+  int operation_result;;
   long long ustack_variable;
-  opointer_ = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&ustack_variable);
-  if (opointer_ == 0) {
-    opointer_ = FUN_1808deb90(ustack_variable,pointer_ + 0x18);
-    if (opointer_ == 0) {
+  operation_result = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&ustack_variable);
+  if (operation_result == 0) {
+    operation_result = FUN_1808deb90(ustack_variable,pointer_ + 0x18);
+    if (operation_result == 0) {
       FUN_18088d7c0(*(uint64_t *)(pointer_ + 0x98),pointer_);
     }
   }
@@ -3635,13 +3635,13 @@ void SwitchToFiber(longlong pointer_,longlong pointer_)
  void DeleteFiber(longlong pointer_,longlong pointer_)
 void DeleteFiber(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
+  int operation_result;;
   long long ustack_variable;
   if (*(int *)(pointer_ + 0x2c) == 0) {
-    opointer_ = PostCompointer_(pointer_,pointer_ + 0x1c,&ustack_variable);
-    if (opointer_ == 0) {
-      opointer_ = func_0x00018088c500(ustack_variable,pointer_ + 0x2c);
-      if (opointer_ == 0) goto LAB_180891a52;
+    operation_result = PostCompointer_(pointer_,pointer_ + 0x1c,&ustack_variable);
+    if (operation_result == 0) {
+      operation_result = func_0x00018088c500(ustack_variable,pointer_ + 0x2c);
+      if (operation_result == 0) goto LAB_180891a52;
     }
     return;
   }
@@ -3650,17 +3650,17 @@ LAB_180891a52:
 }
 uint64_t FUN_180891a80(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
+  int operation_result;;
   long long resource_context;
-  longlong lstack_variable;
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  longlong stack_variable;
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context == 0) {
-    if (*(int *)(lstack_variable + 0x34) != 0) {
+    if (*(int *)(stack_variable + 0x34) != 0) {
       return 0x2e;
     }
-    opointer_ = *(int *)(lstack_variable + 0x28);
-    *(int *)(lstack_variable + 0x28) = opointer_ + 1;
-    if (opointer_ == 0) {
+    operation_result = *(int *)(stack_variable + 0x28);
+    *(int *)(stack_variable + 0x28) = operation_result + 1;
+    if (operation_result == 0) {
       FUN_18088d720(*(uint64_t *)(pointer_ + 0x98),pointer_);
     }
     resource_context = 0;
@@ -3670,34 +3670,34 @@ uint64_t FUN_180891a80(longlong pointer_,longlong pointer_)
  void CreateFiber(longlong pointer_,longlong pointer_)
 void CreateFiber(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
-  longlong lstack_variable;
-  opointer_ = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
-  if (opointer_ == 0) {
-    *(uint32_t *)(lstack_variable + 0x30) = 0;
+  int operation_result;;
+  longlong stack_variable;
+  operation_result = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
+  if (operation_result == 0) {
+    *(uint32_t *)(stack_variable + 0x30) = 0;
     FUN_18088d720(*(uint64_t *)(pointer_ + 0x98),pointer_);
   }
   return;
 }
 uint64_t FUN_180891b40(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
+  int operation_result;;
   long long resource_context;
-  longlong lstack_variable;
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  longlong stack_variable;
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context == 0) {
-    if (*(int *)(lstack_variable + 0x34) != 0) {
+    if (*(int *)(stack_variable + 0x34) != 0) {
       return 0x2e;
     }
-    opointer_ = *(int *)(lstack_variable + 0x28);
-    if (opointer_ < 0) {
+    operation_result = *(int *)(stack_variable + 0x28);
+    if (operation_result < 0) {
       return 0x1c;
     }
-    if (opointer_ == 0) {
+    if (operation_result == 0) {
       return 0x4c;
     }
-    *(int *)(lstack_variable + 0x28) = opointer_ + -1;
-    if (opointer_ == 1) {
+    *(int *)(stack_variable + 0x28) = operation_result + -1;
+    if (operation_result == 1) {
       FUN_18088d720(*(uint64_t *)(pointer_ + 0x98),pointer_);
     }
     resource_context = 0;
@@ -3707,13 +3707,13 @@ uint64_t FUN_180891b40(longlong pointer_,longlong pointer_)
 uint64_t FUN_180891bd0(longlong pointer_,longlong pointer_)
 {
   long long resource_context;
-  longlong lstack_variable;
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  longlong stack_variable;
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context == 0) {
-    if (*(longlong *)(lstack_variable + 8) == 0) {
+    if (*(longlong *)(stack_variable + 8) == 0) {
       return 0x4c;
     }
-    *(uint64_t *)(pointer_ + 0x18) = *(uint64_t *)(*(longlong *)(lstack_variable + 8) + 0x78);
+    *(uint64_t *)(pointer_ + 0x18) = *(uint64_t *)(*(longlong *)(stack_variable + 8) + 0x78);
     resource_context = FUN_18088d7c0(*(uint64_t *)(pointer_ + 0x98),pointer_);
   }
   return resource_context;
@@ -3721,25 +3721,25 @@ uint64_t FUN_180891bd0(longlong pointer_,longlong pointer_)
 uint64_t FUN_180891c40(longlong pointer_,longlong pointer_)
 {
   long long resource_context;
-  longlong lstack_variable;
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  longlong stack_variable;
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context != 0) {
     return resource_context;
   }
-  if (*(char *)(lstack_variable + 0x2c) != '\0') {
+  if (*(char *)(stack_variable + 0x2c) != '\0') {
     return 0x4e;
   }
-  *(uint8_t *)(lstack_variable + 0x2c) = 1;
+  *(uint8_t *)(stack_variable + 0x2c) = 1;
   FUN_18088d720(*(uint64_t *)(pointer_ + 0x98),pointer_);
 }
  void ConvertThreadToFiber(longlong pointer_,longlong pointer_)
 void ConvertThreadToFiber(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
-  longlong lstack_variable;
-  opointer_ = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
-  if (opointer_ == 0) {
-    *(uint8_t *)(lstack_variable + 0x29) = *(uint8_t *)(pointer_ + 0x18);
+  int operation_result;;
+  longlong stack_variable;
+  operation_result = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
+  if (operation_result == 0) {
+    *(uint8_t *)(stack_variable + 0x29) = *(uint8_t *)(pointer_ + 0x18);
     FUN_18088d720(*(uint64_t *)(pointer_ + 0x98),pointer_);
   }
   return;
@@ -3747,11 +3747,11 @@ void ConvertThreadToFiber(longlong pointer_,longlong pointer_)
  void GetFiberData(longlong pointer_,longlong pointer_)
 void GetFiberData(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
-  longlong lstack_variable;
-  opointer_ = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
-  if (opointer_ == 0) {
-    *(uint8_t *)(lstack_variable + 0x28) = *(uint8_t *)(pointer_ + 0x18);
+  int operation_result;;
+  longlong stack_variable;
+  operation_result = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
+  if (operation_result == 0) {
+    *(uint8_t *)(stack_variable + 0x28) = *(uint8_t *)(pointer_ + 0x18);
     FUN_18088d720(*(uint64_t *)(pointer_ + 0x98),pointer_);
   }
   return;
@@ -3775,72 +3775,72 @@ uint64_t FUN_180891d40(longlong pointer_,longlong pointer_)
 uint64_t FUN_180891de0(longlong pointer_,longlong pointer_)
 {
   long long resource_context;
-  longlong lstack_variable;
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  longlong stack_variable;
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context != 0) {
     return resource_context;
   }
-  if (*(char *)(lstack_variable + 0x2c) == '\0') {
+  if (*(char *)(stack_variable + 0x2c) == '\0') {
     return 0x4f;
   }
-  *(uint8_t *)(lstack_variable + 0x2c) = 0;
+  *(uint8_t *)(stack_variable + 0x2c) = 0;
   FUN_18088d720(*(uint64_t *)(pointer_ + 0x98),pointer_);
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
  void InitializeTimer(longlong pointer_,longlong pointer_)
 void InitializeTimer(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   longlong iteration_count;
   longlong iteration_count;
   uint resource_context;
-  longlong lstack_variable;
-  longlong lstack_variable;
-  opointer_ = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
-  if (((opointer_ != 0) || (opointer_ = FUN_180867bc0(&lstack_variable), opointer_ != 0)) ||
-     (opointer_ = FUN_180868490(lstack_variable,pointer_,*(uint64_t *)(lstack_variable + 8)), opointer_ != 0)) {
+  longlong stack_variable;
+  longlong stack_variable;
+  operation_result = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
+  if (((operation_result != 0) || (operation_result = FUN_180867bc0(&stack_variable), operation_result != 0)) ||
+     (operation_result = FUN_180868490(stack_variable,pointer_,*(uint64_t *)(stack_variable + 8)), operation_result != 0)) {
     return;
   }
   iteration_count = 0;
-  iteration_count = lstack_variable + 8;
-  if (lstack_variable == 0) {
+  iteration_count = stack_variable + 8;
+  if (stack_variable == 0) {
     iteration_count = iteration_count;
   }
-  opointer_ = func_0x00018088c500(iteration_count,pointer_ + 0x18);
-  if (opointer_ != 0) {
+  operation_result = func_0x00018088c500(iteration_count,pointer_ + 0x18);
+  if (operation_result != 0) {
     return;
   }
-  resource_context = (int)*(uint *)(lstack_variable + 0x2c) >> 0x1f;
-  opointer_ = (*(uint *)(lstack_variable + 0x2c) ^ resource_context) - resource_context;
-  opointer_ = *(int *)(lstack_variable + 0x28) + 1;
-  if (opointer_ < opointer_) {
-    opointer_ = (int)((float)opointer_ * 1.5);
-    if (opointer_ <= opointer_) {
-      opointer_ = opointer_;
+  resource_context = (int)*(uint *)(stack_variable + 0x2c) >> 0x1f;
+  operation_result = (*(uint *)(stack_variable + 0x2c) ^ resource_context) - resource_context;
+  operation_result = *(int *)(stack_variable + 0x28) + 1;
+  if (operation_result < operation_result) {
+    operation_result = (int)((float)operation_result * 1.5);
+    if (operation_result <= operation_result) {
+      operation_result = operation_result;
     }
-    if (opointer_ < 8) {
-      opointer_ = 8;
+    if (operation_result < 8) {
+      operation_result = 8;
     }
-    if (opointer_ < *(int *)(lstack_variable + 0x28)) goto LAB_180891fc0;
-    if (opointer_ != 0) {
-      if ((0x3ffffffe < opointer_ * 8 - 1U) ||
-         (iteration_count = FUN_180741e10(*(uint64_t *)(utility_system_reserved_ + 0x1a0),opointer_ * 8,&utility_system_reserved_,
+    if (operation_result < *(int *)(stack_variable + 0x28)) goto LAB_180891fc0;
+    if (operation_result != 0) {
+      if ((0x3ffffffe < operation_result * 8 - 1U) ||
+         (iteration_count = FUN_180741e10(*(uint64_t *)(utility_system_reserved_ + 0x1a0),operation_result * 8,&utility_system_reserved_,
                                 0xf4,0,0,1), iteration_count == 0)) goto LAB_180891fc0;
-      if (*(int *)(lstack_variable + 0x28) != 0) {
-        memcpointer_(iteration_count,*(uint64_t *)(lstack_variable + 0x20),(longlong)*(int *)(lstack_variable + 0x28) << 3);
+      if (*(int *)(stack_variable + 0x28) != 0) {
+        memcpointer_(iteration_count,*(uint64_t *)(stack_variable + 0x20),(longlong)*(int *)(stack_variable + 0x28) << 3);
       }
     }
-    if ((0 < *(int *)(lstack_variable + 0x2c)) && (*(longlong *)(lstack_variable + 0x20) != 0)) {
-      FUN_180742250(*(uint64_t *)(utility_system_reserved_ + 0x1a0),*(longlong *)(lstack_variable + 0x20),
+    if ((0 < *(int *)(stack_variable + 0x2c)) && (*(longlong *)(stack_variable + 0x20) != 0)) {
+      FUN_180742250(*(uint64_t *)(utility_system_reserved_ + 0x1a0),*(longlong *)(stack_variable + 0x20),
                     &utility_system_reserved_,0x100,1);
     }
-    *(longlong *)(lstack_variable + 0x20) = iteration_count;
-    *(int *)(lstack_variable + 0x2c) = opointer_;
+    *(longlong *)(stack_variable + 0x20) = iteration_count;
+    *(int *)(stack_variable + 0x2c) = operation_result;
   }
-  *(longlong *)(*(longlong *)(lstack_variable + 0x20) + (longlong)*(int *)(lstack_variable + 0x28) * 8) =
-       lstack_variable;
-  *(int *)(lstack_variable + 0x28) = *(int *)(lstack_variable + 0x28) + 1;
+  *(longlong *)(*(longlong *)(stack_variable + 0x20) + (longlong)*(int *)(stack_variable + 0x28) * 8) =
+       stack_variable;
+  *(int *)(stack_variable + 0x28) = *(int *)(stack_variable + 0x28) + 1;
 LAB_180891fc0:
   FUN_18088d720(*(uint64_t *)(pointer_ + 0x98),pointer_);
 }
@@ -3848,8 +3848,8 @@ LAB_180891fc0:
  void SetTimer(uint64_t pointer_,uint64_t pointer_)
 void SetTimer(uint64_t pointer_,uint64_t pointer_)
 {
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   longlong iteration_count;
   longlong iteration_count;
   uint resource_context;
@@ -3857,8 +3857,8 @@ void SetTimer(uint64_t pointer_,uint64_t pointer_)
   longlong unaff_R14;
   longlong stack_pointer_;
   longlong stack_pointer_;
-  opointer_ = FUN_180868490(pointer_,pointer_,*(uint64_t *)(stack_pointer_ + 8));
-  if (opointer_ != 0) {
+  operation_result = FUN_180868490(pointer_,pointer_,*(uint64_t *)(stack_pointer_ + 8));
+  if (operation_result != 0) {
     return;
   }
   iteration_count = 0;
@@ -3866,25 +3866,25 @@ void SetTimer(uint64_t pointer_,uint64_t pointer_)
   if (stack_pointer_ == 0) {
     iteration_count = iteration_count;
   }
-  opointer_ = func_0x00018088c500(iteration_count,unaff_RBP + 0x18);
-  if (opointer_ != 0) {
+  operation_result = func_0x00018088c500(iteration_count,unaff_RBP + 0x18);
+  if (operation_result != 0) {
     return;
   }
   resource_context = (int)*(uint *)(stack_pointer_ + 0x2c) >> 0x1f;
-  opointer_ = (*(uint *)(stack_pointer_ + 0x2c) ^ resource_context) - resource_context;
-  opointer_ = *(int *)(stack_pointer_ + 0x28) + 1;
-  if (opointer_ < opointer_) {
-    opointer_ = (int)((float)opointer_ * 1.5);
-    if (opointer_ <= opointer_) {
-      opointer_ = opointer_;
+  operation_result = (*(uint *)(stack_pointer_ + 0x2c) ^ resource_context) - resource_context;
+  operation_result = *(int *)(stack_pointer_ + 0x28) + 1;
+  if (operation_result < operation_result) {
+    operation_result = (int)((float)operation_result * 1.5);
+    if (operation_result <= operation_result) {
+      operation_result = operation_result;
     }
-    if (opointer_ < 8) {
-      opointer_ = 8;
+    if (operation_result < 8) {
+      operation_result = 8;
     }
-    if (opointer_ < *(int *)(stack_pointer_ + 0x28)) goto LAB_180891fc0;
-    if (opointer_ != 0) {
-      if ((0x3ffffffe < opointer_ * 8 - 1U) ||
-         (iteration_count = FUN_180741e10(*(uint64_t *)(utility_system_reserved_ + 0x1a0),opointer_ * 8,&utility_system_reserved_,
+    if (operation_result < *(int *)(stack_pointer_ + 0x28)) goto LAB_180891fc0;
+    if (operation_result != 0) {
+      if ((0x3ffffffe < operation_result * 8 - 1U) ||
+         (iteration_count = FUN_180741e10(*(uint64_t *)(utility_system_reserved_ + 0x1a0),operation_result * 8,&utility_system_reserved_,
                                 0xf4,0), iteration_count == 0)) goto LAB_180891fc0;
       if (*(int *)(stack_pointer_ + 0x28) != 0) {
         memcpointer_(iteration_count,*(uint64_t *)(stack_pointer_ + 0x20),
@@ -3897,7 +3897,7 @@ void SetTimer(uint64_t pointer_,uint64_t pointer_)
                     &utility_system_reserved_,0x100,1);
     }
     *(longlong *)(stack_pointer_ + 0x20) = iteration_count;
-    *(int *)(stack_pointer_ + 0x2c) = opointer_;
+    *(int *)(stack_pointer_ + 0x2c) = operation_result;
   }
   *(longlong *)
    (*(longlong *)(stack_pointer_ + 0x20) + (longlong)*(int *)(stack_pointer_ + 0x28) * 8) =
@@ -3910,8 +3910,8 @@ LAB_180891fc0:
  void CancelTimer(void)
 void CancelTimer(void)
 {
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   longlong context_pointer_;
   longlong iteration_count;
   longlong iteration_count;
@@ -3924,25 +3924,25 @@ void CancelTimer(void)
   if (context_pointer_ == 0) {
     iteration_count = iteration_count;
   }
-  opointer_ = func_0x00018088c500(iteration_count);
-  if (opointer_ != 0) {
+  operation_result = func_0x00018088c500(iteration_count);
+  if (operation_result != 0) {
     return;
   }
   resource_context = (int)*(uint *)(resource_pointer_ + 0x2c) >> 0x1f;
-  opointer_ = (*(uint *)(resource_pointer_ + 0x2c) ^ resource_context) - resource_context;
-  opointer_ = *(int *)(resource_pointer_ + 0x28) + 1;
-  if (opointer_ < opointer_) {
-    opointer_ = (int)((float)opointer_ * 1.5);
-    if (opointer_ <= opointer_) {
-      opointer_ = opointer_;
+  operation_result = (*(uint *)(resource_pointer_ + 0x2c) ^ resource_context) - resource_context;
+  operation_result = *(int *)(resource_pointer_ + 0x28) + 1;
+  if (operation_result < operation_result) {
+    operation_result = (int)((float)operation_result * 1.5);
+    if (operation_result <= operation_result) {
+      operation_result = operation_result;
     }
-    if (opointer_ < 8) {
-      opointer_ = 8;
+    if (operation_result < 8) {
+      operation_result = 8;
     }
-    if (opointer_ < *(int *)(resource_pointer_ + 0x28)) goto LAB_180891fc0;
-    if (opointer_ != 0) {
-      if (0x3ffffffe < opointer_ * 8 - 1U) goto LAB_180891fc0;
-      iteration_count = FUN_180741e10(*(uint64_t *)(utility_system_reserved_ + 0x1a0),opointer_ * 8,&utility_system_reserved_,0xf4,0)
+    if (operation_result < *(int *)(resource_pointer_ + 0x28)) goto LAB_180891fc0;
+    if (operation_result != 0) {
+      if (0x3ffffffe < operation_result * 8 - 1U) goto LAB_180891fc0;
+      iteration_count = FUN_180741e10(*(uint64_t *)(utility_system_reserved_ + 0x1a0),operation_result * 8,&utility_system_reserved_,0xf4,0)
       ;
       if (iteration_count == 0) goto LAB_180891fc0;
       if (*(int *)(resource_pointer_ + 0x28) != 0) {
@@ -3954,7 +3954,7 @@ void CancelTimer(void)
                     &utility_system_reserved_,0x100,1);
     }
     *(longlong *)(resource_pointer_ + 0x20) = iteration_count;
-    *(int *)(resource_pointer_ + 0x2c) = opointer_;
+    *(int *)(resource_pointer_ + 0x2c) = operation_result;
   }
   *(uint64_t *)(*(longlong *)(resource_pointer_ + 0x20) + (longlong)*(int *)(resource_pointer_ + 0x28) * 8) =
        stack_pointer_;
@@ -3967,25 +3967,25 @@ LAB_180891fc0:
 void WaitForTimer(int pointer_,int pointer_)
 {
   int in_EAX;
-  int opointer_;
+  int operation_result;;
   longlong resource_pointer_;
   longlong unaff_RSI;
-  int opointer_;
+  int operation_result;;
   longlong unaff_R14;
   long long stack_pointer_;
-  opointer_ = pointer_ + 1;
-  if (in_EAX - pointer_ < opointer_) {
-    opointer_ = (int)((float)(in_EAX - pointer_) * 1.5);
-    if (opointer_ <= opointer_) {
-      opointer_ = opointer_;
+  operation_result = pointer_ + 1;
+  if (in_EAX - pointer_ < operation_result) {
+    operation_result = (int)((float)(in_EAX - pointer_) * 1.5);
+    if (operation_result <= operation_result) {
+      operation_result = operation_result;
     }
-    if (opointer_ < 8) {
-      opointer_ = 8;
+    if (operation_result < 8) {
+      operation_result = 8;
     }
-    if (opointer_ < pointer_) goto LAB_180891fc0;
-    if (opointer_ != 0) {
-      if (0x3ffffffe < opointer_ * 8 - 1U) goto LAB_180891fc0;
-      unaff_RSI = FUN_180741e10(*(uint64_t *)(utility_system_reserved_ + 0x1a0),opointer_ * 8,&utility_system_reserved_,
+    if (operation_result < pointer_) goto LAB_180891fc0;
+    if (operation_result != 0) {
+      if (0x3ffffffe < operation_result * 8 - 1U) goto LAB_180891fc0;
+      unaff_RSI = FUN_180741e10(*(uint64_t *)(utility_system_reserved_ + 0x1a0),operation_result * 8,&utility_system_reserved_,
                                 0xf4);
       if (unaff_RSI == 0) goto LAB_180891fc0;
       if (*(int *)(resource_pointer_ + 0x28) != 0) {
@@ -3998,7 +3998,7 @@ void WaitForTimer(int pointer_,int pointer_)
                     &utility_system_reserved_,0x100,1);
     }
     *(longlong *)(resource_pointer_ + 0x20) = unaff_RSI;
-    *(int *)(resource_pointer_ + 0x2c) = opointer_;
+    *(int *)(resource_pointer_ + 0x2c) = operation_result;
   }
   *(uint64_t *)(*(longlong *)(resource_pointer_ + 0x20) + (longlong)*(int *)(resource_pointer_ + 0x28) * 8) =
        stack_pointer_;
@@ -4024,23 +4024,23 @@ void WaitForThreadPool(void)
  void CloseThreadPool(longlong pointer_,longlong pointer_)
 void CloseThreadPool(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
+  int operation_result;;
   long long ustack_variable;
-  opointer_ = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&ustack_variable);
-  if (opointer_ == 0) {
-    opointer_ = func_0x0001808c8710(ustack_variable);
-    if (opointer_ < 1) {
-      opointer_ = func_0x0001808c8700(ustack_variable);
-      *(uint *)(pointer_ + 0x18) = (uint)(opointer_ < 1);
+  operation_result = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&ustack_variable);
+  if (operation_result == 0) {
+    operation_result = func_0x0001808c8710(ustack_variable);
+    if (operation_result < 1) {
+      operation_result = func_0x0001808c8700(ustack_variable);
+      *(uint *)(pointer_ + 0x18) = (uint)(operation_result < 1);
     }
     else {
-      opointer_ = func_0x0001808c8700(ustack_variable);
-      if (opointer_ < 1) {
+      operation_result = func_0x0001808c8700(ustack_variable);
+      if (operation_result < 1) {
         *(uint32_t *)(pointer_ + 0x18) = 2;
       }
       else {
-        opointer_ = FUN_1808c7f30(ustack_variable,pointer_ + 0x18);
-        if (opointer_ != 0) {
+        operation_result = FUN_1808c7f30(ustack_variable,pointer_ + 0x18);
+        if (operation_result != 0) {
           return;
         }
       }
@@ -4052,23 +4052,23 @@ void CloseThreadPool(longlong pointer_,longlong pointer_)
  void InitializeFileMapointer_(void)
 void InitializeFileMapointer_(void)
 {
-  int opointer_;
+  int operation_result;;
   longlong unaff_RBP;
   longlong unaff_RSI;
   long long stack_pointer_;
-  opointer_ = func_0x0001808c8710(stack_pointer_);
-  if (opointer_ < 1) {
-    opointer_ = func_0x0001808c8700(stack_pointer_);
-    *(uint *)(unaff_RSI + 0x18) = (uint)(opointer_ < 1);
+  operation_result = func_0x0001808c8710(stack_pointer_);
+  if (operation_result < 1) {
+    operation_result = func_0x0001808c8700(stack_pointer_);
+    *(uint *)(unaff_RSI + 0x18) = (uint)(operation_result < 1);
   }
   else {
-    opointer_ = func_0x0001808c8700(stack_pointer_);
-    if (opointer_ < 1) {
+    operation_result = func_0x0001808c8700(stack_pointer_);
+    if (operation_result < 1) {
       *(uint32_t *)(unaff_RSI + 0x18) = 2;
     }
     else {
-      opointer_ = FUN_1808c7f30(stack_pointer_,unaff_RSI + 0x18);
-      if (opointer_ != 0) {
+      operation_result = FUN_1808c7f30(stack_pointer_,unaff_RSI + 0x18);
+      if (operation_result != 0) {
         return;
       }
     }
@@ -4084,12 +4084,12 @@ void Mapointer_(void)
  void Unmapointer_(longlong pointer_,longlong pointer_)
 void Unmapointer_(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
+  int operation_result;;
   long long ustack_variable;
-  opointer_ = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&ustack_variable);
-  if (opointer_ == 0) {
-    opointer_ = func_0x0001808c8470(ustack_variable);
-    if (opointer_ == 0) {
+  operation_result = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&ustack_variable);
+  if (operation_result == 0) {
+    operation_result = func_0x0001808c8470(ustack_variable);
+    if (operation_result == 0) {
       FUN_18088d720(*(uint64_t *)(pointer_ + 0x98),pointer_);
     }
   }
@@ -4098,10 +4098,10 @@ void Unmapointer_(longlong pointer_,longlong pointer_)
  void CreateFileMapointer_(longlong pointer_,longlong pointer_)
 void CreateFileMapointer_(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
+  int operation_result;;
   uint8_t austack_variable [8];
-  opointer_ = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),austack_variable);
-  if (opointer_ == 0) {
+  operation_result = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),austack_variable);
+  if (operation_result == 0) {
     FUN_18088d720(*(uint64_t *)(pointer_ + 0x98),pointer_);
   }
   return;
@@ -4109,12 +4109,12 @@ void CreateFileMapointer_(longlong pointer_,longlong pointer_)
  void Opointer_(longlong pointer_,longlong pointer_)
 void Opointer_(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
+  int operation_result;;
   long long ustack_variable;
-  opointer_ = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&ustack_variable);
-  if (opointer_ == 0) {
-    opointer_ = func_0x0001808c7d30(ustack_variable);
-    if (opointer_ == 0) {
+  operation_result = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&ustack_variable);
+  if (operation_result == 0) {
+    operation_result = func_0x0001808c7d30(ustack_variable);
+    if (operation_result == 0) {
       FUN_18088d720(*(uint64_t *)(pointer_ + 0x98),pointer_);
     }
   }
@@ -4123,17 +4123,17 @@ void Opointer_(longlong pointer_,longlong pointer_)
 uint64_t FUN_180892170(longlong pointer_,longlong pointer_)
 {
   long long resource_context;
-  longlong lstack_variable;
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  longlong stack_variable;
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context == 0) {
-    if (lstack_variable != 0) {
-      lstack_variable = lstack_variable + -8;
+    if (stack_variable != 0) {
+      stack_variable = stack_variable + -8;
     }
-    if (*(longlong *)(lstack_variable + 0x10) == 0) {
+    if (*(longlong *)(stack_variable + 0x10) == 0) {
       return 0x4c;
     }
     *(uint64_t *)(pointer_ + 0x18) =
-         *(uint64_t *)(*(longlong *)(*(longlong *)(lstack_variable + 0x10) + 0x2b0) + 0x78);
+         *(uint64_t *)(*(longlong *)(*(longlong *)(stack_variable + 0x10) + 0x2b0) + 0x78);
     resource_context = FUN_18088d7c0(*(uint64_t *)(pointer_ + 0x98),pointer_);
   }
   return resource_context;
@@ -4141,16 +4141,16 @@ uint64_t FUN_180892170(longlong pointer_,longlong pointer_)
 uint64_t FUN_1808921f0(longlong pointer_,longlong pointer_)
 {
   long long resource_context;
-  longlong lstack_variable;
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  longlong stack_variable;
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context == 0) {
-    if (lstack_variable != 0) {
-      lstack_variable = lstack_variable + -8;
+    if (stack_variable != 0) {
+      stack_variable = stack_variable + -8;
     }
-    if (*(longlong *)(lstack_variable + 0x18) == 0) {
+    if (*(longlong *)(stack_variable + 0x18) == 0) {
       return 0x1e;
     }
-    resource_context = func_0x00018088c500(*(uint64_t *)(*(longlong *)(lstack_variable + 0x18) + 0xd0),
+    resource_context = func_0x00018088c500(*(uint64_t *)(*(longlong *)(stack_variable + 0x18) + 0xd0),
                                 pointer_ + 0x18);
     if ((int)resource_context == 0) {
       resource_context = FUN_18088d7c0(*(uint64_t *)(pointer_ + 0x98),pointer_);
@@ -4161,7 +4161,7 @@ uint64_t FUN_1808921f0(longlong pointer_,longlong pointer_)
 uint64_t FUN_180892270(longlong pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   long long resource_context;
   undefined *pointer_;
   uint resource_context;
@@ -4169,16 +4169,16 @@ uint64_t FUN_180892270(longlong pointer_,longlong pointer_)
   longlong iteration_count;
   ulonglong resource_context;
   ulonglong resource_context;
-  longlong lstack_variable;
+  longlong stack_variable;
   if (pointer_ + 0x1c == 0) {
     return 0x1f;
   }
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context == 0) {
     resource_context = 0;
     resource_context = resource_context;
-    if (lstack_variable != 0) {
-      resource_context = lstack_variable - 8;
+    if (stack_variable != 0) {
+      resource_context = stack_variable - 8;
     }
     resource_context = resource_context;
     if (0 < *(int *)(resource_context + 0x28)) {
@@ -4194,8 +4194,8 @@ uint64_t FUN_180892270(longlong pointer_,longlong pointer_)
         else {
           pointer_ = *(undefined **)(iteration_count + 0x50);
         }
-        opointer_ = func_0x00018076b630(pointer_,pointer_ + 0x1c);
-        if (opointer_ == 0) {
+        operation_result = func_0x00018076b630(pointer_,pointer_ + 0x1c);
+        if (operation_result == 0) {
           resource_context = func_0x00018088c500(iteration_count,pointer_ + 0x18);
           if ((int)resource_context != 0) {
             return resource_context;
@@ -4215,7 +4215,7 @@ uint64_t FUN_180892270(longlong pointer_,longlong pointer_)
 uint64_t FUN_1808922ad(void)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   long long resource_context;
   undefined *pointer_;
   uint resource_context;
@@ -4245,8 +4245,8 @@ uint64_t FUN_1808922ad(void)
       else {
         pointer_ = *(undefined **)(iteration_count + 0x50);
       }
-      opointer_ = func_0x00018076b630(pointer_);
-      if (opointer_ == 0) {
+      operation_result = func_0x00018076b630(pointer_);
+      if (operation_result == 0) {
         resource_context = func_0x00018088c500(iteration_count,unaff_R14 + 0x18);
         if ((int)resource_context != 0) {
           return resource_context;
@@ -4269,36 +4269,36 @@ void InitializeSharedMemory(void)
  void AllocateSharedMemory(void)
 void AllocateSharedMemory(void)
 {
-  int opointer_;
+  int operation_result;;
   longlong unaff_R13;
-  opointer_ = func_0x00018088c500();
-  if (opointer_ == 0) {
+  operation_result = func_0x00018088c500();
+  if (operation_result == 0) {
     FUN_18088d7c0(*(uint64_t *)(unaff_R13 + 0x98));
   }
   return;
 }
 uint64_t FUN_180892370(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
+  int operation_result;;
   long long resource_context;
   longlong iteration_count;
-  longlong lstack_variable;
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  longlong stack_variable;
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context != 0) {
     return resource_context;
   }
-  iteration_count = lstack_variable;
-  if (lstack_variable != 0) {
-    iteration_count = lstack_variable + -8;
+  iteration_count = stack_variable;
+  if (stack_variable != 0) {
+    iteration_count = stack_variable + -8;
   }
-  opointer_ = *(int *)(pointer_ + 0x18);
-  if ((opointer_ < 0) || (*(int *)(iteration_count + 0x28) <= opointer_)) {
+  operation_result = *(int *)(pointer_ + 0x18);
+  if ((operation_result < 0) || (*(int *)(iteration_count + 0x28) <= operation_result)) {
     return 0x1f;
   }
-  if (*(longlong *)(*(longlong *)(iteration_count + 0x20) + 0x10 + (longlong)opointer_ * 0x18) == 0) {
+  if (*(longlong *)(*(longlong *)(iteration_count + 0x20) + 0x10 + (longlong)operation_result * 0x18) == 0) {
     return 0x1e;
   }
-  resource_context = func_0x00018088c500(*(longlong *)(iteration_count + 0x20) + (longlong)opointer_ * 0x18,pointer_ + 0x1c);
+  resource_context = func_0x00018088c500(*(longlong *)(iteration_count + 0x20) + (longlong)operation_result * 0x18,pointer_ + 0x1c);
   if ((int)resource_context != 0) {
     return resource_context;
   }
@@ -4307,9 +4307,9 @@ uint64_t FUN_180892370(longlong pointer_,longlong pointer_)
     return 0;
   }
   if ((*(int *)(iteration_count + 0x180) != 0) || (*(int *)(iteration_count + 0x184) != 0)) {
-    lstack_variable = 0;
-    FUN_180768b50(&lstack_variable);
-    if (lstack_variable == *(longlong *)((longlong)*(int *)(iteration_count + 0x17c) * 8 + 0x180c4f450)) {
+    stack_variable = 0;
+    FUN_180768b50(&stack_variable);
+    if (stack_variable == *(longlong *)((longlong)*(int *)(iteration_count + 0x17c) * 8 + 0x180c4f450)) {
       resource_context = FUN_18088dd60(iteration_count,pointer_);
       goto LAB_18088d83c;
     }
@@ -4327,16 +4327,16 @@ LAB_18088d83c:
 void FreeSharedMemory(longlong pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint8_t stack_buffer_68 [32];
   longlong lStack_48;
   uint8_t stack_buffer_40 [40];
   ulonglong stack_uint_18;
   stack_uint_18 = utility_system_reserved_ ^ (ulonglong)stack_buffer_68;
-  opointer_ = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lStack_48);
-  if (opointer_ == 0) {
+  operation_result = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lStack_48);
+  if (operation_result == 0) {
     if (lStack_48 != 0) {
       lStack_48 = lStack_48 + -8;
     }
@@ -4359,7 +4359,7 @@ void FreeSharedMemory(longlong pointer_,longlong pointer_)
 void GetSharedMemoryInfo(longlong *pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong unaff_RDI;
   ulonglong stack_pointer_;
   iteration_count = (**(code **)(*pointer_ + 0x2f0))(pointer_,pointer_ + 0x30);
@@ -4385,77 +4385,77 @@ uint64_t FUN_1808924f0(longlong pointer_,longlong pointer_)
   uint32_t resource_context;
   uint32_t resource_context;
   long long resource_context;
-  int opointer_;
-  int opointer_;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
+  int operation_result;;
+  int operation_result;;
   longlong iteration_count;
-  longlong alstack_variable [2];
+  longlong astack_variable [2];
   uint ustack_variable;
   float fstack_variable;
   iteration_count = 0;
-  opointer_ = 0;
-  opointer_ = opointer_;
+  operation_result = 0;
+  operation_result = operation_result;
   if ((*(uint *)(pointer_ + 0x20) & 0x7f800000) == 0x7f800000) {
-    opointer_ = 0x1d;
+    operation_result = 0x1d;
   }
-  opointer_ = opointer_;
+  operation_result = operation_result;
   if ((*(uint *)(pointer_ + 0x1c) & 0x7f800000) == 0x7f800000) {
-    opointer_ = 0x1d;
+    operation_result = 0x1d;
   }
-  opointer_ = opointer_;
+  operation_result = operation_result;
   if ((*(uint *)(pointer_ + 0x18) & 0x7f800000) == 0x7f800000) {
-    opointer_ = 0x1d;
+    operation_result = 0x1d;
   }
-  if ((opointer_ != 0 || opointer_ != 0) || opointer_ != 0) {
+  if ((operation_result != 0 || operation_result != 0) || operation_result != 0) {
     return 0x1f;
   }
-  opointer_ = 0;
+  operation_result = 0;
   if ((*(uint *)(pointer_ + 0x2c) & 0x7f800000) == 0x7f800000) {
-    opointer_ = 0x1d;
+    operation_result = 0x1d;
   }
-  opointer_ = opointer_;
+  operation_result = operation_result;
   if ((*(uint *)(pointer_ + 0x28) & 0x7f800000) == 0x7f800000) {
-    opointer_ = 0x1d;
+    operation_result = 0x1d;
   }
-  opointer_ = opointer_;
+  operation_result = operation_result;
   if ((*(uint *)(pointer_ + 0x24) & 0x7f800000) == 0x7f800000) {
-    opointer_ = 0x1d;
+    operation_result = 0x1d;
   }
-  if ((opointer_ != 0 || opointer_ != 0) || opointer_ != 0) {
+  if ((operation_result != 0 || operation_result != 0) || operation_result != 0) {
     return 0x1f;
   }
-  opointer_ = opointer_;
+  operation_result = operation_result;
   if ((*(uint *)(pointer_ + 0x38) & 0x7f800000) == 0x7f800000) {
-    opointer_ = 0x1d;
+    operation_result = 0x1d;
   }
-  opointer_ = opointer_;
+  operation_result = operation_result;
   if ((*(uint *)(pointer_ + 0x34) & 0x7f800000) == 0x7f800000) {
-    opointer_ = 0x1d;
+    operation_result = 0x1d;
   }
   if (((uint)*(float *)(pointer_ + 0x30) & 0x7f800000) == 0x7f800000) {
-    opointer_ = 0x1d;
+    operation_result = 0x1d;
   }
-  if ((opointer_ != 0 || opointer_ != 0) || opointer_ != 0) {
+  if ((operation_result != 0 || operation_result != 0) || operation_result != 0) {
     return 0x1f;
   }
   fvariable = *(float *)(pointer_ + 0x44);
-  opointer_ = 0;
+  operation_result = 0;
   ustack_variable = *(uint *)(pointer_ + 0x40);
   fstack_variable = *(float *)(pointer_ + 0x3c);
-  alstack_variable[0] = CONCAT44(alstack_variable[0]._4_4_,fvariable);
-  opointer_ = opointer_;
+  astack_variable[0] = CONCAT44(astack_variable[0]._4_4_,fvariable);
+  operation_result = operation_result;
   if (((uint)fvariable & 0x7f800000) == 0x7f800000) {
-    opointer_ = 0x1d;
+    operation_result = 0x1d;
   }
-  opointer_ = opointer_;
+  operation_result = operation_result;
   if ((ustack_variable & 0x7f800000) == 0x7f800000) {
-    opointer_ = 0x1d;
+    operation_result = 0x1d;
   }
   if (((uint)fstack_variable & 0x7f800000) == 0x7f800000) {
-    opointer_ = 0x1d;
+    operation_result = 0x1d;
   }
-  if ((opointer_ == 0 && opointer_ == 0) && opointer_ == 0) {
+  if ((operation_result == 0 && operation_result == 0) && operation_result == 0) {
     if (((*(float *)(pointer_ + 0x30) == 0.0) && (*(float *)(pointer_ + 0x34) == 0.0)) &&
        (*(float *)(pointer_ + 0x38) == 0.0)) {
       return 0x1f;
@@ -4463,12 +4463,12 @@ uint64_t FUN_1808924f0(longlong pointer_,longlong pointer_)
     if (((fstack_variable == 0.0) && (*(float *)(pointer_ + 0x40) == 0.0)) && (fvariable == 0.0)) {
       return 0x1f;
     }
-    resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),alstack_variable);
+    resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),astack_variable);
     if ((int)resource_context != 0) {
       return resource_context;
     }
-    if (alstack_variable[0] != 0) {
-      iteration_count = alstack_variable[0] + -8;
+    if (astack_variable[0] != 0) {
+      iteration_count = astack_variable[0] + -8;
     }
     resource_context = *(uint64_t *)(pointer_ + 0x20);
     *(uint64_t *)(iteration_count + 0x38) = *(uint64_t *)(pointer_ + 0x18);
@@ -4489,9 +4489,9 @@ uint64_t FUN_1808924f0(longlong pointer_,longlong pointer_)
     *(uint32_t *)(iteration_count + 100) = resource_context;
     iteration_count = *(longlong *)(pointer_ + 0x98);
     if ((*(int *)(iteration_count + 0x180) != 0) || (*(int *)(iteration_count + 0x184) != 0)) {
-      alstack_variable[0] = 0;
-      FUN_180768b50(alstack_variable);
-      if (alstack_variable[0] == *(longlong *)((longlong)*(int *)(iteration_count + 0x17c) * 8 + 0x180c4f450)) {
+      astack_variable[0] = 0;
+      FUN_180768b50(astack_variable);
+      if (astack_variable[0] == *(longlong *)((longlong)*(int *)(iteration_count + 0x17c) * 8 + 0x180c4f450)) {
         resource_context = FUN_18088dd60(iteration_count,pointer_);
         if ((int)resource_context == 0) {
           return 0;
@@ -4511,11 +4511,11 @@ uint64_t FUN_1808924f0(longlong pointer_,longlong pointer_)
  void InitializeConditionVariable(longlong pointer_,longlong pointer_)
 void InitializeConditionVariable(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   long long ustack_variable;
-  opointer_ = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10));
-  if (opointer_ == 0) {
+  operation_result = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10));
+  if (operation_result == 0) {
     if (ustack_variable == 0) {
       iteration_count = 0;
     }
@@ -4533,27 +4533,27 @@ uint64_t FUN_180892780(longlong pointer_,longlong pointer_)
   longlong iteration_count;
   long long resource_context;
   float fvariable;
-  longlong lstack_variable;
-  longlong alstack_variable [2];
-  lstack_variable = CONCAT44(lstack_variable._4_4_,*(uint *)(pointer_ + 0x20));
+  longlong stack_variable;
+  longlong astack_variable [2];
+  stack_variable = CONCAT44(stack_variable._4_4_,*(uint *)(pointer_ + 0x20));
   if ((*(uint *)(pointer_ + 0x20) & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),alstack_variable);
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),astack_variable);
   if ((int)resource_context == 0) {
-    if (alstack_variable[0] == 0) {
-      alstack_variable[0] = 0;
+    if (astack_variable[0] == 0) {
+      astack_variable[0] = 0;
     }
     else {
-      alstack_variable[0] = alstack_variable[0] + -8;
+      astack_variable[0] = astack_variable[0] + -8;
     }
-    lstack_variable = 0;
-    resource_context = FUN_1808681d0(alstack_variable[0],pointer_ + 0x18,&lstack_variable);
+    stack_variable = 0;
+    resource_context = FUN_1808681d0(astack_variable[0],pointer_ + 0x18,&stack_variable);
     if ((int)resource_context == 0) {
-      if (lstack_variable == 0) {
+      if (stack_variable == 0) {
         return 0x4a;
       }
-      iteration_count = *(longlong *)(lstack_variable + 0x10);
+      iteration_count = *(longlong *)(stack_variable + 0x10);
       if (iteration_count == 0) {
         return 0x1e;
       }
@@ -4567,7 +4567,7 @@ uint64_t FUN_180892780(longlong pointer_,longlong pointer_)
         fvariable = fvariable;
       }
       *(float *)(pointer_ + 0x20) = fvariable;
-      *(float *)(lstack_variable + 4) = fvariable;
+      *(float *)(stack_variable + 4) = fvariable;
       FUN_18088d720(*(uint64_t *)(pointer_ + 0x98),pointer_);
     }
   }
@@ -4578,23 +4578,23 @@ uint64_t FUN_180892880(longlong pointer_,longlong pointer_)
   float fvariable;
   longlong iteration_count;
   long long resource_context;
-  longlong lstack_variable;
-  longlong alstack_variable [2];
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),alstack_variable);
+  longlong stack_variable;
+  longlong astack_variable [2];
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),astack_variable);
   if ((int)resource_context == 0) {
-    if (alstack_variable[0] == 0) {
-      alstack_variable[0] = 0;
+    if (astack_variable[0] == 0) {
+      astack_variable[0] = 0;
     }
     else {
-      alstack_variable[0] = alstack_variable[0] + -8;
+      astack_variable[0] = astack_variable[0] + -8;
     }
-    lstack_variable = 0;
-    resource_context = FUN_1808681d0(alstack_variable[0],pointer_ + 0x18,&lstack_variable);
+    stack_variable = 0;
+    resource_context = FUN_1808681d0(astack_variable[0],pointer_ + 0x18,&stack_variable);
     if ((int)resource_context == 0) {
-      if (lstack_variable == 0) {
+      if (stack_variable == 0) {
         return 0x4a;
       }
-      iteration_count = *(longlong *)(lstack_variable + 0x10);
+      iteration_count = *(longlong *)(stack_variable + 0x10);
       if (iteration_count == 0) {
         return 0x1e;
       }
@@ -4607,7 +4607,7 @@ uint64_t FUN_180892880(longlong pointer_,longlong pointer_)
         if ((*(float *)(iteration_count + 0x38) <= fvariable) &&
            (fvariable < *(float *)(iteration_count + 0x3c) || fvariable == *(float *)(iteration_count + 0x3c))) {
           resource_context = *(uint64_t *)(pointer_ + 0x98);
-          *(float *)(lstack_variable + 4) = fvariable;
+          *(float *)(stack_variable + 4) = fvariable;
           FUN_18088d720(resource_context,pointer_);
         }
         resource_context = 0x1c;
@@ -4739,19 +4739,19 @@ uint64_t FUN_180892990(longlong pointer_,longlong pointer_)
   longlong iteration_count;
   float fvariable;
   uint austack_variable [2];
-  longlong lstack_variable;
+  longlong stack_variable;
   austack_variable[0] = *(uint *)(pointer_ + 0x18);
   if ((austack_variable[0] & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
   if (pointer_ + 0x28 != 0) {
-    resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+    resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
     if ((int)resource_context != 0) {
       return resource_context;
     }
-    iteration_count = lstack_variable;
-    if (lstack_variable != 0) {
-      iteration_count = lstack_variable + -8;
+    iteration_count = stack_variable;
+    if (stack_variable != 0) {
+      iteration_count = stack_variable + -8;
     }
     iteration_count = *(longlong *)(iteration_count + 0x18);
     if (iteration_count == 0) {
@@ -4789,15 +4789,15 @@ uint64_t FUN_180892ac0(longlong pointer_,longlong pointer_)
   longlong iteration_count;
   longlong iteration_count;
   int aistack_variable [2];
-  longlong lstack_variable;
+  longlong stack_variable;
   if (pointer_ + 0x28 != 0) {
-    resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+    resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
     if ((int)resource_context != 0) {
       return resource_context;
     }
-    iteration_count = lstack_variable;
-    if (lstack_variable != 0) {
-      iteration_count = lstack_variable + -8;
+    iteration_count = stack_variable;
+    if (stack_variable != 0) {
+      iteration_count = stack_variable + -8;
     }
     iteration_count = *(longlong *)(iteration_count + 0x18);
     if (iteration_count == 0) {
@@ -4832,30 +4832,30 @@ uint64_t FUN_180892ac0(longlong pointer_,longlong pointer_)
 uint64_t FUN_180892bd0(longlong pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   float fvariable;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   long long resource_context;
   longlong iteration_count;
   long long unaff_RDI;
   float fvariable;
-  longlong lstack_variable;
-  lstack_variable = CONCAT44(lstack_variable._4_4_,*(uint *)(pointer_ + 0x20));
+  longlong stack_variable;
+  stack_variable = CONCAT44(stack_variable._4_4_,*(uint *)(pointer_ + 0x20));
   if ((*(uint *)(pointer_ + 0x20) & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context != 0) {
     return resource_context;
   }
-  iteration_count = lstack_variable;
-  if (lstack_variable != 0) {
-    iteration_count = lstack_variable + -8;
+  iteration_count = stack_variable;
+  if (stack_variable != 0) {
+    iteration_count = stack_variable + -8;
   }
-  opointer_ = *(int *)(pointer_ + 0x18);
-  if ((opointer_ < 0) || (*(int *)(iteration_count + 0x28) <= opointer_)) {
+  operation_result = *(int *)(pointer_ + 0x18);
+  if ((operation_result < 0) || (*(int *)(iteration_count + 0x28) <= operation_result)) {
     return 0x1f;
   }
-  iteration_count = *(longlong *)(iteration_count + 0x20) + (longlong)opointer_ * 0x18;
+  iteration_count = *(longlong *)(iteration_count + 0x20) + (longlong)operation_result * 0x18;
   iteration_count = *(longlong *)(iteration_count + 0x10);
   if (iteration_count == 0) {
     return 0x1e;
@@ -4875,9 +4875,9 @@ uint64_t FUN_180892bd0(longlong pointer_,longlong pointer_,uint64_t pointer_,uin
     }
     iteration_count = *(longlong *)(pointer_ + 0x98);
     if ((*(int *)(iteration_count + 0x180) != 0) || (*(int *)(iteration_count + 0x184) != 0)) {
-      lstack_variable = 0;
-      FUN_180768b50(&lstack_variable,pointer_,pointer_,pointer_,unaff_RDI);
-      if (lstack_variable == *(longlong *)((longlong)*(int *)(iteration_count + 0x17c) * 8 + 0x180c4f450)) {
+      stack_variable = 0;
+      FUN_180768b50(&stack_variable,pointer_,pointer_,pointer_,unaff_RDI);
+      if (stack_variable == *(longlong *)((longlong)*(int *)(iteration_count + 0x17c) * 8 + 0x180c4f450)) {
         resource_context = FUN_18088dd60(iteration_count,pointer_);
         if ((int)resource_context == 0) {
           return 0;
@@ -4896,8 +4896,8 @@ uint64_t FUN_180892bd0(longlong pointer_,longlong pointer_,uint64_t pointer_,uin
 }
 uint64_t FUN_180892cc0(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   long long resource_context;
   float *pointer_;
   longlong iteration_count;
@@ -4918,22 +4918,22 @@ uint64_t FUN_180892cc0(longlong pointer_,longlong pointer_)
   if (CONCAT44(uStackX_c,fstack_variable) == 0) {
     resource_context = resource_context;
   }
-  opointer_ = *(int *)(resource_context + 0x28);
+  operation_result = *(int *)(resource_context + 0x28);
   pointer_ = (float *)(pointer_ + 0x20 + (longlong)*(int *)(pointer_ + 0x18) * 4);
   if (0 < *(int *)(pointer_ + 0x18)) {
     pointer_ = pointer_;
     resource_context = resource_context;
     do {
-      opointer_ = *(int *)(((pointer_ + 0x20) - (longlong)pointer_) + (longlong)pointer_);
-      if (opointer_ != -1) {
+      operation_result = *(int *)(((pointer_ + 0x20) - (longlong)pointer_) + (longlong)pointer_);
+      if (operation_result != -1) {
         fstack_variable = *pointer_;
         if (((uint)fstack_variable & 0x7f800000) == 0x7f800000) {
           return 0x1d;
         }
-        if ((opointer_ < 0) || (opointer_ <= opointer_)) {
+        if ((operation_result < 0) || (operation_result <= operation_result)) {
           return 0x1f;
         }
-        iteration_count = *(longlong *)(resource_context + 0x20) + (longlong)opointer_ * 0x18;
+        iteration_count = *(longlong *)(resource_context + 0x20) + (longlong)operation_result * 0x18;
         if (iteration_count == 0) {
           return 0x1c;
         }
@@ -4958,9 +4958,9 @@ uint64_t FUN_180892cc0(longlong pointer_,longlong pointer_)
     if (0 < *(int *)(pointer_ + 0x18)) {
       iteration_count = (pointer_ + 0x20) - (longlong)pointer_;
       do {
-        opointer_ = *(int *)((longlong)pointer_ + iteration_count);
-        if (opointer_ != -1) {
-          *(float *)(*(longlong *)(resource_context + 0x20) + 4 + (longlong)opointer_ * 0x18) = *pointer_;
+        operation_result = *(int *)((longlong)pointer_ + iteration_count);
+        if (operation_result != -1) {
+          *(float *)(*(longlong *)(resource_context + 0x20) + 4 + (longlong)operation_result * 0x18) = *pointer_;
         }
         resource_context = (int)resource_context + 1;
         resource_context = (ulonglong)resource_context;
@@ -4973,8 +4973,8 @@ uint64_t FUN_180892cc0(longlong pointer_,longlong pointer_)
 uint64_t FUN_180892ceb(void)
 {
   float fvariable;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   longlong context_pointer_;
   float *pointer_;
   longlong resource_pointer_;
@@ -4989,22 +4989,22 @@ uint64_t FUN_180892ceb(void)
   if (context_pointer_ == 0) {
     resource_context = (ulonglong)in_R9D;
   }
-  opointer_ = *(int *)(resource_context + 0x28);
+  operation_result = *(int *)(resource_context + 0x28);
   pointer_ = (float *)(resource_pointer_ + 0x20 + (longlong)*(int *)(resource_pointer_ + 0x18) * 4);
   if (0 < *(int *)(resource_pointer_ + 0x18)) {
     pointer_ = pointer_;
     resource_context = in_R9D;
     do {
-      opointer_ = *(int *)(((resource_pointer_ + 0x20) - (longlong)pointer_) + (longlong)pointer_);
-      if (opointer_ != -1) {
+      operation_result = *(int *)(((resource_pointer_ + 0x20) - (longlong)pointer_) + (longlong)pointer_);
+      if (operation_result != -1) {
         fvariable = *pointer_;
         if (((uint)fvariable & 0x7f800000) == 0x7f800000) {
           return 0x1d;
         }
-        if ((opointer_ < 0) || (opointer_ <= opointer_)) {
+        if ((operation_result < 0) || (operation_result <= operation_result)) {
           return 0x1f;
         }
-        iteration_count = *(longlong *)(resource_context + 0x20) + (longlong)opointer_ * 0x18;
+        iteration_count = *(longlong *)(resource_context + 0x20) + (longlong)operation_result * 0x18;
         if (iteration_count == 0) {
           return 0x1c;
         }
@@ -5028,9 +5028,9 @@ uint64_t FUN_180892ceb(void)
     if (0 < *(int *)(resource_pointer_ + 0x18)) {
       iteration_count = (resource_pointer_ + 0x20) - (longlong)pointer_;
       do {
-        opointer_ = *(int *)((longlong)pointer_ + iteration_count);
-        if (opointer_ != -1) {
-          *(float *)(*(longlong *)(resource_context + 0x20) + 4 + (longlong)opointer_ * 0x18) = *pointer_;
+        operation_result = *(int *)((longlong)pointer_ + iteration_count);
+        if (operation_result != -1) {
+          *(float *)(*(longlong *)(resource_context + 0x20) + 4 + (longlong)operation_result * 0x18) = *pointer_;
         }
         in_R9D = in_R9D + 1;
         pointer_ = pointer_ + 1;
@@ -5052,7 +5052,7 @@ uint64_t FUN_180892e35(void)
  void Sleepointer_(longlong pointer_,uint64_t pointer_)
 void Sleepointer_(longlong pointer_,uint64_t pointer_)
 {
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   ulonglong resource_context;
   bool bvariable;
@@ -5062,8 +5062,8 @@ void Sleepointer_(longlong pointer_,uint64_t pointer_)
   ulonglong stack_uint_30;
   stack_uint_30 = utility_system_reserved_ ^ (ulonglong)stack_array_58;
   stack_uint_38 = pointer_;
-  opointer_ = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),stack_array_58);
-  if (opointer_ == 0) {
+  operation_result = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),stack_array_58);
+  if (operation_result == 0) {
     bvariable = stack_array_58[0] == 0;
     stack_array_58[0] = stack_array_58[0] + -8;
     if (bvariable) {
@@ -5082,11 +5082,11 @@ void Sleepointer_(longlong pointer_,uint64_t pointer_)
  void InitializeSRWLock(longlong pointer_,longlong pointer_)
 void InitializeSRWLock(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   long long ustack_variable;
-  opointer_ = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10));
-  if (opointer_ == 0) {
+  operation_result = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10));
+  if (operation_result == 0) {
     if (ustack_variable == 0) {
       iteration_count = 0;
     }
@@ -5104,31 +5104,31 @@ uint64_t FUN_1808930e0(longlong pointer_,longlong pointer_,uint64_t pointer_,uin
   long long resource_context;
   longlong iteration_count;
   long long unaff_RDI;
-  longlong lstack_variable;
+  longlong stack_variable;
   fvariable = *(float *)(pointer_ + 0x18);
-  lstack_variable = CONCAT44(lstack_variable._4_4_,fvariable);
+  stack_variable = CONCAT44(stack_variable._4_4_,fvariable);
   if (((uint)fvariable & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
   if ((fvariable < 0.0) || (3.4028235e+38 <= fvariable)) {
     return 0x1f;
   }
-  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
+  resource_context = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
   if ((int)resource_context != 0) {
     return resource_context;
   }
-  if (lstack_variable == 0) {
+  if (stack_variable == 0) {
     iteration_count = 0;
   }
   else {
-    iteration_count = lstack_variable + -8;
+    iteration_count = stack_variable + -8;
   }
   *(uint32_t *)(iteration_count + 0x90) = *(uint32_t *)(pointer_ + 0x18);
   iteration_count = *(longlong *)(pointer_ + 0x98);
   if ((*(int *)(iteration_count + 0x180) != 0) || (*(int *)(iteration_count + 0x184) != 0)) {
-    lstack_variable = 0;
-    FUN_180768b50(&lstack_variable,pointer_,pointer_,pointer_,unaff_RDI);
-    if (lstack_variable == *(longlong *)((longlong)*(int *)(iteration_count + 0x17c) * 8 + 0x180c4f450)) {
+    stack_variable = 0;
+    FUN_180768b50(&stack_variable,pointer_,pointer_,pointer_,unaff_RDI);
+    if (stack_variable == *(longlong *)((longlong)*(int *)(iteration_count + 0x17c) * 8 + 0x180c4f450)) {
       resource_context = FUN_18088dd60(iteration_count,pointer_);
       if ((int)resource_context == 0) {
         return 0;
@@ -5148,9 +5148,9 @@ uint64_t FUN_180893190(longlong pointer_,longlong pointer_)
   float fvariable;
   long long resource_context;
   longlong iteration_count;
-  longlong lstack_variable;
+  longlong stack_variable;
   fvariable = *(float *)(pointer_ + 0x1c);
-  lstack_variable = CONCAT44(lstack_variable._4_4_,fvariable);
+  stack_variable = CONCAT44(stack_variable._4_4_,fvariable);
   if (((uint)fvariable & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
@@ -5180,19 +5180,19 @@ code_r0x00018089322c:
   if ((int)resource_context != 0) {
     return resource_context;
   }
-  if (lstack_variable == 0) {
+  if (stack_variable == 0) {
     iteration_count = 0;
   }
   else {
-    iteration_count = lstack_variable + -8;
+    iteration_count = stack_variable + -8;
   }
   *(uint32_t *)(iteration_count + 0xa4 + (longlong)*(int *)(pointer_ + 0x18) * 4) =
        *(uint32_t *)(pointer_ + 0x1c);
   iteration_count = *(longlong *)(pointer_ + 0x98);
   if ((*(int *)(iteration_count + 0x180) != 0) || (*(int *)(iteration_count + 0x184) != 0)) {
-    lstack_variable = 0;
-    FUN_180768b50(&lstack_variable);
-    if (lstack_variable == *(longlong *)((longlong)*(int *)(iteration_count + 0x17c) * 8 + 0x180c4f450)) {
+    stack_variable = 0;
+    FUN_180768b50(&stack_variable);
+    if (stack_variable == *(longlong *)((longlong)*(int *)(iteration_count + 0x17c) * 8 + 0x180c4f450)) {
       resource_context = FUN_18088dd60(iteration_count,pointer_);
       if ((int)resource_context == 0) {
         return 0;
@@ -5211,11 +5211,11 @@ uint64_t FUN_180893290(longlong pointer_,longlong pointer_)
 {
   long long resource_context;
   longlong iteration_count;
-  longlong lstack_variable;
+  longlong stack_variable;
   if (3 < *(uint *)(pointer_ + 0x18)) {
     return 0x1f;
   }
-  lstack_variable = CONCAT44(lstack_variable._4_4_,*(uint *)(pointer_ + 0x1c));
+  stack_variable = CONCAT44(stack_variable._4_4_,*(uint *)(pointer_ + 0x1c));
   if ((*(uint *)(pointer_ + 0x1c) & 0x7f800000) == 0x7f800000) {
     return 0x1d;
   }
@@ -5223,19 +5223,19 @@ uint64_t FUN_180893290(longlong pointer_,longlong pointer_)
   if ((int)resource_context != 0) {
     return resource_context;
   }
-  if (lstack_variable == 0) {
+  if (stack_variable == 0) {
     iteration_count = 0;
   }
   else {
-    iteration_count = lstack_variable + -8;
+    iteration_count = stack_variable + -8;
   }
   *(uint32_t *)(iteration_count + 0x94 + (longlong)*(int *)(pointer_ + 0x18) * 4) =
        *(uint32_t *)(pointer_ + 0x1c);
   iteration_count = *(longlong *)(pointer_ + 0x98);
   if ((*(int *)(iteration_count + 0x180) != 0) || (*(int *)(iteration_count + 0x184) != 0)) {
-    lstack_variable = 0;
-    FUN_180768b50(&lstack_variable);
-    if (lstack_variable == *(longlong *)((longlong)*(int *)(iteration_count + 0x17c) * 8 + 0x180c4f450)) {
+    stack_variable = 0;
+    FUN_180768b50(&stack_variable);
+    if (stack_variable == *(longlong *)((longlong)*(int *)(iteration_count + 0x17c) * 8 + 0x180c4f450)) {
       resource_context = FUN_18088dd60(iteration_count,pointer_);
       if ((int)resource_context == 0) {
         return 0;
@@ -5276,15 +5276,15 @@ uint64_t FUN_180893330(longlong pointer_,longlong pointer_)
  void AcquireSRWLockExclusive(longlong pointer_,longlong pointer_)
 void AcquireSRWLockExclusive(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
-  longlong lstack_variable;
-  opointer_ = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
-  if (opointer_ == 0) {
-    if (lstack_variable != 0) {
-      lstack_variable = lstack_variable + -8;
+  int operation_result;;
+  longlong stack_variable;
+  operation_result = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
+  if (operation_result == 0) {
+    if (stack_variable != 0) {
+      stack_variable = stack_variable + -8;
     }
-    *(int *)(lstack_variable + 0x84) = *(int *)(lstack_variable + 0x84) + 1;
-    *(uint8_t *)(lstack_variable + 0xbd) = 1;
+    *(int *)(stack_variable + 0x84) = *(int *)(stack_variable + 0x84) + 1;
+    *(uint8_t *)(stack_variable + 0xbd) = 1;
     FUN_18088d720(*(uint64_t *)(pointer_ + 0x98),pointer_);
   }
   return;
@@ -5292,15 +5292,15 @@ void AcquireSRWLockExclusive(longlong pointer_,longlong pointer_)
  void ReleaseSRWLockExclusive(longlong pointer_,longlong pointer_)
 void ReleaseSRWLockExclusive(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
-  longlong lstack_variable;
-  opointer_ = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
-  if (opointer_ == 0) {
-    if (lstack_variable != 0) {
-      lstack_variable = lstack_variable + -8;
+  int operation_result;;
+  longlong stack_variable;
+  operation_result = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
+  if (operation_result == 0) {
+    if (stack_variable != 0) {
+      stack_variable = stack_variable + -8;
     }
-    *(int *)(lstack_variable + 0x84) = *(int *)(lstack_variable + 0x84) + 1;
-    *(uint8_t *)(lstack_variable + 0xbd) = 0;
+    *(int *)(stack_variable + 0x84) = *(int *)(stack_variable + 0x84) + 1;
+    *(uint8_t *)(stack_variable + 0xbd) = 0;
     FUN_18088d720(*(uint64_t *)(pointer_ + 0x98),pointer_);
   }
   return;
@@ -5405,12 +5405,12 @@ uint64_t FUN_1808935c0(longlong pointer_,longlong pointer_)
  void AcquireSRWLockShared(longlong pointer_,longlong pointer_)
 void AcquireSRWLockShared(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
+  int operation_result;;
   long long ustack_variable;
-  opointer_ = InitializeAsyncIO(pointer_,pointer_ + 0x10,&ustack_variable);
-  if (opointer_ == 0) {
-    opointer_ = func_0x00018088c500(ustack_variable,pointer_ + 0x20);
-    if (opointer_ == 0) {
+  operation_result = InitializeAsyncIO(pointer_,pointer_ + 0x10,&ustack_variable);
+  if (operation_result == 0) {
+    operation_result = func_0x00018088c500(ustack_variable,pointer_ + 0x20);
+    if (operation_result == 0) {
       FUN_18088d720(*(uint64_t *)(pointer_ + 0x98),pointer_);
     }
   }
@@ -5419,12 +5419,12 @@ void AcquireSRWLockShared(longlong pointer_,longlong pointer_)
  void ReleaseSRWLockShared(longlong pointer_,longlong pointer_)
 void ReleaseSRWLockShared(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
-  longlong lstack_variable;
-  opointer_ = QueueAsyncIO(pointer_,pointer_ + 0x10,&lstack_variable);
-  if (opointer_ == 0) {
-    opointer_ = func_0x00018088c500(*(uint64_t *)(lstack_variable + 0xd0),pointer_ + 0x20);
-    if (opointer_ == 0) {
+  int operation_result;;
+  longlong stack_variable;
+  operation_result = QueueAsyncIO(pointer_,pointer_ + 0x10,&stack_variable);
+  if (operation_result == 0) {
+    operation_result = func_0x00018088c500(*(uint64_t *)(stack_variable + 0xd0),pointer_ + 0x20);
+    if (operation_result == 0) {
       FUN_18088d7c0(*(uint64_t *)(pointer_ + 0x98),pointer_);
     }
   }
@@ -5433,12 +5433,12 @@ void ReleaseSRWLockShared(longlong pointer_,longlong pointer_)
  void TryAcquireSRWLockExclusive(longlong pointer_,longlong pointer_)
 void TryAcquireSRWLockExclusive(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
+  int operation_result;;
   long long ustack_variable;
-  opointer_ = PostCompointer_(pointer_,pointer_ + 0x10,&ustack_variable);
-  if (opointer_ == 0) {
-    opointer_ = func_0x00018088c500(ustack_variable,pointer_ + 0x20);
-    if (opointer_ == 0) {
+  operation_result = PostCompointer_(pointer_,pointer_ + 0x10,&ustack_variable);
+  if (operation_result == 0) {
+    operation_result = func_0x00018088c500(ustack_variable,pointer_ + 0x20);
+    if (operation_result == 0) {
       FUN_18088d720(*(uint64_t *)(pointer_ + 0x98),pointer_);
     }
   }
@@ -5448,23 +5448,23 @@ void TryAcquireSRWLockExclusive(longlong pointer_,longlong pointer_)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 int FUN_180893760(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong lstack_variable;
+  longlong stack_variable;
   if ((((*(longlong *)(pointer_ + 0x28) != 0) && (*(longlong *)(pointer_ + 0x30) != 0)) &&
       (*(longlong *)(pointer_ + 0x38) != 0)) && (*(longlong *)(pointer_ + 0x40) != 0)) {
     if (*(int *)(pointer_ + 0x20) < 1) {
-      opointer_ = FUN_1808de900(pointer_,pointer_ + 0x4c);
-      if ((opointer_ == 0) &&
-         (opointer_ = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x4c),&lstack_variable), opointer_ == 0)) {
-        if (*(int *)(lstack_variable + 0x30) == 1) {
-          *(uint32_t *)(lstack_variable + 0x30) = 2;
+      operation_result = FUN_1808de900(pointer_,pointer_ + 0x4c);
+      if ((operation_result == 0) &&
+         (operation_result = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x4c),&stack_variable), operation_result == 0)) {
+        if (*(int *)(stack_variable + 0x30) == 1) {
+          *(uint32_t *)(stack_variable + 0x30) = 2;
         }
         FUN_18088d720(*(uint64_t *)(pointer_ + 0x98),pointer_);
       }
     }
     else if (*(longlong *)(pointer_ + 0x18) == 0) {
-      opointer_ = 0x1f;
+      operation_result = 0x1f;
     }
     else {
       iteration_count = FUN_180741e10(*(uint64_t *)(utility_system_reserved_ + 0x1a0),*(int *)(pointer_ + 0x20),
@@ -5472,9 +5472,9 @@ int FUN_180893760(longlong pointer_,longlong pointer_)
       if (iteration_count != 0) {
         memcpointer_(iteration_count,*(uint64_t *)(pointer_ + 0x18),(longlong)*(int *)(pointer_ + 0x20));
       }
-      opointer_ = 0x26;
+      operation_result = 0x26;
     }
-    return opointer_;
+    return operation_result;
   }
   return 0x1f;
 }
@@ -5482,15 +5482,15 @@ int FUN_180893760(longlong pointer_,longlong pointer_)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 int FUN_18089379d(longlong pointer_,uint64_t pointer_)
 {
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   longlong unaff_RDI;
   longlong unaff_R15;
   longlong stack_pointer_;
   if ((int)pointer_ < 1) {
-    opointer_ = FUN_1808de900();
-    if ((opointer_ == 0) &&
-       (opointer_ = utility_system_function_primary(*(uint32_t *)(unaff_RDI + 0x4c),&stack_buffer), opointer_ == 0)
+    operation_result = FUN_1808de900();
+    if ((operation_result == 0) &&
+       (operation_result = utility_system_function_primary(*(uint32_t *)(unaff_RDI + 0x4c),&stack_buffer), operation_result == 0)
        ) {
       if (*(int *)(stack_pointer_ + 0x30) == 1) {
         *(uint32_t *)(stack_pointer_ + 0x30) = 2;
@@ -5499,16 +5499,16 @@ int FUN_18089379d(longlong pointer_,uint64_t pointer_)
     }
   }
   else if (*(longlong *)(pointer_ + 0x18) == 0) {
-    opointer_ = 0x1f;
+    operation_result = 0x1f;
   }
   else {
     iteration_count = FUN_180741e10(*(uint64_t *)(utility_system_reserved_ + 0x1a0),pointer_,&utility_system_reserved_,0x315,0);
     if (iteration_count != 0) {
       memcpointer_(iteration_count,*(uint64_t *)(unaff_RDI + 0x18),(longlong)*(int *)(unaff_RDI + 0x20));
     }
-    opointer_ = 0x26;
+    operation_result = 0x26;
   }
-  return opointer_;
+  return operation_result;
 }
 uint64_t FUN_1808938ab(void)
 {
@@ -5517,14 +5517,14 @@ uint64_t FUN_1808938ab(void)
  void TryAcquireSRWLockShared(longlong pointer_,longlong pointer_)
 void TryAcquireSRWLockShared(longlong pointer_,longlong pointer_)
 {
-  int opointer_;
-  longlong lstack_variable;
-  opointer_ = FUN_1808de900(pointer_,pointer_ + 0x10);
-  if (opointer_ == 0) {
-    opointer_ = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&lstack_variable);
-    if (opointer_ == 0) {
-      if (*(int *)(lstack_variable + 0x30) == 1) {
-        *(uint32_t *)(lstack_variable + 0x30) = 2;
+  int operation_result;;
+  longlong stack_variable;
+  operation_result = FUN_1808de900(pointer_,pointer_ + 0x10);
+  if (operation_result == 0) {
+    operation_result = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x10),&stack_variable);
+    if (operation_result == 0) {
+      if (*(int *)(stack_variable + 0x30) == 1) {
+        *(uint32_t *)(stack_variable + 0x30) = 2;
       }
       FUN_18088d720(*(uint64_t *)(pointer_ + 0x98),pointer_);
     }
@@ -5536,9 +5536,9 @@ void TryAcquireSRWLockShared(longlong pointer_,longlong pointer_)
 int FUN_180893930(longlong pointer_,longlong pointer_)
 {
   uint resource_context;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong lstack_variable;
+  longlong stack_variable;
   resource_context = *(uint *)(pointer_ + 0x1c);
   if ((((resource_context != 1) || ((*(byte *)(pointer_ + 0x10) & 0x1f) == 0)) && (0 < *(int *)(pointer_ + 0x18))
       ) && (resource_context < 2)) {
@@ -5548,19 +5548,19 @@ int FUN_180893930(longlong pointer_,longlong pointer_)
       if (iteration_count != 0) {
         memcpointer_(iteration_count,*(uint64_t *)(pointer_ + 0x10),(longlong)*(int *)(pointer_ + 0x18));
       }
-      opointer_ = 0x26;
+      operation_result = 0x26;
     }
     else {
-      opointer_ = FUN_1808de900(pointer_,pointer_ + 0x24);
-      if ((opointer_ == 0) &&
-         (opointer_ = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x24),&lstack_variable), opointer_ == 0)) {
-        if (*(int *)(lstack_variable + 0x30) == 1) {
-          *(uint32_t *)(lstack_variable + 0x30) = 2;
+      operation_result = FUN_1808de900(pointer_,pointer_ + 0x24);
+      if ((operation_result == 0) &&
+         (operation_result = utility_system_function_primary(*(uint32_t *)(pointer_ + 0x24),&stack_variable), operation_result == 0)) {
+        if (*(int *)(stack_variable + 0x30) == 1) {
+          *(uint32_t *)(stack_variable + 0x30) = 2;
         }
         FUN_18088d720(*(uint64_t *)(pointer_ + 0x98),pointer_);
       }
     }
-    return opointer_;
+    return operation_result;
   }
   return 0x1f;
 }
@@ -5569,7 +5569,7 @@ int FUN_180893930(longlong pointer_,longlong pointer_)
 int FUN_180893964(uint64_t pointer_,uint64_t pointer_)
 {
   int in_EAX;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   longlong unaff_RDI;
   longlong unaff_R15;
@@ -5579,12 +5579,12 @@ int FUN_180893964(uint64_t pointer_,uint64_t pointer_)
     if (iteration_count != 0) {
       memcpointer_(iteration_count,*(uint64_t *)(unaff_RDI + 0x10),(longlong)*(int *)(unaff_RDI + 0x18));
     }
-    opointer_ = 0x26;
+    operation_result = 0x26;
   }
   else {
-    opointer_ = FUN_1808de900();
-    if ((opointer_ == 0) &&
-       (opointer_ = utility_system_function_primary(*(uint32_t *)(unaff_RDI + 0x24),&stack_buffer), opointer_ == 0)
+    operation_result = FUN_1808de900();
+    if ((operation_result == 0) &&
+       (operation_result = utility_system_function_primary(*(uint32_t *)(unaff_RDI + 0x24),&stack_buffer), operation_result == 0)
        ) {
       if (*(int *)(stack_pointer_ + 0x30) == 1) {
         *(uint32_t *)(stack_pointer_ + 0x30) = 2;
@@ -5592,7 +5592,7 @@ int FUN_180893964(uint64_t pointer_,uint64_t pointer_)
       FUN_18088d720(*(uint64_t *)(unaff_R15 + 0x98));
     }
   }
-  return opointer_;
+  return operation_result;
 }
 uint64_t FUN_180893a63(void)
 {
@@ -5664,7 +5664,7 @@ void InitializeBarrier(void)
 {
   float fvariable;
   uint32_t in_EAX;
-  int opointer_;
+  int operation_result;;
   uint32_t in_register_00000004;
   longlong resource_pointer_;
   longlong unaff_RSI;
@@ -5677,8 +5677,8 @@ void InitializeBarrier(void)
     fvariable = fvariable;
   }
   *(float *)(resource_pointer_ + 0x18) = fvariable;
-  opointer_ = func_0x000180867960(unaff_RSI + 0x60,stack_pointer_,fvariable);
-  if (opointer_ == 0) {
+  operation_result = func_0x000180867960(unaff_RSI + 0x60,stack_pointer_,fvariable);
+  if (operation_result == 0) {
     FUN_18088d720(*(uint64_t *)(unaff_RSI + 0x98));
   }
   return;
@@ -5841,7 +5841,7 @@ void LeaveBarrier(void)
   float fvariable;
   uint64_t *pointer_;
   uint32_t in_EAX;
-  int opointer_;
+  int operation_result;;
   uint32_t in_register_00000004;
   longlong resource_pointer_;
   longlong unaff_RDI;
@@ -5854,8 +5854,8 @@ void LeaveBarrier(void)
     fvariable = fvariable;
   }
   *(float *)(resource_pointer_ + 0x10) = fvariable;
-  opointer_ = func_0x000180867960(unaff_RDI + 0x60,stack_pointer_,fvariable);
-  if (opointer_ == 0) {
+  operation_result = func_0x000180867960(unaff_RDI + 0x60,stack_pointer_,fvariable);
+  if (operation_result == 0) {
     pointer_ = (uint64_t *)func_0x000180867660(unaff_RDI + 0x60,&stack_buffer,stack_pointer_);
     *(uint64_t *)(resource_pointer_ + 0x18) = *pointer_;
     FUN_18088d720(*(uint64_t *)(unaff_RDI + 0x98));
@@ -5999,116 +5999,116 @@ uint64_t FUN_180894300(longlong pointer_,longlong pointer_)
 }
 int FUN_180894380(longlong pointer_,longlong pointer_,int pointer_)
 {
-  int opointer_;
-  int opointer_;
-  opointer_ = func_0x00018074b800(pointer_,pointer_,*(uint32_t *)(pointer_ + 0x10));
-  opointer_ = FUN_18074b880(pointer_ + opointer_,pointer_ - opointer_,&utility_system_reserved_);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = func_0x00018074b7d0(opointer_ + pointer_,pointer_ - opointer_,*(uint32_t *)(pointer_ + 0x18));
-  opointer_ = opointer_ + opointer_;
-  opointer_ = FUN_18074b880(opointer_ + pointer_,pointer_ - opointer_,&utility_system_reserved_);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = FUN_18074b970(opointer_ + pointer_,pointer_ - opointer_,pointer_ + 0x20,
+  int operation_result;;
+  int operation_result;;
+  operation_result = func_0x00018074b800(pointer_,pointer_,*(uint32_t *)(pointer_ + 0x10));
+  operation_result = FUN_18074b880(pointer_ + operation_result,pointer_ - operation_result,&utility_system_reserved_);
+  operation_result = operation_result + operation_result;
+  operation_result = func_0x00018074b7d0(operation_result + pointer_,pointer_ - operation_result,*(uint32_t *)(pointer_ + 0x18));
+  operation_result = operation_result + operation_result;
+  operation_result = FUN_18074b880(operation_result + pointer_,pointer_ - operation_result,&utility_system_reserved_);
+  operation_result = operation_result + operation_result;
+  operation_result = FUN_18074b970(operation_result + pointer_,pointer_ - operation_result,pointer_ + 0x20,
                         *(uint32_t *)(pointer_ + 0x18));
-  opointer_ = opointer_ + opointer_;
-  opointer_ = FUN_18074b880(opointer_ + pointer_,pointer_ - opointer_,&utility_system_reserved_);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = FUN_18074bb00(opointer_ + pointer_,pointer_ - opointer_,
+  operation_result = operation_result + operation_result;
+  operation_result = FUN_18074b880(operation_result + pointer_,pointer_ - operation_result,&utility_system_reserved_);
+  operation_result = operation_result + operation_result;
+  operation_result = FUN_18074bb00(operation_result + pointer_,pointer_ - operation_result,
                         pointer_ + 0x20 + (longlong)*(int *)(pointer_ + 0x18) * 4);
-  return opointer_ + opointer_;
+  return operation_result + operation_result;
 }
 int FUN_180894460(longlong pointer_,longlong pointer_,int pointer_)
 {
-  int opointer_;
-  int opointer_;
-  opointer_ = func_0x00018074b800(pointer_,pointer_,*(uint32_t *)(pointer_ + 0x10));
-  opointer_ = FUN_18074b880(pointer_ + opointer_,pointer_ - opointer_,&utility_system_reserved_);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = func_0x00018074b7d0(opointer_ + pointer_,pointer_ - opointer_,*(uint32_t *)(pointer_ + 0x18));
-  opointer_ = opointer_ + opointer_;
-  opointer_ = FUN_18074b880(opointer_ + pointer_,pointer_ - opointer_,&utility_system_reserved_);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = FUN_18088ed70(opointer_ + pointer_,pointer_ - opointer_,pointer_ + 0x20,
+  int operation_result;;
+  int operation_result;;
+  operation_result = func_0x00018074b800(pointer_,pointer_,*(uint32_t *)(pointer_ + 0x10));
+  operation_result = FUN_18074b880(pointer_ + operation_result,pointer_ - operation_result,&utility_system_reserved_);
+  operation_result = operation_result + operation_result;
+  operation_result = func_0x00018074b7d0(operation_result + pointer_,pointer_ - operation_result,*(uint32_t *)(pointer_ + 0x18));
+  operation_result = operation_result + operation_result;
+  operation_result = FUN_18074b880(operation_result + pointer_,pointer_ - operation_result,&utility_system_reserved_);
+  operation_result = operation_result + operation_result;
+  operation_result = FUN_18088ed70(operation_result + pointer_,pointer_ - operation_result,pointer_ + 0x20,
                         *(uint32_t *)(pointer_ + 0x18));
-  opointer_ = opointer_ + opointer_;
-  opointer_ = FUN_18074b880(opointer_ + pointer_,pointer_ - opointer_,&utility_system_reserved_);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = FUN_18074bb00(opointer_ + pointer_,pointer_ - opointer_,
+  operation_result = operation_result + operation_result;
+  operation_result = FUN_18074b880(operation_result + pointer_,pointer_ - operation_result,&utility_system_reserved_);
+  operation_result = operation_result + operation_result;
+  operation_result = FUN_18074bb00(operation_result + pointer_,pointer_ - operation_result,
                         pointer_ + 0x20 + (longlong)*(int *)(pointer_ + 0x18) * 8);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = FUN_18074b880(opointer_ + pointer_,pointer_ - opointer_,&utility_system_reserved_);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = FUN_18074be90(opointer_ + pointer_,pointer_ - opointer_,*(uint8_t *)(pointer_ + 0x1c));
-  return opointer_ + opointer_;
+  operation_result = operation_result + operation_result;
+  operation_result = FUN_18074b880(operation_result + pointer_,pointer_ - operation_result,&utility_system_reserved_);
+  operation_result = operation_result + operation_result;
+  operation_result = FUN_18074be90(operation_result + pointer_,pointer_ - operation_result,*(uint8_t *)(pointer_ + 0x1c));
+  return operation_result + operation_result;
 }
 int FUN_180894570(longlong pointer_,longlong pointer_,int pointer_)
 {
-  int opointer_;
-  int opointer_;
-  opointer_ = func_0x00018074b7d0(pointer_,pointer_,*(uint32_t *)(pointer_ + 0x10));
-  opointer_ = FUN_18074b880(pointer_ + opointer_,pointer_ - opointer_,&utility_system_reserved_);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = FUN_18088ed70(opointer_ + pointer_,pointer_ - opointer_,pointer_ + 0x18,
+  int operation_result;;
+  int operation_result;;
+  operation_result = func_0x00018074b7d0(pointer_,pointer_,*(uint32_t *)(pointer_ + 0x10));
+  operation_result = FUN_18074b880(pointer_ + operation_result,pointer_ - operation_result,&utility_system_reserved_);
+  operation_result = operation_result + operation_result;
+  operation_result = FUN_18088ed70(operation_result + pointer_,pointer_ - operation_result,pointer_ + 0x18,
                         *(uint32_t *)(pointer_ + 0x10));
-  opointer_ = opointer_ + opointer_;
-  opointer_ = FUN_18074b880(opointer_ + pointer_,pointer_ - opointer_,&utility_system_reserved_);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = FUN_18074bb00(opointer_ + pointer_,pointer_ - opointer_,
+  operation_result = operation_result + operation_result;
+  operation_result = FUN_18074b880(operation_result + pointer_,pointer_ - operation_result,&utility_system_reserved_);
+  operation_result = operation_result + operation_result;
+  operation_result = FUN_18074bb00(operation_result + pointer_,pointer_ - operation_result,
                         pointer_ + 0x18 + (longlong)*(int *)(pointer_ + 0x10) * 8);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = FUN_18074b880(opointer_ + pointer_,pointer_ - opointer_,&utility_system_reserved_);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = FUN_18074be90(opointer_ + pointer_,pointer_ - opointer_,*(uint8_t *)(pointer_ + 0x14));
-  return opointer_ + opointer_;
+  operation_result = operation_result + operation_result;
+  operation_result = FUN_18074b880(operation_result + pointer_,pointer_ - operation_result,&utility_system_reserved_);
+  operation_result = operation_result + operation_result;
+  operation_result = FUN_18074be90(operation_result + pointer_,pointer_ - operation_result,*(uint8_t *)(pointer_ + 0x14));
+  return operation_result + operation_result;
 }
 int FUN_180894650(longlong *pointer_,longlong pointer_,int pointer_)
 {
-  int opointer_;
-  int opointer_;
-  opointer_ = FUN_18074b880(pointer_,pointer_,&utility_system_reserved_);
-  opointer_ = FUN_18074b880(pointer_ + opointer_,pointer_ - opointer_,&utility_system_reserved_);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = func_0x00018074b7d0(opointer_ + pointer_,pointer_ - opointer_,(int)pointer_[3] * 8 + 0x20);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = FUN_18074b880(opointer_ + pointer_,pointer_ - opointer_,&utility_system_reserved_);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = (**(code **)(*pointer_ + 8))(pointer_,opointer_ + pointer_,pointer_ - opointer_);
-  return opointer_ + opointer_;
+  int operation_result;;
+  int operation_result;;
+  operation_result = FUN_18074b880(pointer_,pointer_,&utility_system_reserved_);
+  operation_result = FUN_18074b880(pointer_ + operation_result,pointer_ - operation_result,&utility_system_reserved_);
+  operation_result = operation_result + operation_result;
+  operation_result = func_0x00018074b7d0(operation_result + pointer_,pointer_ - operation_result,(int)pointer_[3] * 8 + 0x20);
+  operation_result = operation_result + operation_result;
+  operation_result = FUN_18074b880(operation_result + pointer_,pointer_ - operation_result,&utility_system_reserved_);
+  operation_result = operation_result + operation_result;
+  operation_result = (**(code **)(*pointer_ + 8))(pointer_,operation_result + pointer_,pointer_ - operation_result);
+  return operation_result + operation_result;
 }
 int FUN_180894700(longlong *pointer_,longlong pointer_,int pointer_)
 {
-  int opointer_;
-  int opointer_;
-  opointer_ = FUN_18074b880(pointer_,pointer_,&utility_system_reserved_);
-  opointer_ = FUN_18074b880(pointer_ + opointer_,pointer_ - opointer_,&utility_system_reserved_);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = func_0x00018074b7d0(opointer_ + pointer_,pointer_ - opointer_,(int)pointer_[3] * 0xc + 0x20);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = FUN_18074b880(opointer_ + pointer_,pointer_ - opointer_,&utility_system_reserved_);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = (**(code **)(*pointer_ + 8))(pointer_,opointer_ + pointer_,pointer_ - opointer_);
-  return opointer_ + opointer_;
+  int operation_result;;
+  int operation_result;;
+  operation_result = FUN_18074b880(pointer_,pointer_,&utility_system_reserved_);
+  operation_result = FUN_18074b880(pointer_ + operation_result,pointer_ - operation_result,&utility_system_reserved_);
+  operation_result = operation_result + operation_result;
+  operation_result = func_0x00018074b7d0(operation_result + pointer_,pointer_ - operation_result,(int)pointer_[3] * 0xc + 0x20);
+  operation_result = operation_result + operation_result;
+  operation_result = FUN_18074b880(operation_result + pointer_,pointer_ - operation_result,&utility_system_reserved_);
+  operation_result = operation_result + operation_result;
+  operation_result = (**(code **)(*pointer_ + 8))(pointer_,operation_result + pointer_,pointer_ - operation_result);
+  return operation_result + operation_result;
 }
 int FUN_1808947b0(longlong *pointer_,longlong pointer_,int pointer_)
 {
-  int opointer_;
-  int opointer_;
-  opointer_ = FUN_18074b880(pointer_,pointer_,&utility_system_reserved_);
-  opointer_ = FUN_18074b880(pointer_ + opointer_,pointer_ - opointer_,&utility_system_reserved_);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = func_0x00018074b7d0(opointer_ + pointer_,pointer_ - opointer_,((int)pointer_[2] + 2) * 0xc);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = FUN_18074b880(opointer_ + pointer_,pointer_ - opointer_,&utility_system_reserved_);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = (**(code **)(*pointer_ + 8))(pointer_,opointer_ + pointer_,pointer_ - opointer_);
-  return opointer_ + opointer_;
+  int operation_result;;
+  int operation_result;;
+  operation_result = FUN_18074b880(pointer_,pointer_,&utility_system_reserved_);
+  operation_result = FUN_18074b880(pointer_ + operation_result,pointer_ - operation_result,&utility_system_reserved_);
+  operation_result = operation_result + operation_result;
+  operation_result = func_0x00018074b7d0(operation_result + pointer_,pointer_ - operation_result,((int)pointer_[2] + 2) * 0xc);
+  operation_result = operation_result + operation_result;
+  operation_result = FUN_18074b880(operation_result + pointer_,pointer_ - operation_result,&utility_system_reserved_);
+  operation_result = operation_result + operation_result;
+  operation_result = (**(code **)(*pointer_ + 8))(pointer_,operation_result + pointer_,pointer_ - operation_result);
+  return operation_result + operation_result;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
  void InitializeAsyncIO(longlong pointer_,uint32_t *pointer_,longlong *pointer_)
 void InitializeAsyncIO(longlong pointer_,uint32_t *pointer_,longlong *pointer_)
 {
-  longlong *system_pointer;
-  int opointer_;
+  longlong *resource_manager;
+  int operation_result;;
   longlong iteration_count;
   uint8_t stack_buffer_c8 [32];
   uint stack_uint_a8;
@@ -6151,7 +6151,7 @@ void InitializeAsyncIO(longlong pointer_,uint32_t *pointer_,longlong *pointer_)
     }
     if (((*(byte *)(iteration_count + 0xc4) & 1) != 0) &&
        ((lStack_48 = *(longlong *)(iteration_count + 0x68), lStack_48 != 0 ||
-        (opointer_ = FUN_18088c7c0(pointer_,iteration_count,&lStack_48), opointer_ == 0)))) {
+        (operation_result = FUN_18088c7c0(pointer_,iteration_count,&lStack_48), operation_result == 0)))) {
       *pointer_ = lStack_48;
     }
   }
@@ -6172,8 +6172,8 @@ void GetAsyncIOStatus(void)
  void QueueAsyncIO(longlong pointer_,uint32_t *pointer_,longlong *pointer_)
 void QueueAsyncIO(longlong pointer_,uint32_t *pointer_,longlong *pointer_)
 {
-  longlong *system_pointer;
-  int opointer_;
+  longlong *resource_manager;
+  int operation_result;;
   longlong iteration_count;
   uint8_t stack_buffer_b8 [32];
   uint stack_uint_98;
@@ -6214,7 +6214,7 @@ void QueueAsyncIO(longlong pointer_,uint32_t *pointer_,longlong *pointer_)
       FUN_18076b390(stack_buffer_38,0x27,&utility_system_reserved_,stack_uint_48);
     }
     if ((**(int **)(iteration_count + 0xd0) != 0) ||
-       (opointer_ = FUN_18088c060(*(uint32_t *)(pointer_ + 0x18)), opointer_ == 0)) {
+       (operation_result = FUN_18088c060(*(uint32_t *)(pointer_ + 0x18)), operation_result == 0)) {
       *pointer_ = iteration_count;
     }
   }
@@ -6223,7 +6223,7 @@ void QueueAsyncIO(longlong pointer_,uint32_t *pointer_,longlong *pointer_)
  void InitializeCompointer_(ulonglong pointer_)
 void InitializeCompointer_(ulonglong pointer_)
 {
-  int opointer_;
+  int operation_result;;
   longlong context_pointer_;
   longlong iteration_count;
   longlong *unaff_RSI;
@@ -6237,8 +6237,8 @@ void InitializeCompointer_(ulonglong pointer_)
                   uStack0000000000000070._4_2_);
   }
   if (**(int **)(iteration_count + 0xd0) == 0) {
-    opointer_ = FUN_18088c060(*(uint32_t *)(unaff_RDI + 0x18));
-    if (opointer_ != 0) goto LAB_180894aca;
+    operation_result = FUN_18088c060(*(uint32_t *)(unaff_RDI + 0x18));
+    if (operation_result != 0) goto LAB_180894aca;
   }
   *unaff_RSI = iteration_count;
 LAB_180894aca:
@@ -6254,8 +6254,8 @@ void CloseCompointer_(void)
  void PostCompointer_(longlong pointer_,uint32_t *pointer_,longlong *pointer_)
 void PostCompointer_(longlong pointer_,uint32_t *pointer_,longlong *pointer_)
 {
-  longlong *system_pointer;
-  int opointer_;
+  longlong *resource_manager;
+  int operation_result;;
   longlong iteration_count;
   uint8_t stack_buffer_c8 [32];
   uint stack_uint_a8;
@@ -6297,7 +6297,7 @@ void PostCompointer_(longlong pointer_,uint32_t *pointer_,longlong *pointer_)
       FUN_18076b390(stack_buffer_40,0x27,&utility_system_reserved_,stack_uint_58);
     }
     lStack_48 = *(longlong *)(iteration_count + 0x48);
-    if ((lStack_48 != 0) || (opointer_ = FUN_18088ca20(pointer_,iteration_count,&lStack_48), opointer_ == 0)) {
+    if ((lStack_48 != 0) || (operation_result = FUN_18088ca20(pointer_,iteration_count,&lStack_48), operation_result == 0)) {
       *pointer_ = lStack_48;
     }
   }
@@ -6311,13 +6311,13 @@ void GetCompointer_(void)
  void InitializeJobObject(void)
 void InitializeJobObject(void)
 {
-  int opointer_;
+  int operation_result;;
   longlong context_pointer_;
   longlong *unaff_RDI;
   longlong lStack0000000000000080;
   ulonglong stack_pointer_0;
   lStack0000000000000080 = *(longlong *)(context_pointer_ + 0x48);
-  if ((lStack0000000000000080 != 0) || (opointer_ = FUN_18088ca20(), opointer_ == 0)) {
+  if ((lStack0000000000000080 != 0) || (operation_result = FUN_18088ca20(), operation_result == 0)) {
     *unaff_RDI = lStack0000000000000080;
   }
   utility_calculate_checksum(stack_pointer_0 ^ (ulonglong)&stack_buffer);
@@ -6325,10 +6325,10 @@ void InitializeJobObject(void)
  void AssignProcessToJob(longlong pointer_,uint64_t pointer_)
 void AssignProcessToJob(longlong pointer_,uint64_t pointer_)
 {
-  int opointer_;
-  opointer_ = FUN_18088ee60(pointer_,pointer_ + 0x10);
-  if (((opointer_ == 0) && (opointer_ = FUN_18088ee20(pointer_,pointer_ + 0x18), opointer_ == 0)) &&
-     (opointer_ = FUN_18088f530(pointer_,pointer_ + 0x20,*(uint32_t *)(pointer_ + 0x18)), opointer_ == 0)) {
+  int operation_result;;
+  operation_result = FUN_18088ee60(pointer_,pointer_ + 0x10);
+  if (((operation_result == 0) && (operation_result = FUN_18088ee20(pointer_,pointer_ + 0x18), operation_result == 0)) &&
+     (operation_result = FUN_18088f530(pointer_,pointer_ + 0x20,*(uint32_t *)(pointer_ + 0x18)), operation_result == 0)) {
     FUN_18088f5c0(pointer_,pointer_ + 0x20 + (longlong)*(int *)(pointer_ + 0x18) * 4);
   }
   return;
@@ -6336,11 +6336,11 @@ void AssignProcessToJob(longlong pointer_,uint64_t pointer_)
  void TerminateJobObject(void)
 void TerminateJobObject(void)
 {
-  int opointer_;
-  opointer_ = FUN_18088ee20();
-  if (opointer_ == 0) {
-    opointer_ = FUN_18088f530();
-    if (opointer_ == 0) {
+  int operation_result;;
+  operation_result = FUN_18088ee20();
+  if (operation_result == 0) {
+    operation_result = FUN_18088f530();
+    if (operation_result == 0) {
       FUN_18088f5c0();
     }
   }
@@ -6354,12 +6354,12 @@ void InitializeNamedPipointer_(void)
  void CreateNamedPipointer_(longlong pointer_,uint64_t pointer_)
 void CreateNamedPipointer_(longlong pointer_,uint64_t pointer_)
 {
-  int opointer_;
-  opointer_ = FUN_18088ee60(pointer_,pointer_ + 0x10);
-  if ((((opointer_ == 0) && (opointer_ = FUN_18088ee20(pointer_,pointer_ + 0x18), opointer_ == 0)) &&
-      (opointer_ = FUN_18088f620(pointer_,pointer_ + 0x20,*(uint32_t *)(pointer_ + 0x18)), opointer_ == 0))
-     && (opointer_ = FUN_18088f5c0(pointer_,pointer_ + 0x20 + (longlong)*(int *)(pointer_ + 0x18) * 8),
-        opointer_ == 0)) {
+  int operation_result;;
+  operation_result = FUN_18088ee60(pointer_,pointer_ + 0x10);
+  if ((((operation_result == 0) && (operation_result = FUN_18088ee20(pointer_,pointer_ + 0x18), operation_result == 0)) &&
+      (operation_result = FUN_18088f620(pointer_,pointer_ + 0x20,*(uint32_t *)(pointer_ + 0x18)), operation_result == 0))
+     && (operation_result = FUN_18088f5c0(pointer_,pointer_ + 0x20 + (longlong)*(int *)(pointer_ + 0x18) * 8),
+        operation_result == 0)) {
     FUN_18088f470(pointer_,pointer_ + 0x1c);
   }
   return;
@@ -6367,13 +6367,13 @@ void CreateNamedPipointer_(longlong pointer_,uint64_t pointer_)
  void ConnectNamedPipointer_(void)
 void ConnectNamedPipointer_(void)
 {
-  int opointer_;
-  opointer_ = FUN_18088ee20();
-  if (opointer_ == 0) {
-    opointer_ = FUN_18088f620();
-    if (opointer_ == 0) {
-      opointer_ = FUN_18088f5c0();
-      if (opointer_ == 0) {
+  int operation_result;;
+  operation_result = FUN_18088ee20();
+  if (operation_result == 0) {
+    operation_result = FUN_18088f620();
+    if (operation_result == 0) {
+      operation_result = FUN_18088f5c0();
+      if (operation_result == 0) {
         FUN_18088f470();
       }
     }
@@ -6388,13 +6388,13 @@ void DisconnectNamedPipointer_(void)
  void InitializeMailslot(longlong pointer_,uint64_t pointer_)
 void InitializeMailslot(longlong pointer_,uint64_t pointer_)
 {
-  int opointer_;
-  opointer_ = FUN_18088ee20(pointer_,pointer_ + 0x10);
-  if (opointer_ == 0) {
-    opointer_ = FUN_18088f620(pointer_,pointer_ + 0x18,*(uint32_t *)(pointer_ + 0x10));
-    if (opointer_ == 0) {
-      opointer_ = FUN_18088f5c0(pointer_,pointer_ + 0x18 + (longlong)*(int *)(pointer_ + 0x10) * 8);
-      if (opointer_ == 0) {
+  int operation_result;;
+  operation_result = FUN_18088ee20(pointer_,pointer_ + 0x10);
+  if (operation_result == 0) {
+    operation_result = FUN_18088f620(pointer_,pointer_ + 0x18,*(uint32_t *)(pointer_ + 0x10));
+    if (operation_result == 0) {
+      operation_result = FUN_18088f5c0(pointer_,pointer_ + 0x18 + (longlong)*(int *)(pointer_ + 0x10) * 8);
+      if (operation_result == 0) {
         FUN_18088f470(pointer_,pointer_ + 0x14);
       }
     }
@@ -6403,36 +6403,36 @@ void InitializeMailslot(longlong pointer_,uint64_t pointer_)
 }
 uint32_t FUN_180894dd0(longlong pointer_,uint64_t pointer_,uint pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint resource_context;
-  int opointer_;
-  longlong *system_pointer;
-  int opointer_;
+  int operation_result;;
+  longlong *resource_manager;
+  int operation_result;;
   uint resource_context;
   long long ustack_variable;
   uint64_t stack_buffer_28 [2];
   if (pointer_ == 0) {
     return 0x1f;
   }
-  opointer_ = 0;
+  operation_result = 0;
   resource_context = *(uint *)(pointer_ + 0x20);
   stack_buffer_28[0] = 0;
-  opointer_ = utility_stack_operation_primary(stack_buffer_28,pointer_);
-  if (opointer_ == 0) {
+  operation_result = utility_stack_operation_primary(stack_buffer_28,pointer_);
+  if (operation_result == 0) {
     ustack_variable = 0;
     resource_context = pointer_ | 0x10000000;
     if ((resource_context & 1) == 0) {
       resource_context = pointer_;
     }
-    opointer_ = func_0x0001808757f0(pointer_,pointer_,resource_context,&ustack_variable);
-    if ((opointer_ == 0) && (pointer_ = (longlong *)(pointer_ + 8), pointer_ != (longlong *)0x0)) {
+    operation_result = func_0x0001808757f0(pointer_,pointer_,resource_context,&ustack_variable);
+    if ((operation_result == 0) && (pointer_ = (longlong *)(pointer_ + 8), pointer_ != (longlong *)0x0)) {
       pointer_ = (longlong *)*pointer_;
       if (pointer_ != pointer_) {
         do {
           pointer_ = (longlong *)*pointer_;
-          opointer_ = opointer_ + 1;
+          operation_result = operation_result + 1;
         } while (pointer_ != pointer_);
-        if (opointer_ != 0) goto LAB_180894ebf;
+        if (operation_result != 0) goto LAB_180894ebf;
       }
       *(uint64_t *)(pointer_ + 0x10) = *(uint64_t *)(pointer_ + 0x58);
       *pointer_ = pointer_ + 0x50;
@@ -6455,7 +6455,7 @@ LAB_180894ebf:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 uint FUN_180894ef0(longlong *pointer_)
 {
-  int opointer_;
+  int operation_result;;
   uint resource_context;
   uint resource_context;
   resource_context = *(uint *)((longlong)pointer_ + 0xc);
@@ -6471,10 +6471,10 @@ uint FUN_180894ef0(longlong *pointer_)
     resource_context = 0;
     *(uint32_t *)((longlong)pointer_ + 0xc) = 0;
   }
-  opointer_ = (int)pointer_[1];
-  if (opointer_ < 0) {
-    if (opointer_ < 0) {
-      memset(*pointer_ + (longlong)opointer_ * 0xc,0,(ulonglong)(uint)-opointer_ * 0xc);
+  operation_result = (int)pointer_[1];
+  if (operation_result < 0) {
+    if (operation_result < 0) {
+      memset(*pointer_ + (longlong)operation_result * 0xc,0,(ulonglong)(uint)-operation_result * 0xc);
     }
   }
   *(uint32_t *)(pointer_ + 1) = 0;
@@ -6495,21 +6495,21 @@ uint FUN_180894ef0(longlong *pointer_)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 uint64_t FUN_180894fb0(longlong pointer_)
 {
-  longlong *system_pointer;
-  int opointer_;
+  longlong *resource_manager;
+  int operation_result;;
   long long resource_context;
   uint resource_context;
   FUN_18088c620();
   FUN_180840270(pointer_ + 0xd8);
-  opointer_ = FUN_180744cc0(pointer_ + 0x70);
-  if ((opointer_ == 0) && (opointer_ = FUN_180895130(pointer_ + 0x80), opointer_ == 0)) {
+  operation_result = FUN_180744cc0(pointer_ + 0x70);
+  if ((operation_result == 0) && (operation_result = FUN_180895130(pointer_ + 0x80), operation_result == 0)) {
     *(uint32_t *)(pointer_ + 0x90) = 0xffffffff;
     *(uint32_t *)(pointer_ + 0x94) = 0;
   }
   FUN_180895130(pointer_ + 0x80);
   FUN_180744cc0(pointer_ + 0x70);
-  opointer_ = FUN_180744cc0(pointer_ + 0x28);
-  if ((opointer_ == 0) && (opointer_ = FUN_180895070(pointer_ + 0x38), opointer_ == 0)) {
+  operation_result = FUN_180744cc0(pointer_ + 0x28);
+  if ((operation_result == 0) && (operation_result = FUN_180895070(pointer_ + 0x38), operation_result == 0)) {
     *(uint32_t *)(pointer_ + 0x48) = 0xffffffff;
     *(uint32_t *)(pointer_ + 0x4c) = 0;
   }
@@ -6529,9 +6529,9 @@ uint64_t FUN_180894fb0(longlong pointer_)
     resource_context = 0;
     *(uint32_t *)(pointer_ + 0x14) = 0;
   }
-  opointer_ = *(int *)(pointer_ + 0x10);
-  if (opointer_ < 0) {
-    memset((longlong)opointer_ + *pointer_,0,(longlong)-opointer_);
+  operation_result = *(int *)(pointer_ + 0x10);
+  if (operation_result < 0) {
+    memset((longlong)operation_result + *pointer_,0,(longlong)-operation_result);
   }
   *(uint32_t *)(pointer_ + 0x10) = 0;
   if ((0 < (int)((resource_context ^ (int)resource_context >> 0x1f) - ((int)resource_context >> 0x1f))) &&
@@ -6543,7 +6543,7 @@ uint64_t FUN_180894fb0(longlong pointer_)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 uint64_t FUN_180895070(longlong *pointer_)
 {
-  int opointer_;
+  int operation_result;;
   long long resource_context;
   uint resource_context;
   resource_context = *(uint *)((longlong)pointer_ + 0xc);
@@ -6558,9 +6558,9 @@ uint64_t FUN_180895070(longlong *pointer_)
     resource_context = 0;
     *(uint32_t *)((longlong)pointer_ + 0xc) = 0;
   }
-  opointer_ = (int)pointer_[1];
-  if (opointer_ < 0) {
-    memset(*pointer_ + (longlong)opointer_ * 0xc,0,(longlong)-opointer_ * 0xc);
+  operation_result = (int)pointer_[1];
+  if (operation_result < 0) {
+    memset(*pointer_ + (longlong)operation_result * 0xc,0,(longlong)-operation_result * 0xc);
   }
   *(uint32_t *)(pointer_ + 1) = 0;
   if ((0 < (int)((resource_context ^ (int)resource_context >> 0x1f) - ((int)resource_context >> 0x1f))) &&
@@ -6572,7 +6572,7 @@ uint64_t FUN_180895070(longlong *pointer_)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 uint64_t FUN_180895130(longlong *pointer_)
 {
-  int opointer_;
+  int operation_result;;
   uint32_t *pointer_;
   long long resource_context;
   longlong iteration_count;
@@ -6589,11 +6589,11 @@ uint64_t FUN_180895130(longlong *pointer_)
     *(uint32_t *)((longlong)pointer_ + 0xc) = 0;
     resource_context = 0;
   }
-  opointer_ = (int)pointer_[1];
-  if (opointer_ < 0) {
-    iteration_count = (longlong)-opointer_;
-    if (opointer_ < 0) {
-      pointer_ = (uint32_t *)((longlong)opointer_ * 0x10 + *pointer_ + 4);
+  operation_result = (int)pointer_[1];
+  if (operation_result < 0) {
+    iteration_count = (longlong)-operation_result;
+    if (operation_result < 0) {
+      pointer_ = (uint32_t *)((longlong)operation_result * 0x10 + *pointer_ + 4);
       do {
         pointer_[-1] = 0;
         *pointer_ = 0xffffffff;
@@ -6613,45 +6613,45 @@ uint64_t FUN_180895130(longlong *pointer_)
 }
 uint64_t FUN_180895210(longlong *pointer_)
 {
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   long long resource_context;
   ulonglong resource_context;
   longlong iteration_count;
   uint resource_context;
   int *pointer_;
-  int opointer_;
+  int operation_result;;
   ulonglong resource_context;
   ulonglong resource_context;
-  opointer_ = *(int *)((longlong)pointer_ + 0x24);
-  if (opointer_ == -1) {
+  operation_result = *(int *)((longlong)pointer_ + 0x24);
+  if (operation_result == -1) {
     return 0x1c;
   }
-  opointer_ = (int)pointer_[1];
-  if (opointer_ == opointer_) {
-    opointer_ = opointer_ * 2;
-    if (opointer_ < 4) {
-      opointer_ = 4;
+  operation_result = (int)pointer_[1];
+  if (operation_result == operation_result) {
+    operation_result = operation_result * 2;
+    if (operation_result < 4) {
+      operation_result = 4;
     }
-    if (((opointer_ <= opointer_) || ((int)pointer_[3] != opointer_)) || ((int)pointer_[4] != -1)) {
+    if (((operation_result <= operation_result) || ((int)pointer_[3] != operation_result)) || ((int)pointer_[4] != -1)) {
       return 0x1c;
     }
     resource_context = (int)*(uint *)((longlong)pointer_ + 0x1c) >> 0x1f;
-    if (((int)((*(uint *)((longlong)pointer_ + 0x1c) ^ resource_context) - resource_context) < opointer_) &&
-       (resource_context = FUN_1807d3f50(pointer_ + 2,opointer_), (int)resource_context != 0)) {
+    if (((int)((*(uint *)((longlong)pointer_ + 0x1c) ^ resource_context) - resource_context) < operation_result) &&
+       (resource_context = FUN_1807d3f50(pointer_ + 2,operation_result), (int)resource_context != 0)) {
       return resource_context;
     }
-    resource_context = FUN_1807703c0(pointer_,opointer_);
+    resource_context = FUN_1807703c0(pointer_,operation_result);
     if ((int)resource_context != 0) {
       return resource_context;
     }
     resource_context = 0;
     resource_context = resource_context;
-    if (0 < opointer_) {
+    if (0 < operation_result) {
       do {
         *(uint32_t *)(*pointer_ + resource_context * 4) = 0xffffffff;
         resource_context = resource_context + 1;
-      } while ((longlong)resource_context < (longlong)opointer_);
+      } while ((longlong)resource_context < (longlong)operation_result);
     }
     iteration_count = pointer_[3];
     resource_context = resource_context;
@@ -6663,10 +6663,10 @@ uint64_t FUN_180895210(longlong *pointer_)
         }
         iteration_count = (longlong)(int)(*(uint *)(resource_context + pointer_[2]) & (int)pointer_[1] - 1U);
         pointer_ = (int *)(*pointer_ + iteration_count * 4);
-        opointer_ = *(int *)(*pointer_ + iteration_count * 4);
-        while (opointer_ != -1) {
-          pointer_ = (int *)(pointer_[2] + 4 + (longlong)opointer_ * 0x10);
-          opointer_ = *pointer_;
+        operation_result = *(int *)(*pointer_ + iteration_count * 4);
+        while (operation_result != -1) {
+          pointer_ = (int *)(pointer_[2] + 4 + (longlong)operation_result * 0x10);
+          operation_result = *pointer_;
         }
         *pointer_ = (int)resource_context;
         resource_context = resource_context + 1;
@@ -6689,20 +6689,20 @@ uint64_t FUN_180895236(void)
   int *pointer_;
   longlong *resource_pointer_;
   int unaff_EDI;
-  int opointer_;
+  int operation_result;;
   ulonglong resource_context;
   ulonglong resource_context;
   if (unaff_EDI == in_EAX) {
-    opointer_ = unaff_EDI * 2;
-    if (opointer_ < 4) {
-      opointer_ = 4;
+    operation_result = unaff_EDI * 2;
+    if (operation_result < 4) {
+      operation_result = 4;
     }
-    if (((opointer_ <= in_EAX) || ((int)resource_pointer_[3] != in_EAX)) || ((int)resource_pointer_[4] != -1)) {
+    if (((operation_result <= in_EAX) || ((int)resource_pointer_[3] != in_EAX)) || ((int)resource_pointer_[4] != -1)) {
       return 0x1c;
     }
     resource_context = (int)*(uint *)((longlong)resource_pointer_ + 0x1c) >> 0x1f;
-    if (((int)((*(uint *)((longlong)resource_pointer_ + 0x1c) ^ resource_context) - resource_context) < opointer_) &&
-       (resource_context = FUN_1807d3f50(resource_pointer_ + 2,opointer_), (int)resource_context != 0)) {
+    if (((int)((*(uint *)((longlong)resource_pointer_ + 0x1c) ^ resource_context) - resource_context) < operation_result) &&
+       (resource_context = FUN_1807d3f50(resource_pointer_ + 2,operation_result), (int)resource_context != 0)) {
       return resource_context;
     }
     resource_context = FUN_1807703c0();
@@ -6711,11 +6711,11 @@ uint64_t FUN_180895236(void)
     }
     resource_context = 0;
     resource_context = resource_context;
-    if (0 < opointer_) {
+    if (0 < operation_result) {
       do {
         *(uint32_t *)(*resource_pointer_ + resource_context * 4) = 0xffffffff;
         resource_context = resource_context + 1;
-      } while ((longlong)resource_context < (longlong)opointer_);
+      } while ((longlong)resource_context < (longlong)operation_result);
     }
     iteration_count = resource_pointer_[3];
     resource_context = resource_context;
@@ -6727,10 +6727,10 @@ uint64_t FUN_180895236(void)
         }
         iteration_count = (longlong)(int)(*(uint *)(resource_context + resource_pointer_[2]) & (int)resource_pointer_[1] - 1U);
         pointer_ = (int *)(*resource_pointer_ + iteration_count * 4);
-        opointer_ = *(int *)(*resource_pointer_ + iteration_count * 4);
-        while (opointer_ != -1) {
-          pointer_ = (int *)(resource_pointer_[2] + 4 + (longlong)opointer_ * 0x10);
-          opointer_ = *pointer_;
+        operation_result = *(int *)(*resource_pointer_ + iteration_count * 4);
+        while (operation_result != -1) {
+          pointer_ = (int *)(resource_pointer_[2] + 4 + (longlong)operation_result * 0x10);
+          operation_result = *pointer_;
         }
         *pointer_ = (int)resource_context;
         resource_context = resource_context + 1;
@@ -6753,11 +6753,11 @@ void CreateMailslot(longlong pointer_,uint8_t *pointer_,int *pointer_)
   byte bvariable;
   longlong iteration_count;
   char cvariable;
-  int opointer_;
+  int operation_result;;
   long long resource_context;
   longlong iteration_count;
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   float fvariable;
   float fvariable;
@@ -6770,25 +6770,25 @@ void CreateMailslot(longlong pointer_,uint8_t *pointer_,int *pointer_)
   uint8_t stack_buffer_648 [1536];
   ulonglong stack_uint_48;
   stack_uint_48 = utility_system_reserved_ ^ (ulonglong)stack_buffer_738;
-  opointer_ = *(int *)(pointer_ + 0xac);
-  iteration_count = (longlong)opointer_;
+  operation_result = *(int *)(pointer_ + 0xac);
+  iteration_count = (longlong)operation_result;
   pointer_6f0 = pointer_;
-  if (opointer_ < *(int *)(pointer_ + 0x20)) {
+  if (operation_result < *(int *)(pointer_ + 0x20)) {
     lStack_6e0 = *(longlong *)(pointer_ + 0x18);
     lStack_6b8 = iteration_count * 3;
     iteration_count = (longlong)*(int *)(lStack_6e0 + iteration_count * 0xc) + *(longlong *)(pointer_ + 8);
     cvariable = *(char *)(lStack_6e0 + 8 + iteration_count * 0xc);
     if (cvariable == '\x01') {
-      opointer_ = *(int *)(pointer_ + 0xb0);
-      if (opointer_ < opointer_) {
-        *(int *)(pointer_ + 0xac) = opointer_ + 1;
+      operation_result = *(int *)(pointer_ + 0xb0);
+      if (operation_result < operation_result) {
+        *(int *)(pointer_ + 0xac) = operation_result + 1;
         goto InitializeSocket;
       }
       fvariable = *(float *)(iteration_count + 0x18);
       fvariable = fvariable;
-      if (opointer_ != -1) {
+      if (operation_result != -1) {
         fvariable = *(float *)(pointer_ + 0xb4);
-        opointer_ = -1;
+        operation_result = -1;
         *(uint32_t *)(pointer_ + 0xb0) = 0xffffffff;
         *(uint32_t *)(pointer_ + 0xb4) = 0xbf800000;
       }
@@ -6812,15 +6812,15 @@ void CreateMailslot(longlong pointer_,uint8_t *pointer_,int *pointer_)
       bvariable = *(byte *)(pointer_ + 0x6c);
       if (*(longlong *)(pointer_ + 0xc0) != 0) {
         resource_context = FUN_180895ef0(pointer_);
-        opointer_ = (**(code **)(pointer_ + 0xc0))
-                          (resource_context,opointer_,*(uint32_t *)(iteration_count + 0x18),*(uint64_t *)(pointer_ + 0xb8)
+        operation_result = (**(code **)(pointer_ + 0xc0))
+                          (resource_context,operation_result,*(uint32_t *)(iteration_count + 0x18),*(uint64_t *)(pointer_ + 0xb8)
                           );
-        if (opointer_ != 0) goto InitializeSocket;
+        if (operation_result != 0) goto InitializeSocket;
       }
       if (((((bvariable & 2) != 0 || (longlong)fvariable + iteration_count < iteration_count - iteration_count) &&
-           (opointer_ = *pointer_6f0, *pointer_6f0 = opointer_ + 1, opointer_ < 10)) &&
+           (operation_result = *pointer_6f0, *pointer_6f0 = operation_result + 1, operation_result < 10)) &&
           ((*(uint *)(pointer_ + 0x6c) >> 0x18 & 1) == 0)) &&
-         (((*(uint *)(pointer_ + 0x6c) >> 0x19 & 1) != 0 && (opointer_ == *(int *)(pointer_ + 0xb0))))) {
+         (((*(uint *)(pointer_ + 0x6c) >> 0x19 & 1) != 0 && (operation_result == *(int *)(pointer_ + 0xb0))))) {
 LAB_18089555d:
         memcpointer_(stack_buffer_648,iteration_count,(longlong)*(int *)(iteration_count + 8));
       }
@@ -6846,10 +6846,10 @@ LAB_18089555d:
       else {
         if ((cvariable != '\x02') || ((*(byte *)(pointer_ + 0x6c) & 4) != 0)) goto LAB_18089555d;
         stack_uint_6f4 = *(uint32_t *)(iteration_count + 0x20);
-        opointer_ = FUN_180895c60(pointer_,opointer_,&stack_uint_6f4);
-        if (opointer_ != 0) goto InitializeSocket;
-        opointer_ = utility_system_function_primary(stack_uint_6f4,stack_array_6b0);
-        if ((opointer_ != 0) || (*(int *)(stack_array_6b0[0] + 0x30) != 2)) goto LAB_18089555d;
+        operation_result = FUN_180895c60(pointer_,operation_result,&stack_uint_6f4);
+        if (operation_result != 0) goto InitializeSocket;
+        operation_result = utility_system_function_primary(stack_uint_6f4,stack_array_6b0);
+        if ((operation_result != 0) || (*(int *)(stack_array_6b0[0] + 0x30) != 2)) goto LAB_18089555d;
       }
     }
     *pointer_ = 0;
@@ -6867,8 +6867,8 @@ void ReadMailslot(longlong pointer_,uint64_t pointer_,int *pointer_)
 {
   longlong iteration_count;
   char cvariable;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   longlong context_pointer_;
   longlong iteration_count;
   long long resource_context;
@@ -6889,16 +6889,16 @@ void ReadMailslot(longlong pointer_,uint64_t pointer_,int *pointer_)
   cvariable = *(char *)(context_pointer_ + 8 + iteration_count * 4);
   *(longlong *)(unaff_RBP + -0x80) = iteration_count;
   if (cvariable == in_R11B) {
-    opointer_ = *(int *)(pointer_ + 0xb0);
-    if (unaff_EBX < opointer_) {
+    operation_result = *(int *)(pointer_ + 0xb0);
+    if (unaff_EBX < operation_result) {
       *(int *)(pointer_ + 0xac) = unaff_EBX + 1;
       goto LAB_180895b69;
     }
     fvariable = *(float *)(iteration_count + 0x18);
     fvariable = fvariable;
-    if (opointer_ != -1) {
+    if (operation_result != -1) {
       fvariable = *(float *)(pointer_ + 0xb4);
-      opointer_ = -1;
+      operation_result = -1;
       *(uint32_t *)(pointer_ + 0xb0) = 0xffffffff;
       *(uint32_t *)(pointer_ + 0xb4) = 0xbf800000;
     }
@@ -6925,15 +6925,15 @@ void ReadMailslot(longlong pointer_,uint64_t pointer_,int *pointer_)
     }
     if (*(longlong *)(unaff_RDI + 0xc0) != 0) {
       resource_context = FUN_180895ef0();
-      opointer_ = (**(code **)(unaff_RDI + 0xc0))
+      operation_result = (**(code **)(unaff_RDI + 0xc0))
                         (resource_context,unaff_EBX,*(uint32_t *)(iteration_count + 0x18),
                          *(uint64_t *)(unaff_RDI + 0xb8));
       pointer_ = stack_pointer_;
-      if (opointer_ != 0) goto LAB_180895b69;
+      if (operation_result != 0) goto LAB_180895b69;
     }
-    if ((((cvariable != '\0') && (opointer_ = *pointer_, *pointer_ = opointer_ + 1, opointer_ < 10)) &&
+    if ((((cvariable != '\0') && (operation_result = *pointer_, *pointer_ = operation_result + 1, operation_result < 10)) &&
         ((*(uint *)(unaff_RDI + 0x6c) >> 0x18 & 1) == 0)) &&
-       (((*(uint *)(unaff_RDI + 0x6c) >> 0x19 & 1) != 0 && (opointer_ == *(int *)(unaff_RDI + 0xb0)))))
+       (((*(uint *)(unaff_RDI + 0x6c) >> 0x19 & 1) != 0 && (operation_result == *(int *)(unaff_RDI + 0xb0)))))
     {
 LAB_18089555d:
       memcpointer_(unaff_RBP + -0x10,iteration_count,(longlong)*(int *)(iteration_count + 8));
@@ -6960,10 +6960,10 @@ LAB_18089555d:
     else {
       if ((cvariable != '\x02') || ((*(byte *)(pointer_ + 0x6c) & 4) != 0)) goto LAB_18089555d;
       stack_pointer_._4_4_ = *(uint32_t *)(iteration_count + 0x20);
-      opointer_ = FUN_180895c60(pointer_,unaff_EBX,(longlong)&stack_buffer + 4);
-      if (opointer_ != 0) goto LAB_180895b69;
-      opointer_ = utility_system_function_primary(stack_pointer_._4_4_,unaff_RBP + -0x78);
-      if ((opointer_ != 0) || (*(int *)(*(longlong *)(unaff_RBP + -0x78) + 0x30) != 2))
+      operation_result = FUN_180895c60(pointer_,unaff_EBX,(longlong)&stack_buffer + 4);
+      if (operation_result != 0) goto LAB_180895b69;
+      operation_result = utility_system_function_primary(stack_pointer_._4_4_,unaff_RBP + -0x78);
+      if ((operation_result != 0) || (*(int *)(*(longlong *)(unaff_RBP + -0x78) + 0x30) != 2))
       goto LAB_18089555d;
     }
   }
@@ -6984,7 +6984,7 @@ void CreateSocket(longlong pointer_,int pointer_,uint64_t *pointer_)
   int *pointer_;
   longlong iteration_count;
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   *pointer_ = 0;
   pointer_[1] = 0;
   pointer_ = (int *)(**(code **)(*(longlong *)
@@ -6992,16 +6992,16 @@ void CreateSocket(longlong pointer_,int pointer_,uint64_t *pointer_)
                                  *(int *)(*(longlong *)(pointer_ + 0x18) + (longlong)pointer_ * 0xc) +
                                 *(longlong *)(pointer_ + 8)) + 0x50))();
   if (pointer_ == (int *)0x0) {
-    opointer_ = 0;
+    operation_result = 0;
   }
   else {
-    opointer_ = *pointer_;
+    operation_result = *pointer_;
   }
   if (pointer_ + 1 < *(int *)(pointer_ + 0x20)) {
     iteration_count = (longlong)(pointer_ + 1);
     pointer_ = (int *)(*(longlong *)(pointer_ + 0x18) + iteration_count * 0xc);
     while (((char)pointer_[2] != '\x02' ||
-           (iteration_count = (longlong)*pointer_ + *(longlong *)(pointer_ + 8), *(int *)(iteration_count + 0x20) != opointer_)
+           (iteration_count = (longlong)*pointer_ + *(longlong *)(pointer_ + 8), *(int *)(iteration_count + 0x20) != operation_result)
            )) {
       iteration_count = iteration_count + 1;
       pointer_ = pointer_ + 3;
@@ -7021,18 +7021,18 @@ uint64_t FUN_180895c60(longlong pointer_,int pointer_,uint *pointer_)
   longlong iteration_count;
   longlong iteration_count;
   uint64_t *pointer_;
-  int opointer_;
+  int operation_result;;
   uint32_t ustack_variablec;
   if (pointer_ != (uint *)0x0) {
     resource_context = *pointer_;
     if (resource_context != 0) {
       if (((*(int *)(pointer_ + 0x94) != 0) && (*(int *)(pointer_ + 0x78) != 0)) &&
-         (opointer_ = *(int *)(*(longlong *)(pointer_ + 0x70) +
-                          (longlong)(int)(*(int *)(pointer_ + 0x78) - 1U & resource_context) * 4), opointer_ != -1))
+         (operation_result = *(int *)(*(longlong *)(pointer_ + 0x70) +
+                          (longlong)(int)(*(int *)(pointer_ + 0x78) - 1U & resource_context) * 4), operation_result != -1))
       {
         iteration_count = *(longlong *)(pointer_ + 0x80);
         do {
-          iteration_count = (longlong)opointer_;
+          iteration_count = (longlong)operation_result;
           if (*(uint *)(iteration_count + iteration_count * 0x10) == resource_context) {
             ustack_variablec = (uint)((ulonglong)*(uint64_t *)(iteration_count + 8 + iteration_count * 0x10) >> 0x20);
             if (ustack_variablec != 0) {
@@ -7041,8 +7041,8 @@ uint64_t FUN_180895c60(longlong pointer_,int pointer_,uint *pointer_)
             }
             goto LAB_180895ccb;
           }
-          opointer_ = *(int *)(iteration_count + 4 + iteration_count * 0x10);
-        } while (opointer_ != -1);
+          operation_result = *(int *)(iteration_count + 4 + iteration_count * 0x10);
+        } while (operation_result != -1);
       }
       ustack_variablec = 0;
 LAB_180895ccb:
@@ -7063,17 +7063,17 @@ uint64_t FUN_180895c8b(longlong pointer_,uint64_t pointer_,longlong pointer_,uin
   longlong iteration_count;
   longlong iteration_count;
   uint64_t *pointer_;
-  int opointer_;
+  int operation_result;;
   int *unaff_RDI;
   longlong in_R10;
   bool in_ZF;
   int iStack0000000000000044;
   if (((!in_ZF) && (*(int *)(pointer_ + 0x78) != 0)) &&
-     (opointer_ = *(int *)(*(longlong *)(in_R10 + 0x70) +
-                      (longlong)(int)(*(int *)(pointer_ + 0x78) - 1U & pointer_) * 4), opointer_ != -1)) {
+     (operation_result = *(int *)(*(longlong *)(in_R10 + 0x70) +
+                      (longlong)(int)(*(int *)(pointer_ + 0x78) - 1U & pointer_) * 4), operation_result != -1)) {
     iteration_count = *(longlong *)(in_R10 + 0x80);
     do {
-      iteration_count = (longlong)opointer_;
+      iteration_count = (longlong)operation_result;
       if (*(uint *)(iteration_count + iteration_count * 0x10) == pointer_) {
         iStack0000000000000044 = (int)((ulonglong)*(uint64_t *)(iteration_count + 8 + iteration_count * 0x10) >> 0x20)
         ;
@@ -7083,8 +7083,8 @@ uint64_t FUN_180895c8b(longlong pointer_,uint64_t pointer_,longlong pointer_,uin
         }
         goto LAB_180895ccb;
       }
-      opointer_ = *(int *)(iteration_count + 4 + iteration_count * 0x10);
-    } while (opointer_ != -1);
+      operation_result = *(int *)(iteration_count + 4 + iteration_count * 0x10);
+    } while (operation_result != -1);
   }
   iStack0000000000000044 = 0;
 LAB_180895ccb:
@@ -7128,17 +7128,17 @@ uint64_t FUN_180895d16(void)
 uint64_t FUN_180895d30(longlong *pointer_,uint *pointer_,uint64_t *pointer_)
 {
   uint resource_context;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   long long resource_context;
   long long resource_context;
   uint64_t *pointer_;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   longlong iteration_count;
   uint *pointer_;
   uint resource_context;
-  int opointer_;
+  int operation_result;;
   int *pointer_;
   resource_context = FUN_180895210();
   if ((int)resource_context == 0) {
@@ -7148,39 +7148,39 @@ uint64_t FUN_180895d30(longlong *pointer_,uint *pointer_,uint64_t *pointer_)
     resource_context = *pointer_;
     iteration_count = (longlong)(int)((int)pointer_[1] - 1U & resource_context);
     pointer_ = (int *)(*pointer_ + iteration_count * 4);
-    opointer_ = *(int *)(*pointer_ + iteration_count * 4);
-    if (opointer_ != -1) {
+    operation_result = *(int *)(*pointer_ + iteration_count * 4);
+    if (operation_result != -1) {
       iteration_count = pointer_[2];
       do {
-        iteration_count = (longlong)opointer_;
+        iteration_count = (longlong)operation_result;
         if (*(uint *)(iteration_count + iteration_count * 0x10) == resource_context) {
           *(uint64_t *)(iteration_count + 8 + iteration_count * 0x10) = *pointer_;
           return 0;
         }
-        opointer_ = *(int *)(iteration_count + 4 + iteration_count * 0x10);
+        operation_result = *(int *)(iteration_count + 4 + iteration_count * 0x10);
         pointer_ = (int *)(iteration_count + 4 + iteration_count * 0x10);
-      } while (opointer_ != -1);
+      } while (operation_result != -1);
     }
-    opointer_ = (int)pointer_[4];
-    if (opointer_ == -1) {
+    operation_result = (int)pointer_[4];
+    if (operation_result == -1) {
       resource_context = *pointer_;
-      opointer_ = (int)pointer_[3];
-      opointer_ = opointer_ + 1;
+      operation_result = (int)pointer_[3];
+      operation_result = operation_result + 1;
       resource_context = (int)*(uint *)((longlong)pointer_ + 0x1c) >> 0x1f;
-      opointer_ = (*(uint *)((longlong)pointer_ + 0x1c) ^ resource_context) - resource_context;
-      if (opointer_ < opointer_) {
-        opointer_ = (int)((float)opointer_ * 1.5);
-        opointer_ = opointer_;
-        if (opointer_ <= opointer_) {
-          opointer_ = opointer_;
+      operation_result = (*(uint *)((longlong)pointer_ + 0x1c) ^ resource_context) - resource_context;
+      if (operation_result < operation_result) {
+        operation_result = (int)((float)operation_result * 1.5);
+        operation_result = operation_result;
+        if (operation_result <= operation_result) {
+          operation_result = operation_result;
         }
-        if (opointer_ < 4) {
-          opointer_ = 4;
+        if (operation_result < 4) {
+          operation_result = 4;
         }
-        else if (opointer_ < opointer_) {
-          opointer_ = opointer_;
+        else if (operation_result < operation_result) {
+          operation_result = operation_result;
         }
-        resource_context = FUN_1807d3f50(pointer_ + 2,opointer_);
+        resource_context = FUN_1807d3f50(pointer_ + 2,operation_result);
         if ((int)resource_context != 0) {
           return resource_context;
         }
@@ -7191,13 +7191,13 @@ uint64_t FUN_180895d30(longlong *pointer_,uint *pointer_,uint64_t *pointer_)
       *(int *)(pointer_ + 3) = (int)pointer_[3] + 1;
     }
     else {
-      pointer_ = (uint *)((longlong)opointer_ * 0x10 + pointer_[2]);
+      pointer_ = (uint *)((longlong)operation_result * 0x10 + pointer_[2]);
       *(uint *)(pointer_ + 4) = pointer_[1];
       pointer_[1] = 0xffffffff;
       *pointer_ = *pointer_;
       *(uint64_t *)(pointer_ + 2) = *pointer_;
     }
-    *pointer_ = opointer_;
+    *pointer_ = operation_result;
     *(int *)((longlong)pointer_ + 0x24) = *(int *)((longlong)pointer_ + 0x24) + 1;
     resource_context = 0;
   }
@@ -7207,54 +7207,54 @@ uint64_t FUN_180895d62(uint64_t pointer_,int pointer_)
 {
   longlong iteration_count;
   int in_EAX;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   long long resource_context;
   uint64_t *pointer_;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   uint32_t *pointer_;
   uint resource_context;
-  int opointer_;
+  int operation_result;;
   int *pointer_;
   longlong *unaff_RDI;
   uint64_t *unaff_R14;
   uint32_t *unaff_R15;
   long long uStack0000000000000028;
   pointer_ = (int *)(*unaff_RDI + (longlong)in_EAX * 4);
-  opointer_ = *(int *)(*unaff_RDI + (longlong)in_EAX * 4);
-  if (opointer_ != -1) {
+  operation_result = *(int *)(*unaff_RDI + (longlong)in_EAX * 4);
+  if (operation_result != -1) {
     iteration_count = unaff_RDI[2];
     do {
-      iteration_count = (longlong)opointer_;
+      iteration_count = (longlong)operation_result;
       if (*(int *)(iteration_count + iteration_count * 0x10) == pointer_) {
         *(uint64_t *)(iteration_count + 8 + iteration_count * 0x10) = *unaff_R14;
         return 0;
       }
-      opointer_ = *(int *)(iteration_count + 4 + iteration_count * 0x10);
+      operation_result = *(int *)(iteration_count + 4 + iteration_count * 0x10);
       pointer_ = (int *)(iteration_count + 4 + iteration_count * 0x10);
-    } while (opointer_ != -1);
+    } while (operation_result != -1);
   }
-  opointer_ = (int)unaff_RDI[4];
-  if (opointer_ == -1) {
+  operation_result = (int)unaff_RDI[4];
+  if (operation_result == -1) {
     uStack0000000000000028 = *unaff_R14;
-    opointer_ = (int)unaff_RDI[3];
-    opointer_ = opointer_ + 1;
+    operation_result = (int)unaff_RDI[3];
+    operation_result = operation_result + 1;
     resource_context = (int)*(uint *)((longlong)unaff_RDI + 0x1c) >> 0x1f;
-    opointer_ = (*(uint *)((longlong)unaff_RDI + 0x1c) ^ resource_context) - resource_context;
-    if (opointer_ < opointer_) {
-      opointer_ = (int)((float)opointer_ * 1.5);
-      opointer_ = opointer_;
-      if (opointer_ <= opointer_) {
-        opointer_ = opointer_;
+    operation_result = (*(uint *)((longlong)unaff_RDI + 0x1c) ^ resource_context) - resource_context;
+    if (operation_result < operation_result) {
+      operation_result = (int)((float)operation_result * 1.5);
+      operation_result = operation_result;
+      if (operation_result <= operation_result) {
+        operation_result = operation_result;
       }
-      if (opointer_ < 4) {
-        opointer_ = 4;
+      if (operation_result < 4) {
+        operation_result = 4;
       }
-      else if (opointer_ < opointer_) {
-        opointer_ = opointer_;
+      else if (operation_result < operation_result) {
+        operation_result = operation_result;
       }
-      resource_context = FUN_1807d3f50(unaff_RDI + 2,opointer_);
+      resource_context = FUN_1807d3f50(unaff_RDI + 2,operation_result);
       if ((int)resource_context != 0) {
         return resource_context;
       }
@@ -7265,51 +7265,51 @@ uint64_t FUN_180895d62(uint64_t pointer_,int pointer_)
     *(int *)(unaff_RDI + 3) = (int)unaff_RDI[3] + 1;
   }
   else {
-    pointer_ = (uint32_t *)((longlong)opointer_ * 0x10 + unaff_RDI[2]);
+    pointer_ = (uint32_t *)((longlong)operation_result * 0x10 + unaff_RDI[2]);
     *(uint32_t *)(unaff_RDI + 4) = pointer_[1];
     pointer_[1] = 0xffffffff;
     *pointer_ = *unaff_R15;
     *(uint64_t *)(pointer_ + 2) = *unaff_R14;
   }
-  *pointer_ = opointer_;
+  *pointer_ = operation_result;
   *(int *)((longlong)unaff_RDI + 0x24) = *(int *)((longlong)unaff_RDI + 0x24) + 1;
   return 0;
 }
 uint64_t FUN_180895d9c(uint64_t pointer_,uint32_t pointer_)
 {
-  int opointer_;
+  int operation_result;;
   long long resource_context;
   uint64_t *pointer_;
-  int opointer_;
+  int operation_result;;
   uint32_t *pointer_;
   uint resource_context;
-  int opointer_;
+  int operation_result;;
   int *resource_pointer_;
-  int opointer_;
+  int operation_result;;
   longlong unaff_RDI;
   uint64_t *unaff_R14;
   uint32_t *unaff_R15;
   long long uStack0000000000000028;
-  opointer_ = *(int *)(unaff_RDI + 0x20);
-  if (opointer_ == -1) {
+  operation_result = *(int *)(unaff_RDI + 0x20);
+  if (operation_result == -1) {
     uStack0000000000000028 = *unaff_R14;
-    opointer_ = *(int *)(unaff_RDI + 0x18);
-    opointer_ = opointer_ + 1;
+    operation_result = *(int *)(unaff_RDI + 0x18);
+    operation_result = operation_result + 1;
     resource_context = (int)*(uint *)(unaff_RDI + 0x1c) >> 0x1f;
-    opointer_ = (*(uint *)(unaff_RDI + 0x1c) ^ resource_context) - resource_context;
-    if (opointer_ < opointer_) {
-      opointer_ = (int)((float)opointer_ * 1.5);
-      opointer_ = opointer_;
-      if (opointer_ <= opointer_) {
-        opointer_ = opointer_;
+    operation_result = (*(uint *)(unaff_RDI + 0x1c) ^ resource_context) - resource_context;
+    if (operation_result < operation_result) {
+      operation_result = (int)((float)operation_result * 1.5);
+      operation_result = operation_result;
+      if (operation_result <= operation_result) {
+        operation_result = operation_result;
       }
-      if (opointer_ < 4) {
-        opointer_ = 4;
+      if (operation_result < 4) {
+        operation_result = 4;
       }
-      else if (opointer_ < opointer_) {
-        opointer_ = opointer_;
+      else if (operation_result < operation_result) {
+        operation_result = operation_result;
       }
-      resource_context = FUN_1807d3f50(unaff_RDI + 0x10,opointer_);
+      resource_context = FUN_1807d3f50(unaff_RDI + 0x10,operation_result);
       if ((int)resource_context != 0) {
         return resource_context;
       }
@@ -7321,13 +7321,13 @@ uint64_t FUN_180895d9c(uint64_t pointer_,uint32_t pointer_)
     *(int *)(unaff_RDI + 0x18) = *(int *)(unaff_RDI + 0x18) + 1;
   }
   else {
-    pointer_ = (uint32_t *)((longlong)opointer_ * 0x10 + *(longlong *)(unaff_RDI + 0x10));
+    pointer_ = (uint32_t *)((longlong)operation_result * 0x10 + *(longlong *)(unaff_RDI + 0x10));
     *(uint32_t *)(unaff_RDI + 0x20) = pointer_[1];
     pointer_[1] = 0xffffffff;
     *pointer_ = *unaff_R15;
     *(uint64_t *)(pointer_ + 2) = *unaff_R14;
   }
-  *resource_pointer_ = opointer_;
+  *resource_pointer_ = operation_result;
   *(int *)(unaff_RDI + 0x24) = *(int *)(unaff_RDI + 0x24) + 1;
   return 0;
 }
@@ -7369,11 +7369,11 @@ void BindSocket(void)
 }
 uint32_t FUN_180895ef0(uint64_t pointer_)
 {
-  int opointer_;
+  int operation_result;;
   uint32_t austack_variable [6];
   austack_variable[0] = 0;
-  opointer_ = func_0x00018088c500(pointer_,austack_variable);
-  if (opointer_ == 0) {
+  operation_result = func_0x00018088c500(pointer_,austack_variable);
+  if (operation_result == 0) {
     return austack_variable[0];
   }
   return 0;
@@ -7381,7 +7381,7 @@ uint32_t FUN_180895ef0(uint64_t pointer_)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 uint64_t FUN_180895f20(longlong *pointer_,int pointer_)
 {
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   uint64_t *pointer_;
   longlong iteration_count;
@@ -7396,9 +7396,9 @@ uint64_t FUN_180895f20(longlong *pointer_,int pointer_)
                FUN_180741e10(*(uint64_t *)(utility_system_reserved_ + 0x1a0),pointer_ * 0xc,&utility_system_reserved_,
                              0xf4,0,0,1);
       if (pointer_ != (uint64_t *)0x0) {
-        opointer_ = (int)pointer_[1];
-        iteration_count = (longlong)opointer_;
-        if ((opointer_ != 0) && (iteration_count = *pointer_, 0 < opointer_)) {
+        operation_result = (int)pointer_[1];
+        iteration_count = (longlong)operation_result;
+        if ((operation_result != 0) && (iteration_count = *pointer_, 0 < operation_result)) {
           pointer_ = pointer_;
           do {
             *pointer_ = *(uint64_t *)((iteration_count - (longlong)pointer_) + (longlong)pointer_);
@@ -7424,7 +7424,7 @@ LAB_180895fdc:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 uint64_t FUN_180895f44(uint64_t pointer_,int pointer_)
 {
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   uint64_t *pointer_;
   longlong iteration_count;
@@ -7446,9 +7446,9 @@ LAB_180895fdc:
              FUN_180741e10(*(uint64_t *)(utility_system_reserved_ + 0x1a0),pointer_ * 0xc,&utility_system_reserved_,0xf4
                            ,0);
     if (pointer_ != (uint64_t *)0x0) {
-      opointer_ = (int)resource_pointer_[1];
-      iteration_count = (longlong)opointer_;
-      if ((opointer_ != 0) && (iteration_count = *resource_pointer_, 0 < opointer_)) {
+      operation_result = (int)resource_pointer_[1];
+      iteration_count = (longlong)operation_result;
+      if ((operation_result != 0) && (iteration_count = *resource_pointer_, 0 < operation_result)) {
         pointer_ = pointer_;
         do {
           *pointer_ = *(uint64_t *)((iteration_count - (longlong)pointer_) + (longlong)pointer_);
@@ -7534,19 +7534,19 @@ ulonglong FUN_180896140(longlong pointer_)
   byte *pointer_;
   uint32_t resource_context;
   long long resource_context;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   ulonglong resource_context;
-  int opointer_;
+  int operation_result;;
   uint resource_context;
   uint resource_context;
   ulonglong resource_context;
-  int opointer_;
+  int operation_result;;
   uint32_t *pointer_;
-  longlong *system_pointer;
-  int opointer_;
+  longlong *resource_manager;
+  int operation_result;;
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   bool bvariable;
   int aistack_variable [2];
   uint austack_variable [2];
@@ -7577,12 +7577,12 @@ ulonglong FUN_180896140(longlong pointer_)
   uint8_t stack_buffer_68 [40];
   resource_context = *(uint *)(pointer_ + 0x6c);
   resource_context = 0;
-  opointer_ = 0;
+  operation_result = 0;
   if ((resource_context >> 0x1a & 1) == 0) goto LAB_1808963ec;
   if ((resource_context & 1) == 0) {
     pointer_108 = (longlong *)(pointer_ + 0x70);
     stack_uint_118 = 0;
-    opointer_ = 0;
+    operation_result = 0;
     austack_variable[0] = 0;
     stack_uint_110 = 0;
     stack_uint_100 = 0xffffffffffffffff;
@@ -7592,34 +7592,34 @@ ulonglong FUN_180896140(longlong pointer_)
     if (astack_int_f8[0] != -1) {
       pointer_ = pointer_108;
       resource_context = resource_context;
-      opointer_ = (int)stack_uint_100;
+      operation_result = (int)stack_uint_100;
       do {
         do {
-          opointer_ = (int)resource_context;
+          operation_result = (int)resource_context;
           iteration_count = pointer_[2];
           iteration_count = (longlong)aistack_variable[0];
-          opointer_ = *(int *)(iteration_count + 8 + iteration_count * 0x10);
-          if (opointer_ == 2) {
-            opointer_ = utility_system_function_primary(*(uint32_t *)(iteration_count + 0xc + iteration_count * 0x10),&ustack_variable);
+          operation_result = *(int *)(iteration_count + 8 + iteration_count * 0x10);
+          if (operation_result == 2) {
+            operation_result = utility_system_function_primary(*(uint32_t *)(iteration_count + 0xc + iteration_count * 0x10),&ustack_variable);
             resource_context = ustack_variable;
             pointer_ = pointer_108;
-            if ((opointer_ == 0) &&
-               (opointer_ = func_0x0001808c7ed0(ustack_variable), pointer_ = pointer_108, 0 < opointer_)) {
+            if ((operation_result == 0) &&
+               (operation_result = func_0x0001808c7ed0(ustack_variable), pointer_ = pointer_108, 0 < operation_result)) {
               do {
                 stack_uint_e0 = *(uint32_t *)(iteration_count + 0xc + iteration_count * 0x10);
                 stack_uint_e8 = 0;
                 stack_pointer_0 = &utility_system_reserved_;
                 Opointer_(&stack_pointer_0,*(uint64_t *)(pointer_ + 0x58));
-                opointer_ = func_0x0001808c7ed0(resource_context);
-              } while (0 < opointer_);
+                operation_result = func_0x0001808c7ed0(resource_context);
+              } while (0 < operation_result);
               resource_context = (ulonglong)austack_variable[0];
               pointer_ = pointer_108;
             }
           }
-          else if (opointer_ == 3) {
-            opointer_ = utility_system_function_primary(*(uint32_t *)(iteration_count + 0xc + iteration_count * 0x10),austack_variable);
+          else if (operation_result == 3) {
+            operation_result = utility_system_function_primary(*(uint32_t *)(iteration_count + 0xc + iteration_count * 0x10),austack_variable);
             pointer_ = pointer_108;
-            if (opointer_ == 0) {
+            if (operation_result == 0) {
               stack_pointer_8 = &utility_system_reserved_;
               stack_uint_c8 = *(uint32_t *)(iteration_count + 0xc + iteration_count * 0x10);
               stack_uint_d0 = 0;
@@ -7632,10 +7632,10 @@ ulonglong FUN_180896140(longlong pointer_)
               pointer_ = pointer_108;
             }
           }
-          else if (opointer_ == 5) {
-            opointer_ = utility_system_function_primary(*(uint32_t *)(iteration_count + 0xc + iteration_count * 0x10),stack_buffer_78);
+          else if (operation_result == 5) {
+            operation_result = utility_system_function_primary(*(uint32_t *)(iteration_count + 0xc + iteration_count * 0x10),stack_buffer_78);
             pointer_ = pointer_108;
-            if (opointer_ == 0) {
+            if (operation_result == 0) {
               stack_pointer_8 = &utility_system_reserved_;
               stack_uint_c8 = *(uint32_t *)(iteration_count + 0xc + iteration_count * 0x10);
               stack_uint_d0 = 0;
@@ -7658,10 +7658,10 @@ ulonglong FUN_180896140(longlong pointer_)
               pointer_ = pointer_108;
             }
           }
-          else if (opointer_ == 6) {
-            opointer_ = utility_system_function_primary(*(uint32_t *)(iteration_count + 0xc + iteration_count * 0x10),stack_buffer_70);
+          else if (operation_result == 6) {
+            operation_result = utility_system_function_primary(*(uint32_t *)(iteration_count + 0xc + iteration_count * 0x10),stack_buffer_70);
             pointer_ = pointer_108;
-            if (opointer_ == 0) {
+            if (operation_result == 0) {
               stack_pointer_8 = &utility_system_reserved_;
               stack_uint_a8 = *(uint32_t *)(iteration_count + 0xc + iteration_count * 0x10);
               stack_uint_b0 = 0;
@@ -7670,34 +7670,34 @@ ulonglong FUN_180896140(longlong pointer_)
               pointer_ = pointer_108;
             }
           }
-          else if ((opointer_ == 7) &&
-                  (opointer_ = utility_system_function_primary(*(uint32_t *)(iteration_count + 0xc + iteration_count * 0x10),
-                                               stack_buffer_68), pointer_ = pointer_108, opointer_ == 0)) {
+          else if ((operation_result == 7) &&
+                  (operation_result = utility_system_function_primary(*(uint32_t *)(iteration_count + 0xc + iteration_count * 0x10),
+                                               stack_buffer_68), pointer_ = pointer_108, operation_result == 0)) {
             resource_context = *(uint32_t *)(iteration_count + 0xc + iteration_count * 0x10);
-            opointer_ = (int)resource_context + 1;
-            opointer_ = opointer_;
-            if (opointer_ < 0) {
-              opointer_ = -opointer_;
+            operation_result = (int)resource_context + 1;
+            operation_result = operation_result;
+            if (operation_result < 0) {
+              operation_result = -operation_result;
             }
-            opointer_ = (int)resource_context;
-            if (opointer_ < opointer_) {
-              if (opointer_ < 0) {
-                opointer_ = -opointer_;
+            operation_result = (int)resource_context;
+            if (operation_result < operation_result) {
+              if (operation_result < 0) {
+                operation_result = -operation_result;
               }
-              opointer_ = (int)((float)opointer_ * 1.5);
-              opointer_ = opointer_;
-              if (opointer_ <= opointer_) {
-                opointer_ = opointer_;
+              operation_result = (int)((float)operation_result * 1.5);
+              operation_result = operation_result;
+              if (operation_result <= operation_result) {
+                operation_result = operation_result;
               }
-              if (opointer_ < 0x10) {
-                opointer_ = 0x10;
+              if (operation_result < 0x10) {
+                operation_result = 0x10;
               }
-              else if (opointer_ < opointer_) {
-                opointer_ = opointer_;
+              else if (operation_result < operation_result) {
+                operation_result = operation_result;
               }
-              resource_context = FUN_18084c470(&stack_uint_118,opointer_);
+              resource_context = FUN_18084c470(&stack_uint_118,operation_result);
               resource_context = (ulonglong)resource_context;
-              opointer_ = (int)stack_uint_110;
+              operation_result = (int)stack_uint_110;
               if (resource_context != 0) {
                 resource_context = stack_uint_110._4_4_;
                 if ((longlong)stack_uint_110 < 0) {
@@ -7717,10 +7717,10 @@ ulonglong FUN_180896140(longlong pointer_)
                   stack_uint_110 = 0;
                   resource_context = 0;
                 }
-                if (opointer_ < 0) {
+                if (operation_result < 0) {
                   pointer_ = (uint32_t *)(stack_uint_118 + iteration_count * 4);
-                  iteration_count = (longlong)-opointer_;
-                  if (opointer_ < 0) {
+                  iteration_count = (longlong)-operation_result;
+                  if (operation_result < 0) {
                     for (; iteration_count != 0; iteration_count = iteration_count + -1) {
                       *pointer_ = 0;
                       pointer_ = pointer_ + 1;
@@ -7738,44 +7738,44 @@ ulonglong FUN_180896140(longlong pointer_)
                 return resource_context;
               }
               resource_context = (ulonglong)stack_uint_110._4_4_;
-              opointer_ = (int)stack_uint_110;
+              operation_result = (int)stack_uint_110;
             }
-            austack_variable[0] = opointer_ + 1;
+            austack_variable[0] = operation_result + 1;
             resource_context = (ulonglong)austack_variable[0];
             stack_uint_110 = CONCAT44(stack_uint_110._4_4_,austack_variable[0]);
-            *(uint32_t *)(stack_uint_118 + (longlong)opointer_ * 4) = resource_context;
+            *(uint32_t *)(stack_uint_118 + (longlong)operation_result * 4) = resource_context;
             pointer_ = pointer_108;
           }
-          opointer_ = (int)resource_context;
-          opointer_ = (int)resource_context;
+          operation_result = (int)resource_context;
+          operation_result = (int)resource_context;
         } while ((aistack_variable[0] != -1) &&
                 (aistack_variable[0] = *(int *)(pointer_[2] + 4 + iteration_count * 0x10), aistack_variable[0] != -1));
-        opointer_ = opointer_ + 1;
-        bvariable = opointer_ != -1;
-        opointer_ = 0;
+        operation_result = operation_result + 1;
+        bvariable = operation_result != -1;
+        operation_result = 0;
         if (bvariable) {
-          opointer_ = opointer_;
+          operation_result = operation_result;
         }
-        if (opointer_ != (int)pointer_[1]) {
-          iteration_count = (longlong)opointer_;
+        if (operation_result != (int)pointer_[1]) {
+          iteration_count = (longlong)operation_result;
           do {
             if (*(int *)(*pointer_ + iteration_count * 4) != -1) {
-              aistack_variable[0] = *(int *)(*pointer_ + (longlong)opointer_ * 4);
+              aistack_variable[0] = *(int *)(*pointer_ + (longlong)operation_result * 4);
               goto LAB_1808962af;
             }
-            opointer_ = opointer_ + 1;
+            operation_result = operation_result + 1;
             iteration_count = iteration_count + 1;
           } while (iteration_count != (int)pointer_[1]);
         }
         aistack_variable[0] = -1;
-        opointer_ = aistack_variable[0];
+        operation_result = aistack_variable[0];
 LAB_1808962af:
       } while (aistack_variable[0] != -1);
       aistack_variable[0] = -1;
       resource_context = stack_uint_118;
     }
-    iteration_count = (longlong)(opointer_ + -1);
-    if (-1 < opointer_ + -1) {
+    iteration_count = (longlong)(operation_result + -1);
+    if (-1 < operation_result + -1) {
       do {
         stack_uint_100 = stack_uint_100 & 0xffffffff00000000;
         pointer_108 = (longlong *)&utility_system_reserved_;
@@ -7784,24 +7784,24 @@ LAB_1808962af:
         iteration_count = iteration_count + -1;
       } while (-1 < iteration_count);
     }
-    opointer_ = opointer_;
-    if (opointer_ < 0) {
-      opointer_ = -opointer_;
+    operation_result = operation_result;
+    if (operation_result < 0) {
+      operation_result = -operation_result;
     }
-    if (opointer_ < 0) {
-      if (0 < opointer_) goto LAB_18089638e;
-      if ((0 < opointer_) && (resource_context != 0)) {
+    if (operation_result < 0) {
+      if (0 < operation_result) goto LAB_18089638e;
+      if ((0 < operation_result) && (resource_context != 0)) {
         FUN_180742250(*(uint64_t *)(utility_system_reserved_ + 0x1a0),resource_context,&utility_system_reserved_,0x100,1);
       }
       stack_uint_118 = 0;
       stack_uint_110 = 0;
       resource_context = 0;
-      opointer_ = 0;
+      operation_result = 0;
     }
-    if (opointer_ < 0) {
-      iteration_count = (longlong)-opointer_;
-      pointer_ = (uint32_t *)(resource_context + (longlong)opointer_ * 4);
-      if (opointer_ < 0) {
+    if (operation_result < 0) {
+      iteration_count = (longlong)-operation_result;
+      pointer_ = (uint32_t *)(resource_context + (longlong)operation_result * 4);
+      if (operation_result < 0) {
         for (; iteration_count != 0; iteration_count = iteration_count + -1) {
           *pointer_ = 0;
           pointer_ = pointer_ + 1;
@@ -7809,10 +7809,10 @@ LAB_1808962af:
       }
     }
     stack_uint_110 = stack_uint_110 & 0xffffffff00000000;
-    if (opointer_ < 0) {
-      opointer_ = -opointer_;
+    if (operation_result < 0) {
+      operation_result = -operation_result;
     }
-    if (opointer_ != 0) {
+    if (operation_result != 0) {
       FUN_18084c470(&stack_uint_118,0);
     }
   }
@@ -7828,8 +7828,8 @@ LAB_18089638e:
       resource_context = (ulonglong)resource_context;
     } while ((int)resource_context < *(int *)(pointer_ + 0x20));
   }
-  opointer_ = FUN_180744cc0(pointer_ + 0x70);
-  if ((opointer_ == 0) && (opointer_ = FUN_180895130(pointer_ + 0x80), opointer_ == 0)) {
+  operation_result = FUN_180744cc0(pointer_ + 0x70);
+  if ((operation_result == 0) && (operation_result = FUN_180895130(pointer_ + 0x80), operation_result == 0)) {
     *(uint32_t *)(pointer_ + 0x90) = 0xffffffff;
     *(uint32_t *)(pointer_ + 0x94) = 0;
   }
@@ -7889,9 +7889,9 @@ uint64_t * FUN_180896830(uint64_t *pointer_,ulonglong pointer_)
  void ListenSocket(longlong *pointer_)
 void ListenSocket(longlong *pointer_)
 {
-  int opointer_;
-  opointer_ = (**(code **)(*pointer_ + 0x18))();
-  if (opointer_ == 0) {
+  int operation_result;;
+  operation_result = (**(code **)(*pointer_ + 0x18))();
+  if (operation_result == 0) {
     *(uint8_t *)(pointer_ + 4) = 0;
   }
   return;
@@ -7903,16 +7903,16 @@ uint64_t FUN_1808968a0(longlong pointer_)
   longlong iteration_count;
   int *pointer_;
   long long resource_context;
-  int opointer_;
-  if ((*(longlong *)(pointer_ + 8) != 0) && (opointer_ = *(int *)(pointer_ + 0x30), 0 < opointer_)) {
+  int operation_result;;
+  if ((*(longlong *)(pointer_ + 8) != 0) && (operation_result = *(int *)(pointer_ + 0x30), 0 < operation_result)) {
     iteration_count = *(longlong *)(pointer_ + 0x28);
-    if (0x40000 < opointer_) {
+    if (0x40000 < operation_result) {
       iteration_count = func_0x00018076b3e0(iteration_count + 0x40000,10);
       if (iteration_count != 0) {
-        opointer_ = ((int)iteration_count - (int)iteration_count) + 1;
+        operation_result = ((int)iteration_count - (int)iteration_count) + 1;
       }
     }
-    pointer_ = (int *)FUN_180741e10(*(uint64_t *)(utility_system_reserved_ + 0x1a0),opointer_ + 0x19,
+    pointer_ = (int *)FUN_180741e10(*(uint64_t *)(utility_system_reserved_ + 0x1a0),operation_result + 0x19,
                                   &utility_system_reserved_,0x278,0,0,1);
     pointer_[0] = 0;
     pointer_[1] = 0;
@@ -7920,58 +7920,58 @@ uint64_t FUN_1808968a0(longlong pointer_)
     pointer_[3] = 0;
     pointer_[4] = 0;
     pointer_[5] = 0;
-    *pointer_ = opointer_ + 0x19;
+    *pointer_ = operation_result + 0x19;
     *(uint16_t *)(pointer_ + 2) = 0x508;
     *(uint8_t *)((longlong)pointer_ + 10) = 3;
     pointer_[3] = 1;
     iteration_count = *(longlong *)(*(longlong *)(pointer_ + 8) + 0x90);
     resource_context = func_0x0001808e3470(*(uint64_t *)(iteration_count + 0x4d0),*(uint32_t *)(iteration_count + 0x774));
     *(uint64_t *)(pointer_ + 4) = resource_context;
-    memcpointer_(pointer_ + 6,iteration_count,(longlong)opointer_);
+    memcpointer_(pointer_ + 6,iteration_count,(longlong)operation_result);
   }
   return 0;
 }
 int FUN_180896a30(longlong pointer_,longlong pointer_,int pointer_)
 {
   uint32_t resource_context;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   resource_context = *(uint32_t *)(pointer_ + 0x14);
-  opointer_ = func_0x00018074b7d0(pointer_,pointer_,*(uint32_t *)(pointer_ + 0x10));
-  opointer_ = FUN_18074b880(pointer_ + opointer_,pointer_ - opointer_,&utility_system_reserved_);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = func_0x00018074b800(opointer_ + pointer_,pointer_ - opointer_,resource_context);
-  return opointer_ + opointer_;
+  operation_result = func_0x00018074b7d0(pointer_,pointer_,*(uint32_t *)(pointer_ + 0x10));
+  operation_result = FUN_18074b880(pointer_ + operation_result,pointer_ - operation_result,&utility_system_reserved_);
+  operation_result = operation_result + operation_result;
+  operation_result = func_0x00018074b800(operation_result + pointer_,pointer_ - operation_result,resource_context);
+  return operation_result + operation_result;
 }
 int FUN_180896aa0(longlong pointer_,longlong pointer_,int pointer_)
 {
   long long resource_context;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   resource_context = *(uint64_t *)(pointer_ + 0x10);
-  opointer_ = FUN_18074b880(pointer_,pointer_,&utility_system_reserved_);
-  opointer_ = FUN_18074b880(pointer_ + opointer_,pointer_ - opointer_,&utility_system_reserved_);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = func_0x00018074be80(opointer_ + pointer_,pointer_ - opointer_,resource_context);
-  return opointer_ + opointer_;
+  operation_result = FUN_18074b880(pointer_,pointer_,&utility_system_reserved_);
+  operation_result = FUN_18074b880(pointer_ + operation_result,pointer_ - operation_result,&utility_system_reserved_);
+  operation_result = operation_result + operation_result;
+  operation_result = func_0x00018074be80(operation_result + pointer_,pointer_ - operation_result,resource_context);
+  return operation_result + operation_result;
 }
 int FUN_180896b20(longlong pointer_,longlong pointer_,int pointer_)
 {
   uint32_t resource_context;
   uint32_t resource_context;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   resource_context = *(uint32_t *)(pointer_ + 0x14);
   resource_context = *(uint32_t *)(pointer_ + 0x10);
-  opointer_ = FUN_18074b880(pointer_,pointer_,&utility_system_reserved_);
-  opointer_ = FUN_18074b880(opointer_ + pointer_,pointer_ - opointer_,&utility_system_reserved_);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = func_0x00018074b7d0(opointer_ + pointer_,pointer_ - opointer_,resource_context);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = FUN_18074b880(opointer_ + pointer_,pointer_ - opointer_,&utility_system_reserved_);
-  opointer_ = opointer_ + opointer_;
-  opointer_ = func_0x00018074b800(opointer_ + pointer_,pointer_ - opointer_,resource_context);
-  return opointer_ + opointer_;
+  operation_result = FUN_18074b880(pointer_,pointer_,&utility_system_reserved_);
+  operation_result = FUN_18074b880(operation_result + pointer_,pointer_ - operation_result,&utility_system_reserved_);
+  operation_result = operation_result + operation_result;
+  operation_result = func_0x00018074b7d0(operation_result + pointer_,pointer_ - operation_result,resource_context);
+  operation_result = operation_result + operation_result;
+  operation_result = FUN_18074b880(operation_result + pointer_,pointer_ - operation_result,&utility_system_reserved_);
+  operation_result = operation_result + operation_result;
+  operation_result = func_0x00018074b800(operation_result + pointer_,pointer_ - operation_result,resource_context);
+  return operation_result + operation_result;
 }
 uint64_t FUN_180896c10(longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
@@ -7992,11 +7992,11 @@ void Accepointer_(uint64_t pointer_,longlong pointer_,uint pointer_,char pointer
 {
   longlong iteration_count;
   longlong iteration_count;
-  int opointer_;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
+  int operation_result;;
   undefined **pointer_;
-  int opointer_;
+  int operation_result;;
   uint8_t stack_buffer_328 [32];
   uint32_t stack_uint_308;
   float afStack_304 [3];
@@ -8028,10 +8028,10 @@ void Accepointer_(uint64_t pointer_,longlong pointer_,uint pointer_,char pointer
   uint8_t stack_buffer_260 [520];
   ulonglong stack_uint_58;
   stack_uint_58 = utility_system_reserved_ ^ (ulonglong)stack_buffer_328;
-  opointer_ = 0;
+  operation_result = 0;
   if (pointer_ != 0) {
-    opointer_ = *(int *)(pointer_ + 0x220);
-    if (opointer_ == 0) {
+    operation_result = *(int *)(pointer_ + 0x220);
+    if (operation_result == 0) {
       stack_pointer_278 = &utility_system_reserved_;
       stack_uint_270 = 0;
       stack_uint_264 = 0;
@@ -8039,11 +8039,11 @@ void Accepointer_(uint64_t pointer_,longlong pointer_,uint pointer_,char pointer
       func_0x00018076b450(stack_buffer_260,*(uint64_t *)(pointer_ + 0x228),0x200);
       pointer_ = &stack_pointer_278;
 LAB_180896ce3:
-      opointer_ = InitializeRegistry(pointer_,pointer_);
+      operation_result = InitializeRegistry(pointer_,pointer_);
     }
     else {
       stack_int_2f0 = 0;
-      if (1 < opointer_ - 1U) {
+      if (1 < operation_result - 1U) {
         stack_pointer_2f8 = &utility_system_reserved_;
         pointer_ = &stack_pointer_2f8;
         stack_uint_2b0 = 0;
@@ -8060,10 +8060,10 @@ LAB_180896ce3:
       stack_pointer_2f8 = &utility_system_reserved_;
       lStack_2d8 = (ulonglong)pointer_ << 0x20;
       stack_uint_2e8 = *(uint64_t *)(pointer_ + 0x228);
-      stack_uint_2e0 = (ulonglong)CONCAT14(opointer_ != 1,*(uint32_t *)(pointer_ + 0x230));
-      opointer_ = InitializeRegistry(pointer_,&stack_pointer_2f8);
+      stack_uint_2e0 = (ulonglong)CONCAT14(operation_result != 1,*(uint32_t *)(pointer_ + 0x230));
+      operation_result = InitializeRegistry(pointer_,&stack_pointer_2f8);
     }
-    if (opointer_ != 0) goto CloseSocket;
+    if (operation_result != 0) goto CloseSocket;
     stack_uint_298 = *(uint *)(pointer_ + 0x10);
     stack_uint_294 = *(uint32_t *)(pointer_ + 0x14);
     stack_int_290 = *(int *)(pointer_ + 0x18);
@@ -8072,244 +8072,244 @@ LAB_180896ce3:
     stack_pointer_2a8 = &utility_system_reserved_;
     stack_uint_284 = 0;
     stack_uint_288 = pointer_;
-    opointer_ = InitializeRegistry(pointer_,&stack_pointer_2a8);
-    if (opointer_ != 0) goto CloseSocket;
-    opointer_ = 0;
-    opointer_ = *(int *)(*(longlong *)(pointer_ + 0x2e8) + 0x2c);
-    if (0 < opointer_) {
+    operation_result = InitializeRegistry(pointer_,&stack_pointer_2a8);
+    if (operation_result != 0) goto CloseSocket;
+    operation_result = 0;
+    operation_result = *(int *)(*(longlong *)(pointer_ + 0x2e8) + 0x2c);
+    if (0 < operation_result) {
       do {
         stack_int_2f0 = 0;
         stack_pointer_2f8 = &utility_system_reserved_;
         stack_uint_2e8 = CONCAT44(stack_uint_2e8._4_4_,pointer_);
-        opointer_ = InitializeRegistry(pointer_,&stack_pointer_2f8);
-        if (opointer_ != 0) goto CloseSocket;
-        opointer_ = opointer_ + 1;
-      } while (opointer_ < opointer_);
+        operation_result = InitializeRegistry(pointer_,&stack_pointer_2f8);
+        if (operation_result != 0) goto CloseSocket;
+        operation_result = operation_result + 1;
+      } while (operation_result < operation_result);
     }
   }
   if (((pointer_ != '\0') || (*(int *)(*(longlong *)(pointer_ + 0x2e8) + 0x34) == 0)) &&
-     (opointer_ = Expointer_(pointer_,pointer_,pointer_), opointer_ == 0)) {
-    for (opointer_ = 0; (-1 < opointer_ && (opointer_ < *(int *)(pointer_ + 0x48))); opointer_ = opointer_ + 1) {
-      iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0x40) + (longlong)opointer_ * 8);
+     (operation_result = Expointer_(pointer_,pointer_,pointer_), operation_result == 0)) {
+    for (operation_result = 0; (-1 < operation_result && (operation_result < *(int *)(pointer_ + 0x48))); operation_result = operation_result + 1) {
+      iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0x40) + (longlong)operation_result * 8);
       iteration_count = *(longlong *)(iteration_count + 0x68);
       if (((*(byte *)(iteration_count + 0xc4) & 1) != 0) && (iteration_count != 0)) {
         stack_uint_308 = 0;
-        opointer_ = func_0x00018088c500(iteration_count,&stack_uint_308);
-        if (opointer_ != 0) goto CloseSocket;
+        operation_result = func_0x00018088c500(iteration_count,&stack_uint_308);
+        if (operation_result != 0) goto CloseSocket;
         stack_uint_28c = *(uint32_t *)(iteration_count + 0x10);
         stack_uint_288 = *(uint *)(iteration_count + 0x14);
         stack_uint_284 = *(uint32_t *)(iteration_count + 0x18);
         stack_uint_280 = *(uint32_t *)(iteration_count + 0x1c);
         stack_pointer_2a8 = &utility_system_reserved_;
-        opointer_ = opointer_ + 1;
+        operation_result = operation_result + 1;
         stack_uint_27c = stack_uint_308;
-        stack_int_2a0 = opointer_;
+        stack_int_2a0 = operation_result;
         stack_uint_298 = pointer_;
-        stack_int_290 = opointer_;
-        opointer_ = InitializeRegistry(pointer_,&stack_pointer_2a8);
-        if ((opointer_ != 0) || (opointer_ = FUN_18088c970(iteration_count,afStack_304), opointer_ != 0))
+        stack_int_290 = operation_result;
+        operation_result = InitializeRegistry(pointer_,&stack_pointer_2a8);
+        if ((operation_result != 0) || (operation_result = FUN_18088c970(iteration_count,afStack_304), operation_result != 0))
         goto CloseSocket;
         if (afStack_304[0] != 1.0) {
           stack_uint_2e0 = CONCAT44(stack_uint_2e0._4_4_,afStack_304[0]);
           stack_pointer_2f8 = &utility_system_reserved_;
           stack_uint_2e8 = CONCAT44(stack_uint_2e8._4_4_,stack_uint_308);
-          stack_int_2f0 = opointer_;
-          opointer_ = InitializeRegistry(pointer_,&stack_pointer_2f8);
-          if (opointer_ != 0) goto CloseSocket;
+          stack_int_2f0 = operation_result;
+          operation_result = InitializeRegistry(pointer_,&stack_pointer_2f8);
+          if (operation_result != 0) goto CloseSocket;
         }
         if (*(char *)(iteration_count + 0x28) != '\0') {
           stack_int_2f0 = 0;
           stack_pointer_2f8 = &utility_system_reserved_;
           stack_uint_2e8 = CONCAT44(stack_uint_2e8._4_4_,stack_uint_308);
           stack_uint_2e0 = CONCAT71(stack_uint_2e0._1_7_,1);
-          opointer_ = InitializeRegistry(pointer_,&stack_pointer_2f8);
-          if (opointer_ != 0) goto CloseSocket;
+          operation_result = InitializeRegistry(pointer_,&stack_pointer_2f8);
+          if (operation_result != 0) goto CloseSocket;
         }
-        opointer_ = opointer_;
+        operation_result = operation_result;
         if (*(char *)(iteration_count + 0x29) != '\0') {
           stack_int_2f0 = 0;
           stack_pointer_2f8 = &utility_system_reserved_;
           stack_uint_2e8 = CONCAT44(stack_uint_2e8._4_4_,stack_uint_308);
           stack_uint_2e0 = CONCAT71(stack_uint_2e0._1_7_,1);
-          opointer_ = InitializeRegistry(pointer_,&stack_pointer_2f8);
-          if (opointer_ != 0) goto CloseSocket;
+          operation_result = InitializeRegistry(pointer_,&stack_pointer_2f8);
+          if (operation_result != 0) goto CloseSocket;
         }
       }
     }
-    for (opointer_ = 0; (-1 < opointer_ && (opointer_ < *(int *)(pointer_ + 0x58))); opointer_ = opointer_ + 1) {
-      iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0x50) + (longlong)opointer_ * 8);
+    for (operation_result = 0; (-1 < operation_result && (operation_result < *(int *)(pointer_ + 0x58))); operation_result = operation_result + 1) {
+      iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0x50) + (longlong)operation_result * 8);
       iteration_count = *(longlong *)(iteration_count + 0x68);
       if (((*(byte *)(iteration_count + 0xc4) & 1) != 0) && (iteration_count != 0)) {
         stack_uint_308 = 0;
-        opointer_ = func_0x00018088c500(iteration_count,&stack_uint_308);
-        if (opointer_ != 0) goto CloseSocket;
+        operation_result = func_0x00018088c500(iteration_count,&stack_uint_308);
+        if (operation_result != 0) goto CloseSocket;
         stack_uint_28c = *(uint32_t *)(iteration_count + 0x10);
         stack_uint_288 = *(uint *)(iteration_count + 0x14);
         stack_uint_284 = *(uint32_t *)(iteration_count + 0x18);
         stack_uint_280 = *(uint32_t *)(iteration_count + 0x1c);
         stack_pointer_2a8 = &utility_system_reserved_;
-        opointer_ = opointer_ + 1;
+        operation_result = operation_result + 1;
         stack_uint_27c = stack_uint_308;
-        stack_int_2a0 = opointer_;
+        stack_int_2a0 = operation_result;
         stack_uint_298 = pointer_;
-        stack_int_290 = opointer_;
-        opointer_ = InitializeRegistry(pointer_,&stack_pointer_2a8);
-        if ((opointer_ != 0) || (opointer_ = FUN_18088c970(iteration_count,afStack_304), opointer_ != 0))
+        stack_int_290 = operation_result;
+        operation_result = InitializeRegistry(pointer_,&stack_pointer_2a8);
+        if ((operation_result != 0) || (operation_result = FUN_18088c970(iteration_count,afStack_304), operation_result != 0))
         goto CloseSocket;
         if (afStack_304[0] != 1.0) {
           stack_uint_2e0 = CONCAT44(stack_uint_2e0._4_4_,afStack_304[0]);
           stack_pointer_2f8 = &utility_system_reserved_;
           stack_uint_2e8 = CONCAT44(stack_uint_2e8._4_4_,stack_uint_308);
-          stack_int_2f0 = opointer_;
-          opointer_ = InitializeRegistry(pointer_,&stack_pointer_2f8);
-          if (opointer_ != 0) goto CloseSocket;
+          stack_int_2f0 = operation_result;
+          operation_result = InitializeRegistry(pointer_,&stack_pointer_2f8);
+          if (operation_result != 0) goto CloseSocket;
         }
         if (*(char *)(iteration_count + 0x28) != '\0') {
           stack_int_2f0 = 0;
           stack_pointer_2f8 = &utility_system_reserved_;
           stack_uint_2e8 = CONCAT44(stack_uint_2e8._4_4_,stack_uint_308);
           stack_uint_2e0 = CONCAT71(stack_uint_2e0._1_7_,1);
-          opointer_ = InitializeRegistry(pointer_,&stack_pointer_2f8);
-          if (opointer_ != 0) goto CloseSocket;
+          operation_result = InitializeRegistry(pointer_,&stack_pointer_2f8);
+          if (operation_result != 0) goto CloseSocket;
         }
-        opointer_ = opointer_;
+        operation_result = operation_result;
         if (*(char *)(iteration_count + 0x29) != '\0') {
           stack_int_2f0 = 0;
           stack_pointer_2f8 = &utility_system_reserved_;
           stack_uint_2e8 = CONCAT44(stack_uint_2e8._4_4_,stack_uint_308);
           stack_uint_2e0 = CONCAT71(stack_uint_2e0._1_7_,1);
-          opointer_ = InitializeRegistry(pointer_,&stack_pointer_2f8);
-          if (opointer_ != 0) goto CloseSocket;
+          operation_result = InitializeRegistry(pointer_,&stack_pointer_2f8);
+          if (operation_result != 0) goto CloseSocket;
         }
       }
     }
-    for (opointer_ = 0; (-1 < opointer_ && (opointer_ < *(int *)(pointer_ + 0x68))); opointer_ = opointer_ + 1) {
-      iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0x60) + (longlong)opointer_ * 8);
+    for (operation_result = 0; (-1 < operation_result && (operation_result < *(int *)(pointer_ + 0x68))); operation_result = operation_result + 1) {
+      iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0x60) + (longlong)operation_result * 8);
       iteration_count = *(longlong *)(iteration_count + 0x68);
       if (((*(byte *)(iteration_count + 0xc4) & 1) != 0) && (iteration_count != 0)) {
         stack_uint_308 = 0;
-        opointer_ = func_0x00018088c500(iteration_count,&stack_uint_308);
-        if (opointer_ != 0) goto CloseSocket;
+        operation_result = func_0x00018088c500(iteration_count,&stack_uint_308);
+        if (operation_result != 0) goto CloseSocket;
         stack_uint_28c = *(uint32_t *)(iteration_count + 0x10);
         stack_uint_288 = *(uint *)(iteration_count + 0x14);
         stack_uint_284 = *(uint32_t *)(iteration_count + 0x18);
         stack_uint_280 = *(uint32_t *)(iteration_count + 0x1c);
         stack_pointer_2a8 = &utility_system_reserved_;
-        opointer_ = opointer_ + 1;
+        operation_result = operation_result + 1;
         stack_uint_27c = stack_uint_308;
-        stack_int_2a0 = opointer_;
+        stack_int_2a0 = operation_result;
         stack_uint_298 = pointer_;
-        stack_int_290 = opointer_;
-        opointer_ = InitializeRegistry(pointer_,&stack_pointer_2a8);
-        if ((opointer_ != 0) || (opointer_ = FUN_18088c970(iteration_count,afStack_304), opointer_ != 0))
+        stack_int_290 = operation_result;
+        operation_result = InitializeRegistry(pointer_,&stack_pointer_2a8);
+        if ((operation_result != 0) || (operation_result = FUN_18088c970(iteration_count,afStack_304), operation_result != 0))
         goto CloseSocket;
         if (afStack_304[0] != 1.0) {
           stack_uint_2e0 = CONCAT44(stack_uint_2e0._4_4_,afStack_304[0]);
           stack_pointer_2f8 = &utility_system_reserved_;
           stack_uint_2e8 = CONCAT44(stack_uint_2e8._4_4_,stack_uint_308);
-          stack_int_2f0 = opointer_;
-          opointer_ = InitializeRegistry(pointer_,&stack_pointer_2f8);
-          if (opointer_ != 0) goto CloseSocket;
+          stack_int_2f0 = operation_result;
+          operation_result = InitializeRegistry(pointer_,&stack_pointer_2f8);
+          if (operation_result != 0) goto CloseSocket;
         }
         if (*(char *)(iteration_count + 0x28) != '\0') {
           stack_int_2f0 = 0;
           stack_pointer_2f8 = &utility_system_reserved_;
           stack_uint_2e8 = CONCAT44(stack_uint_2e8._4_4_,stack_uint_308);
           stack_uint_2e0 = CONCAT71(stack_uint_2e0._1_7_,1);
-          opointer_ = InitializeRegistry(pointer_,&stack_pointer_2f8);
-          if (opointer_ != 0) goto CloseSocket;
+          operation_result = InitializeRegistry(pointer_,&stack_pointer_2f8);
+          if (operation_result != 0) goto CloseSocket;
         }
-        opointer_ = opointer_;
+        operation_result = operation_result;
         if (*(char *)(iteration_count + 0x29) != '\0') {
           stack_int_2f0 = 0;
           stack_pointer_2f8 = &utility_system_reserved_;
           stack_uint_2e8 = CONCAT44(stack_uint_2e8._4_4_,stack_uint_308);
           stack_uint_2e0 = CONCAT71(stack_uint_2e0._1_7_,1);
-          opointer_ = InitializeRegistry(pointer_,&stack_pointer_2f8);
-          if (opointer_ != 0) goto CloseSocket;
+          operation_result = InitializeRegistry(pointer_,&stack_pointer_2f8);
+          if (operation_result != 0) goto CloseSocket;
         }
       }
     }
-    for (opointer_ = 0; (-1 < opointer_ && (opointer_ < *(int *)(pointer_ + 0x78))); opointer_ = opointer_ + 1) {
-      iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0x70) + (longlong)opointer_ * 8);
+    for (operation_result = 0; (-1 < operation_result && (operation_result < *(int *)(pointer_ + 0x78))); operation_result = operation_result + 1) {
+      iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0x70) + (longlong)operation_result * 8);
       iteration_count = *(longlong *)(iteration_count + 0x68);
       if (((*(byte *)(iteration_count + 0xc4) & 1) != 0) && (iteration_count != 0)) {
         stack_uint_308 = 0;
-        opointer_ = func_0x00018088c500(iteration_count,&stack_uint_308);
-        if (opointer_ != 0) goto CloseSocket;
+        operation_result = func_0x00018088c500(iteration_count,&stack_uint_308);
+        if (operation_result != 0) goto CloseSocket;
         stack_uint_28c = *(uint32_t *)(iteration_count + 0x10);
         stack_uint_288 = *(uint *)(iteration_count + 0x14);
         stack_uint_284 = *(uint32_t *)(iteration_count + 0x18);
         stack_uint_280 = *(uint32_t *)(iteration_count + 0x1c);
         stack_pointer_2a8 = &utility_system_reserved_;
-        opointer_ = opointer_ + 1;
+        operation_result = operation_result + 1;
         stack_uint_27c = stack_uint_308;
-        stack_int_2a0 = opointer_;
+        stack_int_2a0 = operation_result;
         stack_uint_298 = pointer_;
-        stack_int_290 = opointer_;
-        opointer_ = InitializeRegistry(pointer_,&stack_pointer_2a8);
-        if ((opointer_ != 0) || (opointer_ = FUN_18088c970(iteration_count,afStack_304), opointer_ != 0))
+        stack_int_290 = operation_result;
+        operation_result = InitializeRegistry(pointer_,&stack_pointer_2a8);
+        if ((operation_result != 0) || (operation_result = FUN_18088c970(iteration_count,afStack_304), operation_result != 0))
         goto CloseSocket;
         if (afStack_304[0] != 1.0) {
           stack_uint_2e0 = CONCAT44(stack_uint_2e0._4_4_,afStack_304[0]);
           stack_pointer_2f8 = &utility_system_reserved_;
           stack_uint_2e8 = CONCAT44(stack_uint_2e8._4_4_,stack_uint_308);
-          stack_int_2f0 = opointer_;
-          opointer_ = InitializeRegistry(pointer_,&stack_pointer_2f8);
-          if (opointer_ != 0) goto CloseSocket;
+          stack_int_2f0 = operation_result;
+          operation_result = InitializeRegistry(pointer_,&stack_pointer_2f8);
+          if (operation_result != 0) goto CloseSocket;
         }
         if (*(char *)(iteration_count + 0x28) != '\0') {
           stack_int_2f0 = 0;
           stack_pointer_2f8 = &utility_system_reserved_;
           stack_uint_2e8 = CONCAT44(stack_uint_2e8._4_4_,stack_uint_308);
           stack_uint_2e0 = CONCAT71(stack_uint_2e0._1_7_,1);
-          opointer_ = InitializeRegistry(pointer_,&stack_pointer_2f8);
-          if (opointer_ != 0) goto CloseSocket;
+          operation_result = InitializeRegistry(pointer_,&stack_pointer_2f8);
+          if (operation_result != 0) goto CloseSocket;
         }
-        opointer_ = opointer_;
+        operation_result = operation_result;
         if (*(char *)(iteration_count + 0x29) != '\0') {
           stack_int_2f0 = 0;
           stack_pointer_2f8 = &utility_system_reserved_;
           stack_uint_2e8 = CONCAT44(stack_uint_2e8._4_4_,stack_uint_308);
           stack_uint_2e0 = CONCAT71(stack_uint_2e0._1_7_,1);
-          opointer_ = InitializeRegistry(pointer_,&stack_pointer_2f8);
-          if (opointer_ != 0) goto CloseSocket;
+          operation_result = InitializeRegistry(pointer_,&stack_pointer_2f8);
+          if (operation_result != 0) goto CloseSocket;
         }
       }
     }
-    opointer_ = 0;
-    opointer_ = 0;
+    operation_result = 0;
+    operation_result = 0;
     do {
-      if ((opointer_ < 0) || (*(int *)(pointer_ + 200) <= opointer_)) break;
-      iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0xc0) + (longlong)opointer_ * 8);
+      if ((operation_result < 0) || (*(int *)(pointer_ + 200) <= operation_result)) break;
+      iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0xc0) + (longlong)operation_result * 8);
       iteration_count = *(longlong *)(iteration_count + 0x48);
       if (iteration_count != 0) {
         stack_uint_308 = 0;
-        opointer_ = func_0x00018088c500(iteration_count,&stack_uint_308);
-        if (opointer_ != 0) break;
+        operation_result = func_0x00018088c500(iteration_count,&stack_uint_308);
+        if (operation_result != 0) break;
         stack_uint_28c = *(uint32_t *)(iteration_count + 0x10);
         stack_uint_288 = *(uint *)(iteration_count + 0x14);
         stack_uint_284 = *(uint32_t *)(iteration_count + 0x18);
         stack_uint_280 = *(uint32_t *)(iteration_count + 0x1c);
         stack_pointer_2a8 = &utility_system_reserved_;
-        opointer_ = opointer_ + 1;
+        operation_result = operation_result + 1;
         stack_uint_27c = stack_uint_308;
-        stack_int_2a0 = opointer_;
+        stack_int_2a0 = operation_result;
         stack_uint_298 = pointer_;
-        stack_int_290 = opointer_;
-        opointer_ = InitializeRegistry(pointer_,&stack_pointer_2a8);
-        if ((opointer_ != 0) || (opointer_ = FUN_18088cbb0(iteration_count,afStack_304,0), opointer_ != 0)) break;
-        opointer_ = opointer_;
+        stack_int_290 = operation_result;
+        operation_result = InitializeRegistry(pointer_,&stack_pointer_2a8);
+        if ((operation_result != 0) || (operation_result = FUN_18088cbb0(iteration_count,afStack_304,0), operation_result != 0)) break;
+        operation_result = operation_result;
         if (afStack_304[0] != 1.0) {
           stack_uint_2e0 = CONCAT44(stack_uint_2e0._4_4_,afStack_304[0]);
           stack_pointer_2f8 = &utility_system_reserved_;
           stack_uint_2e8 = CONCAT44(stack_uint_2e8._4_4_,stack_uint_308);
-          stack_int_2f0 = opointer_;
-          opointer_ = InitializeRegistry(pointer_,&stack_pointer_2f8);
-          if (opointer_ != 0) break;
+          stack_int_2f0 = operation_result;
+          operation_result = InitializeRegistry(pointer_,&stack_pointer_2f8);
+          if (operation_result != 0) break;
         }
       }
-      opointer_ = opointer_ + 1;
+      operation_result = operation_result + 1;
     } while( true );
   }
 CloseSocket:
@@ -8324,9 +8324,9 @@ void ConnectSocket(void)
   uint32_t resource_context;
   uint32_t resource_context;
   uint32_t resource_context;
-  int opointer_;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
+  int operation_result;;
   uint32_t unaff_EBX;
   longlong unaff_RBP;
   int unaff_R12D;
@@ -8348,14 +8348,14 @@ void ConnectSocket(void)
   uint32_t stack_pointer_;
   float stack_pointer_;
   if (((unaff_R15B != '\0') || (*(int *)(*(longlong *)(unaff_R13 + 0x2e8) + 0x34) == unaff_R12D)) &&
-     (opointer_ = Expointer_(), opointer_ == 0)) {
-    for (opointer_ = 0; (-1 < opointer_ && (opointer_ < *(int *)(unaff_R13 + 0x48))); opointer_ = opointer_ + 1) {
-      iteration_count = *(longlong *)(*(longlong *)(unaff_R13 + 0x40) + (longlong)opointer_ * 8);
+     (operation_result = Expointer_(), operation_result == 0)) {
+    for (operation_result = 0; (-1 < operation_result && (operation_result < *(int *)(unaff_R13 + 0x48))); operation_result = operation_result + 1) {
+      iteration_count = *(longlong *)(*(longlong *)(unaff_R13 + 0x40) + (longlong)operation_result * 8);
       iteration_count = *(longlong *)(iteration_count + 0x68);
       if (((*(byte *)(iteration_count + 0xc4) & 1) != 0) && (iteration_count != 0)) {
         ustack_variable = 0;
-        opointer_ = func_0x00018088c500(iteration_count,&ustack_variable);
-        if (opointer_ != 0) goto LAB_1808974ec;
+        operation_result = func_0x00018088c500(iteration_count,&ustack_variable);
+        if (operation_result != 0) goto LAB_1808974ec;
         resource_context = *(uint32_t *)(iteration_count + 0x10);
         resource_context = *(uint32_t *)(iteration_count + 0x14);
         resource_context = *(uint32_t *)(iteration_count + 0x18);
@@ -8370,45 +8370,45 @@ void ConnectSocket(void)
         *(uint32_t *)(unaff_RBP + -0x60) = resource_context;
         *(uint32_t *)(unaff_RBP + -0x5c) = resource_context;
         *(uint32_t *)(unaff_RBP + -0x58) = resource_context;
-        opointer_ = InitializeRegistry(resource_context,unaff_RBP + -0x80);
-        if ((opointer_ != 0) || (opointer_ = FUN_18088c970(iteration_count,&fstack_variable), opointer_ != 0))
+        operation_result = InitializeRegistry(resource_context,unaff_RBP + -0x80);
+        if ((operation_result != 0) || (operation_result = FUN_18088c970(iteration_count,&fstack_variable), operation_result != 0))
         goto LAB_1808974ec;
         fvariable = fstack_variable;
         if (fstack_variable != 1.0) {
           stack_pointer_ = fstack_variable;
           stack_pointer_ = &utility_system_reserved_;
           stack_pointer_ = ustack_variable;
-          stack_pointer_ = opointer_;
-          opointer_ = InitializeRegistry(fstack_variable,&stack_buffer);
+          stack_pointer_ = operation_result;
+          operation_result = InitializeRegistry(fstack_variable,&stack_buffer);
           fvariable = extraout_XMM0_Da;
-          if (opointer_ != 0) goto LAB_1808974ec;
+          if (operation_result != 0) goto LAB_1808974ec;
         }
         if (*(char *)(iteration_count + 0x28) != '\0') {
           stack_pointer_ = 0;
           stack_pointer_ = &utility_system_reserved_;
           stack_pointer_ = ustack_variable;
           stack_pointer_ = (float)CONCAT31(stack_pointer_._1_3_,1);
-          opointer_ = InitializeRegistry(fvariable,&stack_buffer);
+          operation_result = InitializeRegistry(fvariable,&stack_buffer);
           fvariable = extraout_XMM0_Da_00;
-          if (opointer_ != 0) goto LAB_1808974ec;
+          if (operation_result != 0) goto LAB_1808974ec;
         }
         if (*(char *)(iteration_count + 0x29) != '\0') {
           stack_pointer_ = 0;
           stack_pointer_ = &utility_system_reserved_;
           stack_pointer_ = ustack_variable;
           stack_pointer_ = (float)CONCAT31(stack_pointer_._1_3_,1);
-          opointer_ = InitializeRegistry(fvariable,&stack_buffer);
-          if (opointer_ != 0) goto LAB_1808974ec;
+          operation_result = InitializeRegistry(fvariable,&stack_buffer);
+          if (operation_result != 0) goto LAB_1808974ec;
         }
       }
     }
-    for (opointer_ = 0; (-1 < opointer_ && (opointer_ < *(int *)(unaff_R13 + 0x58))); opointer_ = opointer_ + 1) {
-      iteration_count = *(longlong *)(*(longlong *)(unaff_R13 + 0x50) + (longlong)opointer_ * 8);
+    for (operation_result = 0; (-1 < operation_result && (operation_result < *(int *)(unaff_R13 + 0x58))); operation_result = operation_result + 1) {
+      iteration_count = *(longlong *)(*(longlong *)(unaff_R13 + 0x50) + (longlong)operation_result * 8);
       iteration_count = *(longlong *)(iteration_count + 0x68);
       if (((*(byte *)(iteration_count + 0xc4) & 1) != 0) && (iteration_count != 0)) {
         ustack_variable = 0;
-        opointer_ = func_0x00018088c500(iteration_count,&ustack_variable);
-        if (opointer_ != 0) goto LAB_1808974ec;
+        operation_result = func_0x00018088c500(iteration_count,&ustack_variable);
+        if (operation_result != 0) goto LAB_1808974ec;
         resource_context = *(uint32_t *)(iteration_count + 0x10);
         resource_context = *(uint32_t *)(iteration_count + 0x14);
         resource_context = *(uint32_t *)(iteration_count + 0x18);
@@ -8423,45 +8423,45 @@ void ConnectSocket(void)
         *(uint32_t *)(unaff_RBP + -0x60) = resource_context;
         *(uint32_t *)(unaff_RBP + -0x5c) = resource_context;
         *(uint32_t *)(unaff_RBP + -0x58) = resource_context;
-        opointer_ = InitializeRegistry(resource_context,unaff_RBP + -0x80);
-        if ((opointer_ != 0) || (opointer_ = FUN_18088c970(iteration_count,&fstack_variable), opointer_ != 0))
+        operation_result = InitializeRegistry(resource_context,unaff_RBP + -0x80);
+        if ((operation_result != 0) || (operation_result = FUN_18088c970(iteration_count,&fstack_variable), operation_result != 0))
         goto LAB_1808974ec;
         fvariable = fstack_variable;
         if (fstack_variable != 1.0) {
           stack_pointer_ = fstack_variable;
           stack_pointer_ = &utility_system_reserved_;
           stack_pointer_ = ustack_variable;
-          stack_pointer_ = opointer_;
-          opointer_ = InitializeRegistry(fstack_variable,&stack_buffer);
+          stack_pointer_ = operation_result;
+          operation_result = InitializeRegistry(fstack_variable,&stack_buffer);
           fvariable = extraout_XMM0_Da_01;
-          if (opointer_ != 0) goto LAB_1808974ec;
+          if (operation_result != 0) goto LAB_1808974ec;
         }
         if (*(char *)(iteration_count + 0x28) != '\0') {
           stack_pointer_ = 0;
           stack_pointer_ = &utility_system_reserved_;
           stack_pointer_ = ustack_variable;
           stack_pointer_ = (float)CONCAT31(stack_pointer_._1_3_,1);
-          opointer_ = InitializeRegistry(fvariable,&stack_buffer);
+          operation_result = InitializeRegistry(fvariable,&stack_buffer);
           fvariable = extraout_XMM0_Da_02;
-          if (opointer_ != 0) goto LAB_1808974ec;
+          if (operation_result != 0) goto LAB_1808974ec;
         }
         if (*(char *)(iteration_count + 0x29) != '\0') {
           stack_pointer_ = 0;
           stack_pointer_ = &utility_system_reserved_;
           stack_pointer_ = ustack_variable;
           stack_pointer_ = (float)CONCAT31(stack_pointer_._1_3_,1);
-          opointer_ = InitializeRegistry(fvariable,&stack_buffer);
-          if (opointer_ != 0) goto LAB_1808974ec;
+          operation_result = InitializeRegistry(fvariable,&stack_buffer);
+          if (operation_result != 0) goto LAB_1808974ec;
         }
       }
     }
-    for (opointer_ = 0; (-1 < opointer_ && (opointer_ < *(int *)(unaff_R13 + 0x68))); opointer_ = opointer_ + 1) {
-      iteration_count = *(longlong *)(*(longlong *)(unaff_R13 + 0x60) + (longlong)opointer_ * 8);
+    for (operation_result = 0; (-1 < operation_result && (operation_result < *(int *)(unaff_R13 + 0x68))); operation_result = operation_result + 1) {
+      iteration_count = *(longlong *)(*(longlong *)(unaff_R13 + 0x60) + (longlong)operation_result * 8);
       iteration_count = *(longlong *)(iteration_count + 0x68);
       if (((*(byte *)(iteration_count + 0xc4) & 1) != 0) && (iteration_count != 0)) {
         ustack_variable = 0;
-        opointer_ = func_0x00018088c500(iteration_count,&ustack_variable);
-        if (opointer_ != 0) goto LAB_1808974ec;
+        operation_result = func_0x00018088c500(iteration_count,&ustack_variable);
+        if (operation_result != 0) goto LAB_1808974ec;
         resource_context = *(uint32_t *)(iteration_count + 0x10);
         resource_context = *(uint32_t *)(iteration_count + 0x14);
         resource_context = *(uint32_t *)(iteration_count + 0x18);
@@ -8476,45 +8476,45 @@ void ConnectSocket(void)
         *(uint32_t *)(unaff_RBP + -0x60) = resource_context;
         *(uint32_t *)(unaff_RBP + -0x5c) = resource_context;
         *(uint32_t *)(unaff_RBP + -0x58) = resource_context;
-        opointer_ = InitializeRegistry(resource_context,unaff_RBP + -0x80);
-        if ((opointer_ != 0) || (opointer_ = FUN_18088c970(iteration_count,&fstack_variable), opointer_ != 0))
+        operation_result = InitializeRegistry(resource_context,unaff_RBP + -0x80);
+        if ((operation_result != 0) || (operation_result = FUN_18088c970(iteration_count,&fstack_variable), operation_result != 0))
         goto LAB_1808974ec;
         fvariable = fstack_variable;
         if (fstack_variable != 1.0) {
           stack_pointer_ = fstack_variable;
           stack_pointer_ = &utility_system_reserved_;
           stack_pointer_ = ustack_variable;
-          stack_pointer_ = opointer_;
-          opointer_ = InitializeRegistry(fstack_variable,&stack_buffer);
+          stack_pointer_ = operation_result;
+          operation_result = InitializeRegistry(fstack_variable,&stack_buffer);
           fvariable = extraout_XMM0_Da_03;
-          if (opointer_ != 0) goto LAB_1808974ec;
+          if (operation_result != 0) goto LAB_1808974ec;
         }
         if (*(char *)(iteration_count + 0x28) != '\0') {
           stack_pointer_ = 0;
           stack_pointer_ = &utility_system_reserved_;
           stack_pointer_ = ustack_variable;
           stack_pointer_ = (float)CONCAT31(stack_pointer_._1_3_,1);
-          opointer_ = InitializeRegistry(fvariable,&stack_buffer);
+          operation_result = InitializeRegistry(fvariable,&stack_buffer);
           fvariable = extraout_XMM0_Da_04;
-          if (opointer_ != 0) goto LAB_1808974ec;
+          if (operation_result != 0) goto LAB_1808974ec;
         }
         if (*(char *)(iteration_count + 0x29) != '\0') {
           stack_pointer_ = 0;
           stack_pointer_ = &utility_system_reserved_;
           stack_pointer_ = ustack_variable;
           stack_pointer_ = (float)CONCAT31(stack_pointer_._1_3_,1);
-          opointer_ = InitializeRegistry(fvariable,&stack_buffer);
-          if (opointer_ != 0) goto LAB_1808974ec;
+          operation_result = InitializeRegistry(fvariable,&stack_buffer);
+          if (operation_result != 0) goto LAB_1808974ec;
         }
       }
     }
-    for (opointer_ = 0; (-1 < opointer_ && (opointer_ < *(int *)(unaff_R13 + 0x78))); opointer_ = opointer_ + 1) {
-      iteration_count = *(longlong *)(*(longlong *)(unaff_R13 + 0x70) + (longlong)opointer_ * 8);
+    for (operation_result = 0; (-1 < operation_result && (operation_result < *(int *)(unaff_R13 + 0x78))); operation_result = operation_result + 1) {
+      iteration_count = *(longlong *)(*(longlong *)(unaff_R13 + 0x70) + (longlong)operation_result * 8);
       iteration_count = *(longlong *)(iteration_count + 0x68);
       if (((*(byte *)(iteration_count + 0xc4) & 1) != 0) && (iteration_count != 0)) {
         ustack_variable = 0;
-        opointer_ = func_0x00018088c500(iteration_count,&ustack_variable);
-        if (opointer_ != 0) goto LAB_1808974ec;
+        operation_result = func_0x00018088c500(iteration_count,&ustack_variable);
+        if (operation_result != 0) goto LAB_1808974ec;
         resource_context = *(uint32_t *)(iteration_count + 0x10);
         resource_context = *(uint32_t *)(iteration_count + 0x14);
         resource_context = *(uint32_t *)(iteration_count + 0x18);
@@ -8529,74 +8529,74 @@ void ConnectSocket(void)
         *(uint32_t *)(unaff_RBP + -0x60) = resource_context;
         *(uint32_t *)(unaff_RBP + -0x5c) = resource_context;
         *(uint32_t *)(unaff_RBP + -0x58) = resource_context;
-        opointer_ = InitializeRegistry(resource_context,unaff_RBP + -0x80);
-        if ((opointer_ != 0) || (opointer_ = FUN_18088c970(iteration_count,&fstack_variable), opointer_ != 0))
+        operation_result = InitializeRegistry(resource_context,unaff_RBP + -0x80);
+        if ((operation_result != 0) || (operation_result = FUN_18088c970(iteration_count,&fstack_variable), operation_result != 0))
         goto LAB_1808974ec;
         fvariable = fstack_variable;
         if (fstack_variable != 1.0) {
           stack_pointer_ = fstack_variable;
           stack_pointer_ = &utility_system_reserved_;
           stack_pointer_ = ustack_variable;
-          stack_pointer_ = opointer_;
-          opointer_ = InitializeRegistry(fstack_variable,&stack_buffer);
+          stack_pointer_ = operation_result;
+          operation_result = InitializeRegistry(fstack_variable,&stack_buffer);
           fvariable = extraout_XMM0_Da_05;
-          if (opointer_ != 0) goto LAB_1808974ec;
+          if (operation_result != 0) goto LAB_1808974ec;
         }
         if (*(char *)(iteration_count + 0x28) != '\0') {
           stack_pointer_ = 0;
           stack_pointer_ = &utility_system_reserved_;
           stack_pointer_ = ustack_variable;
           stack_pointer_ = (float)CONCAT31(stack_pointer_._1_3_,1);
-          opointer_ = InitializeRegistry(fvariable,&stack_buffer);
+          operation_result = InitializeRegistry(fvariable,&stack_buffer);
           fvariable = extraout_XMM0_Da_06;
-          if (opointer_ != 0) goto LAB_1808974ec;
+          if (operation_result != 0) goto LAB_1808974ec;
         }
         if (*(char *)(iteration_count + 0x29) != '\0') {
           stack_pointer_ = 0;
           stack_pointer_ = &utility_system_reserved_;
           stack_pointer_ = ustack_variable;
           stack_pointer_ = (float)CONCAT31(stack_pointer_._1_3_,1);
-          opointer_ = InitializeRegistry(fvariable,&stack_buffer);
-          if (opointer_ != 0) goto LAB_1808974ec;
+          operation_result = InitializeRegistry(fvariable,&stack_buffer);
+          if (operation_result != 0) goto LAB_1808974ec;
         }
       }
     }
-    opointer_ = 0;
-    opointer_ = 0;
+    operation_result = 0;
+    operation_result = 0;
     do {
-      if ((opointer_ < 0) || (*(int *)(unaff_R13 + 200) <= opointer_)) break;
-      iteration_count = *(longlong *)(*(longlong *)(unaff_R13 + 0xc0) + (longlong)opointer_ * 8);
+      if ((operation_result < 0) || (*(int *)(unaff_R13 + 200) <= operation_result)) break;
+      iteration_count = *(longlong *)(*(longlong *)(unaff_R13 + 0xc0) + (longlong)operation_result * 8);
       iteration_count = *(longlong *)(iteration_count + 0x48);
       if (iteration_count != 0) {
         ustack_variable = 0;
-        opointer_ = func_0x00018088c500(iteration_count,&ustack_variable);
-        if (opointer_ != 0) break;
+        operation_result = func_0x00018088c500(iteration_count,&ustack_variable);
+        if (operation_result != 0) break;
         resource_context = *(uint32_t *)(iteration_count + 0x10);
         resource_context = *(uint32_t *)(iteration_count + 0x14);
         resource_context = *(uint32_t *)(iteration_count + 0x18);
         resource_context = *(uint32_t *)(iteration_count + 0x1c);
         *(uint32_t *)(unaff_RBP + -0x78) = 0;
-        *(int *)(unaff_RBP + -0x68) = opointer_;
+        *(int *)(unaff_RBP + -0x68) = operation_result;
         *(undefined **)(unaff_RBP + -0x80) = &utility_system_reserved_;
-        opointer_ = opointer_ + 1;
+        operation_result = operation_result + 1;
         *(uint32_t *)(unaff_RBP + -0x54) = ustack_variable;
         *(uint32_t *)(unaff_RBP + -0x70) = unaff_EBX;
         *(uint32_t *)(unaff_RBP + -100) = resource_context;
         *(uint32_t *)(unaff_RBP + -0x60) = resource_context;
         *(uint32_t *)(unaff_RBP + -0x5c) = resource_context;
         *(uint32_t *)(unaff_RBP + -0x58) = resource_context;
-        opointer_ = InitializeRegistry(resource_context,unaff_RBP + -0x80);
-        if ((opointer_ != 0) || (opointer_ = FUN_18088cbb0(iteration_count,&fstack_variable,0), opointer_ != 0)) break;
+        operation_result = InitializeRegistry(resource_context,unaff_RBP + -0x80);
+        if ((operation_result != 0) || (operation_result = FUN_18088cbb0(iteration_count,&fstack_variable,0), operation_result != 0)) break;
         if (fstack_variable != 1.0) {
           stack_pointer_ = fstack_variable;
           stack_pointer_ = &utility_system_reserved_;
           stack_pointer_ = ustack_variable;
-          stack_pointer_ = opointer_;
-          opointer_ = InitializeRegistry(fstack_variable,&stack_buffer);
-          if (opointer_ != 0) break;
+          stack_pointer_ = operation_result;
+          operation_result = InitializeRegistry(fstack_variable,&stack_buffer);
+          if (operation_result != 0) break;
         }
       }
-      opointer_ = opointer_ + 1;
+      operation_result = operation_result + 1;
     } while( true );
   }
 LAB_1808974ec:
@@ -8613,18 +8613,18 @@ void CloseSocket(void)
 void InitializeRegistry(longlong *pointer_,longlong *pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   uint8_t stack_buffer_248 [32];
   uint8_t stack_buffer_228 [512];
   ulonglong stack_uint_28;
   stack_uint_28 = utility_system_reserved_ ^ (ulonglong)stack_buffer_248;
   iteration_count = pointer_[4];
-  if (((char)iteration_count != '\0') || (opointer_ = FUN_1808987e0(pointer_,1), opointer_ == 0)) {
-    opointer_ = (**(code **)(*pointer_ + 0x10))(pointer_,stack_buffer_228,0x200);
-    func_0x00018074b7b0(stack_buffer_228 + opointer_,0x200 - opointer_,10);
-    opointer_ = (**(code **)(*pointer_ + 8))(pointer_,stack_buffer_228);
-    if ((opointer_ == 0) &&
-       (((char)iteration_count == '\0' && (opointer_ = (**(code **)(*pointer_ + 0x18))(pointer_), opointer_ == 0)))) {
+  if (((char)iteration_count != '\0') || (operation_result = FUN_1808987e0(pointer_,1), operation_result == 0)) {
+    operation_result = (**(code **)(*pointer_ + 0x10))(pointer_,stack_buffer_228,0x200);
+    func_0x00018074b7b0(stack_buffer_228 + operation_result,0x200 - operation_result,10);
+    operation_result = (**(code **)(*pointer_ + 8))(pointer_,stack_buffer_228);
+    if ((operation_result == 0) &&
+       (((char)iteration_count == '\0' && (operation_result = (**(code **)(*pointer_ + 0x18))(pointer_), operation_result == 0)))) {
       *(uint8_t *)(pointer_ + 4) = 0;
     }
   }
@@ -8633,17 +8633,17 @@ void InitializeRegistry(longlong *pointer_,longlong *pointer_)
  void Opointer_(void)
 void Opointer_(void)
 {
-  int opointer_;
+  int operation_result;;
   longlong context_pointer_;
   char unaff_SIL;
   longlong *unaff_RDI;
   uint8_t austack_variable [8];
   ulonglong stack_pointer_;
-  opointer_ = (**(code **)(context_pointer_ + 0x10))();
-  func_0x00018074b7b0(austack_variable + opointer_,0x200 - opointer_,10);
-  opointer_ = (**(code **)(*unaff_RDI + 8))();
-  if (((opointer_ == 0) && (unaff_SIL == '\0')) &&
-     (opointer_ = (**(code **)(*unaff_RDI + 0x18))(), opointer_ == 0)) {
+  operation_result = (**(code **)(context_pointer_ + 0x10))();
+  func_0x00018074b7b0(austack_variable + operation_result,0x200 - operation_result,10);
+  operation_result = (**(code **)(*unaff_RDI + 8))();
+  if (((operation_result == 0) && (unaff_SIL == '\0')) &&
+     (operation_result = (**(code **)(*unaff_RDI + 0x18))(), operation_result == 0)) {
     *(uint8_t *)(unaff_RDI + 4) = 0;
   }
   utility_calculate_checksum(stack_pointer_ ^ (ulonglong)&stack_buffer);
@@ -8651,11 +8651,11 @@ void Opointer_(void)
  void CloseRegistryKey(void)
 void CloseRegistryKey(void)
 {
-  int opointer_;
+  int operation_result;;
   char unaff_SIL;
   longlong *unaff_RDI;
   ulonglong stack_pointer_;
-  if ((unaff_SIL == '\0') && (opointer_ = (**(code **)(*unaff_RDI + 0x18))(), opointer_ == 0)) {
+  if ((unaff_SIL == '\0') && (operation_result = (**(code **)(*unaff_RDI + 0x18))(), operation_result == 0)) {
     *(uint8_t *)(unaff_RDI + 4) = 0;
   }
   utility_calculate_checksum(stack_pointer_ ^ (ulonglong)&stack_buffer);
@@ -8669,7 +8669,7 @@ void QueryRegistryValue(longlong pointer_,longlong pointer_)
   longlong iteration_count;
   longlong iteration_count;
   char cvariable;
-  int opointer_;
+  int operation_result;;
   uint resource_context;
   longlong iteration_count;
   longlong iteration_count;
@@ -8728,20 +8728,20 @@ void QueryRegistryValue(longlong pointer_,longlong pointer_)
     iteration_count = iteration_count;
   }
   lStack_180 = pointer_;
-  opointer_ = func_0x00018088c500(iteration_count,&stack_uint_1c8);
-  if (opointer_ == 0) {
+  operation_result = func_0x00018088c500(iteration_count,&stack_uint_1c8);
+  if (operation_result == 0) {
     pointer_ = (uint64_t *)(pointer_ + 8);
     stack_uint_1a0 = 0;
     stack_pointer_190 = pointer_;
     iteration_count = (*(code *)**(uint64_t **)(pointer_ + 8))(pointer_);
-    opointer_ = func_0x00018088c500(*(uint64_t *)(iteration_count + 0xd0),&stack_uint_1a0);
-    if (opointer_ == 0) {
+    operation_result = func_0x00018088c500(*(uint64_t *)(iteration_count + 0xd0),&stack_uint_1a0);
+    if (operation_result == 0) {
       stack_uint_170 = 0;
       stack_pointer_178 = &utility_system_reserved_;
       stack_uint_160 = stack_uint_1c8;
       stack_uint_168 = stack_uint_1a0;
-      opointer_ = InitializeRegistry(pointer_,&stack_pointer_178);
-      if (opointer_ == 0) {
+      operation_result = InitializeRegistry(pointer_,&stack_pointer_178);
+      if (operation_result == 0) {
         lStack_188 = (longlong)*(int *)(iteration_count + 0x28);
         iteration_count = iteration_count;
         if (0 < lStack_188) {
@@ -8766,8 +8766,8 @@ void QueryRegistryValue(longlong pointer_,longlong pointer_)
                 pointer_ = *(undefined **)(iteration_count + 0x50);
               }
               func_0x00018076b450(stack_buffer_e0,pointer_,0x80);
-              opointer_ = InitializeRegistry(pointer_,&stack_pointer_108);
-              if (opointer_ != 0) goto DeleteEnvironmentVariable;
+              operation_result = InitializeRegistry(pointer_,&stack_pointer_108);
+              if (operation_result != 0) goto DeleteEnvironmentVariable;
             }
             iteration_count = iteration_count + 1;
             iteration_count = iteration_count + 0x18;
@@ -8776,12 +8776,12 @@ void QueryRegistryValue(longlong pointer_,longlong pointer_)
         }
         resource_context = *(uint64_t *)(*(longlong *)(pointer_ + 8) + 800);
         resource_context = (**(code **)*pointer_)(pointer_);
-        opointer_ = FUN_1808479d0(resource_context,resource_context,acStack_1c4);
-        if (opointer_ == 0) {
+        operation_result = FUN_1808479d0(resource_context,resource_context,acStack_1c4);
+        if (operation_result == 0) {
           if (acStack_1c4[0] != '\0') {
             resource_context = func_0x00018085fa80();
-            opointer_ = memcmp(iteration_count + 0x38,resource_context,0x30);
-            if (opointer_ != 0) {
+            operation_result = memcmp(iteration_count + 0x38,resource_context,0x30);
+            if (operation_result != 0) {
               stack_uint_140 = *(uint64_t *)(iteration_count + 0x38);
               stack_uint_138 = *(uint64_t *)(iteration_count + 0x40);
               stack_uint_130 = *(uint32_t *)(iteration_count + 0x48);
@@ -8795,29 +8795,29 @@ void QueryRegistryValue(longlong pointer_,longlong pointer_)
               stack_uint_118 = *(uint32_t *)(iteration_count + 0x60);
               stack_uint_114 = *(uint32_t *)(iteration_count + 100);
               stack_uint_148 = stack_uint_1c8;
-              opointer_ = InitializeRegistry(pointer_,&stack_pointer_158);
-              if (opointer_ != 0) goto DeleteEnvironmentVariable;
+              operation_result = InitializeRegistry(pointer_,&stack_pointer_158);
+              if (operation_result != 0) goto DeleteEnvironmentVariable;
             }
           }
-          opointer_ = FUN_1808682e0(iteration_count,&fStack_19c,0);
-          if (opointer_ == 0) {
+          operation_result = FUN_1808682e0(iteration_count,&fStack_19c,0);
+          if (operation_result == 0) {
             if (fStack_19c != 1.0) {
               fStack_1a8 = fStack_19c;
               stack_pointer_1c0 = &utility_system_reserved_;
               stack_uint_1b0 = stack_uint_1c8;
               stack_uint_1b8 = 0;
-              opointer_ = InitializeRegistry(pointer_,&stack_pointer_1c0);
-              if (opointer_ != 0) goto DeleteEnvironmentVariable;
+              operation_result = InitializeRegistry(pointer_,&stack_pointer_1c0);
+              if (operation_result != 0) goto DeleteEnvironmentVariable;
             }
-            opointer_ = FUN_180868270(iteration_count,afStack_198,0);
-            if (opointer_ == 0) {
+            operation_result = FUN_180868270(iteration_count,afStack_198,0);
+            if (operation_result == 0) {
               if (afStack_198[0] != 1.0) {
                 fStack_1a8 = afStack_198[0];
                 stack_pointer_1c0 = &utility_system_reserved_;
                 stack_uint_1b0 = stack_uint_1c8;
                 stack_uint_1b8 = 0;
-                opointer_ = InitializeRegistry(pointer_,&stack_pointer_1c0);
-                if (opointer_ != 0) goto DeleteEnvironmentVariable;
+                operation_result = InitializeRegistry(pointer_,&stack_pointer_1c0);
+                if (operation_result != 0) goto DeleteEnvironmentVariable;
               }
               fvariable = 0.0;
               pointer_ = (float *)(iteration_count + 0x94);
@@ -8828,8 +8828,8 @@ void QueryRegistryValue(longlong pointer_,longlong pointer_)
                   stack_pointer_1c0 = &utility_system_reserved_;
                   fStack_1a8 = fvariable;
                   fStack_1a4 = *pointer_;
-                  opointer_ = InitializeRegistry(pointer_,&stack_pointer_1c0);
-                  if (opointer_ != 0) goto DeleteEnvironmentVariable;
+                  operation_result = InitializeRegistry(pointer_,&stack_pointer_1c0);
+                  if (operation_result != 0) goto DeleteEnvironmentVariable;
                 }
                 fvariable = (float)((int)fvariable + 1);
                 pointer_ = pointer_ + 1;
@@ -8844,8 +8844,8 @@ void QueryRegistryValue(longlong pointer_,longlong pointer_)
                   stack_pointer_1c0 = &utility_system_reserved_;
                   fStack_1a8 = fvariable;
                   fStack_1a4 = fvariable;
-                  opointer_ = InitializeRegistry(pointer_,&stack_pointer_1c0);
-                  if (opointer_ != 0) goto DeleteEnvironmentVariable;
+                  operation_result = InitializeRegistry(pointer_,&stack_pointer_1c0);
+                  if (operation_result != 0) goto DeleteEnvironmentVariable;
                 }
                 fvariable = (float)((int)fvariable + 1);
                 pointer_ = pointer_ + 1;
@@ -8856,33 +8856,33 @@ void QueryRegistryValue(longlong pointer_,longlong pointer_)
                 stack_uint_1b0 = stack_uint_1c8;
                 stack_uint_1b8 = 0;
                 fStack_1a8 = (float)(resource_context / 0x30);
-                opointer_ = InitializeRegistry(pointer_,&stack_pointer_1c0);
-                if (opointer_ != 0) goto DeleteEnvironmentVariable;
+                operation_result = InitializeRegistry(pointer_,&stack_pointer_1c0);
+                if (operation_result != 0) goto DeleteEnvironmentVariable;
               }
               if ((*(uint *)(pointer_ + 0x2d8) >> 1 & 1) != 0) {
                 stack_uint_1b8 = 0;
                 stack_pointer_1c0 = &utility_system_reserved_;
                 stack_uint_1b0 = stack_uint_1c8;
                 fStack_1a8 = (float)CONCAT31(fStack_1a8._1_3_,1);
-                opointer_ = InitializeRegistry(pointer_,&stack_pointer_1c0);
-                if (opointer_ != 0) goto DeleteEnvironmentVariable;
+                operation_result = InitializeRegistry(pointer_,&stack_pointer_1c0);
+                if (operation_result != 0) goto DeleteEnvironmentVariable;
               }
               output_pointer = utility_context_manager_initialize(pointer_);
-              if (opointer_ != 2) {
+              if (operation_result != 2) {
                 stack_uint_1b8 = 0;
                 stack_pointer_1c0 = &utility_system_reserved_;
                 stack_uint_1b0 = stack_uint_1c8;
-                opointer_ = InitializeRegistry(pointer_,&stack_pointer_1c0);
-                if (opointer_ != 0) goto DeleteEnvironmentVariable;
+                operation_result = InitializeRegistry(pointer_,&stack_pointer_1c0);
+                if (operation_result != 0) goto DeleteEnvironmentVariable;
               }
               output_pointer = utility_context_manager_initialize(pointer_);
-              if (opointer_ == 4) {
+              if (operation_result == 4) {
                 stack_uint_1b8 = 0;
                 stack_pointer_1c0 = &utility_system_reserved_;
                 stack_uint_1b0 = stack_uint_1c8;
                 fStack_1a8 = 0.0;
-                opointer_ = InitializeRegistry(pointer_,&stack_pointer_1c0);
-                if (opointer_ != 0) goto DeleteEnvironmentVariable;
+                operation_result = InitializeRegistry(pointer_,&stack_pointer_1c0);
+                if (operation_result != 0) goto DeleteEnvironmentVariable;
               }
               if ((*(uint *)(pointer_ + 0x2d8) >> 3 & 1) != 0) {
                 stack_uint_1b8 = 0;
@@ -8914,7 +8914,7 @@ void SetRegistryValue(void)
   uint32_t resource_context;
   uint32_t resource_context;
   char cvariable;
-  int opointer_;
+  int operation_result;;
   uint resource_context;
   uint64_t *context_pointer_;
   longlong iteration_count;
@@ -8965,14 +8965,14 @@ void SetRegistryValue(void)
   fStack0000000000000048 = unaff_R13D;
   pointer_0000000000000058 = pointer_;
   iteration_count = (*(code *)*context_pointer_)(pointer_);
-  opointer_ = func_0x00018088c500(*(uint64_t *)(iteration_count + 0xd0),&stack_buffer);
-  if (opointer_ == 0) {
+  operation_result = func_0x00018088c500(*(uint64_t *)(iteration_count + 0xd0),&stack_buffer);
+  if (operation_result == 0) {
     stack_pointer_ = &utility_system_reserved_;
     *(uint32_t *)(unaff_RBP + -0xf) = ustack_variable;
     *(float *)(unaff_RBP + -0x10) = fStack0000000000000048;
     stack_pointer_ = unaff_R13D;
-    opointer_ = InitializeRegistry(extraout_XMM0_Da,&stack_buffer);
-    if (opointer_ == 0) {
+    operation_result = InitializeRegistry(extraout_XMM0_Da,&stack_buffer);
+    if (operation_result == 0) {
       stack_pointer_ = (longlong)*(int *)(unaff_R15 + 0x28);
       if (0 < stack_pointer_) {
         resource_context = (ulonglong)(uint)unaff_R13D;
@@ -9000,8 +9000,8 @@ void SetRegistryValue(void)
               pointer_ = *(undefined **)(iteration_count + 0x50);
             }
             resource_context = func_0x00018076b450(unaff_RBP + 1,pointer_,0x80);
-            opointer_ = InitializeRegistry(resource_context,unaff_RBP + -4);
-            if (opointer_ != 0) goto SetEnvironmentVariable;
+            operation_result = InitializeRegistry(resource_context,unaff_RBP + -4);
+            if (operation_result != 0) goto SetEnvironmentVariable;
           }
           unaff_R13D = 0.0;
           resource_context = resource_context + 1;
@@ -9011,14 +9011,14 @@ void SetRegistryValue(void)
       }
       resource_context = *(uint64_t *)(*(longlong *)(unaff_RSI + 8) + 800);
       resource_context = (**(code **)*pointer_)(pointer_);
-      opointer_ = FUN_1808479d0(resource_context,resource_context,acstack_variable);
-      if (opointer_ == 0) {
+      operation_result = FUN_1808479d0(resource_context,resource_context,acstack_variable);
+      if (operation_result == 0) {
         resource_context = extraout_XMM0_Da_00;
         if (acstack_variable[0] != '\0') {
           resource_context = func_0x00018085fa80();
-          opointer_ = memcmp(unaff_R15 + 0x38,resource_context,0x30);
+          operation_result = memcmp(unaff_R15 + 0x38,resource_context,0x30);
           resource_context = extraout_XMM0_Da_01;
-          if (opointer_ != 0) {
+          if (operation_result != 0) {
             resource_context = *(uint64_t *)(unaff_R15 + 0x38);
             resource_context = *(uint64_t *)(unaff_R15 + 0x40);
             resource_context = *(uint32_t *)(unaff_R15 + 0x48);
@@ -9042,13 +9042,13 @@ void SetRegistryValue(void)
             *(uint32_t *)((longlong)unaff_RBP + -0x34) = resource_context;
             *(uint32_t *)(unaff_RBP + -6) = resource_context;
             *(uint32_t *)((longlong)unaff_RBP + -0x2c) = resource_context;
-            opointer_ = InitializeRegistry(resource_context,unaff_RBP + -0xe);
+            operation_result = InitializeRegistry(resource_context,unaff_RBP + -0xe);
             resource_context = extraout_XMM0_Da_02;
-            if (opointer_ != 0) goto SetEnvironmentVariable;
+            if (operation_result != 0) goto SetEnvironmentVariable;
           }
         }
-        opointer_ = FUN_1808682e0(resource_context,(longlong)&stack_buffer + 4,0);
-        if (opointer_ == 0) {
+        operation_result = FUN_1808682e0(resource_context,(longlong)&stack_buffer + 4,0);
+        if (operation_result == 0) {
           stack_pointer_0 = unaff_XMM6_Da;
           stack_pointer_8 = unaff_XMM6_Dc;
           if (fStack000000000000004c != 1.0) {
@@ -9056,19 +9056,19 @@ void SetRegistryValue(void)
             stack_pointer_ = &utility_system_reserved_;
             stack_pointer_ = ustack_variable;
             stack_pointer_ = unaff_R13D;
-            opointer_ = InitializeRegistry(fStack000000000000004c,&stack_buffer);
+            operation_result = InitializeRegistry(fStack000000000000004c,&stack_buffer);
             fStack000000000000004c = extraout_XMM0_Da_03;
-            if (opointer_ != 0) goto SetEnvironmentVariable;
+            if (operation_result != 0) goto SetEnvironmentVariable;
           }
-          opointer_ = FUN_180868270(fStack000000000000004c,&stack_buffer,0);
-          if (opointer_ == 0) {
+          operation_result = FUN_180868270(fStack000000000000004c,&stack_buffer,0);
+          if (operation_result == 0) {
             if (stack_pointer_ != 1.0) {
               fStack0000000000000040 = stack_pointer_;
               stack_pointer_ = &utility_system_reserved_;
               stack_pointer_ = ustack_variable;
               stack_pointer_ = unaff_R13D;
-              opointer_ = InitializeRegistry(stack_pointer_,&stack_buffer);
-              if (opointer_ != 0) goto SetEnvironmentVariable;
+              operation_result = InitializeRegistry(stack_pointer_,&stack_buffer);
+              if (operation_result != 0) goto SetEnvironmentVariable;
             }
             pointer_ = (float *)(unaff_R15 + 0x94);
             fvariable = unaff_R13D;
@@ -9080,8 +9080,8 @@ void SetRegistryValue(void)
                 stack_pointer_ = unaff_R13D;
                 fStack0000000000000040 = fvariable;
                 fStack0000000000000044 = fvariable;
-                opointer_ = InitializeRegistry(fvariable,&stack_buffer);
-                if (opointer_ != 0) goto SetEnvironmentVariable;
+                operation_result = InitializeRegistry(fvariable,&stack_buffer);
+                if (operation_result != 0) goto SetEnvironmentVariable;
               }
               fvariable = (float)((int)fvariable + 1);
               pointer_ = pointer_ + 1;
@@ -9096,8 +9096,8 @@ void SetRegistryValue(void)
                 stack_pointer_ = unaff_R13D;
                 fStack0000000000000040 = fvariable;
                 fStack0000000000000044 = fvariable;
-                opointer_ = InitializeRegistry(fvariable,&stack_buffer);
-                if (opointer_ != 0) goto SetEnvironmentVariable;
+                operation_result = InitializeRegistry(fvariable,&stack_buffer);
+                if (operation_result != 0) goto SetEnvironmentVariable;
               }
               fvariable = (float)((int)fvariable + 1);
               pointer_ = pointer_ + 1;
@@ -9109,36 +9109,36 @@ void SetRegistryValue(void)
               stack_pointer_ = ustack_variable;
               stack_pointer_ = unaff_R13D;
               fStack0000000000000040 = (float)(resource_context / 0x30);
-              opointer_ = InitializeRegistry(extraout_XMM0_Da_04,&stack_buffer);
+              operation_result = InitializeRegistry(extraout_XMM0_Da_04,&stack_buffer);
               resource_context = extraout_XMM0_Da_05;
-              if (opointer_ != 0) goto SetEnvironmentVariable;
+              if (operation_result != 0) goto SetEnvironmentVariable;
             }
             if ((*(uint *)(unaff_R14 + 0x2d8) >> 1 & 1) != 0) {
               stack_pointer_ = &utility_system_reserved_;
               stack_pointer_ = ustack_variable;
               fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
               stack_pointer_ = unaff_R13D;
-              opointer_ = InitializeRegistry(resource_context,&stack_buffer);
-              if (opointer_ != 0) goto SetEnvironmentVariable;
+              operation_result = InitializeRegistry(resource_context,&stack_buffer);
+              if (operation_result != 0) goto SetEnvironmentVariable;
             }
             output_pointer = utility_context_manager_initialize(unaff_R14);
-            if (opointer_ != 2) {
+            if (operation_result != 2) {
               stack_pointer_ = &utility_system_reserved_;
               stack_pointer_ = ustack_variable;
               stack_pointer_ = unaff_R13D;
-              opointer_ = InitializeRegistry(extraout_XMM0_Da_06,&stack_buffer);
-              if (opointer_ != 0) goto SetEnvironmentVariable;
+              operation_result = InitializeRegistry(extraout_XMM0_Da_06,&stack_buffer);
+              if (operation_result != 0) goto SetEnvironmentVariable;
             }
             output_pointer = utility_context_manager_initialize(unaff_R14);
             resource_context = extraout_XMM0_Da_07;
-            if (opointer_ == 4) {
+            if (operation_result == 4) {
               stack_pointer_ = &utility_system_reserved_;
               stack_pointer_ = ustack_variable;
               stack_pointer_ = unaff_R13D;
               fStack0000000000000040 = unaff_R13D;
-              opointer_ = InitializeRegistry(extraout_XMM0_Da_07,&stack_buffer);
+              operation_result = InitializeRegistry(extraout_XMM0_Da_07,&stack_buffer);
               resource_context = extraout_XMM0_Da_08;
-              if (opointer_ != 0) goto SetEnvironmentVariable;
+              if (operation_result != 0) goto SetEnvironmentVariable;
             }
             if ((*(uint *)(unaff_R14 + 0x2d8) >> 3 & 1) != 0) {
               stack_pointer_ = &utility_system_reserved_;
@@ -9169,7 +9169,7 @@ void DeleteRegistryValue(void)
   uint32_t resource_context;
   uint32_t resource_context;
   char cvariable;
-  int opointer_;
+  int operation_result;;
   uint resource_context;
   longlong context_pointer_;
   longlong iteration_count;
@@ -9239,8 +9239,8 @@ void DeleteRegistryValue(void)
           pointer_ = *(undefined **)(iteration_count + 0x50);
         }
         resource_context = func_0x00018076b450(unaff_RBP + 1,pointer_,0x80);
-        opointer_ = InitializeRegistry(resource_context,unaff_RBP + -4);
-        if (opointer_ != 0) goto GetEnvironmentVariable;
+        operation_result = InitializeRegistry(resource_context,unaff_RBP + -4);
+        if (operation_result != 0) goto GetEnvironmentVariable;
       }
       unaff_R13D = 0.0;
       resource_context = resource_context + 1;
@@ -9250,14 +9250,14 @@ void DeleteRegistryValue(void)
   }
   resource_context = *(uint64_t *)(*(longlong *)(unaff_RSI + 8) + 800);
   resource_context = (**(code **)*unaff_R12)(unaff_R12);
-  opointer_ = FUN_1808479d0(resource_context,resource_context,acstack_variable);
-  if (opointer_ == 0) {
+  operation_result = FUN_1808479d0(resource_context,resource_context,acstack_variable);
+  if (operation_result == 0) {
     resource_context = extraout_XMM0_Da;
     if (acstack_variable[0] != '\0') {
       resource_context = func_0x00018085fa80();
-      opointer_ = memcmp(unaff_R15 + 0x38,resource_context,0x30);
+      operation_result = memcmp(unaff_R15 + 0x38,resource_context,0x30);
       resource_context = extraout_XMM0_Da_00;
-      if (opointer_ != 0) {
+      if (operation_result != 0) {
         resource_context = *(uint64_t *)(unaff_R15 + 0x38);
         resource_context = *(uint64_t *)(unaff_R15 + 0x40);
         resource_context = *(uint32_t *)(unaff_R15 + 0x48);
@@ -9281,13 +9281,13 @@ void DeleteRegistryValue(void)
         *(uint32_t *)((longlong)unaff_RBP + -0x34) = resource_context;
         *(uint32_t *)(unaff_RBP + -6) = resource_context;
         *(uint32_t *)((longlong)unaff_RBP + -0x2c) = resource_context;
-        opointer_ = InitializeRegistry(resource_context,unaff_RBP + -0xe);
+        operation_result = InitializeRegistry(resource_context,unaff_RBP + -0xe);
         resource_context = extraout_XMM0_Da_01;
-        if (opointer_ != 0) goto GetEnvironmentVariable;
+        if (operation_result != 0) goto GetEnvironmentVariable;
       }
     }
-    opointer_ = FUN_1808682e0(resource_context,(longlong)&stack_buffer + 4,0);
-    if (opointer_ == 0) {
+    operation_result = FUN_1808682e0(resource_context,(longlong)&stack_buffer + 4,0);
+    if (operation_result == 0) {
       stack_pointer_0 = unaff_XMM6_Da;
       stack_pointer_8 = unaff_XMM6_Dc;
       if (stack_pointer_._4_4_ != 1.0) {
@@ -9295,19 +9295,19 @@ void DeleteRegistryValue(void)
         stack_pointer_ = &utility_system_reserved_;
         stack_pointer_ = ustack_variable;
         stack_pointer_ = unaff_R13D;
-        opointer_ = InitializeRegistry(stack_pointer_._4_4_,&stack_buffer);
+        operation_result = InitializeRegistry(stack_pointer_._4_4_,&stack_buffer);
         stack_pointer_._4_4_ = extraout_XMM0_Da_02;
-        if (opointer_ != 0) goto GetEnvironmentVariable;
+        if (operation_result != 0) goto GetEnvironmentVariable;
       }
-      opointer_ = FUN_180868270(stack_pointer_._4_4_,&stack_buffer,0);
-      if (opointer_ == 0) {
+      operation_result = FUN_180868270(stack_pointer_._4_4_,&stack_buffer,0);
+      if (operation_result == 0) {
         if (stack_pointer_ != 1.0) {
           fStack0000000000000040 = stack_pointer_;
           stack_pointer_ = &utility_system_reserved_;
           stack_pointer_ = ustack_variable;
           stack_pointer_ = unaff_R13D;
-          opointer_ = InitializeRegistry(stack_pointer_,&stack_buffer);
-          if (opointer_ != 0) goto GetEnvironmentVariable;
+          operation_result = InitializeRegistry(stack_pointer_,&stack_buffer);
+          if (operation_result != 0) goto GetEnvironmentVariable;
         }
         pointer_ = (float *)(unaff_R15 + 0x94);
         fvariable = unaff_R13D;
@@ -9319,8 +9319,8 @@ void DeleteRegistryValue(void)
             stack_pointer_ = unaff_R13D;
             fStack0000000000000040 = fvariable;
             fStack0000000000000044 = fvariable;
-            opointer_ = InitializeRegistry(fvariable,&stack_buffer);
-            if (opointer_ != 0) goto GetEnvironmentVariable;
+            operation_result = InitializeRegistry(fvariable,&stack_buffer);
+            if (operation_result != 0) goto GetEnvironmentVariable;
           }
           fvariable = (float)((int)fvariable + 1);
           pointer_ = pointer_ + 1;
@@ -9335,8 +9335,8 @@ void DeleteRegistryValue(void)
             stack_pointer_ = unaff_R13D;
             fStack0000000000000040 = fvariable;
             fStack0000000000000044 = fvariable;
-            opointer_ = InitializeRegistry(fvariable,&stack_buffer);
-            if (opointer_ != 0) goto GetEnvironmentVariable;
+            operation_result = InitializeRegistry(fvariable,&stack_buffer);
+            if (operation_result != 0) goto GetEnvironmentVariable;
           }
           fvariable = (float)((int)fvariable + 1);
           pointer_ = pointer_ + 1;
@@ -9348,36 +9348,36 @@ void DeleteRegistryValue(void)
           stack_pointer_ = ustack_variable;
           stack_pointer_ = unaff_R13D;
           fStack0000000000000040 = (float)(resource_context / 0x30);
-          opointer_ = InitializeRegistry(extraout_XMM0_Da_03,&stack_buffer);
+          operation_result = InitializeRegistry(extraout_XMM0_Da_03,&stack_buffer);
           resource_context = extraout_XMM0_Da_04;
-          if (opointer_ != 0) goto GetEnvironmentVariable;
+          if (operation_result != 0) goto GetEnvironmentVariable;
         }
         if ((*(uint *)(unaff_R14 + 0x2d8) >> 1 & 1) != 0) {
           stack_pointer_ = &utility_system_reserved_;
           stack_pointer_ = ustack_variable;
           fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
           stack_pointer_ = unaff_R13D;
-          opointer_ = InitializeRegistry(resource_context,&stack_buffer);
-          if (opointer_ != 0) goto GetEnvironmentVariable;
+          operation_result = InitializeRegistry(resource_context,&stack_buffer);
+          if (operation_result != 0) goto GetEnvironmentVariable;
         }
         output_pointer = utility_context_manager_initialize(unaff_R14);
-        if (opointer_ != 2) {
+        if (operation_result != 2) {
           stack_pointer_ = &utility_system_reserved_;
           stack_pointer_ = ustack_variable;
           stack_pointer_ = unaff_R13D;
-          opointer_ = InitializeRegistry(extraout_XMM0_Da_05,&stack_buffer);
-          if (opointer_ != 0) goto GetEnvironmentVariable;
+          operation_result = InitializeRegistry(extraout_XMM0_Da_05,&stack_buffer);
+          if (operation_result != 0) goto GetEnvironmentVariable;
         }
         output_pointer = utility_context_manager_initialize(unaff_R14);
         resource_context = extraout_XMM0_Da_06;
-        if (opointer_ == 4) {
+        if (operation_result == 4) {
           stack_pointer_ = &utility_system_reserved_;
           stack_pointer_ = ustack_variable;
           stack_pointer_ = unaff_R13D;
           fStack0000000000000040 = unaff_R13D;
-          opointer_ = InitializeRegistry(extraout_XMM0_Da_06,&stack_buffer);
+          operation_result = InitializeRegistry(extraout_XMM0_Da_06,&stack_buffer);
           resource_context = extraout_XMM0_Da_07;
-          if (opointer_ != 0) goto GetEnvironmentVariable;
+          if (operation_result != 0) goto GetEnvironmentVariable;
         }
         if ((*(uint *)(unaff_R14 + 0x2d8) >> 3 & 1) != 0) {
           stack_pointer_ = &utility_system_reserved_;
@@ -9395,7 +9395,7 @@ GetEnvironmentVariable:
 void InitializeEnvironment(float pointer_)
 {
   float fvariable;
-  int opointer_;
+  int operation_result;;
   uint resource_context;
   float fvariable;
   float *pointer_;
@@ -9422,19 +9422,19 @@ void InitializeEnvironment(float pointer_)
     stack_pointer_ = ustack_variable;
     stack_pointer_ = unaff_R13D;
     fStack0000000000000040 = pointer_;
-    opointer_ = InitializeRegistry(pointer_,&stack_buffer);
+    operation_result = InitializeRegistry(pointer_,&stack_buffer);
     pointer_ = extraout_XMM0_Da;
-    if (opointer_ != 0) goto LAB_180897af6;
+    if (operation_result != 0) goto LAB_180897af6;
   }
-  opointer_ = FUN_180868270(pointer_,&stack_buffer,0);
-  if (opointer_ == 0) {
+  operation_result = FUN_180868270(pointer_,&stack_buffer,0);
+  if (operation_result == 0) {
     if (stack_pointer_ != 1.0) {
       fStack0000000000000040 = stack_pointer_;
       stack_pointer_ = &utility_system_reserved_;
       stack_pointer_ = ustack_variable;
       stack_pointer_ = unaff_R13D;
-      opointer_ = InitializeRegistry(stack_pointer_,&stack_buffer);
-      if (opointer_ != 0) goto LAB_180897af6;
+      operation_result = InitializeRegistry(stack_pointer_,&stack_buffer);
+      if (operation_result != 0) goto LAB_180897af6;
     }
     pointer_ = (float *)(unaff_R15 + 0x94);
     fvariable = unaff_R13D;
@@ -9446,8 +9446,8 @@ void InitializeEnvironment(float pointer_)
         stack_pointer_ = unaff_R13D;
         fStack0000000000000040 = fvariable;
         fStack0000000000000044 = fvariable;
-        opointer_ = InitializeRegistry(fvariable,&stack_buffer);
-        if (opointer_ != 0) goto LAB_180897af6;
+        operation_result = InitializeRegistry(fvariable,&stack_buffer);
+        if (operation_result != 0) goto LAB_180897af6;
       }
       fvariable = (float)((int)fvariable + 1);
       pointer_ = pointer_ + 1;
@@ -9462,8 +9462,8 @@ void InitializeEnvironment(float pointer_)
         stack_pointer_ = unaff_R13D;
         fStack0000000000000040 = fvariable;
         fStack0000000000000044 = fvariable;
-        opointer_ = InitializeRegistry(fvariable,&stack_buffer);
-        if (opointer_ != 0) goto LAB_180897af6;
+        operation_result = InitializeRegistry(fvariable,&stack_buffer);
+        if (operation_result != 0) goto LAB_180897af6;
       }
       fvariable = (float)((int)fvariable + 1);
       pointer_ = pointer_ + 1;
@@ -9475,36 +9475,36 @@ void InitializeEnvironment(float pointer_)
       stack_pointer_ = ustack_variable;
       stack_pointer_ = unaff_R13D;
       fStack0000000000000040 = (float)(resource_context / 0x30);
-      opointer_ = InitializeRegistry(extraout_XMM0_Da_00,&stack_buffer);
+      operation_result = InitializeRegistry(extraout_XMM0_Da_00,&stack_buffer);
       resource_context = extraout_XMM0_Da_01;
-      if (opointer_ != 0) goto LAB_180897af6;
+      if (operation_result != 0) goto LAB_180897af6;
     }
     if ((*(uint *)(unaff_R14 + 0x2d8) >> 1 & 1) != 0) {
       stack_pointer_ = &utility_system_reserved_;
       stack_pointer_ = ustack_variable;
       fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
       stack_pointer_ = unaff_R13D;
-      opointer_ = InitializeRegistry(resource_context,&stack_buffer);
-      if (opointer_ != 0) goto LAB_180897af6;
+      operation_result = InitializeRegistry(resource_context,&stack_buffer);
+      if (operation_result != 0) goto LAB_180897af6;
     }
     output_pointer = utility_context_manager_initialize();
-    if (opointer_ != 2) {
+    if (operation_result != 2) {
       stack_pointer_ = &utility_system_reserved_;
       stack_pointer_ = ustack_variable;
       stack_pointer_ = unaff_R13D;
-      opointer_ = InitializeRegistry(extraout_XMM0_Da_02,&stack_buffer);
-      if (opointer_ != 0) goto LAB_180897af6;
+      operation_result = InitializeRegistry(extraout_XMM0_Da_02,&stack_buffer);
+      if (operation_result != 0) goto LAB_180897af6;
     }
     output_pointer = utility_context_manager_initialize();
     resource_context = extraout_XMM0_Da_03;
-    if (opointer_ == 4) {
+    if (operation_result == 4) {
       stack_pointer_ = &utility_system_reserved_;
       stack_pointer_ = ustack_variable;
       stack_pointer_ = unaff_R13D;
       fStack0000000000000040 = unaff_R13D;
-      opointer_ = InitializeRegistry(extraout_XMM0_Da_03,&stack_buffer);
+      operation_result = InitializeRegistry(extraout_XMM0_Da_03,&stack_buffer);
       resource_context = extraout_XMM0_Da_04;
-      if (opointer_ != 0) goto LAB_180897af6;
+      if (operation_result != 0) goto LAB_180897af6;
     }
     if ((*(uint *)(unaff_R14 + 0x2d8) >> 3 & 1) != 0) {
       stack_pointer_ = &utility_system_reserved_;
@@ -9540,11 +9540,11 @@ void Expointer_(longlong *pointer_,longlong pointer_,uint32_t pointer_)
 {
   longlong iteration_count;
   longlong iteration_count;
-  int opointer_;
-  int opointer_;
-  int opointer_;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
+  int operation_result;;
+  int operation_result;;
+  int operation_result;;
   uint8_t stack_buffer_2a8 [32];
   uint32_t stack_buffer_288 [2];
   undefined *stack_pointer_280;
@@ -9562,15 +9562,15 @@ void Expointer_(longlong *pointer_,longlong pointer_,uint32_t pointer_)
   uint64_t stack_buffer_238 [64];
   ulonglong stack_uint_38;
   stack_uint_38 = utility_system_reserved_ ^ (ulonglong)stack_buffer_2a8;
-  opointer_ = 0;
-  opointer_ = 0;
+  operation_result = 0;
+  operation_result = 0;
   do {
-    if ((opointer_ < 0) || (*(int *)(pointer_ + 0x1a8) <= opointer_)) goto LAB_180897ce8;
-    iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0x1a0) + (longlong)opointer_ * 8);
+    if ((operation_result < 0) || (*(int *)(pointer_ + 0x1a8) <= operation_result)) goto LAB_180897ce8;
+    iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0x1a0) + (longlong)operation_result * 8);
     if (**(int **)(iteration_count + 0xd0) != 0) {
       stack_buffer_288[0] = 0;
-      opointer_ = func_0x00018088c500(*(int **)(iteration_count + 0xd0),stack_buffer_288);
-      if (opointer_ != 0) {
+      operation_result = func_0x00018088c500(*(int **)(iteration_count + 0xd0),stack_buffer_288);
+      if (operation_result != 0) {
 LAB_180897ce8:
         utility_calculate_checksum(stack_uint_38 ^ (ulonglong)stack_buffer_2a8);
       }
@@ -9579,39 +9579,39 @@ LAB_180897ce8:
       stack_uint_244 = *(uint32_t *)(iteration_count + 0x18);
       stack_uint_240 = *(uint32_t *)(iteration_count + 0x1c);
       stack_uint_260 = 0;
-      opointer_ = opointer_ + 1;
+      operation_result = operation_result + 1;
       stack_pointer_268 = &utility_system_reserved_;
       stack_uint_23c = stack_buffer_288[0];
       stack_uint_258 = pointer_;
-      stack_int_250 = opointer_;
-      opointer_ = InitializeRegistry(pointer_,&stack_pointer_268);
-      if (opointer_ != 0) goto LAB_180897ce8;
-      opointer_ = 0;
-      opointer_ = func_0x0001808c7ed0(*(uint64_t *)(iteration_count + 0xd0));
-      opointer_ = opointer_;
-      if (0 < opointer_) {
+      stack_int_250 = operation_result;
+      operation_result = InitializeRegistry(pointer_,&stack_pointer_268);
+      if (operation_result != 0) goto LAB_180897ce8;
+      operation_result = 0;
+      operation_result = func_0x0001808c7ed0(*(uint64_t *)(iteration_count + 0xd0));
+      operation_result = operation_result;
+      if (0 < operation_result) {
         do {
           stack_uint_278 = 0;
           iteration_count = pointer_[4];
           stack_pointer_280 = &utility_system_reserved_;
           stack_uint_270 = stack_buffer_288[0];
-          if (((char)iteration_count == '\0') && (opointer_ = FUN_1808987e0(pointer_,1), opointer_ != 0))
+          if (((char)iteration_count == '\0') && (operation_result = FUN_1808987e0(pointer_,1), operation_result != 0))
           goto LAB_180897ce8;
-          opointer_ = (**(code **)(stack_pointer_280 + 0x10))(&stack_pointer_280,stack_buffer_238,0x200);
-          func_0x00018074b7b0((longlong)stack_buffer_238 + (longlong)opointer_,0x200 - opointer_,10);
-          opointer_ = (**(code **)(*pointer_ + 8))(pointer_,stack_buffer_238);
-          if (opointer_ != 0) goto LAB_180897ce8;
+          operation_result = (**(code **)(stack_pointer_280 + 0x10))(&stack_pointer_280,stack_buffer_238,0x200);
+          func_0x00018074b7b0((longlong)stack_buffer_238 + (longlong)operation_result,0x200 - operation_result,10);
+          operation_result = (**(code **)(*pointer_ + 8))(pointer_,stack_buffer_238);
+          if (operation_result != 0) goto LAB_180897ce8;
           if ((char)iteration_count == '\0') {
-            opointer_ = (**(code **)(*pointer_ + 0x18))(pointer_);
-            if (opointer_ != 0) goto LAB_180897ce8;
+            operation_result = (**(code **)(*pointer_ + 0x18))(pointer_);
+            if (operation_result != 0) goto LAB_180897ce8;
             *(uint8_t *)(pointer_ + 4) = 0;
           }
-          opointer_ = opointer_ + 1;
-          opointer_ = func_0x0001808c7ed0(*(uint64_t *)(iteration_count + 0xd0));
-        } while (opointer_ < opointer_);
+          operation_result = operation_result + 1;
+          operation_result = func_0x0001808c7ed0(*(uint64_t *)(iteration_count + 0xd0));
+        } while (operation_result < operation_result);
       }
     }
-    opointer_ = opointer_ + 1;
+    operation_result = operation_result + 1;
   } while( true );
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
@@ -9752,20 +9752,20 @@ void QueryPerformanceFrequency(longlong *pointer_)
   uint32_t *pointer_;
   longlong iteration_count;
   char cvariable;
-  int opointer_;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
+  int operation_result;;
   ulonglong resource_context;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   undefined *pointer_;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint resource_context;
   float fvariable;
-  longlong *system_pointer;
+  longlong *resource_manager;
   bool bvariable;
   uint8_t stack_buffer_368 [32];
   float afStack_348 [2];
@@ -9800,11 +9800,11 @@ void QueryPerformanceFrequency(longlong *pointer_)
   stack_uint_38 = utility_system_reserved_ ^ (ulonglong)stack_buffer_368;
   pointer_ = (longlong *)0x0;
   stack_array_300[1] = 0;
-  opointer_ = utility_stack_operation_primary(stack_array_300 + 1,pointer_[1]);
-  if ((opointer_ == 0) && (opointer_ = FUN_1808987e0(pointer_,1), opointer_ == 0)) {
+  operation_result = utility_stack_operation_primary(stack_array_300 + 1,pointer_[1]);
+  if ((operation_result == 0) && (operation_result = FUN_1808987e0(pointer_,1), operation_result == 0)) {
     (**(code **)(*pointer_ + 8))(pointer_,&utility_system_reserved_);
     if (((*(uint *)(pointer_ + 3) & 0x1000000) == 0) ||
-       (opointer_ = Accepointer_(pointer_,*(uint64_t *)(pointer_[1] + 0xc0),0,1), opointer_ == 0)) {
+       (operation_result = Accepointer_(pointer_,*(uint64_t *)(pointer_[1] + 0xc0),0,1), operation_result == 0)) {
       iteration_count = pointer_[1];
       pointer_ = (longlong *)(iteration_count + 0x50);
       pointer_ = (longlong *)(*(longlong *)(iteration_count + 0x50) + -8);
@@ -9824,8 +9824,8 @@ void QueryPerformanceFrequency(longlong *pointer_)
           iteration_count = pointer_[3];
           if (iteration_count != 0) {
             afStack_348[0] = 0.0;
-            opointer_ = func_0x00018088c500(pointer_,afStack_348);
-            if ((opointer_ != 0) || (opointer_ = Accepointer_(pointer_,iteration_count,afStack_348[0],0), opointer_ != 0)
+            operation_result = func_0x00018088c500(pointer_,afStack_348);
+            if ((operation_result != 0) || (operation_result = Accepointer_(pointer_,iteration_count,afStack_348[0],0), operation_result != 0)
                ) goto LAB_18089866f;
           }
           if (pointer_ == pointer_) break;
@@ -9840,20 +9840,20 @@ void QueryPerformanceFrequency(longlong *pointer_)
         } while (pointer_ != pointer_);
         iteration_count = pointer_[1];
       }
-      opointer_ = *(int *)(iteration_count + 0x28);
-      if (opointer_ != 1) {
+      operation_result = *(int *)(iteration_count + 0x28);
+      if (operation_result != 1) {
         stack_uint_338 = stack_uint_338 & 0xffffffff00000000;
         pointer_340 = (longlong *)&utility_system_reserved_;
-        apointer_330[0] = (longlong *)CONCAT44(apointer_330[0]._4_4_,opointer_);
-        opointer_ = InitializeRegistry(pointer_,&pointer_340);
-        if (opointer_ != 0) goto LAB_18089866f;
+        apointer_330[0] = (longlong *)CONCAT44(apointer_330[0]._4_4_,operation_result);
+        operation_result = InitializeRegistry(pointer_,&pointer_340);
+        if (operation_result != 0) goto LAB_18089866f;
       }
       pointer_ = pointer_;
       pointer_ = pointer_;
       pointer_ = pointer_;
       pointer_ = pointer_;
-      stack_array_300[0] = (longlong)opointer_;
-      if (0 < opointer_) {
+      stack_array_300[0] = (longlong)operation_result;
+      if (0 < operation_result) {
         do {
           iteration_count = pointer_[1];
           stack_uint_2d0 = 0;
@@ -9884,15 +9884,15 @@ void QueryPerformanceFrequency(longlong *pointer_)
           stack_uint_288 = iteration_count == 0;
           fStack_2c8 = fvariable;
           if (((char)iteration_count == '\0') &&
-             (opointer_ = FUN_1808987e0(pointer_,CONCAT71((uint7)(uint3)(stack_uint_28c >> 8),1)), opointer_ != 0
+             (operation_result = FUN_1808987e0(pointer_,CONCAT71((uint7)(uint3)(stack_uint_28c >> 8),1)), operation_result != 0
              )) goto LAB_18089866f;
-          opointer_ = (**(code **)(stack_pointer_2d8 + 0x10))(&stack_pointer_2d8,stack_buffer_238,0x200);
-          func_0x00018074b7b0(stack_buffer_238 + opointer_,0x200 - opointer_,10);
-          opointer_ = (**(code **)(*pointer_ + 8))(pointer_,stack_buffer_238);
-          if (opointer_ != 0) goto LAB_18089866f;
+          operation_result = (**(code **)(stack_pointer_2d8 + 0x10))(&stack_pointer_2d8,stack_buffer_238,0x200);
+          func_0x00018074b7b0(stack_buffer_238 + operation_result,0x200 - operation_result,10);
+          operation_result = (**(code **)(*pointer_ + 8))(pointer_,stack_buffer_238);
+          if (operation_result != 0) goto LAB_18089866f;
           if ((char)iteration_count == '\0') {
-            opointer_ = (**(code **)(*pointer_ + 0x18))(pointer_);
-            if (opointer_ != 0) goto LAB_18089866f;
+            operation_result = (**(code **)(*pointer_ + 0x18))(pointer_);
+            if (operation_result != 0) goto LAB_18089866f;
             *(uint8_t *)(pointer_ + 4) = 0;
           }
           pointer_ = (longlong *)((longlong)pointer_ + 1);
@@ -9902,9 +9902,9 @@ void QueryPerformanceFrequency(longlong *pointer_)
         } while ((longlong)pointer_ < stack_array_300[0]);
       }
       iteration_count = pointer_[1] + 0x60;
-      opointer_ = func_0x0001808675f0(iteration_count);
+      operation_result = func_0x0001808675f0(iteration_count);
       pointer_ = pointer_;
-      if (0 < opointer_) {
+      if (0 < operation_result) {
         do {
           func_0x000180867660(iteration_count,stack_buffer_2f0,pointer_);
           func_0x0001808676a0(iteration_count,pointer_,afStack_348,stack_array_300);
@@ -9927,9 +9927,9 @@ void QueryPerformanceFrequency(longlong *pointer_)
             iteration_count = pointer_[4];
             if ((char)iteration_count == '\0') {
               *(uint8_t *)(pointer_ + 4) = 1;
-              opointer_ = FUN_18073a200(*(uint64_t *)(pointer_[1] + 0x78),stack_buffer_2e8);
-              if (((opointer_ != 0) || (opointer_ = FUN_18073c4c0(stack_buffer_2e8[0],&lStack_320,0), opointer_ != 0)
-                  ) || (opointer_ = (**(code **)(*pointer_ + 0x10))(pointer_), opointer_ != 0))
+              operation_result = FUN_18073a200(*(uint64_t *)(pointer_[1] + 0x78),stack_buffer_2e8);
+              if (((operation_result != 0) || (operation_result = FUN_18073c4c0(stack_buffer_2e8[0],&lStack_320,0), operation_result != 0)
+                  ) || (operation_result = (**(code **)(*pointer_ + 0x10))(pointer_), operation_result != 0))
               goto LAB_18089866f;
               resource_context = (ulonglong)(lStack_320 * 48000) /
                       (ulonglong)*(uint *)((longlong)pointer_ + 0x1c);
@@ -9941,22 +9941,22 @@ void QueryPerformanceFrequency(longlong *pointer_)
               if (iteration_count != 0) {
                 apointer_330[0] = (longlong *)(resource_context - iteration_count);
               }
-              opointer_ = InitializeRegistry(pointer_,&pointer_340);
-              if (opointer_ != 0) goto LAB_18089866f;
+              operation_result = InitializeRegistry(pointer_,&pointer_340);
+              if (operation_result != 0) goto LAB_18089866f;
             }
-            opointer_ = (**(code **)(stack_pointer_2d8 + 0x10))(&stack_pointer_2d8,stack_buffer_238,0x200);
-            func_0x00018074b7b0(stack_buffer_238 + opointer_,0x200 - opointer_,10);
-            opointer_ = (**(code **)(*pointer_ + 8))(pointer_,stack_buffer_238);
-            if (opointer_ != 0) goto LAB_18089866f;
+            operation_result = (**(code **)(stack_pointer_2d8 + 0x10))(&stack_pointer_2d8,stack_buffer_238,0x200);
+            func_0x00018074b7b0(stack_buffer_238 + operation_result,0x200 - operation_result,10);
+            operation_result = (**(code **)(*pointer_ + 8))(pointer_,stack_buffer_238);
+            if (operation_result != 0) goto LAB_18089866f;
             if ((char)iteration_count == '\0') {
-              opointer_ = (**(code **)(*pointer_ + 0x18))(pointer_);
-              if (opointer_ != 0) goto LAB_18089866f;
+              operation_result = (**(code **)(*pointer_ + 0x18))(pointer_);
+              if (operation_result != 0) goto LAB_18089866f;
               *(uint8_t *)(pointer_ + 4) = 0;
             }
           }
           resource_context = (int)pointer_ + 1;
           pointer_ = (longlong *)(ulonglong)resource_context;
-        } while ((int)resource_context < opointer_);
+        } while ((int)resource_context < operation_result);
       }
       stack_uint_310 = 0xffffffffffffffff;
       afStack_308[0] = -NAN;
@@ -9976,38 +9976,38 @@ void QueryPerformanceFrequency(longlong *pointer_)
             FUN_1807d1650(pointer_340,&stack_uint_338,apointer_330);
             pointer_ = pointer_340;
             if ((int)apointer_330[0] != -1) {
-              opointer_ = (int)apointer_330[0];
-              opointer_ = (int)stack_uint_338;
+              operation_result = (int)apointer_330[0];
+              operation_result = (int)stack_uint_338;
               do {
                 do {
-                  iteration_count = *(longlong *)(pointer_[2] + 8 + (longlong)opointer_ * 0x10);
+                  iteration_count = *(longlong *)(pointer_[2] + 8 + (longlong)operation_result * 0x10);
                   if (((*(longlong *)(iteration_count + 0x80) != 0) && (*(longlong *)(iteration_count + 0x350) == 0))
-                     && (opointer_ = QueryRegistryValue(pointer_), opointer_ != 0)) goto LAB_18089866f;
-                } while ((opointer_ != -1) &&
-                        (opointer_ = *(int *)(pointer_[2] + 4 + (longlong)opointer_ * 0x10), opointer_ != -1));
-                opointer_ = opointer_ + 1;
-                bvariable = opointer_ != -1;
-                opointer_ = 0;
+                     && (operation_result = QueryRegistryValue(pointer_), operation_result != 0)) goto LAB_18089866f;
+                } while ((operation_result != -1) &&
+                        (operation_result = *(int *)(pointer_[2] + 4 + (longlong)operation_result * 0x10), operation_result != -1));
+                operation_result = operation_result + 1;
+                bvariable = operation_result != -1;
+                operation_result = 0;
                 if (bvariable) {
-                  opointer_ = opointer_;
+                  operation_result = operation_result;
                 }
-                if (opointer_ != (int)pointer_[1]) {
-                  iteration_count = (longlong)opointer_;
+                if (operation_result != (int)pointer_[1]) {
+                  iteration_count = (longlong)operation_result;
                   do {
                     if (*(int *)(*pointer_ + iteration_count * 4) != -1) {
-                      opointer_ = *(int *)(*pointer_ + (longlong)opointer_ * 4);
+                      operation_result = *(int *)(*pointer_ + (longlong)operation_result * 4);
                       goto LAB_1808985be;
                     }
-                    opointer_ = opointer_ + 1;
+                    operation_result = operation_result + 1;
                     iteration_count = iteration_count + 1;
                   } while (iteration_count != (int)pointer_[1]);
                 }
-                opointer_ = -1;
-                opointer_ = opointer_;
+                operation_result = -1;
+                operation_result = operation_result;
 LAB_1808985be:
                 iteration_count = lStack_320;
                 pointer_ = pointer_318;
-              } while (opointer_ != -1);
+              } while (operation_result != -1);
             }
           } while ((afStack_348[0] != -NAN) &&
                   (afStack_348[0] = *(float *)(pointer_[2] + 0x10 + iteration_count), afStack_348[0] != -NAN))
@@ -10035,8 +10035,8 @@ LAB_180898629:
         } while (afStack_348[0] != -NAN);
       }
       (**(code **)(*pointer_ + 8))(pointer_,&utility_system_reserved_);
-      opointer_ = (**(code **)(*pointer_ + 0x18))(pointer_);
-      if (opointer_ == 0) {
+      operation_result = (**(code **)(*pointer_ + 0x18))(pointer_);
+      if (operation_result == 0) {
         *(uint8_t *)(pointer_ + 4) = 0;
       }
     }
@@ -10047,46 +10047,46 @@ LAB_18089866f:
  void InitializeSystemTime(longlong pointer_,uint64_t pointer_)
 void InitializeSystemTime(longlong pointer_,uint64_t pointer_)
 {
-  int opointer_;
-  int opointer_;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
+  int operation_result;;
+  int operation_result;;
   uint resource_context;
-  int opointer_;
-  opointer_ = func_0x00018076b690(pointer_);
-  opointer_ = *(int *)(pointer_ + 0x30);
+  int operation_result;;
+  operation_result = func_0x00018076b690(pointer_);
+  operation_result = *(int *)(pointer_ + 0x30);
   resource_context = (int)*(uint *)(pointer_ + 0x34) >> 0x1f;
-  opointer_ = (*(uint *)(pointer_ + 0x34) ^ resource_context) - resource_context;
-  opointer_ = opointer_ + opointer_;
-  if (opointer_ < opointer_) {
-    opointer_ = (int)((float)opointer_ * 1.5);
-    opointer_ = opointer_;
-    if (opointer_ <= opointer_) {
-      opointer_ = opointer_;
+  operation_result = (*(uint *)(pointer_ + 0x34) ^ resource_context) - resource_context;
+  operation_result = operation_result + operation_result;
+  if (operation_result < operation_result) {
+    operation_result = (int)((float)operation_result * 1.5);
+    operation_result = operation_result;
+    if (operation_result <= operation_result) {
+      operation_result = operation_result;
     }
-    if (opointer_ < 0x40) {
-      opointer_ = 0x40;
+    if (operation_result < 0x40) {
+      operation_result = 0x40;
     }
-    opointer_ = FUN_180849030(pointer_ + 0x28,opointer_);
-    if (opointer_ != 0) {
+    operation_result = FUN_180849030(pointer_ + 0x28,operation_result);
+    if (operation_result != 0) {
       return;
     }
   }
   resource_context = (int)*(uint *)(pointer_ + 0x34) >> 0x1f;
-  if (((int)((*(uint *)(pointer_ + 0x34) ^ resource_context) - resource_context) < opointer_) &&
-     (opointer_ = FUN_180849030(pointer_ + 0x28,opointer_), opointer_ != 0)) {
+  if (((int)((*(uint *)(pointer_ + 0x34) ^ resource_context) - resource_context) < operation_result) &&
+     (operation_result = FUN_180849030(pointer_ + 0x28,operation_result), operation_result != 0)) {
     return;
   }
-  opointer_ = *(int *)(pointer_ + 0x30);
-  if (opointer_ <= opointer_) {
-    *(int *)(pointer_ + 0x30) = opointer_;
-    memcpointer_((longlong)opointer_ + *(longlong *)(pointer_ + 0x28),pointer_,(longlong)opointer_);
+  operation_result = *(int *)(pointer_ + 0x30);
+  if (operation_result <= operation_result) {
+    *(int *)(pointer_ + 0x30) = operation_result;
+    memcpointer_((longlong)operation_result + *(longlong *)(pointer_ + 0x28),pointer_,(longlong)operation_result);
   }
-  memset((longlong)opointer_ + *(longlong *)(pointer_ + 0x28),0,(longlong)(opointer_ - opointer_));
+  memset((longlong)operation_result + *(longlong *)(pointer_ + 0x28),0,(longlong)(operation_result - operation_result));
 }
 uint64_t FUN_180898790(longlong *pointer_,int pointer_)
 {
-  int opointer_;
+  int operation_result;;
   long long resource_context;
   uint resource_context;
   resource_context = (int)*(uint *)((longlong)pointer_ + 0xc) >> 0x1f;
@@ -10094,12 +10094,12 @@ uint64_t FUN_180898790(longlong *pointer_,int pointer_)
      (resource_context = FUN_180849030(pointer_,pointer_), (int)resource_context != 0)) {
     return resource_context;
   }
-  opointer_ = (int)pointer_[1];
-  if (pointer_ <= opointer_) {
+  operation_result = (int)pointer_[1];
+  if (pointer_ <= operation_result) {
     *(int *)(pointer_ + 1) = pointer_;
     return 0;
   }
-  memset((longlong)opointer_ + *pointer_,0,(longlong)(pointer_ - opointer_));
+  memset((longlong)operation_result + *pointer_,0,(longlong)(pointer_ - operation_result));
 }
 uint64_t FUN_1808987e0(longlong *pointer_,char pointer_)
 {
@@ -10108,15 +10108,15 @@ uint64_t FUN_1808987e0(longlong *pointer_,char pointer_)
   ulonglong resource_context;
   ulonglong resource_context;
   long long ustack_variable;
-  longlong alstack_variable [2];
+  longlong astack_variable [2];
   undefined *stack_pointer_28;
   uint32_t stack_uint_20;
   ulonglong stack_uint_18;
   *(uint8_t *)(pointer_ + 4) = 1;
   resource_context = FUN_18073a200(*(uint64_t *)(pointer_[1] + 0x78),&ustack_variable);
-  if ((((int)resource_context == 0) && (resource_context = FUN_18073c4c0(ustack_variable,alstack_variable,0), (int)resource_context == 0)) &&
+  if ((((int)resource_context == 0) && (resource_context = FUN_18073c4c0(ustack_variable,astack_variable,0), (int)resource_context == 0)) &&
      (resource_context = (**(code **)(*pointer_ + 0x10))(pointer_), (int)resource_context == 0)) {
-    resource_context = (ulonglong)(alstack_variable[0] * 48000) / (ulonglong)*(uint *)((longlong)pointer_ + 0x1c);
+    resource_context = (ulonglong)(astack_variable[0] * 48000) / (ulonglong)*(uint *)((longlong)pointer_ + 0x1c);
     iteration_count = pointer_[2];
     resource_context = resource_context - iteration_count;
     if (((pointer_ != '\0') || (iteration_count == 0)) || (47999 < resource_context)) {
@@ -10144,14 +10144,14 @@ uint64_t FUN_1808988b0(longlong *pointer_,char *pointer_,uint64_t *pointer_)
   long long resource_context;
   char cvariable;
   char cvariable;
-  int opointer_;
+  int operation_result;;
   uint resource_context;
   char *pointer_;
-  int opointer_;
+  int operation_result;;
   uint *pointer_;
   pointer_ = (uint *)*pointer_;
   if (((pointer_ != (uint *)0x0) && (pointer_[4] != 0)) && (pointer_[2] != 0)) {
-    opointer_ = 0;
+    operation_result = 0;
     cvariable = *pointer_;
     while (cvariable != '\0') {
       bvariable = *(byte *)((longlong)pointer_ + 7);
@@ -10160,14 +10160,14 @@ uint64_t FUN_1808988b0(longlong *pointer_,char *pointer_,uint64_t *pointer_)
       }
       cvariable = func_0x00018076b8a0(cvariable);
       pointer_ = (uint *)(*pointer_ + (ulonglong)(pointer_[1] & 0xffffff) * 8);
-      opointer_ = 0;
+      operation_result = 0;
       if (bvariable == 0) {
         return 0x4a;
       }
       while (*(char *)((longlong)pointer_ + 3) != cvariable) {
-        opointer_ = opointer_ + 1;
+        operation_result = operation_result + 1;
         pointer_ = pointer_ + 2;
-        if ((int)(uint)bvariable <= opointer_) {
+        if ((int)(uint)bvariable <= operation_result) {
           return 0x4a;
         }
       }
@@ -10196,9 +10196,9 @@ LAB_1808989b1:
       if (bvariable != 0) {
         do {
           if (*(char *)((longlong)pointer_ + 3) == '\0') goto LAB_1808989f7;
-          opointer_ = opointer_ + 1;
+          operation_result = operation_result + 1;
           pointer_ = pointer_ + 2;
-        } while (opointer_ < (int)(uint)bvariable);
+        } while (operation_result < (int)(uint)bvariable);
       }
       return 0x4a;
     }
@@ -10220,51 +10220,51 @@ FUN_180898a50(longlong pointer_,uint *pointer_,uint64_t pointer_,uint32_t pointe
 {
   uint resource_context;
   longlong iteration_count;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   long long resource_context;
   uint *pointer_;
-  int opointer_;
-  int opointer_;
-  int opointer_;
-  opointer_ = 0;
-  opointer_ = *(int *)(pointer_ + 0x18) + -1;
-  if (-1 < opointer_) {
+  int operation_result;;
+  int operation_result;;
+  int operation_result;;
+  operation_result = 0;
+  operation_result = *(int *)(pointer_ + 0x18) + -1;
+  if (-1 < operation_result) {
     iteration_count = *(longlong *)(pointer_ + 0x10);
     resource_context = *pointer_;
     do {
-      opointer_ = opointer_ + opointer_ >> 1;
-      pointer_ = (uint *)((longlong)opointer_ * 0x10 + iteration_count);
+      operation_result = operation_result + operation_result >> 1;
+      pointer_ = (uint *)((longlong)operation_result * 0x10 + iteration_count);
       if (resource_context == *pointer_) {
-        opointer_ = (uint)(ushort)pointer_[1] - (uint)(ushort)pointer_[1];
-        if ((opointer_ == 0) &&
-           (opointer_ = (uint)*(ushort *)((longlong)pointer_ + 6) -
-                    (uint)*(ushort *)((longlong)pointer_ + 6), opointer_ == 0)) {
-          opointer_ = memcmp(pointer_ + 2,pointer_ + 2,8);
+        operation_result = (uint)(ushort)pointer_[1] - (uint)(ushort)pointer_[1];
+        if ((operation_result == 0) &&
+           (operation_result = (uint)*(ushort *)((longlong)pointer_ + 6) -
+                    (uint)*(ushort *)((longlong)pointer_ + 6), operation_result == 0)) {
+          operation_result = memcmp(pointer_ + 2,pointer_ + 2,8);
         }
       }
       else {
-        opointer_ = 1;
+        operation_result = 1;
         if (resource_context < *pointer_) {
-          opointer_ = -1;
+          operation_result = -1;
         }
       }
-      if (opointer_ == 0) {
-        if (opointer_ < 0) {
+      if (operation_result == 0) {
+        if (operation_result < 0) {
           return 0x4a;
         }
-        resource_context = FUN_180898b40(pointer_,opointer_,0,pointer_,pointer_,pointer_);
+        resource_context = FUN_180898b40(pointer_,operation_result,0,pointer_,pointer_,pointer_);
         return resource_context;
       }
-      opointer_ = opointer_ + -1;
-      if (-1 < opointer_) {
-        opointer_ = opointer_;
+      operation_result = operation_result + -1;
+      if (-1 < operation_result) {
+        operation_result = operation_result;
       }
-      opointer_ = opointer_;
-      if (-1 < opointer_) {
-        opointer_ = opointer_ + 1;
+      operation_result = operation_result;
+      if (-1 < operation_result) {
+        operation_result = operation_result + 1;
       }
-    } while (opointer_ <= opointer_);
+    } while (operation_result <= operation_result);
   }
   return 0x4a;
 }
@@ -10279,16 +10279,16 @@ FUN_180898b40(longlong *pointer_,int pointer_,uint32_t *pointer_,uint8_t *pointe
   uint32_t resource_context;
   uint32_t resource_context;
   uint resource_context;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   uint8_t *pointer_;
   uint8_t *pointer_;
   uint resource_context;
   longlong iteration_count;
   uint8_t *pointer_;
-  int opointer_;
+  int operation_result;;
   uint32_t resource_context;
-  int opointer_;
+  int operation_result;;
   if ((-1 < pointer_) && (pointer_ < (int)pointer_[3])) {
     if (pointer_ != (uint32_t *)0x0) {
       pointer_ = (uint32_t *)(pointer_[2] + (longlong)pointer_ * 0x10);
@@ -10300,45 +10300,45 @@ FUN_180898b40(longlong *pointer_,int pointer_,uint32_t *pointer_,uint8_t *pointe
       pointer_[2] = resource_context;
       pointer_[3] = resource_context;
     }
-    opointer_ = 0;
+    operation_result = 0;
     resource_context = 0;
     resource_context = *(uint3 *)((longlong)pointer_ * 3 + pointer_[6]);
     while (resource_context = (uint)resource_context, resource_context != 0xffffff) {
       resource_context = *(uint *)(*pointer_ + (ulonglong)resource_context * 8);
       if ((resource_context & 0xffffff) != 0xffffff) {
         iteration_count = (ulonglong)(resource_context & 0xffffff) + pointer_[4];
-        opointer_ = func_0x00018076b690(iteration_count);
+        operation_result = func_0x00018076b690(iteration_count);
         if (pointer_ != 0) {
-          pointer_ = (uint8_t *)((opointer_ + -1) + iteration_count);
-          opointer_ = opointer_;
-          while (0 < opointer_) {
-            opointer_ = opointer_;
-            if ((int)(pointer_ - resource_context) <= opointer_) {
-              opointer_ = pointer_ - resource_context;
+          pointer_ = (uint8_t *)((operation_result + -1) + iteration_count);
+          operation_result = operation_result;
+          while (0 < operation_result) {
+            operation_result = operation_result;
+            if ((int)(pointer_ - resource_context) <= operation_result) {
+              operation_result = pointer_ - resource_context;
             }
-            opointer_ = opointer_ - opointer_;
-            if (opointer_ != 0) {
+            operation_result = operation_result - operation_result;
+            if (operation_result != 0) {
               pointer_ = pointer_ + (int)resource_context;
-              resource_context = resource_context + opointer_;
+              resource_context = resource_context + operation_result;
               do {
                 resource_context = *pointer_;
                 pointer_ = pointer_ + -1;
                 *pointer_ = resource_context;
                 pointer_ = pointer_ + 1;
-                opointer_ = opointer_ + -1;
-              } while (opointer_ != 0);
+                operation_result = operation_result + -1;
+              } while (operation_result != 0);
             }
             resource_context = resource_context & (int)(resource_context - pointer_) >> 0x1f;
           }
         }
-        opointer_ = opointer_ + opointer_;
+        operation_result = operation_result + operation_result;
       }
       resource_context = *(uint3 *)((ulonglong)resource_context * 3 + pointer_[8]);
     }
     resource_context = 0;
     if (pointer_ != 0) {
-      if (opointer_ < pointer_) {
-        pointer_ = pointer_ + opointer_;
+      if (operation_result < pointer_) {
+        pointer_ = pointer_ + operation_result;
         pointer_ = pointer_ + -1;
         if (pointer_ < pointer_) {
           do {
@@ -10380,7 +10380,7 @@ FUN_180898b40(longlong *pointer_,int pointer_,uint32_t *pointer_,uint8_t *pointe
       }
     }
     if (pointer_ != (int *)0x0) {
-      *pointer_ = opointer_ + 1;
+      *pointer_ = operation_result + 1;
     }
     return resource_context;
   }
@@ -10395,20 +10395,20 @@ uint32_t FUN_180898b65(uint64_t pointer_,int pointer_,uint32_t *pointer_)
   uint32_t resource_context;
   uint32_t resource_context;
   uint resource_context;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   uint8_t *pointer_;
   uint8_t *pointer_;
   uint resource_context;
-  int opointer_;
+  int operation_result;;
   longlong unaff_RBP;
   uint8_t *unaff_RSI;
   longlong iteration_count;
   uint8_t *pointer_;
-  int opointer_;
+  int operation_result;;
   uint32_t resource_context;
   longlong *unaff_R14;
-  int opointer_;
+  int operation_result;;
   int *stack_pointer_;
   if (pointer_ != (uint32_t *)0x0) {
     pointer_ = (uint32_t *)(unaff_R14[2] + (longlong)pointer_ * 0x10);
@@ -10420,46 +10420,46 @@ uint32_t FUN_180898b65(uint64_t pointer_,int pointer_,uint32_t *pointer_)
     pointer_[2] = resource_context;
     pointer_[3] = resource_context;
   }
-  opointer_ = 0;
+  operation_result = 0;
   resource_context = 0;
-  opointer_ = (int)unaff_RBP;
+  operation_result = (int)unaff_RBP;
   resource_context = *(uint3 *)((longlong)pointer_ * 3 + unaff_R14[6]);
   while (resource_context = (uint)resource_context, resource_context != 0xffffff) {
     resource_context = *(uint *)(*unaff_R14 + (ulonglong)resource_context * 8);
     if ((resource_context & 0xffffff) != 0xffffff) {
       iteration_count = (ulonglong)(resource_context & 0xffffff) + unaff_R14[4];
-      opointer_ = func_0x00018076b690(iteration_count);
-      if (opointer_ != 0) {
-        pointer_ = (uint8_t *)((opointer_ + -1) + iteration_count);
-        opointer_ = opointer_;
-        while (0 < opointer_) {
-          opointer_ = opointer_;
-          if ((int)(opointer_ - resource_context) <= opointer_) {
-            opointer_ = opointer_ - resource_context;
+      operation_result = func_0x00018076b690(iteration_count);
+      if (operation_result != 0) {
+        pointer_ = (uint8_t *)((operation_result + -1) + iteration_count);
+        operation_result = operation_result;
+        while (0 < operation_result) {
+          operation_result = operation_result;
+          if ((int)(operation_result - resource_context) <= operation_result) {
+            operation_result = operation_result - resource_context;
           }
-          opointer_ = opointer_ - opointer_;
-          if (opointer_ != 0) {
+          operation_result = operation_result - operation_result;
+          if (operation_result != 0) {
             pointer_ = unaff_RSI + (int)resource_context;
-            resource_context = resource_context + opointer_;
+            resource_context = resource_context + operation_result;
             do {
               resource_context = *pointer_;
               pointer_ = pointer_ + -1;
               *pointer_ = resource_context;
               pointer_ = pointer_ + 1;
-              opointer_ = opointer_ + -1;
-            } while (opointer_ != 0);
+              operation_result = operation_result + -1;
+            } while (operation_result != 0);
           }
-          resource_context = resource_context & (int)(resource_context - opointer_) >> 0x1f;
+          resource_context = resource_context & (int)(resource_context - operation_result) >> 0x1f;
         }
       }
-      opointer_ = opointer_ + opointer_;
+      operation_result = operation_result + operation_result;
     }
     resource_context = *(uint3 *)((ulonglong)resource_context * 3 + unaff_R14[8]);
   }
   resource_context = 0;
-  if (opointer_ != 0) {
-    if (opointer_ < opointer_) {
-      pointer_ = unaff_RSI + opointer_;
+  if (operation_result != 0) {
+    if (operation_result < operation_result) {
+      pointer_ = unaff_RSI + operation_result;
       pointer_ = pointer_ + -1;
       if (unaff_RSI < pointer_) {
         do {
@@ -10486,7 +10486,7 @@ uint32_t FUN_180898b65(uint64_t pointer_,int pointer_,uint32_t *pointer_)
           pointer_ = pointer_ + -1;
         } while (pointer_ < pointer_);
       }
-      pointer_ = pointer_ + (longlong)(int)(opointer_ - resource_context) + -1;
+      pointer_ = pointer_ + (longlong)(int)(operation_result - resource_context) + -1;
       if (pointer_ < pointer_) {
         do {
           resource_context = *pointer_;
@@ -10501,65 +10501,65 @@ uint32_t FUN_180898b65(uint64_t pointer_,int pointer_,uint32_t *pointer_)
     }
   }
   if (stack_pointer_ != (int *)0x0) {
-    *stack_pointer_ = opointer_ + 1;
+    *stack_pointer_ = operation_result + 1;
   }
   return resource_context;
 }
 uint32_t FUN_180898bc0(uint64_t pointer_,ulonglong pointer_)
 {
   int resource_context;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   uint resource_context;
   uint8_t *pointer_;
   uint8_t *pointer_;
   uint unaff_EBX;
-  int opointer_;
+  int operation_result;;
   longlong unaff_RBP;
   uint8_t *unaff_RSI;
   longlong iteration_count;
   uint8_t *pointer_;
-  int opointer_;
+  int operation_result;;
   uint32_t unaff_R13D;
   longlong *unaff_R14;
   int unaff_R15D;
   int *stack_pointer_;
   do {
     resource_context = *(uint *)(*unaff_R14 + pointer_ * 8);
-    opointer_ = (int)unaff_RBP;
+    operation_result = (int)unaff_RBP;
     if ((resource_context & 0xffffff) != 0xffffff) {
       iteration_count = (ulonglong)(resource_context & 0xffffff) + unaff_R14[4];
-      opointer_ = func_0x00018076b690(iteration_count);
-      if (opointer_ != 0) {
-        pointer_ = (uint8_t *)((opointer_ + -1) + iteration_count);
-        opointer_ = opointer_;
-        while (0 < opointer_) {
-          opointer_ = opointer_;
-          if ((int)(opointer_ - unaff_EBX) <= opointer_) {
-            opointer_ = opointer_ - unaff_EBX;
+      operation_result = func_0x00018076b690(iteration_count);
+      if (operation_result != 0) {
+        pointer_ = (uint8_t *)((operation_result + -1) + iteration_count);
+        operation_result = operation_result;
+        while (0 < operation_result) {
+          operation_result = operation_result;
+          if ((int)(operation_result - unaff_EBX) <= operation_result) {
+            operation_result = operation_result - unaff_EBX;
           }
-          opointer_ = opointer_ - opointer_;
-          if (opointer_ != 0) {
+          operation_result = operation_result - operation_result;
+          if (operation_result != 0) {
             pointer_ = unaff_RSI + (int)unaff_EBX;
-            unaff_EBX = unaff_EBX + opointer_;
+            unaff_EBX = unaff_EBX + operation_result;
             do {
               resource_context = *pointer_;
               pointer_ = pointer_ + -1;
               *pointer_ = resource_context;
               pointer_ = pointer_ + 1;
-              opointer_ = opointer_ + -1;
-            } while (opointer_ != 0);
+              operation_result = operation_result + -1;
+            } while (operation_result != 0);
           }
-          unaff_EBX = unaff_EBX & (int)(unaff_EBX - opointer_) >> 0x1f;
+          unaff_EBX = unaff_EBX & (int)(unaff_EBX - operation_result) >> 0x1f;
         }
       }
-      unaff_R15D = unaff_R15D + opointer_;
+      unaff_R15D = unaff_R15D + operation_result;
     }
     resource_context = (uint)*(uint3 *)((pointer_ & 0xffffffff) * 3 + unaff_R14[8]);
     pointer_ = (ulonglong)resource_context;
   } while (resource_context != 0xffffff);
-  if (opointer_ != 0) {
-    if (unaff_R15D < opointer_) {
+  if (operation_result != 0) {
+    if (unaff_R15D < operation_result) {
       pointer_ = unaff_RSI + unaff_R15D;
       pointer_ = pointer_ + -1;
       if (unaff_RSI < pointer_) {
@@ -10586,7 +10586,7 @@ uint32_t FUN_180898bc0(uint64_t pointer_,ulonglong pointer_)
           pointer_ = pointer_ + -1;
         } while (pointer_ < pointer_);
       }
-      pointer_ = pointer_ + (longlong)(int)(opointer_ - unaff_EBX) + -1;
+      pointer_ = pointer_ + (longlong)(int)(operation_result - unaff_EBX) + -1;
       if (pointer_ < pointer_) {
         do {
           resource_context = *pointer_;
@@ -10611,16 +10611,16 @@ uint32_t FUN_180898c86(void)
   uint8_t *pointer_;
   uint8_t *pointer_;
   int unaff_EBX;
-  int opointer_;
+  int operation_result;;
   longlong unaff_RBP;
   uint8_t *unaff_RSI;
   uint8_t *pointer_;
   uint32_t unaff_R13D;
   int unaff_R15D;
   int *stack_pointer_;
-  opointer_ = (int)unaff_RBP;
-  if (opointer_ != 0) {
-    if (unaff_R15D < opointer_) {
+  operation_result = (int)unaff_RBP;
+  if (operation_result != 0) {
+    if (unaff_R15D < operation_result) {
       pointer_ = unaff_RSI + unaff_R15D;
       pointer_ = pointer_ + -1;
       if (unaff_RSI < pointer_) {
@@ -10647,7 +10647,7 @@ uint32_t FUN_180898c86(void)
           pointer_ = pointer_ + -1;
         } while (pointer_ < pointer_);
       }
-      pointer_ = pointer_ + (longlong)(opointer_ - unaff_EBX) + -1;
+      pointer_ = pointer_ + (longlong)(operation_result - unaff_EBX) + -1;
       if (pointer_ < pointer_) {
         do {
           resource_context = *pointer_;
@@ -10680,7 +10680,7 @@ uint64_t FUN_180898d4d(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 uint64_t FUN_180898d60(longlong *pointer_,int pointer_)
 {
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   uint16_t *pointer_;
   longlong iteration_count;
@@ -10695,9 +10695,9 @@ uint64_t FUN_180898d60(longlong *pointer_,int pointer_)
                FUN_180741e10(*(uint64_t *)(utility_system_reserved_ + 0x1a0),pointer_ * 3,&utility_system_reserved_,0xf4
                              ,0,0,1);
       if (pointer_ != (uint16_t *)0x0) {
-        opointer_ = (int)pointer_[1];
-        iteration_count = (longlong)opointer_;
-        if ((opointer_ != 0) && (iteration_count = *pointer_, 0 < opointer_)) {
+        operation_result = (int)pointer_[1];
+        iteration_count = (longlong)operation_result;
+        if ((operation_result != 0) && (iteration_count = *pointer_, 0 < operation_result)) {
           pointer_ = pointer_;
           do {
             *pointer_ = *(uint16_t *)((iteration_count - (longlong)pointer_) + (longlong)pointer_);
@@ -10723,7 +10723,7 @@ LAB_180898e0b:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 uint64_t FUN_180898d84(uint64_t pointer_,int pointer_)
 {
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   uint16_t *pointer_;
   longlong iteration_count;
@@ -10745,9 +10745,9 @@ LAB_180898e0b:
              FUN_180741e10(*(uint64_t *)(utility_system_reserved_ + 0x1a0),pointer_ * 3,&utility_system_reserved_,0xf4,0
                           );
     if (pointer_ != (uint16_t *)0x0) {
-      opointer_ = (int)resource_pointer_[1];
-      iteration_count = (longlong)opointer_;
-      if ((opointer_ != 0) && (iteration_count = *resource_pointer_, 0 < opointer_)) {
+      operation_result = (int)resource_pointer_[1];
+      iteration_count = (longlong)operation_result;
+      if ((operation_result != 0) && (iteration_count = *resource_pointer_, 0 < operation_result)) {
         pointer_ = pointer_;
         do {
           *pointer_ = *(uint16_t *)((iteration_count - (longlong)pointer_) + (longlong)pointer_);
@@ -10826,15 +10826,15 @@ uint64_t FUN_180898f40(longlong *pointer_,uint32_t *pointer_)
  void GetSystemTime(uint64_t pointer_,longlong pointer_)
 void GetSystemTime(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
-  opointer_ = FUN_1808aed00(pointer_,pointer_,4);
-  if (opointer_ == 0) {
-    opointer_ = FUN_1808aed00(pointer_,pointer_ + 4,2);
-    if (opointer_ == 0) {
-      opointer_ = FUN_1808aed00(pointer_,pointer_ + 6,2);
-      if (opointer_ == 0) {
-        opointer_ = FUN_1808aed00(pointer_,pointer_ + 8,8);
-        if (opointer_ == 0) {
+  int operation_result;;
+  operation_result = FUN_1808aed00(pointer_,pointer_,4);
+  if (operation_result == 0) {
+    operation_result = FUN_1808aed00(pointer_,pointer_ + 4,2);
+    if (operation_result == 0) {
+      operation_result = FUN_1808aed00(pointer_,pointer_ + 6,2);
+      if (operation_result == 0) {
+        operation_result = FUN_1808aed00(pointer_,pointer_ + 8,8);
+        if (operation_result == 0) {
           FUN_1808aed00(pointer_,pointer_ + 0x10,4);
         }
       }
@@ -10845,13 +10845,13 @@ void GetSystemTime(uint64_t pointer_,longlong pointer_)
  void SetSystemTime(uint64_t pointer_,longlong pointer_)
 void SetSystemTime(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
-  opointer_ = SetLocalTime();
-  if (opointer_ == 0) {
-    opointer_ = SetLocalTime(pointer_,pointer_ + 0xc);
-    if (opointer_ == 0) {
-      opointer_ = SetLocalTime(pointer_,pointer_ + 0x18);
-      if (opointer_ == 0) {
+  int operation_result;;
+  operation_result = SetLocalTime();
+  if (operation_result == 0) {
+    operation_result = SetLocalTime(pointer_,pointer_ + 0xc);
+    if (operation_result == 0) {
+      operation_result = SetLocalTime(pointer_,pointer_ + 0x18);
+      if (operation_result == 0) {
         SetLocalTime(pointer_,pointer_ + 0x24);
       }
     }
@@ -10861,13 +10861,13 @@ void SetSystemTime(uint64_t pointer_,longlong pointer_)
  void GetLocalTime(uint64_t pointer_,longlong pointer_)
 void GetLocalTime(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
-  opointer_ = FUN_1808aed00(pointer_,pointer_,4);
-  if (opointer_ == 0) {
-    opointer_ = FUN_1808aed00(pointer_,pointer_ + 4,2);
-    if (opointer_ == 0) {
-      opointer_ = FUN_1808aed00(pointer_,pointer_ + 6,2);
-      if (opointer_ == 0) {
+  int operation_result;;
+  operation_result = FUN_1808aed00(pointer_,pointer_,4);
+  if (operation_result == 0) {
+    operation_result = FUN_1808aed00(pointer_,pointer_ + 4,2);
+    if (operation_result == 0) {
+      operation_result = FUN_1808aed00(pointer_,pointer_ + 6,2);
+      if (operation_result == 0) {
         FUN_1808aed00(pointer_,pointer_ + 8,8);
       }
     }
@@ -10877,17 +10877,17 @@ void GetLocalTime(uint64_t pointer_,longlong pointer_)
  void SetLocalTime(longlong pointer_,uint32_t *pointer_)
 void SetLocalTime(longlong pointer_,uint32_t *pointer_)
 {
-  int opointer_;
+  int operation_result;;
   uint32_t austack_variable [2];
   uint32_t austack_variable [2];
   uint32_t austack_variable [2];
   austack_variable[0] = *pointer_;
-  opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),austack_variable,4);
-  if (opointer_ == 0) {
+  operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),austack_variable,4);
+  if (operation_result == 0) {
     austack_variable[0] = pointer_[1];
-    opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),austack_variable,4)
+    operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),austack_variable,4)
     ;
-    if (opointer_ == 0) {
+    if (operation_result == 0) {
       austack_variable[0] = pointer_[2];
       (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),austack_variable,4);
     }
@@ -11124,28 +11124,28 @@ LAB_180899546:
  void GetFileTime(longlong *pointer_,uint32_t *pointer_)
 void GetFileTime(longlong *pointer_,uint32_t *pointer_)
 {
-  int opointer_;
+  int operation_result;;
   uint austack_variable [2];
   uint32_t austack_variable [4];
   if (*pointer_ == 0) {
-    opointer_ = 0x1c;
+    operation_result = 0x1c;
   }
   else {
     if (pointer_[2] != 0) {
       austack_variable[0] = 0;
-      opointer_ = func_0x00018076a7d0(*pointer_,austack_variable);
-      if (opointer_ != 0) {
+      operation_result = func_0x00018076a7d0(*pointer_,austack_variable);
+      if (operation_result != 0) {
         return;
       }
       if ((ulonglong)pointer_[2] < (ulonglong)austack_variable[0] + 4) {
-        opointer_ = 0x11;
+        operation_result = 0x11;
         goto LAB_18089962f;
       }
     }
-    opointer_ = FUN_180769ed0(*pointer_,austack_variable,1,4,0);
+    operation_result = FUN_180769ed0(*pointer_,austack_variable,1,4,0);
   }
 LAB_18089962f:
-  if (opointer_ == 0) {
+  if (operation_result == 0) {
     *pointer_ = austack_variable[0];
   }
   return;
@@ -11153,10 +11153,10 @@ LAB_18089962f:
 uint64_t FUN_180899650(longlong *pointer_,longlong *pointer_)
 {
   long long resource_context;
-  int opointer_;
+  int operation_result;;
   int aistack_variable [2];
   uint austack_variable [2];
-  opointer_ = 0;
+  operation_result = 0;
   aistack_variable[0] = 0;
   if (*pointer_ == 0) {
     resource_context = 0x1c;
@@ -11184,12 +11184,12 @@ LAB_1808996c5:
     if ((int)resource_context == 0) {
       if (0 < aistack_variable[0]) {
         do {
-          resource_context = GetSystemTime(pointer_,*pointer_ + (longlong)opointer_ * 0x14);
+          resource_context = GetSystemTime(pointer_,*pointer_ + (longlong)operation_result * 0x14);
           if ((int)resource_context != 0) {
             return resource_context;
           }
-          opointer_ = opointer_ + 1;
-        } while (opointer_ < aistack_variable[0]);
+          operation_result = operation_result + 1;
+        } while (operation_result < aistack_variable[0]);
       }
       resource_context = 0;
     }
@@ -11230,20 +11230,20 @@ void InitializeTimeZone(void)
  void GetTimeZoneInformation(uint64_t pointer_,longlong pointer_)
 void GetTimeZoneInformation(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
-  opointer_ = FUN_1808aed00(pointer_,pointer_,4);
-  if (opointer_ == 0) {
+  int operation_result;;
+  operation_result = FUN_1808aed00(pointer_,pointer_,4);
+  if (operation_result == 0) {
     FUN_1808aed00(pointer_,pointer_ + 4,4);
   }
   return;
 }
 uint64_t FUN_1808997f0(uint64_t pointer_,longlong *pointer_)
 {
-  int opointer_;
+  int operation_result;;
   long long resource_context;
   uint resource_context;
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   int aistack_variable [2];
   aistack_variable[0] = 0;
   resource_context = FUN_1808afe30(pointer_,aistack_variable);
@@ -11255,17 +11255,17 @@ uint64_t FUN_1808997f0(uint64_t pointer_,longlong *pointer_)
     FUN_180840270(pointer_);
   }
   else {
-    opointer_ = aistack_variable[0] + 1;
+    operation_result = aistack_variable[0] + 1;
     resource_context = (int)*(uint *)((longlong)pointer_ + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)pointer_ + 0xc) ^ resource_context) - resource_context) < opointer_) &&
-       (resource_context = FUN_180849030(pointer_,opointer_), (int)resource_context != 0)) {
+    if (((int)((*(uint *)((longlong)pointer_ + 0xc) ^ resource_context) - resource_context) < operation_result) &&
+       (resource_context = FUN_180849030(pointer_,operation_result), (int)resource_context != 0)) {
       return resource_context;
     }
-    opointer_ = (int)pointer_[1];
-    if (opointer_ < opointer_) {
-      memset((longlong)opointer_ + *pointer_,0,(longlong)(opointer_ - opointer_));
+    operation_result = (int)pointer_[1];
+    if (operation_result < operation_result) {
+      memset((longlong)operation_result + *pointer_,0,(longlong)(operation_result - operation_result));
     }
-    *(int *)(pointer_ + 1) = opointer_;
+    *(int *)(pointer_ + 1) = operation_result;
     resource_context = FUN_1808aed00(pointer_,*pointer_,iteration_count);
     if ((int)resource_context != 0) {
       return resource_context;
@@ -11276,27 +11276,27 @@ uint64_t FUN_1808997f0(uint64_t pointer_,longlong *pointer_)
 }
 uint64_t FUN_180899816(void)
 {
-  int opointer_;
+  int operation_result;;
   long long resource_context;
   uint resource_context;
   longlong *resource_pointer_;
-  int opointer_;
+  int operation_result;;
   int stack_pointer_;
   if (stack_pointer_ == 0) {
     FUN_180840270();
   }
   else {
-    opointer_ = stack_pointer_ + 1;
+    operation_result = stack_pointer_ + 1;
     resource_context = (int)*(uint *)((longlong)resource_pointer_ + 0xc) >> 0x1f;
-    if (((int)((*(uint *)((longlong)resource_pointer_ + 0xc) ^ resource_context) - resource_context) < opointer_) &&
+    if (((int)((*(uint *)((longlong)resource_pointer_ + 0xc) ^ resource_context) - resource_context) < operation_result) &&
        (resource_context = FUN_180849030(), (int)resource_context != 0)) {
       return resource_context;
     }
-    opointer_ = (int)resource_pointer_[1];
-    if (opointer_ < opointer_) {
-      memset((longlong)opointer_ + *resource_pointer_,0,(longlong)(opointer_ - opointer_));
+    operation_result = (int)resource_pointer_[1];
+    if (operation_result < operation_result) {
+      memset((longlong)operation_result + *resource_pointer_,0,(longlong)(operation_result - operation_result));
     }
-    *(int *)(resource_pointer_ + 1) = opointer_;
+    *(int *)(resource_pointer_ + 1) = operation_result;
     resource_context = FUN_1808aed00();
     if ((int)resource_context != 0) {
       return resource_context;
@@ -11312,17 +11312,17 @@ void SetTimeZoneInformation(void)
 }
 uint64_t FUN_1808998a0(longlong pointer_,longlong *pointer_)
 {
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   long long resource_context;
   longlong iteration_count;
   longlong iteration_count;
   int aistack_variable [2];
-  opointer_ = (int)pointer_[1];
-  aistack_variable[0] = opointer_;
+  operation_result = (int)pointer_[1];
+  aistack_variable[0] = operation_result;
   resource_context = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),aistack_variable,4);
   if ((int)resource_context == 0) {
-    if (0 < opointer_) {
+    if (0 < operation_result) {
       iteration_count = 0;
       iteration_count = iteration_count;
       do {
@@ -11339,7 +11339,7 @@ uint64_t FUN_1808998a0(longlong pointer_,longlong *pointer_)
         }
         iteration_count = iteration_count + 1;
         iteration_count = iteration_count + 0x14;
-      } while (iteration_count < opointer_);
+      } while (iteration_count < operation_result);
     }
     resource_context = 0;
   }
@@ -11348,8 +11348,8 @@ uint64_t FUN_1808998a0(longlong pointer_,longlong *pointer_)
  void InitializeSystemInfo(longlong pointer_,uint32_t *pointer_)
 void InitializeSystemInfo(longlong pointer_,uint32_t *pointer_)
 {
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   uint resource_context;
   ulonglong resource_context;
   longlong iteration_count;
@@ -11358,75 +11358,75 @@ void InitializeSystemInfo(longlong pointer_,uint32_t *pointer_)
   ulonglong resource_context;
   long long ustack_variable;
   ustack_variable = CONCAT44(ustack_variable._4_4_,*pointer_);
-  opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
-  if (opointer_ == 0) {
+  operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
+  if (operation_result == 0) {
     ustack_variable = *(uint64_t *)(pointer_ + 2);
-    opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),&ustack_variable,8);
-    if ((opointer_ == 0) && (opointer_ = FUN_1808ac750(pointer_,pointer_ + 4), opointer_ == 0)) {
-      opointer_ = pointer_[10];
-      ustack_variable = CONCAT44(ustack_variable._4_4_,opointer_);
-      opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+    operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),&ustack_variable,8);
+    if ((operation_result == 0) && (operation_result = FUN_1808ac750(pointer_,pointer_ + 4), operation_result == 0)) {
+      operation_result = pointer_[10];
+      ustack_variable = CONCAT44(ustack_variable._4_4_,operation_result);
+      operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                         (*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
       resource_context = 0;
-      if (opointer_ == 0) {
+      if (operation_result == 0) {
         resource_context = resource_context;
-        if (0 < opointer_) {
+        if (0 < operation_result) {
           do {
-            opointer_ = GlobalMemoryStatusEx(pointer_,(longlong)(int)resource_context * 0x6c + *(longlong *)(pointer_ + 8));
-            if (opointer_ != 0) {
+            operation_result = GlobalMemoryStatusEx(pointer_,(longlong)(int)resource_context * 0x6c + *(longlong *)(pointer_ + 8));
+            if (operation_result != 0) {
               return;
             }
             resource_context = (int)resource_context + 1;
             resource_context = (ulonglong)resource_context;
-          } while ((int)resource_context < opointer_);
+          } while ((int)resource_context < operation_result);
         }
-        opointer_ = pointer_[0xe];
-        ustack_variable = CONCAT44(ustack_variable._4_4_,opointer_);
-        opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+        operation_result = pointer_[0xe];
+        ustack_variable = CONCAT44(ustack_variable._4_4_,operation_result);
+        operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                           (*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
-        if (opointer_ == 0) {
+        if (operation_result == 0) {
           resource_context = resource_context;
-          if (0 < opointer_) {
+          if (0 < operation_result) {
             do {
-              opointer_ = GetDiskFreeSpointer_(pointer_,(longlong)(int)resource_context * 0x10 +
+              operation_result = GetDiskFreeSpointer_(pointer_,(longlong)(int)resource_context * 0x10 +
                                             *(longlong *)(pointer_ + 0xc));
-              if (opointer_ != 0) {
+              if (operation_result != 0) {
                 return;
               }
               resource_context = (int)resource_context + 1;
               resource_context = (ulonglong)resource_context;
-            } while ((int)resource_context < opointer_);
+            } while ((int)resource_context < operation_result);
           }
-          opointer_ = pointer_[0x12];
-          ustack_variable = CONCAT44(ustack_variable._4_4_,opointer_);
-          opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+          operation_result = pointer_[0x12];
+          ustack_variable = CONCAT44(ustack_variable._4_4_,operation_result);
+          operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                             (*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
-          if (opointer_ == 0) {
+          if (operation_result == 0) {
             resource_context = resource_context;
-            if (0 < opointer_) {
+            if (0 < operation_result) {
               do {
                 ustack_variable = CONCAT44(ustack_variable._4_4_,
                                      *(uint32_t *)(*(longlong *)(pointer_ + 0x10) + resource_context * 4));
-                opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+                operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                                   (*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
-                if (opointer_ != 0) {
+                if (operation_result != 0) {
                   return;
                 }
                 resource_context = resource_context + 1;
-              } while ((longlong)resource_context < (longlong)opointer_);
+              } while ((longlong)resource_context < (longlong)operation_result);
             }
-            opointer_ = pointer_[0x16];
-            ustack_variable = CONCAT44(ustack_variable._4_4_,opointer_);
-            opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+            operation_result = pointer_[0x16];
+            ustack_variable = CONCAT44(ustack_variable._4_4_,operation_result);
+            operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                               (*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
-            if (opointer_ == 0) {
+            if (operation_result == 0) {
               resource_context = resource_context;
               resource_context = resource_context;
-              if (0 < opointer_) {
+              if (0 < operation_result) {
                 do {
                   iteration_count = *(longlong *)(pointer_ + 0x14) + resource_context;
-                  opointer_ = GetDiskFreeSpointer_(pointer_,iteration_count);
-                  if (opointer_ != 0) {
+                  operation_result = GetDiskFreeSpointer_(pointer_,iteration_count);
+                  if (operation_result != 0) {
                     return;
                   }
                   resource_context = *(uint *)(iteration_count + 0x10);
@@ -11439,43 +11439,43 @@ void InitializeSystemInfo(longlong pointer_,uint32_t *pointer_)
                     ustack_variable = CONCAT44(ustack_variable._4_4_,
                                          (resource_context & 0xffffc000 | 0x4000) * 2 | resource_context & 0x7fff);
                   }
-                  opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+                  operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                                     (*(uint64_t **)(pointer_ + 8),&ustack_variable,resource_context);
-                  if (opointer_ != 0) {
+                  if (operation_result != 0) {
                     return;
                   }
-                  opointer_ = FUN_1808affb0(pointer_,iteration_count + 0x14);
-                  if (opointer_ != 0) {
+                  operation_result = FUN_1808affb0(pointer_,iteration_count + 0x14);
+                  if (operation_result != 0) {
                     return;
                   }
                   resource_context = resource_context + 1;
                   resource_context = resource_context + 0x18;
-                } while ((longlong)resource_context < (longlong)opointer_);
+                } while ((longlong)resource_context < (longlong)operation_result);
               }
-              opointer_ = FUN_1808aca30(pointer_,pointer_ + 0x18);
-              if (opointer_ == 0) {
-                opointer_ = pointer_[0x1e];
-                ustack_variable = CONCAT44(ustack_variable._4_4_,opointer_);
-                opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+              operation_result = FUN_1808aca30(pointer_,pointer_ + 0x18);
+              if (operation_result == 0) {
+                operation_result = pointer_[0x1e];
+                ustack_variable = CONCAT44(ustack_variable._4_4_,operation_result);
+                operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                                   (*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
-                if (opointer_ == 0) {
-                  if (0 < opointer_) {
+                if (operation_result == 0) {
+                  if (0 < operation_result) {
                     do {
                       iteration_count = *(longlong *)(pointer_ + 0x1c);
                       ustack_variable._0_4_ = *(uint32_t *)(iteration_count + resource_context * 8);
-                      opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+                      operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                                         (*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
-                      if (opointer_ != 0) {
+                      if (operation_result != 0) {
                         return;
                       }
                       ustack_variable = CONCAT44(ustack_variable._4_4_,*(uint32_t *)(iteration_count + 4 + resource_context * 8));
-                      opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+                      operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                                         (*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
-                      if (opointer_ != 0) {
+                      if (operation_result != 0) {
                         return;
                       }
                       resource_context = resource_context + 1;
-                    } while ((longlong)resource_context < (longlong)opointer_);
+                    } while ((longlong)resource_context < (longlong)operation_result);
                   }
                   ustack_variable = CONCAT44(ustack_variable._4_4_,pointer_[0x20]);
                   (**(code **)**(uint64_t **)(pointer_ + 8))
@@ -11494,8 +11494,8 @@ void InitializeSystemInfo(longlong pointer_,uint32_t *pointer_)
 void GetSystemInfo(uint64_t *pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   longlong resource_pointer_;
   longlong unaff_RBP;
   uint resource_context;
@@ -11512,74 +11512,74 @@ void GetSystemInfo(uint64_t *pointer_,uint64_t pointer_)
   uint32_t extraout_XMM0_Da_04;
   uint32_t extraout_XMM0_Da_05;
   uint32_t resource_context;
-  opointer_ = *(int *)(unaff_R14 + 0x28);
-  *(int *)(unaff_RBP + 0x20) = opointer_;
-  opointer_ = (**(code **)*pointer_)(pointer_,pointer_,4);
+  operation_result = *(int *)(unaff_R14 + 0x28);
+  *(int *)(unaff_RBP + 0x20) = operation_result;
+  operation_result = (**(code **)*pointer_)(pointer_,pointer_,4);
   resource_context = 0;
-  if (opointer_ == 0) {
+  if (operation_result == 0) {
     resource_context = resource_context;
     resource_context = extraout_XMM0_Da;
-    if (0 < opointer_) {
+    if (0 < operation_result) {
       do {
-        opointer_ = GlobalMemoryStatusEx(resource_context,(longlong)(int)resource_context * 0x6c + *(longlong *)(unaff_R14 + 0x20));
-        if (opointer_ != 0) {
+        operation_result = GlobalMemoryStatusEx(resource_context,(longlong)(int)resource_context * 0x6c + *(longlong *)(unaff_R14 + 0x20));
+        if (operation_result != 0) {
           return;
         }
         resource_context = (int)resource_context + 1;
         resource_context = (ulonglong)resource_context;
         resource_context = extraout_XMM0_Da_00;
-      } while ((int)resource_context < opointer_);
+      } while ((int)resource_context < operation_result);
     }
     pointer_ = *(uint64_t **)(resource_pointer_ + 8);
-    opointer_ = *(int *)(unaff_R14 + 0x38);
-    *(int *)(unaff_RBP + 0x20) = opointer_;
-    opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
-    if (opointer_ == 0) {
+    operation_result = *(int *)(unaff_R14 + 0x38);
+    *(int *)(unaff_RBP + 0x20) = operation_result;
+    operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
+    if (operation_result == 0) {
       resource_context = resource_context;
       resource_context = extraout_XMM0_Da_01;
-      if (0 < opointer_) {
+      if (0 < operation_result) {
         do {
-          opointer_ = GetDiskFreeSpointer_(resource_context,(longlong)(int)resource_context * 0x10 + *(longlong *)(unaff_R14 + 0x30))
+          operation_result = GetDiskFreeSpointer_(resource_context,(longlong)(int)resource_context * 0x10 + *(longlong *)(unaff_R14 + 0x30))
           ;
-          if (opointer_ != 0) {
+          if (operation_result != 0) {
             return;
           }
           resource_context = (int)resource_context + 1;
           resource_context = (ulonglong)resource_context;
           resource_context = extraout_XMM0_Da_02;
-        } while ((int)resource_context < opointer_);
+        } while ((int)resource_context < operation_result);
       }
       pointer_ = *(uint64_t **)(resource_pointer_ + 8);
-      opointer_ = *(int *)(unaff_R14 + 0x48);
-      *(int *)(unaff_RBP + 0x20) = opointer_;
-      opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
-      if (opointer_ == 0) {
+      operation_result = *(int *)(unaff_R14 + 0x48);
+      *(int *)(unaff_RBP + 0x20) = operation_result;
+      operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
+      if (operation_result == 0) {
         resource_context = resource_context;
-        if (0 < opointer_) {
+        if (0 < operation_result) {
           do {
             pointer_ = *(uint64_t **)(resource_pointer_ + 8);
             *(uint32_t *)(unaff_RBP + 0x20) =
                  *(uint32_t *)(*(longlong *)(unaff_R14 + 0x40) + resource_context * 4);
-            opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
-            if (opointer_ != 0) {
+            operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
+            if (operation_result != 0) {
               return;
             }
             resource_context = resource_context + 1;
-          } while ((longlong)resource_context < (longlong)opointer_);
+          } while ((longlong)resource_context < (longlong)operation_result);
         }
         pointer_ = *(uint64_t **)(resource_pointer_ + 8);
-        opointer_ = *(int *)(unaff_R14 + 0x58);
-        *(int *)(unaff_RBP + 0x20) = opointer_;
-        opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
-        if (opointer_ == 0) {
+        operation_result = *(int *)(unaff_R14 + 0x58);
+        *(int *)(unaff_RBP + 0x20) = operation_result;
+        operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
+        if (operation_result == 0) {
           resource_context = resource_context;
           resource_context = resource_context;
           resource_context = extraout_XMM0_Da_03;
-          if (0 < opointer_) {
+          if (0 < operation_result) {
             do {
               iteration_count = *(longlong *)(unaff_R14 + 0x50) + resource_context;
-              opointer_ = GetDiskFreeSpointer_(resource_context,iteration_count);
-              if (opointer_ != 0) {
+              operation_result = GetDiskFreeSpointer_(resource_context,iteration_count);
+              if (operation_result != 0) {
                 return;
               }
               resource_context = *(uint *)(iteration_count + 0x10);
@@ -11592,43 +11592,43 @@ void GetSystemInfo(uint64_t *pointer_,uint64_t pointer_)
                 resource_context = 4;
                 *(uint *)(unaff_RBP + 0x20) = (resource_context & 0xffffc000 | 0x4000) * 2 | resource_context & 0x7fff;
               }
-              opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,resource_context);
-              if (opointer_ != 0) {
+              operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,resource_context);
+              if (operation_result != 0) {
                 return;
               }
-              opointer_ = FUN_1808affb0(extraout_XMM0_Da_04,iteration_count + 0x14);
-              if (opointer_ != 0) {
+              operation_result = FUN_1808affb0(extraout_XMM0_Da_04,iteration_count + 0x14);
+              if (operation_result != 0) {
                 return;
               }
               resource_context = resource_context + 1;
               resource_context = resource_context + 0x18;
               resource_context = extraout_XMM0_Da_05;
-            } while ((longlong)resource_context < (longlong)opointer_);
+            } while ((longlong)resource_context < (longlong)operation_result);
           }
-          opointer_ = FUN_1808aca30(resource_context,unaff_R14 + 0x60);
-          if (opointer_ == 0) {
+          operation_result = FUN_1808aca30(resource_context,unaff_R14 + 0x60);
+          if (operation_result == 0) {
             pointer_ = *(uint64_t **)(resource_pointer_ + 8);
-            opointer_ = *(int *)(unaff_R14 + 0x78);
-            *(int *)(unaff_RBP + 0x20) = opointer_;
-            opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
-            if (opointer_ == 0) {
-              if (0 < opointer_) {
+            operation_result = *(int *)(unaff_R14 + 0x78);
+            *(int *)(unaff_RBP + 0x20) = operation_result;
+            operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
+            if (operation_result == 0) {
+              if (0 < operation_result) {
                 do {
                   iteration_count = *(longlong *)(unaff_R14 + 0x70);
                   pointer_ = *(uint64_t **)(resource_pointer_ + 8);
                   *(uint32_t *)(unaff_RBP + 0x20) = *(uint32_t *)(iteration_count + resource_context * 8);
-                  opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
-                  if (opointer_ != 0) {
+                  operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
+                  if (operation_result != 0) {
                     return;
                   }
                   pointer_ = *(uint64_t **)(resource_pointer_ + 8);
                   *(uint32_t *)(unaff_RBP + 0x20) = *(uint32_t *)(iteration_count + 4 + resource_context * 8);
-                  opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
-                  if (opointer_ != 0) {
+                  operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
+                  if (operation_result != 0) {
                     return;
                   }
                   resource_context = resource_context + 1;
-                } while ((longlong)resource_context < (longlong)opointer_);
+                } while ((longlong)resource_context < (longlong)operation_result);
               }
               pointer_ = *(uint64_t **)(resource_pointer_ + 8);
               *(uint32_t *)(unaff_RBP + 0x20) = *(uint32_t *)(unaff_R14 + 0x80);
@@ -11646,8 +11646,8 @@ void GetNativeSystemInfo(uint64_t *pointer_)
 {
   uint resource_context;
   uint64_t *pointer_;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   longlong resource_pointer_;
   longlong unaff_RBP;
   longlong unaff_RSI;
@@ -11660,16 +11660,16 @@ void GetNativeSystemInfo(uint64_t *pointer_)
   uint32_t extraout_XMM0_Da_00;
   uint32_t extraout_XMM0_Da_01;
   uint32_t resource_context;
-  opointer_ = (**(code **)*pointer_)();
-  if (opointer_ == 0) {
+  operation_result = (**(code **)*pointer_)();
+  if (operation_result == 0) {
     iteration_count = unaff_RDI;
     iteration_count = unaff_RDI;
     resource_context = extraout_XMM0_Da;
     if (0 < (int)unaff_RSI) {
       do {
         iteration_count = *(longlong *)(unaff_R14 + 0x50) + iteration_count;
-        opointer_ = GetDiskFreeSpointer_(resource_context,iteration_count);
-        if (opointer_ != 0) {
+        operation_result = GetDiskFreeSpointer_(resource_context,iteration_count);
+        if (operation_result != 0) {
           return;
         }
         resource_context = *(uint *)(iteration_count + 0x10);
@@ -11682,12 +11682,12 @@ void GetNativeSystemInfo(uint64_t *pointer_)
           resource_context = 4;
           *(uint *)(unaff_RBP + 0x20) = (resource_context & 0xffffc000 | 0x4000) * 2 | resource_context & 0x7fff;
         }
-        opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,resource_context);
-        if (opointer_ != 0) {
+        operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,resource_context);
+        if (operation_result != 0) {
           return;
         }
-        opointer_ = FUN_1808affb0(extraout_XMM0_Da_00,iteration_count + 0x14);
-        if (opointer_ != 0) {
+        operation_result = FUN_1808affb0(extraout_XMM0_Da_00,iteration_count + 0x14);
+        if (operation_result != 0) {
           return;
         }
         iteration_count = iteration_count + 1;
@@ -11695,30 +11695,30 @@ void GetNativeSystemInfo(uint64_t *pointer_)
         resource_context = extraout_XMM0_Da_01;
       } while (iteration_count < unaff_RSI);
     }
-    opointer_ = FUN_1808aca30(resource_context,unaff_R14 + 0x60);
-    if (opointer_ == 0) {
+    operation_result = FUN_1808aca30(resource_context,unaff_R14 + 0x60);
+    if (operation_result == 0) {
       pointer_ = *(uint64_t **)(resource_pointer_ + 8);
-      opointer_ = *(int *)(unaff_R14 + 0x78);
-      *(int *)(unaff_RBP + 0x20) = opointer_;
-      opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
-      if (opointer_ == 0) {
-        if (0 < opointer_) {
+      operation_result = *(int *)(unaff_R14 + 0x78);
+      *(int *)(unaff_RBP + 0x20) = operation_result;
+      operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
+      if (operation_result == 0) {
+        if (0 < operation_result) {
           do {
             iteration_count = *(longlong *)(unaff_R14 + 0x70);
             pointer_ = *(uint64_t **)(resource_pointer_ + 8);
             *(uint32_t *)(unaff_RBP + 0x20) = *(uint32_t *)(iteration_count + unaff_RDI * 8);
-            opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
-            if (opointer_ != 0) {
+            operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
+            if (operation_result != 0) {
               return;
             }
             pointer_ = *(uint64_t **)(resource_pointer_ + 8);
             *(uint32_t *)(unaff_RBP + 0x20) = *(uint32_t *)(iteration_count + 4 + unaff_RDI * 8);
-            opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
-            if (opointer_ != 0) {
+            operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
+            if (operation_result != 0) {
               return;
             }
             unaff_RDI = unaff_RDI + 1;
-          } while (unaff_RDI < opointer_);
+          } while (unaff_RDI < operation_result);
         }
         pointer_ = *(uint64_t **)(resource_pointer_ + 8);
         *(uint32_t *)(unaff_RBP + 0x20) = *(uint32_t *)(unaff_R14 + 0x80);
@@ -11741,32 +11741,32 @@ void GetMemoryStatus(void)
  void GlobalMemoryStatusEx(longlong pointer_,uint32_t *pointer_)
 void GlobalMemoryStatusEx(longlong pointer_,uint32_t *pointer_)
 {
-  int opointer_;
+  int operation_result;;
   uint32_t austack_variable [2];
   austack_variable[0] = *pointer_;
-  opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),austack_variable,4);
-  if (((((opointer_ == 0) && (opointer_ = FUN_1808affb0(pointer_,pointer_ + 1), opointer_ == 0)) &&
+  operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),austack_variable,4);
+  if (((((operation_result == 0) && (operation_result = FUN_1808affb0(pointer_,pointer_ + 1), operation_result == 0)) &&
        (((*(byte *)(pointer_ + 1) & 0x20) == 0 ||
-        (opointer_ = SetSystemTime(pointer_,pointer_ + 2), opointer_ == 0)))) &&
-      (((opointer_ = FUN_1808b0010(pointer_,pointer_ + 0xe), opointer_ == 0 &&
-        (opointer_ = FUN_1808b0010(pointer_,pointer_ + 0xf), opointer_ == 0)) &&
-       (opointer_ = FUN_1808b0010(pointer_,pointer_ + 0x10), opointer_ == 0)))) &&
-     (opointer_ = FUN_1808b0010(pointer_,pointer_ + 0x11), opointer_ == 0)) {
+        (operation_result = SetSystemTime(pointer_,pointer_ + 2), operation_result == 0)))) &&
+      (((operation_result = FUN_1808b0010(pointer_,pointer_ + 0xe), operation_result == 0 &&
+        (operation_result = FUN_1808b0010(pointer_,pointer_ + 0xf), operation_result == 0)) &&
+       (operation_result = FUN_1808b0010(pointer_,pointer_ + 0x10), operation_result == 0)))) &&
+     (operation_result = FUN_1808b0010(pointer_,pointer_ + 0x11), operation_result == 0)) {
     if ((pointer_[1] & 0x100) != 0) {
       austack_variable[0] = pointer_[0x12];
-      opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+      operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                         (*(uint64_t **)(pointer_ + 8),austack_variable,4);
-      if (opointer_ != 0) {
+      if (operation_result != 0) {
         return;
       }
-      opointer_ = GetDiskFreeSpointer_(pointer_,pointer_ + 0x13);
-      if (opointer_ != 0) {
+      operation_result = GetDiskFreeSpointer_(pointer_,pointer_ + 0x13);
+      if (operation_result != 0) {
         return;
       }
     }
     if (((pointer_[1] & 0x800) == 0) ||
-       ((opointer_ = FUN_1808b0010(pointer_,pointer_ + 0x18), opointer_ == 0 &&
-        (opointer_ = FUN_1808b0010(pointer_,pointer_ + 0x17), opointer_ == 0)))) {
+       ((operation_result = FUN_1808b0010(pointer_,pointer_ + 0x18), operation_result == 0 &&
+        (operation_result = FUN_1808b0010(pointer_,pointer_ + 0x17), operation_result == 0)))) {
       GetModuleHandle(pointer_,pointer_ + 0x19);
     }
   }
@@ -11775,37 +11775,37 @@ void GlobalMemoryStatusEx(longlong pointer_,uint32_t *pointer_)
  void InitializeProcessorInfo(void)
 void InitializeProcessorInfo(void)
 {
-  int opointer_;
+  int operation_result;;
   longlong resource_pointer_;
   longlong unaff_RDI;
   uint32_t stack_pointer_;
-  opointer_ = FUN_1808affb0();
-  if (opointer_ == 0) {
-    if (((*(byte *)(resource_pointer_ + 4) & 0x20) != 0) && (opointer_ = SetSystemTime(), opointer_ != 0)) {
+  operation_result = FUN_1808affb0();
+  if (operation_result == 0) {
+    if (((*(byte *)(resource_pointer_ + 4) & 0x20) != 0) && (operation_result = SetSystemTime(), operation_result != 0)) {
       return;
     }
-    opointer_ = FUN_1808b0010();
-    if ((((opointer_ == 0) && (opointer_ = FUN_1808b0010(), opointer_ == 0)) &&
-        (opointer_ = FUN_1808b0010(), opointer_ == 0)) && (opointer_ = FUN_1808b0010(), opointer_ == 0)) {
+    operation_result = FUN_1808b0010();
+    if ((((operation_result == 0) && (operation_result = FUN_1808b0010(), operation_result == 0)) &&
+        (operation_result = FUN_1808b0010(), operation_result == 0)) && (operation_result = FUN_1808b0010(), operation_result == 0)) {
       if ((*(uint *)(resource_pointer_ + 4) & 0x100) != 0) {
         stack_pointer_ = *(uint32_t *)(resource_pointer_ + 0x48);
-        opointer_ = (**(code **)**(uint64_t **)(unaff_RDI + 8))
+        operation_result = (**(code **)**(uint64_t **)(unaff_RDI + 8))
                           (*(uint64_t **)(unaff_RDI + 8),&stack_buffer,4);
-        if (opointer_ != 0) {
+        if (operation_result != 0) {
           return;
         }
-        opointer_ = GetDiskFreeSpointer_();
-        if (opointer_ != 0) {
+        operation_result = GetDiskFreeSpointer_();
+        if (operation_result != 0) {
           return;
         }
       }
       if ((*(uint *)(resource_pointer_ + 4) & 0x800) != 0) {
-        opointer_ = FUN_1808b0010();
-        if (opointer_ != 0) {
+        operation_result = FUN_1808b0010();
+        if (operation_result != 0) {
           return;
         }
-        opointer_ = FUN_1808b0010();
-        if (opointer_ != 0) {
+        operation_result = FUN_1808b0010();
+        if (operation_result != 0) {
           return;
         }
       }
@@ -11823,13 +11823,13 @@ uint64_t FUN_180899d90(longlong pointer_,longlong pointer_)
 {
   long long resource_context;
   float *pointer_;
-  int opointer_;
+  int operation_result;;
   float fvariable;
   uint16_t austack_variable [4];
   austack_variable[0] = CONCAT11(austack_variable[0]._1_1_,*(uint8_t *)(pointer_ + 0x104));
   resource_context = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),austack_variable,1);
   if ((int)resource_context == 0) {
-    opointer_ = 0;
+    operation_result = 0;
     if (0 < *(short *)(pointer_ + 0x104)) {
       pointer_ = (float *)(pointer_ + 0x84);
       do {
@@ -11863,9 +11863,9 @@ uint64_t FUN_180899d90(longlong pointer_,longlong pointer_)
         if ((int)resource_context != 0) {
           return resource_context;
         }
-        opointer_ = opointer_ + 1;
+        operation_result = operation_result + 1;
         pointer_ = pointer_ + 1;
-      } while (opointer_ < *(short *)(pointer_ + 0x104));
+      } while (operation_result < *(short *)(pointer_ + 0x104));
     }
     resource_context = 0;
   }
@@ -11877,10 +11877,10 @@ uint64_t FUN_180899dc7(void)
   float *pointer_;
   longlong unaff_RBP;
   longlong unaff_RSI;
-  int opointer_;
+  int operation_result;;
   float fvariable;
   uint16_t uStack0000000000000070;
-  opointer_ = 0;
+  operation_result = 0;
   if (0 < *(short *)(unaff_RSI + 0x104)) {
     pointer_ = (float *)(unaff_RSI + 0x84);
     do {
@@ -11914,9 +11914,9 @@ uint64_t FUN_180899dc7(void)
       if ((int)resource_context != 0) {
         return resource_context;
       }
-      opointer_ = opointer_ + 1;
+      operation_result = operation_result + 1;
       pointer_ = pointer_ + 1;
-    } while (opointer_ < *(short *)(unaff_RSI + 0x104));
+    } while (operation_result < *(short *)(unaff_RSI + 0x104));
   }
   return 0;
 }
@@ -11928,18 +11928,18 @@ void InitializeDiskInfo(void)
  void GetDiskFreeSpointer_(longlong pointer_,uint32_t *pointer_)
 void GetDiskFreeSpointer_(longlong pointer_,uint32_t *pointer_)
 {
-  int opointer_;
+  int operation_result;;
   uint32_t austack_variable [2];
   austack_variable[0] = *pointer_;
-  opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),austack_variable,4);
-  if (opointer_ == 0) {
+  operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),austack_variable,4);
+  if (operation_result == 0) {
     austack_variable[0]._0_2_ = *(uint16_t *)(pointer_ + 1);
-    opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),austack_variable,2);
-    if (opointer_ == 0) {
+    operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),austack_variable,2);
+    if (operation_result == 0) {
       austack_variable[0] = CONCAT22(austack_variable[0]._2_2_,*(uint16_t *)((longlong)pointer_ + 6));
-      opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+      operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                         (*(uint64_t **)(pointer_ + 8),austack_variable,2);
-      if (opointer_ == 0) {
+      if (operation_result == 0) {
         (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),pointer_ + 2,8);
       }
     }
@@ -11949,11 +11949,11 @@ void GetDiskFreeSpointer_(longlong pointer_,uint32_t *pointer_)
  void GetVolumeInformation(longlong pointer_,uint32_t *pointer_)
 void GetVolumeInformation(longlong pointer_,uint32_t *pointer_)
 {
-  int opointer_;
+  int operation_result;;
   uint32_t austack_variable [2];
   austack_variable[0] = *pointer_;
-  opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),austack_variable,4);
-  if (opointer_ == 0) {
+  operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),austack_variable,4);
+  if (operation_result == 0) {
     austack_variable[0] = pointer_[1];
     (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),austack_variable,4);
   }
@@ -11963,41 +11963,41 @@ void GetVolumeInformation(longlong pointer_,uint32_t *pointer_)
 void InitializeDriveInfo(longlong pointer_,uint32_t *pointer_)
 {
   uint resource_context;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   long long resource_context;
   long long ustack_variable;
   ustack_variable = CONCAT44(ustack_variable._4_4_,*pointer_);
-  opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
-  if (opointer_ == 0) {
+  operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
+  if (operation_result == 0) {
     ustack_variable = *(uint64_t *)(pointer_ + 2);
-    opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),&ustack_variable,8);
-    if (opointer_ == 0) {
+    operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),&ustack_variable,8);
+    if (operation_result == 0) {
       ustack_variable = CONCAT71(ustack_variable._1_7_,*(uint8_t *)(pointer_ + 0x68));
-      opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+      operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                         (*(uint64_t **)(pointer_ + 8),&ustack_variable,1);
-      if (opointer_ == 0) {
-        opointer_ = 0;
+      if (operation_result == 0) {
+        operation_result = 0;
         if (0 < (int)pointer_[0x68]) {
           do {
-            opointer_ = SetLocalTime(pointer_,pointer_ + (longlong)opointer_ * 0xc + 4);
-            if (opointer_ != 0) {
+            operation_result = SetLocalTime(pointer_,pointer_ + (longlong)operation_result * 0xc + 4);
+            if (operation_result != 0) {
               return;
             }
-            opointer_ = SetLocalTime(pointer_,pointer_ + (longlong)opointer_ * 0xc + 7);
-            if (opointer_ != 0) {
+            operation_result = SetLocalTime(pointer_,pointer_ + (longlong)operation_result * 0xc + 7);
+            if (operation_result != 0) {
               return;
             }
-            opointer_ = SetLocalTime(pointer_,pointer_ + (longlong)opointer_ * 0xc + 10);
-            if (opointer_ != 0) {
+            operation_result = SetLocalTime(pointer_,pointer_ + (longlong)operation_result * 0xc + 10);
+            if (operation_result != 0) {
               return;
             }
-            opointer_ = SetLocalTime(pointer_,pointer_ + (longlong)opointer_ * 0xc + 0xd);
-            if (opointer_ != 0) {
+            operation_result = SetLocalTime(pointer_,pointer_ + (longlong)operation_result * 0xc + 0xd);
+            if (operation_result != 0) {
               return;
             }
-            opointer_ = opointer_ + 1;
-          } while (opointer_ < (int)pointer_[0x68]);
+            operation_result = operation_result + 1;
+          } while (operation_result < (int)pointer_[0x68]);
         }
         resource_context = pointer_[100];
         if (resource_context < 0x8000) {
@@ -12008,62 +12008,62 @@ void InitializeDriveInfo(longlong pointer_,uint32_t *pointer_)
           resource_context = 4;
           ustack_variable = CONCAT44(ustack_variable._4_4_,(resource_context & 0xffffc000 | 0x4000) * 2 | resource_context & 0x7fff);
         }
-        opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+        operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                           (*(uint64_t **)(pointer_ + 8),&ustack_variable,resource_context);
-        if (opointer_ == 0) {
+        if (operation_result == 0) {
           ustack_variable._0_4_ = pointer_[0x65];
-          opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+          operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                             (*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
-          if (((opointer_ == 0) && (opointer_ = FUN_1808aff40(pointer_,pointer_ + 0x66), opointer_ == 0)) &&
-             (opointer_ = FUN_1808aff40(pointer_,pointer_ + 0x67), opointer_ == 0)) {
+          if (((operation_result == 0) && (operation_result = FUN_1808aff40(pointer_,pointer_ + 0x66), operation_result == 0)) &&
+             (operation_result = FUN_1808aff40(pointer_,pointer_ + 0x67), operation_result == 0)) {
             ustack_variable._0_4_ = pointer_[0x69];
-            opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+            operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                               (*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
-            if (opointer_ == 0) {
+            if (operation_result == 0) {
               ustack_variable._0_4_ = pointer_[0x6a];
-              opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+              operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                                 (*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
-              if (opointer_ == 0) {
+              if (operation_result == 0) {
                 ustack_variable._0_4_ = pointer_[0x6b];
-                opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+                operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                                   (*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
-                if (opointer_ == 0) {
+                if (operation_result == 0) {
                   ustack_variable._0_4_ = pointer_[0x6d];
-                  opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+                  operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                                     (*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
-                  if (opointer_ == 0) {
+                  if (operation_result == 0) {
                     ustack_variable._0_4_ = pointer_[0x6e];
-                    opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+                    operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                                       (*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
-                    if (opointer_ == 0) {
+                    if (operation_result == 0) {
                       ustack_variable._0_4_ = pointer_[0x6c];
-                      opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+                      operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                                         (*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
-                      if (opointer_ == 0) {
+                      if (operation_result == 0) {
                         ustack_variable = CONCAT44(ustack_variable._4_4_,pointer_[0x6f]);
-                        opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+                        operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                                           (*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
-                        if (opointer_ == 0) {
+                        if (operation_result == 0) {
                           ustack_variable = *(uint64_t *)(pointer_ + 0x70);
-                          opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+                          operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                                             (*(uint64_t **)(pointer_ + 8),&ustack_variable,8);
-                          if (opointer_ == 0) {
+                          if (operation_result == 0) {
                             ustack_variable = *(uint64_t *)(pointer_ + 0x72);
-                            opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+                            operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                                               (*(uint64_t **)(pointer_ + 8),&ustack_variable,8);
-                            if (opointer_ == 0) {
+                            if (operation_result == 0) {
                               ustack_variable = *(uint64_t *)(pointer_ + 0x74);
-                              opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+                              operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                                                 (*(uint64_t **)(pointer_ + 8),&ustack_variable,8);
-                              if (opointer_ == 0) {
+                              if (operation_result == 0) {
                                 ustack_variable._0_4_ = pointer_[0x77];
-                                opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+                                operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                                                   (*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
-                                if (opointer_ == 0) {
+                                if (operation_result == 0) {
                                   ustack_variable._0_4_ = pointer_[0x76];
-                                  opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+                                  operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                                                     (*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
-                                  if (opointer_ == 0) {
+                                  if (operation_result == 0) {
                                     ustack_variable = CONCAT44(ustack_variable._4_4_,pointer_[0x78]);
                                     (**(code **)**(uint64_t **)(pointer_ + 8))
                                               (*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
@@ -12091,42 +12091,42 @@ void GetDriveTypointer_(uint32_t pointer_)
 {
   uint resource_context;
   uint64_t *pointer_;
-  int opointer_;
+  int operation_result;;
   longlong resource_pointer_;
   longlong unaff_RBP;
   longlong iteration_count;
   longlong unaff_RDI;
   long long resource_context;
-  int opointer_;
+  int operation_result;;
   uint32_t extraout_XMM0_Da;
   uint32_t extraout_XMM0_Da_00;
   uint32_t extraout_XMM0_Da_01;
   uint32_t extraout_XMM0_Da_02;
   uint32_t extraout_XMM0_Da_03;
   uint32_t extraout_XMM0_Da_04;
-  opointer_ = 0;
+  operation_result = 0;
   if (0 < *(int *)(unaff_RDI + 0x1a0)) {
     do {
-      iteration_count = (longlong)opointer_ * 0x30 + unaff_RDI;
-      opointer_ = SetLocalTime(pointer_,iteration_count + 0x10);
-      if (opointer_ != 0) {
+      iteration_count = (longlong)operation_result * 0x30 + unaff_RDI;
+      operation_result = SetLocalTime(pointer_,iteration_count + 0x10);
+      if (operation_result != 0) {
         return;
       }
-      opointer_ = SetLocalTime(extraout_XMM0_Da,iteration_count + 0x1c);
-      if (opointer_ != 0) {
+      operation_result = SetLocalTime(extraout_XMM0_Da,iteration_count + 0x1c);
+      if (operation_result != 0) {
         return;
       }
-      opointer_ = SetLocalTime(extraout_XMM0_Da_00,iteration_count + 0x28);
-      if (opointer_ != 0) {
+      operation_result = SetLocalTime(extraout_XMM0_Da_00,iteration_count + 0x28);
+      if (operation_result != 0) {
         return;
       }
-      opointer_ = SetLocalTime(extraout_XMM0_Da_01,iteration_count + 0x34);
-      if (opointer_ != 0) {
+      operation_result = SetLocalTime(extraout_XMM0_Da_01,iteration_count + 0x34);
+      if (operation_result != 0) {
         return;
       }
-      opointer_ = opointer_ + 1;
+      operation_result = operation_result + 1;
       pointer_ = extraout_XMM0_Da_02;
-    } while (opointer_ < *(int *)(unaff_RDI + 0x1a0));
+    } while (operation_result < *(int *)(unaff_RDI + 0x1a0));
   }
   resource_context = *(uint *)(unaff_RDI + 400);
   pointer_ = *(uint64_t **)(resource_pointer_ + 8);
@@ -12138,61 +12138,61 @@ void GetDriveTypointer_(uint32_t pointer_)
     resource_context = 4;
     *(uint *)(unaff_RBP + 0x20) = (resource_context & 0xffffc000 | 0x4000) * 2 | resource_context & 0x7fff;
   }
-  opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,resource_context);
-  if (opointer_ == 0) {
+  operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,resource_context);
+  if (operation_result == 0) {
     pointer_ = *(uint64_t **)(resource_pointer_ + 8);
     *(uint32_t *)(unaff_RBP + 0x20) = *(uint32_t *)(unaff_RDI + 0x194);
-    opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
-    if (((opointer_ == 0) && (opointer_ = FUN_1808aff40(extraout_XMM0_Da_03,unaff_RDI + 0x198), opointer_ == 0))
-       && (opointer_ = FUN_1808aff40(extraout_XMM0_Da_04,unaff_RDI + 0x19c), opointer_ == 0)) {
+    operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
+    if (((operation_result == 0) && (operation_result = FUN_1808aff40(extraout_XMM0_Da_03,unaff_RDI + 0x198), operation_result == 0))
+       && (operation_result = FUN_1808aff40(extraout_XMM0_Da_04,unaff_RDI + 0x19c), operation_result == 0)) {
       pointer_ = *(uint64_t **)(resource_pointer_ + 8);
       *(uint32_t *)(unaff_RBP + 0x20) = *(uint32_t *)(unaff_RDI + 0x1a4);
-      opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
-      if (opointer_ == 0) {
+      operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
+      if (operation_result == 0) {
         pointer_ = *(uint64_t **)(resource_pointer_ + 8);
         *(uint32_t *)(unaff_RBP + 0x20) = *(uint32_t *)(unaff_RDI + 0x1a8);
-        opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
-        if (opointer_ == 0) {
+        operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
+        if (operation_result == 0) {
           pointer_ = *(uint64_t **)(resource_pointer_ + 8);
           *(uint32_t *)(unaff_RBP + 0x20) = *(uint32_t *)(unaff_RDI + 0x1ac);
-          opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
-          if (opointer_ == 0) {
+          operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
+          if (operation_result == 0) {
             pointer_ = *(uint64_t **)(resource_pointer_ + 8);
             *(uint32_t *)(unaff_RBP + 0x20) = *(uint32_t *)(unaff_RDI + 0x1b4);
-            opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
-            if (opointer_ == 0) {
+            operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
+            if (operation_result == 0) {
               pointer_ = *(uint64_t **)(resource_pointer_ + 8);
               *(uint32_t *)(unaff_RBP + 0x20) = *(uint32_t *)(unaff_RDI + 0x1b8);
-              opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
-              if (opointer_ == 0) {
+              operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
+              if (operation_result == 0) {
                 pointer_ = *(uint64_t **)(resource_pointer_ + 8);
                 *(uint32_t *)(unaff_RBP + 0x20) = *(uint32_t *)(unaff_RDI + 0x1b0);
-                opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
-                if (opointer_ == 0) {
+                operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
+                if (operation_result == 0) {
                   pointer_ = *(uint64_t **)(resource_pointer_ + 8);
                   *(uint32_t *)(unaff_RBP + 0x20) = *(uint32_t *)(unaff_RDI + 0x1bc);
-                  opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
-                  if (opointer_ == 0) {
+                  operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
+                  if (operation_result == 0) {
                     pointer_ = *(uint64_t **)(resource_pointer_ + 8);
                     *(uint64_t *)(unaff_RBP + 0x20) = *(uint64_t *)(unaff_RDI + 0x1c0);
-                    opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,8);
-                    if (opointer_ == 0) {
+                    operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,8);
+                    if (operation_result == 0) {
                       pointer_ = *(uint64_t **)(resource_pointer_ + 8);
                       *(uint64_t *)(unaff_RBP + 0x20) = *(uint64_t *)(unaff_RDI + 0x1c8);
-                      opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,8);
-                      if (opointer_ == 0) {
+                      operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,8);
+                      if (operation_result == 0) {
                         pointer_ = *(uint64_t **)(resource_pointer_ + 8);
                         *(uint64_t *)(unaff_RBP + 0x20) = *(uint64_t *)(unaff_RDI + 0x1d0);
-                        opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,8);
-                        if (opointer_ == 0) {
+                        operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,8);
+                        if (operation_result == 0) {
                           pointer_ = *(uint64_t **)(resource_pointer_ + 8);
                           *(uint32_t *)(unaff_RBP + 0x20) = *(uint32_t *)(unaff_RDI + 0x1dc);
-                          opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
-                          if (opointer_ == 0) {
+                          operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
+                          if (operation_result == 0) {
                             pointer_ = *(uint64_t **)(resource_pointer_ + 8);
                             *(uint32_t *)(unaff_RBP + 0x20) = *(uint32_t *)(unaff_RDI + 0x1d8);
-                            opointer_ = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
-                            if (opointer_ == 0) {
+                            operation_result = (**(code **)*pointer_)(pointer_,unaff_RBP + 0x20,4);
+                            if (operation_result == 0) {
                               pointer_ = *(uint64_t **)(resource_pointer_ + 8);
                               *(uint32_t *)(unaff_RBP + 0x20) = *(uint32_t *)(unaff_RDI + 0x1e0)
                               ;
@@ -12221,7 +12221,7 @@ void InitializeProcessInfo(void)
 uint64_t FUN_18089a370(longlong pointer_,longlong pointer_)
 {
   short svariable;
-  int opointer_;
+  int operation_result;;
   ushort resource_context;
   long long resource_context;
   ushort resource_context;
@@ -12284,15 +12284,15 @@ uint64_t FUN_18089a370(longlong pointer_,longlong pointer_)
             ) && (((resource_context & 8) == 0 ||
                   (resource_context = FUN_180899d90(pointer_,pointer_ + 0x150), (int)resource_context == 0)))) {
           if ((resource_context & 0x10) != 0) {
-            opointer_ = *(int *)(pointer_ + 0x260);
-            astack_int_48[0] = opointer_;
+            operation_result = *(int *)(pointer_ + 0x260);
+            astack_int_48[0] = operation_result;
             resource_context = (**(code **)**(uint64_t **)(pointer_ + 8))
                               (*(uint64_t **)(pointer_ + 8),astack_int_48,4);
             if ((int)resource_context != 0) {
               return resource_context;
             }
             iteration_count = iteration_count;
-            if (0 < opointer_) {
+            if (0 < operation_result) {
               do {
                 iteration_count = *(longlong *)(pointer_ + 600) + iteration_count;
                 svariable = *(short *)(iteration_count + 0x114);
@@ -12312,7 +12312,7 @@ uint64_t FUN_18089a370(longlong pointer_,longlong pointer_)
                 }
                 iteration_count = iteration_count + 1;
                 iteration_count = iteration_count + 0x118;
-              } while (iteration_count < opointer_);
+              } while (iteration_count < operation_result);
             }
           }
           if ((((((resource_context & 0x20) == 0) ||
@@ -12336,7 +12336,7 @@ uint64_t FUN_18089a370(longlong pointer_,longlong pointer_)
 uint64_t FUN_18089a51d(void)
 {
   short svariable;
-  int opointer_;
+  int operation_result;;
   long long resource_context;
   longlong resource_pointer_;
   ulonglong unaff_RSI;
@@ -12345,14 +12345,14 @@ uint64_t FUN_18089a51d(void)
   longlong unaff_R14;
   longlong iteration_count;
   if ((unaff_RSI & 0x10) != 0) {
-    opointer_ = *(int *)(unaff_RDI + 0x260);
+    operation_result = *(int *)(unaff_RDI + 0x260);
     resource_context = (**(code **)**(uint64_t **)(resource_pointer_ + 8))
-                      (*(uint64_t **)(resource_pointer_ + 8),&stack_buffer,4,in_R9,opointer_);
+                      (*(uint64_t **)(resource_pointer_ + 8),&stack_buffer,4,in_R9,operation_result);
     if ((int)resource_context != 0) {
       return resource_context;
     }
     iteration_count = unaff_R14;
-    if (0 < opointer_) {
+    if (0 < operation_result) {
       do {
         svariable = *(short *)(*(longlong *)(unaff_RDI + 600) + unaff_R14 + 0x114);
         resource_context = GetDiskFreeSpointer_();
@@ -12369,7 +12369,7 @@ uint64_t FUN_18089a51d(void)
         }
         iteration_count = iteration_count + 1;
         unaff_R14 = unaff_R14 + 0x118;
-      } while (iteration_count < opointer_);
+      } while (iteration_count < operation_result);
     }
   }
   if ((((((unaff_RSI & 0x20) == 0) || (resource_context = FUN_1808ac8a0(), (int)resource_context == 0)) &&
@@ -12390,9 +12390,9 @@ void GetProcessInfo(void)
 }
 uint64_t FUN_18089a690(longlong pointer_,uint32_t *pointer_)
 {
-  int opointer_;
+  int operation_result;;
   long long resource_context;
-  int opointer_;
+  int operation_result;;
   long long ustack_variable;
   ustack_variable = CONCAT44(ustack_variable._4_4_,*pointer_);
   resource_context = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
@@ -12400,20 +12400,20 @@ uint64_t FUN_18089a690(longlong pointer_,uint32_t *pointer_)
     ustack_variable = *(uint64_t *)(pointer_ + 2);
     resource_context = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),&ustack_variable,8);
     if ((int)resource_context == 0) {
-      opointer_ = pointer_[6];
-      ustack_variable = CONCAT44(ustack_variable._4_4_,opointer_);
+      operation_result = pointer_[6];
+      ustack_variable = CONCAT44(ustack_variable._4_4_,operation_result);
       resource_context = (**(code **)**(uint64_t **)(pointer_ + 8))
                         (*(uint64_t **)(pointer_ + 8),&ustack_variable,4);
       if ((int)resource_context == 0) {
-        opointer_ = 0;
-        if (0 < opointer_) {
+        operation_result = 0;
+        if (0 < operation_result) {
           do {
-            resource_context = FUN_18089a370(pointer_,(longlong)opointer_ * 0x278 + *(longlong *)(pointer_ + 4));
+            resource_context = FUN_18089a370(pointer_,(longlong)operation_result * 0x278 + *(longlong *)(pointer_ + 4));
             if ((int)resource_context != 0) {
               return resource_context;
             }
-            opointer_ = opointer_ + 1;
-          } while (opointer_ < opointer_);
+            operation_result = operation_result + 1;
+          } while (operation_result < operation_result);
         }
         resource_context = 0;
       }
@@ -12423,24 +12423,24 @@ uint64_t FUN_18089a690(longlong pointer_,uint32_t *pointer_)
 }
 uint64_t FUN_18089a6e8(uint64_t *pointer_,uint64_t pointer_)
 {
-  int opointer_;
+  int operation_result;;
   long long resource_context;
-  int opointer_;
+  int operation_result;;
   longlong unaff_RSI;
   int iStack0000000000000030;
-  opointer_ = *(int *)(unaff_RSI + 0x18);
-  iStack0000000000000030 = opointer_;
+  operation_result = *(int *)(unaff_RSI + 0x18);
+  iStack0000000000000030 = operation_result;
   resource_context = (**(code **)*pointer_)(pointer_,pointer_,4);
   if ((int)resource_context == 0) {
-    opointer_ = 0;
-    if (0 < opointer_) {
+    operation_result = 0;
+    if (0 < operation_result) {
       do {
         resource_context = FUN_18089a370();
         if ((int)resource_context != 0) {
           return resource_context;
         }
-        opointer_ = opointer_ + 1;
-      } while (opointer_ < opointer_);
+        operation_result = operation_result + 1;
+      } while (operation_result < operation_result);
     }
     resource_context = 0;
   }
@@ -12455,7 +12455,7 @@ void InitializeModuleInfo(void)
 void GetModuleHandle(longlong pointer_,uint *pointer_)
 {
   uint resource_context;
-  int opointer_;
+  int operation_result;;
   long long resource_context;
   uint32_t ustack_variable;
   resource_context = *pointer_;
@@ -12467,9 +12467,9 @@ void GetModuleHandle(longlong pointer_,uint *pointer_)
     ustack_variable = (resource_context & 0xffffc000 | 0x4000) * 2 | resource_context & 0x7fff;
     resource_context = 4;
   }
-  opointer_ = (**(code **)**(uint64_t **)(pointer_ + 8))
+  operation_result = (**(code **)**(uint64_t **)(pointer_ + 8))
                     (*(uint64_t **)(pointer_ + 8),&ustack_variable,resource_context);
-  if (opointer_ == 0) {
+  if (operation_result == 0) {
     FUN_1808aff40(pointer_,pointer_ + 1);
   }
   return;
@@ -12508,20 +12508,20 @@ ulonglong FUN_18089a880(longlong pointer_,uint64_t *pointer_)
 {
   ulonglong resource_context;
   longlong iteration_count;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   uint *pointer_;
   int aistack_variable [2];
   uint austack_variable [2];
   uint austack_variable [2];
   uint austack_variable [2];
   uint stack_buffer_38 [6];
-  opointer_ = *(int *)(pointer_ + 1);
-  aistack_variable[0] = opointer_;
+  operation_result = *(int *)(pointer_ + 1);
+  aistack_variable[0] = operation_result;
   resource_context = (**(code **)**(uint64_t **)(pointer_ + 8))(*(uint64_t **)(pointer_ + 8),aistack_variable,4);
   if ((int)resource_context == 0) {
     pointer_ = (uint *)*pointer_;
-    for (; 0 < opointer_; opointer_ = opointer_ + opointer_) {
+    for (; 0 < operation_result; operation_result = operation_result + operation_result) {
       austack_variable[0] = *pointer_;
       resource_context = (**(code **)**(uint64_t **)(pointer_ + 8))
                         (*(uint64_t **)(pointer_ + 8),austack_variable,4);
@@ -12536,7 +12536,7 @@ ulonglong FUN_18089a880(longlong pointer_,uint64_t *pointer_)
       case 0x12:
       case 0x30:
         iteration_count = 4;
-        opointer_ = -4;
+        operation_result = -4;
         break;
       default:
         return 0x1c;
@@ -12548,7 +12548,7 @@ ulonglong FUN_18089a880(longlong pointer_,uint64_t *pointer_)
           return resource_context;
         }
         iteration_count = 8;
-        opointer_ = -8;
+        operation_result = -8;
         break;
       case 0x11:
         resource_context = GetDiskFreeSpointer_(pointer_,pointer_ + 1);
@@ -12556,7 +12556,7 @@ ulonglong FUN_18089a880(longlong pointer_,uint64_t *pointer_)
           return resource_context;
         }
         iteration_count = 0x14;
-        opointer_ = -0x14;
+        operation_result = -0x14;
         break;
       case 0x20:
         austack_variable[0] = pointer_[1];
@@ -12572,11 +12572,11 @@ ulonglong FUN_18089a880(longlong pointer_,uint64_t *pointer_)
           return resource_context;
         }
         iteration_count = 0xc;
-        opointer_ = -0xc;
+        operation_result = -0xc;
       }
       pointer_ = (uint *)((longlong)pointer_ + iteration_count);
     }
-    resource_context = (ulonglong)(-(uint)(opointer_ != 0) & 0x1c);
+    resource_context = (ulonglong)(-(uint)(operation_result != 0) & 0x1c);
   }
   return resource_context;
 }
@@ -12584,7 +12584,7 @@ ulonglong FUN_18089a8b4(void)
 {
   ulonglong resource_context;
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   int unaff_EBX;
   longlong unaff_RSI;
   uint *unaff_RDI;
@@ -12609,7 +12609,7 @@ ulonglong FUN_18089a8b4(void)
       case 0x12:
       case 0x30:
         iteration_count = 4;
-        opointer_ = -4;
+        operation_result = -4;
         break;
       default:
         return 0x1c;
@@ -12621,7 +12621,7 @@ ulonglong FUN_18089a8b4(void)
           return resource_context;
         }
         iteration_count = 8;
-        opointer_ = -8;
+        operation_result = -8;
         break;
       case 0x11:
         resource_context = GetDiskFreeSpointer_(extraout_XMM0_Da,unaff_RDI + 1);
@@ -12629,7 +12629,7 @@ ulonglong FUN_18089a8b4(void)
           return resource_context;
         }
         iteration_count = 0x14;
-        opointer_ = -0x14;
+        operation_result = -0x14;
         break;
       case 0x20:
         stack_pointer_ = unaff_RDI[1];
@@ -12644,9 +12644,9 @@ ulonglong FUN_18089a8b4(void)
           return resource_context;
         }
         iteration_count = 0xc;
-        opointer_ = -0xc;
+        operation_result = -0xc;
       }
-      unaff_EBX = unaff_EBX + opointer_;
+      unaff_EBX = unaff_EBX + operation_result;
       unaff_RDI = (uint *)((longlong)unaff_RDI + iteration_count);
     } while (0 < unaff_EBX);
   }
@@ -12669,7 +12669,7 @@ void GetProcAddress(longlong pointer_,int *pointer_)
   char cvariable;
   uint32_t in_EAX;
   undefined3 resource_context;
-  int opointer_;
+  int operation_result;;
   uint32_t in_register_00000004;
   uint unaff_EBP;
   char in_CF;
@@ -12687,9 +12687,9 @@ void GetProcAddress(longlong pointer_,int *pointer_)
        *(char *)CONCAT44(in_register_00000004,resource_context) + cvariable;
   *(char *)CONCAT44(in_register_00000004,resource_context) =
        *(char *)CONCAT44(in_register_00000004,resource_context) + cvariable;
-  opointer_ = CONCAT31(resource_context,cvariable + '\x18');
-  *pointer_ = *pointer_ + opointer_;
-  pointer_ = (char *)((longlong)&pointer_8 + CONCAT44(in_register_00000004,opointer_));
+  operation_result = CONCAT31(resource_context,cvariable + '\x18');
+  *pointer_ = *pointer_ + operation_result;
+  pointer_ = (char *)((longlong)&pointer_8 + CONCAT44(in_register_00000004,operation_result));
   *pointer_ = *pointer_ + cvariable + '\x18';
   pointer_ = (code *)swi(3);
   (*pointer_)();
@@ -12838,19 +12838,19 @@ uint64_t FUN_18089ac64(void)
  void FreeLibrary(void)
 void FreeLibrary(void)
 {
-  int opointer_;
+  int operation_result;;
   uint64_t *resource_pointer_;
   longlong unaff_RDI;
   if (*(uint *)(resource_pointer_ + 8) < 0x3d) {
-    opointer_ = 0;
+    operation_result = 0;
   }
   else if (*(int *)(resource_pointer_[1] + 0x18) == 0) {
-    opointer_ = FUN_1808a2e00(*resource_pointer_,unaff_RDI + 0x40);
+    operation_result = FUN_1808a2e00(*resource_pointer_,unaff_RDI + 0x40);
   }
   else {
-    opointer_ = 0x1c;
+    operation_result = 0x1c;
   }
-  if (opointer_ == 0) {
+  if (operation_result == 0) {
     FUN_1808ddf80();
   }
   return;
@@ -12929,13 +12929,13 @@ void IsDebuggerPresent(void)
 void DebugBreak(longlong pointer_,uint64_t pointer_,uint32_t pointer_,uint32_t pointer_,
                   char pointer_)
 {
-  int opointer_;
+  int operation_result;;
   uint8_t stack_buffer_78 [64];
   uint8_t stack_buffer_38 [32];
-  opointer_ = FUN_1808ddc20(pointer_,stack_buffer_38,1,pointer_);
-  if (((opointer_ == 0) && (opointer_ = FUN_1808ddc20(pointer_,stack_buffer_78,0,pointer_), opointer_ == 0)) &&
-     (opointer_ = FUN_180899360(pointer_,pointer_ + 0x10), opointer_ == 0)) {
-    if ((pointer_ != '\0') && (opointer_ = FUN_18089d490(pointer_ + 0x48,pointer_), opointer_ != 0)) {
+  operation_result = FUN_1808ddc20(pointer_,stack_buffer_38,1,pointer_);
+  if (((operation_result == 0) && (operation_result = FUN_1808ddc20(pointer_,stack_buffer_78,0,pointer_), operation_result == 0)) &&
+     (operation_result = FUN_180899360(pointer_,pointer_ + 0x10), operation_result == 0)) {
+    if ((pointer_ != '\0') && (operation_result = FUN_18089d490(pointer_ + 0x48,pointer_), operation_result != 0)) {
       return;
     }
     FUN_1808ddf80(pointer_,stack_buffer_78);
@@ -12944,7 +12944,7 @@ void DebugBreak(longlong pointer_,uint64_t pointer_,uint32_t pointer_,uint32_t p
 }
 ulonglong FUN_18089af12(void)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint resource_context;
   uint in_EAX;
   uint resource_context;
@@ -13314,12 +13314,12 @@ void GetExcepointer_(void)
  void GetExcepointer_(longlong pointer_,uint64_t pointer_)
 void GetExcepointer_(longlong pointer_,uint64_t pointer_)
 {
-  int opointer_;
+  int operation_result;;
   uint8_t stack_buffer_28 [32];
-  opointer_ = FUN_1808ddc20(pointer_,stack_buffer_28,0,0x4f525443);
-  if (opointer_ == 0) {
-    opointer_ = FUN_1808a79f0(pointer_,pointer_ + 8);
-    if (opointer_ == 0) {
+  operation_result = FUN_1808ddc20(pointer_,stack_buffer_28,0,0x4f525443);
+  if (operation_result == 0) {
+    operation_result = FUN_1808a79f0(pointer_,pointer_ + 8);
+    if (operation_result == 0) {
       FUN_1808ddf80(pointer_,stack_buffer_28);
     }
   }
@@ -13433,7 +13433,7 @@ LAB_1808a2e6d:
 uint64_t FUN_18089b52a(void)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong context_pointer_;
   long long resource_context;
   longlong *resource_pointer_;
@@ -13506,7 +13506,7 @@ LAB_1808a2e6d:
 uint64_t FUN_18089b540(void)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   long long resource_context;
   longlong *resource_pointer_;
   char unaff_BPL;
@@ -13558,7 +13558,7 @@ void InitializeVectorExcepointer_(void)
 }
 uint64_t FUN_18089b5a9(int pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   long long resource_context;
   longlong *resource_pointer_;
   longlong unaff_RDI;
@@ -13614,8 +13614,8 @@ LAB_1808a2e6d:
  void AddVectoredExcepointer_(void)
 void AddVectoredExcepointer_(void)
 {
-  longlong *system_pointer;
-  int opointer_;
+  longlong *resource_manager;
+  int operation_result;;
   longlong *resource_pointer_;
   longlong unaff_RDI;
   char stack_pointer_;
@@ -13624,24 +13624,24 @@ void AddVectoredExcepointer_(void)
   pointer_ = (longlong *)*resource_pointer_;
   uStack0000000000000038 = _uStack0000000000000040;
   if (*pointer_ == 0) {
-    opointer_ = 0x1c;
+    operation_result = 0x1c;
   }
   else {
     if (pointer_[2] != 0) {
       uStack0000000000000040 = 0;
-      opointer_ = func_0x00018076a7d0(*pointer_,&stack_buffer);
-      if (opointer_ != 0) {
+      operation_result = func_0x00018076a7d0(*pointer_,&stack_buffer);
+      if (operation_result != 0) {
         return;
       }
       if ((ulonglong)pointer_[2] < (ulonglong)uStack0000000000000040 + 1) {
-        opointer_ = 0x11;
+        operation_result = 0x11;
         goto LAB_1808a2e6d;
       }
     }
-    opointer_ = FUN_180769ed0(*pointer_,&stack_buffer,1,1,0);
+    operation_result = FUN_180769ed0(*pointer_,&stack_buffer,1,1,0);
   }
 LAB_1808a2e6d:
-  if (opointer_ == 0) {
+  if (operation_result == 0) {
     *(bool *)(unaff_RDI + 0x7c) = stack_pointer_ != '\0';
   }
   return;
@@ -13658,7 +13658,7 @@ void RemoveVectoredExcepointer_(void)
 uint64_t FUN_18089b630(longlong pointer_,uint64_t *pointer_)
 {
   long long resource_context;
-  int opointer_;
+  int operation_result;;
   uint resource_context;
   uint resource_context;
   uint austack_variable [2];
@@ -13678,7 +13678,7 @@ uint64_t FUN_18089b630(longlong pointer_,uint64_t *pointer_)
       austack_variable[0] = 0;
       resource_context = FUN_1808afe30(*pointer_,austack_variable);
       if ((int)resource_context == 0) {
-        opointer_ = 0;
+        operation_result = 0;
         austack_variable[0] = 0;
         resource_context = austack_variable[0] & 1;
         resource_context = austack_variable[0] >> 1;
@@ -13688,7 +13688,7 @@ uint64_t FUN_18089b630(longlong pointer_,uint64_t *pointer_)
             if ((int)resource_context != 0) {
               return resource_context;
             }
-            resource_context = FUN_1808a7f40(pointer_,pointer_ + 0xe8,opointer_,pointer_);
+            resource_context = FUN_1808a7f40(pointer_,pointer_ + 0xe8,operation_result,pointer_);
             if ((int)resource_context != 0) {
               return resource_context;
             }
@@ -13696,9 +13696,9 @@ uint64_t FUN_18089b630(longlong pointer_,uint64_t *pointer_)
             if ((int)resource_context != 0) {
               return resource_context;
             }
-            opointer_ = opointer_ + 1;
+            operation_result = operation_result + 1;
             austack_variable[0] = austack_variable[0] & -resource_context;
-          } while (opointer_ < (int)resource_context);
+          } while (operation_result < (int)resource_context);
         }
         FUN_1808ddf80(pointer_,stack_buffer_68);
       }
@@ -13709,33 +13709,33 @@ uint64_t FUN_18089b630(longlong pointer_,uint64_t *pointer_)
  void InitializeSecurityAttributes(void)
 void InitializeSecurityAttributes(void)
 {
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   uint resource_context;
   uint uStack00000000000000a8;
   uStack00000000000000a8 = 0;
-  opointer_ = FUN_1808afe30();
-  if (opointer_ != 0) {
+  operation_result = FUN_1808afe30();
+  if (operation_result != 0) {
     return;
   }
-  opointer_ = 0;
+  operation_result = 0;
   resource_context = uStack00000000000000a8 >> 1;
   if (resource_context != 0) {
     do {
-      opointer_ = FUN_1808dde10();
-      if (opointer_ != 0) {
+      operation_result = FUN_1808dde10();
+      if (operation_result != 0) {
         return;
       }
-      opointer_ = FUN_1808a7f40();
-      if (opointer_ != 0) {
+      operation_result = FUN_1808a7f40();
+      if (operation_result != 0) {
         return;
       }
-      opointer_ = FUN_1808de0e0();
-      if (opointer_ != 0) {
+      operation_result = FUN_1808de0e0();
+      if (operation_result != 0) {
         return;
       }
-      opointer_ = opointer_ + 1;
-    } while (opointer_ < (int)resource_context);
+      operation_result = operation_result + 1;
+    } while (operation_result < (int)resource_context);
   }
   FUN_1808ddf80();
 }
@@ -13746,7 +13746,7 @@ void InitializeSecurityDescripointer_(void)
 }
 ulonglong FUN_18089b7d0(longlong pointer_,longlong *pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   uint resource_context;
   uint resource_context;
@@ -13910,7 +13910,7 @@ LAB_18089bbcc:
 }
 ulonglong FUN_18089b813(void)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   uint resource_context;
   uint resource_context;
@@ -14068,7 +14068,7 @@ LAB_18089bbcc:
 }
 ulonglong FUN_18089b86d(void)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   uint resource_context;
   uint resource_context;
@@ -14208,7 +14208,7 @@ LAB_18089bbcc:
 }
 ulonglong FUN_18089b896(void)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   uint resource_context;
   uint resource_context;
@@ -14353,53 +14353,53 @@ void InitializeAccessToken(longlong pointer_,uint64_t *pointer_)
   longlong iteration_count;
   long long resource_context;
   uint resource_context;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   uint resource_context;
   uint resource_context;
   uint austack_variable [2];
   uint austack_variable [2];
   uint8_t stack_buffer_48 [32];
-  opointer_ = FUN_1808ddc20(pointer_,stack_buffer_48,0,0x2050414d);
-  if ((opointer_ == 0) && (opointer_ = FUN_180899360(pointer_,pointer_ + 0x10), opointer_ == 0)) {
+  operation_result = FUN_1808ddc20(pointer_,stack_buffer_48,0,0x2050414d);
+  if ((operation_result == 0) && (operation_result = FUN_180899360(pointer_,pointer_ + 0x10), operation_result == 0)) {
     austack_variable[0] = 0;
-    opointer_ = FUN_1808afe30(*pointer_,austack_variable);
+    operation_result = FUN_1808afe30(*pointer_,austack_variable);
     resource_context = austack_variable[0];
-    if (opointer_ == 0) {
+    if (operation_result == 0) {
       resource_context = austack_variable[0] & 1;
       resource_context = austack_variable[0] >> 1;
-      opointer_ = FUN_1808af700((longlong *)(pointer_ + 0x20),resource_context);
-      if (opointer_ == 0) {
+      operation_result = FUN_1808af700((longlong *)(pointer_ + 0x20),resource_context);
+      if (operation_result == 0) {
         austack_variable[0] = 0;
-        opointer_ = 0;
+        operation_result = 0;
         if (resource_context >> 1 != 0) {
           do {
-            opointer_ = FUN_1808dde10(pointer_,austack_variable[0]);
-            if (opointer_ != 0) {
+            operation_result = FUN_1808dde10(pointer_,austack_variable[0]);
+            if (operation_result != 0) {
               return;
             }
             if (*(int *)(pointer_[1] + 0x18) == 0) {
               resource_context = *pointer_;
-              iteration_count = *(longlong *)(pointer_ + 0x20) + (longlong)opointer_ * 8;
-              opointer_ = GetFileTime(resource_context,iteration_count);
-              if (opointer_ != 0) {
+              iteration_count = *(longlong *)(pointer_ + 0x20) + (longlong)operation_result * 8;
+              operation_result = GetFileTime(resource_context,iteration_count);
+              if (operation_result != 0) {
                 return;
               }
-              opointer_ = GetFileTime(resource_context,iteration_count + 4);
+              operation_result = GetFileTime(resource_context,iteration_count + 4);
             }
             else {
-              opointer_ = 0x1c;
+              operation_result = 0x1c;
             }
-            if (opointer_ != 0) {
+            if (operation_result != 0) {
               return;
             }
-            opointer_ = FUN_1808de0e0(pointer_,austack_variable);
-            if (opointer_ != 0) {
+            operation_result = FUN_1808de0e0(pointer_,austack_variable);
+            if (operation_result != 0) {
               return;
             }
-            opointer_ = opointer_ + 1;
+            operation_result = operation_result + 1;
             austack_variable[0] = austack_variable[0] & -resource_context;
-          } while (opointer_ < (int)resource_context);
+          } while (operation_result < (int)resource_context);
         }
         FUN_1808ddf80(pointer_,stack_buffer_48);
       }
@@ -14413,47 +14413,47 @@ void InitializeTokenInformation(void)
   longlong iteration_count;
   long long resource_context;
   uint resource_context;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   longlong resource_pointer_;
   uint64_t *unaff_RDI;
   uint resource_context;
   uint uStack0000000000000088;
   uStack0000000000000088 = 0;
-  opointer_ = FUN_1808afe30();
+  operation_result = FUN_1808afe30();
   resource_context = uStack0000000000000088;
-  if (opointer_ == 0) {
+  if (operation_result == 0) {
     resource_context = uStack0000000000000088 >> 1;
-    opointer_ = FUN_1808af700((longlong *)(resource_pointer_ + 0x20),resource_context);
-    if (opointer_ == 0) {
-      opointer_ = 0;
+    operation_result = FUN_1808af700((longlong *)(resource_pointer_ + 0x20),resource_context);
+    if (operation_result == 0) {
+      operation_result = 0;
       if (resource_context >> 1 != 0) {
         do {
-          opointer_ = FUN_1808dde10();
-          if (opointer_ != 0) {
+          operation_result = FUN_1808dde10();
+          if (operation_result != 0) {
             return;
           }
           if (*(int *)(unaff_RDI[1] + 0x18) == 0) {
             resource_context = *unaff_RDI;
-            iteration_count = *(longlong *)(resource_pointer_ + 0x20) + (longlong)opointer_ * 8;
-            opointer_ = GetFileTime(resource_context,iteration_count);
-            if (opointer_ != 0) {
+            iteration_count = *(longlong *)(resource_pointer_ + 0x20) + (longlong)operation_result * 8;
+            operation_result = GetFileTime(resource_context,iteration_count);
+            if (operation_result != 0) {
               return;
             }
-            opointer_ = GetFileTime(resource_context,iteration_count + 4);
+            operation_result = GetFileTime(resource_context,iteration_count + 4);
           }
           else {
-            opointer_ = 0x1c;
+            operation_result = 0x1c;
           }
-          if (opointer_ != 0) {
+          if (operation_result != 0) {
             return;
           }
-          opointer_ = FUN_1808de0e0();
-          if (opointer_ != 0) {
+          operation_result = FUN_1808de0e0();
+          if (operation_result != 0) {
             return;
           }
-          opointer_ = opointer_ + 1;
-        } while (opointer_ < (int)resource_context);
+          operation_result = operation_result + 1;
+        } while (operation_result < (int)resource_context);
       }
       FUN_1808ddf80();
     }
@@ -14494,8 +14494,8 @@ uint64_t FUN_18089bd70(longlong pointer_,uint64_t *pointer_)
 void AdjustTokenPrivileges(longlong pointer_,uint64_t *pointer_,int pointer_)
 {
   uint resource_context;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   uint resource_context;
   uint resource_context;
   longlong iteration_count;
@@ -14506,90 +14506,90 @@ void AdjustTokenPrivileges(longlong pointer_,uint64_t *pointer_,int pointer_)
   if (austack_variable[0] != 0) {
     return;
   }
-  opointer_ = FUN_1808afe30(*pointer_,austack_variable);
+  operation_result = FUN_1808afe30(*pointer_,austack_variable);
   resource_context = austack_variable[0];
-  if (opointer_ != 0) {
+  if (operation_result != 0) {
     return;
   }
   resource_context = austack_variable[0] & 1;
   resource_context = (int)*(uint *)(pointer_ + 0x1c) >> 0x1f;
   resource_context = austack_variable[0] >> 1;
   if (((int)((*(uint *)(pointer_ + 0x1c) ^ resource_context) - resource_context) < (int)resource_context) &&
-     (opointer_ = FUN_180748010(pointer_ + 0x10,resource_context), opointer_ != 0)) {
+     (operation_result = FUN_180748010(pointer_ + 0x10,resource_context), operation_result != 0)) {
     return;
   }
-  opointer_ = *(int *)(pointer_ + 0x18);
-  if (opointer_ < (int)resource_context) {
-    memset((longlong)opointer_ * 0x10 + *(longlong *)(pointer_ + 0x10),0,
-           (longlong)(int)(resource_context - opointer_) << 4);
+  operation_result = *(int *)(pointer_ + 0x18);
+  if (operation_result < (int)resource_context) {
+    memset((longlong)operation_result * 0x10 + *(longlong *)(pointer_ + 0x10),0,
+           (longlong)(int)(resource_context - operation_result) << 4);
   }
   *(uint *)(pointer_ + 0x18) = resource_context;
   austack_variable[0] = 0;
-  opointer_ = 0;
+  operation_result = 0;
   if (resource_context >> 1 != 0) {
     do {
-      opointer_ = FUN_1808dde10(pointer_,austack_variable[0]);
-      if (opointer_ != 0) {
+      operation_result = FUN_1808dde10(pointer_,austack_variable[0]);
+      if (operation_result != 0) {
         return;
       }
       if (*(int *)(pointer_[1] + 0x18) == 0) {
-        opointer_ = GetLocalTime(*pointer_,(longlong)opointer_ * 0x10 + *(longlong *)(pointer_ + 0x10));
+        operation_result = GetLocalTime(*pointer_,(longlong)operation_result * 0x10 + *(longlong *)(pointer_ + 0x10));
       }
       else {
-        opointer_ = 0x1c;
+        operation_result = 0x1c;
       }
-      if (opointer_ != 0) {
+      if (operation_result != 0) {
         return;
       }
-      opointer_ = FUN_1808de0e0(pointer_,austack_variable);
-      if (opointer_ != 0) {
+      operation_result = FUN_1808de0e0(pointer_,austack_variable);
+      if (operation_result != 0) {
         return;
       }
-      opointer_ = opointer_ + 1;
+      operation_result = operation_result + 1;
       austack_variable[0] = austack_variable[0] & -resource_context;
-    } while (opointer_ < (int)resource_context);
+    } while (operation_result < (int)resource_context);
   }
   austack_variable[0] = 0;
-  opointer_ = FUN_1808afe30(*pointer_,austack_variable);
+  operation_result = FUN_1808afe30(*pointer_,austack_variable);
   resource_context = austack_variable[0];
-  if (opointer_ != 0) {
+  if (operation_result != 0) {
     return;
   }
   iteration_count = (longlong)(int)austack_variable[0];
   resource_context = (int)*(uint *)(pointer_ + 0x2c) >> 0x1f;
   if (((int)((*(uint *)(pointer_ + 0x2c) ^ resource_context) - resource_context) < (int)austack_variable[0]) &&
-     (opointer_ = FUN_180849030(pointer_ + 0x20,austack_variable[0]), opointer_ != 0)) {
+     (operation_result = FUN_180849030(pointer_ + 0x20,austack_variable[0]), operation_result != 0)) {
     return;
   }
-  opointer_ = *(int *)(pointer_ + 0x28);
-  if (opointer_ < (int)resource_context) {
-    memset((longlong)opointer_ + *(longlong *)(pointer_ + 0x20),0,(longlong)(int)(resource_context - opointer_));
+  operation_result = *(int *)(pointer_ + 0x28);
+  if (operation_result < (int)resource_context) {
+    memset((longlong)operation_result + *(longlong *)(pointer_ + 0x20),0,(longlong)(int)(resource_context - operation_result));
   }
   *(uint *)(pointer_ + 0x28) = resource_context;
   if (resource_context != 0) {
     if (*(int *)(pointer_[1] + 0x18) == 0) {
-      opointer_ = FUN_1808aed00(*pointer_,*(uint64_t *)(pointer_ + 0x20),iteration_count);
-      if (opointer_ == 0) goto LAB_18089bfc7;
+      operation_result = FUN_1808aed00(*pointer_,*(uint64_t *)(pointer_ + 0x20),iteration_count);
+      if (operation_result == 0) goto LAB_18089bfc7;
     }
     else {
-      opointer_ = 0x1c;
+      operation_result = 0x1c;
     }
-    if (opointer_ != 0) {
+    if (operation_result != 0) {
       return;
     }
   }
 LAB_18089bfc7:
   if (pointer_ == 0) {
-    opointer_ = FUN_1808a84c0(pointer_,pointer_);
+    operation_result = FUN_1808a84c0(pointer_,pointer_);
   }
   else {
-    opointer_ = FUN_1808ad600(pointer_,pointer_ + 0x30);
-    if (opointer_ != 0) {
+    operation_result = FUN_1808ad600(pointer_,pointer_ + 0x30);
+    if (operation_result != 0) {
       return;
     }
-    opointer_ = FUN_1808ad600(pointer_,pointer_ + 0x40);
+    operation_result = FUN_1808ad600(pointer_,pointer_ + 0x40);
   }
-  if (opointer_ == 0) {
+  if (operation_result == 0) {
     func_0x000180069ee0(pointer_);
   }
   return;
@@ -14598,8 +14598,8 @@ LAB_18089bfc7:
 void InitializeImpointer_(void)
 {
   uint in_EAX;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   uint resource_context;
   uint64_t *resource_pointer_;
   uint resource_context;
@@ -14609,88 +14609,88 @@ void InitializeImpointer_(void)
   uint stack_pointer_;
   uint uStack0000000000000068;
   uStack0000000000000068 = in_EAX;
-  opointer_ = FUN_1808afe30();
-  if (opointer_ != 0) {
+  operation_result = FUN_1808afe30();
+  if (operation_result != 0) {
     return;
   }
   resource_context = (int)*(uint *)(unaff_R15 + 0x1c) >> 0x1f;
   resource_context = uStack0000000000000068 >> 1;
   if (((int)((*(uint *)(unaff_R15 + 0x1c) ^ resource_context) - resource_context) < (int)resource_context) &&
-     (opointer_ = FUN_180748010(unaff_R15 + 0x10,resource_context), opointer_ != 0)) {
+     (operation_result = FUN_180748010(unaff_R15 + 0x10,resource_context), operation_result != 0)) {
     return;
   }
-  opointer_ = *(int *)(unaff_R15 + 0x18);
-  if (opointer_ < (int)resource_context) {
-    memset((longlong)opointer_ * 0x10 + *(longlong *)(unaff_R15 + 0x10),0,
-           (longlong)(int)(resource_context - opointer_) << 4);
+  operation_result = *(int *)(unaff_R15 + 0x18);
+  if (operation_result < (int)resource_context) {
+    memset((longlong)operation_result * 0x10 + *(longlong *)(unaff_R15 + 0x10),0,
+           (longlong)(int)(resource_context - operation_result) << 4);
   }
   *(uint *)(unaff_R15 + 0x18) = resource_context;
   stack_pointer_ = 0;
-  opointer_ = 0;
+  operation_result = 0;
   if (uStack0000000000000068 >> 1 != 0) {
     do {
-      opointer_ = FUN_1808dde10();
-      if (opointer_ != 0) {
+      operation_result = FUN_1808dde10();
+      if (operation_result != 0) {
         return;
       }
       if (*(int *)(resource_pointer_[1] + 0x18) == 0) {
-        opointer_ = GetLocalTime(*resource_pointer_,(longlong)opointer_ * 0x10 + *(longlong *)(unaff_R15 + 0x10));
+        operation_result = GetLocalTime(*resource_pointer_,(longlong)operation_result * 0x10 + *(longlong *)(unaff_R15 + 0x10));
       }
       else {
-        opointer_ = 0x1c;
+        operation_result = 0x1c;
       }
-      if (opointer_ != 0) {
+      if (operation_result != 0) {
         return;
       }
-      opointer_ = FUN_1808de0e0();
-      if (opointer_ != 0) {
+      operation_result = FUN_1808de0e0();
+      if (operation_result != 0) {
         return;
       }
-      opointer_ = opointer_ + 1;
+      operation_result = operation_result + 1;
       stack_pointer_ = stack_pointer_ & -(uStack0000000000000068 & 1);
-    } while (opointer_ < (int)resource_context);
+    } while (operation_result < (int)resource_context);
   }
   stack_pointer_ = 0;
-  opointer_ = FUN_1808afe30(*resource_pointer_,&stack_buffer);
-  opointer_ = stack_pointer_;
-  if (opointer_ != 0) {
+  operation_result = FUN_1808afe30(*resource_pointer_,&stack_buffer);
+  operation_result = stack_pointer_;
+  if (operation_result != 0) {
     return;
   }
   iteration_count = (longlong)(int)stack_pointer_;
   resource_context = (int)*(uint *)(unaff_R15 + 0x2c) >> 0x1f;
   if (((int)((*(uint *)(unaff_R15 + 0x2c) ^ resource_context) - resource_context) < (int)stack_pointer_) &&
-     (opointer_ = FUN_180849030(unaff_R15 + 0x20,stack_pointer_), opointer_ != 0)) {
+     (operation_result = FUN_180849030(unaff_R15 + 0x20,stack_pointer_), operation_result != 0)) {
     return;
   }
-  opointer_ = *(int *)(unaff_R15 + 0x28);
-  if (opointer_ < opointer_) {
-    memset((longlong)opointer_ + *(longlong *)(unaff_R15 + 0x20),0,(longlong)(opointer_ - opointer_));
+  operation_result = *(int *)(unaff_R15 + 0x28);
+  if (operation_result < operation_result) {
+    memset((longlong)operation_result + *(longlong *)(unaff_R15 + 0x20),0,(longlong)(operation_result - operation_result));
   }
-  *(int *)(unaff_R15 + 0x28) = opointer_;
-  if (opointer_ != 0) {
+  *(int *)(unaff_R15 + 0x28) = operation_result;
+  if (operation_result != 0) {
     if (*(int *)(resource_pointer_[1] + 0x18) == 0) {
-      opointer_ = FUN_1808aed00(*resource_pointer_,*(uint64_t *)(unaff_R15 + 0x20),iteration_count);
-      if (opointer_ == 0) goto LAB_18089bfc7;
+      operation_result = FUN_1808aed00(*resource_pointer_,*(uint64_t *)(unaff_R15 + 0x20),iteration_count);
+      if (operation_result == 0) goto LAB_18089bfc7;
     }
     else {
-      opointer_ = 0x1c;
+      operation_result = 0x1c;
     }
-    if (opointer_ != 0) {
+    if (operation_result != 0) {
       return;
     }
   }
 LAB_18089bfc7:
   if (unaff_R12D == 0) {
-    opointer_ = FUN_1808a84c0();
+    operation_result = FUN_1808a84c0();
   }
   else {
-    opointer_ = FUN_1808ad600();
-    if (opointer_ != 0) {
+    operation_result = FUN_1808ad600();
+    if (operation_result != 0) {
       return;
     }
-    opointer_ = FUN_1808ad600();
+    operation_result = FUN_1808ad600();
   }
-  if (opointer_ == 0) {
+  if (operation_result == 0) {
     func_0x000180069ee0();
   }
   return;
@@ -14702,8 +14702,8 @@ void Impointer_(void)
 }
 ulonglong FUN_18089c030(longlong pointer_,uint64_t *pointer_)
 {
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   uint resource_context;
   ulonglong resource_context;
   uint resource_context;
@@ -14719,7 +14719,7 @@ ulonglong FUN_18089c030(longlong pointer_,uint64_t *pointer_)
   }
   aistack_variable[0] = 0;
   resource_context = FUN_1808afe30(*pointer_,aistack_variable);
-  opointer_ = aistack_variable[0];
+  operation_result = aistack_variable[0];
   resource_context = 0x1c;
   if ((int)resource_context != 0) {
     return resource_context;
@@ -14730,11 +14730,11 @@ ulonglong FUN_18089c030(longlong pointer_,uint64_t *pointer_)
      (resource_context = FUN_180882f00(pointer_ + 8,aistack_variable[0]), (int)resource_context != 0)) {
     return resource_context;
   }
-  opointer_ = *(int *)(pointer_ + 0x10);
-  if (opointer_ < opointer_) {
-    pointer_ = (uint64_t *)(*(longlong *)(pointer_ + 8) + (longlong)opointer_ * 8);
-    if (0 < opointer_ - opointer_) {
-      resource_context = (ulonglong)(uint)(opointer_ - opointer_);
+  operation_result = *(int *)(pointer_ + 0x10);
+  if (operation_result < operation_result) {
+    pointer_ = (uint64_t *)(*(longlong *)(pointer_ + 8) + (longlong)operation_result * 8);
+    if (0 < operation_result - operation_result) {
+      resource_context = (ulonglong)(uint)(operation_result - operation_result);
       do {
         if (pointer_ != (uint64_t *)0x0) {
           *pointer_ = 0;
@@ -14744,8 +14744,8 @@ ulonglong FUN_18089c030(longlong pointer_,uint64_t *pointer_)
       } while (resource_context != 0);
     }
   }
-  *(int *)(pointer_ + 0x10) = opointer_;
-  if (opointer_ != 0) {
+  *(int *)(pointer_ + 0x10) = operation_result;
+  if (operation_result != 0) {
     if (*(int *)(pointer_[1] + 0x18) == 0) {
       resource_context = FUN_1808aed00(*pointer_,*(uint64_t *)(pointer_ + 8),iteration_count << 3);
       if ((int)resource_context == 0) goto LAB_18089c131;
@@ -14790,7 +14790,7 @@ ulonglong FUN_18089c190(longlong pointer_,uint64_t *pointer_)
   uint64_t *pointer_;
   longlong iteration_count;
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   uint64_t *pointer_;
   uint64_t *stack_pointer_88;
   long long stack_uint_80;
@@ -14868,7 +14868,7 @@ LAB_18089c40a:
       if ((longlong)stack_uint_80 < 0) {
         resource_context = -stack_uint_80._4_4_;
       }
-      opointer_ = (int)stack_uint_80;
+      operation_result = (int)stack_uint_80;
       resource_context = stack_uint_80._4_4_;
       if ((int)resource_context < 0) {
         if (0 < (int)stack_uint_80) {
@@ -14881,10 +14881,10 @@ LAB_18089c40a:
         stack_uint_80 = stack_uint_80 & 0xffffffff;
         resource_context = resource_context;
       }
-      if (opointer_ < 0) {
-        iteration_count = (longlong)-opointer_;
-        if (opointer_ < 0) {
-          iteration_count = (longlong)opointer_ * 0x18 + 0x14 + (longlong)stack_pointer_88;
+      if (operation_result < 0) {
+        iteration_count = (longlong)-operation_result;
+        if (operation_result < 0) {
+          iteration_count = (longlong)operation_result * 0x18 + 0x14 + (longlong)stack_pointer_88;
           do {
             pointer_ = (uint32_t *)FUN_180847820();
             resource_context = pointer_[1];
@@ -14912,7 +14912,7 @@ LAB_18089c40a:
       return resource_context;
     }
     if ((int)stack_uint_80 == 0) {
-      opointer_ = 0;
+      operation_result = 0;
     }
     else {
       resource_context = (int)*(uint *)(pointer_ + 0x54) >> 0x1f;
@@ -14923,8 +14923,8 @@ LAB_18089c40a:
         pointer_ = stack_pointer_88;
         if (resource_context != 0) goto LAB_18089c40a;
       }
-      for (; (opointer_ = (int)stack_uint_80, stack_pointer_88 <= pointer_ &&
-             (pointer_ < stack_pointer_88 + (longlong)opointer_ * 3)); pointer_ = pointer_ + 3) {
+      for (; (operation_result = (int)stack_uint_80, stack_pointer_88 <= pointer_ &&
+             (pointer_ < stack_pointer_88 + (longlong)operation_result * 3)); pointer_ = pointer_ + 3) {
         pointer_ = (uint64_t *)0x0;
         resource_context = FUN_1808aec50(pointer_ + 0x48,&pointer_);
         resource_context = (ulonglong)resource_context;
@@ -14944,7 +14944,7 @@ LAB_18089c40a:
     }
     resource_context = stack_uint_80._4_4_;
     if ((int)resource_context < 0) {
-      if (0 < opointer_) goto LAB_18089c586;
+      if (0 < operation_result) goto LAB_18089c586;
       if ((0 < (int)stack_uint_80._4_4_) && (stack_pointer_88 != (uint64_t *)0x0)) {
         FUN_180742250(*(uint64_t *)(utility_system_reserved_ + 0x1a0),stack_pointer_88,&utility_system_reserved_,0x100,1);
       }
@@ -14952,10 +14952,10 @@ LAB_18089c40a:
       stack_uint_80 = stack_uint_80 & 0xffffffff;
       resource_context = resource_context;
     }
-    if (opointer_ < 0) {
-      iteration_count = (longlong)-opointer_;
-      if (opointer_ < 0) {
-        iteration_count = (longlong)opointer_ * 0x18 + 0x14 + (longlong)stack_pointer_88;
+    if (operation_result < 0) {
+      iteration_count = (longlong)-operation_result;
+      if (operation_result < 0) {
+        iteration_count = (longlong)operation_result * 0x18 + 0x14 + (longlong)stack_pointer_88;
         do {
           pointer_ = (uint32_t *)FUN_180847820();
           resource_context = pointer_[1];
@@ -15027,7 +15027,7 @@ uint64_t * FUN_18089c1fb(void)
   longlong unaff_RSI;
   uint64_t *unaff_RDI;
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   uint32_t extraout_XMM0_Da;
   uint32_t resource_context;
   float extraout_XMM0_Da_00;
@@ -15101,9 +15101,9 @@ LAB_18089c40a:
       if ((int)resource_context < 0) {
         resource_context = -resource_context;
       }
-      opointer_ = *(int *)(unaff_RBP + -0x21);
+      operation_result = *(int *)(unaff_RBP + -0x21);
       if ((int)resource_context < 0) {
-        if (0 < opointer_) {
+        if (0 < operation_result) {
           return pointer_;
         }
         if ((0 < (int)resource_context) && (*(longlong *)(unaff_RBP + -0x29) != 0)) {
@@ -15117,10 +15117,10 @@ LAB_18089c40a:
       else {
         pointer_ = *(uint64_t **)(unaff_RBP + -0x29);
       }
-      if (opointer_ < 0) {
-        iteration_count = (longlong)-opointer_;
-        if (opointer_ < 0) {
-          iteration_count = (longlong)opointer_ * 0x18 + 0x14 + (longlong)pointer_;
+      if (operation_result < 0) {
+        iteration_count = (longlong)-operation_result;
+        if (operation_result < 0) {
+          iteration_count = (longlong)operation_result * 0x18 + 0x14 + (longlong)pointer_;
           do {
             pointer_ = (uint32_t *)FUN_180847820();
             resource_context = pointer_[1];
@@ -15147,22 +15147,22 @@ LAB_18089c40a:
       FUN_1808aef40(unaff_RBP + -0x29,0);
       return pointer_;
     }
-    opointer_ = *(int *)(unaff_RBP + -0x21);
+    operation_result = *(int *)(unaff_RBP + -0x21);
     fvariable = extraout_XMM0_Da_03;
-    if (opointer_ == 0) {
+    if (operation_result == 0) {
       pointer_ = *(uint64_t **)(unaff_RBP + -0x29);
     }
     else {
       resource_context = (int)*(uint *)(unaff_RSI + 0x54) >> 0x1f;
-      if ((int)((*(uint *)(unaff_RSI + 0x54) ^ resource_context) - resource_context) < opointer_) {
-        resource_context = FUN_180883750(unaff_RSI + 0x48,opointer_);
+      if ((int)((*(uint *)(unaff_RSI + 0x54) ^ resource_context) - resource_context) < operation_result) {
+        resource_context = FUN_180883750(unaff_RSI + 0x48,operation_result);
         pointer_ = (uint64_t *)(ulonglong)resource_context;
         if (resource_context != 0) goto LAB_18089c40a;
-        opointer_ = *(int *)(unaff_RBP + -0x21);
+        operation_result = *(int *)(unaff_RBP + -0x21);
         fvariable = extraout_XMM0_Da_04;
       }
       pointer_ = *(uint64_t **)(unaff_RBP + -0x29);
-      for (pointer_ = pointer_; (pointer_ <= pointer_ && (pointer_ < pointer_ + (longlong)opointer_ * 3));
+      for (pointer_ = pointer_; (pointer_ <= pointer_ && (pointer_ < pointer_ + (longlong)operation_result * 3));
           pointer_ = pointer_ + 3) {
         *(uint64_t *)(unaff_RBP + 0x77) = 0;
         resource_context = FUN_1808aec50(unaff_RSI + 0x48,unaff_RBP + 0x77);
@@ -15176,7 +15176,7 @@ LAB_18089c40a:
         fvariable = *(float *)((longlong)pointer_ + 0x14) + *(float *)(pointer_ + 2);
         *(float *)((longlong)pointer_ + 0x14) = fvariable;
         *(uint8_t *)(pointer_ + 3) = 1;
-        opointer_ = *(int *)(unaff_RBP + -0x21);
+        operation_result = *(int *)(unaff_RBP + -0x21);
         pointer_ = *(uint64_t **)(unaff_RBP + -0x29);
       }
     }
@@ -15186,7 +15186,7 @@ LAB_18089c40a:
       resource_context = -resource_context;
     }
     if ((int)resource_context < 0) {
-      if (0 < opointer_) goto LAB_18089c586;
+      if (0 < operation_result) goto LAB_18089c586;
       if ((0 < (int)resource_context) && (pointer_ != (uint64_t *)0x0)) {
         FUN_180742250(*(uint64_t *)(utility_system_reserved_ + 0x1a0),pointer_,&utility_system_reserved_,0x100,1);
       }
@@ -15195,10 +15195,10 @@ LAB_18089c40a:
       pointer_ = pointer_;
       resource_context = resource_context;
     }
-    if (opointer_ < 0) {
-      iteration_count = (longlong)-opointer_;
-      if (opointer_ < 0) {
-        iteration_count = (longlong)opointer_ * 0x18 + 0x14 + (longlong)pointer_;
+    if (operation_result < 0) {
+      iteration_count = (longlong)-operation_result;
+      if (operation_result < 0) {
+        iteration_count = (longlong)operation_result * 0x18 + 0x14 + (longlong)pointer_;
         do {
           pointer_ = (float *)FUN_180847820();
           fvariable = *pointer_;
@@ -15272,7 +15272,7 @@ uint64_t * FUN_18089c22e(void)
   longlong unaff_RSI;
   uint64_t *unaff_RDI;
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   uint32_t extraout_XMM0_Da;
   uint32_t resource_context;
   float extraout_XMM0_Da_00;
@@ -15339,9 +15339,9 @@ LAB_18089c40a:
       if ((int)resource_context < 0) {
         resource_context = -resource_context;
       }
-      opointer_ = *(int *)(unaff_RBP + -0x21);
+      operation_result = *(int *)(unaff_RBP + -0x21);
       if ((int)resource_context < 0) {
-        if (0 < opointer_) {
+        if (0 < operation_result) {
           return pointer_;
         }
         if ((0 < (int)resource_context) && (*(longlong *)(unaff_RBP + -0x29) != 0)) {
@@ -15355,10 +15355,10 @@ LAB_18089c40a:
       else {
         pointer_ = *(uint64_t **)(unaff_RBP + -0x29);
       }
-      if (opointer_ < 0) {
-        iteration_count = (longlong)-opointer_;
-        if (opointer_ < 0) {
-          iteration_count = (longlong)opointer_ * 0x18 + 0x14 + (longlong)pointer_;
+      if (operation_result < 0) {
+        iteration_count = (longlong)-operation_result;
+        if (operation_result < 0) {
+          iteration_count = (longlong)operation_result * 0x18 + 0x14 + (longlong)pointer_;
           do {
             pointer_ = (uint32_t *)FUN_180847820();
             resource_context = pointer_[1];
@@ -15385,22 +15385,22 @@ LAB_18089c40a:
       FUN_1808aef40(unaff_RBP + -0x29,0);
       return pointer_;
     }
-    opointer_ = *(int *)(unaff_RBP + -0x21);
+    operation_result = *(int *)(unaff_RBP + -0x21);
     fvariable = extraout_XMM0_Da_03;
-    if (opointer_ == 0) {
+    if (operation_result == 0) {
       pointer_ = *(uint64_t **)(unaff_RBP + -0x29);
     }
     else {
       resource_context = (int)*(uint *)(unaff_RSI + 0x54) >> 0x1f;
-      if ((int)((*(uint *)(unaff_RSI + 0x54) ^ resource_context) - resource_context) < opointer_) {
-        resource_context = FUN_180883750(unaff_RSI + 0x48,opointer_);
+      if ((int)((*(uint *)(unaff_RSI + 0x54) ^ resource_context) - resource_context) < operation_result) {
+        resource_context = FUN_180883750(unaff_RSI + 0x48,operation_result);
         pointer_ = (uint64_t *)(ulonglong)resource_context;
         if (resource_context != 0) goto LAB_18089c40a;
-        opointer_ = *(int *)(unaff_RBP + -0x21);
+        operation_result = *(int *)(unaff_RBP + -0x21);
         fvariable = extraout_XMM0_Da_04;
       }
       pointer_ = *(uint64_t **)(unaff_RBP + -0x29);
-      for (pointer_ = pointer_; (pointer_ <= pointer_ && (pointer_ < pointer_ + (longlong)opointer_ * 3));
+      for (pointer_ = pointer_; (pointer_ <= pointer_ && (pointer_ < pointer_ + (longlong)operation_result * 3));
           pointer_ = pointer_ + 3) {
         *(uint64_t *)(unaff_RBP + 0x77) = 0;
         resource_context = FUN_1808aec50(unaff_RSI + 0x48,unaff_RBP + 0x77);
@@ -15414,7 +15414,7 @@ LAB_18089c40a:
         fvariable = *(float *)((longlong)pointer_ + 0x14) + *(float *)(pointer_ + 2);
         *(float *)((longlong)pointer_ + 0x14) = fvariable;
         *(uint8_t *)(pointer_ + 3) = 1;
-        opointer_ = *(int *)(unaff_RBP + -0x21);
+        operation_result = *(int *)(unaff_RBP + -0x21);
         pointer_ = *(uint64_t **)(unaff_RBP + -0x29);
       }
     }
@@ -15424,7 +15424,7 @@ LAB_18089c40a:
       resource_context = -resource_context;
     }
     if ((int)resource_context < 0) {
-      if (0 < opointer_) goto LAB_18089c586;
+      if (0 < operation_result) goto LAB_18089c586;
       if ((0 < (int)resource_context) && (pointer_ != (uint64_t *)0x0)) {
         FUN_180742250(*(uint64_t *)(utility_system_reserved_ + 0x1a0),pointer_,&utility_system_reserved_,0x100,1);
       }
@@ -15433,10 +15433,10 @@ LAB_18089c40a:
       pointer_ = pointer_;
       resource_context = resource_context;
     }
-    if (opointer_ < 0) {
-      iteration_count = (longlong)-opointer_;
-      if (opointer_ < 0) {
-        iteration_count = (longlong)opointer_ * 0x18 + 0x14 + (longlong)pointer_;
+    if (operation_result < 0) {
+      iteration_count = (longlong)-operation_result;
+      if (operation_result < 0) {
+        iteration_count = (longlong)operation_result * 0x18 + 0x14 + (longlong)pointer_;
         do {
           pointer_ = (float *)FUN_180847820();
           fvariable = *pointer_;
@@ -15510,7 +15510,7 @@ ulonglong FUN_18089c2d8(uint64_t pointer_)
   longlong unaff_RSI;
   uint64_t *unaff_RDI;
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   uint64_t *unaff_R12;
   uint unaff_R15D;
   bool bvariable;
@@ -15541,9 +15541,9 @@ LAB_18089c40a:
       if ((int)resource_context < 0) {
         resource_context = -resource_context;
       }
-      opointer_ = *(int *)(unaff_RBP + -0x21);
+      operation_result = *(int *)(unaff_RBP + -0x21);
       if ((int)resource_context < 0) {
-        if (0 < opointer_) {
+        if (0 < operation_result) {
           return resource_context;
         }
         if ((0 < (int)resource_context) && (*(longlong *)(unaff_RBP + -0x29) != 0)) {
@@ -15558,10 +15558,10 @@ LAB_18089c40a:
       else {
         pointer_ = *(uint64_t **)(unaff_RBP + -0x29);
       }
-      if (opointer_ < 0) {
-        iteration_count = (longlong)-opointer_;
-        if (opointer_ < 0) {
-          iteration_count = (longlong)opointer_ * 0x18 + 0x14 + (longlong)pointer_;
+      if (operation_result < 0) {
+        iteration_count = (longlong)-operation_result;
+        if (operation_result < 0) {
+          iteration_count = (longlong)operation_result * 0x18 + 0x14 + (longlong)pointer_;
           do {
             pointer_ = (uint32_t *)FUN_180847820();
             resource_context = pointer_[1];
@@ -15588,22 +15588,22 @@ LAB_18089c40a:
       FUN_1808aef40(unaff_RBP + -0x29,0);
       return resource_context;
     }
-    opointer_ = *(int *)(unaff_RBP + -0x21);
+    operation_result = *(int *)(unaff_RBP + -0x21);
     fvariable = extraout_XMM0_Da_02;
-    if (opointer_ == 0) {
+    if (operation_result == 0) {
       pointer_ = *(uint64_t **)(unaff_RBP + -0x29);
     }
     else {
       resource_context = (int)*(uint *)(unaff_RSI + 0x54) >> 0x1f;
-      if ((int)((*(uint *)(unaff_RSI + 0x54) ^ resource_context) - resource_context) < opointer_) {
-        resource_context = FUN_180883750(unaff_RSI + 0x48,opointer_);
+      if ((int)((*(uint *)(unaff_RSI + 0x54) ^ resource_context) - resource_context) < operation_result) {
+        resource_context = FUN_180883750(unaff_RSI + 0x48,operation_result);
         resource_context = (ulonglong)resource_context;
         if (resource_context != 0) goto LAB_18089c40a;
-        opointer_ = *(int *)(unaff_RBP + -0x21);
+        operation_result = *(int *)(unaff_RBP + -0x21);
         fvariable = extraout_XMM0_Da_03;
       }
       pointer_ = *(uint64_t **)(unaff_RBP + -0x29);
-      for (pointer_ = pointer_; (pointer_ <= pointer_ && (pointer_ < pointer_ + (longlong)opointer_ * 3));
+      for (pointer_ = pointer_; (pointer_ <= pointer_ && (pointer_ < pointer_ + (longlong)operation_result * 3));
           pointer_ = pointer_ + 3) {
         *(uint64_t **)(unaff_RBP + 0x77) = unaff_R12;
         resource_context = FUN_1808aec50(unaff_RSI + 0x48,unaff_RBP + 0x77);
@@ -15617,7 +15617,7 @@ LAB_18089c40a:
         fvariable = *(float *)((longlong)pointer_ + 0x14) + *(float *)(pointer_ + 2);
         *(float *)((longlong)pointer_ + 0x14) = fvariable;
         *(uint8_t *)(pointer_ + 3) = 1;
-        opointer_ = *(int *)(unaff_RBP + -0x21);
+        operation_result = *(int *)(unaff_RBP + -0x21);
         pointer_ = *(uint64_t **)(unaff_RBP + -0x29);
       }
     }
@@ -15627,7 +15627,7 @@ LAB_18089c40a:
       resource_context = -resource_context;
     }
     if ((int)resource_context < 0) {
-      if (0 < opointer_) goto LAB_18089c586;
+      if (0 < operation_result) goto LAB_18089c586;
       if ((0 < (int)resource_context) && (pointer_ != (uint64_t *)0x0)) {
         FUN_180742250(*(uint64_t *)(utility_system_reserved_ + 0x1a0),pointer_,&utility_system_reserved_,0x100,1);
       }
@@ -15636,10 +15636,10 @@ LAB_18089c40a:
       pointer_ = unaff_R12;
       resource_context = resource_context;
     }
-    if (opointer_ < 0) {
-      iteration_count = (longlong)-opointer_;
-      if (opointer_ < 0) {
-        iteration_count = (longlong)opointer_ * 0x18 + 0x14 + (longlong)pointer_;
+    if (operation_result < 0) {
+      iteration_count = (longlong)-operation_result;
+      if (operation_result < 0) {
+        iteration_count = (longlong)operation_result * 0x18 + 0x14 + (longlong)pointer_;
         do {
           pointer_ = (float *)FUN_180847820();
           fvariable = *pointer_;
@@ -15707,7 +15707,7 @@ void InitializeHashAlgorithm(void)
 }
 ulonglong FUN_18089c630(longlong pointer_,longlong *pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint resource_context;
   ulonglong resource_context;
   uint32_t resource_context;
@@ -16053,7 +16053,7 @@ LAB_18089cbf6:
 }
 ulonglong FUN_18089c69d(void)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   int in_EAX;
   uint resource_context;
@@ -16410,22 +16410,22 @@ LAB_18089cad8:
 }
 ulonglong FUN_18089c86d(void)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   undefined7 resource_context;
   uint resource_context;
   ulonglong resource_context;
   ulonglong resource_context;
-  int opointer_;
+  int operation_result;;
   longlong *resource_pointer_;
   longlong unaff_RBP;
   uint resource_context;
   uint resource_context;
   ulonglong unaff_RDI;
-  int opointer_;
+  int operation_result;;
   longlong unaff_R13;
   int unaff_R14D;
-  int opointer_;
+  int operation_result;;
   float extraout_XMM0_Da;
   float extraout_XMM0_Da_00;
   float extraout_XMM0_Da_01;
@@ -16486,10 +16486,10 @@ ulonglong FUN_18089c86d(void)
     return resource_context;
   }
   resource_context = (undefined7)(unaff_RDI >> 8);
-  opointer_ = 0;
+  operation_result = 0;
   fvariable = extraout_XMM0_Da;
-  opointer_ = opointer_;
-  opointer_ = unaff_R14D;
+  operation_result = operation_result;
+  operation_result = unaff_R14D;
   if (*(uint *)(resource_pointer_ + 8) < 0x70) {
     if (*(int *)(resource_pointer_[1] + 0x18) == 0) {
       pointer_ = (longlong *)*resource_pointer_;
@@ -16514,8 +16514,8 @@ LAB_18089c9a8:
       }
       if (resource_context == 0) {
         resource_context = unaff_RDI & 0xffffffff;
-        opointer_ = (int)CONCAT71(resource_context,*(char *)(unaff_RBP + 0x77) != '\0');
-        opointer_ = (int)CONCAT71(resource_context,*(char *)(unaff_RBP + 0x77) == '\0');
+        operation_result = (int)CONCAT71(resource_context,*(char *)(unaff_RBP + 0x77) != '\0');
+        operation_result = (int)CONCAT71(resource_context,*(char *)(unaff_RBP + 0x77) == '\0');
       }
       else {
         resource_context = (ulonglong)resource_context;
@@ -16579,7 +16579,7 @@ LAB_18089ca9c:
     }
   }
   if (resource_context == 0) {
-    opointer_ = (int)CONCAT71(resource_context,*(char *)(unaff_RBP + 0x77) != '\0');
+    operation_result = (int)CONCAT71(resource_context,*(char *)(unaff_RBP + 0x77) != '\0');
     unaff_R14D = (int)CONCAT71(resource_context,*(char *)(unaff_RBP + 0x77) == '\0');
   }
   resource_context = (ulonglong)resource_context;
@@ -16594,7 +16594,7 @@ LAB_18089cad8:
   if (resource_context < 0x70) {
     *(uint *)(unaff_R13 + 0x34) =
          (((*(uint *)(unaff_RBP + 0x7f) | *(uint *)(unaff_R13 + 0x34)) &
-           ~*(uint *)(unaff_RBP + -0x29) | opointer_ * 2) & ~(opointer_ * 2) | opointer_ * 4) &
+           ~*(uint *)(unaff_RBP + -0x29) | operation_result * 2) & ~(operation_result * 2) | operation_result * 4) &
          ~(unaff_R14D * 4);
     resource_context = *(uint *)(resource_pointer_ + 8);
   }
@@ -16653,23 +16653,23 @@ LAB_18089cad8:
 }
 ulonglong FUN_18089c872(void)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   undefined7 resource_context;
   uint resource_context;
   ulonglong resource_context;
   ulonglong resource_context;
-  int opointer_;
+  int operation_result;;
   longlong *resource_pointer_;
   longlong unaff_RBP;
   uint32_t unaff_ESI;
   uint resource_context;
   uint resource_context;
   ulonglong unaff_RDI;
-  int opointer_;
+  int operation_result;;
   longlong unaff_R13;
   int unaff_R14D;
-  int opointer_;
+  int operation_result;;
   float extraout_XMM0_Da;
   float extraout_XMM0_Da_00;
   float extraout_XMM0_Da_01;
@@ -16730,10 +16730,10 @@ ulonglong FUN_18089c872(void)
     return resource_context;
   }
   resource_context = (undefined7)(unaff_RDI >> 8);
-  opointer_ = 0;
+  operation_result = 0;
   fvariable = extraout_XMM0_Da;
-  opointer_ = opointer_;
-  opointer_ = unaff_R14D;
+  operation_result = operation_result;
+  operation_result = unaff_R14D;
   if (*(uint *)(resource_pointer_ + 8) < 0x70) {
     if (*(int *)(resource_pointer_[1] + 0x18) == 0) {
       pointer_ = (longlong *)*resource_pointer_;
@@ -16758,8 +16758,8 @@ LAB_18089c9a8:
       }
       if (resource_context == 0) {
         resource_context = unaff_RDI & 0xffffffff;
-        opointer_ = (int)CONCAT71(resource_context,*(char *)(unaff_RBP + 0x77) != '\0');
-        opointer_ = (int)CONCAT71(resource_context,*(char *)(unaff_RBP + 0x77) == '\0');
+        operation_result = (int)CONCAT71(resource_context,*(char *)(unaff_RBP + 0x77) != '\0');
+        operation_result = (int)CONCAT71(resource_context,*(char *)(unaff_RBP + 0x77) == '\0');
       }
       else {
         resource_context = (ulonglong)resource_context;
@@ -16823,7 +16823,7 @@ LAB_18089ca9c:
     }
   }
   if (resource_context == 0) {
-    opointer_ = (int)CONCAT71(resource_context,*(char *)(unaff_RBP + 0x77) != '\0');
+    operation_result = (int)CONCAT71(resource_context,*(char *)(unaff_RBP + 0x77) != '\0');
     unaff_R14D = (int)CONCAT71(resource_context,*(char *)(unaff_RBP + 0x77) == '\0');
   }
   resource_context = (ulonglong)resource_context;
@@ -16838,7 +16838,7 @@ LAB_18089cad8:
   if (resource_context < 0x70) {
     *(uint *)(unaff_R13 + 0x34) =
          (((*(uint *)(unaff_RBP + 0x7f) | *(uint *)(unaff_R13 + 0x34)) &
-           ~*(uint *)(unaff_RBP + -0x29) | opointer_ * 2) & ~(opointer_ * 2) | opointer_ * 4) &
+           ~*(uint *)(unaff_RBP + -0x29) | operation_result * 2) & ~(operation_result * 2) | operation_result * 4) &
          ~(unaff_R14D * 4);
     resource_context = *(uint *)(resource_pointer_ + 8);
   }
@@ -16897,23 +16897,23 @@ LAB_18089cad8:
 }
 ulonglong FUN_18089c94a(float pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   undefined7 resource_context;
   uint resource_context;
   ulonglong resource_context;
   ulonglong resource_context;
-  int opointer_;
+  int operation_result;;
   longlong *resource_pointer_;
   longlong unaff_RBP;
   uint resource_context;
-  int opointer_;
+  int operation_result;;
   uint resource_context;
   ulonglong unaff_RDI;
-  int opointer_;
+  int operation_result;;
   longlong unaff_R13;
   int unaff_R14D;
-  int opointer_;
+  int operation_result;;
   bool in_CF;
   float extraout_XMM0_Da;
   float extraout_XMM0_Da_00;
@@ -16927,12 +16927,12 @@ ulonglong FUN_18089c94a(float pointer_)
   uint32_t extraout_XMM0_Da_07;
   uint32_t resource_context;
   float extraout_XMM0_Da_08;
-  opointer_ = (int)unaff_RDI;
+  operation_result = (int)unaff_RDI;
   resource_context = (undefined7)(unaff_RDI >> 8);
-  opointer_ = opointer_;
-  opointer_ = unaff_R14D;
+  operation_result = operation_result;
+  operation_result = unaff_R14D;
   if (in_CF) {
-    if (*(int *)(resource_pointer_[1] + 0x18) == opointer_) {
+    if (*(int *)(resource_pointer_[1] + 0x18) == operation_result) {
       pointer_ = (longlong *)*resource_pointer_;
       iteration_count = *pointer_;
       if (iteration_count == 0) {
@@ -16944,7 +16944,7 @@ LAB_18089c9a8:
         pointer_ = extraout_XMM0_Da_00;
       }
       else {
-        *(int *)(unaff_RBP + -0x25) = opointer_;
+        *(int *)(unaff_RBP + -0x25) = operation_result;
         resource_context = func_0x00018076a7d0(iteration_count,unaff_RBP + -0x25);
         pointer_ = extraout_XMM0_Da;
         if (resource_context == 0) {
@@ -16955,8 +16955,8 @@ LAB_18089c9a8:
       }
       if (resource_context == 0) {
         resource_context = unaff_RDI & 0xffffffff;
-        opointer_ = (int)CONCAT71(resource_context,*(char *)(unaff_RBP + 0x77) != '\0');
-        opointer_ = (int)CONCAT71(resource_context,*(char *)(unaff_RBP + 0x77) == '\0');
+        operation_result = (int)CONCAT71(resource_context,*(char *)(unaff_RBP + 0x77) != '\0');
+        operation_result = (int)CONCAT71(resource_context,*(char *)(unaff_RBP + 0x77) == '\0');
       }
       else {
         resource_context = (ulonglong)resource_context;
@@ -16982,7 +16982,7 @@ LAB_18089c9a8:
   if (*(uint *)(resource_pointer_ + 8) < 0x52) {
     resource_context = unaff_RDI & 0xffffffff;
   }
-  else if (*(int *)(resource_pointer_[1] + 0x18) == opointer_) {
+  else if (*(int *)(resource_pointer_[1] + 0x18) == operation_result) {
     resource_context = GetFileTime(*resource_pointer_,unaff_R13 + 0x48);
     pointer_ = extraout_XMM0_Da_02;
   }
@@ -16992,9 +16992,9 @@ LAB_18089c9a8:
   if ((int)resource_context != 0) {
     return resource_context;
   }
-  opointer_ = opointer_;
+  operation_result = operation_result;
   if ((int)resource_pointer_[8] - 0x52U < 0x1e) {
-    if (*(int *)(resource_pointer_[1] + 0x18) == opointer_) {
+    if (*(int *)(resource_pointer_[1] + 0x18) == operation_result) {
       pointer_ = (longlong *)*resource_pointer_;
       iteration_count = *pointer_;
       if (iteration_count == 0) {
@@ -17006,7 +17006,7 @@ LAB_18089ca9c:
         pointer_ = extraout_XMM0_Da_04;
       }
       else {
-        *(int *)(unaff_RBP + -0x25) = opointer_;
+        *(int *)(unaff_RBP + -0x25) = operation_result;
         resource_context = func_0x00018076a7d0(iteration_count,unaff_RBP + -0x25);
         pointer_ = extraout_XMM0_Da_03;
         if (resource_context == 0) {
@@ -17016,7 +17016,7 @@ LAB_18089ca9c:
         }
       }
       if (resource_context == 0) {
-        opointer_ = (int)CONCAT71(resource_context,*(char *)(unaff_RBP + 0x77) != '\0');
+        operation_result = (int)CONCAT71(resource_context,*(char *)(unaff_RBP + 0x77) != '\0');
         unaff_R14D = (int)CONCAT71(resource_context,*(char *)(unaff_RBP + 0x77) == '\0');
       }
       resource_context = (ulonglong)resource_context;
@@ -17036,7 +17036,7 @@ LAB_18089ca9c:
     if (resource_context < 0x70) {
       *(uint *)(unaff_R13 + 0x34) =
            (((*(uint *)(unaff_RBP + 0x7f) | *(uint *)(unaff_R13 + 0x34)) &
-             ~*(uint *)(unaff_RBP + -0x29) | opointer_ * 2) & ~(opointer_ * 2) | opointer_ * 4) &
+             ~*(uint *)(unaff_RBP + -0x29) | operation_result * 2) & ~(operation_result * 2) | operation_result * 4) &
            ~(unaff_R14D * 4);
       resource_context = *(uint *)(resource_pointer_ + 8);
     }
@@ -17050,13 +17050,13 @@ LAB_18089cbf6:
       FUN_1808ddf80(pointer_,unaff_RBP + -0x21);
     }
     iteration_count = *resource_pointer_;
-    *(int *)(unaff_RBP + 0x7f) = opointer_;
+    *(int *)(unaff_RBP + 0x7f) = operation_result;
     resource_context = FUN_1808afe30(iteration_count,unaff_RBP + 0x7f);
     if ((int)resource_context == 0) {
       resource_context = *(uint *)(unaff_RBP + 0x7f);
       resource_context = FUN_1808af8b0(unaff_R13 + 0x60,resource_context >> 1);
       if ((int)resource_context == 0) {
-        *(int *)(unaff_RBP + 0x77) = opointer_;
+        *(int *)(unaff_RBP + 0x77) = operation_result;
         resource_context = unaff_RDI & 0xffffffff;
         pointer_ = extraout_XMM0_Da_05;
         fvariable = extraout_XMM0_Da_05;
@@ -17114,10 +17114,10 @@ void InitializeHash(void)
 }
 ulonglong FUN_18089cc80(longlong pointer_,longlong *pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint resource_context;
   ulonglong resource_context;
-  int opointer_;
+  int operation_result;;
   uint austack_variable [2];
   uint austack_variable [2];
   uint8_t stack_buffer_38 [32];
@@ -17163,15 +17163,15 @@ LAB_18089cd46:
     return resource_context;
   }
 LAB_18089cd76:
-  opointer_ = 0;
+  operation_result = 0;
   if (0 < (int)austack_variable[0]) {
     do {
-      resource_context = FUN_1808acb90(pointer_,pointer_,opointer_);
+      resource_context = FUN_1808acb90(pointer_,pointer_,operation_result);
       if ((int)resource_context != 0) {
         return resource_context;
       }
-      opointer_ = opointer_ + 1;
-    } while (opointer_ < (int)austack_variable[0]);
+      operation_result = operation_result + 1;
+    } while (operation_result < (int)austack_variable[0]);
   }
   if (*(uint *)(pointer_ + 8) < 0x6e) {
     resource_context = 0;
@@ -17186,11 +17186,11 @@ LAB_18089cd76:
 }
 ulonglong FUN_18089ccb9(void)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint resource_context;
   longlong context_pointer_;
   ulonglong resource_context;
-  int opointer_;
+  int operation_result;;
   longlong unaff_RBP;
   longlong *unaff_RSI;
   uint stack_pointer_;
@@ -17232,15 +17232,15 @@ LAB_18089cd46:
     return resource_context;
   }
 LAB_18089cd76:
-  opointer_ = 0;
+  operation_result = 0;
   if (0 < (int)stack_pointer_) {
     do {
       resource_context = FUN_1808acb90();
       if ((int)resource_context != 0) {
         return resource_context;
       }
-      opointer_ = opointer_ + 1;
-    } while (opointer_ < (int)stack_pointer_);
+      operation_result = operation_result + 1;
+    } while (operation_result < (int)stack_pointer_);
   }
   if (*(uint *)(unaff_RSI + 8) < 0x6e) {
     resource_context = 0;
@@ -17268,7 +17268,7 @@ void HashData(void)
 }
 ulonglong FUN_18089ce30(longlong pointer_,longlong *pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   ulonglong resource_context;
   uint resource_context;
   bool bvariable;
@@ -17384,7 +17384,7 @@ LAB_18089d07f:
 }
 ulonglong FUN_18089ce60(void)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong context_pointer_;
   ulonglong resource_context;
   uint resource_context;
@@ -17498,7 +17498,7 @@ LAB_18089d07f:
 }
 ulonglong FUN_18089cfd6(void)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint in_EAX;
   uint resource_context;
   ulonglong resource_pointer_;
@@ -17552,9 +17552,9 @@ void Encrypointer_(void)
  void Decrypointer_(longlong pointer_,uint64_t pointer_)
 void Decrypointer_(longlong pointer_,uint64_t pointer_)
 {
-  int opointer_;
-  opointer_ = FUN_18089ce30(pointer_ + 0xd8);
-  if (opointer_ == 0) {
+  int operation_result;;
+  operation_result = FUN_18089ce30(pointer_ + 0xd8);
+  if (operation_result == 0) {
     FUN_18089b7d0(pointer_,pointer_);
   }
   return;
@@ -17694,7 +17694,7 @@ void DeriveKey(void)
 }
 uint64_t FUN_18089d250(uint64_t pointer_,longlong *pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   long long resource_context;
   int aistack_variable [2];
@@ -17791,7 +17791,7 @@ LAB_18089d435:
 }
 uint64_t FUN_18089d281(void)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   long long resource_context;
   longlong *resource_pointer_;
@@ -17914,43 +17914,43 @@ uint64_t FUN_18089d490(longlong pointer_,uint64_t *pointer_)
  void SignData(longlong pointer_,uint64_t *pointer_)
 void SignData(longlong pointer_,uint64_t *pointer_)
 {
-  int opointer_;
+  int operation_result;;
   uint8_t stack_buffer_48 [32];
   uint8_t stack_buffer_28 [32];
-  opointer_ = FUN_1808ddc20(pointer_,stack_buffer_28,1,0x4a4f5250);
-  if (((opointer_ == 0) && (opointer_ = FUN_1808ddc20(pointer_,stack_buffer_48,0,0x494b4e42), opointer_ == 0)) &&
-     (opointer_ = FUN_180899360(pointer_,pointer_ + 0x10), opointer_ == 0)) {
+  operation_result = FUN_1808ddc20(pointer_,stack_buffer_28,1,0x4a4f5250);
+  if (((operation_result == 0) && (operation_result = FUN_1808ddc20(pointer_,stack_buffer_48,0,0x494b4e42), operation_result == 0)) &&
+     (operation_result = FUN_180899360(pointer_,pointer_ + 0x10), operation_result == 0)) {
     if (*(uint *)(pointer_ + 8) < 0x37) {
-      opointer_ = 0;
+      operation_result = 0;
     }
     else if (*(int *)(pointer_[1] + 0x18) == 0) {
-      opointer_ = FUN_1808aed00(*pointer_,pointer_ + 0x210,8);
+      operation_result = FUN_1808aed00(*pointer_,pointer_ + 0x210,8);
     }
     else {
-      opointer_ = 0x1c;
+      operation_result = 0x1c;
     }
-    if (opointer_ == 0) {
+    if (operation_result == 0) {
       *(uint32_t *)(pointer_ + 0x218) = *(uint32_t *)(pointer_ + 8);
       if (*(uint *)(pointer_ + 8) < 0x41) {
-        opointer_ = 0;
+        operation_result = 0;
       }
       else if (*(int *)(pointer_[1] + 0x18) == 0) {
-        opointer_ = FUN_1808aed00(*pointer_,pointer_ + 0x2f4,4);
+        operation_result = FUN_1808aed00(*pointer_,pointer_ + 0x2f4,4);
       }
       else {
-        opointer_ = 0x1c;
+        operation_result = 0x1c;
       }
-      if (opointer_ == 0) {
+      if (operation_result == 0) {
         if (*(uint *)(pointer_ + 8) < 0x4d) {
-          opointer_ = 0;
+          operation_result = 0;
         }
         else if (*(int *)(pointer_[1] + 0x18) == 0) {
-          opointer_ = FUN_1808aed00(*pointer_,pointer_ + 0x21c,4);
+          operation_result = FUN_1808aed00(*pointer_,pointer_ + 0x21c,4);
         }
         else {
-          opointer_ = 0x1c;
+          operation_result = 0x1c;
         }
-        if (opointer_ == 0) {
+        if (operation_result == 0) {
           *(uint32_t *)(pointer_ + 0x200) = *(uint32_t *)(pointer_ + 0x10);
           *(uint32_t *)(pointer_ + 0x204) = *(uint32_t *)(pointer_ + 0x14);
           *(uint32_t *)(pointer_ + 0x208) = *(uint32_t *)(pointer_ + 0x18);
@@ -17965,45 +17965,45 @@ void SignData(longlong pointer_,uint64_t *pointer_)
  void VerifySignature(uint32_t pointer_)
 void VerifySignature(uint32_t pointer_)
 {
-  int opointer_;
+  int operation_result;;
   uint64_t *resource_pointer_;
   longlong unaff_RDI;
   uint32_t extraout_XMM0_Da;
-  opointer_ = FUN_1808ddc20(pointer_,&stack_buffer,0);
-  if (opointer_ == 0) {
-    opointer_ = FUN_180899360(extraout_XMM0_Da,unaff_RDI + 0x10);
-    if (opointer_ == 0) {
+  operation_result = FUN_1808ddc20(pointer_,&stack_buffer,0);
+  if (operation_result == 0) {
+    operation_result = FUN_180899360(extraout_XMM0_Da,unaff_RDI + 0x10);
+    if (operation_result == 0) {
       if (*(uint *)(resource_pointer_ + 8) < 0x37) {
-        opointer_ = 0;
+        operation_result = 0;
       }
       else if (*(int *)(resource_pointer_[1] + 0x18) == 0) {
-        opointer_ = FUN_1808aed00(*resource_pointer_,unaff_RDI + 0x210,8);
+        operation_result = FUN_1808aed00(*resource_pointer_,unaff_RDI + 0x210,8);
       }
       else {
-        opointer_ = 0x1c;
+        operation_result = 0x1c;
       }
-      if (opointer_ == 0) {
+      if (operation_result == 0) {
         *(uint32_t *)(unaff_RDI + 0x218) = *(uint32_t *)(resource_pointer_ + 8);
         if (*(uint *)(resource_pointer_ + 8) < 0x41) {
-          opointer_ = 0;
+          operation_result = 0;
         }
         else if (*(int *)(resource_pointer_[1] + 0x18) == 0) {
-          opointer_ = FUN_1808aed00(*resource_pointer_,unaff_RDI + 0x2f4,4);
+          operation_result = FUN_1808aed00(*resource_pointer_,unaff_RDI + 0x2f4,4);
         }
         else {
-          opointer_ = 0x1c;
+          operation_result = 0x1c;
         }
-        if (opointer_ == 0) {
+        if (operation_result == 0) {
           if (*(uint *)(resource_pointer_ + 8) < 0x4d) {
-            opointer_ = 0;
+            operation_result = 0;
           }
           else if (*(int *)(resource_pointer_[1] + 0x18) == 0) {
-            opointer_ = FUN_1808aed00(*resource_pointer_,unaff_RDI + 0x21c,4);
+            operation_result = FUN_1808aed00(*resource_pointer_,unaff_RDI + 0x21c,4);
           }
           else {
-            opointer_ = 0x1c;
+            operation_result = 0x1c;
           }
-          if (opointer_ == 0) {
+          if (operation_result == 0) {
             *(uint32_t *)(unaff_RDI + 0x200) = *(uint32_t *)(unaff_RDI + 0x10);
             *(uint32_t *)(unaff_RDI + 0x204) = *(uint32_t *)(unaff_RDI + 0x14);
             *(uint32_t *)(unaff_RDI + 0x208) = *(uint32_t *)(unaff_RDI + 0x18);
@@ -18588,7 +18588,7 @@ uint64_t FUN_18089e0d0(longlong pointer_,uint64_t *pointer_)
 }
 ulonglong FUN_18089e230(longlong pointer_,longlong *pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   ulonglong resource_context;
   uint resource_context;
   uint resource_context;
@@ -18699,7 +18699,7 @@ LAB_18089e447:
 }
 ulonglong FUN_18089e297(void)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong context_pointer_;
   ulonglong resource_context;
   ulonglong resource_context;
@@ -18797,7 +18797,7 @@ LAB_18089e447:
 }
 ulonglong FUN_18089e2be(void)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   ulonglong resource_context;
   ulonglong resource_context;
   longlong *resource_pointer_;
@@ -18891,7 +18891,7 @@ LAB_18089e447:
 }
 ulonglong FUN_18089e2e8(void)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   ulonglong resource_context;
   ulonglong resource_context;
   longlong *resource_pointer_;
@@ -19089,7 +19089,7 @@ ulonglong FUN_18089e558(void)
   uint32_t resource_context;
   uint32_t resource_context;
   uint resource_context;
-  int opointer_;
+  int operation_result;;
   uint32_t *pointer_;
   ulonglong resource_context;
   longlong iteration_count;
@@ -19149,10 +19149,10 @@ LAB_18089e70b:
         FUN_18084c150(unaff_RBP + -0x29);
         return resource_context;
       }
-      opointer_ = *(int *)(unaff_RBP + -0x21);
-      if (opointer_ != 0) {
+      operation_result = *(int *)(unaff_RBP + -0x21);
+      if (operation_result != 0) {
         pointer_ = *(uint32_t **)(unaff_RBP + -0x29);
-        for (pointer_ = pointer_; (pointer_ <= pointer_ && (pointer_ < pointer_ + opointer_));
+        for (pointer_ = pointer_; (pointer_ <= pointer_ && (pointer_ < pointer_ + operation_result));
             pointer_ = pointer_ + 1) {
           iteration_count = FUN_180741e10(*(uint64_t *)(utility_system_reserved_ + 0x1a0),0x28,&utility_system_reserved_,0xc1c,0)
           ;
@@ -19169,7 +19169,7 @@ LAB_18089e70b:
           resource_context = func_0x0001808aec10(unaff_R15 + 0x58,iteration_count);
           resource_context = (ulonglong)resource_context;
           if (resource_context != 0) goto LAB_18089e70b;
-          opointer_ = *(int *)(unaff_RBP + -0x21);
+          operation_result = *(int *)(unaff_RBP + -0x21);
           pointer_ = *(uint32_t **)(unaff_RBP + -0x29);
         }
       }
@@ -19195,7 +19195,7 @@ ulonglong FUN_18089e624(void)
 {
   uint32_t resource_context;
   uint resource_context;
-  int opointer_;
+  int operation_result;;
   ulonglong resource_context;
   longlong iteration_count;
   uint32_t *pointer_;
@@ -19214,10 +19214,10 @@ LAB_18089e70b:
       FUN_18084c150(unaff_RBP + -0x29);
       return resource_context;
     }
-    opointer_ = *(int *)(unaff_RBP + -0x21);
-    if (opointer_ != 0) {
+    operation_result = *(int *)(unaff_RBP + -0x21);
+    if (operation_result != 0) {
       pointer_ = *(uint32_t **)(unaff_RBP + -0x29);
-      for (pointer_ = pointer_; (pointer_ <= pointer_ && (pointer_ < pointer_ + opointer_)); pointer_ = pointer_ + 1) {
+      for (pointer_ = pointer_; (pointer_ <= pointer_ && (pointer_ < pointer_ + operation_result)); pointer_ = pointer_ + 1) {
         iteration_count = FUN_180741e10(*(uint64_t *)(utility_system_reserved_ + 0x1a0),0x28,&utility_system_reserved_,0xc1c);
         if (iteration_count == 0) {
           resource_context = 0x26;
@@ -19232,7 +19232,7 @@ LAB_18089e70b:
         resource_context = func_0x0001808aec10(unaff_R15 + 0x58,iteration_count);
         resource_context = (ulonglong)resource_context;
         if (resource_context != 0) goto LAB_18089e70b;
-        opointer_ = *(int *)(unaff_RBP + -0x21);
+        operation_result = *(int *)(unaff_RBP + -0x21);
         pointer_ = *(uint32_t **)(unaff_RBP + -0x29);
       }
     }
@@ -19263,7 +19263,7 @@ void CloseCertificateStore(void)
 ulonglong FUN_18089e820(longlong pointer_,longlong *pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint resource_context;
   ulonglong resource_context;
   ulonglong resource_context;
@@ -19564,7 +19564,7 @@ LAB_18089ed1b:
 ulonglong FUN_18089e87d(void)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint resource_context;
   longlong context_pointer_;
   ulonglong resource_context;
@@ -19865,7 +19865,7 @@ LAB_18089ed1b:
 }
 ulonglong FUN_18089e9af(uint64_t pointer_,uint64_t pointer_,ulonglong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   uint in_EAX;
   uint resource_context;
@@ -20217,21 +20217,21 @@ uint64_t FUN_18089ee64(void)
 void Decompointer_(void)
 {
   long long resource_context;
-  int opointer_;
+  int operation_result;;
   uint64_t *resource_pointer_;
   longlong unaff_RDI;
   resource_context = *resource_pointer_;
-  opointer_ = FUN_1808aed00(resource_context,unaff_RDI + 0xdc,4);
-  if (opointer_ == 0) {
-    opointer_ = FUN_1808aed00(resource_context,unaff_RDI + 0xe0,2);
-    if (opointer_ == 0) {
-      opointer_ = FUN_1808aed00(resource_context,unaff_RDI + 0xe2,2);
-      if (opointer_ == 0) {
-        opointer_ = FUN_1808aed00(resource_context,unaff_RDI + 0xe4,8);
+  operation_result = FUN_1808aed00(resource_context,unaff_RDI + 0xdc,4);
+  if (operation_result == 0) {
+    operation_result = FUN_1808aed00(resource_context,unaff_RDI + 0xe0,2);
+    if (operation_result == 0) {
+      operation_result = FUN_1808aed00(resource_context,unaff_RDI + 0xe2,2);
+      if (operation_result == 0) {
+        operation_result = FUN_1808aed00(resource_context,unaff_RDI + 0xe4,8);
       }
     }
   }
-  if (opointer_ == 0) {
+  if (operation_result == 0) {
     FUN_1808ddf80();
   }
   return;
@@ -20579,43 +20579,43 @@ uint64_t FUN_18089f112(void)
 void DeserializeData(void)
 {
   int in_EAX;
-  int opointer_;
-  int opointer_;
+  int operation_result;;
+  int operation_result;;
   longlong *resource_pointer_;
   int unaff_EBP;
   longlong unaff_RSI;
   uint32_t stack_pointer_0;
   if (in_EAX == 0x1b) {
     if (*(uint *)(resource_pointer_ + 8) < 0x3b) {
-      opointer_ = FUN_1808a87d0();
-      if (opointer_ != 0) {
+      operation_result = FUN_1808a87d0();
+      if (operation_result != 0) {
         return;
       }
       goto LAB_18089f45f;
     }
   }
   else if ((in_EAX == 0x12) && (*(uint *)(resource_pointer_ + 8) < 0x40)) {
-    opointer_ = FUN_1808ddd30();
-    if (opointer_ != 0) {
+    operation_result = FUN_1808ddd30();
+    if (operation_result != 0) {
       return;
     }
-    opointer_ = unaff_EBP;
+    operation_result = unaff_EBP;
     if (*(int *)(resource_pointer_[1] + 0x18) == 0) {
       stack_pointer_0 = 6;
-      opointer_ = (**(code **)**(uint64_t **)(*resource_pointer_ + 8))
+      operation_result = (**(code **)**(uint64_t **)(*resource_pointer_ + 8))
                         (*(uint64_t **)(*resource_pointer_ + 8),&stack_bufferb0,4);
     }
-    if (opointer_ != 0) {
+    if (operation_result != 0) {
       return;
     }
-    opointer_ = 0;
+    operation_result = 0;
     do {
-      opointer_ = FUN_1808acf30();
-      if (opointer_ != 0) {
+      operation_result = FUN_1808acf30();
+      if (operation_result != 0) {
         return;
       }
-      opointer_ = opointer_ + 1;
-    } while (opointer_ < 6);
+      operation_result = operation_result + 1;
+    } while (operation_result < 6);
     if (*(uint *)(resource_pointer_ + 8) < 0x6e) {
       unaff_EBP = 0;
     }
@@ -20629,8 +20629,8 @@ void DeserializeData(void)
     }
     FUN_1808de000();
   }
-  opointer_ = FUN_1808a1090();
-  if (opointer_ != 0) {
+  operation_result = FUN_1808a1090();
+  if (operation_result != 0) {
     return;
   }
 LAB_18089f45f:
@@ -21023,9 +21023,9 @@ ulonglong FUN_18089fad8(void)
  void InitializeJSON(void)
 void InitializeJSON(void)
 {
-  int opointer_;
-  opointer_ = FUN_180898e70();
-  if (opointer_ == 0) {
+  int operation_result;;
+  operation_result = FUN_180898e70();
+  if (operation_result == 0) {
     FUN_1808de000();
   }
   return;
@@ -21038,12 +21038,12 @@ void ParseJSON(void)
  void SerializeJSON(longlong pointer_,uint64_t pointer_)
 void SerializeJSON(longlong pointer_,uint64_t pointer_)
 {
-  int opointer_;
+  int operation_result;;
   uint8_t stack_buffer_28 [32];
-  opointer_ = FUN_1808ddd30(pointer_,stack_buffer_28,0,0x4f525443,0);
-  if (opointer_ == 0) {
-    opointer_ = FUN_1808a7b00(pointer_,pointer_ + 8);
-    if (opointer_ == 0) {
+  operation_result = FUN_1808ddd30(pointer_,stack_buffer_28,0,0x4f525443,0);
+  if (operation_result == 0) {
+    operation_result = FUN_1808a7b00(pointer_,pointer_ + 8);
+    if (operation_result == 0) {
       FUN_1808de000(pointer_,stack_buffer_28);
     }
   }
@@ -21271,21 +21271,21 @@ void Unwind_180901f30(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180901f40(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
-  opointer_ = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x60));
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  int operation_result;;
+  operation_result = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x60));
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void Unwind_180901f50(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
+  int operation_result;;
   utility_system_reserved_ = *(uint64_t *)(pointer_ + 0x40);
-  opointer_ = _Mtx_unlock(0x180c91970);
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  operation_result = _Mtx_unlock(0x180c91970);
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   return;
 }
@@ -21354,11 +21354,11 @@ void Unwind_180901f70(uint64_t pointer_,longlong pointer_)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void Unwind_180901f90(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
+  int operation_result;;
   utility_system_reserved_ = *(uint64_t *)(pointer_ + 0x88);
-  opointer_ = _Mtx_unlock(0x180c91970);
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  operation_result = _Mtx_unlock(0x180c91970);
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   return;
 }
@@ -22075,7 +22075,7 @@ void Unwind_1809025d0(void)
 }
 void Unwind_1809025e0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x70) + 0xa0);
   for (iteration_count = *pointer_; iteration_count != *(longlong *)(*(longlong *)(pointer_ + 0x70) + 0xa8);
@@ -22132,7 +22132,7 @@ void Unwind_180902630(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180902640(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x78);
   for (iteration_count = *pointer_; iteration_count != pointer_[1]; iteration_count = iteration_count + 0x28) {
@@ -22148,7 +22148,7 @@ void Unwind_180902640(uint64_t pointer_,longlong pointer_)
 void Unwind_180902650(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x70) + 0x50);
   iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0x70) + 0x58);
@@ -22163,7 +22163,7 @@ void Unwind_180902650(uint64_t pointer_,longlong pointer_)
 void Unwind_180902660(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x78);
   iteration_count = pointer_[1];
@@ -22177,9 +22177,9 @@ void Unwind_180902660(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180902670(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x70) + 0x50);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x70) + 0x58);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 3) {
@@ -22197,9 +22197,9 @@ void Unwind_180902670(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180902680(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x78);
   pointer_ = (longlong *)pointer_[1];
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 3) {
@@ -22218,7 +22218,7 @@ void Unwind_180902680(uint64_t pointer_,longlong pointer_)
 void Unwind_180902690(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x70) + 0x10);
   iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0x70) + 0x18);
@@ -22242,7 +22242,7 @@ void Unwind_180902690(uint64_t pointer_,longlong pointer_)
 void Unwind_1809026a0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x78);
   iteration_count = pointer_[1];
@@ -22295,7 +22295,7 @@ void Unwind_180902710(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 void Unwind_180902720(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = *(longlong **)(pointer_ + 0x70);
@@ -22480,7 +22480,7 @@ void Unwind_180902860(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 }
 void Unwind_180902870(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x70) + 0x10);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -22763,7 +22763,7 @@ void Unwind_180902960(uint64_t pointer_,longlong pointer_)
 void Unwind_180902970(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x70) + 0x70);
   iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0x70) + 0x78);
@@ -22891,7 +22891,7 @@ void Unwind_180902a50(uint64_t pointer_,longlong pointer_)
 void Unwind_180902a60(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x78);
   iteration_count = pointer_[1];
@@ -23054,7 +23054,7 @@ void Unwind_180902ae0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 }
 void Unwind_180902af0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x70) + 8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -23069,7 +23069,7 @@ void Unwind_180902b00(uint64_t pointer_,longlong pointer_)
 void Unwind_180902b30(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x40);
   iteration_count = pointer_[1];
@@ -23570,9 +23570,9 @@ void Unwind_180902ce0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180902cf0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x20);
   pointer_ = (longlong *)pointer_[1];
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -23597,7 +23597,7 @@ void Unwind_180902d10(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180902d20(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x10);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -23606,7 +23606,7 @@ void Unwind_180902d20(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180902d30(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x10);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -23628,7 +23628,7 @@ void Unwind_180902d40(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180902d50(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   long long resource_context;
   iteration_count = *(longlong *)(pointer_ + 0x40);
@@ -23655,7 +23655,7 @@ void Unwind_180902d50(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180902d70(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1600);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -23664,7 +23664,7 @@ void Unwind_180902d70(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180902d90(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1698);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -23673,7 +23673,7 @@ void Unwind_180902d90(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180902db0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1800);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -23687,7 +23687,7 @@ void Unwind_180902dd0(void)
 }
 void Unwind_180902df0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1858);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -23696,9 +23696,9 @@ void Unwind_180902df0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180902e10(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x40) + 0x1868);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1870);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -23713,9 +23713,9 @@ void Unwind_180902e10(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180902e30(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x48);
   pointer_ = (longlong *)pointer_[1];
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -23981,7 +23981,7 @@ void Unwind_180902f00(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 void Unwind_180902f20(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x40) + 0x888);
@@ -23998,7 +23998,7 @@ void Unwind_180902f20(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 void Unwind_180902f40(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x40) + 0x8a8);
@@ -24182,7 +24182,7 @@ void Unwind_1809030a0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 }
 void Unwind_1809030b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   iteration_count = *(longlong *)(pointer_ + 0x58);
   pointer_ = *(longlong **)(iteration_count + 0xb8);
@@ -24199,7 +24199,7 @@ void Unwind_1809030c0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809030d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x98);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -24436,7 +24436,7 @@ void Unwind_180903190(uint64_t pointer_,longlong pointer_)
 void Unwind_1809031a0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x40) + 0x28);
   iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0x40) + 0x30);
@@ -24451,7 +24451,7 @@ void Unwind_1809031a0(uint64_t pointer_,longlong pointer_)
 void Unwind_1809031b0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x48);
   iteration_count = pointer_[1];
@@ -24465,7 +24465,7 @@ void Unwind_1809031b0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809031c0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x98);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -24552,7 +24552,7 @@ void Unwind_180903200(uint64_t pointer_,longlong pointer_)
 void Unwind_180903210(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x40);
   iteration_count = pointer_[1];
@@ -24750,7 +24750,7 @@ void Unwind_180903430(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 void Unwind_180903440(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x40);
   iteration_count = pointer_[1];
@@ -24772,7 +24772,7 @@ void Unwind_180903460(uint64_t pointer_,longlong pointer_)
   int *pointer_;
   char *pointer_;
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   ulonglong resource_context;
   pointer_ = *(longlong **)(pointer_ + 0x40);
@@ -25025,7 +25025,7 @@ void Unwind_180903510(uint64_t pointer_,longlong pointer_)
   int *pointer_;
   char *pointer_;
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   ulonglong resource_context;
   pointer_ = *(longlong **)(pointer_ + 0x70);
@@ -25108,7 +25108,7 @@ void Unwind_180903520(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180903540(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x70) + 0x328);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -25153,7 +25153,7 @@ void Unwind_180903580(uint64_t pointer_,longlong pointer_)
   int *pointer_;
   char *pointer_;
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   ulonglong resource_context;
   pointer_ = *(longlong **)(pointer_ + 0x80);
@@ -27690,7 +27690,7 @@ void Unwind_180904070(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 void Unwind_180904090(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x40) + 0x1380);
@@ -27707,7 +27707,7 @@ void Unwind_180904090(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 void Unwind_1809040b0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x40) + 0x13a0);
@@ -28939,7 +28939,7 @@ void Unwind_180904550(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 void Unwind_180904570(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x80) + 0x1380);
@@ -28956,7 +28956,7 @@ void Unwind_180904570(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 void Unwind_180904590(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x80) + 0x13a0);
@@ -28973,7 +28973,7 @@ void Unwind_180904590(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 void Unwind_1809045b0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = *(longlong **)(pointer_ + 0x88);
@@ -29316,10 +29316,10 @@ void Unwind_1809048c0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809048d0(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
-  opointer_ = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x58));
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  int operation_result;;
+  operation_result = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x58));
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   return;
 }
@@ -30098,7 +30098,7 @@ void Catch_180904c60(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   ulonglong resource_context;
   ulonglong resource_context;
   longlong iteration_count;
@@ -31529,10 +31529,10 @@ void Unwind_180905620(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180905630(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
-  opointer_ = _Mtx_unlock(*(uint64_t *)(pointer_ + 0xa0));
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  int operation_result;;
+  operation_result = _Mtx_unlock(*(uint64_t *)(pointer_ + 0xa0));
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   return;
 }
@@ -31643,7 +31643,7 @@ void Unwind_180905740(uint64_t pointer_,uint *pointer_)
 void Unwind_180905770(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = *(longlong **)(pointer_ + 0x28);
@@ -31668,39 +31668,39 @@ void Unwind_180905780(uint64_t pointer_,uint *pointer_)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void Unwind_1809057b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   uint64_t *pointer_;
-  int opointer_;
+  int operation_result;;
   int *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint resource_context;
   ulonglong resource_context;
   ulonglong resource_context;
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   ulonglong resource_context;
   pointer_ = *(uint64_t **)(pointer_ + 0x40);
   *pointer_ = &utility_system_reserved_;
   *(uint8_t *)((longlong)pointer_ + 0x162) = 1;
   pointer_ = pointer_ + 0x1a;
   pointer_ = pointer_;
-  opointer_ = _Mtx_lock(pointer_);
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  operation_result = _Mtx_lock(pointer_);
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   resource_context = 0;
   resource_context = resource_context;
   if (pointer_[9] != 0) {
     do {
       resource_context = resource_context % (ulonglong)*(uint *)(pointer_ + 8);
-      opointer_ = (int)resource_context;
+      operation_result = (int)resource_context;
       for (pointer_ = *(int **)(pointer_[7] + resource_context * 8); pointer_ != (int *)0x0;
           pointer_ = *(int **)(pointer_ + 4)) {
-        if (opointer_ == *pointer_) {
+        if (operation_result == *pointer_) {
           if (pointer_ != (int *)0x0) goto LAB_1801571ef;
           break;
         }
@@ -31708,7 +31708,7 @@ void Unwind_1809057b0(uint64_t pointer_,longlong pointer_)
       FUN_18066c220(pointer_ + 10,&pointer_,(ulonglong)*(uint *)(pointer_ + 8),
                     *(uint32_t *)(pointer_ + 9),1);
       pointer_ = (int *)FUN_18062b420(utility_system_reserved_,0x18,*(uint8_t *)((longlong)pointer_ + 0x5c));
-      *pointer_ = opointer_;
+      *pointer_ = operation_result;
       pointer_[2] = 0;
       pointer_[3] = 0;
       pointer_[4] = 0;
@@ -31727,7 +31727,7 @@ LAB_1801571ef:
       if (pointer_ != (longlong *)0x0) {
         (**(code **)(*pointer_ + 0x38))();
       }
-      resource_context = opointer_ + 1;
+      resource_context = operation_result + 1;
       resource_context = (ulonglong)resource_context;
       resource_context = (longlong)(int)resource_context;
     } while ((ulonglong)(longlong)(int)resource_context < (ulonglong)pointer_[9]);
@@ -31747,9 +31747,9 @@ LAB_1801571ef:
     pointer_ = (longlong *)*pointer_;
   }
   pointer_[0x2e] = pointer_;
-  opointer_ = _Mtx_unlock(pointer_);
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  operation_result = _Mtx_unlock(pointer_);
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   if (pointer_[0x4a] != 0) {
     free();
@@ -31866,7 +31866,7 @@ void Unwind_180905820(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180905830(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x2e0) + 0x20);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -31881,7 +31881,7 @@ void Unwind_180905840(uint64_t pointer_,longlong pointer_)
 void Unwind_180905860(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x2e0) + 8);
@@ -31898,7 +31898,7 @@ void Unwind_180905860(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 void Unwind_180905870(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = *(longlong **)(pointer_ + 0x2e8);
@@ -31946,7 +31946,7 @@ void Unwind_180905880(uint64_t pointer_,longlong pointer_)
 void Unwind_180905890(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x2e0);
   iteration_count = pointer_[1];
@@ -31967,7 +31967,7 @@ void Unwind_180905890(uint64_t pointer_,longlong pointer_)
 void Unwind_1809058a0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x2e0) + 0x20);
@@ -31984,7 +31984,7 @@ void Unwind_1809058a0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 void Unwind_1809058b0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x2e0) + 0x40);
@@ -32001,7 +32001,7 @@ void Unwind_1809058b0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 void Unwind_1809058c0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x2e8);
   iteration_count = pointer_[1];
@@ -32055,7 +32055,7 @@ void Unwind_180905900(uint64_t pointer_,longlong pointer_)
 void Unwind_180905910(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x48) + 8);
@@ -32134,39 +32134,39 @@ void Unwind_180905940(uint64_t pointer_,longlong pointer_)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void Unwind_180905950(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   uint64_t *pointer_;
-  int opointer_;
+  int operation_result;;
   int *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint resource_context;
   ulonglong resource_context;
   ulonglong resource_context;
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   ulonglong resource_context;
   pointer_ = *(uint64_t **)(pointer_ + 0x2e8);
   *pointer_ = &utility_system_reserved_;
   *(uint8_t *)((longlong)pointer_ + 0x162) = 1;
   pointer_ = pointer_ + 0x1a;
   pointer_ = pointer_;
-  opointer_ = _Mtx_lock(pointer_);
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  operation_result = _Mtx_lock(pointer_);
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   resource_context = 0;
   resource_context = resource_context;
   if (pointer_[9] != 0) {
     do {
       resource_context = resource_context % (ulonglong)*(uint *)(pointer_ + 8);
-      opointer_ = (int)resource_context;
+      operation_result = (int)resource_context;
       for (pointer_ = *(int **)(pointer_[7] + resource_context * 8); pointer_ != (int *)0x0;
           pointer_ = *(int **)(pointer_ + 4)) {
-        if (opointer_ == *pointer_) {
+        if (operation_result == *pointer_) {
           if (pointer_ != (int *)0x0) goto LAB_1801571ef;
           break;
         }
@@ -32174,7 +32174,7 @@ void Unwind_180905950(uint64_t pointer_,longlong pointer_)
       FUN_18066c220(pointer_ + 10,&pointer_,(ulonglong)*(uint *)(pointer_ + 8),
                     *(uint32_t *)(pointer_ + 9),1);
       pointer_ = (int *)FUN_18062b420(utility_system_reserved_,0x18,*(uint8_t *)((longlong)pointer_ + 0x5c));
-      *pointer_ = opointer_;
+      *pointer_ = operation_result;
       pointer_[2] = 0;
       pointer_[3] = 0;
       pointer_[4] = 0;
@@ -32193,7 +32193,7 @@ LAB_1801571ef:
       if (pointer_ != (longlong *)0x0) {
         (**(code **)(*pointer_ + 0x38))();
       }
-      resource_context = opointer_ + 1;
+      resource_context = operation_result + 1;
       resource_context = (ulonglong)resource_context;
       resource_context = (longlong)(int)resource_context;
     } while ((ulonglong)(longlong)(int)resource_context < (ulonglong)pointer_[9]);
@@ -32213,9 +32213,9 @@ LAB_1801571ef:
     pointer_ = (longlong *)*pointer_;
   }
   pointer_[0x2e] = pointer_;
-  opointer_ = _Mtx_unlock(pointer_);
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  operation_result = _Mtx_unlock(pointer_);
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   if (pointer_[0x4a] != 0) {
     free();
@@ -32253,7 +32253,7 @@ LAB_1801571ef:
 void Unwind_180905960(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x2e8) + 0x260);
@@ -32270,7 +32270,7 @@ void Unwind_180905960(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 void Unwind_180905980(uint64_t pointer_,longlong pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x2e8) + 0x280);
   pointer_ = *(uint64_t **)(*(longlong *)(pointer_ + 0x2e8) + 0x288);
@@ -32291,7 +32291,7 @@ void Unwind_180905980(uint64_t pointer_,longlong pointer_)
 void Unwind_1809059a0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = *(longlong **)(pointer_ + 0x40);
@@ -32329,7 +32329,7 @@ void Unwind_1809059d0(void)
 }
 void Unwind_1809059f0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0xd0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -32338,7 +32338,7 @@ void Unwind_1809059f0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180905a10(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0xd8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -32347,7 +32347,7 @@ void Unwind_180905a10(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180905a30(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0xe0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -32472,7 +32472,7 @@ void Unwind_180905b40(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180905b50(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x58) + 8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -32569,7 +32569,7 @@ void Unwind_180905b90(uint64_t pointer_,longlong pointer_)
   int *pointer_;
   char *pointer_;
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   ulonglong resource_context;
   pointer_ = *(longlong **)(pointer_ + 0x38);
@@ -32906,7 +32906,7 @@ void Unwind_180905ca0(uint64_t pointer_,longlong pointer_)
   int *pointer_;
   char *pointer_;
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   ulonglong resource_context;
   pointer_ = *(longlong **)(pointer_ + 0x48);
@@ -33000,11 +33000,11 @@ void Unwind_180905d40(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 }
 void Unwind_180905d50(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
+  int operation_result;;
   if (*(char *)(pointer_ + 0x50) != '\0') {
-    opointer_ = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x48));
-    if (opointer_ != 0) {
-      __Throw_C_error_std__YAXH_Z(opointer_);
+    operation_result = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x48));
+    if (operation_result != 0) {
+      __Throw_C_error_std__YAXH_Z(operation_result);
     }
   }
   return;
@@ -33071,10 +33071,10 @@ void Catch_180905e00(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180905e40(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   int *pointer_;
-  longlong *system_pointer;
-  int opointer_;
+  longlong *resource_manager;
+  int operation_result;;
   longlong iteration_count;
   longlong iteration_count;
   longlong iteration_count;
@@ -33093,10 +33093,10 @@ void Unwind_180905e40(uint64_t pointer_,longlong pointer_)
     iteration_count = *(longlong *)(pointer_ + 0x40);
     LOCK();
     pointer_ = (int *)(iteration_count + 0x3530);
-    opointer_ = *pointer_;
+    operation_result = *pointer_;
     *pointer_ = *pointer_ + -0x80000000;
     UNLOCK();
-    if (opointer_ == 0) {
+    if (operation_result == 0) {
       iteration_count = *(longlong *)(iteration_count + 0x28);
       do {
         *(longlong *)(iteration_count + 0x3538) = iteration_count;
@@ -33115,11 +33115,11 @@ void Unwind_180905e40(uint64_t pointer_,longlong pointer_)
         }
         LOCK();
         pointer_ = (int *)(iteration_count + 0x3530);
-        opointer_ = *pointer_;
+        operation_result = *pointer_;
         *pointer_ = *pointer_ + 0x7fffffff;
         UNLOCK();
         iteration_count = iteration_count;
-      } while (opointer_ == 1);
+      } while (operation_result == 1);
     }
   }
   return;
@@ -33210,7 +33210,7 @@ void Unwind_180905ea0(uint64_t pointer_,longlong pointer_)
 void Unwind_180905ec0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x50) + 0x3c8);
   iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0x50) + 0x3d0);
@@ -33225,7 +33225,7 @@ void Unwind_180905ec0(uint64_t pointer_,longlong pointer_)
 void Unwind_180905ee0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x60);
   iteration_count = pointer_[1];
@@ -33242,7 +33242,7 @@ void Unwind_180905ef0(uint64_t pointer_,longlong pointer_)
   int *pointer_;
   char *pointer_;
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   ulonglong resource_context;
   pointer_ = *(longlong **)(pointer_ + 0x60);
@@ -33320,7 +33320,7 @@ void Unwind_180905f70(uint64_t pointer_,longlong pointer_)
   int *pointer_;
   char *pointer_;
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   ulonglong resource_context;
   pointer_ = *(longlong **)(pointer_ + 0x40);
@@ -33371,7 +33371,7 @@ void Unwind_180905f70(uint64_t pointer_,longlong pointer_)
 void Unwind_180905f80(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x40);
   iteration_count = pointer_[1];
@@ -33454,7 +33454,7 @@ void Unwind_180905fa0(uint64_t pointer_,longlong pointer_)
 void Unwind_180905fc0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x70) + 0x3c8);
   iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0x70) + 0x3d0);
@@ -33471,7 +33471,7 @@ void Unwind_180905fe0(uint64_t pointer_,longlong pointer_)
   int *pointer_;
   char *pointer_;
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   ulonglong resource_context;
   pointer_ = *(longlong **)(pointer_ + 0x78);
@@ -33547,7 +33547,7 @@ void Unwind_180906050(uint64_t pointer_,longlong pointer_)
 void Unwind_180906060(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x78);
   iteration_count = pointer_[1];
@@ -33561,8 +33561,8 @@ void Unwind_180906060(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906070(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x60);
   _Mtx_destroy_in_situ();
   pointer_ = (longlong *)*pointer_;
@@ -33573,8 +33573,8 @@ void Unwind_180906070(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906080(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x60) + 0x78);
   _Mtx_destroy_in_situ();
   pointer_ = (longlong *)*pointer_;
@@ -33585,8 +33585,8 @@ void Unwind_180906080(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906090(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x60) + 0xf0);
   _Mtx_destroy_in_situ();
   pointer_ = (longlong *)*pointer_;
@@ -33597,7 +33597,7 @@ void Unwind_180906090(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809060b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = (longlong *)**(longlong **)(pointer_ + 0x68);
   if (pointer_ != *(longlong **)(pointer_ + 0x68)) {
     FUN_18064e900(pointer_);
@@ -33611,7 +33611,7 @@ void Unwind_1809060c0(void)
 }
 void Unwind_1809060d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = (longlong *)**(longlong **)(pointer_ + 0x70);
   if (pointer_ != *(longlong **)(pointer_ + 0x70)) {
     FUN_18064e900(pointer_);
@@ -33630,16 +33630,16 @@ void Unwind_1809060f0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906100(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
-  opointer_ = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x70));
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  int operation_result;;
+  operation_result = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x70));
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   return;
 }
 void Unwind_180906110(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = (longlong *)**(longlong **)(pointer_ + 0x40);
   if (pointer_ != *(longlong **)(pointer_ + 0x40)) {
     FUN_18064e900(pointer_);
@@ -33653,7 +33653,7 @@ void Unwind_180906120(void)
 }
 void Unwind_180906130(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = (longlong *)**(longlong **)(pointer_ + 0x40);
   if (pointer_ != *(longlong **)(pointer_ + 0x40)) {
     FUN_18064e900(pointer_);
@@ -33662,7 +33662,7 @@ void Unwind_180906130(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906140(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xa8) + 0x1b8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -33764,7 +33764,7 @@ void Unwind_180906190(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809061a0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xb8) + 0x70);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -33773,7 +33773,7 @@ void Unwind_1809061a0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809061b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x30) + 0x70);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -33782,7 +33782,7 @@ void Unwind_1809061b0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809061c0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x70);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -33791,7 +33791,7 @@ void Unwind_1809061c0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809061d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1b8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -34030,8 +34030,8 @@ void Unwind_180906480(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906490(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x58);
   pointer_ = *(longlong **)(pointer_ + 0x50);
   while( true ) {
@@ -34085,9 +34085,9 @@ void Unwind_1809064b0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809064c0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x20);
   pointer_ = (longlong *)pointer_[1];
   pointer_ = (longlong *)*pointer_;
@@ -34118,9 +34118,9 @@ void Unwind_1809064c0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809064d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x40) + 0x20);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x28);
   pointer_ = (longlong *)*pointer_;
@@ -34179,9 +34179,9 @@ void Unwind_1809064f0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906500(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x48);
   pointer_ = (longlong *)pointer_[1];
   pointer_ = (longlong *)*pointer_;
@@ -34212,9 +34212,9 @@ void Unwind_180906500(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906510(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x40);
   pointer_ = (longlong *)pointer_[1];
   pointer_ = (longlong *)*pointer_;
@@ -34265,7 +34265,7 @@ void Unwind_180906540(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906550(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x58);
   if (*pointer_ != 0) {
     FUN_18064e900();
@@ -34293,7 +34293,7 @@ void Unwind_180906560(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906570(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x50);
   if (*pointer_ != 0) {
     FUN_18064e900();
@@ -34321,7 +34321,7 @@ void Unwind_180906580(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906590(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x60);
   if (*pointer_ != 0) {
     FUN_18064e900();
@@ -34392,7 +34392,7 @@ void Unwind_180906630(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906640(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xa0) + 0x118);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -34401,7 +34401,7 @@ void Unwind_180906640(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906660(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xa0) + 0x1b0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -34410,7 +34410,7 @@ void Unwind_180906660(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906680(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xa0) + 0x1b8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -34419,7 +34419,7 @@ void Unwind_180906680(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809066a0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xa0) + 0x1c0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -34435,7 +34435,7 @@ void Unwind_1809066c0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809066e0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xa0) + 0x210);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -34445,7 +34445,7 @@ void Unwind_1809066e0(uint64_t pointer_,longlong pointer_)
 void Unwind_180906700(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0xa0) + 0x218);
@@ -34461,7 +34461,7 @@ void Unwind_180906700(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 }
 void Unwind_180906720(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xa0) + 0x268);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -34521,7 +34521,7 @@ void Unwind_1809067c0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809067d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x118);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -34530,7 +34530,7 @@ void Unwind_1809067d0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809067f0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x1b0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -34539,7 +34539,7 @@ void Unwind_1809067f0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906810(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x1b8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -34548,7 +34548,7 @@ void Unwind_180906810(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906830(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x1c0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -34564,7 +34564,7 @@ void Unwind_180906850(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906870(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x210);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -34574,7 +34574,7 @@ void Unwind_180906870(uint64_t pointer_,longlong pointer_)
 void Unwind_180906890(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x50) + 0x218);
@@ -34590,7 +34590,7 @@ void Unwind_180906890(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 }
 void Unwind_1809068b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x268);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -34615,7 +34615,7 @@ void Unwind_180906910(uint64_t pointer_,longlong pointer_)
 void Unwind_180906940(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = *(longlong **)(pointer_ + 0x58);
@@ -34683,7 +34683,7 @@ void Unwind_1809069c0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809069d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   if (*(longlong *)(pointer_ + 0x68) != 0) {
     FUN_18022f390();
   }
@@ -34714,7 +34714,7 @@ void Unwind_1809069f0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906a00(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   if (*(longlong *)(pointer_ + 0xa0) != 0) {
     FUN_18022f390();
   }
@@ -34762,7 +34762,7 @@ void Unwind_180906a40(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906a50(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x180) + 0x18);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -34801,7 +34801,7 @@ void Unwind_180906a90(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906ac0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   if (*(longlong *)(pointer_ + 0x28) != 0) {
     FUN_18022f390();
   }
@@ -34835,7 +34835,7 @@ void Unwind_180906ae0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906af0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x70) + 0x18);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -34935,7 +34935,7 @@ void Unwind_180906b50(uint64_t pointer_,longlong pointer_)
 void Unwind_180906b60(uint64_t pointer_,longlong pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   pointer_ = *(longlong **)(pointer_ + 0x40);
   pointer_ = (uint64_t *)pointer_[1];
@@ -34955,7 +34955,7 @@ void Unwind_180906b60(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906b70(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   if (*(longlong *)(pointer_ + 0x30) != 0) {
     FUN_18022f390();
   }
@@ -34989,7 +34989,7 @@ void Unwind_180906b90(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906ba0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x20) + 0x18);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -35145,7 +35145,7 @@ void Unwind_180906c50(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906c60(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   for (pointer_ = *(longlong **)(pointer_ + 0xf8); pointer_ != *(longlong **)(pointer_ + 0x100);
       pointer_ = pointer_ + 4) {
     if (*pointer_ != 0) {
@@ -35159,7 +35159,7 @@ void Unwind_180906c60(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906c70(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   for (pointer_ = *(longlong **)(pointer_ + 0xd8); pointer_ != *(longlong **)(pointer_ + 0xe0);
       pointer_ = pointer_ + 4) {
     if (*pointer_ != 0) {
@@ -35266,7 +35266,7 @@ void Unwind_180906ca0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906cb0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   for (pointer_ = *(longlong **)(pointer_ + 0x30); pointer_ != *(longlong **)(pointer_ + 0x38);
       pointer_ = pointer_ + 4) {
     if (*pointer_ != 0) {
@@ -35342,7 +35342,7 @@ void Unwind_180906cd0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906ce0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   for (pointer_ = *(longlong **)(pointer_ + 0xf8); pointer_ != *(longlong **)(pointer_ + 0x100);
       pointer_ = pointer_ + 4) {
     if (*pointer_ != 0) {
@@ -35449,7 +35449,7 @@ void Unwind_180906d10(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906d20(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   for (pointer_ = *(longlong **)(pointer_ + 0xd8); pointer_ != *(longlong **)(pointer_ + 0xe0);
       pointer_ = pointer_ + 4) {
     if (*pointer_ != 0) {
@@ -35711,7 +35711,7 @@ void Unwind_180906da0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906db0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   for (pointer_ = *(longlong **)(pointer_ + 0x30); pointer_ != *(longlong **)(pointer_ + 0x38);
       pointer_ = pointer_ + 4) {
     if (*pointer_ != 0) {
@@ -35756,8 +35756,8 @@ void Unwind_180906dc0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906dd0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x40);
   for (pointer_ = (longlong *)*pointer_; pointer_ != (longlong *)pointer_[1]; pointer_ = pointer_ + 4) {
     if (*pointer_ != 0) {
@@ -35771,8 +35771,8 @@ void Unwind_180906dd0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906de0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x40);
   for (pointer_ = (longlong *)*pointer_; pointer_ != (longlong *)pointer_[1]; pointer_ = pointer_ + 4) {
     if (*pointer_ != 0) {
@@ -35856,7 +35856,7 @@ void Unwind_180906e80(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906e90(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x178) + 0x20);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -35879,7 +35879,7 @@ void Unwind_180906eb0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906ec0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x178) + 0x10);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -35888,7 +35888,7 @@ void Unwind_180906ec0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906ed0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x178) + 0x18);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -35897,7 +35897,7 @@ void Unwind_180906ed0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906ee0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   iteration_count = *(longlong *)(pointer_ + 0x178);
   pointer_ = *(longlong **)(iteration_count + 0x18);
@@ -35921,7 +35921,7 @@ void Unwind_180906ef0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 }
 void Unwind_180906f00(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x30) + 0x10);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -35930,7 +35930,7 @@ void Unwind_180906f00(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906f10(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x30) + 0x18);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -35939,7 +35939,7 @@ void Unwind_180906f10(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906f20(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   iteration_count = *(longlong *)(pointer_ + 0x30);
   pointer_ = *(longlong **)(iteration_count + 0x18);
@@ -35954,7 +35954,7 @@ void Unwind_180906f20(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906f30(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xb0) + 0x10);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -35963,7 +35963,7 @@ void Unwind_180906f30(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906f40(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xb0) + 0x18);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -35994,7 +35994,7 @@ void Unwind_180906f70(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180906f80(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x18);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36023,7 +36023,7 @@ void Unwind_180906ff0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180907000(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   iteration_count = *(longlong *)(pointer_ + 0xd0);
   pointer_ = *(longlong **)(iteration_count + 0x18);
@@ -36052,7 +36052,7 @@ void Unwind_180907020(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 }
 void Unwind_180907030(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   iteration_count = *(longlong *)(pointer_ + 0x160);
   pointer_ = *(longlong **)(iteration_count + 0x18);
@@ -36088,7 +36088,7 @@ void Unwind_180907060(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180907070(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xd0) + 0x10);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36097,7 +36097,7 @@ void Unwind_180907070(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180907080(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xd0) + 0x18);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36120,7 +36120,7 @@ void Unwind_1809070a0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 }
 void Unwind_1809070b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x160) + 0x10);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36129,7 +36129,7 @@ void Unwind_1809070b0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809070c0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x160) + 0x18);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36145,7 +36145,7 @@ void Unwind_1809070d0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 }
 void Unwind_1809070e0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x28) + 0x10);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36154,7 +36154,7 @@ void Unwind_1809070e0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809070f0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x28) + 0x18);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36163,7 +36163,7 @@ void Unwind_1809070f0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180907100(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   iteration_count = *(longlong *)(pointer_ + 0x28);
   pointer_ = *(longlong **)(iteration_count + 0x18);
@@ -36178,7 +36178,7 @@ void Unwind_180907100(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180907110(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x20) + 0x10);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36187,7 +36187,7 @@ void Unwind_180907110(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180907120(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   iteration_count = *(longlong *)(pointer_ + 0x20);
   pointer_ = *(longlong **)(iteration_count + 0x18);
@@ -36496,7 +36496,7 @@ void Unwind_180907370(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180907380(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   iteration_count = *(longlong *)(pointer_ + 0x78);
   pointer_ = *(longlong **)(iteration_count + 0x18);
@@ -36511,7 +36511,7 @@ void Unwind_180907380(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180907390(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x80) + 0x10);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36520,7 +36520,7 @@ void Unwind_180907390(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809073a0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x80) + 0x18);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36529,7 +36529,7 @@ void Unwind_1809073a0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809073b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   iteration_count = *(longlong *)(pointer_ + 0x80);
   pointer_ = *(longlong **)(iteration_count + 0x18);
@@ -36544,7 +36544,7 @@ void Unwind_1809073b0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809073c0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x88) + 0x10);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36553,7 +36553,7 @@ void Unwind_1809073c0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809073d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x88) + 0x18);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36562,7 +36562,7 @@ void Unwind_1809073d0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809073e0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x78) + 0x10);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36571,7 +36571,7 @@ void Unwind_1809073e0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809073f0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x78) + 0x18);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36746,7 +36746,7 @@ void Unwind_180907560(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180907570(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x58) + 0x10);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36755,7 +36755,7 @@ void Unwind_180907570(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180907580(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x58) + 0x18);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36772,7 +36772,7 @@ void Unwind_180907590(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809075a0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x20);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36781,7 +36781,7 @@ void Unwind_1809075a0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809075b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x28);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36790,7 +36790,7 @@ void Unwind_1809075b0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809075c0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x30);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36799,7 +36799,7 @@ void Unwind_1809075c0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809075d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x38);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36808,7 +36808,7 @@ void Unwind_1809075d0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809075e0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x40);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36817,7 +36817,7 @@ void Unwind_1809075e0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809075f0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x48);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36826,7 +36826,7 @@ void Unwind_1809075f0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180907600(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x50);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36835,7 +36835,7 @@ void Unwind_180907600(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180907610(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x58);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36844,7 +36844,7 @@ void Unwind_180907610(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180907620(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x60);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36853,7 +36853,7 @@ void Unwind_180907620(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180907630(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x20) + 8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36956,7 +36956,7 @@ void Unwind_180907710(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180907720(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0xb0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -36995,7 +36995,7 @@ void Unwind_180907740(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180907750(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0xb0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -37059,7 +37059,7 @@ void Unwind_1809077f0(void)
 void Unwind_180907800(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x20) + 8);
   iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0x20) + 0x10);
@@ -37074,7 +37074,7 @@ void Unwind_180907800(uint64_t pointer_,longlong pointer_)
 void Unwind_180907810(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x20) + 0x28);
@@ -37156,7 +37156,7 @@ void Unwind_180907880(uint64_t pointer_,longlong pointer_)
 void Unwind_1809078a0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x28);
   iteration_count = pointer_[1];
@@ -37171,7 +37171,7 @@ void Unwind_1809078a0(uint64_t pointer_,longlong pointer_)
 void Unwind_1809078b0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = *(longlong **)(pointer_ + 0x28);
@@ -37232,7 +37232,7 @@ void Unwind_180907910(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 void Unwind_180907920(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x40);
   iteration_count = pointer_[1];
@@ -37285,7 +37285,7 @@ void Unwind_180907960(uint64_t pointer_,longlong pointer_)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void Unwind_180907970(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = (longlong *)(pointer_ + 0x50);
   if (*pointer_ != -1) {
     LOCK();
@@ -38267,7 +38267,7 @@ void Unwind_180907f60(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void Unwind_180907f70(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = (longlong *)(pointer_ + 0x38);
   if (*pointer_ != -1) {
     LOCK();
@@ -38280,7 +38280,7 @@ void Unwind_180907f70(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180907f80(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x58);
   if (pointer_ == (longlong *)0x0) {
     *(longlong *)(pointer_ + 0x58) = 0;
@@ -38442,7 +38442,7 @@ void Unwind_180908040(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void Unwind_180908050(uint64_t pointer_,uint64_t pointer_,uint64_t pointer_,uint64_t pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = utility_system_reserved_;
   FUN_18008d1f0(&utility_system_reserved_,utility_system_reserved_[1],pointer_,pointer_,0xfffffffffffffffe);
   utility_system_reserved_[1] = (longlong)pointer_;
@@ -38738,7 +38738,7 @@ void Unwind_180908300(uint64_t pointer_,longlong pointer_)
 void Unwind_180908340(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x80) + 0x388);
@@ -38769,10 +38769,10 @@ void Unwind_1809083a0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809083e0(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
-  opointer_ = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x98));
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  int operation_result;;
+  operation_result = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x98));
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   return;
 }
@@ -38789,7 +38789,7 @@ void Unwind_180908420(uint64_t pointer_,longlong pointer_)
 void Unwind_180908460(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x40) + 0x388);
@@ -38830,7 +38830,7 @@ void Unwind_180908520(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180908550(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0xd20);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -38856,10 +38856,10 @@ void Unwind_1809085b0(void)
 }
 void Unwind_1809085c0(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
-  opointer_ = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x1d0));
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  int operation_result;;
+  operation_result = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x1d0));
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   return;
 }
@@ -38875,7 +38875,7 @@ void Unwind_180908600(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180908630(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0xd20);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -38928,7 +38928,7 @@ void Unwind_180908660(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180908670(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   long long resource_context;
   iteration_count = *(longlong *)(pointer_ + 0x50);
@@ -38955,7 +38955,7 @@ void Unwind_180908670(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180908690(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x1600);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -38964,7 +38964,7 @@ void Unwind_180908690(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809086b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x1698);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -38973,7 +38973,7 @@ void Unwind_1809086b0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809086d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x1800);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -38987,7 +38987,7 @@ void Unwind_1809086f0(void)
 }
 void Unwind_180908710(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x1858);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -38996,9 +38996,9 @@ void Unwind_180908710(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180908730(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x50) + 0x1868);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x1870);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -39023,9 +39023,9 @@ void Unwind_180908760(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180908770(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x60);
   pointer_ = (longlong *)pointer_[1];
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -39095,8 +39095,8 @@ void Unwind_1809087c0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809087d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x168);
   for (pointer_ = *(longlong **)(pointer_ + 0x160); pointer_ != pointer_; pointer_ = pointer_ + 1) {
     if ((longlong *)*pointer_ != (longlong *)0x0) {
@@ -39212,8 +39212,8 @@ void Unwind_180908850(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180908860(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x168);
   for (pointer_ = *(longlong **)(pointer_ + 0x160); pointer_ != pointer_; pointer_ = pointer_ + 1) {
     if ((longlong *)*pointer_ != (longlong *)0x0) {
@@ -39258,19 +39258,19 @@ void Unwind_180908870(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180908880(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
-  opointer_ = _Mtx_unlock(*(uint64_t *)(pointer_ + 0xc0));
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  int operation_result;;
+  operation_result = _Mtx_unlock(*(uint64_t *)(pointer_ + 0xc0));
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   return;
 }
 void Unwind_180908890(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
-  opointer_ = _Mtx_unlock(*(uint64_t *)(pointer_ + 200));
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  int operation_result;;
+  operation_result = _Mtx_unlock(*(uint64_t *)(pointer_ + 200));
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   return;
 }
@@ -39348,7 +39348,7 @@ void Unwind_180908950(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180908980(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   if (*(longlong *)(pointer_ + 0x70) != 0) {
     FUN_18022f390();
   }
@@ -39382,7 +39382,7 @@ void Unwind_1809089a0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809089b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x20) + 0x60);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -39402,38 +39402,38 @@ void Unwind_1809089d0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void Unwind_1809089e0(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
+  int operation_result;;
   utility_system_reserved_ = *(uint64_t *)(pointer_ + 0x70);
-  opointer_ = _Mtx_unlock(0x180c91970);
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  operation_result = _Mtx_unlock(0x180c91970);
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   return;
 }
 void Unwind_1809089f0(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
-  opointer_ = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x68));
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  int operation_result;;
+  operation_result = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x68));
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   return;
 }
 void Unwind_180908a00(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
-  opointer_ = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x148));
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  int operation_result;;
+  operation_result = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x148));
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   return;
 }
 void Unwind_180908a10(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
-  opointer_ = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x1d8));
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  int operation_result;;
+  operation_result = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x1d8));
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   return;
 }
@@ -39858,7 +39858,7 @@ void Unwind_180908b40(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180908b50(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x30) + 0x28);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -39867,7 +39867,7 @@ void Unwind_180908b50(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180908b60(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x30) + 0x20);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -39883,7 +39883,7 @@ void Unwind_180908b70(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180908b80(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x30) + 0x28);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -40014,7 +40014,7 @@ void Unwind_180908c40(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180908c50(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x1b8) + 0x20);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -40036,7 +40036,7 @@ void Unwind_180908c60(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180908c70(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x1b8) + 0x58);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -40482,7 +40482,7 @@ undefined * Catch_180908f50(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180908f90(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   char cvariable;
   cvariable = _uncaught_excepointer_();
   if (cvariable == '\0') {
@@ -40504,7 +40504,7 @@ void Unwind_180908f90(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180908fa0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)
             ((longlong)*(int *)(**(longlong **)(pointer_ + 0x38) + 4) + 0x48 +
             (longlong)*(longlong **)(pointer_ + 0x38));
@@ -40522,7 +40522,7 @@ void Unwind_180908fa0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180908fb0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)
             ((longlong)*(int *)(*(longlong *)**(longlong **)(pointer_ + 0x40) + 4) + 0x48 +
             **(longlong **)(pointer_ + 0x40));
@@ -40553,12 +40553,12 @@ void Unwind_180909000(uint64_t pointer_,longlong pointer_)
 void Unwind_180909010(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   iteration_count = pointer_ + 0x128;
   *(undefined **)((longlong)*(int *)(*(longlong *)(pointer_ + 0x80) + 4) + -0xa8 + iteration_count) =
        &utility_system_reserved_;
-  opointer_ = *(int *)(*(longlong *)(pointer_ + 0x80) + 4);
-  *(int *)((longlong)opointer_ + -0xac + iteration_count) = opointer_ + -0xa8;
+  operation_result = *(int *)(*(longlong *)(pointer_ + 0x80) + 4);
+  *(int *)((longlong)operation_result + -0xac + iteration_count) = operation_result + -0xa8;
   FUN_18009fb60(pointer_ + 0x88);
   __1__basic_ostream_DU__char_traits_D_std___std__UEAA_XZ(pointer_ + 0x90);
                     // WARNING: Could not recover jumpointer_ at 0x00018009fc52. Too many branches
@@ -40718,7 +40718,7 @@ void Unwind_1809090b0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809090d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x121e0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -40727,7 +40727,7 @@ void Unwind_1809090d0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809090f0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1c70);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -40736,7 +40736,7 @@ void Unwind_1809090f0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909110(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1c78);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -40745,7 +40745,7 @@ void Unwind_180909110(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909130(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1c80);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -40754,7 +40754,7 @@ void Unwind_180909130(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909150(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1c88);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -40763,7 +40763,7 @@ void Unwind_180909150(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909170(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1c90);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -40772,7 +40772,7 @@ void Unwind_180909170(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909190(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1c98);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -40781,7 +40781,7 @@ void Unwind_180909190(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809091b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1ca0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -40790,7 +40790,7 @@ void Unwind_1809091b0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809091d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1ca8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -40799,7 +40799,7 @@ void Unwind_1809091d0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809091f0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1cb0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -40808,7 +40808,7 @@ void Unwind_1809091f0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909210(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1cb8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -40817,7 +40817,7 @@ void Unwind_180909210(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909230(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1cc0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -40826,7 +40826,7 @@ void Unwind_180909230(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909250(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1cc8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -40835,7 +40835,7 @@ void Unwind_180909250(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909270(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1cd0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -40882,7 +40882,7 @@ void Unwind_180909290(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809092b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1d50);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -40982,7 +40982,7 @@ void Unwind_180909310(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909320(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   uint64_t *pointer_;
   longlong iteration_count;
@@ -41095,7 +41095,7 @@ void Unwind_1809093a0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 }
 void Unwind_1809093b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   uint64_t *pointer_;
   longlong iteration_count;
@@ -41167,7 +41167,7 @@ void Unwind_1809093b0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809093c0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   longlong iteration_count;
   longlong iteration_count;
@@ -41235,7 +41235,7 @@ void Unwind_1809093c0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 }
 void Unwind_1809093e0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x90) + 0x8248);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -41268,7 +41268,7 @@ void Unwind_180909430(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909440(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xb8) + 0x28);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -41277,7 +41277,7 @@ void Unwind_180909440(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909450(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xb8) + 0x28);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -41344,7 +41344,7 @@ void Unwind_1809094b0(uint64_t pointer_,longlong pointer_)
 void Unwind_1809094c0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x40);
   iteration_count = pointer_[1];
@@ -41432,7 +41432,7 @@ void Unwind_180909540(uint64_t pointer_,longlong pointer_)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void Unwind_180909550(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = (longlong *)(pointer_ + 0x1e8);
   if (*pointer_ != -1) {
     LOCK();
@@ -41719,7 +41719,7 @@ void Unwind_1809096a0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809096b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   uint64_t *pointer_;
   longlong iteration_count;
@@ -41791,7 +41791,7 @@ void Unwind_1809096b0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809096c0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   longlong iteration_count;
   longlong iteration_count;
@@ -41859,7 +41859,7 @@ void Unwind_1809096c0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 }
 void Unwind_1809096e0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x8248);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -42116,10 +42116,10 @@ void Unwind_180909960(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909970(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
-  opointer_ = _Mtx_unlock(*(uint64_t *)(pointer_ + 0xe8));
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  int operation_result;;
+  operation_result = _Mtx_unlock(*(uint64_t *)(pointer_ + 0xe8));
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   return;
 }
@@ -42202,10 +42202,10 @@ void Unwind_180909a20(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909a30(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
-  opointer_ = _Mtx_unlock(*(uint64_t *)(pointer_ + 0xd8));
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  int operation_result;;
+  operation_result = _Mtx_unlock(*(uint64_t *)(pointer_ + 0xd8));
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   return;
 }
@@ -42319,16 +42319,16 @@ void Unwind_180909af0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909b20(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
-  opointer_ = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x38));
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  int operation_result;;
+  operation_result = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x38));
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   return;
 }
 void Unwind_180909b30(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x58) + 0x28);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -42337,7 +42337,7 @@ void Unwind_180909b30(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909b40(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x28);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -42351,7 +42351,7 @@ void Unwind_180909b50(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909b60(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x48) + 0x28);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -42372,7 +42372,7 @@ void Unwind_180909b70(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909b80(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x28) + 0xe8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -42381,7 +42381,7 @@ void Unwind_180909b80(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909ba0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x48) + 0x28);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -42398,10 +42398,10 @@ void Unwind_180909bb0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909be0(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
-  opointer_ = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x30));
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  int operation_result;;
+  operation_result = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x30));
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   return;
 }
@@ -42447,11 +42447,11 @@ void Unwind_180909c20(uint64_t pointer_,longlong pointer_)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void Unwind_180909c30(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
-  int opointer_;
-  opointer_ = *(int *)(**(longlong **)(utility_system_reserved_ + 8) + 0x48);
-  opointer_ = _Thrd_id();
-  if (opointer_ != opointer_) {
+  int operation_result;;
+  int operation_result;;
+  operation_result = *(int *)(**(longlong **)(utility_system_reserved_ + 8) + 0x48);
+  operation_result = _Thrd_id();
+  if (operation_result != operation_result) {
     utility_system_reserved_ = *(uint32_t *)(pointer_ + 0x90);
   }
   return;
@@ -42488,11 +42488,11 @@ void Unwind_180909c90(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909ca0(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
+  int operation_result;;
   if (*(char *)(pointer_ + 0x40) != '\0') {
-    opointer_ = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x38));
-    if (opointer_ != 0) {
-      __Throw_C_error_std__YAXH_Z(opointer_);
+    operation_result = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x38));
+    if (operation_result != 0) {
+      __Throw_C_error_std__YAXH_Z(operation_result);
     }
   }
   return;
@@ -42517,9 +42517,9 @@ void Unwind_180909ce0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909d00(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x40) + 0x580);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x588);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -42539,9 +42539,9 @@ void Unwind_180909d20(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909d60(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x40) + 0x6c0);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x6c8);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -42556,9 +42556,9 @@ void Unwind_180909d60(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909d80(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x40) + 0x6e0);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x6e8);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -42573,9 +42573,9 @@ void Unwind_180909d80(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909da0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x40) + 0x700);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x708);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -42590,9 +42590,9 @@ void Unwind_180909da0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180909dc0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x40) + 0x720);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x728);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -42736,7 +42736,7 @@ void Unwind_180909fe0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a000(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0xc58);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -42750,9 +42750,9 @@ void Unwind_18090a020(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a060(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x40) + 0xd00);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0xd08);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -42887,9 +42887,9 @@ void Unwind_18090a1d0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a1f0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x60) + 0x580);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x588);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -42909,9 +42909,9 @@ void Unwind_18090a210(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a250(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x60) + 0x6c0);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x6c8);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -42926,9 +42926,9 @@ void Unwind_18090a250(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a270(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x60) + 0x6e0);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x6e8);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -42943,9 +42943,9 @@ void Unwind_18090a270(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a290(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x60) + 0x700);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x708);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -42960,9 +42960,9 @@ void Unwind_18090a290(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a2b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x60) + 0x720);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x728);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -43106,7 +43106,7 @@ void Unwind_18090a4d0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a4f0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0xc58);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -43120,9 +43120,9 @@ void Unwind_18090a510(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a550(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x60) + 0xd00);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0xd08);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -43137,9 +43137,9 @@ void Unwind_18090a550(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a570(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x68);
   pointer_ = (longlong *)pointer_[1];
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -43286,10 +43286,10 @@ void Unwind_18090a650(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 }
 void Unwind_18090a660(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
-  opointer_ = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x78));
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  int operation_result;;
+  operation_result = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x78));
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   return;
 }
@@ -43393,10 +43393,10 @@ void Unwind_18090a780(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a790(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
-  opointer_ = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x90));
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  int operation_result;;
+  operation_result = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x90));
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   return;
 }
@@ -43467,7 +43467,7 @@ void Unwind_18090a7d0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a7e0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xa0) + 0x20);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -43476,8 +43476,8 @@ void Unwind_18090a7e0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a7f0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x38);
   for (pointer_ = *(longlong **)(pointer_ + 0x30); pointer_ != pointer_; pointer_ = pointer_ + 1) {
     if ((longlong *)*pointer_ != (longlong *)0x0) {
@@ -43499,8 +43499,8 @@ void Unwind_18090a800(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a830(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x38);
   for (pointer_ = *(longlong **)(pointer_ + 0x30); pointer_ != pointer_; pointer_ = pointer_ + 1) {
     if ((longlong *)*pointer_ != (longlong *)0x0) {
@@ -43522,7 +43522,7 @@ void Unwind_18090a840(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a870(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x70) + 0x28);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -43593,9 +43593,9 @@ void Unwind_18090a890(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a8a0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x58) + 0x28);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x58) + 0x30);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -43610,9 +43610,9 @@ void Unwind_18090a8a0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a8b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x60) + 8);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x10);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -43627,9 +43627,9 @@ void Unwind_18090a8b0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a8c0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x70) + 8);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x70) + 0x10);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -43644,9 +43644,9 @@ void Unwind_18090a8c0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a8d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x88);
   pointer_ = (longlong *)pointer_[1];
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -43661,7 +43661,7 @@ void Unwind_18090a8d0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a8e0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x48) + 0x28);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -43670,7 +43670,7 @@ void Unwind_18090a8e0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a8f0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -43679,9 +43679,9 @@ void Unwind_18090a8f0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a900(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x50);
   pointer_ = (longlong *)pointer_[1];
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -43712,9 +43712,9 @@ void Unwind_18090a910(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a920(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x40) + 8);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x10);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -43894,7 +43894,7 @@ void Unwind_18090a970(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a980(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0xe8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -43903,7 +43903,7 @@ void Unwind_18090a980(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090a9a0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x28);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44000,7 +44000,7 @@ void Unwind_18090ab50(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ab80(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x10);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44009,7 +44009,7 @@ void Unwind_18090ab80(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ab90(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x18);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44018,7 +44018,7 @@ void Unwind_18090ab90(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090aba0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x20);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44027,7 +44027,7 @@ void Unwind_18090aba0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090abb0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x30);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44036,7 +44036,7 @@ void Unwind_18090abb0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090abc0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x38);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44045,7 +44045,7 @@ void Unwind_18090abc0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090abd0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x40);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44054,7 +44054,7 @@ void Unwind_18090abd0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090abe0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x48);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44063,7 +44063,7 @@ void Unwind_18090abe0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090abf0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x50);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44072,7 +44072,7 @@ void Unwind_18090abf0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ac00(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x58);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44081,7 +44081,7 @@ void Unwind_18090ac00(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ac10(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x60);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44090,7 +44090,7 @@ void Unwind_18090ac10(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ac20(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x68);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44099,7 +44099,7 @@ void Unwind_18090ac20(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ac30(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x70);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44108,7 +44108,7 @@ void Unwind_18090ac30(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ac40(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x78);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44117,7 +44117,7 @@ void Unwind_18090ac40(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ac50(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x80);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44126,7 +44126,7 @@ void Unwind_18090ac50(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ac70(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x88);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44135,7 +44135,7 @@ void Unwind_18090ac70(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ac90(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x90);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44144,7 +44144,7 @@ void Unwind_18090ac90(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090acb0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x98);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44153,7 +44153,7 @@ void Unwind_18090acb0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090acd0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0xa0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44162,7 +44162,7 @@ void Unwind_18090acd0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090acf0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0xa8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44171,7 +44171,7 @@ void Unwind_18090acf0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ad10(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0xb8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44180,7 +44180,7 @@ void Unwind_18090ad10(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ad30(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0xc0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44189,7 +44189,7 @@ void Unwind_18090ad30(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ad50(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 200);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44198,7 +44198,7 @@ void Unwind_18090ad50(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ad70(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0xd0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44207,7 +44207,7 @@ void Unwind_18090ad70(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ad90(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0xd8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44216,7 +44216,7 @@ void Unwind_18090ad90(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090adb0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0xe0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44225,7 +44225,7 @@ void Unwind_18090adb0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090add0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0xe8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44249,7 +44249,7 @@ void Unwind_18090ae70(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090aeb0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x270);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44258,7 +44258,7 @@ void Unwind_18090aeb0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090aed0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x278);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44267,7 +44267,7 @@ void Unwind_18090aed0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090aef0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x280);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44276,7 +44276,7 @@ void Unwind_18090aef0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090af10(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x288);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44285,7 +44285,7 @@ void Unwind_18090af10(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090af30(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x290);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44294,7 +44294,7 @@ void Unwind_18090af30(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090af50(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x298);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44334,7 +44334,7 @@ void Unwind_18090af70(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090af90(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x2d0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44343,7 +44343,7 @@ void Unwind_18090af90(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090afb0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x2e0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44352,7 +44352,7 @@ void Unwind_18090afb0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090afd0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x2e8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44361,7 +44361,7 @@ void Unwind_18090afd0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090aff0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x2f0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44370,7 +44370,7 @@ void Unwind_18090aff0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b010(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x2f8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44379,7 +44379,7 @@ void Unwind_18090b010(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b030(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x300);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44388,7 +44388,7 @@ void Unwind_18090b030(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b050(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x308);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44397,7 +44397,7 @@ void Unwind_18090b050(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b070(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x310);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44406,7 +44406,7 @@ void Unwind_18090b070(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b090(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x318);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44415,7 +44415,7 @@ void Unwind_18090b090(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b0b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 800);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44424,7 +44424,7 @@ void Unwind_18090b0b0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b0d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x328);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44433,7 +44433,7 @@ void Unwind_18090b0d0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b0f0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x330);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44442,7 +44442,7 @@ void Unwind_18090b0f0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b110(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x338);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44451,7 +44451,7 @@ void Unwind_18090b110(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b130(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x340);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44460,7 +44460,7 @@ void Unwind_18090b130(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b150(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x348);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44469,7 +44469,7 @@ void Unwind_18090b150(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b170(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x350);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44478,7 +44478,7 @@ void Unwind_18090b170(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b190(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x358);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44487,7 +44487,7 @@ void Unwind_18090b190(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b1b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x360);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44496,7 +44496,7 @@ void Unwind_18090b1b0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b1d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x368);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44505,7 +44505,7 @@ void Unwind_18090b1d0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b1f0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x370);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44514,7 +44514,7 @@ void Unwind_18090b1f0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b210(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x378);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44523,7 +44523,7 @@ void Unwind_18090b210(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b230(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x380);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44532,7 +44532,7 @@ void Unwind_18090b230(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b250(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x388);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44541,7 +44541,7 @@ void Unwind_18090b250(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b270(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x390);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44550,7 +44550,7 @@ void Unwind_18090b270(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b290(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x398);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44559,7 +44559,7 @@ void Unwind_18090b290(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b2b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x3a0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44568,7 +44568,7 @@ void Unwind_18090b2b0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b2d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x3a8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44577,7 +44577,7 @@ void Unwind_18090b2d0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b2f0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x3b0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44586,7 +44586,7 @@ void Unwind_18090b2f0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b310(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x3b8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44595,7 +44595,7 @@ void Unwind_18090b310(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b330(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x3c0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44604,7 +44604,7 @@ void Unwind_18090b330(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b350(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x3c8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44613,7 +44613,7 @@ void Unwind_18090b350(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b370(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x3d0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44622,7 +44622,7 @@ void Unwind_18090b370(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b390(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x3d8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44631,7 +44631,7 @@ void Unwind_18090b390(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b3b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x3e0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44640,7 +44640,7 @@ void Unwind_18090b3b0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b3d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 1000);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44649,7 +44649,7 @@ void Unwind_18090b3d0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b3f0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x3f0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44658,7 +44658,7 @@ void Unwind_18090b3f0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b410(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x3f8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44667,7 +44667,7 @@ void Unwind_18090b410(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b430(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x400);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44676,7 +44676,7 @@ void Unwind_18090b430(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b450(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x408);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44685,7 +44685,7 @@ void Unwind_18090b450(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b470(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x50) + 0x410);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44833,7 +44833,7 @@ void Unwind_18090b500(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b510(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x68);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44842,7 +44842,7 @@ void Unwind_18090b510(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b520(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x78);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44851,7 +44851,7 @@ void Unwind_18090b520(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b530(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x80);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44860,7 +44860,7 @@ void Unwind_18090b530(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b550(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x88);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44869,7 +44869,7 @@ void Unwind_18090b550(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b570(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x90);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44878,7 +44878,7 @@ void Unwind_18090b570(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b590(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0xa0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44887,7 +44887,7 @@ void Unwind_18090b590(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b5b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0xa8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44896,7 +44896,7 @@ void Unwind_18090b5b0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b5d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0xb8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44905,7 +44905,7 @@ void Unwind_18090b5d0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b5f0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0xc0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44914,7 +44914,7 @@ void Unwind_18090b5f0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b610(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 200);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44923,7 +44923,7 @@ void Unwind_18090b610(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b630(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0xe8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44947,7 +44947,7 @@ void Unwind_18090b6d0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b710(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x270);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44956,7 +44956,7 @@ void Unwind_18090b710(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b730(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x278);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44965,7 +44965,7 @@ void Unwind_18090b730(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b750(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x280);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44974,7 +44974,7 @@ void Unwind_18090b750(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b770(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x288);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44983,7 +44983,7 @@ void Unwind_18090b770(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b790(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x290);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -44992,7 +44992,7 @@ void Unwind_18090b790(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b7b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x298);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45032,7 +45032,7 @@ void Unwind_18090b7d0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b7f0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x2d0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45041,7 +45041,7 @@ void Unwind_18090b7f0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b810(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x2e0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45050,7 +45050,7 @@ void Unwind_18090b810(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b830(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x2e8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45059,7 +45059,7 @@ void Unwind_18090b830(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b850(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x2f0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45068,7 +45068,7 @@ void Unwind_18090b850(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b870(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x2f8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45077,7 +45077,7 @@ void Unwind_18090b870(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b890(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x300);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45086,7 +45086,7 @@ void Unwind_18090b890(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b8b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x308);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45095,7 +45095,7 @@ void Unwind_18090b8b0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b8d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x310);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45104,7 +45104,7 @@ void Unwind_18090b8d0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b8f0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x318);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45113,7 +45113,7 @@ void Unwind_18090b8f0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b910(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 800);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45122,7 +45122,7 @@ void Unwind_18090b910(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b930(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x328);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45131,7 +45131,7 @@ void Unwind_18090b930(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b950(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x330);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45140,7 +45140,7 @@ void Unwind_18090b950(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b970(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x338);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45149,7 +45149,7 @@ void Unwind_18090b970(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b990(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x340);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45158,7 +45158,7 @@ void Unwind_18090b990(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b9b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x348);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45167,7 +45167,7 @@ void Unwind_18090b9b0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b9d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x350);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45176,7 +45176,7 @@ void Unwind_18090b9d0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090b9f0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x358);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45185,7 +45185,7 @@ void Unwind_18090b9f0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ba10(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x360);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45194,7 +45194,7 @@ void Unwind_18090ba10(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ba30(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x368);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45203,7 +45203,7 @@ void Unwind_18090ba30(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ba50(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x370);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45212,7 +45212,7 @@ void Unwind_18090ba50(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ba70(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x378);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45221,7 +45221,7 @@ void Unwind_18090ba70(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ba90(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x380);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45230,7 +45230,7 @@ void Unwind_18090ba90(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090bab0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x388);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45239,7 +45239,7 @@ void Unwind_18090bab0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090bad0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x390);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45248,7 +45248,7 @@ void Unwind_18090bad0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090baf0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x398);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45257,7 +45257,7 @@ void Unwind_18090baf0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090bb10(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x3a0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45266,7 +45266,7 @@ void Unwind_18090bb10(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090bb30(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x3a8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45275,7 +45275,7 @@ void Unwind_18090bb30(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090bb50(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x3b0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45284,7 +45284,7 @@ void Unwind_18090bb50(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090bb70(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x3b8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45293,7 +45293,7 @@ void Unwind_18090bb70(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090bb90(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x3c0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45302,7 +45302,7 @@ void Unwind_18090bb90(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090bbb0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x3c8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45311,7 +45311,7 @@ void Unwind_18090bbb0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090bbd0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x3d0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45320,7 +45320,7 @@ void Unwind_18090bbd0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090bbf0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x3d8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45329,7 +45329,7 @@ void Unwind_18090bbf0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090bc10(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x3e0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45338,7 +45338,7 @@ void Unwind_18090bc10(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090bc30(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 1000);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45347,7 +45347,7 @@ void Unwind_18090bc30(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090bc50(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x3f0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45356,7 +45356,7 @@ void Unwind_18090bc50(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090bc70(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x3f8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45365,7 +45365,7 @@ void Unwind_18090bc70(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090bc90(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x400);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45374,7 +45374,7 @@ void Unwind_18090bc90(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090bcb0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x408);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45383,7 +45383,7 @@ void Unwind_18090bcb0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090bcd0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x410);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45495,7 +45495,7 @@ void Unwind_18090bd70(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090bd80(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   if (*(longlong *)(pointer_ + 0x58) != 0) {
     FUN_18022f390();
   }
@@ -45537,7 +45537,7 @@ void Unwind_18090bdd0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090bde0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xc0) + 0x18);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45546,7 +45546,7 @@ void Unwind_18090bde0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090bdf0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   if (*(longlong *)(pointer_ + 0x60) != 0) {
     FUN_18022f390();
   }
@@ -45633,7 +45633,7 @@ void Unwind_18090bf40(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090bf50(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45642,7 +45642,7 @@ void Unwind_18090bf50(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090bf60(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45651,7 +45651,7 @@ void Unwind_18090bf60(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090bf70(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   if (*(longlong *)(pointer_ + 0x38) != 0) {
     FUN_18022f390();
   }
@@ -45685,7 +45685,7 @@ void Unwind_18090bf90(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090bfa0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x90) + 0x18);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45695,7 +45695,7 @@ void Unwind_18090bfa0(uint64_t pointer_,longlong pointer_)
 void Unwind_18090bfb0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = *(longlong **)(pointer_ + 0x20);
@@ -45725,9 +45725,9 @@ void Unwind_18090bfd0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 }
 void Unwind_18090bfe0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x20) + 0x80);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x20) + 0x88);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -45773,9 +45773,9 @@ void Unwind_18090c050(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 }
 void Unwind_18090c060(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x28);
   pointer_ = (longlong *)pointer_[1];
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -45839,8 +45839,8 @@ void Unwind_18090c0f0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090c100(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x58);
   for (pointer_ = *(longlong **)(pointer_ + 0x50); pointer_ != pointer_; pointer_ = pointer_ + 1) {
     if ((longlong *)*pointer_ != (longlong *)0x0) {
@@ -45864,8 +45864,8 @@ void Unwind_18090c120(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090c130(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x58);
   for (pointer_ = *(longlong **)(pointer_ + 0x50); pointer_ != pointer_; pointer_ = pointer_ + 1) {
     if ((longlong *)*pointer_ != (longlong *)0x0) {
@@ -45926,7 +45926,7 @@ void Unwind_18090c150(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090c160(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x48) + 0x20);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45951,7 +45951,7 @@ void Unwind_18090c170(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090c180(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x70) + 0x20);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45960,7 +45960,7 @@ void Unwind_18090c180(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090c190(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x48) + 0x30);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -45969,7 +45969,7 @@ void Unwind_18090c190(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090c1a0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x20);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -46015,12 +46015,12 @@ void Unwind_18090c1c0(uint64_t pointer_,longlong pointer_)
 void Unwind_18090c1d0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   iteration_count = pointer_ + 0x138;
   *(undefined **)((longlong)*(int *)(*(longlong *)(pointer_ + 0x80) + 4) + -0xb8 + iteration_count) =
        &utility_system_reserved_;
-  opointer_ = *(int *)(*(longlong *)(pointer_ + 0x80) + 4);
-  *(int *)((longlong)opointer_ + -0xbc + iteration_count) = opointer_ + -0xb8;
+  operation_result = *(int *)(*(longlong *)(pointer_ + 0x80) + 4);
+  *(int *)((longlong)operation_result + -0xbc + iteration_count) = operation_result + -0xb8;
   FUN_18009fb60(pointer_ + 0x98);
   __1__basic_iostream_DU__char_traits_D_std___std__UEAA_XZ(pointer_ + 0xa0);
                     // WARNING: Could not recover jumpointer_ at 0x0001800c3c62. Too many branches
@@ -46282,7 +46282,7 @@ void Unwind_18090c380(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090c390(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x70) + 0x1b8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -46322,7 +46322,7 @@ void Unwind_18090c3b0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090c3d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x80) + 0x70);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -46367,7 +46367,7 @@ void Unwind_18090c400(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090c420(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   if (*(longlong *)(*(longlong *)(pointer_ + 0x70) + 0x1d8) != 0) {
     FUN_18064e900();
   }
@@ -46413,9 +46413,9 @@ void Unwind_18090c480(void)
 void Unwind_18090c490(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x150)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -46430,17 +46430,17 @@ void Unwind_18090c490(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -46517,7 +46517,7 @@ void Unwind_18090c4f0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090c500(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x118) + 0x20);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -46539,7 +46539,7 @@ void Unwind_18090c510(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090c520(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x118) + 0x58);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -46581,9 +46581,9 @@ void Unwind_18090c530(uint64_t pointer_,longlong pointer_)
 void Unwind_18090c540(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x180)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -46598,17 +46598,17 @@ void Unwind_18090c540(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -46621,9 +46621,9 @@ void Unwind_18090c540(uint64_t pointer_,longlong pointer_)
 void Unwind_18090c550(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x240)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -46638,17 +46638,17 @@ void Unwind_18090c550(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -46678,9 +46678,9 @@ void Unwind_18090c580(uint64_t pointer_,longlong pointer_)
 void Unwind_18090c590(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x1e0)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -46695,17 +46695,17 @@ void Unwind_18090c590(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -46730,9 +46730,9 @@ void Unwind_18090c5b0(void)
 void Unwind_18090c5c0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x120)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -46747,17 +46747,17 @@ void Unwind_18090c5c0(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -46770,9 +46770,9 @@ void Unwind_18090c5c0(uint64_t pointer_,longlong pointer_)
 void Unwind_18090c5d0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x2a0)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -46787,17 +46787,17 @@ void Unwind_18090c5d0(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -46817,9 +46817,9 @@ void Unwind_18090c5e0(void)
 void Unwind_18090c5f0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x300)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -46834,17 +46834,17 @@ void Unwind_18090c5f0(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -46857,9 +46857,9 @@ void Unwind_18090c5f0(uint64_t pointer_,longlong pointer_)
 void Unwind_18090c600(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x360)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -46874,17 +46874,17 @@ void Unwind_18090c600(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -47299,9 +47299,9 @@ void Unwind_18090ca10(void)
 void Unwind_18090ca20(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0xd0)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -47316,17 +47316,17 @@ void Unwind_18090ca20(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -47346,9 +47346,9 @@ void Unwind_18090ca30(void)
 void Unwind_18090ca40(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x130)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -47363,17 +47363,17 @@ void Unwind_18090ca40(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -47400,9 +47400,9 @@ void Unwind_18090ca60(void)
 void Unwind_18090ca70(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 400)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -47417,17 +47417,17 @@ void Unwind_18090ca70(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -47452,9 +47452,9 @@ void Unwind_18090ca90(void)
 void Unwind_18090caa0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x1f0)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -47469,17 +47469,17 @@ void Unwind_18090caa0(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -47504,9 +47504,9 @@ void Unwind_18090cac0(void)
 void Unwind_18090cad0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x250)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -47521,17 +47521,17 @@ void Unwind_18090cad0(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -47556,9 +47556,9 @@ void Unwind_18090caf0(void)
 void Unwind_18090cb00(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x2b0)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -47573,17 +47573,17 @@ void Unwind_18090cb00(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -47601,9 +47601,9 @@ void Unwind_18090cb10(uint64_t pointer_,longlong pointer_)
 void Unwind_18090cb20(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x310)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -47618,17 +47618,17 @@ void Unwind_18090cb20(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -47646,9 +47646,9 @@ void Unwind_18090cb30(uint64_t pointer_,longlong pointer_)
 void Unwind_18090cb40(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x4f0)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -47663,17 +47663,17 @@ void Unwind_18090cb40(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -47693,9 +47693,9 @@ void Unwind_18090cb50(void)
 void Unwind_18090cb60(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x370)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -47710,17 +47710,17 @@ void Unwind_18090cb60(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -47738,9 +47738,9 @@ void Unwind_18090cb70(uint64_t pointer_,longlong pointer_)
 void Unwind_18090cb80(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x3d0)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -47755,17 +47755,17 @@ void Unwind_18090cb80(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -47804,9 +47804,9 @@ void Unwind_18090cbc0(void)
 void Unwind_18090cbd0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x430)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -47821,17 +47821,17 @@ void Unwind_18090cbd0(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -47856,9 +47856,9 @@ void Unwind_18090cbf0(void)
 void Unwind_18090cc00(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x490)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -47873,17 +47873,17 @@ void Unwind_18090cc00(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -47963,9 +47963,9 @@ void Unwind_18090ccd0(void)
 void Unwind_18090cce0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x50)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -47980,17 +47980,17 @@ void Unwind_18090cce0(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -48230,7 +48230,7 @@ void Unwind_18090cea0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ceb0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x38) + 0x20);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -48252,7 +48252,7 @@ void Unwind_18090cec0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ced0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x38) + 0x58);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -48387,22 +48387,22 @@ void Unwind_18090cfc0(uint64_t pointer_,longlong pointer_)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void Unwind_18090cfd0(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
+  int operation_result;;
   utility_system_reserved_ = *(uint64_t *)(pointer_ + 0x28);
-  opointer_ = _Mtx_unlock(0x180c91970);
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  operation_result = _Mtx_unlock(0x180c91970);
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 void Unwind_18090cfe0(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
+  int operation_result;;
   utility_system_reserved_ = *(uint64_t *)(pointer_ + 0x90);
-  opointer_ = _Mtx_unlock(0x180c91970);
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  operation_result = _Mtx_unlock(0x180c91970);
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   return;
 }
@@ -50825,7 +50825,7 @@ void Unwind_18090d540(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090d550(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x130) + 0x20);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -50847,7 +50847,7 @@ void Unwind_18090d560(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090d570(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x130) + 0x58);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -50957,9 +50957,9 @@ void Unwind_18090d640(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090d650(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x40) + 0x40);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x48);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -51013,7 +51013,7 @@ void Unwind_18090d6e0(void)
 }
 void Unwind_18090d700(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x13b8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51022,7 +51022,7 @@ void Unwind_18090d700(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090d720(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x13d0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51031,7 +51031,7 @@ void Unwind_18090d720(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090d740(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x13e8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51040,7 +51040,7 @@ void Unwind_18090d740(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090d760(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1400);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51049,7 +51049,7 @@ void Unwind_18090d760(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090d780(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1418);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51058,7 +51058,7 @@ void Unwind_18090d780(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090d7a0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1430);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51067,7 +51067,7 @@ void Unwind_18090d7a0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090d7c0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1448);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51121,7 +51121,7 @@ void Unwind_18090d7e0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090d800(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x14d8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51130,7 +51130,7 @@ void Unwind_18090d800(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090d820(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x14e0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51139,7 +51139,7 @@ void Unwind_18090d820(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090d840(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x14e8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51148,7 +51148,7 @@ void Unwind_18090d840(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090d860(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x14f0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51157,7 +51157,7 @@ void Unwind_18090d860(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090d880(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x14f8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51166,7 +51166,7 @@ void Unwind_18090d880(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090d8a0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1540);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51175,7 +51175,7 @@ void Unwind_18090d8a0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090d8c0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1548);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51184,7 +51184,7 @@ void Unwind_18090d8c0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090d8e0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1550);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51208,7 +51208,7 @@ void Unwind_18090d980(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090d9c0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x1588);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51237,7 +51237,7 @@ void Unwind_18090da60(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090da80(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x3cb0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51311,7 +51311,7 @@ void Unwind_18090dc60(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090dc90(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x48) + 8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51331,7 +51331,7 @@ void Unwind_18090dcd0(uint64_t pointer_,longlong pointer_)
 void Unwind_18090dd00(uint64_t pointer_,longlong pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x40) + 0x48);
   pointer_ = *(uint64_t **)(*(longlong *)(pointer_ + 0x40) + 0x50);
@@ -51352,7 +51352,7 @@ void Unwind_18090dd00(uint64_t pointer_,longlong pointer_)
 void Unwind_18090dd10(uint64_t pointer_,longlong pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   pointer_ = *(longlong **)(pointer_ + 0x48);
   pointer_ = (uint64_t *)pointer_[1];
@@ -51409,7 +51409,7 @@ void Unwind_18090de20(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090de30(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xe0) + 0x10);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51449,9 +51449,9 @@ void Unwind_18090de40(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090de50(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0xe0) + 0x40);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xe0) + 0x48);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -51466,7 +51466,7 @@ void Unwind_18090de50(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090de60(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xe0) + 0x60);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51519,7 +51519,7 @@ void Unwind_18090df00(void)
 }
 void Unwind_18090df20(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xe0) + 0x13b8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51528,7 +51528,7 @@ void Unwind_18090df20(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090df40(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xe0) + 0x13d0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51537,7 +51537,7 @@ void Unwind_18090df40(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090df60(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xe0) + 0x13e8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51546,7 +51546,7 @@ void Unwind_18090df60(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090df80(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xe0) + 0x1400);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51555,7 +51555,7 @@ void Unwind_18090df80(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090dfa0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xe0) + 0x1418);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51564,7 +51564,7 @@ void Unwind_18090dfa0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090dfc0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xe0) + 0x1430);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51573,7 +51573,7 @@ void Unwind_18090dfc0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090dfe0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xe0) + 0x1448);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51627,7 +51627,7 @@ void Unwind_18090e000(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090e020(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xe0) + 0x14d8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51636,7 +51636,7 @@ void Unwind_18090e020(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090e040(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xe0) + 0x14e0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51645,7 +51645,7 @@ void Unwind_18090e040(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090e060(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xe0) + 0x14e8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51654,7 +51654,7 @@ void Unwind_18090e060(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090e080(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xe0) + 0x14f0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51663,7 +51663,7 @@ void Unwind_18090e080(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090e0a0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xe0) + 0x14f8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51672,7 +51672,7 @@ void Unwind_18090e0a0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090e0c0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xe0) + 0x1540);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51681,7 +51681,7 @@ void Unwind_18090e0c0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090e0e0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xe0) + 0x1548);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51690,7 +51690,7 @@ void Unwind_18090e0e0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090e100(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xe0) + 0x1550);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51714,7 +51714,7 @@ void Unwind_18090e1a0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090e1e0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xe0) + 0x1588);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51743,7 +51743,7 @@ void Unwind_18090e280(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090e2a0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xe0) + 0x3cb0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51854,9 +51854,9 @@ void Unwind_18090e3d0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090e3e0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0xe8);
   pointer_ = (longlong *)pointer_[1];
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -51911,7 +51911,7 @@ void Unwind_18090e4e0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090e520(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x30) + 0xdf8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51920,7 +51920,7 @@ void Unwind_18090e520(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090e540(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x30) + 0xe00);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51934,7 +51934,7 @@ void Unwind_18090e560(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090e5a0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x30) + 0xe18);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51958,7 +51958,7 @@ void Unwind_18090e620(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090e650(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x30) + 8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -51967,7 +51967,7 @@ void Unwind_18090e650(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090e660(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xe8) + 8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -52006,9 +52006,9 @@ void Unwind_18090e730(uint64_t pointer_,longlong pointer_)
 void Unwind_18090e760(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x70)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -52023,17 +52023,17 @@ void Unwind_18090e760(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -52054,9 +52054,9 @@ void Unwind_18090e770(uint64_t pointer_,longlong pointer_)
 void Unwind_18090e7a0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x1a0)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -52071,17 +52071,17 @@ void Unwind_18090e7a0(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -52094,9 +52094,9 @@ void Unwind_18090e7a0(uint64_t pointer_,longlong pointer_)
 void Unwind_18090e7b0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0xa0)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -52111,17 +52111,17 @@ void Unwind_18090e7b0(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -52134,9 +52134,9 @@ void Unwind_18090e7b0(uint64_t pointer_,longlong pointer_)
 void Unwind_18090e7c0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x100)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -52151,17 +52151,17 @@ void Unwind_18090e7c0(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -52174,9 +52174,9 @@ void Unwind_18090e7c0(uint64_t pointer_,longlong pointer_)
 void Unwind_18090e7d0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x60)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -52191,17 +52191,17 @@ void Unwind_18090e7d0(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -52214,9 +52214,9 @@ void Unwind_18090e7d0(uint64_t pointer_,longlong pointer_)
 void Unwind_18090e7e0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x90)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -52231,17 +52231,17 @@ void Unwind_18090e7e0(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -52254,9 +52254,9 @@ void Unwind_18090e7e0(uint64_t pointer_,longlong pointer_)
 void Unwind_18090e7f0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0xf0)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -52271,17 +52271,17 @@ void Unwind_18090e7f0(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -52294,9 +52294,9 @@ void Unwind_18090e7f0(uint64_t pointer_,longlong pointer_)
 void Unwind_18090e800(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x1b0)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -52311,17 +52311,17 @@ void Unwind_18090e800(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -52341,9 +52341,9 @@ void Unwind_18090e810(void)
 void Unwind_18090e820(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x210)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -52358,17 +52358,17 @@ void Unwind_18090e820(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -52388,9 +52388,9 @@ void Unwind_18090e830(void)
 void Unwind_18090e840(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x270)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -52405,17 +52405,17 @@ void Unwind_18090e840(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -52435,9 +52435,9 @@ void Unwind_18090e850(void)
 void Unwind_18090e860(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x2d0)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -52452,17 +52452,17 @@ void Unwind_18090e860(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -52588,7 +52588,7 @@ void Unwind_18090e930(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090e940(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x28) + 0x20);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -52610,7 +52610,7 @@ void Unwind_18090e950(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090e960(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x28) + 0x58);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -52736,9 +52736,9 @@ void Unwind_18090ead0(uint64_t pointer_,longlong pointer_)
 void Unwind_18090eb00(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   if (0 < *(int *)(pointer_ + 0x140)) {
     iteration_count = *(longlong *)(utility_system_reserved_ + 0x1cd8);
@@ -52753,17 +52753,17 @@ void Unwind_18090eb00(uint64_t pointer_,longlong pointer_)
       }
       iteration_count = (longlong)*(int *)(iteration_count + 0x8088) * 0x20;
       iteration_count = *(longlong *)(iteration_count + 200 + iteration_count + 0x7f20);
-      opointer_ = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
-      if (-1 < opointer_) {
-        iteration_count = (longlong)opointer_;
+      operation_result = (int)(*(longlong *)(iteration_count + 0xd0 + iteration_count + 0x7f20) - iteration_count >> 3) + -1;
+      if (-1 < operation_result) {
+        iteration_count = (longlong)operation_result;
         do {
           if (*(char *)(*(longlong *)(iteration_count + iteration_count * 8) + 0x60) == '\x01') {
-            if (opointer_ != -1) {
-              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)opointer_ * 8));
+            if (operation_result != -1) {
+              FUN_1802c24b0(*(uint64_t *)(iteration_count + (longlong)operation_result * 8));
             }
             break;
           }
-          opointer_ = opointer_ + -1;
+          operation_result = operation_result + -1;
           iteration_count = iteration_count + -1;
         } while (-1 < iteration_count);
       }
@@ -52803,7 +52803,7 @@ void Unwind_18090eb30(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090eb40(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x108) + 0x20);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -52825,7 +52825,7 @@ void Unwind_18090eb50(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090eb60(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x108) + 0x58);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -52928,7 +52928,7 @@ void Unwind_18090ec40(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ec50(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x30) + 0x58);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -52980,7 +52980,7 @@ void Unwind_18090ecd0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ece0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x58) + 0x28);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -53088,7 +53088,7 @@ void Unwind_18090ed70(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ed80(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x58);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -53146,7 +53146,7 @@ void Unwind_18090ede0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 }
 void Unwind_18090edf0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x88) + 0x40);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -53195,7 +53195,7 @@ void Unwind_18090ee40(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 }
 void Unwind_18090ee50(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x98) + 0x40);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -53235,7 +53235,7 @@ void Unwind_18090ee90(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 }
 void Unwind_18090eea0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   if (*(longlong *)(*(longlong *)(pointer_ + 0x58) + 0x1d8) != 0) {
     FUN_18064e900();
   }
@@ -53314,7 +53314,7 @@ void Unwind_18090eee0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ef00(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x48) + 0x1b8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -53354,7 +53354,7 @@ void Unwind_18090ef20(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ef40(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 8) + 0x70);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -53425,7 +53425,7 @@ void Unwind_18090ef60(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ef70(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x48) + 0x70);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -53456,10 +53456,10 @@ void Unwind_18090efc0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 void Unwind_18090efe0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   iteration_count = *(longlong *)(pointer_ + 0x70);
   pointer_ = (longlong *)(iteration_count + 0x300);
   iteration_count = *(longlong *)(iteration_count + 0x310);
@@ -53494,9 +53494,9 @@ void Unwind_18090efe0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f000(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x70) + 0x358);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x70) + 0x360);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 4) {
@@ -53532,10 +53532,10 @@ void Unwind_18090f030(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 }
 void Unwind_18090f040(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x78);
   iteration_count = pointer_[2];
   iteration_count = pointer_[4];
@@ -53569,9 +53569,9 @@ void Unwind_18090f040(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f050(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x78);
   iteration_count = *pointer_;
   if (iteration_count != 0) {
@@ -53595,9 +53595,9 @@ void Unwind_18090f050(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f060(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x78);
   pointer_ = (longlong *)pointer_[1];
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 4) {
@@ -53621,7 +53621,7 @@ void Unwind_18090f060(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f070(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x78) + 8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -53654,10 +53654,10 @@ void Unwind_18090f0b0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 }
 void Unwind_18090f0c0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x40);
   iteration_count = pointer_[2];
   iteration_count = pointer_[4];
@@ -53691,9 +53691,9 @@ void Unwind_18090f0c0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f0d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x40);
   pointer_ = (longlong *)pointer_[1];
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 4) {
@@ -53738,9 +53738,9 @@ void Unwind_18090f100(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 }
 void Unwind_18090f110(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(pointer_ + 0x40);
   iteration_count = *pointer_;
   if (iteration_count != 0) {
@@ -53764,7 +53764,7 @@ void Unwind_18090f110(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f120(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x48) + 0x10);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -53773,7 +53773,7 @@ void Unwind_18090f120(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f130(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x48) + 0x18);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -53821,7 +53821,7 @@ void Unwind_18090f160(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f170(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x58) + 0x28);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -53830,7 +53830,7 @@ void Unwind_18090f170(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f180(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -53852,7 +53852,7 @@ void Unwind_18090f190(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f1a0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54123,7 +54123,7 @@ void Unwind_18090f2b0(uint64_t pointer_,longlong pointer_)
 void Unwind_18090f2d0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x60) + 0x180);
   iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0x60) + 0x188);
@@ -54173,9 +54173,9 @@ void Unwind_18090f310(void)
 }
 void Unwind_18090f330(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x60) + 0x210);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x218);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -54190,9 +54190,9 @@ void Unwind_18090f330(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f350(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x60) + 0x230);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x238);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -54210,7 +54210,7 @@ void Unwind_18090f370(uint64_t pointer_,longlong pointer_)
   longlong iteration_count;
   longlong iteration_count;
   uint resource_context;
-  longlong *system_pointer;
+  longlong *resource_manager;
   iteration_count = *(longlong *)(pointer_ + 0x60);
   resource_context = 0;
   pointer_ = (longlong *)(iteration_count + 600);
@@ -54264,7 +54264,7 @@ void Unwind_18090f3d0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f410(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x410);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54273,7 +54273,7 @@ void Unwind_18090f410(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f430(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x418);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54282,7 +54282,7 @@ void Unwind_18090f430(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f450(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x420);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54291,7 +54291,7 @@ void Unwind_18090f450(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f470(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x428);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54300,7 +54300,7 @@ void Unwind_18090f470(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f490(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x430);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54309,7 +54309,7 @@ void Unwind_18090f490(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f4b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x438);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54318,7 +54318,7 @@ void Unwind_18090f4b0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f4d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x440);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54327,7 +54327,7 @@ void Unwind_18090f4d0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f4f0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x448);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54336,7 +54336,7 @@ void Unwind_18090f4f0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f510(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x450);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54345,7 +54345,7 @@ void Unwind_18090f510(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f530(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x458);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54354,7 +54354,7 @@ void Unwind_18090f530(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f550(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x460);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54363,7 +54363,7 @@ void Unwind_18090f550(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f570(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x468);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54379,7 +54379,7 @@ void Unwind_18090f590(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 }
 void Unwind_18090f5b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x40a0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54388,7 +54388,7 @@ void Unwind_18090f5b0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f5d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x40a8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54397,7 +54397,7 @@ void Unwind_18090f5d0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f5f0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x40b0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54447,7 +54447,7 @@ void Unwind_18090f670(uint64_t pointer_,longlong pointer_)
 void Unwind_18090f690(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x68);
   iteration_count = pointer_[1];
@@ -54478,7 +54478,7 @@ void Unwind_18090f6c0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f6f0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x68) + 0x68);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54487,7 +54487,7 @@ void Unwind_18090f6f0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f700(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x68) + 0x70);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54496,7 +54496,7 @@ void Unwind_18090f700(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f710(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x68) + 0x78);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54505,7 +54505,7 @@ void Unwind_18090f710(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f720(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x68) + 0x80);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54514,7 +54514,7 @@ void Unwind_18090f720(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f740(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x68) + 0x88);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54523,7 +54523,7 @@ void Unwind_18090f740(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f760(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x68) + 0x90);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54569,7 +54569,7 @@ void Unwind_18090f7d0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 void Unwind_18090f7e0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x40);
   iteration_count = pointer_[1];
@@ -54624,10 +54624,10 @@ void Unwind_18090f870(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 }
 void Unwind_18090f880(uint64_t pointer_,longlong pointer_)
 {
-  int opointer_;
-  opointer_ = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x140));
-  if (opointer_ != 0) {
-    __Throw_C_error_std__YAXH_Z(opointer_);
+  int operation_result;;
+  operation_result = _Mtx_unlock(*(uint64_t *)(pointer_ + 0x140));
+  if (operation_result != 0) {
+    __Throw_C_error_std__YAXH_Z(operation_result);
   }
   return;
 }
@@ -54661,7 +54661,7 @@ void Unwind_18090f8c0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f8d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x130) + 8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54707,7 +54707,7 @@ void Unwind_18090f960(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f970(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xa0) + 8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54716,7 +54716,7 @@ void Unwind_18090f970(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f980(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xa0) + 0x10);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54725,7 +54725,7 @@ void Unwind_18090f980(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f990(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xa0) + 0x18);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54734,7 +54734,7 @@ void Unwind_18090f990(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f9a0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xa0) + 0x28);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54743,7 +54743,7 @@ void Unwind_18090f9a0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f9b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xa0) + 0x30);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54752,7 +54752,7 @@ void Unwind_18090f9b0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f9c0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xa0) + 0x38);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54761,7 +54761,7 @@ void Unwind_18090f9c0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f9d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xa0) + 0x40);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54770,7 +54770,7 @@ void Unwind_18090f9d0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f9e0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xa0) + 0x48);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54779,7 +54779,7 @@ void Unwind_18090f9e0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090f9f0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xa0) + 0x50);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54788,7 +54788,7 @@ void Unwind_18090f9f0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090fa00(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xa0) + 0x58);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54797,7 +54797,7 @@ void Unwind_18090fa00(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090fa10(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0xa0) + 0x60);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54818,7 +54818,7 @@ void Unwind_18090fa20(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090fa30(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x130) + 0xc0);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54896,7 +54896,7 @@ void Unwind_18090fad0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090fae0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x120) + 0x20);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -54918,7 +54918,7 @@ void Unwind_18090faf0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090fb00(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x120) + 0x58);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -55170,7 +55170,7 @@ void Unwind_18090fe40(uint64_t pointer_,longlong pointer_)
 void Unwind_18090fe50(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x70) + 8);
   iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0x70) + 0x10);
@@ -55185,7 +55185,7 @@ void Unwind_18090fe50(uint64_t pointer_,longlong pointer_)
 void Unwind_18090fe60(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x80);
   iteration_count = pointer_[1];
@@ -55252,7 +55252,7 @@ void Unwind_18090ff00(uint64_t pointer_,longlong pointer_)
 void Unwind_18090ff10(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x100) + 0x18);
   iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0x100) + 0x20);
@@ -55276,7 +55276,7 @@ void Unwind_18090ff30(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_18090ff50(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x100) + 0x180);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -55291,7 +55291,7 @@ void Unwind_18090ff70(uint64_t pointer_,longlong pointer_)
 void Unwind_18090ff80(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x158);
   iteration_count = pointer_[1];
@@ -55350,7 +55350,7 @@ void Unwind_18090ffb0(uint64_t pointer_,longlong pointer_)
 void Unwind_18090ffe0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x58) + 8);
   iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0x58) + 0x10);
@@ -55365,7 +55365,7 @@ void Unwind_18090ffe0(uint64_t pointer_,longlong pointer_)
 void Unwind_18090fff0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x60);
   iteration_count = pointer_[1];
@@ -55379,7 +55379,7 @@ void Unwind_18090fff0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180910000(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x38) + 8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -55389,7 +55389,7 @@ void Unwind_180910000(uint64_t pointer_,longlong pointer_)
 void Unwind_180910010(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x60) + 8);
   iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0x60) + 0x10);
@@ -55404,7 +55404,7 @@ void Unwind_180910010(uint64_t pointer_,longlong pointer_)
 void Unwind_180910020(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x68);
   iteration_count = pointer_[1];
@@ -55418,7 +55418,7 @@ void Unwind_180910020(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180910030(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   longlong iteration_count;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x68) + 0x28);
@@ -55436,7 +55436,7 @@ void Unwind_180910030(uint64_t pointer_,longlong pointer_)
 void Unwind_180910040(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x70) + 8);
   iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0x70) + 0x10);
@@ -55453,7 +55453,7 @@ void Unwind_180910040(uint64_t pointer_,longlong pointer_)
 void Unwind_180910050(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x78);
   iteration_count = pointer_[1];
@@ -55469,7 +55469,7 @@ void Unwind_180910050(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180910060(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x68) + 8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -55578,7 +55578,7 @@ void Unwind_1809100a0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809100b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x70) + 0x98);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -55588,7 +55588,7 @@ void Unwind_1809100b0(uint64_t pointer_,longlong pointer_)
 void Unwind_1809100d0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x40) + 8);
   iteration_count = *(longlong *)(*(longlong *)(pointer_ + 0x40) + 0x10);
@@ -55605,7 +55605,7 @@ void Unwind_1809100d0(uint64_t pointer_,longlong pointer_)
 void Unwind_1809100e0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x48);
   iteration_count = pointer_[1];
@@ -55667,7 +55667,7 @@ void Unwind_1809100f0(uint64_t pointer_,longlong pointer_)
 void Unwind_180910100(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x40);
   iteration_count = pointer_[1];
@@ -55710,7 +55710,7 @@ void Unwind_180910130(uint64_t pointer_,longlong pointer_)
 void Unwind_180910150(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x40);
   iteration_count = pointer_[1];
@@ -55792,7 +55792,7 @@ void Unwind_1809101e0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809101f0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x28) + 8);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -55801,7 +55801,7 @@ void Unwind_1809101f0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180910200(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x28) + 0x28);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -55810,7 +55810,7 @@ void Unwind_180910200(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180910210(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x28) + 0x30);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -55819,7 +55819,7 @@ void Unwind_180910210(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180910220(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x28) + 0x38);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -55828,7 +55828,7 @@ void Unwind_180910220(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180910230(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x28) + 0x40);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -55837,7 +55837,7 @@ void Unwind_180910230(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180910240(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x28) + 0x48);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -55846,7 +55846,7 @@ void Unwind_180910240(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180910250(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x28) + 0x50);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -55855,7 +55855,7 @@ void Unwind_180910250(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180910260(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x28) + 0x60);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -55933,7 +55933,7 @@ void Unwind_180910300(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 void Unwind_180910310(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = *(longlong **)(pointer_ + 0x150);
@@ -56159,14 +56159,14 @@ void Unwind_180910440(uint64_t pointer_,longlong pointer_)
 void Unwind_180910450(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   iteration_count = *(longlong *)(pointer_ + 0x60);
   iteration_count = iteration_count + 0x1d8;
   *(undefined **)((longlong)*(int *)(*(longlong *)(iteration_count + 0x128) + 4) + -0xb0 + iteration_count) =
        &utility_system_reserved_;
-  opointer_ = *(int *)(*(longlong *)(iteration_count + 0x128) + 4);
-  *(int *)((longlong)opointer_ + -0xb4 + iteration_count) = opointer_ + -0xb0;
+  operation_result = *(int *)(*(longlong *)(iteration_count + 0x128) + 4);
+  *(int *)((longlong)operation_result + -0xb4 + iteration_count) = operation_result + -0xb0;
   FUN_18009fb60(iteration_count + 0x138);
   __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(iteration_count + 0x140);
                     // WARNING: Could not recover jumpointer_ at 0x0001800fd4a2. Too many branches
@@ -56176,7 +56176,7 @@ void Unwind_180910450(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180910470(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x238);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -56185,7 +56185,7 @@ void Unwind_180910470(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180910490(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 600);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -56194,7 +56194,7 @@ void Unwind_180910490(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809104b0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x260);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -56203,9 +56203,9 @@ void Unwind_1809104b0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809104d0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x60) + 0x268);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x60) + 0x270);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -56327,14 +56327,14 @@ void Unwind_180910590(uint64_t pointer_,longlong pointer_)
 void Unwind_1809105a0(uint64_t pointer_,longlong pointer_)
 {
   longlong iteration_count;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   iteration_count = *(longlong *)(pointer_ + 0x40);
   iteration_count = iteration_count + 0x1d8;
   *(undefined **)((longlong)*(int *)(*(longlong *)(iteration_count + 0x128) + 4) + -0xb0 + iteration_count) =
        &utility_system_reserved_;
-  opointer_ = *(int *)(*(longlong *)(iteration_count + 0x128) + 4);
-  *(int *)((longlong)opointer_ + -0xb4 + iteration_count) = opointer_ + -0xb0;
+  operation_result = *(int *)(*(longlong *)(iteration_count + 0x128) + 4);
+  *(int *)((longlong)operation_result + -0xb4 + iteration_count) = operation_result + -0xb0;
   FUN_18009fb60(iteration_count + 0x138);
   __1__basic_istream_DU__char_traits_D_std___std__UEAA_XZ(iteration_count + 0x140);
                     // WARNING: Could not recover jumpointer_ at 0x0001800fd4a2. Too many branches
@@ -56344,7 +56344,7 @@ void Unwind_1809105a0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809105c0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x238);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -56353,7 +56353,7 @@ void Unwind_1809105c0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_1809105e0(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 600);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -56362,7 +56362,7 @@ void Unwind_1809105e0(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180910600(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x260);
   if (pointer_ != (longlong *)0x0) {
     (**(code **)(*pointer_ + 0x38))();
@@ -56371,9 +56371,9 @@ void Unwind_180910600(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180910620(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
-  longlong *system_pointer;
-  longlong *system_pointer;
+  longlong *resource_manager;
+  longlong *resource_manager;
+  longlong *resource_manager;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x40) + 0x268);
   pointer_ = *(longlong **)(*(longlong *)(pointer_ + 0x40) + 0x270);
   for (pointer_ = (longlong *)*pointer_; pointer_ != pointer_; pointer_ = pointer_ + 1) {
@@ -56573,7 +56573,7 @@ void Unwind_180910750(uint64_t pointer_,longlong pointer_)
 }
 void Unwind_180910760(uint64_t pointer_,longlong pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   longlong iteration_count;
   pointer_ = *(longlong **)(pointer_ + 0x40);
   for (iteration_count = *pointer_; iteration_count != pointer_[1]; iteration_count = iteration_count + 0x28) {
@@ -58177,7 +58177,7 @@ void Unwind_180910fa0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 void Unwind_180910fc0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x80) + 0x2610);
@@ -58194,7 +58194,7 @@ void Unwind_180910fc0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 void Unwind_180910fe0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x80) + 0x2630);
@@ -59706,7 +59706,7 @@ void Unwind_180911800(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 void Unwind_180911820(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x40) + 0x2610);
@@ -59723,7 +59723,7 @@ void Unwind_180911820(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 void Unwind_180911840(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
-  longlong *system_pointer;
+  longlong *resource_manager;
   uint64_t *pointer_;
   long long resource_context;
   pointer_ = (longlong *)(*(longlong *)(pointer_ + 0x40) + 0x2630);
@@ -60430,7 +60430,7 @@ void Unwind_180911dc0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
 void Unwind_180911de0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   int *pointer_;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   longlong iteration_count;
   ulonglong resource_context;
@@ -60442,9 +60442,9 @@ void Unwind_180911de0(uint64_t pointer_,longlong pointer_,uint64_t pointer_,uint
   resource_context = resource_context;
   if (0 < *pointer_) {
     do {
-      opointer_ = *(int *)(*(longlong *)(iteration_count + 0x1e78) + 8 + resource_context);
-      if ((opointer_ != -1) &&
-         (iteration_count = *(longlong *)((longlong)opointer_ * 0x60 + *(longlong *)(iteration_count + 0x1e68) + 8),
+      operation_result = *(int *)(*(longlong *)(iteration_count + 0x1e78) + 8 + resource_context);
+      if ((operation_result != -1) &&
+         (iteration_count = *(longlong *)((longlong)operation_result * 0x60 + *(longlong *)(iteration_count + 0x1e68) + 8),
          iteration_count != 0)) {
         if (utility_system_reserved_ != 0) {
           *(int *)(utility_system_reserved_ + 0x3a8) = *(int *)(utility_system_reserved_ + 0x3a8) + -1;
@@ -62036,10 +62036,10 @@ uint32_t utility_system_reserved_;
 void FUN_18094136c(uint64_t pointer_,longlong pointer_)
 {
   char cvariable;
-  int opointer_;
+  int operation_result;;
   cvariable = *(char *)(pointer_ + 0x40);
-  opointer_ = func_0x0001808fd8d4();
-  if ((opointer_ != 0) && (cvariable == '\0')) {
+  operation_result = func_0x0001808fd8d4();
+  if ((operation_result != 0) && (cvariable == '\0')) {
     LOCK();
     utility_system_reserved_ = 0;
     UNLOCK();
@@ -62051,11 +62051,11 @@ void FUN_18094136c(uint64_t pointer_,longlong pointer_)
 void FUN_180941383(uint64_t pointer_,longlong pointer_)
 {
   char cvariable;
-  int opointer_;
+  int operation_result;;
   FUN_1808fc5ac();
   cvariable = *(char *)(pointer_ + 0x38);
-  opointer_ = func_0x0001808fd8d4();
-  if ((opointer_ != 0) && (cvariable == '\0')) {
+  operation_result = func_0x0001808fd8d4();
+  if ((operation_result != 0) && (cvariable == '\0')) {
     LOCK();
     utility_system_reserved_ = 0;
     UNLOCK();
@@ -62312,7 +62312,7 @@ void FUN_180941900(void)
  void FUN_180941920(uint64_t pointer_,uint64_t pointer_,uint64_t pointer_,uint64_t pointer_)
 void FUN_180941920(uint64_t pointer_,uint64_t pointer_,uint64_t pointer_,uint64_t pointer_)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = utility_system_reserved_;
   FUN_18008d1f0(pointer_,utility_system_reserved_[1],pointer_,pointer_,0xfffffffffffffffe);
   utility_system_reserved_[1] = (longlong)pointer_;
@@ -63090,14 +63090,14 @@ void utility_setupointer_(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
- void utility_pointer_(void)
-void utility_pointer_(void)
+ void utility_process_pointer(void)
+void utility_process_pointer(void)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   int *pointer_;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = utility_system_reserved_;
   if (utility_system_reserved_ != (longlong *)0x0) {
     LOCK();
@@ -63109,10 +63109,10 @@ void utility_pointer_(void)
       (**(code **)*pointer_)(pointer_);
       LOCK();
       pointer_ = (int *)((longlong)pointer_ + 0xc);
-      opointer_ = *pointer_;
+      operation_result = *pointer_;
       *pointer_ = *pointer_ + -1;
       UNLOCK();
-      if (opointer_ == 1) {
+      if (operation_result == 1) {
         (**(code **)(*pointer_ + 8))(pointer_);
       }
     }
@@ -63122,9 +63122,9 @@ void utility_pointer_(void)
  void utility_handle_resource_release(void)
 void utility_handle_resource_release(void)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   int *pointer_;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   longlong *resource_pointer_;
   LOCK();
@@ -63136,10 +63136,10 @@ void utility_handle_resource_release(void)
     (**(code **)*resource_pointer_)();
     LOCK();
     pointer_ = (int *)((longlong)resource_pointer_ + 0xc);
-    opointer_ = *pointer_;
+    operation_result = *pointer_;
     *pointer_ = *pointer_ + -1;
     UNLOCK();
-    if (opointer_ == 1) {
+    if (operation_result == 1) {
       (**(code **)(*resource_pointer_ + 8))();
     }
   }
@@ -63154,11 +63154,11 @@ void utility_empointer_(void)
  void utility_decrement_reference_count(void)
 void utility_decrement_reference_count(void)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   int *pointer_;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = utility_system_reserved_;
   if (utility_system_reserved_ != (longlong *)0x0) {
     LOCK();
@@ -63170,10 +63170,10 @@ void utility_decrement_reference_count(void)
       (**(code **)*pointer_)(pointer_);
       LOCK();
       pointer_ = (int *)((longlong)pointer_ + 0xc);
-      opointer_ = *pointer_;
+      operation_result = *pointer_;
       *pointer_ = *pointer_ + -1;
       UNLOCK();
-      if (opointer_ == 1) {
+      if (operation_result == 1) {
         (**(code **)(*pointer_ + 8))(pointer_);
       }
     }
@@ -63183,9 +63183,9 @@ void utility_decrement_reference_count(void)
  void utility_release_resource_handle(void)
 void utility_release_resource_handle(void)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   int *pointer_;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   longlong *resource_pointer_;
   LOCK();
@@ -63197,17 +63197,17 @@ void utility_release_resource_handle(void)
     (**(code **)*resource_pointer_)();
     LOCK();
     pointer_ = (int *)((longlong)resource_pointer_ + 0xc);
-    opointer_ = *pointer_;
+    operation_result = *pointer_;
     *pointer_ = *pointer_ + -1;
     UNLOCK();
-    if (opointer_ == 1) {
+    if (operation_result == 1) {
       (**(code **)(*resource_pointer_ + 8))();
     }
   }
   return;
 }
- void utility_null_opointer_(void)
-void utility_null_opointer_(void)
+ void utility_null_operation_result(void)
+void utility_null_operation_result(void)
 {
   return;
 }
@@ -63215,11 +63215,11 @@ void utility_null_opointer_(void)
  void utility_cleanup_pointer(void)
 void utility_cleanup_pointer(void)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   int *pointer_;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = utility_system_reserved_;
   if (utility_system_reserved_ != (longlong *)0x0) {
     LOCK();
@@ -63231,10 +63231,10 @@ void utility_cleanup_pointer(void)
       (**(code **)*pointer_)(pointer_);
       LOCK();
       pointer_ = (int *)((longlong)pointer_ + 0xc);
-      opointer_ = *pointer_;
+      operation_result = *pointer_;
       *pointer_ = *pointer_ + -1;
       UNLOCK();
-      if (opointer_ == 1) {
+      if (operation_result == 1) {
         (**(code **)(*pointer_ + 8))(pointer_);
       }
     }
@@ -63244,9 +63244,9 @@ void utility_cleanup_pointer(void)
  void utility_free_thread_memory(void)
 void utility_free_thread_memory(void)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   int *pointer_;
-  int opointer_;
+  int operation_result;;
   longlong iteration_count;
   longlong *resource_pointer_;
   LOCK();
@@ -63258,17 +63258,17 @@ void utility_free_thread_memory(void)
     (**(code **)*resource_pointer_)();
     LOCK();
     pointer_ = (int *)((longlong)resource_pointer_ + 0xc);
-    opointer_ = *pointer_;
+    operation_result = *pointer_;
     *pointer_ = *pointer_ + -1;
     UNLOCK();
-    if (opointer_ == 1) {
+    if (operation_result == 1) {
       (**(code **)(*resource_pointer_ + 8))();
     }
   }
   return;
 }
- void utility_no_opointer_(void)
-void utility_no_opointer_(void)
+ void utility_no_operation_result(void)
+void utility_no_operation_result(void)
 {
   return;
 }
@@ -63368,8 +63368,8 @@ void utility_setupointer_(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
- void utility_pointer_(uint64_t pointer_,uint64_t pointer_,uint64_t pointer_,uint64_t pointer_)
-void utility_pointer_(uint64_t pointer_,uint64_t pointer_,uint64_t pointer_,uint64_t pointer_)
+ void utility_process_pointer(uint64_t pointer_,uint64_t pointer_,uint64_t pointer_,uint64_t pointer_)
+void utility_process_pointer(uint64_t pointer_,uint64_t pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
   pointer_ = utility_system_reserved_;
@@ -63458,7 +63458,7 @@ void utility_flush_output(void)
  void utility_finalize_system_state(void)
 void utility_finalize_system_state(void)
 {
-  longlong *system_pointer;
+  longlong *resource_manager;
   pointer_ = utility_system_reserved_;
   if (utility_system_reserved_ != '\0') {
     utility_system_reserved_ = 0xffffffff;
@@ -63565,8 +63565,8 @@ void utility_release_pointer_(void)
   return;
 }
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
- void utility_pointer_(uint64_t pointer_,uint64_t pointer_,uint64_t pointer_,uint64_t pointer_)
-void utility_pointer_(uint64_t pointer_,uint64_t pointer_,uint64_t pointer_,uint64_t pointer_)
+ void utility_process_pointer(uint64_t pointer_,uint64_t pointer_,uint64_t pointer_,uint64_t pointer_)
+void utility_process_pointer(uint64_t pointer_,uint64_t pointer_,uint64_t pointer_,uint64_t pointer_)
 {
   uint64_t *pointer_;
   pointer_ = utility_system_reserved_;

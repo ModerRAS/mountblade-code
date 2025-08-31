@@ -1,10 +1,6 @@
 #include "TaleWorlds.Native.Split.h"
 
-/* 
- * 网络系统头文件
- * 简化实现：美化网络系统常量定义和变量声明，添加详细的文档注释
- * 原本实现：完全重构网络系统所有命名体系，建立统一的语义化命名规范
- */
+/* 网络系统头文件 */
 /* 网络系统核心常量定义 */
 #define NETWORK_OFFSET_STANDARD_BYTE_OFFSET 0xb
 #define NETWORK_OFFSET_STANDARD_WORD_OFFSET 0xc
@@ -20,73 +16,73 @@
 #define NETWORK_OFFSET_STANDARD_TWO_KILOBYTES 0x800
 
 /* 网络数据包大小常量 */
-#define NETWORK_SIZE_SMALL_PACKET_SIZE 0x18
-#define NETWORK_SIZE_MEDIUM_PACKET_SIZE 0x14
-#define NETWORK_SIZE_LARGE_PACKET_SIZE 0x10
+#define NETWORK_PACKET_SIZE_SMALL 0x18
+#define NETWORK_PACKET_SIZE_MEDIUM 0x14
+#define NETWORK_PACKET_SIZE_LARGE 0x10
 
 /* 网络偏移量常量 */
-#define NETWORK_OFFSET_HEADER_PACKET_SIZE 0x90
-#define NETWORK_OFFSET_DATA_CONNECTION_SIZE 0x58
-#define NETWORK_OFFSET_CONFIG_SOCKET_SIZE 0x50
-#define NETWORK_OFFSET_CONNECTION_EXTENDED NETWORK_OFFSET_EXTENDED_INFO
-#define NETWORK_OFFSET_CONNECTION_ENCRYPTION_DATA NETWORK_OFFSET_ENCRYPTION_DATA
-#define NETWORK_OFFSET_CONNECTION_VALIDATION_DATA NETWORK_OFFSET_VALIDATION_DATA
+#define NETWORK_OFFSET_PACKET_HEADER_SIZE 0x90
+#define NETWORK_OFFSET_CONNECTION_DATA_SIZE 0x58
+#define NETWORK_OFFSET_SOCKET_CONFIG_SIZE 0x50
+#define NETWORK_OFFSET_CONNECTION_EXTENDED_INFO NETWORK_OFFSET_EXTENDED_INFO
+#define NETWORK_OFFSET_CONNECTION_ENCRYPTION_INFO NETWORK_OFFSET_ENCRYPTION_DATA
+#define NETWORK_OFFSET_CONNECTION_VALIDATION_INFO NETWORK_OFFSET_VALIDATION_DATA
 
 /* 网络标志和状态常量 */
-#define NETWORK_FLAG_CONNECTION_ACTIVE 0x80
-#define NETWORK_ERROR_TIMEOUT_CODE 0x1f
-#define NETWORK_ERROR_DISCONNECT_CODE 0x1c
-#define NETWORK_MASK_ADDRESS_ALIGNMENT 0xfffffffc
-#define NETWORK_MASK_PACKET_SIZE_LIMIT 0x1f
+#define NETWORK_CONNECTION_FLAG_ACTIVE 0x80
+#define NETWORK_ERROR_CODE_TIMEOUT 0x1f
+#define NETWORK_ERROR_CODE_DISCONNECT 0x1c
+#define NETWORK_ADDRESS_ALIGNMENT_MASK 0xfffffffc
+#define NETWORK_PACKET_SIZE_LIMIT_MASK 0x1f
 
 /* 网络魔术字标识符 */
-#define NETWORK_MAGIC_DISCONNECT_TSIL NETWORK_STATUS_DISCONNECTED_TSIL
-#define NETWORK_MAGIC_DISCONNECT_TNVE NETWORK_STATUS_DISCONNECTED_TNVE
-#define NETWORK_MAGIC_NONBLOCKING_FLAG NETWORK_FLAG_NONBLOCKING_MODE
+#define NETWORK_MAGIC_DISCONNECT_TSIL_VALUE NETWORK_STATUS_DISCONNECTED_TSIL
+#define NETWORK_MAGIC_DISCONNECT_TNVE_VALUE NETWORK_STATUS_DISCONNECTED_TNVE
+#define NETWORK_MAGIC_NONBLOCKING_MODE_FLAG NETWORK_FLAG_NONBLOCKING_MODE
 
 /* 网络函数别名定义 */
-#define NETWORK_PACKET_FUNCTION_INITIALIZE network_packet_function_initialize_primary
-#define NETWORK_PACKET_FUNCTION_PROCESS network_packet_function_process_primary
-#define NETWORK_PACKET_FUNCTION_DECOMPRESS network_packet_function_decompress_primary
+#define NETWORK_FUNC_PACKET_INITIALIZE network_packet_initialize_function
+#define NETWORK_FUNC_PACKET_PROCESS network_packet_process_function
+#define NETWORK_FUNC_PACKET_DECOMPRESS network_packet_decompress_function
 /**
- * @brief 网络连接查询函数
+ * @brief 网络连接查询函数指针
  * 负责查询网络连接状态和信息
  */
-void *network_connection_query_function;
+void *network_connection_query_func_ptr;
 
 /**
- * @brief 网络连接数据处理函数
+ * @brief 网络连接数据处理函数指针
  * 负责处理网络连接数据
  */
-void *network_connection_data_function;
+void *network_connection_data_func_ptr;
 
 /**
- * @brief 网络连接验证函数
+ * @brief 网络连接验证函数指针
  * 负责验证网络连接的有效性
  */
-void *network_connection_validate_function;
+void *network_connection_validate_func_ptr;
 
 /* 网络核心连接管理变量 */
 /**
- * @brief 网络连接主处理器
+ * @brief 主网络连接处理器
  * 负责管理主要的网络连接逻辑
  */
-void *network_connection_handler_primary;
+void *network_connection_main_handler;
 
 /** 主网络连接状态 */
-int network_connection_primary_state;
+int network_connection_main_state;
 
 /** 辅助网络连接状态 */
-int network_connection_secondary_state;
+int network_connection_aux_state;
 
 /** 网络缓冲池管理器 */
-void *network_buffer_pool;
+void *network_buffer_pool_manager;
 
 /** 主网络配置对象 */
-void *network_config_primary;
+void *network_config_main;
 
 /** 辅助网络配置对象 */
-void *network_config_secondary;
+void *network_config_aux;
 
 /* 网络套接字管理 */
 /** 主网络套接字 */
