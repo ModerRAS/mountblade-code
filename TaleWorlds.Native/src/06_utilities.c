@@ -2152,6 +2152,16 @@ return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET),1);
 }
+/**
+ * @brief 获取流状态
+ * 
+ * 获取系统流对象的状态信息，用于监控和管理数据流
+ * 
+ * @return uint32_t 流状态标识符
+ * 
+ * 原本实现：完全重构流状态获取系统
+ * 简化实现：保持现有功能，添加语义化文档注释
+ */
 uint32_t utility_get_stream_status(void)
 {
 int64_t utility_context_main;
