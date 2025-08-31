@@ -12144,7 +12144,12 @@ void system_cleanup_script_resources(void)
 
 
 
-void system_function_03eb10(void)
+/**
+ * @brief 音频配置初始化函数
+ * 初始化音频系统的配置数据结构
+ * @return 初始化状态码
+ */
+void system_initialize_audio_config(void)
 
 {
   char system_status_flag;
@@ -12156,12 +12161,12 @@ void system_function_03eb10(void)
   uint64_t *system_parent_ptr;
   uint64_t *system_child_ptr;
   uint64_t *system_temp_ptr;
-  void **puStackX_18;
+  void **system_stack_config_ptr;
   
   system_context_ptr = (longlong *)system_get_global_context();
   system_data_ptr = (uint64_t *)*system_context_ptr;
   system_status_flag = *(char *)((longlong)system_data_ptr[1] + SYSTEM_OFFSET_STATUS_FLAG);
-  puStackX_18 = &system_data_base_config;
+  system_stack_config_ptr = &system_data_base_config;
   system_parent_ptr = system_data_ptr;
   system_node_ptr = (uint64_t *)system_data_ptr[1];
   while (system_status_flag == '\0') {
@@ -12186,14 +12191,19 @@ void system_function_03eb10(void)
   system_parent_ptr[7] = 0x92a15d52fe2679bd;
   system_parent_ptr[8] = &system_resource_tracker;
   system_parent_ptr[9] = 0;
-  system_parent_ptr[10] = puStackX_18;
+  system_parent_ptr[10] = system_stack_config_ptr;
   return;
 }
 
 
 
 
-void system_function_03ec10(void)
+/**
+ * @brief 音乐配置初始化函数
+ * 初始化音乐系统的配置数据结构
+ * @return 初始化状态码
+ */
+void system_initialize_music_config(void)
 
 {
   char system_status_flag;
