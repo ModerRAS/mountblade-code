@@ -172,7 +172,7 @@ static uint32_t g_utility_system_error_flag = 0;                // 系统错误�
  * @see utility_free_memory, utility_resource_manager
  * @return UTILITY_ZERO 表示操作成功，其他值表示错误状态码
  */
-uint64_t system_memory_operation(uint32_t operation_type, void **resource_handle)
+uint64_t utility_system_memory_operation(uint32_t operation_type, void **resource_handle)
 {
   // 简化实现：基本的内存操作逻辑
   // 原本实现应包含完整的内存分配、释放、重分配等操作
@@ -189,7 +189,7 @@ uint64_t system_memory_operation(uint32_t operation_type, void **resource_handle
  * 主要用于内存管理和资源生命周期控制。
  * 
  * @note 简化实现：提供基本的内存释放功能，原本实现应包含完整的内存释放逻辑。
- * @see system_memory_operation, utility_resource_manager
+ * @see utility_system_memory_operation, utility_resource_manager
  */
 void utility_free_memory(int64_t memory_ptr, uint32_t flags)
 {
@@ -244,7 +244,7 @@ uint64_t utility_resource_manager(void)
   uint64_t operation_result;
   int64_t resource_primary_handle = 0;
   
-  operation_result = system_memory_operation(*(uint32_t *)(resource_primary_handle + UTILITY_DATA_OFFSET_PRIMARY), &g_utility_system_resource_handle);
+  operation_result = utility_system_memory_operation(*(uint32_t *)(resource_primary_handle + UTILITY_DATA_OFFSET_PRIMARY), (void **)&g_utility_system_resource_handle);
   if ((int)operation_result != UTILITY_ZERO) {
     return operation_result;
   }
