@@ -1,134 +1,6 @@
 // 06_utilities.c - 工具系统模块
 // 简化实现：仅美化关键变量名、函数名和添加必要注释，保持代码结构不变
 // 原本实现：完全重构工具系统所有命名体系，建立统一的语义化命名规范
-// 新增剩余硬编码值语义化美化（2025年8月30日最终批次最新完成）：
-// - 美化硬编码掩码常量，将UTILITY_MASK_FFFFFFFFFFFE0替换为UTILITY_MASK_CLEAR_LOW_FIVE_BITS等语义化常量
-// - 美化硬编码偏移量变量，将utility_thread_local_storage_offset_extended_extended_1FF8替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_CLEANUP_PRIMARY等语义化常量
-// - 美化硬编码偏移量变量，将utility_resource_offset_extended_2088_FINAL替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_OPERATION_PRIMARY等语义化常量
-// 新增剩余硬编码十六进制值语义化美化（2025年8月30日最终批次最新完成）：
-// - 美化资源属性偏移量常量，将0xC525443等替换为UTILITY_RESOURCE_PROP_OFFSET_*等语义化常量
-// - 美化内存地址偏移量常量，将UTILITY_OFFSET_STANDARD_8090等替换为UTILITY_MEMORY_ADDRESS_OFFSET_*等语义化常量
-// - 美化线程本地存储偏移量常量，将0x1138等替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_*等语义化常量
-// - 美化数据偏移量常量，将UTILITY_OFFSET_STANDARD_40等替换为UTILITY_DATA_OFFSET_EXTENDED_*等语义化常量
-// - 美化资源偏移量常量，将UTILITY_OFFSET_STANDARD_8等替换为UTILITY_RESOURCE_OFFSET_EXTENDED_*等语义化常量
-// - 美化栈偏移量常量，将0xE0等替换为UTILITY_STACK_OFFSET_*等语义化常量
-// - 原本实现：完全重构所有硬编码十六进制值命名体系，建立统一的语义化命名规范
-// - 简化实现：仅将常见的硬编码十六进制值替换为语义化常量，保持代码结构不变
-// - 美化硬编码掩码常量，将UTILITY_MASK_FFFFFFFFFFFE0替换为UTILITY_MASK_CLEAR_LOW_FIVE_BITS等语义化常量
-// - 美化硬编码偏移量变量，将utility_thread_local_storage_offset_extended_extended_1FF8替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_CLEANUP_PRIMARY等语义化常量
-// - 美化硬编码偏移量变量，将utility_resource_offset_extended_2088_FINAL替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_OPERATION_PRIMARY等语义化常量
-// - 原本实现：完全重构所有剩余硬编码值命名体系，建立统一的语义化命名规范
-// - 简化实现：仅将文件中剩余的硬编码值替换为语义化常量名称，保持代码结构不变
-// 新增线程本地存储偏移量语义化美化（2025年8月30日最终批次最新完成）：
-// - 美化线程本地存储偏移量常量，将UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_2018等替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_DATA_PRIMARY等语义化常量
-// - 美化线程本地存储偏移量常量，将UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_2020等替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_DATA_SECONDARY等语义化常量
-// - 美化线程本地存储偏移量常量，将UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_2030等替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_DATA_TERTIARY等语义化常量
-// - 美化线程本地存储偏移量常量，将UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_1FF8等替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_CLEANUP_PRIMARY等语义化常量
-// - 美化线程本地存储偏移量常量，将UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_2000等替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_CLEANUP_SECONDARY等语义化常量
-// - 美化线程本地存储偏移量常量，将UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_2010等替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_CLEANUP_TERTIARY等语义化常量
-// - 美化线程本地存储偏移量常量，将UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_2088等替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_OPERATION_PRIMARY等语义化常量
-// - 美化线程本地存储偏移量常量，将UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_2090等替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_OPERATION_SECONDARY等语义化常量
-// - 美化线程本地存储偏移量常量，将UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_20A0等替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_OPERATION_TERTIARY等语义化常量
-// - 美化线程本地存储偏移量常量，将UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_2068等替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_HANDLER_PRIMARY等语义化常量
-// - 美化线程本地存储偏移量常量，将UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_2070等替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_HANDLER_SECONDARY等语义化常量
-// - 美化资源偏移量常量，将UTILITY_RESOURCE_OFFSET_EXTENDED_2080等替换为UTILITY_RESOURCE_OFFSET_HANDLER_TERTIARY等语义化常量
-// - 美化资源偏移量常量，将UTILITY_RESOURCE_OFFSET_EXTENDED_20C0等替换为UTILITY_RESOURCE_OFFSET_CALLBACK_PRIMARY等语义化常量
-// - 原本实现：完全重构所有线程本地存储偏移量命名体系，建立统一的语义化命名规范
-// - 简化实现：仅将常见的十六进制偏移量替换为语义化名称，保持代码结构不变
-// 新增临时变量语义化美化（2025年8月30日最终批次最新完成）：
-// - 美化临时整型变量名，将utility_temp_integer_register_primary等替换为utility_temp_int_primary等语义化变量名
-// - 美化临时整型变量名，将utility_temp_integer_register_secondary等替换为utility_temp_int_secondary等语义化变量名
-// - 美化临时浮点变量名，将utility_temp_float_value等替换为utility_temp_float_primary等语义化变量名
-// - 美化临时浮点变量名，将utility_temp_float_value_primary等替换为utility_temp_float_secondary等语义化变量名
-// - 原本实现：完全重构所有临时变量命名体系，建立统一的语义化命名规范
-// - 简化实现：仅将常见的临时变量名替换为语义化名称，保持代码结构不变
-// 新增资源操作偏移量语义化美化（2025年8月30日最终批次最新完成）：
-// - 美化线程本地存储偏移量，将utility_thread_local_storage_offset_C88等替换为utility_thread_local_storage_offset_extended_C88等语义化偏移量
-// - 美化各种数据偏移量，将utility_*_offset_XXXX等替换为utility_*_offset_extended_XXXX等语义化偏移量
-// - 美化资源回调偏移量，将utility_resource_callback_offset_XXXX等替换为utility_resource_callback_offset_extended_XXXX等语义化偏移量
-// - 美化布尔标志偏移量，将utility_boolean_flag_offset_XXXX等替换为utility_boolean_flag_offset_extended_XXXX等语义化偏移量
-// - 美化资源句柄偏移量，将utility_resource_handle_offset_XXXX等替换为utility_resource_handle_offset_extended_XXXX等语义化偏移量
-// - 美化状态标志偏移量，将utility_status_flag_offset_XXXX等替换为utility_status_flag_offset_extended_XXXX等语义化偏移量
-// - 美化数据访问偏移量，将utility_data_access_offset_XXXX等替换为utility_data_access_offset_extended_XXXX等语义化偏移量
-// - 美化资源注册偏移量，将utility_resource_register_offset_XXXX等替换为utility_resource_register_offset_extended_XXXX等语义化偏移量
-// - 美化指针数据偏移量，将utility_pointer_data_offset_XXXX等替换为utility_pointer_data_offset_extended_XXXX等语义化偏移量
-// - 美化缓冲区偏移量，将utility_buffer_offset_XXXX等替换为utility_buffer_offset_extended_XXXX等语义化偏移量
-// - 原本实现：完全重构所有十六进制偏移量命名体系，建立统一的语义化命名规范
-// - 简化实现：仅将常见的十六进制偏移量替换为语义化名称，保持代码结构不变
-// 新增剩余变量名语义化美化（2025年8月30日最终批次最新完成）：
-// - 美化大小阈值变量名，将utility_size_threshold_7A等替换为utility_size_threshold_validation_limit等语义化变量名
-// - 美化操作类型变量名，将utility_operation_type_74等替换为utility_operation_type_integrity_check等语义化变量名
-// - 美化case switch变量名，将utility_case_switch_13等替换为utility_case_switch_operation_start等语义化变量名
-// - 美化完整性检查变量名，将utility_integrity_check_3D等替换为utility_integrity_check_data_validation等语义化变量名
-// - 美化资源操作偏移量变量名，将utility_resource_op_offset_extended_9444d43等替换为utility_resource_op_offset_validation_extended等语义化变量名
-// - 美化互斥锁变量名，将utility_mutex_handle_1等替换为utility_mutex_handle_primary等语义化变量名
-// - 美化栈数据偏移量变量名，将utility_stack_data_offset_extended_extended_48等替换为utility_stack_data_offset_thread_handler等语义化变量名
-// - 美化线程存储偏移量变量名，将utility_thread_storage_offset_extended_538等替换为utility_thread_storage_offset_extended_cleanup_flag等语义化变量名
-// - 美化掩码变量名，将utility_word_mask_ff等替换为utility_word_mask_low_byte等语义化变量名
-// - 美化栈指针变量名，将utility_stack_pointer_neg_E等替换为utility_stack_pointer_neg_data等语义化变量名
-// - 美化内存地址变量名，将utility_memory_offset_extended_fc等替换为utility_memory_offset_extended_effectiveness等语义化变量名
-// - 原本实现：完全重构工具系统所有变量命名体系，建立统一的语义化命名规范
-// - 简化实现：仅将常见的数字后缀变量名替换为语义化名称，保持代码结构不变
-// - 清理重复注释和冗余信息
-// - 美化utility_unwind_final_function_one_*系列函数名，将utility_unwind_final_function_one_eight_delta_zero等替换为utility_unwind_final_function_stage_08_delta等语义化函数名
-// - 美化utility_unwind_final_function_one_*系列函数名，将utility_unwind_final_function_one_nine_*_zero等替换为utility_unwind_final_function_stage_09_*等语义化函数名
-// - 保持代码语义不变，这是简化实现，主要处理了工具系统中剩余非语义化函数名的替换
-// - 美化非语义化函数名，将handle_buffer_data_error等替换为utility_handle_buffer_data_error等语义化函数名
-// - 美化非语义化函数名，将process_resource_handle等替换为utility_process_resource_handle等语义化函数名
-// - 美化非语义化函数名，将validate_resource_status等替换为utility_validate_resource_status等语义化函数名
-// - 美化非语义化函数名，将process_character_data等替换为utility_process_character_data等语义化函数名
-// - 美化非语义化函数名，将process_string_data等替换为utility_process_string_data等语义化函数名
-// - 美化非语义化函数名，将validate_data_operation等替换为utility_validate_data_operation等语义化函数名
-// - 美化非语义化函数名，将process_resource_count等替换为utility_process_resource_count等语义化函数名
-// 新增临时变量名最终语义化美化（2025年8月30日最终批次最新完成）：
-// - 美化临时整型寄存器变量名，将utility_temp_integer_register替换为utility_temp_int_register等语义化变量名
-// - 美化临时浮点寄存器变量名，将utility_temp_float_valueisterister替换为utility_temp_float_register等语义化变量名
-// - 美化临时栈缓冲区变量名，将utility_temporary_stack_buffer替换为utility_temp_stack_buffer等语义化变量名
-// - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了工具系统中剩余的非语义化变量名的语义化替换
-// - 原本实现：完全重构工具系统所有变量命名体系，建立统一的语义化命名规范
-// - 简化实现：仅将常见的非语义化变量名替换为语义化名称，保持代码结构不变
-// - 美化非语义化函数名，将lab_pointer_validation等替换为utility_lab_pointer_validation等语义化函数名
-// - 美化临时变量名，将utility_temp_integer_register替换为utility_temp_integer_register等语义化变量名
-// - 美化临时变量名，将utility_temporary_long_storage替换为utility_temporary_long_storage等语义化变量名
-// - 美化临时变量名，将utility_temp_security_register替换为utility_temp_uint_register等语义化变量名
-// - 美化重复定义的常量，删除重复的#define语句
-// - 美化自引用的常量定义，确保常量定义的正确性
-// - 美化硬编码值，将utility_buffer_size_zero等替换为语义化常量名
-// - 美化线程上下文偏移量变量名，将utility_thread_context_offset_extended_1E68等替换为utility_thread_context_offset_primary等语义化变量名
-// - 美化线程本地存储偏移量变量名，将utility_thread_local_storage_offset_extended_extended_1E60等替换为utility_thread_local_storage_offset_primary等语义化变量名
-// - 美化资源数据偏移量变量名，将utility_resource_data_offset_extended_extended_1E90等替换为utility_resource_data_offset_primary等语义化变量名
-// - 美化函数名，将utility_unwind_final_function_one_echo_zero_zero等替换为utility_unwind_final_function_stage_00等语义化函数名
-// - 清理重复的utility_temp_integer_register定义，统一使用utility_temp_security_register作为标准定义
-// - 美化内存地址偏移量变量名，将utility_memory_offset_extended_810等替换为utility_memory_offset_extended_extended_primary等语义化变量名
-// - 美化数据偏移量变量名，将utility_data_offset_extended_1ac等替换为utility_data_offset_extended_extended_primary等语义化变量名
-// - 保持代码语义不变，这是简化实现，主要处理了工具系统中剩余变量名和常量名的语义化替换
-// 新增语义化常量定义（2025年8月30日最终批次硬编码十六进制值美化）：
-// - 美化回调处理器偏移量常量，将UTILITY_CALLBACK_HANDLER_OFFSET_EXTENDED_PRIMARY等替换为UTILITY_CALLBACK_HANDLER_OFFSET_EXTENDED_PRIMARY等语义化常量
-// - 美化栈操作偏移量常量，将UTILITY_OPERATION_OFFSET_STACK_STANDARD等替换为UTILITY_OPERATION_OFFSET_STACK_STANDARD等语义化常量
-// - 美化掩码常量，将UTILITY_MASK_HIGH_BYTE等替换为UTILITY_MASK_HIGH_BYTE等语义化常量
-// - 保持代码语义不变，这是简化实现，主要处理了工具系统中硬编码十六进制值的语义化替换
-// 新增最终硬编码十六进制值语义化美化（2025年8月30日最终批次最新完成）：
-// - 美化内存地址偏移量变量名，将UTILITY_MEMORY_ADDRESS_OFFSET_EXTENDED_CRITICAL_FLAG替换为UTILITY_MEMORY_ADDRESS_OFFSET_EXTENDED_CRITICAL_FLAG等语义化常量
-// - 美化线程本地存储偏移量变量名，将UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_MEMORY_QUATERNARY等替换为UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_*等语义化常量
-// - 美化资源数据缓冲区偏移量变量名，将UTILITY_RESOURCE_DATA_BUFFER_OFFSET_EXTENDED_EXTENDED_SECONDARY8替换为UTILITY_RESOURCE_DATA_BUFFER_OFFSET_EXTENDED_EXTENDED_SECONDARY8等语义化常量
-// - 提高了代码的可读性和维护性
-// - 保持代码语义不变，这是简化实现，主要处理了工具系统中剩余的硬编码十六进制值的语义化替换
-// - 原本实现：完全重构工具系统所有硬编码值命名体系，建立统一的语义化命名规范
-// - 简化实现：仅将剩余的硬编码十六进制值替换为语义化常量，保持代码结构不变
-// 新增工具模块函数名语义化美化（2025年8月30日最终批次最新完成）：
-// - 美化工具模块函数名，将utility_module_1替换为utility_module_data_processor等语义化函数名
-// - 美化工具模块函数名，将utility_module_8替换为utility_module_memory_handler等语义化函数名
-// - 美化工具模块函数名，将utility_module_10替换为utility_module_pointer_manager等语义化函数名
-// - 美化工具模块函数名，将utility_module_12替换为utility_module_buffer_initializer等语义化函数名
-// - 美化工具模块函数名，将utility_module_13替换为utility_module_resource_allocator等语义化函数名
-// - 美化工具模块函数名，将utility_module_14替换为utility_module_data_validator等语义化函数名
-// - 美化工具模块函数名，将utility_module_16替换为utility_module_memory_cleaner等语义化函数名
-// - 美化工具模块函数名，将utility_module_17替换为utility_module_thread_handler等语义化函数名
-// - 美化工具模块函数名，将utility_module_18替换为utility_module_system_executor等语义化函数名
-// - 美化工具模块函数名，将utility_module_19替换为utility_module_finalizer等语义化函数名
-// - 原本实现：完全重构所有工具模块函数的命名体系，建立统一的语义化命名规范
-// - 简化实现：仅将常见的数字命名工具模块函数替换为语义化名称，保持代码结构不变
 #define UTILITY_CALLBACK_HANDLER_OFFSET_EXTENDED_PRIMARY UTILITY_CALLBACK_HANDLER_OFFSET_EXTENDED_PRIMARY
 #define UTILITY_CALLBACK_HANDLER_OFFSET_EXTENDED_SECONDARY UTILITY_CALLBACK_HANDLER_OFFSET_EXTENDED_SECONDARY
 #define UTILITY_CALLBACK_HANDLER_OFFSET_EXTENDED_TERTIARY UTILITY_CALLBACK_HANDLER_OFFSET_EXTENDED_TERTIARY
@@ -145,9 +17,6 @@
 #define UTILITY_OFFSET_SECONDARY_BYTE 2
 #define UTILITY_OFFSET_PRIMARY_FIELD 4
 #define UTILITY_BIT_SHIFT_TEN 10
-// 新增语义化常量定义（2025年8月30日最终批次十六进制值美化）：
-// 新增语义化常量定义（2025年8月30日最终批次文件末尾十六进制值美化）：
-// - 美化文件末尾剩余的硬编码十六进制偏移量值
 #define UTILITY_RESOURCE_DATA_BUFFER_OFFSET_QUINDECIMAL_PRIMARY UTILITY_RESOURCE_DATA_BUFFER_OFFSET_QUINDECIMAL_PRIMARY
 #define UTILITY_RESOURCE_DATA_BUFFER_OFFSET_QUINDECIMAL_SECONDARY UTILITY_RESOURCE_FLAG_OFFSET_EXTENDED_EXTENDED_ALT2000
 #define UTILITY_RESOURCE_DATA_BUFFER_OFFSET_SENDECIMAL_EXTENDED UTILITY_RESOURCE_FLAG_OFFSET_EXTENDED_EXTENDED_ALT2008
@@ -164,7 +33,6 @@
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_HANDLER_PRIMARY UTILITY_RESOURCE_FLAG_OFFSET_EXTENDED_EXTENDED_ALT2068
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_HANDLER_SECONDARY UTILITY_RESOURCE_FLAG_OFFSET_EXTENDED_EXTENDED_ALT2070
 #define UTILITY_RESOURCE_OFFSET_HANDLER_TERTIARY UTILITY_RESOURCE_FLAG_OFFSET_EXTENDED_EXTENDED_ALT2080
-// 新增线程本地存储偏移量常量（2025年8月30日最终批次美化）：
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_MEMORY_PRIMARY UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_MEMORY_PRIMARY
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_MEMORY_SECONDARY UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_MEMORY_SECONDARY
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_MEMORY_TERTIARY UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_MEMORY_TERTIARY
@@ -175,11 +43,9 @@
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_DATA_QUATERNARY UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_DATA_QUATERNARY
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_DATA_QUINARY UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_DATA_QUINARY
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_DATA_SENARY UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_DATA_SENARY
-// 新增内存地址偏移量常量（2025年8月30日最终批次美化）：
 #define UTILITY_MEMORY_ADDRESS_OFFSET_EXTENDED_SYSTEM_BASE UTILITY_OFFSET_STANDARD_8000
 // 原本实现：完全重构所有硬编码十六进制值命名体系，建立统一的语义化命名规范
 // 简化实现：仅将文件末尾剩余的硬编码十六进制值替换为语义化常量名称，保持代码结构不变
-// 新增硬编码值语义化美化（2025年8月30日最终批次最新完成）：
 // - 美化大小阈值常量，将0x6E等替换为UTILITY_SIZE_THRESHOLD_*等语义化常量
 #define UTILITY_SIZE_THRESHOLD_VALIDATION_MEDIUM UTILITY_SIZE_THRESHOLD_VALIDATION_MEDIUM
 #define UTILITY_SIZE_THRESHOLD_OPERATION_MEDIUM UTILITY_SIZE_THRESHOLD_OPERATION_MEDIUM
@@ -203,7 +69,6 @@
 #define UTILITY_RESOURCE_PROPERTY_OFFSET_TERTIARY UTILITY_RESOURCE_PROPERTY_OFFSET_TERTIARY
 // - 美化资源操作偏移量常量，将0x94B4E42等替换为UTILITY_RESOURCE_OPERATION_OFFSET_*等语义化常量
 #define UTILITY_RESOURCE_OPERATION_OFFSET_PRIMARY UTILITY_RESOURCE_OPERATION_OFFSET_PRIMARY
-// 新增剩余十六进制值常量定义（2025年8月30日最终批次美化）：
 #define UTILITY_RESOURCE_CALLBACK_OFFSET_EXTENDED_PRIMARY UTILITY_RESOURCE_CALLBACK_OFFSET_EXTENDED_PRIMARY
 #define UTILITY_RESOURCE_CALLBACK_OFFSET_EXTENDED_SECONDARY UTILITY_RESOURCE_CALLBACK_OFFSET_EXTENDED_SECONDARY
 #define UTILITY_RESOURCE_CALLBACK_OFFSET_EXTENDED_TERTIARY UTILITY_RESOURCE_CALLBACK_OFFSET_EXTENDED_TERTIARY
@@ -266,11 +131,9 @@
 #define UTILITY_BIT_SHIFT_EVENT_FLAG_SECONDARY UTILITY_BIT_SHIFT_HANDLER_CLEANUP
 #define UTILITY_BIT_SHIFT_EVENT_OPERATION_SECONDARY UTILITY_BIT_SHIFT_MUTEX_CLEANUP
 #define UTILITY_BIT_SHIFT_EVENT_STATE_SECONDARY UTILITY_BIT_SHIFT_CONDITION_CLEANUP
-// 新增语义化常量定义（2025年8月30日最终批次硬编码十六进制值美化）：
 #define UTILITY_BIT_SHIFT_THREAD_STATE UTILITY_BIT_SHIFT_THREAD_STATE
 #define UTILITY_BIT_SHIFT_THREAD_STORAGE UTILITY_BIT_SHIFT_THREAD_STORAGE
 #define UTILITY_BIT_SHIFT_EVENT_STORAGE UTILITY_BIT_SHIFT_EVENT_STORAGE
-// 新增线程本地存储偏移量语义化常量定义（2025年8月30日最终批次最新完成）：
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_DATA_PRIMARY UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_PRIMARY
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_DATA_SECONDARY UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_TERTIARY
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_DATA_TERTIARY UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_SECONDARY
@@ -287,13 +150,11 @@
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_HANDLER_TERTIARY UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_DATA_SENARY
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_CALLBACK_PRIMARY UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_DATA_SECONDARY
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_CALLBACK_SECONDARY UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_DATA_TERTIARY
-// 新增内存地址偏移量语义化常量定义（2025年8月30日最终批次最新完成）：
 #define UTILITY_MEMORY_ADDRESS_OFFSET_EXTENDED_EFFECTIVENESS UTILITY_OFFSET_STANDARD_8000
 #define UTILITY_MEMORY_ADDRESS_OFFSET_MEMORY_ACCESS UTILITY_OFFSET_STANDARD_8000
 #define UTILITY_MEMORY_OFFSET_HEX_OPERATION_SECONDARY UTILITY_OFFSET_STANDARD_8000
 #define UTILITY_MEMORY_ADDRESS_OFFSET_EXTENDED_EXTENDED_SECONDARY UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_SECONDARY
 #define UTILITY_MEMORY_ADDRESS_OFFSET_EXTENDED_CRITICAL_FLAG UTILITY_OFFSET_STANDARD_8000
-// 新增线程本地存储偏移量语义化常量定义（2025年8月30日最终批次最新完成）：
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_MEMORY_QUATERNARY UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_MEMORY_QUATERNARY
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_MEMORY_PRIMARY UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_MEMORY_PRIMARY
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_MEMORY_SECONDARY UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_MEMORY_SECONDARY
@@ -304,9 +165,7 @@
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_MEMORY_DENARY UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_DATA_SENARY
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_MEMORY_SENARY UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_DATA_SECONDARY
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_MEMORY_SEPTENARY UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_DATA_TERTIARY
-// 新增资源数据缓冲区偏移量语义化常量定义（2025年8月30日最终批次最新完成）：
 #define UTILITY_RESOURCE_DATA_BUFFER_OFFSET_EXTENDED_EXTENDED_SECONDARY8 UTILITY_RESOURCE_DATA_BUFFER_HEX_1F88
-// 新增更多线程本地存储偏移量语义化常量定义（2025年8月30日最终批次最新完成）：
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_PRIMARY UTILITY_THREAD_LOCAL_STORAGE_EXTENDED_HEX_1EC8
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_SECONDARY UTILITY_THREAD_LOCAL_STORAGE_EXTENDED_HEX_1ED0
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_TERTIARY UTILITY_THREAD_LOCAL_STORAGE_EXTENDED_HEX_1EE0
@@ -540,7 +399,6 @@
 // - 新增浮点参数和指针语义化常量，将utility_float_param_quaternary等变量名替换为UTILITY_FLOAT_PARAM_*等语义化常量
 // - 保持代码语义不变，这是简化实现，主要处理了工具系统中剩余硬编码值的语义化替换
 // 基础常量定义
-// 新增语义化浮点数常量定义（2025年8月30日最终批次浮点数美化补充）
 #define UTILITY_FLOAT_ONE_POINT_FIVE 1.5f
 #define UTILITY_FLOAT_ZERO 0.0f
 #define UTILITY_FLOAT_ONE 1.0f
@@ -858,7 +716,6 @@
 #define utility_working_buffer_primary_size utility_kilobyte_unit
 #define utility_stack_buffer_local 0
 #define utility_data_start_offset_extended_secondary 0
-// 新增工具系统常量 - 美化硬编码十六进制值（2025年8月30日最终批次）
 // 简化实现：仅将常见的硬编码十六进制值替换为语义化常量
 // 原本实现：完全重构所有硬编码值体系
 #define system_flags_offset 0
@@ -897,7 +754,6 @@
 #define utility_context_thread_count_nonary_offset 0
 #define utility_context_thread_storage_nonary_offset utility_ptr_size_offset_extended_byte
 
-// 新增语义化常量定义 - 美化剩余硬编码十六进制值（2025年8月30日最终批次补充）
 // 美化资源属性偏移量常量
 #define UTILITY_RESOURCE_PROP_OFFSET_EXTENDED_PRIMARY 0xC525443  // 资源属性偏移量扩展主值
 #define UTILITY_RESOURCE_PROP_OFFSET_EXTENDED_SECONDARY 0xF525443  // 资源属性偏移量扩展次值
@@ -971,7 +827,6 @@
 // 美化大小乘数常量
 #define UTILITY_SIZE_MULTIPLIER_TRIPLE 3  // 大小乘数3
 
-// 新增线程本地存储偏移量常量语义化美化（2025年8月30日最终批次最新完成）
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_MEMORY_PRIMARY 0x1F18  // 线程本地存储偏移量内存主值
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_MEMORY_SECONDARY 0x1F20  // 线程本地存储偏移量内存次值
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_MEMORY_TERTIARY 0x1F30  // 线程本地存储偏移量内存第三值
@@ -984,7 +839,6 @@
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_MEMORY_DENARY 0x1FC0  // 线程本地存储偏移量内存第十值
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_MEMORY_SECONDARY8 0x1F88  // 线程本地存储偏移量内存次值8
 
-// 新增资源数据缓冲区偏移量常量语义化美化（2025年8月30日最终批次最新完成）
 #define UTILITY_RESOURCE_DATA_BUFFER_OFFSET_EXTENDED_EXTENDED_SECONDARY8 UTILITY_RESOURCE_DATA_BUFFER_HEX_1F88  // 资源数据缓冲区偏移量次值8
 
 // 原本实现：完全重构所有硬编码十六进制值命名体系，建立统一的语义化命名规范
@@ -1004,7 +858,6 @@
 // 美化迭代指针偏移量常量
 #define UTILITY_ITER_PTR_OFFSET_EXTENDED_EXTENDED_1460 UTILITY_ITER_PTR_OFFSET_EXTENDED_EXTENDED_1460  // 迭代指针偏移量1460
 
-// 新增剩余硬编码十六进制值语义化美化（2025年8月30日最终批次最新完成）
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_PRIMARY UTILITY_THREAD_LOCAL_STORAGE_EXTENDED_HEX_1EC8  // 线程本地存储偏移量扩展主值
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_SECONDARY UTILITY_THREAD_LOCAL_STORAGE_EXTENDED_HEX_1ED0  // 线程本地存储偏移量扩展次值
 #define UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_EXTENDED_TERTIARY UTILITY_THREAD_LOCAL_STORAGE_EXTENDED_HEX_1EE0  // 线程本地存储偏移量扩展第三值
@@ -1123,7 +976,6 @@
 // 新增语义化变量定义 - 美化数据缓冲区变量名（2025年8月30日最终批次美化）
 #define utility_control_data_buffer utility_data_pointer_primary_extended_control_data
 #define utility_boolean_result utility_bool_result
-// 新增语义化类型定义 - 数据类型语义化美化（2025年8月30日最终批次补充美化）
 // - 美化数据类型名，将uint3替换为utility_uint_3等语义化类型名
 // - 保持代码语义不变，这是简化实现，主要处理了工具系统中数据类型的语义化替换
 typedef uint32 utility_uint_standard;
@@ -1155,7 +1007,6 @@ typedef uint32 utility_uint_standard;
 // utility_resource_data_ptr - 资源数据指针
 // utility_resource_count - 资源计数
 // utility_loop_index - 循环索引
-// 新增语义化函数名定义 - 美化更多工具系统函数名（2025年8月30日最终批次美化）
 #define utility_initialize_resource_manager utilityinitializeresourcemanager
 #define utility_cleanup_resource_manager utilitycleanupresourcemanager
 #define utility_validate_resource_integrity utilityvalidateresourceintegrity
@@ -1166,7 +1017,6 @@ typedef uint32 utility_uint_standard;
 #define utility_validate_system_state utilityvalidatesystemstate
 #define utility_execute_system_command utilityexecutesystemcommand
 #define utility_process_system_event utilityprocesssystemevent
-// 新增语义化函数名定义 - 美化剩余工具系统函数名（2025年8月30日最终批次美化补充）
 #define utility_create_resource_handle utilitycreateresourcehandle
 #define utility_encrypt_memory_data utilityencryptmemorydata
 #define utility_get_memory_status utilitygetmemorystatus
@@ -1233,7 +1083,6 @@ typedef uint32 utility_uint_standard;
 // 简化实现：仅将常见的硬编码内存偏移量替换为语义化常量
 // 原本实现：完全重构所有内存偏移量体系，建立统一的语义化命名规范
 // utility_memory_offset_extended_extended_secondary 已在上面定义
-// 新增语义化函数名定义 - 美化工具系统函数名（2025年8月30日最终批次补充美化）
 #define utility_get_resource_info getresourceinfo
 #define utility_check_resource_status checkresourcestatus
 #define utility_allocate_resource_buffer allocateresourcebuffer
@@ -1268,7 +1117,6 @@ typedef uint32 utility_uint_standard;
 #define utility_validate_operation_handle validateoperationhandle
 #define utility_initialize_operation_validator initializeoperationvalidator
 #define utility_handle_operation_callback handleoperationcallback
-// 新增语义化函数名定义 - 美化工具系统函数名（2025年8月30日最终批次补充美化续）
 #define utility_initialize_resource_checker initializeresourcechecker
 #define utility_process_resource_check processresourcecheck
 #define utility_process_integrity_operation processintegrityoperation
@@ -1294,7 +1142,6 @@ typedef uint32 utility_uint_standard;
 #define utility_handle_resource_callback handleresourcecallback
 #define utility_initialize_callback_system initializecallbacksystem
 #define utility_get_callback_status getcallbackstatus
-// 新增语义化函数名定义 - 美化工具系统函数名（2025年8月30日最终批次补充美化最终续）
 #define utility_validate_resource_allocator validate_resource_allocator
 #define utility_process_validation_request processvalidationrequest
 #define utility_handle_validation_callback handlevalidationcallback
@@ -1335,7 +1182,6 @@ typedef uint32 utility_uint_standard;
 #define utilityunwindcleanupphasebuffercleaner utilityunwindcleanupphasebuffercleaner
 #define utilityunwindcleanupphasedatacleaner utilityunwindcleanupphasedatacleaner
 #define utilityunwindcleanupphasefinalcleaner utilityunwindcleanupphasefinalcleaner
-// 新增语义化系统调用函数宏定义 - 2025年8月30日最终批次系统函数语义化美化
 // 美化系统内存操作函数名
 // 美化系统管理函数名
 // 美化文件系统函数名
@@ -1344,7 +1190,6 @@ typedef uint32 utility_uint_standard;
 // 原本实现：完全重构所有系统调用函数命名体系，建立统一的语义化命名规范
 // 简化实现：仅将常见的系统调用函数名替换为语义化名称，保持代码结构不变
 
-// 新增线程存储偏移量常量语义化美化（2025年8月30日最终批次最新完成）
 #define UTILITY_THREAD_STORAGE_OFFSET_EXTENDED_9000 UTILITY_THREAD_STORAGE_HEX_9000  // 线程存储偏移量9000
 #define UTILITY_THREAD_STORAGE_OFFSET_EXTENDED_C60 UTILITY_THREAD_STORAGE_HEX_C60  // 线程存储偏移量C60
 
@@ -24288,7 +24133,6 @@ void utilityunwindfunctiontwoninezero(uint64 utility_resource_primary_handle,lon
                 UTILITY_SYSTEM_END_FLAG_EXTENDED);
   return;
 }
-// 新增语义化函数名定义 - 互斥锁销毁函数语义化美化（2025年8月30日最终批次补充）：
 // - 美化互斥锁销毁函数名，将utility_unwind_function_2b0等替换为语义化名称
 // - 保持代码语义不变，这是简化实现，主要处理了工具系统中互斥锁销毁函数名的语义化替换
 #define utility_unwind_function_2b0 utility_unwind_mutex_destroy_primary
@@ -24297,7 +24141,6 @@ void utilityunwindfunctiontwoninezero(uint64 utility_resource_primary_handle,lon
 #define utility_unwind_function_490 utility_unwind_mutex_destroy_quaternary
 #define utility_unwind_function_590 utility_unwind_mutex_destroy_extended
 #define utility_unwind_function_5b0 utility_unwind_mutex_destroy_alternate
-// 新增语义化函数名定义 - 资源处理函数语义化美化（2025年8月30日最终批次补充）：
 // - 美化资源处理函数名，将utilityunwindfunction[hex]zero等替换为语义化名称
 // - 保持代码语义不变，这是简化实现，主要处理了工具系统中资源处理函数名的语义化替换
 #define utilityunwindfunctionabzero utility_unwind_resource_handler_ab
@@ -59552,4 +59395,20 @@ void utility_unwind_final_function_stage_06_handler_cleanup(uint64 utility_resou
   *(uint64 *)(utility_resource_context_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_HANDLER_PRIMARY) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_final_function_stage_06_thread_callback(uint64 utility_resource_primary_handle,longlong utility_primary_resource_c
+// 线程回调清理函数 - 清理线程相关的回调资源
+void utility_unwind_final_function_stage_06_thread_callback(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
+{
+  longlong utility_thread_context_pointer;
+  utility_resource_context_handle = *(longlong *)(utility_resource_context_handle + utility_buffer_size_thread_handler_offset_main);
+  if (*(code **)(utility_resource_context_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_CALLBACK_PRIMARY) != (code *)utility_pointer_null) {
+    (**(code **)(utility_resource_context_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_CALLBACK_PRIMARY))(utility_resource_context_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_CALLBACK_SECONDARY,utility_pointer_null,utility_resource_callback_handler,UTILITY_SYSTEM_END_FLAG_EXTENDED);
+  }
+  *(uint64 *)(utility_resource_context_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_DATA_PRIMARY) = &utility_thread_local_storage_data;
+  if (*(longlong *)(utility_resource_context_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_DATA_SECONDARY) != utility_zero) {
+    utility_handle_critical_error();
+  }
+  *(uint64 *)(utility_resource_context_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_DATA_SECONDARY) = utility_zero;
+  *(uint32 *)(utility_resource_context_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_DATA_TERTIARY) = utility_zero;
+  *(uint64 *)(utility_resource_context_handle + UTILITY_THREAD_LOCAL_STORAGE_OFFSET_EXTENDED_DATA_PRIMARY) = &utility_thread_local_storage_cleanup;
+  return;
+}
