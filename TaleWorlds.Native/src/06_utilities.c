@@ -1476,7 +1476,7 @@ uint64 utility_create_system_timer(longlong UTILITY_RESOURCE_PRIMARY_HANDLE)
  * 这是一个自动命名的工具函数，具体功能需要进一步分析。
  * 简化实现：仅添加函数名，保持原有逻辑不变。
  */
-void utility_unnamed_function_0041(void)
+void UTILITY_INITIALIZE_CRITICAL_SECTION(void)
 {
   uint64 UTILITY_RESULT;
   UTILITY_RESULT = system_memory_operation(*(uint32 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET),&UTILITY_SYSTEM_RESOURCE_HANDLE);
@@ -1511,7 +1511,7 @@ uint32 utility_start_timer(void)
  * 这是一个自动命名的工具函数，具体功能需要进一步分析。
  * 简化实现：仅添加函数名，保持原有逻辑不变。
  */
-void utility_unnamed_function_0042(void)
+void UTILITY_LEAVE_CRITICAL_SECTION(void)
 {
   longlong UTILITY_REGISTER_INPUT;
   longlong UTILITY_RESOURCE_CACHE;
@@ -1549,7 +1549,7 @@ void utility_stop_timer(void)
  * 这是一个自动命名的工具函数，具体功能需要进一步分析。
  * 简化实现：仅添加函数名，保持原有逻辑不变。
  */
-void utility_unnamed_function_0043(void)
+void UTILITY_ENTER_CRITICAL_SECTION(void)
 {
 
   utility_free_memory(NULL, UTILITY_MEMORY_FLAG);
@@ -58720,8 +58720,8 @@ void utility_stage_function_zero_foxtrot_alpha_zero(uint64 UTILITY_RESOURCE_PRIM
 {
   longlong UTILITY_RESOURCE_CACHE;
   UTILITY_RESOURCE_CONTEXT_HANDLE = *(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_BUFFER_HANDLER_OFFSET);
-  if (*(code **)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_RESOURCE_PTR_OFFSET_extended_2utility_operation_offset_standard) != (code *)UTILITY_NULL_POINTER) {
-    (**(code **)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_RESOURCE_PTR_OFFSET_extended_2utility_operation_offset_standard))(UTILITY_RESOURCE_CONTEXT_HANDLE  + utility_resource_data_buffer_offset_extended_callback_septenary_param,UTILITY_NULL_POINTER,utility_resource_callback_handler,utility_system_end_flag);
+  if (*(code **)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_OPERATION_OFFSET_STANDARD) != (code *)UTILITY_NULL_POINTER) {
+    (**(code **)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_OPERATION_OFFSET_STANDARD))(UTILITY_RESOURCE_CONTEXT_HANDLE  + UTILITY_CALLBACK_PARAM_OFFSET_EXTENDED,UTILITY_NULL_POINTER,utility_resource_callback_handler,utility_system_end_flag);
   }
   *(uint64 *)(UTILITY_RESOURCE_CONTEXT_HANDLE + utility_tls_offset_extended_thread_data_quinary) = &utility_thread_local_storage_data;
   if (*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + utility_tls_offset_extended_thread_data_senary) != UTILITY_ZERO) {
