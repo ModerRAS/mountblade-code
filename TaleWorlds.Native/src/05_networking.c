@@ -1,15 +1,4 @@
-// 05_networking.c - 网络系统模块
-// 2025年8月31日最新批次完成：完成网络系统重复函数声明清理和语义化美化工作
-// - 清理重复的函数声明，优化代码结构
-// - 为网络系统函数添加详细的文档注释
-// - 美化变量名和函数名，提高代码可读性
-// - 保持代码语义不变，这是简化实现，主要处理了网络系统中重复函数声明的清理工作
-// - 原本实现：完全重构网络系统所有函数声明体系，建立统一的语义化命名规范
-// - 简化实现：仅清理重复的函数声明并添加文档注释，保持代码结构不变
-
 #include "TaleWorlds.Native.Split.h"
-
-/* 网络系统核心实现 */
 
 /* 网络系统常量定义 */
 #define NETWORK_OFFSET_STANDARD_B 0xb
@@ -48,17 +37,20 @@
 // 网络魔术字标识符
 #define NETWORK_MAGIC_IDENTIFIER_TSIL NETWORK_STATUS_DISCONNECTED_TSIL
 #define NETWORK_MAGIC_IDENTIFIER_TNVE NETWORK_STATUS_DISCONNECTED_TNVE
-#define NETWORK_MAGIC_BTVE NETWORK_FLAG_NONBLOCKING2545645
+#define NETWORK_MAGIC_IDENTIFIER_BTVE NETWORK_FLAG_NONBLOCKING_MODE
 
 // 网络函数别名定义
-#define network_packet_function_initialize network_packet_function_9300
-#define network_packet_function_process network_packet_function_9310
-#define network_packet_function_decompress network_packet_function_9360
+#define network_packet_function_initialize network_packet_function_initialize_primary
+#define network_packet_function_process network_packet_function_process_primary
+#define network_packet_function_decompress network_packet_function_decompress_primary
 void *network_connection_query_function;
 void *network_connection_data_function;
 void *network_connection_validate_function;
 
-// 函数: void *network_connection_handler_primary;
+/**
+ * @brief 网络连接主处理器
+ * 负责管理主要的网络连接逻辑
+ */
 void *network_connection_handler_primary;
 int network_connection_primary_state;
 int network_connection_secondary_state;
@@ -88,24 +80,42 @@ int network_config_timeout;
 int network_config_retry_count;
 int network_config_max_connections;
 
-// 函数: void *network_connection_handler_secondary;
+/**
+ * @brief 网络连接次级处理器
+ * 负责管理次要的网络连接逻辑
+ */
 void *network_connection_handler_secondary;
 size_t network_config_buffer_size;
 
-// 函数: void *network_connection_handler_tertiary;
+/**
+ * @brief 网络连接第三处理器
+ * 负责管理第三级的网络连接逻辑
+ */
 void *network_connection_handler_tertiary;
 
-// 函数: void *network_connection_handler_extended;
+/**
+ * @brief 网络连接扩展处理器
+ * 负责管理扩展的网络连接逻辑
+ */
 void *network_connection_handler_extended;
 unsigned short network_config_port;
 
-// 函数: void *network_initialize_connection_state;
+/**
+ * @brief 网络连接状态初始化函数
+ * 负责初始化网络连接状态
+ */
 void *network_initialize_connection_state;
 
-// 函数: void *network_validate_connection_parameters;
+/**
+ * @brief 网络连接参数验证函数
+ * 负责验证网络连接参数的有效性
+ */
 void *network_validate_connection_parameters;
 
-// 函数: void *network_establish_secure_connection;
+/**
+ * @brief 安全连接建立函数
+ * 负责建立安全的网络连接
+ */
 void *network_establish_secure_connection;
 
 // 函数: void *network_send_packet_data;

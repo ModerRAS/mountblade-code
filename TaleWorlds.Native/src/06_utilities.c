@@ -1032,7 +1032,18 @@ void utility_memory_pool_initializer(void)
  * 原本实现：完全重构资源验证机制，建立完整的验证体系
  * 简化实现：仅优化现有验证逻辑，保持核心功能不变
  */
-uint64 utility_validate_resource_handle_simple(longlong utility_resource_primary_handle)  
+/**
+ * @brief 验证资源句柄的有效性
+ * 
+ * 该函数用于验证传入的资源句柄是否有效，包括对资源数据结构、
+ * 缓冲区状态和安全参数的全面检查。确保资源句柄可以被安全使用。
+ * 
+ * @param utility_resource_primary_handle 要验证的资源句柄
+ * @return uint64 验证结果状态码，成功返回0，失败返回相应的错误码
+ * 
+ * @note 这是简化实现，主要处理基本的资源句柄验证逻辑
+ * 原本实现包含完整的资源验证框架和高级安全检查
+ */  
 {
   longlong utility_primary_resource_cache;
   longlong utility_data_pointer_primary_extended_main;
