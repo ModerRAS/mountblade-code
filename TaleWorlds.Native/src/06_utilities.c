@@ -2,30 +2,24 @@
  
 #include "TaleWorlds.Native.Split.h"
 
-    // 系统容量限制常量
-#define UTILITY_MAX_BUFFER_SIZE 0x1000        // 最大缓冲区大小
-#define UTILITY_MAX_THREADS 8                  // 最大线程数
-#define UTILITY_MAX_EVENTS 16                  // 最大事件数
-#define UTILITY_MAX_HANDLERS 32                // 最大处理器数
-    // 系统状态常量
-#define UTILITY_STATE_INITIALIZED 0x1           // 系统已初始化
-#define UTILITY_STATE_RUNNING 0x2               // 系统运行中
-#define UTILITY_STATE_PAUSED 0x4                // 系统已暂停
-#define UTILITY_STATE_STOPPED 0x8               // 系统已停止
+#define UTILITY_MAX_BUFFER_SIZE 0x1000
+#define UTILITY_MAX_THREADS 8
+#define UTILITY_MAX_EVENTS 16
+#define UTILITY_MAX_HANDLERS 32
+#define UTILITY_STATE_INITIALIZED 0x1
+#define UTILITY_STATE_RUNNING 0x2
+#define UTILITY_STATE_PAUSED 0x4
+#define UTILITY_STATE_STOPPED 0x8
 #define UTILITY_ERROR_NONE 0x0
 #define UTILITY_ERROR_MEMORY 0x1
 #define UTILITY_ERROR_TIMEOUT 0x2
-    // 资源管理相关偏移量常量
 #define UTILITY_ERROR_INVALID_PARAM 0x4
 #define UTILITY_STATUS_RESOURCE_LOCKED 0x2e
 #define UTILITY_STATUS_RESOURCE_AVAILABLE 0x4c
-    // 内存管理相关偏移量常量
 #define UTILITY_STATUS_OPERATION_SUCCESS 0x0
 #define UTILITY_STATUS_MEMORY_IN_USE 0x4e
-    // 数据管理相关偏移量常量
 #define UTILITY_STATUS_RESOURCE_BUSY 0x4f
 #define UTILITY_STATUS_OPERATION_FAILED 0x1c
-    // 状态标志常量
 #define UTILITY_STATUS_INVALID_PARAMETER 0x26
 #define UTILITY_STATUS_RESOURCE_NOT_FOUND 0x4a
 #define UTILITY_STATUS_ACCESS_DENIED UTILITY_STATUS_INVALID_PARAMETER
@@ -44,18 +38,14 @@
 #define UTILITY_MEMORY_POINTER_OFFSET 0x8
 #define UTILITY_MEMORY_STATUS_OFFSET 0xe4
 #define UTILITY_MEMORY_FLAG_OFFSET 0x2d8
-    // 扩展状态标志常量
 #define UTILITY_DATA_CONTEXT_OFFSET 0x4d8
 #define UTILITY_DATA_COUNTER_OFFSET 0x4e0
 #define UTILITY_DATA_INDEX_OFFSET 0x4e4
 #define UTILITY_STATUS_FLAG_MASK 0x7
-    // 资源标志常量
 #define UTILITY_STATUS_ENABLED_FLAG 0x1
 #define UTILITY_STATUS_THREAD_CREATED 0x1c
 #define UTILITY_CONTEXT_RESOURCE_OFFSET 0x24
-    // 服务和内存标志常量
 #define UTILITY_CONTEXT_CONFIG_OFFSET 0x2c
-    // 数据类型掩码常量
 #define UTILITY_CONTEXT_DATA_OFFSET 0x35
 #define UTILITY_CONTEXT_ITERATOR_OFFSET 0x368
 #define UTILITY_CONTEXT_VALIDATION_OFFSET 0xf8
@@ -89,13 +79,11 @@
 #define UTILITY_INVALID_PARAMETER 0x26
 #define UTILITY_MEMORY_BLOCK_SIZE_EXTRA_LARGE 0x315
 #define UTILITY_MEMORY_BLOCK_SIZE_HUGE (UTILITY_STATUS_INVALID_PARAMETER + 0xd)
-    // 块大小常量
 #define UTILITY_BLOCK_SIZE_SMALL 0x39
 #define UTILITY_BLOCK_SIZE_MEDIUM 0x272
 #define UTILITY_BLOCK_SIZE_LARGE 0x18e
 #define UTILITY_BLOCK_SIZE_EXTRA_LARGE 0x398
 #define UTILITY_BLOCK_SIZE_HUGE 0x390
-    // 线程上下文偏移量常量
 #define UTILITY_THREAD_CONTEXT_OFFSET_PRIMARY 0x0
 #define UTILITY_THREAD_CONTEXT_OFFSET_SECONDARY 0x4
 #define UTILITY_THREAD_CONTEXT_OFFSET_TERTIARY 0x8
@@ -312,8 +300,8 @@ void *buffer_auxiliary_extended_ptr;
 void *buffer_backup_extended_ptr;
 void *buffer_reserve_extended_ptr;
 void *buffer_septenary_extended_ptr;
-void *system_data_auxiliary_ptr;        // 系统辅助数据
-void *system_reserved_memory_ptr;         // 系统保留数据区域
+void *system_data_auxiliary_ptr;
+void *system_reserved_memory_ptr;
 void *context_primary_ptr;
 void *context_secondary_ptr;
 void *context_tertiary_ptr;
@@ -390,39 +378,31 @@ uint8_t context_system_extended;
     int status_code = UTILITY_STATUS_FALSE;
     uint8_t large_temp_buffer[512];
     uint64_t data_checksum;
-    int64_t processed_items_count;      // 已处理的项目计数器
+    int64_t processed_items_count;
     
-    // 计算校验和结果，用于数据完整性验证
-    utility_data_checksum = (uint64_t)utility_system_reserved_memory ^ (uint64_t)utility_thread_temp_buffer;
+    data_checksum = (uint64_t)system_reserved_memory_ptr ^ (uint64_t)thread_temp_buffer;
     
-    // 调用系统服务管理器处理线程句柄和上下文存储
-    utility_status_code = utility_handle_service_request(*(uint32_t *)(thread_handle + UTILITY_THREAD_HANDLE_OFFSET), utility_context_pointer_storage);
+    status_code = handle_service_request(*(uint32_t *)(thread_handle + UTILITY_THREAD_HANDLE_OFFSET), context_pointer_storage);
     
-    // 检查系统状态和上下文存储的有效性
-    if ((utility_status_code == UTILITY_STATUS_FALSE) && (*(int64_t *)(utility_context_pointer_storage[0] + UTILITY_MEMORY_POINTER_OFFSET) != UTILITY_STATUS_FALSE)) {
-        utility_data_storage_pointer = utility_large_temp_buffer;
-        utility_items_processed = UTILITY_STATUS_FALSE;
-        utility_loop_counter = 0;
-        utility_buffer_state_flags = UTILITY_BUFFER_FLAGS_DEFAULT;
+    if ((status_code == UTILITY_STATUS_FALSE) && (*(int64_t *)(context_pointer_storage[0] + UTILITY_MEMORY_POINTER_OFFSET) != UTILITY_STATUS_FALSE)) {
+        data_storage_pointer = large_temp_buffer;
+        items_processed = UTILITY_STATUS_FALSE;
+        loop_counter = 0;
+        buffer_state_flags = UTILITY_BUFFER_FLAGS_DEFAULT;
         
-        // 创建资源句柄
-        utility_resource_handle_value = utility_resource_allocator(*(uint64_t *)(context_data + UTILITY_RESOURCE_HANDLE_OFFSET), *(int64_t *)(utility_context_pointer_storage[0] + UTILITY_MEMORY_POINTER_OFFSET), &utility_data_storage_pointer);
+        resource_handle_value = resource_allocator(*(uint64_t *)(context_data + UTILITY_RESOURCE_HANDLE_OFFSET), *(int64_t *)(context_pointer_storage[0] + UTILITY_MEMORY_POINTER_OFFSET), &data_storage_pointer);
         
-        if (utility_status_code == UTILITY_STATUS_FALSE) {
-            // 处理资源计数器大于0的情况
-            if (0 < utility_total_resources) {
-                // 清理缓冲区管理器
-                utility_buffer_cleanup(&utility_data_storage_pointer);
+        if (status_code == UTILITY_STATUS_FALSE) {
+            if (0 < total_resources) {
+                cleanup_buffer(&data_storage_pointer);
             }
             else {
-                // 清理缓冲区管理器
-                utility_buffer_cleanup(&utility_data_storage_pointer);
+                cleanup_buffer(&data_storage_pointer);
             }
         }
     }
     
-    // 计算最终校验和
-    utility_checksum_compute(utility_data_checksum ^ (uint64_t)utility_large_temp_buffer);
+    compute_checksum(data_checksum ^ (uint64_t)large_temp_buffer);
 }
 
  * 
@@ -431,16 +411,16 @@ uint8_t context_system_extended;
  * 并确保所有清理操作都在安全的范围内执行。
  * 
  * @param context_pointer 上下文指针，指向需要清理的线程数据结构
-    int64_t utility_loop_counter = 0;
-    int utility_items_processed;
-    uint8_t *utility_data_storage_pointer;
-    int utility_max_iterations;
-    uint32_t utility_buffer_state_flags;
-    uint64_t utility_security_key;
-    int utility_status_code = UTILITY_STATUS_FALSE;
-    uint64_t utility_status;
-    int64_t utility_resource_handle_value;
-    uint8_t utility_working_buffer[512];
+    int64_t loop_counter = 0;
+    int items_processed;
+    uint8_t *data_storage_pointer;
+    int max_iterations;
+    uint32_t buffer_state_flags;
+    uint64_t security_key;
+    int status_code = UTILITY_STATUS_FALSE;
+    uint64_t status;
+    int64_t resource_handle_value;
+    uint8_t working_buffer[512];
     
     // 检查上下文指针的有效性
     if (*(int64_t *)(context_pointer + UTILITY_MEMORY_POINTER_OFFSET) != UTILITY_STATUS_FALSE) {
