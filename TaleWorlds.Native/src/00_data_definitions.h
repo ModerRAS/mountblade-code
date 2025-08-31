@@ -5230,7 +5230,7 @@ uint64_t system_event_handler(uint64_t *system_context)
   float *psystem_local_float7;
   ulong long data_definitions_option_value;
   byte *psystem_local_bool9;
-  float system_local_float10;
+  float system_calculated_vector_magnitude;
   float system_local_float11;
   uint8_t asystem_temp_uint12 [16];
   float system_local_float13;
@@ -5247,13 +5247,13 @@ uint64_t system_event_handler(uint64_t *system_context)
         data_definitions_system_local_float14 = (float)psystem_local_bool9[1] * 0.007843138 - 1.0;
         system_local_float13 = (float)*psystem_local_bool9 * 0.007843138 - 1.0;
         system_temp_float15 = (float)psystem_local_bool9[2] * 0.007843138 - 1.0;
-        system_local_float10 = system_local_float13 * system_local_float13 + data_definitions_system_local_float14 * data_definitions_system_local_float14 + system_temp_float15 * system_temp_float15;
-        asystem_temp_uint12 = rsqrtss(ZEXT416((uint)system_local_float10),ZEXT416((uint)system_local_float10));
+        system_calculated_vector_magnitude = system_local_float13 * system_local_float13 + data_definitions_system_local_float14 * data_definitions_system_local_float14 + system_temp_float15 * system_temp_float15;
+        asystem_temp_uint12 = rsqrtss(ZEXT416((uint)system_calculated_vector_magnitude),ZEXT416((uint)system_calculated_vector_magnitude));
         system_local_float11 = asystem_temp_uint12._0_4_;
-        system_local_float10 = system_local_float11 * 0.5 * (3.0 - system_local_float10 * system_local_float11 * system_local_float11);
-        *psystem_local_bool9 = (byte)(int)((system_local_float10 * system_local_float13 + 1.0) * 127.5);
-        psystem_local_bool9[1] = (byte)(int)((system_local_float10 * data_definitions_system_local_float14 + 1.0) * 127.5);
-        system_temp_int2 = (int)((system_local_float10 * system_temp_float15 + 1.0) * 127.5);
+        system_calculated_vector_magnitude = system_local_float11 * 0.5 * (3.0 - system_calculated_vector_magnitude * system_local_float11 * system_local_float11);
+        *psystem_local_bool9 = (byte)(int)((system_calculated_vector_magnitude * system_local_float13 + 1.0) * 127.5);
+        psystem_local_bool9[1] = (byte)(int)((system_calculated_vector_magnitude * data_definitions_system_local_float14 + 1.0) * 127.5);
+        system_temp_int2 = (int)((system_calculated_vector_magnitude * system_temp_float15 + 1.0) * 127.5);
         psystem_local_bool9[2] = (byte)system_temp_int2;
         psystem_local_bool9 = psystem_local_bool9 + 4;
         data_definitions_option_value = data_definitions_option_value - 1;
@@ -5272,13 +5272,13 @@ uint64_t system_event_handler(uint64_t *system_context)
         data_definitions_system_local_float14 = (float)system_local_pointer6[1] * 3.0518044e-05 - 1.0;
         system_local_float13 = (float)*system_local_pointer6 * 3.0518044e-05 - 1.0;
         system_temp_float15 = (float)system_local_pointer6[2] * 3.0518044e-05 - 1.0;
-        system_local_float10 = system_local_float13 * system_local_float13 + data_definitions_system_local_float14 * data_definitions_system_local_float14 + system_temp_float15 * system_temp_float15;
-        asystem_temp_uint12 = rsqrtss(ZEXT416((uint)system_local_float10),ZEXT416((uint)system_local_float10));
+        system_calculated_vector_magnitude = system_local_float13 * system_local_float13 + data_definitions_system_local_float14 * data_definitions_system_local_float14 + system_temp_float15 * system_temp_float15;
+        asystem_temp_uint12 = rsqrtss(ZEXT416((uint)system_calculated_vector_magnitude),ZEXT416((uint)system_calculated_vector_magnitude));
         system_local_float11 = asystem_temp_uint12._0_4_;
-        system_local_float10 = system_local_float11 * 0.5 * (3.0 - system_local_float10 * system_local_float11 * system_local_float11);
-        *system_local_pointer6 = (ushort)(int)((system_local_float10 * system_local_float13 + 1.0) * 32767.5);
-        system_local_pointer6[1] = (ushort)(int)((system_local_float10 * data_definitions_system_local_float14 + 1.0) * 32767.5);
-        system_temp_int2 = (int)((system_local_float10 * system_temp_float15 + 1.0) * 32767.5);
+        system_calculated_vector_magnitude = system_local_float11 * 0.5 * (3.0 - system_calculated_vector_magnitude * system_local_float11 * system_local_float11);
+        *system_local_pointer6 = (ushort)(int)((system_calculated_vector_magnitude * system_local_float13 + 1.0) * 32767.5);
+        system_local_pointer6[1] = (ushort)(int)((system_calculated_vector_magnitude * data_definitions_system_local_float14 + 1.0) * 32767.5);
+        system_temp_int2 = (int)((system_calculated_vector_magnitude * system_temp_float15 + 1.0) * 32767.5);
         system_local_pointer6[2] = (ushort)system_temp_int2;
         system_local_pointer6 = system_local_pointer6 + 4;
         data_definitions_option_value = data_definitions_option_value - 1;
@@ -5294,13 +5294,13 @@ uint64_t system_event_handler(uint64_t *system_context)
         system_local_float13 = (*psystem_temp_float4 + *psystem_temp_float4) - 1.0;
         data_definitions_system_local_float14 = (psystem_temp_float4[1] + psystem_temp_float4[1]) - 1.0;
         system_temp_float15 = (psystem_temp_float4[2] + psystem_temp_float4[2]) - 1.0;
-        system_local_float10 = system_local_float13 * system_local_float13 + data_definitions_system_local_float14 * data_definitions_system_local_float14 + system_temp_float15 * system_temp_float15;
-        asystem_temp_uint12 = rsqrtss(ZEXT416((uint)system_local_float10),ZEXT416((uint)system_local_float10));
+        system_calculated_vector_magnitude = system_local_float13 * system_local_float13 + data_definitions_system_local_float14 * data_definitions_system_local_float14 + system_temp_float15 * system_temp_float15;
+        asystem_temp_uint12 = rsqrtss(ZEXT416((uint)system_calculated_vector_magnitude),ZEXT416((uint)system_calculated_vector_magnitude));
         system_local_float11 = asystem_temp_uint12._0_4_;
-        system_local_float10 = system_local_float11 * 0.5 * (3.0 - system_local_float10 * system_local_float11 * system_local_float11);
-        *psystem_temp_float4 = (system_local_float10 * system_local_float13 + 1.0) * 0.5;
-        psystem_temp_float4[1] = (system_local_float10 * data_definitions_system_local_float14 + 1.0) * 0.5;
-        psystem_temp_float4[2] = (system_local_float10 * system_temp_float15 + 1.0) * 0.5;
+        system_calculated_vector_magnitude = system_local_float11 * 0.5 * (3.0 - system_calculated_vector_magnitude * system_local_float11 * system_local_float11);
+        *psystem_temp_float4 = (system_calculated_vector_magnitude * system_local_float13 + 1.0) * 0.5;
+        psystem_temp_float4[1] = (system_calculated_vector_magnitude * data_definitions_system_local_float14 + 1.0) * 0.5;
+        psystem_temp_float4[2] = (system_calculated_vector_magnitude * system_temp_float15 + 1.0) * 0.5;
         psystem_temp_float4 = psystem_temp_float4 + 3;
         data_definitions_option_value = data_definitions_option_value - 1;
       } while (data_definitions_option_value != 0);
@@ -5317,13 +5317,13 @@ uint64_t system_event_handler(uint64_t *system_context)
         system_local_float13 = (*psystem_local_float7 + *psystem_local_float7) - 1.0;
         data_definitions_system_local_float14 = (psystem_local_float7[1] + psystem_local_float7[1]) - 1.0;
         system_temp_float15 = (psystem_local_float7[2] + psystem_local_float7[2]) - 1.0;
-        system_local_float10 = data_definitions_system_local_float14 * data_definitions_system_local_float14 + system_local_float13 * system_local_float13 + system_temp_float15 * system_temp_float15;
-        asystem_temp_uint12 = rsqrtss(ZEXT416((uint)system_local_float10),ZEXT416((uint)system_local_float10));
+        system_calculated_vector_magnitude = data_definitions_system_local_float14 * data_definitions_system_local_float14 + system_local_float13 * system_local_float13 + system_temp_float15 * system_temp_float15;
+        asystem_temp_uint12 = rsqrtss(ZEXT416((uint)system_calculated_vector_magnitude),ZEXT416((uint)system_calculated_vector_magnitude));
         system_local_float11 = asystem_temp_uint12._0_4_;
-        system_local_float10 = system_local_float11 * 0.5 * (3.0 - system_local_float10 * system_local_float11 * system_local_float11);
-        *psystem_local_float7 = (system_local_float10 * system_local_float13 + 1.0) * 0.5;
-        psystem_local_float7[2] = (system_temp_float15 * system_local_float10 + 1.0) * 0.5;
-        psystem_local_float7[1] = (system_local_float10 * data_definitions_system_local_float14 + 1.0) * 0.5;
+        system_calculated_vector_magnitude = system_local_float11 * 0.5 * (3.0 - system_calculated_vector_magnitude * system_local_float11 * system_local_float11);
+        *psystem_local_float7 = (system_calculated_vector_magnitude * system_local_float13 + 1.0) * 0.5;
+        psystem_local_float7[2] = (system_temp_float15 * system_calculated_vector_magnitude + 1.0) * 0.5;
+        psystem_local_float7[1] = (system_calculated_vector_magnitude * data_definitions_system_local_float14 + 1.0) * 0.5;
         psystem_local_float7 = psystem_local_float7 + 4;
         system_temp_uint5 = system_temp_uint5 - 1;
       } while (system_temp_uint5 != 0);
@@ -5342,13 +5342,13 @@ uint64_t system_event_handler(uint64_t *system_context)
         data_definitions_system_local_float14 = (float)system_local_pointer6[1] * 0.007843138 - 1.0;
         system_local_float13 = (float)*system_local_pointer6 * 0.007843138 - 1.0;
         system_temp_float15 = (float)system_local_pointer6[2] * 0.007843138 - 1.0;
-        system_local_float10 = system_local_float13 * system_local_float13 + data_definitions_system_local_float14 * data_definitions_system_local_float14 + system_temp_float15 * system_temp_float15;
-        asystem_temp_uint12 = rsqrtss(ZEXT416((uint)system_local_float10),ZEXT416((uint)system_local_float10));
+        system_calculated_vector_magnitude = system_local_float13 * system_local_float13 + data_definitions_system_local_float14 * data_definitions_system_local_float14 + system_temp_float15 * system_temp_float15;
+        asystem_temp_uint12 = rsqrtss(ZEXT416((uint)system_calculated_vector_magnitude),ZEXT416((uint)system_calculated_vector_magnitude));
         system_local_float11 = asystem_temp_uint12._0_4_;
-        system_local_float10 = system_local_float11 * 0.5 * (3.0 - system_local_float10 * system_local_float11 * system_local_float11);
-        *system_local_pointer6 = (ushort)(int)((system_local_float13 * system_local_float10 + 1.0) * 127.5);
-        system_local_pointer6[1] = (ushort)(int)((data_definitions_system_local_float14 * system_local_float10 + 1.0) * 127.5);
-        system_temp_int2 = (int)((system_temp_float15 * system_local_float10 + 1.0) * 127.5);
+        system_calculated_vector_magnitude = system_local_float11 * 0.5 * (3.0 - system_calculated_vector_magnitude * system_local_float11 * system_local_float11);
+        *system_local_pointer6 = (ushort)(int)((system_local_float13 * system_calculated_vector_magnitude + 1.0) * 127.5);
+        system_local_pointer6[1] = (ushort)(int)((data_definitions_system_local_float14 * system_calculated_vector_magnitude + 1.0) * 127.5);
+        system_temp_int2 = (int)((system_temp_float15 * system_calculated_vector_magnitude + 1.0) * 127.5);
         system_local_pointer6[2] = (ushort)system_temp_int2;
         system_local_pointer6 = system_local_pointer6 + 3;
         data_definitions_option_value = data_definitions_option_value - 1;
@@ -5369,13 +5369,13 @@ uint64_t system_event_handler(uint64_t *system_context)
         data_definitions_system_local_float14 = (float)psystem_local_bool9[1] * 0.007843138 - 1.0;
         system_local_float13 = (float)*psystem_local_bool9 * 0.007843138 - 1.0;
         system_temp_float15 = (float)psystem_local_bool9[2] * 0.007843138 - 1.0;
-        system_local_float10 = system_local_float13 * system_local_float13 + data_definitions_system_local_float14 * data_definitions_system_local_float14 + system_temp_float15 * system_temp_float15;
-        asystem_temp_uint12 = rsqrtss(ZEXT416((uint)system_local_float10),ZEXT416((uint)system_local_float10));
+        system_calculated_vector_magnitude = system_local_float13 * system_local_float13 + data_definitions_system_local_float14 * data_definitions_system_local_float14 + system_temp_float15 * system_temp_float15;
+        asystem_temp_uint12 = rsqrtss(ZEXT416((uint)system_calculated_vector_magnitude),ZEXT416((uint)system_calculated_vector_magnitude));
         system_local_float11 = asystem_temp_uint12._0_4_;
-        system_local_float10 = system_local_float11 * 0.5 * (3.0 - system_local_float10 * system_local_float11 * system_local_float11);
-        *psystem_local_bool9 = (byte)(int)((system_local_float10 * system_local_float13 + 1.0) * 127.5);
-        psystem_local_bool9[1] = (byte)(int)((system_local_float10 * data_definitions_system_local_float14 + 1.0) * 127.5);
-        system_temp_uint3 = (uint)((system_local_float10 * system_temp_float15 + 1.0) * 127.5);
+        system_calculated_vector_magnitude = system_local_float11 * 0.5 * (3.0 - system_calculated_vector_magnitude * system_local_float11 * system_local_float11);
+        *psystem_local_bool9 = (byte)(int)((system_calculated_vector_magnitude * system_local_float13 + 1.0) * 127.5);
+        psystem_local_bool9[1] = (byte)(int)((system_calculated_vector_magnitude * data_definitions_system_local_float14 + 1.0) * 127.5);
+        system_temp_uint3 = (uint)((system_calculated_vector_magnitude * system_temp_float15 + 1.0) * 127.5);
         psystem_temp_float4 = (float *)(ulong long)system_temp_uint3;
         psystem_local_bool9[2] = (byte)system_temp_uint3;
         psystem_local_bool9 = psystem_local_bool9 + 3;
@@ -5396,7 +5396,7 @@ uint64_t system_event_handler(uint64_t *system_context)
   float *psystem_local_float7;
   float *psystem_local_float8;
   float *psystem_local_float9;
-  float *psystem_local_float10;
+  float *psystem_calculated_vector_magnitude;
   float *psystem_local_float11;
   float system_temp_float12;
   uint system_temp_uint13;
@@ -5432,7 +5432,7 @@ uint64_t system_event_handler(uint64_t *system_context)
         psystem_local_float7 = psystem_temp_float15 + 4;
         psystem_local_float8 = psystem_temp_float15 + 1;
         psystem_local_float9 = psystem_temp_float15 + 2;
-        psystem_local_float10 = psystem_temp_float15 + 8;
+        psystem_calculated_vector_magnitude = psystem_temp_float15 + 8;
         psystem_local_float11 = psystem_temp_float15 + 0xb;
         psystem_temp_float15 = psystem_temp_float15 + 0xc;
         dVar21 = dVar21 + (double)*psystem_local_float1 * 0.2126 + (double)system_temp_float12 * 0.2126 +
@@ -5441,7 +5441,7 @@ uint64_t system_event_handler(uint64_t *system_context)
                           (double)*psystem_local_float3 * 0.7152 + (double)*psystem_local_float7 * 0.7152 +
                           (double)*psystem_local_float8 * 0.7152 +
                           (double)*psystem_temp_float4 * 0.0722 + (double)*psystem_local_float9 * 0.0722 +
-                          (double)*psystem_local_float10 * 0.0722 + (double)*psystem_local_float11 * 0.0722;
+                          (double)*psystem_calculated_vector_magnitude * 0.0722 + (double)*psystem_local_float11 * 0.0722;
         system_temp_uint19 = system_temp_uint19 - 1;
       } while (system_temp_uint19 != 0);
     }
@@ -5520,7 +5520,7 @@ uint64_t system_event_handler(uint64_t *system_context)
         psystem_local_float7 = psystem_temp_float15 + 5;
         psystem_local_float8 = psystem_temp_float15 + 1;
         psystem_local_float9 = psystem_temp_float15 + 2;
-        psystem_local_float10 = psystem_temp_float15 + 10;
+        psystem_calculated_vector_magnitude = psystem_temp_float15 + 10;
         psystem_local_float11 = psystem_temp_float15 + 0xe;
         psystem_temp_float15 = psystem_temp_float15 + SYSTEM_BUFFER_SIZE_16;
         dVar21 = dVar21 + (double)*psystem_local_float1 * 0.2126 + (double)system_temp_float12 * 0.2126 +
@@ -5529,7 +5529,7 @@ uint64_t system_event_handler(uint64_t *system_context)
                           (double)*psystem_local_float3 * 0.7152 + (double)*psystem_local_float7 * 0.7152 +
                           (double)*psystem_local_float8 * 0.7152 +
                           (double)*psystem_temp_float4 * 0.0722 + (double)*psystem_local_float9 * 0.0722 +
-                          (double)*psystem_local_float10 * 0.0722 + (double)*psystem_local_float11 * 0.0722;
+                          (double)*psystem_calculated_vector_magnitude * 0.0722 + (double)*psystem_local_float11 * 0.0722;
         system_temp_uint19 = system_temp_uint19 - 1;
       } while (system_temp_uint19 != 0);
     }
@@ -6422,7 +6422,7 @@ uint64_t * system_event_handler(uint64_t *system_context,int network_context)
   ulong long system_temp_uint7;
   long long data_definitions_system_local_long8;
   float system_local_float9;
-  float system_local_float10;
+  float system_calculated_vector_magnitude;
   float system_local_float11;
   float system_temp_float12;
   float system_local_float13;
@@ -6570,14 +6570,14 @@ uint64_t * system_event_handler(uint64_t *system_context,int network_context)
       system_local_float13 = system_temp_float15 * 13.5 + 4.5;
       system_local_float11 = system_local_float9 + system_local_float13;
       system_local_float13 = system_local_float13 + system_local_float11;
-      system_local_float10 = system_temp_float15 * 37.5 + 12.5 + system_local_float13;
-      system_temp_float15 = system_temp_float15 * 45.0 + 15.0 + system_local_float10;
+      system_calculated_vector_magnitude = system_temp_float15 * 37.5 + 12.5 + system_local_float13;
+      system_temp_float15 = system_temp_float15 * 45.0 + 15.0 + system_calculated_vector_magnitude;
       *(float *)(system_context + SYSTEM_OFFSET_104) = data_definitions_system_local_float14 * data_definitions_system_local_float14;
       *(float *)((long long)system_context + 0x344) = system_temp_float12 * system_temp_float12;
       *(float *)(system_context + 0x69) = system_local_float9 * system_local_float9;
       *(float *)((long long)system_context + 0x34c) = system_local_float11 * system_local_float11;
       *(float *)(system_context + 0x6a) = system_local_float13 * system_local_float13;
-      *(float *)((long long)system_context + 0x354) = system_local_float10 * system_local_float10;
+      *(float *)((long long)system_context + 0x354) = system_calculated_vector_magnitude * system_calculated_vector_magnitude;
       *(float *)(system_context + 0x6b) = system_temp_float15 * system_temp_float15;
       *(uint32_t *)((long long)system_context + 0x35c) = 0x7f7fffff;
       *(uint32_t *)((long long)system_context + 0x33c) = 0;
