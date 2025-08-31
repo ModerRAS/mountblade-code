@@ -1,98 +1,98 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 工具系统常量定义 - 语义化美化版本
+// 工具系统常量定义
 // 线程存储数组索引常量
-#define UTILITY_THREAD_STORAGE_INDEX_DATA 0xD                    // 数据存储索引
-#define UTILITY_THREAD_STORAGE_INDEX_EXTRA 0xE                    // 扩展存储索引
-#define UTILITY_THREAD_STORAGE_INDEX_CLEANUP 0xF                  // 清理函数索引
+#define UTILITY_THREAD_STORAGE_INDEX_DATA 0xD
+#define UTILITY_THREAD_STORAGE_INDEX_EXTRA 0xE
+#define UTILITY_THREAD_STORAGE_INDEX_CLEANUP 0xF
 
 // 资源句柄参数偏移量常量
-#define UTILITY_RESOURCE_PARAM_OFFSET_QUATERNARY 0x4           // 第四级参数偏移量
-#define UTILITY_RESOURCE_PARAM_OFFSET_SENARY 0x6                // 第六级参数偏移量
-#define UTILITY_RESOURCE_PARAM_OFFSET_TERTIARY 0x3             // 第三级参数偏移量
-#define UTILITY_RESOURCE_PARAM_OFFSET_QUINARY 0x5               // 第五级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_QUATERNARY 0x4
+#define UTILITY_RESOURCE_PARAM_OFFSET_SENARY 0x6
+#define UTILITY_RESOURCE_PARAM_OFFSET_TERTIARY 0x3
+#define UTILITY_RESOURCE_PARAM_OFFSET_QUINARY 0x5
 
 // 数组索引常量
-#define UTILITY_ARRAY_INDEX_QUATERNARY 0x4                       // 第四级数组索引
+#define UTILITY_ARRAY_INDEX_QUATERNARY 0x4
 
 // 资源清理偏移量常量
-#define UTILITY_RESOURCE_CLEANUP_OFFSET_C60 0xC60                 // 清理操作偏移量C60
-#define UTILITY_RESOURCE_CLEANUP_OFFSET_1CF0 0x1CF0              // 清理偏移量1CF0
+#define UTILITY_RESOURCE_CLEANUP_OFFSET_C60 0xC60
+#define UTILITY_RESOURCE_CLEANUP_OFFSET_1CF0 0x1CF0
 
 // 线程本地存储偏移量常量
-#define UTILITY_TLS_OFFSET_23A0 0x23A0                           // 线程本地存储偏移量23A0
+#define UTILITY_TLS_OFFSET_23A0 0x23A0
 
 // 数据偏移量常量
-#define UTILITY_DATA_OFFSET_1B00 0x1B00                          // 数据偏移量1B00
-#define UTILITY_DATA_OFFSET_1B40 0x1B40                          // 数据偏移量1B40
-#define UTILITY_DATA_OFFSET_1B48 0x1B48                          // 数据偏移量1B48
-#define UTILITY_DATA_OFFSET_1B80 0x1B80                          // 数据偏移量1B80
-#define UTILITY_DATA_POINTER_OFFSET 0x8                          // 数据指针偏移量
-#define UTILITY_FIELD_OFFSET 0xC                                  // 字段偏移量
-#define UTILITY_OFFSET_DATA 0x10                                  // 偏移量数据
-#define UTILITY_SECONDARY_BYTE_OFFSET 0x14                       // 次要字节偏移量
-#define UTILITY_PADDING_OFFSET 0x18                              // 填充偏移量
+#define UTILITY_DATA_OFFSET_1B00 0x1B00
+#define UTILITY_DATA_OFFSET_1B40 0x1B40
+#define UTILITY_DATA_OFFSET_1B48 0x1B48
+#define UTILITY_DATA_OFFSET_1B80 0x1B80
+#define UTILITY_DATA_POINTER_OFFSET 0x8
+#define UTILITY_FIELD_OFFSET 0xC
+#define UTILITY_OFFSET_DATA 0x10
+#define UTILITY_SECONDARY_BYTE_OFFSET 0x14
+#define UTILITY_PADDING_OFFSET 0x18
 
 // 检查标志常量
-#define UTILITY_CHECK_FLAG_10 0x10                               // 检查标志10
-#define UTILITY_CHECK_FLAG_28 0x28                               // 检查标志28
-#define UTILITY_CHECK_FLAG_30 0x30                               // 检查标志30
-#define UTILITY_CHECK_FLAG_50 0x50                               // 检查标志50
-#define UTILITY_CHECK_FLAG_60 0x60                               // 检查标志60
-#define UTILITY_CHECK_FLAG_70 0x70                               // 检查标志70
-#define UTILITY_CHECK_FLAG_98 0x98                               // 检查标志98
-#define UTILITY_CHECK_FLAG_B0 0xB0                               // 检查标志B0
-#define UTILITY_CHECK_FLAG_B8 0xB8                               // 检查标志B8
-#define UTILITY_CHECK_FLAG_D0 0xD0                               // 检查标志D0
-#define UTILITY_CHECK_FLAG_E0 0xE0                               // 检查标志E0
-#define UTILITY_CHECK_FLAG_F0 0xF0                               // 检查标志F0
+#define UTILITY_CHECK_FLAG_10 0x10
+#define UTILITY_CHECK_FLAG_28 0x28
+#define UTILITY_CHECK_FLAG_30 0x30
+#define UTILITY_CHECK_FLAG_50 0x50
+#define UTILITY_CHECK_FLAG_60 0x60
+#define UTILITY_CHECK_FLAG_70 0x70
+#define UTILITY_CHECK_FLAG_98 0x98
+#define UTILITY_CHECK_FLAG_B0 0xB0
+#define UTILITY_CHECK_FLAG_B8 0xB8
+#define UTILITY_CHECK_FLAG_D0 0xD0
+#define UTILITY_CHECK_FLAG_E0 0xE0
+#define UTILITY_CHECK_FLAG_F0 0xF0
 
 // 新增语义化偏移量常量
-#define UTILITY_OFFSET_LIST_HANDLE 0x4                            // 列表句柄偏移量
-#define UTILITY_OFFSET_STRUCT_ONE 0x8                             // 结构体偏移量1
-#define UTILITY_OFFSET_CHECKSUM_PTR 0xC                           // 校验和指针偏移量
-#define UTILITY_OFFSET_SECONDARY_BYTE 0x10                        // 次要字节偏移量
+#define UTILITY_OFFSET_LIST_HANDLE 0x4
+#define UTILITY_OFFSET_STRUCT_ONE 0x8
+#define UTILITY_OFFSET_CHECKSUM_PTR 0xC
+#define UTILITY_OFFSET_SECONDARY_BYTE 0x10
 
 // 内存操作常量
-#define UTILITY_MEMORY_NEGATIVE_OFFSET -1                         // 内存负偏移量
-#define UTILITY_MEMORY_OPERATION_FLAG 0x1                         // 内存操作标志
-#define UTILITY_MEMORY_STANDARD_OFFSET 0x4                        // 内存标准偏移量
-#define UTILITY_ZERO 0                                            // 零值常量
-#define UTILITY_OFFSET_FLAG 0x10                                  // 偏移量标志
+#define UTILITY_MEMORY_NEGATIVE_OFFSET -1
+#define UTILITY_MEMORY_OPERATION_FLAG 0x1
+#define UTILITY_MEMORY_STANDARD_OFFSET 0x4
+#define UTILITY_ZERO 0
+#define UTILITY_OFFSET_FLAG 0x10
 
 // 数据偏移量常量
-#define UTILITY_DATA_OFFSET 0x10                                  // 数据偏移量
-#define UTILITY_OFFSET_RESOURCE_PTR 0x8                           // 资源指针偏移量
+#define UTILITY_DATA_OFFSET 0x10
+#define UTILITY_OFFSET_RESOURCE_PTR 0x8
 
 // 错误代码常量
-#define UTILITY_ERROR_CODE_INVALID 0xFFFFFFFF                     // 错误代码
-#define UTILITY_ERROR_HANDLE_INVALID 0xFFFFFFFE                   // 无效句柄错误
-#define UTILITY_ERROR_OFFSET 0x4                                  // 错误偏移量
+#define UTILITY_ERROR_CODE_INVALID 0xFFFFFFFF
+#define UTILITY_ERROR_HANDLE_INVALID 0xFFFFFFFE
+#define UTILITY_ERROR_OFFSET 0x4
 
 // 索引常量
-#define UTILITY_INDEX_ONE 0x1                                     // 索引1
-#define UTILITY_INDEX_ZERO 0x0                                    // 索引0
+#define UTILITY_INDEX_ONE 0x1
+#define UTILITY_INDEX_ZERO 0x0
 
 // 大小限制常量
-#define UTILITY_SIZE_OFFSET 0x8                                   // 大小偏移量
-#define UTILITY_SIZE_EXTENDED_BYTE 0x1                            // 扩展字节大小
-#define UTILITY_SIZE_STANDARD 0x4                                 // 标准大小
-#define UTILITY_SIZE_LIMIT 0x1000                                 // 标准大小限制
+#define UTILITY_SIZE_OFFSET 0x8
+#define UTILITY_SIZE_EXTENDED_BYTE 0x1
+#define UTILITY_SIZE_STANDARD 0x4
+#define UTILITY_SIZE_LIMIT 0x1000
 
 // 字节掩码常量
-#define UTILITY_BYTE_MASK_EF 0xEF                                 // 字节掩码EF
-#define UTILITY_BYTE_MASK_DF 0xDF                                 // 字节掩码DF
-#define UTILITY_BYTE_MASK_BF 0xBF                                 // 字节掩码BF
-#define UTILITY_BYTE_MASK_PRIMARY 0xFF                             // 主字节掩码
-#define UTILITY_WORD_MASK_FEFF 0xFEFF                             // 字掩码FEFF
+#define UTILITY_BYTE_MASK_EF 0xEF
+#define UTILITY_BYTE_MASK_DF 0xDF
+#define UTILITY_BYTE_MASK_BF 0xBF
+#define UTILITY_BYTE_MASK_PRIMARY 0xFF
+#define UTILITY_WORD_MASK_FEFF 0xFEFF
 
 // 其他常量
-#define UTILITY_CHAR_NULL '\0'                                    // 空字符
-#define UTILITY_STACK_PRIMARY 0x1                                  // 主栈
-#define UTILITY_OFFSET_STRUCTURE 0x10                              // 结构体偏移量
-#define UTILITY_OFFSET_LIST_DATA 0x14                              // 列表数据偏移量
+#define UTILITY_CHAR_NULL '\0'
+#define UTILITY_STACK_PRIMARY 0x1
+#define UTILITY_OFFSET_STRUCTURE 0x10
+#define UTILITY_OFFSET_LIST_DATA 0x14
 
-// 全局变量声明 - 语义化美化版本
+// 全局变量声明
 static int64_t g_utility_resource_handle = 0;
 static uint32_t g_utility_stack_buffer[16] = {0};
 static uint32_t g_utility_stack_array[16] = {0};
@@ -130,30 +130,20 @@ static uint32_t g_utility_thread_offset = 0;
 static uint64_t g_utility_file_size = 0;
 static uint64_t g_utility_ext_data_ptr = 0;
 
-// 函数声明 - 语义化美化版本
+// 函数声明
 uint64_t system_memory_operation(uint32_t operation_type, void **resource_handle);
 void utility_free_memory(int64_t memory_ptr, uint32_t flags);
 
 /**
  * @file 06_utilities.c - 工具函数库
  *
- * 本文件包含系统的工具函数，提供各种辅助功能：
- * - 内存管理工具
- * - 资源处理工具
- * - 系统操作工具
- * - 线程管理工具
- * - 文件系统工具
- * - 网络通信工具
- * - 数据库操作工具
+ * 本文件包含系统的工具函数，提供各种辅助功能。
  *
  * 简化实现（2025年8月31日最新批次完成）：
  * - 美化函数名，将FUN_180941590等替换为utility_initialize_empty_function等语义化函数名
- * - 美化函数名，将FUN_1809415d0等替换为utility_resource_manager等语义化函数名
- * - 美化变量名，将g_var1等替换为UTILITY_SYSTEM_RESOURCE_HANDLE等语义化变量名
+ * - 美化变量名，将g_var1等替换为g_utility_resource_handle等语义化变量名
  * - 美化常量名，将DAT_1809fc740等替换为UTILITY_ZERO等语义化常量名
- * - 美化常量名，将UNK_18098c790等替换为UTILITY_MEMORY_NEGATIVE_OFFSET等语义化常量名
- * - 为所有函数添加详细的文档注释，包括功能描述、参数说明和返回值说明
- * - 保持代码语义不变，这是简化实现，主要处理了工具系统中函数名和变量名的语义化替换工作
+ * - 保持代码语义不变，这是简化实现，主要处理了工具系统中命名体系的语义化替换工作
  *
  * 原本实现：完全重构工具系统所有命名体系，建立统一的语义化命名规范
  * 简化实现：仅将常见的非语义化函数名和变量名替换为语义化名称，保持代码结构不变
