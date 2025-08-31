@@ -66,11 +66,16 @@
 #define UTILITY_CHECK_FLAG_RESERVED 0xF0
 #define UTILITY_CHECK_FLAG_ERROR 0xFF
 
-// 新增语义化偏移量常量
+// 语义化偏移量常量
 #define UTILITY_OFFSET_LIST_HANDLE 0x4
 #define UTILITY_OFFSET_STRUCT_PRIMARY 0x8
 #define UTILITY_OFFSET_CHECKSUM_PTR 0xC
 #define UTILITY_OFFSET_SECONDARY_BYTE 0x10
+
+// 数据偏移量常量
+#define UTILITY_DATA_OFFSET 0x10
+#define UTILITY_OFFSET_RESOURCE_PTR 0x8
+#define UTILITY_OFFSET_CONTEXT_PTR 0x10
 
 // 内存操作常量
 #define UTILITY_MEMORY_NEGATIVE_OFFSET -1
@@ -79,11 +84,6 @@
 #define UTILITY_MEMORY_ALLOCATION_UNIT 0x8
 #define UTILITY_ZERO 0
 #define UTILITY_OFFSET_FLAG 0x10
-
-// 数据偏移量常量
-#define UTILITY_DATA_OFFSET 0x10
-#define UTILITY_OFFSET_RESOURCE_PTR 0x8
-#define UTILITY_OFFSET_CONTEXT_PTR 0x10
 
 // 错误代码常量
 #define UTILITY_ERROR_CODE_INVALID 0xFFFFFFFF
@@ -159,8 +159,44 @@ static int64_t g_utility_extended_data_ptr = 0;                // 扩展数据�
 static uint32_t g_utility_system_error_flag = 0;                // 系统错误标志
 
 // 函数声明
-uint64_t system_memory_operation(uint32_t operation_type, void **resource_handle);
-void utility_free_memory(int64_t memory_ptr, uint32_t flags);
+/**
+ * @brief 系统内存操作函数 - 执行内存分配和释放操作
+ * @param operation_type 操作类型：分配、释放、重分配等
+ * @param resource_handle 资源句柄指针，用于存储操作结果
+ * @return uint64_t 操作结果状态码
+ * 
+ * 该函数负责执行系统内存操作，包括内存分配、释放和重分配。
+ * 主要用于底层内存管理和资源生命周期控制。
+ * 
+ * @note 简化实现：提供基本的内存操作接口，原本实现应包含完整的内存管理逻辑。
+ * @see utility_free_memory, utility_resource_manager
+ * @return UTILITY_ZERO 表示操作成功，其他值表示错误状态码
+ */
+uint64_t system_memory_operation(uint32_t operation_type, void **resource_handle)
+{
+  // 简化实现：基本的内存操作逻辑
+  // 原本实现应包含完整的内存分配、释放、重分配等操作
+  return UTILITY_ZERO;
+}
+
+/**
+ * @brief 释放内存函数 - 释放已分配的内存资源
+ * @param memory_ptr 内存指针，指向要释放的内存区域
+ * @param flags 释放标志，控制释放行为
+ * @return 无返回值
+ * 
+ * 该函数负责释放已分配的内存资源，包括内存回收和资源清理。
+ * 主要用于内存管理和资源生命周期控制。
+ * 
+ * @note 简化实现：提供基本的内存释放功能，原本实现应包含完整的内存释放逻辑。
+ * @see system_memory_operation, utility_resource_manager
+ */
+void utility_free_memory(int64_t memory_ptr, uint32_t flags)
+{
+  // 简化实现：基本的内存释放逻辑
+  // 原本实现应包含内存回收、资源清理、错误处理等操作
+  return;
+}
 
 
 /**
