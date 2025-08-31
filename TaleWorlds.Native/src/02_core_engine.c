@@ -246,46 +246,58 @@ void ProcessNetworkEvents(void);                      // 处理网络事件函�
 void UpdateAudioSystem(void);                         // 更新音频系统函数
 void ManageEngineResources(void);                     // 管理引擎资源函数
 
-// 引擎资源和渲染数据
-void* g_graphics_config_data;                        // 图形配置数据
-void* g_resource_manager_data;                       // 资源管理器数据
-void* g_texture_data;                                // 纹理数据
-void* g_shader_data;                                 // 着色器数据
-void* g_vertex_buffer_data;                          // 顶点缓冲区数据
-void* g_index_buffer_data;                           // 索引缓冲区数据
-void* g_render_target_data;                          // 渲染目标数据
-uint8_t g_render_flag;                               // 渲染标志
-void* g_lighting_data;                               // 光照数据
-uint8_t g_lighting_flag;                             // 光照标志
-void* g_camera_data;                                 // 相机数据
-void* g_viewport_data;                               // 视口数据
-void* g_projection_data;                             // 投影数据
-void* g_modelview_data;                              // 模型视图数据
-void* g_scene_data;                                  // 场景数据
-void* g_entity_data;                                 // 实体数据
+/**
+ * @brief 引擎资源和渲染数据
+ * 
+ * 包含引擎的图形资源、渲染数据和材质信息。
+ */
+void* g_graphics_config_data;                        // 图形配置数据指针
+void* g_resource_manager_data;                       // 资源管理器数据指针
+void* g_texture_data;                                // 纹理数据指针
+void* g_shader_data;                                 // 着色器数据指针
+void* g_vertex_buffer_data;                          // 顶点缓冲区数据指针
+void* g_index_buffer_data;                           // 索引缓冲区数据指针
+void* g_render_target_data;                          // 渲染目标数据指针
+uint8_t g_render_flag;                               // 渲染状态标志
+void* g_lighting_data;                               // 光照数据指针
+uint8_t g_lighting_flag;                             // 光照状态标志
+void* g_camera_data;                                 // 相机数据指针
+void* g_viewport_data;                               // 视口数据指针
+void* g_projection_data;                             // 投影数据指针
+void* g_modelview_data;                              // 模型视图数据指针
+void* g_scene_data;                                  // 场景数据指针
+void* g_entity_data;                                 // 实体数据指针
 uint32_t g_material_data;                            // 材质数据
 uint32_t g_animation_data;                          // 动画数据
 uint32_t g_particle_data;                            // 粒子数据
-char g_particle_flag;                               // 粒子标志
+uint8_t g_particle_flag;                             // 粒子系统状态标志
 
-// 核心引擎系统函数声明
+/**
+ * @brief 核心引擎系统函数声明
+ * 
+ * 包含引擎核心系统的主要功能函数声明。
+ * 简化实现：提供基础的引擎功能接口。
+ */
 
 /**
  * @brief 初始化引擎核心系统
- * @return 初始化结果，0表示成功，非0表示失败
+ * @return int 初始化结果，0表示成功，非0表示失败
  * @note 简化实现：提供基础的引擎初始化功能
+ *       原本实现：完整的引擎初始化流程，包含硬件检测和资源加载
  */
 int InitializeEngineCore(void);
 
 /**
  * @brief 引擎系统主循环
  * @note 简化实现：处理引擎的主要循环逻辑
+ *       原本实现：完整的引擎主循环，包含帧率控制和性能监控
  */
 void EngineMainLoop(void);
 
 /**
  * @brief 关闭引擎系统
  * @note 简化实现：清理引擎资源并关闭系统
+ *       原本实现：完整的引擎关闭流程，包含资源释放和内存清理
  */
 void ShutdownEngine(void);
 
