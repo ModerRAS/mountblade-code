@@ -46,9 +46,9 @@ typedef char int8_t;
 #define SYSTEM_MEMORY_OFFSET_SYNC_BUFFER      0x178   // 内存偏移0x178 - 同步缓冲区
 
 // 错误代码常量
-#define SYSTEM_ERROR_CODE_0XEB          0xEB    // 错误代码0xEB - 文件操作错误
-#define SYSTEM_ERROR_CODE_0XEF          0xEF    // 错误代码0xEF - 网络操作错误
-#define SYSTEM_ERROR_CODE_0XC1          0xC1    // 错误代码0xC1 - 内存操作错误
+#define SYSTEM_ERROR_FILE_OPERATION          0xEB    // 错误代码0xEB - 文件操作错误
+#define SYSTEM_ERROR_NETWORK_OPERATION          0xEF    // 错误代码0xEF - 网络操作错误
+#define SYSTEM_ERROR_MEMORY_OPERATION          0xC1    // 错误代码0xC1 - 内存操作错误
 
 // 标志位常量
 #define SYSTEM_FLAG_ENABLED             0x01    // 系统使能标志
@@ -63,16 +63,16 @@ typedef char int8_t;
 #define SYSTEM_FLOAT_ONE                0x3f800000  // 浮点数1.0
 #define SYSTEM_CHECK_VALUE_B7           0xb7  // 检查值0xb7
 #define SYSTEM_CHAR_DOT                 0x2e  // 字符'.'的ASCII码
-#define SYSTEM_CONFIG_VALUE_0X15        0x15  // 系统配置值0x15 - 额外配置参数
-#define SYSTEM_CONFIG_VALUE_0X24        0x24  // 系统配置值0x24 - 额外配置参数
-#define SYSTEM_CONFIG_VALUE_0X26        0x26  // 系统配置值0x26 - 额外配置参数
-#define SYSTEM_CONFIG_VALUE_0X27        0x27  // 系统配置值0x27 - 额外配置参数
-#define SYSTEM_CONFIG_VALUE_0X28        0x28  // 系统配置值0x28 - 额外配置参数
-#define SYSTEM_CONFIG_VALUE_0X40        0x40  // 系统配置值0x40 - 额外配置参数
-#define SYSTEM_CONFIG_VALUE_0X56        0x56  // 系统配置值0x56 - 额外配置参数
-#define SYSTEM_CONFIG_VALUE_0XE0        0xe0  // 系统配置值0xe0 - 额外配置参数
-#define SYSTEM_CONFIG_VALUE_0XB0        0xb0  // 系统配置值0xb0 - 额外配置参数
-#define SYSTEM_CONFIG_VALUE_0X240000000 0x240000000  // 系统配置值0x240000000 - 大偏移量
+#define SYSTEM_CONFIG_EXTRA_PARAMETER_1        0x15  // 系统配置值0x15 - 额外配置参数
+#define SYSTEM_CONFIG_EXTRA_PARAMETER_2        0x24  // 系统配置值0x24 - 额外配置参数
+#define SYSTEM_CONFIG_EXTRA_PARAMETER_3        0x26  // 系统配置值0x26 - 额外配置参数
+#define SYSTEM_CONFIG_EXTRA_PARAMETER_4        0x27  // 系统配置值0x27 - 额外配置参数
+#define SYSTEM_CONFIG_EXTRA_PARAMETER_5        0x28  // 系统配置值0x28 - 额外配置参数
+#define SYSTEM_CONFIG_EXTRA_PARAMETER_6        0x40  // 系统配置值0x40 - 额外配置参数
+#define SYSTEM_CONFIG_EXTRA_PARAMETER_7        0x56  // 系统配置值0x56 - 额外配置参数
+#define SYSTEM_CONFIG_EXTRA_PARAMETER_8        0xe0  // 系统配置值0xe0 - 额外配置参数
+#define SYSTEM_CONFIG_EXTRA_PARAMETER_9        0xb0  // 系统配置值0xb0 - 额外配置参数
+#define SYSTEM_CONFIG_EXTRA_PARAMETER_20000000 0x240000000  // 系统配置值0x240000000 - 大偏移量
 
 // 系统偏移量常量
 #define SYSTEM_OFFSET_24                0x24   // 系统偏移量24
@@ -941,7 +941,7 @@ label_:
       if (file_handle_primary == 0) {
         system_temp_long4 = _wfsopen(system_context,&system_null_data_buffer,SYSTEM_BUFFER_SIZE_64);
         if (system_temp_long4 == 0) {
-          system_handle_error(&file_error_handler,SYSTEM_ERROR_CODE_0XC1,&file_error_context,&system_null_data_buffer,system_context);
+          system_handle_error(&file_error_handler,SYSTEM_ERROR_MEMORY_OPERATION,&file_error_context,&system_null_data_buffer,system_context);
           data_definitions_system_local_bool10 = false;
         }
         else {
@@ -984,7 +984,7 @@ label_:
               file_handle_primary = _wfsopen(system_temp_long4,system_local_pointer8,SYSTEM_BUFFER_SIZE_32);
               if (file_handle_primary != 0) {
                 system_local_pointer8 = &file_error_message_primary;
-                system_temp_uint5 = SYSTEM_ERROR_CODE_0XEB; // 使用常量替换硬编码错误码
+                system_temp_uint5 = SYSTEM_ERROR_FILE_OPERATION; // 使用常量替换硬编码错误码
                 system_context = system_temp_long4;
                 goto label_;
               }
@@ -992,7 +992,7 @@ label_:
               system_temp_long2 = 0;
             } while (system_temp_int3 < 9);
             system_local_pointer8 = &file_error_message_secondary;
-            system_temp_uint5 = SYSTEM_ERROR_CODE_0XEF; // 使用常量替换硬编码错误码
+            system_temp_uint5 = SYSTEM_ERROR_NETWORK_OPERATION; // 使用常量替换硬编码错误码
 label_:
             system_handle_error(&file_error_handler,system_temp_uint5,&file_error_context,system_local_pointer8,system_context);
             free(data_definitions_context_handle);
@@ -1057,7 +1057,7 @@ bool system_event_handler(void)
       if (file_handle_primary == system_register_r12) {
         system_temp_long5 = _wfsopen();
         if (system_temp_long5 == 0) {
-          system_handle_error(&file_error_handler,SYSTEM_ERROR_CODE_0XC1,&file_error_context,&system_null_data_buffer);
+          system_handle_error(&file_error_handler,SYSTEM_ERROR_MEMORY_OPERATION,&file_error_context,&system_null_data_buffer);
           data_definitions_system_local_bool12 = false;
         }
         else {
@@ -1178,14 +1178,14 @@ label_:
       file_handle_primary = _wfsopen(system_temp_long4);
       if (file_handle_primary != 0) {
         system_local_pointer8 = &file_error_message_primary;
-        system_temp_uint5 = SYSTEM_ERROR_CODE_0XEB; // 使用常量替换硬编码错误码
+        system_temp_uint5 = SYSTEM_ERROR_FILE_OPERATION; // 使用常量替换硬编码错误码
         goto label_;
       }
       data_definitions_result_code = data_definitions_result_code + 1;
       system_temp_long2 = 0;
     } while (data_definitions_result_code < 9);
     system_local_pointer8 = &file_error_message_secondary;
-    system_temp_uint5 = SYSTEM_ERROR_CODE_0XEF; // 使用常量替换硬编码错误码
+    system_temp_uint5 = SYSTEM_ERROR_NETWORK_OPERATION; // 使用常量替换硬编码错误码
 label_:
     system_handle_error(&file_error_handler,system_temp_uint5,&file_error_context,system_local_pointer8);
     free(system_temp_long3);
@@ -1325,7 +1325,7 @@ label_:
 //    - system_data_pointer = 0x13 → SYSTEM_CONFIG_AUDIO_PARAMETER
 //    - system_data_pointer = 0x14 → SYSTEM_CONFIG_RENDER_PARAMETER
 //    - *(uint32_t *)(system_data_pointer + 0x7b4) → SYSTEM_MEMORY_OFFSET_RENDER_BUFFER
-//    - system_temp_uint5 = 0xeb → SYSTEM_ERROR_CODE_0XEB
+//    - system_temp_uint5 = 0xeb → SYSTEM_ERROR_FILE_OPERATION
 //
 // 3. 重复函数处理：
 //    - 保留了统一的system_initialize_function函数定义
