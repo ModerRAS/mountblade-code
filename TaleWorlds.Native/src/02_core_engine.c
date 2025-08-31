@@ -171,106 +171,106 @@
  */
 
 // 引擎核心上下文数据
-void* GetEngineContext;                                     // 引擎上下文获取函数指针
-void* g_engine_context_data;                               // 引擎上下文数据指针
-void* g_engine_memory_config;                              // 引擎内存配置数据指针
-void* g_engine_config;                                     // 引擎配置数据指针
-void* g_engine_memory_base;                                // 引擎内存基地址指针
-void* g_engine_memory_pool;                                // 引擎内存池数据指针
-void* g_engine_render_context;                             // 引擎渲染上下文数据指针
-void* g_engine_audio_context;                              // 引擎音频上下文数据指针
+void* GetEngineContextFunction;                             // 引擎上下文获取函数指针
+void* g_engine_context_data_ptr;                             // 引擎上下文数据指针
+void* g_engine_memory_config_ptr;                            // 引擎内存配置数据指针
+void* g_engine_config_ptr;                                   // 引擎配置数据指针
+void* g_engine_memory_base_ptr;                              // 引擎内存基地址指针
+void* g_engine_memory_pool_ptr;                              // 引擎内存池数据指针
+void* g_engine_render_context_ptr;                           // 引擎渲染上下文数据指针
+void* g_engine_audio_context_ptr;                            // 引擎音频上下文数据指针
 
 // 音频系统数据
-void* InitializeAudioEngine;                               // 音频引擎初始化函数指针
-void* g_audio_config;                                       // 音频配置数据指针
+void* InitializeAudioEngineFunction;                        // 音频引擎初始化函数指针
+void* g_audio_config_ptr;                                   // 音频配置数据指针
 
 // 输入系统数据
-void* InitializeInputEngine;                               // 输入引擎初始化函数指针
-void* g_input_system;                                       // 输入系统数据指针
+void* InitializeInputEngineFunction;                        // 输入引擎初始化函数指针
+void* g_input_system_ptr;                                   // 输入系统数据指针
 
 // 渲染系统数据
-void* InitializeRenderEngine;                              // 渲染引擎初始化函数指针
-void* g_render_config;                                      // 渲染配置数据指针
-void* g_render_context;                                     // 渲染上下文数据指针
-void* g_render_buffer;                                      // 渲染缓冲区数据指针
-uint8_t g_render_status;                                   // 渲染状态标志
+void* InitializeRenderEngineFunction;                       // 渲染引擎初始化函数指针
+void* g_render_config_ptr;                                  // 渲染配置数据指针
+void* g_render_context_ptr;                                 // 渲染上下文数据指针
+void* g_render_buffer_ptr;                                  // 渲染缓冲区数据指针
+uint8_t g_render_system_status;                             // 渲染系统状态标志
 
 void ShutdownRenderEngine(void);
 
 // 网络系统数据
-void* InitializeNetworkEngine;                             // 网络引擎初始化函数指针
-void* g_network_socket;                                    // 网络套接字数据指针
-void* g_network_buffer;                                    // 网络缓冲区数据指针
-void* g_network_config;                                    // 网络配置数据指针
-void* g_network_state;                                     // 网络状态数据指针
-void* g_network_timeout;                                   // 网络超时数据指针
-void* g_network_connection;                                // 网络连接数据指针
-uint32_t g_network_buffer_size;                           // 网络缓冲区大小数据指针
-void* g_network_packet;                                    // 网络数据包数据指针
+void* InitializeNetworkEngineFunction;                      // 网络引擎初始化函数指针
+void* g_network_socket_ptr;                                 // 网络套接字数据指针
+void* g_network_buffer_ptr;                                 // 网络缓冲区数据指针
+void* g_network_config_ptr;                                 // 网络配置数据指针
+void* g_network_state_ptr;                                  // 网络状态数据指针
+void* g_network_timeout_ptr;                                // 网络超时数据指针
+void* g_network_connection_ptr;                             // 网络连接数据指针
+uint32_t g_network_buffer_size_value;                       // 网络缓冲区大小数值
+void* g_network_packet_ptr;                                 // 网络数据包数据指针
 
 // 系统管理数据
-void* InitializeSubSystem;                                 // 初始化子系统函数指针
-void* g_network_config_secondary;                         // 网络配置数据(次要)指针
-void* g_system_memory_pool;                                 // 系统内存池数据指针
-uint64_t g_system_main_engine_status;                      // 系统主引擎状态标志
-void* g_system_state;                                      // 系统状态数据指针
-void* g_system_config;                                     // 系统配置数据指针
-void* g_system_error;                                      // 系统错误数据指针
-void* g_system_debug;                                      // 系统调试数据指针
+void* InitializeSubSystemFunction;                          // 初始化子系统函数指针
+void* g_network_config_secondary_ptr;                       // 网络配置数据(次要)指针
+void* g_system_memory_pool_ptr;                             // 系统内存池数据指针
+uint64_t g_system_main_engine_status_value;                 // 系统主引擎状态数值
+void* g_system_state_ptr;                                   // 系统状态数据指针
+void* g_system_config_ptr;                                  // 系统配置数据指针
+void* g_system_error_ptr;                                   // 系统错误数据指针
+void* g_system_debug_ptr;                                   // 系统调试数据指针
 
 /**
  * @brief 引擎主线程管理函数
  * 
  * 包含引擎主线程的启动和停止功能。
  */
-void* StartEngineMainThread;                               // 启动引擎主线程函数指针
-void StopEngineMainThread(void);                           // 停止引擎主线程函数
+void* StartEngineMainThreadFunction;                        // 启动引擎主线程函数指针
+void StopEngineMainThreadFunction(void);                     // 停止引擎主线程函数
 
 /**
  * @brief 引擎消息处理系统函数
  * 
  * 包含引擎消息处理、事件处理和状态更新功能。
  */
-void* ProcessEngineMessages;                               // 处理引擎消息函数指针
-void HandleEngineEvents(void);                              // 处理引擎事件函数
-void UpdateEngineState(void);                               // 更新引擎状态函数
+void* ProcessEngineMessagesFunction;                       // 处理引擎消息函数指针
+void HandleEngineEventsFunction(void);                       // 处理引擎事件函数
+void UpdateEngineStateFunction(void);                        // 更新引擎状态函数
 
 /**
  * @brief 引擎核心功能函数
  * 
  * 包含引擎的核心功能实现，如渲染、输入处理、游戏逻辑等。
  */
-void RenderEngineFrame(void);                               // 渲染引擎帧函数
-void ProcessInputEvents(void);                              // 处理输入事件函数
-void UpdateGameLogic(void);                                 // 更新游戏逻辑函数
-void ProcessNetworkEvents(void);                             // 处理网络事件函数
-void UpdateAudioSystem(void);                                // 更新音频系统函数
-void ManageEngineResources(void);                             // 管理引擎资源函数
+void RenderEngineFrameFunction(void);                        // 渲染引擎帧函数
+void ProcessInputEventsFunction(void);                       // 处理输入事件函数
+void UpdateGameLogicFunction(void);                          // 更新游戏逻辑函数
+void ProcessNetworkEventsFunction(void);                     // 处理网络事件函数
+void UpdateAudioSystemFunction(void);                        // 更新音频系统函数
+void ManageEngineResourcesFunction(void);                     // 管理引擎资源函数
 
 /**
  * @brief 引擎资源和渲染数据
  * 
  * 包含引擎的图形资源、渲染数据和材质信息。
  */
-void* g_graphics_config;                                    // 图形配置数据指针
-void* g_resource_manager;                                   // 资源管理器数据指针
-void* g_texture;                                            // 纹理数据指针
-void* g_shader;                                             // 着色器数据指针
-void* g_vertex_buffer;                                      // 顶点缓冲区数据指针
-void* g_index_buffer;                                       // 索引缓冲区数据指针
-void* g_render_target;                                      // 渲染目标数据指针
-void* g_lighting;                                           // 光照数据指针
-uint8_t g_lighting_status;                                  // 光照状态标志
-void* g_camera;                                             // 相机数据指针
-void* g_viewport;                                           // 视口数据指针
-void* g_projection;                                         // 投影数据指针
-void* g_modelview;                                          // 模型视图数据指针
-void* g_scene;                                              // 场景数据指针
-void* g_entity;                                             // 实体数据指针
-uint32_t g_material_data;                                   // 材质数据值
-uint32_t g_animation_data;                                  // 动画数据值
-uint32_t g_particle_data;                                   // 粒子数据值
-uint8_t g_particle_status;                                  // 粒子系统状态标志
+void* g_graphics_config_ptr;                                // 图形配置数据指针
+void* g_resource_manager_ptr;                               // 资源管理器数据指针
+void* g_texture_ptr;                                        // 纹理数据指针
+void* g_shader_ptr;                                         // 着色器数据指针
+void* g_vertex_buffer_ptr;                                  // 顶点缓冲区数据指针
+void* g_index_buffer_ptr;                                   // 索引缓冲区数据指针
+void* g_render_target_ptr;                                  // 渲染目标数据指针
+void* g_lighting_ptr;                                       // 光照数据指针
+uint8_t g_lighting_system_status;                           // 光照系统状态标志
+void* g_camera_ptr;                                         // 相机数据指针
+void* g_viewport_ptr;                                       // 视口数据指针
+void* g_projection_ptr;                                     // 投影数据指针
+void* g_modelview_ptr;                                      // 模型视图数据指针
+void* g_scene_ptr;                                          // 场景数据指针
+void* g_entity_ptr;                                         // 实体数据指针
+uint32_t g_material_data_value;                             // 材质数据数值
+uint32_t g_animation_data_value;                            // 动画数据数值
+uint32_t g_particle_data_value;                             // 粒子数据数值
+uint8_t g_particle_system_status;                          // 粒子系统状态标志
 
 /**
  * @brief 核心引擎系统函数声明
@@ -301,7 +301,7 @@ uint8_t g_particle_status;                                  // 粒子系统状�
  *          - 返回非零值表示初始化失败
  *          - 失败时会自动清理已初始化的子系统
  */
-int InitializeEngineCore(void);
+int InitializeEngineCoreFunction(void);
 
 /**
  * @brief 引擎系统主循环
@@ -325,7 +325,7 @@ int InitializeEngineCore(void);
  *          - 内部包含帧率控制逻辑
  *          - 支持暂停和恢复功能
  */
-void EngineMainLoop(void);
+void EngineMainLoopFunction(void);
 
 /**
  * @brief 关闭引擎系统
@@ -349,7 +349,7 @@ void EngineMainLoop(void);
  *          - 防止内存泄漏
  *          - 保存必要的状态信息
  */
-void ShutdownEngine(void);
+void ShutdownEngineFunction(void);
 
 /**
  * @brief 初始化引擎子系统
@@ -376,7 +376,7 @@ void ShutdownEngine(void);
  *          - -2: 子系统初始化失败
  *          - -3: 依赖子系统未初始化
  */
-int InitializeEngineSubsystem(int subsystem_id);
+int InitializeEngineSubsystemFunction(int subsystem_id);
 
 /**
  * @brief 处理引擎渲染帧
@@ -401,7 +401,7 @@ int InitializeEngineSubsystem(int subsystem_id);
  *          - 实现视锥体剔除
  *          - 支持LOD级别切换
  */
-void ProcessEngineFrame(float frame_time);
+void ProcessEngineFrameFunction(float frame_time);
 
 /**
  * @brief 更新引擎状态
@@ -426,7 +426,7 @@ void ProcessEngineFrame(float frame_time);
  *          - 支持暂停状态下跳过更新
  *          - 保持更新频率的稳定性
  */
-void UpdateEngine(float delta_time);
+void UpdateEngineFunction(float delta_time);
 
 /**
  * @brief 引擎错误处理函数
@@ -452,7 +452,7 @@ void UpdateEngine(float delta_time);
  *          - 通知相关子系统
  *          - 必要时安全关闭引擎
  */
-void HandleEngineError(int error_code);
+void HandleEngineErrorFunction(int error_code);
 
 /**
  * @brief 引擎内存管理函数
@@ -479,7 +479,7 @@ void HandleEngineError(int error_code);
  *          - 记录内存分配失败日志
  *          - 触发垃圾回收机制
  */
-void* EngineAllocateMemory(size_t size);
+void* EngineAllocateMemoryFunction(size_t size);
 
 /**
  * @brief 引擎内存释放函数
@@ -506,7 +506,7 @@ void* EngineAllocateMemory(size_t size);
  *          - 释放后指针自动设置为NULL
  *          - 支持批量内存释放
  */
-void EngineFreeMemory(void* ptr);
+void EngineFreeMemoryFunction(void* ptr);
 
 /**
  * @brief 核心引擎系统模块结束
