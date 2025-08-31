@@ -7,13 +7,13 @@
 #define UTILITY_THREAD_STORAGE_INDEX_CLEANUP 0xF       // 线程存储清理索引
 
 // 资源句柄参数偏移量常量
-#define UTILITY_RESOURCE_PARAM_OFFSET_TERTIARY 0x3     // 第三级参数偏移量
-#define UTILITY_RESOURCE_PARAM_OFFSET_QUATERNARY 0x4   // 第四级参数偏移量
-#define UTILITY_RESOURCE_PARAM_OFFSET_QUINARY 0x5      // 第五级参数偏移量
-#define UTILITY_RESOURCE_PARAM_OFFSET_SENARY 0x6       // 第六级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_THIRD 0x3        // 第三级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_FOURTH 0x4       // 第四级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_FIFTH 0x5        // 第五级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_SIXTH 0x6         // 第六级参数偏移量
 
 // 数组索引常量
-#define UTILITY_ARRAY_INDEX_QUATERNARY 0x4             // 第四级数组索引
+#define UTILITY_ARRAY_INDEX_FOURTH 0x4                  // 第四级数组索引
 
 // 资源清理偏移量常量
 #define UTILITY_CLEANUP_OFFSET_C60 0xC60                // 清理操作偏移量C60
@@ -23,29 +23,29 @@
 #define UTILITY_TLS_OFFSET_23A0 0x23A0                  // 线程本地存储偏移量23A0
 
 // 数据结构偏移量常量
-#define UTILITY_DATA_OFFSET_1B00 0x1B00                 // 数据偏移量1B00
-#define UTILITY_DATA_OFFSET_1B40 0x1B40                 // 数据偏移量1B40
-#define UTILITY_DATA_OFFSET_1B48 0x1B48                 // 数据偏移量1B48
-#define UTILITY_DATA_OFFSET_1B80 0x1B80                 // 数据偏移量1B80
-#define UTILITY_DATA_POINTER_OFFSET 0x8                 // 数据指针偏移量
-#define UTILITY_FIELD_OFFSET 0xC                        // 字段偏移量
-#define UTILITY_OFFSET_DATA 0x10                        // 数据偏移量
-#define UTILITY_BYTE_OFFSET 0x14                        // 字节偏移量
-#define UTILITY_PADDING_OFFSET 0x18                     // 填充偏移量
+#define UTILITY_DATA_OFFSET_1B00 0x1B00                // 数据偏移量1B00
+#define UTILITY_DATA_OFFSET_1B40 0x1B40                // 数据偏移量1B40
+#define UTILITY_DATA_OFFSET_1B48 0x1B48                // 数据偏移量1B48
+#define UTILITY_DATA_OFFSET_1B80 0x1B80                // 数据偏移量1B80
+#define UTILITY_DATA_POINTER_OFFSET 0x8                // 数据指针偏移量
+#define UTILITY_FIELD_OFFSET 0xC                       // 字段偏移量
+#define UTILITY_STRUCTURE_DATA_OFFSET 0x10              // 结构体数据偏移量
+#define UTILITY_BYTE_DATA_OFFSET 0x14                  // 字节数据偏移量
+#define UTILITY_PADDING_DATA_OFFSET 0x18               // 填充数据偏移量
 
 // 系统状态标志常量
-#define UTILITY_STATUS_FLAG_10 0x10                     // 状态标志10
-#define UTILITY_STATUS_FLAG_28 0x28                     // 状态标志28
-#define UTILITY_STATUS_FLAG_30 0x30                     // 状态标志30
-#define UTILITY_STATUS_FLAG_50 0x50                     // 状态标志50
-#define UTILITY_STATUS_FLAG_60 0x60                     // 状态标志60
-#define UTILITY_STATUS_FLAG_70 0x70                     // 状态标志70
-#define UTILITY_STATUS_FLAG_98 0x98                     // 状态标志98
-#define UTILITY_STATUS_FLAG_B0 0xB0                     // 状态标志B0
-#define UTILITY_STATUS_FLAG_B8 0xB8                     // 状态标志B8
-#define UTILITY_STATUS_FLAG_D0 0xD0                     // 状态标志D0
-#define UTILITY_STATUS_FLAG_E0 0xE0                     // 状态标志E0
-#define UTILITY_STATUS_FLAG_F0 0xF0                     // 状态标志F0
+#define UTILITY_STATUS_FLAG_INITIALIZED 0x10           // 初始化状态标志
+#define UTILITY_STATUS_FLAG_READY 0x28                  // 就绪状态标志
+#define UTILITY_STATUS_FLAG_ACTIVE 0x30                 // 活动状态标志
+#define UTILITY_STATUS_FLAG_PROCESSING 0x50             // 处理中状态标志
+#define UTILITY_STATUS_FLAG_RUNNING 0x60                // 运行状态标志
+#define UTILITY_STATUS_FLAG_COMPLETE 0x70               // 完成状态标志
+#define UTILITY_STATUS_FLAG_VALID 0x98                  // 有效状态标志
+#define UTILITY_STATUS_FLAG_AVAILABLE 0xB0              // 可用状态标志
+#define UTILITY_STATUS_FLAG_BUSY 0xB8                   // 忙碌状态标志
+#define UTILITY_STATUS_FLAG_PENDING 0xD0                // 待处理状态标志
+#define UTILITY_STATUS_FLAG_ERROR 0xE0                  // 错误状态标志
+#define UTILITY_STATUS_FLAG_TIMEOUT 0xF0                // 超时状态标志
 
 // 内存操作常量
 #define UTILITY_MEMORY_INVALID_OFFSET -1                          // 内存无效偏移量
@@ -88,42 +88,42 @@
 #define UTILITY_LIST_OFFSET 0x14                                    // 列表偏移量
 
 // 全局变量声明 - 语义化美化
-static longlong utility_system_resource_handle = 0;
-static uint32 utility_stack_processing_buffer[16] = {0};
-static uint32 utility_stack_buffer_array[16] = {0};
-static uint32 utility_stack_data[16] = {0};
-static float utility_primary_float_value = 0.0f;
-static uint32 utility_status_value = 0;
-static int utility_counter = 0;
-static uint32 utility_state = 0;
-static uint32 *utility_ptr_buffer = NULL;
-static longlong utility_temporary_long_storage = 0;
-static uint32 *utility_generic_data_pointer = NULL;
-static int *utility_result_pointer = NULL;
-static uint32 *utility_cpu_register_rax = NULL;
-static longlong utility_data_pointer_primary_extended = 0;
-static uint32 *utility_system_memory_handle = NULL;
-static longlong utility_resource_cache = 0;
-static uint32 utility_buffer[1024] = {0};
-static uint32 utility_processing_buffer[1024] = {0};
-static uint32 utility_resource_size_limit = 1024;
-static longlong utility_resource_context_handle = 0;
-static uint32 utility_resource_buffer = 0;
-static uint32 utility_boundary_two = 2;
-static uint32 utility_resource_config_offset = 0;
-static uint32 utility_resource_table_offset = 0;
-static longlong utility_frame_ptr = 0;
-static longlong utility_file_data_offset = 0;
-static uint32 utility_file_handle_offset = 0;
-static uint64 utility_file_position_offset = 0;
-static float utility_resource_data_buffer_position = 0.0f;
-static longlong utility_data_buffer_primary = 0;
-static uint32 utility_local_integer_value = 0;
-static longlong utility_buffer_position = 0;
-static uint64 utility_result = 0;
-static uint32 utility_thread_offset = 0;
-static uint64 utility_file_size_param = 0;
-static ulonglong utility_extended_data_ptr = 0;
+static longlong utility_system_resource_handle = 0;               // 系统资源句柄
+static uint32 utility_stack_processing_buffer[16] = {0};          // 栈处理缓冲区
+static uint32 utility_stack_buffer_array[16] = {0};                // 栈缓冲区数组
+static uint32 utility_stack_data[16] = {0};                        // 栈数据
+static float utility_primary_float_value = 0.0f;                   // 主要浮点数值
+static uint32 utility_status_value = 0;                           // 状态值
+static int utility_counter = 0;                                    // 计数器
+static uint32 utility_state = 0;                                   // 状态
+static uint32 *utility_ptr_buffer = NULL;                         // 指针缓冲区
+static longlong utility_temporary_long_storage = 0;               // 临时长整型存储
+static uint32 *utility_generic_data_pointer = NULL;               // 通用数据指针
+static int *utility_result_pointer = NULL;                        // 结果指针
+static uint32 *utility_cpu_register_rax = NULL;                   // CPU寄存器RAX
+static longlong utility_data_pointer_primary_extended = 0;        // 主要扩展数据指针
+static uint32 *utility_system_memory_handle = NULL;               // 系统内存句柄
+static longlong utility_resource_cache = 0;                        // 资源缓存
+static uint32 utility_buffer[1024] = {0};                          // 缓冲区
+static uint32 utility_processing_buffer[1024] = {0};              // 处理缓冲区
+static uint32 utility_resource_size_limit = 1024;                 // 资源大小限制
+static longlong utility_resource_context_handle = 0;               // 资源上下文句柄
+static uint32 utility_resource_buffer = 0;                        // 资源缓冲区
+static uint32 utility_boundary_two = 2;                           // 边界值2
+static uint32 utility_resource_config_offset = 0;                  // 资源配置偏移量
+static uint32 utility_resource_table_offset = 0;                  // 资源表偏移量
+static longlong utility_frame_ptr = 0;                             // 帧指针
+static longlong utility_file_data_offset = 0;                      // 文件数据偏移量
+static uint32 utility_file_handle_offset = 0;                      // 文件句柄偏移量
+static uint64 utility_file_position_offset = 0;                   // 文件位置偏移量
+static float utility_resource_data_buffer_position = 0.0f;        // 资源数据缓冲区位置
+static longlong utility_data_buffer_primary = 0;                  // 主要数据缓冲区
+static uint32 utility_local_integer_value = 0;                    // 本地整数值
+static longlong utility_buffer_position = 0;                      // 缓冲区位置
+static uint64 utility_result = 0;                                  // 结果
+static uint32 utility_thread_offset = 0;                           // 线程偏移量
+static uint64 utility_file_size_param = 0;                        // 文件大小参数
+static ulonglong utility_extended_data_ptr = 0;                    // 扩展数据指针
 
 /**
  * @file 06_utilities.c - 工具函数库
