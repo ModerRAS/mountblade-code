@@ -891,6 +891,18 @@
 #define SYSTEM_CONTEXT_DATA_PRIMARY_INDEX 1
 #define SYSTEM_CONTEXT_NODE_LEFT_CHILD_INDEX 2
 #define SYSTEM_CONTEXT_NODE_RIGHT_CHILD_INDEX 0
+#define SYSTEM_COMPONENT_SECONDARY_ID_INDEX 3
+#define SYSTEM_COMPONENT_HANDLER_INDEX 1
+#define SYSTEM_COMPONENT_STATUS_INDEX 2
+#define SYSTEM_STACK_ARRAY_SIZE 0x040
+#define SYSTEM_STATUS_FLAG_OFFSET 0x04
+#define SYSTEM_INITIALIZATION_FUNCTION_OFFSET 0x06
+#define SYSTEM_LARGE_CONFIG_BUFFER_SIZE 0x020032
+#define SYSTEM_IO_COMPLETION_PORT_OFFSET 0x04260016
+#define SYSTEM_CONTEXT_CHECK_OFFSET 0x0426001003
+#define SYSTEM_SMALL_CONFIG_BUFFER_SIZE 0x010040
+#define SYSTEM_RETURN_VALUE_OFFSET 0x012
+#define SYSTEM_RESOURCE_HANDLE_OFFSET 0x01a
 /* 系统内存操作常量 */
 #define SYSTEM_MEMORY_FREE_SIZE_SMALL 0x040
 #define SYSTEM_MEMORY_FREE_SIZE_MEDIUM 0x02001
@@ -10518,7 +10530,7 @@ int system_check_audio_status(void)
 int system_verify_audio_config(void)
 {
   longlong system_operation_result;
-  uint32_t system_stack_array [0x040];
+  uint32_t system_stack_array [SYSTEM_STACK_ARRAY_SIZE];
   
   system_stack_array[0] = 1;
   system_texture_manager_register(&system_data_memory_pool0c2240020,system_stack_array);
@@ -10528,7 +10540,7 @@ int system_verify_audio_config(void)
 int system_validate_audio_system(void)
 {
   longlong system_operation_result;
-  uint32_t system_stack_array [0x040];
+  uint32_t system_stack_array [SYSTEM_STACK_ARRAY_SIZE];
   
   system_stack_array[0] = 0;
   system_texture_manager_register(&system_data_memory_pool0c2240010,system_stack_array);
@@ -13318,7 +13330,7 @@ void system_stop_timer_countdown(void)
   int system_buffer_length;
   uint64_t system_config_value;
   longlong *system_status_ptr;
-  uint32_t system_configuration_buffer [0x040];
+  uint32_t system_configuration_buffer [SYSTEM_STACK_ARRAY_SIZE];
   void **system_temp_buffer_primary;
   void **system_temp_buffer_secondary;
   void **system_temp_buffer_tertiary;
@@ -13340,9 +13352,9 @@ void system_stop_timer_countdown(void)
   void **system_temp_buffer_quaternary;
   void **system_temp_buffer_quinary;
   uint64_t system_context_id_secondary;
-  void *system_config_buffer [0x040];
+  void *system_config_buffer [SYSTEM_STACK_ARRAY_SIZE];
   longlong **apsystem_temp_buffer [3];
-  uint32_t system_configuration_buffer [0x020032];
+  uint32_t system_configuration_buffer [SYSTEM_LARGE_CONFIG_BUFFER_SIZE];
   ulonglong system_context_id;
   
   system_context_id = SYSTEM_INVALID_HANDLE_VALUE;
@@ -13495,7 +13507,7 @@ void system_reset_timer_instance(uint64_t system_context_ptr,longlong system_con
   system_stack_long_int_ptr = system_long_ptr_ptr;
   _Mtx_init_in_situ(system_long_ptr_ptr,2);
   system_status_ptr[SYSTEM_STACK_INITIAL_VALUE] = 0;
-  system_status_ptr[0x04] = 0;
+  system_status_ptr[SYSTEM_STATUS_FLAG_OFFSET] = 0;
   *(uint16_t *)system_status_ptr = 0;
   system_status_manager = system_status_ptr;
   if ((char)*system_status_ptr != '\0') goto SYSTEM_LABEL;
@@ -13523,9 +13535,9 @@ void system_reset_timer_instance(uint64_t system_context_ptr,longlong system_con
   }
   else {
 SYSTEM_VALIDATION_CHECK:
-    if (system_status_ptr[0x04] == 0) {
+    if (system_status_ptr[SYSTEM_STATUS_FLAG_OFFSET] == 0) {
       system_operation_result = GetProcAddress(system_operation_result,&system_data_callback_pool_base3);
-      system_status_ptr[0x04] = system_operation_result;
+      system_status_ptr[SYSTEM_STATUS_FLAG_OFFSET] = system_operation_result;
       if (system_operation_result == 0) {
         system_thread_context_ptr = &system_callback_pool_base;
         if (system_thread_context_ptr != (void **)0x00) {
@@ -13681,7 +13693,7 @@ uint64_t system_initialize_main_entry(void)
       init_status1 = *(char *)(ppsystem_long_ptr_ptr + 2) != '\0';
     }
     else {
-      init_status1 = (*(code *)(*ppsystem_long_ptr_ptr)[0x06])(ppsystem_long_ptr_ptr);
+      init_status1 = (*(code *)(*ppsystem_long_ptr_ptr)[SYSTEM_INITIALIZATION_FUNCTION_OFFSET])(ppsystem_long_ptr_ptr);
     }
     if (init_status1 != '\0') break;
     Sleep(1);
@@ -13730,7 +13742,7 @@ uint64_t system_initialize_main_entry(void)
       init_status1 = *(char *)(ppsystem_long_ptr_ptr[1] + 2) != '\0';
     }
     else {
-      init_status1 = (*(code *)system_long_ptr_ptr[0x06])();
+      init_status1 = (*(code *)system_long_ptr_ptr[SYSTEM_INITIALIZATION_FUNCTION_OFFSET])();
     }
     ppsystem_long_ptr_ptr = system_callback_memory_pool;
     if (init_status1 != '\0') break;
@@ -13740,8 +13752,8 @@ uint64_t system_initialize_main_entry(void)
   if (system_callback_memory_pool != (longlong ****)0x00) {
     system_operation_result = __RTCastToVoid(system_callback_memory_pool);
     *ppsystem_long_ptr_ptr = (longlong ***)&system_data_memory_allocator;
-    PostQueuedCompletionStatus(ppsystem_long_ptr_ptr[0x04260016],0,0x07fffffffffffffff);
-    CloseHandle(ppsystem_long_ptr_ptr[0x04260016]);
+    PostQueuedCompletionStatus(ppsystem_long_ptr_ptr[SYSTEM_IO_COMPLETION_PORT_OFFSET],0,0x07fffffffffffffff);
+    CloseHandle(ppsystem_long_ptr_ptr[SYSTEM_IO_COMPLETION_PORT_OFFSET]);
     psystem_stack_long_int_ptr = (longlong ***)(ppsystem_long_ptr_ptr + 0x0426001003);
     if ((longlong ***)*psystem_stack_long_int_ptr != (longlong ***)0x00) {
       system_initialize_component();
@@ -13950,9 +13962,9 @@ system_allocate_memory_pool_resources(uint64_t *system_context_ptr, ulonglong po
 uint64_t * system_allocate_memory_block(uint64_t *system_context_ptr,uint system_context_ptr)
 {
   *system_context_ptr = &system_data_memory_allocator;
-  PostQueuedCompletionStatus(system_context_ptr[0x04260016],0,0x07fffffffffffffff,0,SYSTEM_INVALID_HANDLE_VALUE);
-  CloseHandle(system_context_ptr[0x04260016]);
-  if (system_context_ptr[0x0426001003] != 0) {
+  PostQueuedCompletionStatus(system_context_ptr[SYSTEM_IO_COMPLETION_PORT_OFFSET],0,0x07fffffffffffffff,0,SYSTEM_INVALID_HANDLE_VALUE);
+  CloseHandle(system_context_ptr[SYSTEM_IO_COMPLETION_PORT_OFFSET]);
+  if (system_context_ptr[SYSTEM_CONTEXT_CHECK_OFFSET] != 0) {
     system_initialize_component();
   }
   _Mtx_destroy_in_situ();
@@ -14046,12 +14058,12 @@ void system_initialize_timekeeping(longlong system_context_ptr,longlong system_c
   longlong system_operation_result;
   longlong system_long_context_value;
   longlong system_resource_allocation_identifier;
-  uint32_t system_configuration_buffer [0x040];
+  uint32_t system_configuration_buffer [SYSTEM_STACK_ARRAY_SIZE];
   uint64_t system_context_id;
   void **system_temp_buffer;
   uint32_t *system_temp_buffer;
   uint64_t system_context_id;
-  uint32_t system_configuration_buffer [0x010040];
+  uint32_t system_configuration_buffer [SYSTEM_SMALL_CONFIG_BUFFER_SIZE];
   ulonglong system_context_id;
   
   system_context_id = SYSTEM_INVALID_HANDLE_VALUE;
@@ -14203,8 +14215,8 @@ longlong system_validate_memory_pointers(uint64_t *system_context_ptr,uint64_t *
         }
         system_allocate_buffer_memory(&system_data_input_pool_base,system_handle_ptr);
       }
-      *system_context_ptr = system_context_ptr[0x012];
-      return (ulonglong)(uint3)((uint)system_context_ptr[0x012] >> 0x01) << 0x01;
+      *system_context_ptr = system_context_ptr[SYSTEM_RETURN_VALUE_OFFSET];
+      return (ulonglong)(uint3)((uint)system_context_ptr[SYSTEM_RETURN_VALUE_OFFSET] >> 0x01) << 0x01;
     }
   }
   system_temp_unsigned_value = *system_context_ptr;
@@ -14337,12 +14349,12 @@ void system_initialize_profiling_system(longlong system_context_ptr,longlong sys
   longlong system_operation_result;
   longlong system_long_context_value;
   longlong system_resource_allocation_identifier;
-  uint32_t system_stack_byte_array_a1 [0x040];
+  uint32_t system_stack_byte_array_a1 [SYSTEM_STACK_ARRAY_SIZE];
   uint64_t system_context_id;
   void **system_temp_buffer;
   uint32_t *system_temp_buffer;
   uint64_t system_context_id;
-  uint32_t system_configuration_buffer [0x040];
+  uint32_t system_configuration_buffer [SYSTEM_STACK_ARRAY_SIZE];
   ulonglong system_context_id;
   
   system_context_id = SYSTEM_INVALID_HANDLE_VALUE;
@@ -14836,7 +14848,7 @@ void system_initialize_metrics_collector(void)
   uint64_t *child_node;
   uint32_t *system_manager_ptr;
   uint64_t system_temp_val;
-  uint32_t system_configuration_buffer [0x040];
+  uint32_t system_configuration_buffer [SYSTEM_STACK_ARRAY_SIZE];
   longlong system_stack_local_config;
   longlong system_config_data_buffer;
   int system_config_data_size;
@@ -15172,7 +15184,7 @@ SYSTEM_VALIDATION_CHECK:
   system_buffer_context = (uint64_t *)*system_buffer_context;
 SYSTEM_VALIDATION_CHECK:
   system_setup_rendering_context(system_buffer_context + 0x01,system_context_ptr);
-  system_buffer_context[0x04] = system_context_ptr;
+  system_buffer_context[SYSTEM_STATUS_FLAG_OFFSET] = system_context_ptr;
   return;
 }
 /**
@@ -15853,7 +15865,7 @@ uint64_t * system_resolve_memory_reference(longlong system_context_ptr,longlong 
     system_buffer_context = (uint64_t *)system_allocate_resource_block(system_memory_pool_context,0x06001,*(uint32_t *)(system_context_ptr + SYSTEM_MEMORY_POOL_BASE_OFFSET));
     system_initialize_ui_components(system_buffer_context + 4,system_long_data_ptr + 4);
     system_initialize_ui_components(system_buffer_context + 0x01,system_long_data_ptr + 0x01);
-    system_buffer_context[0x04] = system_long_data_ptr[0x04];
+    system_buffer_context[SYSTEM_STATUS_FLAG_OFFSET] = system_long_data_ptr[SYSTEM_STATUS_FLAG_OFFSET];
     *system_buffer_context = 0;
     system_buffer_context[1] = 0;
     system_buffer_context[2] = data_context;
@@ -15876,7 +15888,7 @@ uint64_t * system_allocate_memory_reference(longlong system_context_ptr,longlong
                          SYSTEM_INVALID_HANDLE_VALUE);
   system_initialize_ui_components(data_context + 4,system_context_ptr + SYSTEM_RESOURCE_BLOCK_OFFSET);
   system_initialize_ui_components(data_context + 0x01,system_context_ptr + SYSTEM_AUDIO_TABLE_OFFSET_VALUE);
-  data_context[0x04] = *(uint64_t *)(system_context_ptr + SYSTEM_CALLBACK_TABLE_OFFSET);
+  data_context[SYSTEM_STATUS_FLAG_OFFSET] = *(uint64_t *)(system_context_ptr + SYSTEM_CALLBACK_TABLE_OFFSET);
   *data_context = 0;
   data_context[1] = 0;
   data_context[2] = system_context_ptr;
@@ -15922,13 +15934,13 @@ system_configure_memory_management_context(uint64_t *system_context_ptr,longlong
       system_context_ptr[10] = presource_allocation_identifier[-0x011];
       system_context_ptr[SYSTEM_STACK_INITIAL_VALUE] = system_audio_buffer_ptr;
       system_audio_buffer_ptr = presource_allocation_identifier[-0x05];
-      system_context_ptr[0x04] = presource_allocation_identifier[-0x07];
-      system_context_ptr[0x06] = system_audio_buffer_ptr;
+      system_context_ptr[SYSTEM_STATUS_FLAG_OFFSET] = presource_allocation_identifier[-0x07];
+      system_context_ptr[SYSTEM_INITIALIZATION_FUNCTION_OFFSET] = system_audio_buffer_ptr;
       system_context_ptr[0x05] = presource_allocation_identifier[-0x06];
       system_context_ptr[0x07] = presource_allocation_identifier[-0x04];
       system_context_ptr[SYSTEM_CONFIG_DATA_SIZE] = presource_allocation_identifier[-SYSTEM_STACK_INITIAL_VALUE];
       system_context_ptr[0x011] = presource_allocation_identifier[-10];
-      system_context_ptr[0x012] = presource_allocation_identifier[-0x02];
+      system_context_ptr[SYSTEM_RETURN_VALUE_OFFSET] = presource_allocation_identifier[-0x02];
       *(int *)(system_context_ptr + 0x08) = (int)presource_allocation_identifier[-0x01];
       *(uint64_t *)((longlong)system_context_ptr + 0x02c) = *(uint64_t *)((longlong)presource_allocation_identifier + -0x03c);
       system_context_ptr[0x014] = presource_allocation_identifier[-0x03];
@@ -16039,7 +16051,7 @@ void system_initialize_debug_console(uint64_t system_context_ptr,uint64_t *syste
   int system_integer_value;
   uint system_audio_context_id;
   longlong system_resource_allocation_identifier;
-  uint32_t system_configuration_buffer [0x040];
+  uint32_t system_configuration_buffer [SYSTEM_STACK_ARRAY_SIZE];
   longlong system_resource_multiplier;
   int system_resource_priority;
   ulonglong system_context_id;
@@ -16191,7 +16203,7 @@ void system_initialize_watchpoint_system(longlong system_context_ptr,longlong sy
   longlong system_operation_result;
   longlong system_long_context_value;
   longlong system_resource_allocation_identifier;
-  uint32_t system_configuration_buffer [0x040];
+  uint32_t system_configuration_buffer [SYSTEM_STACK_ARRAY_SIZE];
   uint64_t system_context_id_f1;
   void **system_thread_context_ptr;
   uint32_t *system_thread_context_ptr;
@@ -16310,7 +16322,7 @@ void system_initialize_tracing_system(longlong system_context_ptr,longlong syste
   longlong system_operation_result;
   longlong system_long_context_value;
   longlong system_resource_allocation_identifier;
-  uint32_t asystem_context_id_d1 [0x040];
+  uint32_t asystem_context_id_d1 [SYSTEM_STACK_ARRAY_SIZE];
   uint64_t system_context_id_b1;
   void **system_thread_context_ptr;
   uint32_t *system_thread_context_ptr;
@@ -16629,7 +16641,7 @@ void system_initialize_exception_system(void)
   uint64_t *system_handle_ptr;
   void **system_buffer_context;
   int system_config_value;
-  uint32_t system_configuration_buffer [0x040];
+  uint32_t system_configuration_buffer [SYSTEM_STACK_ARRAY_SIZE];
   uint64_t system_context_id;
   uint32_t system_configuration_buffer [SYSTEM_COMPONENT_HANDLER_INDEX];
   void **system_temp_buffer;
@@ -16954,14 +16966,14 @@ void system_handle_system_panic(uint64_t *system_context_ptr)
   longlong system_resource_allocation_identifier;
   uint system_unsigned_integer_buffer;
   void **system_config_ptr;
-  uint32_t system_configuration_buffer [0x040];
+  uint32_t system_configuration_buffer [SYSTEM_STACK_ARRAY_SIZE];
   uint64_t system_context_id;
   uint64_t system_context_id;
   uint64_t *system_temp_buffer;
   void **system_temp_buffer;
   void **system_temp_buffer;
   uint64_t system_context_id;
-  void *system_configuration_buffer [0x040];
+  void *system_configuration_buffer [SYSTEM_STACK_ARRAY_SIZE];
   ulonglong system_context_id;
   
   system_context_id = SYSTEM_INVALID_HANDLE_VALUE;
@@ -17141,10 +17153,10 @@ void system_initialize_backup_system(longlong system_context_ptr,uint64_t system
   longlong system_audio_buffer_ptr;
   uint64_t initialization_flag;
   uint64_t system_context_id_20;
-  uint32_t system_configuration_buffer [0x040];
+  uint32_t system_configuration_buffer [SYSTEM_STACK_ARRAY_SIZE];
   uint64_t system_context_id;
   uint64_t *system_temp_buffer;
-  char system_stack_char_0x04001 [0x040];
+  char system_stack_char_0x04001 [SYSTEM_STACK_ARRAY_SIZE];
   ulonglong system_context_id;
   
   system_context_id = _system_data_memory_pool0bf00a1 ^ (ulonglong)system_configuration_buffer;
@@ -17313,7 +17325,7 @@ uint64_t * system_cleanup_component_resources(uint64_t *system_context_ptr)
   *(uint64_t *)(system_context_ptr + 0x03f) = 3;
   system_context_ptr[SYSTEM_STANDARD_BUFFER_SIZE] = 0;
   system_context_ptr[0x011] = 0;
-  system_context_ptr[0x012] = 0;
+  system_context_ptr[SYSTEM_RETURN_VALUE_OFFSET] = 0;
   *(uint64_t *)(system_context_ptr + 0x013) = 3;
   system_context_ptr[0x014] = 0;
   system_context_ptr[0x015] = 0;
@@ -17321,7 +17333,7 @@ uint64_t * system_cleanup_component_resources(uint64_t *system_context_ptr)
   *(uint64_t *)(system_context_ptr + 0x01003) = 3;
   system_context_ptr[0x01001] = 0;
   system_context_ptr[0x01002] = 0;
-  system_context_ptr[0x01a] = 0;
+  system_context_ptr[SYSTEM_RESOURCE_HANDLE_OFFSET] = 0;
   *(uint64_t *)(system_context_ptr + 0x01b) = 3;
   system_context_ptr[0x01c] = 0;
   system_context_ptr[0x01d] = 0;
@@ -17750,7 +17762,7 @@ uint64_t * system_get_component_context(uint64_t *system_context_ptr)
   system_context_ptr[0x01001] = 0;
   *(uint64_t *)(system_context_ptr + SYSTEM_STATUS_FLAG_OFFSET) = 0;
   system_context_ptr[0x01003] = &system_callback_pool_base;
-  system_context_ptr[0x01a] = 0;
+  system_context_ptr[SYSTEM_RESOURCE_HANDLE_OFFSET] = 0;
   system_context_ptr[0x01001] = 0;
   *(uint64_t *)(system_context_ptr + SYSTEM_STATUS_FLAG_OFFSET) = 0;
   system_context_ptr[0x01b] = 0;
@@ -18049,7 +18061,7 @@ void system_encrypt_data_block(longlong *system_context_ptr)
     data_context[0x011] = 0;
     *(uint64_t *)(data_context + 0x08) = 0;
     data_context[SYSTEM_CONFIG_DATA_SIZE] = &system_animation_pool_base;
-    if (data_context[0x04] != 0) {
+    if (data_context[SYSTEM_STATUS_FLAG_OFFSET] != 0) {
       system_initialize_component();
     }
     system_initialize_shader_system();
@@ -18145,7 +18157,7 @@ void system_encrypt_data_block(longlong *system_context_ptr)
   system_context_ptr[0x03a] = 0;
   *(uint64_t *)(system_context_ptr + 0x03c) = 0;
   system_context_ptr[0x03002] = (longlong)&system_animation_pool_base;
-  system_context_ptr[0x040] = (longlong)&system_animation_pool_base;
+  system_context_ptr[SYSTEM_STACK_ARRAY_SIZE] = (longlong)&system_animation_pool_base;
   system_context_ptr[0x02e] = (longlong)&system_callback_pool_base;
   if (system_context_ptr[0x02f] != 0) {
     system_initialize_component();
@@ -18220,7 +18232,7 @@ void system_decrypt_data_block(uint64_t system_context_ptr,longlong system_conte
   bool system_bool_graphics_ready;
   uint64_t extraout_XMM0_Da;
   uint64_t extraout_XMM0_Da_00;
-  uint32_t system_configuration_buffer [0x040];
+  uint32_t system_configuration_buffer [SYSTEM_STACK_ARRAY_SIZE];
   uint32_t system_context_id;
   char cStack_0x033001;
   char cStack_0x033003;
@@ -18438,7 +18450,7 @@ uint64_t system_complete_initialization(void)
   uint system_context_id;
   uint64_t system_context_id;
   uint64_t system_context_id;
-  uint32_t system_configuration_buffer [0x040];
+  uint32_t system_configuration_buffer [SYSTEM_STACK_ARRAY_SIZE];
   uint32_t system_configuration_buffer [40];
   
   system_resource_allocation_identifier = _system_data_memory_pool0c160010030;
@@ -18643,7 +18655,7 @@ void system_calculate_data_hash(void)
   void **child_node;
   char cVar0x02;
   uint64_t system_temp_val;
-  uint32_t system_configuration_buffer [0x040];
+  uint32_t system_configuration_buffer [SYSTEM_STACK_ARRAY_SIZE];
   longlong system_stack_long_int_1e1;
   longlong system_stack_long_int_1d1;
   longlong system_stack_long_int_1d0;
@@ -18898,7 +18910,7 @@ void system_initialize_checksum_system(void)
   longlong system_operation_result;
   longlong *system_ptr_system_local_variable;
   uint64_t *system_handler_ptr;
-  uint32_t system_stack_byte_array_a1 [0x040];
+  uint32_t system_stack_byte_array_a1 [SYSTEM_STACK_ARRAY_SIZE];
   longlong *system_temp_buffer;
   longlong **psystem_temp_buffer;
   void **system_temp_buffer;
@@ -19279,7 +19291,7 @@ void system_initialize_validation_system(longlong system_context_ptr,uint64_t sy
   ulonglong system_temp_val;
   longlong *system_context_ptr;
   uint64_t system_temp_val;
-  uint32_t system_configuration_buffer [0x040];
+  uint32_t system_configuration_buffer [SYSTEM_STACK_ARRAY_SIZE];
   longlong **psystem_temp_buffer;
   void **system_temp_buffer;
   uint64_t system_context_id;
@@ -19629,7 +19641,7 @@ void system_initialize_verification_system(longlong system_context_ptr)
 {
   uint64_t *data_context;
   int system_integer_context;
-  uint32_t system_configuration_buffer [0x040];
+  uint32_t system_configuration_buffer [SYSTEM_STACK_ARRAY_SIZE];
   uint64_t system_context_id_e1;
   uint64_t system_context_id_b1;
   longlong system_stack_long_int_b0;
@@ -20079,7 +20091,7 @@ void system_initialize_testing_system(uint64_t system_context_ptr,longlong syste
   uint64_t *data_context;
   int system_integer_context;
   int comparison_result;
-  uint32_t system_configuration_bufferc1 [0x040];
+  uint32_t system_configuration_bufferc1 [SYSTEM_STACK_ARRAY_SIZE];
   void ***psystem_temp_buffera1;
   uint64_t system_context_ida0;
   void **system_temp_buffer;
@@ -20292,7 +20304,7 @@ void system_run_unit_tests(uint64_t system_context_ptr,uint64_t system_context_p
   ulonglong system_temp_val;
   void **system_manager_ptr;
   longlong system_operation_result;
-  uint32_t system_configuration_buffer [0x040];
+  uint32_t system_configuration_buffer [SYSTEM_STACK_ARRAY_SIZE];
   uint32_t system_context_id;
   uint64_t system_context_id_graphics;
   uint64_t system_context_idf4;
@@ -20309,7 +20321,7 @@ void system_run_unit_tests(uint64_t system_context_ptr,uint64_t system_context_p
   uint64_t system_context_id_c0;
   uint64_t system_context_id_b1;
   uint64_t system_context_id_b0;
-  uint32_t system_configuration_buffer [0x040];
+  uint32_t system_configuration_buffer [SYSTEM_STACK_ARRAY_SIZE];
   uint64_t system_context_id;
   uint64_t system_context_id;
   char system_stack_char_0x05001 [16];
@@ -20534,7 +20546,7 @@ void system_execute_integration_tests(longlong *system_context_ptr,longlong syst
   void **system_config_ptr;
   longlong system_status_value;
   ulonglong system_temp_val;
-  uint32_t system_configuration_buffer [0x040];
+  uint32_t system_configuration_buffer [SYSTEM_STACK_ARRAY_SIZE];
   uint64_t system_context_id;
   void **system_temp_buffer;
   longlong system_memory_buffer;
@@ -20746,7 +20758,7 @@ void system_generate_test_report(void)
   uint *system_uint_pointer;
   void **system_uint_pointer;
   uint64_t system_temp_val;
-  uint32_t system_configuration_buffer [0x040];
+  uint32_t system_configuration_buffer [SYSTEM_STACK_ARRAY_SIZE];
   void **system_temp_buffer;
   uint32_t *system_temp_buffer;
   uint system_context_id;
