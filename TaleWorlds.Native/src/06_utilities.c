@@ -164,7 +164,7 @@
 #define UTILITY_ALIGNMENT_MASK UTILITY_FLAG_MASK_WORDfff0
 #define UTILITY_MEMORY_PAGE_SIZE 0x1000
 #define UTILITY_MEMORY_NEGATIVE_512MB_VALUE -0x20000000
-#define UTILITY_RESOURCE_FLAG_B8 0x27
+#define UTILITY_RESOURCE_FLAG_OFFSET_0X27 0x27
 #define UTILITY_MEMORY_ADDRESS_BASE_SYSTEM 0x000180893865
 #define UTILITY_MEMORY_ADDRESS_BASE_KERNEL 0x000180893a22
 #define UTILITY_MEMORY_ADDRESS_BASE_USER 0x000180895f53
@@ -187,23 +187,23 @@
 #define UTILITY_FLAG_MASK_30_BIT 0x3FFFFFFF
 #define UTILITY_FLAG_MASK_WORD7FFF 0x7fff
 #define UTILITY_FLAG_MASK_HIGH_BYTE_ONLY 0xff000000
-#define UTILITY_STREAM_TYPE_FEBE 0x46464542  /* "FFEB" */
-#define UTILITY_STREAM_TYPE_BFEB 0x42464542  /* "BFEB" */
-#define UTILITY_STREAM_TYPE_ORTC 0x4f525443  /* "ORTC" */
-#define UTILITY_STREAM_TYPE_BIVE 0x42495645  /* "BIVE" */
-#define UTILITY_STREAM_TYPE_OLMP 0x4f4c4d50  /* "OLMP" */
-#define UTILITY_STREAM_TYPE_BLMP 0x424c4d50
-#define UTILITY_STREAM_TYPE_MRAP 0x4d524150
-#define UTILITY_STREAM_TYPE_BMRP 0x424d5250
-#define UTILITY_STREAM_TYPE_BFEP 0x42464550
-#define UTILITY_STREAM_TYPE_BIPS 0x42495053
-#define UTILITY_STREAM_TYPE_BFES 0x42464553
-#define UTILITY_STREAM_TYPE_FFCS 0x46464353
-#define UTILITY_STREAM_TYPE_BNLT 0x424e4c54
-#define UTILITY_STREAM_TYPE_BIAW 0x42494157
-#define UTILITY_STREAM_TYPE_BIFE 0x42494645
-#define UTILITY_STREAM_TYPE_BDMC 0x42444d43
-#define UTILITY_STREAM_TYPE_IDMC 0x49444d43
+#define UTILITY_STREAM_TYPE_SIGNATURE_FEBE 0x46464542  /* "FFEB" */
+#define UTILITY_STREAM_TYPE_SIGNATURE_BFEB 0x42464542  /* "BFEB" */
+#define UTILITY_STREAM_TYPE_SIGNATURE_ORTC 0x4f525443  /* "ORTC" */
+#define UTILITY_STREAM_TYPE_SIGNATURE_BIVE 0x42495645  /* "BIVE" */
+#define UTILITY_STREAM_TYPE_SIGNATURE_OLMP 0x4f4c4d50  /* "OLMP" */
+#define UTILITY_STREAM_TYPE_SIGNATURE_BLMP 0x424c4d50
+#define UTILITY_STREAM_TYPE_SIGNATURE_MRAP 0x4d524150
+#define UTILITY_STREAM_TYPE_SIGNATURE_BMRP 0x424d5250
+#define UTILITY_STREAM_TYPE_SIGNATURE_BFEP 0x42464550
+#define UTILITY_STREAM_TYPE_SIGNATURE_BIPS 0x42495053
+#define UTILITY_STREAM_TYPE_SIGNATURE_BFES 0x42464553
+#define UTILITY_STREAM_TYPE_SIGNATURE_FFCS 0x46464353
+#define UTILITY_STREAM_TYPE_SIGNATURE_BNLT 0x424e4c54
+#define UTILITY_STREAM_TYPE_SIGNATURE_BIAW 0x42494157
+#define UTILITY_STREAM_TYPE_SIGNATURE_BIFE 0x42494645
+#define UTILITY_STREAM_TYPE_SIGNATURE_BDMC 0x42444d43
+#define UTILITY_STREAM_TYPE_SIGNATURE_IDMC 0x49444d43
 
 #define UTILITY_CONTEXT_SIZE_MULTIPLIER_44_BYTES 0x44
 #define UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY 0x5c
@@ -356,24 +356,35 @@ uint8_t utility_context_system_extended;
  * @param context_data 上下文数据指针，包含线程相关的配置信息
  * @return 无返回值
  */
+/**
+ * @brief 处理线程本地存储数据
+ * 
+ * 该函数负责处理线程本地存储的数据，包括线程句柄的管理、
+ * 上下文数据的处理以及资源的分配和释放。函数会验证数据完整性，
+ * 并确保所有操作都在安全的范围内执行。
+ * 
+ * @param thread_handle 线程句柄，用于标识和管理特定线程
+ * @param context_data 上下文数据指针，包含线程相关的配置和状态信息
+ * @return 无返回值
+ */
 void utility_process_thread_local_data(int64_t thread_handle, int64_t context_data)
 {
     uint64_t utility_resource_handle_value;
     int utility_result;
     int64_t utility_loop_idx;
     int utility_processed_count;
-    uint8_t utility_thread_workspace_buffer_buffer[32];
+    uint8_t utility_thread_workspace_buffer[32];
     int64_t utility_context_storage_data[2];
     uint8_t *utility_buffer_ptr;
     int utility_resource_count;
     uint32_t utility_buffer_flags;
     uint8_t utility_large_workspace_buffer[512];
     uint64_t utility_checksum;
-    int64_t utility_processed_count;      // 已处理的项目计数器
-    int64_t utility_loop_idx;
+    int64_t utility_processed_count_value;      // 已处理的项目计数器
+    int64_t utility_loop_index;
     
     // 计算校验和结果，用于数据完整性验证
-    utility_checksum = (uint64_t)utility_system_reserved_memory ^ (uint64_t)utility_thread_workspace_buffer_buffer;
+    utility_checksum = (uint64_t)utility_system_reserved_memory ^ (uint64_t)utility_thread_workspace_buffer;
     
     // 调用系统服务管理器处理线程句柄和上下文存储
     utility_result = utility_service_request_handler(*(uint32_t *)(thread_handle + UTILITY_THREAD_HANDLE_OFFSET), utility_context_storage_data);
@@ -382,7 +393,7 @@ void utility_process_thread_local_data(int64_t thread_handle, int64_t context_da
     if ((utility_result == UTILITY_FALSE) && (*(int64_t *)(utility_context_storage_data[0] + UTILITY_MEMORY_POINTER_OFFSET) != UTILITY_FALSE)) {
         utility_buffer_ptr = utility_large_workspace_buffer;
         utility_processed_count = UTILITY_FALSE;
-        utility_loop_idx;
+        utility_loop_index = 0;
         utility_buffer_flags = UTILITY_BUFFER_FLAGS_DEFAULT;
         
         // 创建资源句柄
@@ -391,12 +402,13 @@ void utility_process_thread_local_data(int64_t thread_handle, int64_t context_da
         if (utility_result == UTILITY_FALSE) {
             // 处理资源计数器大于0的情况
             if (0 < utility_resource_count) {
-            // 清理缓冲区管理器
-            utility_buffer_cleaner(&utility_buffer_ptr);
-        }
-        else {
-            // 清理缓冲区管理器
-            utility_buffer_cleaner(&utility_buffer_ptr);
+                // 清理缓冲区管理器
+                utility_buffer_cleaner(&utility_buffer_ptr);
+            }
+            else {
+                // 清理缓冲区管理器
+                utility_buffer_cleaner(&utility_buffer_ptr);
+            }
         }
     }
     
@@ -409,6 +421,16 @@ void utility_process_thread_local_data(int64_t thread_handle, int64_t context_da
  * 上下文管理器的清理，以及缓冲区的清理工作。
  * 
  * @param context_pointer 线程上下文指针，包含需要清理的资源信息
+ * @return 无返回值
+ */
+/**
+ * @brief 清理线程相关数据
+ * 
+ * 该函数负责清理和释放线程相关的所有资源，包括内存缓冲区、
+ * 资源句柄、安全密钥等。函数会验证上下文指针的有效性，
+ * 并确保所有清理操作都在安全的范围内执行。
+ * 
+ * @param context_pointer 上下文指针，指向需要清理的线程数据结构
  * @return 无返回值
  */
 void utility_cleanup_thread_data(int64_t context_pointer)
