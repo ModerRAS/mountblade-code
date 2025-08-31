@@ -2649,6 +2649,20 @@ int utility_temp_integer_value;
   }
   return utility_error_code_failed;
 }
+/**
+ * @brief 完成资源处理过程 - 清理资源处理过程中的临时数据和状态
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @param utility_resource_cache 资源缓存
+ * @return 无返回值
+ *
+ * 该函数负责完成资源处理过程，包括：
+ * - 执行系统内存操作
+ * - 验证操作结果状态
+ * - 释放资源句柄
+ * - 清理临时数据
+ *
+ * 简化实现：仅添加基本资源处理完成逻辑
+ */
 void utility_complete_resource_process(longlong utility_resource_primary_handle,longlong utility_resource_cache)
 {
   int utility_result;
@@ -2668,6 +2682,20 @@ void utility_complete_resource_process(longlong utility_resource_primary_handle,
   }
   return;
 }
+/**
+ * @brief 处理资源响应 - 处理系统资源的响应数据和状态
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @param utility_resource_cache 资源缓存
+ * @return uint64 处理结果状态码
+ *
+ * 该函数负责处理系统资源的响应，包括：
+ * - 验证资源句柄有效性
+ * - 处理浮点数值
+ * - 执行系统内存操作
+ * - 返回处理结果状态码
+ *
+ * 简化实现：仅添加基本资源响应处理逻辑
+ */
 uint64 utility_handle_resource_response(longlong utility_resource_primary_handle,longlong utility_resource_cache)
 {
   float utility_float_value;
