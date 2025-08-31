@@ -866,11 +866,11 @@ void InitializeEvent(void)
  */
 void SetEvent(void)
 {
-    utility_iteration_index = UTILITY_FALSE;
-    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
-        return;
+    // 设置事件状态：触发事件，通知等待的线程
+    utility_iteration_index = UTILITY_FLAG_TRUE;
+    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_FALSE) {
+        utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_TERTIARY);
     }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
 }
 
 /** 
@@ -882,12 +882,13 @@ void SetEvent(void)
  */
 uint32_t utility_get_stream_status(void)
 {
-    utility_iteration_index = UTILITY_FALSE;
-    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
-        return UTILITY_STATUS_THREAD_CREATED;
+    // 获取流状态：检查数据流的当前状态
+    utility_iteration_index = UTILITY_FLAG_TRUE;
+    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_FALSE) {
+        utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
+        return UTILITY_STATUS_RESOURCE_AVAILABLE;
     }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
-    return UTILITY_STATUS_RESOURCE_AVAILABLE;
+    return UTILITY_STATUS_RESOURCE_NOT_FOUND;
 }
 
 /** 
