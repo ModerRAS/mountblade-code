@@ -487,7 +487,7 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
     int64_t utility_loop_counter;
     int utility_processed_count;
     uint8_t *utility_buffer_ptr;
-    int utility_process_count;
+    int utility_iteration_limit;
     uint32_t utility_buffer_flags;
     uint64_t utility_security_key;
     int utility_operation_status;
@@ -507,7 +507,7 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
         
         if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
             // 处理进程计数大于0的情况
-            if (0 < utility_process_count) {
+            if (0 < utility_iteration_limit) {
                 utility_iteration_index = UTILITY_BOOLEAN_FALSE;
                 do {
                     // 获取资源值
@@ -521,7 +521,7 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
                     }
                     
                     utility_iteration_index = utility_iteration_index + UTILITY_POINTER_OFFSET;
-                } while (utility_loop_counter < utility_process_count);
+                } while (utility_loop_counter < utility_iteration_limit);
             }
             // 清理缓冲区管理器
             utility_buffer_manager_cleanup(&utility_buffer_ptr);
@@ -571,7 +571,7 @@ void utility_validate_resource_state(void)
 uint64_t utility_process_resource_pointer(int64_t context_handle)
 {
     int64_t utility_loop_index;
-    int64_t utility_process_counter;
+    int64_t utility_iteration_limiter;
     int utility_operation_status_secondary;
     uint64_t utility_resource_value;
     long long utility_context_data;
@@ -6013,7 +6013,7 @@ int utility_stack_context_value_value;
 uint8_t utility_stack_buffer_data_78 [8];
 uint8_t utility_stack_buffer_data_70 [8];
 uint8_t utility_stack_buffer_array [40];
-utility_resource_context = *(uint *)(context_handle + 0x6c);
+utility_resource_context = *(uint *)(context_handle + UTILITY_CONTEXT_OFFSET_6C);
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 utility_operation_status = UTILITY_BOOLEAN_FALSE;
 if ((utility_resource_data >> UTILITY_STATUS_ENABLED_FLAGa & 1) == UTILITY_BOOLEAN_FALSE) goto UTILITY_LABEL_VALIDATION_PASSED;
@@ -6038,7 +6038,7 @@ utility_iteration_index = utility_context_data[2];
 utility_iteration_index = (int64_t)utility_stack_buffer_array_int_data[0];
 utility_operation_status = *(int *)(utility_loop_counter + 8 + utility_loop_counter * UTILITY_THREAD_HANDLE_OFFSET);
 if (utility_operation_status == 2) {
-utility_operation_status = utility_system_service_manager(*(uint32_t *)(utility_loop_counter + 0xc + utility_loop_counter * UTILITY_THREAD_HANDLE_OFFSET),&utility_param_value);
+utility_operation_status = utility_system_service_manager(*(uint32_t *)(utility_loop_counter + UTILITY_CONTEXT_OFFSET_C + utility_loop_counter * UTILITY_THREAD_HANDLE_OFFSET),&utility_param_value);
 utility_resource_context = utility_param_value;
 context_handle = utility_context_main_pointer;
 if ((utility_operation_result == UTILITY_BOOLEAN_FALSE) &&
@@ -6272,7 +6272,7 @@ if ((utility_operation_result == UTILITY_BOOLEAN_FALSE) && (utility_operation_st
 *(uint32_t *)(context_handle + UTILITY_CONTEXT_OFFSET_94) = UTILITY_BOOLEAN_FALSE;
 }
 *(uint *)(context_handle + 0x6c) = *(uint *)(context_handle + 0x6c) & UTILITY_FLAG_MASK_0XFBFFFFFF;
-utility_resource_context = *(uint *)(context_handle + 0x6c);
+utility_resource_context = *(uint *)(context_handle + UTILITY_CONTEXT_OFFSET_6C);
 UTILITY_LABEL_VALIDATION_PASSED:
 if ((utility_resource_data >> UTILITY_STATUS_ENABLED_FLAG9 & 1) != UTILITY_BOOLEAN_FALSE) {
 utility_iteration_index = *(int64_t *)(context_handle + UTILITY_RESOURCE_FLAG_A0);
