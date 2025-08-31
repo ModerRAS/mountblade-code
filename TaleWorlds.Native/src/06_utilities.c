@@ -963,11 +963,11 @@ void CloseEvent(void)
  */
 void InitializeMutex(void)
 {
-    utility_iteration_index = UTILITY_FALSE;
-    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
-        return;
+    // 初始化互斥体对象：创建互斥锁用于线程同步
+    utility_iteration_index = UTILITY_FLAG_TRUE;
+    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_FALSE) {
+        utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_TERTIARY);
     }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
 }
 /** 
  * @brief 资源管理器服务请求处理函数
@@ -980,11 +980,12 @@ void InitializeMutex(void)
  */
 int utility_resource_handle_service_request(uint32_t service_id, int64_t context_array[])
 {
-    utility_iteration_index = UTILITY_FALSE;
-    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
-        return UTILITY_STATUS_THREAD_CREATED;
+    // 资源管理器服务请求处理：处理资源创建、配置和释放操作
+    utility_iteration_index = UTILITY_FLAG_TRUE;
+    if (service_id != UTILITY_FLAG_FALSE && context_array != NULL) {
+        utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
+        return UTILITY_STATUS_RESOURCE_AVAILABLE;
     }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
-    return UTILITY_STATUS_RESOURCE_AVAILABLE;
+    return UTILITY_STATUS_ACCESS_DENIED;
 }
 
