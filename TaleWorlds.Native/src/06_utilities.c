@@ -135,7 +135,7 @@
 #define UTILITY_SERVICE_CONTEXT_OFFSET_2E8 0x2e8
 #define UTILITY_STATUS_ENABLED_FLAG1 0x37
 
-/* 新增硬编码数值常量定义 - 2025年8月31日批次美化 */
+/* 硬编码数值常量定义 */
 #define UTILITY_STREAM_TYPE_ROOT 0x1
 #define UTILITY_STREAM_TYPE_KNOWN 0x2
 
@@ -380,12 +380,8 @@ utility_buffer_manager_cleanup(&utility_buffer_workspace);
 utility_calculate_checksum(utility_buffer_pointer ^ (uint64_t)&utility_buffer_workspace);
 }
 /**
-* @brief 处理资源指针的核心功能
-* @param context_handle 输入参数值
-* @return 处理结果状态码
-*/
-/**
- * 处理资源指针的转换和管理
+ * @brief 处理资源指针的转换和管理
+ * 
  * 将原始资源指针转换为系统可用的资源引用
  * 
  * @param context_handle 输入的原始资源指针值
