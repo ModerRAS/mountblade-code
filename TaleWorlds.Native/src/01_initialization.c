@@ -38,7 +38,6 @@ void* InitializeAudioSystem;
 void* system_audio_context;
 
 // 函数: void InitializeInputSystem;
-void* InitializeInputSystem;
 void* system_file_system;
 
 // 系统内部变量语义化定义（2025年8月30日最终批次最新完成）
@@ -70,11 +69,9 @@ float system_render_time;
 float system_physics_time;
 
 // 函数: void InitializePhysicsSystem;
-void* InitializePhysicsSystem;
 void* system_physics_scene;
 
 // 函数: void InitializeUISystem;
-void* InitializeUISystem;
 
 // 函数: void InitializeScriptSystem;
 void* InitializeScriptSystem;
@@ -89,7 +86,6 @@ void* system_guard_icall_check;
 void* InitializeResourceManager;
 
 // 函数: void InitializeThreadSystem;
-void* InitializeThreadSystem;
 void* system_thread_pool;
 void* system_task_scheduler;
 void* system_memory_cache;
@@ -331,7 +327,6 @@ void* system_graphics_device;
 // 函数: void InitializeGraphicsSystem;
 
 // 函数: void InitializeAudioSystem;
-void* InitializeAudioSystem;
 void* system_shader_manager;
 void* system_texture_manager;
 void* system_mesh_manager;

@@ -219,9 +219,6 @@ uint64 utility_manage_resource_handle_operation(longlong utility_resource_primar
   }
   return utility_operation_result;
 }
-// warning: Removing unreachable block (ram,utility_unwind_function_error_recovery_primary)
-// warning: Removing unreachable block (ram,utility_unwind_function_error_recovery_secondary)
-// warning: Removing unreachable block (ram,utility_unwind_function_error_recovery_tertiary)
 uint64 utility_execute_resource_management_command(longlong utility_resource_primary_handle)  
 {
   longlong utility_primary_resource_cache;
@@ -438,7 +435,6 @@ uint64 utility_allocate_system_resources(longlong utility_resource_primary_handl
   }
   return utility_operation_result;
 }
-// WARNING: Potential global variable overlap
 uint64 utility_release_system_resources(void)
 {
   longlong utility_register_input_primary;
@@ -973,9 +969,6 @@ void utility_seek_file_position(longlong utility_resource_primary_handle,uint64 
   }
   return;
 }
-// warning: Removing unreachable block (ram,utility_unwind_function_error_recovery_primary)
-// warning: Removing unreachable block (ram,utility_unwind_function_error_recovery_secondary)
-// warning: Removing unreachable block (ram,utility_unwind_function_error_recovery_tertiary)
 /**
  * @brief 获取文件位置
  * @param utility_resource_primary_handle 主要资源句柄
@@ -1043,7 +1036,6 @@ uint64 utility_get_file_position(longlong utility_resource_primary_handle)
   }
   return utility_offset_flag_byte;
 }
-// WARNING: Potential global variable overlap
 int utility_get_file_data_size(longlong utility_resource_primary_handle)
 {
   int utility_operation_result;
@@ -1082,7 +1074,6 @@ void truncate_file(longlong utility_resource_primary_handle,uint64 utility_resou
   }
   return;
 }
-// WARNING: Potential global variable overlap
 ulonglong utility_create_file_system_directory(longlong utility_resource_primary_handle,uint64 utility_resource_utility_data_pointer_primary_extended_main_primary)  
 {
   uint utility_operation_result;
@@ -1121,7 +1112,6 @@ ulonglong utility_create_file_system_directory(longlong utility_resource_primary
   }
   return utility_main_iteration_counter;
 }
-// WARNING: Potential global variable overlap
 int delete_file(uint32 utility_resource_primary_handle)
 {
   int utility_cpu_accumulator;
@@ -1191,7 +1181,6 @@ void resolve_symbolic_link(longlong utility_resource_primary_handle,longlong uti
   }
   return;
 }
-// WARNING: Potential global variable overlap
 uint64 get_file_attributes(longlong utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   uint64 utility_operation_result;
@@ -1493,7 +1482,6 @@ uint64 verify_file_integrity(longlong utility_resource_primary_handle,longlong u
       
   utility_release_resource_handle(*(uint64 *)(utility_resource_context_handle + utility_resource_offset_standard),utility_resource_primary_handle);
 }
-// WARNING: Potential global variable overlap
 // 函数: void encrypt_file(longlong utility_resource_primary_handle,longlong utility_primary_resource_cache)
 void encrypt_file(longlong utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
@@ -1552,7 +1540,6 @@ utility_handle_buffer_data_error:
       
   utility_release_resource_handle(*(uint64 *)(utility_resource_context_handle + utility_resource_offset_standard),utility_resource_primary_handle);
 }
-// WARNING: Potential global variable overlap
 // 函数: void decrypt_file(uint64 utility_resource_primary_handle,uint64 utility_resource_utility_data_pointer_primary_extended_main_primary)
 void decrypt_file(uint64 utility_resource_primary_handle,uint64 utility_resource_utility_data_pointer_primary_extended_main_primary)
 {
@@ -1615,7 +1602,6 @@ utility_handle_buffer_data_error:
       
   utility_release_resource_handle(*(uint64 *)(utility_cpu_ctx_base + utility_resource_offset_standard));
 }
-// WARNING: Potential global variable overlap
 // 函数: void utility_start_resource_service(void)
 void utility_start_resource_service(void)
 {
@@ -1672,7 +1658,6 @@ utility_handle_buffer_data_error:
       
   utility_release_resource_handle(*(uint64 *)(utility_cpu_ctx_base + utility_resource_offset_standard));
 }
-// WARNING: Potential global variable overlap
 // 函数: void utility_initialize_resourceComponent(int utility_resource_primary_handle,int utility_primary_resource_cache)
 void utility_initialize_resourceComponent(int utility_resource_primary_handle,int utility_primary_resource_cache)
 {
@@ -2034,7 +2019,6 @@ utility_process_resource_handle:
   }
   return utility_main_iteration_counter;
 }
-// WARNING: Potential global variable overlap
 // 函数: void utility_execute_resource_command(longlong utility_resource_primary_handle,longlong utility_primary_resource_cache)
 void utility_execute_resource_command(longlong utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
@@ -2773,7 +2757,6 @@ uint64 utility_start_resource_cycle(void)
 {
   return success_code;
 }
-// WARNING: Potential global variable overlap
 // 函数: void utility_process_resource_cycle(longlong utility_resource_primary_handle,uint64 utility_resource_utility_data_pointer_primary_extended_main_primary)
 void utility_process_resource_cycle(longlong utility_resource_primary_handle,uint64 utility_resource_utility_data_pointer_primary_extended_main_primary)
 {
@@ -3173,8 +3156,6 @@ void utility_create_network_communication_socket(longlong utility_resource_prima
   }
   return;
 }
-// warning: Removing unreachable block (ram,unreachable_block_security_check_1)
-// WARNING: Potential global variable overlap
 int bind_network_socket(longlong utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   int utility_operation_result;
@@ -3208,8 +3189,6 @@ int bind_network_socket(longlong utility_resource_primary_handle,longlong utilit
   }
   return utility_error_code_failed;
 }
-// warning: Removing unreachable block (ram,unreachable_block_security_check_1)
-// WARNING: Potential global variable overlap
 int connect_network_socket(longlong utility_resource_primary_handle,uint64 utility_resource_utility_data_pointer_primary_extended_main_primary)
 {
   int utility_operation_result;
@@ -3263,8 +3242,6 @@ void listen_network_socket(longlong utility_resource_primary_handle,longlong uti
   }
   return;
 }
-// warning: Removing unreachable block (ram,unreachable_block_security_check_2)
-// WARNING: Potential global variable overlap
 int accept_network_connection(longlong utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   uint utility_operation_result;
@@ -3296,8 +3273,6 @@ int accept_network_connection(longlong utility_resource_primary_handle,longlong 
   }
   return utility_error_code_failed;
 }
-// warning: Removing unreachable block (ram,unreachable_block_security_check_2)
-// WARNING: Potential global variable overlap
 int send_network_data_value(uint64 utility_resource_primary_handle,uint64 utility_resource_utility_data_pointer_primary_extended_main_primary)
 {
   int utility_cpu_accumulator;
@@ -3708,7 +3683,6 @@ void utility_initialize_database_connection(void)
 {
   return;
 }
-// WARNING: Potential global variable overlap
 // 函数: void utility_execute_database_query_operation(longlong utility_resource_primary_handle,longlong utility_primary_resource_cache)
 void utility_execute_database_query_operation(longlong utility_resource_primary_handle,longlong utility_primary_resource_cache)  
 {
@@ -3835,7 +3809,6 @@ int rollback_database_transaction(longlong *utility_resource_primary_handle,long
   utility_operation_result = (**(code **)(*utility_resource_primary_handle + utility_ptr_size_offset))(utility_resource_primary_handle,utility_resource_size_limit + utility_primary_resource_cache,utility_operation_flags - utility_resource_size_limit);
   return utility_operation_result + utility_resource_size_limit;
 }
-// WARNING: Potential global variable overlap
 // 函数: void utility_extract_resource_info(longlong utility_resource_primary_handle,uint32 *memory_block_size,longlong *utility_operation_flags)
 void utility_extract_resource_info(longlong utility_resource_primary_handle,uint32 *memory_block_size,longlong *utility_operation_flags)
 {
@@ -3904,7 +3877,6 @@ void utility_cleanup_thread_local_storage(void)
       
   execute_security_validation(utility_resource_security_param ^ (ulonglong)&utility_security_stack_base_ptr);
 }
-// WARNING: Potential global variable overlap
 // 函数: void utility_analyze_resource_data(longlong utility_resource_primary_handle,uint32 *memory_block_size,longlong *utility_operation_flags)
 void utility_analyze_resource_data(longlong utility_resource_primary_handle,uint32 *memory_block_size,longlong *utility_operation_flags)
 {
@@ -3991,7 +3963,6 @@ void utility_get_thread_local_resource_data(void)
       
   execute_security_validation(threadlocalsecurityparam ^ (ulonglong)&utility_security_stack_base_ptr);
 }
-// WARNING: Potential global variable overlap
 // 函数: void utility_generate_resource_report(longlong utility_resource_primary_handle,uint32 *memory_block_size,longlong *utility_operation_flags)
 void utility_generate_resource_report(longlong utility_resource_primary_handle,uint32 *memory_block_size,longlong *utility_operation_flags)
 {
@@ -4191,14 +4162,6 @@ utility_validate_resource_status:
       
   utility_cleanup_resource(utility_process_buffer);
 }
-// warning: Removing unreachable block (ram,unreachable_block_memory_access_1)
-// warning: Removing unreachable block (ram,unreachable_block_memory_access_2)
-// warning: Removing unreachable block (ram,unreachable_block_memory_access_3)
-// warning: Removing unreachable block (ram,unreachable_block_memory_access_4)
-// warning: Removing unreachable block (ram,unreachable_block_memory_access_5)
-// warning: Removing unreachable block (ram,unreachable_block_memory_access_6)
-// warning: Removing unreachable block (ram,utility_error_code_success_primary)
-// WARNING: Potential global variable overlap
 uint utility_get_pool_allocator(longlong *utility_resource_primary_handle)
 {
   int utility_operation_result;
@@ -4241,7 +4204,6 @@ uint utility_get_pool_allocator(longlong *utility_resource_primary_handle)
   *(uint32 *)((longlong)utility_resource_primary_handle + UTILITY_BUFFER_SIZE_MULTIPLIER) = utility_zero;
   return utility_zero;
 }
-// WARNING: Potential global variable overlap
 uint64 utility_allocate_from_allocator(longlong utility_resource_primary_handle)
 {
   longlong *utility_resource_data_ptr;
@@ -4291,7 +4253,6 @@ uint64 utility_allocate_from_allocator(longlong utility_resource_primary_handle)
   }
   return utility_zero;
 }
-// WARNING: Potential global variable overlap
 uint64 utility_free_from_allocator(longlong *utility_resource_primary_handle)
 {
   int utility_operation_result;
@@ -4322,7 +4283,6 @@ uint64 utility_free_from_allocator(longlong *utility_resource_primary_handle)
   }
   return utility_zero;
 }
-// WARNING: Potential global variable overlap
 uint64 utility_configure_system_parameters(longlong *utility_resource_primary_handle)
 {
   int utility_operation_result;
@@ -4500,7 +4460,6 @@ uint64 utility_enable_debug_logging(void)
 {
   return utility_offset_flag_byte;
 }
-// WARNING: Potential global variable overlap
 // 函数: void utility_log_debug_message(longlong utility_resource_primary_handle,byte *memory_block_size,int *utility_operation_flags)
 void utility_log_debug_message(longlong utility_resource_primary_handle,byte *memory_block_size,int *utility_operation_flags)
 {
@@ -5145,7 +5104,6 @@ uint32 utility_get_resource_status(uint64 utility_resource_primary_handle)
   }
   return utility_zero;
 }
-// WARNING: Potential global variable overlap
 uint64 utility_allocate_buffer_memory_block(longlong *utility_resource_primary_handle,int utility_primary_resource_cache)
 {
   int utility_operation_result;
@@ -5189,7 +5147,6 @@ utility_handle_value_character_processing:
   *(int *)((longlong)utility_resource_primary_handle + UTILITY_BUFFER_SIZE_MULTIPLIER) = utility_resource_context_handle;
   return utility_zero;
 }
-// WARNING: Potential global variable overlap
 uint64 utility_allocate_buffer_data_chunk(uint64 utility_resource_primary_handle,int utility_primary_resource_cache)
 {
   int utility_operation_result;
@@ -5236,7 +5193,6 @@ uint64 utility_get_memory_utility_operation_result_pointer(void)
 {
   return utility_error_resource_access_failure;
 }
-// WARNING: Potential global variable overlap
 uint64 utility_execute_system_command(longlong *utility_resource_primary_handle,int utility_primary_resource_cache)
 {
   longlong utility_primary_resource_cache;
@@ -5267,7 +5223,6 @@ utility_process_character_validation:
   *(int *)((longlong)utility_resource_primary_handle + UTILITY_BUFFER_SIZE_MULTIPLIER) = utility_resource_context_handle;
   return utility_zero;
 }
-// WARNING: Potential global variable overlap
 uint64 utility_allocate_memory_resource(uint64 utility_resource_primary_handle,int utility_primary_resource_cache)
 {
   longlong utility_primary_resource_cache;
@@ -5301,7 +5256,6 @@ uint64 utility_free_memory_resource(void)
 {
   return utility_error_resource_access_failure;
 }
-// WARNING: Potential global variable overlap
 ulonglong utility_validate_memory_address(longlong utility_resource_primary_handle)
 {
   byte *utility_boolean_flag_ptr;
@@ -5671,7 +5625,6 @@ void utility_initialize_memory_system(longlong *utility_resource_primary_handle)
   }
   return;
 }
-// WARNING: Potential global variable overlap
 uint64 utility_validate_memory_system(longlong utility_resource_primary_handle)
 {
   longlong utility_primary_resource_cache;
@@ -5770,7 +5723,6 @@ uint64 initialize_memory_context(longlong utility_resource_primary_handle,uint64
   }
   return utility_operation_result;
 }
-// WARNING: Potential global variable overlap
 // 函数: void setup_memory_configuration(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint utility_operation_flags,char utility_resource_callback_handler)
 void setup_memory_configuration(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint utility_operation_flags,char utility_resource_callback_handler)
 {
@@ -6418,7 +6370,6 @@ void utility_handle_resource_error(void)
       
   execute_security_validation(*(ulonglong *)(utility_frame_stack_ptr + utility_data_offset_extended_config) ^ (ulonglong)&utility_security_stack_base_ptr);
 }
-// WARNING: Potential global variable overlap
 // 函数: void validate_resource_access(longlong *utility_resource_primary_handle,longlong *memory_block_size)
 void validate_resource_access(longlong *utility_resource_primary_handle,longlong *memory_block_size)
 {
@@ -6473,7 +6424,6 @@ void utility_reset_resource_state(void)
       
   execute_security_validation(security_utility_stack_param ^ (ulonglong)&utility_security_stack_base_ptr);
 }
-// WARNING: Potential global variable overlap
 // 函数: void utility_process_resource_operation(longlong utility_resource_primary_handle,longlong utility_primary_resource_cache)
 void utility_process_resource_operation(longlong utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
@@ -7354,7 +7304,6 @@ void utility_terminate_resource_operation(void)
       
   execute_security_validation(*(ulonglong *)(utility_frame_stack_ptr + utility_memory_offset_standard) ^ (ulonglong)&utility_security_stack_base_ptr);
 }
-// WARNING: Potential global variable overlap
 // 函数: void utility_create_resource_instance(longlong *utility_resource_primary_handle,longlong utility_primary_resource_cache,uint32 utility_operation_flags)
 void utility_create_resource_instance(longlong *utility_resource_primary_handle,longlong utility_primary_resource_cache,uint32 utility_operation_flags)
 {
@@ -7443,7 +7392,6 @@ utility_process_memory_validation:
     utility_resource_count = utility_resource_count + utility_int_one;
   } while( true );
 }
-// WARNING: Potential global variable overlap
 // 函数: void utility_initialize_resource_data(longlong *utility_resource_primary_handle,uint64 utility_resource_utility_data_pointer_primary_extended_main_primary,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
 void utility_initialize_resource_data(longlong *utility_resource_primary_handle,uint64 utility_resource_utility_data_pointer_primary_extended_main_primary,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
 {
@@ -7571,8 +7519,6 @@ void utility_update_resource_state(void)
 {
   return;
 }
-// warning: Type propagation algorithm not settling
-// WARNING: Potential global variable overlap
 // 函数: void utility_process_resource_request(longlong *utility_resource_primary_handle)
 void utility_process_resource_request(longlong *utility_resource_primary_handle)
 {
@@ -8517,7 +8463,6 @@ uint64 utility_get_resource_count(void)
 {
   return utility_error_code_failed;
 }
-// WARNING: Potential global variable overlap
 uint64 utility_allocate_resource_space(longlong *utility_resource_primary_handle,int utility_primary_resource_cache)
 {
   int utility_operation_result;
@@ -8561,7 +8506,6 @@ utility_handle_string_processing:
   *(int *)((longlong)utility_resource_primary_handle + UTILITY_BUFFER_SIZE_MULTIPLIER) = utility_resource_context_handle;
   return utility_zero;
 }
-// WARNING: Potential global variable overlap
 uint64 utility_validate_resource_space(uint64 utility_resource_primary_handle,int utility_primary_resource_cache)
 {
   int utility_operation_result;
@@ -10738,7 +10682,6 @@ void utility_sequence_items(void)
   }
   return;
 }
-// WARNING: Potential global variable overlap
 uint64 utility_get_callback_status(void)
 {
   float utility_temp_float_value;
@@ -12675,7 +12618,6 @@ utility_label_system_status_check:
   }
   return utility_system_status_value;
 }
-// WARNING: Potential global variable overlap
 ulonglong initializedatavalidator(longlong utility_resource_primary_handle,uint64 *memory_block_size)
 {
   uint64 utility_operation_result;
@@ -12904,7 +12846,6 @@ utility_label_continue_processing:
       
   free_utility_resource_data_buffer(utility_primary_resource_cache,utility_process_buffer);
 }
-// WARNING: Potential global variable overlap
 uint64 * utility_process_validation_request(void)
 {
   uint64 utility_operation_result;
@@ -13152,7 +13093,6 @@ utility_label_continue_processing:
       
   free_utility_resource_data_buffer(utility_float_data,utility_frame_ptr + -utility_nonet_unit);
 }
-// WARNING: Potential global variable overlap
 uint64 * utility_handle_validation_callback(void)
 {
   uint64 utility_operation_result;
@@ -13392,7 +13332,6 @@ utility_label_continue_processing:
       
   free_utility_resource_data_buffer(utility_float_data,utility_frame_ptr + -utility_nonet_unit);
 }
-// WARNING: Potential global variable overlap
 ulonglong validatedataintegrity(uint64 utility_resource_primary_handle)
 {
   uint32 utility_operation_result;
@@ -16924,7 +16863,6 @@ void utility_initialize_operation_system_secondary(void)
 {
   return;
 }
-// WARNING: Potential global variable overlap
 ulonglong processsystemoperationsecondary(longlong utility_resource_primary_handle,uint64 *memory_block_size)
 {
   uint32 utility_operation_result;
@@ -17022,7 +16960,6 @@ utility_label_validation_loop:
   }
   return utility_system_status_value;
 }
-// WARNING: Potential global variable overlap
 ulonglong utility_initialize_system_operator(void)
 {
   uint64 utility_operation_result;
@@ -17131,7 +17068,6 @@ utility_label_validation_loop:
   }
   return utility_iteration_index;
 }
-// WARNING: Potential global variable overlap
 ulonglong utility_get_system_status(void)
 {
   uint32 utility_operation_result;
@@ -19243,7 +19179,6 @@ void utility_exception_handler_cleanup_stage_seven(uint64 utility_resource_prima
   }
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_exception_handler_cleanup_stage_eight(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   int utility_operation_result;
@@ -19316,7 +19251,6 @@ void utility_exception_handler_cleanup_stage_onezero(uint64 utility_resource_pri
   }
   return;
 }
-// WARNING: Potential global variable overlap
 void utilityexceptionhandlercleanupprimaryone(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   int utility_operation_result;
@@ -19446,7 +19380,6 @@ void utility_exception_handler_cleanup_stage_twozero(uint64 utility_resource_pri
   }
   return;
 }
-// WARNING: Potential global variable overlap
 // 函数: void utility_reset_system_secondary_counter_and_process_event(void)
 // 重置系统次级计数器并处理事件
 void utility_reset_system_secondary_counter_and_process_event(void)
@@ -19469,7 +19402,6 @@ void utility_reset_system_secondary_counter_and_process_event(void)
             (utility_security_token_mask ^ g_systemfunctionpointer) << (utility_buffer_size_thread_handler_offset_main - utility_boolean_result_status)))(address_security_token_handler);
   return;
 }
-// WARNING: Potential global variable overlap
 // 函数: void utility_reset_system_temp_counter_and_process_event(void)
 // 重置系统临时计数器并处理事件
 void utility_reset_system_temp_counter_and_process_event(void)
@@ -29129,7 +29061,6 @@ void utility_unwind_advanced_function_foxtrot_delta_zero(uint64 utility_resource
       
   utility_handle_critical_error();
 }
-// WARNING: Potential global variable overlap
 void utility_unwind_advanced_function_foxtrot_echo_zero(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   if (*(longlong *)(utility_resource_context_handle + utility_list_handle_offset_standard) != utility_zero) {
@@ -29153,7 +29084,6 @@ void utility_unwind_advanced_function_foxtrot_foxtrot_zero(uint64 utility_resour
   *(uint64 *)(utility_resource_context_handle  + utility_status_success_offset_standard) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_close_resource_handler(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   if (*(longlong *)(utility_resource_context_handle + utility_buffer_data_offset_standard) != utility_zero) {
@@ -29306,7 +29236,6 @@ void utility_close_resource_handler(uint64 utility_resource_primary_handle,longl
   *(uint64 *)(utility_resource_context_handle + utility_context_thread_storage_secondary_offset) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_close_resource_handler(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   if (*(longlong *)(utility_resource_context_handle + utility_stack_offset_extended_function_base_standard) != utility_zero) {
@@ -30264,7 +30193,6 @@ void utilitycleanupcallback(uint64 utility_resource_primary_handle,uint *memory_
   }
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_close_resource_handler(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   longlong *utility_resource_data_ptr;
@@ -30651,7 +30579,6 @@ void utility_close_resource_handler(uint64 utility_resource_primary_handle,longl
   *(resource_data **)(utility_resource_context_handle + utility_buffer_size_standard) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_close_resource_handler(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   if (*(longlong *)(utility_resource_context_handle + utility_resource_offset_extended_secondary_standard) != utility_zero) {
@@ -30748,7 +30675,6 @@ void utilitymonitoradvancedsystem(uint64 utility_resource_primary_handle,longlon
   }
   return;
 }
-// WARNING: Potential global variable overlap
 void utilityconfigureadvancedsystem(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   longlong *utility_resource_data_ptr;
@@ -32515,7 +32441,6 @@ void resource_unwind_handler_quinary(uint64 utility_resource_primary_handle,long
   }
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_free_memory(void)
 {
   closehandle(g_systemfilehandle);
@@ -33812,7 +33737,6 @@ void utility_close_resource_handler(uint64 utility_resource_primary_handle,longl
   utility_register_resource_callback(*(longlong *)(utility_resource_context_handle + utility_buffer_size_thread_handler_offset_main) + utility_ptr_size_offset,utility_memory_offset_standard,utility_seven_unit,utility_module_handler_primary);
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_close_resource_handler_no_args(void)
 {
   byte utility_boolean_result_status;
@@ -33833,7 +33757,6 @@ void utility_close_resource_handler_no_args(void)
             (utility_security_token_mask ^ g_systemfunctionpointer) << (utility_buffer_size_thread_handler_offset_main - utility_boolean_result_status)))(address_security_token_handler);
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_initialize_handler(void)
 {
   g_systemcleanuppointer = &utility_thread_local_storage_cleanup;
@@ -34965,7 +34888,6 @@ void utility_unwind_system_phase_one_two(uint64 utility_resource_primary_handle,
   }
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_unwind_system_phase_one_three(void)
 {
   byte utility_boolean_result_status;
@@ -35791,55 +35713,46 @@ void utility_unwind_system_phase_seven_five(uint64 utility_resource_primary_hand
   }
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_unwind_system_phase_seven_seven(void)
 {
   g_threadlocalstoragepointer = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_unwind_system_phase_seven_eight(void)
 {
   utility_global_memory_release_alignment_handle = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_unwind_system_phase_seven_nine(void)
 {
   utility_global_block_alloc_size_handle = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_unwind_system_phase_seven_alpha(void)
 {
   utility_global_block_release_size_handle = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_unwind_system_phase_seven_bravo(void)
 {
   _g_block_size_min = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_unwind_system_phase_seven_charlie(void)
 {
   _g_ai_system_handle = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_unwind_system_phase_seven_delta(void)
 {
   _g_scene_manager_handle = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_unwind_system_phase_seven_echo(void)
 {
   _g_resource_manager_handle = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_unwind_system_phase_seven_foxtrot(void)
 {
   _g_script_system_handle = &utility_thread_local_storage_cleanup;
@@ -36082,7 +35995,6 @@ void utility_unwind_system_phase_nine_six(uint64 utility_resource_primary_handle
   *utility_operation_result_ptr = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_unwind_system_phase_nine_seven(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   longlong *utility_resource_data_ptr;
@@ -37087,7 +36999,6 @@ void utility_unwind_system_phase_delta_foxtrot_six(uint64 utility_resource_prima
   }
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_unwind_system_phase_delta_foxtrot_seven(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   longlong *utility_resource_data_ptr;
@@ -37248,7 +37159,6 @@ void utilityunwindcleanupphasevalidate(uint64 utility_resource_primary_handle,lo
   }
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_unwind_cleanup_phase_check(void)
 {
   byte utility_boolean_result_status;
@@ -37269,7 +37179,6 @@ void utility_unwind_cleanup_phase_check(void)
             (utility_security_token_mask ^ g_systemfunctionpointer) << (utility_buffer_size_thread_handler_offset_main - utility_boolean_result_status)))(address_security_token_handler);
   return;
 }
-// WARNING: Potential global variable overlap
 void utilityunwindcleanupphaseprocess(uint64 utility_resource_primary_handle,uint64 utility_resource_utility_data_pointer_primary_extended_main_primary,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
 {
   longlong *utility_resource_data_ptr;
@@ -37284,7 +37193,6 @@ void utilityunwindcleanupphaseprocess(uint64 utility_resource_primary_handle,uin
   free(systemmemoryblock,utility_sys_status_offset);
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_unwind_cleanup_phase_finalize(void)
 {
                   
@@ -37292,7 +37200,6 @@ void utility_unwind_cleanup_phase_finalize(void)
   free(systemmemoryblock,utility_sys_status_offset);
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_unwind_cleanup_phase_complete(void)
 {
                   
@@ -37702,13 +37609,11 @@ void utility_unwind_cleanup_phase_zulu_seven(uint64 utility_resource_primary_han
   utility_register_resource_callback(*(longlong *)(utility_resource_context_handle + utility_buffer_size_thread_handler_offset_main) + utility_ptr_size_offset,utility_pointer_data_offset_tertiary,utility_pointer_data_offset_tertiary,releasesystemresource);
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_unwind_cleanup_phase_zulu_alpha(void)
 {
   _g_debug_system_handle = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_unwind_cleanup_phase_zulu_bravo(void)
 {
   _g_performance_monitor_handle = &utility_thread_local_storage_cleanup;
@@ -38265,7 +38170,6 @@ void <utility_unwind_cleanup_phase_rollback>(void)
   _Mtx_destroy_in_situ(utility_mutex_handle_primary);
   return;
 }
-// WARNING: Potential global variable overlap
 void <utility_unwind_cleanup_phase_save>(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   int utility_operation_result;
@@ -38941,7 +38845,6 @@ void utility_unwind_cleanup_stage_initialize(uint64 utility_resource_primary_han
   utility_register_resource_callback(*(uint64 *)(utility_resource_context_handle + utility_buffer_size_thread_handler_offset_main),utility_memory_offset_standard,utility_resource_offset_standard,utility_module_handler_primary);
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_unwind_cleanup_stage_finalize(void)
 {
   byte utility_boolean_result_status;
@@ -38962,7 +38865,6 @@ void utility_unwind_cleanup_stage_finalize(void)
             (utility_security_token_mask ^ g_systemfunctionpointer) << (utility_buffer_size_thread_handler_offset_main - utility_boolean_result_status)))(address_security_token_handler);
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_unwind_cleanup_stage_complete(void)
 {
   systemmemorycleanup = &utility_thread_local_storage_cleanup;
@@ -40347,7 +40249,6 @@ void utilityunwindhandler53Cleanup(uint64 utility_resource_primary_handle,longlo
   *(resource_data **)(utility_resource_context_handle + utility_context_thread_count_quattuordecimal_offset) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 void utilityunwindhandler54Cleanup(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   if (*(longlong *)(utility_resource_context_handle + utility_resource_offset_extended_data_processing) != utility_zero) {
@@ -40359,7 +40260,6 @@ void utilityunwindhandler54Cleanup(uint64 utility_resource_primary_handle,longlo
   }
   return;
 }
-// WARNING: Potential global variable overlap
 void utilityinitialize_resource_systemCore(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   longlong *utility_resource_data_ptr;
@@ -40385,7 +40285,6 @@ void utilityinitializeresourcememorycore(uint64 utility_resource_primary_handle,
   *(uint64 *)(utility_resource_context_handle + utility_resource_data_buffer_offset_extended_extended_secondary) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 void utilityinitializeresourcethreadcore(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   if (*(longlong *)(utility_resource_context_handle + utility_context_thread_count_quaternary_offset) != utility_zero) {
@@ -40409,7 +40308,6 @@ void utilityinitializeresourcebuffercore(uint64 utility_resource_primary_handle,
   *(uint64 *)(utility_resource_context_handle + utility_stack_offset_extended_function_base_standard) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 void utilityinitializeresourcehandlecore(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   if (*(longlong *)(utility_resource_context_handle + utility_context_thread_storage_quaternary_offset) != utility_zero) {
@@ -41395,7 +41293,6 @@ void utility_legacy_function_handler_system_coordinator6(uint64 utility_resource
   }
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_legacy_function_handler_system_coordinator7(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   utility_operation_result = *(int *)(**(longlong **)(_system_resource_pool + utility_ptr_size_offset) + utility_buffer_data_offset_standard);
@@ -42283,13 +42180,11 @@ void utilityoperatesystemresource(uint64 utility_resource_primary_handle,longlon
   }
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_operate_system_core(void)
 {
   _system_process_manager = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 void utility_operate_system_memory(void)
 {
   byte utility_boolean_result_status;
@@ -45292,13 +45187,11 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_data_offset_struct) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   systemreferencecount = systemreferencecount + -utility_array_index_increment;
   (**(code **)(*systemfunctionpointer + utility_pointer_data_offset_tertiary))();
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -45459,7 +45352,6 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   }
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -45498,7 +45390,6 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_resource_flag_offset_extended_extended_alternative_zero) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -45541,7 +45432,6 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_resource_property_offset_senary0) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   systemreferencecount = systemreferencecount + -utility_array_index_increment;
   (**(code **)(*systemfunctionpointer + utility_pointer_data_offset_tertiary))();
@@ -45551,7 +45441,6 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_resource_prop_offset_primary) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -45594,13 +45483,11 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_resource_offset_primary_3B0) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   systemreferencecount = systemreferencecount + -utility_array_index_increment;
   (**(code **)(*systemfunctionpointer + utility_pointer_data_offset_tertiary))();
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -45639,7 +45526,6 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_resource_offset_extended_primary_standard) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -45678,13 +45564,11 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_context_resource_callback_offset) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   systemreferencecount = systemreferencecount + -utility_array_index_increment;
   (**(code **)(*systemfunctionpointer + utility_pointer_data_offset_tertiary))();
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -45723,7 +45607,6 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_function_table_offset) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -46094,19 +45977,16 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   }
   return;
 }
-// WARNING: Potential global variable overlap
 {
   systemreferencecount = systemreferencecount + -utility_array_index_increment;
   (**(code **)(*systemfunctionpointer + utility_pointer_data_offset_tertiary))();
   return;
 }
-// WARNING: Potential global variable overlap
 {
   systemreferencecount = systemreferencecount + -utility_array_index_increment;
   (**(code **)(*systemfunctionpointer + utility_pointer_data_offset_tertiary))();
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -46145,13 +46025,11 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_resource_utility_data_pointer_primary_extended_array_offset_standard) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   systemreferencecount = systemreferencecount + -utility_array_index_increment;
   (**(code **)(*systemfunctionpointer + utility_pointer_data_offset_tertiary))();
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -46190,19 +46068,16 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_resource_offset_extended_secondary_standard) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   systemreferencecount = systemreferencecount + -utility_array_index_increment;
   (**(code **)(*systemfunctionpointer + utility_pointer_data_offset_tertiary))();
   return;
 }
-// WARNING: Potential global variable overlap
 {
   systemreferencecount = systemreferencecount + -utility_array_index_increment;
   (**(code **)(*systemfunctionpointer + utility_pointer_data_offset_tertiary))();
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -46245,13 +46120,11 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_context_thread_count_offset_primary) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   systemreferencecount = systemreferencecount + -utility_array_index_increment;
   (**(code **)(*systemfunctionpointer + utility_pointer_data_offset_tertiary))();
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -46294,13 +46167,11 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_context_module_callback_quinary_offset) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   systemreferencecount = systemreferencecount + -utility_array_index_increment;
   (**(code **)(*systemfunctionpointer + utility_pointer_data_offset_tertiary))();
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -46343,13 +46214,11 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_context_module_param_senary_offset) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   systemreferencecount = systemreferencecount + -utility_array_index_increment;
   (**(code **)(*systemfunctionpointer + utility_pointer_data_offset_tertiary))();
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -46392,7 +46261,6 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_stack_data_offset_secondary_zero) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -46435,7 +46303,6 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_resource_flag_offset_standard) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -46474,13 +46341,11 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + resource_counter_offset) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   systemreferencecount = systemreferencecount + -utility_array_index_increment;
   (**(code **)(*systemfunctionpointer + utility_pointer_data_offset_tertiary))();
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -46523,7 +46388,6 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_stack_data_offset_extended_extended_decenary0) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -46562,7 +46426,6 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_context_thread_count_nonary_offset) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   systemreferencecount = systemreferencecount + -utility_array_index_increment;
   (**(code **)(*systemfunctionpointer + utility_pointer_data_offset_tertiary))();
@@ -46572,19 +46435,16 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_context_thread_flag_vigintimal_offset) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   systemreferencecount = systemreferencecount + -utility_array_index_increment;
   (**(code **)(*systemfunctionpointer + utility_pointer_data_offset_tertiary))();
   return;
 }
-// WARNING: Potential global variable overlap
 {
   systemreferencecount = systemreferencecount + -utility_array_index_increment;
   (**(code **)(*systemfunctionpointer + utility_pointer_data_offset_tertiary))();
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -46627,13 +46487,11 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_size_threshold_event_handler) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   systemreferencecount = systemreferencecount + -utility_array_index_increment;
   (**(code **)(*systemfunctionpointer + utility_pointer_data_offset_tertiary))();
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -46720,13 +46578,11 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_context_module_callback_octal_offset) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   systemreferencecount = systemreferencecount + -utility_array_index_increment;
   (**(code **)(*systemfunctionpointer + utility_pointer_data_offset_tertiary))();
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -47130,7 +46986,6 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   }
   return;
 }
-// WARNING: Potential global variable overlap
 {
   int utility_operation_result;
   g_utility_system_global_counter_primary = *(uint64 *)(utility_resource_context_handle + utility_secondary_byte_offset);
@@ -47140,7 +46995,6 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   }
   return;
 }
-// WARNING: Potential global variable overlap
 {
   int utility_operation_result;
   g_utility_system_global_counter_primary = *(uint64 *)(utility_resource_context_handle + utility_memory_offset_standard);
@@ -50537,7 +50391,6 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   }
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -50583,7 +50436,6 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   }
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -50622,7 +50474,6 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + UTILITY_MEMORY_ADDRESS_OFFSET_EXTENDED_PRIMARY) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -50661,7 +50512,6 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_memory_offset_standard) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -50700,7 +50550,6 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_stack_offset_extended_function_base_standard) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -50739,7 +50588,6 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_list_head_offset_standard) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -50778,7 +50626,6 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_buffer_data_offset_standard) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -50817,7 +50664,6 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + UTILITY_STACK_OFFSET_NEGATIVE_EXTENDED_PRIMARY) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -50856,13 +50702,11 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_system_offset_table) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   systemreferencecount = systemreferencecount + -utility_array_index_increment;
   (**(code **)(*systemfunctionpointer + utility_pointer_data_offset_tertiary))();
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -50901,13 +50745,11 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_buffer_size_standard) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   systemreferencecount = systemreferencecount + -utility_array_index_increment;
   (**(code **)(*systemfunctionpointer + utility_pointer_data_offset_tertiary))();
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -50946,13 +50788,11 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_resource_offset_status_check_secondary) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   systemreferencecount = systemreferencecount + -utility_array_index_increment;
   (**(code **)(*systemfunctionpointer + utility_pointer_data_offset_tertiary))();
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
@@ -50991,7 +50831,6 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_context_thread_count_quinary_offset) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   systemreferencecount = systemreferencecount + -utility_array_index_increment;
   (**(code **)(*systemfunctionpointer + utility_pointer_data_offset_tertiary))();
@@ -51153,7 +50992,6 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   *(resource_data **)(utility_resource_context_handle + utility_resource_utility_data_pointer_primary_extended_size) = &utility_thread_local_storage_cleanup;
   return;
 }
-// WARNING: Potential global variable overlap
 {
   systemreferencecount = systemreferencecount + -utility_array_index_increment;
   (**(code **)(*systemfunctionpointer + utility_pointer_data_offset_tertiary))();
@@ -51231,7 +51069,6 @@ void utility_legacy_function_thread_local_storage_assign(uint64 utility_resource
   }
   return;
 }
-// WARNING: Potential global variable overlap
 {
   longlong utility_primary_resource_cache;
   int utility_operation_result;
