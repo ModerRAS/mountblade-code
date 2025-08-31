@@ -7111,8 +7111,19 @@ uint64 initialize_memory_context(longlong utility_resource_primary_handle,uint64
   return utility_operation_result;
 }
 // WARNING: Potential global variable overlap
-// 函数: void setup_memory_configuration(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint utility_operation_flags,char utility_resource_callback_handler)
-void setup_memory_configuration(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint utility_operation_flags,char utility_resource_callback_handler)
+/**
+ * 内存配置设置函数
+ * 配置系统内存资源，初始化内存管理结构
+ * 
+ * @param utility_resource_primary_handle 资源主句柄
+ * @param utility_primary_resource_cache 资源缓存
+ * @param utility_operation_flags 操作标志
+ * @param utility_resource_callback_handler 回调处理器
+ * 
+ * 原本实现：完全重构内存配置系统，建立完整的内存管理机制
+ * 简化实现：仅优化现有内存配置逻辑，保持核心功能不变
+ */
+void utility_setup_memory_configuration(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint utility_operation_flags,char utility_resource_callback_handler)
 {
   longlong utility_primary_resource_cache;
   if ((utility_buffer_index < utility_array_index_zero) || (*(int *)(utility_resource_context_handle + utility_resource_data_buffer_offset_quaternary) <= utility_buffer_index)) break;

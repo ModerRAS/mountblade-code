@@ -130,6 +130,7 @@ void *network_connection_handler_extended;
 /** 网络配置端口号 */
 unsigned short network_config_port;
 
+/* 网络核心功能函数指针 */
 /**
  * @brief 网络连接状态初始化函数
  * 负责初始化网络连接状态
@@ -183,94 +184,50 @@ void *network_configure_socket_options;
  * 负责初始化网络套接字层
  */
 void *network_initialize_socket_layer;
-/**
- * 主网络状态
- * 主要网络连接的状态标识
- */
+/* 网络状态管理变量 */
+/** 主网络状态 */
 int network_status_primary;
 
-/**
- * 辅助网络状态
- * 辅助网络连接的状态标识
- */
+/** 辅助网络状态 */
 int network_status_secondary;
 
-/**
- * 已连接状态
- * 表示网络连接已建立
- */
+/** 已连接状态 */
 int network_status_connected;
 
-/**
- * 已断开状态
- * 表示网络连接已断开
- */
+/** 已断开状态 */
 int network_status_disconnected;
 
-/**
- * 连接中状态
- * 表示正在建立网络连接
- */
+/** 连接中状态 */
 int network_status_connecting;
 
-/**
- * 错误状态
- * 表示网络连接出现错误
- */
+/** 错误状态 */
 int network_status_error;
 
-/**
- * 超时状态
- * 表示网络连接超时
- */
+/** 超时状态 */
 int network_status_timeout;
 
-/**
- * 繁忙状态
- * 表示网络连接正在处理其他请求
- */
+/** 繁忙状态 */
 int network_status_busy;
 
-/**
- * 就绪状态
- * 表示网络连接已就绪可以通信
- */
+/** 就绪状态 */
 int network_status_ready;
 
-/**
- * 空闲状态
- * 表示网络连接处于空闲状态
- */
+/** 空闲状态 */
 int network_status_idle;
 
-/**
- * 发送中状态
- * 表示正在发送数据
- */
+/** 发送中状态 */
 int network_status_sending;
 
-/**
- * 接收中状态
- * 表示正在接收数据
- */
+/** 接收中状态 */
 int network_status_receiving;
 
-/**
- * 处理中状态
- * 表示正在处理数据
- */
+/** 处理中状态 */
 int network_status_processing;
 
-/**
- * 等待状态
- * 表示正在等待响应
- */
+/** 等待状态 */
 int network_status_waiting;
 
-/**
- * 全局主状态
- * 网络系统的全局主状态
- */
+/** 全局主状态 */
 int network_global_state_primary;
 /**
  * 主网络连接上下文
