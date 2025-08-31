@@ -212,13 +212,13 @@ void* g_network_packet_data_value;                 // 网络数据包数据指�
 
 // 系统管理数据
 void* InitializeSubSystem;                        // 初始化子系统函数指针
-void* g_network_config_data_secondary;            // 网络配置数据(次要)指针
-void* g_system_memory_pool_data;                  // 系统内存池数据指针
-uint64_t g_system_main_engine_status;             // 系统主引擎状态标志
-void* g_system_state_data;                        // 系统状态数据指针
-void* g_system_config_data;                       // 系统配置数据指针
-void* g_system_error_data;                        // 系统错误数据指针
-void* g_system_debug_data;                        // 系统调试数据指针
+void* g_network_config_data_secondary_value;       // 网络配置数据(次要)指针
+void* g_system_memory_pool_data_value;             // 系统内存池数据指针
+uint64_t g_system_main_engine_status_flag;          // 系统主引擎状态标志
+void* g_system_state_data_value;                   // 系统状态数据指针
+void* g_system_config_data_value;                  // 系统配置数据指针
+void* g_system_error_data_value;                   // 系统错误数据指针
+void* g_system_debug_data_value;                   // 系统调试数据指针
 
 /**
  * @brief 引擎主线程管理函数
@@ -254,26 +254,26 @@ void ManageEngineResources(void);                     // 管理引擎资源函�
  * 
  * 包含引擎的图形资源、渲染数据和材质信息。
  */
-void* g_graphics_config_data;                        // 图形配置数据指针
-void* g_resource_manager_data;                       // 资源管理器数据指针
-void* g_texture_data;                                // 纹理数据指针
-void* g_shader_data;                                 // 着色器数据指针
-void* g_vertex_buffer_data;                          // 顶点缓冲区数据指针
-void* g_index_buffer_data;                           // 索引缓冲区数据指针
-void* g_render_target_data;                          // 渲染目标数据指针
-uint8_t g_render_flag;                               // 渲染状态标志
-void* g_lighting_data;                               // 光照数据指针
-uint8_t g_lighting_flag;                             // 光照状态标志
-void* g_camera_data;                                 // 相机数据指针
-void* g_viewport_data;                               // 视口数据指针
-void* g_projection_data;                             // 投影数据指针
-void* g_modelview_data;                              // 模型视图数据指针
-void* g_scene_data;                                  // 场景数据指针
-void* g_entity_data;                                 // 实体数据指针
-uint32_t g_material_data_value;                       // 材质数据值
+void* g_graphics_config_data_value;                 // 图形配置数据指针
+void* g_resource_manager_data_value;                // 资源管理器数据指针
+void* g_texture_data_value;                          // 纹理数据指针
+void* g_shader_data_value;                           // 着色器数据指针
+void* g_vertex_buffer_data_value;                    // 顶点缓冲区数据指针
+void* g_index_buffer_data_value;                     // 索引缓冲区数据指针
+void* g_render_target_data_value;                    // 渲染目标数据指针
+uint8_t g_render_status_flag;                        // 渲染状态标志
+void* g_lighting_data_value;                         // 光照数据指针
+uint8_t g_lighting_status_flag;                      // 光照状态标志
+void* g_camera_data_value;                           // 相机数据指针
+void* g_viewport_data_value;                         // 视口数据指针
+void* g_projection_data_value;                       // 投影数据指针
+void* g_modelview_data_value;                        // 模型视图数据指针
+void* g_scene_data_value;                            // 场景数据指针
+void* g_entity_data_value;                           // 实体数据指针
+uint32_t g_material_data_value;                     // 材质数据值
 uint32_t g_animation_data_value;                     // 动画数据值
-uint32_t g_particle_data_value;                       // 粒子数据值
-uint8_t g_particle_flag;                             // 粒子系统状态标志
+uint32_t g_particle_data_value;                     // 粒子数据值
+uint8_t g_particle_status_flag;                      // 粒子系统状态标志
 
 /**
  * @brief 核心引擎系统函数声明
