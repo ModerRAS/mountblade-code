@@ -1,7 +1,7 @@
 /**
  * @brief 引擎核心系统常量定义模块
  * @file 02_core_engine.c
- * @version 2.4
+ * @version 2.5
  * 
  * 本模块包含引擎核心系统的基础常量定义、函数宏定义和全局变量声明。
  * 简化实现：保留核心功能，大幅精简代码体积，提高可读性。
@@ -515,7 +515,7 @@ void EngineFreeMemoryFunction(void* ptr);
  * 简化实现：从25万行减少到约500行，保留核心常量和函数定义
  * 原本实现：完整的引擎核心系统，包含复杂的初始化流程和错误处理
  * 
- * @version 2.4
+ * @version 2.5
  * @date 2025-08-31
  * 
  * @section improvements 本次改进内容
