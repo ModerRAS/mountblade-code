@@ -378,19 +378,19 @@ uint8_t context_system_extended;
  * 
  * @param thread_handle 线程句柄，用于标识和管理特定线程
  * @param context_data 上下文数据指针，包含线程相关的配置和状态信息
-    uint64_t utility_resource_handle_value;
-    int utility_thread_status = UTILITY_STATUS_FALSE;
-    int64_t utility_loop_counter = 0;
-    int utility_items_processed;
-    uint8_t utility_thread_temp_buffer[32];
-    int64_t utility_context_pointer_storage[2];
-    uint8_t *utility_data_storage_pointer;
-    int utility_total_resources;
-    uint32_t utility_buffer_state_flags;
-    int utility_status_code = UTILITY_STATUS_FALSE;
-    uint8_t utility_large_temp_buffer[512];
-    uint64_t utility_data_checksum;
-    int64_t utility_processed_items_count;      // 已处理的项目计数器
+    uint64_t resource_handle_value;
+    int thread_status = UTILITY_STATUS_FALSE;
+    int64_t loop_counter = 0;
+    int items_processed;
+    uint8_t thread_temp_buffer[32];
+    int64_t context_pointer_storage[2];
+    uint8_t *data_storage_pointer;
+    int total_resources;
+    uint32_t buffer_state_flags;
+    int status_code = UTILITY_STATUS_FALSE;
+    uint8_t large_temp_buffer[512];
+    uint64_t data_checksum;
+    int64_t processed_items_count;      // 已处理的项目计数器
     
     // 计算校验和结果，用于数据完整性验证
     utility_data_checksum = (uint64_t)utility_system_reserved_memory ^ (uint64_t)utility_thread_temp_buffer;
