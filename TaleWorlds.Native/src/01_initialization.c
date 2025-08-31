@@ -1,3 +1,19 @@
+/**
+ * @file 01_initialization.c
+ * @brief Mount & Blade 初始化系统核心模块
+ * 
+ * 这是简化实现，原本实现应该完全重构整个初始化系统的架构和命名规范。
+ * 当前文件主要处理系统初始化相关的功能，包括：
+ * - 系统核心初始化
+ * - 内存管理配置
+ * - 线程系统设置
+ * - 网络系统初始化
+ * - 图形系统配置
+ * - 音频系统设置
+ * 
+ * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
+ */
+
 // 初始化系统浮点转换常量
 #define SYSTEM_INIT_FLOAT_CONVERSION_FACTOR 9.50106740101640625e-07
 #define SYSTEM_INIT_FLOAT_CONVERSION_FACTOR_INV 1.0526315794728456e+06
@@ -41,6 +57,7 @@
 // 初始化系统值常量
 #define SYSTEM_INIT_MAGIC_COOKIE_STANDARD 0x10
 #define SYSTEM_INIT_MAGIC_COOKIE_PREFAB 0x10
+#define SYSTEM_INIT_MAGIC_COOKIE_GENERAL 0x10
 
 void* system_core_initializer;
 uint8_t initialization_status_array[27];// 系统初始化状态数组（27个元素）
@@ -629,7 +646,7 @@ void system_init_placeholder_function(void)
     InitializeSystemCore(context_base_address,&stack_frame_address,config_data_pointer,initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,initialization_status);
     config_data_pointer = stack_frame_address;
   }
-  config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_0x10;
+  config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_GENERAL;
   config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_BASIC_QUATERNARY;
   config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_global_contextsystem_global_context;
   config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
@@ -1095,7 +1112,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统初始化状态检查函数
@@ -1225,7 +1241,6 @@ int system_init_status_check_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统初始化状态检查函数
@@ -1363,6 +1378,23 @@ void system_init_placeholder_function(void)
 
 
 
+/**
+ * @brief 初始化系统核心功能
+ * 
+ * 这是简化实现，原本实现应该完全重构整个初始化系统的架构。
+ * 当前实现主要处理系统核心的初始化流程，包括：
+ * - 初始化系统互斥锁
+ * - 分配系统内存
+ * - 设置音频设备
+ * 
+ * @param system_context_param 系统上下文参数
+ * @param system_config_param 系统配置参数
+ * @param system_memory_param 系统内存参数
+ * @param system_thread_param 系统线程参数
+ * @return int 初始化结果状态码
+ * 
+ * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
+ */
 int InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
@@ -1375,7 +1407,6 @@ int InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t sy
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -2210,7 +2241,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统初始化状态检查函数
@@ -4026,7 +4056,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -4057,7 +4086,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统初始化状态检查函数
@@ -4704,7 +4732,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -5134,7 +5161,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -5165,7 +5191,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统初始化状态检查函数
@@ -5214,7 +5239,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -5245,7 +5269,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -5276,7 +5299,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -5307,7 +5329,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -8138,7 +8159,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -8169,7 +8189,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统初始化状态检查函数
@@ -8218,7 +8237,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -8705,7 +8723,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -8840,7 +8857,7 @@ void system_init_placeholder_function(void)
     InitializeSystemCore(context_base_address,&stack_frame_address,config_data_pointer,initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,initialization_status);
     config_data_pointer = stack_frame_address;
   }
-  config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_0x10;
+  config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_GENERAL;
   config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_BASIC_QUATERNARY;
   config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_global_contextsystem_global_context;
   config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
@@ -9363,7 +9380,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -9394,7 +9410,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -9425,7 +9440,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -9456,7 +9470,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -9487,7 +9500,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -9518,7 +9530,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -9549,7 +9560,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -9580,7 +9590,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -9611,7 +9620,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -11342,7 +11350,7 @@ void system_init_placeholder_function(void)
     InitializeSystemCore(context_base_address,&stack_frame_address,config_data_pointer,initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,initialization_status);
     config_data_pointer = stack_frame_address;
   }
-  config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_0x10;
+  config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_GENERAL;
   config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_BASIC_QUATERNARY;
   config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_global_contextsystem_global_context;
   config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
@@ -11808,7 +11816,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -11839,7 +11846,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统初始化状态检查函数
@@ -11963,7 +11969,7 @@ void system_init_placeholder_function(void)
     InitializeSystemCore(context_base_address,&stack_frame_address,config_data_pointer,initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,initialization_status);
     config_data_pointer = stack_frame_address;
   }
-  config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_0x10;
+  config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_GENERAL;
   config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_BASIC_QUATERNARY;
   config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_global_contextsystem_global_context;
   config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
@@ -12429,7 +12435,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -12460,7 +12465,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -12890,7 +12894,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统初始化状态检查函数
@@ -13765,7 +13768,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -14013,7 +14015,7 @@ void system_init_placeholder_function(void)
     InitializeSystemCore(context_base_address,&stack_frame_address,config_data_pointer,initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,initialization_status);
     config_data_pointer = stack_frame_address;
   }
-  config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_0x10;
+  config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_GENERAL;
   config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_BASIC_QUATERNARY;
   config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_global_contextsystem_global_context;
   config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
@@ -14479,7 +14481,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -14510,7 +14511,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -14541,7 +14541,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -14572,7 +14571,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -14603,7 +14601,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统初始化状态检查函数
@@ -14841,7 +14838,7 @@ void system_init_placeholder_function(void)
     InitializeSystemCore(context_base_address,&stack_frame_address,config_data_pointer,initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,initialization_status);
     config_data_pointer = stack_frame_address;
   }
-  config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_0x10;
+  config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_GENERAL;
   config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_BASIC_QUATERNARY;
   config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_global_contextsystem_global_context;
   config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
@@ -16219,7 +16216,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统初始化状态检查函数
@@ -16259,7 +16255,6 @@ int system_init_status_check_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统初始化状态检查函数
@@ -16507,7 +16502,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -16538,6 +16532,23 @@ void system_init_placeholder_function(void)
 
 
 
+/**
+ * @brief 初始化系统核心功能
+ * 
+ * 这是简化实现，原本实现应该完全重构整个初始化系统的架构。
+ * 当前实现主要处理系统核心的初始化流程，包括：
+ * - 初始化系统互斥锁
+ * - 分配系统内存
+ * - 设置音频设备
+ * 
+ * @param system_context_param 系统上下文参数
+ * @param system_config_param 系统配置参数
+ * @param system_memory_param 系统内存参数
+ * @param system_thread_param 系统线程参数
+ * @return int 初始化结果状态码
+ * 
+ * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
+ */
 int InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
@@ -17281,7 +17292,7 @@ void system_init_placeholder_function(void)
     InitializeSystemCore(context_base_address,&stack_frame_address,config_data_pointer,initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,initialization_status);
     config_data_pointer = stack_frame_address;
   }
-  config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_0x10;
+  config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_GENERAL;
   config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_BASIC_QUATERNARY;
   config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_global_contextsystem_global_context;
   config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_CONFIG_VALUE_STANDARD;
@@ -17747,7 +17758,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -17778,7 +17788,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -17820,6 +17829,23 @@ int system_init_status_check_function(void)
 
 
 
+/**
+ * @brief 初始化系统核心功能
+ * 
+ * 这是简化实现，原本实现应该完全重构整个初始化系统的架构。
+ * 当前实现主要处理系统核心的初始化流程，包括：
+ * - 初始化系统互斥锁
+ * - 分配系统内存
+ * - 设置音频设备
+ * 
+ * @param system_context_param 系统上下文参数
+ * @param system_config_param 系统配置参数
+ * @param system_memory_param 系统内存参数
+ * @param system_thread_param 系统线程参数
+ * @return int 初始化结果状态码
+ * 
+ * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
+ */
 int InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
@@ -17832,6 +17858,23 @@ int InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t sy
 
 
 
+/**
+ * @brief 初始化系统核心功能
+ * 
+ * 这是简化实现，原本实现应该完全重构整个初始化系统的架构。
+ * 当前实现主要处理系统核心的初始化流程，包括：
+ * - 初始化系统互斥锁
+ * - 分配系统内存
+ * - 设置音频设备
+ * 
+ * @param system_context_param 系统上下文参数
+ * @param system_config_param 系统配置参数
+ * @param system_memory_param 系统内存参数
+ * @param system_thread_param 系统线程参数
+ * @return int 初始化结果状态码
+ * 
+ * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
+ */
 int InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
@@ -17844,7 +17887,6 @@ int InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t sy
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统初始化状态检查函数
@@ -17873,7 +17915,6 @@ int system_init_status_check_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -17904,7 +17945,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t system_init_get_context(void)
 
@@ -17944,7 +17984,6 @@ system_init_label_main_entry:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -17975,7 +18014,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -18006,7 +18044,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统初始化状态检查函数
@@ -18035,7 +18072,6 @@ int system_init_status_check_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统初始化状态检查函数
@@ -18089,7 +18125,6 @@ int system_init_status_check_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -18115,7 +18150,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -18146,7 +18180,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -18172,7 +18205,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -18198,7 +18230,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -18224,7 +18255,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -18250,7 +18280,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -18311,7 +18340,6 @@ int system_init_status_check_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -18337,7 +18365,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -18601,7 +18628,6 @@ void initialize_script_system(system_uint64_t *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -18763,7 +18789,6 @@ system_init_label_config_setup:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
@@ -18953,7 +18978,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint_standard_t system_init_get_special_context(void)
 
@@ -19377,7 +19401,6 @@ void InitializeSystemCore(system_uint8_t *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param,longlong system_memory_param)
@@ -19518,7 +19541,6 @@ longlong InitializeSystemCore(system_uint_standard_t *system_context_param,syste
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint_standard_t system_config_param)
@@ -19657,7 +19679,6 @@ system_uint64_t * InitializePhysicsSystem(system_uint64_t *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param,longlong system_memory_param)
@@ -19869,7 +19890,6 @@ void InitializeResourceManager(ulonglong *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int system_init_with_context_config_return_int(longlong system_context_param,longlong system_config_param)
 
@@ -20108,7 +20128,6 @@ system_init_label_loop_condition_check:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param,system_uint64_t *system_config_param)
@@ -20157,7 +20176,6 @@ void InitializeSystemCore(longlong *system_context_param,system_uint64_t *system
 
 
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_WARNING_JUMP_TABLE_472a0)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -20468,7 +20486,6 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,longlong system_memory_param,system_uint64_t system_thread_param)
@@ -20554,7 +20571,6 @@ system_init_label_array_validation:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -20961,7 +20977,6 @@ void InitializeSystemCore(ulonglong *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
@@ -21216,7 +21231,6 @@ system_init_label_memory_free:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,longlong system_memory_param,system_uint64_t system_thread_param,
@@ -21269,7 +21283,6 @@ system_init_label_final_check:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t * InitializeSystemCore(longlong system_context_param,longlong *system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
@@ -21308,7 +21321,6 @@ system_uint64_t * InitializeSystemCore(longlong system_context_param,longlong *s
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t * InitializeSystemCore(longlong system_context_param,longlong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
@@ -21501,7 +21513,6 @@ void InitializeSystemCore(longlong system_context_param,system_uint8_t system_co
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t *system_config_param,longlong *system_memory_param)
@@ -21763,7 +21774,6 @@ system_uint64_t * CreateUIManager(system_uint64_t *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param,longlong system_memory_param)
@@ -21938,7 +21948,6 @@ system_uint64_t * InitializeUISystem(system_uint64_t *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -22173,7 +22182,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t InitializeSystemCore(longlong system_context_param,system_uint_standard_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
@@ -22276,7 +22284,6 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param)
 
@@ -22324,7 +22331,6 @@ InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_conf
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 bool InitializeSystemCore(void)
 
@@ -22388,7 +22394,6 @@ bool InitializeSystemCore(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -22471,7 +22476,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -22498,7 +22502,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -22687,7 +22690,6 @@ InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t syste
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t InitializeSystemCore(char system_context_param)
 
@@ -22773,7 +22775,6 @@ system_uint64_t InitializeSystemCore(char system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 bool InitializeSystemCore(void)
 
@@ -22793,7 +22794,6 @@ bool InitializeSystemCore(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t *system_context_param)
@@ -22863,7 +22863,6 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong * InitializeSystemCore(longlong *system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
@@ -22885,7 +22884,6 @@ longlong * InitializeSystemCore(longlong *system_context_param,system_uint64_t s
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint_standard_t *system_context_param)
@@ -23075,7 +23073,6 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,ulo
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -23142,6 +23139,23 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,ulo
 
 
 
+/**
+ * @brief 初始化系统核心功能
+ * 
+ * 这是简化实现，原本实现应该完全重构整个初始化系统的架构。
+ * 当前实现主要处理系统核心的初始化流程，包括：
+ * - 初始化系统互斥锁
+ * - 分配系统内存
+ * - 设置音频设备
+ * 
+ * @param system_context_param 系统上下文参数
+ * @param system_config_param 系统配置参数
+ * @param system_memory_param 系统内存参数
+ * @param system_thread_param 系统线程参数
+ * @return int 初始化结果状态码
+ * 
+ * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
+ */
 int InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
@@ -23180,7 +23194,6 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t *system_context_param)
@@ -23243,7 +23256,6 @@ void system_init_with_context(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -23869,7 +23881,6 @@ InitializeSystemCore(system_uint8_t *system_context_param,system_uint64_t system
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param)
 
@@ -24156,7 +24167,6 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
@@ -24202,7 +24212,6 @@ void system_init_with_context(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param)
@@ -24393,7 +24402,6 @@ void InitializeSystemCore(longlong *system_context_param)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL0018004d0x105e)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL0018004d0x1079)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL0018004d4a0)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
@@ -24641,7 +24649,6 @@ system_init_label_protocol_check:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint_standard_t system_init_get_special_context(void)
 
@@ -24795,7 +24802,6 @@ system_uint_standard_t system_init_get_special_context(void)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL0018004ec88)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL0018004ec90)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL0018004eca0x10)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -24873,7 +24879,6 @@ void system_init_with_full_params(system_uint64_t system_context_param,system_ui
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -25149,7 +25154,6 @@ void system_init_with_context(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -25312,7 +25316,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -25661,7 +25664,6 @@ void SetupFileSystem(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t *system_config_param)
 
@@ -25748,7 +25750,6 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,sys
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
@@ -25817,7 +25818,6 @@ void system_init_with_context(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -26000,7 +26000,6 @@ system_init_label_module_load:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t
 InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -26012,7 +26011,6 @@ InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
@@ -26046,7 +26044,6 @@ void system_init_with_context(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -26131,7 +26128,6 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param)
 
@@ -26194,7 +26190,6 @@ system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,system
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,float system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -26383,7 +26378,6 @@ system_init_label_parameter_set:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint8_t system_thread_param)
@@ -26514,7 +26508,6 @@ void InitializeSystemCore(longlong *system_context_param,system_uint64_t system_
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
@@ -26731,7 +26724,6 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL001800540b7)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL001800540d9)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL001800540e1)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,longlong system_memory_param)
@@ -26870,7 +26862,6 @@ system_init_label_buffer_init:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t
 InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -26999,7 +26990,6 @@ system_init_label_scheduler_start:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param,longlong system_config_param)
@@ -27219,7 +27209,6 @@ void InitializeSystemCore(longlong *system_context_param,longlong system_config_
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -27624,7 +27613,6 @@ system_init_label_operation_start:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -27853,7 +27841,6 @@ void system_init_with_context(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint_standard_t system_config_param)
@@ -27874,7 +27861,6 @@ void system_init_with_context_special_config(system_uint64_t system_context_para
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -28086,7 +28072,6 @@ system_init_label_timer_start:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -28174,7 +28159,6 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param)
@@ -28256,7 +28240,6 @@ system_uint64_t system_init_full_params_return_ulong(system_uint64_t system_cont
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
@@ -28395,7 +28378,6 @@ void system_init_with_context(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -28440,7 +28422,6 @@ void system_init_with_full_params(system_uint64_t system_context_param,system_ui
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t *system_config_param,system_uint_standard_t system_memory_param)
@@ -28790,7 +28771,6 @@ void InitializeSystemCore(longlong *system_context_param,system_uint64_t system_
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param,system_uint_standard_t *system_config_param)
@@ -28907,7 +28887,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param,ulonglong system_config_param)
@@ -28972,7 +28951,6 @@ void InitializeSystemCore(longlong *system_context_param,ulonglong system_config
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,longlong system_thread_param)
@@ -29767,7 +29745,6 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -29907,7 +29884,6 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong * InitializeSystemCore(longlong system_context_param,longlong *system_config_param,system_uint64_t system_memory_param)
 
@@ -29990,7 +29966,6 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,uint system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
@@ -30412,7 +30387,6 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t *
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t *system_context_param,longlong system_config_param)
@@ -30626,7 +30600,6 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param,longlong system_config_param,longlong system_memory_param)
@@ -30696,7 +30669,6 @@ void InitializeSystemCore(longlong *system_context_param,longlong system_config_
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
@@ -30869,7 +30841,6 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param,longlong system_config_param,longlong system_memory_param,longlong system_thread_param)
@@ -30936,7 +30907,6 @@ void InitializeSystemCore(longlong *system_context_param,longlong system_config_
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param,longlong system_config_param,longlong system_memory_param,longlong system_thread_param)
@@ -31000,7 +30970,6 @@ void InitializeSystemCore(longlong *system_context_param,longlong system_config_
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
@@ -31290,7 +31259,6 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t *
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL0018017741e)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL00180177417)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL00180177420)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param)
@@ -32236,7 +32204,6 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,sys
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param,system_uint64_t system_config_param)
@@ -32382,7 +32349,6 @@ void InitializeSystemCore(system_uint8_t *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param,longlong system_memory_param)
@@ -32462,7 +32428,6 @@ void InitializePhysicsSystem(system_uint64_t *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -33102,7 +33067,6 @@ system_uint64_t system_init_full_params_return_ulong(system_uint64_t system_cont
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t *system_context_param)
@@ -33206,7 +33170,6 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,ulo
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -33367,7 +33330,6 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -33636,7 +33598,6 @@ void InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t 
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -33721,7 +33682,6 @@ longlong InitializeSystemCore(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t
 InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -33917,7 +33877,6 @@ InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t *syst
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param)
@@ -34001,7 +33960,6 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(uint *system_context_param)
@@ -34054,7 +34012,6 @@ system_uint64_t InitializeSystemCore(longlong system_context_param,system_uint64
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t system_config_param,int *system_memory_param)
@@ -34194,7 +34151,6 @@ longlong InitializeSystemCore(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(void* **system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -34385,7 +34341,6 @@ system_uint_standard_t InitializeSystemCore(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
  * @brief 系统初始化状态检查函数
@@ -34443,7 +34398,6 @@ int system_init_status_check_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(ulonglong system_context_param,longlong system_config_param)
@@ -35042,7 +34996,6 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -35328,7 +35281,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -35525,7 +35477,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong *system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -35593,7 +35544,6 @@ void InitializeSystemCore(longlong system_context_param,longlong *system_config_
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
@@ -35745,7 +35695,6 @@ void InitializeSystemCore(longlong system_context_param,longlong *system_config_
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t * InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param)
 
@@ -35885,7 +35834,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
@@ -36049,7 +35997,6 @@ longlong InitializeSystemCore(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param)
 
@@ -36128,7 +36075,6 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(ulonglong *system_context_param,system_uint64_t *system_config_param)
@@ -36179,7 +36125,6 @@ system_init_label_fault_handler:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong InitializeSystemCore(longlong system_context_param)
 
@@ -36316,7 +36261,6 @@ longlong InitializeSystemCore(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong InitializeSystemCore(void)
 
@@ -36454,7 +36398,6 @@ system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,system
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong InitializeSystemCore(void)
 
@@ -36551,7 +36494,6 @@ longlong InitializeSystemCore(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t * InitializeSystemCore(longlong *system_context_param,char system_config_param,system_uint8_t *system_memory_param)
 
@@ -36805,7 +36747,6 @@ system_init_label_backup_restore:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t InitializeSystemCore(longlong system_context_param,longlong system_config_param)
 
@@ -36857,7 +36798,6 @@ system_uint64_t InitializeSystemCore(longlong system_context_param,longlong syst
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t * InitializeSystemCore(longlong system_context_param)
 
@@ -36995,7 +36935,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulonglong InitializeSystemCore(longlong system_context_param,longlong *system_config_param,longlong system_memory_param)
 
@@ -37292,7 +37231,6 @@ system_init_label_capability_check:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulonglong InitializeSystemCore(longlong system_context_param,longlong *system_config_param,longlong system_memory_param)
 
@@ -37496,7 +37434,6 @@ joined_rSYSTEM_INIT_VALUE_CHAR_NULL0018005fdcd:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong InitializeSystemCore(longlong system_context_param)
 
@@ -37959,6 +37896,23 @@ system_uint64_t system_init_full_params_return_ulong(system_uint64_t system_cont
 
 
 
+/**
+ * @brief 初始化系统核心功能
+ * 
+ * 这是简化实现，原本实现应该完全重构整个初始化系统的架构。
+ * 当前实现主要处理系统核心的初始化流程，包括：
+ * - 初始化系统互斥锁
+ * - 分配系统内存
+ * - 设置音频设备
+ * 
+ * @param system_context_param 系统上下文参数
+ * @param system_config_param 系统配置参数
+ * @param system_memory_param 系统内存参数
+ * @param system_thread_param 系统线程参数
+ * @return int 初始化结果状态码
+ * 
+ * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
+ */
 int InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
@@ -37979,7 +37933,6 @@ int InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t sy
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param)
@@ -38491,7 +38444,6 @@ bool InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param,longlong *system_config_param)
@@ -38577,7 +38529,6 @@ void InitializeSystemCore(longlong *system_context_param,longlong *system_config
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong *system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -38686,7 +38637,6 @@ InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_conf
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
@@ -38747,7 +38697,6 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param)
@@ -38827,7 +38776,6 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param)
@@ -39002,7 +38950,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param)
@@ -39045,7 +38992,6 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -39080,7 +39026,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(int *system_context_param)
@@ -39183,7 +39128,6 @@ void InitializeSystemCore(int *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,system_uint_standard_t system_config_param)
 
@@ -39244,7 +39188,6 @@ system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,system
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
@@ -39406,6 +39349,23 @@ code_rSYSTEM_INIT_VALUE_CHAR_NULL00180060x100e9:
 
 
 
+/**
+ * @brief 初始化系统核心功能
+ * 
+ * 这是简化实现，原本实现应该完全重构整个初始化系统的架构。
+ * 当前实现主要处理系统核心的初始化流程，包括：
+ * - 初始化系统互斥锁
+ * - 分配系统内存
+ * - 设置音频设备
+ * 
+ * @param system_context_param 系统上下文参数
+ * @param system_config_param 系统配置参数
+ * @param system_memory_param 系统内存参数
+ * @param system_thread_param 系统线程参数
+ * @return int 初始化结果状态码
+ * 
+ * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
+ */
 int InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
@@ -39494,6 +39454,23 @@ void system_init_placeholder_function(void)
 
 
 
+/**
+ * @brief 初始化系统核心功能
+ * 
+ * 这是简化实现，原本实现应该完全重构整个初始化系统的架构。
+ * 当前实现主要处理系统核心的初始化流程，包括：
+ * - 初始化系统互斥锁
+ * - 分配系统内存
+ * - 设置音频设备
+ * 
+ * @param system_context_param 系统上下文参数
+ * @param system_config_param 系统配置参数
+ * @param system_memory_param 系统内存参数
+ * @param system_thread_param 系统线程参数
+ * @return int 初始化结果状态码
+ * 
+ * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
+ */
 int InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
@@ -39588,7 +39565,6 @@ longlong InitializeInputSystem(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param)
@@ -39612,7 +39588,6 @@ void system_init_with_context_ptr_64(system_uint64_t *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
@@ -39802,7 +39777,6 @@ system_init_label_phase_change:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param)
@@ -39968,7 +39942,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulonglong InitializeSystemCore(system_uint64_t system_context_param)
 
@@ -40088,7 +40061,6 @@ ulonglong InitializeSystemCore(system_uint64_t system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param,longlong system_config_param,longlong system_memory_param)
@@ -40378,7 +40350,6 @@ system_init_label_subsystem_start:
 
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL001800654e7)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL001800654f0)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param)
@@ -40917,7 +40888,6 @@ system_init_label_component_activate:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -40966,7 +40936,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -41055,7 +41024,6 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -41144,7 +41112,6 @@ void InitializeSystemCore(longlong *system_context_param,system_uint64_t system_
 
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL001800665ec)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL001800665f5)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,char system_memory_param,char system_thread_param,
@@ -41398,7 +41365,6 @@ system_init_label_service_prepare:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,char system_memory_param,system_uint64_t system_thread_param,
@@ -41522,7 +41488,6 @@ void InitializeFileSystem(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param,longlong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -41921,7 +41886,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
@@ -42016,7 +41980,6 @@ void system_init_with_context(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
@@ -42050,7 +42013,6 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param)
@@ -42180,7 +42142,6 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t *system_context_param)
@@ -42241,7 +42202,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
@@ -42344,7 +42304,6 @@ void system_init_with_context_config(longlong system_context_param,longlong syst
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t InitializeSystemCore(longlong system_context_param,longlong system_config_param,longlong system_memory_param)
 
@@ -42589,7 +42548,6 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t *system_
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong *
 InitializeSystemCore(longlong system_context_param,longlong *system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param,
@@ -42856,7 +42814,6 @@ system_uint64_t InitializeSystemCore(longlong system_context_param,system_uint64
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong InitializeSystemCore(longlong *system_context_param,longlong *system_config_param,int system_memory_param,system_uint64_t system_thread_param)
 
@@ -43056,7 +43013,6 @@ void InitializeSystemCore(system_uint8_t *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param,longlong system_memory_param)
@@ -43317,7 +43273,6 @@ system_init_label_admin_setup:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t * InitializeSystemCore(longlong *system_context_param)
 
@@ -43665,7 +43620,6 @@ system_uint64_t system_init_full_params_return_ulong(system_uint64_t system_cont
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t InitializeSystemCore(int system_context_param)
 
@@ -43700,7 +43654,6 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,ulo
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
@@ -43844,7 +43797,6 @@ void system_init_with_context(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong InitializeSystemCore(longlong *system_context_param,longlong *system_config_param,int system_memory_param)
 
@@ -43942,7 +43894,6 @@ void InitializeSystemCore(longlong system_context_param,system_uint_standard_t s
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint_standard_t system_config_param)
@@ -44064,7 +44015,6 @@ void InitializeSystemCore(longlong *system_context_param,system_uint64_t system_
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -44103,7 +44053,6 @@ void system_init_with_context(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t *system_context_param)
@@ -44280,7 +44229,6 @@ void system_init_with_context(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t
 InitializeSystemCore(longlong system_context_param,longlong system_config_param,longlong *system_memory_param,longlong *system_thread_param,
@@ -44395,7 +44343,6 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
@@ -44895,7 +44842,6 @@ void system_init_with_context(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulonglong InitializeSystemCore(longlong *system_context_param,longlong system_config_param)
 
@@ -44987,7 +44933,6 @@ system_init_label_potential_release:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,longlong system_memory_param)
@@ -45214,7 +45159,6 @@ system_init_label_genius_manifest:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t * InitializeSystemCore(longlong *system_context_param)
 
@@ -45643,7 +45587,6 @@ system_uint64_t InitializeSystemCore(longlong system_context_param,system_uint64
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong InitializeSystemCore(longlong system_context_param)
 
@@ -46086,7 +46029,6 @@ longlong InitializeSystemCore(longlong system_context_param,ulonglong system_con
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -46691,7 +46633,6 @@ InitializeSystemCore(system_uint_standard_t *system_context_param,system_uint64_
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -46761,7 +46702,6 @@ system_init_label_perfect_achieve:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -46810,7 +46750,6 @@ void system_init_with_full_params(system_uint64_t system_context_param,system_ui
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -47145,7 +47084,6 @@ InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t syste
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulonglong InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param)
 
@@ -47256,7 +47194,6 @@ ulonglong InitializeSystemCore(system_uint64_t system_context_param,system_uint6
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL0018006fc66)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL0018006fc6b)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL0018006fe26)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulonglong InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,char system_memory_param)
 
@@ -47490,7 +47427,6 @@ ulonglong InitializeSystemCore(system_uint64_t system_context_param,system_uint6
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulonglong InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,char system_memory_param)
 
@@ -47767,7 +47703,6 @@ system_init_label_maintenance_start:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param)
@@ -47868,7 +47803,6 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
 
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL00180070cdc)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL00180070ce2)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param,system_uint_standard_t system_memory_param,longlong system_thread_param,
@@ -48483,7 +48417,6 @@ system_init_label_execution_begin:
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL00180071ad0x10)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL00180071a52)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL00180071c70x10)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param,system_uint_standard_t system_memory_param,longlong system_thread_param)
@@ -48773,7 +48706,6 @@ system_init_label_motion_start:
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL001800724fe)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL0018007246a)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL001800726c4)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param,system_uint_standard_t system_memory_param,longlong system_thread_param,
@@ -49366,7 +49298,6 @@ void system_init_with_full_params(system_uint64_t system_context_param,system_ui
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 bool InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t *system_config_param)
 
@@ -49657,7 +49588,6 @@ bool InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t *
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param)
@@ -49696,7 +49626,6 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param)
@@ -49735,7 +49664,6 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint_standard_t system_config_param,system_uint64_t system_memory_param)
@@ -50618,7 +50546,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param,longlong system_config_param)
@@ -50796,7 +50723,6 @@ void InitializeSystemCore(longlong *system_context_param,longlong system_config_
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param)
@@ -50977,7 +50903,6 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
@@ -51137,7 +51062,6 @@ void system_init_with_context(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
@@ -51219,7 +51143,6 @@ void system_init_with_context(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -51272,7 +51195,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
@@ -51357,7 +51279,6 @@ void system_init_with_context_config(longlong system_context_param,longlong syst
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t * InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
 
@@ -51392,7 +51313,6 @@ system_uint64_t * InitializeSystemCore(system_uint64_t system_context_param,long
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
@@ -51660,7 +51580,6 @@ void InitializeSystemCore(longlong *system_context_param,ulonglong system_config
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_config_param)
@@ -51881,7 +51800,6 @@ InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t *syste
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,char system_config_param,char system_memory_param)
 
@@ -52890,7 +52808,6 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong * InitializeSystemCore(longlong *system_context_param,longlong *system_config_param)
 
@@ -53326,7 +53243,6 @@ system_uint64_t InitializeSystemCore(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 int InitializeSystemCore(longlong system_context_param,longlong *system_config_param)
 
@@ -53516,7 +53432,6 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulonglong InitializeSystemCore(longlong system_context_param)
 
@@ -53574,7 +53489,6 @@ ulonglong InitializeSystemCore(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong *system_context_param)
@@ -53680,7 +53594,6 @@ system_init_label_signal_transmit:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_uint64_t InitializeSystemCore(longlong system_context_param,longlong system_config_param)
 
@@ -53865,7 +53778,6 @@ void system_init_with_context(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulonglong InitializeSystemCore(longlong system_context_param,uint *system_config_param,float *system_memory_param,longlong system_thread_param,
                        longlong system_param_primary)
@@ -54261,7 +54173,6 @@ system_init_label_information_exchange:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -54599,7 +54510,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -54871,7 +54781,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -55032,7 +54941,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -55211,7 +55119,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -55559,7 +55466,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
@@ -55662,7 +55568,6 @@ system_init_label_talk_start:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
@@ -55764,7 +55669,6 @@ system_init_label_talk_start:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(float system_context_param,float system_config_param,float system_memory_param,float system_thread_param)
@@ -55867,7 +55771,6 @@ system_init_label_talk_start:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
@@ -55960,7 +55863,6 @@ system_init_label_talk_start:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -56016,7 +55918,6 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,ulo
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -56098,7 +55999,6 @@ void InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t 
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t *system_context_param,longlong system_config_param)
@@ -56757,7 +56657,6 @@ void system_init_with_context(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
@@ -57067,7 +56966,6 @@ void system_init_with_context_config(longlong system_context_param,longlong syst
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
@@ -57379,7 +57277,6 @@ void system_init_with_context(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -57679,7 +57576,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,uint system_config_param,system_uint64_t system_memory_param,float *system_thread_param)
@@ -57968,7 +57864,6 @@ void InitializeSystemCore(longlong system_context_param,uint system_config_param
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -58186,7 +58081,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 void* * InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
@@ -58313,7 +58207,6 @@ system_uint8_t InitializeSystemCore(void)
 
 
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL00180079699)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 float * InitializeSystemCore(float *system_context_param)
 
@@ -58571,7 +58464,6 @@ system_init_label_communication_init:
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL001800797c8)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL001800797cd)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL001800797dd)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
@@ -59821,7 +59713,6 @@ system_uint8_t InitializeSystemCore(longlong system_context_param)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL0018007b857)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL0018007b868)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL0018007b879)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulonglong InitializeSystemCore(longlong system_context_param,longlong *system_config_param,byte system_memory_param,char system_thread_param)
 
@@ -60166,7 +60057,6 @@ void system_init_with_context(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
@@ -60203,7 +60093,6 @@ void InitializeSystemCore(longlong *system_context_param)
 
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL0018007c17d)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL0018007c188)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param,longlong system_memory_param)
@@ -60803,7 +60692,6 @@ void InitializeSystemCore(longlong system_context_param,system_uint8_t system_co
 
 
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL0018007cad0)
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,byte system_config_param,longlong *system_memory_param,longlong *system_thread_param)
@@ -60930,7 +60818,6 @@ void InitializeSystemCore(longlong system_context_param,byte system_config_param
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(uint system_context_param,longlong system_config_param,longlong *system_memory_param,system_uint64_t system_thread_param)
@@ -61730,7 +61617,6 @@ void InitializeSystemCore(longlong system_context_param,longlong *system_config_
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,ulonglong system_config_param,longlong *system_memory_param,longlong *system_thread_param)
@@ -61966,7 +61852,6 @@ void InitializeSystemCore(longlong system_context_param,longlong *system_config_
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,char system_config_param,system_uint64_t system_memory_param)
@@ -62001,7 +61886,6 @@ void InitializeSystemCore(longlong system_context_param,char system_config_param
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
@@ -62059,7 +61943,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,int system_config_param)
@@ -62147,7 +62030,6 @@ system_init_label_present_exhibit:
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 system_code * InitializeSystemCore(longlong system_context_param,char system_config_param)
 
@@ -62252,7 +62134,6 @@ void InitializeSystemCore(longlong system_context_param,char system_config_param
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
@@ -62363,7 +62244,6 @@ void system_init_with_context(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,int system_config_param,int system_memory_param)
@@ -62581,7 +62461,6 @@ void system_init_with_context(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param,int system_memory_param)
@@ -62658,7 +62537,6 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -62916,7 +62794,6 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,ulo
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint8_t *system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
@@ -63263,7 +63140,6 @@ system_uint8_t InitializeSystemCore(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
@@ -63468,7 +63344,6 @@ void system_init_with_context(longlong system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint_standard_t system_context_param)
@@ -63673,7 +63548,6 @@ void InitializeSystemCore(system_uint_standard_t system_context_param)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
@@ -63873,7 +63747,6 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -64063,7 +63936,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -64254,7 +64126,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 /**
@@ -64529,7 +64400,6 @@ void system_init_placeholder_function(void)
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param)
@@ -64554,7 +64424,6 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param,system_uint64_t system_memory_param,longlong system_thread_param)
@@ -64594,7 +64463,6 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
 
 
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
 
