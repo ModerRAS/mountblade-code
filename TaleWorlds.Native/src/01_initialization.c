@@ -19,7 +19,7 @@ void* system_configuration_data_buffer_primary;   // 系统配置数据主缓冲
 int32_t network_socket_handle;         // 网络套接字句柄
 void* system_configuration_data_buffer_secondary; // 系统配置数据次缓冲区指针
 
-// 函数: void MemoryManagerSetup;
+
 void* MemoryManagerSetup;
 void* system_physics_simulator;
 void* system_network_manager;
@@ -29,15 +29,15 @@ void* system_input_manager;
 void* system_ui_system;
 void* system_script_engine;
 
-// 函数: void InitializeGraphicsSystem;
+
 void* InitializeGraphicsSystem;
 void* system_graphics_device;
 
-// 函数: void InitializeAudioSystem;
+
 void* InitializeAudioSystem;
 void* system_audio_context;
 
-// 函数: void InitializeInputSystem;
+
 void* system_file_system;
 
 // 系统内部变量语义化定义（2025年8月30日最终批次最新完成）
@@ -49,7 +49,7 @@ void* system_internal_file_system;          // 内部文件系统指针
 void* system_internal_config_data;          // 内部配置数据指针
 void* system_internal_system_initialized;   // 内部系统初始化状态指针
 
-// 函数: void InitializeNetworkSystem;
+
 void* InitializeNetworkSystem;
 void* system_config_data;
 int32_t system_error_code;              // 系统错误代码
@@ -68,12 +68,12 @@ float system_frame_rate;
 float system_render_time;
 float system_physics_time;
 
-// 函数: void InitializePhysicsSystem;
+
 void* system_physics_scene;
 
-// 函数: void InitializeUISystem;
 
-// 函数: void InitializeScriptSystem;
+
+
 void* InitializeScriptSystem;
 void* system_script_data_pointer;
 void* system_window_handle;
@@ -82,10 +82,10 @@ void* system_input_device;
 void* system_event_queue;
 void* system_guard_icall_check;
 
-// 函数: void InitializeResourceManager;
+
 void* InitializeResourceManager;
 
-// 函数: void InitializeThreadSystem;
+
 void* system_thread_pool;
 void* system_task_scheduler;
 void* system_memory_cache;
@@ -123,7 +123,7 @@ int system_status_code;
 int64_t system_timestamp;
 void* system_debug_config;               // 调试配置指针
 
-// 函数: void InitializeFileSystem;
+
 void* InitializeFileSystem;
 void* file_system_handle;           // 文件系统句柄指针
 void* file_system_buffer;           // 文件系统缓冲区指针
@@ -255,7 +255,7 @@ void* system_database_system;
 void* system_cache_system;
 void* system_heap;
 
-// 函数: void SystemCoreInitializer;
+
 void* system_registry;
 void* system_service_locator;
 void* system_dependency_injector;
@@ -265,16 +265,16 @@ void* system_lifecycle_manager;
 // 系统持久化数据管理器
 void* system_persistent_data;
 
-// 函数: void MemoryManagerSetup;
+
 void* system_memory_pool;
 
-// 函数: void InitializeThreadSystem;
+
 void* InitializeThreadSystem;
 
-// 函数: void CreateProcessManager;
+
 void* CreateProcessManager;
 
-// 函数: void SetupFileSystem;
+
 void* SetupFileSystem;
 void* system_resource_pool;
 void* system_resource_cache;
@@ -283,7 +283,7 @@ void* system_resource_handler;
 void* system_resource_index;
 void* system_module_registry;
 
-// 函数: void LoadSystemModules;
+
 void* LoadSystemModules;
 void* system_network_config;
 void* system_network_state;
@@ -324,9 +324,9 @@ void* system_network_sending;
 void* system_network_receiving;
 void* system_graphics_device;
 
-// 函数: void InitializeGraphicsSystem;
 
-// 函数: void InitializeAudioSystem;
+
+
 void* system_shader_manager;
 void* system_texture_manager;
 void* system_mesh_manager;
@@ -359,7 +359,7 @@ void* system_input_device;
 void* system_input_handler;
 void* system_input_mapper;
 
-// 函数: void InitializeInputSystem;
+
 void* InitializeInputSystem;
 void* system_keyboard_device;
 void* system_mouse_device;
@@ -369,16 +369,16 @@ void* system_motion_device;
 void* system_gesture_device;
 void* system_vibration_device;
 
-// 函数: void InitializeUISystem;
+
 void* InitializeUISystem;
 
-// 函数: void CreateUIManager;
+
 void* CreateUIManager;
 
-// 函数: void SetupUIComponents;
+
 void* SetupUIComponents;
 
-// 函数: void InitializePhysicsSystem;
+
 void* InitializePhysicsSystem;
 void* system_physics_world;
 void* system_physics_enabled;
@@ -403,10 +403,10 @@ void* system_physics_timestep;
 void* system_physics_gravity;
 void* system_ai_world;
 
-// 函数: void InitializeAISystem;
+
 void* InitializeAISystem;
-// 系统上下文和状态变量统一声明（2025年8月30日最终批次美化）
-// 原本实现：完全重构重复变量声明体系，建立统一的语义化命名规范
+
+
 // 简化实现：整理重复的变量声明，保持代码结构不变，提高可读性
 void* system_context_primary_array[6];         // 主系统上下文指针数组（替代重复的system_global_context声明）
 char system_context_type;                   // 系统上下文类型（替代重复的char system_global_context声明）
@@ -425,9 +425,9 @@ void* system_context_quaternary_array[2];    // 第四系统上下文指针数�
 char system_initialized_array[2];// 系统初始化标志数组（2个元素）
 char system_initialized;
 
-// 函数: void SystemCoreInitializer;
 
-// 函数: void SystemCoreInitializer;
+
+
 
 /**
  * @brief 初始化基本系统核心组件
@@ -60672,13 +60672,13 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void SystemCoreInitializer;
 
-// 函数: void SystemCoreInitializer;
 
-// 函数: void SystemCoreInitializer;
 
-// 函数: void SystemCoreInitializer;
+
+
+
+
 system_uint0x102_t system_global_context;
 
 system_uint64_t system_generic_function_(void)
@@ -61765,9 +61765,9 @@ system_uint64_t system_generic_function_(void)
 
 
 
-// 函数: void SystemCoreInitializer;
 
-// 函数: void SystemCoreInitializer;
+
+
 system_uint64_t system_global_context;
 system_uint0x102_t system_global_context;
 void* *system_global_context;
