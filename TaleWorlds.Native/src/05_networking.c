@@ -229,89 +229,49 @@ int network_status_waiting;
 
 /** 全局主状态 */
 int network_global_state_primary;
-/**
- * 主网络连接上下文
- * 存储主网络连接的上下文信息
- */
+/* 网络连接上下文管理 */
+/** 主网络连接上下文 */
 void *network_connection_context_primary;
 
-/**
- * 辅助网络连接上下文
- * 存储辅助网络连接的上下文信息
- */
+/** 辅助网络连接上下文 */
 void *network_connection_context_secondary;
 
-/**
- * 第三网络连接上下文
- * 存储第三网络连接的上下文信息
- */
+/** 第三网络连接上下文 */
 void *network_connection_context_tertiary;
 
-/**
- * 第四网络连接上下文
- * 存储第四网络连接的上下文信息
- */
+/** 第四网络连接上下文 */
 void *network_connection_context_quaternary;
 
-/**
- * 第五网络连接上下文
- * 存储第五网络连接的上下文信息
- */
+/** 第五网络连接上下文 */
 void *network_connection_context_quinary;
 
-/**
- * 第六网络连接上下文
- * 存储第六网络连接的上下文信息
- */
+/** 第六网络连接上下文 */
 void *network_connection_context_senary;
 
-/**
- * 第七网络连接上下文
- * 存储第七网络连接的上下文信息
- */
+/** 第七网络连接上下文 */
 void *network_connection_context_septenary;
 
-/**
- * 第八网络连接上下文
- * 存储第八网络连接的上下文信息
- */
+/** 第八网络连接上下文 */
 void *network_connection_context_octonary;
 
-/**
- * 主网络配置数据
- * 存储主网络配置的数据
- */
+/** 主网络配置数据 */
 void *network_config_primary_data;
 
-/**
- * 第九网络连接上下文
- * 存储第九网络连接的上下文信息
- */
+/** 第九网络连接上下文 */
 void *network_connection_context_nonary;
 
-/**
- * 主网络配置寄存器
- * 主网络配置的寄存器值
- */
+/** 第十网络连接上下文 */
+void *network_connection_context_denary;
+
+/* 网络配置寄存器 */
+/** 主网络配置寄存器 */
 int network_config_register_primary;
 
-/**
- * 辅助网络配置寄存器
- * 辅助网络配置的寄存器值
- */
+/** 辅助网络配置寄存器 */
 int network_config_register_secondary;
 
-/**
- * 第三网络配置寄存器
- * 第三网络配置的寄存器值
- */
+/** 第三网络配置寄存器 */
 int network_config_register_tertiary;
-
-/**
- * 第十网络连接上下文
- * 存储第十网络连接的上下文信息
- */
-void *network_connection_context_denary;
 
 /**
  * 扩展主网络连接上下文
