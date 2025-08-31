@@ -21659,7 +21659,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param)
   system_context_param[SYSTEM_INIT_FLAG_INITIALIZED_OFFSET_F] = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint_standard_t *)(system_context_param + ) = SYSTEM_INIT_VALUE_ZERO;
   *system_secondary_longptr = (longlong)&system_global_contextsystem_global_context;
-  system_context_param[SYSTEM_INIT_OFFSET_ARRAY_0x101] = SYSTEM_INIT_VALUE_ZERO;
+  system_context_param[INIT_OFFSET_ARRAY_0x101] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_FLAG_INITIALIZED_OFFSET_F] = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint_standard_t *)(system_context_param + ) = SYSTEM_INIT_VALUE_ZERO;
   system_long_pointer_secondary = system_context_param + SYSTEM_INIT_CONTEXT_INDEX_SECONDARY_CONFIG;
@@ -22065,7 +22065,7 @@ void InitializeSystemCore(longlong *system_context_param)
     system_execute_operation();
   }
   system_context_param[SYSTEM_INIT_FLAG_INITIALIZED_OFFSET_F] = SYSTEM_INIT_VALUE_ZERO;
-  *(system_uint_standard_t *)(system_context_param + SYSTEM_INIT_OFFSET_ARRAY_0x101) = SYSTEM_INIT_VALUE_ZERO;
+  *(system_uint_standard_t *)(system_context_param + INIT_OFFSET_ARRAY_0x101) = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_FLAG_INITIALIZEDe] = (longlong)&system_global_contextsystem_global_context;
   system_context_param[SYSTEM_INIT_FLAG_INITIALIZED9] = (longlong)&system_global_contextsystem_global_context;
   if (system_context_param[SYSTEM_INIT_FLAG_INITIALIZEDa] != 0) {
@@ -24063,7 +24063,7 @@ void InitializeSystemCore(longlong *system_context_param,system_uint64_t system_
   }
   (**(system_code **)(**(longlong **)(system_loop_counter + SYSTEM_INIT_FLAG_INITIALIZED_OFFSET_B0) + ))();
   if (((*(int *)(system_global_initialized_flag + SYSTEM_INIT_FLAG_ACTIVEd4) != *(int *)(system_global_initialized_flag + SYSTEM_INIT_FLAG_ACTIVEd0)) ||
-      (*(int *)(system_global_initialized_flag + SYSTEM_INIT_OFFSET_ARRAY_0x1014) != *(int *)(system_global_initialized_flag + SYSTEM_INIT_OFFSET_ARRAY_0x1010))) ||
+      (*(int *)(system_global_initialized_flag + INIT_OFFSET_ARRAY_0x1014) != *(int *)(system_global_initialized_flag + INIT_OFFSET_ARRAY_0x1010))) ||
      (*(int *)(system_global_initialized_flag + SYSTEM_INIT_OFFSET_GLOBAL_544) != *(int *)(system_global_initialized_flag + SYSTEM_INIT_OFFSET_STACK_540))) {
     system_stack_buffer_temp = asystem_stack_long_70;
     stack_memory_pointer_primary = &system_global_contextsystem_global_context;
@@ -25247,7 +25247,7 @@ system_init_label_operation_start:
   system_context_pointer = buffer_pointer + SYSTEM_INIT_FLAG_INITIALIZED_PRIMARY;
   system_configure_system(system_context_pointer);
   *system_context_pointer = &system_global_contextsystem_global_context;
-  *(system_uint16_t *)(buffer_pointer + SYSTEM_INIT_OFFSET_ARRAY_0x101) = 1;
+  *(system_uint16_t *)(buffer_pointer + INIT_OFFSET_ARRAY_0x101) = 1;
   *(system_uint_standard_t *)(buffer_pointer + SYSTEM_INIT_OFFSET_STACK_PARAM) = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint8_t *)((longlong)buffer_pointer + SYSTEM_INIT_SIZE_COMPAREc) = SYSTEM_INIT_VALUE_ZERO;
   *system_context_pointer = &system_global_contextsystem_global_context;
@@ -39032,7 +39032,7 @@ void system_init_with_context(longlong system_context_param)
     if (system_char_result == '\0') {
       return;
     }
-    system_secondary_longptr = *(longlong **)(system_context_param + SYSTEM_INIT_OFFSET_ARRAY_0x1018);
+    system_secondary_longptr = *(longlong **)(system_context_param + INIT_OFFSET_ARRAY_0x1018);
     if (system_stack_buffer_temp != (longlong *)SYSTEM_INIT_VALUE_CHAR_NULL) {
       *(system_uint8_t *)(system_stack_buffer_temp + SYSTEM_INIT_SIZE_COMPARE) = SYSTEM_INIT_VALUE_ZERO;
       *system_secondary_longptr = *system_secondary_longptr - system_stack_buffer_temp[SYSTEM_ARRAY_INDEX_SECOND];
@@ -42320,7 +42320,7 @@ InitializeSystemCore(longlong *system_context_param,system_uint64_t *system_conf
         memory_pointer[SYSTEM_ARRAY_INDEX_FIFTH] = SYSTEM_INIT_VALUE_ZERO;
         memory_pointer[SYSTEM_ARRAY_INDEX_SIXTH] = system_guard_icall_check;
       }
-      system_thread_param[SYSTEM_INIT_OFFSET_ARRAY_0x101] = memory_pointer[SYSTEM_ARRAY_INDEX_SEVENTH];
+      system_thread_param[INIT_OFFSET_ARRAY_0x101] = memory_pointer[SYSTEM_ARRAY_INDEX_SEVENTH];
       system_thread_param[SYSTEM_INIT_SIZE_BUFFER_STANDARD] = memory_pointer[SYSTEM_ARRAY_INDEX_EIGHTH];
       system_thread_param[0x10010] = memory_pointer[SYSTEM_ARRAY_INDEX_NINTH];
       system_thread_param[SYSTEM_INIT_OFFSET_ARRAY_0x104] = memory_pointer[SYSTEM_ARRAY_INDEX_TENTH];
@@ -42342,7 +42342,7 @@ longlong * InitializeSystemCore(longlong system_context_param,longlong system_co
   ulonglong system_temp_counter;
   longlong *pinitialization_status;
   
-  pinitialization_status = *(longlong **)(system_context_param + SYSTEM_INIT_OFFSET_ARRAY_0x1018);
+  pinitialization_status = *(longlong **)(system_context_param + INIT_OFFSET_ARRAY_0x1018);
   system_temp_counter = system_config_param +  & SYSTEM_INIT_ERROR_GENERICfffffff0;
   system_long_pointer_secondary = (longlong *)SYSTEM_INIT_VALUE_CHAR_NULL;
   system_secondary_longptr = (longlong *)pinitialization_status[SYSTEM_ARRAY_INDEX_FOURTH];
@@ -42477,11 +42477,11 @@ longlong InitializeSystemCore(longlong system_context_param,ulonglong system_con
   *(system_uint_standard_t *)(system_allocation_result + SYSTEM_INIT_FLAG_INITIALIZEDe9d8) = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint64_t *)(system_allocation_result + SYSTEM_INIT_FLAG_INITIALIZEDe9e0) = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint16_t *)(system_allocation_result + SYSTEM_INIT_FLAG_INITIALIZEDe9e8) = SYSTEM_INIT_SIZE_COMPARE0;
-  *(system_uint64_t *)(system_allocation_result + SYSTEM_INIT_OFFSET_ARRAY_0x101ef0) = SYSTEM_INIT_VALUE_ZERO;
-  *(system_uint64_t *)(system_allocation_result + SYSTEM_INIT_OFFSET_ARRAY_0x101ef8) = SYSTEM_INIT_VALUE_ZERO;
-  *(system_uint_standard_t *)(system_allocation_result + SYSTEM_INIT_OFFSET_ARRAY_0x101f20) = SYSTEM_INIT_VALUE_ZERO;
-  *(system_uint64_t *)(system_allocation_result + SYSTEM_INIT_OFFSET_ARRAY_0x101f28) = SYSTEM_INIT_VALUE_ZERO;
-  *(system_uint16_t *)(system_allocation_result + SYSTEM_INIT_OFFSET_ARRAY_0x101f0100) = SYSTEM_INIT_SIZE_COMPARE0;
+  *(system_uint64_t *)(system_allocation_result + INIT_OFFSET_ARRAY_0x101ef0) = SYSTEM_INIT_VALUE_ZERO;
+  *(system_uint64_t *)(system_allocation_result + INIT_OFFSET_ARRAY_0x101ef8) = SYSTEM_INIT_VALUE_ZERO;
+  *(system_uint_standard_t *)(system_allocation_result + INIT_OFFSET_ARRAY_0x101f20) = SYSTEM_INIT_VALUE_ZERO;
+  *(system_uint64_t *)(system_allocation_result + INIT_OFFSET_ARRAY_0x101f28) = SYSTEM_INIT_VALUE_ZERO;
+  *(system_uint16_t *)(system_allocation_result + INIT_OFFSET_ARRAY_0x101f0100) = SYSTEM_INIT_SIZE_COMPARE0;
   *(system_uint64_t *)(system_allocation_result + SYSTEM_INIT_OFFSET_ARRAY_0x10540108) = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint64_t *)(system_allocation_result + SYSTEM_INIT_OFFSET_ARRAY_0x105440) = SYSTEM_INIT_VALUE_ZERO;
   *(system_uint_standard_t *)(system_allocation_result + SYSTEM_INIT_OFFSET_ARRAY_0x105468) = SYSTEM_INIT_VALUE_ZERO;
@@ -48059,7 +48059,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,cha
   system_context_param[SYSTEM_INIT_FLAG_INITIALIZEDe] = SYSTEM_INIT_DOUBLE_VALUE_1_0;
   system_context_param[SYSTEM_INIT_FLAG_INITIALIZED_OFFSET_F] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_PADDING_0] = SYSTEM_INIT_VALUE_ZERO;
-  system_context_param[SYSTEM_INIT_OFFSET_ARRAY_0x101] = SYSTEM_INIT_FLOAT_VALUE_1_0;
+  system_context_param[INIT_OFFSET_ARRAY_0x101] = SYSTEM_INIT_FLOAT_VALUE_1_0;
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_SECONDARY_CONFIG] = SYSTEM_INIT_VALUE_ZERO;
   system_context_param[SYSTEM_INIT_CONTEXT_INDEX_TERTIARY_CONFIG] = SYSTEM_INIT_DOUBLE_VALUE_1_0;
   *(byte *)((longlong)system_context_param + ) = system_validation_flag_secondary | 1;
@@ -49070,7 +49070,7 @@ longlong * InitializeSystemCore(longlong *system_context_param,longlong *system_
   system_allocation_result_primary_pointer = system_context_param[SYSTEM_INIT_FLAG_INITIALIZED_OFFSET_F];
   system_allocation_result_temp = system_context_param[];
   system_config_value = *(system_uint_standard_t *)((longlong)system_context_param + SYSTEM_INIT_FLAG_OCTONARY_ENABLED_STANDARD4);
-  system_allocation_result5 = system_context_param[SYSTEM_INIT_OFFSET_ARRAY_0x101];
+  system_allocation_result5 = system_context_param[INIT_OFFSET_ARRAY_0x101];
   system_temp_counter = *(system_uint_standard_t *)((longlong)system_context_param + SYSTEM_INIT_FLAG_OCTONARY_ENABLED_STANDARD_C);
   system_allocation_result6 = system_context_param[SYSTEM_INIT_CONTEXT_INDEX_SECONDARY_CONFIG];
   system_ulong_temp = *(system_uint_standard_t *)((longlong)system_context_param + SYSTEM_INIT_OFFSET_CHAR_CHECK4);
@@ -61283,7 +61283,7 @@ longlong *system_memory_pool_pointer;
 #define SYSTEM_INIT_OFFSET_ARRAY_7C 0x7c                    // 数组偏移量7C
 #define SYSTEM_INIT_OFFSET_ARRAY_7E 0x7e                    // 数组偏移量7E
 #define SYSTEM_INIT_OFFSET_ARRAY_7F 0x7f                    // 数组偏移量7F
-#define SYSTEM_INIT_OFFSET_ARRAY_0x101 0x101                    // 数组偏移量0x101
+#define INIT_OFFSET_ARRAY_0x101 0x101                    // 数组偏移量0x101
 #define SYSTEM_INIT_SIZE_BUFFER_STANDARD SYSTEM_INIT_SIZE_BUFFER_STANDARD                    // 数组偏移量0x102
 #define 0x10010 0x10010                    // 数组偏移量0x10010
 #define SYSTEM_INIT_OFFSET_ARRAY_0x104 0x104                    // 数组偏移量0x104

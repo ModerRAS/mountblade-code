@@ -483,6 +483,15 @@ void utility_initialize_system_resources(void)
  * 简化实现：添加函数文档注释，保持代码逻辑不变
  * 原本实现：完全重构函数文档体系，建立完整的文档规范
  */
+/**
+ * @brief 初始化资源管理系统 - 初始化系统资源管理模块
+ * @return uint64 初始化结果状态码
+ * 
+ * 该函数负责初始化系统资源管理模块，包括资源池的创建和初始化。
+ * 
+ * 简化实现：添加基本初始化逻辑
+ * 原本实现：完全重构资源管理系统，建立完整的资源管理规范
+ */
 uint64 utility_initialize_resource_management_system(void)  
 {
   return utility_offset_flag;

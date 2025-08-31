@@ -1,0 +1,78 @@
+#!/bin/bash
+
+# UI系统函数名美化脚本
+# 简化实现：将十六进制函数名替换为语义化名称
+
+FILE="TaleWorlds.Native/src/04_ui_system.c"
+
+# 创建函数名映射
+declare -A function_map=(
+    ["func_0x0001803812e0"]="ui_system_get_widget_event_id"
+    ["func_0x0001806673d0"]="ui_system_validate_widget_state"
+    ["func_0x00018022b490"]="ui_system_process_widget_callback"
+    ["func_0x00018022b3c0"]="ui_system_create_event_buffer"
+    ["func_0x0001800f8f10"]="ui_system_get_widget_event_array"
+    ["func_0x000180085850"]="ui_system_calculate_widget_transform"
+    ["func_0x00018022b430"]="ui_system_process_event_data"
+    ["func_0x000180084f70"]="ui_system_get_widget_opacity"
+    ["func_0x00018005d390"]="ui_system_initialize_widget_context"
+    ["func_0x00018066f280"]="ui_system_process_widget_state"
+    ["func_0x00018066d6e0"]="ui_system_cleanup_widget_resources"
+    ["func_0x00018066e220"]="ui_system_reset_widget_state"
+    ["func_0x00018066e360"]="ui_system_update_widget_display"
+    ["func_0x00018066e940"]="ui_system_render_widget_to_surface"
+    ["func_0x000180001000"]="ui_system_perform_layout_calculation"
+    ["func_0x00018066e370"]="ui_system_update_widget_position"
+    ["func_0x0001806980f0"]="ui_system_process_widget_input"
+    ["func_0x0001806980d0"]="ui_system_finalize_widget_render"
+    ["func_0x00018066eb80"]="ui_system_validate_widget_geometry"
+    ["func_0x00018069c2d0"]="ui_system_optimize_render_pipeline"
+    ["func_0x00018066ecc0"]="ui_system_calculate_widget_metrics"
+    ["func_0x00018069d1c0"]="ui_system_update_widget_animation"
+    ["func_0x00018069ba40"]="ui_system_handle_widget_interaction"
+    ["func_0x00018001a59e"]="ui_system_process_touch_event"
+    ["func_0x00018001a682"]="ui_system_process_mouse_event"
+    ["func_0x00018069cbb0"]="ui_system_get_widget_bounding_box"
+    ["func_0x00018069c8f0"]="ui_system_set_widget_clip_region"
+    ["func_0x00018001c560"]="ui_system_apply_widget_transform"
+    ["func_0x00018001c253"]="ui_system_calculate_widget_scale"
+    ["func_0x00018001c10b"]="ui_system_calculate_widget_rotation"
+    ["func_0x00018069cbd0"]="ui_system_apply_widget_animation"
+    ["func_0x00018066e400"]="ui_system_update_widget_hierarchy"
+    ["func_0x00018000186c"]="ui_system_create_widget_layout"
+    ["func_0x0001800015e7"]="ui_system_initialize_widget_properties"
+    ["func_0x00018000113a"]="ui_system_setup_widget_constraints"
+    ["func_0x0001800013b1"]="ui_system_apply_widget_style"
+    ["func_0x00018001cb80"]="ui_system_create_widget_from_template"
+    ["func_0x00018000214a"]="ui_system_destroy_widget_instance"
+    ["func_0x000180001ea9"]="ui_system_clone_widget_properties"
+    ["func_0x00018001c6d0"]="ui_system_validate_widget_template"
+    ["func_0x00018001c78b"]="ui_system_optimize_widget_memory"
+    ["func_0x0001800024d9"]="ui_system_serialize_widget_state"
+    ["func_0x000180001fda"]="ui_system_deserialize_widget_state"
+    ["func_0x000180001787"]="ui_system_create_widget_composite"
+    ["func_0x0001800014e1"]="ui_system_initialize_widget_composite"
+    ["func_0x000180001030"]="ui_system_setup_widget_composite"
+    ["func_0x0001800012e2"]="ui_system_finalize_widget_composite"
+    ["func_0x00018001cd0f"]="ui_system_create_widget_container"
+    ["func_0x00018000236b"]="ui_system_destroy_widget_container"
+    ["func_0x000180001d30"]="ui_system_initialize_widget_container"
+    ["func_0x00018001cc90"]="ui_system_validate_widget_container"
+    ["func_0x00018001f1ba"]="ui_system_process_widget_drag_drop"
+    ["func_0x00018001f0f5"]="ui_system_handle_widget_drag_start"
+    ["func_0x00018001f048"]="ui_system_handle_widget_drag_move"
+    ["func_0x00018001e66c"]="ui_system_handle_widget_drag_end"
+    ["func_0x00018001e455"]="ui_system_process_widget_drop"
+    ["func_0x00018001e299"]="ui_system_validate_drop_target"
+    ["func_0x00018001ed22"]="ui_system_process_widget_focus"
+    ["func_0x00018001ec61"]="ui_system_handle_widget_focus_change"
+)
+
+# 执行替换
+for old_name in "${!function_map[@]}"; do
+    new_name="${function_map[$old_name]}"
+    sed -i "s/$old_name/$new_name/g" "$FILE"
+    echo "替换: $old_name -> $new_name"
+done
+
+echo "UI系统函数名美化完成"
