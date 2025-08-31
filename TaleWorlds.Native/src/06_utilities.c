@@ -6,11 +6,6 @@
 #define UTILITY_THREAD_STORAGE_INDEX_EXTRA 0xE
 #define UTILITY_THREAD_STORAGE_INDEX_CLEANUP 0xF
 
-// 线程存储数组索引常量
-#define UTILITY_THREAD_STORAGE_INDEX_DATA 0xD
-#define UTILITY_THREAD_STORAGE_INDEX_EXTRA 0xE
-#define UTILITY_THREAD_STORAGE_INDEX_CLEANUP 0xF
-
 // 资源句柄参数偏移量常量
 #define UTILITY_RESOURCE_PARAM_OFFSET_PRIMARY 0x2
 #define UTILITY_RESOURCE_PARAM_OFFSET_TERTIARY 0x3
@@ -223,12 +218,12 @@ void utility_memory_cleanup_handler(void)
  */
 uint64_t utility_resource_manager(void)
 {
-  uint64_t utility_operation_result;
-  int64_t utility_resource_primary_handle = 0;
+  uint64_t operation_result;
+  int64_t resource_primary_handle = 0;
   
-  utility_operation_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET_PRIMARY), &g_utility_resource_handle);
-  if ((int)utility_operation_result != UTILITY_ZERO) {
-    return utility_operation_result;
+  operation_result = system_memory_operation(*(uint32_t *)(resource_primary_handle + UTILITY_DATA_OFFSET_PRIMARY), &g_utility_resource_handle);
+  if ((int)operation_result != UTILITY_ZERO) {
+    return operation_result;
   }
   
   if (g_utility_resource_handle == UTILITY_ZERO) {
@@ -271,7 +266,15 @@ uint64_t utility_resource_data_processor(void)
  */
 uint64_t utility_system_validator(void)
 {
-  return UTILITY_ZERO;
+  if (g_utility_resource_handle == UTILITY_ZERO) {
+    return UTILITY_ERROR_CODE_INVALID;
+  }
+  
+  if (g_utility_status_flag & UTILITY_CHECK_FLAG_INITIALIZED) {
+    return UTILITY_ZERO;
+  }
+  
+  return UTILITY_ERROR_CODE_INVALID;
 }
 
 /**
@@ -285,6 +288,15 @@ uint64_t utility_system_validator(void)
  */
 uint64_t utility_system_cleaner(void)
 {
+  if (g_utility_resource_handle != UTILITY_ZERO) {
+    utility_free_memory(g_utility_resource_handle, UTILITY_MEMORY_OPERATION_FLAG);
+    g_utility_resource_handle = UTILITY_ZERO;
+  }
+  
+  g_utility_status_flag = UTILITY_ZERO;
+  g_utility_state_flag = UTILITY_ZERO;
+  g_utility_error_flag = UTILITY_ZERO;
+  
   return UTILITY_ZERO;
 }
 
@@ -296,7 +308,21 @@ uint64_t utility_system_cleaner(void)
  */
 uint32_t utility_get_memory_usage(void)
 {
-  return UTILITY_ZERO;
+  uint32_t memory_usage_status = UTILITY_ZERO;
+  
+  if (g_utility_resource_handle != UTILITY_ZERO) {
+    memory_usage_status |= UTILITY_CHECK_FLAG_ACTIVE;
+  }
+  
+  if (g_utility_status_flag & UTILITY_CHECK_FLAG_INITIALIZED) {
+    memory_usage_status |= UTILITY_CHECK_FLAG_INITIALIZED;
+  }
+  
+  if (g_utility_error_flag != UTILITY_ZERO) {
+    memory_usage_status |= UTILITY_CHECK_FLAG_ERROR;
+  }
+  
+  return memory_usage_status;
 }
 
 /**
