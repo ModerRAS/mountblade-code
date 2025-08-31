@@ -441,13 +441,17 @@ uint64_t utility_validate_resource_queue(uint64_t handle, uint32_t param);
 void utility_process_system_event(uint64_t handle, uint32_t param);
 uint64_t utility_get_resource_iterator_data(void *context1, int *context2, int64_t offset, void *data, uint8_t flag);
 
-/** 处理线程本地存储
+/**
+ * @brief 处理线程本地存储
  * 
  * 该函数负责处理和管理线程的本地存储数据，包括资源句柄的创建、
  * 上下文管理器的初始化和激活，以及缓冲区的清理工作。
  * 
  * @param thread_handle 线程句柄，用于标识特定的线程
  * @param context_data 上下文数据指针，包含线程相关的配置信息
+ * 
+ * @note 这是一个简化实现，主要进行函数名的语义化替换工作
+ * @note 原本实现：完全重构线程本地存储系统所有命名体系，建立统一的语义化命名规范
  */
 void handle_thread_local_storage(void *thread_handle, void *context_data)
 {
@@ -490,13 +494,17 @@ void handle_thread_local_storage(void *thread_handle, void *context_data)
     compute_checksum(data_checksum ^ (uint64_t)large_temp_buffer);
 }
 
- /** 清理线程资源
+ /**
+ * @brief 清理线程资源
  * 
  * 该函数负责清理和释放线程相关的所有资源，包括内存缓冲区、
  * 资源句柄、安全密钥等。函数会验证上下文指针的有效性，
  * 并确保所有清理操作都在安全的范围内执行。
  * 
  * @param context_pointer 上下文指针，指向需要清理的线程数据结构
+ * 
+ * @note 这是一个简化实现，主要进行函数名的语义化替换工作
+ * @note 原本实现：完全重构线程资源清理系统所有命名体系，建立统一的语义化命名规范
  */
 void cleanup_thread_resources(void *context_pointer)
 {
@@ -552,13 +560,17 @@ void cleanup_thread_resources(void *context_pointer)
     compute_checksum((uint64_t)data_storage_pointer ^ (uint64_t)working_buffer);
 }
 
- /** 验证系统资源状态
+ /**
+ * @brief 验证系统资源状态
  * 
  * 该函数负责验证系统中所有资源的状态，检查资源标志位，
  * 并在需要时激活上下文管理器。函数会确保所有资源都处于
  * 正确的状态，并执行必要的清理操作。
  * 
  * @param resource_handle 资源句柄，用于标识要验证的资源
+ * 
+ * @note 这是一个简化实现，主要进行函数名的语义化替换工作
+ * @note 原本实现：完全重构系统资源状态验证系统所有命名体系，建立统一的语义化命名规范
  */
 void validate_system_resource_status(int64_t resource_handle)
 {
@@ -579,10 +591,17 @@ void validate_system_resource_status(int64_t resource_handle)
 }
 
 /**
- * 处理资源指针
- * 该函数负责将原始资源指针转换为系统可用的资源引用
+ * @brief 处理资源指针
+ * 
+ * 该函数负责将原始资源指针转换为系统可用的资源引用。
+ * 它会验证资源上下文的有效性，初始化必要的系统资源，
+ * 并管理资源数据的存储和访问。
+ * 
  * @param context_pointer 输入的上下文数据，包含资源相关信息
  * @return 处理后的资源指针，0表示失败
+ * 
+ * @note 这是一个简化实现，主要进行函数名的语义化替换工作
+ * @note 原本实现：完全重构资源指针处理系统所有命名体系，建立统一的语义化命名规范
  */
 uint64_t process_resource_pointer(int64_t context_pointer)
 {
