@@ -4664,11 +4664,11 @@ void utility_process_context_data(long long context_pointer,void * data_ptr)
   int utility_result_code;
   void * utility_temp_array_8 [4];
   void * utility_temp_array [2];
-  void * utility_temp_var;
-  void * utility_temp_var;
+  void * utility_temp_var1;
+  void * utility_temp_var2;
   
-  utility_temp_var = *(void **)(context_pointer + UTILITY_OFFSET_16_BYTES);
-  utility_temp_var = *(void **)(context_pointer + UTILITY_THREAD_TLS_CONTEXT_OFFSET);
+  utility_temp_var1 = *(void **)(context_pointer + UTILITY_OFFSET_16_BYTES);
+  utility_temp_var2 = *(void **)(context_pointer + UTILITY_THREAD_TLS_CONTEXT_OFFSET);
   utility_temp_array[0] = 2;
   utility_result_code = system_call_function(data_ptr,utility_temp_array,*(void **)(context_pointer + UTILITY_OFFSET_CONTEXT_DATA),utility_temp_array_8);
   if (utility_result_code == 0) {
