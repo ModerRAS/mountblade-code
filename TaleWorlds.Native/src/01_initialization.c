@@ -28,6 +28,11 @@ void *system_context_manager;
  * 初始化各个系统模块和组件
  * @return 组件初始化状态码
  */
+/**
+ * @brief 系统组件初始化函数
+ * 初始化各个系统模块和子组件
+ * @return 组件初始化状态码
+ */
 void *system_initialize_components;
 void *system_buffer_allocator;
 void *system_memory_manager;
@@ -35,6 +40,11 @@ void *system_thread_manager;
 void *system_resource_manager;
 void *system_callback_manager;
 
+/**
+ * @brief 内存系统初始化函数
+ * 初始化内存管理和分配系统
+ * @return 内存初始化状态码
+ */
 /**
  * @brief 内存系统初始化函数
  * 初始化内存管理和分配系统
@@ -52,6 +62,11 @@ void *system_callback_pool;
  * 初始化线程管理和调度系统
  * @return 线程初始化状态码
  */
+/**
+ * @brief 线程系统初始化函数
+ * 初始化线程管理和调度系统
+ * @return 线程初始化状态码
+ */
 void *system_initialize_threads;
 void *system_thread_scheduler;
 
@@ -60,9 +75,19 @@ void *system_thread_scheduler;
  * 初始化系统配置和参数管理
  * @return 配置初始化状态码
  */
+/**
+ * @brief 配置系统初始化函数
+ * 初始化系统配置和参数管理
+ * @return 配置初始化状态码
+ */
 void *system_initialize_config;
 void *system_config_loader;
 
+/**
+ * @brief 网络系统初始化函数
+ * 初始化网络通信和连接管理
+ * @return 网络初始化状态码
+ */
 /**
  * @brief 网络系统初始化函数
  * 初始化网络通信和连接管理
@@ -93,6 +118,11 @@ void *engine_main_manager;
  * 初始化图形渲染和显示系统
  * @return 图形初始化状态码
  */
+/**
+ * @brief 图形系统初始化函数
+ * 初始化图形渲染和显示系统
+ * @return 图形初始化状态码
+ */
 void *system_initialize_graphics;
 void *graphics_device_manager;
 
@@ -101,8 +131,18 @@ void *graphics_device_manager;
  * 初始化音频播放和处理系统
  * @return 音频初始化状态码
  */
+/**
+ * @brief 音频系统初始化函数
+ * 初始化音频播放和处理系统
+ * @return 音频初始化状态码
+ */
 void *system_initialize_audio;
 
+/**
+ * @brief 资源系统初始化函数
+ * 初始化资源加载和管理系统
+ * @return 资源初始化状态码
+ */
 /**
  * @brief 资源系统初始化函数
  * 初始化资源加载和管理系统
@@ -117,6 +157,11 @@ void *resource_manager_cache;
 void *system_security_guard;
 
 // 函数: void *system_initialize_security;
+/**
+ * @brief 安全系统初始化函数
+ * 初始化安全检查和权限管理
+ * @return 安全初始化状态码
+ */
 void *system_initialize_security;
 
 // 函数: void *system_initialize_ui;
@@ -297,6 +342,11 @@ void *system_graphics_buffer_config_ptr;
 void *system_initialize_physics;
 
 // 函数: void *system_initialize_memory_manager;
+/**
+ * @brief 内存系统初始化函数
+ * 初始化内存管理和分配系统
+ * @return 内存初始化状态码
+ */
 void *system_initialize_memory_manager;
 
 // 函数: void *system_initialize_buffer_allocator;
@@ -402,6 +452,11 @@ void *system_initialize_signal_handler;
 void *system_initialize_interrupt_handler;
 
 // 函数: void *system_initialize_security_system;
+/**
+ * @brief 安全系统初始化函数
+ * 初始化安全检查和权限管理
+ * @return 安全初始化状态码
+ */
 void *system_initialize_security_system;
 void *system_unknown_180a13ad0;
 void *system_data_180a0ba58;
@@ -427,6 +482,11 @@ void *system_unknown_180a13cac;
 void *system_unknown_180239520;
 
 // 函数: void *system_initialize_config_loader;
+/**
+ * @brief 配置系统初始化函数
+ * 初始化系统配置和参数管理
+ * @return 配置初始化状态码
+ */
 void *system_initialize_config_loader;
 void *system_unknown_180a172e0;
 void *system_unknown_180a17308;
@@ -627,6 +687,11 @@ void *system_unknown_180a25ad0;
 void *system_unknown_180a25a6c;
 
 // 函数: void *system_initialize_graphics_system;
+/**
+ * @brief 图形系统初始化函数
+ * 初始化图形渲染和显示系统
+ * @return 图形初始化状态码
+ */
 void *system_initialize_graphics_system;
 
 /**
