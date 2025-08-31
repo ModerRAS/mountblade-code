@@ -248,7 +248,7 @@ uint8_t utility_context_system_extended;
  * @param contextData 上下文数据，包含线程初始化所需的配置信息
  * @return 无返回值
  */
-void utility_process_thread_local_storage(int64_t threadHandle, int64_t contextData)
+void utility_process_thread_local_storage(int64_t thread_handle, int64_t context_data)
 {
 uint64_t utility_resource_value;
 int utility_operation_result;
