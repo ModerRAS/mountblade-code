@@ -1,5 +1,12 @@
 #include "TaleWorlds.Native.Split.h"
 
+/* 
+ * 网络系统头文件
+ * 
+ * 简化实现：整理网络系统常量、变量和函数指针的声明，添加清晰的分组注释
+ * 原本实现：完全重构网络系统所有声明体系，建立统一的语义化命名规范
+ */
+
 /* 网络系统核心常量定义 */
 #define NETWORK_OFFSET_STANDARD_B 0xb
 #define NETWORK_OFFSET_STANDARD_C 0xc
@@ -403,58 +410,89 @@ void *network_protocol_handler_tertiary;
 
 /** 第四协议处理器 */
 void *network_protocol_handler_quaternary;
+/* 扩展网络套接字管理 */
 int network_socket_extended_primary;
 int network_socket_extended_secondary;
 int network_socket_extended_tertiary;
 int network_socket_extended_quaternary;
 int network_socket_extended_quinary;
+
+/* 网络超时管理 */
 int network_timeout_primary;
 int network_timeout_secondary;
 int network_timeout_tertiary;
 int network_timeout_quaternary;
+
+/* 网络错误处理器 */
 void *network_error_handler_primary;
 void *network_error_handler_secondary;
 void *network_error_handler_tertiary;
 void *network_error_handler_quaternary;
+
+/* 网络队列管理 */
 void *network_queue_primary;
 void *network_queue_secondary;
 void *network_queue_tertiary;
 void *network_queue_quaternary;
 void *network_queue_quinary;
+
+/* 网络事件管理 */
 void *network_event_primary;
 void *network_event_secondary;
 void *network_event_tertiary;
 void *network_event_quaternary;
+
+/* 网络线程管理 */
 void *network_thread_primary;
 void *network_thread_secondary;
 void *network_thread_tertiary;
+
+/* 扩展网络状态 */
 int network_status_extended_primary;
 int network_status_extended_secondary;
 int network_status_extended_tertiary;
 int network_status_extended_quaternary;
+
+/* 网络标志管理 */
 int network_flag_primary;
 int network_flag_secondary;
 int network_flag_tertiary;
 int network_flag_quaternary;
+
+/* 网络缓冲区管理 */
 void *network_buffer_management_primary;
 void *network_buffer_management_secondary;
 void *network_buffer_management_tertiary;
 void *network_buffer_management_quaternary;
+
+/* 扩展网络数据包 */
 void *network_packet_extended_primary;
 void *network_packet_extended_secondary;
-void *network_connection_context_extended;
 void *network_packet_extended_tertiary;
 void *network_packet_extended_quaternary;
+
+/** 扩展连接上下文 */
+void *network_connection_context_extended;
+
+/* 网络连接池 */
 void *network_connection_pool_primary;
 void *network_connection_pool_secondary;
+
+/* 网络安全管理 */
 void *network_security_primary;
 void *network_security_secondary;
 void *network_security_tertiary;
+
+/* 网络压缩管理 */
 void *network_compression_primary;
+
+/* 网络验证管理 */
 void *network_validation_primary;
 void *network_validation_secondary;
 void *network_validation_tertiary;
 void *network_validation_quaternary;
+
+/* 网络认证管理 */
 void *network_authentication_primary;
 void *network_authentication_secondary;
 
