@@ -730,22 +730,20 @@ uint8_t utility_context_system_extended;
 void utility_process_thread_storage(void)
 {
 
-uint64_t resource_handle_semaphore_pointer
-{
-{
-    // 基本框架实现
-    return UTILITY_STATUS_SUCCESS;
-
-uint64_t utility_resource_operation_handler
-{
+uint64_t resource_handle_semaphore_pointer(void)
 {
     // 基本框架实现
     return UTILITY_STATUS_SUCCESS;
 
-uint64_t context_storage_ptr_manager
+uint64_t utility_resource_operation_handler(void)
+{
+    // 基本框架实现
+    return UTILITY_STATUS_SUCCESS;
+
+uint64_t context_storage_ptr_manager(void)
 {
 
-uint64_t utility_resource_iterator_handler
+uint64_t utility_resource_iterator_handler(void)
 {
 UTILITY_LABEL_RESOURCE_VALIDATION_SUCCESS:
     utility_free_context_resources(*(uint64_t *)(utility_context_ptr + UTILITY_CONTEXT_SERVICE_OFFSET),utility_context_ptr);
@@ -755,13 +753,13 @@ UTILITY_LABEL_RESOURCE_VALIDATION_SUCCESS:
 UTILITY_LABEL_CONTEXT_INITIALIZATION_COMPLETE:
     utility_free_context_resources(*(uint64_t *)(utility_context_ptr + UTILITY_CONTEXT_SERVICE_OFFSET),utility_context_ptr);
 
-uint64_t utility_process_resource_context
+uint64_t utility_process_resource_context(void)
 {
 
-uint64_t utility_validate_resource_parameters
+uint64_t utility_validate_resource_parameters(void)
 {
 
-uint64_t utility_cleanup_resource_context
+uint64_t utility_cleanup_resource_context(void)
 {
     iteration_index = UTILITY_FALSE;
     iteration_index = utility_stack_context + UTILITY_POINTER_OFFSET;
