@@ -34,6 +34,49 @@
 #define SYSTEM_STACK_UINT_INIT SYSTEM_STACK_UINT_INIT
 #define SYSTEM_BUFFER_SIZE_STANDARD SYSTEM_BUFFER_SIZE_STANDARD
 
+/* 系统组件魔法值常量定义 */
+#define SYSTEM_MAGIC_AUDIO_PRIMARY 0x406be72011d07d37
+#define SYSTEM_MAGIC_AUDIO_SECONDARY 0x71876af946c867ab
+#define SYSTEM_MAGIC_MATERIAL_PRIMARY 0x40afa5469b6ac06d
+#define SYSTEM_MAGIC_MATERIAL_SECONDARY 0x2f4bab01d34055a5
+#define SYSTEM_MAGIC_MESH_PRIMARY 0x43330a43fcdb3653
+#define SYSTEM_MAGIC_MESH_SECONDARY 0xdcfdc333a769ec93
+#define SYSTEM_MAGIC_TEXTURE_PRIMARY 0x431d7c8d7c475be2
+#define SYSTEM_MAGIC_SHADER_PRIMARY 0x4b2d79e470ee4e2c
+#define SYSTEM_MAGIC_SHADER_SECONDARY 0x9c552acd3ed5548d
+#define SYSTEM_MAGIC_ANIMATION_PRIMARY 0x49086ba08ab981a7
+#define SYSTEM_MAGIC_ANIMATION_SECONDARY 0xa9191d34ad910696
+#define SYSTEM_MAGIC_PHYSICS_PRIMARY 0x402feffe4481676e
+#define SYSTEM_MAGIC_PHYSICS_SECONDARY 0xd4c2151109de93a0
+#define SYSTEM_MAGIC_PARTICLE_PRIMARY 0x4384dcc4b6d3f417
+#define SYSTEM_MAGIC_PARTICLE_SECONDARY 0x92a15d52fe2679bd
+#define SYSTEM_MAGIC_UI_PRIMARY 0x4140994454d56503
+#define SYSTEM_MAGIC_UI_SECONDARY 0x399eced9bb5517ad
+#define SYSTEM_MAGIC_SCENE_PRIMARY 0x449bafe9b77ddd3c
+#define SYSTEM_MAGIC_SCENE_SECONDARY 0xc160408bde99e59f
+#define SYSTEM_MAGIC_ENTITY_PRIMARY 0x45425dc186a5d575
+#define SYSTEM_MAGIC_ENTITY_SECONDARY 0xfab48faa65382fa5
+#define SYSTEM_MAGIC_DATABASE_PRIMARY 0x40db4257e97d3df8
+#define SYSTEM_MAGIC_DATABASE_SECONDARY 0x81d539e33614429f
+#define SYSTEM_MAGIC_CACHE_PRIMARY 0x4e33c4803e67a08f
+#define SYSTEM_MAGIC_CACHE_SECONDARY 0x703a29a844ce399
+
+/* 系统地址常量定义 */
+#define SYSTEM_ADDRESS_AUDIO_DATA 0x180c8aa70
+#define SYSTEM_ADDRESS_AUDIO_END 0x180c8ea71
+#define SYSTEM_ADDRESS_AUDIO_TABLE 0x180c8eb70
+
+/* 系统偏移量常量定义 */
+#define SYSTEM_AUDIO_TABLE_OFFSET 0x40
+#define SYSTEM_RESOURCE_HANDLE_OFFSET 0x20
+#define SYSTEM_COMPONENT_DATA_SIZE 0x10
+
+/* 系统状态常量定义 */
+#define SYSTEM_AUDIO_LOOP_START -3
+#define SYSTEM_FLOAT_VALUE_ZERO 0.0
+#define SYSTEM_FLOAT_VALUE_NORMAL 0.75
+#define SYSTEM_FLOAT_VALUE_ONE 1.0
+
 
 /*
  * 01_initialization.c - 系统初始化模块
@@ -485,33 +528,33 @@ void *system_handler_context_i;
 void *system_handler_context_j;
 void *system_handler_context_k;
 void *system_handler_context_l;
-void *system_memory_addr_6;
-void *system_memory_addr_7;
-void *system_memory_addr_8;
-void *system_memory_addr_9;
-void *system_memory_addr_10;
-void *system_memory_addr_11;
-void *system_memory_addr_12;
-void *system_memory_addr_13;
-void *system_memory_addr_14;
-void *system_memory_addr_15;
-void *system_memory_addr_16;
-void *system_memory_addr_17;
+void *system_memory_buffer_1;
+void *system_memory_buffer_2;
+void *system_memory_buffer_3;
+void *system_memory_buffer_4;
+void *system_memory_buffer_5;
+void *system_memory_buffer_6;
+void *system_memory_buffer_7;
+void *system_memory_buffer_8;
+void *system_memory_buffer_9;
+void *system_memory_buffer_10;
+void *system_memory_buffer_11;
+void *system_memory_buffer_12;
 void *system_resource_context_a;
 void *system_resource_context_b;
 void *system_resource_context_c;
 void *system_resource_context_d;
 void *system_resource_context_e;
-void *system_memory_addr_23;
-void *system_memory_addr_24;
-void *system_memory_addr_25;
+void *system_memory_buffer_13;
+void *system_memory_buffer_14;
+void *system_memory_buffer_15;
 void *system_resource_context_i;
 void *system_data_context_base;
 void *system_resource_context_j;
-void *system_memory_addr_26;
-void *system_memory_addr_27;
-void *system_memory_addr_28;
-void *system_memory_addr_29;
+void *system_memory_buffer_16;
+void *system_memory_buffer_17;
+void *system_memory_buffer_18;
+void *system_memory_buffer_19;
 void *system_module_context_e;
 void *system_module_context_f;
 void *system_module_context_g;
@@ -525,16 +568,16 @@ void *system_data_context_ptr2;
 void *system_module_context_m;
 void *system_module_context_n;
 void *system_module_context_o;
-void *system_memory_addr_41;
+void *system_memory_buffer_20;
 void *system_module_context_q;
 void *system_module_context_r;
 void *system_module_context_s;
 void *system_module_context_t;
-void *system_memory_addr_46;
-void *system_memory_addr_47;
-void *system_memory_addr_48;
-void *system_memory_addr_49;
-void *system_memory_addr_50;
+void *system_memory_buffer_21;
+void *system_memory_buffer_22;
+void *system_memory_buffer_23;
+void *system_memory_buffer_24;
+void *system_memory_buffer_25;
 void *system_data_hash_ptr1;
 void *system_data_hash_ptr2;
 void *system_data_hash_ptr3;
@@ -542,32 +585,32 @@ void *system_data_hash_ptr4;
 void *system_data_hash_ptr5;
 
 void *system_initialize_state_manager;
-void *system_memory_addr_51;
+void *system_memory_buffer_26;
 void *system_data_context_ext1;
-void *system_memory_addr_52;
-void *system_data_config_159;
-void *system_data_config_160;
-void *system_data_config_164;
-void *system_data_config_165;
-void *system_data_config_166;
-void *system_data_config_167;
+void *system_memory_buffer_27;
+void *system_data_config_window;
+void *system_data_config_display;
+void *system_data_config_graphics;
+void *system_data_config_physics;
+void *system_data_config_network;
+void *system_data_config_security;
 void *system_data_network_config;
-void *system_data_config_162;
-void *system_data_config_163;
-void *system_data_config_172;
-void *system_data_config_168;
-void *system_data_173;
-void *system_data_174;
+void *system_data_config_audio;
+void *system_data_config_input;
+void *system_data_config_memory;
+void *system_data_config_performance;
+void *system_data_graphics_config;
+void *system_data_audio_config;
 void *system_data_security_config;
-void *system_data_config_169;
-void *system_data_config_170;
-void *system_data_175;
-void *system_data_176;
+void *system_data_config_debug;
+void *system_data_config_logging;
+void *system_data_input_config;
+void *system_data_physics_config;
 void *system_data_memory_pool0;
 void *system_data_memory_pool1;
 void *system_data_memory_pool2;
-void *system_data_177;
-void *system_data_178;
+void *system_data_animation_config;
+void *system_data_ai_config;
 void *system_data_memory_pool3;
 void *system_data_memory_pool4;
 void *system_data_memory_pool5;
@@ -581,18 +624,18 @@ void *system_data_thread_pool2;
 void *system_data_thread_pool3;
 void *system_data_thread_pool4;
 void *system_data_thread_pool9;
-void *system_data_200;
-void *system_data_201;
-void *system_data_224;
+void *system_data_network_config;
+void *system_data_security_config;
+void *system_data_debug_config;
 void *system_data_thread_pool6;
 void *system_data_thread_pool7;
 void *system_data_thread_pool8;
-void *system_data_202;
-void *system_data_206;
+void *system_data_performance_config;
+void *system_data_render_config;
 void *system_handler_140;
 void *system_data_thread_pool5;
-void *system_data_207;
-void *system_data_208;
+void *system_data_shader_config;
+void *system_data_texture_config;
 void *system_data_memory_config;
 void *system_data_thread_config;
 void *system_data_resource_config;
