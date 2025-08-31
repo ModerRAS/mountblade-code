@@ -899,8 +899,20 @@ void utility_flush_file_buffers(void)
 {
   return;
 }
-// 函数: void seek_file_position(longlong utility_resource_primary_handle,uint64 utility_resource_utility_data_pointer_primary_extended_main_primary)
-void seek_file_position(longlong utility_resource_primary_handle,uint64 utility_resource_utility_data_pointer_primary_extended_main_primary)
+/**
+ * @brief 设置文件位置指针
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @param utility_file_position_offset 文件位置偏移量
+ * @return 无返回值
+ * 
+ * 该函数负责设置文件位置指针，包括：
+ * - 验证偏移量有效性
+ * - 调用文件位置设置函数
+ * 
+ * 简化实现：仅添加必要的文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
+void utility_seek_file_position(longlong utility_resource_primary_handle,uint64 utility_file_position_offset)
 {
   int utility_operation_result;
   uint64 utility_stack_data_primary [utility_stack_buffer_size_quad];
