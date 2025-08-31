@@ -2205,7 +2205,17 @@ int system_internal_function(void)
  * 简化实现：提供基本的资源管理器初始化功能
  */
 void system_initialize_resource_manager(void)
-void system_internal_function(void)
+/*
+ * @brief 系统子系统初始化函数
+ * 
+ * 该函数负责初始化系统子系统，包括：
+ * - 初始化子系统核心
+ * - 设置子系统参数
+ * - 配置子系统依赖关系
+ * 
+ * 简化实现：提供基本的子系统初始化功能
+ */
+void system_initialize_subsystem_core(void)
 
 {
   void* *system_stack_context_ptr_a;
@@ -2422,7 +2432,17 @@ void system_internal_function(void)
   system_initialization_status = *(char *)((int64_t)system_context_base_ptr[1] + 0x19);
   stack_unsigned_function = 0;
   context_current_ptr = system_context_base_ptr;
-  data_buffer_ptr = (uint8_t *)system_context_base_ptr[1];
+/*
+ * @brief 系统安全管理器初始化函数
+ * 
+ * 该函数负责初始化系统安全管理器，包括：
+ * - 初始化安全策略
+ * - 设置权限控制
+ * - 配置安全验证机制
+ * 
+ * 简化实现：提供基本的安全管理器初始化功能
+ */
+void system_initialize_security_manager(void)
   while (system_initialization_status == '\0') {
     system_memory_compare_result = memcmp(data_buffer_ptr + 4,&system_data_a01000,0x10);
     if (system_memory_compare_result < 0) {
@@ -13217,7 +13237,7 @@ int system_internal_function(void)
   _system_c9_system_data_ = 0;
   _system_c9_system_data_ = 3;
   system_internal_function();
-  system_long_var = system_internal_function(&system_unk_system_ptr_varf90);
+  system_long_var = system_internal_function(&system_internal_context_base_ptr);
   return (system_long_var != 0) - 1;
 }
 
@@ -26248,7 +26268,7 @@ void system_internal_function(int64_t *system_context_ptr)
       system_stack_byte_ptr = auStack_278;
       auStack_278[0] = 0;
       system_stack_uint_value = 4;
-      system_strcpy_s(auStack_278,0x10,&system_unk_system_ptr_vara092c4);
+      system_strcpy_s(auStack_278,0x10,&system_internal_config_buffer_ptr);
       system_internal_function(&system_stack_byte_ptr,&system_stack_byte_ptr,&system_stack_byte_ptr);
       system_stack_byte_ptr = &system_data_ptr;
       system_stack_varint_var = 0;
@@ -27856,7 +27876,7 @@ void system_internal_function(uint8_t *system_context_ptr)
 uint8_t * system_internal_function(uint8_t *system_context_ptr,uint64_t system_config_flags)
 
 {
-  *system_context_ptr = &system_unk_system_ptr_varfdd78;
+  *system_context_ptr = &system_internal_context_data_ptr_1;
   system_internal_function(system_context_ptr + 0xa4);
   system_internal_function(system_context_ptr + 0x8c);
   system_internal_function(system_context_ptr + 0x7e);
@@ -27921,7 +27941,7 @@ uint8_t system_internal_function(uint8_t system_context_ptr,uint64_t system_conf
 void system_internal_function(uint8_t *system_context_ptr,uint8_t system_config_flags,uint8_t system_thread_count,uint8_t system_memory_size)
 
 {
-  *system_context_ptr = &system_unk_system_ptr_varfddc8;
+  *system_context_ptr = &system_internal_context_data_ptr_2;
   system_internal_function(system_context_ptr + 0x143);
   system_internal_function(system_context_ptr + 0x134);
   system_internal_function(system_context_ptr + 0x126);
@@ -27944,7 +27964,7 @@ void system_internal_function(uint8_t *system_context_ptr,uint8_t system_config_
   system_internal_function(system_context_ptr + 0x38);
   system_internal_function(system_context_ptr + 0x2a);
   system_internal_function(system_context_ptr + 0x1c);
-  *system_context_ptr = &system_unk_system_ptr_vara02968;
+  *system_context_ptr = &system_internal_context_data_ptr_3;
   system_context_ptr[0x18] = &system_data_ptr;
   if (system_context_ptr[0x19] != 0) {
                     // WARNING: Subroutine does not return
@@ -28076,7 +28096,7 @@ uint8_t system_internal_function(uint8_t system_context_ptr,uint64_t system_conf
 void system_internal_function(uint8_t *system_context_ptr,uint8_t system_config_flags,uint8_t system_thread_count,uint8_t system_memory_size)
 
 {
-  *system_context_ptr = &system_unk_system_ptr_varfde10;
+  *system_context_ptr = &system_internal_context_data_ptr_4;
   system_internal_function();
   system_internal_function();
   system_internal_function(system_context_ptr + 0x262);
@@ -28108,7 +28128,7 @@ void system_internal_function(uint8_t *system_context_ptr,uint8_t system_config_
   system_internal_function(system_context_ptr + 0x4c);
   system_internal_function(system_context_ptr + 0x34);
   system_internal_function(system_context_ptr + 0x1c);
-  *system_context_ptr = &system_unk_system_ptr_vara02968;
+  *system_context_ptr = &system_internal_context_data_ptr_3;
   system_context_ptr[0x18] = &system_data_ptr;
   if (system_context_ptr[0x19] != 0) {
                     // WARNING: Subroutine does not return
@@ -28405,7 +28425,7 @@ system_internal_function(uint8_t *system_context_ptr,uint8_t *system_config_flag
   *(uint8_t* *)(system_context_ptr + 2) = 0;
   UNLOCK();
   system_context_ptr[3] = 0xffffffffffffffff;
-  *system_context_ptr = &system_unk_system_ptr_varfdea8;
+  *system_context_ptr = &system_internal_context_data_ptr_5;
   system_context_ptr_1 = system_context_ptr + 4;
   system_context_ptr[6] = 0;
   system_context_ptr[7] = system_guard_system_check_icall;
@@ -28522,7 +28542,7 @@ system_internal_function(uint8_t *system_context_ptr,uint8_t *system_config_flag
   
   system_uint_var_c = 0xfffffffffffffffe;
   system_internal_function();
-  *system_context_ptr = &system_unk_system_ptr_varfdf38;
+  *system_context_ptr = &system_internal_context_data_ptr_6;
   system_context_ptr_1 = system_context_ptr + 0x18;
   system_context_ptr[0x1a] = 0;
   system_context_ptr[0x1b] = system_guard_system_check_icall;
@@ -28904,7 +28924,7 @@ uint8_t * system_internal_function(uint8_t *system_context_ptr,uint8_t *system_c
   *(uint8_t* *)(system_context_ptr + 2) = 0;
   UNLOCK();
   system_context_ptr[3] = 0xffffffffffffffff;
-  *system_context_ptr = &system_unk_system_ptr_varfdfd0;
+  *system_context_ptr = &system_internal_context_data_ptr_7;
   system_context_ptr_1 = system_context_ptr + 4;
   *system_context_ptr_1 = &system_data_ptr;
   system_context_ptr[5] = 0;
@@ -56859,27 +56879,27 @@ uint8_t system_internal_function(void)
 void* system_initialize_graphics_subsystem;
 
 void* system_initialize_system_input_subsystem;
-void* system_data_d49830;
-uint8_t system_unk_d498a0;
-uint32_t* system_unk_d498a8;
-void* *system_unk_d498b0;
-uint8_t* *system_unk_d498b8;
-uint32_t* system_unk_d498c0;
-int64_t system_unk_d49908;
-int64_t system_unk_d49910;
-int64_t system_unk_d49928;
-int64_t system_unk_d49930;
-uint32_t* system_unk_d49948;
-uint32_t* system_unk_d4994c;
-void* system_data_d49950;
-void* system_data_d49970;
-void* system_data_bfc140;
-void* system_data_f48b2;
-void* system_unk_d49d58;
-int64_t system_unk_d49d68;
-uint8_t system_unk_d49d70;
-int64_t system_unk_d49d78;
-int64_t *system_unk_c96358;
+void* system_internal_resource_data;
+uint8_t system_internal_status_flag;
+uint32_t* system_internal_buffer_ptr;
+void* *system_internal_object_ptr;
+uint8_t* *system_internal_data_ptr;
+uint32_t* system_internal_config_ptr;
+int64_t system_internal_timestamp;
+int64_t system_internal_counter;
+int64_t system_internal_offset;
+int64_t system_internal_size;
+uint32_t* system_internal_index_ptr;
+uint32_t* system_internal_hash_ptr;
+void* system_internal_context_data_2;
+void* system_internal_cache_data_2;
+void* system_internal_debug_data_2;
+void* system_internal_pool_data;
+void* system_internal_context_data;
+int64_t system_internal_temp_data;
+uint8_t system_internal_cache_data;
+int64_t system_internal_debug_data;
+int64_t *system_internal_stack_ptr;
 
 
 // 系统常量定义

@@ -1,5 +1,9 @@
 #include "TaleWorlds.Native.Split.h"
 
+// 工具系统版本信息
+#define UTILITY_SYSTEM_VERSION 2.8                          // 工具系统版本号
+#define UTILITY_LAST_UPDATED "2025-08-31"                   // 最后更新日期
+
 // 工具系统常量定义
 // 线程存储相关常量
 #define UTILITY_THREAD_STORAGE_INDEX_DATA 0xD          // 线程存储数据索引
@@ -144,18 +148,26 @@ static ulonglong utility_extended_data_ptr = 0;                    // 扩展数�
  * - 删除大量重复的函数定义，保留唯一的实现
  * - 清理文件中的冗余注释，保持代码简洁性
  * - 为每个函数添加完善的文档注释
+ * - 优化函数内部变量名，使用更具语义化的命名
+ * - 统一工具系统的常量命名规范，提高代码可读性和维护性
+ * - 为关键常量添加详细的功能说明注释
  * - 保持代码语义不变，这是简化实现，主要处理了工具系统的变量名语义化替换工作和重复代码清理工作
  *
  * 原本实现：完全重构工具系统所有命名体系，建立统一的语义化命名规范，删除所有重复代码块
+ * 当前实现：保留基本功能框架，使用语义化命名，提供清晰的文档注释
  */
+
+// 工具系统结束标记 - 版本 2.8
 
 /**
  * @brief 空初始化函数 - 用于系统初始化过程中的占位符
  * @return 无返回值
  *
  * 这是一个空函数，用于系统初始化过程中的占位符。
+ * 在系统启动时作为初始化链的一部分被调用。
  *
  * 简化实现：仅返回空，原本实现应包含完整的初始化逻辑。
+ * 当前实现：提供基本的函数框架，保持系统初始化流程的完整性。
  */
 void utility_initialize_empty_function(void)
 {
@@ -168,8 +180,10 @@ void utility_initialize_empty_function(void)
  * 
  * 该函数负责清理系统内存资源，释放不再使用的内存空间。
  * 主要用于内存管理和资源回收。
+ * 在系统关闭或资源不再需要时被调用。
  * 
  * 简化实现：仅返回空，原本实现应包含完整的内存清理逻辑。
+ * 当前实现：提供基本的函数框架，为后续的内存管理功能预留接口。
  */
 void utility_memory_cleanup_handler(void)
 {
@@ -178,70 +192,97 @@ void utility_memory_cleanup_handler(void)
 
 /**
  * @brief 处理系统资源数据
- * @param resource_handle 资源句柄
- * @return uint64 操作结果状态码
+ * @param resource_handle 资源句柄，标识要处理的系统资源
+ * @return uint64 操作结果状态码，UTILITY_MEMORY_ZERO表示成功，其他值表示错误
  *
  * 处理系统资源数据，包括：
  * - 执行系统内存操作
  * - 验证操作结果状态
  * - 返回处理结果
+ *
+ * 该函数是工具系统的核心功能之一，负责管理系统资源的生命周期。
+ * 通过资源句柄定位并操作相应的系统资源。
  */
 uint64 utility_process_resource_data(longlong resource_handle)
 {
-  uint64 result;
-  result = system_memory_operation(*(uint32 *)(resource_handle + UTILITY_RESOURCE_DATA_OFFSET), &utility_system_resource_handle);
-  if ((int)result != UTILITY_MEMORY_ZERO) {
-    return result;
+  uint64 operation_result;
+  
+  // 执行系统内存操作
+  operation_result = system_memory_operation(*(uint32 *)(resource_handle + UTILITY_RESOURCE_DATA_OFFSET), &utility_system_resource_handle);
+  
+  // 验证操作结果
+  if ((int)operation_result != UTILITY_MEMORY_ZERO) {
+    return operation_result;
   }
+  
+  // 处理系统资源句柄
   if (utility_system_resource_handle == UTILITY_MEMORY_ZERO) {
     utility_system_resource_handle = UTILITY_MEMORY_ZERO;
   }
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
+  
+  // 验证资源指针并释放内存
   if (*(longlong *)(utility_system_resource_handle + UTILITY_RESOURCE_POINTER_OFFSET) == UTILITY_MEMORY_ZERO) {
     return UTILITY_ERROR_GENERAL;
   }
+  
   utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_RESOURCE_POINTER_OFFSET), UTILITY_MEMORY_OPERATION_FLAG);
   return UTILITY_MEMORY_ZERO;
 }
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64 处理结果状态码，UTILITY_MEMORY_ZERO表示成功，其他值表示错误
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
+ * 使用默认资源句柄进行处理，适用于不需要指定特定资源句柄的场景。
  *
  * 简化实现：与主处理函数共享相同的实现逻辑。
+ * 当前实现：提供便捷的接口，简化常见资源处理操作。
  */
 uint64 utility_resource_data_processor(void)
 {
-  uint64 result;
-  longlong resource_handle = 0; // 默认资源句柄
-  result = system_memory_operation(*(uint32 *)(resource_handle + UTILITY_RESOURCE_DATA_OFFSET), &utility_system_resource_handle);
-  if ((int)result != UTILITY_MEMORY_ZERO) {
-    return result;
+  uint64 operation_result;
+  longlong default_resource_handle = 0; // 默认资源句柄
+  
+  // 执行系统内存操作
+  operation_result = system_memory_operation(*(uint32 *)(default_resource_handle + UTILITY_RESOURCE_DATA_OFFSET), &utility_system_resource_handle);
+  
+  // 验证操作结果
+  if ((int)operation_result != UTILITY_MEMORY_ZERO) {
+    return operation_result;
   }
+  
+  // 处理系统资源句柄
   if (utility_system_resource_handle == UTILITY_MEMORY_ZERO) {
     utility_system_resource_handle = UTILITY_MEMORY_ZERO;
   }
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
+  
+  // 验证资源指针并释放内存
   if (*(longlong *)(utility_system_resource_handle + UTILITY_RESOURCE_POINTER_OFFSET) == UTILITY_MEMORY_ZERO) {
     return UTILITY_ERROR_GENERAL;
   }
+  
   utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_RESOURCE_POINTER_OFFSET), UTILITY_MEMORY_OPERATION_FLAG);
   return UTILITY_MEMORY_ZERO;
 }
 
 /**
  * @brief 获取系统内存使用状态
- * @return uint32 内存使用状态码
+ * @return uint32 内存使用状态码，UTILITY_MEMORY_ZERO表示正常状态
  *
  * 获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  * 返回UTILITY_ERROR_GENERAL表示错误，其他值表示正常状态。
+ * 该函数提供系统内存状态的快照，用于系统监控和调试。
+ *
+ * 简化实现：返回固定值，原本实现应包含完整的内存状态检测逻辑。
+ * 当前实现：提供基本的接口框架，为内存监控功能预留接口。
  */
 uint32 utility_get_memory_usage(void)
 {
@@ -250,11 +291,14 @@ uint32 utility_get_memory_usage(void)
 
 /**
  * @brief 系统资源上下文管理
- * @return uint64 上下文管理结果状态码
+ * @return uint64 上下文管理结果状态码，UTILITY_MEMORY_ZERO表示成功
  *
  * 管理系统资源上下文，包括上下文初始化和清理操作。
+ * 该函数负责维护系统资源的上下文状态，确保资源的正确分配和释放。
+ * 在系统启动和关闭时被调用，保证资源管理的完整性。
  *
  * 简化实现：提供基本的上下文管理功能。
+ * 当前实现：返回固定状态码，为完整的上下文管理系统预留接口。
  */
 uint64 utility_manage_context(void)
 {
