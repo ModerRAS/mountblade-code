@@ -135,7 +135,7 @@ void *global_system_data_pointer;
 void *global_system_unknown_pointer;
 int global_system_initialization_flag = 1;
 int *global_system_config_pointer = 0;
-int64_t global_system_maximum_value = 0x7FFFFFFFFFFFFFFFLL;
+int64_t global_system_maximum_value = SYSTEM_MAX_INT64_VALUE;
 int global_system_status_flag = 0;
 
 // 各子系统数据定义
@@ -2260,8 +2260,8 @@ void WotsMainNativeCoreCLR(uint64_t system_context)
   system_stack_u_70 = 3;
   system_event_handler(&system_buffer_uint88,&system_stack_u_68);
   system_event_handler(&system_buffer_uint88,asystem_stack_u_a8);
-  if (0x1fff < stack_size_98) {
-    stack_size_98 = 0x1fff;
+  if (SYSTEM_MAX_STACK_SIZE < stack_size_98) {
+    stack_size_98 = SYSTEM_MAX_STACK_SIZE;
   }
   system_buffer_reference = &system_global_data_buffer;
   if (stack_parameter_a0 != (void *)0x0) {

@@ -2574,22 +2574,15 @@ int system_initialize_network_system(uint64_t network_config_system_context_para
   return (thread_pool_registration_result != 0) - 1;
 }
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
 /**
+ * @brief 初始化输入系统
  * 
- * 设置键盘、鼠标和控制器输入处理。
- * 该函数会创建线程上下文，初始化输入设备配置。
- * 
- * @return void
-/**
- * @return 无返回值
-/**
- * 初始化输入系统
- * 
- * 设置输入设备、事件处理和状态跟踪
- * 为系统提供用户输入支持
+ * 设置输入设备、事件处理和状态跟踪，为系统提供用户输入支持。
+ * 该函数负责初始化键盘、鼠标和控制器输入处理，创建线程上下文，
+ * 并初始化输入设备配置。输入系统是游戏引擎与用户交互的重要组件，
+ * 处理各种输入设备的信号转换和事件分发。
  *
- * @return 无返回值
+ * @return void
  */
 void system_initialize_input_system(void)
 
@@ -2609,20 +2602,14 @@ void system_initialize_input_system(void)
   return;
 }
 /**
+ * @brief 初始化用户界面系统
  * 
- * 创建UI组件、事件处理和界面布局。
- * 该函数会初始化UI上下文，分配资源块，并设置UI系统参数。
- * 
- * @return void
-/**
- * @return 无返回值
-/**
- * 初始化用户界面系统
- * 
- * 设置UI组件、布局管理和事件处理
- * 为系统提供用户界面支持
+ * 设置UI组件、布局管理和事件处理，为系统提供用户界面支持。
+ * 该函数负责创建UI组件、事件处理和界面布局，初始化UI上下文，
+ * 分配资源块，并设置UI系统参数。用户界面系统是游戏引擎的重要组成部分，
+ * 负责管理所有用户界面元素的显示、交互和事件响应。
  *
- * @return 无返回值
+ * @return void
  */
 void system_initialize_ui_system(void)
 

@@ -596,9 +596,9 @@ uint64_t process_resource_pointer(int64_t context_pointer)
     
     if (temp_char_buffer[0] == (char)resource_context_status) {
         resource_context_data = resource_current_counter + UTILITY_DATA_CONTEXT_OFFSET;
-        status_code = UTILITY_STATUS_OPERATION_FAILED;
-        status_code = *(int *)(resource_current_counter + UTILITY_DATA_INDEX_OFFSET);
-        if (0 < status_code) {
+        utility_status_code = UTILITY_STATUS_OPERATION_FAILED;
+        utility_status_code = *(int *)(resource_current_counter + UTILITY_DATA_INDEX_OFFSET);
+        if (0 < utility_status_code) {
             resource_context_data = *data_storage_ptr;
             do {
                 if (*data_storage_ptr == resource_current_counter) {
@@ -609,9 +609,9 @@ uint64_t process_resource_pointer(int64_t context_pointer)
                 }
                 resource_context_status = resource_handle_value + 1;
                 resource_context_data = resource_context_data + 1;
-            } while ((int64_t)resource_handle_value < (int64_t)status_code);
+            } while ((int64_t)resource_handle_value < (int64_t)utility_status_code);
         }
-        status_code = status_code + 1;
+        utility_status_code = utility_status_code + 1;
         if (*(int *)(resource_current_counter + UTILITY_CALC_MULTIPLIER_OFFSET) < status_code) {
             status_code = (int)((float)*(int *)(resource_current_counter + UTILITY_CALC_MULTIPLIER_OFFSET) * 1.5);
             if (status_code < 8) {
