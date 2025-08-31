@@ -1,3 +1,17 @@
+/**
+ * @file 01_initialization.c
+ * @brief TaleWorlds.Native 初始化系统实现
+ * 
+ * 本文件实现了Mount & Blade II: Bannerlord的初始化系统，包括：
+ * - 系统组件的初始化和配置
+ * - 内存管理和资源分配
+ * - 线程池和任务调度
+ * - 系统状态管理和监控
+ * 
+ * 简化实现：主要处理了初始化系统中变量名和函数名的语义化替换工作。
+ * 原本实现：完全重构初始化系统所有命名体系，建立统一的语义化命名规范
+ */
+
 #include "TaleWorlds.Native.Split.h"
 #include <stdlib.h>
 #include <string.h>
