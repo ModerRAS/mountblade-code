@@ -1,10 +1,5 @@
-#include "TaleWorlds.Native.Spointer_.h"
-/*
- * 工具系统实现文件
- * 
- * 简化实现：将常见的非语义化变量名替换为语义化名称，为关键函数添加文档注释
- * 原本实现：完全重构工具系统所有命名体系和文档体系，建立统一的语义化命名规范
- */
+#include "TaleWorlds.Native.Split.h"
+/* 工具系统实现文件 */
 /* 工具系统核心常量定义 */
 #define UTILITY_MAX_BUFFER_SIZE 0x1000
 #define UTILITY_MAX_THREADS 8
@@ -2068,6 +2063,13 @@ void ProcessThreadLocalStorage(longlong threadHandle, longlong contextData)
   long long resource_context;
   int operation_result;;
   longlong iteration_count;
+/**
+ * @brief 处理线程本地存储
+ * 负责管理和处理线程本地存储数据的初始化和清理
+ * @param threadHandle 线程句柄
+ * @param contextData 上下文数据
+ * @return 无返回值
+ */
   int item_count;
   uint8_t stack_buffer_278 [32];
   longlong stack_array_258 [2];
