@@ -316,7 +316,7 @@ void* system_reserved_object_system_pointer_feec8;
 // 系统未知对象指针4
 void* system_reserved_object_system_pointer_feed8;
 // 系统字符数据1
-char system_reserved_char_system_data_;
+char system_reserved_char_;
 // 系统未知对象指针5
 void* system_reserved_object_system_pointer_a030;
 // 系统未知对象指针6
@@ -336,7 +336,7 @@ void* system_reserved_object_system_pointer_ff3e8;
 // 系统未知对象指针12
 void* system_reserved_object_system_pointer_ff488;
 // 系统字符数据2
-char system_reserved_char_system_data_aa69;
+char system_reserved_char_aa69;
 // 系统未知对象指针13
 void* system_reserved_object_system_pointer_ff538;
 // 系统未知对象指针14
