@@ -529,17 +529,21 @@ if (context_handle == (int64_t *)0x0) {
 context_handle = (int64_t *)UTILITY_THREAD_POINTER_OFFSET;
 }
 *(int64_t *)(context_handle[4] + 8 + (int64_t)context_handle) = *buffer_pointer;
-if (context_handle == context_handle) break;
+// 简化实现：优化循环退出条件
+if (context_handle == 0) break;
+
+// 简化实现：处理上下文指针
 context_handle = (int64_t *)(*buffer_pointer + -UTILITY_THREAD_CONTEXT_OFFSET);
 if (*buffer_pointer == 0) {
-context_handle = context_handle;
+    return UTILITY_STATUS_THREAD_CREATED;
 }
-context_handle = context_handle;
-if (context_handle != (int64_t *)0x0) {
-context_handle = context_handle + 3;
+
+// 简化实现：处理上下文指针偏移
+if (context_handle != 0) {
+    context_handle += 3;
 }
-context_handle = context_handle + 3;
-context_handle = (int64_t *)(uint64_t)((int)context_handle + 1);
+context_handle += 3;
+context_handle = (int64_t *)((uint64_t)context_handle + 1);
 }
 return UTILITY_STATUS_THREAD_CREATED;
 }
