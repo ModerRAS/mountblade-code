@@ -6,27 +6,40 @@
 #define UTILITY_THREAD_STORAGE_INDEX_EXTRA 0xE
 #define UTILITY_THREAD_STORAGE_INDEX_CLEANUP 0xF
 
+// 线程存储数组索引常量
+#define UTILITY_THREAD_STORAGE_INDEX_DATA 0xD
+#define UTILITY_THREAD_STORAGE_INDEX_EXTRA 0xE
+#define UTILITY_THREAD_STORAGE_INDEX_CLEANUP 0xF
+
 // 资源句柄参数偏移量常量
-#define UTILITY_RESOURCE_PARAM_OFFSET_QUATERNARY 0x4
-#define UTILITY_RESOURCE_PARAM_OFFSET_SENARY 0x6
+#define UTILITY_RESOURCE_PARAM_OFFSET_PRIMARY 0x2
 #define UTILITY_RESOURCE_PARAM_OFFSET_TERTIARY 0x3
+#define UTILITY_RESOURCE_PARAM_OFFSET_QUATERNARY 0x4
 #define UTILITY_RESOURCE_PARAM_OFFSET_QUINARY 0x5
+#define UTILITY_RESOURCE_PARAM_OFFSET_SENARY 0x6
 
 // 数组索引常量
+#define UTILITY_ARRAY_INDEX_PRIMARY 0x1
+#define UTILITY_ARRAY_INDEX_SECONDARY 0x2
+#define UTILITY_ARRAY_INDEX_TERTIARY 0x3
 #define UTILITY_ARRAY_INDEX_QUATERNARY 0x4
 
 // 资源清理偏移量常量
 #define UTILITY_RESOURCE_CLEANUP_OFFSET_PRIMARY 0xC60
 #define UTILITY_RESOURCE_CLEANUP_OFFSET_SECONDARY 0x1CF0
+#define UTILITY_RESOURCE_CLEANUP_OFFSET_TERTIARY 0x1E40
 
 // 线程本地存储偏移量常量
 #define UTILITY_TLS_OFFSET_THREAD_DATA 0x23A0
+#define UTILITY_TLS_OFFSET_THREAD_CONTEXT 0x23C0
 
 // 数据偏移量常量
 #define UTILITY_DATA_OFFSET_PRIMARY 0x1B00
 #define UTILITY_DATA_OFFSET_SECONDARY 0x1B40
 #define UTILITY_DATA_OFFSET_TERTIARY 0x1B48
 #define UTILITY_DATA_OFFSET_QUATERNARY 0x1B80
+#define UTILITY_DATA_OFFSET_QUINARY 0x1BC0
+#define UTILITY_DATA_OFFSET_SENARY 0x1C00
 #define UTILITY_DATA_POINTER_OFFSET 0x8
 #define UTILITY_FIELD_OFFSET 0xC
 #define UTILITY_OFFSET_DATA 0x10
@@ -46,10 +59,11 @@
 #define UTILITY_CHECK_FLAG_AVAILABLE 0xD0
 #define UTILITY_CHECK_FLAG_LOCKED 0xE0
 #define UTILITY_CHECK_FLAG_RESERVED 0xF0
+#define UTILITY_CHECK_FLAG_ERROR 0xFF
 
 // 新增语义化偏移量常量
 #define UTILITY_OFFSET_LIST_HANDLE 0x4
-#define UTILITY_OFFSET_STRUCT_ONE 0x8
+#define UTILITY_OFFSET_STRUCT_PRIMARY 0x8
 #define UTILITY_OFFSET_CHECKSUM_PTR 0xC
 #define UTILITY_OFFSET_SECONDARY_BYTE 0x10
 
@@ -57,20 +71,24 @@
 #define UTILITY_MEMORY_NEGATIVE_OFFSET -1
 #define UTILITY_MEMORY_OPERATION_FLAG 0x1
 #define UTILITY_MEMORY_STANDARD_OFFSET 0x4
+#define UTILITY_MEMORY_ALLOCATION_UNIT 0x8
 #define UTILITY_ZERO 0
 #define UTILITY_OFFSET_FLAG 0x10
 
 // 数据偏移量常量
 #define UTILITY_DATA_OFFSET 0x10
 #define UTILITY_OFFSET_RESOURCE_PTR 0x8
+#define UTILITY_OFFSET_CONTEXT_PTR 0x10
 
 // 错误代码常量
 #define UTILITY_ERROR_CODE_INVALID 0xFFFFFFFF
 #define UTILITY_ERROR_HANDLE_INVALID 0xFFFFFFFE
+#define UTILITY_ERROR_MEMORY_ALLOCATION 0xFFFFFFFD
 #define UTILITY_ERROR_OFFSET 0x4
 
 // 索引常量
 #define UTILITY_INDEX_FIRST 0x1
+#define UTILITY_INDEX_SECONDARY 0x2
 #define UTILITY_INDEX_ZERO 0x0
 
 // 大小限制常量
@@ -78,17 +96,21 @@
 #define UTILITY_SIZE_EXTENDED_BYTE 0x1
 #define UTILITY_SIZE_STANDARD 0x4
 #define UTILITY_SIZE_LIMIT 0x1000
+#define UTILITY_SIZE_MINIMUM 0x10
 
 // 字节掩码常量
 #define UTILITY_BYTE_MASK_CLEAR_BIT4 0xEF
 #define UTILITY_BYTE_MASK_CLEAR_BIT5 0xDF
 #define UTILITY_BYTE_MASK_CLEAR_BIT6 0xBF
+#define UTILITY_BYTE_MASK_CLEAR_BIT7 0x7F
 #define UTILITY_BYTE_MASK_PRIMARY 0xFF
 #define UTILITY_WORD_MASK_CLEAR_BIT0 0xFEFF
+#define UTILITY_WORD_MASK_CLEAR_BIT1 0xFDFF
 
 // 其他常量
 #define UTILITY_CHAR_NULL '\0'
 #define UTILITY_STACK_PRIMARY 0x1
+#define UTILITY_STACK_SECONDARY 0x2
 #define UTILITY_OFFSET_STRUCTURE 0x10
 #define UTILITY_OFFSET_LIST_DATA 0x14
 
@@ -129,6 +151,7 @@ static uint64_t g_utility_result_value = 0;
 static uint32_t g_utility_thread_offset_value = 0;
 static uint64_t g_utility_file_size_value = 0;
 static uint64_t g_utility_extended_data_pointer = 0;
+static uint32_t g_utility_error_flag = 0;
 
 // 函数声明
 uint64_t system_memory_operation(uint32_t operation_type, void **resource_handle);
@@ -200,12 +223,12 @@ void utility_memory_cleanup_handler(void)
  */
 uint64_t utility_resource_manager(void)
 {
-  uint64_t utility_result_value;
+  uint64_t utility_operation_result;
   int64_t utility_resource_primary_handle = 0;
   
-  utility_result_value = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET_PRIMARY), &g_utility_resource_handle);
-  if ((int)utility_result_value != UTILITY_ZERO) {
-    return utility_result_value;
+  utility_operation_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET_PRIMARY), &g_utility_resource_handle);
+  if ((int)utility_operation_result != UTILITY_ZERO) {
+    return utility_operation_result;
   }
   
   if (g_utility_resource_handle == UTILITY_ZERO) {
