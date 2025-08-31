@@ -3,8 +3,6 @@
 /**
  * @file 06_utilities.c
  * @brief 工具系统实现文件
- * 
- * 简化实现：替换硬编码值为语义化常量，保持代码结构不变
  */
 #define UTILITY_MAX_BUFFER_SIZE 0x1000
 #define UTILITY_MAX_THREADS 8
@@ -105,7 +103,7 @@
 #define UTILITY_STACK_OFFSET_LARGE 0xa8
 #define UTILITY_MEMORY_POINTER_OFFSET_0 0x8
 #define UTILITY_STATUS_FLAG_MASK0 0x10
-#define UTILITY_RESOURCE_COUNT_OFFSET53494c 0x53494c
+#define UTILITY_RESOURCE_COUNT_OFFSET_DEFAULT 0x53494c
 #define UTILITY_STATUS_FLAG_MASKfff 0xfff
 #define UTILITY_STATUS_FLAG_MASKfffffff 0xffffffff
 #define UTILITY_MEMORY_POINTER_OFFSETe 0xe
@@ -222,7 +220,7 @@
 #define UTILITY_STREAM_TYPE_BDMC 0x42444d43
 #define UTILITY_STREAM_TYPE_IDMC 0x49444d43
 #define UTILITY_MEMORY_POINTER_OFFSET000 UTILITY_FLAG_MASK_0X4000
-#define UTILITY_RESOURCE_COUNT_OFFSET53494c 0x53494c
+#define UTILITY_RESOURCE_COUNT_OFFSET_DEFAULT 0x53494c
 // 新增硬编码值常量定义
 #define UTILITY_CONTEXT_SIZE_MULTIPLIER_44 0x44
 #define UTILITY_FLOAT_ARRAY_OFFSET_30 0x30
@@ -11930,7 +11928,7 @@ uint utility_stack_buffer_context [2];
 uint utility_stack_buffer_context [2];
 uint8_t utility_stack_buffer_context [32];
 uint8_t utility_stack_buffer_stream [32];
-utility_resource_context_value = utility_stream_create(utility_context_input_parameter,utility_stack_buffer_stream,1,UTILITY_RESOURCE_COUNT_OFFSET495645);
+utility_resource_context_value = utility_stream_create(utility_context_input_parameter,utility_stack_buffer_stream,1,UTILITY_RESOURCE_COUNT_OFFSET_VALIDATOR);
 if (((((int)utility_resource_pointer_data == UTILITY_BOOLEAN_FALSE) &&
 (utility_resource_context_value = utility_stream_create(utility_context_input_parameter,utility_stack_buffer_context,0,UTILITY_STREAM_TYPE_BIVE), (int)utility_resource_pointer_data == UTILITY_BOOLEAN_FALSE)) &&
 (utility_resource_context_value = utility_time_processor(utility_context_input_parameter,utility_context_input_parameter + UTILITY_THREAD_HANDLE_OFFSET), (int)utility_resource_pointer_data == UTILITY_BOOLEAN_FALSE)) &&
@@ -12016,7 +12014,7 @@ uint64_t utility_resource_context_value;
 char utility_char_buffer_array [8];
 uint utility_stack_buffer_context [2];
 uint8_t utility_stack_buffer_stream [32];
-utility_resource_context_value = utility_stream_create(utility_context_input_parameter,utility_stack_buffer_stream,0,UTILITY_RESOURCE_COUNT_OFFSET534e49);
+utility_resource_context_value = utility_stream_create(utility_context_input_parameter,utility_stack_buffer_stream,0,UTILITY_RESOURCE_COUNT_OFFSET_CHECKER);
 if ((int)utility_resource_status_value != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_status_value;
 }
@@ -12620,7 +12618,7 @@ uint utility_resource_context_data_secondary;
 uint utility_stack_buffer_context [2];
 uint utility_stack_buffer_context [2];
 uint8_t utility_stack_buffer_stream [32];
-utility_operation_status_code = utility_stream_create(utility_context_input_parameter,utility_stack_buffer_stream,0,UTILITY_THREAD_DATA_OFFSET50414d);
+utility_operation_status_code = utility_stream_create(utility_context_input_parameter,utility_stack_buffer_stream,0,UTILITY_THREAD_DATA_OFFSET_HANDLER);
 if ((utility_operation_status_code == UTILITY_BOOLEAN_FALSE) && (utility_operation_status_code = utility_time_processor(utility_context_input_parameter,utility_context_input_parameter + UTILITY_THREAD_HANDLE_OFFSET), utility_operation_status_code == UTILITY_BOOLEAN_FALSE)) {
 utility_stack_buffer_context[0] = UTILITY_BOOLEAN_FALSE;
 utility_operation_status_code = utility_resource_validate(*utility_buffer_pointer,utility_stack_buffer_context);
@@ -15656,7 +15654,7 @@ uint utility_resource_context_data_secondary;
 int64_t *utility_input_data_context;
 int64_t utility_context_auxiliary_pointer;
 bool utility_network_bool_flag;
-char utility_stack_char_value_90;
+char utility_stack_reserved_char;
 uint utility_buffer_pointer;
 if (*(int *)(utility_context_main_pointer + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
 return UTILITY_STATUS_THREAD_CREATED;
@@ -15668,12 +15666,12 @@ utility_resource_context_value = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] != UTILITY_BOOLEAN_FALSE) {
-_utility_stack_char_value_90 = UTILITY_BOOLEAN_FALSE;
+_utility_stack_reserved_char = UTILITY_BOOLEAN_FALSE;
 utility_resource_context_value = utility_execute_system_call(*utility_buffer_pointer,&utility_buffer_workspace);
 if ((int)utility_resource_status_value != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_status_value;
 }
-if ((uint64_t)utility_context_data[2] < (uint64_t)_utility_stack_char_value_90 + 4) {
+if ((uint64_t)utility_context_data[2] < (uint64_t)_utility_stack_reserved_char + 4) {
 utility_resource_context_value = UTILITY_STATUS_ENABLED_FLAG1;
 goto UTILITY_LABEL_CLEANUP_START;
 }
@@ -15701,12 +15699,12 @@ utility_resource_context_value = UTILITY_STATUS_THREAD_CREATED;
 }
 else {
 if (utility_context_data[2] != UTILITY_BOOLEAN_FALSE) {
-_utility_stack_char_value_90 = UTILITY_BOOLEAN_FALSE;
+_utility_stack_reserved_char = UTILITY_BOOLEAN_FALSE;
 utility_resource_context_value = utility_execute_system_call(*utility_buffer_pointer,&utility_buffer_workspace);
 if ((int)utility_resource_status_value != UTILITY_BOOLEAN_FALSE) {
 return utility_resource_status_value;
 }
-if ((uint64_t)utility_context_data[2] < (uint64_t)_utility_stack_char_value_90 + 4) {
+if ((uint64_t)utility_context_data[2] < (uint64_t)_utility_stack_reserved_char + 4) {
 utility_resource_context_value = UTILITY_STATUS_ENABLED_FLAG1;
 goto UTILITY_LABEL_FINAL_VALIDATION;
 }
@@ -15748,7 +15746,7 @@ utility_resource_context_value = UTILITY_STATUS_ENABLED_FLAG1;
 }
 }
 if (utility_resource_pointer_data == UTILITY_BOOLEAN_FALSE) {
-utility_network_bool_flag = utility_stack_char_value_90 != '\0';
+utility_network_bool_flag = utility_stack_reserved_char != '\0';
 utility_operation_status_code = UTILITY_BOOLEAN_FALSE;
 }
 if (utility_resource_pointer_data != UTILITY_BOOLEAN_FALSE) {
@@ -18502,7 +18500,7 @@ uint64_t utility_resource_status_value;
 uint32_t utility_stack_buffer_context [2];
 uint8_t utility_stack_buffer_context [64];
 uint8_t utility_stack_medium_buffer [32];
-utility_created_resource_handle = utility_resource_allocator_create(utility_context_input_parameter,utility_stack_medium_buffer,1,UTILITY_RESOURCE_COUNT_OFFSET53494c,UTILITY_STREAM_TYPE_FEBE);
+utility_created_resource_handle = utility_resource_allocator_create(utility_context_input_parameter,utility_stack_medium_buffer,1,UTILITY_RESOURCE_COUNT_OFFSET_DEFAULT,UTILITY_STREAM_TYPE_FEBE);
 if (((int)utility_resource_pointer_data == UTILITY_BOOLEAN_FALSE) &&
 (utility_created_resource_handle = utility_resource_allocator_create(utility_context_input_parameter,utility_stack_buffer_context,0,UTILITY_STREAM_TYPE_BFEB,0), (int)utility_resource_pointer_data == UTILITY_BOOLEAN_FALSE)) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
@@ -18857,8 +18855,8 @@ char utility_context_input_parameter)
 uint utility_resource_context_data_secondary;
 uint64_t utility_resource_context_value;
 uint8_t utility_stack_network_buffer_secondary [64];
-uint8_t utility_stack_buffer_30 [40];
-utility_created_resource_handle = utility_resource_allocator_create(utility_context_input_parameter,utility_stack_buffer_30,1,UTILITY_RESOURCE_COUNT_OFFSET53494c,utility_context_input_parameter);
+uint8_t utility_stack_small_buffer [40];
+utility_created_resource_handle = utility_resource_allocator_create(utility_context_input_parameter,utility_stack_small_buffer,1,UTILITY_RESOURCE_COUNT_OFFSET_DEFAULT,utility_context_input_parameter);
 if (((int)utility_resource_pointer_data == UTILITY_BOOLEAN_FALSE) && (utility_created_resource_handle = utility_resource_allocator_create(utility_context_input_parameter,utility_stack_network_buffer_secondary,0,utility_context_input_parameter,0), (int)utility_resource_pointer_data == UTILITY_BOOLEAN_FALSE))
 {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_BOOLEAN_FALSE) {
@@ -18908,7 +18906,7 @@ uint64_t utility_resource_status_value;
 uint32_t utility_stack_buffer_context [4];
 uint8_t utility_stack_buffer_stream [32];
 uint8_t utility_stack_medium_buffer [32];
-utility_created_resource_handle = utility_resource_allocator_create(utility_context_input_parameter,utility_stack_medium_buffer,1,UTILITY_RESOURCE_COUNT_OFFSET53494c,0x49444d43);
+utility_created_resource_handle = utility_resource_allocator_create(utility_context_input_parameter,utility_stack_medium_buffer,1,UTILITY_RESOURCE_COUNT_OFFSET_DEFAULT,0x49444d43);
 if (((int)utility_resource_pointer_data == UTILITY_BOOLEAN_FALSE) &&
 (utility_created_resource_handle = utility_resource_allocator_create(utility_context_input_parameter,utility_stack_buffer_stream,0,0x42444d43,0), (int)utility_resource_pointer_data == UTILITY_BOOLEAN_FALSE)) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
@@ -19023,7 +19021,7 @@ int64_t *utility_input_data_context;
 uint32_t utility_buffer_pointer;
 uint32_t utility_stack_uint_quad;
 uint16_t utility_buffer_flags;
-uint16_t utility_stack_uint_3e_data;
+uint16_t utility_stack_offset_data;
 uint16_t utility_stack_base_pointer_data;
 uint16_t utility_stack_pointer_offset_data;
 if (*(uint *)(utility_context_main_pointer + UTILITY_THREAD_CONTEXT_OFFSET) != utility_register_esi_data) {
@@ -19051,7 +19049,7 @@ utility_stack_base_pointer_data = utility_buffer_flags;
 utility_resource_context_value = (**(code **)**(uint64_t **)(utility_iteration_index + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_iteration_index + UTILITY_POINTER_OFFSET),&stack_buffera0,2);
 if (utility_resource_pointer_data == UTILITY_BOOLEAN_FALSE) {
-utility_stack_pointer_offset_data = utility_stack_uint_3e_data;
+utility_stack_pointer_offset_data = utility_stack_offset_data;
 utility_resource_context_value = (**(code **)**(uint64_t **)(utility_iteration_index + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_iteration_index + UTILITY_POINTER_OFFSET),&stack_buffera8,2);
 if (utility_resource_pointer_data == UTILITY_BOOLEAN_FALSE) {
@@ -19090,7 +19088,7 @@ int64_t *utility_input_data_context;
 uint32_t utility_buffer_pointer;
 uint32_t utility_stack_uint_quad;
 uint16_t utility_buffer_flags;
-uint16_t utility_stack_uint_3e_data;
+uint16_t utility_stack_offset_data;
 uint16_t utility_stack_base_pointer_data;
 uint16_t utility_stack_pointer_offset_data;
 utility_resource_context_value = GetDiskFreeSpace(*utility_input_data_context,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET);
@@ -19109,7 +19107,7 @@ utility_stack_base_pointer_data = utility_buffer_flags;
 utility_resource_context_value = (**(code **)**(uint64_t **)(utility_iteration_index + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_iteration_index + UTILITY_POINTER_OFFSET),&stack_buffera0,2);
 if (utility_resource_pointer_data == UTILITY_BOOLEAN_FALSE) {
-utility_stack_pointer_offset_data = utility_stack_uint_3e_data;
+utility_stack_pointer_offset_data = utility_stack_offset_data;
 utility_resource_context_value = (**(code **)**(uint64_t **)(utility_iteration_index + UTILITY_POINTER_OFFSET))
 (*(uint64_t **)(utility_iteration_index + UTILITY_POINTER_OFFSET),&stack_buffera8,2);
 if (utility_resource_pointer_data == UTILITY_BOOLEAN_FALSE) {
@@ -19274,7 +19272,7 @@ uint64_t utility_resource_handler_processor(int64_t resource_count,uint64_t *uti
 uint64_t utility_resource_status_value;
 uint8_t utility_stack_buffer_stream [32];
 uint8_t utility_stack_medium_buffer [32];
-utility_created_resource_handle = utility_resource_allocator_create(utility_context_input_parameter,utility_stack_medium_buffer,1,UTILITY_RESOURCE_COUNT_OFFSET53494c,UTILITY_RESOURCE_COUNT_OFFSET494645);
+utility_created_resource_handle = utility_resource_allocator_create(utility_context_input_parameter,utility_stack_medium_buffer,1,UTILITY_RESOURCE_COUNT_OFFSET_DEFAULT,UTILITY_RESOURCE_COUNT_OFFSET494645);
 if (((int)utility_resource_pointer_data == UTILITY_BOOLEAN_FALSE) &&
 (utility_created_resource_handle = utility_resource_allocator_create(utility_context_input_parameter,utility_stack_buffer_stream,0,0x42494645,0), (int)utility_resource_pointer_data == UTILITY_BOOLEAN_FALSE)) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
@@ -19373,7 +19371,7 @@ uint64_t utility_resource_handler_initializer(int64_t resource_count,uint64_t *u
 uint64_t utility_resource_status_value;
 uint8_t utility_stack_buffer_stream [32];
 uint8_t utility_stack_medium_buffer [32];
-utility_created_resource_handle = utility_resource_allocator_create(utility_context_input_parameter,utility_stack_medium_buffer,1,UTILITY_RESOURCE_COUNT_OFFSET53494c,UTILITY_RESOURCE_COUNT_OFFSET495645);
+utility_created_resource_handle = utility_resource_allocator_create(utility_context_input_parameter,utility_stack_medium_buffer,1,UTILITY_RESOURCE_COUNT_OFFSET_DEFAULT,UTILITY_RESOURCE_COUNT_OFFSET_VALIDATOR);
 if (((int)utility_resource_pointer_data == UTILITY_BOOLEAN_FALSE) &&
 (utility_created_resource_handle = utility_resource_allocator_create(utility_context_input_parameter,utility_stack_buffer_stream,0,UTILITY_STREAM_TYPE_BIVE,0), (int)utility_resource_pointer_data == UTILITY_BOOLEAN_FALSE)) {
 if (*(int *)(utility_context_data[1] + UTILITY_THREAD_CONTEXT_OFFSET) != UTILITY_BOOLEAN_FALSE) {
@@ -19404,7 +19402,7 @@ utility_operation_status_code = UTILITY_BOOLEAN_FALSE;
 }
 }
 else {
-utility_created_resource_handle = utility_resource_allocator_create(utility_context_input_parameter,utility_stack_medium_buffer,1,UTILITY_RESOURCE_COUNT_OFFSET53494c,UTILITY_RESOURCE_COUNT_OFFSET4e5645);
+utility_created_resource_handle = utility_resource_allocator_create(utility_context_input_parameter,utility_stack_medium_buffer,1,UTILITY_RESOURCE_COUNT_OFFSET_DEFAULT,UTILITY_RESOURCE_COUNT_OFFSET4e5645);
 if ((int)utility_resource_status_value == UTILITY_BOOLEAN_FALSE) {
 utility_resource_context_value = utility_resource_handler_manager(utility_context_input_parameter,utility_context_input_parameter,0x42545645);
 if ((int)utility_resource_status_value == UTILITY_BOOLEAN_FALSE) {
@@ -24394,7 +24392,7 @@ _CxxThrowutility_exception_pointer(0,0);
  * @param utility_context_input_parameter 上下文句柄，包含异常处理的上下文信息
  * @return 无返回值
  */
-void utility_handle_system_exception_type_2(uint64_t resource_count,int64_t utility_context_input_parameter)
+void utility_handle_system_security_exception(uint64_t resource_count,int64_t utility_context_input_parameter)
 {
 uint64_t utility_resource_context_value;
 int64_t utility_iteration_primary_index;
@@ -28036,7 +28034,7 @@ return;
  * @param utility_context_input_parameter 上下文句柄，包含网络处理上下文信息
  * @return 无返回值
  */
-void utility_catch_network_handler_1(uint64_t resource_count,int64_t utility_context_input_parameter)
+void utility_catch_network_connection_handler(uint64_t resource_count,int64_t utility_context_input_parameter)
 {
 // 处理上下文数据，执行数据处理逻辑
   utility_process_context_data(utility_context_input_parameter,*(uint64_t *)(utility_context_input_parameter + UTILITY_FLOAT_ARRAY_OFFSET_40));
@@ -28083,7 +28081,7 @@ return;
  * @param utility_context_input_parameter 上下文句柄，包含网络处理上下文信息
  * @return 无返回值
  */
-void utility_catch_network_handler_2(uint64_t resource_count,int64_t utility_context_input_parameter)
+void utility_catch_network_timeout_handler(uint64_t resource_count,int64_t utility_context_input_parameter)
 {
 // 处理上下文数据，执行数据处理逻辑
   utility_process_context_data(utility_context_input_parameter,*(uint64_t *)(utility_context_input_parameter + UTILITY_RESOURCE_SIZE_OFFSET));
@@ -28097,7 +28095,7 @@ _CxxThrowutility_exception_pointer(0,0);
  * @param utility_context_input_parameter 上下文句柄，包含网络处理上下文信息
  * @return 无返回值
  */
-void utility_catch_network_handler_3(uint64_t resource_count,int64_t utility_context_input_parameter)
+void utility_catch_network_data_handler(uint64_t resource_count,int64_t utility_context_input_parameter)
 {
 // 处理上下文数据，执行数据处理逻辑
   utility_process_context_data(utility_context_input_parameter,*(uint64_t *)(utility_context_input_parameter + UTILITY_RESOURCE_HANDLE_OFFSET));
@@ -28111,7 +28109,7 @@ _CxxThrowutility_exception_pointer(0,0);
  * @param utility_context_input_parameter 上下文句柄，包含网络处理上下文信息
  * @return 无返回值
  */
-void utility_catch_network_handler_4(uint64_t resource_count,int64_t utility_context_input_parameter)
+void utility_catch_network_error_handler(uint64_t resource_count,int64_t utility_context_input_parameter)
 {
 // 处理上下文数据，执行数据处理逻辑
   utility_process_context_data(utility_context_input_parameter,*(uint64_t *)(utility_context_input_parameter + UTILITY_FLOAT_ARRAY_OFFSET_40));
@@ -28125,7 +28123,7 @@ _CxxThrowutility_exception_pointer(0,0);
  * @param utility_context_input_parameter 上下文句柄，包含网络处理上下文信息
  * @return 无返回值
  */
-void utility_catch_network_handler_5(uint64_t resource_count,int64_t utility_context_input_parameter)
+void utility_catch_network_close_handler(uint64_t resource_count,int64_t utility_context_input_parameter)
 {
 // 处理上下文数据，执行数据处理逻辑
   utility_process_context_data(utility_context_input_parameter,*(uint64_t *)(utility_context_input_parameter + UTILITY_RESOURCE_FLAG_A0));
@@ -38557,19 +38555,19 @@ utility_stream_data = &utility_system_reserved_area;
 return;
 }
 {
-utility_buffer_extended_9 = &utility_system_reserved_area;
+utility_buffer_extended = &utility_system_reserved_area;
 return;
 }
 {
-utility_buffer_stream_1 = &utility_system_reserved_area;
+utility_buffer_stream = &utility_system_reserved_area;
 return;
 }
 {
-utility_buffer_stream_6 = &utility_system_reserved_area;
+utility_buffer_stream_secondary = &utility_system_reserved_area;
 return;
 }
 {
-utility_data_stream_1 = &utility_system_reserved_area;
+utility_data_stream = &utility_system_reserved_area;
 return;
 }
 {
@@ -38577,11 +38575,11 @@ utility_context_root_pointer = &utility_system_reserved_area;
 return;
 }
 {
-utility_control_data_0 = &utility_system_reserved_area;
+utility_control_data = &utility_system_reserved_area;
 return;
 }
 {
-utility_system_data_0 = &utility_system_reserved_area;
+utility_system_data = &utility_system_reserved_area;
 return;
 }
 {
@@ -38596,11 +38594,11 @@ free(utility_system_reserved_area,UTILITY_RESOURCE_SIZE_OFFSET);
 return;
 }
 {
-utility_communication_data_0 = &utility_system_reserved_area;
+utility_communication_data = &utility_system_reserved_area;
 return;
 }
 {
-utility_system_state_0 = &utility_system_reserved_area;
+utility_system_state = &utility_system_reserved_area;
 return;
 }
 {
