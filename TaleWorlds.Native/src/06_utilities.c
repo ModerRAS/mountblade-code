@@ -10942,7 +10942,7 @@ void context_pointer_process_data(long long context_pointer,long long data_ptr)
                 if (*putility_float_var5 != 0.0) {
                   system_temp_var0 = system_temp_var8;
                   system_temp_var8 = 0;
-                  psystem_temp_var0 = &UNK_1809839d8;
+                  psystem_temp_var0 = &utility_system_benchmark8;
                   fStack_1a8 = utility_float_var3;
                   fStack_1a4 = *putility_float_var5;
                   result_int = utility_thread_executor_run(context_pointer,&psystem_temp_var0);
@@ -10978,7 +10978,7 @@ void context_pointer_process_data(long long context_pointer,long long data_ptr)
               }
               if ((*(uint *)(data_ptr + 0x2d8) >> 1 & 1) != 0) {
                 system_temp_var8 = 0;
-                psystem_temp_var0 = &UNK_180983a60;
+                psystem_temp_var0 = &utility_system_profiler0;
                 system_temp_var0 = system_temp_var8;
                 fStack_1a8 = (float)CONCAT31(fStack_1a8._1_3_,1);
                 result_int = utility_thread_executor_run(context_pointer,&psystem_temp_var0);
@@ -11199,7 +11199,7 @@ void utility_thread_resumer_resume(void)
               utility_float_var = *putility_float_var1;
               if (utility_float_var != 0.0) {
                 utility_utility_stack_param = temp_var_20;
-                utility_utility_stack_param = &UNK_1809839d8;
+                utility_utility_stack_param = &utility_system_benchmark8;
                 utility_buffer_ptr = utility_global_register_r13D;
                 fStack0000000000000040 = utility_float_var9;
                 fStack0000000000000044 = utility_float_var;
@@ -11237,7 +11237,7 @@ void utility_thread_resumer_resume(void)
               if (result_int3 != 0) goto utility_general_function_error_handler;
             }
             if ((*(uint *)(utility_global_register_r14 + 0x2d8) >> 1 & 1) != 0) {
-              utility_utility_stack_param = &UNK_180983a60;
+              utility_utility_stack_param = &utility_system_profiler0;
               utility_utility_stack_param = temp_var_20;
               fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
               utility_buffer_ptr = utility_global_register_r13D;
@@ -11444,7 +11444,7 @@ void context_pointer_process_data(void)
           utility_float_var = *putility_float_var1;
           if (utility_float_var != 0.0) {
             utility_utility_stack_param = temp_var_20;
-            utility_utility_stack_param = &UNK_1809839d8;
+            utility_utility_stack_param = &utility_system_benchmark8;
             utility_buffer_ptr = utility_global_register_r13D;
             fStack0000000000000040 = utility_float_var9;
             fStack0000000000000044 = utility_float_var;
@@ -11482,7 +11482,7 @@ void context_pointer_process_data(void)
           if (result_int3 != 0) goto utility_general_function_error_handler;
         }
         if ((*(uint *)(utility_global_register_r14 + 0x2d8) >> 1 & 1) != 0) {
-          utility_utility_stack_param = &UNK_180983a60;
+          utility_utility_stack_param = &utility_system_profiler0;
           utility_utility_stack_param = temp_var_20;
           fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
           utility_buffer_ptr = utility_global_register_r13D;
@@ -11577,7 +11577,7 @@ void utility_thread_prioritizer_set(float context_pointer)
       utility_float_var = *putility_float_var;
       if (utility_float_var != 0.0) {
         utility_utility_stack_param = temp_var_20;
-        utility_utility_stack_param = &UNK_1809839d8;
+        utility_utility_stack_param = &utility_system_benchmark8;
         utility_buffer_ptr = utility_global_register_r13D;
         fStack0000000000000040 = utility_float_var;
         fStack0000000000000044 = utility_float_var;
@@ -11615,7 +11615,7 @@ void utility_thread_prioritizer_set(float context_pointer)
       if (utility_status_code != 0) goto LAB_180897af6;
     }
     if ((*(uint *)(utility_global_register_r14 + 0x2d8) >> 1 & 1) != 0) {
-      utility_utility_stack_param = &UNK_180983a60;
+      utility_utility_stack_param = &utility_system_profiler0;
       utility_utility_stack_param = temp_var_20;
       fStack0000000000000040 = (float)CONCAT31(fStack0000000000000040._1_3_,1);
       utility_buffer_ptr = utility_global_register_r13D;
