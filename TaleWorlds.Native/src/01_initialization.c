@@ -26322,42 +26322,60 @@ void system_initialize_audio_equalizer(longlong *param1,longlong param1,longlong
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_function_058b3e(longlong param1,longlong param1)
+/**
+ * @brief 系统音频寄存器配置函数
+ * 
+ * 配置系统音频寄存器的参数和上下文索引。
+ * 该函数负责设置音频寄存器的基础配置和索引计算。
+ * 
+ * @param audio_context 音频上下文指针
+ * @param register_value 寄存器值
+ * @return 无返回值
+ */
+void system_configure_audio_register(longlong audio_context, longlong register_value)
 
 {
-  uint64_t system_uint_value;
-  longlong system_audio_register_value;
-  longlong system_audio_register_value;
-  longlong *system_audio_register_value;
-  ulonglong system_audio_context_index;
+  uint64_t allocated_memory;
+  longlong audio_register_base;
+  longlong audio_register_offset;
+  longlong *audio_register_ptr;
+  ulonglong calculated_context_index;
   
-  param1 = param1 >> 3;
-  system_audio_context_index = param1 * 2;
-  if (param1 == 0) {
-    system_audio_context_index = 1;
+  audio_context = audio_context >> 3;
+  calculated_context_index = audio_context * 2;
+  if (audio_context == 0) {
+    calculated_context_index = 1;
   }
-  if (system_audio_context_index <= (ulonglong)(param1 + system_audio_register_value)) {
-    system_audio_context_index = param1 + system_audio_register_value;
+  if (calculated_context_index <= (ulonglong)(audio_context + audio_register_offset)) {
+    calculated_context_index = audio_context + audio_register_offset;
   }
-  if (system_audio_context_index == 0) {
-    system_uint_value = 0;
+  if (calculated_context_index == 0) {
+    allocated_memory = 0;
   }
   else {
-    system_uint_value = system_allocate_resource_block(system_context_memory_pool,system_audio_context_index * 8,(char)system_audio_register_value[3]);
-    param1 = *system_audio_register_value;
+    allocated_memory = system_allocate_resource_block(system_context_memory_pool,calculated_context_index * 8,(char)audio_register_ptr[3]);
+    audio_context = *audio_register_ptr;
   }
-  if (param1 != system_audio_register_value) {
+  if (audio_context != audio_register_offset) {
                     // WARNING: Subroutine does not return
-    memmove(system_uint_value,param1,system_audio_register_value - param1);
+    memmove(allocated_memory,audio_context,audio_register_offset - audio_context);
   }
                     // WARNING: Subroutine does not return
-  memmove(system_uint_value);
+  memmove(allocated_memory);
 }
 
 
 
 
-void system_function_058bfa(void)
+/**
+ * @brief 系统空操作函数
+ * 
+ * 执行空操作，用于系统初始化过程中的占位符。
+ * 该函数不执行任何实际操作，仅用于保持代码结构完整性。
+ * 
+ * @return 无返回值
+ */
+void system_no_operation(void)
 
 {
   return;
@@ -26366,7 +26384,15 @@ void system_function_058bfa(void)
 
 
 
-void system_function_058c16(void)
+/**
+ * @brief 系统状态检查函数
+ * 
+ * 检查系统状态并返回当前状态信息。
+ * 该函数用于监控系统运行状态，确保各组件正常运行。
+ * 
+ * @return 无返回值
+ */
+void system_check_status(void)
 
 {
   return;
@@ -37415,46 +37441,59 @@ void system_function_0687d0(longlong param1,uint64_t *param1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 longlong *
-system_function_0037(longlong param1,longlong *param1,uint64_t param1,uint64_t param1,
-             ulonglong system_param_)
+/**
+ * @brief 系统音频上下文管理函数
+ * 
+ * 管理系统音频上下文的创建和检索，处理音频资源的分配和索引。
+ * 该函数负责在音频上下文池中查找或创建新的音频上下文条目。
+ * 
+ * @param audio_context_pool 音频上下文池指针
+ * @param context_handle 上下文句柄指针
+ * @param pool_size 池大小
+ * @param context_flags 上下文标志
+ * @param context_index 上下文索引
+ * @return 上下文句柄指针
+ */
+longlong *system_manage_audio_context(longlong audio_context_pool, longlong *context_handle, uint64_t pool_size, uint64_t context_flags,
+             ulonglong context_index)
 
 {
-  longlong system_audio_long_value;
-  ulonglong system_audio_context_index;
-  longlong system_long_handle;
-  uint64_t system_uint_buffer;
+  longlong audio_context_value;
+  ulonglong calculated_context_index;
+  longlong resource_handle;
+  uint64_t memory_buffer;
   
-  system_audio_context_index = system_param_ % (ulonglong)*(uint *)(param1 + SYSTEM_CONFIG_DATA_SIZE_16);
-  system_long_handle = func_0x0001800694c0(param1,*(uint64_t *)(*(longlong *)(param1 + 8) + system_audio_context_index * 8),
-                              param1);
-  if (system_long_handle == 0) {
-    system_function_0263(param1 + SYSTEM_RESOURCE_BLOCK_OFFSET_20,&system_param_,*(uint32_t *)(param1 + SYSTEM_CONFIG_DATA_SIZE_16),
-                  *(uint32_t *)(param1 + 0x18),1);
-    system_long_handle = system_allocate_resource_block(system_context_memory_pool,0x128,*(uint8_t *)(param1 + 0x2c));
-    system_function_0041(system_long_handle,param1);
-    *(uint64_t *)(system_long_handle + 0x118) = 0;
-    *(uint64_t *)(system_long_handle + 0x120) = 0;
-    if ((char)system_param_ != '\0') {
-      system_uint_buffer = system_allocate_memory_context(system_context_memory_pool,(ulonglong)system_param_._4_4_ * 8 + 8,8,
-                            *(uint8_t *)(param1 + 0x2c));
+  calculated_context_index = context_index % (ulonglong)*(uint *)(audio_context_pool + SYSTEM_CONFIG_DATA_SIZE_16);
+  resource_handle = func_0x0001800694c0(audio_context_pool,*(uint64_t *)(*(longlong *)(audio_context_pool + 8) + calculated_context_index * 8),
+                              audio_context_pool);
+  if (resource_handle == 0) {
+    system_function_0263(audio_context_pool + SYSTEM_RESOURCE_BLOCK_OFFSET_20,&context_index,*(uint32_t *)(audio_context_pool + SYSTEM_CONFIG_DATA_SIZE_16),
+                  *(uint32_t *)(audio_context_pool + 0x18),1);
+    resource_handle = system_allocate_resource_block(system_context_memory_pool,0x128,*(uint8_t *)(audio_context_pool + 0x2c));
+    system_function_0041(resource_handle,audio_context_pool);
+    *(uint64_t *)(resource_handle + 0x118) = 0;
+    *(uint64_t *)(resource_handle + 0x120) = 0;
+    if ((char)context_index != '\0') {
+      memory_buffer = system_allocate_memory_context(system_context_memory_pool,(ulonglong)context_index._4_4_ * 8 + 8,8,
+                            *(uint8_t *)(audio_context_pool + 0x2c));
                     // WARNING: Subroutine does not return
-      memset(system_uint_buffer,0,(ulonglong)system_param_._4_4_ * 8);
+      memset(memory_buffer,0,(ulonglong)context_index._4_4_ * 8);
     }
-    *(uint64_t *)(system_long_handle + 0x120) = *(uint64_t *)(*(longlong *)(param1 + 8) + system_audio_context_index * 8);
-    *(longlong *)(*(longlong *)(param1 + 8) + system_audio_context_index * 8) = system_long_handle;
-    *(longlong *)(param1 + 0x18) = *(longlong *)(param1 + 0x18) + 1;
-    system_audio_long_value = *(longlong *)(param1 + 8);
-    *param1 = system_long_handle;
-    param1[1] = system_audio_long_value + system_audio_context_index * 8;
-    *(uint8_t *)(param1 + 2) = 1;
+    *(uint64_t *)(resource_handle + 0x120) = *(uint64_t *)(*(longlong *)(audio_context_pool + 8) + calculated_context_index * 8);
+    *(longlong *)(*(longlong *)(audio_context_pool + 8) + calculated_context_index * 8) = resource_handle;
+    *(longlong *)(audio_context_pool + 0x18) = *(longlong *)(audio_context_pool + 0x18) + 1;
+    audio_context_value = *(longlong *)(audio_context_pool + 8);
+    *context_handle = resource_handle;
+    context_handle[1] = audio_context_value + calculated_context_index * 8;
+    *(uint8_t *)(context_handle + 2) = 1;
   }
   else {
-    system_audio_long_value = *(longlong *)(param1 + 8);
-    *param1 = system_long_handle;
-    param1[1] = system_audio_long_value + system_audio_context_index * 8;
-    *(uint8_t *)(param1 + 2) = 0;
+    audio_context_value = *(longlong *)(audio_context_pool + 8);
+    *context_handle = resource_handle;
+    context_handle[1] = audio_context_value + calculated_context_index * 8;
+    *(uint8_t *)(context_handle + 2) = 0;
   }
-  return param1;
+  return context_handle;
 }
 
 
@@ -37737,25 +37776,37 @@ longlong system_function_0040(longlong *param1,longlong *param1,int param1,uint6
 
 
 uint64_t *
-system_function_0041(uint64_t *param1,longlong param1,uint64_t param1,uint64_t param1)
+/**
+ * @brief 系统资源句柄初始化函数
+ * 
+ * 初始化系统资源句柄的数据结构，设置资源池和配置信息。
+ * 该函数负责配置资源句柄的基础数据，包括动画池、引擎配置和内存池。
+ * 
+ * @param resource_handle 资源句柄指针
+ * @param context_id 上下文ID
+ * @param config_size 配置大小
+ * @param init_flags 初始化标志
+ * @return 资源句柄指针
+ */
+uint64_t *system_initialize_resource_handle(uint64_t *resource_handle, longlong context_id, uint64_t config_size, uint64_t init_flags)
 
 {
-  void **data_pointer;
+  void **memory_pool_pointer;
   
-  *param1 = &system_data_animation_pool_base;
-  param1[1] = 0;
-  *(uint32_t *)(param1 + 2) = 0;
-  *param1 = &system_engine_config_ptr;
-  param1[1] = param1 + 3;
-  *(uint32_t *)(param1 + 2) = 0;
-  *(uint8_t *)(param1 + 3) = 0;
-  *(uint32_t *)(param1 + 2) = *(uint32_t *)(param1 + SYSTEM_CONFIG_DATA_SIZE_16);
-  data_pointer = &system_data_memory_pool098bc73;
-  if (*(void ***)(param1 + 8) != (void **)0x0) {
-    data_pointer = *(void ***)(param1 + 8);
+  *resource_handle = &system_data_animation_pool_base;
+  resource_handle[1] = 0;
+  *(uint32_t *)(resource_handle + 2) = 0;
+  *resource_handle = &system_engine_config_ptr;
+  resource_handle[1] = resource_handle + 3;
+  *(uint32_t *)(resource_handle + 2) = 0;
+  *(uint8_t *)(resource_handle + 3) = 0;
+  *(uint32_t *)(resource_handle + 2) = *(uint32_t *)(resource_handle + SYSTEM_CONFIG_DATA_SIZE_16);
+  memory_pool_pointer = &system_data_memory_pool098bc73;
+  if (*(void ***)(resource_handle + 8) != (void **)0x0) {
+    memory_pool_pointer = *(void ***)(resource_handle + 8);
   }
-  strcpy_s(param1[1],SYSTEM_CONFIG_DATA_SIZE_160,data_pointer,param1,SYSTEM_INVALID_HANDLE);
-  return param1;
+  strcpy_s(resource_handle[1],SYSTEM_CONFIG_DATA_SIZE_160,memory_pool_pointer,resource_handle,SYSTEM_INVALID_HANDLE);
+  return resource_handle;
 }
 
 
@@ -37818,14 +37869,26 @@ longlong system_function_0044(longlong param1,ulonglong param1,uint64_t param1,u
 
 
 uint64_t *
-system_function_0045(uint64_t *param1,ulonglong param1,uint64_t param1,uint64_t param1)
+/**
+ * @brief 系统动画池初始化函数
+ * 
+ * 初始化系统动画池的数据结构，设置动画资源的基础配置。
+ * 该函数负责配置动画池的指针和内存管理。
+ * 
+ * @param animation_pool 动画池指针
+ * @param pool_size 池大小
+ * @param init_flags 初始化标志
+ * @param context_id 上下文ID
+ * @return 动画池指针
+ */
+uint64_t *system_initialize_animation_pool(uint64_t *animation_pool, ulonglong pool_size, uint64_t init_flags, uint64_t context_id)
 
 {
-  *param1 = &system_data_animation_pool_base;
-  if ((param1 & 1) != 0) {
-    free(param1,0x118,param1,param1,SYSTEM_INVALID_HANDLE);
+  *animation_pool = &system_data_animation_pool_base;
+  if ((animation_pool & 1) != 0) {
+    free(animation_pool,0x118,animation_pool,animation_pool,SYSTEM_INVALID_HANDLE);
   }
-  return param1;
+  return animation_pool;
 }
 
 
