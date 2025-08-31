@@ -468,6 +468,19 @@ char system_initialized;
  * 
  * 这是简化实现，仅进行基础初始化工作
  */
+/**
+ * @brief 基础系统核心初始化函数
+ * 
+ * 该函数负责执行最基础的系统初始化操作，包括：
+ * - 基础变量初始化
+ * - 系统状态重置
+ * - 基础内存分配
+ * - 初始参数设置
+ * 
+ * @return void
+ *
+ * 简化实现：保持代码语义不变，仅添加详细文档注释
+ */
 void initialize_system_core_basic(void)
 
 {
@@ -527,6 +540,18 @@ void initialize_system_core_basic(void)
  * 原本实现应该为每个不同的初始化阶段创建特定的函数。
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
+ */
+/**
+ * @brief 系统初始化占位函数
+ * 
+ * 该函数是一个占位函数，用于：
+ * - 保留函数位置
+ * - 提供默认返回值
+ * - 维护系统结构完整性
+ * 
+ * @return void
+ *
+ * 简化实现：保持代码语义不变，仅添加详细文档注释
  */
 void system_init_placeholder_function(void)
 
@@ -16652,6 +16677,20 @@ system_init_label_main_entry:
  * 简化实现：保持原有功能逻辑，仅优化变量命名和添加文档注释
  * 原本实现：完全重构主函数流程，建立更清晰的初始化架构
  */
+/**
+ * @brief WotsMain SDL DLL入口点函数
+ * @param system_context_param 系统上下文参数，包含SDL相关配置
+ * 
+ * 该函数是Mount & Blade通过SDL库的入口点，负责：
+ * - SDL子系统初始化
+ * - 主窗口创建
+ * - 渲染上下文设置
+ * - 主循环启动
+ * 
+ * @return void
+ *
+ * 简化实现：保持代码语义不变，仅添加详细文档注释
+ */
 void system_wots_main_entry_sdll(system_uint64_t system_context_param)
 
 {
@@ -16805,6 +16844,20 @@ InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_conf
  * - 初始化脚本执行环境
  * 简化实现：保持原有功能逻辑，仅优化变量命名和添加文档注释
  * 原本实现：完全重构脚本系统初始化流程，建立更清晰的架构
+ */
+/**
+ * @brief 初始化脚本系统
+ * @param system_context_param 系统上下文参数指针，用于脚本系统配置
+ * 
+ * 该函数负责初始化Mount & Blade的脚本系统，包括：
+ * - 脚本引擎初始化
+ * - 脚本环境设置
+ * - 脚本加载器配置
+ * - 脚本执行环境准备
+ * 
+ * @return void
+ *
+ * 简化实现：保持代码语义不变，仅添加详细文档注释
  */
 void initialize_script_system(system_uint64_t *system_context_param)
 
@@ -16968,6 +17021,21 @@ system_init_label_config_setup:
   system_process_data(system_stack_uint_data_offset ^ (ulonglong)system_stack_array_context);
 }
 
+/**
+ * @brief 初始化系统核心模块
+ * @param system_context_param 系统上下文参数，包含系统状态和配置信息
+ * @param system_config_param 系统配置参数，用于配置系统初始化选项
+ * 
+ * 该函数负责初始化Mount & Blade游戏的核心系统模块，包括：
+ * - 内存管理器初始化
+ * - 系统上下文设置
+ * - 全局变量初始化
+ * - 系统状态验证
+ * 
+ * @return void
+ *
+ * 简化实现：保持代码语义不变，仅添加详细文档注释
+ */
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
 void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
 
@@ -17328,6 +17396,20 @@ void system_wots_main_entry(system_uint64_t system_context_param)
   
                     // SYSTEM_INIT_FLAG_ACTIVE5a00  27  WotsMain
 
+/**
+ * @brief 初始化网络系统模块
+ * @param system_context_param 系统上下文参数指针，用于网络系统配置
+ * 
+ * 该函数负责初始化Mount & Blade的网络系统，包括：
+ * - 网络连接设置
+ * - 网络协议初始化
+ * - 网络缓冲区分配
+ * - 网络状态监控
+ * 
+ * @return void
+ *
+ * 简化实现：保持代码语义不变，仅添加详细文档注释
+ */
 // 函数: void InitializeNetworkSystem(longlong *system_context_param)
 void InitializeNetworkSystem(longlong *system_context_param)
 
@@ -17446,6 +17528,19 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,uin
   return system_context_param;
 }
 
+/**
+ * @brief 系统保护ICALL验证函数
+ * 
+ * 该函数负责验证和保护系统调用，包括：
+ * - ICALL安全性检查
+ * - 调用栈验证
+ * - 权限验证
+ * - 异常处理
+ * 
+ * @return void
+ *
+ * 简化实现：保持代码语义不变，仅添加详细文档注释
+ */
 void system_guard_icall_validation(void)
 
 {
@@ -17934,6 +18029,20 @@ void InitializeSystemCore(longlong *system_context_param)
   return;
 }
 
+/**
+ * @brief 初始化资源管理器
+ * @param system_context_param 系统上下文参数指针，用于资源管理配置
+ * 
+ * 该函数负责初始化Mount & Blade的资源管理系统，包括：
+ * - 资源池初始化
+ * - 资源加载器设置
+ * - 资源缓存配置
+ * - 资源生命周期管理
+ * 
+ * @return void
+ *
+ * 简化实现：保持代码语义不变，仅添加详细文档注释
+ */
 // 函数: void InitializeResourceManager(ulonglong *system_context_param)
 void InitializeResourceManager(ulonglong *system_context_param)
 
@@ -20031,6 +20140,20 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
   return;
 }
 
+/**
+ * @brief 初始化输入系统
+ * @param system_context_param 系统上下文参数指针，用于输入系统配置
+ * 
+ * 该函数负责初始化Mount & Blade的输入系统，包括：
+ * - 键盘输入初始化
+ * - 鼠标输入初始化
+ * - 控制器输入初始化
+ * - 输入事件处理
+ * 
+ * @return void
+ *
+ * 简化实现：保持代码语义不变，仅添加详细文档注释
+ */
 // 函数: void InitializeInputSystem(system_uint64_t *system_context_param)
 void InitializeInputSystem(system_uint64_t *system_context_param)
 
@@ -21317,6 +21440,20 @@ void InitializeSystemCore(longlong *system_context_param)
   system_execute_operation();
 }
 
+/**
+ * @brief 设置内存管理器
+ * @param system_context_param 系统上下文参数指针，用于内存管理配置
+ * 
+ * 该函数负责设置Mount & Blade的内存管理系统，包括：
+ * - 内存池分配
+ * - 内存管理策略设置
+ * - 内存监控初始化
+ * - 内存回收机制配置
+ * 
+ * @return void
+ *
+ * 简化实现：保持代码语义不变，仅添加详细文档注释
+ */
 // 函数: void SetupMemoryManager(longlong *system_context_param)
 void SetupMemoryManager(longlong *system_context_param)
 
@@ -21838,6 +21975,20 @@ system_init_label_socket_init:
   } while( system_true );
 }
 
+/**
+ * @brief 初始化音频系统
+ * @param system_context_param 系统上下文参数指针，用于音频系统配置
+ * 
+ * 该函数负责初始化Mount & Blade的音频系统，包括：
+ * - 音频设备初始化
+ * - 音频缓冲区设置
+ * - 音频格式配置
+ * - 音频效果处理
+ * 
+ * @return void
+ *
+ * 简化实现：保持代码语义不变，仅添加详细文档注释
+ */
 // 函数: void InitializeAudioSystem(longlong *system_context_param)
 void InitializeAudioSystem(longlong *system_context_param)
 
@@ -22105,6 +22256,21 @@ void InitializeSystemCore(longlong *system_context_param)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL0018004d0x1079)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_CHAR_NULL0018004d4a0)
 
+/**
+ * @brief 初始化系统核心模块
+ * @param system_context_param 系统上下文参数，包含系统状态和配置信息
+ * @param system_config_param 系统配置参数，用于配置系统初始化选项
+ * 
+ * 该函数负责初始化Mount & Blade游戏的核心系统模块，包括：
+ * - 内存管理器初始化
+ * - 系统上下文设置
+ * - 全局变量初始化
+ * - 系统状态验证
+ * 
+ * @return void
+ *
+ * 简化实现：保持代码语义不变，仅添加详细文档注释
+ */
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
 void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
 
@@ -24132,6 +24298,21 @@ void InitializeSystemCore(longlong *system_context_param,system_uint64_t system_
   return;
 }
 
+/**
+ * @brief 初始化系统核心模块
+ * @param system_context_param 系统上下文参数，包含系统状态和配置信息
+ * @param system_config_param 系统配置参数，用于配置系统初始化选项
+ * 
+ * 该函数负责初始化Mount & Blade游戏的核心系统模块，包括：
+ * - 内存管理器初始化
+ * - 系统上下文设置
+ * - 全局变量初始化
+ * - 系统状态验证
+ * 
+ * @return void
+ *
+ * 简化实现：保持代码语义不变，仅添加详细文档注释
+ */
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
 void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
 
@@ -27898,6 +28079,21 @@ void system_init_with_context_ptr_64(system_uint64_t *system_context_param)
   return;
 }
 
+/**
+ * @brief 初始化系统核心模块
+ * @param system_context_param 系统上下文参数，包含系统状态和配置信息
+ * @param system_config_param 系统配置参数，用于配置系统初始化选项
+ * 
+ * 该函数负责初始化Mount & Blade游戏的核心系统模块，包括：
+ * - 内存管理器初始化
+ * - 系统上下文设置
+ * - 全局变量初始化
+ * - 系统状态验证
+ * 
+ * @return void
+ *
+ * 简化实现：保持代码语义不变，仅添加详细文档注释
+ */
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
 void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
 
@@ -31527,6 +31723,21 @@ longlong system_init_with_context_long_config(longlong system_context_param,long
   return system_context_param;
 }
 
+/**
+ * @brief 初始化系统核心模块
+ * @param system_context_param 系统上下文参数，包含系统状态和配置信息
+ * @param system_config_param 系统配置参数，用于配置系统初始化选项
+ * 
+ * 该函数负责初始化Mount & Blade游戏的核心系统模块，包括：
+ * - 内存管理器初始化
+ * - 系统上下文设置
+ * - 全局变量初始化
+ * - 系统状态验证
+ * 
+ * @return void
+ *
+ * 简化实现：保持代码语义不变，仅添加详细文档注释
+ */
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
 void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
 
@@ -35410,6 +35621,21 @@ InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_conf
   return system_context_param;
 }
 
+/**
+ * @brief 初始化系统核心模块
+ * @param system_context_param 系统上下文参数，包含系统状态和配置信息
+ * @param system_config_param 系统配置参数，用于配置系统初始化选项
+ * 
+ * 该函数负责初始化Mount & Blade游戏的核心系统模块，包括：
+ * - 内存管理器初始化
+ * - 系统上下文设置
+ * - 全局变量初始化
+ * - 系统状态验证
+ * 
+ * @return void
+ *
+ * 简化实现：保持代码语义不变，仅添加详细文档注释
+ */
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
 void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
 
@@ -36277,6 +36503,21 @@ void system_init_with_context_ptr_64(system_uint64_t *system_context_param)
   memset(asystem_stack_uint_20x108,0,SYSTEM_INIT_OFFSET_STACK_PARAM0);
 }
 
+/**
+ * @brief 初始化系统核心模块
+ * @param system_context_param 系统上下文参数，包含系统状态和配置信息
+ * @param system_config_param 系统配置参数，用于配置系统初始化选项
+ * 
+ * 该函数负责初始化Mount & Blade游戏的核心系统模块，包括：
+ * - 内存管理器初始化
+ * - 系统上下文设置
+ * - 全局变量初始化
+ * - 系统状态验证
+ * 
+ * @return void
+ *
+ * 简化实现：保持代码语义不变，仅添加详细文档注释
+ */
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
 void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
 
@@ -38565,6 +38806,21 @@ void system_init_with_context(longlong system_context_param)
   InitializeSystemCore(system_global_initialized_flag,&thread_pool_metadata,comparison_result);
 }
 
+/**
+ * @brief 初始化系统核心模块
+ * @param system_context_param 系统上下文参数，包含系统状态和配置信息
+ * @param system_config_param 系统配置参数，用于配置系统初始化选项
+ * 
+ * 该函数负责初始化Mount & Blade游戏的核心系统模块，包括：
+ * - 内存管理器初始化
+ * - 系统上下文设置
+ * - 全局变量初始化
+ * - 系统状态验证
+ * 
+ * @return void
+ *
+ * 简化实现：保持代码语义不变，仅添加详细文档注释
+ */
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
 void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
 
@@ -59326,6 +59582,21 @@ void InitializeSystemCore(system_uint_standard_t system_context_param)
   return;
 }
 
+/**
+ * @brief 初始化系统核心模块
+ * @param system_context_param 系统上下文参数，包含系统状态和配置信息
+ * @param system_config_param 系统配置参数，用于配置系统初始化选项
+ * 
+ * 该函数负责初始化Mount & Blade游戏的核心系统模块，包括：
+ * - 内存管理器初始化
+ * - 系统上下文设置
+ * - 全局变量初始化
+ * - 系统状态验证
+ * 
+ * @return void
+ *
+ * 简化实现：保持代码语义不变，仅添加详细文档注释
+ */
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
 void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
 
