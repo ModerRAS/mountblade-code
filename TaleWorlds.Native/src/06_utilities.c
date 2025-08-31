@@ -503,17 +503,11 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
  * 
  * 检查系统资源的当前状态，验证其是否处于有效状态。
  * 通过检查资源标志位来验证资源状态，并在需要时激活上下文管理器。
- * 
- * @return 无返回值
- */
-/**
- * @brief 验证资源状态的工具函数
- *
- * 该函数负责检查系统中所有资源的状态，确保资源处于有效状态。
  * 包括内存资源、句柄资源和其他系统资源的完整性检查。
- *
+ * 
  * @note 这是一个简化实现，主要进行函数名的语义化替换工作
  * @note 原本实现：完全重构资源状态验证机制，建立统一的语义化命名规范
+ * @return 无返回值
  */
 void utility_validate_resource_state(void)
 {
@@ -562,7 +556,6 @@ uint64_t utility_process_resource_pointer(int64_t utility_context_parameter_ptr)
     char utility_char_buffer_array[16];
     uint8_t utility_buffer_workspace[512];
     int64_t utility_resource_pointer;
-    int utility_operation_result;
     
     utility_resource_handle_value = utility_handle_service_request(*(uint32_t *)(utility_context_parameter_ptr + UTILITY_THREAD_HANDLE_OFFSET), &utility_buffer_workspace);
     if ((int)utility_resource_handle_value != UTILITY_BOOLEAN_FALSE) {
@@ -635,14 +628,6 @@ uint64_t utility_process_resource_pointer(int64_t utility_context_parameter_ptr)
     }
     return 0;
 }
-/**
- * 处理主要资源请求
- * 负责处理系统的主要资源分配请求，包括内存、线程、事件等资源
- * 
- * @param resource_count 请求参数，包含资源类型和数量信息
- * @param utility_context_parameter_ptr 输入上下文，包含请求的环境信息
- * @return 资源分配结果，0表示失败，非0表示成功分配的资源句柄
- */
 /**
  * @brief 资源请求处理器
  * 功能：处理资源分配请求，管理资源池和分配策略
