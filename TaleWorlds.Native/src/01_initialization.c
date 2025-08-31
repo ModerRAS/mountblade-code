@@ -34794,7 +34794,7 @@ void system_function_060610(uint64_t *system_param_1,uint64_t system_param_2,uin
     _Mtx_destroy_in_situ();
     _Cnd_destroy_in_situ(system_param_1 + 0x2a);
     _Mtx_destroy_in_situ();
-    FUN_18020f530();
+    system_finalize_audio_context();
     if (system_param_1[0xe] != 0) {
       *(uint64_t *)(system_param_1[0xe] + 0x10) = 0;
       *(uint8_t *)(system_param_1[0xe] + 8) = 1;
@@ -34812,13 +34812,13 @@ void system_function_060610(uint64_t *system_param_1,uint64_t system_param_2,uin
 
 
 
-uint64_t FUN_180060630(uint64_t system_param_1,ulonglong system_param_2,uint64_t system_param_3,uint64_t system_param_4)
+uint64_t system_initialize_audio_stream(uint64_t system_param_1,ulonglong system_param_2,uint64_t system_param_3,uint64_t system_param_4)
 
 {
   uint64_t system_uint_value;
   
   system_uint_value = 0xfffffffffffffffe;
-  FUN_18020e6c0();
+  system_activate_audio_stream();
   if ((system_param_2 & 1) != 0) {
     free(system_param_1,0x208,system_param_3,system_param_4,system_uint_value);
   }
@@ -34865,7 +34865,7 @@ void system_function_0606e0(longlong *system_param_1)
     do {
       system_char_context = (**(code **)(*system_param_1 + 0x20))(system_param_1,1);
       if (system_char_context == '\0') {
-        FUN_18064e0d0(*(uint64_t *)(*system_long_data_ptr + 0x10),0);
+        system_cleanup_audio_stream(*(uint64_t *)(*system_long_data_ptr + 0x10),0);
         system_stack_ptr = system_param_1 + 0x33;
         cStack_18 = 0;
         system_comparison_result = _Mtx_lock();
@@ -34895,7 +34895,7 @@ SYSTEM_LABEL:
 
 
 
-uint64_t FUN_1800607f0(longlong system_param_1,char system_param_2)
+uint64_t system_configure_audio_stream(longlong system_param_1,char system_param_2)
 
 {
   longlong system_long_value;
@@ -34972,7 +34972,7 @@ SYSTEM_LABEL:
 
 
 
-bool FUN_1800609c0(longlong system_param_1,uint64_t system_param_2,uint64_t system_param_3,uint64_t system_param_4)
+bool system_validate_audio_stream(longlong system_param_1,uint64_t system_param_2,uint64_t system_param_3,uint64_t system_param_4)
 
 {
   longlong *system_long_data_ptr;
@@ -34981,7 +34981,7 @@ bool FUN_1800609c0(longlong system_param_1,uint64_t system_param_2,uint64_t syst
   
   plStackX_8 = (longlong *)0x0;
   WaitForSingleObject(**(uint64_t **)(system_param_1 + 0x1f0),1,system_param_3,system_param_4,0xfffffffffffffffe);
-  system_char_context = FUN_180060e40(*(uint64_t *)(system_param_1 + 0x60),system_param_1 + 0x78,&plStackX_8);
+  system_char_context = system_create_audio_stream_context(*(uint64_t *)(system_param_1 + 0x60),system_param_1 + 0x78,&plStackX_8);
   system_long_data_ptr = plStackX_8;
   if (system_char_context != '\0') {
     (**(code **)(*plStackX_8 + 0x60))(plStackX_8);
@@ -34995,7 +34995,7 @@ bool FUN_1800609c0(longlong system_param_1,uint64_t system_param_2,uint64_t syst
 
 
 
-ulonglong FUN_180060a50(longlong *system_param_1,uint *system_param_2)
+ulonglong system_process_audio_data(longlong *system_param_1,uint *system_param_2)
 
 {
   uint system_uint_value;
@@ -35088,7 +35088,7 @@ ulonglong FUN_180060a50(longlong *system_param_1,uint *system_param_2)
 
 
 
-longlong * FUN_180060b80(longlong *system_param_1,longlong *system_param_2)
+longlong * system_get_audio_buffer_pointer(longlong *system_param_1,longlong *system_param_2)
 
 {
   longlong system_long_value;
@@ -35106,7 +35106,7 @@ longlong * FUN_180060b80(longlong *system_param_1,longlong *system_param_2)
 
 
 
-longlong * FUN_180060bd0(longlong *system_param_1)
+longlong * system_release_audio_buffer_pointer(longlong *system_param_1)
 
 {
   if ((longlong *)*system_param_1 != (longlong *)0x0) {
@@ -35153,7 +35153,7 @@ uint64_t FUN_180060c60(longlong system_param_1,uint64_t system_param_2)
                 system_long_data_ptr[1] & *system_long_data_ptr - 1U) * 8);
       system_long_status = *(longlong *)(system_long_handle + 8);
       system_long_data_ptr = (longlong *)(system_long_status + (ulonglong)((uint)system_uint_buffer & 0x1f) * 8);
-      FUN_180060b80(system_param_2,system_long_data_ptr);
+      system_get_audio_buffer_pointer(system_param_2,system_long_data_ptr);
       system_long_data_ptr = (longlong *)*system_long_data_ptr;
       if (system_long_data_ptr != (longlong *)0x0) {
         (**(code **)(*system_long_data_ptr + 0x38))();
@@ -35195,7 +35195,7 @@ uint64_t FUN_180060c60(longlong system_param_1,uint64_t system_param_2)
                (((system_uint_buffer & 0xffffffffffffffe0) - *(longlong *)(system_long_data_ptr[2] + system_long_data_ptr[1] * 0x10) >> 5) +
                 system_long_data_ptr[1] & *system_long_data_ptr - 1U) * 0x10);
       system_long_data_ptr = (longlong *)(system_long_handle + system_local_uint * 8);
-      FUN_180060b80(system_param_2,system_long_data_ptr);
+      system_get_audio_buffer_pointer(system_param_2,system_long_data_ptr);
       system_long_data_ptr = (longlong *)*system_long_data_ptr;
       if (system_long_data_ptr != (longlong *)0x0) {
         (**(code **)(*system_long_data_ptr + 0x38))();
@@ -35235,7 +35235,7 @@ uint64_t FUN_180060d76(void)
            (((system_uint_context & 0xffffffffffffffe0) - **(longlong **)(system_context_ptr[3] + system_context_ptr[1] * 8) >> 5) +
             system_context_ptr[1] & *system_context_ptr - 1U) * 8);
   system_long_status = *(longlong *)(system_resource_handle + 8);
-  FUN_180060b80();
+  system_get_audio_buffer_pointer();
   system_context_ptr = *(longlong **)(system_long_status + (ulonglong)((uint)system_uint_context & 0x1f) * 8);
   if (system_context_ptr != (longlong *)0x0) {
     (**(code **)(*system_context_ptr + 0x38))();
@@ -35268,7 +35268,7 @@ uint8_t FUN_180060e22(void)
 
 
 
-uint64_t FUN_180060e40(uint64_t *system_param_1,longlong system_param_2,uint64_t system_param_3)
+uint64_t system_create_audio_stream_context(uint64_t *system_param_1,longlong system_param_2,uint64_t system_param_3)
 
 {
   char system_status_flag;
@@ -35279,7 +35279,7 @@ uint64_t FUN_180060e40(uint64_t *system_param_1,longlong system_param_2,uint64_t
   longlong *system_long_status_ptr;
   
   if (((*(longlong *)(system_param_2 + 0x18) == 0) || (*(int *)(system_param_2 + 4) != *(int *)(system_param_1 + 0x4c)))
-     && (system_status_flag = FUN_180060a50(), system_status_flag == '\0')) {
+     && (system_status_flag = system_process_audio_data(), system_status_flag == '\0')) {
     return 0;
   }
   system_long_status_ptr = (longlong *)0x0;
@@ -35343,7 +35343,7 @@ bool FUN_180060f50(longlong system_param_1,uint64_t system_param_2,uint64_t syst
   longlong *plStackX_8;
   
   plStackX_8 = (longlong *)0x0;
-  system_char_context = FUN_180060e40(*(uint64_t *)(system_param_1 + 0x60),system_param_1 + 0x78,&plStackX_8,system_param_4,
+  system_char_context = system_create_audio_stream_context(*(uint64_t *)(system_param_1 + 0x60),system_param_1 + 0x78,&plStackX_8,system_param_4,
                         0xfffffffffffffffe);
   system_long_data_ptr = plStackX_8;
   if (system_char_context != '\0') {
@@ -38104,7 +38104,7 @@ SYSTEM_LABEL:
     psystem_stack_uint_ptr = &system_stack_ptr;
     system_uint_config = system_initialize_ui_components(&system_stack_ptr,&system_stack_ptr);
     FUN_180063820(system_uint_config);
-    FUN_180063b30(&system_stack_ptr,system_param_);
+    system_monitor_audio_device_context(&system_stack_ptr,system_param_);
     FUN_180063cf0(&system_stack_ptr);
     system_initialize_render_state(&system_stack_ptr);
     FUN_180627e10(&system_stack_ptr,&system_stack_uint_ptr,&system_memory_config_ptr);
@@ -39825,7 +39825,7 @@ void system_function_0693f0(longlong system_param_1,longlong system_param_2)
 
 
 
-longlong FUN_180069470(longlong system_param_1,ulonglong system_param_2,uint64_t system_param_3,uint64_t system_param_4)
+longlong system_anycast_audio_device_context(longlong system_param_1,ulonglong system_param_2,uint64_t system_param_3,uint64_t system_param_4)
 
 {
   *(void ***)(system_param_1 + 8) = &system_unknown_18098bcb0;
