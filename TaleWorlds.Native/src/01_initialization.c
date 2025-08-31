@@ -177,10 +177,13 @@ static system_uint64_t *system_buffer_pointer = NULL;
 
 /**
  * @brief 系统初始化状态检查函数
- * @return int 系统初始化状态码
+ * @return int 系统初始化状态码，0表示已初始化，-1表示未初始化或错误
  * 
  * 该函数检查系统的初始化状态，验证系统是否已经正确初始化。
- * 这是简化实现，提供基本的初始化状态检查功能。
+ * 通过检查全局上下文指针和初始化状态标志来确定系统状态。
+ * 
+ * @note 这是简化实现，提供基本的初始化状态检查功能
+ * @return 返回状态码：0=成功，-1=失败
  */
 int system_check_initialization_status(void)
 {
@@ -272,7 +275,7 @@ void system_initialize_with_context(int64_t context_param)
 void system_initialize_core_context(void)
 {
     if (global_system_context_pointer == NULL) {
-        global_system_context_pointer = (system_uint64_t *)malloc(INIT_STANDARD_COMPARE_SIZE);
+        global_system_context_pointer = (system_uint64_t *)malloc(INIT_SIZE_STANDARD_COMPARE);
         if (global_system_context_pointer != NULL) {
             system_initialization_status = 1;
         }
