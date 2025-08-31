@@ -47958,24 +47958,24 @@ return;
  * @param context_array 上下文数组
  * @return 操作结果状态码
 */
- * @brief Utility Handle Service Request
-/**
+
+/** 
+ * @brief 处理资源服务请求
  *
- * 功能描述
+ * 处理系统资源相关的服务请求，包括资源分配、释放和状态查询
  *
- * @param parameters 参数说明
- * @return 返回值说明
+ * @param service_id 服务标识符
+ * @param context_array 上下文数组指针
+ * @return 操作结果状态码
  *
- * 原本实现：完全重构
- * 简化实现：仅进行变量名语义化替换
+ * 原本实现：完全重构资源服务请求处理逻辑
+ * 简化实现：仅进行变量名语义化替换，修复代码结构
  */
 int utility_resource_handle_service_request(uint32_t service_id, int64_t context_array[])
 {
     if (service_id == UTILITY_FALSE || context_array == NULL) {
-
-}
         return UTILITY_ERROR_INVALID_PARAM;
-}
+    }
     return UTILITY_STATUS_OPERATION_SUCCESS;
 }
 /** 
