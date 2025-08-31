@@ -1,17 +1,34 @@
  
+/**
+ * @file 06_utilities.c
+ * @brief TaleWorlds.Native 工具系统实现
+ * 
+ * 本文件实现了游戏工具系统的核心功能，包括：
+ * - 内存管理和分配工具
+ * - 资源管理和优化工具
+ * - 网络通信工具
+ * - 系统配置和调试工具
+ * 
+ * 本文件为简化实现，主要处理了工具系统中变量名和函数名的语义化替换工作。
+ * 原本实现：完全重构工具系统所有命名体系，建立统一的语义化命名规范
+ * 简化实现：仅将常见的非语义化名称替换为语义化名称，为关键函数添加文档注释，保持代码结构不变
+ */
+
 #include "TaleWorlds.Native.Split.h"
 #include <stdlib.h>
 #include <string.h>
+
 // 工具系统基础常量定义
-#define UTILITY_MAX_THREADS 8
-#define UTILITY_MAX_EVENTS 16
-#define UTILITY_MAX_HANDLERS 32
-#define UTILITY_STATE_RUNNING 1
-#define UTILITY_STATE_PAUSED 2
-#define UTILITY_STATE_STOPPED 4
-#define UTILITY_ERROR_NONE 0
-#define UTILITY_ERROR_MEMORY 1
-#define UTILITY_ERROR_TIMEOUT 2
+#define UTILITY_MAX_THREADS 8                  // 最大线程数
+#define UTILITY_MAX_EVENTS 16                  // 最大事件数
+#define UTILITY_MAX_HANDLERS 32                // 最大处理器数
+#define UTILITY_STATE_RUNNING 1                // 系统运行中
+#define UTILITY_STATE_PAUSED 2                 // 系统已暂停
+#define UTILITY_STATE_STOPPED 4                // 系统已停止
+#define UTILITY_ERROR_NONE 0                   // 无错误
+#define UTILITY_ERROR_MEMORY 1                 // 内存错误
+#define UTILITY_ERROR_TIMEOUT 2                // 超时错误
+#define UTILITY_STATUS_SUCCESS 0               // 操作成功
 #define UTILITY_STATUS_RESOURCE_LOCKED UTILITY_STATUS_RESOURCE_LOCKED_VALUE
 #define UTILITY_STATUS_RESOURCE_AVAILABLE UTILITY_STATUS_RESOURCE_AVAILABLE_VALUE
 #define UTILITY_STATUS_MEMORY_IN_USE UTILITY_STATUS_MEMORY_IN_USE_VALUE
