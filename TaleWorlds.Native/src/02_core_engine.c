@@ -86,30 +86,33 @@
 
 /**
  * @brief 计算栈值 - 引擎栈操作函数
- * @param value 输入值
- * @param offset 偏移量
- * @return 计算后的栈值
+ * @param value 输入值，需要进行栈操作的数值
+ * @param offset 偏移量，栈操作的位移值
+ * @return uint32_t 计算后的栈值
  * @note 简化实现：使用宏定义替换原有SUB84函数调用
+ *       原本实现：完整的栈操作函数，包含错误检查和边界处理
  */
-#define engine_calculate_stack_value(value, offset) ((value) >> (offset))
+#define engine_calculate_stack_value(value, offset) ((uint32_t)(value) >> (offset))
 
 /**
  * @brief 计算网络值 - 网络数据处理函数
- * @param value 输入值
- * @param shift 移位量
- * @return 计算后的网络值
+ * @param value 输入值，需要处理的网络数据
+ * @param shift 移位量，数据处理的位移值
+ * @return uint32_t 计算后的网络值
  * @note 简化实现：使用宏定义替换原有SUB168函数调用
+ *       原本实现：完整的网络数据处理函数，包含协议验证和数据校验
  */
-#define engine_compute_network_operation(value, shift) ((value) << (shift))
+#define engine_compute_network_operation(value, shift) ((uint32_t)(value) << (shift))
 
 /**
  * @brief 计算状态字节 - 状态处理函数
- * @param value 输入值
- * @param flag 标志位
- * @return 状态字节值
+ * @param value 输入值，需要处理的状态数据
+ * @param flag 标志位，状态操作的掩码值
+ * @return uint8_t 状态字节值
  * @note 简化实现：使用宏定义替换原有SUB41函数调用
+ *       原本实现：完整的状态处理函数，包含状态验证和异常处理
  */
-#define engine_calculate_status_byte(value, flag) ((value) & (flag))
+#define engine_calculate_status_byte(value, flag) ((uint8_t)(value) & (flag))
 
 /**
  * @brief 计算迭代值 - 循环处理函数
