@@ -1979,7 +1979,7 @@ void system_initialize_memory_handler(void)
  * 使用memcmp比较配置数据，维护配置树的有序性。
  * 
  * 原本实现：完全重构配置管理系统所有命名体系，建立统一的语义化命名规范
- * 简化实现：仅将FUN_18002ec70函数名替换为语义化名称，添加基本文档注释，保持代码结构不变
+ * 简化实现：仅将system_initialize_config_type17函数名替换为语义化名称，添加基本文档注释，保持代码结构不变
  */
 void system_config_search_and_insert_handler(void)
 {
@@ -2032,7 +2032,7 @@ void system_config_search_and_insert_handler(void)
  * 与system_config_search_and_insert_handler类似，但处理不同的配置数据。
  * 
  * 原本实现：完全重构配置管理系统所有命名体系，建立统一的语义化命名规范
- * 简化实现：仅将FUN_18002ed70函数名替换为语义化名称，添加基本文档注释，保持代码结构不变
+ * 简化实现：仅将system_initialize_config_type18函数名替换为语义化名称，添加基本文档注释，保持代码结构不变
  */
 void system_config_node_initializer(void)
 {
@@ -2078,7 +2078,16 @@ void system_config_node_initializer(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18002ee70(void)
+/**
+ * @brief 系统配置树节点处理器
+ * 
+ * 处理系统配置树中的第三个配置节点，设置特定的标识符和回调函数。
+ * 使用不同的配置数据模式进行初始化。
+ * 
+ * 原本实现：完全重构配置管理系统所有命名体系，建立统一的语义化命名规范
+ * 简化实现：仅将system_initialize_config_type19函数名替换为语义化名称，添加基本文档注释，保持代码结构不变
+ */
+void system_config_tree_node_handler(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -2122,7 +2131,7 @@ void FUN_18002ee70(void)
   system_config_data_ptr[10] = stack_pointer_18;
   return;
 }
-void FUN_18002ef70(void)
+void system_initialize_config_type20(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -2166,7 +2175,7 @@ void FUN_18002ef70(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18002f070(void)
+void system_initialize_config_type21(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -2210,7 +2219,7 @@ void FUN_18002f070(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_18002f170(void)
+void system_initialize_config_type22(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -2254,7 +2263,7 @@ void FUN_18002f170(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_18002f270(void)
+void system_initialize_config_type23(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -2298,7 +2307,7 @@ void FUN_18002f270(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_18002f370(void)
+void system_initialize_config_type24(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -2342,7 +2351,7 @@ void FUN_18002f370(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18002f470(void)
+void system_initialize_config_type25(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -2386,7 +2395,7 @@ void FUN_18002f470(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_18002f570(void)
+void system_initialize_config_type26(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -2430,7 +2439,7 @@ void FUN_18002f570(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18002f670(void)
+void system_initialize_config_type27(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -2474,7 +2483,7 @@ void FUN_18002f670(void)
   system_config_data_ptr[10] = stack_pointer_18;
   return;
 }
-void FUN_18002f770(void)
+void system_initialize_config_type28(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -2518,7 +2527,7 @@ void FUN_18002f770(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18002f870(void)
+void system_initialize_config_type29(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -2562,7 +2571,7 @@ void FUN_18002f870(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_18002f970(void)
+void system_initialize_config_type30(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -2606,7 +2615,7 @@ void FUN_18002f970(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_18002fa70(void)
+void system_initialize_config_type31(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -2650,7 +2659,7 @@ void FUN_18002fa70(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18002fb70(void)
+void system_initialize_config_type32(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -2694,7 +2703,7 @@ void FUN_18002fb70(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_18002fc70(void)
+void system_initialize_config_type33(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -2738,7 +2747,7 @@ void FUN_18002fc70(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18002fd70(void)
+void system_initialize_config_type34(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -2782,7 +2791,7 @@ void FUN_18002fd70(void)
   system_config_data_ptr[10] = stack_pointer_18;
   return;
 }
-void FUN_18002fe70(void)
+void system_initialize_config_type35(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -2826,7 +2835,7 @@ void FUN_18002fe70(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18002ff70(void)
+void system_initialize_config_type36(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -2870,7 +2879,7 @@ void FUN_18002ff70(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180030070(void)
+void system_initialize_config_type37(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -2914,7 +2923,7 @@ void FUN_180030070(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180030170(void)
+void system_initialize_config_type38(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -2958,7 +2967,7 @@ void FUN_180030170(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180030270(void)
+void system_initialize_config_type39(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -3002,7 +3011,7 @@ void FUN_180030270(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180030370(void)
+void system_initialize_config_type40(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -3046,7 +3055,7 @@ void FUN_180030370(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180030470(void)
+void system_initialize_config_type41(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -3090,7 +3099,7 @@ void FUN_180030470(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180030570(void)
+void system_initialize_config_type42(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -3134,7 +3143,7 @@ void FUN_180030570(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180030670(void)
+void system_initialize_config_type43(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -3178,7 +3187,7 @@ void FUN_180030670(void)
   system_config_data_ptr[10] = stack_pointer_18;
   return;
 }
-void FUN_180030770(void)
+void system_initialize_config_type44(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -3222,7 +3231,7 @@ void FUN_180030770(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180030870(void)
+void system_initialize_config_type45(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -3238,14 +3247,14 @@ void FUN_180030870(void)
   _DAT_180c919e0 = system_utility_function_type1(&puStack_a0);
   return;
 }
-int FUN_180030900(void)
+int system_initialize_config_type46(void)
 {
   longlong system_memory_allocation_result;
   uint64_t in_R9;
   
   _DAT_180bf6750 = &UNK_1809fcc58;
   _DAT_180bf6758 = &DAT_180bf6768;
-void FUN_180031a10(void)
+void system_initialize_system_type1(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -3289,7 +3298,7 @@ void FUN_180031a10(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180031b10(void)
+void system_initialize_system_type2(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -3333,7 +3342,7 @@ void FUN_180031b10(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180031c10(void)
+void system_initialize_system_type3(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -3377,7 +3386,7 @@ void FUN_180031c10(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180031d10(void)
+void system_initialize_system_type4(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -3421,7 +3430,7 @@ void FUN_180031d10(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180031e10(void)
+void system_initialize_system_type5(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -3465,7 +3474,7 @@ void FUN_180031e10(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180031f10(void)
+void system_initialize_system_type6(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -3509,7 +3518,7 @@ void FUN_180031f10(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180032010(void)
+void system_initialize_system_type7(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -3553,7 +3562,7 @@ void FUN_180032010(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180032110(void)
+void system_initialize_system_type8(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -3597,7 +3606,7 @@ void FUN_180032110(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180032210(void)
+void system_initialize_system_type9(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -3641,7 +3650,7 @@ void FUN_180032210(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180032310(void)
+void system_initialize_system_type10(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -3685,7 +3694,7 @@ void FUN_180032310(void)
   system_config_data_ptr[10] = stack_pointer_18;
   return;
 }
-void FUN_180032410(void)
+void system_initialize_system_type11(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -3729,7 +3738,7 @@ void FUN_180032410(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180032510(void)
+void system_initialize_system_type12(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -3745,7 +3754,7 @@ void FUN_180032510(void)
   _DAT_180c91d54 = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_1800325a0(void)
+void system_initialize_system_type13(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -3789,7 +3798,7 @@ void FUN_1800325a0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_1800326a0(void)
+void system_initialize_system_type14(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -3833,7 +3842,7 @@ void FUN_1800326a0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_1800327a0(void)
+void system_initialize_system_type15(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -3877,7 +3886,7 @@ void FUN_1800327a0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800328a0(void)
+void system_initialize_system_type16(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -3921,7 +3930,7 @@ void FUN_1800328a0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_1800329a0(void)
+void system_initialize_system_type17(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -3965,7 +3974,7 @@ void FUN_1800329a0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180032aa0(void)
+void system_initialize_system_type18(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -4009,7 +4018,7 @@ void FUN_180032aa0(void)
   system_config_data_ptr[10] = stack_pointer_18;
   return;
 }
-void FUN_180032ba0(void)
+void system_initialize_system_type19(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -4053,7 +4062,7 @@ void FUN_180032ba0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180032ca0(void)
+void system_initialize_system_type20(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -4069,14 +4078,14 @@ void FUN_180032ca0(void)
   _DAT_180c91d5c = system_utility_function_type1(&puStack_a0);
   return;
 }
-int FUN_180032d30(void)
+int system_initialize_system_type21(void)
 {
   longlong system_memory_allocation_result;
   uint64_t in_R9;
   
   _DAT_180bf7e90 = &UNK_1809fcc58;
   _DAT_180bf7e98 = &DAT_180bf7ea8;
-void FUN_180033780(void)
+void system_initialize_component_type1(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -4092,7 +4101,7 @@ void FUN_180033780(void)
   _DAT_180c91d60 = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_180033810(void)
+void system_initialize_component_type2(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -4108,7 +4117,7 @@ void FUN_180033810(void)
   _DAT_180c91d64 = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_1800338a0(void)
+void system_initialize_component_type3(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -4124,7 +4133,7 @@ void FUN_1800338a0(void)
   _DAT_180c91d68 = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_180033930(void)
+void system_initialize_component_type4(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -4140,7 +4149,7 @@ void FUN_180033930(void)
   _DAT_180c91d6c = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_1800339c0(void)
+void system_initialize_component_type5(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -4156,7 +4165,7 @@ void FUN_1800339c0(void)
   _DAT_180c91d70 = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_180033a50(void)
+void system_initialize_component_type6(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -4200,7 +4209,7 @@ void FUN_180033a50(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180033b50(void)
+void system_initialize_component_type7(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -4244,7 +4253,7 @@ void FUN_180033b50(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180033c50(void)
+void system_initialize_component_type8(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -4288,7 +4297,7 @@ void FUN_180033c50(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180033d50(void)
+void system_initialize_component_type9(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -4332,7 +4341,7 @@ void FUN_180033d50(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180033e50(void)
+void system_initialize_component_type10(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -4376,7 +4385,7 @@ void FUN_180033e50(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180033f50(void)
+void system_initialize_component_type11(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -4420,7 +4429,7 @@ void FUN_180033f50(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180034050(void)
+void system_initialize_component_type12(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -4464,7 +4473,7 @@ void FUN_180034050(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180034150(void)
+void system_initialize_component_type13(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -4508,7 +4517,7 @@ void FUN_180034150(void)
   system_config_data_ptr[10] = stack_pointer_18;
   return;
 }
-void FUN_180034250(void)
+void system_initialize_component_type14(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -4552,7 +4561,7 @@ void FUN_180034250(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180034350(void)
+void system_initialize_component_type15(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -4596,7 +4605,7 @@ void FUN_180034350(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180034450(void)
+void system_initialize_component_type16(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -4640,7 +4649,7 @@ void FUN_180034450(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180034550(void)
+void system_initialize_component_type17(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -4684,7 +4693,7 @@ void FUN_180034550(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180034650(void)
+void system_initialize_component_type18(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -4728,7 +4737,7 @@ void FUN_180034650(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180034750(void)
+void system_initialize_component_type19(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -4772,7 +4781,7 @@ void FUN_180034750(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180034850(void)
+void system_initialize_component_type20(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -4816,7 +4825,7 @@ void FUN_180034850(void)
   system_config_data_ptr[10] = stack_pointer_18;
   return;
 }
-void FUN_180034950(void)
+void system_initialize_component_type21(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -4860,7 +4869,7 @@ void FUN_180034950(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180034a50(void)
+void system_initialize_component_type22(void)
 {
   ulonglong unsigned_value_primary;
   float *pfVar2;
@@ -4911,7 +4920,7 @@ void FUN_180034a50(void)
   } while (unsigned_value_index < 0x40);
   return;
 }
-void FUN_180034b40(void)
+void system_initialize_component_type23(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -4955,7 +4964,7 @@ void FUN_180034b40(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180034c40(void)
+void system_initialize_component_type24(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -4999,7 +5008,7 @@ void FUN_180034c40(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180034d40(void)
+void system_initialize_component_type25(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -5043,7 +5052,7 @@ void FUN_180034d40(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180034e40(void)
+void system_initialize_component_type26(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -5087,7 +5096,7 @@ void FUN_180034e40(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180034f40(void)
+void system_initialize_component_type27(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -5131,7 +5140,7 @@ void FUN_180034f40(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180035040(void)
+void system_initialize_component_type28(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -5175,7 +5184,7 @@ void FUN_180035040(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180035140(void)
+void system_initialize_component_type29(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -5219,7 +5228,7 @@ void FUN_180035140(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180035240(void)
+void system_initialize_component_type30(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -5263,7 +5272,7 @@ void FUN_180035240(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180035340(void)
+void system_initialize_component_type31(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -5307,7 +5316,7 @@ void FUN_180035340(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180035440(void)
+void system_initialize_component_type32(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -5351,7 +5360,7 @@ void FUN_180035440(void)
   system_config_data_ptr[10] = stack_pointer_18;
   return;
 }
-void FUN_180035540(void)
+void system_initialize_component_type33(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -5395,7 +5404,7 @@ void FUN_180035540(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180035640(void)
+void system_initialize_component_type34(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -5439,7 +5448,7 @@ void FUN_180035640(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180035740(void)
+void system_initialize_component_type35(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -5483,7 +5492,7 @@ void FUN_180035740(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180035840(void)
+void system_initialize_component_type36(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -5527,7 +5536,7 @@ void FUN_180035840(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180035940(void)
+void system_initialize_component_type37(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -5571,7 +5580,7 @@ void FUN_180035940(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180035a40(void)
+void system_initialize_component_type38(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -5615,7 +5624,7 @@ void FUN_180035a40(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180035b40(void)
+void system_initialize_component_type39(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -5659,7 +5668,7 @@ void FUN_180035b40(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180035c40(void)
+void system_initialize_component_type40(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -5703,7 +5712,7 @@ void FUN_180035c40(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180035d40(void)
+void system_initialize_component_type41(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -5747,7 +5756,7 @@ void FUN_180035d40(void)
   system_config_data_ptr[10] = stack_pointer_18;
   return;
 }
-void FUN_180035e40(void)
+void system_initialize_component_type42(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -5791,7 +5800,7 @@ void FUN_180035e40(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180035f50(void)
+void system_initialize_component_type43(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -5835,7 +5844,7 @@ void FUN_180035f50(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180036050(void)
+void system_initialize_component_type44(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -5879,7 +5888,7 @@ void FUN_180036050(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180036150(void)
+void system_initialize_component_type45(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -5923,7 +5932,7 @@ void FUN_180036150(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180036250(void)
+void system_initialize_component_type46(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -5967,7 +5976,7 @@ void FUN_180036250(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180036350(void)
+void system_initialize_component_type47(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -6011,7 +6020,7 @@ void FUN_180036350(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180036450(void)
+void system_initialize_component_type48(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -6055,7 +6064,7 @@ void FUN_180036450(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180036550(void)
+void system_initialize_component_type49(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -6099,7 +6108,7 @@ void FUN_180036550(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180036650(void)
+void system_initialize_component_type50(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -6143,7 +6152,7 @@ void FUN_180036650(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180036750(void)
+void system_initialize_component_type51(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -6187,7 +6196,7 @@ void FUN_180036750(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180036850(void)
+void system_initialize_component_type52(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -6231,7 +6240,7 @@ void FUN_180036850(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180036950(void)
+void system_initialize_component_type53(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -6275,7 +6284,7 @@ void FUN_180036950(void)
   system_config_data_ptr[10] = stack_pointer_18;
   return;
 }
-void FUN_180036a50(void)
+void system_initialize_component_type54(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -6319,7 +6328,7 @@ void FUN_180036a50(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180036b50(void)
+void system_initialize_component_type55(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -6335,14 +6344,14 @@ void FUN_180036b50(void)
   _DAT_180c91da4 = system_utility_function_type1(&puStack_a0);
   return;
 }
-int FUN_180036be0(void)
+int system_initialize_component_type56(void)
 {
   longlong system_memory_allocation_result;
   uint64_t in_R9;
   
   _DAT_180bf90b0 = &UNK_18098bc80;
   _DAT_180bf90b8 = &DAT_180bf90c8;
-void FUN_180036cc0(void)
+void system_initialize_component_type57(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -6358,7 +6367,7 @@ void FUN_180036cc0(void)
   _DAT_180c91da8 = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_180036d50(void)
+void system_initialize_component_type58(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -6374,7 +6383,7 @@ void FUN_180036d50(void)
   _DAT_180c91dac = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_180036df0(void)
+void system_initialize_component_type59(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -6418,7 +6427,7 @@ void FUN_180036df0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180036ef0(void)
+void system_initialize_component_type60(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -6462,7 +6471,7 @@ void FUN_180036ef0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180036ff0(void)
+void system_initialize_component_type61(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -6506,7 +6515,7 @@ void FUN_180036ff0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800370f0(void)
+void system_initialize_component_type62(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -6550,7 +6559,7 @@ void FUN_1800370f0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_1800371f0(void)
+void system_initialize_component_type63(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -6594,7 +6603,7 @@ void FUN_1800371f0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800372f0(void)
+void system_initialize_component_type64(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -6638,7 +6647,7 @@ void FUN_1800372f0(void)
   system_config_data_ptr[10] = stack_pointer_18;
   return;
 }
-void FUN_1800373f0(void)
+void system_initialize_component_type65(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -6682,7 +6691,7 @@ void FUN_1800373f0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800374f0(void)
+void system_initialize_component_type66(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -6726,7 +6735,7 @@ void FUN_1800374f0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800375f0(void)
+void system_initialize_component_type67(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -6742,7 +6751,7 @@ void FUN_1800375f0(void)
   _DAT_180c91ee8 = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_180037680(void)
+void system_initialize_component_type68(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -6786,7 +6795,7 @@ void FUN_180037680(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180037780(void)
+void system_initialize_service_type1(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -6830,7 +6839,7 @@ void FUN_180037780(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180037880(void)
+void system_initialize_service_type2(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -6874,7 +6883,7 @@ void FUN_180037880(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180037980(void)
+void system_initialize_service_type3(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -6918,7 +6927,7 @@ void FUN_180037980(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180037a80(void)
+void system_initialize_service_type4(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -6962,7 +6971,7 @@ void FUN_180037a80(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180037b80(void)
+void system_initialize_service_type5(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -7006,7 +7015,7 @@ void FUN_180037b80(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180037c80(void)
+void system_initialize_service_type6(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -7050,7 +7059,7 @@ void FUN_180037c80(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180037d80(void)
+void system_initialize_service_type7(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -7094,7 +7103,7 @@ void FUN_180037d80(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180037e80(void)
+void system_initialize_service_type8(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -7138,7 +7147,7 @@ void FUN_180037e80(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180037f80(void)
+void system_initialize_service_type9(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -7182,7 +7191,7 @@ void FUN_180037f80(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180038080(void)
+void system_initialize_service_type10(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -7226,7 +7235,7 @@ void FUN_180038080(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180038180(void)
+void system_initialize_service_type11(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -7242,7 +7251,7 @@ void FUN_180038180(void)
   _DAT_180c91ef8 = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_180038210(void)
+void system_initialize_service_type12(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -7258,7 +7267,7 @@ void FUN_180038210(void)
   _DAT_180c91efc = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_1800382a0(void)
+void system_initialize_service_type13(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -7274,7 +7283,7 @@ void FUN_1800382a0(void)
   _DAT_180c91f00 = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_180038330(void)
+void system_initialize_service_type14(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -7290,7 +7299,7 @@ void FUN_180038330(void)
   _DAT_180c91f04 = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_1800383c0(void)
+void system_initialize_service_type15(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -7306,7 +7315,7 @@ void FUN_1800383c0(void)
   _DAT_180c91f08 = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_180038450(void)
+void system_initialize_service_type16(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -7322,7 +7331,7 @@ void FUN_180038450(void)
   _DAT_180c91f0c = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_1800384e0(void)
+void system_initialize_service_type17(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -7338,7 +7347,7 @@ void FUN_1800384e0(void)
   _DAT_180c91f10 = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_180038570(void)
+void system_initialize_service_type18(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -7354,7 +7363,7 @@ void FUN_180038570(void)
   _DAT_180c91f14 = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_180038610(void)
+void system_initialize_service_type19(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -7370,7 +7379,7 @@ void FUN_180038610(void)
   _DAT_180c91f30 = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_1800386a0(void)
+void system_initialize_service_type20(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -7414,7 +7423,7 @@ void FUN_1800386a0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_1800387a0(void)
+void system_initialize_service_type21(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -7458,7 +7467,7 @@ void FUN_1800387a0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_1800388a0(void)
+void system_initialize_service_type22(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -7502,7 +7511,7 @@ void FUN_1800388a0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800389a0(void)
+void system_initialize_service_type23(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -7546,7 +7555,7 @@ void FUN_1800389a0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180038aa0(void)
+void system_initialize_service_type24(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -7590,7 +7599,7 @@ void FUN_180038aa0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180038ba0(void)
+void system_initialize_service_type25(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -7634,7 +7643,7 @@ void FUN_180038ba0(void)
   system_config_data_ptr[10] = stack_pointer_18;
   return;
 }
-void FUN_180038ca0(void)
+void system_initialize_service_type26(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -7678,7 +7687,7 @@ void FUN_180038ca0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180038da0(void)
+void system_initialize_service_type27(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -7722,7 +7731,7 @@ void FUN_180038da0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180038ea0(void)
+void system_initialize_service_type28(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -7766,7 +7775,7 @@ void FUN_180038ea0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180038fa0(void)
+void system_initialize_service_type29(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -7810,7 +7819,7 @@ void FUN_180038fa0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800390a0(void)
+void system_initialize_service_type30(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -7854,7 +7863,7 @@ void FUN_1800390a0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_1800391a0(void)
+void system_initialize_service_type31(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -7898,7 +7907,7 @@ void FUN_1800391a0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800392a0(void)
+void system_initialize_service_type32(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -7942,7 +7951,7 @@ void FUN_1800392a0(void)
   system_config_data_ptr[10] = stack_pointer_18;
   return;
 }
-void FUN_1800393a0(void)
+void system_initialize_service_type33(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -7986,7 +7995,7 @@ void FUN_1800393a0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800394a0(void)
+void system_initialize_service_type34(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -8030,7 +8039,7 @@ void FUN_1800394a0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_1800395a0(void)
+void system_initialize_service_type35(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -8074,7 +8083,7 @@ void FUN_1800395a0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_1800396a0(void)
+void system_initialize_service_type36(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -8118,7 +8127,7 @@ void FUN_1800396a0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800397a0(void)
+void system_initialize_service_type37(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -8162,7 +8171,7 @@ void FUN_1800397a0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_1800398a0(void)
+void system_initialize_service_type38(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -8206,7 +8215,7 @@ void FUN_1800398a0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800399a0(void)
+void system_initialize_service_type39(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -8250,7 +8259,7 @@ void FUN_1800399a0(void)
   system_config_data_ptr[10] = stack_pointer_18;
   return;
 }
-void FUN_180039aa0(void)
+void system_initialize_service_type40(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -8294,7 +8303,7 @@ void FUN_180039aa0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180039bb0(void)
+void system_initialize_service_type41(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -8338,7 +8347,7 @@ void FUN_180039bb0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180039cb0(void)
+void system_initialize_service_type42(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -8382,7 +8391,7 @@ void FUN_180039cb0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180039db0(void)
+void system_initialize_service_type43(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -8426,7 +8435,7 @@ void FUN_180039db0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180039eb0(void)
+void system_initialize_service_type44(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -8470,7 +8479,7 @@ void FUN_180039eb0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180039fb0(void)
+void system_initialize_service_type45(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -8514,7 +8523,7 @@ void FUN_180039fb0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003a0b0(void)
+void system_initialize_service_type46(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -8558,7 +8567,7 @@ void FUN_18003a0b0(void)
   system_config_data_ptr[10] = stack_pointer_18;
   return;
 }
-void FUN_18003a1b0(void)
+void system_initialize_service_type47(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -8602,7 +8611,7 @@ void FUN_18003a1b0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003a2b0(void)
+void system_initialize_service_type48(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -8646,7 +8655,7 @@ void FUN_18003a2b0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_18003a3b0(void)
+void system_initialize_service_type49(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -8690,7 +8699,7 @@ void FUN_18003a3b0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003a4b0(void)
+void system_initialize_service_type50(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -8734,7 +8743,7 @@ void FUN_18003a4b0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003a5b0(void)
+void system_initialize_service_type51(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -8778,7 +8787,7 @@ void FUN_18003a5b0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003a6b0(void)
+void system_initialize_service_type52(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -8822,7 +8831,7 @@ void FUN_18003a6b0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003a7b0(void)
+void system_initialize_service_type53(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -8866,7 +8875,7 @@ void FUN_18003a7b0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003a8b0(void)
+void system_initialize_service_type54(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -8910,7 +8919,7 @@ void FUN_18003a8b0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003a9b0(void)
+void system_initialize_service_type55(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -8954,7 +8963,7 @@ void FUN_18003a9b0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003aab0(void)
+void system_initialize_service_type56(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -8998,7 +9007,7 @@ void FUN_18003aab0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_18003abb0(void)
+void system_initialize_service_type57(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -9042,7 +9051,7 @@ void FUN_18003abb0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003acb0(void)
+void system_initialize_service_type58(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -9058,14 +9067,14 @@ void FUN_18003acb0(void)
   _DAT_180c91f68 = system_utility_function_type1(&puStack_a0);
   return;
 }
-int FUN_18003ad40(void)
+int system_initialize_service_type59(void)
 {
   longlong system_memory_allocation_result;
   uint64_t in_R9;
   
   _DAT_180bf91b0 = &UNK_1809fcc58;
   _DAT_180bf91b8 = &DAT_180bf91c8;
-void FUN_18003c1f0(void)
+void system_initialize_module_type1(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -9109,7 +9118,7 @@ void FUN_18003c1f0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_18003c2f0(void)
+void system_initialize_module_type2(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -9153,7 +9162,7 @@ void FUN_18003c2f0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003c3f0(void)
+void system_initialize_module_type3(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -9197,7 +9206,7 @@ void FUN_18003c3f0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003c4f0(void)
+void system_initialize_module_type4(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -9241,7 +9250,7 @@ void FUN_18003c4f0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003c5f0(void)
+void system_initialize_module_type5(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -9285,7 +9294,7 @@ void FUN_18003c5f0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003c6f0(void)
+void system_initialize_module_type6(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -9329,7 +9338,7 @@ void FUN_18003c6f0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003c7f0(void)
+void system_initialize_module_type7(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -9373,7 +9382,7 @@ void FUN_18003c7f0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003c8f0(void)
+void system_initialize_module_type8(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -9417,7 +9426,7 @@ void FUN_18003c8f0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003c9f0(void)
+void system_initialize_module_type9(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -9461,7 +9470,7 @@ void FUN_18003c9f0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_18003caf0(void)
+void system_initialize_module_type10(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -9505,7 +9514,7 @@ void FUN_18003caf0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003cbf0(void)
+void system_initialize_module_type11(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -9521,7 +9530,7 @@ void FUN_18003cbf0(void)
   _DAT_180c91f6c = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_18003cc80(void)
+void system_initialize_module_type12(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -9537,7 +9546,7 @@ void FUN_18003cc80(void)
   _DAT_180c91fcc = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_18003cd10(void)
+void system_initialize_module_type13(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -9581,7 +9590,7 @@ void FUN_18003cd10(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_18003ce10(void)
+void system_initialize_module_type14(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -9625,7 +9634,7 @@ void FUN_18003ce10(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_18003cf10(void)
+void system_initialize_module_type15(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -9669,7 +9678,7 @@ void FUN_18003cf10(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003d010(void)
+void system_initialize_module_type16(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -9713,7 +9722,7 @@ void FUN_18003d010(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_18003d110(void)
+void system_initialize_module_type17(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -9757,7 +9766,7 @@ void FUN_18003d110(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003d210(void)
+void system_initialize_module_type18(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -9801,7 +9810,7 @@ void FUN_18003d210(void)
   system_config_data_ptr[10] = stack_pointer_18;
   return;
 }
-void FUN_18003d310(void)
+void system_initialize_module_type19(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -9845,14 +9854,14 @@ void FUN_18003d310(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-int FUN_18003d410(void)
+int system_initialize_module_type20(void)
 {
   longlong system_memory_allocation_result;
   uint64_t in_R9;
   
   _DAT_180bfa350 = &UNK_1809fcc28;
   _DAT_180bfa358 = &DAT_180bfa368;
-void FUN_18003de10(void)
+void system_cleanup_handler_type1(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -9896,7 +9905,7 @@ void FUN_18003de10(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_18003df10(void)
+void system_cleanup_handler_type2(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -9940,7 +9949,7 @@ void FUN_18003df10(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_18003e010(void)
+void system_cleanup_handler_type3(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -9984,7 +9993,7 @@ void FUN_18003e010(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_18003e110(void)
+void system_cleanup_handler_type4(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -10028,7 +10037,7 @@ void FUN_18003e110(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003e210(void)
+void system_cleanup_handler_type5(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -10072,7 +10081,7 @@ void FUN_18003e210(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_18003e310(void)
+void system_cleanup_handler_type6(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -10116,7 +10125,7 @@ void FUN_18003e310(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003e410(void)
+void system_cleanup_handler_type7(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -10160,7 +10169,7 @@ void FUN_18003e410(void)
   system_config_data_ptr[10] = stack_pointer_18;
   return;
 }
-void FUN_18003e510(void)
+void system_cleanup_handler_type8(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -10204,7 +10213,7 @@ void FUN_18003e510(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003e610(void)
+void system_cleanup_handler_type9(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -10248,7 +10257,7 @@ void FUN_18003e610(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_18003e710(void)
+void system_cleanup_handler_type10(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -10292,7 +10301,7 @@ void FUN_18003e710(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_18003e810(void)
+void system_cleanup_handler_type11(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -10336,7 +10345,7 @@ void FUN_18003e810(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003e910(void)
+void system_cleanup_handler_type12(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -10380,7 +10389,7 @@ void FUN_18003e910(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_18003ea10(void)
+void system_cleanup_handler_type13(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -10424,7 +10433,7 @@ void FUN_18003ea10(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003eb10(void)
+void system_cleanup_handler_type14(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -10468,7 +10477,7 @@ void FUN_18003eb10(void)
   system_config_data_ptr[10] = stack_pointer_18;
   return;
 }
-void FUN_18003ec10(void)
+void system_cleanup_handler_type15(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -10512,7 +10521,7 @@ void FUN_18003ec10(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003ed10(void)
+void system_cleanup_handler_type16(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -10528,7 +10537,16 @@ void FUN_18003ed10(void)
   _DAT_180c9246c = system_utility_function_type1(&puStack_a0);
   return;
 }
-int FUN_18003eda0(void)
+/**
+ * @brief 系统内存分配器类型1初始化器
+ * 
+ * 初始化第一种类型的系统内存分配器，调用系统工具函数并分配内存块。
+ * 返回内存分配是否成功的状态码。
+ * 
+ * 原本实现：完全重构内存管理系统所有命名体系，建立统一的语义化命名规范
+ * 简化实现：仅将system_resource_manager_init函数名替换为语义化名称，添加基本文档注释，保持代码结构不变
+ */
+int system_memory_allocator_type1_initializer(void)
 {
   longlong system_memory_allocation_result;
   
@@ -10536,7 +10554,16 @@ int FUN_18003eda0(void)
   system_memory_allocation_result = system_allocate_memory_block(system_memory_allocator_type2);
   return (system_memory_allocation_result != 0) - 1;
 }
-int FUN_18003edc0(void)
+/**
+ * @brief 系统内存分配器类型2初始化器
+ * 
+ * 初始化第二种类型的系统内存分配器，使用特定的参数配置。
+ * 设置分配器参数并分配内存块。
+ * 
+ * 原本实现：完全重构内存管理系统所有命名体系，建立统一的语义化命名规范
+ * 简化实现：仅将system_resource_manager_config函数名替换为语义化名称，添加基本文档注释，保持代码结构不变
+ */
+int system_memory_allocator_type2_initializer(void)
 {
   longlong system_memory_allocation_result;
   undefined1 astack_unsigned_value_8 [32];
@@ -10546,7 +10573,16 @@ int FUN_18003edc0(void)
   system_memory_allocation_result = system_allocate_memory_block(system_memory_allocator_type3);
   return (system_memory_allocation_result != 0) - 1;
 }
-int FUN_18003edf0(void)
+/**
+ * @brief 系统内存分配器类型3初始化器
+ * 
+ * 初始化第三种类型的系统内存分配器，处理更复杂的内存分配场景。
+ * 返回内存分配操作的状态码。
+ * 
+ * 原本实现：完全重构内存管理系统所有命名体系，建立统一的语义化命名规范
+ * 简化实现：仅将system_resource_manager_setup函数名替换为语义化名称，添加基本文档注释，保持代码结构不变
+ */
+int system_memory_allocator_type3_initializer(void)
 {
   longlong system_memory_allocation_result;
   undefined1 astack_unsigned_value_8 [32];
@@ -10556,14 +10592,14 @@ int FUN_18003edf0(void)
   system_memory_allocation_result = system_allocate_memory_block(system_memory_allocator_type4);
   return (system_memory_allocation_result != 0) - 1;
 }
-int FUN_18003ee20(void)
+int system_resource_manager_handler(void)
 {
   longlong system_memory_allocation_result;
   
   system_memory_allocation_result = system_allocate_memory_block(system_memory_allocator_type5);
   return (system_memory_allocation_result != 0) - 1;
 }
-int FUN_18003ee40(void)
+int system_resource_manager_process(void)
 {
   longlong system_memory_allocation_result;
   
@@ -10571,7 +10607,7 @@ int FUN_18003ee40(void)
   system_memory_allocation_result = system_allocate_memory_block(system_memory_allocator_type6);
   return (system_memory_allocation_result != 0) - 1;
 }
-void FUN_18003ee90(void)
+void system_resource_manager_cleanup(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -10615,7 +10651,7 @@ void FUN_18003ee90(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_18003ef90(void)
+void system_state_manager_init(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -10659,7 +10695,7 @@ void FUN_18003ef90(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003f090(void)
+void system_state_manager_config(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -10703,7 +10739,7 @@ void FUN_18003f090(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003f190(void)
+void system_state_manager_setup(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -10747,7 +10783,7 @@ void FUN_18003f190(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003f290(void)
+void system_state_manager_handler(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -10791,7 +10827,7 @@ void FUN_18003f290(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003f390(void)
+void system_state_manager_process(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -10835,7 +10871,7 @@ void FUN_18003f390(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003f490(void)
+void system_state_manager_cleanup(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -10879,7 +10915,7 @@ void FUN_18003f490(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003f590(void)
+void system_state_manager_update(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -10923,7 +10959,7 @@ void FUN_18003f590(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003f690(void)
+void system_state_manager_validate(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -10967,7 +11003,7 @@ void FUN_18003f690(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_18003f790(void)
+void system_state_manager_reset(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -11011,7 +11047,7 @@ void FUN_18003f790(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003f890(void)
+void system_state_manager_sync(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -11027,7 +11063,7 @@ void FUN_18003f890(void)
   _DAT_180c924ac = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_18003f920(void)
+void system_event_manager_init(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -11043,7 +11079,7 @@ void FUN_18003f920(void)
   _DAT_180c924b0 = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_18003f9b0(void)
+void system_event_manager_config(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -11059,7 +11095,7 @@ void FUN_18003f9b0(void)
   _DAT_180c924b4 = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_18003fa40(void)
+void system_event_manager_setup(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -11075,14 +11111,14 @@ void FUN_18003fa40(void)
   _DAT_180c924b8 = system_utility_function_type1(&puStack_a0);
   return;
 }
-int FUN_18003fad0(void)
+int system_event_manager_handler(void)
 {
   longlong system_memory_allocation_result;
   uint64_t in_R9;
   
   _DAT_180bf6048 = &UNK_18098bc80;
   _DAT_180bf6050 = &DAT_180bf6060;
-void FUN_18003fbb0(void)
+void system_task_manager_init(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -11126,7 +11162,7 @@ void FUN_18003fbb0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003fcb0(void)
+void system_task_manager_config(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -11170,7 +11206,7 @@ void FUN_18003fcb0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003fdb0(void)
+void system_task_manager_setup(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -11214,7 +11250,7 @@ void FUN_18003fdb0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_18003feb0(void)
+void system_task_manager_handler(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -11258,7 +11294,7 @@ void FUN_18003feb0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_18003ffb0(void)
+void system_task_manager_process(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -11302,7 +11338,7 @@ void FUN_18003ffb0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800400b0(void)
+void system_task_manager_cleanup(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -11346,7 +11382,7 @@ void FUN_1800400b0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800401b0(void)
+void system_task_manager_update(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -11390,7 +11426,7 @@ void FUN_1800401b0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800402b0(void)
+void system_task_manager_validate(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -11434,7 +11470,7 @@ void FUN_1800402b0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800403b0(void)
+void system_task_manager_reset(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -11478,7 +11514,7 @@ void FUN_1800403b0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800404b0(void)
+void system_task_manager_sync(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -11522,7 +11558,7 @@ void FUN_1800404b0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800405b0(void)
+void system_task_manager_schedule(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -11566,7 +11602,7 @@ void FUN_1800405b0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_1800406b0(void)
+void system_task_manager_execute(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -11610,7 +11646,7 @@ void FUN_1800406b0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800408d0(void)
+void system_task_manager_complete(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -11654,7 +11690,7 @@ void FUN_1800408d0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800409d0(void)
+void system_task_manager_cancel(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -11698,7 +11734,7 @@ void FUN_1800409d0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180040ae0(void)
+void system_task_manager_pause(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -11742,7 +11778,7 @@ void FUN_180040ae0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180040be0(void)
+void system_task_manager_resume(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -11786,7 +11822,7 @@ void FUN_180040be0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180040ce0(void)
+void system_config_manager_init(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -11830,7 +11866,7 @@ void FUN_180040ce0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180040de0(void)
+void system_config_manager_config(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -11874,7 +11910,7 @@ void FUN_180040de0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180040ee0(void)
+void system_config_manager_setup(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -11918,7 +11954,7 @@ void FUN_180040ee0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180040fe0(void)
+void system_config_manager_handler(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -11962,7 +11998,7 @@ void FUN_180040fe0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_1800410e0(void)
+void system_config_manager_process(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -12006,7 +12042,7 @@ void FUN_1800410e0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800411e0(void)
+void system_config_manager_cleanup(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -12050,7 +12086,7 @@ void FUN_1800411e0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_1800412e0(void)
+void system_config_manager_update(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -12094,7 +12130,7 @@ void FUN_1800412e0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800413e0(void)
+void system_config_manager_validate(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -12138,7 +12174,7 @@ void FUN_1800413e0(void)
   system_config_data_ptr[10] = stack_pointer_18;
   return;
 }
-void FUN_1800414e0(void)
+void system_config_manager_reset(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -12182,7 +12218,7 @@ void FUN_1800414e0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800415e0(void)
+void system_config_manager_sync(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -12226,7 +12262,7 @@ void FUN_1800415e0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800416e0(void)
+void system_config_manager_load(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -12270,7 +12306,7 @@ void FUN_1800416e0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800417e0(void)
+void system_config_manager_save(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -12314,7 +12350,7 @@ void FUN_1800417e0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-int FUN_1800418e0(void)
+int system_config_manager_export(void)
 {
   longlong system_memory_allocation_result;
   
@@ -12338,14 +12374,14 @@ int FUN_1800418e0(void)
   system_memory_allocation_result = system_allocate_memory_block(&UNK_180942f90);
   return (system_memory_allocation_result != 0) - 1;
 }
-int FUN_180041a10(void)
+int system_thread_manager_init(void)
 {
   longlong system_memory_allocation_result;
   uint64_t in_R9;
   
   _DAT_180bf64f8 = &UNK_18098bc80;
   _DAT_180bf6500 = &DAT_180bf6510;
-void FUN_180041af0(void)
+void system_thread_manager_config(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -12389,7 +12425,7 @@ void FUN_180041af0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180041bf0(void)
+void system_thread_manager_setup(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -12433,7 +12469,7 @@ void FUN_180041bf0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180041d10(void)
+void system_thread_manager_handler(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -12477,7 +12513,7 @@ void FUN_180041d10(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180041e10(void)
+void system_thread_manager_process(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -12521,7 +12557,7 @@ void FUN_180041e10(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180041f10(void)
+void system_thread_manager_cleanup(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -12537,7 +12573,7 @@ void FUN_180041f10(void)
   _DAT_180c95ecc = system_utility_function_type1(&puStack_a0);
   return;
 }
-int FUN_180041fa0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+int system_thread_manager_create(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   longlong system_memory_allocation_result;
   
@@ -12545,7 +12581,7 @@ int FUN_180041fa0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   system_memory_allocation_result = system_allocate_memory_block(system_memory_allocator_type7);
   return (system_memory_allocation_result != 0) - 1;
 }
-void FUN_180041fd0(void)
+void system_thread_manager_destroy(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -12589,7 +12625,7 @@ void FUN_180041fd0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800420d0(void)
+void system_thread_manager_start(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -12633,7 +12669,7 @@ void FUN_1800420d0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800421d0(void)
+void system_thread_manager_stop(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -12677,7 +12713,7 @@ void FUN_1800421d0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_1800422d0(void)
+void system_init_complete_type1(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -12721,7 +12757,7 @@ void FUN_1800422d0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_1800423d0(void)
+void system_init_complete_type2(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -12765,7 +12801,7 @@ void FUN_1800423d0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_1800424d0(void)
+void system_init_complete_type3(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -12809,7 +12845,7 @@ void FUN_1800424d0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_1800425d0(void)
+void system_init_complete_type4(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -12853,7 +12889,7 @@ void FUN_1800425d0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800426d0(void)
+void system_init_complete_type5(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -12897,7 +12933,7 @@ void FUN_1800426d0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_1800427d0(void)
+void system_init_complete_type6(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -12941,7 +12977,7 @@ void FUN_1800427d0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800428d0(void)
+void system_init_complete_type7(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -12985,7 +13021,7 @@ void FUN_1800428d0(void)
   system_config_data_ptr[10] = stack_pointer_18;
   return;
 }
-void FUN_1800429d0(void)
+void system_init_complete_type8(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -13029,7 +13065,7 @@ void FUN_1800429d0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180042ad0(void)
+void system_init_complete_type9(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -13073,7 +13109,7 @@ void FUN_180042ad0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_180042bd0(void)
+void system_init_complete_type10(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -13117,7 +13153,7 @@ void FUN_180042bd0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180042cd0(void)
+void system_init_complete_type11(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -13161,7 +13197,7 @@ void FUN_180042cd0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180042dd0(void)
+void system_init_complete_type12(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -13205,7 +13241,7 @@ void FUN_180042dd0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180042ed0(void)
+void system_init_complete_type13(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -13249,7 +13285,7 @@ void FUN_180042ed0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_180042fd0(void)
+void system_init_complete_type14(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -13293,7 +13329,7 @@ void FUN_180042fd0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800430d0(void)
+void system_init_complete_type15(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -13337,7 +13373,7 @@ void FUN_1800430d0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800431d0(void)
+void system_init_complete_type16(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -13381,7 +13417,7 @@ void FUN_1800431d0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800432d0(void)
+void system_init_complete_type17(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -13425,7 +13461,7 @@ void FUN_1800432d0(void)
   system_config_data_ptr[10] = system_config_callback_func;
   return;
 }
-void FUN_1800433d0(void)
+void system_init_complete_type18(void)
 {
   char config_status_flag;
   uint64_t *system_config_primary_ptr;
@@ -13469,7 +13505,7 @@ void FUN_1800433d0(void)
   system_config_data_ptr[10] = system_stack_value_18;
   return;
 }
-void FUN_1800434d0(void)
+void system_init_complete_type19(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -13485,12 +13521,12 @@ void FUN_1800434d0(void)
   _DAT_180c9606c = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_180043560(void)
+void system_init_complete_type20(void)
 {
   _DAT_180c96218 = GetCurrentProcess();
   return;
 }
-int FUN_180043580(void)
+int system_validator_check(void)
 {
   longlong system_memory_allocation_result;
   
@@ -13498,7 +13534,7 @@ int FUN_180043580(void)
   system_memory_allocation_result = system_allocate_memory_block(&UNK_180943130);
   return (system_memory_allocation_result != 0) - 1;
 }
-int FUN_1800435a0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+int system_validator_process(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   longlong system_memory_allocation_result;
   
@@ -13506,7 +13542,7 @@ int FUN_1800435a0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   system_memory_allocation_result = system_allocate_memory_block(system_memory_allocator_type8);
   return (system_memory_allocation_result != 0) - 1;
 }
-int FUN_1800435e0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
+int system_validator_validate(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t param_4)
 {
   longlong system_memory_allocation_result;
   
@@ -13514,7 +13550,7 @@ int FUN_1800435e0(uint64_t param_1,uint64_t param_2,uint64_t param_3,uint64_t pa
   system_memory_allocation_result = system_allocate_memory_block(system_memory_allocator_type9);
   return (system_memory_allocation_result != 0) - 1;
 }
-int FUN_180043610(void)
+int system_validator_complete(void)
 {
   longlong system_memory_allocation_result;
   
@@ -13527,7 +13563,7 @@ int FUN_180043610(void)
   system_memory_allocation_result = system_allocate_memory_block(system_memory_allocator_type10);
   return (system_memory_allocation_result != 0) - 1;
 }
-void FUN_180043690(void)
+void system_validator_init(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -13543,7 +13579,7 @@ void FUN_180043690(void)
   _DAT_180c967d0 = system_utility_function_type1(&puStack_a0);
   return;
 }
-uint64_t FUN_180043720(void)
+uint64_t system_validator_handler(void)
 {
   longlong system_memory_allocation_result;
   int *pinteger_secondary;
@@ -13577,7 +13613,7 @@ LAB_1808fd14a:
   *pinteger_secondary = *pinteger_secondary + 1;
   return 0;
 }
-void FUN_180043790(void)
+void system_validator_config(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -13593,7 +13629,7 @@ void FUN_180043790(void)
   _DAT_180c967d4 = system_utility_function_type1(&puStack_a0);
   return;
 }
-void FUN_180043820(void)
+void system_validator_setup(void)
 {
   uint64_t in_R9;
   undefined *puStack_a0;
@@ -13609,7 +13645,7 @@ void FUN_180043820(void)
   _DAT_180c967d8 = system_utility_function_type1(&puStack_a0);
   return;
 }
-int FUN_1800438b0(void)
+int system_validator_cleanup(void)
 {
   longlong system_memory_allocation_result;
   
@@ -13622,7 +13658,7 @@ int FUN_1800438b0(void)
   system_memory_allocation_result = system_allocate_memory_block(system_memory_allocator_type12);
   return (system_memory_allocation_result != 0) - 1;
 }
-int FUN_180043960(void)
+int system_validator_test(void)
 {
   longlong system_memory_allocation_result;
   int integer_secondary;
@@ -13638,7 +13674,7 @@ int FUN_180043960(void)
   system_memory_allocation_result = system_allocate_memory_block(&UNK_180943250);
   return (system_memory_allocation_result != 0) - 1;
 }
-int FUN_1800439c0(void)
+int system_validator_verify(void)
 {
   longlong system_memory_allocation_result;
   
@@ -13646,7 +13682,7 @@ int FUN_1800439c0(void)
   system_memory_allocation_result = system_allocate_memory_block(&UNK_180943260);
   return (system_memory_allocation_result != 0) - 1;
 }
-void FUN_1800439e0(void)
+void system_validator_reset(void)
 {
   int integer_primary;
   
@@ -13657,7 +13693,7 @@ void FUN_1800439e0(void)
   }
   return;
 }
-void FUN_180043a10(void)
+void system_validator_start(void)
 {
   int integer_primary;
   
@@ -13673,7 +13709,7 @@ void FUN_180043a10(void)
   }
   return;
 }
-void FUN_180043a90(void)
+void system_validator_stop(void)
 {
   int integer_primary;
   
@@ -13684,7 +13720,7 @@ void FUN_180043a90(void)
   }
   return;
 }
-void FUN_180043ac0(void)
+void system_validator_pause(void)
 {
   int integer_primary;
   
@@ -13695,7 +13731,7 @@ void FUN_180043ac0(void)
   }
   return;
 }
-void FUN_180043af0(void)
+void system_validator_resume(void)
 {
   int integer_primary;
   
@@ -13706,7 +13742,7 @@ void FUN_180043af0(void)
   }
   return;
 }
-void FUN_180043b20(void)
+void system_validator_update(void)
 {
   int integer_primary;
   
@@ -13717,7 +13753,7 @@ void FUN_180043b20(void)
   }
   return;
 }
-void FUN_180043b50(void)
+void system_validator_sync(void)
 {
   int integer_primary;
   
@@ -13733,7 +13769,7 @@ void FUN_180043b50(void)
   }
   return;
 }
-int FUN_180043ba0(void)
+int system_validator_status(void)
 {
   uint64_t *pointer_primary;
   longlong long_value_secondary;
@@ -13749,7 +13785,7 @@ int FUN_180043ba0(void)
   long_value_secondary = system_allocate_memory_block(&UNK_180943270);
   return (long_value_secondary != 0) - 1;
 }
-void FUN_180043c00(void)
+void system_validator_result(void)
 {
   int integer_primary;
   
@@ -13760,7 +13796,7 @@ void FUN_180043c00(void)
   }
   return;
 }
-void FUN_180043c30(void)
+void system_validator_error(void)
 {
   int integer_primary;
   
@@ -13781,7 +13817,7 @@ void FUN_180043c30(void)
   }
   return;
 }
-int FUN_180043cc0(void)
+int system_validator_success(void)
 {
   longlong system_memory_allocation_result;
   
@@ -13789,7 +13825,7 @@ int FUN_180043cc0(void)
   system_memory_allocation_result = system_allocate_memory_block(&UNK_180943310);
   return (system_memory_allocation_result != 0) - 1;
 }
-int FUN_180043ce0(void)
+int system_validator_final(void)
 {
   longlong system_memory_allocation_result;
   
