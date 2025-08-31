@@ -233,8 +233,8 @@ void InitializeSystemStackMemory(void)
   system_stack_buffer_main[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_INIT_VALUE_ZERO;
   
   // 复制系统上下文
-  strcpy_s(system_stack_buffer_main, SYSTEM_INIT_SIZE_BUFFER_SMALL, 
-           &g_system_context, system_register_input_r9, SYSTEM_INIT_VALUE_HANDLE_INVALID);
+  strncpy_s(system_stack_buffer_main, SYSTEM_INIT_SIZE_BUFFER_SMALL, 
+            (const char*)&g_system_context, SYSTEM_INIT_SIZE_BUFFER_SMALL - 1);
   
   // 检查初始化状态
   system_global_initialized_flag = system_check_initialization(&system_stack_memory_pointer_primary);
