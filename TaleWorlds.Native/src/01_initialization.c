@@ -26612,6 +26612,12 @@ void system_function_058f00(uint64_t param1,uint64_t *param1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
+/**
+ * @brief 清理音频资源
+ * 释放和清理音频系统相关的资源，包括内存缓冲区、设备句柄等
+ * @param param1 音频资源句柄指针
+ * @return 无返回值
+ */
 void system_cleanup_audio_resources(longlong *param1)
 
 {
@@ -27538,7 +27544,7 @@ uint64_t * system_create_memory_view(uint64_t *param1,uint64_t *param1,uint64_t 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_function_059820(longlong *param1,uint64_t param1)
+void system_setup_audio_buffer(longlong *param1,uint64_t param1)
 
 {
   uint64_t *data_pointer;
@@ -27602,7 +27608,7 @@ system_initialize_memory_cache(uint64_t *param1,ulonglong param1,uint64_t param1
 
 
 
-void system_function_059940(longlong param1,longlong param1)
+void system_synchronize_audio_channels(longlong param1,longlong param1)
 
 {
   longlong system_audio_long_value;
@@ -32770,7 +32776,7 @@ uint64_t system_initialize_system_call(uint64_t param1,ulonglong param1)
 
 
 
-void system_function_060200(uint64_t *param1)
+void system_initialize_performance_monitor(uint64_t *param1)
 
 {
   longlong *system_long_data_ptr;
@@ -32903,7 +32909,7 @@ uint64_t system_configure_audio_context(uint64_t param1,ulonglong param1)
 
 
 
-void system_function_060420(uint64_t *param1)
+void system_setup_performance_counters(uint64_t *param1)
 
 {
   int *system_audio_loop_counter_ptr;
@@ -33024,7 +33030,7 @@ uint64_t * system_create_audio_buffer(uint64_t *param1,ulonglong param1)
 
 
 
-void system_function_060610(uint64_t *param1,uint64_t param1,uint64_t param1,uint64_t param1)
+void system_configure_performance_thresholds(uint64_t *param1,uint64_t param1,uint64_t param1,uint64_t param1)
 
 {
   char initialization_status;
@@ -33074,7 +33080,7 @@ uint64_t system_initialize_audio_stream(uint64_t param1,ulonglong param1,uint64_
 
 
 
-int system_function_060680(uint64_t param1,uint64_t param1,uint64_t param1,uint64_t param1)
+int system_validate_performance_settings(uint64_t param1,uint64_t param1,uint64_t param1,uint64_t param1)
 
 {
   int system_int_value;
@@ -33735,7 +33741,7 @@ void system_function_0611a0(longlong param1,longlong *param1,uint64_t param1,uin
 
 
 
-void system_function_061290(uint64_t *param1)
+void system_start_performance_tracking(uint64_t *param1)
 
 {
   CloseHandle(*param1);
@@ -33799,7 +33805,7 @@ system_initialize_context_pool(uint64_t *param1,ulonglong param1,uint64_t param1
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_function_061380(uint64_t param1,longlong param1)
+void system_stop_performance_tracking(uint64_t param1,longlong param1)
 
 {
   longlong system_audio_long_value;
@@ -34035,7 +34041,7 @@ void system_function_0622d0(uint64_t param1,uint64_t param1,uint32_t param1,uint
 
 
 
-void system_function_062300(uint64_t param1,uint64_t param1,uint64_t param1,uint64_t param1)
+void system_collect_performance_metrics(uint64_t param1,uint64_t param1,uint64_t param1,uint64_t param1)
 
 {
   uint64_t system_stack_initialization_flag;
@@ -34050,7 +34056,7 @@ void system_function_062300(uint64_t param1,uint64_t param1,uint64_t param1,uint
 
 
 
-void system_function_062340(uint64_t param1,uint64_t param1,uint64_t param1,uint64_t param1)
+void system_analyze_performance_data(uint64_t param1,uint64_t param1,uint64_t param1,uint64_t param1)
 
 {
   uint64_t system_stack_uint_20;
@@ -34063,7 +34069,7 @@ void system_function_062340(uint64_t param1,uint64_t param1,uint64_t param1,uint
 
 
 
-void system_function_062380(void)
+void system_reset_performance_counters(void)
 
 {
   system_load_configuration_data();
@@ -34154,7 +34160,7 @@ void system_function_0624c0(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void system_function_062920(int *param1)
+void system_optimize_performance_settings(int *param1)
 
 {
   char initialization_status;
@@ -34493,7 +34499,7 @@ int system_function_0634b0(uint64_t param1,uint64_t param1,uint64_t param1,uint6
 
 
 
-ulonglong system_function_0014(longlong *param1,longlong param1)
+ulonglong system_calculate_memory_checksum(longlong *param1,longlong param1)
 
 {
   byte *system_byte_ptr_;
@@ -46833,7 +46839,7 @@ uint8_t system_function_0109(longlong param1,uint64_t param1,uint64_t param1,uin
   
   system_audio_context_index = SYSTEM_INVALID_HANDLE;
   system_setup_render_parameters(&system_stack_ptr);
-  system_uint_value = system_function_0014(param1 + 0x218,&system_stack_ptr,param1,param1,system_audio_context_index);
+  system_uint_value = system_calculate_memory_checksum(param1 + 0x218,&system_stack_ptr,param1,param1,system_audio_context_index);
   system_stack_ptr = &system_data_callback_pool_base2;
   if (system_stack_long_28 != 0) {
                     // WARNING: Subroutine does not return
