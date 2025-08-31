@@ -103,8 +103,8 @@ void* system_ui_cache;
 void* system_script_cache;
 void* system_script_validation_callback;
 void* system_script_execution_callback;
-// 美化系统配置变量名（2025年8月30日最终批次补充美化）
-// 系统配置变量声明（2025年8月30日最终批次美化）
+
+
 void* system_network_config;              // 网络配置指针
 void* system_graphics_config;             // 图形配置指针
 void* system_audio_config;               // 音频配置指针
@@ -112,14 +112,14 @@ void* system_config_pointer;              // 系统配置指针
 size_t system_page_size;
 size_t system_memory_alignment;
 void* system_data_cache_config;         // 系统数据缓存配置指针
-// 系统配置变量声明（2025年8月30日最终批次美化）
+
 void* system_physics_config;             // 物理配置指针
 void* system_cache_address;               // 系统缓存地址指针
 void* system_input_config;               // 输入配置指针
 void* system_heap_address;                 // 系统堆地址指针
 void* system_stack_memory_address;               // 系统栈地址指针
 void* system_thread_config;              // 线程配置指针
-// 系统配置变量声明（2025年8月30日最终批次美化）
+
 void* system_memory_config;             // 内存配置指针
 void* system_file_config;               // 文件配置指针
 void* system_security_config;            // 安全配置指针
@@ -163,7 +163,7 @@ void* system_data_unit;               // 系统数据单元指针
 void* system_data_item;               // 系统数据项指针
 void* system_data_table;             // 系统数据表指针
 void* system_data_array;             // 系统数据数组指针
-// 美化系统标志变量名（2025年8月30日最终批次补充美化）
+
 char system_flag_primary;                   // 主系统标志system_flag_primary
 char system_flag_secondary;                 // 次要系统标志system_flag_secondary
 char system_flag_tertiary;                  // 第三系统标志system_flag_tertiary
@@ -500,7 +500,6 @@ void InitializeSystemCore_Basic(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -550,7 +549,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -600,7 +598,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -650,7 +647,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -700,7 +696,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -750,7 +745,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -800,7 +794,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -850,7 +843,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -900,7 +892,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -969,7 +960,6 @@ int InitializeSystemCore(void)
   system_global_initialized_flag = SYSTEM_INIT_VALUE_ZERO;
   system_global_initialized_flag = SYSTEM_INIT_VALUE_ZERO;
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -1057,7 +1047,6 @@ int InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -1107,7 +1096,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -1171,7 +1159,6 @@ int InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t sy
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -1193,7 +1180,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -1243,7 +1229,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -1293,7 +1278,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -1343,7 +1327,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -1393,7 +1376,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -1443,7 +1425,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -1493,7 +1474,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -1543,7 +1523,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -1593,7 +1572,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -1643,7 +1621,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -1693,7 +1670,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -1743,7 +1719,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -1793,7 +1768,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -1843,7 +1817,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -1903,7 +1876,6 @@ int InitializeSystemCore(void)
   system_global_initialized_flag = &system_global_contextsystem_global_context;
   system_global_initialized_flag = &system_initialized;
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -1925,7 +1897,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -1975,7 +1946,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -2025,7 +1995,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -2075,7 +2044,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -2125,7 +2093,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -2175,7 +2142,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -2225,7 +2191,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -2275,7 +2240,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -2325,7 +2289,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -2375,7 +2338,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -2425,7 +2387,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -2475,7 +2436,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -2525,7 +2485,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -2575,7 +2534,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -2625,7 +2583,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -2675,7 +2632,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -2725,7 +2681,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -2775,7 +2730,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -2825,7 +2779,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -2875,7 +2828,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -2925,7 +2877,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -2975,7 +2926,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -3025,7 +2975,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -3075,7 +3024,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -3125,7 +3073,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -3175,7 +3122,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -3225,7 +3171,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -3275,7 +3220,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -3325,7 +3269,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -3375,7 +3318,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -3425,7 +3367,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -3477,7 +3418,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -3509,7 +3449,6 @@ int InitializeSystemCore(void)
   system_global_initialized_flag = &system_global_contextsystem_global_context;
   system_global_initialized_flag = &system_initialized;
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -3559,7 +3498,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -3609,7 +3547,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -3659,7 +3596,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -3709,7 +3645,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -3759,7 +3694,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -3809,7 +3743,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -3859,7 +3792,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -3909,7 +3841,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -3959,7 +3890,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -4009,7 +3939,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -4061,7 +3990,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -4083,7 +4011,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -4133,7 +4060,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -4183,7 +4109,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -4233,7 +4158,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -4283,7 +4207,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -4333,7 +4256,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -4383,7 +4305,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -4435,7 +4356,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -4467,7 +4387,6 @@ int InitializeSystemCore(void)
   system_global_initialized_flag = &system_global_contextsystem_global_context;
   system_global_initialized_flag = &system_initialized;
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -4491,7 +4410,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -4515,7 +4433,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -4539,7 +4456,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -4563,7 +4479,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -4585,7 +4500,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -4635,7 +4549,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -4685,7 +4598,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -4735,7 +4647,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -4785,7 +4696,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -4835,7 +4745,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -4885,7 +4794,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -4935,7 +4843,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -4985,7 +4892,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -5035,7 +4941,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -5085,7 +4990,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -5135,7 +5039,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -5185,7 +5088,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -5235,7 +5137,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -5285,7 +5186,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -5335,7 +5235,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -5385,7 +5284,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -5442,7 +5340,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -5492,7 +5389,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -5542,7 +5438,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -5592,7 +5487,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -5642,7 +5536,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -5692,7 +5585,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -5742,7 +5634,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -5792,7 +5683,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -5842,7 +5732,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -5892,7 +5781,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -5942,7 +5830,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -5992,7 +5879,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -6042,7 +5928,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -6092,7 +5977,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -6142,7 +6026,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -6192,7 +6075,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -6242,7 +6124,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -6292,7 +6173,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -6342,7 +6222,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -6392,7 +6271,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -6442,7 +6320,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -6492,7 +6369,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -6542,7 +6418,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -6592,7 +6467,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -6642,7 +6516,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -6692,7 +6565,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -6742,7 +6614,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -6792,7 +6663,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -6842,7 +6712,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -6892,7 +6761,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -6942,7 +6810,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -6992,7 +6859,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -7044,7 +6910,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -7076,7 +6941,6 @@ int InitializeSystemCore(void)
   system_global_initialized_flag = &system_global_contextsystem_global_context;
   system_global_initialized_flag = &system_initialized;
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -7100,7 +6964,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -7122,7 +6985,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -7172,7 +7034,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -7222,7 +7083,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -7272,7 +7132,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -7322,7 +7181,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -7372,7 +7230,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -7422,7 +7279,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -7472,7 +7328,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -7524,7 +7379,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -7546,7 +7400,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -7596,7 +7449,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -7646,7 +7498,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -7696,7 +7547,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -7746,7 +7596,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -7796,7 +7645,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -7846,7 +7694,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -7896,7 +7743,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -7946,7 +7792,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -7996,7 +7841,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -8046,7 +7890,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -8098,7 +7941,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -8122,7 +7964,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -8146,7 +7987,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -8170,7 +8010,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -8194,7 +8033,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -8218,7 +8056,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -8242,7 +8079,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -8266,7 +8102,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -8290,7 +8125,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -8312,7 +8146,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -8362,7 +8195,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -8412,7 +8244,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -8462,7 +8293,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -8512,7 +8342,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -8562,7 +8391,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -8612,7 +8440,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -8662,7 +8489,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -8712,7 +8538,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -8762,7 +8587,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -8812,7 +8636,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -8862,7 +8685,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -8912,7 +8734,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -8962,7 +8783,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -9012,7 +8832,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -9062,7 +8881,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -9112,7 +8930,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -9162,7 +8979,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -9212,7 +9028,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -9262,7 +9077,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -9312,7 +9126,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -9362,7 +9175,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -9412,7 +9224,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -9462,7 +9273,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -9512,7 +9322,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -9562,7 +9371,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -9612,7 +9420,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -9662,7 +9469,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -9712,7 +9518,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -9762,7 +9567,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -9812,7 +9616,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -9862,7 +9665,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -9912,7 +9714,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -9962,7 +9763,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -10012,7 +9812,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -10062,7 +9861,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -10112,7 +9910,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -10162,7 +9959,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -10214,7 +10010,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -10246,7 +10041,6 @@ int InitializeSystemCore(void)
   system_global_initialized_flag = &system_global_contextsystem_global_context;
   system_global_initialized_flag = &system_initialized;
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -10296,7 +10090,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -10346,7 +10139,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -10396,7 +10188,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -10446,7 +10237,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -10496,7 +10286,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -10546,7 +10335,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -10596,7 +10384,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -10646,7 +10433,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -10696,7 +10482,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -10748,7 +10533,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -10772,7 +10556,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -10794,7 +10577,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -10844,7 +10626,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -10894,7 +10675,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -10944,7 +10724,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -10994,7 +10773,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -11044,7 +10822,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -11094,7 +10871,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -11154,7 +10930,6 @@ int InitializeSystemCore(void)
   system_global_initialized_flag = &system_global_contextsystem_global_context;
   system_global_initialized_flag = &system_initialized;
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -11204,7 +10979,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -11254,7 +11028,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -11304,7 +11077,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -11354,7 +11126,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -11404,7 +11175,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -11454,7 +11224,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -11504,7 +11273,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -11554,7 +11322,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -11604,7 +11371,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -11654,7 +11420,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -11704,7 +11469,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -11754,7 +11518,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -11804,7 +11567,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -11854,7 +11616,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -11906,7 +11667,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -11991,7 +11751,6 @@ int InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -12041,7 +11800,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -12091,7 +11849,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -12141,7 +11898,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -12191,7 +11947,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -12241,7 +11996,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -12291,7 +12045,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -12341,7 +12094,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -12391,7 +12143,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -12441,7 +12192,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -12493,7 +12243,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -12517,7 +12266,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -12541,7 +12289,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -12565,7 +12312,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -12597,7 +12343,6 @@ int InitializeSystemCore(void)
   system_global_initialized_flag = &system_global_contextsystem_global_context;
   system_global_initialized_flag = &system_initialized;
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -12647,7 +12392,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -12697,7 +12441,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -12747,7 +12490,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -12797,7 +12539,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -12847,7 +12588,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -12897,7 +12637,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -12947,7 +12686,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -12997,7 +12735,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -13047,7 +12784,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -13097,7 +12833,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -13147,7 +12882,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -13197,7 +12931,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -13247,7 +12980,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -13297,7 +13029,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -13347,7 +13078,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -13397,7 +13127,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -13447,7 +13176,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -13497,7 +13225,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -13547,7 +13274,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -13597,7 +13323,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -13647,7 +13372,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -13697,7 +13421,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -13747,7 +13470,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -13797,7 +13519,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -13847,7 +13568,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -13897,7 +13617,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -13947,7 +13666,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -14037,7 +13755,6 @@ int InitializeSystemCore(void)
   _system_gpu_usage = &system_global_contextsystem_global_context;
   _system_frame_rate = &system_physics_time;
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -14087,7 +13804,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -14137,7 +13853,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -14187,7 +13902,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -14239,7 +13953,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -14273,7 +13986,6 @@ int InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t sy
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -14323,7 +14035,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -14373,7 +14084,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -14423,7 +14133,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -14473,7 +14182,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -14523,7 +14231,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -14573,7 +14280,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -14623,7 +14329,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -14673,7 +14378,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -14723,7 +14427,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -14773,7 +14476,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -14823,7 +14525,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -14873,7 +14574,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -14923,7 +14623,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -14973,7 +14672,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -15023,7 +14721,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -15073,7 +14770,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -15123,7 +14819,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -15173,7 +14868,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -15223,7 +14917,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -15273,7 +14966,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -15325,7 +15017,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -15349,7 +15040,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -15417,7 +15107,6 @@ int InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -15481,7 +15170,6 @@ system_init_label_main_entry:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -15505,7 +15193,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -15582,7 +15269,6 @@ int InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -15601,7 +15287,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -15625,7 +15310,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -15644,7 +15328,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -15663,7 +15346,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -15682,7 +15364,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -15701,7 +15382,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -15745,7 +15425,6 @@ int InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -15764,7 +15443,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -15921,7 +15599,6 @@ InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_conf
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -15945,7 +15622,6 @@ void InitializeScriptSystem(system_uint64_t *system_context_param)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -16247,7 +15923,6 @@ system_init_label_resource_check:
   system_global_initialized_flag = SYSTEM_INIT_VALUE_ZERO;
   system_global_initialized_flag = system_performance_counter_long;
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -16510,7 +16185,6 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -16535,7 +16209,6 @@ void InitializeSystemCore(system_uint8_t *system_context_param)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -16648,7 +16321,6 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -16906,7 +16578,6 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -17448,7 +17119,6 @@ void InitializeSystemCore(longlong *system_context_param,system_uint64_t *system
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -18861,7 +18531,6 @@ system_uint8_t InitializeSystemCore(longlong system_context_param,system_uint64_
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -18872,7 +18541,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -18883,7 +18551,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -18894,7 +18561,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -18970,7 +18636,6 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -19138,7 +18803,6 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -19387,7 +19051,6 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -19615,7 +19278,6 @@ bool InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -19691,7 +19353,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -19711,7 +19372,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -19781,7 +19441,6 @@ void InitializeSystemCore(void)
     *system_buffer_pointer = system_max_iterations;
     system_int_value = GetLastError();
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -20231,7 +19890,6 @@ void InitializeSystemCore(system_uint64_t system_context_param)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -20974,7 +20632,6 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -22058,7 +21715,6 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -22327,7 +21983,6 @@ void InitializeSystemCore(longlong system_context_param)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -22483,7 +22138,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -22981,7 +22635,6 @@ void InitializeSystemCore(longlong system_context_param)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -23055,7 +22708,6 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -24369,7 +24021,6 @@ void InitializeSystemCore(longlong *system_context_param,longlong system_config_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -24767,7 +24418,6 @@ system_init_label_operation_start:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -25010,7 +24660,6 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint0x102_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -25659,7 +25308,6 @@ system_uint64_t * InitializeThreadSystem(system_uint64_t *system_context_param)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -25814,7 +25462,6 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -25977,7 +25624,6 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -25989,7 +25635,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -26129,7 +25774,6 @@ void InitializeSystemCore(longlong system_context_param,ulonglong system_config_
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -26325,7 +25969,6 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -26378,7 +26021,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -26419,7 +26061,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -26661,7 +26302,6 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -26714,7 +26354,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -26755,7 +26394,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -26819,7 +26457,6 @@ void InitializeSystemCore(longlong *system_context_param)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -27626,7 +27263,6 @@ void InitializeSystemCore(system_uint64_t system_context_param)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -27783,7 +27419,6 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -27824,7 +27459,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -28060,7 +27694,6 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -28070,7 +27703,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -28978,7 +28610,6 @@ longlong InitializeSystemCore(longlong system_context_param,system_uint64_t syst
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -29351,7 +28982,6 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -29458,7 +29088,6 @@ void InitializePhysicsSystem(system_uint64_t *system_context_param)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -29701,7 +29330,6 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -29718,7 +29346,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -32168,7 +31795,6 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -32192,7 +31818,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -32229,7 +31854,6 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -32253,7 +31877,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -32265,7 +31888,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -32787,7 +32409,6 @@ void InitializeSystemCore(longlong system_context_param,longlong *system_config_
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -33899,7 +33520,6 @@ system_uint64_t InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -35821,7 +35441,6 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -35873,7 +35492,6 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -35884,7 +35502,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -35940,7 +35557,6 @@ void InitializeSystemCore(longlong *system_context_param)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -36362,7 +35978,6 @@ system_init_label_mode_switch:
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -36538,7 +36153,6 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
     fwrite(&file_system_cache,,1,system_calculation_temp);
     fwrite(&system_initialized,system_temp_storage,1,system_calculation_temp);
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -36822,7 +36436,6 @@ void InitializeSystemCore(system_uint64_t system_context_param)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -37784,7 +37397,6 @@ system_init_label_component_activate:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -38491,7 +38103,6 @@ longlong InitializeSystemCore(longlong system_context_param,ulonglong system_con
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -38536,7 +38147,6 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -38547,7 +38157,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -38701,7 +38310,6 @@ void InitializeSystemCore(ulonglong system_context_param)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -38711,7 +38319,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -38722,7 +38329,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -39021,7 +38627,6 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -39032,7 +38637,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -39826,7 +39430,6 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -40861,7 +40464,6 @@ void InitializeSystemCore(longlong *system_context_param,system_uint64_t system_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -41832,7 +41434,6 @@ system_init_label_potential_release:
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -42869,7 +42470,6 @@ longlong InitializeSystemCore(longlong system_context_param,ulonglong system_con
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -43124,7 +42724,6 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -43141,7 +42740,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -43453,7 +43051,6 @@ InitializeSystemCore(system_uint0x102_t *system_context_param,system_uint64_t sy
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -43799,7 +43396,6 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -43818,7 +43414,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -47222,7 +46817,6 @@ void InitializeSystemCore(system_uint0x102_t *system_context_param)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -47303,7 +46897,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -47946,7 +47539,6 @@ void InitializeSystemCore(longlong system_context_param)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -50981,7 +50573,6 @@ system_init_label_information_exchange:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -51312,7 +50903,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -51577,7 +51167,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -51731,7 +51320,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -51903,7 +51491,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -52197,7 +51784,6 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -52638,7 +52224,6 @@ system_init_label_talk_start:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -54050,7 +53635,6 @@ void InitializeSystemCore(longlong system_context_param)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -54632,7 +54216,6 @@ void InitializeSystemCore(longlong system_context_param,uint system_config_param
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -54919,7 +54502,6 @@ system_uint8_t InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -58669,7 +58251,6 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -58683,7 +58264,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -59170,7 +58750,6 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -59180,7 +58759,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -59280,7 +58858,6 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -59348,7 +58925,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -59393,7 +58969,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -59418,7 +58993,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -59717,7 +59291,6 @@ system_init_label_expose_uncover:
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -60460,7 +60033,6 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -60643,7 +60215,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -60827,7 +60398,6 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -60919,7 +60489,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -60976,7 +60545,6 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -60986,7 +60554,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -60996,7 +60563,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -61006,7 +60572,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {
@@ -61035,7 +60600,6 @@ void InitializeSystemCore(void)
 
 
 
-// 函数: void InitializeSystemCore - 语义化替换
 void InitializeSystemCore(void)
 
 {

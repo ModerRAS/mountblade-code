@@ -931,7 +931,21 @@ void utility_seek_file_position(longlong utility_resource_primary_handle,uint64 
 // warning: Removing unreachable block (ram,utility_unwind_function_error_recovery_primary)
 // warning: Removing unreachable block (ram,utility_unwind_function_error_recovery_secondary)
 // warning: Removing unreachable block (ram,utility_unwind_function_error_recovery_tertiary)
-uint64 get_file_position(longlong utility_resource_primary_handle)
+/**
+ * @brief 获取文件位置
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @return uint64 文件位置状态码
+ * 
+ * 该函数负责获取文件位置，包括：
+ * - 执行系统内存操作
+ * - 验证资源上下文
+ * - 处理资源数据
+ * - 返回位置状态
+ * 
+ * 简化实现：仅添加必要的文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
+uint64 utility_get_file_position(longlong utility_resource_primary_handle)
 {
   longlong utility_primary_resource_cache;
   uint utility_resource_index;
