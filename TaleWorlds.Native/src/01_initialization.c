@@ -14102,7 +14102,7 @@ void system_configure_paths(void)
   longlong long_value_result;
   int integer_value;
   uint64_t unsigned_value_index;
-  longlong *plVar6;
+  longlong *long_ptr_6;
   uint8_t stack_array_248 [32];
   void *stack_pointer_228;
   void *stack_pointer_220;
@@ -14140,19 +14140,19 @@ void system_configure_paths(void)
     system_util_180061380();
     long_value_result = _SYSTEM_CONFIG_DATA_TYPE_104;
     unsigned_value_index = system_utility_create_object(_SYSTEM_CONFIG_DATA_TYPE_128,0x70,8,3);
-    plVar6 = (longlong *)system_utility_allocate_memory(unsigned_value_index,8,long_value_result);
-    plStack_190 = plVar6;
-    if (plVar6 != (longlong *)0x0) {
-      (**(code **)(*plVar6 + 0x28))(plVar6);
+    long_ptr_6 = (longlong *)system_utility_allocate_memory(unsigned_value_index,8,long_value_result);
+    plStack_190 = long_ptr_6;
+    if (long_ptr_6 != (longlong *)0x0) {
+      (**(code **)(*long_ptr_6 + 0x28))(long_ptr_6);
     }
-    *(uint32_t *)(plVar6 + 0xd) = 0xbb80073;
+    *(uint32_t *)(long_ptr_6 + 0xd) = 0xbb80073;
     primary_ptr = *(uint64_t **)(long_value_result + 400);
     pchar_flag = *(code **)*primary_ptr;
     applStack_150[0] = &plStack_208;
-    plStack_208 = plVar6;
-    (**(code **)(*plVar6 + 0x28))(plVar6);
+    plStack_208 = long_ptr_6;
+    (**(code **)(*long_ptr_6 + 0x28))(long_ptr_6);
     (*pchar_flag)(primary_ptr,&plStack_208);
-    (**(code **)(*plVar6 + 0x38))(plVar6);
+    (**(code **)(*long_ptr_6 + 0x38))(long_ptr_6);
     system_util_1800624c0();
     pstack_uint_1d8 = &system_config_default_handler;
     stack_uint_1c0 = 0;
@@ -14245,7 +14245,7 @@ void system_load_configuration(uint64_t param_1,longlong param_2)
   uint unsigned_value_result;
   uint32_t unsigned_value_count;
   uint64_t unsigned_value_index;
-  longlong *plVar6;
+  longlong *long_ptr_6;
   longlong lVar7;
   uint64_t *system_config_next;
   uint64_t *nonary_ptr;
@@ -14275,16 +14275,16 @@ void system_load_configuration(uint64_t param_1,longlong param_2)
   stack_uint_58 = 0xfffffffffffffffe;
   unsigned_value_index = system_initialize_environment();
   system_utility_function_type6();
-  plVar6 = (longlong *)system_utility_create_object(_SYSTEM_CONFIG_DATA_TYPE_128,0x68,8,3);
-  plong_pointer_primary = (longlong **)(plVar6 + 1);
-  stack_long_pointer_10 = plVar6;
+  long_ptr_6 = (longlong *)system_utility_create_object(_SYSTEM_CONFIG_DATA_TYPE_128,0x68,8,3);
+  plong_pointer_primary = (longlong **)(long_ptr_6 + 1);
+  stack_long_pointer_10 = long_ptr_6;
   pstack_long_pointer_18 = plong_pointer_primary;
   _Mtx_init_in_situ(plong_pointer_primary,2);
-  plVar6[0xb] = 0;
-  plVar6[0xc] = 0;
-  *(int32_t2 *)plVar6 = 0;
-  _SYSTEM_CONFIG_DATA_TYPE_127 = plVar6;
-  if ((char)*plVar6 != '\0') goto LAB_180044faf;
+  long_ptr_6[0xb] = 0;
+  long_ptr_6[0xc] = 0;
+  *(int32_t2 *)long_ptr_6 = 0;
+  _SYSTEM_CONFIG_DATA_TYPE_127 = long_ptr_6;
+  if ((char)*long_ptr_6 != '\0') goto LAB_180044faf;
   pplStack_50 = plong_pointer_primary;
   integer_secondary = _Mtx_lock(plong_pointer_primary);
   if (integer_secondary != 0) {
@@ -14297,10 +14297,10 @@ void system_load_configuration(uint64_t param_1,longlong param_2)
     pointer_primary3 = pstack_uint_b0;
   }
   SymSetSearchPath(_SYSTEM_CONFIG_DATA_TYPE_164,pointer_primary3);
-  lVar7 = plVar6[0xb];
+  lVar7 = long_ptr_6[0xb];
   if (lVar7 == 0) {
     lVar7 = LoadLibraryA(&SYSTEM_STRING_EMPTY86);
-    plVar6[0xb] = lVar7;
+    long_ptr_6[0xb] = lVar7;
     if (lVar7 != 0) goto LAB_180044ee3;
     pstack_uint_b8 = &system_config_default_handler;
     if (pstack_uint_b0 != (void *)0x0) {
@@ -14309,9 +14309,9 @@ void system_load_configuration(uint64_t param_1,longlong param_2)
   }
   else {
 LAB_180044ee3:
-    if (plVar6[0xc] == 0) {
+    if (long_ptr_6[0xc] == 0) {
       lVar7 = GetProcAddress(lVar7,&SYSTEM_STRING_EMPTY85);
-      plVar6[0xc] = lVar7;
+      long_ptr_6[0xc] = lVar7;
       if (lVar7 == 0) {
         pstack_uint_b8 = &system_config_default_handler;
         if (pstack_uint_b0 != (void *)0x0) {
@@ -14332,7 +14332,7 @@ LAB_180044ee3:
       }
     }
     else {
-      *(char *)plVar6 = '\x01';
+      *(char *)long_ptr_6 = '\x01';
       pstack_uint_b8 = &system_config_default_handler;
       if (pstack_uint_b0 != (void *)0x0) {
         system_processor_cleanup();
@@ -14412,7 +14412,7 @@ uint32_t system_init_180045580(void)
   longlong **plong_pointer_result;
   uint32_t unsigned_value_count;
   int integer_count;
-  longlong ****pppplVar6;
+  longlong ****ppplong_ptr_6;
   uint64_t uVar7;
   longlong ****pppplVar8;
   longlong ***ppplVar9;
@@ -14439,23 +14439,23 @@ uint32_t system_init_180045580(void)
       Sleep(1);
     }
   }
-  pppplVar6 = (longlong ****)system_utility_create_object(_SYSTEM_CONFIG_DATA_TYPE_128,0xc0,8,3,unsigned_value_primary2);
-  pppstack_long_pointer_8 = pppplVar6;
-  system_main_configure(pppplVar6);
-  *pppplVar6 = (longlong ***)&SYSTEM_DATABASE_CONNECTION_TYPE7;
-  ppstack_long_pointer_20 = (longlong ***)pppplVar6;
-  (*(code *)(*pppplVar6)[5])(pppplVar6);
+  ppplong_ptr_6 = (longlong ****)system_utility_create_object(_SYSTEM_CONFIG_DATA_TYPE_128,0xc0,8,3,unsigned_value_primary2);
+  pppstack_long_pointer_8 = ppplong_ptr_6;
+  system_main_configure(ppplong_ptr_6);
+  *ppplong_ptr_6 = (longlong ***)&SYSTEM_DATABASE_CONNECTION_TYPE7;
+  ppstack_long_pointer_20 = (longlong ***)ppplong_ptr_6;
+  (*(code *)(*ppplong_ptr_6)[5])(ppplong_ptr_6);
   system_memory_allocation_result0 = _SYSTEM_CONFIG_DATA_TYPE_86;
   pppplong_pointer_primary3 = &pppstack_long_pointer_8;
-  pppstack_long_pointer_8 = pppplVar6;
-  (*(code *)(*pppplVar6)[5])(pppplVar6);
+  pppstack_long_pointer_8 = ppplong_ptr_6;
+  (*(code *)(*ppplong_ptr_6)[5])(ppplong_ptr_6);
   system_config_18005e300(system_memory_allocation_result0,&pppstack_long_pointer_8);
   while( true ) {
-    if (*pppplVar6 == (longlong ***)&SYSTEM_DATABASE_CONNECTION_TYPE7) {
-      config_status_flag1 = *(char *)(pppplVar6 + 2) != '\0';
+    if (*ppplong_ptr_6 == (longlong ***)&SYSTEM_DATABASE_CONNECTION_TYPE7) {
+      config_status_flag1 = *(char *)(ppplong_ptr_6 + 2) != '\0';
     }
     else {
-      config_status_flag1 = (*(code *)(*pppplVar6)[0xd])(pppplVar6);
+      config_status_flag1 = (*(code *)(*ppplong_ptr_6)[0xd])(ppplong_ptr_6);
     }
     if (config_status_flag1 != '\0') break;
     Sleep(1);
@@ -14550,7 +14550,7 @@ uint32_t system_init_180045580(void)
     unsigned_value_primary2 = __acrt_iob_func(2);
     fflush(unsigned_value_primary2);
     unsigned_value_count = _SYSTEM_CONFIG_DATA_TYPE_81;
-    (*(code *)(*pppplVar6)[7])(pppplVar6);
+    (*(code *)(*ppplong_ptr_6)[7])(ppplong_ptr_6);
     return unsigned_value_count;
   }
   system_util_18006ef20(ppplong_pointer_primary4 + 0x1e);
@@ -30160,16 +30160,16 @@ uint64_t system_util_180060e40(uint64_t *param_1,longlong param_2,uint64_t param
   longlong long_value_result;
   longlong *system_root_table_ptr;
   longlong *pallocation_size;
-  longlong *plVar6;
+  longlong *long_ptr_6;
   
   if (((*(longlong *)(param_2 + 0x18) == 0) || (*(int *)(param_2 + 4) != *(int *)(param_1 + 0x4c)))
      && (configuration_status = system_util_180060a50(), configuration_status == '\0')) {
     return 0;
   }
-  plVar6 = (longlong *)0x0;
+  long_ptr_6 = (longlong *)0x0;
   system_root_table_ptr = (longlong *)(*(longlong *)(param_2 + 0x10) + -8);
   if (*(longlong *)(param_2 + 0x10) == 0) {
-    system_root_table_ptr = plVar6;
+    system_root_table_ptr = long_ptr_6;
   }
   configuration_status = system_util_180060c60(system_root_table_ptr,param_3);
   if (configuration_status == '\0') {
@@ -30182,7 +30182,7 @@ uint64_t system_util_180060e40(uint64_t *param_1,longlong param_2,uint64_t param
     while( true ) {
       long_pointer_secondary = (longlong *)(long_value_result + -8);
       if (long_value_result == 0) {
-        long_pointer_secondary = plVar6;
+        long_pointer_secondary = long_ptr_6;
       }
       pallocation_size = system_root_table_ptr;
       if (long_pointer_secondary != (longlong *)0x0) {
@@ -30190,7 +30190,7 @@ uint64_t system_util_180060e40(uint64_t *param_1,longlong param_2,uint64_t param
       }
       long_pointer_secondary = (longlong *)(*(longlong *)(param_2 + 0x10) + -8);
       if (*(longlong *)(param_2 + 0x10) == 0) {
-        long_pointer_secondary = plVar6;
+        long_pointer_secondary = long_ptr_6;
       }
       if (pallocation_size == long_pointer_secondary) {
         return 0;
@@ -30202,7 +30202,7 @@ uint64_t system_util_180060e40(uint64_t *param_1,longlong param_2,uint64_t param
     *(uint32_t *)(param_2 + 8) = 1;
     system_root_table_ptr = pallocation_size + 1;
     if (pallocation_size == (longlong *)0x0) {
-      system_root_table_ptr = plVar6;
+      system_root_table_ptr = long_ptr_6;
     }
     *(longlong **)(param_2 + 0x10) = system_root_table_ptr;
   }
@@ -30452,7 +30452,7 @@ void system_util_180061be0(longlong *param_1)
   longlong long_value_result;
   uint64_t unsigned_value_count;
   longlong *pallocation_size;
-  longlong *plVar6;
+  longlong *long_ptr_6;
   longlong *plVar7;
   longlong *stack_long_pointer_8;
   longlong **pstack_long_pointer_10;
@@ -30476,17 +30476,17 @@ void system_util_180061be0(longlong *param_1)
   }
   (*pchar_flag)(primary_ptr,&stack_long_pointer_8);
   unsigned_value_count = system_utility_create_object(_SYSTEM_CONFIG_DATA_TYPE_128,0x70,8,3);
-  plVar6 = (longlong *)system_utility_allocate_memory(unsigned_value_count,4,long_value_result);
-  stack_long_pointer_20 = plVar6;
-  if (plVar6 != (longlong *)0x0) {
-    (**(code **)(*plVar6 + 0x28))(plVar6);
+  long_ptr_6 = (longlong *)system_utility_allocate_memory(unsigned_value_count,4,long_value_result);
+  stack_long_pointer_20 = long_ptr_6;
+  if (long_ptr_6 != (longlong *)0x0) {
+    (**(code **)(*long_ptr_6 + 0x28))(long_ptr_6);
   }
   primary_ptr = *(uint64_t **)(long_value_result + 400);
   pchar_flag = *(code **)*primary_ptr;
   pstack_long_pointer_10 = &stack_long_pointer_8;
-  stack_long_pointer_8 = plVar6;
-  if (plVar6 != (longlong *)0x0) {
-    (**(code **)(*plVar6 + 0x28))(plVar6);
+  stack_long_pointer_8 = long_ptr_6;
+  if (long_ptr_6 != (longlong *)0x0) {
+    (**(code **)(*long_ptr_6 + 0x28))(long_ptr_6);
   }
   (*pchar_flag)(primary_ptr,&stack_long_pointer_8);
   unsigned_value_count = system_utility_create_object(_SYSTEM_CONFIG_DATA_TYPE_128,0x70,8,3);
@@ -30509,8 +30509,8 @@ void system_util_180061be0(longlong *param_1)
   }
   (*pchar_flag)(primary_ptr,&stack_long_pointer_8);
   system_api_18020f150(*(uint64_t *)(long_value_result + 400));
-  if (plVar6 != (longlong *)0x0) {
-    (**(code **)(*plVar6 + 0x38))(plVar6);
+  if (long_ptr_6 != (longlong *)0x0) {
+    (**(code **)(*long_ptr_6 + 0x38))(long_ptr_6);
   }
   if (plVar7 != (longlong *)0x0) {
     (**(code **)(*plVar7 + 0x38))(plVar7);
@@ -30524,7 +30524,7 @@ void system_util_180061db0(longlong *param_1)
   longlong long_value_result;
   uint64_t unsigned_value_count;
   longlong *pallocation_size;
-  longlong *plVar6;
+  longlong *long_ptr_6;
   longlong *plVar7;
   longlong *stack_long_pointer_8;
   longlong **pstack_long_pointer_10;
@@ -30548,17 +30548,17 @@ void system_util_180061db0(longlong *param_1)
   }
   (*pchar_flag)(primary_ptr,&stack_long_pointer_8);
   unsigned_value_count = system_utility_create_object(_SYSTEM_CONFIG_DATA_TYPE_128,0x70,8,3);
-  plVar6 = (longlong *)system_utility_allocate_memory(unsigned_value_count,3,long_value_result);
-  stack_long_pointer_20 = plVar6;
-  if (plVar6 != (longlong *)0x0) {
-    (**(code **)(*plVar6 + 0x28))(plVar6);
+  long_ptr_6 = (longlong *)system_utility_allocate_memory(unsigned_value_count,3,long_value_result);
+  stack_long_pointer_20 = long_ptr_6;
+  if (long_ptr_6 != (longlong *)0x0) {
+    (**(code **)(*long_ptr_6 + 0x28))(long_ptr_6);
   }
   primary_ptr = *(uint64_t **)(long_value_result + 400);
   pchar_flag = *(code **)*primary_ptr;
   pstack_long_pointer_10 = &stack_long_pointer_8;
-  stack_long_pointer_8 = plVar6;
-  if (plVar6 != (longlong *)0x0) {
-    (**(code **)(*plVar6 + 0x28))(plVar6);
+  stack_long_pointer_8 = long_ptr_6;
+  if (long_ptr_6 != (longlong *)0x0) {
+    (**(code **)(*long_ptr_6 + 0x28))(long_ptr_6);
   }
   (*pchar_flag)(primary_ptr,&stack_long_pointer_8);
   unsigned_value_count = system_utility_create_object(_SYSTEM_CONFIG_DATA_TYPE_128,0x70,8,3);
@@ -30581,8 +30581,8 @@ void system_util_180061db0(longlong *param_1)
   }
   (*pchar_flag)(primary_ptr,&stack_long_pointer_8);
   system_api_18020f150(*(uint64_t *)(long_value_result + 400));
-  if (plVar6 != (longlong *)0x0) {
-    (**(code **)(*plVar6 + 0x38))(plVar6);
+  if (long_ptr_6 != (longlong *)0x0) {
+    (**(code **)(*long_ptr_6 + 0x38))(long_ptr_6);
   }
   if (plVar7 != (longlong *)0x0) {
     (**(code **)(*plVar7 + 0x38))(plVar7);
@@ -33143,7 +33143,7 @@ void system_util_1800672c0(longlong param_1)
   int memory_comparison_result;
   uint64_t unsigned_value_count;
   uint64_t unsigned_value_index;
-  longlong *plVar6;
+  longlong *long_ptr_6;
   uint astack_unsigned_value_8 [2];
   longlong stack_long_value_10;
   longlong stack_long_value_18;
@@ -33191,25 +33191,25 @@ void system_util_1800672c0(longlong param_1)
         stack_uint_5c = stack_uint_6c;
         stack_uint_58 = stack_uint_68;
         stack_uint_54 = stack_uint_64;
-        plVar6 = (longlong *)system_util_180069e10(unsigned_value_index,&stack_uint_60);
-        if (plVar6 != (longlong *)0x0) {
-          (**(code **)(*plVar6 + 0x28))(plVar6);
+        long_ptr_6 = (longlong *)system_util_180069e10(unsigned_value_index,&stack_uint_60);
+        if (long_ptr_6 != (longlong *)0x0) {
+          (**(code **)(*long_ptr_6 + 0x28))(long_ptr_6);
         }
         unsigned_value_count = _SYSTEM_CONFIG_DATA_TYPE_86;
-        stack_long_pointer_20 = plVar6;
+        stack_long_pointer_20 = long_ptr_6;
         if (*(char *)(system_memory_allocation_result + 0x368) == '\0') {
-          plVar6[3] = -4;
-          (**(code **)(*plVar6 + 0x28))(plVar6);
+          long_ptr_6[3] = -4;
+          (**(code **)(*long_ptr_6 + 0x28))(long_ptr_6);
           system_config_18005e110(unsigned_value_count,&stack_long_pointer_20);
         }
         else {
-          if (plVar6 != (longlong *)0x0) {
-            (**(code **)(*plVar6 + 0x28))(plVar6);
+          if (long_ptr_6 != (longlong *)0x0) {
+            (**(code **)(*long_ptr_6 + 0x28))(long_ptr_6);
           }
           system_config_18005e450(unsigned_value_count,&stack_long_pointer_20);
         }
-        if (plVar6 != (longlong *)0x0) {
-          (**(code **)(*plVar6 + 0x38))(plVar6);
+        if (long_ptr_6 != (longlong *)0x0) {
+          (**(code **)(*long_ptr_6 + 0x38))(long_ptr_6);
         }
       }
     }
@@ -33622,7 +33622,7 @@ void system_util_1800686b0(longlong param_1)
   longlong long_value_result;
   char cVar4;
   longlong *pallocation_size;
-  longlong *plVar6;
+  longlong *long_ptr_6;
   longlong *plVar7;
   longlong *stack_long_pointer_8;
   
@@ -33637,9 +33637,9 @@ void system_util_1800686b0(longlong param_1)
       *long_pointer_secondary = *long_pointer_secondary - stack_long_pointer_8[1];
       long_pointer_secondary[2] = long_pointer_secondary[2] + stack_long_pointer_8[1];
       plVar7 = (longlong *)stack_long_pointer_8[3];
-      plVar6 = (longlong *)long_pointer_secondary[3];
+      long_ptr_6 = (longlong *)long_pointer_secondary[3];
       pallocation_size = stack_long_pointer_8;
-      if (plVar7 != plVar6) {
+      if (plVar7 != long_ptr_6) {
         do {
           if ((plVar7 == (longlong *)0x0) || ((char)plVar7[4] != '\0')) break;
           long_value_result = pallocation_size[2];
@@ -33650,14 +33650,14 @@ void system_util_1800686b0(longlong param_1)
           plVar7[1] = plVar7[1] + pallocation_size[1];
           *pallocation_size = long_pointer_secondary[0x28005];
           long_pointer_secondary[0x28005] = (longlong)pallocation_size;
-          plVar6 = (longlong *)long_pointer_secondary[3];
+          long_ptr_6 = (longlong *)long_pointer_secondary[3];
           long_pointer_primary = plVar7 + 3;
           pallocation_size = plVar7;
           plVar7 = (longlong *)*long_pointer_primary;
-        } while ((longlong *)*long_pointer_primary != plVar6);
+        } while ((longlong *)*long_pointer_primary != long_ptr_6);
       }
       plVar7 = (longlong *)pallocation_size[2];
-      while (((pallocation_size != plVar6 && (plVar7 != (longlong *)0x0)) && ((char)plVar7[4] == '\0'))) {
+      while (((pallocation_size != long_ptr_6 && (plVar7 != (longlong *)0x0)) && ((char)plVar7[4] == '\0'))) {
         long_value_result = plVar7[2];
         pallocation_size[2] = long_value_result;
         if (long_value_result != 0) {
@@ -33666,7 +33666,7 @@ void system_util_1800686b0(longlong param_1)
         pallocation_size[1] = pallocation_size[1] + plVar7[1];
         *plVar7 = long_pointer_secondary[0x28005];
         long_pointer_secondary[0x28005] = (longlong)plVar7;
-        plVar6 = (longlong *)long_pointer_secondary[3];
+        long_ptr_6 = (longlong *)long_pointer_secondary[3];
         plVar7 = (longlong *)pallocation_size[2];
       }
     }
@@ -49691,7 +49691,7 @@ void system_18007bbb0(longlong param_1,longlong param_2,longlong param_3)
   uint32_t unsigned_value_result;
   uint32_t unsigned_value_count;
   uint64_t unsigned_value_index;
-  longlong *plVar6;
+  longlong *long_ptr_6;
   longlong lVar7;
   longlong *plVar8;
   uint64_t *nonary_ptr;
@@ -49965,17 +49965,17 @@ void system_18007bbb0(longlong param_1,longlong param_2,longlong param_3)
   plStack_30 = (longlong *)0x0;
   lStack_28 = 0;
   if (param_2 != 0) {
-    plVar6 = (longlong *)(param_2 + 0x158);
-    if ((*plVar6 == 0) && (*(longlong *)(param_2 + 0x160) == 0)) {
-      plVar6 = (longlong *)(param_2 + 0x34);
+    long_ptr_6 = (longlong *)(param_2 + 0x158);
+    if ((*long_ptr_6 == 0) && (*(longlong *)(param_2 + 0x160) == 0)) {
+      long_ptr_6 = (longlong *)(param_2 + 0x34);
     }
-    plStack_30 = (longlong *)*plVar6;
-    lStack_28 = plVar6[1];
+    plStack_30 = (longlong *)*long_ptr_6;
+    lStack_28 = long_ptr_6[1];
   }
   stack_uint_38 = 0;
-  plVar6 = (longlong *)(param_1 + 0x1b8);
-  plStack_40 = (longlong *)*plVar6;
-  *plVar6 = 0;
+  long_ptr_6 = (longlong *)(param_1 + 0x1b8);
+  plStack_40 = (longlong *)*long_ptr_6;
+  *long_ptr_6 = 0;
   if (plStack_40 != (longlong *)0x0) {
     (**(code **)(*plStack_40 + 0x38))();
   }
@@ -49985,9 +49985,9 @@ void system_18007bbb0(longlong param_1,longlong param_2,longlong param_3)
   }
   lVar7 = system_180255f80(*(uint64_t *)(param_1 + 0xa8),&SYSTEM_CONFIG_DATA_TYPE_17,plVar8);
   if (lVar7 != 0) {
-    system_memory_180080810(plVar6,lVar7 + 0xb0);
+    system_memory_180080810(long_ptr_6,lVar7 + 0xb0);
   }
-  if (*plVar6 == 0) {
+  if (*long_ptr_6 == 0) {
     pointer_primary2 = &SYSTEM_CONFIG_DATA_TYPE_3;
     if (*(void **)(param_1 + 0x18) != (void *)0x0) {
       pointer_primary2 = *(void **)(param_1 + 0x18);
@@ -49996,8 +49996,8 @@ void system_18007bbb0(longlong param_1,longlong param_2,longlong param_3)
     plVar8 = (longlong *)system_control_1800be9a0(_SYSTEM_CONFIG_DATA_TYPE_91,&plStack_30,0);
     lVar7 = *plVar8;
     *plVar8 = 0;
-    plStack_40 = (longlong *)*plVar6;
-    *plVar6 = lVar7;
+    plStack_40 = (longlong *)*long_ptr_6;
+    *long_ptr_6 = lVar7;
     if (plStack_40 != (longlong *)0x0) {
       (**(code **)(*plStack_40 + 0x38))();
     }
@@ -50256,7 +50256,7 @@ void system_18007c8e0(longlong param_1,byte param_2,longlong *param_3,longlong *
   int memory_comparison_result;
   int integer_value;
   uint64_t unsigned_value_index;
-  longlong *plVar6;
+  longlong *long_ptr_6;
   longlong *plStack_b8;
   longlong *plStack_b0;
   longlong *plStack_a8;
@@ -50339,15 +50339,15 @@ void system_18007c8e0(longlong param_1,byte param_2,longlong *param_3,longlong *
     if (plStack_88 != (longlong *)0x0) {
       (**(code **)(*plStack_88 + 0x38))();
     }
-    plVar6 = (longlong *)system_config_18005c2a0(unsigned_value_index,aplStack_58);
-    plStack_30 = plVar6;
-    if (plVar6 != (longlong *)0x0) {
-      (**(code **)(*plVar6 + 0x28))(plVar6);
+    long_ptr_6 = (longlong *)system_config_18005c2a0(unsigned_value_index,aplStack_58);
+    plStack_30 = long_ptr_6;
+    if (long_ptr_6 != (longlong *)0x0) {
+      (**(code **)(*long_ptr_6 + 0x28))(long_ptr_6);
     }
     pplStack_a0 = &plStack_b0;
-    plStack_b0 = plVar6;
-    if (plVar6 != (longlong *)0x0) {
-      (**(code **)(*plVar6 + 0x28))(plVar6);
+    plStack_b0 = long_ptr_6;
+    if (long_ptr_6 != (longlong *)0x0) {
+      (**(code **)(*long_ptr_6 + 0x28))(long_ptr_6);
     }
     system_config_18005e370(_SYSTEM_CONFIG_DATA_TYPE_86,&plStack_b0);
     pchar_flag = (char *)(*(longlong *)(param_1 + 0x1e0) + 0x15 + (ulonglong)param_2 * 0x18);
@@ -50356,8 +50356,8 @@ void system_18007c8e0(longlong param_1,byte param_2,longlong *param_3,longlong *
       *pchar_flag = '\x02';
     }
     UNLOCK();
-    if (plVar6 != (longlong *)0x0) {
-      (**(code **)(*plVar6 + 0x38))(plVar6);
+    if (long_ptr_6 != (longlong *)0x0) {
+      (**(code **)(*long_ptr_6 + 0x38))(long_ptr_6);
     }
   }
   if ((longlong *)*param_3 != (longlong *)0x0) {
