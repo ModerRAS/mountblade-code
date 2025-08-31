@@ -2060,6 +2060,15 @@ uint64 utility_execute_resource_management_command(longlong utility_resource_pri
   }
   return utility_offset_flag_byte;
 }
+/**
+ * 验证资源操作
+ * 
+ * 该函数验证指定资源操作的有效性和安全性，检查资源句柄、
+ * 内存访问权限和操作权限等关键信息。
+ * 
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @return uint64 验证结果，0表示验证成功，非0表示错误码
+ */
 uint64 utility_validate_resource_operation(longlong utility_resource_primary_handle)
 {
   longlong utility_primary_resource_cache;
@@ -2998,6 +3007,16 @@ utility_data_pointer_primary_extended_operation:
       
   utility_release_resource_handle(*(uint64 *)(utility_resource_context_handle + utility_resource_offset_standard),utility_resource_primary_handle);
 }
+/**
+ * 检查文件访问权限
+ * 
+ * 该函数检查指定文件的访问权限和状态，验证文件句柄的有效性，
+ * 确保文件操作的安全性。
+ * 
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @param utility_primary_resource_cache 主要资源缓存
+ * @return uint64 检查结果，0表示有访问权限，非0表示错误码
+ */
 uint64 check_file_access(longlong utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   int utility_operation_result;
@@ -3017,7 +3036,15 @@ uint64 check_file_access(longlong utility_resource_primary_handle,longlong utili
   }
   return utility_main_iteration_counter;
 }
-// 函数: void lock_file(longlong utility_resource_primary_handle,longlong utility_primary_resource_cache)
+/**
+ * 锁定文件
+ * 
+ * 该函数对指定文件进行锁定操作，防止其他进程同时访问，
+ * 确保文件操作的独占性和数据一致性。
+ * 
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @param utility_primary_resource_cache 主要资源缓存
+ */
 void lock_file(longlong utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   int utility_operation_result;
@@ -3029,6 +3056,16 @@ void lock_file(longlong utility_resource_primary_handle,longlong utility_primary
   }
   return;
 }
+/**
+ * 解锁文件
+ * 
+ * 该函数解除对指定文件的锁定，允许其他进程访问文件。
+ * 在解锁前会验证文件状态和锁定权限。
+ * 
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @param utility_primary_resource_cache 主要资源缓存
+ * @return uint64 操作结果，0表示成功，非0表示错误码
+ */
 uint64 unlock_file(longlong utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   int utility_operation_result;
@@ -3081,7 +3118,15 @@ uint64 get_file_lock_info(longlong utility_resource_primary_handle,longlong util
       
   utility_release_resource_handle(*(uint64 *)(utility_resource_context_handle + utility_resource_offset_standard),utility_resource_primary_handle);
 }
-// 函数: void compress_file(longlong utility_resource_primary_handle,longlong utility_primary_resource_cache)
+/**
+ * 压缩文件
+ * 
+ * 该函数对指定文件进行压缩操作，减少文件占用的存储空间。
+ * 使用系统内置的压缩算法对文件数据进行处理。
+ * 
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @param utility_primary_resource_cache 主要资源缓存
+ */
 void compress_file(longlong utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   int utility_operation_result;
@@ -3093,7 +3138,15 @@ void compress_file(longlong utility_resource_primary_handle,longlong utility_pri
   }
   return;
 }
-// 函数: void decompress_file(longlong utility_resource_primary_handle,longlong utility_primary_resource_cache)
+/**
+ * 解压缩文件
+ * 
+ * 该函数对指定的压缩文件进行解压缩操作，恢复文件的原始数据。
+ * 使用相应的解压缩算法处理文件数据。
+ * 
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @param utility_primary_resource_cache 主要资源缓存
+ */
 void decompress_file(longlong utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   int utility_operation_result;
