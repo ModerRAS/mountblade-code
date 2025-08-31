@@ -1214,7 +1214,7 @@ void *system_callback_secondary3;
 void *system_callback_secondary4;
 void *system_callback_secondary5;
 void *system_callback_secondary6;
-void *system_callback_secondary0x03;
+void *system_callback_secondary_context;
 void *system_callback_data_primary;
 void *system_event_primary;
 void *system_event_secondary;
