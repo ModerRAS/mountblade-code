@@ -373,37 +373,195 @@ void *network_connection_context_septenary_extended;
  * 负责初始化网络数据传输
  */
 void *network_initialize_data_transfer;
+/**
+ * 主网络缓冲区
+ * 主要网络通信的数据缓冲区
+ */
 void *network_buffer_primary;
+
+/**
+ * 辅助网络缓冲区
+ * 辅助网络通信的数据缓冲区
+ */
 void *network_buffer_secondary;
+
+/**
+ * 第三网络缓冲区
+ * 第三网络通信的数据缓冲区
+ */
 void *network_buffer_tertiary;
+
+/**
+ * 第四网络缓冲区
+ * 第四网络通信的数据缓冲区
+ */
 void *network_buffer_quaternary;
+
+/**
+ * 第五网络缓冲区
+ * 第五网络通信的数据缓冲区
+ */
 void *network_buffer_quinary;
+
+/**
+ * 第六网络缓冲区
+ * 第六网络通信的数据缓冲区
+ */
 void *network_buffer_senary;
+
+/**
+ * 第七网络缓冲区
+ * 第七网络通信的数据缓冲区
+ */
 void *network_buffer_septenary;
+
+/**
+ * 静态主网络缓冲区
+ * 静态分配的主网络缓冲区
+ */
 void *network_buffer_static_primary;
+
+/**
+ * 静态辅助网络缓冲区
+ * 静态分配的辅助网络缓冲区
+ */
 void *network_buffer_static_secondary;
+
+/**
+ * 静态第三网络缓冲区
+ * 静态分配的第三网络缓冲区
+ */
 void *network_buffer_static_tertiary;
+
+/**
+ * 静态第四网络缓冲区
+ * 静态分配的第四网络缓冲区
+ */
 void *network_buffer_static_quaternary;
+
+/**
+ * 主网络连接状态
+ * 主要网络连接的状态值
+ */
 int network_connection_state_primary;
+
+/**
+ * 辅助网络连接状态
+ * 辅助网络连接的状态值
+ */
 int network_connection_state_secondary;
+
+/**
+ * 第三网络连接状态
+ * 第三网络连接的状态值
+ */
 int network_connection_state_tertiary;
+
+/**
+ * 第四网络连接状态
+ * 第四网络连接的状态值
+ */
 int network_connection_state_quaternary;
+
+/**
+ * 第五网络连接状态
+ * 第五网络连接的状态值
+ */
 int network_connection_state_quinary;
+
+/**
+ * 第六网络连接状态
+ * 第六网络连接的状态值
+ */
 int network_connection_state_senary;
+/**
+ * 主数据传输对象
+ * 管理主要数据传输操作
+ */
 void *network_data_transfer_primary;
+
+/**
+ * 辅助数据传输对象
+ * 管理辅助数据传输操作
+ */
 void *network_data_transfer_secondary;
+
+/**
+ * 第三数据传输对象
+ * 管理第三数据传输操作
+ */
 void *network_data_transfer_tertiary;
+
+/**
+ * 第四数据传输对象
+ * 管理第四数据传输操作
+ */
 void *network_data_transfer_quaternary;
+
+/**
+ * 第五数据传输对象
+ * 管理第五数据传输操作
+ */
 void *network_data_transfer_quinary;
+
+/**
+ * 扩展主网络配置
+ * 扩展的主要网络配置
+ */
 void *network_config_extended_primary;
+
+/**
+ * 扩展辅助网络配置
+ * 扩展的辅助网络配置
+ */
 void *network_config_extended_secondary;
+
+/**
+ * 扩展第三网络配置
+ * 扩展的第三网络配置
+ */
 void *network_config_extended_tertiary;
+
+/**
+ * 扩展第四网络配置
+ * 扩展的第四网络配置
+ */
 void *network_config_extended_quaternary;
+
+/**
+ * 扩展第五网络配置
+ * 扩展的第五网络配置
+ */
 void *network_config_extended_quinary;
+
+/**
+ * 扩展第六网络配置
+ * 扩展的第六网络配置
+ */
 void *network_config_extended_senary;
+
+/**
+ * 主协议处理器
+ * 处理主要网络协议
+ */
 void *network_protocol_handler_primary;
+
+/**
+ * 辅助协议处理器
+ * 处理辅助网络协议
+ */
 void *network_protocol_handler_secondary;
+
+/**
+ * 第三协议处理器
+ * 处理第三网络协议
+ */
 void *network_protocol_handler_tertiary;
+
+/**
+ * 第四协议处理器
+ * 处理第四网络协议
+ */
 void *network_protocol_handler_quaternary;
 int network_socket_extended_primary;
 int network_socket_extended_secondary;
