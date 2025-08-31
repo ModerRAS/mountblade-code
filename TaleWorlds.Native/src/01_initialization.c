@@ -12992,6 +12992,14 @@ void system_initialize_lock_manager(void)
 }
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
+/**
+ * 初始化信号量系统
+ * 
+ * 设置信号量机制用于资源访问控制
+ * 管理有限资源的并发访问
+ *
+ * @return 无返回值
+ */
 void system_initialize_semaphore_system(void)
 
 {
@@ -12999,6 +13007,14 @@ void system_initialize_semaphore_system(void)
   return;
 }
 
+/**
+ * 检查信号量状态
+ * 
+ * 验证信号量系统的运行状态
+ * 返回信号量的健康状态
+ *
+ * @return 信号量状态码 (0=正常，非0=异常)
+ */
 int system_check_semaphore_status(void)
 
 {
@@ -13031,6 +13047,14 @@ int system_audio_register_value_mutex_pool(uint64_t system_context_parameter,uin
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * 检查互斥锁状态
+ * 
+ * 验证互斥锁系统的运行状态
+ * 返回互斥锁的健康状态
+ *
+ * @return 互斥锁状态码 (0=正常，非0=异常)
+ */
 int system_check_mutex_status(void)
 
 {
@@ -13047,6 +13071,14 @@ int system_check_mutex_status(void)
 }
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
+/**
+ * 初始化临界区
+ * 
+ * 设置临界区对象用于线程同步
+ * 保护共享资源的访问
+ *
+ * @return 无返回值
+ */
 void system_initialize_critical_section(void)
 
 {
@@ -13104,6 +13136,14 @@ SYSTEM_VALIDATION_CHECK:
 }
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
+/**
+ * 初始化自旋锁系统
+ * 
+ * 设置自旋锁机制用于快速线程同步
+ * 提供轻量级的同步原语
+ *
+ * @return 无返回值
+ */
 void system_initialize_spinlock_system(void)
 
 {
@@ -13123,6 +13163,14 @@ void system_initialize_spinlock_system(void)
 }
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
+/**
+ * 初始化屏障系统
+ * 
+ * 设置线程屏障用于同步多个线程
+ * 确保线程在特定点同步
+ *
+ * @return 无返回值
+ */
 void system_initialize_barrier_system(void)
 
 {
@@ -13143,6 +13191,14 @@ void system_initialize_barrier_system(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * 检查屏障状态
+ * 
+ * 验证屏障系统的运行状态
+ * 返回屏障的健康状态
+ *
+ * @return 屏障状态码 (0=正常，非0=异常)
+ */
 int system_check_barrier_status(void)
 
 {
@@ -13160,6 +13216,14 @@ int system_check_barrier_status(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * 验证屏障配置
+ * 
+ * 检查屏障系统的配置参数是否正确
+ * 确保屏障能够正常工作
+ *
+ * @return 验证结果 (0=成功，非0=失败)
+ */
 int system_verify_barrier_config(void)
 
 {
@@ -13178,6 +13242,14 @@ int system_verify_barrier_config(void)
   return (system_audio_long_value != 0) - 1;
 }
 
+/**
+ * 验证屏障系统
+ * 
+ * 全面验证屏障系统的功能和性能
+ * 确保系统符合设计要求
+ *
+ * @return 验证结果 (0=成功，非0=失败)
+ */
 int system_validate_barrier_system(void)
 
 {
@@ -13352,6 +13424,14 @@ void system_signal_barrier(void)
   return;
 }
 
+/**
+ * 初始化定时器系统
+ * 
+ * 设置定时器硬件和软件驱动
+ * 为系统提供定时服务支持
+ *
+ * @return 初始化结果 (0=成功，非0=失败)
+ */
 int system_initialize_timer_system(void)
 
 {
@@ -13362,6 +13442,14 @@ int system_initialize_timer_system(void)
   return (system_audio_long_value != 0) - 1;
 }
 
+/**
+ * 检查定时器状态
+ * 
+ * 验证定时器系统的运行状态
+ * 返回定时器的健康状态
+ *
+ * @return 定时器状态码 (0=正常，非0=异常)
+ */
 int system_check_timer_status(void)
 
 {
@@ -14119,6 +14207,14 @@ void system_handle_timer_interrupt(uint0x01_t *system_context_parameter)
   *(uint64_t *)(system_audio_register_value + SYSTEM_CONFIG_DATA_SIZE_16) = 0;
   return;
 }
+/**
+ * 初始化时钟系统
+ * 
+ * 设置系统时钟和时间管理机制
+ * 为系统提供时间服务支持
+ *
+ * @return 无返回值
+ */
 void system_initialize_clock_system(void)
 
 {
