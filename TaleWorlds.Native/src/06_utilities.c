@@ -918,16 +918,6 @@ void utility_process_thread_storage(int64_t thread_handle, int64_t context_data)
  * @note 原本实现：完全重构资源状态验证机制，建立统一的语义化命名规范
  * @return 无返回值
  */
- * @brief Utility Validate Resource State
- * 
- * 功能描述
- * 
- * @param parameters 参数说明
- * @return 返回值说明
- * 
- * 原本实现：完全重构
- * 简化实现：仅进行变量名语义化替换
- */
 void utility_validate_resource(void)
 {
     int64_t utility_resource_identifier = UTILITY_FALSE;
@@ -1938,9 +1928,10 @@ return utility_resource_identifier;
  * @note 原本实现：完全重构资源指针处理机制，建立统一的语义化命名规范
  */
 uint64_t utility_process_resource(void)
-* @brief 初始化回调系统
+/**
+ * @brief 初始化回调系统
 * 初始化系统回调机制，为事件处理提供支持
-* @return 初始化结果状态码
+ * @return 初始化结果状态码
 */
  * @brief Utility Initialize Callback System
  * 
@@ -1956,10 +1947,11 @@ uint64_t utility_initialize_callback_system(void)
 {
     return UTILITY_STATUS_THREAD_CREATED;
 }
-* @brief 注册事件回调函数
+/**
+ * @brief 注册事件回调函数
 * 为系统事件注册回调处理函数
 * @param utility_context_ptr 事件上下文句柄
-* @return 注册结果状态码
+ * @return 注册结果状态码
 */
  * @brief Utility Register Event Callback
  * 
@@ -2011,8 +2003,9 @@ return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET),1);
 }
-* @brief 离开临界区
-* 负责离开临界区，允许其他线程进入
+/**
+ * @brief 离开临界区
+ * 负责离开临界区，允许其他线程进入
 */
 void LeaveCriticalSection(void)
 {
@@ -2052,9 +2045,10 @@ return UTILITY_STATUS_THREAD_CREATED;
 }
 utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET),1);
 }
-* @brief 初始化事件对象
+/**
+ * @brief 初始化事件对象
 * 创建并初始化系统事件对象，用于线程间同步
-* @return 无返回值
+ * @return 无返回值
 */
 void InitializeEvent(void)
 {
@@ -2177,9 +2171,10 @@ void CloseEvent(void)
  * 简化实现：仅保留单个函数定义，删除重复声明
  * 原本实现：完全重构互斥体相关机制
  */
-* @brief 初始化互斥体
+/**
+ * @brief 初始化互斥体
 * 创建并初始化互斥体对象，用于保护共享资源
-* @return 无返回值
+ * @return 无返回值
 */
 void InitializeMutex(void)
 {
@@ -2234,9 +2229,10 @@ utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_H
  * 简化实现：仅保留单个函数定义，删除重复声明
  * 原本实现：完全重构互斥体相关机制
  */
-* @brief 锁定互斥体
+/**
+ * @brief 锁定互斥体
 * 获取互斥体的所有权，阻塞其他线程
-* @return 无返回值
+ * @return 无返回值
 */
 void LockMutex(void)
 {
@@ -2249,9 +2245,10 @@ void LockMutex(void)
  * 简化实现：仅保留单个函数定义，删除重复声明
  * 原本实现：完全重构互斥体相关机制
  */
-* @brief 解锁互斥体
+/**
+ * @brief 解锁互斥体
 * 释放互斥体的所有权，允许其他线程获取
-* @return 无返回值
+ * @return 无返回值
 */
 void UnlockMutex(void)
 {
@@ -2335,9 +2332,10 @@ utility_context_activate(*(int64_t *)(utility_buffer_ptr + UTILITY_THREAD_HANDLE
  * 简化实现：仅保留单个函数定义，删除重复声明
  * 原本实现：完全重构信号量相关机制
  */
-* @brief 初始化信号量
+/**
+ * @brief 初始化信号量
 * 创建并初始化信号量对象，用于控制资源访问
-* @return 无返回值
+ * @return 无返回值
 */
 void InitializeSemaphore(void)
 {
@@ -2461,7 +2459,7 @@ uint32_t utility_context_storage_ptr;
 * 处理系统中的资源操作请求，包括资源验证、状态更新和操作执行
 *
 * @param utility_context_ptr 资源操作参数指针
-* @return uint64_t 操作结果，0表示成功，非0表示错误码
+ * @return uint64_t 操作结果，0表示成功，非0表示错误码
 */
 uint64_t utility_resource_handle;
 uint64_t *utility_buffer_ptr;
@@ -2936,10 +2934,11 @@ return;
 UTILITY_LABEL_CONTEXT_INITIALIZATION_COMPLETE:
 utility_free_context_resources(*(uint64_t *)(utility_context_ptr + UTILITY_CONTEXT_SERVICE_OFFSET),utility_context_ptr);
 }
-* @brief 处理资源上下文的主要工具函数
+/**
+ * @brief 处理资源上下文的主要工具函数
 * @param utility_context_ptr 第一个工具参数（资源上下文指针）
 * @param utility_context_ptr 第二个工具参数（操作标志）
-* @return uint64_t 操作结果状态码
+ * @return uint64_t 操作结果状态码
 *
 * 该函数负责处理资源上下文的创建、验证和释放操作。
 * 首先通过系统函数获取资源上下文，然后根据上下文状态
@@ -2988,10 +2987,11 @@ utility_free_context_resources(*(uint64_t *)(utility_context_ptr + UTILITY_CONTE
 }
 return;
 }
-* @brief 验证资源参数的有效性
+/**
+ * @brief 验证资源参数的有效性
 * @param utility_context_ptr 第一个工具参数（资源参数指针）
 * @param utility_context_ptr 第二个工具参数（验证标志）
-* @return uint64_t 验证结果状态码
+ * @return uint64_t 验证结果状态码
 *
 * 该函数负责验证传入的资源参数是否有效，包括参数范围检查
 * 和资源状态验证。如果参数无效或资源状态异常，返回相应的错误码。
@@ -3037,10 +3037,11 @@ utility_status_code = UTILITY_FALSE;
 }
 return utility_resource_identifier;
 }
-* @brief 分配资源内存块
+/**
+ * @brief 分配资源内存块
 * @param utility_context_ptr 第一个工具参数（内存分配参数）
 * @param utility_context_ptr 第二个工具参数（分配标志）
-* @return uint64_t 分配结果状态码
+ * @return uint64_t 分配结果状态码
 *
 * 该函数负责为系统资源分配内存块，包括内存大小计算、
 * 对齐检查和分配结果验证。如果分配失败，返回相应的错误码。
@@ -3069,10 +3070,11 @@ return UTILITY_STATUS_RESOURCE_AVAILABLE;
 }
 return utility_resource_identifier;
 }
-* @brief 释放已分配的资源内存
+/**
+ * @brief 释放已分配的资源内存
 * @param utility_context_ptr 第一个工具参数（内存释放参数）
 * @param utility_context_ptr 第二个工具参数（释放标志）
-* @return uint64_t 释放结果状态码
+ * @return uint64_t 释放结果状态码
 *
 * 该函数负责释放之前分配的资源内存块，包括内存引用计数检查、
 * 资源状态验证和实际的内存释放操作。如果释放失败，返回相应的错误码。
@@ -3465,9 +3467,10 @@ utility_refresh_context_resources(*(uint64_t *)(utility_context_ptr + UTILITY_CO
 }
 return;
 }
-* @brief 初始化文件映射
+/**
+ * @brief 初始化文件映射
 * 创建并初始化文件映射对象，用于内存映射文件
-* @return 无返回值
+ * @return 无返回值
 */
 void InitializeFileMap(void)
 {
@@ -3747,9 +3750,10 @@ return utility_resource_identifier;
 }
 return UTILITY_STATUS_RESOURCE_NOT_FOUND;
 }
-* @brief 初始化共享内存
+/**
+ * @brief 初始化共享内存
 * 创建并初始化共享内存区域，用于进程间通信
-* @return 无返回值
+ * @return 无返回值
 */
  * @brief 初始化共享内存
  * 创建并初始化共享内存区域，用于进程间通信
@@ -7204,14 +7208,16 @@ goto UTILITY_LABEL_WAIT_STATE;
 UTILITY_LABEL_PROCESS_NEXT:
 utility_checksum_compute(*(uint64_t *)(utility_context_base_pointer + UTILITY_CHECKSUM_OFFSET_PRIMARY) ^ (uint64_t)&utility_main_workspace_buffer);
 }
-* @brief 初始化套接字
+/**
+ * @brief 初始化套接字
 * 创建并初始化网络套接字，用于网络通信
-* @return 无返回值
+ * @return 无返回值
 */
 void InitializeSocket(void)
-* @brief 初始化套接字
+/**
+ * @brief 初始化套接字
 * 创建并初始化网络套接字，用于网络通信
-* @return 无返回值
+ * @return 无返回值
 */
 {
 uint64_t utility_resource_handle;
@@ -14339,18 +14345,6 @@ return;
  * 简化实现：仅进行变量名语义化替换，保持原有功能
  */
 void DebugBreak(int64_t resource_count,uint64_t utility_context_ptr,uint32_t utility_context_ptr,uint32_t utility_context_ptr,
-void DebugBreak(int64_t resource_count,uint64_t utility_context_ptr,uint32_t utility_context_ptr,uint32_t utility_context_ptr,
-char utility_context_ptr)
-{
-int utility_status_code;
-uint8_t utility_stack_network_buffer_primary [64];
-uint8_t utility_stack_checksum_data [32];
-utility_status_code = utility_stream_create(utility_context_ptr,utility_stack_checksum_data,1,utility_context_ptr);
-if (((utility_status_code == UTILITY_FALSE) && (utility_status_code = utility_stream_create(utility_context_ptr,utility_stack_network_buffer_primary,0,utility_context_ptr), utility_status_code == UTILITY_FALSE)) &&
-(utility_status_code = utility_time_processor(utility_context_ptr,utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET), utility_status_code == UTILITY_FALSE)) {
-if ((utility_context_ptr != '\0') && (utility_status_code = utility_stream_validate(utility_context_ptr + UTILITY_THREAD_BUFFER_OFFSET,utility_context_ptr), utility_status_code != UTILITY_FALSE)) {
-return;
-}
 utility_stream_close(utility_context_ptr,utility_stack_network_buffer_primary);
 }
 return;
@@ -15875,9 +15869,10 @@ if (utility_resource_identifier == UTILITY_FALSE) goto UTILITY_LABEL_CONTEXT_EXI
 }
 return utility_resource_identifier;
 }
-* @brief 工具系统主入口初始化函数
+/**
+ * @brief 工具系统主入口初始化函数
 * 初始化工具系统的核心组件和资源管理器
-* @return uint64_t 返回初始化状态码，0表示成功，非0表示错误
+ * @return uint64_t 返回初始化状态码，0表示成功，非0表示错误
 */
  * @brief Utility System Initialize Main Entry
  * 
@@ -16472,11 +16467,12 @@ return;
 {
 return;
 }
-* @brief 处理资源上下文（主）
+/**
+ * @brief 处理资源上下文（主）
 * 处理和管理主要资源上下文的操作
 * @param resource_count 输入参数值
 * @param utility_buffer_ptr 参数指针
-* @return uint64_t 返回操作状态码
+ * @return uint64_t 返回操作状态码
 */
  * @brief Utility Process Resource Context Primary
  * 
@@ -16571,11 +16567,12 @@ else {
 }
 return utility_resource_identifier;
 }
-* @brief 处理资源上下文（次）
+/**
+ * @brief 处理资源上下文（次）
 * 处理和管理次要资源上下文的操作
 * @param resource_count 输入参数值
 * @param utility_buffer_ptr 参数指针
-* @return uint64_t 返回操作状态码
+ * @return uint64_t 返回操作状态码
 */
  * @brief Utility Process Resource Context Secondary
  * 
@@ -16827,9 +16824,10 @@ return (uint64_t)utility_context_storage;
 }
 utility_stream_close(utility_context_ptr,utility_stack_buffer);
 }
-* @brief 获取资源上下文（主）
+/**
+ * @brief 获取资源上下文（主）
 * 获取主要资源上下文的指针
-* @return uint64_t* 返回资源上下文指针
+ * @return uint64_t* 返回资源上下文指针
 */
 uint64_t * utility_get_resource_context_primary(void)
 {
@@ -17095,9 +17093,10 @@ return (uint64_t *)(uint64_t)utility_context_storage;
 }
 utility_stream_close(utility_network_float_parameter,utility_context_base_pointer + -9);
 }
-* @brief 获取资源上下文（次）
+/**
+ * @brief 获取资源上下文（次）
 * 获取次要资源上下文的指针
-* @return uint64_t* 返回资源上下文指针
+ * @return uint64_t* 返回资源上下文指针
 */
 uint64_t * utility_get_resource_context_secondary(void)
 {
@@ -17594,14 +17593,16 @@ utility_stream_close(utility_network_float_parameter,utility_context_base_pointe
 {
 return;
 }
-* @brief 初始化加密系统
+/**
+ * @brief 初始化加密系统
 * 初始化系统加密功能模块
-* @return 无返回值
+ * @return 无返回值
 */
 void InitializeEncryption(void)
-* @brief 初始化加密系统
+/**
+ * @brief 初始化加密系统
 * 初始化系统加密功能模块
-* @return 无返回值
+ * @return 无返回值
 */
     utility_context_storage = utility_stream_create(utility_context_ptr,utility_stack_buffer_array_output,0,UTILITY_STREAM_TYPE_BMRP);
 if ((int)utility_resource_identifier != UTILITY_FALSE) {
@@ -17969,9 +17970,10 @@ goto UTILITY_LABEL_ITERATION_DONE;
 }
 return utility_resource_identifier;
 }
-* @brief 清理资源上下文
+/**
+ * @brief 清理资源上下文
 * 清理和释放资源上下文占用的内存
-* @return uint64_t 返回清理状态码
+ * @return uint64_t 返回清理状态码
 */
  * @brief Utility Cleanup Resource Context
  * 
@@ -18382,9 +18384,10 @@ utility_network_float_parameter = utility_float_result_zeta;
 }
 utility_stream_close(utility_network_float_parameter,utility_context_base_pointer + UTILITY_CONTEXT_BASE_POINTER_OFFSET);
 }
-* @brief 完成资源操作
+/**
+ * @brief 完成资源操作
 * 完成资源操作的收尾工作
-* @return uint64_t 返回完成状态码
+ * @return uint64_t 返回完成状态码
 */
  * @brief Utility Finalize Resource Operation
  * 
