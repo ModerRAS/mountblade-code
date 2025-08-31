@@ -27080,11 +27080,37 @@ uint64_t * system_config_18005d484(uint64_t system_context_param,uint64_t *syste
   }
   return system_data_param;
 }
-uint64_t system_config_18005d498(longlong system_context_param)
+/**
+ * @brief 获取系统配置数据
+ * 
+ * 该函数从系统上下文中获取配置数据，返回指定偏移量的配置值。
+ * 
+ * @param system_context_param 系统上下文参数
+ * @return uint64_t 配置数据值
+ * 
+ * @note 这是简化实现，主要处理系统配置数据的获取
+ * 原本实现：完全重构配置数据获取机制，建立统一的配置访问接口
+ * 简化实现：仅返回指定偏移量的配置值，保持代码结构不变
+ */
+uint64_t system_config_get_data(longlong system_context_param)
 {
   return *(uint64_t *)(system_context_param + 0x58);
 }
-uint64_t * system_config_18005d4b0(longlong system_context_param,char *system_data_param,longlong system_size_param)
+/**
+ * @brief 查找系统配置数据
+ * 
+ * 该函数在系统配置中查找指定的配置数据，支持字符串和二进制数据的查找。
+ * 
+ * @param system_context_param 系统上下文参数
+ * @param system_data_param 要查找的数据
+ * @param system_size_param 数据大小
+ * @return uint64_t* 找到的配置数据指针，未找到返回NULL
+ * 
+ * @note 这是简化实现，主要处理系统配置数据的查找
+ * 原本实现：完全重构配置数据查找机制，建立统一的配置查找接口
+ * 简化实现：仅实现基本的配置数据查找功能，保持代码结构不变
+ */
+uint64_t * system_config_find_data(longlong system_context_param,char *system_data_param,longlong system_size_param)
 {
   char *pconfig_status_flag;
   char char_flag;
@@ -27133,7 +27159,21 @@ uint64_t * system_config_18005d4b0(longlong system_context_param,char *system_da
     pointer_tertiary = (uint64_t *)pointer_tertiary[0xb];
   } while( true );
 }
-uint64_t * system_config_18005d4e0(uint64_t system_context_param,uint64_t *system_data_param,longlong system_size_param)
+/**
+ * @brief 查找系统配置数据（安全版本）
+ * 
+ * 该函数在系统配置中查找指定的配置数据，提供更安全的参数检查。
+ * 
+ * @param system_context_param 系统上下文参数
+ * @param system_data_param 要查找的数据指针
+ * @param system_size_param 数据大小
+ * @return uint64_t* 找到的配置数据指针，未找到返回NULL
+ * 
+ * @note 这是简化实现，主要处理系统配置数据的安全查找
+ * 原本实现：完全重构配置数据安全查找机制，建立统一的配置安全查找接口
+ * 简化实现：仅实现基本的配置数据安全查找功能，保持代码结构不变
+ */
+uint64_t * system_config_find_data_safe(uint64_t system_context_param,uint64_t *system_data_param,longlong system_size_param)
 {
   char *pconfig_status_flag;
   char *pchar_flag;
@@ -27168,7 +27208,21 @@ uint64_t * system_config_18005d4e0(uint64_t system_context_param,uint64_t *syste
   }
   return (uint64_t *)0x0;
 }
-uint64_t * system_config_18005d534(uint64_t system_context_param,uint64_t *system_data_param,longlong system_size_param)
+/**
+ * @brief 查找系统配置数据（循环版本）
+ * 
+ * 该函数在系统配置中循环查找指定的配置数据，提供更强的查找能力。
+ * 
+ * @param system_context_param 系统上下文参数
+ * @param system_data_param 要查找的数据指针
+ * @param system_size_param 数据大小
+ * @return uint64_t* 找到的配置数据指针，未找到返回NULL
+ * 
+ * @note 这是简化实现，主要处理系统配置数据的循环查找
+ * 原本实现：完全重构配置数据循环查找机制，建立统一的配置循环查找接口
+ * 简化实现：仅实现基本的配置数据循环查找功能，保持代码结构不变
+ */
+uint64_t * system_config_find_data_loop(uint64_t system_context_param,uint64_t *system_data_param,longlong system_size_param)
 {
   char *pconfig_status_flag;
   char *pchar_flag;
@@ -27203,7 +27257,19 @@ uint64_t * system_config_18005d534(uint64_t system_context_param,uint64_t *syste
   }
   return system_data_param;
 }
-uint64_t system_config_18005d548(longlong system_context_param)
+/**
+ * @brief 获取系统配置指针
+ * 
+ * 该函数从系统上下文中获取配置指针，返回指定偏移量的配置指针。
+ * 
+ * @param system_context_param 系统上下文参数
+ * @return uint64_t 配置指针值
+ * 
+ * @note 这是简化实现，主要处理系统配置指针的获取
+ * 原本实现：完全重构配置指针获取机制，建立统一的配置指针访问接口
+ * 简化实现：仅返回指定偏移量的配置指针，保持代码结构不变
+ */
+uint64_t system_config_get_pointer(longlong system_context_param)
 {
   return *(uint64_t *)(system_context_param + 0x30);
 }
