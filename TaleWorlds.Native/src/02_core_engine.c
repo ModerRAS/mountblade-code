@@ -304,37 +304,42 @@ void ShutdownEngine(void);
 /**
  * @brief 初始化引擎子系统
  * @param subsystem_id 子系统标识符
- * @return 初始化结果，0表示成功，非0表示失败
+ * @return int 初始化结果，0表示成功，非0表示失败
  * @note 简化实现：初始化指定的引擎子系统
+ *       原本实现：完整的子系统初始化，包含依赖检查和错误处理
  */
 int InitializeEngineSubsystem(int subsystem_id);
 
 /**
  * @brief 处理引擎渲染帧
- * @param frame_time 帧时间
+ * @param frame_time float 帧时间，单位秒
  * @note 简化实现：处理单帧的渲染逻辑
+ *       原本实现：完整的帧渲染流程，包含剔除和优化处理
  */
 void ProcessEngineFrame(float frame_time);
 
 /**
  * @brief 更新引擎状态
- * @param delta_time 时间增量
+ * @param delta_time float 时间增量，单位秒
  * @note 简化实现：更新引擎的内部状态
+ *       原本实现：完整的状态更新系统，包含事件队列和状态同步
  */
 void UpdateEngine(float delta_time);
 
 /**
  * @brief 引擎错误处理函数
- * @param error_code 错误代码
+ * @param error_code int 错误代码
  * @note 简化实现：处理引擎运行时的错误
+ *       原本实现：完整的错误处理系统，包含错误日志和恢复机制
  */
 void HandleEngineError(int error_code);
 
 /**
  * @brief 引擎内存管理函数
- * @param size 分配大小
- * @return 分配的内存指针
+ * @param size size_t 分配大小，单位字节
+ * @return void* 分配的内存指针，失败返回NULL
  * @note 简化实现：管理引擎的内存分配
+ *       原本实现：完整的内存管理系统，包含内存池和碎片整理
  */
 void* EngineAllocateMemory(size_t size);
 
