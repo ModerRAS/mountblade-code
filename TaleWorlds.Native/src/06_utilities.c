@@ -1,26 +1,5 @@
 #include "TaleWorlds.Native.Split.h"
 
-/**
- * @file 06_utilities.c
- * @brief 工具系统实现文件
- * 
- * 简化实现：仅美化常量名称和变量名，添加必要的注释，保持代码结构不变
- * 原本实现：完全重构工具系统所有命名体系，建立统一的语义化命名规范
- */
- * 该文件实现了各种系统级别的工具和服务，包括：
- * - 线程管理和同步
- * - 资源管理和分配
- * - 内存管理和缓冲区操作
- * - 文件系统操作
- * - 网络通信功能
- * - 系统配置管理
- * - 安全和加密功能
- * - 时间和日期处理
- * - 系统信息收集
- * - 调试和监控功能
- * 
- * @note 这是一个逆向工程的代码文件，保持了原有的功能逻辑
- */
 // 系统容量限制常量
 #define UTILITY_MAX_BUFFER_SIZE 0x1000        // 最大缓冲区大小
 #define UTILITY_MAX_THREADS 8                  // 最大线程数
@@ -196,13 +175,13 @@
 #define UTILITY_MEMORY_PAGE_SIZE 0x1000
 #define UTILITY_MEMORY_NEGATIVE_512MB -0x20000000
 #define UTILITY_MEMORY_BLOCK_SIZE_SMALL 0x27
-#define UTILITY_MEMORY_ADDRESS_BASE_1 0x000180893865
-#define UTILITY_MEMORY_ADDRESS_BASE_2 0x000180893a22
-#define UTILITY_MEMORY_ADDRESS_BASE_3 0x000180895f53
-#define UTILITY_MEMORY_ADDRESS_BASE_4 0x000180895f67
-#define UTILITY_MEMORY_ADDRESS_BASE_5 0x000180895fa1
-#define UTILITY_MEMORY_ADDRESS_BASE_6 0x000180895fa9
-#define UTILITY_MEMORY_ADDRESS_BASE_7 0x000180895fb1
+#define UTILITY_MEMORY_ADDRESS_BASE_SYSTEM 0x000180893865
+#define UTILITY_MEMORY_ADDRESS_BASE_KERNEL 0x000180893a22
+#define UTILITY_MEMORY_ADDRESS_BASE_USER 0x000180895f53
+#define UTILITY_MEMORY_ADDRESS_BASE_SHARED 0x000180895f67
+#define UTILITY_MEMORY_ADDRESS_BASE_STACK 0x000180895fa1
+#define UTILITY_MEMORY_ADDRESS_BASE_HEAP 0x000180895fa9
+#define UTILITY_MEMORY_ADDRESS_BASE_VIDEO 0x000180895fb1
 #define UTILITY_MEMORY_ADDRESS_BASE_8 0x000180895fc0
 #define UTILITY_MEMORY_ADDRESS_BASE_9 0x000180896027
 
@@ -3938,7 +3917,7 @@ utility_release_context_resources(*(uint64_t *)(utility_context_input_parameter 
 }
 return;
 }
- UTILITY_MEMORY_ADDRESS_BASE_1
+ UTILITY_MEMORY_ADDRESS_BASE_SYSTEM
 int utility_resource_operation_analyzer(int64_t resource_count,int64_t utility_context_input_parameter)
 {
 int utility_operation_result;
@@ -3971,7 +3950,7 @@ return utility_operation_result;
 }
 return UTILITY_STATUS_FLAG_F;
 }
- UTILITY_MEMORY_ADDRESS_BASE_1
+ UTILITY_MEMORY_ADDRESS_BASE_SYSTEM
 int utility_resource_operation_handler_advanced(int64_t resource_count,uint64_t utility_context_input_parameter)
 {
 int utility_operation_result;
@@ -4021,7 +4000,7 @@ utility_release_context_resources(*(uint64_t *)(utility_context_input_parameter 
 }
 return;
 }
- UTILITY_MEMORY_ADDRESS_BASE_2
+ UTILITY_MEMORY_ADDRESS_BASE_KERNEL
 int utility_resource_operation_executor_advanced(int64_t resource_count,int64_t utility_context_input_parameter)
 {
 uint utility_resource_context_data_secondary;
@@ -4053,7 +4032,7 @@ return utility_operation_result;
 }
 return UTILITY_STATUS_FLAG_F;
 }
- UTILITY_MEMORY_ADDRESS_BASE_2
+ UTILITY_MEMORY_ADDRESS_BASE_KERNEL
 int utility_resource_operation_controller(uint64_t resource_count,uint64_t utility_context_input_parameter)
 {
 int utility_accumulator_value;
@@ -4885,11 +4864,11 @@ utility_system_signal_handler(utility_context_input_parameter,utility_parameter_
 UTILITY_LABEL_CONTEXT_READY:
 utility_stack_cleanup_handler(utility_stack_medium_buffer);
 }
- UTILITY_MEMORY_ADDRESS_BASE_3
- UTILITY_MEMORY_ADDRESS_BASE_4
- UTILITY_MEMORY_ADDRESS_BASE_5
- UTILITY_MEMORY_ADDRESS_BASE_6
- UTILITY_MEMORY_ADDRESS_BASE_7
+ UTILITY_MEMORY_ADDRESS_BASE_USER
+ UTILITY_MEMORY_ADDRESS_BASE_SHARED
+ UTILITY_MEMORY_ADDRESS_BASE_STACK
+ UTILITY_MEMORY_ADDRESS_BASE_HEAP
+ UTILITY_MEMORY_ADDRESS_BASE_VIDEO
  UTILITY_MEMORY_ADDRESS_BASE_8
  UTILITY_MEMORY_ADDRESS_BASE_9
 uint utility_path_validator(int64_t *utility_buffer_ptr)
