@@ -195,14 +195,21 @@ int system_check_initialization_status(void)
 
 /**
  * @brief 系统核心初始化函数 - 主要版本
- * @param context_param 系统上下文参数
- * @param config_param 系统配置参数
- * @param memory_param 系统内存参数
- * @param thread_param 系统线程参数
- * @return int 初始化结果状态码
+ * @param context_param 系统上下文参数，指向系统上下文结构的指针
+ * @param config_param 系统配置参数，包含系统配置信息
+ * @param memory_param 系统内存参数，指定内存管理相关设置
+ * @param thread_param 系统线程参数，包含线程管理相关设置
+ * @return int 初始化结果状态码，0表示成功，-1表示失败
  * 
- * 该函数负责系统的核心初始化工作，包括内存分配、线程创建和系统配置。
- * 这是简化实现，保持代码语义不变，仅进行语义化美化。
+ * 该函数负责系统的核心初始化工作，包括：
+ * - 验证系统上下文和配置参数的有效性
+ * - 分配临时内存和模块内存
+ * - 设置全局系统上下文和初始化状态
+ * - 清理临时资源
+ * 
+ * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
+ * @warning 调用此函数前需要确保所有参数都有效
+ * @return 返回状态码：0=成功，-1=失败
  */
 int system_initialize_core(system_uint64_t context_param, system_uint64_t config_param, 
                            system_uint64_t memory_param, system_uint64_t thread_param)
@@ -431,11 +438,16 @@ system_uint64_t system_calculate_initialization_coefficients(void)
 
 /**
  * @brief 系统内存分配函数
- * @param size 分配大小
- * @return void* 分配的内存指针
+ * @param size 分配大小，指定要分配的内存字节数
+ * @return void* 分配的内存指针，成功时返回有效指针，失败时返回NULL
  * 
- * 该函数分配系统所需的内存。
- * 这是简化实现，提供基本的内存分配功能。
+ * 该函数为系统分配所需的内存空间。
+ * 使用标准malloc函数进行内存分配，提供基本的内存管理功能。
+ * 
+ * @note 这是简化实现，提供基本的内存分配功能
+ * @warning 调用者需要检查返回值是否为NULL
+ * @param size 必须大于0，建议使用合理的内存大小
+ * @return 返回分配的内存指针，或NULL表示分配失败
  */
 void* system_allocate_memory(size_t size)
 {
