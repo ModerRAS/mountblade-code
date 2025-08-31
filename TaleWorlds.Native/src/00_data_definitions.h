@@ -1522,29 +1522,51 @@ int system_initialize_physics_system(void)
   initialization_result = system_execution_function(physics_initialization_function);
   return SYSTEM_INITIALIZATION_RESULT_NEGATE(initialization_result);
 }
-// 初始化主线程池
-int initialize_main_thread_pool(void* handle_param, void* system_thread_operation_flags, void* mutex_attr, int mutex_type)
+/**
+ * @brief 初始化主线程池
+ * @param handle_param 线程池句柄参数
+ * @param system_thread_operation_flags 线程操作标志
+ * @param mutex_attr 互斥锁属性
+ * @param mutex_type 互斥锁类型
+ * @return int 返回初始化结果，成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统的主要线程池，包括条件变量和互斥锁的初始化。
+ * 这是简化实现，仅处理基本的主线程池初始化。
+ * 原本实现：完整的主线程池初始化流程
+ */
+int system_initialize_main_thread_pool(void* handle_param, void* system_thread_operation_flags, void* mutex_attr, int mutex_type)
 {
-  long long system_initialization_result;
-  unsigned long long pool_system_thread_operation_flags = default_thread_pool_flag;
+  long long initialization_result;
+  unsigned long long pool_thread_operation_flags = default_thread_pool_flag;
   
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(main_thread_pool_mutex_address, SYSTEM_MUTEX_TYPE_DEFAULT, mutex_attr, mutex_type, pool_system_thread_operation_flags);
+  _Mtx_init_in_situ(main_thread_pool_mutex_address, SYSTEM_MUTEX_TYPE_DEFAULT, mutex_attr, mutex_type, pool_thread_operation_flags);
   main_thread_pool_status = SYSTEM_STATUS_SUCCESS;
-  system_initialization_result = system_execution_function(main_thread_pool_initialization_function);
-  return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
+  initialization_result = system_execution_function(main_thread_pool_initialization_function);
+  return SYSTEM_INITIALIZATION_RESULT_NEGATE(initialization_result);
 }
-// 初始化渲染线程池
-int initialize_rendering_thread_pool(void* handle_param, void* system_thread_operation_flags, void* mutex_attr, int mutex_type)
+/**
+ * @brief 初始化渲染线程池
+ * @param handle_param 线程池句柄参数
+ * @param system_thread_operation_flags 线程操作标志
+ * @param mutex_attr 互斥锁属性
+ * @param mutex_type 互斥锁类型
+ * @return int 返回初始化结果，成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化图形渲染专用的线程池，用于处理渲染任务。
+ * 这是简化实现，仅处理基本的渲染线程池初始化。
+ * 原本实现：完整的渲染线程池初始化流程
+ */
+int system_initialize_rendering_thread_pool(void* handle_param, void* system_thread_operation_flags, void* mutex_attr, int mutex_type)
 {
-  long long system_initialization_result;
-  unsigned long long pool_system_thread_operation_flags = default_thread_pool_flag;
+  long long initialization_result;
+  unsigned long long pool_thread_operation_flags = default_thread_pool_flag;
   
   _Cnd_init_in_situ();
-  _Mtx_init_in_situ(render_thread_pool_mutex_address, SYSTEM_MUTEX_TYPE_DEFAULT, mutex_attr, mutex_type, pool_system_thread_operation_flags);
+  _Mtx_init_in_situ(render_thread_pool_mutex_address, SYSTEM_MUTEX_TYPE_DEFAULT, mutex_attr, mutex_type, pool_thread_operation_flags);
   render_thread_pool_status = SYSTEM_STATUS_SUCCESS;
-  system_initialization_result = system_execution_function(rendering_thread_pool_initialization_function);
-  return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
+  initialization_result = system_execution_function(rendering_thread_pool_initialization_function);
+  return SYSTEM_INITIALIZATION_RESULT_NEGATE(initialization_result);
 }
 // 初始化网络线程池
 int initialize_network_thread_pool(void* handle_param, void* system_thread_operation_flags, void* mutex_attr, int mutex_type)
