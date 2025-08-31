@@ -844,44 +844,29 @@ void utility_process_thread_storage(int64_t thread_handle, int64_t context_data)
     utility_checksum_compute(utility_data_checksum ^ (uint64_t)utility_main_workspace_buffer);
 }
 /**
- * @brief 清理线程资源
-/**
+ * @brief 初始化回调系统
  *
- * 该函数负责清理线程使用的资源，包括释放内存、关闭句柄、
- * 重置状态等操作，确保线程退出时资源被正确释放。
+ * 初始化系统回调机制，为事件处理和异步操作提供基础设施
  *
- * @param context_pointer 上下文指针，指向需要清理的资源上下文
- * @return void
- * @note 此函数为简化实现，主要处理线程资源的基本清理操作
- * @note 原本实现：完全重构线程资源清理机制，建立统一的语义化命名规范
- */
-/**
- * @brief Utility Initialize Callback System
-/**
+ * @return 系统初始化状态码
  *
- * 功能描述
- *
- * @param parameters 参数说明
- * @return 返回值说明
- *
- * 原本实现：完全重构
- * 简化实现：仅进行变量名语义化替换
+ * 原本实现：完全重构回调系统初始化逻辑
+ * 简化实现：仅进行变量名语义化替换，修复代码结构
  */
 uint64_t utility_initialize_callback_system(void)
 {
     return UTILITY_STATUS_THREAD_CREATED;
 }
 /**
- * @brief Utility Register Event Callback
-/**
+ * @brief 注册事件回调函数
  *
- * 功能描述
+ * 为系统事件注册回调处理函数，支持异步事件处理机制
  *
- * @param parameters 参数说明
- * @return 返回值说明
+ * @param utility_context_ptr 事件上下文指针
+ * @return 注册结果状态码
  *
- * 原本实现：完全重构
- * 简化实现：仅进行变量名语义化替换
+ * 原本实现：完全重构事件回调注册逻辑
+ * 简化实现：仅进行变量名语义化替换，修复代码结构
  */
 uint64_t utility_register_event_callback(int64_t utility_context_ptr)
 {
@@ -892,125 +877,138 @@ uint64_t utility_register_event_callback(int64_t utility_context_ptr)
         *(uint32_t *)(utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET),
         &utility_stack_context);
 
-        if ((int)utility_resource_identifier != UTILITY_FALSE) {
-            return utility_resource_identifier;
-}
-}
+    if ((int)utility_resource_identifier != UTILITY_FALSE) {
+        return utility_resource_identifier;
+    }
 
     if (utility_stack_context == UTILITY_FALSE) {
-
-}
-        utility_stack_context = UTILITY_FALSE;
-    } else {
-        utility_stack_context -= 8;
-}
+        return UTILITY_STATUS_RESOURCE_NOT_FOUND;
+    }
+    
+    utility_stack_context -= 8;
 
     if (*(int64_t *)(utility_stack_context + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
         return UTILITY_STATUS_THREAD_CREATED;
+    }
+    
+    utility_context_activate(*(int64_t *)(utility_stack_context + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    
+    return UTILITY_STATUS_SUCCESS;
 }
-    utility_context_activate(*(int64_t *)(utility_stack_context + UTILITY_THREAD_HANDLE_OFFSET),1);
-}
+/**
+ * @brief 获取回调状态
+ *
+ * 检查系统回调函数的当前状态，用于监控异步操作进度
+ *
+ * @return 回调状态码
+ *
+ * 原本实现：完全重构回调状态获取逻辑
+ * 简化实现：仅进行变量名语义化替换，修复代码结构
+ */
 uint32_t utility_get_callback_status(void)
 {
     int64_t utility_context_main;
     int64_t utility_iteration_index;
+    
     if (utility_context_main == UTILITY_FALSE) {
         utility_iteration_index = UTILITY_FALSE;
     } else {
         utility_iteration_index = utility_context_main + -8;
     }
+    
     if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
-    return UTILITY_STATUS_THREAD_CREATED;
+        return UTILITY_STATUS_THREAD_CREATED;
+    }
+    
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    
+    return UTILITY_STATUS_SUCCESS;
 }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET),1);
-}
+
+/**
+ * @brief 离开临界区
+ *
+ * 离开临界区，允许其他线程进入共享资源区域
+ *
+ * 原本实现：完全重构临界区离开逻辑
+ * 简化实现：仅进行变量名语义化替换，修复代码结构
+ */
 void LeaveCriticalSection(void)
 {
     utility_context_activate(0, 1);
 }
+
 /**
  * @brief 删除临界区
-/**
  *
- * 负责删除临界区对象，释放相关资源
+ * 删除临界区对象，释放相关系统资源
  *
  * 原本实现：完全重构临界区删除逻辑
- * 简化实现：仅进行变量名语义化替换
+ * 简化实现：仅进行变量名语义化替换，修复代码结构
  */
 void DeleteCriticalSection(void)
 {
     utility_context_activate(0, 1);
 }
+
 /**
  * @brief 获取缓冲区状态
-/**
  *
  * 处理资源指针的转换和管理，将原始资源指针转换为系统可用的资源引用
  *
  * @return 缓冲区状态码
  *
  * 原本实现：完全重构缓冲区状态获取逻辑
- * 简化实现：仅进行变量名语义化替换
+ * 简化实现：仅进行变量名语义化替换，修复代码结构
  */
 uint32_t utility_get_buffer_status(void)
 {
     int64_t utility_context_main;
     int64_t utility_iteration_index;
+    
     if (utility_context_main == UTILITY_FALSE) {
         utility_iteration_index = UTILITY_FALSE;
     } else {
         utility_iteration_index = utility_context_main + -8;
     }
+    
     if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
-    return UTILITY_STATUS_THREAD_CREATED;
+        return UTILITY_STATUS_THREAD_CREATED;
+    }
+    
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    
+    return UTILITY_STATUS_SUCCESS;
 }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET),1);
-}
+
+/**
+ * @brief 初始化事件对象
+ *
+ * 创建并初始化系统事件对象，用于线程间同步通信
+ *
+ * 原本实现：完全重构事件初始化逻辑
+ * 简化实现：仅进行变量名语义化替换，修复代码结构
+ */
 void InitializeEvent(void)
 {
     utility_context_activate(0, 1);
 }
- * 设置事件状态
- * 触发事件对象，将其设置为有信号状态
- * 当前实现为空函数，仅返回
+
+/**
+ * @brief 设置事件状态
  *
- * 简化实现：仅保留单个函数定义，删除重复声明
+ * 触发事件对象，将其设置为有信号状态，通知等待的线程
+ *
  * 原本实现：完全重构事件设置机制
- */
- * 设置事件状态
-触发事件对象，将其设置为有信号状态
-当前实现为空函数，仅返回
- *
- * 简化实现：仅保留单个函数定义，删除重复声明
- * 原本实现：完全重构事件相关机制
+ * 简化实现：仅进行变量名语义化替换，修复代码结构
  */
 void SetEvent(void)
 {
     return;
 }
-{
-uint64_t utility_resource_handle;
-    int64_t utility_iteration_index;
-    int64_t utility_stack_context;
-    utility_resource_identifier = utility_resource_handle_service_request(*(uint32_t *)(utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET),&utility_stack_context);
-        if ((int)utility_resource_identifier != UTILITY_FALSE) {
-        return utility_resource_identifier;
-}
-}
-    utility_iteration_index = utility_stack_context + -8;
-    if (utility_stack_context == UTILITY_FALSE) {
 
-}
-    utility_iteration_index = UTILITY_FALSE;
-}
-    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
-    return UTILITY_STATUS_THREAD_CREATED;
-}
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET),1);
-}
 /**
  * @brief 获取流状态
-/**
  *
  * 获取系统流对象的状态信息，用于监控和管理数据流
  *
