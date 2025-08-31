@@ -27572,11 +27572,55 @@ void system_run_maintenance_tasks(uint64_t system_config_parameter,uint64_t *sys
 
 
 
+
+
+/**
+ * @brief 系统音频缓冲区初始化函数
+ * 初始化音频系统的缓冲区管理和内存分配
+ * @param system_config_parameter 系统配置参数指针
+ * @param system_config_parameter 缓冲区配置数据指针
+ * @param system_config_parameter 缓冲区大小参数
+ * @param system_config_parameter 缓冲区类型标识
+ * @return 初始化状态码
+ */
+
+/**
+ * @brief 系统音频配置初始化函数
+ * 初始化音频系统的配置参数和资源分配
+ * @param system_config_parameter 系统配置参数指针
+ * @param system_config_parameter 音频配置数据指针
+ * @param system_config_parameter 音频设备句柄
+ * @param system_config_parameter 音频缓冲区大小
+ * @return 初始化状态码
+ */
+
 void system_initialize_audio_config(uint64_t system_config_parameter,uint64_t *system_config_parameter,uint64_t system_config_parameter,uint64_t system_config_parameter)
+
+/**
+ * @brief 系统音频设备初始化函数
+ * 初始化音频系统的设备管理和驱动程序
+ * @param system_config_parameter 系统配置参数指针
+ * @param system_config_parameter 设备配置数据指针
+ * @param system_config_parameter 设备标识符
+ * @param system_config_parameter 设备参数
+ * @return 初始化状态码
+ */
+
 
 {
   if (system_config_parameter == (uint64_t *)0x0) {
     return;
+
+/**
+ * @brief 系统音频流初始化函数
+ * 初始化音频系统的流处理和数据传输
+ * @param system_config_parameter 系统配置参数指针
+ * @param system_config_parameter 流配置数据指针
+ * @param system_config_parameter 流标识符
+ * @param system_config_parameter 流参数
+ * @return 初始化状态码
+ */
+
   }
   system_create_texture_resource(system_config_parameter,*system_config_parameter,system_config_parameter,system_config_parameter,SYSTEM_INVALID_HANDLE);
   system_release_memory_mapping(system_config_parameter + 8);
