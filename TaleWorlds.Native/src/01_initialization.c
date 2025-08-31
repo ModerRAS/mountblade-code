@@ -19818,6 +19818,16 @@ void system_init_subsystem_362(void)
  * @return void
  * 简化实现：保持代码语义不变，仅添加详细文档注释
 
+/**
+ * @brief 初始化网络系统
+ * 
+ * 该函数负责初始化网络系统，使用给定的上下文参数进行网络配置。
+ * 这是简化实现，主要处理网络系统的基本初始化逻辑。
+ * 
+ * @param system_context_param 系统上下文参数，用于网络系统初始化
+ * 
+ * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
+ */
 void InitializeNetworkSystem(longlong *system_context_param)
 void system_init_subsystem_363(void)
 {
@@ -19826,6 +19836,17 @@ void system_init_subsystem_363(void)
   }
   return;
 }
+/**
+ * @brief 系统初始化函数（带上下文和配置参数）
+ * 
+ * 该函数使用给定的上下文参数和配置参数进行系统初始化操作。
+ * 这是简化实现，主要处理带配置参数的系统初始化逻辑。
+ * 
+ * @param system_context_param 系统上下文参数，用于初始化过程
+ * @param system_config_param 系统配置参数，用于配置初始化选项
+ * 
+ * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
+ */
 void system_init_with_context_config(longlong system_context_param,longlong system_config_param)
 void system_init_subsystem_364(void)
 {
