@@ -24632,8 +24632,8 @@ void utility_unwind_context_handler(void * utility_context_pointer,long long uti
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x48);
   *process_data_ptr = &UNK_18098bdc8;
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -24652,8 +24652,8 @@ void utility_unwind_data_manager(void * utility_context_pointer,long long utilit
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x48);
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -24669,7 +24669,7 @@ void utility_unwind_data_manager(void * utility_context_pointer,long long utilit
 void utility_unwind_memory_allocator(void * utility_context_pointer,long long utility_data_ptr)
 
 {
-  **(void ***)(utility_data_ptr + 0x48) = &UNK_180a21690;
+  **(void ***)(utility_data_ptr + 0x48) = &utility_system_primary_context0;
   return;
 }
 
@@ -27571,8 +27571,8 @@ void utility_unwind_tls_flag_clear_bit22_secondary(void * utility_context_pointe
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(process_data_ptr + 4);
   *process_data_ptr = &UNK_18098bdc8;
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -34472,8 +34472,8 @@ void Unwind_180904680(void * utility_context_pointer,long long utility_data_ptr)
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x50);
   *process_data_ptr = &UNK_18098bdc8;
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -34499,8 +34499,8 @@ void Unwind_1809046a0(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x50);
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -34509,7 +34509,7 @@ void Unwind_1809046a0(void * utility_context_pointer,long long utility_data_ptr)
 void Unwind_1809046b0(void * utility_context_pointer,long long utility_data_ptr)
 
 {
-  **(void ***)(utility_data_ptr + 0x50) = &UNK_180a21690;
+  **(void ***)(utility_data_ptr + 0x50) = &utility_system_primary_context0;
   return;
 }
 
@@ -34846,8 +34846,8 @@ void Unwind_1809048a0(void * utility_context_pointer,long long utility_data_ptr)
   
   process_data_ptr = *(void ***)(utility_data_ptr + UTILITY_THREAD_TLS_DATA_OFFSET);
   *process_data_ptr = &UNK_18098bdc8;
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -38928,8 +38928,8 @@ void Unwind_180905b00(void * utility_context_pointer,long long utility_data_ptr)
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(process_data_ptr + 4);
   *process_data_ptr = &UNK_18098bdc8;
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -40123,8 +40123,8 @@ void Unwind_180905f90(void * utility_context_pointer,long long utility_data_ptr)
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(process_data_ptr + 4);
   *process_data_ptr = &UNK_18098bdc8;
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -41254,8 +41254,8 @@ void Unwind_180906530(void * utility_context_pointer,long long utility_data_ptr)
   process_data_ptr = *(void ***)(utility_data_ptr + 0x48);
   *process_data_ptr = &UNK_180a02e68;
   process_data_ptr[2] = &UTILITY_NULL_CONTEXT_ADDRESS;
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -41449,8 +41449,8 @@ void Unwind_180906630(void * utility_context_pointer,long long utility_data_ptr)
   process_data_ptr = *(void ***)(utility_data_ptr + 0xa0);
   *process_data_ptr = &UNK_180a02e68;
   process_data_ptr[2] = &UTILITY_NULL_CONTEXT_ADDRESS;
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -41597,8 +41597,8 @@ void Unwind_180906780(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0xa0);
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -41616,7 +41616,7 @@ void Unwind_180906790(void * utility_context_pointer,long long utility_data_ptr)
 void Unwind_1809067a0(void * utility_context_pointer,long long utility_data_ptr)
 
 {
-  **(void ***)(utility_data_ptr + 0xa0) = &UNK_180a21690;
+  **(void ***)(utility_data_ptr + 0xa0) = &utility_system_primary_context0;
   return;
 }
 
@@ -41648,8 +41648,8 @@ void Unwind_1809067c0(void * utility_context_pointer,long long utility_data_ptr)
   process_data_ptr = *(void ***)(utility_data_ptr + 0x50);
   *process_data_ptr = &UNK_180a02e68;
   process_data_ptr[2] = &UTILITY_NULL_CONTEXT_ADDRESS;
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -43392,8 +43392,8 @@ void Unwind_180906e70(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x178);
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -43402,7 +43402,7 @@ void Unwind_180906e70(void * utility_context_pointer,long long utility_data_ptr)
 void Unwind_180906e80(void * utility_context_pointer,long long utility_data_ptr)
 
 {
-  **(void ***)(utility_data_ptr + 0x178) = &UNK_180a21690;
+  **(void ***)(utility_data_ptr + 0x178) = &utility_system_primary_context0;
   return;
 }
 
@@ -44651,8 +44651,8 @@ void Unwind_180907530(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + UTILITY_THREAD_TLS_STATUS_OFFSET);
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -44664,8 +44664,8 @@ void Unwind_180907540(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + UTILITY_THREAD_TLS_STATUS_OFFSET);
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -44674,7 +44674,7 @@ void Unwind_180907540(void * utility_context_pointer,long long utility_data_ptr)
 void Unwind_180907550(void * utility_context_pointer,long long utility_data_ptr)
 
 {
-  **(void ***)(utility_data_ptr + UTILITY_THREAD_TLS_STATUS_OFFSET) = &UNK_180a21690;
+  **(void ***)(utility_data_ptr + UTILITY_THREAD_TLS_STATUS_OFFSET) = &utility_system_primary_context0;
   return;
 }
 
@@ -44725,8 +44725,8 @@ void Unwind_180907590(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x40);
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -44896,8 +44896,8 @@ void Unwind_1809076a0(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x38);
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -44906,7 +44906,7 @@ void Unwind_1809076a0(void * utility_context_pointer,long long utility_data_ptr)
 void Unwind_1809076b0(void * utility_context_pointer,long long utility_data_ptr)
 
 {
-  **(void ***)(utility_data_ptr + 0x38) = &UNK_180a21690;
+  **(void ***)(utility_data_ptr + 0x38) = &utility_system_primary_context0;
   return;
 }
 
@@ -48278,8 +48278,8 @@ void Unwind_1809088d0(void * utility_context_pointer,long long utility_data_ptr)
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x28);
   *process_data_ptr = &UNK_18098bdc8;
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -48291,8 +48291,8 @@ void Unwind_1809088e0(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x28);
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -48301,7 +48301,7 @@ void Unwind_1809088e0(void * utility_context_pointer,long long utility_data_ptr)
 void Unwind_1809088f0(void * utility_context_pointer,long long utility_data_ptr)
 
 {
-  **(void ***)(utility_data_ptr + 0x28) = &UNK_180a21690;
+  **(void ***)(utility_data_ptr + 0x28) = &utility_system_primary_context0;
   return;
 }
 
@@ -52061,8 +52061,8 @@ void Unwind_180909990(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0xe0);
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -52089,7 +52089,7 @@ void Unwind_1809099b0(void * utility_context_pointer,long long utility_data_ptr)
 void Unwind_1809099c0(void * utility_context_pointer,long long utility_data_ptr)
 
 {
-  **(void ***)(utility_data_ptr + 0xe0) = &UNK_180a21690;
+  **(void ***)(utility_data_ptr + 0xe0) = &utility_system_primary_context0;
   return;
 }
 
@@ -52400,8 +52400,8 @@ void Unwind_180909b70(void * utility_context_pointer,long long utility_data_ptr)
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(process_data_ptr + 4);
   *process_data_ptr = &UNK_18098bdc8;
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -67014,8 +67014,8 @@ void Unwind_18090edb0(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x150);
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -67024,7 +67024,7 @@ void Unwind_18090edb0(void * utility_context_pointer,long long utility_data_ptr)
 void Unwind_18090edc0(void * utility_context_pointer,long long utility_data_ptr)
 
 {
-  **(void ***)(utility_data_ptr + 0x150) = &UNK_180a21690;
+  **(void ***)(utility_data_ptr + 0x150) = &utility_system_primary_context0;
   return;
 }
 
@@ -67037,8 +67037,8 @@ void Unwind_18090edd0(void * utility_context_pointer,long long utility_data_ptr)
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x88);
   *process_data_ptr = &UNK_18098bdc8;
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -67078,8 +67078,8 @@ void Unwind_18090ee00(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x88);
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -67088,7 +67088,7 @@ void Unwind_18090ee00(void * utility_context_pointer,long long utility_data_ptr)
 void Unwind_18090ee10(void * utility_context_pointer,long long utility_data_ptr)
 
 {
-  **(void ***)(utility_data_ptr + 0x88) = &UNK_180a21690;
+  **(void ***)(utility_data_ptr + 0x88) = &utility_system_primary_context0;
   return;
 }
 
@@ -67115,8 +67115,8 @@ void Unwind_18090ee30(void * utility_context_pointer,long long utility_data_ptr)
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x98);
   *process_data_ptr = &UNK_18098bdc8;
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -67156,8 +67156,8 @@ void Unwind_18090ee60(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x98);
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -67166,7 +67166,7 @@ void Unwind_18090ee60(void * utility_context_pointer,long long utility_data_ptr)
 void Unwind_18090ee70(void * utility_context_pointer,long long utility_data_ptr)
 
 {
-  **(void ***)(utility_data_ptr + 0x98) = &UNK_180a21690;
+  **(void ***)(utility_data_ptr + 0x98) = &utility_system_primary_context0;
   return;
 }
 
@@ -69362,8 +69362,8 @@ void Unwind_18090fa20(void * utility_context_pointer,long long utility_data_ptr)
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(process_data_ptr + 4);
   *process_data_ptr = &UNK_18098bdc8;
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -70040,8 +70040,8 @@ void Unwind_18090ff00(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x100);
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -70102,7 +70102,7 @@ void Unwind_18090ff50(void * utility_context_pointer,long long utility_data_ptr)
 void Unwind_18090ff70(void * utility_context_pointer,long long utility_data_ptr)
 
 {
-  **(void ***)(utility_data_ptr + 0x100) = &UNK_180a21690;
+  **(void ***)(utility_data_ptr + 0x100) = &utility_system_primary_context0;
   return;
 }
 
@@ -71215,8 +71215,8 @@ void Unwind_180910400(void * utility_context_pointer,long long utility_data_ptr)
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x60);
   *process_data_ptr = &UNK_18098bdc8;
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -71228,8 +71228,8 @@ void Unwind_180910410(void * utility_context_pointer,long long utility_data_ptr)
   void **process_data_ptr;
   
   process_data_ptr = *(void ***)(utility_data_ptr + 0x60);
-  *process_data_ptr = &UNK_180a21720;
-  *process_data_ptr = &UNK_180a21690;
+  *process_data_ptr = &utility_system_secondary_context0;
+  *process_data_ptr = &utility_system_primary_context0;
   return;
 }
 
@@ -71238,7 +71238,7 @@ void Unwind_180910410(void * utility_context_pointer,long long utility_data_ptr)
 void Unwind_180910420(void * utility_context_pointer,long long utility_data_ptr)
 
 {
-  **(void ***)(utility_data_ptr + 0x60) = &UNK_180a21690;
+  **(void ***)(utility_data_ptr + 0x60) = &utility_system_primary_context0;
   return;
 }
 
