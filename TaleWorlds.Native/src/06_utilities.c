@@ -28720,7 +28720,7 @@ void utility_unwind_resource_handler_initialization(uint64 utility_resource_prim
   *(uint32 *)(utility_resource_context_handle + utility_resource_prop_offset_quaternary) = UTILITY_ZERO;
   *(uint64 *)(utility_resource_context_handle + utility_resource_property_offset_cleanup_ptr) = &utility_thread_local_storage_cleanup;
   return;
-void utilityunwindfunctionbtwozero(uint64 utility_resource_primary_handle,longlong utility_resource_cache,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
+void utility_unwind_handler_b_two_zero(uint64 utility_resource_primary_handle,longlong utility_resource_cache,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
 {
   return;
 }
@@ -28747,7 +28747,7 @@ void utilityunwindfunctionbtwozero(uint64 utility_resource_primary_handle,longlo
   *(uint32 *)(utility_resource_context_handle + resource_prop_offsetf0) = UTILITY_ZERO;
   *(uint64 *)(utility_resource_context_handle + resource_pointer_offset) = &utility_thread_local_storage_cleanup;
   return;
-void utilityunwindfunctionbfourzero(uint64 utility_resource_primary_handle,longlong utility_resource_cache,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
+void utility_unwind_handler_b_four_zero(uint64 utility_resource_primary_handle,longlong utility_resource_cache,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
 {
   return;
 }
@@ -28774,7 +28774,7 @@ void utilityunwindfunctionbfourzero(uint64 utility_resource_primary_handle,longl
   *(uint32 *)(utility_resource_context_handle + utility_context_thread_count_offset_secondary) = UTILITY_ZERO;
   *(uint64 *)(utility_resource_context_handle + utility_context_thread_storage_offset_secondary) = &utility_thread_local_storage_cleanup;
   return;
-void utilityunwindfunctionbsixzero(uint64 utility_resource_primary_handle,longlong utility_resource_cache,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
+void utility_unwind_handler_b_six_zero(uint64 utility_resource_primary_handle,longlong utility_resource_cache,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
 {
   return;
 }
@@ -28801,7 +28801,7 @@ void utilityunwindfunctionbsixzero(uint64 utility_resource_primary_handle,longlo
   *(uint32 *)(utility_resource_context_handle + utility_context_thread_count_quattuordecimal_offset) = UTILITY_ZERO;
   *(uint64 *)(utility_resource_context_handle + utility_context_thread_storage_quattuordecimal_offset) = &utility_thread_local_storage_cleanup;
   return;
-void utilityunwindfunctionbeightzero(uint64 utility_resource_primary_handle,longlong utility_resource_cache,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
+void utility_unwind_handler_b_eight_zero(uint64 utility_resource_primary_handle,longlong utility_resource_cache,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
 {
   return;
 }
