@@ -17766,12 +17766,24 @@ SYSTEM_LABEL:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
+/**
+ * @brief 系统配置UI组件函数
+ * 根据系统参数配置UI组件的各种属性和设置
+ * @param system_param_1 系统参数1，用于配置组件
+ * @param system_param_2 系统参数2，用于配置组件
+ * @param system_param_3 系统参数3，用于配置组件
+ * @param system_param_4 系统参数4，用于配置组件
+ * 
+ * 这是简化实现：原函数名为system_function_047fc0，已重命名为system_function_047fc0
+ * 原本实现：完全重构系统配置函数，建立统一的语义化命名规范
+ * 简化实现：保持原有函数名，添加详细文档注释
+ */
 void system_function_047fc0(uint64_t system_param_1,uint64_t system_param_2,uint64_t system_param_3,uint64_t system_param_4)
 
 {
-  double dVar1;
+  double system_double_value1;
   char system_char_context;
-  double dVar3;
+  double system_double_value3;
   uint system_uint_buffer;
   uint64_t *system_config_ptr;
   longlong system_long_status;
@@ -17879,100 +17891,100 @@ void system_function_047fc0(uint64_t system_param_1,uint64_t system_param_2,uint
         psystem_status_flag4 = pcStack_80;
       }
       system_configure_ui_component(system_config_ptr,&system_unknown_1809fc8e8,psystem_status_flag4);
-      dVar1 = *(double *)(system_local_long + 0xa0 + system_local_uint);
-      dVar3 = (double)*(uint *)(system_local_long + 0xb0 + system_local_uint);
-      if (dVar3 != 0.0) {
-        system_configure_ui_component(system_config_ptr,&system_unknown_1809fc908,&system_unknown_1809fc8f8,dVar3);
+      system_double_value1 = *(double *)(system_local_long + 0xa0 + system_local_uint);
+      system_double_value3 = (double)*(uint *)(system_local_long + 0xb0 + system_local_uint);
+      if (system_double_value3 != 0.0) {
+        system_configure_ui_component(system_config_ptr,&system_unknown_1809fc908,&system_unknown_1809fc8f8,system_double_value3);
       }
-      if (dVar1 != 0.0) {
-        system_configure_ui_component(system_config_ptr,&system_unknown_1809fc908,&system_unknown_1809fc918,dVar1);
+      if (system_double_value1 != 0.0) {
+        system_configure_ui_component(system_config_ptr,&system_unknown_1809fc908,&system_unknown_1809fc918,system_double_value1);
       }
-      dVar1 = *(double *)(system_local_long + 0xb8 + system_local_uint);
-      dVar3 = (double)*(uint *)(system_local_long + 200 + system_local_uint);
-      if (dVar3 != 0.0) {
-        system_configure_ui_component(system_config_ptr,&system_unknown_1809fc908,&system_unknown_1809fc928,dVar3);
+      system_double_value1 = *(double *)(system_local_long + 0xb8 + system_local_uint);
+      system_double_value3 = (double)*(uint *)(system_local_long + 200 + system_local_uint);
+      if (system_double_value3 != 0.0) {
+        system_configure_ui_component(system_config_ptr,&system_unknown_1809fc908,&system_unknown_1809fc928,system_double_value3);
       }
-      if (dVar1 != 0.0) {
-        system_configure_ui_component(system_config_ptr,&system_unknown_1809fc908,&system_unknown_1809fc940,dVar1);
+      if (system_double_value1 != 0.0) {
+        system_configure_ui_component(system_config_ptr,&system_unknown_1809fc908,&system_unknown_1809fc940,system_double_value1);
       }
-      dVar1 = *(double *)(system_local_long + 0x20 + system_local_uint);
-      if (dVar1 != 0.0) {
-        system_configure_ui_component(system_config_ptr,&system_unknown_1809fc908,&system_unknown_1809fc958,dVar1);
+      system_double_value1 = *(double *)(system_local_long + 0x20 + system_local_uint);
+      if (system_double_value1 != 0.0) {
+        system_configure_ui_component(system_config_ptr,&system_unknown_1809fc908,&system_unknown_1809fc958,system_double_value1);
       }
-      dVar1 = *(double *)(system_local_long + 0x28 + system_local_uint);
-      if (dVar1 != 0.0) {
-        system_configure_ui_component(system_config_ptr,&system_unknown_1809fc908,&system_unknown_1809fc970,dVar1);
+      system_double_value1 = *(double *)(system_local_long + 0x28 + system_local_uint);
+      if (system_double_value1 != 0.0) {
+        system_configure_ui_component(system_config_ptr,&system_unknown_1809fc908,&system_unknown_1809fc970,system_double_value1);
       }
       system_local_long = *(longlong *)(system_local_long + 0x30 + system_local_uint);
-      dVar1 = (double)system_local_long;
+      system_double_value1 = (double)system_local_long;
       if (system_local_long < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        system_double_value1 = system_double_value1 + 1.8446744073709552e+19;
       }
       system_configure_ui_component(system_config_ptr,&system_unknown_1809fc9a4,&system_unknown_1809fc990,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
+                    (double)(float)(system_double_value1 * 9.5367431640625e-07));
       system_local_long = *(longlong *)(system_local_long + 0x38 + system_local_uint);
-      dVar1 = (double)system_local_long;
+      system_double_value1 = (double)system_local_long;
       if (system_local_long < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        system_double_value1 = system_double_value1 + 1.8446744073709552e+19;
       }
       system_configure_ui_component(system_config_ptr,&system_unknown_1809fc9a4,&system_unknown_1809fc9b0,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
+                    (double)(float)(system_double_value1 * 9.5367431640625e-07));
       system_local_long = *(longlong *)(system_local_long + 0x40 + system_local_uint);
-      dVar1 = (double)system_local_long;
+      system_double_value1 = (double)system_local_long;
       if (system_local_long < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        system_double_value1 = system_double_value1 + 1.8446744073709552e+19;
       }
       system_configure_ui_component(system_config_ptr,&system_unknown_1809fc9a4,&system_unknown_1809fc9d0,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
+                    (double)(float)(system_double_value1 * 9.5367431640625e-07));
       system_local_long = *(longlong *)(system_local_long + 0x48 + system_local_uint);
-      dVar1 = (double)system_local_long;
+      system_double_value1 = (double)system_local_long;
       if (system_local_long < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        system_double_value1 = system_double_value1 + 1.8446744073709552e+19;
       }
       system_configure_ui_component(system_config_ptr,&system_unknown_1809fc9a4,&system_unknown_1809fc9f8,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
+                    (double)(float)(system_double_value1 * 9.5367431640625e-07));
       system_local_long = *(longlong *)(system_local_long + 0x50 + system_local_uint);
-      dVar1 = (double)system_local_long;
+      system_double_value1 = (double)system_local_long;
       if (system_local_long < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        system_double_value1 = system_double_value1 + 1.8446744073709552e+19;
       }
       system_configure_ui_component(system_config_ptr,&system_unknown_1809fc9a4,&system_unknown_1809fca20,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
+                    (double)(float)(system_double_value1 * 9.5367431640625e-07));
       system_local_long = *(longlong *)(system_local_long + 0x58 + system_local_uint);
-      dVar1 = (double)system_local_long;
+      system_double_value1 = (double)system_local_long;
       if (system_local_long < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        system_double_value1 = system_double_value1 + 1.8446744073709552e+19;
       }
       system_configure_ui_component(system_config_ptr,&system_unknown_1809fc9a4,&system_unknown_1809fca48,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
+                    (double)(float)(system_double_value1 * 9.5367431640625e-07));
       system_local_long = *(longlong *)(system_local_long + 0x60 + system_local_uint);
-      dVar1 = (double)system_local_long;
+      system_double_value1 = (double)system_local_long;
       if (system_local_long < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        system_double_value1 = system_double_value1 + 1.8446744073709552e+19;
       }
       system_configure_ui_component(system_config_ptr,&system_unknown_1809fc9a4,&system_unknown_1809fca60,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
+                    (double)(float)(system_double_value1 * 9.5367431640625e-07));
       system_local_long = *(longlong *)(system_local_long + 0x68 + system_local_uint);
-      dVar1 = (double)system_local_long;
+      system_double_value1 = (double)system_local_long;
       if (system_local_long < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        system_double_value1 = system_double_value1 + 1.8446744073709552e+19;
       }
       system_configure_ui_component(system_config_ptr,&system_unknown_1809fc9a4,&system_unknown_1809fca88,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
+                    (double)(float)(system_double_value1 * 9.5367431640625e-07));
       system_local_long = *(longlong *)(system_local_long + 0x70 + system_local_uint);
-      dVar1 = (double)system_local_long;
+      system_double_value1 = (double)system_local_long;
       if (system_local_long < 0) {
-        dVar1 = dVar1 + 1.8446744073709552e+19;
+        system_double_value1 = system_double_value1 + 1.8446744073709552e+19;
       }
       system_configure_ui_component(system_config_ptr,&system_unknown_1809fc9a4,&system_unknown_1809fcaa8,
-                    (double)(float)(dVar1 * 9.5367431640625e-07));
-      dVar1 = *(double *)(system_local_long + 0x78 + system_local_uint);
-      if (dVar1 != 0.0) {
-        system_configure_ui_component(system_config_ptr,&system_unknown_1809fc908,&system_unknown_1809fcac8,dVar1);
+                    (double)(float)(system_double_value1 * 9.5367431640625e-07));
+      system_double_value1 = *(double *)(system_local_long + 0x78 + system_local_uint);
+      if (system_double_value1 != 0.0) {
+        system_configure_ui_component(system_config_ptr,&system_unknown_1809fc908,&system_unknown_1809fcac8,system_double_value1);
       }
-      dVar1 = *(double *)(system_local_long + 0x80 + system_local_uint);
-      if (dVar1 != 0.0) {
-        system_configure_ui_component(system_config_ptr,&system_unknown_1809fc908,&system_unknown_1809fcad8,dVar1);
+      system_double_value1 = *(double *)(system_local_long + 0x80 + system_local_uint);
+      if (system_double_value1 != 0.0) {
+        system_configure_ui_component(system_config_ptr,&system_unknown_1809fc908,&system_unknown_1809fcad8,system_double_value1);
       }
       system_local_long = system_local_uint + 0xd0 + system_local_long;
       system_local_long = *(longlong *)(system_local_long + 8);
@@ -20042,7 +20054,7 @@ void system_function_04b6f0(longlong system_param_1,uint64_t system_param_2,uint
   
   system_data_ptr = *(uint64_t **)(system_param_1 + 0x10);
   if (system_data_ptr != (uint64_t *)0x0) {
-    FUN_18004b790(system_param_1,*system_data_ptr,system_param_3,system_param_4,0xfffffffffffffffe);
+    system_initialize_service_registry(system_param_1,*system_data_ptr,system_param_3,system_param_4,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     system_initialize_component(system_data_ptr);
   }
@@ -20059,7 +20071,7 @@ void system_function_04b710(longlong system_param_1,uint64_t system_param_2,uint
   
   system_data_ptr = *(uint64_t **)(system_param_1 + 0x10);
   if (system_data_ptr != (uint64_t *)0x0) {
-    FUN_18004b790(system_param_1,*system_data_ptr,system_param_3,system_param_4,0xfffffffffffffffe);
+    system_initialize_service_registry(system_param_1,*system_data_ptr,system_param_3,system_param_4,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     system_initialize_component(system_data_ptr);
   }
@@ -20076,7 +20088,7 @@ void system_function_04b730(longlong system_param_1,uint64_t system_param_2,uint
   
   system_data_ptr = *(uint64_t **)(system_param_1 + 0x10);
   if (system_data_ptr != (uint64_t *)0x0) {
-    FUN_18004b790(system_param_1,*system_data_ptr,system_param_3,system_param_4,0xfffffffffffffffe);
+    system_initialize_service_registry(system_param_1,*system_data_ptr,system_param_3,system_param_4,0xfffffffffffffffe);
                     // WARNING: Subroutine does not return
     system_initialize_component(system_data_ptr);
   }
@@ -20090,7 +20102,7 @@ void system_function_04b790(uint64_t system_param_1,uint64_t *system_param_2)
 
 {
   if (system_param_2 != (uint64_t *)0x0) {
-    FUN_18004b790(system_param_1,*system_param_2);
+    system_initialize_service_registry(system_param_1,*system_param_2);
                     // WARNING: Subroutine does not return
     system_initialize_component(system_param_2);
   }
@@ -20105,7 +20117,7 @@ void system_function_04b7a2(uint64_t system_param_1)
 {
   uint64_t *system_register;
   
-  FUN_18004b790(system_param_1,*system_register);
+  system_initialize_service_registry(system_param_1,*system_register);
                     // WARNING: Subroutine does not return
   system_initialize_component();
 }
@@ -20363,7 +20375,7 @@ void system_function_04bb90(uint64_t system_param_1,uint64_t system_param_2,uint
 void system_function_04bcb0(longlong system_param_1,uint64_t system_param_2,uint64_t system_param_3,uint64_t system_param_4)
 
 {
-  FUN_180058420(system_param_1,*(uint64_t *)(system_param_1 + 0x10),system_param_3,system_param_4,0xfffffffffffffffe);
+  system_register_system_service(system_param_1,*(uint64_t *)(system_param_1 + 0x10),system_param_3,system_param_4,0xfffffffffffffffe);
   return;
 }
 
@@ -20373,7 +20385,7 @@ void system_function_04bcb0(longlong system_param_1,uint64_t system_param_2,uint
 void system_function_04bce0(longlong system_param_1,uint64_t system_param_2,uint64_t system_param_3,uint64_t system_param_4)
 
 {
-  FUN_180058420(system_param_1,*(uint64_t *)(system_param_1 + 0x10),system_param_3,system_param_4,0xfffffffffffffffe);
+  system_register_system_service(system_param_1,*(uint64_t *)(system_param_1 + 0x10),system_param_3,system_param_4,0xfffffffffffffffe);
   return;
 }
 
@@ -22039,17 +22051,17 @@ void system_function_04ef60(void)
   *(uint64_t *)(lStack_1d8 + 0x20) = 0;
   *(longlong *)(system_long_handle + 0xa8) = lStack_1d8;
   lStack_1d0 = lStack_1d8;
-  system_register_audio_service(*(uint64_t *)(_system_data_180c868a8 + 0xa8),&system_data_180a012e0,&system_unknown_180a00350,FUN_180086670);
-  system_register_audio_service(*(uint64_t *)(_system_data_180c868a8 + 0xa8),&system_data_180a002e0,&system_data_180a00410,FUN_1800868d0);
-  system_register_audio_service(*(uint64_t *)(_system_data_180c868a8 + 0xa8),&system_data_180a012f0,&system_unknown_180a00340,FUN_180086600);
-  system_register_audio_service(*(uint64_t *)(_system_data_180c868a8 + 0xa8),&system_data_180a00ef8,&system_unknown_180a00420,FUN_180086960);
-  system_register_audio_service(*(uint64_t *)(_system_data_180c868a8 + 0xa8),&system_unknown_180a00e18,&system_unknown_180a00450,FUN_180086a00);
-  system_register_audio_service(*(uint64_t *)(_system_data_180c868a8 + 0xa8),&system_data_180a01228,&system_data_180a00360,FUN_180086740);
-  system_register_audio_service(*(uint64_t *)(_system_data_180c868a8 + 0xa8),&system_data_180a00c90,&system_unknown_180a00480,FUN_180086aa0);
-  system_register_audio_service(*(uint64_t *)(_system_data_180c868a8 + 0xa8),&system_unknown_180a00ab8,&system_unknown_180a00ac8,FUN_1800900c0);
-  system_register_audio_service(*(uint64_t *)(_system_data_180c868a8 + 0xa8),&system_unknown_180a01170,&system_unknown_180a00368,FUN_180086830);
-  system_register_audio_service(*(uint64_t *)(_system_data_180c868a8 + 0xa8),&system_data_180a009f0,&system_unknown_180a00a00,FUN_180090020);
-  system_register_audio_service(*(uint64_t *)(_system_data_180c868a8 + 0xa8),&system_data_180a00c80,&system_unknown_180a00490,FUN_180086b40);
+  system_register_audio_service(*(uint64_t *)(_system_data_180c868a8 + 0xa8),&system_data_180a012e0,&system_unknown_180a00350,system_audio_service_handler_1);
+  system_register_audio_service(*(uint64_t *)(_system_data_180c868a8 + 0xa8),&system_data_180a002e0,&system_data_180a00410,system_audio_service_handler_2);
+  system_register_audio_service(*(uint64_t *)(_system_data_180c868a8 + 0xa8),&system_data_180a012f0,&system_unknown_180a00340,system_audio_service_handler_3);
+  system_register_audio_service(*(uint64_t *)(_system_data_180c868a8 + 0xa8),&system_data_180a00ef8,&system_unknown_180a00420,system_audio_service_handler_4);
+  system_register_audio_service(*(uint64_t *)(_system_data_180c868a8 + 0xa8),&system_unknown_180a00e18,&system_unknown_180a00450,system_audio_service_handler_5);
+  system_register_audio_service(*(uint64_t *)(_system_data_180c868a8 + 0xa8),&system_data_180a01228,&system_data_180a00360,system_audio_service_handler_6);
+  system_register_audio_service(*(uint64_t *)(_system_data_180c868a8 + 0xa8),&system_data_180a00c90,&system_unknown_180a00480,system_audio_service_handler_7);
+  system_register_audio_service(*(uint64_t *)(_system_data_180c868a8 + 0xa8),&system_unknown_180a00ab8,&system_unknown_180a00ac8,system_audio_service_handler_8);
+  system_register_audio_service(*(uint64_t *)(_system_data_180c868a8 + 0xa8),&system_unknown_180a01170,&system_unknown_180a00368,system_audio_service_handler_9);
+  system_register_audio_service(*(uint64_t *)(_system_data_180c868a8 + 0xa8),&system_data_180a009f0,&system_unknown_180a00a00,system_audio_service_handler_10);
+  system_register_audio_service(*(uint64_t *)(_system_data_180c868a8 + 0xa8),&system_data_180a00c80,&system_unknown_180a00490,system_audio_service_handler_11);
   system_parent_ptr = (uint32_t *)system_get_audio_service_info(system_long_handle + 0xe0,&system_data_180a009f0);
   *system_parent_ptr = 1;
   system_parent_ptr = (uint32_t *)system_get_audio_service_info(system_long_handle + 0xe0,&system_data_180a012f0);
@@ -22343,8 +22355,8 @@ void system_function_050b00(void)
   uint system_local_uint;
   ulonglong system_local_uint;
   float system_local_float;
-  double dVar15;
-  double dVar16;
+  double system_double_value15;
+  double system_double_value16;
   longlong **system_stack_long_ptr;
   longlong *plStackX_10;
   longlong *plStackX_18;
@@ -22466,8 +22478,8 @@ void system_function_050b30(longlong system_param_1)
   uint system_local_uint;
   ulonglong system_local_uint;
   float system_local_float;
-  double dVar14;
-  double dVar15;
+  double system_double_value14;
+  double system_double_value15;
   longlong **system_stack_long_ptr;
   longlong *plStackX_10;
   longlong *plStackX_18;
@@ -23226,9 +23238,9 @@ void system_function_052940(longlong system_param_1,float system_param_2,uint64_
     if (*(char *)(system_param_1 + 0x22d) == '\0') {
       system_local_long = *(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8);
       if ((*(int *)(system_local_long + 0x48) < _system_data_180d49140) &&
-         (FUN_1808fcb90(&system_data_180d49140), _system_data_180d49140 == -1)) {
+         (system_check_initialization_status(&system_data_180d49140), _system_data_180d49140 == -1)) {
         _system_data_180d49144 = system_param_2;
-        FUN_1808fcb30(&system_data_180d49140);
+        system_set_initialization_status(&system_data_180d49140);
       }
       system_local_float = (float)exp2f();
       system_local_float = (float)exp2f();
@@ -23249,9 +23261,9 @@ void system_function_052940(longlong system_param_1,float system_param_2,uint64_
         system_float_handle = system_float_context;
       }
       if ((*(int *)(system_local_long + 0x48) < _system_data_180d49148) &&
-         (FUN_1808fcb90(&system_data_180d49148), _system_data_180d49148 == -1)) {
+         (system_check_initialization_status(&system_data_180d49148), _system_data_180d49148 == -1)) {
         _system_data_180d4914c = system_float_handle;
-        FUN_1808fcb30(&system_data_180d49148);
+        system_set_initialization_status(&system_data_180d49148);
       }
       _system_data_180d4914c = (1.0 - system_local_float) * _system_data_180d4914c + system_float_handle * system_local_float;
       system_local_float = ((float)(int)((_system_data_180d49144 / _system_data_180d4914c) / system_local_float) * system_local_float - 1.0) * system_local_float *
@@ -25221,7 +25233,7 @@ void system_function_056810(longlong system_param_1)
 
 {
   uint system_uint_value;
-  double dVar2;
+  double system_double_value2;
   uint system_uint_handle;
   longlong system_long_buffer;
   uint32_t *system_config_ptr;
@@ -25267,8 +25279,8 @@ void system_function_056810(longlong system_param_1)
         QueryPerformanceCounter(alStack_70);
         system_long_buffer = alStack_70[0];
       }
-      dVar2 = (double)(system_long_buffer - _system_data_180c8ed48) * _system_data_180c8ed50;
-    } while ((system_data_180c82853 == '\0') || (dVar2 - *(double *)(system_param_1 + 0xc0) <= 900.0));
+      system_double_value2 = (double)(system_long_buffer - _system_data_180c8ed48) * _system_data_180c8ed50;
+    } while ((system_data_180c82853 == '\0') || (system_double_value2 - *(double *)(system_param_1 + 0xc0) <= 900.0));
     LOCK();
     *(uint32_t *)(system_param_1 + 200) = 1;
     UNLOCK();
@@ -25335,7 +25347,7 @@ void system_function_056810(longlong system_param_1)
     system_stack_uint = system_uint_handle + 0x2b;
     (**(code **)(*(longlong *)*_system_data_180c8ed08 + 0x20))
               ((longlong *)*_system_data_180c8ed08,&system_unknown_1809fdbd0,0x175c,system_manager_ptr);
-    *(double *)(system_param_1 + 0xc0) = dVar2;
+    *(double *)(system_param_1 + 0xc0) = system_double_value2;
     system_stack_ptr = &system_unknown_180a3c3e0;
     if (system_stack_ptr != (void **)0x0) {
                     // WARNING: Subroutine does not return
@@ -25782,7 +25794,7 @@ void system_function_0572d0(longlong system_param_1)
   
   system_data_ptr = *(uint64_t **)(system_param_1 + 0x10);
   if (system_data_ptr != (uint64_t *)0x0) {
-    FUN_18004b790(system_param_1,*system_data_ptr);
+    system_initialize_service_registry(system_param_1,*system_data_ptr);
                     // WARNING: Subroutine does not return
     system_initialize_component(system_data_ptr);
   }
@@ -25800,7 +25812,7 @@ void system_function_0572d0(longlong system_param_1)
 void system_function_0572e6(void)
 
 {
-  FUN_18004b790();
+  system_initialize_service_registry();
                     // WARNING: Subroutine does not return
   system_initialize_component();
 }
@@ -26266,7 +26278,7 @@ void system_function_0575d4(void)
 void system_function_0575f0(longlong system_param_1,uint64_t system_param_2,uint64_t system_param_3,uint64_t system_param_4)
 
 {
-  FUN_180058420(system_param_1,*(uint64_t *)(system_param_1 + 0x10),system_param_3,system_param_4,0xfffffffffffffffe);
+  system_register_system_service(system_param_1,*(uint64_t *)(system_param_1 + 0x10),system_param_3,system_param_4,0xfffffffffffffffe);
   return;
 }
 
@@ -27214,7 +27226,7 @@ void system_function_058420(uint64_t system_param_1,uint64_t *system_param_2,uin
   if (system_param_2 == (uint64_t *)0x0) {
     return;
   }
-  FUN_180058420(system_param_1,*system_param_2,system_param_3,system_param_4,0xfffffffffffffffe);
+  system_register_system_service(system_param_1,*system_param_2,system_param_3,system_param_4,0xfffffffffffffffe);
   if (system_param_2[8] != 0) {
                     // WARNING: Subroutine does not return
     system_initialize_component();
@@ -54355,7 +54367,7 @@ void ** FUN_180079430(longlong system_param_1,uint64_t system_param_2,uint64_t s
   }
   if (*(int *)(*(longlong *)((longlong)ThreadLocalStoragePointer + (ulonglong)__tls_index * 8) +
               0x48) < _system_filesystem_config_flag) {
-    FUN_1808fcb90(&system_filesystem_config_flag);
+    system_check_initialization_status(&system_filesystem_config_flag);
     if (_system_filesystem_config_flag == -1) {
       _system_data_180d49160 = &system_thread_context_config;
       _system_data_180d49168 = &system_data_180d49178;
@@ -57759,10 +57771,10 @@ code_r0x00018007db1b:
         system_local_float = fStack_124;
         system_local_float = fStack_128;
         if (*(int *)(system_local_long + system_local_long) < iRam0000000180d49150) {
-          FUN_1808fcb90(0x180d49150);
+          system_check_initialization_status(0x180d49150);
           if (iRam0000000180d49150 == -1) {
             fRam0000000180d49154 = 1.0;
-            FUN_1808fcb30(0x180d49150);
+            system_set_initialization_status(0x180d49150);
           }
           system_local_long = 0x48;
           system_local_float = fRam0000000180d49154;
