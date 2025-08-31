@@ -3639,7 +3639,21 @@ void utility_create_network_communication_socket(longlong utility_resource_prima
   }
   return;
 }
-int bind_network_socket(longlong utility_resource_primary_handle,longlong utility_resource_cache)
+/**
+ * @brief 绑定网络套接字工具函数
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @param utility_resource_cache 资源缓存句柄
+ * @return int 操作结果状态码
+ * 
+ * 该函数用于绑定网络套接字，包括：
+ * - 验证套接字句柄有效性
+ * - 执行套接字绑定操作
+ * - 返回操作结果状态
+ * 
+ * 简化实现：仅添加文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
+int utility_bind_network_socket(longlong utility_resource_primary_handle,longlong utility_resource_cache)
 {
   int utility_result;
   longlong utility_data_pointer_primary_extended_main;
