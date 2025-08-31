@@ -96,6 +96,14 @@ void *utility_data_buffer_secondary;
 #define UTILITY_GLOBAL_DATA_CONTEXT_1809863f8 0x1809863f8
 #define UTILITY_GLOBAL_DATA_CONTEXT_180986470 0x180986470
 #define UTILITY_GLOBAL_DATA_TEMP_VAR_180982508 0x180982508
+#define UTILITY_GLOBAL_DATA_TEMP_VAR_180982608 0x180982608
+#define UTILITY_GLOBAL_DATA_TEMP_VAR_180982588 0x180982588
+#define UTILITY_GLOBAL_DATA_TEMP_VAR_180985a80 0x180985a80
+#define UTILITY_GLOBAL_DATA_TEMP_VAR_180982cc0 0x180982cc0
+#define UTILITY_GLOBAL_DATA_TEMP_VAR_180983238 0x180983238
+#define UTILITY_GLOBAL_DATA_TEMP_VAR_1809832b8 0x1809832b8
+#define UTILITY_GLOBAL_DATA_TEMP_VAR_180982f38 0x180982f38
+#define UTILITY_GLOBAL_DATA_TEMP_VAR_1809834f8 0x1809834f8
 void *utility_resource_pool_primary;
 void *utility_resource_cache_secondary;
 void *utility_memory_manager_main;
@@ -10230,7 +10238,7 @@ UTILITY_LABEL_TIMER_EXPIRE:
     else {
       utility_utility_stack_int_2f0 = 0;
       if (1 < result_int - 1U) {
-        psystem_temp_var8 = &UNK_180982608;
+        psystem_temp_var8 = &UTILITY_GLOBAL_DATA_TEMP_VAR_180982608;
         pptr_var = &psystem_temp_var8;
         system_temp_var0 = 0;
         system_temp_var8 = 0;
@@ -10243,7 +10251,7 @@ UTILITY_LABEL_TIMER_EXPIRE:
         system_temp_varc = param;
         goto UTILITY_LABEL_TIMER_EXPIRE;
       }
-      psystem_temp_var8 = &UNK_180982588;
+      psystem_temp_var8 = &UTILITY_GLOBAL_DATA_TEMP_VAR_180982588;
       utility_utility_stack_long_var_2d8 = (ulong long)param << UTILITY_THREAD_TLS_DATA_OFFSET;
       system_temp_var8 = *(void **)(data_ptr + 0x228);
       system_temp_var0 = (ulong long)CONCAT14(result_int != 1,*(void **)(data_ptr + 0x230));
@@ -10255,7 +10263,7 @@ UTILITY_LABEL_TIMER_EXPIRE:
     utility_utility_stack_int_290 = *(int *)(data_ptr + UTILITY_THREAD_TLS_CONTEXT_OFFSET);
     system_temp_varc = *(void **)(data_ptr + 0x1c);
     utility_utility_stack_int_2a0 = 0;
-    psystem_temp_var8 = &UNK_180985a80;
+    psystem_temp_var8 = &UTILITY_GLOBAL_DATA_TEMP_VAR_180985a80;
     system_temp_var4 = 0;
     system_temp_var8 = param;
     result_int = utility_thread_executor_run(context_pointer,&psystem_temp_var8);
@@ -10265,7 +10273,7 @@ UTILITY_LABEL_TIMER_EXPIRE:
     if (0 < result_int) {
       do {
         utility_utility_stack_int_2f0 = 0;
-        psystem_temp_var8 = &UNK_180982cc0;
+        psystem_temp_var8 = &UTILITY_GLOBAL_DATA_TEMP_VAR_180982cc0;
         system_temp_var8 = CONCAT44(system_temp_var8._4_4_,param);
         utility_system_item_count = utility_thread_executor_run(context_pointer,&psystem_temp_var8);
         if (utility_system_item_count != 0) goto utility_system_operation_perform;
@@ -10477,7 +10485,7 @@ UTILITY_LABEL_TIMER_EXPIRE:
         system_temp_var8 = *(uint *)(context_handle + 0x14);
         system_temp_var4 = *(void **)(context_handle + UTILITY_THREAD_TLS_CONTEXT_OFFSET);
         system_temp_var0 = *(void **)(context_handle + 0x1c);
-        psystem_temp_var8 = &UNK_180983238;
+        psystem_temp_var8 = &UTILITY_GLOBAL_DATA_TEMP_VAR_180983238;
         utility_system_item_count = result_int + 1;
         system_temp_varc = system_temp_var8;
         utility_utility_stack_int_2a0 = result_int;
@@ -10959,7 +10967,7 @@ void context_pointer_process_data(long long context_pointer,long long data_ptr)
     result_int = system_call_function(*(void **)(utility_temp_long_var + 0xd0),&system_temp_var0);
     if (result_int == 0) {
       system_temp_var0 = 0;
-      psystem_temp_var8 = &UNK_1809832b8;
+      psystem_temp_var8 = &UTILITY_GLOBAL_DATA_TEMP_VAR_1809832b8;
       system_temp_var0 = system_temp_var8;
       system_temp_var8 = system_temp_var0;
       result_int = utility_thread_executor_run(context_pointer,&psystem_temp_var8);
@@ -11195,7 +11203,7 @@ void utility_thread_resumer_resume(void)
   context_handle5 = (*(code *)*utility_context_handle)(ptr_var2);
   result_int3 = system_call_function(*(void **)(context_handle5 + 0xd0),&utility_stack_buffer);
   if (result_int3 == 0) {
-    utility_utility_stack_param = &UNK_1809832b8;
+    utility_utility_stack_param = &UTILITY_GLOBAL_DATA_TEMP_VAR_1809832b8;
     *(void **)(utility_global_register_rbp + -0xf) = temp_var_20;
     *(float *)(utility_global_register_rbp + -0x10) = fStack0000000000000048;
     utility_utility_stack_param = utility_global_register_r13D;
@@ -11870,7 +11878,7 @@ UTILITY_LABEL_LOG_WRITE:
       system_temp_var0 = *(void **)(context_handle + 0x1c);
       system_temp_var0 = 0;
       result_int = utility_system_item_count + 1;
-      psystem_temp_var8 = &UNK_180982f38;
+      psystem_temp_var8 = &UTILITY_GLOBAL_DATA_TEMP_VAR_180982f38;
       utility_stack_flags = asystem_temp_var8[0];
       system_temp_var8 = param;
       utility_utility_stack_int_250 = utility_system_item_count;
@@ -11883,7 +11891,7 @@ UTILITY_LABEL_LOG_WRITE:
         do {
           system_temp_var8 = 0;
           utility_temp_long_var = context_pointer[4];
-          psystem_temp_var0 = &UNK_1809834f8;
+          psystem_temp_var0 = &UTILITY_GLOBAL_DATA_TEMP_VAR_1809834f8;
           system_temp_var0 = asystem_temp_var8[0];
           if (((char)utility_temp_long_var == '\0') && (result_int = context_pointer_process_data(context_pointer,1), result_int != 0))
           goto UTILITY_LABEL_LOG_WRITE;
