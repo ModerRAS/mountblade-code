@@ -5324,15 +5324,15 @@ void system_internal_function(void)
 
 {
   uint64_t system_uint_var_a;
-  float *pfVar2;
+  float *system_float_ptr_secondary;
   uint64_t system_uint_value_d;
   uint system_uint_value_e;
   uint64_t system_uint_var_f;
   int system_int_result;
-  float *pfVar8;
+  float *system_float_ptr_octonary;
   float system_float_var_i;
   
-  pfVar8 = (float *)0x180c8aa70;
+  system_float_ptr_octonary = (float *)0x180c8aa70;
   system_uint_var_f = 0;
   system_int_result = -3;
   system_uint_value_d = system_uint_var_f;
@@ -5340,7 +5340,7 @@ void system_internal_function(void)
     if (0 < (int64_t)system_uint_value_d) {
       system_memory_compare_result = -3;
       system_uint_var_a = system_uint_var_f;
-      pfVar2 = pfVar8;
+      system_float_ptr_secondary = system_float_ptr_octonary;
       do {
         system_float_var_i = 0.0;
         if (-1 < (int64_t)system_uint_var_a) {
@@ -5352,21 +5352,21 @@ void system_internal_function(void)
             system_float_var_i = SQRT(system_float_var_i) * system_float_var_i;
           }
         }
-        *pfVar2 = system_float_var_i;
+        *system_float_ptr_secondary = system_float_var_i;
         system_memory_compare_result = system_memory_compare_result + 1;
-        pfVar2 = pfVar2 + 1;
+        system_float_ptr_secondary = system_float_ptr_secondary + 1;
         system_uint_var_a = system_uint_var_a + 1;
       } while ((int64_t)system_uint_var_a < (int64_t)system_uint_value_d);
     }
     system_int_result = system_int_result + 1;
     system_uint_value_d = system_uint_value_d + 1;
-    pfVar8 = pfVar8 + 0x40;
-  } while ((int64_t)pfVar8 < 0x180c8ea71);
-  pfVar8 = (float *)0x180c8eb70;
+    system_float_ptr_octonary = system_float_ptr_octonary + 0x40;
+  } while ((int64_t)system_float_ptr_octonary < 0x180c8ea71);
+  system_float_ptr_octonary = (float *)0x180c8eb70;
   do {
     system_uint_value_e = (int)system_uint_var_f + 1;
-    *pfVar8 = 1.0 / SQRT((float)system_uint_var_f) + 1.0 / SQRT((float)system_uint_var_f);
-    pfVar8 = pfVar8 + 1;
+    *system_float_ptr_octonary = 1.0 / SQRT((float)system_uint_var_f) + 1.0 / SQRT((float)system_uint_var_f);
+    system_float_ptr_octonary = system_float_ptr_octonary + 1;
     system_uint_var_f = (uint64_t)system_uint_value_e;
   } while (system_uint_value_e < 0x40);
   return;
@@ -16159,7 +16159,7 @@ uint64_t system_internal_function(int64_t system_context_ptr,int64_t system_conf
 {
   byte *system_byte_system_pointer_a;
   byte *system_byte_system_pointer_d;
-  int iVar6;
+  int system_int_var_6;
   uint system_uint_var;
   
   system_uint_var = (uint64_t)*(int *)(system_context_ptr + 0x68);
@@ -16193,20 +16193,20 @@ system_label:
     system_uint_var = system_uint_var;
     do {
       system_int_result = *(int *)(system_uint_var + 0x10 + system_long_var);
-      iVar6 = system_context_int_var_e;
+      system_int_var_6 = system_context_int_var_e;
       if (system_int_result == system_context_int_var_e) {
         if (system_int_result != 0) {
           system_byte_system_pointer_d = *(byte **)(system_uint_var + 8 + system_long_var);
           system_long_var = *(int64_t *)(system_config_flags + 8) - (int64_t)system_byte_system_pointer_d;
           do {
             system_byte_system_pointer_a = system_byte_system_pointer_d + system_long_var;
-            iVar6 = (uint)*system_byte_system_pointer_d - (uint)*system_byte_system_pointer_a;
-            if (iVar6 != 0) break;
+            system_int_var_6 = (uint)*system_byte_system_pointer_d - (uint)*system_byte_system_pointer_a;
+            if (system_int_var_6 != 0) break;
             system_byte_system_pointer_d = system_byte_system_pointer_d + 1;
           } while (*system_byte_system_pointer_a != 0);
         }
 system_label:
-        if (iVar6 == 0) {
+        if (system_int_var_6 == 0) {
           *(int *)(system_context_ptr + 0x68) = (int)system_uint_var;
         }
       }
@@ -18357,11 +18357,11 @@ void system_internal_function(void)
   uint8_t *system_context_base_ptr;
   char *psystem_char_result_3;
   void* *context_current_ptr;
-  int iVar8;
+  int system_int_var_8;
   void* *system_stack_byte_ptr;
   
   system_internal_function();
-  iVar8 = 0;
+  system_int_var_8 = 0;
   system_uint_var = 0;
   if (system_stack_uint_value != 0) {
     context_offset_value = 0;
@@ -18374,7 +18374,7 @@ void system_internal_function(void)
         if (context_offset_value != system_long_var_f) {
           system_stack_byte_ptr[context_offset_value] = system_initialization_status;
         }
-        iVar8 = iVar8 + 1;
+        system_int_var_8 = system_int_var_8 + 1;
         context_offset_value = context_offset_value + 1;
       }
       system_uint_var = (int)system_uint_var + 1;
@@ -18382,7 +18382,7 @@ void system_internal_function(void)
       system_long_var_f = system_long_var_f + 1;
     } while (system_uint_var < system_stack_uint_value);
   }
-  system_stack_byte_ptr[iVar8] = 0;
+  system_stack_byte_ptr[system_int_var_8] = 0;
   system_context_base_ptr = (uint8_t *)system_internal_function(system_global_data_ptr,0x28,8,CONCAT71((int7)(system_uint_var >> 8),3));
   context_current_ptr = &system_data_value_bc73;
   if (system_stack_byte_ptr != (void* *)0x0) {
@@ -18411,7 +18411,7 @@ void system_internal_function(void)
     }
     system_uint_value_d = CreateMutexA(0,0,context_current_ptr);
     *system_context_base_ptr = system_uint_value_d;
-    iVar8 = GetLastError();
+    system_int_var_8 = GetLastError();
 
 void system_internal_function(void)
 
@@ -20173,8 +20173,8 @@ void system_internal_function(uint8_t system_context_ptr,int64_t system_config_f
         }
         system_internal_function(extraout_XMM0_Da,system_long_var);
         if (system_byte_var_8 == 8) {
-          iVar6 = strcmp(system_context_ptr_11,&system_data_ptr);
-          bVar31 = iVar6 == 0;
+          system_int_var_6 = strcmp(system_context_ptr_11,&system_data_ptr);
+          bVar31 = system_int_var_6 == 0;
         }
         else {
           bVar31 = false;
@@ -20271,10 +20271,10 @@ uint32_t* system_internal_function(void)
     *(void*2 *)((uint64_t)system_stack_uint_value + system_stack_varlong_var) = 0x2c;
     system_stack_uint_value = system_uint_value_e;
     system_internal_function(&system_stack_byte_ptr,asystem_uint_var._8_8_ & 0xffffffff);
-    iVar6 = system_stack_uint_value + 1;
-    system_internal_function(&system_stack_byte_ptr,iVar6);
+    system_int_var_6 = system_stack_uint_value + 1;
+    system_internal_function(&system_stack_byte_ptr,system_int_var_6);
     *(void*2 *)((uint64_t)system_stack_uint_value + system_stack_varlong_var) = 0x2c;
-    system_stack_uint_value = iVar6;
+    system_stack_uint_value = system_int_var_6;
     system_internal_function(&system_stack_byte_ptr,asystem_uint_var._8_8_ >> 0x20);
     system_byte_system_pointer_d = (uint8_t *)system_internal_function(auStack_80,&system_stack_byte_ptr);
     system_internal_function(system_global_data_ptr + 0xe30,system_byte_system_pointer_d);
@@ -20313,10 +20313,10 @@ uint32_t* system_internal_function(void)
     *(void*2 *)((uint64_t)system_stack_uint_value + system_stack_varlong_var) = 0x2c;
     system_stack_uint_value = system_uint_value_e;
     system_internal_function(&system_stack_byte_ptr,asystem_uint_var._8_8_ & 0xffffffff);
-    iVar6 = system_stack_uint_value + 1;
-    system_internal_function(&system_stack_byte_ptr,iVar6);
+    system_int_var_6 = system_stack_uint_value + 1;
+    system_internal_function(&system_stack_byte_ptr,system_int_var_6);
     *(void*2 *)((uint64_t)system_stack_uint_value + system_stack_varlong_var) = 0x2c;
-    system_stack_uint_value = iVar6;
+    system_stack_uint_value = system_int_var_6;
     system_internal_function(&system_stack_byte_ptr,asystem_uint_var._8_8_ >> 0x20);
     system_byte_system_pointer_d = (uint8_t *)system_internal_function(auStack_60,&system_stack_byte_ptr);
     system_internal_function(system_global_data_ptr + 0xef0,system_byte_system_pointer_d);
@@ -20456,7 +20456,7 @@ void system_internal_function(uint8_t system_context_ptr,uint8_t system_config_f
 void system_internal_function(void)
 
 {
-  int *piVar5;
+  int *system_int_ptr_5;
   uint8_t *data_buffer_ptr;
   uint32_t* *context_current_ptr;
   void* *context_next_ptr;
@@ -20503,8 +20503,8 @@ void system_internal_function(void)
   system_float_var_l = 1.0;
   if (*(int *)(system_long_var + 0x1ea0) == 1) {
     system_int_result = *(int *)(system_long_var + 0x1d50);
-    piVar5 = (int *)system_internal_function(*(uint8_t *)(system_global_data_ptr + 8),system_stack_array);
-    system_float_var_l = (float)system_int_result / (float)*piVar5;
+    system_int_ptr_5 = (int *)system_internal_function(*(uint8_t *)(system_global_data_ptr + 8),system_stack_array);
+    system_float_var_l = (float)system_int_result / (float)*system_int_ptr_5;
     system_float_var_j = system_float_var_l * *(float *)(system_long_var + 0x234);
     system_float_var_l = system_float_var_l * *(float *)(system_long_var + 0x238);
   }
@@ -20730,18 +20730,18 @@ void system_internal_function(void)
   system_context_ptr_1 = system_global_data_ptr;
   if (*(char *)(system_global_data_ptr + 7) != '\0') {
     system_stack_long_ptr = (int64_t *)0x180c91970;
-    iVar6 = _Mtx_lock(0x180c91970);
-    if (iVar6 != 0) {
-      __Throw_C_system_error_varstd__YAXH_Z(iVar6);
+    system_int_var_6 = _Mtx_lock(0x180c91970);
+    if (system_int_var_6 != 0) {
+      __Throw_C_system_error_varstd__YAXH_Z(system_int_var_6);
     }
     system_internal_function(*(uint8_t *)*system_context_ptr_1);
     system_internal_function(*(uint8_t *)system_context_ptr_1[1]);
     system_internal_function(*system_context_ptr_1);
     system_internal_function(system_context_ptr_1[1]);
     *(uint8_t* *)(system_context_ptr_1 + 7) = 0;
-    iVar6 = _Mtx_unlock(0x180c91970);
-    if (iVar6 != 0) {
-      __Throw_C_system_error_varstd__YAXH_Z(iVar6);
+    system_int_var_6 = _Mtx_unlock(0x180c91970);
+    if (system_int_var_6 != 0) {
+      __Throw_C_system_error_varstd__YAXH_Z(system_int_var_6);
     }
   }
   system_context_ptr_1 = (uint8_t *)*system_global_data_ptr;
@@ -21052,9 +21052,9 @@ void system_internal_function(int64_t system_context_ptr)
   *(double *)(system_context_ptr + 0x68) = (double)(system_long_value_g - system_global_data_ptr) * system_global_data_ptr;
   if (system_data_c82863 != '\0') {
     system_stack_uint_value = 0x180c91288;
-    iVar6 = _Mtx_lock(0x180c91288);
-    if (iVar6 != 0) {
-      __Throw_C_system_error_varstd__YAXH_Z(iVar6);
+    system_int_var_6 = _Mtx_lock(0x180c91288);
+    if (system_int_var_6 != 0) {
+      __Throw_C_system_error_varstd__YAXH_Z(system_int_var_6);
     }
 
 void system_internal_function(int64_t system_context_ptr,uint8_t system_config_flags)
@@ -21376,12 +21376,12 @@ bool system_internal_function(int64_t system_context_ptr)
           system_byte_system_pointer_d = pbStack_28;
           do {
             system_uint_value_e = (uint)system_byte_system_pointer_d[context_next_ptr[5] - (int64_t)pbStack_28];
-            iVar6 = *system_byte_system_pointer_d - system_uint_value_e;
+            system_int_var_6 = *system_byte_system_pointer_d - system_uint_value_e;
             if (*system_byte_system_pointer_d != system_uint_value_e) break;
             system_byte_system_pointer_d = system_byte_system_pointer_d + 1;
           } while (system_uint_value_e != 0);
-          bVar3 = 0 < iVar6;
-          if (iVar6 < 1) {
+          bVar3 = 0 < system_int_var_6;
+          if (system_int_var_6 < 1) {
             system_byte_ptr_i = (uint8_t *)context_next_ptr[1];
           }
         }
@@ -21706,14 +21706,14 @@ void system_internal_function(int64_t system_context_ptr,float system_config_fla
       system_byte_result_12 = system_byte_result_7;
       system_byte_result_7 = system_uint_var;
     }
-    iVar6 = (int)system_uint_var / (int)system_byte_result_12;
+    system_int_var_6 = (int)system_uint_var / (int)system_byte_result_12;
     fStackX_8 = (float)(int)system_uint_var;
     do {
       system_uint_var = (uint)(fStackX_8 * fVar15);
-      if (1 < iVar6) {
-        system_uint_var = ((system_uint_var - 1) - (int)(system_uint_var - 1) % iVar6) + iVar6;
+      if (1 < system_int_var_6) {
+        system_uint_var = ((system_uint_var - 1) - (int)(system_uint_var - 1) % system_int_var_6) + system_int_var_6;
       }
-      system_uint_var_a = (int64_t)(int)(((int)system_uint_var / (int)system_byte_result_12) * system_uint_var) / (int64_t)iVar6;
+      system_uint_var_a = (int64_t)(int)(((int)system_uint_var / (int)system_byte_result_12) * system_uint_var) / (int64_t)system_int_var_6;
       system_byte_result_7 = (uint)system_uint_var_a;
       if (((system_uint_var & 1) == 0) && ((system_uint_var_a & 1) == 0)) goto system_label;
       fVar15 = fVar15 + 0.01;
@@ -21743,13 +21743,13 @@ system_label:
       system_uint_value_e = system_uint_var_a & 0xffffffff;
       system_uint_var_a = system_uint_value_d;
     }
-    iVar6 = (int)system_uint_var / (int)system_byte_result_12;
+    system_int_var_6 = (int)system_uint_var / (int)system_byte_result_12;
     do {
       system_byte_result_7 = (uint)(fVar15 * (float)(int)system_uint_var);
-      if (1 < iVar6) {
-        system_byte_result_7 = ((system_byte_result_7 - 1) - (int)(system_byte_result_7 - 1) % iVar6) + iVar6;
+      if (1 < system_int_var_6) {
+        system_byte_result_7 = ((system_byte_result_7 - 1) - (int)(system_byte_result_7 - 1) % system_int_var_6) + system_int_var_6;
       }
-      system_uint_var_a = (int64_t)(int)(((int)system_uint_var / (int)system_byte_result_12) * system_byte_result_7) / (int64_t)iVar6;
+      system_uint_var_a = (int64_t)(int)(((int)system_uint_var / (int)system_byte_result_12) * system_byte_result_7) / (int64_t)system_int_var_6;
       if (((system_byte_result_7 & 1) == 0) && ((system_uint_var_a & 1) == 0)) goto system_label;
       fVar15 = fVar15 + 0.01;
       *(float *)(system_context_ptr + 0x238) = fVar15;
@@ -21772,7 +21772,7 @@ void system_internal_function(int64_t *system_context_ptr,uint8_t system_config_
 
 {
   int64_t *psystem_long_var_5;
-  int *piVar6;
+  int *psystem_int_var_6;
   int64_t *system_stack_long_ptr_x;
   int64_t *system_stack_long_ptr_x;
   int64_t **ppl_stack_ptr_18;
@@ -21857,8 +21857,8 @@ void system_internal_function(int64_t *system_context_ptr,uint8_t system_config_
   system_float_var_l = 1.0;
   if (*(int *)(system_long_var + 0x1ea0) == 1) {
     system_int_result = *(int *)(system_long_var + 0x1d50);
-    piVar6 = (int *)system_internal_function(*(uint8_t *)(system_global_data_ptr + 8),&system_stack_long_ptr_x);
-    system_float_var_l = (float)system_int_result / (float)*piVar6;
+    psystem_int_var_6 = (int *)system_internal_function(*(uint8_t *)(system_global_data_ptr + 8),&system_stack_long_ptr_x);
+    system_float_var_l = (float)system_int_result / (float)*psystem_int_var_6;
     system_float_var_k = system_float_var_l * *(float *)(system_long_var + 0x234);
     system_float_var_l = system_float_var_l * *(float *)(system_long_var + 0x238);
   }
@@ -22502,7 +22502,7 @@ void system_internal_function(void)
   uint8_t *system_byte_system_pointer_e;
   uint8_t* *data_buffer_ptr;
   uint32_t* *context_current_ptr;
-  int iVar9;
+  int system_int_var_9;
   uint8_t *system_context_ptr_12;
   uint *system_context_ptr_15;
   void* *system_context_ptr_16;
@@ -22531,7 +22531,7 @@ void system_internal_function(void)
   system_stack_varlong_var = system_long_var;
   if (0 < (int)system_long_var) {
     do {
-      iVar9 = system_stack_varint_var;
+      system_int_var_9 = system_stack_varint_var;
       system_int_result = 0;
       if (system_stack_varint_var < 0) {
 system_label:
@@ -22559,15 +22559,15 @@ system_label:
         }
         system_stack_uint_value = system_stack_uint_value & 0xffffffff;
       }
-      if (iVar9 < 0) {
+      if (system_int_var_9 < 0) {
 system_label:
         system_long_var = system_internal_function();
       }
       else {
         system_long_var = *(int64_t *)(*system_global_data_ptr + 0x8a8);
         if ((uint64_t)(*(int64_t *)(*system_global_data_ptr + 0x8b0) - system_long_var >> 5) <
-            (uint64_t)(int64_t)iVar9) goto system_label;
-        system_long_var = (int64_t)iVar9 * 0x20 + system_long_var;
+            (uint64_t)(int64_t)system_int_var_9) goto system_label;
+        system_long_var = (int64_t)system_int_var_9 * 0x20 + system_long_var;
       }
       system_stack_byte_ptr = &system_data_ptr;
       system_stack_uint_value = 0;
@@ -22585,11 +22585,11 @@ system_label:
         }
         system_stack_uint_value = system_stack_uint_value & 0xffffffff;
       }
-      iVar8 = system_stack_uint_value + 8;
-      system_internal_function(&system_stack_byte_ptr,iVar8);
+      system_int_var_8 = system_stack_uint_value + 8;
+      system_internal_function(&system_stack_byte_ptr,system_int_var_8);
       *(uint8_t *)(system_stack_byte_ptr + system_stack_uint_value) = 0x6a624f656e656353;
       *(uint8_t* *)((int64_t)(system_stack_byte_ptr + system_stack_uint_value) + 8) = 0;
-      system_stack_uint_value = iVar8;
+      system_stack_uint_value = system_int_var_8;
       system_char_var_d = system_internal_function(&system_stack_byte_ptr);
       if (system_char_var_d == '\0') {
         system_stack_byte_ptr = &system_data_ptr;
@@ -22626,9 +22626,9 @@ system_label:
           system_internal_function(&system_stack_byte_ptr);
         }
         psystem_long_value_2 = system_stack_long_ptr;
-        iVar8 = (int)(system_long_var >> 5);
-        system_long_var = (int64_t)iVar8;
-        if (0 < iVar8) {
+        system_int_var_8 = (int)(system_long_var >> 5);
+        system_long_var = (int64_t)system_int_var_8;
+        if (0 < system_int_var_8) {
           system_context_ptr_15 = (uint *)(system_byte_system_pointer_c + 2);
           do {
             system_internal_function();
@@ -22650,8 +22650,8 @@ system_label:
               }
               system_stack_uint_value._4_4_ = 0;
             }
-            iVar9 = system_stack_uint_value + 0xd;
-            system_internal_function(&system_stack_byte_ptr,iVar9);
+            system_int_var_9 = system_stack_uint_value + 0xd;
+            system_internal_function(&system_stack_byte_ptr,system_int_var_9);
             system_byte_system_pointer_e = (uint8_t *)(system_stack_byte_ptr + system_stack_uint_value);
             *system_byte_system_pointer_e = 0x782e656e6563732f;
             *(uint32_t* *)(system_byte_system_pointer_e + 1) = 0x6e656373;
@@ -22660,7 +22660,7 @@ system_label:
             if (system_stack_byte_ptr != (uint8_t* *)0x0) {
               data_buffer_ptr = system_stack_byte_ptr;
             }
-            system_stack_uint_value = iVar9;
+            system_stack_uint_value = system_int_var_9;
             system_long_var = strstr(data_buffer_ptr,&system_data_ptr);
             if (system_long_var == 0) {
               data_buffer_ptr = &system_data_value_bc73;
@@ -22727,18 +22727,18 @@ system_label:
               }
               else {
 system_label:
-                iVar9 = *system_context_ptr_15 - 1;
-                if (-1 < iVar9) {
-                  system_long_var = (int64_t)iVar9;
+                system_int_var_9 = *system_context_ptr_15 - 1;
+                if (-1 < system_int_var_9) {
+                  system_long_var = (int64_t)system_int_var_9;
                   do {
                     if (*(char *)(system_long_var + *(int64_t *)(system_context_ptr_15 + -2)) == '/') goto system_label;
-                    iVar9 = iVar9 + -1;
+                    system_int_var_9 = system_int_var_9 + -1;
                     system_long_var = system_long_var + -1;
                   } while (-1 < system_long_var);
                 }
-                iVar9 = -1;
+                system_int_var_9 = -1;
 system_label:
-                system_internal_function(system_byte_system_pointer_c + (int64_t)system_int_result * 4,&system_stack_context_ptr_b,iVar9 + 1,0xffffffff);
+                system_internal_function(system_byte_system_pointer_c + (int64_t)system_int_result * 4,&system_stack_context_ptr_b,system_int_var_9 + 1,0xffffffff);
                 system_uint_var = system_internal_function(psystem_long_value_2,&system_stack_context_ptr_b);
                 if (system_global_data_ptr != 0) {
                   system_internal_function(system_uint_var,&system_stack_byte_ptr);
@@ -22814,7 +22814,7 @@ system_label:
             system_long_var = system_long_var + -1;
             system_long_var = system_stack_varlong_var;
             system_byte_system_pointer_e = system_stack_byte_ptr;
-            iVar9 = system_stack_varint_var;
+            system_int_var_9 = system_stack_varint_var;
           } while (system_long_var != 0);
         }
         system_stack_byte_ptr = &system_data_ptr;
@@ -22851,7 +22851,7 @@ system_label:
       system_stack_uint_value = system_stack_uint_value & 0xffffffff00000000;
       system_stack_byte_ptr = (uint8_t* *)0x0;
       system_stack_byte_ptr = &system_data_ptr;
-      system_stack_varint_var = iVar9 + 1;
+      system_stack_varint_var = system_int_var_9 + 1;
     } while (system_stack_varint_var < (int)system_long_var);
   }
                     // WARNING: Subroutine does not return
@@ -23150,17 +23150,17 @@ void system_internal_function(int64_t system_context_ptr)
     system_uint_var = system_uint_var;
     do {
       system_int_result = (int)system_uint_var;
-      iVar6 = -1;
+      system_int_var_6 = -1;
       if ((uint64_t)(int64_t)system_int_result < (uint64_t)(system_long_var - system_long_var >> 3)) {
         system_long_var = *(int64_t *)(system_context_ptr + 0x50);
         system_long_var = system_long_var;
         system_int_result = system_int_result;
         system_int_result = -1;
         do {
-          iVar6 = *(int *)(*(int64_t *)(system_long_var + system_long_var) + 0x10);
+          system_int_var_6 = *(int *)(*(int64_t *)(system_long_var + system_long_var) + 0x10);
           system_memory_compare_result = *(int *)(*(int64_t *)(system_uint_var + system_long_var) + 0x10);
-          if (iVar6 == system_memory_compare_result) {
-            if (iVar6 == 0) {
+          if (system_int_var_6 == system_memory_compare_result) {
+            if (system_int_var_6 == 0) {
 system_label:
               if (system_memory_compare_result != 0) goto system_label;
               bVar20 = true;
@@ -23178,21 +23178,21 @@ system_label:
             }
           }
           else {
-            if (iVar6 == 0) goto system_label;
+            if (system_int_var_6 == 0) goto system_label;
 system_label:
             bVar20 = false;
           }
-          iVar6 = system_int_result;
+          system_int_var_6 = system_int_result;
           if (!bVar20) {
-            iVar6 = system_int_result;
+            system_int_var_6 = system_int_result;
           }
           system_int_result = system_int_result + 1;
           system_long_var = system_long_var + 8;
-          system_int_result = iVar6;
+          system_int_result = system_int_var_6;
         } while ((uint64_t)(int64_t)system_int_result < (uint64_t)(system_long_var - system_long_var >> 3));
       }
-      if (iVar6 != -1) {
-        system_long_var = (int64_t)iVar6;
+      if (system_int_var_6 != -1) {
+        system_long_var = (int64_t)system_int_var_6;
         system_long_var = *(int64_t *)(system_long_var + system_long_var * 8);
         *(double *)(*(int64_t *)(system_uint_var + system_long_var) + 0x40) =
              *(double *)(system_long_var + 0x40) + *(double *)(*(int64_t *)(system_uint_var + system_long_var) + 0x40);
@@ -26142,7 +26142,7 @@ void system_internal_function(int64_t *system_context_ptr)
     system_stack_varlong_var = 0;
     do {
       system_long_var = system_stack_varlong_var;
-      iVar8 = system_stack_varint_var;
+      system_int_var_8 = system_stack_varint_var;
       system_context_ptr_17 = *(void* **)(system_stack_varlong_var * 0x20 + 8 + system_long_var);
       system_context_ptr_13 = &system_data_value_bc73;
       if (system_context_ptr_17 != (void* *)0x0) {
@@ -26160,11 +26160,11 @@ void system_internal_function(int64_t *system_context_ptr)
         } while (system_context_ptr_13[system_long_var] != '\0');
         if ((int)system_long_var != 0) {
           system_int_result = (int)system_long_var + 2;
-          iVar8 = system_int_result;
+          system_int_var_8 = system_int_result;
           if (system_int_result < 0x10) {
-            iVar8 = 0x10;
+            system_int_var_8 = 0x10;
           }
-          system_context_ptr_11 = (uint8_t* *)system_internal_function(system_global_data_ptr,(int64_t)iVar8,0x13);
+          system_context_ptr_11 = (uint8_t* *)system_internal_function(system_global_data_ptr,(int64_t)system_int_var_8,0x13);
           *system_context_ptr_11 = 0;
           system_stack_byte_ptr = system_context_ptr_11;
           system_byte_result_7 = system_internal_function(system_context_ptr_11);
@@ -26199,7 +26199,7 @@ void system_internal_function(int64_t *system_context_ptr)
         do {
           system_long_var = system_stack_varlong_var;
           system_context_base_ptr = system_stack_byte_ptr;
-          iVar8 = system_stack_varint_var;
+          system_int_var_8 = system_stack_varint_var;
           system_context_ptr_17 = &system_data_value_bc73;
           if ((void* *)system_stack_byte_ptr[system_stack_varlong_var * 4 + 1] != (void* *)0x0) {
             system_context_ptr_17 = (void* *)system_stack_byte_ptr[system_stack_varlong_var * 4 + 1];
@@ -26241,11 +26241,11 @@ void system_internal_function(int64_t *system_context_ptr)
           } while (*(char *)((int64_t)&system_stack_uint_value + system_long_var + 1) != '\0');
           if ((int)(system_long_var + 1) != 0) {
             system_int_result = (int)system_long_var + 2;
-            iVar8 = system_int_result;
+            system_int_var_8 = system_int_result;
             if (system_int_result < 0x10) {
-              iVar8 = 0x10;
+              system_int_var_8 = 0x10;
             }
-            system_stack_byte_ptr = (void* *)system_internal_function(system_global_data_ptr,(int64_t)iVar8,0x13);
+            system_stack_byte_ptr = (void* *)system_internal_function(system_global_data_ptr,(int64_t)system_int_var_8,0x13);
             *system_stack_byte_ptr = 0;
             system_uint_var = (uint64_t)system_stack_byte_ptr & 0xffffffffffc00000;
             if (system_uint_var != 0) {
@@ -26304,7 +26304,7 @@ void system_internal_function(int64_t *system_context_ptr)
               }
             }
             system_long_var = system_stack_varlong_var;
-            iVar8 = system_stack_varint_var;
+            system_int_var_8 = system_stack_varint_var;
             if (bVar26) {
               if (ppppppsystem_context_ptr_14 == (uint8_t *******)ppppppuStack_358) {
                 if ((ppppppsystem_context_ptr_14 != &ppppppuStack_360) && (*(int *)(ppppppsystem_context_ptr_14 + 6) == 0)) {
@@ -26334,7 +26334,7 @@ void system_internal_function(int64_t *system_context_ptr)
               }
               ppppppsystem_context_ptr_14 = (uint8_t *******)system_function(ppppppsystem_context_ptr_14);
               system_long_var = system_stack_varlong_var;
-              iVar8 = system_stack_varint_var;
+              system_int_var_8 = system_stack_varint_var;
             }
           }
           system_uint_var = *(uint *)(system_context_base_ptr + system_long_var * 4 + 2);
@@ -26355,12 +26355,12 @@ void system_internal_function(int64_t *system_context_ptr)
           system_stack_byte_ptr = (void* *)0x0;
           system_stack_uint_value = system_stack_uint_value & 0xffffffff00000000;
           system_stack_byte_ptr = &system_data_ptr;
-          system_stack_varint_var = iVar8 + 1;
+          system_stack_varint_var = system_int_var_8 + 1;
           system_stack_varlong_var = system_long_var + 1;
           system_context_base_ptr = system_stack_byte_ptr;
           system_byte_system_pointer_c = system_stack_byte_ptr;
           system_byte_system_pointer_d = system_stack_byte_ptr;
-          iVar8 = system_stack_varint_var;
+          system_int_var_8 = system_stack_varint_var;
           system_long_var = system_stack_varlong_var;
         } while ((uint64_t)(int64_t)system_stack_varint_var < system_stack_uint_value);
       }
@@ -26390,7 +26390,7 @@ void system_internal_function(int64_t *system_context_ptr)
       system_stack_varlong_var = 0;
       system_stack_uint_value = 0;
       system_stack_byte_ptr = &system_data_ptr;
-      system_stack_varint_var = iVar8 + 1;
+      system_stack_varint_var = system_int_var_8 + 1;
       system_stack_varlong_var = system_long_var + 1;
       system_long_var = *(int64_t *)(system_stack_varlong_var + 0x8a8);
       system_stack_byte_ptr = system_byte_system_pointer_c;
@@ -26421,11 +26421,11 @@ void system_internal_function(int64_t *system_context_ptr)
             system_stack_byte_ptr = (uint8_t* *)0x0;
             system_stack_uint_value = 0;
             if (*(int *)(system_long_var + 0xb8) != 0) {
-              iVar8 = *(int *)(system_long_var + 0xb8) + 1;
-              if (iVar8 < 0x10) {
-                iVar8 = 0x10;
+              system_int_var_8 = *(int *)(system_long_var + 0xb8) + 1;
+              if (system_int_var_8 < 0x10) {
+                system_int_var_8 = 0x10;
               }
-              system_stack_byte_ptr = (uint8_t* *)system_internal_function(system_global_data_ptr,(int64_t)iVar8,0x13);
+              system_stack_byte_ptr = (uint8_t* *)system_internal_function(system_global_data_ptr,(int64_t)system_int_var_8,0x13);
               *system_stack_byte_ptr = 0;
               system_uint_var = (uint64_t)system_stack_byte_ptr & 0xffffffffffc00000;
               if (system_uint_var == 0) {
@@ -28942,16 +28942,16 @@ int system_internal_function(void)
     __Throw_C_system_error_varstd__YAXH_Z(system_context_int_var_e);
   }
   system_context_int_var_e = system_internal_function(system_long_var);
-  iVar6 = _Mtx_lock(system_long_var + 0x950);
-  if (iVar6 != 0) {
-    __Throw_C_system_error_varstd__YAXH_Z(iVar6);
+  system_int_var_6 = _Mtx_lock(system_long_var + 0x950);
+  if (system_int_var_6 != 0) {
+    __Throw_C_system_error_varstd__YAXH_Z(system_int_var_6);
   }
-  iVar6 = system_internal_function();
+  system_int_var_6 = system_internal_function();
   system_int_result = _Mtx_unlock(system_long_var + 0x950);
   if (system_int_result != 0) {
     __Throw_C_system_error_varstd__YAXH_Z(system_int_result);
   }
-  return iVar6 + system_int_result + system_memory_compare_result + system_context_int_var_e;
+  return system_int_var_6 + system_int_result + system_memory_compare_result + system_context_int_var_e;
 }
 
 
@@ -28969,11 +28969,11 @@ void system_internal_function(uint64_t system_context_ptr,int64_t system_config_
   char acStack_438 [1024];
   
   system_int_result = -1;
-  iVar8 = -1;
+  system_int_var_8 = -1;
   system_uint_var_b = (uint)system_context_ptr;
   system_uint_var_c = system_context_ptr & 0xffffffff;
   while (system_uint_var_b != 0) {
-    iVar8 = iVar8 + 1;
+    system_int_var_8 = system_int_var_8 + 1;
     system_uint_var_b = (uint)system_uint_var_c >> 1;
     system_uint_var_c = (uint64_t)system_uint_var_b;
   }
@@ -28982,7 +28982,7 @@ void system_internal_function(uint64_t system_context_ptr,int64_t system_config_
     system_int_result = system_int_result + 1;
     system_uint_var_b = system_uint_var_b >> 1;
   } while (system_uint_var_b != 0);
-  system_initialization_status = (&system_unk_system_ptr_varfe050)[iVar8 / system_int_result];
+  system_initialization_status = (&system_unk_system_ptr_varfe050)[system_int_var_8 / system_int_result];
   system_stack_uint_value = 0x18005d147;
   system_float_var_i = (float)powf(0x44800000);
   system_float_var_j = (float)(int64_t)system_context_ptr;
@@ -28996,11 +28996,11 @@ void system_internal_function(uint64_t system_context_ptr,int64_t system_config_
   context_offset_value = 0;
   system_stack_uint_value = 0;
   pdStack_450 = &dStackX_18;
-  iVar8 = __stdio_common_vsprintf(*system_byte_system_pointer_d | 1,0,0,&system_unk_system_ptr_varfe058);
-  if (iVar8 < 0) {
-    iVar8 = -1;
+  system_int_var_8 = __stdio_common_vsprintf(*system_byte_system_pointer_d | 1,0,0,&system_unk_system_ptr_varfe058);
+  if (system_int_var_8 < 0) {
+    system_int_var_8 = -1;
   }
-  if (iVar8 < 0x400) {
+  if (system_int_var_8 < 0x400) {
     system_stack_uint_value = 0;
     pdStack_450 = &dStackX_18;
     __stdio_common_vsprintf(*system_byte_system_pointer_d | 1,acStack_438,0x400,&system_unk_system_ptr_varfe058);
@@ -29009,20 +29009,20 @@ void system_internal_function(uint64_t system_context_ptr,int64_t system_config_
       system_long_var_f = context_offset_value;
       context_offset_value = system_long_var_f + 1;
     } while (acStack_438[system_long_var_f + 1] != '\0');
-    iVar8 = (int)(system_long_var_f + 1);
-    if (0 < iVar8) {
-      system_internal_function(system_config_flags,*(int *)(system_config_flags + 0x10) + iVar8);
+    system_int_var_8 = (int)(system_long_var_f + 1);
+    if (0 < system_int_var_8) {
+      system_internal_function(system_config_flags,*(int *)(system_config_flags + 0x10) + system_int_var_8);
                     // WARNING: Subroutine does not return
       memcpy((uint64_t)*(uint *)(system_config_flags + 0x10) + *(int64_t *)(system_config_flags + 8),acStack_438,
              (int64_t)((int)system_long_var_f + 2));
     }
   }
   else {
-    iVar8 = iVar8 + 1;
-    if (iVar8 != 0) {
-      context_offset_value = system_internal_function(system_global_data_ptr,(int64_t)iVar8,3);
+    system_int_var_8 = system_int_var_8 + 1;
+    if (system_int_var_8 != 0) {
+      context_offset_value = system_internal_function(system_global_data_ptr,(int64_t)system_int_var_8,3);
     }
-    system_internal_function(context_offset_value,(int64_t)iVar8,&system_unk_system_ptr_varfe058,&dStackX_18);
+    system_internal_function(context_offset_value,(int64_t)system_int_var_8,&system_unk_system_ptr_varfe058,&dStackX_18);
     system_internal_function(system_config_flags,context_offset_value);
     if (context_offset_value != 0) {
                     // WARNING: Subroutine does not return
@@ -29514,40 +29514,40 @@ void system_internal_function(int64_t system_context_ptr,uint8_t system_config_f
   }
   *(uint8_t *)(context_offset_value + 0x20) = 0;
   *(code **)(context_offset_value + 0x28) = system_guard_system_check_icall;
-  iVar6 = 0;
+  system_int_var_6 = 0;
   psystem_long_var_1 = (int64_t *)(system_context_ptr + 8);
   if (*(int64_t *)(system_context_ptr + 0x10) - *psystem_long_var_1 >> 3 != 0) {
     context_offset_value = 0;
     do {
       system_internal_function(*(uint8_t *)(*psystem_long_var_1 + context_offset_value));
-      iVar6 = iVar6 + 1;
+      system_int_var_6 = system_int_var_6 + 1;
       context_offset_value = context_offset_value + 8;
-    } while ((uint64_t)(int64_t)iVar6 < (uint64_t)(*(int64_t *)(system_context_ptr + 0x10) - *psystem_long_var_1 >> 3))
+    } while ((uint64_t)(int64_t)system_int_var_6 < (uint64_t)(*(int64_t *)(system_context_ptr + 0x10) - *psystem_long_var_1 >> 3))
     ;
   }
-  iVar6 = 0;
+  system_int_var_6 = 0;
   psystem_long_value_2 = (int64_t *)(system_context_ptr + 0x28);
   if (*(int64_t *)(system_context_ptr + 0x30) - *psystem_long_value_2 >> 3 != 0) {
     context_offset_value = 0;
     do {
       system_internal_function(*(uint8_t *)(*psystem_long_value_2 + context_offset_value));
-      iVar6 = iVar6 + 1;
+      system_int_var_6 = system_int_var_6 + 1;
       context_offset_value = context_offset_value + 8;
-    } while ((uint64_t)(int64_t)iVar6 < (uint64_t)(*(int64_t *)(system_context_ptr + 0x30) - *psystem_long_value_2 >> 3))
+    } while ((uint64_t)(int64_t)system_int_var_6 < (uint64_t)(*(int64_t *)(system_context_ptr + 0x30) - *psystem_long_value_2 >> 3))
     ;
   }
-  iVar6 = 0;
+  system_int_var_6 = 0;
   psystem_long_var_3 = (int64_t *)(system_context_ptr + 0x48);
   if (*(int64_t *)(system_context_ptr + 0x50) - *psystem_long_var_3 >> 3 != 0) {
     context_offset_value = 0;
     do {
       system_internal_function(*(uint8_t *)(*psystem_long_var_3 + context_offset_value));
-      iVar6 = iVar6 + 1;
+      system_int_var_6 = system_int_var_6 + 1;
       context_offset_value = context_offset_value + 8;
-    } while ((uint64_t)(int64_t)iVar6 < (uint64_t)(*(int64_t *)(system_context_ptr + 0x50) - *psystem_long_var_3 >> 3))
+    } while ((uint64_t)(int64_t)system_int_var_6 < (uint64_t)(*(int64_t *)(system_context_ptr + 0x50) - *psystem_long_var_3 >> 3))
     ;
   }
-  iVar6 = 0;
+  system_int_var_6 = 0;
   context_offset_value = *psystem_long_var_1;
   if (*(int64_t *)(system_context_ptr + 0x10) - context_offset_value >> 3 != 0) {
     system_long_value_g = 0;
@@ -29562,12 +29562,12 @@ void system_internal_function(int64_t system_context_ptr,uint8_t system_config_f
         }
       }
       *(uint8_t *)(system_long_value_g + *psystem_long_var_1) = 0;
-      iVar6 = iVar6 + 1;
+      system_int_var_6 = system_int_var_6 + 1;
       system_long_value_g = system_long_value_g + 8;
       context_offset_value = *psystem_long_var_1;
-    } while ((uint64_t)(int64_t)iVar6 < (uint64_t)(*(int64_t *)(system_context_ptr + 0x10) - context_offset_value >> 3));
+    } while ((uint64_t)(int64_t)system_int_var_6 < (uint64_t)(*(int64_t *)(system_context_ptr + 0x10) - context_offset_value >> 3));
   }
-  iVar6 = 0;
+  system_int_var_6 = 0;
   context_offset_value = *psystem_long_value_2;
   if (*(int64_t *)(system_context_ptr + 0x30) - context_offset_value >> 3 != 0) {
     system_long_value_g = 0;
@@ -29582,12 +29582,12 @@ void system_internal_function(int64_t system_context_ptr,uint8_t system_config_f
         }
       }
       *(uint8_t *)(system_long_value_g + *psystem_long_value_2) = 0;
-      iVar6 = iVar6 + 1;
+      system_int_var_6 = system_int_var_6 + 1;
       system_long_value_g = system_long_value_g + 8;
       context_offset_value = *psystem_long_value_2;
-    } while ((uint64_t)(int64_t)iVar6 < (uint64_t)(*(int64_t *)(system_context_ptr + 0x30) - context_offset_value >> 3));
+    } while ((uint64_t)(int64_t)system_int_var_6 < (uint64_t)(*(int64_t *)(system_context_ptr + 0x30) - context_offset_value >> 3));
   }
-  iVar6 = 0;
+  system_int_var_6 = 0;
   context_offset_value = *psystem_long_var_3;
   if (*(int64_t *)(system_context_ptr + 0x50) - context_offset_value >> 3 != 0) {
     system_long_value_g = 0;
@@ -29602,10 +29602,10 @@ void system_internal_function(int64_t system_context_ptr,uint8_t system_config_f
         }
       }
       *(uint8_t *)(system_long_value_g + *psystem_long_var_3) = 0;
-      iVar6 = iVar6 + 1;
+      system_int_var_6 = system_int_var_6 + 1;
       system_long_value_g = system_long_value_g + 8;
       context_offset_value = *psystem_long_var_3;
-    } while ((uint64_t)(int64_t)iVar6 < (uint64_t)(*(int64_t *)(system_context_ptr + 0x50) - context_offset_value >> 3));
+    } while ((uint64_t)(int64_t)system_int_var_6 < (uint64_t)(*(int64_t *)(system_context_ptr + 0x50) - context_offset_value >> 3));
   }
   system_internal_function(system_context_ptr + 0x548);
   system_internal_function(system_context_ptr + 0x2e0);
@@ -33097,7 +33097,7 @@ void system_internal_function(int *system_context_ptr)
   
   system_stack_uint_value = 0xfffffffffffffffe;
   system_stack_uint_value = system_global_data_ptr ^ (uint64_t)auStack_1f8;
-  iVar8 = 0;
+  system_int_var_8 = 0;
   system_stack_uint_value = 0;
   *system_context_ptr = *system_context_ptr + 1;
   if ((*(int64_t *)(system_context_ptr + 4) != 0) && (*(int64_t *)(system_context_ptr + 2) != 0)) {
@@ -33154,9 +33154,9 @@ void system_internal_function(int *system_context_ptr)
         } while (system_char_var_b != '\0');
         if (system_initialization_status == system_char_var_b) break;
       }
-      iVar8 = iVar8 + 1;
+      system_int_var_8 = system_int_var_8 + 1;
       context_current_ptr = context_current_ptr + 4;
-    } while ((uint64_t)(int64_t)iVar8 < system_uint_var);
+    } while ((uint64_t)(int64_t)system_int_var_8 < system_uint_var);
   }
   system_stack_byte_ptr = &system_data_ptr;
                     // WARNING: Subroutine does not return
@@ -33266,18 +33266,18 @@ void system_internal_function(int64_t system_context_ptr)
       system_stack_uint_value = CONCAT44(system_stack_uint_value._4_4_,system_uint_var_c);
       *system_byte_system_pointer_e = 0x73726f7272655f;
       system_stack_uint_value = 7;
-      iVar8 = *(int *)(system_context_ptr + 0x40) + -1;
-      if (-1 < iVar8) {
-        system_long_var_f = (int64_t)iVar8;
+      system_int_var_8 = *(int *)(system_context_ptr + 0x40) + -1;
+      if (-1 < system_int_var_8) {
+        system_long_var_f = (int64_t)system_int_var_8;
         do {
           if (*(char *)(system_long_var_f + *(int64_t *)(system_context_ptr + 0x38)) == '_') goto code_r0x0001800630e9;
-          iVar8 = iVar8 + -1;
+          system_int_var_8 = system_int_var_8 + -1;
           system_long_var_f = system_long_var_f + -1;
         } while (-1 < system_long_var_f);
       }
-      iVar8 = -1;
+      system_int_var_8 = -1;
 code_r0x0001800630e9:
-      system_internal_function(system_context_ptr + 0x30,iVar8,&system_stack_byte_ptr);
+      system_internal_function(system_context_ptr + 0x30,system_int_var_8,&system_stack_byte_ptr);
       system_stack_byte_ptr = &system_data_ptr;
                     // WARNING: Subroutine does not return
       system_internal_function(system_byte_system_pointer_e);
@@ -33322,8 +33322,8 @@ code_r0x0001800630e9:
       (**(code **)(*psystem_long_var + 0x70))(psystem_long_var,&system_unk_system_ptr_varfe5c0);
       break;
     case 5:
-      iVar8 = *(int *)(system_context_ptr + 0x58);
-      if ((*(int *)(system_global_data_ptr + 0x150) <= iVar8) &&
+      system_int_var_8 = *(int *)(system_context_ptr + 0x58);
+      if ((*(int *)(system_global_data_ptr + 0x150) <= system_int_var_8) &&
          (system_byte_system_pointer_e = *(uint8_t **)(system_context_ptr + 0x20),
          (*(uint64_t *)(system_context_ptr + 0x60) & system_byte_system_pointer_e[2]) != 0)) {
         system_uint_var_b = *(uint *)(system_context_ptr + 0x40);
@@ -33345,7 +33345,7 @@ code_r0x0001800630e9:
         }
         if ((*(byte *)(system_byte_system_pointer_e + 1) & 8) != 0) {
           (**(code **)(system_byte_system_pointer_e[4] + 0x70))(system_byte_system_pointer_e + 4,system_byte_ptr_i);
-          if (1 < iVar8) {
+          if (1 < system_int_var_8) {
             (**(code **)(system_byte_system_pointer_e[0x1b] + 0x70))(system_byte_system_pointer_e + 0x1b,system_byte_ptr_i);
           }
         }
@@ -33400,7 +33400,7 @@ uint64_t system_internal_function(int64_t *system_context_ptr,int64_t system_con
   byte *system_byte_system_pointer_e;
   
   system_long_var_d = *system_context_ptr;
-  iVar9 = 0;
+  system_int_var_9 = 0;
   system_byte_result_7 = system_context_ptr[1] - system_long_var_d >> 5;
   if (system_byte_result_7 != 0) {
     system_uint_var_b = *(uint *)(system_config_flags + 0x10);
@@ -33426,9 +33426,9 @@ system_label:
         }
       }
       else if (system_uint_var_c == 0) goto system_label;
-      iVar9 = iVar9 + 1;
+      system_int_var_9 = system_int_var_9 + 1;
       system_long_var = system_long_var + 0x20;
-      in_RAX = (uint64_t)iVar9;
+      in_RAX = (uint64_t)system_int_var_9;
     } while (in_RAX < system_byte_result_7);
   }
   return in_RAX & 0xffffffffffffff00;
@@ -33634,8 +33634,8 @@ void system_internal_function(void)
   system_byte_system_pointer_d = system_stack_byte_ptr;
   if (system_uint_var != 0) {
     do {
-      iVar6 = *(int *)((int64_t)system_stack_byte_ptr + system_uint_var + 0x10);
-      if (iVar6 < 4) {
+      system_int_var_6 = *(int *)((int64_t)system_stack_byte_ptr + system_uint_var + 0x10);
+      if (system_int_var_6 < 4) {
 system_label:
         system_bool_var_b = false;
       }
@@ -33643,7 +33643,7 @@ system_label:
         system_long_value_g = 0;
         do {
           system_long_var = system_long_value_g + 1;
-          if (*(char *)(*(int64_t *)((int64_t)system_stack_byte_ptr + system_uint_var + 8) + (int64_t)(iVar6 + -4) +
+          if (*(char *)(*(int64_t *)((int64_t)system_stack_byte_ptr + system_uint_var + 8) + (int64_t)(system_int_var_6 + -4) +
                        system_long_value_g) != (&system_data_ptr)[system_long_value_g]) goto system_label;
           system_long_value_g = system_long_var;
         } while (system_long_var != 5);
@@ -33655,8 +33655,8 @@ system_label:
         if (system_context_ptr_1 != (void* *)0x0) {
           system_byte_ptr_i = system_context_ptr_1;
         }
-        iVar6 = _stat64i32(system_byte_ptr_i,auStack_268);
-        if ((iVar6 != -1) && (system_long_var < system_stack_varlong_var)) {
+        system_int_var_6 = _stat64i32(system_byte_ptr_i,auStack_268);
+        if ((system_int_var_6 != -1) && (system_long_var < system_stack_varlong_var)) {
           system_long_var = system_stack_varlong_var;
           system_int_result = (int)system_uint_var;
         }
@@ -34373,9 +34373,9 @@ void system_internal_function(uint8_t system_context_ptr)
   system_internal_function(&system_stack_byte_ptr,&system_data_ptr,system_uint_var / 0x100000 & 0xffffffff);
   system_stack_array[0] = 0x48;
   system_uint_var = GetCurrentProcess();
-  iVar8 = K32GetProcessMemoryInfo(system_uint_var,system_stack_array,0x48);
+  system_int_var_8 = K32GetProcessMemoryInfo(system_uint_var,system_stack_array,0x48);
   system_uint_var = 0;
-  if (iVar8 != 0) {
+  if (system_int_var_8 != 0) {
     system_uint_var = system_stack_uint_value;
   }
   system_internal_function(&system_stack_byte_ptr,&system_data_ptr,system_uint_var / 0x100000 & 0xffffffff);
@@ -34519,7 +34519,7 @@ void system_internal_function(uint8_t system_context_ptr)
             }
             pcStack_298[system_long_var] = '\0';
           }
-          iVar8 = 0;
+          system_int_var_8 = 0;
           if (system_uint_var != 0) {
             system_context_ptr_18 = system_byte_system_pointer_d + 1;
             do {
@@ -34551,9 +34551,9 @@ system_label:
                 }
               }
               else if (system_int_result == 0) goto system_label;
-              iVar8 = iVar8 + 1;
+              system_int_var_8 = system_int_var_8 + 1;
               system_context_ptr_18 = system_context_ptr_18 + 4;
-            } while ((uint64_t)(int64_t)iVar8 < system_uint_var);
+            } while ((uint64_t)(int64_t)system_int_var_8 < system_uint_var);
           }
           system_stack_byte_ptr = &system_data_ptr;
           if (pcStack_298 != (char *)0x0) {
@@ -35152,7 +35152,7 @@ system_label:
                     // WARNING: Subroutine does not return
         system_internal_function(system_byte_system_pointer_e);
       }
-      if (((system_data_c82860 == '\0') || (iVar6 = IsDebuggerPresent(), iVar6 != 0)) &&
+      if (((system_data_c82860 == '\0') || (system_int_var_6 = IsDebuggerPresent(), system_int_var_6 != 0)) &&
          (system_data_c82842 == '\0')) {
         system_uint_value_d = MessageBoxA(0,&system_data_ptr,&system_data_ptr,0x40004);
         switch(system_uint_value_d) {
@@ -35197,9 +35197,9 @@ system_label:
       system_long_var = system_long_value_g + 1;
     } while (*(char *)(system_long_value_g + 0x180c84871) != '\0');
     if ((int)(system_long_value_g + 1) != 0) {
-      iVar6 = (int)system_long_value_g + 2;
-      system_memory_compare_result = iVar6;
-      if (iVar6 < 0x10) {
+      system_int_var_6 = (int)system_long_value_g + 2;
+      system_memory_compare_result = system_int_var_6;
+      if (system_int_var_6 < 0x10) {
         system_memory_compare_result = 0x10;
       }
       system_stack_context_ptr_b = (uint8_t *)system_internal_function(system_global_data_ptr,(int64_t)system_memory_compare_result,0x13);
@@ -35207,7 +35207,7 @@ system_label:
       system_uint_value_d = system_internal_function(system_stack_context_ptr_b);
       system_stack_uint_value = CONCAT44(system_stack_uint_value._4_4_,system_uint_value_d);
                     // WARNING: Subroutine does not return
-      memcpy(system_stack_context_ptr_b,&system_data_c84870,iVar6);
+      memcpy(system_stack_context_ptr_b,&system_data_c84870,system_int_var_6);
     }
     system_stack_uint_value = 0;
     system_internal_function(&system_stack_context_ptr_a,system_context_parameter);
@@ -35679,7 +35679,7 @@ void system_internal_function(int64_t *system_context_ptr)
   
   system_stack_uint_value = 0xfffffffffffffffe;
   system_long_var = system_context_ptr[1];
-  iVar9 = *(int *)(system_long_var + 0x138) - *(int *)(system_long_var + 0x1d8);
+  system_int_var_9 = *(int *)(system_long_var + 0x138) - *(int *)(system_long_var + 0x1d8);
   system_long_var_d = *(int64_t *)(system_long_var + 0x150);
   psystem_long_var = (int64_t *)0x0;
   if (system_long_var_d != 0) {
@@ -35692,14 +35692,14 @@ void system_internal_function(int64_t *system_context_ptr)
       *psystem_long_var = (int64_t)&system_data_ptr;
       *(bool *)(psystem_long_var + 1) = system_long_var_d == 3;
     }
-    (**(code **)(*psystem_long_var + 0x18))(psystem_long_var,system_stack_array,iVar9 + system_long_var,system_stack_varlong_var_x,system_uint_var_f,system_uint_value_e);
+    (**(code **)(*psystem_long_var + 0x18))(psystem_long_var,system_stack_array,system_int_var_9 + system_long_var,system_stack_varlong_var_x,system_uint_var_f,system_uint_value_e);
                     // WARNING: Subroutine does not return
     system_internal_function(psystem_long_var);
   }
   system_stack_uint_value = 3;
   system_long_var = system_context_ptr[1];
   system_stack_uint_value = *(uint8_t *)(system_long_var + 0x140);
-  system_stack_varlong_var = (int64_t)iVar9 + *(int64_t *)(system_long_var + 0x1f0);
+  system_stack_varlong_var = (int64_t)system_int_var_9 + *(int64_t *)(system_long_var + 0x1f0);
   system_stack_uint_value = 1;
   system_stack_varlong_var = system_stack_varlong_var;
   (**(code **)(system_long_var + 0x180))(&system_stack_varlong_var,*(int64_t *)(system_long_var + 0x1f8) + 8);
@@ -35714,16 +35714,16 @@ void system_internal_function(int64_t *system_context_ptr)
   system_stack_varlong_var_x = *(int64_t *)(system_context_ptr[1] + 0x1a8);
   system_long_var = *system_context_ptr;
   system_internal_function(system_long_var + 0x10,&system_stack_varlong_var_x);
-  iVar9 = _Cnd_signal(system_long_var + 0x278);
-  if (iVar9 != 0) {
-    __Throw_C_system_error_varstd__YAXH_Z(iVar9);
+  system_int_var_9 = _Cnd_signal(system_long_var + 0x278);
+  if (system_int_var_9 != 0) {
+    __Throw_C_system_error_varstd__YAXH_Z(system_int_var_9);
   }
   stack_context_result = *(uint8_t **)(system_context_ptr[1] + 0x1b0);
   system_long_var = *system_context_ptr;
   system_internal_function(system_long_var + 0x10,&stack_context_result);
-  iVar9 = _Cnd_signal(system_long_var + 0x278);
-  if (iVar9 != 0) {
-    __Throw_C_system_error_varstd__YAXH_Z(iVar9);
+  system_int_var_9 = _Cnd_signal(system_long_var + 0x278);
+  if (system_int_var_9 != 0) {
+    __Throw_C_system_error_varstd__YAXH_Z(system_int_var_9);
   }
   system_long_var = *(int64_t *)(system_context_ptr[1] + 0x1c0);
   if (*(int64_t *)(system_context_ptr[1] + 0x1b8) != 0) {
@@ -35760,20 +35760,20 @@ void system_internal_function(int64_t *system_context_ptr)
   system_stack_uint_value = 0x180068808;
   system_stack_varlong_var_x = system_long_var;
   stack_context_result = context_current_ptr;
-  iVar9 = _Mtx_lock(system_long_var);
-  if (iVar9 != 0) {
+  system_int_var_9 = _Mtx_lock(system_long_var);
+  if (system_int_var_9 != 0) {
     system_stack_uint_value = 0x180068815;
-    __Throw_C_system_error_varstd__YAXH_Z(iVar9);
+    __Throw_C_system_error_varstd__YAXH_Z(system_int_var_9);
   }
   system_stack_uint_value = 0x18006881f;
   system_internal_function(context_current_ptr + 4);
   *context_current_ptr = *(uint8_t *)(system_long_var_d + 0x200378);
   *(uint8_t **)(system_long_var_d + 0x200378) = context_current_ptr;
   system_stack_uint_value = 0x18006883a;
-  iVar9 = _Mtx_unlock(system_long_var);
-  if (iVar9 != 0) {
+  system_int_var_9 = _Mtx_unlock(system_long_var);
+  if (system_int_var_9 != 0) {
     system_stack_uint_value = 0x180068847;
-    __Throw_C_system_error_varstd__YAXH_Z(iVar9);
+    __Throw_C_system_error_varstd__YAXH_Z(system_int_var_9);
   }
   return;
 }
@@ -40307,8 +40307,8 @@ uint64_t system_internal_function(uint8_t system_context_ptr,uint8_t system_conf
   }
   if (system_long_var != 0) {
     system_context_int_var_e = *(int *)(**(int64_t **)(system_long_var + 8) + 0x48);
-    iVar6 = _Thrd_id();
-    bVar9 = iVar6 == system_context_int_var_e;
+    system_int_var_6 = _Thrd_id();
+    bVar9 = system_int_var_6 == system_context_int_var_e;
   }
   system_internal_function(auStack_30,0);
   system_stack_byte_ptr = &system_data_ptr;
@@ -40417,8 +40417,8 @@ uint64_t system_internal_function(uint8_t system_context_ptr,uint8_t system_conf
     }
     if (system_long_var_d != 0) {
       system_int_result = *(int *)(**(int64_t **)(system_long_var_d + 8) + 0x48);
-      iVar8 = _Thrd_id();
-      bVar15 = iVar8 == system_int_result;
+      system_int_var_8 = _Thrd_id();
+      bVar15 = system_int_var_8 == system_int_result;
     }
     system_stack_byte_ptr = &system_data_ptr;
     system_stack_uint_value = 0;
@@ -41294,8 +41294,8 @@ system_label:
   system_bool_var_b = true;
   if (system_long_var != 0) {
     system_int_result = *(int *)(**(int64_t **)(system_long_var + 8) + 0x48);
-    iVar8 = _Thrd_id();
-    cStack_11f = iVar8 == system_int_result;
+    system_int_var_8 = _Thrd_id();
+    cStack_11f = system_int_var_8 == system_int_result;
     system_bool_var_b = (bool)cStack_11f;
   }
   system_long_var = system_global_data_ptr;
@@ -42840,16 +42840,16 @@ void system_internal_function(int64_t system_context_ptr,int64_t *system_config_
   system_long_var_f = *(int64_t *)(system_context_ptr + 0x28) - *(int64_t *)(system_context_ptr + 0x20);
   psystem_int_result_3 = (int *)system_config_flags[1];
   system_long_var_f = system_long_var_f / 0x12 + (system_long_var_f >> 0x3f);
-  iVar8 = (int)(system_long_var_f >> 1) - (int)(system_long_var_f >> 0x3f);
+  system_int_var_8 = (int)(system_long_var_f >> 1) - (int)(system_long_var_f >> 0x3f);
   if ((uint64_t)((*system_config_flags - (int64_t)psystem_int_result_3) + system_config_flags[2]) < 5) {
     system_internal_function(system_config_flags,(int64_t)psystem_int_result_3 + (4 - *system_config_flags));
     psystem_int_result_3 = (int *)system_config_flags[1];
   }
-  *psystem_int_result_3 = iVar8;
+  *psystem_int_result_3 = system_int_var_8;
   system_byte_system_pointer_d = (uint32_t* *)(system_config_flags[1] + 4);
   system_config_flags[1] = (int64_t)system_byte_system_pointer_d;
-  system_long_var_f = (int64_t)iVar8;
-  if (0 < iVar8) {
+  system_long_var_f = (int64_t)system_int_var_8;
+  if (0 < system_int_var_8) {
     system_long_var = 0;
     do {
       system_long_value_g = *(int64_t *)(system_context_ptr + 0x20) + system_long_var;
@@ -43004,16 +43004,16 @@ void system_internal_function(int64_t system_context_ptr)
   system_long_var_f = *(int64_t *)(system_context_ptr + 0x28) - *(int64_t *)(system_context_ptr + 0x20);
   psystem_int_result_3 = (int *)unaff_RBX[1];
   system_long_var_f = system_long_var_f / 0x12 + (system_long_var_f >> 0x3f);
-  iVar8 = (int)(system_long_var_f >> 1) - (int)(system_long_var_f >> 0x3f);
+  system_int_var_8 = (int)(system_long_var_f >> 1) - (int)(system_long_var_f >> 0x3f);
   if ((uint64_t)((*unaff_RBX - (int64_t)psystem_int_result_3) + unaff_RBX[2]) < 5) {
     system_internal_function();
     psystem_int_result_3 = (int *)unaff_RBX[1];
   }
-  *psystem_int_result_3 = iVar8;
+  *psystem_int_result_3 = system_int_var_8;
   system_byte_system_pointer_d = (uint32_t* *)(unaff_RBX[1] + 4);
   unaff_RBX[1] = (int64_t)system_byte_system_pointer_d;
-  system_long_var_f = (int64_t)iVar8;
-  if (0 < iVar8) {
+  system_long_var_f = (int64_t)system_int_var_8;
+  if (0 < system_int_var_8) {
     system_long_var = 0;
     do {
       system_long_value_g = *(int64_t *)(system_context_ptr + 0x20) + system_long_var;
@@ -44115,13 +44115,13 @@ void system_internal_function(int64_t system_context_ptr,int64_t system_config_f
   psystem_int_result_4 = *(int **)(system_config_flags + 8);
   system_int_result = *psystem_int_result_4;
   *(int **)(system_config_flags + 8) = psystem_int_result_4 + 1;
-  iVar6 = psystem_int_result_4[2];
+  system_int_var_6 = psystem_int_result_4[2];
   system_int_result = psystem_int_result_4[3];
-  iVar8 = psystem_int_result_4[4];
+  system_int_var_8 = psystem_int_result_4[4];
   *(int *)(system_context_ptr + 0x18) = psystem_int_result_4[1];
-  *(int *)(system_context_ptr + 0x1c) = iVar6;
+  *(int *)(system_context_ptr + 0x1c) = system_int_var_6;
   *(int *)(system_context_ptr + 0x20) = system_int_result;
-  *(int *)(system_context_ptr + 0x24) = iVar8;
+  *(int *)(system_context_ptr + 0x24) = system_int_var_8;
   system_context_ptr_12 = (uint8_t* *)(*(int64_t *)(system_config_flags + 8) + 0x10);
   *(uint8_t* **)(system_config_flags + 8) = system_context_ptr_12;
   *(uint8_t* *)(system_context_ptr + 0x28) = *system_context_ptr_12;
@@ -45245,10 +45245,10 @@ int64_t system_internal_function(int64_t system_context_ptr)
 float * system_internal_function(float *system_context_ptr)
 
 {
-  float *pfVar1;
+  float *system_float_ptr_primary;
   int64_t *psystem_long_var_3;
-  float *pfVar4;
-  float *pfVar6;
+  float *system_float_ptr_quaternary;
+  float *system_float_ptr_senary;
   float fStack_b8;
   float fStack_b4;
   float fStack_b0;
@@ -45262,14 +45262,14 @@ float * system_internal_function(float *system_context_ptr)
   float fStack_4c;
   
   system_stack_uint_value = 0xfffffffffffffffe;
-  pfVar6 = system_context_ptr;
+  system_float_ptr_senary = system_context_ptr;
   if ((*(byte *)((int64_t)system_context_ptr + 0xfd) & 0x20) == 0) {
-    pfVar6 = (float *)system_function(*(uint8_t *)(system_context_ptr + 0x6c));
+    system_float_ptr_senary = (float *)system_function(*(uint8_t *)(system_context_ptr + 0x6c));
   }
-  if ((*(int64_t *)(pfVar6 + 0x84) != 0) && (((uint)system_context_ptr[0x40] & 0x80) == 0)) {
-    pfVar1 = system_context_ptr + 0x9d;
-    pfVar1[0] = 1e+08;
-    pfVar1[1] = 1e+08;
+  if ((*(int64_t *)(system_float_ptr_senary + 0x84) != 0) && (((uint)system_context_ptr[0x40] & 0x80) == 0)) {
+    system_float_ptr_primary = system_context_ptr + 0x9d;
+    system_float_ptr_primary[0] = 1e+08;
+    system_float_ptr_primary[1] = 1e+08;
     system_context_ptr[0x9f] = 1e+08;
     system_context_ptr[0xa0] = 3.4028235e+38;
     system_context_ptr[0xa1] = -1e+08;
@@ -45283,34 +45283,34 @@ float * system_internal_function(float *system_context_ptr)
     system_context_ptr[0xa7] = 0.0;
     system_context_ptr[0xa8] = 3.4028235e+38;
     system_stack_uint_value = 0;
-    pfStack_98 = pfVar6;
+    pfStack_98 = system_float_ptr_senary;
     system_internal_function(&pfStack_98);
     if (*(int *)(system_stack_varlong_var + 0x10) != 0) {
       do {
-        pfVar6 = (float *)((int64_t)(int)system_byte_result_7 * 0x10 + *(int64_t *)(system_stack_varlong_var + 0x18));
-        fStack_a8 = *pfVar6;
-        if (*pfVar1 < fStack_a8) {
-          fStack_a8 = *pfVar1;
+        system_float_ptr_senary = (float *)((int64_t)(int)system_byte_result_7 * 0x10 + *(int64_t *)(system_stack_varlong_var + 0x18));
+        fStack_a8 = *system_float_ptr_senary;
+        if (*system_float_ptr_primary < fStack_a8) {
+          fStack_a8 = *system_float_ptr_primary;
         }
-        fStack_a4 = pfVar6[1];
+        fStack_a4 = system_float_ptr_senary[1];
         if (system_context_ptr[0x9e] < fStack_a4) {
           fStack_a4 = system_context_ptr[0x9e];
         }
-        fStack_a0 = pfVar6[2];
+        fStack_a0 = system_float_ptr_senary[2];
         if (system_context_ptr[0x9f] < fStack_a0) {
           fStack_a0 = system_context_ptr[0x9f];
         }
-        *(uint64_t *)pfVar1 = CONCAT44(fStack_a4,fStack_a8);
+        *(uint64_t *)system_float_ptr_primary = CONCAT44(fStack_a4,fStack_a8);
         *(uint64_t *)(system_context_ptr + 0x9f) = CONCAT44(system_stack_uint_value,fStack_a0);
-        fStack_b8 = *pfVar6;
+        fStack_b8 = *system_float_ptr_senary;
         if (fStack_b8 < system_context_ptr[0xa1]) {
           fStack_b8 = system_context_ptr[0xa1];
         }
-        fStack_b4 = pfVar6[1];
+        fStack_b4 = system_float_ptr_senary[1];
         if (fStack_b4 < system_context_ptr[0xa2]) {
           fStack_b4 = system_context_ptr[0xa2];
         }
-        fStack_b0 = pfVar6[2];
+        fStack_b0 = system_float_ptr_senary[2];
         if (fStack_b0 < system_context_ptr[0xa3]) {
           fStack_b0 = system_context_ptr[0xa3];
         }
@@ -45319,8 +45319,8 @@ float * system_internal_function(float *system_context_ptr)
         system_byte_result_7 = system_byte_result_7 + 1;
       } while (system_byte_result_7 < *(uint *)(system_stack_varlong_var + 0x10));
     }
-    pfVar6 = *(float **)(system_context_ptr + 0x6e);
-    if ((pfVar6 != (float *)0x0) && (((uint)pfVar6[0x4e] & 0x3000) != 0)) {
+    system_float_ptr_senary = *(float **)(system_context_ptr + 0x6e);
+    if ((system_float_ptr_senary != (float *)0x0) && (((uint)system_float_ptr_senary[0x4e] & 0x3000) != 0)) {
       system_stack_uint_value = *(uint8_t *)(system_context_ptr + 0x48);
       system_stack_uint_value = *(uint8_t *)(system_context_ptr + 0x4a);
       system_stack_uint_value = *(uint8_t *)(system_context_ptr + 0x4c);
@@ -45332,9 +45332,9 @@ float * system_internal_function(float *system_context_ptr)
       system_stack_uint_value = *(uint8_t *)(system_context_ptr + 0x54);
       system_stack_uint_value = *(uint8_t *)(system_context_ptr + 0x56);
       system_internal_function(&system_stack_uint_value);
-      system_internal_function(pfVar1,pfVar1,&system_stack_uint_value);
-      pfVar6 = *(float **)(system_context_ptr + 0x6e);
-      if (((uint)pfVar6[0x4e] & 0x3000) == 0x2000) {
+      system_internal_function(system_float_ptr_primary,system_float_ptr_primary,&system_stack_uint_value);
+      system_float_ptr_senary = *(float **)(system_context_ptr + 0x6e);
+      if (((uint)system_float_ptr_senary[0x4e] & 0x3000) == 0x2000) {
         system_stack_uint_value = *(uint8_t *)(system_context_ptr + 0x48);
         system_stack_uint_value = *(uint8_t *)(system_context_ptr + 0x4a);
         system_stack_uint_value = *(uint8_t *)(system_context_ptr + 0x4c);
@@ -45346,7 +45346,7 @@ float * system_internal_function(float *system_context_ptr)
         system_stack_uint_value = *(uint8_t *)(system_context_ptr + 0x54);
         system_stack_uint_value = *(uint8_t *)(system_context_ptr + 0x56);
         system_internal_function(&system_stack_uint_value,0x3fc90fdb);
-        system_internal_function(pfVar1,pfVar1,&system_stack_uint_value);
+        system_internal_function(system_float_ptr_primary,system_float_ptr_primary,&system_stack_uint_value);
         system_stack_uint_value = *(uint8_t *)(system_context_ptr + 0x48);
         system_stack_uint_value = *(uint8_t *)(system_context_ptr + 0x4a);
         system_stack_uint_value = *(uint8_t *)(system_context_ptr + 0x4c);
@@ -45358,14 +45358,14 @@ float * system_internal_function(float *system_context_ptr)
         system_stack_uint_value = *(uint8_t *)(system_context_ptr + 0x54);
         system_stack_uint_value = *(uint8_t *)(system_context_ptr + 0x56);
         system_internal_function(&system_stack_uint_value);
-        pfVar6 = (float *)system_internal_function(pfVar1,pfVar1,&system_stack_uint_value);
+        system_float_ptr_senary = (float *)system_internal_function(system_float_ptr_primary,system_float_ptr_primary,&system_stack_uint_value);
       }
     }
-    pfVar4 = pfStack_98;
-    if (system_context_ptr[0xa1] < *pfVar1) {
+    system_float_ptr_quaternary = pfStack_98;
+    if (system_context_ptr[0xa1] < *system_float_ptr_primary) {
       system_context_ptr[0xa9] = 0.0;
-      pfVar1[0] = 0.0;
-      pfVar1[1] = 0.0;
+      system_float_ptr_primary[0] = 0.0;
+      system_float_ptr_primary[1] = 0.0;
       system_context_ptr[0x9f] = 0.0;
       system_context_ptr[0xa0] = 0.0;
       system_context_ptr[0xa1] = 0.0;
@@ -45378,23 +45378,23 @@ float * system_internal_function(float *system_context_ptr)
       system_context_ptr[0xa8] = 0.0;
     }
     else {
-      system_context_ptr[0xa5] = (system_context_ptr[0xa1] + *pfVar1) * 0.5;
+      system_context_ptr[0xa5] = (system_context_ptr[0xa1] + *system_float_ptr_primary) * 0.5;
       system_context_ptr[0xa6] = (system_context_ptr[0xa2] + system_context_ptr[0x9e]) * 0.5;
       system_context_ptr[0xa7] = (system_context_ptr[0xa3] + system_context_ptr[0x9f]) * 0.5;
       system_context_ptr[0xa8] = 3.4028235e+38;
       system_float_var_j = 0.0;
       system_byte_var_8 = (uint64_t)*(uint *)(system_stack_varlong_var + 0x10);
       if (0 < (int)*(uint *)(system_stack_varlong_var + 0x10)) {
-        pfVar6 = *(float **)(system_stack_varlong_var + 0x18);
+        system_float_ptr_senary = *(float **)(system_stack_varlong_var + 0x18);
         system_float_var_k = system_float_var_j;
         do {
-          system_float_var_j = (*pfVar6 - system_context_ptr[0xa5]) * (*pfVar6 - system_context_ptr[0xa5]) +
-                   (pfVar6[1] - system_context_ptr[0xa6]) * (pfVar6[1] - system_context_ptr[0xa6]) +
-                   (pfVar6[2] - system_context_ptr[0xa7]) * (pfVar6[2] - system_context_ptr[0xa7]);
+          system_float_var_j = (*system_float_ptr_senary - system_context_ptr[0xa5]) * (*system_float_ptr_senary - system_context_ptr[0xa5]) +
+                   (system_float_ptr_senary[1] - system_context_ptr[0xa6]) * (system_float_ptr_senary[1] - system_context_ptr[0xa6]) +
+                   (system_float_ptr_senary[2] - system_context_ptr[0xa7]) * (system_float_ptr_senary[2] - system_context_ptr[0xa7]);
           if (system_float_var_j <= system_float_var_k) {
             system_float_var_j = system_float_var_k;
           }
-          pfVar6 = pfVar6 + 4;
+          system_float_ptr_senary = system_float_ptr_senary + 4;
           system_byte_var_8 = system_byte_var_8 - 1;
           system_float_var_k = system_float_var_j;
         } while (system_byte_var_8 != 0);
@@ -45404,48 +45404,48 @@ float * system_internal_function(float *system_context_ptr)
     if (pfStack_98 != (float *)0x0) {
       while( true ) {
         LOCK();
-        system_char_var_e = *(char *)(pfVar4 + 0x3b);
+        system_char_var_e = *(char *)(system_float_ptr_quaternary + 0x3b);
         bVar9 = system_char_var_e == '\0';
         if (bVar9) {
-          *(char *)(pfVar4 + 0x3b) = '\x01';
+          *(char *)(system_float_ptr_quaternary + 0x3b) = '\x01';
           system_char_var_e = '\0';
         }
         UNLOCK();
         if (bVar9) break;
         system_float_var_j = (float)_Thrd_id();
-        if ((pfVar4[0x3c] == system_float_var_j) || (pfVar4[0x3c] != 0.0)) goto system_label;
+        if ((system_float_ptr_quaternary[0x3c] == system_float_var_j) || (system_float_ptr_quaternary[0x3c] != 0.0)) goto system_label;
         Sleep();
       }
       system_char_var_e = '\0';
 system_label:
       LOCK();
-      pfVar1 = pfVar4 + 0x3a;
-      system_float_var_j = *pfVar1;
-      pfVar6 = (float *)(uint64_t)(uint)system_float_var_j;
-      *pfVar1 = (float)((int)*pfVar1 + -1);
+      system_float_ptr_primary = system_float_ptr_quaternary + 0x3a;
+      system_float_var_j = *system_float_ptr_primary;
+      system_float_ptr_senary = (float *)(uint64_t)(uint)system_float_var_j;
+      *system_float_ptr_primary = (float)((int)*system_float_ptr_primary + -1);
       UNLOCK();
       if (system_char_var_e == '\0') {
         if ((((system_float_var_j == 1.4013e-45) && (*(int64_t *)(pfStack_98 + 0x84) != 0)) &&
-            (pfVar6 = pfStack_98, system_internal_function(pfStack_98), *(char *)(pfVar6 + 0x3f) == '\0')) &&
-           ((*(char *)(pfVar6 + 0x3d) == '\0' &&
-            (((*(byte *)((int64_t)pfVar6 + 0xfd) & 0x20) == 0 ||
-             ((*(byte *)((int64_t)pfVar6 + 0xfe) & 1) == 0)))))) {
-          psystem_long_var_3 = *(int64_t **)(pfVar6 + 0x84);
-          pfVar6[0x84] = 0.0;
-          pfVar6[0x85] = 0.0;
+            (system_float_ptr_senary = pfStack_98, system_internal_function(pfStack_98), *(char *)(system_float_ptr_senary + 0x3f) == '\0')) &&
+           ((*(char *)(system_float_ptr_senary + 0x3d) == '\0' &&
+            (((*(byte *)((int64_t)system_float_ptr_senary + 0xfd) & 0x20) == 0 ||
+             ((*(byte *)((int64_t)system_float_ptr_senary + 0xfe) & 1) == 0)))))) {
+          psystem_long_var_3 = *(int64_t **)(system_float_ptr_senary + 0x84);
+          system_float_ptr_senary[0x84] = 0.0;
+          system_float_ptr_senary[0x85] = 0.0;
           if (psystem_long_var_3 != (int64_t *)0x0) {
             (**(code **)(*psystem_long_var_3 + 0x38))();
           }
         }
         LOCK();
-        system_bool_var_b = *(byte *)(pfVar4 + 0x3b);
-        *(byte *)(pfVar4 + 0x3b) = 0;
-        pfVar6 = (float *)(uint64_t)system_bool_var_b;
+        system_bool_var_b = *(byte *)(system_float_ptr_quaternary + 0x3b);
+        *(byte *)(system_float_ptr_quaternary + 0x3b) = 0;
+        system_float_ptr_senary = (float *)(uint64_t)system_bool_var_b;
         UNLOCK();
       }
     }
   }
-  return pfVar6;
+  return system_float_ptr_senary;
 }
 
 
@@ -45470,7 +45470,7 @@ void system_internal_function(int64_t *system_context_ptr)
          (system_context_ptr[0x36] != 0)) {
         psystem_long_value_2 = (int64_t *)system_internal_function();
       }
-      iVar6 = 0;
+      system_int_var_6 = 0;
       if (psystem_long_value_2 == system_context_ptr) {
         system_stack_long_ptr = (int64_t *)0x0;
         system_stack_array[0] = 0;
@@ -45488,23 +45488,23 @@ void system_internal_function(int64_t *system_context_ptr)
         }
         system_uint_var_c = (uint)system_uint_var_a;
         if (system_uint_var_a < 2) {
-          iVar6 = system_uint_var_c - 1;
+          system_int_var_6 = system_uint_var_c - 1;
           system_float_var_h = 0.0;
-          system_context_int_var_e = iVar6;
+          system_context_int_var_e = system_int_var_6;
         }
         else {
           system_context_int_var_e = system_uint_var_c - 1;
           if (0 < (int)(system_uint_var_c - 2)) {
             do {
-              system_int_result = system_context_int_var_e + iVar6 >> 1;
+              system_int_result = system_context_int_var_e + system_int_var_6 >> 1;
               if (*(float *)(system_stack_long_ptr[0x17] + (int64_t)system_int_result * 4) <= system_float_var_i) {
-                iVar6 = system_int_result;
+                system_int_var_6 = system_int_result;
                 system_int_result = system_context_int_var_e;
               }
               system_context_int_var_e = system_int_result;
-            } while (iVar6 < system_context_int_var_e + -1);
+            } while (system_int_var_6 < system_context_int_var_e + -1);
           }
-          system_float_var_h = *(float *)(system_stack_long_ptr[0x17] + (int64_t)iVar6 * 4);
+          system_float_var_h = *(float *)(system_stack_long_ptr[0x17] + (int64_t)system_int_var_6 * 4);
           system_float_var_h = (system_float_var_i - system_float_var_h) / (*(float *)(system_stack_long_ptr[0x17] + (int64_t)system_context_int_var_e * 4) - system_float_var_h);
           if (0.0 <= system_float_var_h) {
             if (1.0 <= system_float_var_h) {
@@ -45515,7 +45515,7 @@ void system_internal_function(int64_t *system_context_ptr)
             system_float_var_h = 0.0;
           }
         }
-        if (-1 < iVar6) {
+        if (-1 < system_int_var_6) {
           (**(code **)(*system_context_ptr + 0x28))(system_context_ptr);
           system_stack_uint_value = 0;
           system_stack_uint_value = 0;
@@ -45524,7 +45524,7 @@ void system_internal_function(int64_t *system_context_ptr)
           system_stack_uint_value = 0;
           system_internal_function(&system_stack_uint_value,system_context_ptr,0);
           (**(code **)(*system_context_ptr + 0x38))(system_context_ptr);
-          system_internal_function(&system_stack_uint_value,psystem_long_value_2,system_context_int_var_e,iVar6,system_float_var_h);
+          system_internal_function(&system_stack_uint_value,psystem_long_value_2,system_context_int_var_e,system_int_var_6,system_float_var_h);
           system_internal_function(&system_stack_uint_value);
         }
         system_internal_function(system_stack_array);
@@ -45547,23 +45547,23 @@ void system_internal_function(int64_t *system_context_ptr)
         }
         system_uint_var_c = (uint)system_uint_var_a;
         if (system_uint_var_a < 2) {
-          iVar6 = system_uint_var_c - 1;
+          system_int_var_6 = system_uint_var_c - 1;
           system_float_var_h = 0.0;
-          system_context_int_var_e = iVar6;
+          system_context_int_var_e = system_int_var_6;
         }
         else {
           system_context_int_var_e = system_uint_var_c - 1;
           if (0 < (int)(system_uint_var_c - 2)) {
             do {
-              system_int_result = system_context_int_var_e + iVar6 >> 1;
+              system_int_result = system_context_int_var_e + system_int_var_6 >> 1;
               if (*(float *)(*(int64_t *)(system_stack_varlong_var + 0xb8) + (int64_t)system_int_result * 4) <= system_float_var_i) {
-                iVar6 = system_int_result;
+                system_int_var_6 = system_int_result;
                 system_int_result = system_context_int_var_e;
               }
               system_context_int_var_e = system_int_result;
-            } while (iVar6 < system_context_int_var_e + -1);
+            } while (system_int_var_6 < system_context_int_var_e + -1);
           }
-          system_float_var_h = *(float *)(*(int64_t *)(system_stack_varlong_var + 0xb8) + (int64_t)iVar6 * 4);
+          system_float_var_h = *(float *)(*(int64_t *)(system_stack_varlong_var + 0xb8) + (int64_t)system_int_var_6 * 4);
           system_float_var_h = (system_float_var_i - system_float_var_h) /
                   (*(float *)(*(int64_t *)(system_stack_varlong_var + 0xb8) + (int64_t)system_context_int_var_e * 4) - system_float_var_h);
           if (0.0 <= system_float_var_h) {
@@ -45575,7 +45575,7 @@ void system_internal_function(int64_t *system_context_ptr)
             system_float_var_h = 0.0;
           }
         }
-        if (-1 < iVar6) {
+        if (-1 < system_int_var_6) {
           (**(code **)(*system_context_ptr + 0x28))(system_context_ptr);
           system_stack_uint_value = 0;
           system_stack_uint_value = 0;
@@ -45584,7 +45584,7 @@ void system_internal_function(int64_t *system_context_ptr)
           system_stack_uint_value = 0;
           system_internal_function(&system_stack_uint_value,system_context_ptr,0);
           (**(code **)(*system_context_ptr + 0x38))(system_context_ptr);
-          system_internal_function(&system_stack_uint_value,system_long_value_g,system_context_int_var_e,iVar6,system_float_var_h);
+          system_internal_function(&system_stack_uint_value,system_long_value_g,system_context_int_var_e,system_int_var_6,system_float_var_h);
           system_internal_function(&system_stack_uint_value);
         }
         system_internal_function(&system_stack_long_ptr);
@@ -46359,8 +46359,8 @@ uint8_t system_internal_function(int64_t system_context_ptr,int64_t system_confi
     system_stack_uint_value = 0;
     system_stack_uint_value = 3;
     system_stack_uint_value = 0;
-    iVar8 = system_internal_function(*(uint8_t *)(system_context_ptr + 0x1b8),&system_stack_uint_value);
-    if (iVar8 < 1) {
+    system_int_var_8 = system_internal_function(*(uint8_t *)(system_context_ptr + 0x1b8),&system_stack_uint_value);
+    if (system_int_var_8 < 1) {
       if (system_stack_varlong_var != 0) {
                     // WARNING: Subroutine does not return
         system_internal_function();
@@ -46837,7 +46837,7 @@ void system_internal_function(void)
   uint *psystem_uint_var;
   char *psystem_char_result_37;
   uint8_t *psystem_uint_var;
-  float *pfVar39;
+  float *system_float_ptr_39;
   int unaff_R12D;
   uint *psystem_uint_var;
   bool in_ZF;
@@ -47005,7 +47005,7 @@ void system_internal_function(void)
     system_long_var = *(int64_t *)(in_system_stack_var + 0x28);
   }
   system_internal_function(system_long_var + 0x3388,psystem_uint_var,&stack0x00000040);
-  pfVar39 = in_system_stack_var;
+  system_float_ptr_39 = in_system_stack_var;
   if ((*(uint *)(unaff_RBX + 0x100) & 0x4000000) != 0) {
     system_float_var_i = *in_system_stack_var;
     system_float_var_j = in_system_stack_var[1];
@@ -47051,9 +47051,9 @@ void system_internal_function(void)
          system_float_var_e * fVar15 + system_float_var_f * system_float_var_k + system_float_var_b * fVar19 + in_system_stack_var[0xe];
     fStack00000000000000dc =
          system_float_var_e * fVar16 + system_float_var_f * system_float_var_l + system_float_var_b * fVar20 + in_system_stack_var[0xf];
-    pfVar39 = &stack0x000000a0;
+    system_float_ptr_39 = &stack0x000000a0;
   }
-  system_internal_function(&stack0x00000060,system_long_var + 0x30,*(uint8_t* *)(unaff_RBX + 0xf7),pfVar39);
+  system_internal_function(&stack0x00000060,system_long_var + 0x30,*(uint8_t* *)(unaff_RBX + 0xf7),system_float_ptr_39);
   system_uint_var = in_system_stack_var;
   system_uint_var = in_system_stack_var;
   system_uint_var = in_system_stack_var;
@@ -47109,7 +47109,7 @@ void system_internal_function(void)
 {
   uint32_t* *psystem_uint_var;
   uint8_t *unaff_RDI;
-  float *pfVar36;
+  float *system_float_ptr_36;
   float *in_system_stack_var;
   
   system_long_var = *(int64_t *)(unaff_RBX + 0x1b8);
@@ -47196,7 +47196,7 @@ void system_internal_function(void)
     system_long_var = *(int64_t *)(in_system_stack_var + 0x28);
   }
   system_internal_function(system_long_var + 0x3388,psystem_uint_var,&stack0x00000040);
-  pfVar36 = in_system_stack_var;
+  system_float_ptr_36 = in_system_stack_var;
   if ((*(uint *)(unaff_RBX + 0x100) & 0x4000000) != 0) {
     system_float_var_i = *in_system_stack_var;
     system_float_var_j = in_system_stack_var[1];
@@ -47242,9 +47242,9 @@ void system_internal_function(void)
          system_float_var_d * fVar15 + system_float_var_e * system_float_var_k + system_float_var_a * fVar19 + in_system_stack_var[0xe];
     fStack00000000000000dc =
          system_float_var_d * fVar16 + system_float_var_e * system_float_var_l + system_float_var_a * fVar20 + in_system_stack_var[0xf];
-    pfVar36 = &stack0x000000a0;
+    system_float_ptr_36 = &stack0x000000a0;
   }
-  system_internal_function(&stack0x00000060,system_long_var + 0x30,*(uint8_t* *)(unaff_RBX + 0xf7),pfVar36);
+  system_internal_function(&stack0x00000060,system_long_var + 0x30,*(uint8_t* *)(unaff_RBX + 0xf7),system_float_ptr_36);
   system_uint_var = in_system_stack_var;
   system_uint_var = in_system_stack_var;
   system_uint_var = in_system_stack_var;
@@ -47254,9 +47254,9 @@ void system_internal_function(void)
   system_uint_var = in_system_stack_var;
   system_uint_var = in_system_stack_var;
   bVar30 = *(byte *)(system_long_var + 0x1bd8);
-  iVar6 = *(int *)(system_global_data_ptr + 0x224);
+  system_int_var_6 = *(int *)(system_global_data_ptr + 0x224);
   if (((*(byte *)(unaff_RBX + 0xfd) & 1) == 0) &&
-     ((*(int *)(unaff_RBX + 0x1d0) == iVar6 || (*(int *)(unaff_RBX + 0x1d0) == iVar6 + -1)))) {
+     ((*(int *)(unaff_RBX + 0x1d0) == system_int_var_6 || (*(int *)(unaff_RBX + 0x1d0) == system_int_var_6 + -1)))) {
     bVar31 = 0;
   }
   else {
@@ -47276,7 +47276,7 @@ void system_internal_function(void)
   }
   system_internal_function(system_long_var);
   *(byte *)(unaff_RBX + 0xfd) = *(byte *)(unaff_RBX + 0xfd) & 0xfe;
-  *(int *)(unaff_RBX + 0x1d0) = iVar6;
+  *(int *)(unaff_RBX + 0x1d0) = system_int_var_6;
   if (bVar30 != 0) {
     *(uint8_t *)(unaff_RBX + 0x160) = system_uint_var;
     *(uint8_t *)(unaff_RBX + 0x168) = system_uint_var;
@@ -47354,9 +47354,9 @@ void system_internal_function(void)
   system_uint_var = in_system_stack_var;
   system_uint_var = in_system_stack_var;
   bVar28 = *(byte *)(unaff_R13 + 0x1bd8);
-  iVar6 = *(int *)(system_global_data_ptr + 0x224);
+  system_int_var_6 = *(int *)(system_global_data_ptr + 0x224);
   if (((*(byte *)(unaff_RBX + 0xfd) & 1) == 0) &&
-     ((*(int *)(unaff_RBX + 0x1d0) == iVar6 || (*(int *)(unaff_RBX + 0x1d0) == iVar6 + -1)))) {
+     ((*(int *)(unaff_RBX + 0x1d0) == system_int_var_6 || (*(int *)(unaff_RBX + 0x1d0) == system_int_var_6 + -1)))) {
     bVar27 = 0;
   }
   else {
@@ -47376,7 +47376,7 @@ void system_internal_function(void)
   }
   system_internal_function();
   *(byte *)(unaff_RBX + 0xfd) = *(byte *)(unaff_RBX + 0xfd) & 0xfe;
-  *(int *)(unaff_RBX + 0x1d0) = iVar6;
+  *(int *)(unaff_RBX + 0x1d0) = system_int_var_6;
   if (bVar28 != 0) {
     *(uint8_t *)(unaff_RBX + 0x160) = system_uint_var;
     *(uint8_t *)(unaff_RBX + 0x168) = system_uint_var;
@@ -47398,13 +47398,13 @@ void system_internal_function(void)
 void system_internal_function(void)
 
 {
-  float *pfVar29;
+  float *system_float_ptr_secondary9;
   uint32_t* uStack0000000000000030;
   float *in_system_stack_var;
   
   uStack0000000000000030 = 0xffffffff;
   system_internal_function(unaff_R13 + 0x3388,&stack0x00000030);
-  pfVar29 = in_system_stack_var;
+  system_float_ptr_secondary9 = in_system_stack_var;
   if ((*(uint *)(unaff_RBX + 0x100) & 0x4000000) != 0) {
     system_float_var_g = *in_system_stack_var;
     system_float_var_h = in_system_stack_var[1];
@@ -47450,9 +47450,9 @@ void system_internal_function(void)
          system_float_var_d * fVar13 + system_float_var_e * system_float_var_i + system_float_var_a * fVar17 + in_system_stack_var[0xe];
     fStack00000000000000dc =
          system_float_var_d * fVar14 + system_float_var_e * system_float_var_j + system_float_var_a * fVar18 + in_system_stack_var[0xf];
-    pfVar29 = &stack0x000000a0;
+    system_float_ptr_secondary9 = &stack0x000000a0;
   }
-  system_internal_function(&stack0x00000060,unaff_R13 + 0x30,*(uint8_t* *)(unaff_RBX + 0xf7),pfVar29);
+  system_internal_function(&stack0x00000060,unaff_R13 + 0x30,*(uint8_t* *)(unaff_RBX + 0xf7),system_float_ptr_secondary9);
   system_uint_var = in_system_stack_var;
   system_uint_var = in_system_stack_var;
   system_uint_var = in_system_stack_var;
@@ -47462,9 +47462,9 @@ void system_internal_function(void)
   system_uint_var = in_system_stack_var;
   system_uint_var = in_system_stack_var;
   bVar28 = *(byte *)(unaff_R13 + 0x1bd8);
-  iVar6 = *(int *)(system_global_data_ptr + 0x224);
+  system_int_var_6 = *(int *)(system_global_data_ptr + 0x224);
   if (((*(byte *)(unaff_RBX + 0xfd) & 1) == 0) &&
-     ((*(int *)(unaff_RBX + 0x1d0) == iVar6 || (*(int *)(unaff_RBX + 0x1d0) == iVar6 + -1)))) {
+     ((*(int *)(unaff_RBX + 0x1d0) == system_int_var_6 || (*(int *)(unaff_RBX + 0x1d0) == system_int_var_6 + -1)))) {
     bVar27 = 0;
   }
   else {
@@ -47484,7 +47484,7 @@ void system_internal_function(void)
   }
   system_internal_function();
   *(byte *)(unaff_RBX + 0xfd) = *(byte *)(unaff_RBX + 0xfd) & 0xfe;
-  *(int *)(unaff_RBX + 0x1d0) = iVar6;
+  *(int *)(unaff_RBX + 0x1d0) = system_int_var_6;
   if (bVar28 != 0) {
     *(uint8_t *)(unaff_RBX + 0x160) = system_uint_var;
     *(uint8_t *)(unaff_RBX + 0x168) = system_uint_var;
@@ -48237,7 +48237,7 @@ void system_internal_function(uint8_t *system_context_ptr,int64_t system_config_
 
 {
   int64_t *psystem_long_var_3;
-  float *pfVar5;
+  float *system_float_ptr_quinary;
   void* *data_buffer_ptr;
   int64_t *psystem_long_var;
   float fVar21;
@@ -48253,10 +48253,10 @@ void system_internal_function(uint8_t *system_context_ptr,int64_t system_config_
   int64_t *system_stack_long_ptr_x;
   uint8_t auStackX_10 [2];
   
-  iVar9 = 0;
+  system_int_var_9 = 0;
   psystem_long_var = system_context_ptr + 1;
   do {
-    psystem_long_var_3 = (int64_t *)system_internal_function(system_config_flags,iVar9);
+    psystem_long_var_3 = (int64_t *)system_internal_function(system_config_flags,system_int_var_9);
     if (psystem_long_var_3 != (int64_t *)0x0) {
       system_stack_long_ptr_x = psystem_long_var_3;
       (**(code **)(*psystem_long_var_3 + 0x28))(psystem_long_var_3);
@@ -48274,13 +48274,13 @@ void system_internal_function(uint8_t *system_context_ptr,int64_t system_config_
       }
       system_internal_function(&system_memory_system_ptr_varaj,data_buffer_ptr);
     }
-    iVar9 = iVar9 + 1;
+    system_int_var_9 = system_int_var_9 + 1;
     psystem_long_var = psystem_long_var + 1;
-  } while (iVar9 < 7);
+  } while (system_int_var_9 < 7);
   system_uint_value_d = system_internal_function(system_config_flags,&system_stack_uint_value);
   system_long_var = _system_global_data_ptr_varaa;
-  iVar9 = system_internal_function(_system_global_data_ptr_varaa,system_uint_value_d);
-  if ((iVar9 == -1) || (system_long_value_g = (int64_t)iVar9 * 0x68 + *(int64_t *)(system_long_var + 0x38), system_long_value_g == 0)) {
+  system_int_var_9 = system_internal_function(_system_global_data_ptr_varaa,system_uint_value_d);
+  if ((system_int_var_9 == -1) || (system_long_value_g = (int64_t)system_int_var_9 * 0x68 + *(int64_t *)(system_long_var + 0x38), system_long_value_g == 0)) {
     system_long_value_g = *(int64_t *)(system_long_var + 0x28);
   }
   system_stack_uint_value = &system_data_ptr;
@@ -48439,8 +48439,8 @@ void system_internal_function(uint8_t *system_context_ptr,int64_t system_config_
   }
   system_internal_function(system_context_ptr + 8,&system_stack_uint_value,&system_stack_uint_value_x,auStackX_10,&system_stack_long_ptr_x);
   if ((void* *)*system_context_ptr == &system_memory_system_ptr_varai) {
-    pfVar5 = (float *)(system_context_ptr + 0x10);
-    *(uint8_t *)pfVar5 = system_context_ptr[8];
+    system_float_ptr_quinary = (float *)(system_context_ptr + 0x10);
+    *(uint8_t *)system_float_ptr_quinary = system_context_ptr[8];
     system_context_ptr[0x11] = system_context_ptr[9];
     system_context_ptr[0x12] = system_context_ptr[10];
     system_context_ptr[0x13] = system_context_ptr[0xb];
@@ -48457,14 +48457,14 @@ void system_internal_function(uint8_t *system_context_ptr,int64_t system_config_
     *(uint32_t* *)((int64_t)system_context_ptr + 0x9c) = 0;
     *(uint32_t* *)((int64_t)system_context_ptr + 0xac) = 0;
     *(uint32_t* *)((int64_t)system_context_ptr + 0xbc) = 0x3f800000;
-    fVar18 = pfVar5[6];
-    fVar16 = pfVar5[0xd];
-    system_float_var_j = pfVar5[9];
-    fVar17 = pfVar5[1];
-    fVar15 = pfVar5[0xe];
-    fVar23 = pfVar5[2];
-    fVar25 = pfVar5[10];
-    fVar28 = pfVar5[5];
+    fVar18 = system_float_ptr_quinary[6];
+    fVar16 = system_float_ptr_quinary[0xd];
+    system_float_var_j = system_float_ptr_quinary[9];
+    fVar17 = system_float_ptr_quinary[1];
+    fVar15 = system_float_ptr_quinary[0xe];
+    fVar23 = system_float_ptr_quinary[2];
+    fVar25 = system_float_ptr_quinary[10];
+    fVar28 = system_float_ptr_quinary[5];
     fVar24 = fVar15 * system_float_var_j - fVar16 * fVar25;
     fVar21 = fVar15 * fVar28 - fVar16 * fVar18;
     fVar22 = fVar15 * fVar17 - fVar16 * fVar23;
@@ -48472,40 +48472,40 @@ void system_internal_function(uint8_t *system_context_ptr,int64_t system_config_
     fVar20 = fVar17 * fVar25 - system_float_var_j * fVar23;
     *(float *)(system_context_ptr + 0x18) = fVar29;
     fVar19 = fVar17 * fVar18 - fVar28 * fVar23;
-    fVar30 = fVar23 * pfVar5[9] - fVar25 * pfVar5[1];
+    fVar30 = fVar23 * system_float_ptr_quinary[9] - fVar25 * system_float_ptr_quinary[1];
     *(float *)((int64_t)system_context_ptr + 0xc4) = fVar30;
-    fVar16 = pfVar5[5];
-    fVar15 = pfVar5[1];
+    fVar16 = system_float_ptr_quinary[5];
+    fVar15 = system_float_ptr_quinary[1];
     *(uint32_t* *)((int64_t)system_context_ptr + 0xcc) = 0;
     fVar31 = fVar18 * fVar15 - fVar23 * fVar16;
     *(float *)(system_context_ptr + 0x19) = fVar31;
-    fVar14 = fVar18 * pfVar5[8] - fVar25 * pfVar5[4];
+    fVar14 = fVar18 * system_float_ptr_quinary[8] - fVar25 * system_float_ptr_quinary[4];
     *(float *)(system_context_ptr + 0x1a) = fVar14;
-    fVar27 = fVar25 * *pfVar5 - fVar23 * pfVar5[8];
+    fVar27 = fVar25 * *system_float_ptr_quinary - fVar23 * system_float_ptr_quinary[8];
     *(float *)((int64_t)system_context_ptr + 0xd4) = fVar27;
-    fVar16 = pfVar5[4];
-    fVar15 = *pfVar5;
+    fVar16 = system_float_ptr_quinary[4];
+    fVar15 = *system_float_ptr_quinary;
     *(uint32_t* *)((int64_t)system_context_ptr + 0xdc) = 0;
     fVar26 = fVar23 * fVar16 - fVar18 * fVar15;
     *(float *)(system_context_ptr + 0x1b) = fVar26;
-    fVar15 = system_float_var_j * pfVar5[4] - fVar28 * pfVar5[8];
+    fVar15 = system_float_var_j * system_float_ptr_quinary[4] - fVar28 * system_float_ptr_quinary[8];
     *(float *)(system_context_ptr + 0x1c) = fVar15;
-    system_float_var_j = fVar17 * pfVar5[8] - system_float_var_j * *pfVar5;
+    system_float_var_j = fVar17 * system_float_ptr_quinary[8] - system_float_var_j * *system_float_ptr_quinary;
     *(float *)((int64_t)system_context_ptr + 0xe4) = system_float_var_j;
-    fVar18 = pfVar5[4];
-    fVar16 = *pfVar5;
+    fVar18 = system_float_ptr_quinary[4];
+    fVar16 = *system_float_ptr_quinary;
     *(uint32_t* *)((int64_t)system_context_ptr + 0xec) = 0;
     fVar28 = fVar28 * fVar16 - fVar17 * fVar18;
     *(float *)(system_context_ptr + 0x1d) = fVar28;
-    fVar16 = (fVar21 * pfVar5[8] - fVar24 * pfVar5[4]) - fVar29 * pfVar5[0xc];
+    fVar16 = (fVar21 * system_float_ptr_quinary[8] - fVar24 * system_float_ptr_quinary[4]) - fVar29 * system_float_ptr_quinary[0xc];
     *(float *)(system_context_ptr + 0x1e) = fVar16;
-    fVar25 = (fVar24 * *pfVar5 - fVar22 * pfVar5[8]) + fVar20 * pfVar5[0xc];
+    fVar25 = (fVar24 * *system_float_ptr_quinary - fVar22 * system_float_ptr_quinary[8]) + fVar20 * system_float_ptr_quinary[0xc];
     *(float *)((int64_t)system_context_ptr + 0xf4) = fVar25;
-    fVar23 = (fVar22 * pfVar5[4] - fVar21 * *pfVar5) - fVar19 * pfVar5[0xc];
+    fVar23 = (fVar22 * system_float_ptr_quinary[4] - fVar21 * *system_float_ptr_quinary) - fVar19 * system_float_ptr_quinary[0xc];
     *(float *)(system_context_ptr + 0x1f) = fVar23;
-    fVar17 = (fVar29 * *pfVar5 - fVar20 * pfVar5[4]) + fVar19 * pfVar5[8];
+    fVar17 = (fVar29 * *system_float_ptr_quinary - fVar20 * system_float_ptr_quinary[4]) + fVar19 * system_float_ptr_quinary[8];
     *(float *)((int64_t)system_context_ptr + 0xfc) = fVar17;
-    fVar18 = fVar30 * pfVar5[4] + fVar29 * *pfVar5 + fVar31 * pfVar5[8];
+    fVar18 = fVar30 * system_float_ptr_quinary[4] + fVar29 * *system_float_ptr_quinary + fVar31 * system_float_ptr_quinary[8];
     if (fVar18 != 1.0) {
       fVar18 = 1.0 / fVar18;
       *(float *)(system_context_ptr + 0x1a) = fVar14 * fVar18;
@@ -48534,10 +48534,10 @@ void system_internal_function(uint8_t *system_context_ptr,int64_t system_config_
 void system_internal_function(int64_t system_context_ptr)
 
 {
-  float *pfVar1;
+  float *system_float_ptr_primary;
   
-  pfVar1 = (float *)(system_context_ptr + 0x80);
-  *(uint8_t *)pfVar1 = *(uint8_t *)(system_context_ptr + 0x40);
+  system_float_ptr_primary = (float *)(system_context_ptr + 0x80);
+  *(uint8_t *)system_float_ptr_primary = *(uint8_t *)(system_context_ptr + 0x40);
   *(uint8_t *)(system_context_ptr + 0x88) = *(uint8_t *)(system_context_ptr + 0x48);
   *(uint8_t *)(system_context_ptr + 0x90) = *(uint8_t *)(system_context_ptr + 0x50);
   *(uint8_t *)(system_context_ptr + 0x98) = *(uint8_t *)(system_context_ptr + 0x58);
@@ -48554,14 +48554,14 @@ void system_internal_function(int64_t system_context_ptr)
   *(uint32_t* *)(system_context_ptr + 0x8c) = 0;
   *(uint32_t* *)(system_context_ptr + 0x9c) = 0;
   *(uint32_t* *)(system_context_ptr + 0xac) = 0;
-  system_float_var_g = pfVar1[6];
-  system_float_var_e = pfVar1[0xd];
-  system_float_var_b = pfVar1[9];
-  system_float_var_f = pfVar1[1];
-  system_float_var_d = pfVar1[0xe];
-  system_float_var_l = pfVar1[2];
-  fVar14 = pfVar1[10];
-  fVar17 = pfVar1[5];
+  system_float_var_g = system_float_ptr_primary[6];
+  system_float_var_e = system_float_ptr_primary[0xd];
+  system_float_var_b = system_float_ptr_primary[9];
+  system_float_var_f = system_float_ptr_primary[1];
+  system_float_var_d = system_float_ptr_primary[0xe];
+  system_float_var_l = system_float_ptr_primary[2];
+  fVar14 = system_float_ptr_primary[10];
+  fVar17 = system_float_ptr_primary[5];
   fVar13 = system_float_var_d * system_float_var_b - system_float_var_e * fVar14;
   system_float_var_j = system_float_var_d * fVar17 - system_float_var_e * system_float_var_g;
   system_float_var_k = system_float_var_d * system_float_var_f - system_float_var_e * system_float_var_l;
@@ -48569,40 +48569,40 @@ void system_internal_function(int64_t system_context_ptr)
   system_float_var_i = system_float_var_f * fVar14 - system_float_var_b * system_float_var_l;
   *(float *)(system_context_ptr + 0xc0) = fVar18;
   system_float_var_h = system_float_var_f * system_float_var_g - fVar17 * system_float_var_l;
-  fVar19 = system_float_var_l * pfVar1[9] - fVar14 * pfVar1[1];
+  fVar19 = system_float_var_l * system_float_ptr_primary[9] - fVar14 * system_float_ptr_primary[1];
   *(float *)(system_context_ptr + 0xc4) = fVar19;
-  system_float_var_e = pfVar1[5];
-  system_float_var_d = pfVar1[1];
+  system_float_var_e = system_float_ptr_primary[5];
+  system_float_var_d = system_float_ptr_primary[1];
   *(uint32_t* *)(system_context_ptr + 0xcc) = 0;
   fVar20 = system_float_var_g * system_float_var_d - system_float_var_l * system_float_var_e;
   *(float *)(system_context_ptr + 200) = fVar20;
-  system_float_var_c = system_float_var_g * pfVar1[8] - fVar14 * pfVar1[4];
+  system_float_var_c = system_float_var_g * system_float_ptr_primary[8] - fVar14 * system_float_ptr_primary[4];
   *(float *)(system_context_ptr + 0xd0) = system_float_var_c;
-  fVar16 = fVar14 * *pfVar1 - system_float_var_l * pfVar1[8];
+  fVar16 = fVar14 * *system_float_ptr_primary - system_float_var_l * system_float_ptr_primary[8];
   *(float *)(system_context_ptr + 0xd4) = fVar16;
-  system_float_var_e = pfVar1[4];
-  system_float_var_d = *pfVar1;
+  system_float_var_e = system_float_ptr_primary[4];
+  system_float_var_d = *system_float_ptr_primary;
   *(uint32_t* *)(system_context_ptr + 0xdc) = 0;
   fVar15 = system_float_var_l * system_float_var_e - system_float_var_g * system_float_var_d;
   *(float *)(system_context_ptr + 0xd8) = fVar15;
-  system_float_var_d = system_float_var_b * pfVar1[4] - fVar17 * pfVar1[8];
+  system_float_var_d = system_float_var_b * system_float_ptr_primary[4] - fVar17 * system_float_ptr_primary[8];
   *(float *)(system_context_ptr + 0xe0) = system_float_var_d;
-  system_float_var_b = system_float_var_f * pfVar1[8] - system_float_var_b * *pfVar1;
+  system_float_var_b = system_float_var_f * system_float_ptr_primary[8] - system_float_var_b * *system_float_ptr_primary;
   *(float *)(system_context_ptr + 0xe4) = system_float_var_b;
-  system_float_var_g = pfVar1[4];
-  system_float_var_e = *pfVar1;
+  system_float_var_g = system_float_ptr_primary[4];
+  system_float_var_e = *system_float_ptr_primary;
   *(uint32_t* *)(system_context_ptr + 0xec) = 0;
   fVar17 = fVar17 * system_float_var_e - system_float_var_f * system_float_var_g;
   *(float *)(system_context_ptr + 0xe8) = fVar17;
-  system_float_var_e = (system_float_var_j * pfVar1[8] - fVar13 * pfVar1[4]) - fVar18 * pfVar1[0xc];
+  system_float_var_e = (system_float_var_j * system_float_ptr_primary[8] - fVar13 * system_float_ptr_primary[4]) - fVar18 * system_float_ptr_primary[0xc];
   *(float *)(system_context_ptr + 0xf0) = system_float_var_e;
-  fVar14 = (fVar13 * *pfVar1 - system_float_var_k * pfVar1[8]) + system_float_var_i * pfVar1[0xc];
+  fVar14 = (fVar13 * *system_float_ptr_primary - system_float_var_k * system_float_ptr_primary[8]) + system_float_var_i * system_float_ptr_primary[0xc];
   *(float *)(system_context_ptr + 0xf4) = fVar14;
-  system_float_var_l = (system_float_var_k * pfVar1[4] - system_float_var_j * *pfVar1) - system_float_var_h * pfVar1[0xc];
+  system_float_var_l = (system_float_var_k * system_float_ptr_primary[4] - system_float_var_j * *system_float_ptr_primary) - system_float_var_h * system_float_ptr_primary[0xc];
   *(float *)(system_context_ptr + 0xf8) = system_float_var_l;
-  system_float_var_f = (fVar18 * *pfVar1 - system_float_var_i * pfVar1[4]) + system_float_var_h * pfVar1[8];
+  system_float_var_f = (fVar18 * *system_float_ptr_primary - system_float_var_i * system_float_ptr_primary[4]) + system_float_var_h * system_float_ptr_primary[8];
   *(float *)(system_context_ptr + 0xfc) = system_float_var_f;
-  system_float_var_g = fVar19 * pfVar1[4] + fVar18 * *pfVar1 + fVar20 * pfVar1[8];
+  system_float_var_g = fVar19 * system_float_ptr_primary[4] + fVar18 * *system_float_ptr_primary + fVar20 * system_float_ptr_primary[8];
   if (system_float_var_g != 1.0) {
     system_float_var_g = 1.0 / system_float_var_g;
     *(float *)(system_context_ptr + 0xd0) = system_float_var_c * system_float_var_g;
@@ -48852,7 +48852,7 @@ void system_internal_function(int64_t system_context_ptr,int64_t system_config_f
   int64_t *psystem_long_var_3;
   byte *system_byte_system_pointer_d;
   uint8_t *system_byte_system_pointer_e;
-  float *pfVar18;
+  float *system_float_ptr_primary8;
   int64_t *psystem_long_var_34;
   char *psystem_char_var;
   uint *psystem_uint_var;
@@ -48881,40 +48881,40 @@ void system_internal_function(int64_t system_context_ptr,int64_t system_config_f
   *(uint32_t* *)(system_long_var + 0x2c) = system_uint_var;
   if (system_status_flag6 != -1) {
     system_uint_var = (int)*(char *)(system_config_flags + 0xd) + *(int *)(system_config_flags + 0x18);
-    pfVar18 = (float *)**(int64_t **)(system_context_ptr + 600);
+    system_float_ptr_primary8 = (float *)**(int64_t **)(system_context_ptr + 600);
     system_uint_var = system_uint_var >> 0xd;
     system_long_var = *(int64_t *)
               ((int64_t)*(int *)(system_global_data_ptr + 0xe78) * 0x128 + system_global_data_ptr + 0xc30 +
               (uint64_t)system_uint_var * 8);
     system_long_var = (uint64_t)(system_uint_var + system_uint_var * -0x2000) * 0x40;
     system_uint_var = ((uint8_t *)(system_long_var + system_long_var))[1];
-    *(uint8_t *)pfVar18 = *(uint8_t *)(system_long_var + system_long_var);
-    *(uint8_t *)(pfVar18 + 2) = system_uint_var;
+    *(uint8_t *)system_float_ptr_primary8 = *(uint8_t *)(system_long_var + system_long_var);
+    *(uint8_t *)(system_float_ptr_primary8 + 2) = system_uint_var;
     system_byte_system_pointer_e = (uint8_t *)(system_long_var + 0x10 + system_long_var);
     system_uint_var = system_byte_system_pointer_e[1];
-    *(uint8_t *)(pfVar18 + 4) = *system_byte_system_pointer_e;
-    *(uint8_t *)(pfVar18 + 6) = system_uint_var;
+    *(uint8_t *)(system_float_ptr_primary8 + 4) = *system_byte_system_pointer_e;
+    *(uint8_t *)(system_float_ptr_primary8 + 6) = system_uint_var;
     system_byte_system_pointer_e = (uint8_t *)(system_long_var + 0x20 + system_long_var);
     system_uint_var = system_byte_system_pointer_e[1];
-    *(uint8_t *)(pfVar18 + 8) = *system_byte_system_pointer_e;
-    *(uint8_t *)(pfVar18 + 10) = system_uint_var;
+    *(uint8_t *)(system_float_ptr_primary8 + 8) = *system_byte_system_pointer_e;
+    *(uint8_t *)(system_float_ptr_primary8 + 10) = system_uint_var;
     system_byte_system_pointer_e = (uint8_t *)(system_long_var + 0x30 + system_long_var);
     system_uint_var = system_byte_system_pointer_e[1];
-    *(uint8_t *)(pfVar18 + 0xc) = *system_byte_system_pointer_e;
-    *(uint8_t *)(pfVar18 + 0xe) = system_uint_var;
+    *(uint8_t *)(system_float_ptr_primary8 + 0xc) = *system_byte_system_pointer_e;
+    *(uint8_t *)(system_float_ptr_primary8 + 0xe) = system_uint_var;
     system_long_var = *(int64_t *)(system_config_flags + 0x10);
-    fVar19 = pfVar18[8];
-    fVar20 = pfVar18[9];
-    fVar21 = pfVar18[10];
-    fVar22 = pfVar18[0xb];
-    fVar23 = *pfVar18;
-    fVar24 = pfVar18[1];
-    fVar25 = pfVar18[2];
-    fVar26 = pfVar18[3];
-    fVar27 = pfVar18[4];
-    fVar28 = pfVar18[5];
-    fVar29 = pfVar18[6];
-    fVar30 = pfVar18[7];
+    fVar19 = system_float_ptr_primary8[8];
+    fVar20 = system_float_ptr_primary8[9];
+    fVar21 = system_float_ptr_primary8[10];
+    fVar22 = system_float_ptr_primary8[0xb];
+    fVar23 = *system_float_ptr_primary8;
+    fVar24 = system_float_ptr_primary8[1];
+    fVar25 = system_float_ptr_primary8[2];
+    fVar26 = system_float_ptr_primary8[3];
+    fVar27 = system_float_ptr_primary8[4];
+    fVar28 = system_float_ptr_primary8[5];
+    fVar29 = system_float_ptr_primary8[6];
+    fVar30 = system_float_ptr_primary8[7];
     system_float_var_f = *(float *)(system_long_var + 0x374);
     system_float_var_g = *(float *)(system_long_var + 0x370);
     system_float_var_h = *(float *)(system_long_var + 0x378);
@@ -48924,18 +48924,18 @@ void system_internal_function(int64_t system_context_ptr,int64_t system_config_f
     system_float_var_l = *(float *)(system_long_var + 0x388);
     fVar13 = *(float *)(system_long_var + 0x390);
     fVar14 = *(float *)(system_long_var + 0x398);
-    *pfVar18 = system_float_var_f * fVar27 + system_float_var_g * fVar23 + system_float_var_h * fVar19;
-    pfVar18[1] = system_float_var_f * fVar28 + system_float_var_g * fVar24 + system_float_var_h * fVar20;
-    pfVar18[2] = system_float_var_f * fVar29 + system_float_var_g * fVar25 + system_float_var_h * fVar21;
-    pfVar18[3] = system_float_var_f * fVar30 + system_float_var_g * fVar26 + system_float_var_h * fVar22;
-    pfVar18[4] = system_float_var_i * fVar27 + system_float_var_k * fVar23 + system_float_var_l * fVar19;
-    pfVar18[5] = system_float_var_i * fVar28 + system_float_var_k * fVar24 + system_float_var_l * fVar20;
-    pfVar18[6] = system_float_var_i * fVar29 + system_float_var_k * fVar25 + system_float_var_l * fVar21;
-    pfVar18[7] = system_float_var_i * fVar30 + system_float_var_k * fVar26 + system_float_var_l * fVar22;
-    pfVar18[8] = system_float_var_j * fVar27 + fVar13 * fVar23 + fVar14 * fVar19;
-    pfVar18[9] = system_float_var_j * fVar28 + fVar13 * fVar24 + fVar14 * fVar20;
-    pfVar18[10] = system_float_var_j * fVar29 + fVar13 * fVar25 + fVar14 * fVar21;
-    pfVar18[0xb] = system_float_var_j * fVar30 + fVar13 * fVar26 + fVar14 * fVar22;
+    *system_float_ptr_primary8 = system_float_var_f * fVar27 + system_float_var_g * fVar23 + system_float_var_h * fVar19;
+    system_float_ptr_primary8[1] = system_float_var_f * fVar28 + system_float_var_g * fVar24 + system_float_var_h * fVar20;
+    system_float_ptr_primary8[2] = system_float_var_f * fVar29 + system_float_var_g * fVar25 + system_float_var_h * fVar21;
+    system_float_ptr_primary8[3] = system_float_var_f * fVar30 + system_float_var_g * fVar26 + system_float_var_h * fVar22;
+    system_float_ptr_primary8[4] = system_float_var_i * fVar27 + system_float_var_k * fVar23 + system_float_var_l * fVar19;
+    system_float_ptr_primary8[5] = system_float_var_i * fVar28 + system_float_var_k * fVar24 + system_float_var_l * fVar20;
+    system_float_ptr_primary8[6] = system_float_var_i * fVar29 + system_float_var_k * fVar25 + system_float_var_l * fVar21;
+    system_float_ptr_primary8[7] = system_float_var_i * fVar30 + system_float_var_k * fVar26 + system_float_var_l * fVar22;
+    system_float_ptr_primary8[8] = system_float_var_j * fVar27 + fVar13 * fVar23 + fVar14 * fVar19;
+    system_float_ptr_primary8[9] = system_float_var_j * fVar28 + fVar13 * fVar24 + fVar14 * fVar20;
+    system_float_ptr_primary8[10] = system_float_var_j * fVar29 + fVar13 * fVar25 + fVar14 * fVar21;
+    system_float_ptr_primary8[0xb] = system_float_var_j * fVar30 + fVar13 * fVar26 + fVar14 * fVar22;
   }
   system_long_var = *(int64_t *)(system_context_ptr + 600);
   if (*(int *)(system_long_var + 0x28) != *(int *)(system_global_data_ptr + 0x224)) {
@@ -49123,7 +49123,7 @@ void system_internal_function(int64_t system_context_ptr)
   int64_t *psystem_long_var_3;
   byte *system_byte_system_pointer_d;
   uint8_t *system_byte_system_pointer_e;
-  float *pfVar18;
+  float *system_float_ptr_primary8;
   int64_t *psystem_long_var_34;
   char *psystem_char_var;
   uint *psystem_uint_var;
@@ -49151,40 +49151,40 @@ void system_internal_function(int64_t system_context_ptr)
   *(uint32_t* *)(system_long_var + 0x2c) = system_uint_var;
   if (system_status_flag6 != -1) {
     system_uint_var = (int)*(char *)(unaff_RDI + 0xd) + *(int *)(unaff_RDI + 0x18);
-    pfVar18 = (float *)**(int64_t **)(system_context_ptr + 600);
+    system_float_ptr_primary8 = (float *)**(int64_t **)(system_context_ptr + 600);
     system_uint_var = system_uint_var >> 0xd;
     system_long_var = *(int64_t *)
               ((int64_t)*(int *)(system_global_data_ptr + 0xe78) * 0x128 + system_global_data_ptr + 0xc30 +
               (uint64_t)system_uint_var * 8);
     system_long_var = (uint64_t)(system_uint_var + system_uint_var * -0x2000) * 0x40;
     system_uint_var = ((uint8_t *)(system_long_var + system_long_var))[1];
-    *(uint8_t *)pfVar18 = *(uint8_t *)(system_long_var + system_long_var);
-    *(uint8_t *)(pfVar18 + 2) = system_uint_var;
+    *(uint8_t *)system_float_ptr_primary8 = *(uint8_t *)(system_long_var + system_long_var);
+    *(uint8_t *)(system_float_ptr_primary8 + 2) = system_uint_var;
     system_byte_system_pointer_e = (uint8_t *)(system_long_var + 0x10 + system_long_var);
     system_uint_var = system_byte_system_pointer_e[1];
-    *(uint8_t *)(pfVar18 + 4) = *system_byte_system_pointer_e;
-    *(uint8_t *)(pfVar18 + 6) = system_uint_var;
+    *(uint8_t *)(system_float_ptr_primary8 + 4) = *system_byte_system_pointer_e;
+    *(uint8_t *)(system_float_ptr_primary8 + 6) = system_uint_var;
     system_byte_system_pointer_e = (uint8_t *)(system_long_var + 0x20 + system_long_var);
     system_uint_var = system_byte_system_pointer_e[1];
-    *(uint8_t *)(pfVar18 + 8) = *system_byte_system_pointer_e;
-    *(uint8_t *)(pfVar18 + 10) = system_uint_var;
+    *(uint8_t *)(system_float_ptr_primary8 + 8) = *system_byte_system_pointer_e;
+    *(uint8_t *)(system_float_ptr_primary8 + 10) = system_uint_var;
     system_byte_system_pointer_e = (uint8_t *)(system_long_var + 0x30 + system_long_var);
     system_uint_var = system_byte_system_pointer_e[1];
-    *(uint8_t *)(pfVar18 + 0xc) = *system_byte_system_pointer_e;
-    *(uint8_t *)(pfVar18 + 0xe) = system_uint_var;
+    *(uint8_t *)(system_float_ptr_primary8 + 0xc) = *system_byte_system_pointer_e;
+    *(uint8_t *)(system_float_ptr_primary8 + 0xe) = system_uint_var;
     system_long_var = *(int64_t *)(unaff_RDI + 0x10);
-    fVar19 = pfVar18[8];
-    fVar20 = pfVar18[9];
-    fVar21 = pfVar18[10];
-    fVar22 = pfVar18[0xb];
-    fVar23 = *pfVar18;
-    fVar24 = pfVar18[1];
-    fVar25 = pfVar18[2];
-    fVar26 = pfVar18[3];
-    fVar27 = pfVar18[4];
-    fVar28 = pfVar18[5];
-    fVar29 = pfVar18[6];
-    fVar30 = pfVar18[7];
+    fVar19 = system_float_ptr_primary8[8];
+    fVar20 = system_float_ptr_primary8[9];
+    fVar21 = system_float_ptr_primary8[10];
+    fVar22 = system_float_ptr_primary8[0xb];
+    fVar23 = *system_float_ptr_primary8;
+    fVar24 = system_float_ptr_primary8[1];
+    fVar25 = system_float_ptr_primary8[2];
+    fVar26 = system_float_ptr_primary8[3];
+    fVar27 = system_float_ptr_primary8[4];
+    fVar28 = system_float_ptr_primary8[5];
+    fVar29 = system_float_ptr_primary8[6];
+    fVar30 = system_float_ptr_primary8[7];
     system_float_var_f = *(float *)(system_long_var + 0x374);
     system_float_var_g = *(float *)(system_long_var + 0x370);
     system_float_var_h = *(float *)(system_long_var + 0x378);
@@ -49194,18 +49194,18 @@ void system_internal_function(int64_t system_context_ptr)
     system_float_var_l = *(float *)(system_long_var + 0x388);
     fVar13 = *(float *)(system_long_var + 0x390);
     fVar14 = *(float *)(system_long_var + 0x398);
-    *pfVar18 = system_float_var_f * fVar27 + system_float_var_g * fVar23 + system_float_var_h * fVar19;
-    pfVar18[1] = system_float_var_f * fVar28 + system_float_var_g * fVar24 + system_float_var_h * fVar20;
-    pfVar18[2] = system_float_var_f * fVar29 + system_float_var_g * fVar25 + system_float_var_h * fVar21;
-    pfVar18[3] = system_float_var_f * fVar30 + system_float_var_g * fVar26 + system_float_var_h * fVar22;
-    pfVar18[4] = system_float_var_i * fVar27 + system_float_var_k * fVar23 + system_float_var_l * fVar19;
-    pfVar18[5] = system_float_var_i * fVar28 + system_float_var_k * fVar24 + system_float_var_l * fVar20;
-    pfVar18[6] = system_float_var_i * fVar29 + system_float_var_k * fVar25 + system_float_var_l * fVar21;
-    pfVar18[7] = system_float_var_i * fVar30 + system_float_var_k * fVar26 + system_float_var_l * fVar22;
-    pfVar18[8] = system_float_var_j * fVar27 + fVar13 * fVar23 + fVar14 * fVar19;
-    pfVar18[9] = system_float_var_j * fVar28 + fVar13 * fVar24 + fVar14 * fVar20;
-    pfVar18[10] = system_float_var_j * fVar29 + fVar13 * fVar25 + fVar14 * fVar21;
-    pfVar18[0xb] = system_float_var_j * fVar30 + fVar13 * fVar26 + fVar14 * fVar22;
+    *system_float_ptr_primary8 = system_float_var_f * fVar27 + system_float_var_g * fVar23 + system_float_var_h * fVar19;
+    system_float_ptr_primary8[1] = system_float_var_f * fVar28 + system_float_var_g * fVar24 + system_float_var_h * fVar20;
+    system_float_ptr_primary8[2] = system_float_var_f * fVar29 + system_float_var_g * fVar25 + system_float_var_h * fVar21;
+    system_float_ptr_primary8[3] = system_float_var_f * fVar30 + system_float_var_g * fVar26 + system_float_var_h * fVar22;
+    system_float_ptr_primary8[4] = system_float_var_i * fVar27 + system_float_var_k * fVar23 + system_float_var_l * fVar19;
+    system_float_ptr_primary8[5] = system_float_var_i * fVar28 + system_float_var_k * fVar24 + system_float_var_l * fVar20;
+    system_float_ptr_primary8[6] = system_float_var_i * fVar29 + system_float_var_k * fVar25 + system_float_var_l * fVar21;
+    system_float_ptr_primary8[7] = system_float_var_i * fVar30 + system_float_var_k * fVar26 + system_float_var_l * fVar22;
+    system_float_ptr_primary8[8] = system_float_var_j * fVar27 + fVar13 * fVar23 + fVar14 * fVar19;
+    system_float_ptr_primary8[9] = system_float_var_j * fVar28 + fVar13 * fVar24 + fVar14 * fVar20;
+    system_float_ptr_primary8[10] = system_float_var_j * fVar29 + fVar13 * fVar25 + fVar14 * fVar21;
+    system_float_ptr_primary8[0xb] = system_float_var_j * fVar30 + fVar13 * fVar26 + fVar14 * fVar22;
   }
   system_long_var = *(int64_t *)(system_context_ptr + 600);
   if (*(int *)(system_long_var + 0x28) != *(int *)(system_global_data_ptr + 0x224)) {
@@ -49393,7 +49393,7 @@ void system_internal_function(void)
   byte *system_byte_system_pointer_c;
   uint8_t *system_byte_system_pointer_d;
   char system_status_flag4;
-  float *pfVar15;
+  float *system_float_ptr_primary5;
   int64_t *psystem_long_var_32;
   char *psystem_char_result_38;
   uint *psystem_uint_var;
@@ -49404,39 +49404,39 @@ void system_internal_function(void)
   uint32_t* unaff_XMM7_Db;
   
   system_uint_var = (int)*(char *)(unaff_RDI + 0xd) + *(int *)(unaff_RDI + 0x18);
-  pfVar15 = (float *)**(int64_t **)(unaff_RBX + 600);
+  system_float_ptr_primary5 = (float *)**(int64_t **)(unaff_RBX + 600);
   system_long_var = (int64_t)*(int *)(system_global_data_ptr + 0xe78) * 0x128 + system_global_data_ptr + 0xc28;
   system_uint_var = system_uint_var >> 0xd;
   system_long_var = *(int64_t *)(system_long_var + 8 + (uint64_t)system_uint_var * 8);
   system_long_var = (uint64_t)(system_uint_var + system_uint_var * -0x2000) * 0x40;
   system_uint_var = ((uint8_t *)(system_long_var + system_long_var))[1];
-  *(uint8_t *)pfVar15 = *(uint8_t *)(system_long_var + system_long_var);
-  *(uint8_t *)(pfVar15 + 2) = system_uint_var;
+  *(uint8_t *)system_float_ptr_primary5 = *(uint8_t *)(system_long_var + system_long_var);
+  *(uint8_t *)(system_float_ptr_primary5 + 2) = system_uint_var;
   system_byte_system_pointer_d = (uint8_t *)(system_long_var + 0x10 + system_long_var);
   system_uint_var = system_byte_system_pointer_d[1];
-  *(uint8_t *)(pfVar15 + 4) = *system_byte_system_pointer_d;
-  *(uint8_t *)(pfVar15 + 6) = system_uint_var;
+  *(uint8_t *)(system_float_ptr_primary5 + 4) = *system_byte_system_pointer_d;
+  *(uint8_t *)(system_float_ptr_primary5 + 6) = system_uint_var;
   system_byte_system_pointer_d = (uint8_t *)(system_long_var + 0x20 + system_long_var);
   system_uint_var = system_byte_system_pointer_d[1];
-  *(uint8_t *)(pfVar15 + 8) = *system_byte_system_pointer_d;
-  *(uint8_t *)(pfVar15 + 10) = system_uint_var;
+  *(uint8_t *)(system_float_ptr_primary5 + 8) = *system_byte_system_pointer_d;
+  *(uint8_t *)(system_float_ptr_primary5 + 10) = system_uint_var;
   system_byte_system_pointer_d = (uint8_t *)(system_long_var + 0x30 + system_long_var);
   system_uint_var = system_byte_system_pointer_d[1];
-  *(uint8_t *)(pfVar15 + 0xc) = *system_byte_system_pointer_d;
-  *(uint8_t *)(pfVar15 + 0xe) = system_uint_var;
+  *(uint8_t *)(system_float_ptr_primary5 + 0xc) = *system_byte_system_pointer_d;
+  *(uint8_t *)(system_float_ptr_primary5 + 0xe) = system_uint_var;
   system_long_var = *(int64_t *)(unaff_RDI + 0x10);
-  fVar17 = pfVar15[8];
-  fVar18 = pfVar15[9];
-  fVar19 = pfVar15[10];
-  fVar20 = pfVar15[0xb];
-  fVar21 = *pfVar15;
-  fVar22 = pfVar15[1];
-  fVar23 = pfVar15[2];
-  fVar24 = pfVar15[3];
-  fVar25 = pfVar15[4];
-  fVar26 = pfVar15[5];
-  fVar27 = pfVar15[6];
-  fVar28 = pfVar15[7];
+  fVar17 = system_float_ptr_primary5[8];
+  fVar18 = system_float_ptr_primary5[9];
+  fVar19 = system_float_ptr_primary5[10];
+  fVar20 = system_float_ptr_primary5[0xb];
+  fVar21 = *system_float_ptr_primary5;
+  fVar22 = system_float_ptr_primary5[1];
+  fVar23 = system_float_ptr_primary5[2];
+  fVar24 = system_float_ptr_primary5[3];
+  fVar25 = system_float_ptr_primary5[4];
+  fVar26 = system_float_ptr_primary5[5];
+  fVar27 = system_float_ptr_primary5[6];
+  fVar28 = system_float_ptr_primary5[7];
   system_float_var_e = *(float *)(system_long_var + 0x374);
   system_float_var_f = *(float *)(system_long_var + 0x370);
   system_float_var_g = *(float *)(system_long_var + 0x378);
@@ -49446,18 +49446,18 @@ void system_internal_function(void)
   system_float_var_k = *(float *)(system_long_var + 0x388);
   system_float_var_l = *(float *)(system_long_var + 0x390);
   fVar13 = *(float *)(system_long_var + 0x398);
-  *pfVar15 = system_float_var_e * fVar25 + system_float_var_f * fVar21 + system_float_var_g * fVar17;
-  pfVar15[1] = system_float_var_e * fVar26 + system_float_var_f * fVar22 + system_float_var_g * fVar18;
-  pfVar15[2] = system_float_var_e * fVar27 + system_float_var_f * fVar23 + system_float_var_g * fVar19;
-  pfVar15[3] = system_float_var_e * fVar28 + system_float_var_f * fVar24 + system_float_var_g * fVar20;
-  pfVar15[4] = system_float_var_h * fVar25 + system_float_var_j * fVar21 + system_float_var_k * fVar17;
-  pfVar15[5] = system_float_var_h * fVar26 + system_float_var_j * fVar22 + system_float_var_k * fVar18;
-  pfVar15[6] = system_float_var_h * fVar27 + system_float_var_j * fVar23 + system_float_var_k * fVar19;
-  pfVar15[7] = system_float_var_h * fVar28 + system_float_var_j * fVar24 + system_float_var_k * fVar20;
-  pfVar15[8] = system_float_var_i * fVar25 + system_float_var_l * fVar21 + fVar13 * fVar17;
-  pfVar15[9] = system_float_var_i * fVar26 + system_float_var_l * fVar22 + fVar13 * fVar18;
-  pfVar15[10] = system_float_var_i * fVar27 + system_float_var_l * fVar23 + fVar13 * fVar19;
-  pfVar15[0xb] = system_float_var_i * fVar28 + system_float_var_l * fVar24 + fVar13 * fVar20;
+  *system_float_ptr_primary5 = system_float_var_e * fVar25 + system_float_var_f * fVar21 + system_float_var_g * fVar17;
+  system_float_ptr_primary5[1] = system_float_var_e * fVar26 + system_float_var_f * fVar22 + system_float_var_g * fVar18;
+  system_float_ptr_primary5[2] = system_float_var_e * fVar27 + system_float_var_f * fVar23 + system_float_var_g * fVar19;
+  system_float_ptr_primary5[3] = system_float_var_e * fVar28 + system_float_var_f * fVar24 + system_float_var_g * fVar20;
+  system_float_ptr_primary5[4] = system_float_var_h * fVar25 + system_float_var_j * fVar21 + system_float_var_k * fVar17;
+  system_float_ptr_primary5[5] = system_float_var_h * fVar26 + system_float_var_j * fVar22 + system_float_var_k * fVar18;
+  system_float_ptr_primary5[6] = system_float_var_h * fVar27 + system_float_var_j * fVar23 + system_float_var_k * fVar19;
+  system_float_ptr_primary5[7] = system_float_var_h * fVar28 + system_float_var_j * fVar24 + system_float_var_k * fVar20;
+  system_float_ptr_primary5[8] = system_float_var_i * fVar25 + system_float_var_l * fVar21 + fVar13 * fVar17;
+  system_float_ptr_primary5[9] = system_float_var_i * fVar26 + system_float_var_l * fVar22 + fVar13 * fVar18;
+  system_float_ptr_primary5[10] = system_float_var_i * fVar27 + system_float_var_l * fVar23 + fVar13 * fVar19;
+  system_float_ptr_primary5[0xb] = system_float_var_i * fVar28 + system_float_var_l * fVar24 + fVar13 * fVar20;
   system_long_var = *(int64_t *)(unaff_RBX + 600);
   if (*(int *)(system_long_var + 0x28) != *(int *)(system_global_data_ptr + 0x224)) {
     system_int_result = *(int *)(system_long_var + 0x1c) + *(int *)(system_long_var + 0x18);
@@ -49465,7 +49465,7 @@ void system_internal_function(void)
     if (0 < system_int_result) {
       uStack0000000000000050 = in_system_stack_var;
       system_long_var = (int64_t)*(int *)(system_global_data_ptr + 0xe78) * 0x128 + system_global_data_ptr + 0xc28;
-      system_uint_var = system_internal_function(system_long_var,system_int_result,system_long_var,pfVar15,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
+      system_uint_var = system_internal_function(system_long_var,system_int_result,system_long_var,system_float_ptr_primary5,CONCAT44(unaff_XMM7_Db,unaff_XMM7_Da));
       *(uint32_t* *)(system_long_var + 0x30) = system_uint_var;
       system_internal_function(system_long_var,system_uint_var);
       if (*(int64_t *)(system_long_var + 0x10) == 0) {
@@ -50179,9 +50179,9 @@ uint8_t* system_internal_function(void)
 float * system_internal_function(float *system_context_ptr)
 
 {
-  float *pfVar1;
+  float *system_float_ptr_primary;
   int64_t *psystem_long_var_3;
-  float *pfVar4;
+  float *system_float_ptr_quaternary;
   float *pfVar7;
   float *pfStack_98;
   void* *system_stack_byte_ptr;
@@ -50221,9 +50221,9 @@ float * system_internal_function(float *system_context_ptr)
     pfVar7 = (float *)system_function(*(uint8_t *)(system_context_ptr + 0x6c));
   }
   if ((*(int64_t *)(pfVar7 + 0x84) != 0) && (((uint)system_context_ptr[0x40] & 0x80) == 0)) {
-    pfVar1 = system_context_ptr + 0x9d;
-    pfVar1[0] = 1e+08;
-    pfVar1[1] = 1e+08;
+    system_float_ptr_primary = system_context_ptr + 0x9d;
+    system_float_ptr_primary[0] = 1e+08;
+    system_float_ptr_primary[1] = 1e+08;
     system_context_ptr[0x9f] = 1e+08;
     system_context_ptr[0xa0] = 3.4028235e+38;
     system_context_ptr[0xa1] = -1e+08;
@@ -50243,8 +50243,8 @@ float * system_internal_function(float *system_context_ptr)
       do {
         pfVar7 = (float *)((int64_t)(int)system_byte_var_8 * 0x10 + *(int64_t *)(system_stack_varlong_var + 0x18));
         fStack_a8 = *pfVar7;
-        if (*pfVar1 < fStack_a8) {
-          fStack_a8 = *pfVar1;
+        if (*system_float_ptr_primary < fStack_a8) {
+          fStack_a8 = *system_float_ptr_primary;
         }
         fStack_a4 = pfVar7[1];
         if (system_context_ptr[0x9e] < fStack_a4) {
@@ -50254,7 +50254,7 @@ float * system_internal_function(float *system_context_ptr)
         if (system_context_ptr[0x9f] < fStack_a0) {
           fStack_a0 = system_context_ptr[0x9f];
         }
-        *(uint64_t *)pfVar1 = CONCAT44(fStack_a4,fStack_a8);
+        *(uint64_t *)system_float_ptr_primary = CONCAT44(fStack_a4,fStack_a8);
         *(uint64_t *)(system_context_ptr + 0x9f) = CONCAT44(system_stack_uint_value,fStack_a0);
         fStack_b8 = *pfVar7;
         if (fStack_b8 < system_context_ptr[0xa1]) {
@@ -50285,7 +50285,7 @@ float * system_internal_function(float *system_context_ptr)
       system_stack_byte_ptr = *(void* **)(system_context_ptr + 0x54);
       system_stack_uint_value = *(uint8_t *)(system_context_ptr + 0x56);
       system_internal_function(&system_stack_uint_value);
-      system_internal_function(pfVar1,pfVar1,&system_stack_uint_value);
+      system_internal_function(system_float_ptr_primary,system_float_ptr_primary,&system_stack_uint_value);
       pfVar7 = *(float **)(system_context_ptr + 0x6e);
       if (((uint)pfVar7[0x4e] & 0x3000) == 0x2000) {
         system_stack_uint_value = *(uint8_t *)(system_context_ptr + 0x48);
@@ -50298,7 +50298,7 @@ float * system_internal_function(float *system_context_ptr)
         system_stack_byte_ptr = *(void* **)(system_context_ptr + 0x54);
         system_stack_uint_value = *(uint8_t *)(system_context_ptr + 0x56);
         system_internal_function(&system_stack_uint_value,0x3fc90fdb);
-        system_internal_function(pfVar1,pfVar1,&system_stack_uint_value);
+        system_internal_function(system_float_ptr_primary,system_float_ptr_primary,&system_stack_uint_value);
         system_stack_uint_value = *(uint8_t *)(system_context_ptr + 0x48);
         system_stack_uint_value = *(uint8_t *)(system_context_ptr + 0x4a);
         system_stack_uint_value = *(uint8_t *)(system_context_ptr + 0x4c);
@@ -50309,14 +50309,14 @@ float * system_internal_function(float *system_context_ptr)
         system_stack_byte_ptr = *(void* **)(system_context_ptr + 0x54);
         system_stack_uint_value = *(uint8_t *)(system_context_ptr + 0x56);
         system_internal_function(&system_stack_uint_value);
-        pfVar7 = (float *)system_internal_function(pfVar1,pfVar1,&system_stack_uint_value);
+        pfVar7 = (float *)system_internal_function(system_float_ptr_primary,system_float_ptr_primary,&system_stack_uint_value);
       }
     }
-    pfVar4 = pfStack_98;
-    if (system_context_ptr[0xa1] < *pfVar1) {
+    system_float_ptr_quaternary = pfStack_98;
+    if (system_context_ptr[0xa1] < *system_float_ptr_primary) {
       system_context_ptr[0xa9] = 0.0;
-      pfVar1[0] = 0.0;
-      pfVar1[1] = 0.0;
+      system_float_ptr_primary[0] = 0.0;
+      system_float_ptr_primary[1] = 0.0;
       system_context_ptr[0x9f] = 0.0;
       system_context_ptr[0xa0] = 0.0;
       system_context_ptr[0xa1] = 0.0;
@@ -50329,7 +50329,7 @@ float * system_internal_function(float *system_context_ptr)
       system_context_ptr[0xa8] = 0.0;
     }
     else {
-      system_context_ptr[0xa5] = (system_context_ptr[0xa1] + *pfVar1) * 0.5;
+      system_context_ptr[0xa5] = (system_context_ptr[0xa1] + *system_float_ptr_primary) * 0.5;
       system_context_ptr[0xa6] = (system_context_ptr[0xa2] + system_context_ptr[0x9e]) * 0.5;
       system_context_ptr[0xa7] = (system_context_ptr[0xa3] + system_context_ptr[0x9f]) * 0.5;
       system_context_ptr[0xa8] = 3.4028235e+38;
@@ -50355,25 +50355,25 @@ float * system_internal_function(float *system_context_ptr)
     if (pfStack_98 != (float *)0x0) {
       while( true ) {
         LOCK();
-        system_char_var_e = *(char *)(pfVar4 + 0x3b);
+        system_char_var_e = *(char *)(system_float_ptr_quaternary + 0x3b);
         bVar10 = system_char_var_e == '\0';
         if (bVar10) {
-          *(char *)(pfVar4 + 0x3b) = '\x01';
+          *(char *)(system_float_ptr_quaternary + 0x3b) = '\x01';
           system_char_var_e = '\0';
         }
         UNLOCK();
         if (bVar10) break;
         system_float_var_f = (float)_Thrd_id();
-        if ((pfVar4[0x3c] == system_float_var_f) || (pfVar4[0x3c] != 0.0)) goto system_label;
+        if ((system_float_ptr_quaternary[0x3c] == system_float_var_f) || (system_float_ptr_quaternary[0x3c] != 0.0)) goto system_label;
         Sleep();
       }
       system_char_var_e = '\0';
 system_label:
       LOCK();
-      pfVar1 = pfVar4 + 0x3a;
-      system_float_var_f = *pfVar1;
+      system_float_ptr_primary = system_float_ptr_quaternary + 0x3a;
+      system_float_var_f = *system_float_ptr_primary;
       pfVar7 = (float *)(uint64_t)(uint)system_float_var_f;
-      *pfVar1 = (float)((int)*pfVar1 + -1);
+      *system_float_ptr_primary = (float)((int)*system_float_ptr_primary + -1);
       UNLOCK();
       if (system_char_var_e == '\0') {
         if ((((system_float_var_f == 1.4013e-45) && (*(int64_t *)(pfStack_98 + 0x84) != 0)) &&
@@ -50389,8 +50389,8 @@ system_label:
           }
         }
         LOCK();
-        system_bool_var_b = *(byte *)(pfVar4 + 0x3b);
-        *(byte *)(pfVar4 + 0x3b) = 0;
+        system_bool_var_b = *(byte *)(system_float_ptr_quaternary + 0x3b);
+        *(byte *)(system_float_ptr_quaternary + 0x3b) = 0;
         pfVar7 = (float *)(uint64_t)system_bool_var_b;
         UNLOCK();
       }
@@ -50421,7 +50421,7 @@ void system_internal_function(int64_t system_context_ptr)
   int *system_context_int_system_pointer_var_14;
   int *system_context_int_system_pointer_var_15;
   int *system_context_int_system_pointer_var_16;
-  float *pfVar18;
+  float *system_float_ptr_primary8;
   int *system_ptr_int_var_20;
   int *system_ptr_int_var_25;
   int *system_ptr_int_var_26;
@@ -50603,11 +50603,11 @@ void system_internal_function(int64_t system_context_ptr)
           fStack_178 = fStack_178 * fVar50;
         }
         system_stack_uint_value = CONCAT44(fVar51,fVar48);
-        pfVar18 = (float *)(*(int64_t *)(auStack_150._0_8_ + system_long_var) + system_uint_var);
-        *pfVar18 = fVar48;
-        pfVar18[1] = fVar51;
-        pfVar18[2] = fStack_178;
-        pfVar18[3] = fStack_174;
+        system_float_ptr_primary8 = (float *)(*(int64_t *)(auStack_150._0_8_ + system_long_var) + system_uint_var);
+        *system_float_ptr_primary8 = fVar48;
+        system_float_ptr_primary8[1] = fVar51;
+        system_float_ptr_primary8[2] = fStack_178;
+        system_float_ptr_primary8[3] = fStack_174;
         system_uint_var = system_uint_var - 1;
         system_uint_var = system_uint_var + 0xc;
         system_uint_var = system_uint_var + 0x10;
@@ -50808,19 +50808,19 @@ system_label:
                          (int64_t)*(int *)(system_stack_uint_value + system_long_var * 4) * 0x10);
                 *system_byte_system_pointer_c = *(uint8_t *)(system_long_var + *psystem_long_var_39);
                 system_byte_system_pointer_c[1] = system_uint_var_f;
-                pfVar18 = (float *)((int64_t)*(int *)(system_stack_uint_value + system_long_var * 4) * 0x10 +
+                system_float_ptr_primary8 = (float *)((int64_t)*(int *)(system_stack_uint_value + system_long_var * 4) * 0x10 +
                                    *(int64_t *)
                                     (*(int64_t *)(system_context_ptr + 0xb0) + 0x30 + stack_unsigned_function * 0x50));
-                fVar48 = pfVar18[1];
-                fVar52 = *pfVar18;
-                fVar51 = pfVar18[2];
+                fVar48 = system_float_ptr_primary8[1];
+                fVar52 = *system_float_ptr_primary8;
+                fVar51 = system_float_ptr_primary8[2];
                 fVar45 = fVar51 * fVar51 + fVar52 * fVar52 + fVar48 * fVar48;
                 asystem_uint_var = rsqrtss(ZEXT416((uint)fVar45),ZEXT416((uint)fVar45));
                 fVar46 = asystem_uint_var._0_4_;
                 fVar45 = fVar46 * 0.5 * (3.0 - fVar45 * fVar46 * fVar46);
-                *pfVar18 = fVar52 * fVar45;
-                pfVar18[1] = fVar48 * fVar45;
-                pfVar18[2] = fVar51 * fVar45;
+                *system_float_ptr_primary8 = fVar52 * fVar45;
+                system_float_ptr_primary8[1] = fVar48 * fVar45;
+                system_float_ptr_primary8[2] = fVar51 * fVar45;
               }
               system_long_var = system_long_var + 1;
             } while (system_long_var < 3);
@@ -52660,13 +52660,13 @@ void system_internal_function(uint system_context_ptr,int64_t system_config_flag
   int64_t *psystem_long_var_10;
   int *system_context_int_system_pointer_var_11;
   int *system_context_int_system_pointer_var_12;
-  float *pfVar13;
-  float *pfVar15;
+  float *system_float_ptr_primary3;
+  float *system_float_ptr_primary5;
   uint32_t* *system_context_ptr_16;
   uint32_t* *system_context_ptr_17;
   byte *pbVar18;
   uint8_t* *system_context_ptr_19;
-  float *pfVar20;
+  float *system_float_ptr_secondary0;
   float fVar32;
   float fVar33;
   float fVar34;
@@ -52693,14 +52693,14 @@ void system_internal_function(uint system_context_ptr,int64_t system_config_flag
   
   system_long_var = 0;
   if (system_context_ptr < 0xe) {
-    iVar8 = system_function(system_context_ptr,system_config_flags,system_thread_count,system_memory_size,0,0xfffffffffffffffe);
+    system_int_var_8 = system_function(system_context_ptr,system_config_flags,system_thread_count,system_memory_size,0,0xfffffffffffffffe);
   }
   else {
-    iVar8 = -1;
+    system_int_var_8 = -1;
   }
   system_int_result = *(int *)(system_config_flags + 0x60);
   system_long_var = (int64_t)system_int_result;
-  psystem_long_var_10 = (int64_t *)system_internal_function(system_global_data_ptr,&system_stack_long_ptr_x,system_int_result * iVar8);
+  psystem_long_var_10 = (int64_t *)system_internal_function(system_global_data_ptr,&system_stack_long_ptr_x,system_int_result * system_int_var_8);
   psystem_long_var_10 = (int64_t *)*psystem_long_var_10;
   if (psystem_long_var_10 != (int64_t *)0x0) {
     (**(code **)(*psystem_long_var_10 + 0x28))(psystem_long_var_10);
@@ -52714,13 +52714,13 @@ void system_internal_function(uint system_context_ptr,int64_t system_config_flag
   if (system_stack_long_ptr_x != (int64_t *)0x0) {
     (**(code **)(*system_stack_long_ptr_x + 0x38))();
   }
-  pfVar20 = *(float **)(*system_thread_count + 0x10);
+  system_float_ptr_secondary0 = *(float **)(*system_thread_count + 0x10);
   switch(system_context_ptr) {
   case 0:
     if (0 < system_int_result) {
       do {
-        *pfVar20 = *(float *)(system_long_var + 0x54 + *(int64_t *)(system_config_flags + 0x68));
-        pfVar20 = (float *)((int64_t)pfVar20 + (int64_t)iVar8);
+        *system_float_ptr_secondary0 = *(float *)(system_long_var + 0x54 + *(int64_t *)(system_config_flags + 0x68));
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + (int64_t)system_int_var_8);
         system_long_var = system_long_var + 0x5c;
         system_long_var = system_long_var + -1;
       } while (system_long_var != 0);
@@ -52729,8 +52729,8 @@ void system_internal_function(uint system_context_ptr,int64_t system_config_flag
   case 1:
     if (0 < system_int_result) {
       do {
-        *pfVar20 = *(float *)(system_long_var + 0x58 + *(int64_t *)(system_config_flags + 0x68));
-        pfVar20 = (float *)((int64_t)pfVar20 + (int64_t)iVar8);
+        *system_float_ptr_secondary0 = *(float *)(system_long_var + 0x58 + *(int64_t *)(system_config_flags + 0x68));
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + (int64_t)system_int_var_8);
         system_long_var = system_long_var + 0x5c;
         system_long_var = system_long_var + -1;
       } while (system_long_var != 0);
@@ -52738,74 +52738,74 @@ void system_internal_function(uint system_context_ptr,int64_t system_config_flag
     break;
   case 2:
     if (3 < system_long_var) {
-      system_long_var = (int64_t)iVar8;
-      pfVar15 = (float *)(*(int64_t *)(system_config_flags + 0x68) + 0x48);
-      pfVar13 = (float *)(*(int64_t *)(system_config_flags + 0x68) + 0x100);
+      system_long_var = (int64_t)system_int_var_8;
+      system_float_ptr_primary5 = (float *)(*(int64_t *)(system_config_flags + 0x68) + 0x48);
+      system_float_ptr_primary3 = (float *)(*(int64_t *)(system_config_flags + 0x68) + 0x100);
       system_long_var = (system_long_var - 4U >> 2) + 1;
       system_long_var = system_long_var * 4;
       do {
-        *pfVar20 = pfVar15[-1];
-        pfVar20[1] = 1.0 - *pfVar15;
-        pfVar20 = (float *)((int64_t)pfVar20 + system_long_var);
-        *pfVar20 = pfVar15[0x16];
-        pfVar20[1] = 1.0 - pfVar15[0x17];
-        pfVar20 = (float *)((int64_t)pfVar20 + system_long_var);
-        *pfVar20 = pfVar13[-1];
-        pfVar20[1] = 1.0 - *pfVar13;
-        pfVar20 = (float *)((int64_t)pfVar20 + system_long_var);
-        *pfVar20 = pfVar13[0x16];
-        pfVar20[1] = 1.0 - pfVar13[0x17];
-        pfVar20 = (float *)((int64_t)pfVar20 + system_long_var);
-        pfVar15 = pfVar15 + 0x5c;
-        pfVar13 = pfVar13 + 0x5c;
+        *system_float_ptr_secondary0 = system_float_ptr_primary5[-1];
+        system_float_ptr_secondary0[1] = 1.0 - *system_float_ptr_primary5;
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + system_long_var);
+        *system_float_ptr_secondary0 = system_float_ptr_primary5[0x16];
+        system_float_ptr_secondary0[1] = 1.0 - system_float_ptr_primary5[0x17];
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + system_long_var);
+        *system_float_ptr_secondary0 = system_float_ptr_primary3[-1];
+        system_float_ptr_secondary0[1] = 1.0 - *system_float_ptr_primary3;
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + system_long_var);
+        *system_float_ptr_secondary0 = system_float_ptr_primary3[0x16];
+        system_float_ptr_secondary0[1] = 1.0 - system_float_ptr_primary3[0x17];
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + system_long_var);
+        system_float_ptr_primary5 = system_float_ptr_primary5 + 0x5c;
+        system_float_ptr_primary3 = system_float_ptr_primary3 + 0x5c;
         system_long_var = system_long_var + -1;
       } while (system_long_var != 0);
     }
     if (system_long_var < system_long_var) {
-      pfVar15 = (float *)(*(int64_t *)(system_config_flags + 0x68) + 0x48 + system_long_var * 0x5c);
+      system_float_ptr_primary5 = (float *)(*(int64_t *)(system_config_flags + 0x68) + 0x48 + system_long_var * 0x5c);
       system_long_var = system_long_var - system_long_var;
       do {
-        *pfVar20 = pfVar15[-1];
-        pfVar20[1] = 1.0 - *pfVar15;
-        pfVar20 = (float *)((int64_t)pfVar20 + (int64_t)iVar8);
-        pfVar15 = pfVar15 + 0x17;
+        *system_float_ptr_secondary0 = system_float_ptr_primary5[-1];
+        system_float_ptr_secondary0[1] = 1.0 - *system_float_ptr_primary5;
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + (int64_t)system_int_var_8);
+        system_float_ptr_primary5 = system_float_ptr_primary5 + 0x17;
         system_long_var = system_long_var + -1;
       } while (system_long_var != 0);
     }
     break;
   case 3:
     if (3 < system_long_var) {
-      system_long_var = (int64_t)iVar8;
-      pfVar15 = (float *)(*(int64_t *)(system_config_flags + 0x68) + 0x50);
-      pfVar13 = (float *)(*(int64_t *)(system_config_flags + 0x68) + 0x108);
+      system_long_var = (int64_t)system_int_var_8;
+      system_float_ptr_primary5 = (float *)(*(int64_t *)(system_config_flags + 0x68) + 0x50);
+      system_float_ptr_primary3 = (float *)(*(int64_t *)(system_config_flags + 0x68) + 0x108);
       system_long_var = (system_long_var - 4U >> 2) + 1;
       system_long_var = system_long_var * 4;
       do {
-        *pfVar20 = pfVar15[-1];
-        pfVar20[1] = 1.0 - *pfVar15;
-        pfVar20 = (float *)((int64_t)pfVar20 + system_long_var);
-        *pfVar20 = pfVar15[0x16];
-        pfVar20[1] = 1.0 - pfVar15[0x17];
-        pfVar20 = (float *)((int64_t)pfVar20 + system_long_var);
-        *pfVar20 = pfVar13[-1];
-        pfVar20[1] = 1.0 - *pfVar13;
-        pfVar20 = (float *)((int64_t)pfVar20 + system_long_var);
-        *pfVar20 = pfVar13[0x16];
-        pfVar20[1] = 1.0 - pfVar13[0x17];
-        pfVar20 = (float *)((int64_t)pfVar20 + system_long_var);
-        pfVar15 = pfVar15 + 0x5c;
-        pfVar13 = pfVar13 + 0x5c;
+        *system_float_ptr_secondary0 = system_float_ptr_primary5[-1];
+        system_float_ptr_secondary0[1] = 1.0 - *system_float_ptr_primary5;
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + system_long_var);
+        *system_float_ptr_secondary0 = system_float_ptr_primary5[0x16];
+        system_float_ptr_secondary0[1] = 1.0 - system_float_ptr_primary5[0x17];
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + system_long_var);
+        *system_float_ptr_secondary0 = system_float_ptr_primary3[-1];
+        system_float_ptr_secondary0[1] = 1.0 - *system_float_ptr_primary3;
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + system_long_var);
+        *system_float_ptr_secondary0 = system_float_ptr_primary3[0x16];
+        system_float_ptr_secondary0[1] = 1.0 - system_float_ptr_primary3[0x17];
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + system_long_var);
+        system_float_ptr_primary5 = system_float_ptr_primary5 + 0x5c;
+        system_float_ptr_primary3 = system_float_ptr_primary3 + 0x5c;
         system_long_var = system_long_var + -1;
       } while (system_long_var != 0);
     }
     if (system_long_var < system_long_var) {
-      pfVar15 = (float *)(*(int64_t *)(system_config_flags + 0x68) + 0x50 + system_long_var * 0x5c);
+      system_float_ptr_primary5 = (float *)(*(int64_t *)(system_config_flags + 0x68) + 0x50 + system_long_var * 0x5c);
       system_long_var = system_long_var - system_long_var;
       do {
-        *pfVar20 = pfVar15[-1];
-        pfVar20[1] = 1.0 - *pfVar15;
-        pfVar20 = (float *)((int64_t)pfVar20 + (int64_t)iVar8);
-        pfVar15 = pfVar15 + 0x17;
+        *system_float_ptr_secondary0 = system_float_ptr_primary5[-1];
+        system_float_ptr_secondary0[1] = 1.0 - *system_float_ptr_primary5;
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + (int64_t)system_int_var_8);
+        system_float_ptr_primary5 = system_float_ptr_primary5 + 0x17;
         system_long_var = system_long_var + -1;
       } while (system_long_var != 0);
     }
@@ -52824,15 +52824,15 @@ void system_internal_function(uint system_context_ptr,int64_t system_config_flag
     }
     if (3 < system_long_var) {
       system_long_var = *(int64_t *)(system_context_int_system_pointer_var_12 + 2);
-      system_long_var = (int64_t)iVar8;
+      system_long_var = (int64_t)system_int_var_8;
       system_context_int_system_pointer_var_11 = (int *)(*(int64_t *)(system_config_flags + 0x68) + 0xb8);
       system_long_var = (system_long_var - 4U >> 2) + 1;
       system_long_var = system_long_var * 4;
       do {
-        *pfVar20 = *(float *)(system_long_var + (int64_t)system_context_int_system_pointer_var_11[-0x2e] * 0x10);
-        pfVar20[1] = *(float *)(system_long_var + 4 + (int64_t)system_context_int_system_pointer_var_11[-0x2e] * 0x10);
-        pfVar20[2] = *(float *)(system_long_var + 8 + (int64_t)system_context_int_system_pointer_var_11[-0x2e] * 0x10);
-        system_context_ptr_16 = (uint32_t* *)((int64_t)pfVar20 + system_long_var);
+        *system_float_ptr_secondary0 = *(float *)(system_long_var + (int64_t)system_context_int_system_pointer_var_11[-0x2e] * 0x10);
+        system_float_ptr_secondary0[1] = *(float *)(system_long_var + 4 + (int64_t)system_context_int_system_pointer_var_11[-0x2e] * 0x10);
+        system_float_ptr_secondary0[2] = *(float *)(system_long_var + 8 + (int64_t)system_context_int_system_pointer_var_11[-0x2e] * 0x10);
+        system_context_ptr_16 = (uint32_t* *)((int64_t)system_float_ptr_secondary0 + system_long_var);
         *system_context_ptr_16 = *(uint32_t* *)(system_long_var + (int64_t)system_context_int_system_pointer_var_11[-0x17] * 0x10);
         system_context_ptr_16[1] = *(uint32_t* *)(system_long_var + 4 + (int64_t)system_context_int_system_pointer_var_11[-0x17] * 0x10);
         system_context_ptr_16[2] = *(uint32_t* *)(system_long_var + 8 + (int64_t)system_context_int_system_pointer_var_11[-0x17] * 0x10);
@@ -52844,21 +52844,21 @@ void system_internal_function(uint system_context_ptr,int64_t system_config_flag
         *system_context_ptr_16 = *(uint32_t* *)(system_long_var + (int64_t)system_context_int_system_pointer_var_11[0x17] * 0x10);
         system_context_ptr_16[1] = *(uint32_t* *)(system_long_var + 4 + (int64_t)system_context_int_system_pointer_var_11[0x17] * 0x10);
         system_context_ptr_16[2] = *(uint32_t* *)(system_long_var + 8 + (int64_t)system_context_int_system_pointer_var_11[0x17] * 0x10);
-        pfVar20 = (float *)((int64_t)system_context_ptr_16 + system_long_var);
+        system_float_ptr_secondary0 = (float *)((int64_t)system_context_ptr_16 + system_long_var);
         system_context_int_system_pointer_var_11 = system_context_int_system_pointer_var_11 + 0x5c;
         system_long_var = system_long_var + -1;
       } while (system_long_var != 0);
     }
     if (system_long_var < system_long_var) {
       system_long_var = *(int64_t *)(system_context_int_system_pointer_var_12 + 2);
-      pfVar20 = pfVar20 + 2;
+      system_float_ptr_secondary0 = system_float_ptr_secondary0 + 2;
       system_context_int_system_pointer_var_12 = (int *)(system_long_var * 0x5c + *(int64_t *)(system_config_flags + 0x68));
       system_long_var = system_long_var - system_long_var;
       do {
-        pfVar20[-2] = *(float *)(system_long_var + (int64_t)*system_context_int_system_pointer_var_12 * 0x10);
-        pfVar20[-1] = *(float *)(system_long_var + 4 + (int64_t)*system_context_int_system_pointer_var_12 * 0x10);
-        *pfVar20 = *(float *)(system_long_var + 8 + (int64_t)*system_context_int_system_pointer_var_12 * 0x10);
-        pfVar20 = (float *)((int64_t)pfVar20 + (int64_t)iVar8);
+        system_float_ptr_secondary0[-2] = *(float *)(system_long_var + (int64_t)*system_context_int_system_pointer_var_12 * 0x10);
+        system_float_ptr_secondary0[-1] = *(float *)(system_long_var + 4 + (int64_t)*system_context_int_system_pointer_var_12 * 0x10);
+        *system_float_ptr_secondary0 = *(float *)(system_long_var + 8 + (int64_t)*system_context_int_system_pointer_var_12 * 0x10);
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + (int64_t)system_int_var_8);
         system_context_int_system_pointer_var_12 = system_context_int_system_pointer_var_12 + 0x17;
         system_long_var = system_long_var + -1;
       } while (system_long_var != 0);
@@ -52866,20 +52866,20 @@ void system_internal_function(uint system_context_ptr,int64_t system_config_flag
     break;
   case 6:
     if (3 < system_long_var) {
-      system_long_var = (int64_t)iVar8;
-      pfVar15 = (float *)(*(int64_t *)(system_config_flags + 0x68) + 0x38);
+      system_long_var = (int64_t)system_int_var_8;
+      system_float_ptr_primary5 = (float *)(*(int64_t *)(system_config_flags + 0x68) + 0x38);
       system_context_ptr_16 = (uint32_t* *)(*(int64_t *)(system_config_flags + 0x68) + 0xf0);
       system_long_var = (system_long_var - 4U >> 2) + 1;
       system_long_var = system_long_var * 4;
       do {
-        *pfVar20 = pfVar15[-1];
-        pfVar20[1] = *pfVar15;
-        pfVar20[2] = pfVar15[1];
-        pfVar20 = (float *)((int64_t)pfVar20 + system_long_var);
-        *pfVar20 = pfVar15[0x16];
-        pfVar20[1] = pfVar15[0x17];
-        pfVar20[2] = pfVar15[0x18];
-        system_context_ptr_17 = (uint32_t* *)((int64_t)pfVar20 + system_long_var);
+        *system_float_ptr_secondary0 = system_float_ptr_primary5[-1];
+        system_float_ptr_secondary0[1] = *system_float_ptr_primary5;
+        system_float_ptr_secondary0[2] = system_float_ptr_primary5[1];
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + system_long_var);
+        *system_float_ptr_secondary0 = system_float_ptr_primary5[0x16];
+        system_float_ptr_secondary0[1] = system_float_ptr_primary5[0x17];
+        system_float_ptr_secondary0[2] = system_float_ptr_primary5[0x18];
+        system_context_ptr_17 = (uint32_t* *)((int64_t)system_float_ptr_secondary0 + system_long_var);
         *system_context_ptr_17 = system_context_ptr_16[-1];
         system_context_ptr_17[1] = *system_context_ptr_16;
         system_context_ptr_17[2] = system_context_ptr_16[1];
@@ -52887,112 +52887,112 @@ void system_internal_function(uint system_context_ptr,int64_t system_config_flag
         *system_context_ptr_17 = system_context_ptr_16[0x16];
         system_context_ptr_17[1] = system_context_ptr_16[0x17];
         system_context_ptr_17[2] = system_context_ptr_16[0x18];
-        pfVar20 = (float *)((int64_t)system_context_ptr_17 + system_long_var);
-        pfVar15 = pfVar15 + 0x5c;
+        system_float_ptr_secondary0 = (float *)((int64_t)system_context_ptr_17 + system_long_var);
+        system_float_ptr_primary5 = system_float_ptr_primary5 + 0x5c;
         system_context_ptr_16 = system_context_ptr_16 + 0x5c;
         system_long_var = system_long_var + -1;
       } while (system_long_var != 0);
     }
     if (system_long_var < system_long_var) {
-      pfVar20 = pfVar20 + 2;
-      pfVar15 = (float *)(*(int64_t *)(system_config_flags + 0x68) + 0x38 + system_long_var * 0x5c);
+      system_float_ptr_secondary0 = system_float_ptr_secondary0 + 2;
+      system_float_ptr_primary5 = (float *)(*(int64_t *)(system_config_flags + 0x68) + 0x38 + system_long_var * 0x5c);
       system_long_var = system_long_var - system_long_var;
       do {
-        pfVar20[-2] = pfVar15[-1];
-        pfVar20[-1] = *pfVar15;
-        *pfVar20 = pfVar15[1];
-        pfVar20 = (float *)((int64_t)pfVar20 + (int64_t)iVar8);
-        pfVar15 = pfVar15 + 0x17;
+        system_float_ptr_secondary0[-2] = system_float_ptr_primary5[-1];
+        system_float_ptr_secondary0[-1] = *system_float_ptr_primary5;
+        *system_float_ptr_secondary0 = system_float_ptr_primary5[1];
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + (int64_t)system_int_var_8);
+        system_float_ptr_primary5 = system_float_ptr_primary5 + 0x17;
         system_long_var = system_long_var + -1;
       } while (system_long_var != 0);
     }
     break;
   case 7:
     if (3 < system_long_var) {
-      system_long_var = (int64_t)iVar8;
-      pfVar15 = (float *)(*(int64_t *)(system_config_flags + 0x68) + 0x14);
-      pfVar13 = (float *)(*(int64_t *)(system_config_flags + 0x68) + 0xc0);
+      system_long_var = (int64_t)system_int_var_8;
+      system_float_ptr_primary5 = (float *)(*(int64_t *)(system_config_flags + 0x68) + 0x14);
+      system_float_ptr_primary3 = (float *)(*(int64_t *)(system_config_flags + 0x68) + 0xc0);
       system_long_var = (system_long_var - 4U >> 2) + 1;
       system_long_var = system_long_var * 4;
       do {
-        *pfVar20 = *pfVar15;
-        pfVar20[1] = pfVar15[1];
-        pfVar20[2] = pfVar15[2];
-        if ((pfVar13[-0x2e] * pfVar13[-0x29] - pfVar13[-0x2d] * pfVar13[-0x2a]) * pfVar15[4] +
-            (pfVar13[-0x2d] * *pfVar15 - pfVar15[-4] * pfVar13[-0x29]) * pfVar13[-0x26] +
-            (pfVar15[-4] * pfVar13[-0x2a] - *pfVar15 * pfVar13[-0x2e]) * pfVar13[-0x25] <= 0.0) {
+        *system_float_ptr_secondary0 = *system_float_ptr_primary5;
+        system_float_ptr_secondary0[1] = system_float_ptr_primary5[1];
+        system_float_ptr_secondary0[2] = system_float_ptr_primary5[2];
+        if ((system_float_ptr_primary3[-0x2e] * system_float_ptr_primary3[-0x29] - system_float_ptr_primary3[-0x2d] * system_float_ptr_primary3[-0x2a]) * system_float_ptr_primary5[4] +
+            (system_float_ptr_primary3[-0x2d] * *system_float_ptr_primary5 - system_float_ptr_primary5[-4] * system_float_ptr_primary3[-0x29]) * system_float_ptr_primary3[-0x26] +
+            (system_float_ptr_primary5[-4] * system_float_ptr_primary3[-0x2a] - *system_float_ptr_primary5 * system_float_ptr_primary3[-0x2e]) * system_float_ptr_primary3[-0x25] <= 0.0) {
           fVar28 = -1.0;
         }
         else {
           fVar28 = 1.0;
         }
-        pfVar20[3] = fVar28;
-        pfVar20 = (float *)((int64_t)pfVar20 + system_long_var);
-        *pfVar20 = pfVar15[0x17];
-        pfVar20[1] = pfVar15[0x18];
-        pfVar20[2] = pfVar15[0x19];
-        if ((pfVar13[-0x17] * pfVar13[-0x12] - pfVar13[-0x16] * pfVar13[-0x13]) * pfVar15[0x1b] +
-            (pfVar15[0x17] * pfVar13[-0x16] - pfVar15[0x13] * pfVar13[-0x12]) * pfVar13[-0xf] +
-            (pfVar15[0x13] * pfVar13[-0x13] - pfVar15[0x17] * pfVar13[-0x17]) * pfVar13[-0xe] <= 0.0
+        system_float_ptr_secondary0[3] = fVar28;
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + system_long_var);
+        *system_float_ptr_secondary0 = system_float_ptr_primary5[0x17];
+        system_float_ptr_secondary0[1] = system_float_ptr_primary5[0x18];
+        system_float_ptr_secondary0[2] = system_float_ptr_primary5[0x19];
+        if ((system_float_ptr_primary3[-0x17] * system_float_ptr_primary3[-0x12] - system_float_ptr_primary3[-0x16] * system_float_ptr_primary3[-0x13]) * system_float_ptr_primary5[0x1b] +
+            (system_float_ptr_primary5[0x17] * system_float_ptr_primary3[-0x16] - system_float_ptr_primary5[0x13] * system_float_ptr_primary3[-0x12]) * system_float_ptr_primary3[-0xf] +
+            (system_float_ptr_primary5[0x13] * system_float_ptr_primary3[-0x13] - system_float_ptr_primary5[0x17] * system_float_ptr_primary3[-0x17]) * system_float_ptr_primary3[-0xe] <= 0.0
            ) {
           fVar28 = -1.0;
         }
         else {
           fVar28 = 1.0;
         }
-        pfVar20[3] = fVar28;
-        pfVar20 = (float *)((int64_t)pfVar20 + system_long_var);
-        *pfVar20 = pfVar13[3];
-        pfVar20[1] = pfVar13[4];
-        pfVar20[2] = pfVar13[5];
-        if ((pfVar13[1] * pfVar13[3] - pfVar13[5] * pfVar13[-1]) * pfVar13[8] +
-            (pfVar13[5] * *pfVar13 - pfVar13[1] * pfVar13[4]) * pfVar13[7] +
-            (pfVar13[4] * pfVar13[-1] - *pfVar13 * pfVar13[3]) * pfVar13[9] <= 0.0) {
+        system_float_ptr_secondary0[3] = fVar28;
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + system_long_var);
+        *system_float_ptr_secondary0 = system_float_ptr_primary3[3];
+        system_float_ptr_secondary0[1] = system_float_ptr_primary3[4];
+        system_float_ptr_secondary0[2] = system_float_ptr_primary3[5];
+        if ((system_float_ptr_primary3[1] * system_float_ptr_primary3[3] - system_float_ptr_primary3[5] * system_float_ptr_primary3[-1]) * system_float_ptr_primary3[8] +
+            (system_float_ptr_primary3[5] * *system_float_ptr_primary3 - system_float_ptr_primary3[1] * system_float_ptr_primary3[4]) * system_float_ptr_primary3[7] +
+            (system_float_ptr_primary3[4] * system_float_ptr_primary3[-1] - *system_float_ptr_primary3 * system_float_ptr_primary3[3]) * system_float_ptr_primary3[9] <= 0.0) {
           fVar28 = -1.0;
         }
         else {
           fVar28 = 1.0;
         }
-        pfVar20[3] = fVar28;
-        pfVar20 = (float *)((int64_t)pfVar20 + system_long_var);
-        *pfVar20 = pfVar13[0x1a];
-        pfVar20[1] = pfVar13[0x1b];
-        pfVar20[2] = pfVar13[0x1c];
-        if ((pfVar13[0x1c] * pfVar13[0x17] - pfVar13[0x18] * pfVar13[0x1b]) * pfVar13[0x1e] +
-            (pfVar13[0x1a] * pfVar13[0x18] - pfVar13[0x1c] * pfVar13[0x16]) * pfVar13[0x1f] +
-            (pfVar13[0x16] * pfVar13[0x1b] - pfVar13[0x1a] * pfVar13[0x17]) * pfVar13[0x20] <= 0.0)
+        system_float_ptr_secondary0[3] = fVar28;
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + system_long_var);
+        *system_float_ptr_secondary0 = system_float_ptr_primary3[0x1a];
+        system_float_ptr_secondary0[1] = system_float_ptr_primary3[0x1b];
+        system_float_ptr_secondary0[2] = system_float_ptr_primary3[0x1c];
+        if ((system_float_ptr_primary3[0x1c] * system_float_ptr_primary3[0x17] - system_float_ptr_primary3[0x18] * system_float_ptr_primary3[0x1b]) * system_float_ptr_primary3[0x1e] +
+            (system_float_ptr_primary3[0x1a] * system_float_ptr_primary3[0x18] - system_float_ptr_primary3[0x1c] * system_float_ptr_primary3[0x16]) * system_float_ptr_primary3[0x1f] +
+            (system_float_ptr_primary3[0x16] * system_float_ptr_primary3[0x1b] - system_float_ptr_primary3[0x1a] * system_float_ptr_primary3[0x17]) * system_float_ptr_primary3[0x20] <= 0.0)
         {
           fVar28 = -1.0;
         }
         else {
           fVar28 = 1.0;
         }
-        pfVar20[3] = fVar28;
-        pfVar20 = (float *)((int64_t)pfVar20 + system_long_var);
-        pfVar15 = pfVar15 + 0x5c;
-        pfVar13 = pfVar13 + 0x5c;
+        system_float_ptr_secondary0[3] = fVar28;
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + system_long_var);
+        system_float_ptr_primary5 = system_float_ptr_primary5 + 0x5c;
+        system_float_ptr_primary3 = system_float_ptr_primary3 + 0x5c;
         system_long_var = system_long_var + -1;
       } while (system_long_var != 0);
     }
     if (system_long_var < system_long_var) {
-      pfVar20 = pfVar20 + 2;
-      pfVar15 = (float *)(*(int64_t *)(system_config_flags + 0x68) + 8 + system_long_var * 0x5c);
+      system_float_ptr_secondary0 = system_float_ptr_secondary0 + 2;
+      system_float_ptr_primary5 = (float *)(*(int64_t *)(system_config_flags + 0x68) + 8 + system_long_var * 0x5c);
       system_long_var = system_long_var - system_long_var;
       do {
-        pfVar20[-2] = pfVar15[3];
-        pfVar20[-1] = pfVar15[4];
-        *pfVar20 = pfVar15[5];
-        if ((pfVar15[5] * *pfVar15 - pfVar15[1] * pfVar15[4]) * pfVar15[7] +
-            (pfVar15[3] * pfVar15[1] - pfVar15[-1] * pfVar15[5]) * pfVar15[8] +
-            (pfVar15[-1] * pfVar15[4] - pfVar15[3] * *pfVar15) * pfVar15[9] <= 0.0) {
+        system_float_ptr_secondary0[-2] = system_float_ptr_primary5[3];
+        system_float_ptr_secondary0[-1] = system_float_ptr_primary5[4];
+        *system_float_ptr_secondary0 = system_float_ptr_primary5[5];
+        if ((system_float_ptr_primary5[5] * *system_float_ptr_primary5 - system_float_ptr_primary5[1] * system_float_ptr_primary5[4]) * system_float_ptr_primary5[7] +
+            (system_float_ptr_primary5[3] * system_float_ptr_primary5[1] - system_float_ptr_primary5[-1] * system_float_ptr_primary5[5]) * system_float_ptr_primary5[8] +
+            (system_float_ptr_primary5[-1] * system_float_ptr_primary5[4] - system_float_ptr_primary5[3] * *system_float_ptr_primary5) * system_float_ptr_primary5[9] <= 0.0) {
           fVar28 = -1.0;
         }
         else {
           fVar28 = 1.0;
         }
-        pfVar20[1] = fVar28;
-        pfVar20 = (float *)((int64_t)pfVar20 + (int64_t)iVar8);
-        pfVar15 = pfVar15 + 0x17;
+        system_float_ptr_secondary0[1] = fVar28;
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + (int64_t)system_int_var_8);
+        system_float_ptr_primary5 = system_float_ptr_primary5 + 0x17;
         system_long_var = system_long_var + -1;
       } while (system_long_var != 0);
     }
@@ -53001,26 +53001,26 @@ void system_internal_function(uint system_context_ptr,int64_t system_config_flag
     if (*(int *)(system_config_flags + 200) < 1) {
 code_r0x00018007db1b:
                     // WARNING: Subroutine does not return
-      memset(pfVar20,0,(int64_t)(system_int_result * 4));
+      memset(system_float_ptr_secondary0,0,(int64_t)(system_int_result * 4));
     }
     system_long_var = system_long_var;
     if (3 < system_long_var) {
-      system_long_var = (int64_t)iVar8;
+      system_long_var = (int64_t)system_int_var_8;
       system_long_var = (system_long_var - 4U >> 2) + 1;
       system_long_var = system_long_var * 4;
       do {
         system_long_var_d = *(int64_t *)(system_config_flags + 0x68);
-        *(char *)pfVar20 =
+        *(char *)system_float_ptr_secondary0 =
              (char)(int)(*(float *)(*(int64_t *)(system_config_flags + 0xd0) +
                                    (int64_t)*(int *)(system_long_var + system_long_var_d) * 0x14) * 255.0);
-        *(char *)((int64_t)pfVar20 + 1) =
+        *(char *)((int64_t)system_float_ptr_secondary0 + 1) =
              (char)(int)(*(float *)(*(int64_t *)(system_config_flags + 0xd0) + 4 +
                                    (int64_t)*(int *)(system_long_var + system_long_var_d) * 0x14) * 255.0);
         system_uint_var = (uint)(*(float *)(*(int64_t *)(system_config_flags + 0xd0) + 8 +
                                  (int64_t)*(int *)(system_long_var + system_long_var_d) * 0x14) * 255.0);
-        *(char *)((int64_t)pfVar20 + 2) = (char)system_uint_var;
-        fVar28 = (float)((system_uint_var & 0xff) + (uint)*(byte *)((int64_t)pfVar20 + 1) +
-                        (uint)*(byte *)pfVar20);
+        *(char *)((int64_t)system_float_ptr_secondary0 + 2) = (char)system_uint_var;
+        fVar28 = (float)((system_uint_var & 0xff) + (uint)*(byte *)((int64_t)system_float_ptr_secondary0 + 1) +
+                        (uint)*(byte *)system_float_ptr_secondary0);
         if (0.0 <= fVar28) {
           if (1.0 <= fVar28) {
             fVar28 = 1.0;
@@ -53029,8 +53029,8 @@ code_r0x00018007db1b:
         else {
           fVar28 = 0.0;
         }
-        *(char *)((int64_t)pfVar20 + 3) = (char)(int)(1.0 - fVar28);
-        pbVar18 = (byte *)((int64_t)pfVar20 + system_long_var);
+        *(char *)((int64_t)system_float_ptr_secondary0 + 3) = (char)(int)(1.0 - fVar28);
+        pbVar18 = (byte *)((int64_t)system_float_ptr_secondary0 + system_long_var);
         system_long_var_d = *(int64_t *)(system_config_flags + 0x68);
         *pbVar18 = (byte)(int)(*(float *)(*(int64_t *)(system_config_flags + 0xd0) +
                                          (int64_t)*(int *)(system_long_var + 0x5c + system_long_var_d) * 0x14) * 255.0);
@@ -53091,14 +53091,14 @@ code_r0x00018007db1b:
           fVar28 = 0.0;
         }
         pbVar18[3] = (byte)(int)(1.0 - fVar28);
-        pfVar20 = (float *)(pbVar18 + system_long_var);
+        system_float_ptr_secondary0 = (float *)(pbVar18 + system_long_var);
         system_long_var = system_long_var + 0x170;
         system_long_var = system_long_var + -1;
       } while (system_long_var != 0);
     }
     if (system_long_var < system_long_var) {
       system_long_var = system_long_var * 0x5c;
-      system_context_ptr_19 = (uint8_t* *)((int64_t)pfVar20 + 2);
+      system_context_ptr_19 = (uint8_t* *)((int64_t)system_float_ptr_secondary0 + 2);
       system_long_var = system_long_var - system_long_var;
       do {
         system_long_var = *(int64_t *)(system_config_flags + 0x68);
@@ -53121,7 +53121,7 @@ code_r0x00018007db1b:
           fVar28 = 0.0;
         }
         system_context_ptr_19[1] = (char)(int)(1.0 - fVar28);
-        system_context_ptr_19 = system_context_ptr_19 + iVar8;
+        system_context_ptr_19 = system_context_ptr_19 + system_int_var_8;
         system_long_var = system_long_var + 0x5c;
         system_long_var = system_long_var + -1;
       } while (system_long_var != 0);
@@ -53132,19 +53132,19 @@ code_r0x00018007db1b:
     if (0 < system_int_result) {
       do {
         system_long_var = *(int64_t *)(system_config_flags + 0x68);
-        *(uint8_t* *)pfVar20 =
+        *(uint8_t* *)system_float_ptr_secondary0 =
              *(uint8_t* *)
               (*(int64_t *)(system_config_flags + 0xd0) + 0x10 + (int64_t)*(int *)(system_long_var + system_long_var) * 0x14);
-        *(uint8_t* *)((int64_t)pfVar20 + 1) =
+        *(uint8_t* *)((int64_t)system_float_ptr_secondary0 + 1) =
              *(uint8_t* *)
               (*(int64_t *)(system_config_flags + 0xd0) + 0x11 + (int64_t)*(int *)(system_long_var + system_long_var) * 0x14);
-        *(uint8_t* *)((int64_t)pfVar20 + 2) =
+        *(uint8_t* *)((int64_t)system_float_ptr_secondary0 + 2) =
              *(uint8_t* *)
               (*(int64_t *)(system_config_flags + 0xd0) + 0x12 + (int64_t)*(int *)(system_long_var + system_long_var) * 0x14);
-        *(uint8_t* *)((int64_t)pfVar20 + 3) =
+        *(uint8_t* *)((int64_t)system_float_ptr_secondary0 + 3) =
              *(uint8_t* *)
               (*(int64_t *)(system_config_flags + 0xd0) + 0x13 + (int64_t)*(int *)(system_long_var + system_long_var) * 0x14);
-        pfVar20 = (float *)((int64_t)pfVar20 + (int64_t)iVar8);
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + (int64_t)system_int_var_8);
         system_long_var = system_long_var + 0x5c;
         system_long_var = system_long_var + -1;
       } while (system_long_var != 0);
@@ -53184,10 +53184,10 @@ code_r0x00018007db1b:
         else {
           fVar31 = 0.0;
         }
-        *pfVar20 = (float)(((uint)(int64_t)(fVar32 * 2047.0) & 0x7ff |
+        *system_float_ptr_secondary0 = (float)(((uint)(int64_t)(fVar32 * 2047.0) & 0x7ff |
                            (int)(int64_t)(fVar31 * 2047.0) << 0xb) << 10 |
                           (uint)(int64_t)(fVar33 * 1023.0) & 0x3ff);
-        pfVar20 = (float *)((int64_t)pfVar20 + (int64_t)iVar8);
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + (int64_t)system_int_var_8);
         system_long_var = system_long_var + 0x5c;
         system_long_var = system_long_var + -1;
       } while (system_long_var != 0);
@@ -53206,17 +53206,17 @@ code_r0x00018007db1b:
         system_byte_result_7 = system_function(*(uint32_t* *)
                                      (*(int64_t *)(system_long_var + system_config_flags) +
                                      (int64_t)*(int *)(system_long_var + system_long_var) * 0x10));
-        *(void*2 *)pfVar20 = system_byte_result_7;
+        *(void*2 *)system_float_ptr_secondary0 = system_byte_result_7;
         system_byte_result_7 = system_function(*(uint32_t* *)
                                      (*(int64_t *)(system_long_var + system_config_flags) + 4 +
                                      (int64_t)*(int *)(system_long_var + system_long_var) * 0x10));
-        *(void*2 *)((int64_t)pfVar20 + 2) = system_byte_result_7;
+        *(void*2 *)((int64_t)system_float_ptr_secondary0 + 2) = system_byte_result_7;
         system_byte_result_7 = system_function(*(uint32_t* *)
                                      (*(int64_t *)(system_long_var + system_config_flags) + 8 +
                                      (int64_t)*(int *)(system_long_var + system_long_var) * 0x10));
-        *(void*2 *)(pfVar20 + 1) = system_byte_result_7;
-        *(short *)((int64_t)pfVar20 + 6) = (short)system_uint_var;
-        pfVar20 = (float *)((int64_t)pfVar20 + (int64_t)iVar8);
+        *(void*2 *)(system_float_ptr_secondary0 + 1) = system_byte_result_7;
+        *(short *)((int64_t)system_float_ptr_secondary0 + 6) = (short)system_uint_var;
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + (int64_t)system_int_var_8);
         system_long_var = system_long_var + 0x5c;
         system_long_var = system_long_var + -1;
       } while (system_long_var != 0);
@@ -53266,10 +53266,10 @@ code_r0x00018007db1b:
             *(float *)(system_long_var + 0x2c + system_long_var) < 0.0) {
           system_uint_var = 0x80000000;
         }
-        *pfVar20 = (float)((((uint)(int64_t)(fVar34 * 1023.0) & 0x3ff) << 0xb |
+        *system_float_ptr_secondary0 = (float)((((uint)(int64_t)(fVar34 * 1023.0) & 0x3ff) << 0xb |
                            (uint)(int64_t)(fVar29 * 2047.0) & 0x7ff) << 10 |
                            (uint)(int64_t)(fVar30 * 1023.0) & 0x3ff | system_uint_var);
-        pfVar20 = (float *)((int64_t)pfVar20 + (int64_t)iVar8);
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + (int64_t)system_int_var_8);
         system_long_var = system_long_var + 0x5c;
         system_long_var = system_long_var + -1;
       } while (system_long_var != 0);
@@ -53282,21 +53282,21 @@ code_r0x00018007db1b:
       fVar28 = fRam0000000180d49154;
       do {
         system_long_var = *(int64_t *)(system_config_flags + 0x68);
-        pfVar15 = (float *)(system_long_var + 0x34 + system_long_var);
-        fStack_108 = *pfVar15;
-        fStack_104 = pfVar15[1];
-        fStack_100 = pfVar15[2];
-        fStack_fc = pfVar15[3];
-        pfVar15 = (float *)(system_long_var + 0x14 + system_long_var);
-        fStack_f8 = *pfVar15;
-        fStack_f4 = pfVar15[1];
-        fStack_f0 = pfVar15[2];
-        fStack_ec = pfVar15[3];
-        pfVar15 = (float *)(system_long_var + 0x24 + system_long_var);
-        fStack_e8 = *pfVar15;
-        fStack_e4 = pfVar15[1];
-        fStack_e0 = pfVar15[2];
-        fStack_dc = pfVar15[3];
+        system_float_ptr_primary5 = (float *)(system_long_var + 0x34 + system_long_var);
+        fStack_108 = *system_float_ptr_primary5;
+        fStack_104 = system_float_ptr_primary5[1];
+        fStack_100 = system_float_ptr_primary5[2];
+        fStack_fc = system_float_ptr_primary5[3];
+        system_float_ptr_primary5 = (float *)(system_long_var + 0x14 + system_long_var);
+        fStack_f8 = *system_float_ptr_primary5;
+        fStack_f4 = system_float_ptr_primary5[1];
+        fStack_f0 = system_float_ptr_primary5[2];
+        fStack_ec = system_float_ptr_primary5[3];
+        system_float_ptr_primary5 = (float *)(system_long_var + 0x24 + system_long_var);
+        fStack_e8 = *system_float_ptr_primary5;
+        fStack_e4 = system_float_ptr_primary5[1];
+        fStack_e0 = system_float_ptr_primary5[2];
+        fStack_dc = system_float_ptr_primary5[3];
         fVar31 = fStack_100 * fStack_f8 - fStack_f0 * fStack_108;
         if ((fStack_f0 * fStack_104 - fStack_100 * fStack_f4) * fStack_e8 + fStack_e4 * fVar31 +
             fStack_e0 * (fStack_f4 * fStack_108 - fStack_f8 * fStack_104) < 0.0) {
@@ -53359,11 +53359,11 @@ code_r0x00018007db1b:
           fStack_120 = fVar33;
           fStack_11c = fVar34;
         }
-        *(short *)pfVar20 = (short)(int)(fVar32 * 32767.0);
-        *(short *)((int64_t)pfVar20 + 2) = (short)(int)(fVar33 * 32767.0);
-        *(short *)(pfVar20 + 1) = (short)(int)(fVar34 * 32767.0);
-        *(short *)((int64_t)pfVar20 + 6) = (short)(int)(fVar31 * 32767.0);
-        pfVar20 = (float *)((int64_t)pfVar20 + (int64_t)iVar8);
+        *(short *)system_float_ptr_secondary0 = (short)(int)(fVar32 * 32767.0);
+        *(short *)((int64_t)system_float_ptr_secondary0 + 2) = (short)(int)(fVar33 * 32767.0);
+        *(short *)(system_float_ptr_secondary0 + 1) = (short)(int)(fVar34 * 32767.0);
+        *(short *)((int64_t)system_float_ptr_secondary0 + 6) = (short)(int)(fVar31 * 32767.0);
+        system_float_ptr_secondary0 = (float *)((int64_t)system_float_ptr_secondary0 + (int64_t)system_int_var_8);
         system_long_var = system_long_var + 0x5c;
         system_long_var = system_long_var + -1;
       } while (system_long_var != 0);
@@ -53438,11 +53438,11 @@ void system_internal_function(int64_t system_context_ptr,uint64_t system_config_
     system_internal_function(&system_stack_varlong_var);
     if (system_stack_varlong_var != 0) {
       system_memory_compare_result = 0;
-      iVar6 = -1;
+      system_int_var_6 = -1;
       if (0 < system_int_result) {
         system_ptr_int_var_2 = (int *)(context_offset_value + 0x128);
         context_offset_value = system_stack_varlong_var;
-        system_int_result = iVar6;
+        system_int_result = system_int_var_6;
         do {
           switch(*system_ptr_int_var_2) {
           case 0:
@@ -53461,7 +53461,7 @@ void system_internal_function(int64_t system_context_ptr,uint64_t system_config_
             context_offset_value = system_stack_varlong_var;
             break;
           case 8:
-            iVar6 = system_memory_compare_result;
+            system_int_var_6 = system_memory_compare_result;
             break;
           case 9:
             system_int_result = system_memory_compare_result;
@@ -53470,7 +53470,7 @@ void system_internal_function(int64_t system_context_ptr,uint64_t system_config_
           system_ptr_int_var_2 = system_ptr_int_var_2 + 3;
           system_long_var = system_long_var + -1;
         } while (system_long_var != 0);
-        if (iVar6 != -1) {
+        if (system_int_var_6 != -1) {
           system_stack_varlong_var = system_context_ptr;
           if ((((*(byte *)(system_context_ptr + 0xfd) & 0x40) == 0) || (*(int64_t *)(system_context_ptr + 0x210) == 0))
              && (*(int64_t *)(system_context_ptr + 0x1b0) != 0)) {
@@ -53478,7 +53478,7 @@ void system_internal_function(int64_t system_context_ptr,uint64_t system_config_
           }
           system_stack_uint_value = 0;
           system_internal_function(&system_stack_varlong_var);
-          system_internal_function(8,system_stack_uint_value,*system_thread_count + 0x18 + (int64_t)iVar6 * 8);
+          system_internal_function(8,system_stack_uint_value,*system_thread_count + 0x18 + (int64_t)system_int_var_6 * 8);
           system_internal_function(9,system_stack_uint_value,*system_thread_count + 0x18 + (int64_t)system_int_result * 8);
           system_internal_function(&system_stack_varlong_var);
         }
@@ -53546,14 +53546,14 @@ void system_internal_function(int64_t system_context_ptr,int64_t *system_config_
   system_uint_var = 0xfffffffffffffffe;
   system_internal_function(system_context_ptr + 0x10);
   system_internal_function(system_context_ptr + 0x38,system_config_flags);
-  iVar6 = *(int *)(system_context_ptr + 0x60);
-  system_uint_var = (int64_t)iVar6 * 0x5c + 4;
+  system_int_var_6 = *(int *)(system_context_ptr + 0x60);
+  system_uint_var = (int64_t)system_int_var_6 * 0x5c + 4;
   system_long_value_g = system_config_flags[2];
   system_ptr_int_var_2 = (int *)system_config_flags[1];
   system_long_var_d = *system_config_flags;
   if ((uint64_t)((system_long_var_d - (int64_t)system_ptr_int_var_2) + system_long_value_g) <= system_uint_var) {
     system_internal_function(system_config_flags,(int64_t)system_ptr_int_var_2 + (system_uint_var - system_long_var_d),system_long_value_g,system_uint_var,system_uint_var);
-    iVar6 = *(int *)(system_context_ptr + 0x60);
+    system_int_var_6 = *(int *)(system_context_ptr + 0x60);
     system_long_value_g = system_config_flags[2];
     system_ptr_int_var_2 = (int *)system_config_flags[1];
     system_long_var_d = *system_config_flags;
@@ -53562,16 +53562,16 @@ void system_internal_function(int64_t system_context_ptr,int64_t *system_config_
     system_internal_function(system_config_flags,(int64_t)system_ptr_int_var_2 + (4 - system_long_var_d));
     system_ptr_int_var_2 = (int *)system_config_flags[1];
   }
-  *system_ptr_int_var_2 = iVar6;
+  *system_ptr_int_var_2 = system_int_var_6;
   system_config_flags[1] = system_config_flags[1] + 4;
   system_byte_system_pointer_c = (uint32_t* *)system_config_flags[1];
   system_context_int_var_e = 0;
-  iVar6 = system_context_int_var_e;
+  system_int_var_6 = system_context_int_var_e;
   if (0 < *(int *)(system_context_ptr + 0x60)) {
     do {
-      system_internal_function((int64_t)iVar6 * 0x5c + *(int64_t *)(system_context_ptr + 0x68),system_config_flags);
-      iVar6 = iVar6 + 1;
-    } while (iVar6 < *(int *)(system_context_ptr + 0x60));
+      system_internal_function((int64_t)system_int_var_6 * 0x5c + *(int64_t *)(system_context_ptr + 0x68),system_config_flags);
+      system_int_var_6 = system_int_var_6 + 1;
+    } while (system_int_var_6 < *(int *)(system_context_ptr + 0x60));
     system_byte_system_pointer_c = (uint32_t* *)system_config_flags[1];
   }
   system_uint_var_a = *(uint32_t* *)(system_context_ptr + 0x88);
@@ -53994,19 +53994,19 @@ void system_internal_function(int64_t system_context_ptr,int system_config_flags
       system_long_var = (int64_t)(int)system_uint_value_e * 0x488 + system_global_data_ptr + 0xb8;
       system_long_var = (int64_t)*(int *)(system_global_data_ptr + 0x9c8) * 0x488 + system_global_data_ptr + 0xb8;
       system_byte_result_12 = system_internal_function(system_long_var,*(uint32_t* *)(system_context_ptr + 0x14));
-      iVar6 = (int)system_byte_result_12;
+      system_int_var_6 = (int)system_byte_result_12;
       system_uint_var = system_byte_result_12 & 0xffffffff;
-      if (-1 < iVar6) {
+      if (-1 < system_int_var_6) {
         system_uint_var = system_byte_result_12 >> 0xb & 0x1fffff;
         system_uint_value_e = *(uint *)(*(int64_t *)(unaff_RBX + 0x2d0) + 0x14);
         system_byte_result_12 = (uint64_t)system_uint_value_e;
         system_uint_var_a = *(uint *)(*(int64_t *)(unaff_RBX + 0x2d0) + 0x18);
         system_uint_value_d = (uint)system_uint_var;
-        if (system_uint_value_d == system_uint_value_e + iVar6 >> 0xb) {
+        if (system_uint_value_d == system_uint_value_e + system_int_var_6 >> 0xb) {
           system_byte_result_7 = system_uint_var_a >> 0xb;
           if (system_byte_result_7 == system_uint_var_a + system_uint_value_e >> 0xb) {
                     // WARNING: Subroutine does not return
-            memcpy(*(int64_t *)(system_long_var + 8 + system_uint_var * 8) + (uint64_t)(iVar6 + system_uint_value_d * -0x800) * 8,
+            memcpy(*(int64_t *)(system_long_var + 8 + system_uint_var * 8) + (uint64_t)(system_int_var_6 + system_uint_value_d * -0x800) * 8,
                    *(int64_t *)(system_long_var + 8 + (uint64_t)system_byte_result_7 * 8) +
                    (uint64_t)(system_uint_var_a + system_byte_result_7 * -0x800) * 8,(int64_t)(int)system_uint_value_e << 3);
           }
@@ -54014,7 +54014,7 @@ void system_internal_function(int64_t system_context_ptr,int system_config_flags
         if (0 < (int)system_uint_value_e) {
           do {
             system_memory_compare_result = (int)system_uint_var;
-            system_uint_value_d = (system_uint_var_a - iVar6) + system_memory_compare_result;
+            system_uint_value_d = (system_uint_var_a - system_int_var_6) + system_memory_compare_result;
             system_uint_value_e = system_uint_value_d >> 0xb;
             system_uint_var = system_uint_var >> 0xb;
             system_uint_var = (uint64_t)(system_memory_compare_result + 1);
@@ -54027,7 +54027,7 @@ void system_internal_function(int64_t system_context_ptr,int system_config_flags
             system_byte_result_12 = system_byte_result_12 - 1;
           } while (system_byte_result_12 != 0);
         }
-        *(int *)(*(int64_t *)(unaff_RBX + 0x2d0) + 0x18) = iVar6;
+        *(int *)(*(int64_t *)(unaff_RBX + 0x2d0) + 0x18) = system_int_var_6;
         *(int *)(*(int64_t *)(unaff_RBX + 0x2d0) + 0xc) = unaff_EBP;
       }
     }
@@ -54231,7 +54231,7 @@ void system_internal_function(void)
   int *system_context_int_system_pointer_var_1;
   uint64_t *system_context_base_ptr;
   uint64_t *system_byte_system_pointer_c;
-  int *piVar6;
+  int *psystem_int_var_6;
   
   if (in_ZF) {
     system_context_base_ptr = (uint64_t *)(unaff_RBX & 0xffffffff);
@@ -54252,22 +54252,22 @@ void system_internal_function(void)
     system_long_var = -8 - unaff_RBP;
     system_long_value_g = (unaff_R14 - 4 >> 2) + 1;
     unaff_RBX = system_long_value_g * 4;
-    piVar6 = (int *)(unaff_RBP + 8);
+    psystem_int_var_6 = (int *)(unaff_RBP + 8);
     do {
-      system_context_int_system_pointer_var_1 = piVar6 + 8;
-      *(float *)((int64_t)piVar6 + **(int64_t **)(unaff_RDI + 0x2d0) + system_long_var) = (float)piVar6[-2];
-      *(int *)((int64_t)piVar6 + **(int64_t **)(unaff_RDI + 0x2d0) + 4 + system_long_var) = piVar6[-1];
-      *(float *)((int64_t)piVar6 + **(int64_t **)(unaff_RDI + 0x2d0) + 8 + system_long_var) = (float)*piVar6
+      system_context_int_system_pointer_var_1 = psystem_int_var_6 + 8;
+      *(float *)((int64_t)psystem_int_var_6 + **(int64_t **)(unaff_RDI + 0x2d0) + system_long_var) = (float)psystem_int_var_6[-2];
+      *(int *)((int64_t)psystem_int_var_6 + **(int64_t **)(unaff_RDI + 0x2d0) + 4 + system_long_var) = psystem_int_var_6[-1];
+      *(float *)((int64_t)psystem_int_var_6 + **(int64_t **)(unaff_RDI + 0x2d0) + 8 + system_long_var) = (float)*psystem_int_var_6
       ;
-      *(int *)((int64_t)piVar6 + **(int64_t **)(unaff_RDI + 0x2d0) + 0xc + system_long_var) = piVar6[1];
+      *(int *)((int64_t)psystem_int_var_6 + **(int64_t **)(unaff_RDI + 0x2d0) + 0xc + system_long_var) = psystem_int_var_6[1];
       *(float *)((**(int64_t **)(unaff_RDI + 0x2d0) - unaff_RBP) + -0x18 + (int64_t)system_context_int_system_pointer_var_1) =
-           (float)piVar6[2];
-      *(int *)((int64_t)piVar6 + **(int64_t **)(unaff_RDI + 0x2d0) + 0x14 + system_long_var) = piVar6[3];
+           (float)psystem_int_var_6[2];
+      *(int *)((int64_t)psystem_int_var_6 + **(int64_t **)(unaff_RDI + 0x2d0) + 0x14 + system_long_var) = psystem_int_var_6[3];
       *(float *)((**(int64_t **)(unaff_RDI + 0x2d0) - unaff_RBP) + -0x10 + (int64_t)system_context_int_system_pointer_var_1) =
-           (float)piVar6[4];
-      *(int *)((int64_t)piVar6 + **(int64_t **)(unaff_RDI + 0x2d0) + 0x1c + system_long_var) = piVar6[5];
+           (float)psystem_int_var_6[4];
+      *(int *)((int64_t)psystem_int_var_6 + **(int64_t **)(unaff_RDI + 0x2d0) + 0x1c + system_long_var) = psystem_int_var_6[5];
       system_long_value_g = system_long_value_g + -1;
-      piVar6 = system_context_int_system_pointer_var_1;
+      psystem_int_var_6 = system_context_int_system_pointer_var_1;
     } while (system_long_value_g != 0);
   }
   for (; (int64_t)unaff_RBX < (int64_t)unaff_R14; unaff_RBX = unaff_RBX + 1) {
@@ -54797,27 +54797,27 @@ void system_internal_function(int64_t system_context_ptr)
                 system_uint_var_f = (system_uint_var_f - 1 | 0xfffffff0) + 1;
               }
               psystem_long_var = psystem_long_var + 4;
-              iVar9 = 8;
+              system_int_var_9 = 8;
               do {
                 *(int *)(psystem_long_var + -4) = system_int_result + system_int_result;
                 *(int *)((int64_t)psystem_long_var + -0x1c) = system_int_result + 1 + system_int_result;
                 *(int *)(psystem_long_var + -3) = system_int_result + 2 + system_int_result;
                 *(int *)((int64_t)psystem_long_var + -0x14) = system_int_result + 3 + system_int_result;
                 system_int_result = system_int_result + 0x10;
-                *(int *)(psystem_long_var + -2) = iVar9 + -4 + system_int_result;
-                *(int *)((int64_t)psystem_long_var + -0xc) = iVar9 + -3 + system_int_result;
-                *(int *)(psystem_long_var + -1) = iVar9 + -2 + system_int_result;
-                *(int *)((int64_t)psystem_long_var + -4) = iVar9 + -1 + system_int_result;
-                *(int *)psystem_long_var = iVar9 + system_int_result;
-                *(int *)((int64_t)psystem_long_var + 4) = iVar9 + 1 + system_int_result;
-                *(int *)(psystem_long_var + 1) = iVar9 + 2 + system_int_result;
-                *(int *)((int64_t)psystem_long_var + 0xc) = iVar9 + 3 + system_int_result;
-                *(int *)(psystem_long_var + 2) = iVar9 + 4 + system_int_result;
-                *(int *)((int64_t)psystem_long_var + 0x14) = iVar9 + 5 + system_int_result;
-                *(int *)(psystem_long_var + 3) = iVar9 + 6 + system_int_result;
-                *(int *)((int64_t)psystem_long_var + 0x1c) = iVar9 + 7 + system_int_result;
+                *(int *)(psystem_long_var + -2) = system_int_var_9 + -4 + system_int_result;
+                *(int *)((int64_t)psystem_long_var + -0xc) = system_int_var_9 + -3 + system_int_result;
+                *(int *)(psystem_long_var + -1) = system_int_var_9 + -2 + system_int_result;
+                *(int *)((int64_t)psystem_long_var + -4) = system_int_var_9 + -1 + system_int_result;
+                *(int *)psystem_long_var = system_int_var_9 + system_int_result;
+                *(int *)((int64_t)psystem_long_var + 4) = system_int_var_9 + 1 + system_int_result;
+                *(int *)(psystem_long_var + 1) = system_int_var_9 + 2 + system_int_result;
+                *(int *)((int64_t)psystem_long_var + 0xc) = system_int_var_9 + 3 + system_int_result;
+                *(int *)(psystem_long_var + 2) = system_int_var_9 + 4 + system_int_result;
+                *(int *)((int64_t)psystem_long_var + 0x14) = system_int_var_9 + 5 + system_int_result;
+                *(int *)(psystem_long_var + 3) = system_int_var_9 + 6 + system_int_result;
+                *(int *)((int64_t)psystem_long_var + 0x1c) = system_int_var_9 + 7 + system_int_result;
                 psystem_long_var = psystem_long_var + 8;
-                iVar9 = iVar9 + 0x10;
+                system_int_var_9 = system_int_var_9 + 0x10;
                 system_int_result = system_int_result;
               } while (system_int_result < (int)(system_uint_var - system_uint_var_f));
             }
@@ -54986,27 +54986,27 @@ void system_internal_function(uint32_t* system_context_ptr)
               system_uint_var_f = (system_uint_var_f - 1 | 0xfffffff0) + 1;
             }
             psystem_long_var = psystem_long_var + 4;
-            iVar9 = 8;
+            system_int_var_9 = 8;
             do {
               *(int *)(psystem_long_var + -4) = system_int_result + system_int_result;
               *(int *)((int64_t)psystem_long_var + -0x1c) = system_int_result + 1 + system_int_result;
               *(int *)(psystem_long_var + -3) = system_int_result + 2 + system_int_result;
               *(int *)((int64_t)psystem_long_var + -0x14) = system_int_result + 3 + system_int_result;
               system_int_result = system_int_result + 0x10;
-              *(int *)(psystem_long_var + -2) = iVar9 + -4 + system_int_result;
-              *(int *)((int64_t)psystem_long_var + -0xc) = iVar9 + -3 + system_int_result;
-              *(int *)(psystem_long_var + -1) = iVar9 + -2 + system_int_result;
-              *(int *)((int64_t)psystem_long_var + -4) = iVar9 + -1 + system_int_result;
-              *(int *)psystem_long_var = iVar9 + system_int_result;
-              *(int *)((int64_t)psystem_long_var + 4) = iVar9 + 1 + system_int_result;
-              *(int *)(psystem_long_var + 1) = iVar9 + 2 + system_int_result;
-              *(int *)((int64_t)psystem_long_var + 0xc) = iVar9 + 3 + system_int_result;
-              *(int *)(psystem_long_var + 2) = iVar9 + 4 + system_int_result;
-              *(int *)((int64_t)psystem_long_var + 0x14) = iVar9 + 5 + system_int_result;
-              *(int *)(psystem_long_var + 3) = iVar9 + 6 + system_int_result;
-              *(int *)((int64_t)psystem_long_var + 0x1c) = iVar9 + 7 + system_int_result;
+              *(int *)(psystem_long_var + -2) = system_int_var_9 + -4 + system_int_result;
+              *(int *)((int64_t)psystem_long_var + -0xc) = system_int_var_9 + -3 + system_int_result;
+              *(int *)(psystem_long_var + -1) = system_int_var_9 + -2 + system_int_result;
+              *(int *)((int64_t)psystem_long_var + -4) = system_int_var_9 + -1 + system_int_result;
+              *(int *)psystem_long_var = system_int_var_9 + system_int_result;
+              *(int *)((int64_t)psystem_long_var + 4) = system_int_var_9 + 1 + system_int_result;
+              *(int *)(psystem_long_var + 1) = system_int_var_9 + 2 + system_int_result;
+              *(int *)((int64_t)psystem_long_var + 0xc) = system_int_var_9 + 3 + system_int_result;
+              *(int *)(psystem_long_var + 2) = system_int_var_9 + 4 + system_int_result;
+              *(int *)((int64_t)psystem_long_var + 0x14) = system_int_var_9 + 5 + system_int_result;
+              *(int *)(psystem_long_var + 3) = system_int_var_9 + 6 + system_int_result;
+              *(int *)((int64_t)psystem_long_var + 0x1c) = system_int_var_9 + 7 + system_int_result;
               psystem_long_var = psystem_long_var + 8;
-              iVar9 = iVar9 + 0x10;
+              system_int_var_9 = system_int_var_9 + 0x10;
               system_int_result = system_int_result;
             } while (system_int_result < (int)(system_uint_var - system_uint_var_f));
           }
@@ -55170,27 +55170,27 @@ void system_internal_function(uint8_t system_context_ptr,int64_t system_config_f
             system_uint_var_f = (system_uint_var_f - 1 | 0xfffffff0) + 1;
           }
           psystem_long_var = psystem_long_var + 4;
-          iVar9 = 8;
+          system_int_var_9 = 8;
           do {
             *(int *)(psystem_long_var + -4) = system_int_result + system_int_result;
             *(int *)((int64_t)psystem_long_var + -0x1c) = system_int_result + 1 + system_int_result;
             *(int *)(psystem_long_var + -3) = system_int_result + 2 + system_int_result;
             *(int *)((int64_t)psystem_long_var + -0x14) = system_int_result + 3 + system_int_result;
             system_int_result = system_int_result + 0x10;
-            *(int *)(psystem_long_var + -2) = iVar9 + -4 + system_int_result;
-            *(int *)((int64_t)psystem_long_var + -0xc) = iVar9 + -3 + system_int_result;
-            *(int *)(psystem_long_var + -1) = iVar9 + -2 + system_int_result;
-            *(int *)((int64_t)psystem_long_var + -4) = iVar9 + -1 + system_int_result;
-            *(int *)psystem_long_var = iVar9 + system_int_result;
-            *(int *)((int64_t)psystem_long_var + 4) = iVar9 + 1 + system_int_result;
-            *(int *)(psystem_long_var + 1) = iVar9 + 2 + system_int_result;
-            *(int *)((int64_t)psystem_long_var + 0xc) = iVar9 + 3 + system_int_result;
-            *(int *)(psystem_long_var + 2) = iVar9 + 4 + system_int_result;
-            *(int *)((int64_t)psystem_long_var + 0x14) = iVar9 + 5 + system_int_result;
-            *(int *)(psystem_long_var + 3) = iVar9 + 6 + system_int_result;
-            *(int *)((int64_t)psystem_long_var + 0x1c) = iVar9 + 7 + system_int_result;
+            *(int *)(psystem_long_var + -2) = system_int_var_9 + -4 + system_int_result;
+            *(int *)((int64_t)psystem_long_var + -0xc) = system_int_var_9 + -3 + system_int_result;
+            *(int *)(psystem_long_var + -1) = system_int_var_9 + -2 + system_int_result;
+            *(int *)((int64_t)psystem_long_var + -4) = system_int_var_9 + -1 + system_int_result;
+            *(int *)psystem_long_var = system_int_var_9 + system_int_result;
+            *(int *)((int64_t)psystem_long_var + 4) = system_int_var_9 + 1 + system_int_result;
+            *(int *)(psystem_long_var + 1) = system_int_var_9 + 2 + system_int_result;
+            *(int *)((int64_t)psystem_long_var + 0xc) = system_int_var_9 + 3 + system_int_result;
+            *(int *)(psystem_long_var + 2) = system_int_var_9 + 4 + system_int_result;
+            *(int *)((int64_t)psystem_long_var + 0x14) = system_int_var_9 + 5 + system_int_result;
+            *(int *)(psystem_long_var + 3) = system_int_var_9 + 6 + system_int_result;
+            *(int *)((int64_t)psystem_long_var + 0x1c) = system_int_var_9 + 7 + system_int_result;
             psystem_long_var = psystem_long_var + 8;
-            iVar9 = iVar9 + 0x10;
+            system_int_var_9 = system_int_var_9 + 0x10;
             system_int_result = system_int_result;
           } while (system_int_result < (int)(system_int_result_15 - system_uint_var_f));
         }
@@ -55338,27 +55338,27 @@ void system_internal_function(void)
           system_uint_var_f = (system_uint_var_f - 1 | 0xfffffff0) + 1;
         }
         psystem_long_var = psystem_long_var + 4;
-        iVar9 = 8;
+        system_int_var_9 = 8;
         do {
           *(int *)(psystem_long_var + -4) = system_int_result + system_int_result;
           *(int *)((int64_t)psystem_long_var + -0x1c) = system_int_result + 1 + system_int_result;
           *(int *)(psystem_long_var + -3) = system_int_result + 2 + system_int_result;
           *(int *)((int64_t)psystem_long_var + -0x14) = system_int_result + 3 + system_int_result;
           system_int_result = system_int_result + 0x10;
-          *(int *)(psystem_long_var + -2) = iVar9 + -4 + system_int_result;
-          *(int *)((int64_t)psystem_long_var + -0xc) = iVar9 + -3 + system_int_result;
-          *(int *)(psystem_long_var + -1) = iVar9 + -2 + system_int_result;
-          *(int *)((int64_t)psystem_long_var + -4) = iVar9 + -1 + system_int_result;
-          *(int *)psystem_long_var = iVar9 + system_int_result;
-          *(int *)((int64_t)psystem_long_var + 4) = iVar9 + 1 + system_int_result;
-          *(int *)(psystem_long_var + 1) = iVar9 + 2 + system_int_result;
-          *(int *)((int64_t)psystem_long_var + 0xc) = iVar9 + 3 + system_int_result;
-          *(int *)(psystem_long_var + 2) = iVar9 + 4 + system_int_result;
-          *(int *)((int64_t)psystem_long_var + 0x14) = iVar9 + 5 + system_int_result;
-          *(int *)(psystem_long_var + 3) = iVar9 + 6 + system_int_result;
-          *(int *)((int64_t)psystem_long_var + 0x1c) = iVar9 + 7 + system_int_result;
+          *(int *)(psystem_long_var + -2) = system_int_var_9 + -4 + system_int_result;
+          *(int *)((int64_t)psystem_long_var + -0xc) = system_int_var_9 + -3 + system_int_result;
+          *(int *)(psystem_long_var + -1) = system_int_var_9 + -2 + system_int_result;
+          *(int *)((int64_t)psystem_long_var + -4) = system_int_var_9 + -1 + system_int_result;
+          *(int *)psystem_long_var = system_int_var_9 + system_int_result;
+          *(int *)((int64_t)psystem_long_var + 4) = system_int_var_9 + 1 + system_int_result;
+          *(int *)(psystem_long_var + 1) = system_int_var_9 + 2 + system_int_result;
+          *(int *)((int64_t)psystem_long_var + 0xc) = system_int_var_9 + 3 + system_int_result;
+          *(int *)(psystem_long_var + 2) = system_int_var_9 + 4 + system_int_result;
+          *(int *)((int64_t)psystem_long_var + 0x14) = system_int_var_9 + 5 + system_int_result;
+          *(int *)(psystem_long_var + 3) = system_int_var_9 + 6 + system_int_result;
+          *(int *)((int64_t)psystem_long_var + 0x1c) = system_int_var_9 + 7 + system_int_result;
           psystem_long_var = psystem_long_var + 8;
-          iVar9 = iVar9 + 0x10;
+          system_int_var_9 = system_int_var_9 + 0x10;
           system_int_result = system_int_result;
         } while (system_int_result < (int)(system_byte_result_12 - system_uint_var_f));
       }
@@ -55506,27 +55506,27 @@ void system_internal_function(void)
           system_uint_var_f = (system_uint_var_f - 1 | 0xfffffff0) + 1;
         }
         psystem_long_var = psystem_long_var + 4;
-        iVar9 = 8;
+        system_int_var_9 = 8;
         do {
           *(int *)(psystem_long_var + -4) = system_int_result + system_int_result;
           *(int *)((int64_t)psystem_long_var + -0x1c) = system_int_result + 1 + system_int_result;
           *(int *)(psystem_long_var + -3) = system_int_result + 2 + system_int_result;
           *(int *)((int64_t)psystem_long_var + -0x14) = system_int_result + 3 + system_int_result;
           system_int_result = system_int_result + 0x10;
-          *(int *)(psystem_long_var + -2) = iVar9 + -4 + system_int_result;
-          *(int *)((int64_t)psystem_long_var + -0xc) = iVar9 + -3 + system_int_result;
-          *(int *)(psystem_long_var + -1) = iVar9 + -2 + system_int_result;
-          *(int *)((int64_t)psystem_long_var + -4) = iVar9 + -1 + system_int_result;
-          *(int *)psystem_long_var = iVar9 + system_int_result;
-          *(int *)((int64_t)psystem_long_var + 4) = iVar9 + 1 + system_int_result;
-          *(int *)(psystem_long_var + 1) = iVar9 + 2 + system_int_result;
-          *(int *)((int64_t)psystem_long_var + 0xc) = iVar9 + 3 + system_int_result;
-          *(int *)(psystem_long_var + 2) = iVar9 + 4 + system_int_result;
-          *(int *)((int64_t)psystem_long_var + 0x14) = iVar9 + 5 + system_int_result;
-          *(int *)(psystem_long_var + 3) = iVar9 + 6 + system_int_result;
-          *(int *)((int64_t)psystem_long_var + 0x1c) = iVar9 + 7 + system_int_result;
+          *(int *)(psystem_long_var + -2) = system_int_var_9 + -4 + system_int_result;
+          *(int *)((int64_t)psystem_long_var + -0xc) = system_int_var_9 + -3 + system_int_result;
+          *(int *)(psystem_long_var + -1) = system_int_var_9 + -2 + system_int_result;
+          *(int *)((int64_t)psystem_long_var + -4) = system_int_var_9 + -1 + system_int_result;
+          *(int *)psystem_long_var = system_int_var_9 + system_int_result;
+          *(int *)((int64_t)psystem_long_var + 4) = system_int_var_9 + 1 + system_int_result;
+          *(int *)(psystem_long_var + 1) = system_int_var_9 + 2 + system_int_result;
+          *(int *)((int64_t)psystem_long_var + 0xc) = system_int_var_9 + 3 + system_int_result;
+          *(int *)(psystem_long_var + 2) = system_int_var_9 + 4 + system_int_result;
+          *(int *)((int64_t)psystem_long_var + 0x14) = system_int_var_9 + 5 + system_int_result;
+          *(int *)(psystem_long_var + 3) = system_int_var_9 + 6 + system_int_result;
+          *(int *)((int64_t)psystem_long_var + 0x1c) = system_int_var_9 + 7 + system_int_result;
           psystem_long_var = psystem_long_var + 8;
-          iVar9 = iVar9 + 0x10;
+          system_int_var_9 = system_int_var_9 + 0x10;
           system_int_result = system_int_result;
         } while (system_int_result < (int)(system_uint_var - system_uint_var_f));
       }
@@ -55647,18 +55647,18 @@ void system_internal_function(void)
     system_long_var = (system_uint_var - system_byte_result_7) + 1;
     context_next_ptr = unaff_RBP + (uint64_t)(system_uint_value_e >> 0xb) * 2 + 2;
     do {
-      iVar9 = (int)system_byte_result_7;
+      system_int_var_9 = (int)system_byte_result_7;
       if (*(int64_t *)context_next_ptr == 0) {
         system_long_var = system_internal_function(system_global_data_ptr,0x2000,0x25);
         LOCK();
-        bVar12 = *(int64_t *)(unaff_RBP + (int64_t)iVar9 * 2 + 2) == 0;
+        bVar12 = *(int64_t *)(unaff_RBP + (int64_t)system_int_var_9 * 2 + 2) == 0;
         if (bVar12) {
-          *(int64_t *)(unaff_RBP + (int64_t)iVar9 * 2 + 2) = system_long_var;
+          *(int64_t *)(unaff_RBP + (int64_t)system_int_var_9 * 2 + 2) = system_long_var;
         }
         UNLOCK();
         if (bVar12) {
           LOCK();
-          *(uint8_t* *)((int64_t)iVar9 + 0x108 + (int64_t)unaff_RBP) = 0;
+          *(uint8_t* *)((int64_t)system_int_var_9 + 0x108 + (int64_t)unaff_RBP) = 0;
           UNLOCK();
         }
         else {
@@ -55674,7 +55674,7 @@ void system_internal_function(void)
         do {
         } while (*psystem_char_var != '\0');
       }
-      system_byte_result_7 = (uint64_t)(iVar9 + 1);
+      system_byte_result_7 = (uint64_t)(system_int_var_9 + 1);
       context_next_ptr = context_next_ptr + 2;
       psystem_char_var = psystem_char_var + 1;
       system_long_var = system_long_var + -1;
@@ -55891,7 +55891,7 @@ void* system_resource_system_ptr_varey;
 uint8_t system_internal_function(void)
 
 {
-  float *pfVar12;
+  float *system_float_ptr_primary2;
   float *unaff_RDI;
   uint system_register_r9D;
   uint in_R10D;
@@ -55912,7 +55912,7 @@ uint8_t system_internal_function(void)
   int unaff_XMM12_Dd;
   float *in_system_stack_var;
   
-  pfVar12 = unaff_RDI;
+  system_float_ptr_primary2 = unaff_RDI;
   do {
     system_uint_var = 0;
     system_int_result = unaff_R13D;
@@ -55932,8 +55932,8 @@ uint8_t system_internal_function(void)
     if (unaff_XMM9_Da <= fVar17) {
       fVar17 = unaff_XMM9_Da;
     }
-    *pfVar12 = fVar17;
-    pfVar12 = pfVar12 + 1;
+    *system_float_ptr_primary2 = fVar17;
+    system_float_ptr_primary2 = system_float_ptr_primary2 + 1;
   } while ((int)in_R10D < (int)system_register_r9D);
   if (in_system_stack_var != (float *)0x0) {
     system_int_result = 0;
@@ -55977,23 +55977,23 @@ uint8_t system_internal_function(void)
         fVar22 = (fVar22 + fVar22) - fVar22 * fVar22 * asystem_uint_var._4_4_;
         fVar23 = (fVar23 + fVar23) - fVar23 * fVar23 * asystem_uint_var._8_4_;
         fVar24 = (fVar24 + fVar24) - fVar24 * fVar24 * asystem_uint_var._12_4_;
-        pfVar12 = unaff_RDI;
+        system_float_ptr_primary2 = unaff_RDI;
         system_int_result = system_int_result;
         do {
-          system_float_var_a = *pfVar12;
-          system_float_var_b = pfVar12[1];
-          system_float_var_c = pfVar12[2];
-          system_float_var_d = pfVar12[3];
+          system_float_var_a = *system_float_ptr_primary2;
+          system_float_var_b = system_float_ptr_primary2[1];
+          system_float_var_c = system_float_ptr_primary2[2];
+          system_float_var_d = system_float_ptr_primary2[3];
           system_uint_var = -(uint)(0.0001 < system_float_var_a);
           system_uint_var = -(uint)(0.0001 < system_float_var_b);
           system_int_result_15 = -(uint)(0.0001 < system_float_var_c);
           system_uint_var = -(uint)(0.0001 < system_float_var_d);
           system_int_result = system_int_result + 8;
-          system_float_var_e = pfVar12[4];
-          system_float_var_f = pfVar12[5];
-          system_float_var_g = pfVar12[6];
-          system_float_var_h = pfVar12[7];
-          pfVar12 = pfVar12 + 8;
+          system_float_var_e = system_float_ptr_primary2[4];
+          system_float_var_f = system_float_ptr_primary2[5];
+          system_float_var_g = system_float_ptr_primary2[6];
+          system_float_var_h = system_float_ptr_primary2[7];
+          system_float_ptr_primary2 = system_float_ptr_primary2 + 8;
           fVar17 = (float)((uint)((float)system_int_result * (float)unaff_XMM12_Da * 0.5 * fVar20 * system_float_var_a +
                                  fVar17) & system_uint_var | ~system_uint_var & (uint)fVar17);
           fVar29 = (float)((uint)((float)(system_int_result + 1) * (float)unaff_XMM12_Db * 0.5 * fVar22 * system_float_var_b
@@ -56031,44 +56031,44 @@ uint8_t system_internal_function(void)
         if (3 < (int)(system_register_r9D - system_int_result)) {
           system_int_result = system_int_result + 2;
           fVar29 = (float)unaff_EBX;
-          pfVar12 = unaff_RDI + (int64_t)system_int_result + 2;
+          system_float_ptr_primary2 = unaff_RDI + (int64_t)system_int_result + 2;
           fVar31 = (float)(int)system_register_r9D;
           do {
-            fVar19 = pfVar12[-2];
+            fVar19 = system_float_ptr_primary2[-2];
             if (0.0001 < fVar19) {
               unaff_XMM6_Da = unaff_XMM6_Da + fVar19;
               fVar17 = fVar17 + ((fVar29 * 0.5 * (float)system_int_result) / fVar31) * fVar19;
             }
-            fVar19 = pfVar12[-1];
+            fVar19 = system_float_ptr_primary2[-1];
             if (0.0001 < fVar19) {
               unaff_XMM6_Da = unaff_XMM6_Da + fVar19;
               fVar17 = fVar17 + (((float)(system_int_result + -1) * fVar29 * 0.5) / fVar31) * fVar19;
             }
-            fVar19 = *pfVar12;
+            fVar19 = *system_float_ptr_primary2;
             if (0.0001 < fVar19) {
               unaff_XMM6_Da = unaff_XMM6_Da + fVar19;
               fVar17 = fVar17 + (((float)system_int_result * fVar29 * 0.5) / fVar31) * fVar19;
             }
-            fVar19 = pfVar12[1];
+            fVar19 = system_float_ptr_primary2[1];
             if (0.0001 < fVar19) {
               unaff_XMM6_Da = unaff_XMM6_Da + fVar19;
               fVar17 = fVar17 + (((float)(system_int_result + 1) * fVar29 * 0.5) / fVar31) * fVar19;
             }
-            pfVar12 = pfVar12 + 4;
+            system_float_ptr_primary2 = system_float_ptr_primary2 + 4;
             system_int_result = system_int_result + 4;
             system_int_result = system_int_result + 4;
           } while (system_int_result < (int)(system_register_r9D - 3));
         }
         if (system_int_result < (int)system_register_r9D) {
-          pfVar12 = unaff_RDI + system_int_result;
+          system_float_ptr_primary2 = unaff_RDI + system_int_result;
           do {
-            fVar29 = *pfVar12;
+            fVar29 = *system_float_ptr_primary2;
             if (0.0001 < fVar29) {
               unaff_XMM6_Da = unaff_XMM6_Da + fVar29;
               fVar17 = fVar17 + (((float)unaff_EBX * 0.5 * (float)system_int_result) / (float)(int)system_register_r9D) *
                                 fVar29;
             }
-            pfVar12 = pfVar12 + 1;
+            system_float_ptr_primary2 = system_float_ptr_primary2 + 1;
             system_int_result = system_int_result + 1;
           } while (system_int_result < (int)system_register_r9D);
         }
@@ -56088,7 +56088,7 @@ uint8_t system_internal_function(void)
 uint8_t system_internal_function(void)
 
 {
-  float *pfVar11;
+  float *system_float_ptr_primary1;
   float *unaff_RDI;
   float *in_R11;
   uint8_t* asystem_uint_var [16];
@@ -56135,23 +56135,23 @@ uint8_t system_internal_function(void)
       fVar21 = (fVar21 + fVar21) - fVar21 * fVar21 * asystem_uint_var._4_4_;
       fVar22 = (fVar22 + fVar22) - fVar22 * fVar22 * asystem_uint_var._8_4_;
       fVar23 = (fVar23 + fVar23) - fVar23 * fVar23 * asystem_uint_var._12_4_;
-      pfVar11 = unaff_RDI;
+      system_float_ptr_primary1 = unaff_RDI;
       system_int_result = system_int_result;
       do {
-        system_float_var_a = *pfVar11;
-        system_float_var_b = pfVar11[1];
-        system_float_var_c = pfVar11[2];
-        system_float_var_d = pfVar11[3];
+        system_float_var_a = *system_float_ptr_primary1;
+        system_float_var_b = system_float_ptr_primary1[1];
+        system_float_var_c = system_float_ptr_primary1[2];
+        system_float_var_d = system_float_ptr_primary1[3];
         system_uint_var = -(uint)(0.0001 < system_float_var_a);
         system_long_result_14 = -(uint)(0.0001 < system_float_var_b);
         system_int_result_15 = -(uint)(0.0001 < system_float_var_c);
         system_uint_var = -(uint)(0.0001 < system_float_var_d);
         system_int_result = system_int_result + 8;
-        system_float_var_e = pfVar11[4];
-        system_float_var_f = pfVar11[5];
-        system_float_var_g = pfVar11[6];
-        system_float_var_h = pfVar11[7];
-        pfVar11 = pfVar11 + 8;
+        system_float_var_e = system_float_ptr_primary1[4];
+        system_float_var_f = system_float_ptr_primary1[5];
+        system_float_var_g = system_float_ptr_primary1[6];
+        system_float_var_h = system_float_ptr_primary1[7];
+        system_float_ptr_primary1 = system_float_ptr_primary1 + 8;
         fVar25 = (float)((uint)((float)system_int_result * (float)unaff_XMM12_Da * 0.5 * fVar19 * system_float_var_a +
                                fVar25) & system_uint_var | ~system_uint_var & (uint)fVar25);
         fVar29 = (float)((uint)((float)(system_int_result + 1) * (float)unaff_XMM12_Db * 0.5 * fVar21 * system_float_var_b +
@@ -56189,44 +56189,44 @@ uint8_t system_internal_function(void)
       if (3 < (int)(system_register_r9D - system_int_result)) {
         system_int_result = system_int_result + 2;
         fVar29 = (float)unaff_EBX;
-        pfVar11 = unaff_RDI + (int64_t)system_int_result + 2;
+        system_float_ptr_primary1 = unaff_RDI + (int64_t)system_int_result + 2;
         fVar31 = (float)(int)system_register_r9D;
         do {
-          fVar18 = pfVar11[-2];
+          fVar18 = system_float_ptr_primary1[-2];
           if (0.0001 < fVar18) {
             unaff_XMM6_Da = unaff_XMM6_Da + fVar18;
             fVar25 = fVar25 + ((fVar29 * 0.5 * (float)system_int_result) / fVar31) * fVar18;
           }
-          fVar18 = pfVar11[-1];
+          fVar18 = system_float_ptr_primary1[-1];
           if (0.0001 < fVar18) {
             unaff_XMM6_Da = unaff_XMM6_Da + fVar18;
             fVar25 = fVar25 + (((float)(system_int_result + -1) * fVar29 * 0.5) / fVar31) * fVar18;
           }
-          fVar18 = *pfVar11;
+          fVar18 = *system_float_ptr_primary1;
           if (0.0001 < fVar18) {
             unaff_XMM6_Da = unaff_XMM6_Da + fVar18;
             fVar25 = fVar25 + (((float)system_int_result * fVar29 * 0.5) / fVar31) * fVar18;
           }
-          fVar18 = pfVar11[1];
+          fVar18 = system_float_ptr_primary1[1];
           if (0.0001 < fVar18) {
             unaff_XMM6_Da = unaff_XMM6_Da + fVar18;
             fVar25 = fVar25 + (((float)(system_int_result + 1) * fVar29 * 0.5) / fVar31) * fVar18;
           }
-          pfVar11 = pfVar11 + 4;
+          system_float_ptr_primary1 = system_float_ptr_primary1 + 4;
           system_int_result = system_int_result + 4;
           system_int_result = system_int_result + 4;
         } while (system_int_result < (int)(system_register_r9D - 3));
       }
       if (system_int_result < (int)system_register_r9D) {
-        pfVar11 = unaff_RDI + system_int_result;
+        system_float_ptr_primary1 = unaff_RDI + system_int_result;
         do {
-          fVar29 = *pfVar11;
+          fVar29 = *system_float_ptr_primary1;
           if (0.0001 < fVar29) {
             unaff_XMM6_Da = unaff_XMM6_Da + fVar29;
             fVar25 = fVar25 + (((float)unaff_EBX * 0.5 * (float)system_int_result) / (float)(int)system_register_r9D) *
                               fVar29;
           }
-          pfVar11 = pfVar11 + 1;
+          system_float_ptr_primary1 = system_float_ptr_primary1 + 1;
           system_int_result = system_int_result + 1;
         } while (system_int_result < (int)system_register_r9D);
       }
@@ -56245,7 +56245,7 @@ uint8_t system_internal_function(void)
 uint8_t system_internal_function(int system_context_ptr,uint8_t system_config_flags,uint8_t system_thread_count,uint system_memory_size)
 
 {
-  float *pfVar10;
+  float *system_float_ptr_primary0;
   float *unaff_RDI;
   float *in_R11;
   uint8_t* asystem_uint_var [16];
@@ -56288,23 +56288,23 @@ uint8_t system_internal_function(int system_context_ptr,uint8_t system_config_fl
   fVar20 = (fVar20 + fVar20) - fVar20 * fVar20 * asystem_uint_var._4_4_;
   fVar21 = (fVar21 + fVar21) - fVar21 * fVar21 * asystem_uint_var._8_4_;
   fVar22 = (fVar22 + fVar22) - fVar22 * fVar22 * asystem_uint_var._12_4_;
-  pfVar10 = unaff_RDI;
+  system_float_ptr_primary0 = unaff_RDI;
   do {
     system_int_result = system_context_ptr;
-    system_float_var_a = *pfVar10;
-    system_float_var_b = pfVar10[1];
-    system_float_var_c = pfVar10[2];
-    system_float_var_d = pfVar10[3];
+    system_float_var_a = *system_float_ptr_primary0;
+    system_float_var_b = system_float_ptr_primary0[1];
+    system_float_var_c = system_float_ptr_primary0[2];
+    system_float_var_d = system_float_ptr_primary0[3];
     system_byte_result_12 = -(uint)(0.0001 < system_float_var_a);
     system_uint_var = -(uint)(0.0001 < system_float_var_b);
     system_long_result_14 = -(uint)(0.0001 < system_float_var_c);
     system_int_result_15 = -(uint)(0.0001 < system_float_var_d);
     system_context_ptr = system_int_result + 8;
-    system_float_var_e = pfVar10[4];
-    system_float_var_f = pfVar10[5];
-    system_float_var_g = pfVar10[6];
-    system_float_var_h = pfVar10[7];
-    pfVar10 = pfVar10 + 8;
+    system_float_var_e = system_float_ptr_primary0[4];
+    system_float_var_f = system_float_ptr_primary0[5];
+    system_float_var_g = system_float_ptr_primary0[6];
+    system_float_var_h = system_float_ptr_primary0[7];
+    system_float_ptr_primary0 = system_float_ptr_primary0 + 8;
     fVar24 = (float)((uint)((float)system_int_result * (float)unaff_XMM12_Da * 0.5 * fVar18 * system_float_var_a + fVar24) &
                      system_byte_result_12 | ~system_byte_result_12 & (uint)fVar24);
     fVar28 = (float)((uint)((float)(system_int_result + 1) * (float)unaff_XMM12_Db * 0.5 * fVar20 * system_float_var_b +
@@ -56340,44 +56340,44 @@ uint8_t system_internal_function(int system_context_ptr,uint8_t system_config_fl
     if (3 < (int)(system_memory_size - system_context_ptr)) {
       system_int_result = system_int_result + 10;
       fVar28 = (float)unaff_EBX;
-      pfVar10 = unaff_RDI + (int64_t)system_context_ptr + 2;
+      system_float_ptr_primary0 = unaff_RDI + (int64_t)system_context_ptr + 2;
       fVar30 = (float)(int)system_memory_size;
       do {
-        fVar17 = pfVar10[-2];
+        fVar17 = system_float_ptr_primary0[-2];
         if (0.0001 < fVar17) {
           fVar18 = fVar18 + fVar17;
           fVar24 = fVar24 + ((fVar28 * 0.5 * (float)system_context_ptr) / fVar30) * fVar17;
         }
-        fVar17 = pfVar10[-1];
+        fVar17 = system_float_ptr_primary0[-1];
         if (0.0001 < fVar17) {
           fVar18 = fVar18 + fVar17;
           fVar24 = fVar24 + (((float)(system_int_result + -1) * fVar28 * 0.5) / fVar30) * fVar17;
         }
-        fVar17 = *pfVar10;
+        fVar17 = *system_float_ptr_primary0;
         if (0.0001 < fVar17) {
           fVar18 = fVar18 + fVar17;
           fVar24 = fVar24 + (((float)system_int_result * fVar28 * 0.5) / fVar30) * fVar17;
         }
-        fVar17 = pfVar10[1];
+        fVar17 = system_float_ptr_primary0[1];
         if (0.0001 < fVar17) {
           fVar18 = fVar18 + fVar17;
           fVar24 = fVar24 + (((float)(system_int_result + 1) * fVar28 * 0.5) / fVar30) * fVar17;
         }
-        pfVar10 = pfVar10 + 4;
+        system_float_ptr_primary0 = system_float_ptr_primary0 + 4;
         system_context_ptr = system_context_ptr + 4;
         system_int_result = system_int_result + 4;
       } while (system_context_ptr < (int)(system_memory_size - 3));
     }
     if (system_context_ptr < (int)system_memory_size) {
-      pfVar10 = unaff_RDI + system_context_ptr;
+      system_float_ptr_primary0 = unaff_RDI + system_context_ptr;
       do {
-        fVar28 = *pfVar10;
+        fVar28 = *system_float_ptr_primary0;
         if (0.0001 < fVar28) {
           fVar18 = fVar18 + fVar28;
           fVar24 = fVar24 + (((float)unaff_EBX * 0.5 * (float)system_context_ptr) / (float)(int)system_memory_size) *
                             fVar28;
         }
-        pfVar10 = pfVar10 + 1;
+        system_float_ptr_primary0 = system_float_ptr_primary0 + 1;
         system_context_ptr = system_context_ptr + 1;
       } while (system_context_ptr < (int)system_memory_size);
     }
@@ -56396,51 +56396,51 @@ uint8_t system_internal_function(int system_context_ptr,uint8_t system_config_fl
 uint8_t system_internal_function(int system_context_ptr,uint8_t system_config_flags,uint8_t system_thread_count,float system_memory_size)
 
 {
-  float *pfVar2;
+  float *system_float_ptr_secondary;
   float *in_R11;
   
   if (system_context_ptr < system_register_r9D) {
     if (3 < system_register_r9D - system_context_ptr) {
       system_memory_compare_result = system_context_ptr + 2;
       system_float_var_d = (float)unaff_EBX;
-      pfVar2 = (float *)(unaff_RDI + ((int64_t)system_context_ptr + 2) * 4);
+      system_float_ptr_secondary = (float *)(unaff_RDI + ((int64_t)system_context_ptr + 2) * 4);
       system_float_var_e = (float)system_register_r9D;
       do {
-        system_float_var_a = pfVar2[-2];
+        system_float_var_a = system_float_ptr_secondary[-2];
         if (0.0001 < system_float_var_a) {
           system_memory_size = system_memory_size + system_float_var_a;
           unaff_XMM6_Da = unaff_XMM6_Da + ((system_float_var_d * 0.5 * (float)system_context_ptr) / system_float_var_e) * system_float_var_a;
         }
-        system_float_var_a = pfVar2[-1];
+        system_float_var_a = system_float_ptr_secondary[-1];
         if (0.0001 < system_float_var_a) {
           system_memory_size = system_memory_size + system_float_var_a;
           unaff_XMM6_Da = unaff_XMM6_Da + (((float)(system_memory_compare_result + -1) * system_float_var_d * 0.5) / system_float_var_e) * system_float_var_a;
         }
-        system_float_var_a = *pfVar2;
+        system_float_var_a = *system_float_ptr_secondary;
         if (0.0001 < system_float_var_a) {
           system_memory_size = system_memory_size + system_float_var_a;
           unaff_XMM6_Da = unaff_XMM6_Da + (((float)system_memory_compare_result * system_float_var_d * 0.5) / system_float_var_e) * system_float_var_a;
         }
-        system_float_var_a = pfVar2[1];
+        system_float_var_a = system_float_ptr_secondary[1];
         if (0.0001 < system_float_var_a) {
           system_memory_size = system_memory_size + system_float_var_a;
           unaff_XMM6_Da = unaff_XMM6_Da + (((float)(system_memory_compare_result + 1) * system_float_var_d * 0.5) / system_float_var_e) * system_float_var_a;
         }
-        pfVar2 = pfVar2 + 4;
+        system_float_ptr_secondary = system_float_ptr_secondary + 4;
         system_context_ptr = system_context_ptr + 4;
         system_memory_compare_result = system_memory_compare_result + 4;
       } while (system_context_ptr < system_register_r9D + -3);
     }
     if (system_context_ptr < system_register_r9D) {
-      pfVar2 = (float *)(unaff_RDI + (int64_t)system_context_ptr * 4);
+      system_float_ptr_secondary = (float *)(unaff_RDI + (int64_t)system_context_ptr * 4);
       do {
-        system_float_var_d = *pfVar2;
+        system_float_var_d = *system_float_ptr_secondary;
         if (0.0001 < system_float_var_d) {
           system_memory_size = system_memory_size + system_float_var_d;
           unaff_XMM6_Da =
                unaff_XMM6_Da + (((float)unaff_EBX * 0.5 * (float)system_context_ptr) / (float)system_register_r9D) * system_float_var_d;
         }
-        pfVar2 = pfVar2 + 1;
+        system_float_ptr_secondary = system_float_ptr_secondary + 1;
         system_context_ptr = system_context_ptr + 1;
       } while (system_context_ptr < system_register_r9D);
     }

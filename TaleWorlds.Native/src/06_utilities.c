@@ -48,44 +48,44 @@
 #define UTILITY_STATUS_FLAG_F0 0xF0                     // 状态标志F0
 
 // 内存操作常量
-#define UTILITY_MEMORY_OFFSET_NEGATIVE -1                          // 内存偏移量负值
+#define UTILITY_MEMORY_INVALID_OFFSET -1                          // 内存无效偏移量
 #define UTILITY_MEMORY_NEGATIVE_OFFSET -1                          // 内存负偏移量
-#define UTILITY_MEMORY_FLAG 0x1                                    // 内存操作标志
+#define UTILITY_MEMORY_OPERATION_FLAG 0x1                          // 内存操作标志
 #define UTILITY_MEMORY_STANDARD_OFFSET 0x4                         // 内存标准偏移量
-#define UTILITY_ZERO 0                                             // 零值常量
-#define UTILITY_OFFSET_FLAG 0x10                                   // 偏移量标志
+#define UTILITY_MEMORY_ZERO 0                                       // 内存零值
+#define UTILITY_MEMORY_OFFSET_FLAG 0x10                            // 内存偏移标志
 
-// 数据偏移量常量
-#define UTILITY_DATA_OFFSET 0x10                                   // 数据偏移量
-#define UTILITY_OFFSET_RESOURCE_PTR 0x8                            // 资源指针偏移量
+// 资源操作常量
+#define UTILITY_RESOURCE_DATA_OFFSET 0x10                          // 资源数据偏移量
+#define UTILITY_RESOURCE_POINTER_OFFSET 0x8                        // 资源指针偏移量
 
 // 错误代码常量
-#define UTILITY_ERROR_FLAG 0xFFFFFFFF                              // 错误标志
-#define UTILITY_ERROR_INVALID_HANDLE 0xFFFFFFFE                    // 无效句柄错误
-#define UTILITY_ERROR_OFFSET 0x4                                  // 错误偏移量
+#define UTILITY_ERROR_GENERAL 0xFFFFFFFF                           // 通用错误标志
+#define UTILITY_ERROR_INVALID_HANDLE 0xFFFFFFFE                   // 无效句柄错误
+#define UTILITY_ERROR_CODE_OFFSET 0x4                              // 错误代码偏移量
 
 // 索引常量
-#define UTILITY_INDEX_ONE 0x1                                      // 索引1
-#define UTILITY_INDEX_ZERO 0x0                                     // 索引0
+#define UTILITY_INDEX_FIRST 0x1                                    // 第一索引
+#define UTILITY_INDEX_ZERO 0x0                                     // 零索引
 
 // 大小限制常量
 #define UTILITY_SIZE_OFFSET 0x8                                    // 大小偏移量
-#define UTILITY_SIZE_OFFSET_EXTENDED_BYTE 0x1                      // 扩展字节大小偏移量
-#define UTILITY_SIZE_STANDARD 0x4                                  // 标准大小
-#define UTILITY_SIZE_LIMIT_STANDARD 0x1000                         // 标准大小限制
+#define UTILITY_SIZE_BYTE_OFFSET 0x1                               // 字节大小偏移量
+#define UTILITY_SIZE_STANDARD 0x4                                   // 标准大小
+#define UTILITY_SIZE_LIMIT 0x1000                                  // 大小限制
 
-// 字节掩码常量
-#define UTILITY_BYTE_MASK_EF 0xEF                                  // 字节掩码EF
-#define UTILITY_BYTE_MASK_DF 0xDF                                  // 字节掩码DF
-#define UTILITY_BYTE_MASK_BF 0xBF                                  // 字节掩码BF
-#define UTILITY_BYTE_MASK_EXTENDED_PRIMARY 0xFF                    // 扩展主字节掩码
-#define UTILITY_WORD_MASK_FEFF 0xFEFF                              // 字掩码FEFF
+// 位掩码常量
+#define UTILITY_MASK_EF 0xEF                                       // 掩码EF
+#define UTILITY_MASK_DF 0xDF                                       // 掩码DF
+#define UTILITY_MASK_BF 0xBF                                       // 掩码BF
+#define UTILITY_MASK_FULL 0xFF                                      // 完整掩码
+#define UTILITY_MASK_WORD_FEFF 0xFEFF                               // 字掩码FEFF
 
-// 其他常量
-#define UTILITY_CHAR_NULL '\0'                                     // 空字符
-#define UTILITY_STACK_PRIMARY 0x1                                  // 主栈
-#define UTILITY_OFFSET_STRUCTURE 0x10                              // 结构体偏移量
-#define UTILITY_LIST_DATA_OFFSET 0x14                              // 列表数据偏移量
+// 系统常量
+#define UTILITY_NULL_CHAR '\0'                                     // 空字符
+#define UTILITY_PRIMARY_STACK 0x1                                   // 主栈标识
+#define UTILITY_STRUCTURE_OFFSET 0x10                              // 结构体偏移量
+#define UTILITY_LIST_OFFSET 0x14                                    // 列表偏移量
 
 // 全局变量声明 - 语义化美化
 static longlong utility_system_resource_handle = 0;
@@ -186,24 +186,24 @@ void utility_memory_cleanup_handler(void)
  * - 验证操作结果状态
  * - 返回处理结果
  */
-uint64 utility_process_resource_data(longlong utility_resource_primary_handle)
+uint64 utility_process_resource_data(longlong resource_handle)
 {
-  uint64 utility_result;
-  utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &utility_system_resource_handle);
-  if ((int)utility_result != UTILITY_ZERO) {
-    return utility_result;
+  uint64 result;
+  result = system_memory_operation(*(uint32 *)(resource_handle + UTILITY_RESOURCE_DATA_OFFSET), &utility_system_resource_handle);
+  if ((int)result != UTILITY_MEMORY_ZERO) {
+    return result;
   }
-  if (utility_system_resource_handle == UTILITY_ZERO) {
-    utility_system_resource_handle = UTILITY_ZERO;
+  if (utility_system_resource_handle == UTILITY_MEMORY_ZERO) {
+    utility_system_resource_handle = UTILITY_MEMORY_ZERO;
   }
   else {
     utility_system_resource_handle = utility_system_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
-  if (*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
-    return UTILITY_ERROR_FLAG;
+  if (*(longlong *)(utility_system_resource_handle + UTILITY_RESOURCE_POINTER_OFFSET) == UTILITY_MEMORY_ZERO) {
+    return UTILITY_ERROR_GENERAL;
   }
-  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
-  return UTILITY_ZERO;
+  utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_RESOURCE_POINTER_OFFSET), UTILITY_MEMORY_OPERATION_FLAG);
+  return UTILITY_MEMORY_ZERO;
 }
 
 /**
