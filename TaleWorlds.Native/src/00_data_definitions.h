@@ -185,8 +185,6 @@
 #define SYSTEM_CHAR_LOWERCASE_C 0x63
 #define SYSTEM_CHAR_LOWERCASE_D 0x64
 #define SYSTEM_CHAR_LOWERCASE_E 0x65
-#define SYSTEM_CHAR_LOWERCASE_D 0x64
-#define SYSTEM_CHAR_LOWERCASE_E 0x65
 #define SYSTEM_CHAR_LOWERCASE_F 0x66
 #define SYSTEM_CHAR_LOWERCASE_G 0x67
 #define SYSTEM_CHAR_LOWERCASE_H 0x68
@@ -213,7 +211,7 @@
 #define SYSTEM_CHAR_RIGHT_BRACE 0x7d
 #define SYSTEM_CHAR_TILDE 0x7e
 
-// 系统控制值常量定义
+// 系统控制值常量定义 - ASCII控制字符的十六进制表示
 #define SYSTEM_CONTROL_VALUE_NULL 0x00
 #define SYSTEM_CONTROL_VALUE_START_OF_HEADER 0x01
 #define SYSTEM_CONTROL_VALUE_START_OF_TEXT 0x02
@@ -248,6 +246,7 @@
 #define SYSTEM_CONTROL_VALUE_UNIT_SEPARATOR 0x1f
 #define SYSTEM_CONTROL_VALUE_DELETE 0x7f
 
+// 系统位掩码常量定义 - 用于位运算和掩码操作
 #define SYSTEM_BIT_MASK_LEAST_SIGNIFICANT_BIT 0x01                                    // 位掩码位0
 #define SYSTEM_BIT_MASK_SECOND_BIT 0x02                                    // 位掩码位1
 #define SYSTEM_BIT_MASK_THIRD_BIT 0x04                                    // 位掩码位2
@@ -265,7 +264,7 @@
 #define SYSTEM_BIT_MASK_WORD_THIRD 0x4000                              // 字第三位掩码
 #define SYSTEM_BIT_MASK_WORD_MOST_SIGNIFICANT 0x8000                              // 字最高有效位掩码
 
-// 位掩码语义化常量定义
+// 系统对齐掩码常量定义 - 用于内存对齐操作
 #define SYSTEM_BIT_MASK_BYTE_ALIGNMENT 0x100                    // 字节对齐掩码
 #define SYSTEM_BIT_MASK_WORD_ALIGNMENT 0x200                    // 字对齐掩码
 #define SYSTEM_BIT_MASK_DWORD_ALIGNMENT 0x400                   // 双字对齐掩码

@@ -5373,14 +5373,6 @@ uint64 utility_allocate_memory_region(longlong utility_resource_primary_handle,u
   *(uint64 *)(utility_operation_flags + utility_memory_offset_standard + utility_resource_primary_handle * utility_memory_size_standard) = *utility_cpu_context;
   return utility_zero;
 }
-// 资源分配函数 - 分配并初始化资源
-// 参数：
-// - utility_resource_primary_handle: 资源主句柄
-// - utility_primary_resource_cache: 主资源缓存大小
-// - utility_operation_flags: 操作标志
-// - utility_resource_callback_handler: 资源回调处理器
-// - utility_additional_resource_parameter: 额外资源参数
-// 返回值：分配结果或错误码
 uint64
 utility_allocate_resource(int utility_resource_primary_handle, int utility_primary_resource_cache, uint64 utility_operation_flags, uint64 utility_resource_callback_handler, uint64 utility_additional_resource_parameter)
 {
@@ -19911,6 +19903,19 @@ void utility_unwind_exception_handler_simple(uint64 utility_resource_primary_han
   }
   return;
 }
+/**
+ * @brief 核心系统函数 - 处理系统核心操作
+ * 
+ * 该函数负责处理系统的核心操作，包括线程本地存储数据的初始化和清理。
+ * 执行系统资源的初始化，验证缓冲区状态，并设置适当的清理回调。
+ * 
+ * @param utility_resource_primary_handle 资源主句柄
+ * @param utility_primary_resource_cache 主资源缓存
+ * @return 无返回值
+ * 
+ * 简化实现：仅添加必要的文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 void utility_unwind_function_core(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   *(uint64 *)(utility_resource_context_handle + utility_resource_offset_standard) = &utility_thread_local_storage_data;
@@ -19923,6 +19928,19 @@ void utility_unwind_function_core(uint64 utility_resource_primary_handle,longlon
   *(uint64 *)(utility_resource_context_handle + utility_resource_offset_standard) = &utility_thread_local_storage_cleanup;
   return;
 }
+/**
+ * @brief 系统函数 - 处理系统级操作
+ * 
+ * 该函数负责处理系统级操作，包括调用系统资源数据缓冲区的清理函数。
+ * 检查资源数据缓冲区是否有效，如果有效则执行相应的清理操作。
+ * 
+ * @param utility_resource_primary_handle 资源主句柄
+ * @param utility_primary_resource_cache 主资源缓存
+ * @return 无返回值
+ * 
+ * 简化实现：仅添加必要的文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 void utility_unwind_function_system(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache)
 {
   if (*(longlong **)(utility_resource_context_handle + utility_resource_data_buffer_offset_quaternary) != (longlong *)utility_pointer_null) {
