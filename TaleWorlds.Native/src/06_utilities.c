@@ -2,7 +2,7 @@
 
 // 06_utilities.c - 473 个函数
 
- undefined FUN_1809414f0;
+ 9414f0;
 undefined DAT_180bf5290;
 undefined DAT_180bf52a0;
 undefined DAT_180bf52c0;
@@ -22,77 +22,77 @@ undefined DAT_180bf5330;
 undefined DAT_180bf5338;
 undefined UNK_18098bb30;
 
- undefined FUN_180941590;
-undefined FUN_180941590;
+ 941590;
+941590;
 undefined DAT_180bf5770;
 undefined DAT_180bf5778;
 undefined DAT_180bf5780;
 undefined DAT_180bf5788;
 
- undefined FUN_1809415b0;
-undefined FUN_1809415b0;
+ 9415b0;
+9415b0;
 undefined DAT_180bf5208;
 undefined DAT_180bf5210;
 undefined DAT_180bf5218;
 undefined DAT_180bf5220;
 undefined UNK_18098bc80;
 
- undefined FUN_1809415d0;
-undefined FUN_1809415d0;
+ 9415d0;
+9415d0;
 undefined DAT_180bf5bc0;
 undefined DAT_180bf5bc8;
 undefined DAT_180bf5bd0;
 undefined DAT_180bf5bd8;
 undefined UNK_1809fcc58;
 
- undefined FUN_1809415f0;
-undefined FUN_1809415f0;
+ 9415f0;
+9415f0;
 undefined DAT_180bf5c30;
 undefined DAT_180bf5c38;
 undefined DAT_180bf5c40;
 undefined DAT_180bf5c48;
 
- undefined FUN_180941610;
-undefined FUN_180941610;
+ 941610;
+941610;
 undefined DAT_180bf6080;
 undefined DAT_180bf6088;
 undefined DAT_180bf6090;
 undefined DAT_180bf6098;
 
- undefined FUN_180941630;
-undefined FUN_180941630;
+ 941630;
+941630;
 undefined1 DAT_180c910f8;
 
- undefined FUN_180941650;
-undefined FUN_180941650;
+ 941650;
+941650;
 undefined1 DAT_180c91198;
 
- undefined FUN_180941690;
-undefined FUN_180941690;
+ 941690;
+941690;
 undefined1 DAT_180c91238;
 
- undefined FUN_1809416d0;
-undefined FUN_1809416d0;
+ 9416d0;
+9416d0;
 undefined1 DAT_180c912d8;
 
- undefined FUN_180941710;
-undefined FUN_180941710;
+ 941710;
+941710;
 undefined DAT_1809fe0d0;
 undefined UNK_1809fd0d8;
 
- undefined FUN_1809417a0;
-undefined FUN_1809417a0;
+ 9417a0;
+9417a0;
 
- undefined FUN_1809417c0;
-undefined FUN_1809417c0;
+ 9417c0;
+9417c0;
 undefined DAT_180c9190c;
 undefined UNK_1809fcc28;
 undefined UNK_1809ffa30;
 undefined DAT_180a010a0;
 undefined UNK_180a00370;
 
- undefined FUN_180941800;
-undefined FUN_180941800;
+ 941800;
+941800;
 undefined DAT_180bf64e0;
 undefined DAT_180bf64e8;
 undefined UNK_1809fdc18;
@@ -101,8 +101,8 @@ undefined DAT_180bf6530;
 undefined DAT_180bf6538;
 undefined DAT_180bf6540;
 
- undefined FUN_180941820;
-undefined FUN_180941820;
+ 941820;
+941820;
 undefined DAT_180bf6548;
 undefined UNK_180a004e8;
 undefined DAT_180bf6590;
@@ -110,24 +110,24 @@ undefined DAT_180bf6598;
 undefined DAT_180bf65a0;
 undefined DAT_180bf65a8;
 
- undefined FUN_180941840;
-undefined FUN_180941840;
+ 941840;
+941840;
 undefined UNK_180a004f8;
 undefined DAT_180bf65c0;
 undefined DAT_180bf65c8;
 undefined DAT_180bf65d0;
 undefined DAT_180bf65d8;
 
- undefined FUN_180941860;
-undefined FUN_180941860;
+ 941860;
+941860;
 undefined UNK_180a00508;
 undefined DAT_180bf65f0;
 undefined DAT_180bf65f8;
 undefined DAT_180bf6600;
 undefined DAT_180bf6608;
 
- undefined FUN_180941880;
-undefined FUN_180941880;
+ 941880;
+941880;
 undefined UNK_180a00518;
 undefined DAT_180bf6620;
 undefined DAT_180bf6628;
@@ -135,51 +135,51 @@ undefined DAT_180bf6630;
 undefined DAT_180bf6638;
 undefined UNK_180a00528;
 
- undefined FUN_1809418a0;
-undefined FUN_1809418a0;
+ 9418a0;
+9418a0;
 undefined DAT_180bf6650;
 undefined DAT_180bf6658;
 undefined DAT_180bf6660;
 undefined DAT_180bf6668;
 undefined UNK_180a00538;
 
- undefined FUN_1809418c0;
-undefined FUN_1809418c0;
+ 9418c0;
+9418c0;
 undefined DAT_180bf6680;
 undefined DAT_180bf6688;
 undefined DAT_180bf6690;
 undefined DAT_180bf6698;
 undefined UNK_180a00540;
 
- undefined FUN_1809418e0;
-undefined FUN_1809418e0;
+ 9418e0;
+9418e0;
 undefined DAT_180bf66b0;
 undefined DAT_180bf66b8;
 undefined DAT_180bf66c0;
 undefined DAT_180bf66c8;
 undefined UNK_180a00548;
 
- undefined FUN_180941900;
-undefined FUN_180941900;
+ 941900;
+941900;
 undefined DAT_180bf52e8;
 undefined DAT_180bf52f0;
 undefined DAT_180bf52f8;
 undefined DAT_180bf5300;
 undefined UNK_180a01300;
 
- undefined FUN_180941980;
-undefined FUN_180941980;
+ 941980;
+941980;
 undefined DAT_180bf5738;
 undefined DAT_180bf5740;
 undefined DAT_180bf5748;
 undefined DAT_180bf5750;
 undefined UNK_180a01330;
 
- undefined FUN_1809419a0;
-undefined FUN_1809419a0;
+ 9419a0;
+9419a0;
 
- undefined FUN_1809419c0;
-undefined FUN_1809419c0;
+ 9419c0;
+9419c0;
 undefined DAT_180c9196c;
 undefined UNK_180a02998;
 undefined DAT_180c919e0;
@@ -349,8 +349,8 @@ undefined DAT_180bf7250;
 undefined DAT_180bf7258;
 undefined DAT_180bf7260;
 
- undefined FUN_180941b90;
-undefined FUN_180941b90;
+ 941b90;
+941b90;
 undefined DAT_180bf7268;
 undefined UNK_180a03098;
 undefined DAT_180bf72b0;
@@ -358,16 +358,16 @@ undefined DAT_180bf72b8;
 undefined DAT_180bf72c0;
 undefined DAT_180bf72c8;
 
- undefined FUN_180941bb0;
-undefined FUN_180941bb0;
+ 941bb0;
+941bb0;
 undefined UNK_180a03060;
 undefined DAT_180bf7310;
 undefined DAT_180bf7318;
 undefined DAT_180bf7320;
 undefined DAT_180bf7328;
 
- undefined FUN_180941bd0;
-undefined FUN_180941bd0;
+ 941bd0;
+941bd0;
 undefined UNK_180a030a8;
 undefined DAT_180bf7370;
 undefined DAT_180bf7378;
@@ -600,15 +600,15 @@ undefined DAT_180bf90b8;
 undefined DAT_180bf90c0;
 undefined DAT_180bf90c8;
 
- undefined FUN_180941d00;
-undefined FUN_180941d00;
+ 941d00;
+941d00;
 undefined DAT_180bf5b88;
 undefined DAT_180bf5b90;
 undefined DAT_180bf5b98;
 undefined DAT_180bf5ba0;
 
- undefined FUN_180941d20;
-undefined FUN_180941d20;
+ 941d20;
+941d20;
 undefined DAT_180c91da8;
 undefined DAT_180a16c50;
 undefined DAT_180c91dac;
@@ -641,19 +641,19 @@ undefined DAT_180bf91c0;
 undefined DAT_180bf91c8;
 undefined UNK_180a22b38;
 
- undefined FUN_180941f00;
-undefined FUN_180941f00;
+ 941f00;
+941f00;
 undefined DAT_180bf9210;
 undefined DAT_180bf9218;
 undefined DAT_180bf9220;
 undefined DAT_180bf9228;
 undefined UNK_180a22b90;
 
- undefined FUN_180941f20;
-undefined FUN_180941f20;
+ 941f20;
+941f20;
 
- undefined FUN_180941f40;
-undefined FUN_180941f40;
+ 941f40;
+941f40;
 undefined DAT_180bf9270;
 undefined DAT_180bf9278;
 undefined DAT_180bf9280;
@@ -661,8 +661,8 @@ undefined DAT_180bf9288;
 undefined UNK_180a22b78;
 undefined DAT_180bf92d0;
 
- undefined FUN_180941f60;
-undefined FUN_180941f60;
+ 941f60;
+941f60;
 undefined DAT_180bf92d8;
 undefined DAT_180bf92e0;
 undefined DAT_180bf92e8;
@@ -670,8 +670,8 @@ undefined UNK_180a22b60;
 undefined DAT_180bf9330;
 undefined DAT_180bf9338;
 
- undefined FUN_180941f80;
-undefined FUN_180941f80;
+ 941f80;
+941f80;
 undefined DAT_180bf9340;
 undefined DAT_180bf9348;
 undefined UNK_180a22b50;
@@ -679,8 +679,8 @@ undefined DAT_180bf9390;
 undefined DAT_180bf9398;
 undefined DAT_180bf93a0;
 
- undefined FUN_180941fa0;
-undefined FUN_180941fa0;
+ 941fa0;
+941fa0;
 undefined DAT_180bf93a8;
 undefined UNK_180a22be8;
 undefined DAT_180bf93f0;
@@ -688,24 +688,24 @@ undefined DAT_180bf93f8;
 undefined DAT_180bf9400;
 undefined DAT_180bf9408;
 
- undefined FUN_180941fc0;
-undefined FUN_180941fc0;
+ 941fc0;
+941fc0;
 undefined UNK_180a22bd0;
 undefined DAT_180bf9450;
 undefined DAT_180bf9458;
 undefined DAT_180bf9460;
 undefined DAT_180bf9468;
 
- undefined FUN_180941fe0;
-undefined FUN_180941fe0;
+ 941fe0;
+941fe0;
 undefined UNK_180a22bb8;
 undefined DAT_180bf94b0;
 undefined DAT_180bf94b8;
 undefined DAT_180bf94c0;
 undefined DAT_180bf94c8;
 
- undefined FUN_180942000;
-undefined FUN_180942000;
+ 942000;
+942000;
 undefined UNK_180a22ba8;
 undefined DAT_180bf9510;
 undefined DAT_180bf9518;
@@ -713,75 +713,75 @@ undefined DAT_180bf9520;
 undefined DAT_180bf9528;
 undefined UNK_180a22c48;
 
- undefined FUN_180942020;
-undefined FUN_180942020;
+ 942020;
+942020;
 undefined DAT_180bf9570;
 undefined DAT_180bf9578;
 undefined DAT_180bf9580;
 undefined DAT_180bf9588;
 undefined UNK_180a22c30;
 
- undefined FUN_180942040;
-undefined FUN_180942040;
+ 942040;
+942040;
 undefined DAT_180bf95d0;
 undefined DAT_180bf95d8;
 undefined DAT_180bf95e0;
 undefined DAT_180bf95e8;
 undefined UNK_180a22c18;
 
- undefined FUN_180942060;
-undefined FUN_180942060;
+ 942060;
+942060;
 undefined DAT_180bf9630;
 undefined DAT_180bf9638;
 undefined DAT_180bf9640;
 undefined DAT_180bf9648;
 undefined UNK_180a22c00;
 
- undefined FUN_180942080;
-undefined FUN_180942080;
+ 942080;
+942080;
 undefined DAT_180bf9690;
 undefined DAT_180bf9698;
 undefined DAT_180bf96a0;
 undefined DAT_180bf96a8;
 undefined DAT_180a22cb0;
 
- undefined FUN_1809420a0;
-undefined FUN_1809420a0;
+ 9420a0;
+9420a0;
 undefined DAT_180bf96f0;
 undefined DAT_180bf96f8;
 undefined DAT_180bf9700;
 undefined DAT_180bf9708;
 undefined UNK_180a22c98;
 
- undefined FUN_1809420c0;
-undefined FUN_1809420c0;
+ 9420c0;
+9420c0;
 undefined DAT_180bf9750;
 undefined DAT_180bf9758;
 undefined DAT_180bf9760;
 undefined DAT_180bf9768;
 undefined UNK_180a22c70;
 
- undefined FUN_1809420e0;
-undefined FUN_1809420e0;
+ 9420e0;
+9420e0;
 undefined DAT_180bf97b0;
 undefined DAT_180bf97b8;
 undefined DAT_180bf97c0;
 undefined DAT_180bf97c8;
 undefined UNK_180a22c58;
 
- undefined FUN_180942100;
-undefined FUN_180942100;
+ 942100;
+942100;
 undefined DAT_180bf9810;
 undefined DAT_180bf9818;
 undefined DAT_180bf9820;
 undefined DAT_180bf9828;
 undefined UNK_180a22d28;
 
- undefined FUN_180942120;
-undefined FUN_180942120;
+ 942120;
+942120;
 
- undefined FUN_180942140;
-undefined FUN_180942140;
+ 942140;
+942140;
 undefined DAT_180bf9870;
 undefined DAT_180bf9878;
 undefined DAT_180bf9880;
@@ -789,8 +789,8 @@ undefined DAT_180bf9888;
 undefined UNK_180a22d08;
 undefined DAT_180bf98d0;
 
- undefined FUN_180942160;
-undefined FUN_180942160;
+ 942160;
+942160;
 undefined DAT_180bf98d8;
 undefined DAT_180bf98e0;
 undefined DAT_180bf98e8;
@@ -798,8 +798,8 @@ undefined UNK_180a22ce8;
 undefined DAT_180bf9930;
 undefined DAT_180bf9938;
 
- undefined FUN_180942180;
-undefined FUN_180942180;
+ 942180;
+942180;
 undefined DAT_180bf9940;
 undefined DAT_180bf9948;
 undefined UNK_180a22cc8;
@@ -807,8 +807,8 @@ undefined DAT_180bf9990;
 undefined DAT_180bf9998;
 undefined DAT_180bf99a0;
 
- undefined FUN_1809421a0;
-undefined FUN_1809421a0;
+ 9421a0;
+9421a0;
 undefined DAT_180bf99a8;
 undefined UNK_180a22db0;
 undefined DAT_180bf99f0;
@@ -816,24 +816,24 @@ undefined DAT_180bf99f8;
 undefined DAT_180bf9a00;
 undefined DAT_180bf9a08;
 
- undefined FUN_1809421c0;
-undefined FUN_1809421c0;
+ 9421c0;
+9421c0;
 undefined UNK_180a22d88;
 undefined DAT_180bf9a50;
 undefined DAT_180bf9a58;
 undefined DAT_180bf9a60;
 undefined DAT_180bf9a68;
 
- undefined FUN_1809421e0;
-undefined FUN_1809421e0;
+ 9421e0;
+9421e0;
 undefined UNK_180a22d68;
 undefined DAT_180bf9ab0;
 undefined DAT_180bf9ab8;
 undefined DAT_180bf9ac0;
 undefined DAT_180bf9ac8;
 
- undefined FUN_180942200;
-undefined FUN_180942200;
+ 942200;
+942200;
 undefined DAT_180a22d48;
 undefined DAT_180bf9b10;
 undefined DAT_180bf9b18;
@@ -841,75 +841,75 @@ undefined DAT_180bf9b20;
 undefined DAT_180bf9b28;
 undefined UNK_180a22e40;
 
- undefined FUN_180942220;
-undefined FUN_180942220;
+ 942220;
+942220;
 undefined DAT_180bf9b70;
 undefined DAT_180bf9b78;
 undefined DAT_180bf9b80;
 undefined DAT_180bf9b88;
 undefined UNK_180a22e20;
 
- undefined FUN_180942240;
-undefined FUN_180942240;
+ 942240;
+942240;
 undefined DAT_180bf9bd0;
 undefined DAT_180bf9bd8;
 undefined DAT_180bf9be0;
 undefined DAT_180bf9be8;
 undefined UNK_180a22df8;
 
- undefined FUN_180942260;
-undefined FUN_180942260;
+ 942260;
+942260;
 undefined DAT_180bf9c30;
 undefined DAT_180bf9c38;
 undefined DAT_180bf9c40;
 undefined DAT_180bf9c48;
 undefined UNK_180a22dd0;
 
- undefined FUN_180942280;
-undefined FUN_180942280;
+ 942280;
+942280;
 undefined DAT_180bf9c90;
 undefined DAT_180bf9c98;
 undefined DAT_180bf9ca0;
 undefined DAT_180bf9ca8;
 undefined UNK_180a22eb0;
 
- undefined FUN_1809422a0;
-undefined FUN_1809422a0;
+ 9422a0;
+9422a0;
 undefined DAT_180bf9cf0;
 undefined DAT_180bf9cf8;
 undefined DAT_180bf9d00;
 undefined DAT_180bf9d08;
 undefined UNK_180a22e90;
 
- undefined FUN_1809422c0;
-undefined FUN_1809422c0;
+ 9422c0;
+9422c0;
 undefined DAT_180bf9d50;
 undefined DAT_180bf9d58;
 undefined DAT_180bf9d60;
 undefined DAT_180bf9d68;
 undefined UNK_180a22e70;
 
- undefined FUN_1809422e0;
-undefined FUN_1809422e0;
+ 9422e0;
+9422e0;
 undefined DAT_180bf9db0;
 undefined DAT_180bf9db8;
 undefined DAT_180bf9dc0;
 undefined DAT_180bf9dc8;
 undefined UNK_180a22e58;
 
- undefined FUN_180942300;
-undefined FUN_180942300;
+ 942300;
+942300;
 undefined DAT_180bf9e10;
 undefined DAT_180bf9e18;
 undefined DAT_180bf9e20;
 undefined DAT_180bf9e28;
 undefined UNK_180a22f28;
 
- undefined FUN_180942320;
-undefined FUN_180942320;
+ 942320;
+942320;
 
- undefined FUN_180942340;
-undefined FUN_180942340;
+ 942340;
+942340;
 undefined DAT_180bf9e70;
 undefined DAT_180bf9e78;
 undefined DAT_180bf9e80;
@@ -917,8 +917,8 @@ undefined DAT_180bf9e88;
 undefined UNK_180a22f10;
 undefined DAT_180bf9ed0;
 
- undefined FUN_180942360;
-undefined FUN_180942360;
+ 942360;
+942360;
 undefined DAT_180bf9ed8;
 undefined DAT_180bf9ee0;
 undefined DAT_180bf9ee8;
@@ -926,8 +926,8 @@ undefined UNK_180a22ef8;
 undefined DAT_180bf9f30;
 undefined DAT_180bf9f38;
 
- undefined FUN_180942380;
-undefined FUN_180942380;
+ 942380;
+942380;
 undefined DAT_180bf9f40;
 undefined DAT_180bf9f48;
 undefined UNK_180a22ed8;
@@ -935,8 +935,8 @@ undefined DAT_180bf9f90;
 undefined DAT_180bf9f98;
 undefined DAT_180bf9fa0;
 
- undefined FUN_1809423a0;
-undefined FUN_1809423a0;
+ 9423a0;
+9423a0;
 undefined DAT_180bf9fa8;
 undefined UNK_180a22f90;
 undefined DAT_180bf9ff0;
@@ -944,24 +944,24 @@ undefined DAT_180bf9ff8;
 undefined DAT_180bfa000;
 undefined DAT_180bfa008;
 
- undefined FUN_1809423c0;
-undefined FUN_1809423c0;
+ 9423c0;
+9423c0;
 undefined UNK_180a22f78;
 undefined DAT_180bfa050;
 undefined DAT_180bfa058;
 undefined DAT_180bfa060;
 undefined DAT_180bfa068;
 
- undefined FUN_1809423e0;
-undefined FUN_1809423e0;
+ 9423e0;
+9423e0;
 undefined UNK_180a22f60;
 undefined DAT_180bfa0b0;
 undefined DAT_180bfa0b8;
 undefined DAT_180bfa0c0;
 undefined DAT_180bfa0c8;
 
- undefined FUN_180942400;
-undefined FUN_180942400;
+ 942400;
+942400;
 undefined UNK_180a22f40;
 undefined DAT_180bfa110;
 undefined DAT_180bfa118;
@@ -969,52 +969,52 @@ undefined DAT_180bfa120;
 undefined DAT_180bfa128;
 undefined UNK_180a23018;
 
- undefined FUN_180942420;
-undefined FUN_180942420;
+ 942420;
+942420;
 undefined DAT_180bfa170;
 undefined DAT_180bfa178;
 undefined DAT_180bfa180;
 undefined DAT_180bfa188;
 undefined UNK_180a23000;
 
- undefined FUN_180942440;
-undefined FUN_180942440;
+ 942440;
+942440;
 undefined DAT_180bfa1d0;
 undefined DAT_180bfa1d8;
 undefined DAT_180bfa1e0;
 undefined DAT_180bfa1e8;
 undefined DAT_180a22fd0;
 
- undefined FUN_180942460;
-undefined FUN_180942460;
+ 942460;
+942460;
 undefined DAT_180bfa230;
 undefined DAT_180bfa238;
 undefined DAT_180bfa240;
 undefined DAT_180bfa248;
 undefined DAT_180a22fa8;
 
- undefined FUN_180942480;
-undefined FUN_180942480;
+ 942480;
+942480;
 undefined DAT_180bfa290;
 undefined DAT_180bfa298;
 undefined DAT_180bfa2a0;
 undefined DAT_180bfa2a8;
 undefined UNK_180a23068;
 
- undefined FUN_1809424a0;
-undefined FUN_1809424a0;
+ 9424a0;
+9424a0;
 
- undefined FUN_1809424c0;
-undefined FUN_1809424c0;
+ 9424c0;
+9424c0;
 
- undefined FUN_180942520;
-undefined FUN_180942520;
+ 942520;
+942520;
 
- undefined FUN_180942580;
-undefined FUN_180942580;
+ 942580;
+942580;
 
- undefined FUN_1809425e0;
-undefined FUN_1809425e0;
+ 9425e0;
+9425e0;
 undefined DAT_180c91f6c;
 undefined UNK_180a24340;
 undefined DAT_180c91fcc;
@@ -1114,8 +1114,8 @@ undefined UNK_180942640;
 undefined UNK_180a24da8;
 undefined UNK_180a24dc0;
 
- undefined FUN_180942660;
-undefined FUN_180942660;
+ 942660;
+942660;
 undefined DAT_180bfc150;
 undefined1 DAT_180bfc140;
 undefined DAT_180bfc160;
@@ -1126,8 +1126,8 @@ undefined DAT_180bfaec8;
 undefined DAT_180bfaed0;
 undefined DAT_180bfaed8;
 
- undefined FUN_180942750;
-undefined FUN_180942750;
+ 942750;
+942750;
 undefined DAT_180bfaee0;
 undefined DAT_180bfaee8;
 undefined DAT_180c92050;
@@ -1135,15 +1135,15 @@ undefined DAT_180c92058;
 undefined DAT_180c92060;
 undefined DAT_180c92068;
 
- undefined FUN_180942790;
-undefined FUN_180942790;
+ 942790;
+942790;
 undefined DAT_180bfaef0;
 undefined DAT_180bfaef8;
 undefined DAT_180bfaf00;
 undefined DAT_180bfaf08;
 
- undefined FUN_1809427d0;
-undefined FUN_1809427d0;
+ 9427d0;
+9427d0;
 undefined UNK_180a27a58;
 undefined DAT_180bfb310;
 undefined DAT_180bfb318;
@@ -1151,35 +1151,35 @@ undefined DAT_180bfb320;
 undefined DAT_180bfb328;
 undefined UNK_180a27a6c;
 
- undefined FUN_1809427f0;
-undefined FUN_1809427f0;
+ 9427f0;
+9427f0;
 undefined DAT_180bfb730;
 undefined DAT_180bfb738;
 undefined DAT_180bfb740;
 undefined DAT_180bfb748;
 undefined UNK_180a27a70;
 
- undefined FUN_180942810;
-undefined FUN_180942810;
+ 942810;
+942810;
 undefined DAT_180c9246c;
 undefined UNK_180a2ac10;
 
- undefined FUN_180942890;
-undefined FUN_180942890;
+ 942890;
+942890;
 undefined DAT_180c92490;
 
- undefined FUN_1809428e0;
-undefined FUN_1809428e0;
+ 9428e0;
+9428e0;
 undefined DAT_180c92480;
 
- undefined FUN_180942930;
-undefined FUN_180942930;
+ 942930;
+942930;
 
- undefined FUN_180942a20;
-undefined FUN_180942a20;
+ 942a20;
+942a20;
 
- undefined FUN_1809429f0;
-undefined FUN_1809429f0;
+ 9429f0;
+9429f0;
 undefined DAT_180c924ac;
 undefined UNK_180a2bf10;
 undefined DAT_180c924b0;
@@ -1193,15 +1193,15 @@ undefined DAT_180bf6050;
 undefined DAT_180bf6058;
 undefined DAT_180bf6060;
 
- undefined FUN_180942a60;
-undefined FUN_180942a60;
+ 942a60;
+942a60;
 undefined DAT_180bf6498;
 undefined DAT_180bf64a0;
 undefined DAT_180bf64a8;
 undefined DAT_180bf64b0;
 
- undefined FUN_180942a80;
-undefined FUN_180942a80;
+ 942a80;
+942a80;
 undefined DAT_180a2d660;
 undefined UNK_180a2ca90;
 undefined DAT_180a2d590;
@@ -1210,35 +1210,35 @@ undefined DAT_180c96310;
 undefined DAT_180c96320;
 undefined DAT_180c96328;
 
- undefined FUN_180942fa0;
-undefined FUN_180942fa0;
+ 942fa0;
+942fa0;
 undefined DAT_180bf6558;
 undefined DAT_180bf6560;
 undefined DAT_180bf6568;
 undefined DAT_180bf6570;
 
- undefined FUN_180942fc0;
-undefined FUN_180942fc0;
+ 942fc0;
+942fc0;
 undefined DAT_180c95ecc;
 undefined UNK_180a33fb0;
 
- undefined FUN_180943070;
-undefined FUN_180943070;
+ 943070;
+943070;
 undefined DAT_180c9606c;
 undefined UNK_180a3c028;
 undefined DAT_180c96218;
 undefined UNK_180943130;
 
- undefined FUN_180943140;
-undefined FUN_180943140;
+ 943140;
+943140;
 
- undefined FUN_180943160;
-undefined FUN_180943160;
+ 943160;
+943160;
 undefined DAT_180c96790;
 undefined DAT_180c96798;
 
- undefined FUN_180943180;
-undefined FUN_180943180;
+ 943180;
+943180;
 undefined DAT_180c967a0;
 undefined DAT_180c967a8;
 undefined DAT_180c967b0;
@@ -1247,8 +1247,8 @@ undefined DAT_180c967d0;
 undefined UNK_180a3def0;
 undefined UNK_18098bcb0;
 
- undefined FUN_1809431a0;
-undefined FUN_1809431a0;
+ 9431a0;
+9431a0;
 undefined _tls_index;
 void *ThreadLocalStoragePointer;
 undefined DAT_180c967d4;
@@ -1260,8 +1260,8 @@ undefined DAT_180c967e8;
 undefined DAT_180c967f0;
 undefined DAT_180c967f8;
 
- undefined FUN_180943200;
-undefined FUN_180943200;
+ 943200;
+943200;
 undefined DAT_180c96800;
 undefined DAT_180c96808;
 undefined DAT_180c0c6c0;
@@ -1343,8 +1343,8 @@ undefined UNK_1809fc7b8;
 undefined DAT_1809fc7ec;
 undefined DAT_180bf5240;
 
- undefined FUN_1809417e0;
-undefined FUN_1809417e0;
+ 9417e0;
+9417e0;
 undefined DAT_180d49160;
 undefined DAT_180d49168;
 undefined DAT_180d49170;
@@ -1356,14 +1356,14 @@ undefined UNK_180a00030;
 undefined UNK_180a00100;
 undefined UNK_180a00168;
 
- undefined FUN_180941920;
-undefined FUN_180941920;
+ 941920;
+941920;
 undefined UNK_180a009a8;
 undefined UNK_180a00a18;
 undefined UNK_180a00ae8;
 
- undefined FUN_1809419e0;
-undefined FUN_1809419e0;
+ 9419e0;
+9419e0;
 undefined UNK_180a015f0;
 undefined UNK_180a015fc;
 undefined UNK_180a01604;
@@ -1390,8 +1390,8 @@ undefined UNK_180a02718;
 undefined UNK_180a02728;
 undefined UNK_180a028c8;
 
- undefined FUN_180941a30;
-undefined FUN_180941a30;
+ 941a30;
+941a30;
 undefined DAT_180d49238;
 undefined DAT_180d49250;
 undefined DAT_180d49248;
@@ -1400,8 +1400,8 @@ undefined DAT_180d49258;
 undefined DAT_180d4925c;
 undefined UNK_180a02c10;
 
- undefined FUN_180941ad0;
-undefined FUN_180941ad0;
+ 941ad0;
+941ad0;
 undefined UNK_180a07328;
 undefined UNK_180a07370;
 undefined UNK_180a18a00;
@@ -1489,8 +1489,8 @@ undefined UNK_180a07804;
 undefined UNK_18098d6b0;
 undefined UNK_18015c090;
 
- undefined FUN_180941b20;
-undefined FUN_180941b20;
+ 941b20;
+941b20;
 undefined DAT_180d49648;
 undefined DAT_180d49640;
 undefined DAT_180d49650;
@@ -1506,8 +1506,8 @@ undefined UNK_1801bc6b0;
 undefined UNK_180a0b680;
 undefined UNK_180a0b690;
 
- undefined FUN_180941d50;
-undefined FUN_180941d50;
+ 941d50;
+941d50;
 undefined UNK_180bd8a60;
 undefined UNK_180a185f0;
 undefined UNK_180a18618;
@@ -1565,8 +1565,8 @@ undefined UNK_180a18de8;
 undefined UNK_180a18df8;
 undefined UNK_180a18e20;
 
- undefined FUN_180941da0;
-undefined FUN_180941da0;
+ 941da0;
+941da0;
 undefined UNK_180a19fd8;
 undefined UNK_180a19eb0;
 undefined UNK_180302310;
@@ -1575,12 +1575,12 @@ undefined UNK_180a19e38;
 undefined UNK_1803048b0;
 undefined UNK_180a19e88;
 
- undefined FUN_180941dd0;
-undefined FUN_180941dd0;
+ 941dd0;
+941dd0;
 undefined DAT_180d497d0;
 
- undefined FUN_180941e00;
-undefined FUN_180941e00;
+ 941e00;
+941e00;
 undefined DAT_180d49990;
 undefined DAT_180d48de0;
 undefined DAT_180d48de8;
@@ -1596,8 +1596,8 @@ undefined UNK_180a1b150;
 undefined UNK_180a1b118;
 undefined UNK_18033cd70;
 
- undefined FUN_180942830;
-undefined FUN_180942830;
+ 942830;
+942830;
 undefined UNK_180a02fc8;
 undefined UNK_180a02fa0;
 undefined DAT_180d49d08;
@@ -1608,8 +1608,8 @@ undefined DAT_180d49c08;
 undefined UNK_18045f200;
 undefined UNK_18045f210;
 
- undefined FUN_180942850;
-undefined FUN_180942850;
+ 942850;
+942850;
 undefined DAT_180c91038;
 undefined UNK_180a3e440;
 undefined UNK_180a2a8a0;
@@ -1664,11 +1664,11 @@ undefined DAT_180bfbb60;
 undefined DAT_180bfbb70;
 undefined DAT_180bfbb80;
 
- undefined FUN_180942a40;
-undefined FUN_180942a40;
+ 942a40;
+942a40;
 
- undefined FUN_180942aa0;
-undefined FUN_180942aa0;
+ 942aa0;
+942aa0;
 undefined DAT_180a2de40;
 undefined1 DAT_180d49e30;
 undefined UNK_180a2dfd0;
@@ -1677,8 +1677,8 @@ undefined UNK_180a2e040;
 undefined UNK_180a2e070;
 undefined UNK_180a2e088;
 
- undefined FUN_180943020;
-undefined FUN_180943020;
+ 943020;
+943020;
 undefined UNK_180a30ce8;
 undefined UNK_180a30d28;
 undefined DAT_180c96128;
@@ -1692,8 +1692,8 @@ undefined DAT_180d49ec4;
 undefined DAT_180c9642c;
 undefined DAT_180c96430;
 
- undefined FUN_180943040;
-undefined FUN_180943040;
+ 943040;
+943040;
 undefined DAT_180c963e8;
 undefined DAT_180d49f60;
 undefined DAT_180d49f64;
@@ -1967,12 +1967,12 @@ undefined UNK_180a33ca8;
 undefined UNK_18053eee0;
 undefined UNK_18053efd0;
 
- undefined FUN_180943090;
-undefined FUN_180943090;
+ 943090;
+943090;
 undefined DAT_180d49ff8;
 
- undefined FUN_1809430b0;
-undefined FUN_1809430b0;
+ 9430b0;
+9430b0;
 undefined UNK_180a38958;
 undefined UNK_180a38978;
 undefined UNK_180a38988;
@@ -2372,8 +2372,8 @@ undefined DAT_180c92510;
 char DAT_180c8aa68;
 undefined UNK_180a3e5e8;
 
- undefined FUN_1809430e0;
-undefined FUN_1809430e0;
+ 9430e0;
+9430e0;
 undefined1 DAT_180bf66d8;
 undefined DAT_180c96858;
 undefined DAT_180bfbf64;
