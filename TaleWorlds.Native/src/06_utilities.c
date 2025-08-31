@@ -10958,7 +10958,7 @@ void context_pointer_process_data(long long context_pointer,long long data_ptr)
                 if (utility_float_var != *putility_float_var5) {
                   system_temp_var0 = system_temp_var8;
                   system_temp_var8 = 0;
-                  psystem_temp_var0 = &UNK_180983950;
+                  psystem_temp_var0 = &utility_system_diagnostic_tool0;
                   fStack_1a8 = utility_float_var3;
                   fStack_1a4 = utility_float_var;
                   result_int = utility_thread_executor_run(context_pointer,&psystem_temp_var0);
@@ -11215,7 +11215,7 @@ void utility_thread_resumer_resume(void)
               utility_float_var = *(float *)(utility_global_register_r15 + -UTILITY_THREAD_TLS_CONTEXT_OFFSET0985054 + (long long)putility_float_var1);
               if (utility_float_var != *putility_float_var1) {
                 utility_utility_stack_param = temp_var_20;
-                utility_utility_stack_param = &UNK_180983950;
+                utility_utility_stack_param = &utility_system_diagnostic_tool0;
                 utility_buffer_ptr = utility_global_register_r13D;
                 fStack0000000000000040 = utility_float_var9;
                 fStack0000000000000044 = utility_float_var;
@@ -11460,7 +11460,7 @@ void context_pointer_process_data(void)
           utility_float_var = *(float *)(utility_global_register_r15 + -UTILITY_THREAD_TLS_CONTEXT_OFFSET0985054 + (long long)putility_float_var1);
           if (utility_float_var != *putility_float_var1) {
             utility_utility_stack_param = temp_var_20;
-            utility_utility_stack_param = &UNK_180983950;
+            utility_utility_stack_param = &utility_system_diagnostic_tool0;
             utility_buffer_ptr = utility_global_register_r13D;
             fStack0000000000000040 = utility_float_var9;
             fStack0000000000000044 = utility_float_var;
@@ -11593,7 +11593,7 @@ void utility_thread_prioritizer_set(float context_pointer)
       utility_float_var = *(float *)(utility_global_register_r15 + -UTILITY_THREAD_TLS_CONTEXT_OFFSET0985054 + (long long)putility_float_var);
       if (utility_float_var != *putility_float_var) {
         utility_utility_stack_param = temp_var_20;
-        utility_utility_stack_param = &UNK_180983950;
+        utility_utility_stack_param = &utility_system_diagnostic_tool0;
         utility_buffer_ptr = utility_global_register_r13D;
         fStack0000000000000040 = utility_float_var;
         fStack0000000000000044 = utility_float_var;
