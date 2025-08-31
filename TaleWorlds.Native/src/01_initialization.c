@@ -968,7 +968,7 @@ void system_init_subsystem_1(void)
  * 原本实现：完整的线程调度器初始化流程，包括线程池管理和任务队列配置
  * 简化实现：仅保留基本的线程调度器初始化逻辑，确保系统能够正常启动
  */
-void system_init_subsystem_2(void)
+void system_initialize_render_system(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -1026,7 +1026,7 @@ void system_init_subsystem_2(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_3(void)
+void system_initialize_audio_system(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -1077,7 +1077,7 @@ void system_init_subsystem_3(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_4(void)
+void system_initialize_input_system(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -1135,7 +1135,7 @@ void system_init_subsystem_4(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_5(void)
+void system_initialize_network_system(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -1847,7 +1847,7 @@ void system_init_subsystem_19(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_20(void)
+void system_initialize_render_system0(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -1905,7 +1905,7 @@ void system_init_subsystem_20(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_21(void)
+void system_initialize_render_system1(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -1963,7 +1963,7 @@ void system_init_subsystem_21(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_22(void)
+void system_initialize_render_system2(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -2021,7 +2021,7 @@ void system_init_subsystem_22(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_23(void)
+void system_initialize_render_system3(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -2079,7 +2079,7 @@ void system_init_subsystem_23(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_24(void)
+void system_initialize_render_system4(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -2137,7 +2137,7 @@ void system_init_subsystem_24(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_25(void)
+void system_initialize_render_system5(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -2195,7 +2195,7 @@ void system_init_subsystem_25(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_26(void)
+void system_initialize_render_system6(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -2253,7 +2253,7 @@ void system_init_subsystem_26(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_27(void)
+void system_initialize_render_system7(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -2311,7 +2311,7 @@ void system_init_subsystem_27(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_28(void)
+void system_initialize_render_system8(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -2369,7 +2369,7 @@ void system_init_subsystem_28(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_29(void)
+void system_initialize_render_system9(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -2427,7 +2427,7 @@ void system_init_subsystem_29(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_30(void)
+void system_initialize_audio_system0(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -2485,7 +2485,7 @@ void system_init_subsystem_30(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_31(void)
+void system_initialize_audio_system1(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -2545,7 +2545,7 @@ void system_init_subsystem_31(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_32(void)
+void system_initialize_audio_system2(void)
 {
   longlong system_memory_allocation_result;
   void* register_r9_value;
@@ -2566,7 +2566,7 @@ void system_init_subsystem_32(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_33(void)
+void system_initialize_audio_system3(void)
 {
   void* register_r9_value;
   void* *system_init_stack_memory_primary;
@@ -2596,7 +2596,7 @@ void system_init_subsystem_33(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_34(void)
+void system_initialize_audio_system4(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -2654,7 +2654,7 @@ void system_init_subsystem_34(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_35(void)
+void system_initialize_audio_system5(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -2712,7 +2712,7 @@ void system_init_subsystem_35(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_36(void)
+void system_initialize_audio_system6(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -2770,7 +2770,7 @@ void system_init_subsystem_36(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_37(void)
+void system_initialize_audio_system7(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -2828,7 +2828,7 @@ void system_init_subsystem_37(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_38(void)
+void system_initialize_audio_system8(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -2886,7 +2886,7 @@ void system_init_subsystem_38(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_39(void)
+void system_initialize_audio_system9(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -2944,7 +2944,7 @@ void system_init_subsystem_39(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_40(void)
+void system_initialize_input_system0(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -3002,7 +3002,7 @@ void system_init_subsystem_40(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_41(void)
+void system_initialize_input_system1(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -3060,7 +3060,7 @@ void system_init_subsystem_41(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_42(void)
+void system_initialize_input_system2(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -3118,7 +3118,7 @@ void system_init_subsystem_42(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_43(void)
+void system_initialize_input_system3(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -3176,7 +3176,7 @@ void system_init_subsystem_43(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_44(void)
+void system_initialize_input_system4(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -3234,7 +3234,7 @@ void system_init_subsystem_44(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_45(void)
+void system_initialize_input_system5(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -3292,7 +3292,7 @@ void system_init_subsystem_45(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_46(void)
+void system_initialize_input_system6(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -3350,7 +3350,7 @@ void system_init_subsystem_46(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_47(void)
+void system_initialize_input_system7(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -3408,7 +3408,7 @@ void system_init_subsystem_47(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_48(void)
+void system_initialize_input_system8(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -3466,7 +3466,7 @@ void system_init_subsystem_48(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_49(void)
+void system_initialize_input_system9(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -3524,7 +3524,7 @@ void system_init_subsystem_49(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_50(void)
+void system_initialize_network_system0(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -3582,7 +3582,7 @@ void system_init_subsystem_50(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_51(void)
+void system_initialize_network_system1(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -3640,7 +3640,7 @@ void system_init_subsystem_51(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_52(void)
+void system_initialize_network_system2(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -3698,7 +3698,7 @@ void system_init_subsystem_52(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_53(void)
+void system_initialize_network_system3(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -3756,7 +3756,7 @@ void system_init_subsystem_53(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_54(void)
+void system_initialize_network_system4(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -3814,7 +3814,7 @@ void system_init_subsystem_54(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_55(void)
+void system_initialize_network_system5(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -3872,7 +3872,7 @@ void system_init_subsystem_55(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_56(void)
+void system_initialize_network_system6(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -3930,7 +3930,7 @@ void system_init_subsystem_56(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_57(void)
+void system_initialize_network_system7(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -3988,7 +3988,7 @@ void system_init_subsystem_57(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_58(void)
+void system_initialize_network_system8(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -4046,7 +4046,7 @@ void system_init_subsystem_58(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_59(void)
+void system_initialize_network_system9(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -11538,7 +11538,7 @@ void system_init_subsystem_199(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_200(void)
+void system_initialize_render_system00(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -11596,7 +11596,7 @@ void system_init_subsystem_200(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_201(void)
+void system_initialize_render_system01(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -11654,7 +11654,7 @@ void system_init_subsystem_201(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_202(void)
+void system_initialize_render_system02(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -11712,7 +11712,7 @@ void system_init_subsystem_202(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_203(void)
+void system_initialize_render_system03(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -11770,7 +11770,7 @@ void system_init_subsystem_203(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_204(void)
+void system_initialize_render_system04(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -11828,7 +11828,7 @@ void system_init_subsystem_204(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_205(void)
+void system_initialize_render_system05(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -11886,7 +11886,7 @@ void system_init_subsystem_205(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_206(void)
+void system_initialize_render_system06(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -11944,7 +11944,7 @@ void system_init_subsystem_206(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_207(void)
+void system_initialize_render_system07(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -12002,7 +12002,7 @@ void system_init_subsystem_207(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_208(void)
+void system_initialize_render_system08(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -12060,7 +12060,7 @@ void system_init_subsystem_208(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_209(void)
+void system_initialize_render_system09(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -12118,7 +12118,7 @@ void system_init_subsystem_209(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_210(void)
+void system_initialize_render_system10(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -12176,7 +12176,7 @@ void system_init_subsystem_210(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_211(void)
+void system_initialize_render_system11(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -12234,7 +12234,7 @@ void system_init_subsystem_211(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_212(void)
+void system_initialize_render_system12(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -12292,7 +12292,7 @@ void system_init_subsystem_212(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_213(void)
+void system_initialize_render_system13(void)
 {
   void* register_r9_value;
   void* *system_init_stack_memory_primary;
@@ -12324,7 +12324,7 @@ void system_init_subsystem_213(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_214(void)
+void system_initialize_render_system14(void)
 {
   longlong system_memory_allocation_result;
   void* register_r9_value;
@@ -12345,7 +12345,7 @@ void system_init_subsystem_214(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_215(void)
+void system_initialize_render_system15(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -12403,7 +12403,7 @@ void system_init_subsystem_215(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_216(void)
+void system_initialize_render_system16(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -12461,7 +12461,7 @@ void system_init_subsystem_216(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_217(void)
+void system_initialize_render_system17(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -12519,7 +12519,7 @@ void system_init_subsystem_217(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_218(void)
+void system_initialize_render_system18(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -12577,7 +12577,7 @@ void system_init_subsystem_218(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_219(void)
+void system_initialize_render_system19(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -12635,7 +12635,7 @@ void system_init_subsystem_219(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_220(void)
+void system_initialize_render_system20(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -12693,7 +12693,7 @@ void system_init_subsystem_220(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_221(void)
+void system_initialize_render_system21(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -12751,7 +12751,7 @@ void system_init_subsystem_221(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_222(void)
+void system_initialize_render_system22(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -12809,7 +12809,7 @@ void system_init_subsystem_222(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_223(void)
+void system_initialize_render_system23(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -12867,7 +12867,7 @@ void system_init_subsystem_223(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_224(void)
+void system_initialize_render_system24(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -12925,7 +12925,7 @@ void system_init_subsystem_224(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_225(void)
+void system_initialize_render_system25(void)
 {
   void* register_r9_value;
   void* *system_init_stack_memory_primary;
@@ -12955,7 +12955,7 @@ void system_init_subsystem_225(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_226(void)
+void system_initialize_render_system26(void)
 {
   void* register_r9_value;
   void* *system_init_stack_memory_primary;
@@ -12985,7 +12985,7 @@ void system_init_subsystem_226(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_227(void)
+void system_initialize_render_system27(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -13043,7 +13043,7 @@ void system_init_subsystem_227(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_228(void)
+void system_initialize_render_system28(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -13101,7 +13101,7 @@ void system_init_subsystem_228(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_229(void)
+void system_initialize_render_system29(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -13159,7 +13159,7 @@ void system_init_subsystem_229(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_230(void)
+void system_initialize_render_system30(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -13217,7 +13217,7 @@ void system_init_subsystem_230(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_231(void)
+void system_initialize_render_system31(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -13275,7 +13275,7 @@ void system_init_subsystem_231(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_232(void)
+void system_initialize_render_system32(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -13333,7 +13333,7 @@ void system_init_subsystem_232(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_233(void)
+void system_initialize_render_system33(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -13393,7 +13393,7 @@ void system_init_subsystem_233(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_234(void)
+void system_initialize_render_system34(void)
 {
   longlong system_memory_allocation_result;
   void* register_r9_value;
@@ -13414,7 +13414,7 @@ void system_init_subsystem_234(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_235(void)
+void system_initialize_render_system35(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -13472,7 +13472,7 @@ void system_init_subsystem_235(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_236(void)
+void system_initialize_render_system36(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -13530,7 +13530,7 @@ void system_init_subsystem_236(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_237(void)
+void system_initialize_render_system37(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -13588,7 +13588,7 @@ void system_init_subsystem_237(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_238(void)
+void system_initialize_render_system38(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -13646,7 +13646,7 @@ void system_init_subsystem_238(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_239(void)
+void system_initialize_render_system39(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -13704,7 +13704,7 @@ void system_init_subsystem_239(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_240(void)
+void system_initialize_render_system40(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -13762,7 +13762,7 @@ void system_init_subsystem_240(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_241(void)
+void system_initialize_render_system41(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -13820,7 +13820,7 @@ void system_init_subsystem_241(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_242(void)
+void system_initialize_render_system42(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -13878,7 +13878,7 @@ void system_init_subsystem_242(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_243(void)
+void system_initialize_render_system43(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -13936,7 +13936,7 @@ void system_init_subsystem_243(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_244(void)
+void system_initialize_render_system44(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -13994,7 +13994,7 @@ void system_init_subsystem_244(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_245(void)
+void system_initialize_render_system45(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -14052,7 +14052,7 @@ void system_init_subsystem_245(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_246(void)
+void system_initialize_render_system46(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -14110,7 +14110,7 @@ void system_init_subsystem_246(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_247(void)
+void system_initialize_render_system47(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -14168,7 +14168,7 @@ void system_init_subsystem_247(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_248(void)
+void system_initialize_render_system48(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -14226,7 +14226,7 @@ void system_init_subsystem_248(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_249(void)
+void system_initialize_render_system49(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -14284,7 +14284,7 @@ void system_init_subsystem_249(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_250(void)
+void system_initialize_render_system50(void)
 {
   void* register_r9_value;
   void* *system_init_stack_memory_primary;
@@ -14316,7 +14316,7 @@ void system_init_subsystem_250(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_251(void)
+void system_initialize_render_system51(void)
 {
   longlong system_memory_allocation_result;
   
@@ -14341,7 +14341,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_252(void)
+void system_initialize_render_system52(void)
 {
   longlong system_memory_allocation_result;
   system_uint8_t system_stack_uchar_array_primary [SYSTEM_INIT_SIZE_BUFFER_STANDARD];
@@ -14368,7 +14368,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_253(void)
+void system_initialize_render_system53(void)
 {
   longlong system_memory_allocation_result;
   system_uint8_t system_stack_uchar_array_initialized [SYSTEM_INIT_SIZE_BUFFER_STANDARD];
@@ -14395,7 +14395,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_254(void)
+void system_initialize_render_system54(void)
 {
   longlong system_memory_allocation_result;
   
@@ -14419,7 +14419,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_255(void)
+void system_initialize_render_system55(void)
 {
   longlong system_memory_allocation_result;
   
@@ -14442,7 +14442,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_256(void)
+void system_initialize_render_system56(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -14500,7 +14500,7 @@ void system_init_subsystem_256(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_257(void)
+void system_initialize_render_system57(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -14558,7 +14558,7 @@ void system_init_subsystem_257(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_258(void)
+void system_initialize_render_system58(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -14616,7 +14616,7 @@ void system_init_subsystem_258(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_259(void)
+void system_initialize_render_system59(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -14674,7 +14674,7 @@ void system_init_subsystem_259(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_260(void)
+void system_initialize_render_system60(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -14732,7 +14732,7 @@ void system_init_subsystem_260(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_261(void)
+void system_initialize_render_system61(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -14790,7 +14790,7 @@ void system_init_subsystem_261(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_262(void)
+void system_initialize_render_system62(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -14848,7 +14848,7 @@ void system_init_subsystem_262(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_263(void)
+void system_initialize_render_system63(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -14906,7 +14906,7 @@ void system_init_subsystem_263(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_264(void)
+void system_initialize_render_system64(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -14964,7 +14964,7 @@ void system_init_subsystem_264(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_265(void)
+void system_initialize_render_system65(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -15022,7 +15022,7 @@ void system_init_subsystem_265(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_266(void)
+void system_initialize_render_system66(void)
 {
   void* register_r9_value;
   void* *system_init_stack_memory_primary;
@@ -15052,7 +15052,7 @@ void system_init_subsystem_266(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_267(void)
+void system_initialize_render_system67(void)
 {
   void* register_r9_value;
   void* *system_init_stack_memory_primary;
@@ -15082,7 +15082,7 @@ void system_init_subsystem_267(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_268(void)
+void system_initialize_render_system68(void)
 {
   void* register_r9_value;
   void* *system_init_stack_memory_primary;
@@ -15112,7 +15112,7 @@ void system_init_subsystem_268(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_269(void)
+void system_initialize_render_system69(void)
 {
   void* register_r9_value;
   void* *system_init_stack_memory_primary;
@@ -15144,7 +15144,7 @@ void system_init_subsystem_269(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_270(void)
+void system_initialize_render_system70(void)
 {
   longlong system_memory_allocation_result;
   void* register_r9_value;
@@ -15165,7 +15165,7 @@ void system_init_subsystem_270(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_271(void)
+void system_initialize_render_system71(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -15223,7 +15223,7 @@ void system_init_subsystem_271(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_272(void)
+void system_initialize_render_system72(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -15281,7 +15281,7 @@ void system_init_subsystem_272(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_273(void)
+void system_initialize_render_system73(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -15339,7 +15339,7 @@ void system_init_subsystem_273(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_274(void)
+void system_initialize_render_system74(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -15397,7 +15397,7 @@ void system_init_subsystem_274(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_275(void)
+void system_initialize_render_system75(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -15455,7 +15455,7 @@ void system_init_subsystem_275(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_276(void)
+void system_initialize_render_system76(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -15513,7 +15513,7 @@ void system_init_subsystem_276(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_277(void)
+void system_initialize_render_system77(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -15571,7 +15571,7 @@ void system_init_subsystem_277(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_278(void)
+void system_initialize_render_system78(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -15629,7 +15629,7 @@ void system_init_subsystem_278(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_279(void)
+void system_initialize_render_system79(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -15687,7 +15687,7 @@ void system_init_subsystem_279(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_280(void)
+void system_initialize_render_system80(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -15745,7 +15745,7 @@ void system_init_subsystem_280(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_281(void)
+void system_initialize_render_system81(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -15803,7 +15803,7 @@ void system_init_subsystem_281(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_282(void)
+void system_initialize_render_system82(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -15861,7 +15861,7 @@ void system_init_subsystem_282(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_283(void)
+void system_initialize_render_system83(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -15919,7 +15919,7 @@ void system_init_subsystem_283(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_284(void)
+void system_initialize_render_system84(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -15977,7 +15977,7 @@ void system_init_subsystem_284(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_285(void)
+void system_initialize_render_system85(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -16035,7 +16035,7 @@ void system_init_subsystem_285(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_286(void)
+void system_initialize_render_system86(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -16093,7 +16093,7 @@ void system_init_subsystem_286(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_287(void)
+void system_initialize_render_system87(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -16151,7 +16151,7 @@ void system_init_subsystem_287(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_288(void)
+void system_initialize_render_system88(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -16209,7 +16209,7 @@ void system_init_subsystem_288(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_289(void)
+void system_initialize_render_system89(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -16267,7 +16267,7 @@ void system_init_subsystem_289(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_290(void)
+void system_initialize_render_system90(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -16325,7 +16325,7 @@ void system_init_subsystem_290(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_291(void)
+void system_initialize_render_system91(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -16383,7 +16383,7 @@ void system_init_subsystem_291(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_292(void)
+void system_initialize_render_system92(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -16441,7 +16441,7 @@ void system_init_subsystem_292(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_293(void)
+void system_initialize_render_system93(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -16499,7 +16499,7 @@ void system_init_subsystem_293(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_294(void)
+void system_initialize_render_system94(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -16557,7 +16557,7 @@ void system_init_subsystem_294(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_295(void)
+void system_initialize_render_system95(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -16615,7 +16615,7 @@ void system_init_subsystem_295(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_296(void)
+void system_initialize_render_system96(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -16673,7 +16673,7 @@ void system_init_subsystem_296(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_297(void)
+void system_initialize_render_system97(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -16731,7 +16731,7 @@ void system_init_subsystem_297(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_298(void)
+void system_initialize_render_system98(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -16791,7 +16791,7 @@ void system_init_subsystem_298(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_299(void)
+void system_initialize_render_system99(void)
 {
   longlong system_memory_allocation_result;
   
@@ -16832,7 +16832,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_300(void)
+void system_initialize_audio_system00(void)
 {
   longlong system_memory_allocation_result;
   void* register_r9_value;
@@ -16853,7 +16853,7 @@ void system_init_subsystem_300(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_301(void)
+void system_initialize_audio_system01(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -16911,7 +16911,7 @@ void system_init_subsystem_301(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_302(void)
+void system_initialize_audio_system02(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -16969,7 +16969,7 @@ void system_init_subsystem_302(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_303(void)
+void system_initialize_audio_system03(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -17027,7 +17027,7 @@ void system_init_subsystem_303(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_304(void)
+void system_initialize_audio_system04(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -17085,7 +17085,7 @@ void system_init_subsystem_304(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_305(void)
+void system_initialize_audio_system05(void)
 {
   void* register_r9_value;
   void* *system_init_stack_memory_primary;
@@ -17124,7 +17124,7 @@ void system_init_subsystem_305(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_306(void)
+void system_initialize_audio_system06(void)
 {
   longlong system_memory_allocation_result;
   
@@ -17147,7 +17147,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_307(void)
+void system_initialize_audio_system07(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -17205,7 +17205,7 @@ void system_init_subsystem_307(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_308(void)
+void system_initialize_audio_system08(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -17263,7 +17263,7 @@ void system_init_subsystem_308(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_309(void)
+void system_initialize_audio_system09(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -17321,7 +17321,7 @@ void system_init_subsystem_309(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_310(void)
+void system_initialize_audio_system10(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -17379,7 +17379,7 @@ void system_init_subsystem_310(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_311(void)
+void system_initialize_audio_system11(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -17437,7 +17437,7 @@ void system_init_subsystem_311(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_312(void)
+void system_initialize_audio_system12(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -17495,7 +17495,7 @@ void system_init_subsystem_312(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_313(void)
+void system_initialize_audio_system13(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -17553,7 +17553,7 @@ void system_init_subsystem_313(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_314(void)
+void system_initialize_audio_system14(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -17611,7 +17611,7 @@ void system_init_subsystem_314(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_315(void)
+void system_initialize_audio_system15(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -17669,7 +17669,7 @@ void system_init_subsystem_315(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_316(void)
+void system_initialize_audio_system16(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -17727,7 +17727,7 @@ void system_init_subsystem_316(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_317(void)
+void system_initialize_audio_system17(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -17785,7 +17785,7 @@ void system_init_subsystem_317(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_318(void)
+void system_initialize_audio_system18(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -17843,7 +17843,7 @@ void system_init_subsystem_318(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_319(void)
+void system_initialize_audio_system19(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -17901,7 +17901,7 @@ void system_init_subsystem_319(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_320(void)
+void system_initialize_audio_system20(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -17959,7 +17959,7 @@ void system_init_subsystem_320(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_321(void)
+void system_initialize_audio_system21(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -18017,7 +18017,7 @@ void system_init_subsystem_321(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_322(void)
+void system_initialize_audio_system22(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -18075,7 +18075,7 @@ void system_init_subsystem_322(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_323(void)
+void system_initialize_audio_system23(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -18133,7 +18133,7 @@ void system_init_subsystem_323(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_324(void)
+void system_initialize_audio_system24(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -18191,7 +18191,7 @@ void system_init_subsystem_324(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_325(void)
+void system_initialize_audio_system25(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -18249,7 +18249,7 @@ void system_init_subsystem_325(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_326(void)
+void system_initialize_audio_system26(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -18307,7 +18307,7 @@ void system_init_subsystem_326(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_327(void)
+void system_initialize_audio_system27(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -18365,7 +18365,7 @@ void system_init_subsystem_327(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_328(void)
+void system_initialize_audio_system28(void)
 {
   void* register_r9_value;
   void* *system_init_stack_memory_primary;
@@ -18395,7 +18395,7 @@ void system_init_subsystem_328(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_329(void)
+void system_initialize_audio_system29(void)
 {
   system_initialization_flag = GetCurrentProcess();
   return;
@@ -18416,7 +18416,7 @@ void system_init_subsystem_329(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_330(void)
+void system_initialize_audio_system30(void)
 {
   longlong system_memory_allocation_result;
   
@@ -18448,7 +18448,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_331(void)
+void system_initialize_audio_system31(void)
 {
   longlong system_memory_allocation_result;
   
@@ -18480,7 +18480,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_332(void)
+void system_initialize_audio_system32(void)
 {
   longlong system_memory_allocation_result;
   
@@ -18505,7 +18505,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_333(void)
+void system_initialize_audio_system33(void)
 {
   longlong system_memory_allocation_result;
   
@@ -18533,7 +18533,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_334(void)
+void system_initialize_audio_system34(void)
 {
   void* register_r9_value;
   void* *system_init_stack_memory_primary;
@@ -18565,7 +18565,7 @@ void system_init_subsystem_334(void)
 
 
 system_uint64_t system_init_get_context(void)
-void system_init_subsystem_335(void)
+void system_initialize_audio_system35(void)
 {
   longlong system_memory_allocation_result;
   int *system_int_ptr_temp;
@@ -18614,7 +18614,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_336(void)
+void system_initialize_audio_system36(void)
 {
   void* register_r9_value;
   void* *system_init_stack_memory_primary;
@@ -18644,7 +18644,7 @@ void system_init_subsystem_336(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_337(void)
+void system_initialize_audio_system37(void)
 {
   void* register_r9_value;
   void* *system_init_stack_memory_primary;
@@ -18676,7 +18676,7 @@ void system_init_subsystem_337(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_338(void)
+void system_initialize_audio_system38(void)
 {
   longlong system_memory_allocation_result;
   
@@ -18706,7 +18706,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_339(void)
+void system_initialize_audio_system39(void)
 {
   longlong system_memory_allocation_result;
   int system_initialization_loop_counter;
@@ -18739,7 +18739,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_340(void)
+void system_initialize_audio_system40(void)
 {
   longlong system_memory_allocation_result;
   
@@ -18762,7 +18762,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_341(void)
+void system_initialize_audio_system41(void)
 {
   int system_initialization_parameter;
   
@@ -18787,7 +18787,7 @@ void system_init_subsystem_341(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_342(void)
+void system_initialize_audio_system42(void)
 {
   int system_initialization_parameter;
   
@@ -18817,7 +18817,7 @@ void system_init_subsystem_342(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_343(void)
+void system_initialize_audio_system43(void)
 {
   int system_initialization_parameter;
   
@@ -18842,7 +18842,7 @@ void system_init_subsystem_343(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_344(void)
+void system_initialize_audio_system44(void)
 {
   int system_initialization_parameter;
   
@@ -18867,7 +18867,7 @@ void system_init_subsystem_344(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_345(void)
+void system_initialize_audio_system45(void)
 {
   int system_initialization_parameter;
   
@@ -18892,7 +18892,7 @@ void system_init_subsystem_345(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_346(void)
+void system_initialize_audio_system46(void)
 {
   int system_initialization_parameter;
   
@@ -18917,7 +18917,7 @@ void system_init_subsystem_346(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_347(void)
+void system_initialize_audio_system47(void)
 {
   int system_initialization_parameter;
   
@@ -18949,7 +18949,7 @@ void system_init_subsystem_347(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_348(void)
+void system_initialize_audio_system48(void)
 {
   system_uint64_t *system_context_pointer;
   longlong system_initialization_loop_counter;
@@ -18980,7 +18980,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_349(void)
+void system_initialize_audio_system49(void)
 {
   int system_initialization_parameter;
   
@@ -19005,7 +19005,7 @@ void system_init_subsystem_349(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_350(void)
+void system_initialize_audio_system50(void)
 {
   int system_initialization_parameter;
   
@@ -19042,7 +19042,7 @@ void system_init_subsystem_350(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_351(void)
+void system_initialize_audio_system51(void)
 {
   longlong system_memory_allocation_result;
   
@@ -19067,7 +19067,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_352(void)
+void system_initialize_audio_system52(void)
 {
   longlong system_memory_allocation_result;
   
@@ -19099,7 +19099,7 @@ return;
  * 简化实现：保持代码语义不变，仅添加详细文档注释
 
 void system_wots_main_entry_sdll(system_uint64_t system_context_param)
-void system_init_subsystem_353(void)
+void system_initialize_audio_system53(void)
 {
   system_uint64_t system_init_stack_counter_current_array [SYSTEM_ARRAY_INDEX_TERTIARY];
   
@@ -19127,7 +19127,7 @@ void system_init_subsystem_353(void)
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_354(void)
+void system_initialize_audio_system54(void)
 {
   longlong system_memory_allocation_result;
   longlong *system_secondary_longptr;
@@ -19223,7 +19223,7 @@ system_init_label_memory_init:
 
 system_uint64_t *
 InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_355(void)
+void system_initialize_audio_system55(void)
 {
   *system_context_param = &system_global_context;
   *system_context_param = &system_global_context;
@@ -19249,7 +19249,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_356(void)
+void system_initialize_audio_system56(void)
 {
                     // WARNING: Subroutine does not return
   system_initialize_components();
@@ -19277,7 +19277,7 @@ return;
  * 简化实现：保持代码语义不变，仅添加详细文档注释
 
 void initialize_script_system(system_uint64_t *system_context_param)
-void system_init_subsystem_357(void)
+void system_initialize_audio_system57(void)
 {
   *system_context_param = &system_global_context;
   return;
@@ -19296,7 +19296,7 @@ void system_init_subsystem_357(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_358(void)
+void system_initialize_audio_system58(void)
 {
   system_uint64_t *system_context_pointer;
   system_code *system_callback_function;
@@ -19458,7 +19458,7 @@ return;
  * 简化实现：保持代码语义不变，仅添加详细文档注释
 
 void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
-void system_init_subsystem_359(void)
+void system_initialize_audio_system59(void)
 {
   longlong **system_longlong_pointer_pointer_primary;
   int system_initialization_loop_counter;
@@ -19616,7 +19616,7 @@ system_init_label_resource_check:
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_360(void)
+void system_initialize_audio_system60(void)
 {
   system_uint64_t system_initialization_loop_counter;
   system_uint_standard_t system_configuration_value;
@@ -19646,7 +19646,7 @@ void system_init_subsystem_360(void)
 return;
 }
 system_uint_standard_t system_init_get_special_context(void)
-void system_init_subsystem_361(void)
+void system_initialize_audio_system61(void)
 {
   system_uint64_t *system_context_pointer;
   system_code *system_callback_function;
@@ -19815,7 +19815,7 @@ return;
  * 原本实现：完全重构主函数流程，建立更清晰的初始化架构
 
 void system_wots_main_entry(system_uint64_t system_context_param)
-void system_init_subsystem_362(void)
+void system_initialize_audio_system62(void)
 {
   system_uint64_t system_init_stack_counter_current_array [SYSTEM_ARRAY_INDEX_TERTIARY];
   
@@ -19843,7 +19843,7 @@ void system_init_subsystem_362(void)
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
 void InitializeNetworkSystem(longlong *system_context_param)
-void system_init_subsystem_363(void)
+void system_initialize_audio_system63(void)
 {
   if ((longlong *)*system_context_param != (longlong *)SYSTEM_INIT_VALUE_NULL) {
     (**(system_code **)(*(longlong *)*system_context_param + INIT_SIZE_MEMORY_CHUNK_STANDARD))();
@@ -19862,7 +19862,7 @@ void system_init_subsystem_363(void)
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
 void system_init_with_context_config(longlong system_context_param,longlong system_config_param)
-void system_init_subsystem_364(void)
+void system_initialize_audio_system64(void)
 {
   longlong system_memory_allocation_result;
   
@@ -19888,7 +19888,7 @@ void system_init_subsystem_364(void)
   return;
 }
 void system_init_with_context_config_memory(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
-void system_init_subsystem_365(void)
+void system_initialize_audio_system65(void)
 {
   if (system_memory_param + 1 < INIT_SIZE_COMPARE00) {
                     // WARNING: Subroutine does not return
@@ -19912,14 +19912,14 @@ void system_init_subsystem_365(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_366(void)
+void system_initialize_audio_system66(void)
 {
                     // WARNING: Subroutine does not return
   memcpy();
 return;
 }
 void InitializeSystemCore(system_uint8_t *system_context_param)
-void system_init_subsystem_367(void)
+void system_initialize_audio_system67(void)
 {
   longlong system_register_rdi_input;
   
@@ -19941,7 +19941,7 @@ void system_init_subsystem_367(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_368(void)
+void system_initialize_audio_system68(void)
 {
                     // WARNING: Subroutine does not return
   system_initialize_components();
@@ -19949,7 +19949,7 @@ return;
 }
 system_uint64_t *
 InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_369(void)
+void system_initialize_audio_system69(void)
 {
   *system_context_param = &system_global_context;
   if ((system_config_param & 1) != 0) {
@@ -19959,7 +19959,7 @@ void system_init_subsystem_369(void)
 return;
 }
 system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,uint system_config_param)
-void system_init_subsystem_370(void)
+void system_initialize_audio_system70(void)
 {
   *system_context_param = &system_global_context;
   PostQueuedCompletionStatus(system_context_param[SYSTEM_INIT_FLAG_ACTIVE_DEFAULT],0,SYSTEM_INIT_ERROR_GENERIC_INVALID_HANDLE,0,INIT_VALUE_HANDLE_INVALID_DEFAULT);
@@ -19989,13 +19989,13 @@ return;
  * 简化实现：保持代码语义不变，仅添加详细文档注释
 
 void system_guard_icall_validation(void)
-void system_init_subsystem_371(void)
+void system_initialize_audio_system71(void)
 {
   return;
 }
 system_uint64_t *
 InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_372(void)
+void system_initialize_audio_system72(void)
 {
   *system_context_param = &system_global_context;
   if ((system_config_param & 1) != 0) {
@@ -20005,7 +20005,7 @@ void system_init_subsystem_372(void)
 return;
 }
 void system_init_with_context_config(longlong system_context_param,longlong system_config_param)
-void system_init_subsystem_373(void)
+void system_initialize_audio_system73(void)
 {
   longlong system_memory_allocation_result;
   
@@ -20031,7 +20031,7 @@ void system_init_subsystem_373(void)
   return;
 }
 void system_init_with_context_config_memory(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
-void system_init_subsystem_374(void)
+void system_initialize_audio_system74(void)
 {
   if (system_memory_param + 1 < SYSTEM_INIT_SIZE_BUFFER_EXTRA_LARGE) {
                     // WARNING: Subroutine does not return
@@ -20055,14 +20055,14 @@ void system_init_subsystem_374(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_375(void)
+void system_initialize_audio_system75(void)
 {
                     // WARNING: Subroutine does not return
   memcpy();
 return;
 }
 void InitializeSystemCore(system_uint8_t *system_context_param)
-void system_init_subsystem_376(void)
+void system_initialize_audio_system76(void)
 {
   longlong system_register_rdi_input;
   
@@ -20071,7 +20071,7 @@ void system_init_subsystem_376(void)
   return;
 }
 void InitializeSystemCore(longlong system_context_param,longlong system_config_param,longlong system_memory_param)
-void system_init_subsystem_377(void)
+void system_initialize_audio_system77(void)
 {
   longlong system_memory_allocation_result;
   longlong system_initialization_loop_counter;
@@ -20109,7 +20109,7 @@ void system_init_subsystem_377(void)
 return;
 }
 void InitializeSystemCore(system_uint64_t *system_context_param,system_uint_standard_t system_config_param)
-void system_init_subsystem_378(void)
+void system_initialize_audio_system78(void)
 {
   int system_initialization_parameter;
   
@@ -20134,7 +20134,7 @@ void system_init_subsystem_378(void)
 
 
 void InitializeSystemCore(system_uint64_t *system_context_param)
-void system_init_subsystem_379(void)
+void system_initialize_audio_system79(void)
 {
   int system_initialization_parameter;
   
@@ -20147,7 +20147,7 @@ void system_init_subsystem_379(void)
   return;
 }
 system_uint64_t system_init_full_params_long_context(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_380(void)
+void system_initialize_audio_system80(void)
 {
   char system_init_validation_flag;
   int system_initialization_loop_counter;
@@ -20181,7 +20181,7 @@ void system_init_subsystem_380(void)
 return;
 }
 longlong InitializeSystemCore(system_uint_standard_t *system_context_param,system_uint_standard_t *system_config_param)
-void system_init_subsystem_381(void)
+void system_initialize_audio_system81(void)
 {
   system_uint_standard_t system_initialization_flags_mask;
   char system_character_buffer;
@@ -20207,7 +20207,7 @@ void system_init_subsystem_381(void)
 return;
 }
 void system_init_with_context_special_config(system_uint64_t system_context_param,system_uint_standard_t system_config_param)
-void system_init_subsystem_382(void)
+void system_initialize_audio_system82(void)
 {
   longlong system_memory_allocation_result;
   char system_character_buffer;
@@ -20233,7 +20233,7 @@ void system_init_subsystem_382(void)
 }
 system_uint64_t *
 InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_383(void)
+void system_initialize_audio_system83(void)
 {
   *system_context_param = &system_global_context;
   if ((system_config_param & 1) != 0) {
@@ -20243,7 +20243,7 @@ void system_init_subsystem_383(void)
 return;
 }
 void system_init_with_context_config(longlong system_context_param,longlong system_config_param)
-void system_init_subsystem_384(void)
+void system_initialize_audio_system84(void)
 {
   longlong system_memory_allocation_result;
   
@@ -20269,7 +20269,7 @@ void system_init_subsystem_384(void)
   return;
 }
 void system_init_with_context_config_memory(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
-void system_init_subsystem_385(void)
+void system_initialize_audio_system85(void)
 {
   if (system_memory_param + 1 < SYSTEM_INIT_OFFSET_STACK_PARAMETER) {
                     // WARNING: Subroutine does not return
@@ -20293,14 +20293,14 @@ void system_init_subsystem_385(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_386(void)
+void system_initialize_audio_system86(void)
 {
                     // WARNING: Subroutine does not return
   memcpy();
 return;
 }
 void InitializeSystemCore(system_uint8_t *system_context_param)
-void system_init_subsystem_387(void)
+void system_initialize_audio_system87(void)
 {
   longlong system_register_rdi_input;
   
@@ -20309,7 +20309,7 @@ void system_init_subsystem_387(void)
   return;
 }
 system_uint64_t * InitializePhysicsSystem(system_uint64_t *system_context_param)
-void system_init_subsystem_388(void)
+void system_initialize_audio_system88(void)
 {
   *system_context_param = &system_global_context;
   system_context_param[SYSTEM_ARRAY_INDEX_SECONDARY] = 0;
@@ -20322,7 +20322,7 @@ void system_init_subsystem_388(void)
 return;
 }
 void InitializeSystemCore(longlong system_context_param,longlong system_config_param,longlong system_memory_param)
-void system_init_subsystem_389(void)
+void system_initialize_audio_system89(void)
 {
   longlong system_memory_allocation_result;
   longlong system_initialization_loop_counter;
@@ -20360,7 +20360,7 @@ void system_init_subsystem_389(void)
 return;
 }
 system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_config_param)
-void system_init_subsystem_390(void)
+void system_initialize_audio_system90(void)
 {
   *system_context_param = &system_global_context;
   if ((system_config_param & 1) != 0) {
@@ -20370,7 +20370,7 @@ void system_init_subsystem_390(void)
 return;
 }
 void InitializeSystemCore(system_uint64_t *system_context_param)
-void system_init_subsystem_391(void)
+void system_initialize_audio_system91(void)
 {
   int system_initialization_parameter;
   
@@ -20381,7 +20381,7 @@ void system_init_subsystem_391(void)
   return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_392(void)
+void system_initialize_audio_system92(void)
 {
   int system_initialization_parameter;
   
@@ -20401,7 +20401,7 @@ void system_init_subsystem_392(void)
   return;
 }
 void InitializeSystemCore(system_uint64_t *system_context_param)
-void system_init_subsystem_393(void)
+void system_initialize_audio_system93(void)
 {
   *system_context_param = &system_global_context;
   *system_context_param = &system_global_context;
@@ -20410,7 +20410,7 @@ void system_init_subsystem_393(void)
 }
 system_uint64_t *
 InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_394(void)
+void system_initialize_audio_system94(void)
 {
   *system_context_param = &system_global_context;
   *system_context_param = &system_global_context;
@@ -20422,7 +20422,7 @@ void system_init_subsystem_394(void)
 return;
 }
 void InitializeSystemCore(longlong *system_context_param)
-void system_init_subsystem_395(void)
+void system_initialize_audio_system95(void)
 {
   longlong system_memory_allocation_result;
   longlong system_initialization_loop_counter;
@@ -20439,7 +20439,7 @@ void system_init_subsystem_395(void)
 return;
 }
 void InitializeSystemCore(longlong *system_context_param)
-void system_init_subsystem_396(void)
+void system_initialize_audio_system96(void)
 {
   system_uint64_t *system_context_pointer;
   system_uint64_t *system_init_buffer_pointer;
@@ -20474,7 +20474,7 @@ void system_init_subsystem_396(void)
  * 简化实现：保持代码语义不变，仅添加详细文档注释
 
 void InitializeResourceManager(ulonglong *system_context_param)
-void system_init_subsystem_397(void)
+void system_initialize_audio_system97(void)
 {
   int *system_int_ptr_main;
   system_uint64_t *system_init_buffer_pointer;
@@ -20507,7 +20507,7 @@ void system_init_subsystem_397(void)
   return;
 }
 int system_init_with_context_config_return_int(longlong system_context_param,longlong system_config_param)
-void system_init_subsystem_398(void)
+void system_initialize_audio_system98(void)
 {
   system_uint64_t ***system_primary_pointer_stack;
   longlong system_initialization_loop_counter;
@@ -20648,7 +20648,7 @@ system_init_label_device_init:
 return;
 }
 void InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_399(void)
+void system_initialize_audio_system99(void)
 {
   InitializeSystemCore(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_CONFIG,system_context_param[SYSTEM_INIT_FLAG_INITIALIZED_SECONDARY_OFFSET],system_memory_param,system_thread_param,INIT_VALUE_HANDLE_INVALID_DEFAULT);
   *system_context_param = &system_global_context;
@@ -20662,7 +20662,7 @@ void system_init_subsystem_399(void)
   return;
 }
 ulonglong system_init_with_context_config_return_ulong(longlong system_context_param,longlong system_config_param)
-void system_init_subsystem_400(void)
+void system_initialize_input_system00(void)
 {
   byte *system_byte_ptr_primary;
   int system_initialization_loop_counter;
@@ -20735,7 +20735,7 @@ system_init_label_loop_condition_check:
 return;
 }
 void InitializeSystemCore(longlong *system_context_param,system_uint64_t *system_config_param)
-void system_init_subsystem_401(void)
+void system_initialize_input_system01(void)
 {
   longlong *system_primary_longptr;
   longlong *system_stack_buffer_temp;
@@ -20790,7 +20790,7 @@ void system_init_subsystem_401(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_402(void)
+void system_initialize_input_system02(void)
 {
   system_uint64_t system_initialization_loop_counter;
   char system_character_buffer;
@@ -21045,7 +21045,7 @@ return;
 }
 system_uint64_t *
 InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t *system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_403(void)
+void system_initialize_input_system03(void)
 {
   *system_context_param = *system_config_param;
   *(system_uint_standard_t *)(system_context_param + 1) = *(system_uint_standard_t *)(system_config_param + 1);
@@ -21064,19 +21064,19 @@ void system_init_subsystem_403(void)
 return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_404(void)
+void system_initialize_input_system04(void)
 {
   *(void* **)(system_context_param + INIT_SIZE_COMPARE) = &system_global_context;
   return;
 }
 void InitializeSystemCore(system_uint64_t *system_context_param)
-void system_init_subsystem_405(void)
+void system_initialize_input_system05(void)
 {
   *system_context_param = &system_global_context;
   return;
 }
 void system_init_with_context_config_memory_thread(system_uint64_t system_context_param,system_uint64_t system_config_param,longlong system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_406(void)
+void system_initialize_input_system06(void)
 {
   byte system_system_init_validation_flag_primary;
   bool system_system_init_validation_flag_secondary;
@@ -21155,7 +21155,7 @@ system_init_label_array_validation:
   return;
 }
 void system_init_with_full_params(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_407(void)
+void system_initialize_input_system07(void)
 {
   double system_double_primary;
   char system_character_buffer;
@@ -21469,7 +21469,7 @@ void system_init_subsystem_407(void)
 return;
 }
 void InitializeSystemCore(longlong *system_context_param)
-void system_init_subsystem_408(void)
+void system_initialize_input_system08(void)
 {
   longlong system_memory_allocation_result;
   longlong system_initialization_loop_counter;
@@ -21486,7 +21486,7 @@ void system_init_subsystem_408(void)
 return;
 }
 void InitializeSystemCore(longlong *system_context_param)
-void system_init_subsystem_409(void)
+void system_initialize_input_system09(void)
 {
   system_uint64_t *system_context_pointer;
   system_uint64_t *system_init_buffer_pointer;
@@ -21509,7 +21509,7 @@ void system_init_subsystem_409(void)
   return;
 }
 void InitializeSystemCore(ulonglong *system_context_param)
-void system_init_subsystem_410(void)
+void system_initialize_input_system10(void)
 {
   int *system_int_ptr_main;
   system_uint64_t *system_init_buffer_pointer;
@@ -21542,7 +21542,7 @@ void system_init_subsystem_410(void)
   return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_411(void)
+void system_initialize_input_system11(void)
 {
   if (system_context_param != 0) {
     if (*(longlong *)(system_context_param + INIT_SIZE_MEMORY_CHUNK) != 0) {
@@ -21558,7 +21558,7 @@ void system_init_subsystem_411(void)
   return;
 }
 longlong system_init_full_params_return_long(longlong system_context_param,longlong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_412(void)
+void system_initialize_input_system12(void)
 {
   system_uint64_t *system_context_pointer;
   system_uint_standard_t system_configuration_value;
@@ -21641,7 +21641,7 @@ void system_init_subsystem_412(void)
 return;
 }
 system_uint64_t system_init_full_params_return_ulong(system_uint64_t system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_413(void)
+void system_initialize_input_system13(void)
 {
   system_uint64_t system_initialization_flags_mask;
   
@@ -21656,7 +21656,7 @@ return;
 system_uint64_t *
 InitializeSystemCore(longlong *system_context_param,system_uint64_t *system_config_param,system_uint64_t system_memory_param,longlong *system_thread_param,
              longlong system_param_primary)
-void system_init_subsystem_414(void)
+void system_initialize_input_system14(void)
 {
   byte system_system_init_validation_flag_primary;
   bool system_system_init_validation_flag_secondary;
@@ -21785,7 +21785,7 @@ return;
 }
 void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,longlong system_memory_param,system_uint64_t system_thread_param,
                   longlong system_param_primary)
-void system_init_subsystem_415(void)
+void system_initialize_input_system15(void)
 {
   byte system_system_init_validation_flag_primary;
   byte *system_byte_pointer_secondary;
@@ -21831,7 +21831,7 @@ system_init_label_final_check:
 return;
 }
 system_uint64_t * InitializeSystemCore(longlong system_context_param,longlong *system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_416(void)
+void system_initialize_input_system16(void)
 {
   longlong *system_primary_longptr;
   system_uint64_t *system_init_buffer_pointer;
@@ -21866,7 +21866,7 @@ void system_init_subsystem_416(void)
 return;
 }
 system_uint64_t * InitializeSystemCore(longlong system_context_param,longlong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_417(void)
+void system_initialize_input_system17(void)
 {
   system_uint64_t *system_context_pointer;
   
@@ -21885,7 +21885,7 @@ return;
 }
 system_uint64_t *
 InitializeSystemCore(system_uint64_t *system_context_param,longlong *system_config_param,longlong *system_memory_param,system_uint64_t *system_thread_param)
-void system_init_subsystem_418(void)
+void system_initialize_input_system18(void)
 {
   longlong *system_primary_longptr;
   longlong *system_secondary_longptr;
@@ -22004,7 +22004,7 @@ void system_init_subsystem_418(void)
 return;
 }
 void InitializeSystemCore(system_uint64_t *system_context_param)
-void system_init_subsystem_419(void)
+void system_initialize_input_system19(void)
 {
   *system_context_param = &system_global_context;
   _Mtx_destroy_in_situ();
@@ -22015,7 +22015,7 @@ void system_init_subsystem_419(void)
   return;
 }
 system_uint64_t system_init_with_context_ulong_config(system_uint64_t system_context_param,ulonglong system_config_param)
-void system_init_subsystem_420(void)
+void system_initialize_input_system20(void)
 {
   InitializeSystemCore();
   if ((system_config_param & 1) != 0) {
@@ -22025,7 +22025,7 @@ void system_init_subsystem_420(void)
 return;
 }
 void InitializeSystemCore(longlong system_context_param,system_uint8_t system_config_param)
-void system_init_subsystem_421(void)
+void system_initialize_input_system21(void)
 {
   int system_initialization_parameter;
   
@@ -22041,7 +22041,7 @@ void system_init_subsystem_421(void)
   return;
 }
 void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t *system_config_param,longlong *system_memory_param)
-void system_init_subsystem_422(void)
+void system_initialize_input_system22(void)
 {
   int system_initialization_parameter;
   uint system_configuration_value;
@@ -22075,7 +22075,7 @@ void system_init_subsystem_422(void)
 return;
 }
 system_uint8_t system_init_full_params_return_byte(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_423(void)
+void system_initialize_input_system23(void)
 {
   system_uint8_t system_initialization_flags_mask;
   int system_initialization_loop_counter;
@@ -22124,7 +22124,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_424(void)
+void system_initialize_input_system24(void)
 {
   _Cnd_destroy_in_situ();
   return;
@@ -22143,7 +22143,7 @@ void system_init_subsystem_424(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_425(void)
+void system_initialize_input_system25(void)
 {
   _Cnd_destroy_in_situ();
   return;
@@ -22162,7 +22162,7 @@ void system_init_subsystem_425(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_426(void)
+void system_initialize_input_system26(void)
 {
   _Mtx_destroy_in_situ();
   return;
@@ -22181,13 +22181,13 @@ void system_init_subsystem_426(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_427(void)
+void system_initialize_input_system27(void)
 {
   _Mtx_destroy_in_situ();
   return;
 }
 void system_init_with_context_ptr_64(system_uint64_t *system_context_param)
-void system_init_subsystem_428(void)
+void system_initialize_input_system28(void)
 {
   _Mtx_destroy_in_situ();
   _Cnd_destroy_in_situ(system_context_param);
@@ -22195,7 +22195,7 @@ void system_init_subsystem_428(void)
 }
 system_uint64_t *
 InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_429(void)
+void system_initialize_input_system29(void)
 {
   system_uint64_t system_initialization_flags_mask;
   
@@ -22217,7 +22217,7 @@ return;
 }
 system_uint64_t *
 InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_430(void)
+void system_initialize_input_system30(void)
 {
   *system_context_param = &system_global_context;
   if ((system_config_param & 1) != 0) {
@@ -22227,7 +22227,7 @@ void system_init_subsystem_430(void)
 return;
 }
 void system_init_with_context_config_memory(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
-void system_init_subsystem_431(void)
+void system_initialize_input_system31(void)
 {
   if (system_memory_param + 1 < SYSTEM_INIT_SIZE_BUFFER_SMALL) {
                     // WARNING: Subroutine does not return
@@ -22251,14 +22251,14 @@ void system_init_subsystem_431(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_432(void)
+void system_initialize_input_system32(void)
 {
                     // WARNING: Subroutine does not return
   memcpy();
 return;
 }
 void InitializeSystemCore(system_uint8_t *system_context_param)
-void system_init_subsystem_433(void)
+void system_initialize_input_system33(void)
 {
   longlong system_register_rdi_input;
   
@@ -22267,7 +22267,7 @@ void system_init_subsystem_433(void)
   return;
 }
 system_uint64_t * CreateUIManager(system_uint64_t *system_context_param)
-void system_init_subsystem_434(void)
+void system_initialize_input_system34(void)
 {
   *system_context_param = &system_global_context;
   system_context_param[SYSTEM_ARRAY_INDEX_SECONDARY] = 0;
@@ -22280,7 +22280,7 @@ void system_init_subsystem_434(void)
 return;
 }
 void InitializeSystemCore(longlong system_context_param,longlong system_config_param,longlong system_memory_param)
-void system_init_subsystem_435(void)
+void system_initialize_input_system35(void)
 {
   longlong system_memory_allocation_result;
   longlong system_initialization_loop_counter;
@@ -22319,7 +22319,7 @@ return;
 }
 system_uint64_t *
 InitializeGraphicsSystem(system_uint64_t *system_context_param,longlong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_436(void)
+void system_initialize_input_system36(void)
 {
   void* *system_context_pointer;
   
@@ -22341,7 +22341,7 @@ return;
 }
 system_uint64_t *
 InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_437(void)
+void system_initialize_input_system37(void)
 {
   *system_context_param = &system_global_context;
   if ((system_config_param & 1) != 0) {
@@ -22351,7 +22351,7 @@ void system_init_subsystem_437(void)
 return;
 }
 void system_init_with_context_config(longlong system_context_param,longlong system_config_param)
-void system_init_subsystem_438(void)
+void system_initialize_input_system38(void)
 {
   longlong system_memory_allocation_result;
   
@@ -22377,7 +22377,7 @@ void system_init_subsystem_438(void)
   return;
 }
 void system_init_with_context_config_memory(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
-void system_init_subsystem_439(void)
+void system_initialize_input_system39(void)
 {
   if (system_memory_param + 1 < INIT_OFFSET_HEADER) {
                     // WARNING: Subroutine does not return
@@ -22401,14 +22401,14 @@ void system_init_subsystem_439(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_440(void)
+void system_initialize_input_system40(void)
 {
                     // WARNING: Subroutine does not return
   memcpy();
 return;
 }
 void InitializeSystemCore(system_uint8_t *system_context_param)
-void system_init_subsystem_441(void)
+void system_initialize_input_system41(void)
 {
   longlong system_register_rdi_input;
   
@@ -22417,7 +22417,7 @@ void system_init_subsystem_441(void)
   return;
 }
 system_uint64_t * InitializeUISystem(system_uint64_t *system_context_param)
-void system_init_subsystem_442(void)
+void system_initialize_input_system42(void)
 {
   *system_context_param = &system_global_context;
   system_context_param[SYSTEM_ARRAY_INDEX_SECONDARY] = 0;
@@ -22438,7 +22438,7 @@ return;
  * 处理系统内存分配、配置验证和数据初始化
 
 void InitializeSystemCore(longlong system_context_param,longlong system_config_param,longlong system_memory_param)
-void system_init_subsystem_443(void)
+void system_initialize_input_system43(void)
 {
   longlong system_memory_allocation_result;
   longlong system_initialization_loop_counter;
@@ -22477,7 +22477,7 @@ return;
 }
 system_uint64_t *
 InitializeSystemCore(system_uint64_t *system_context_param,longlong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_444(void)
+void system_initialize_input_system44(void)
 {
   longlong system_memory_allocation_result;
   
@@ -22500,7 +22500,7 @@ void system_init_subsystem_444(void)
 return;
 }
 void InitializeSystemCore(system_uint64_t *system_context_param)
-void system_init_subsystem_445(void)
+void system_initialize_input_system45(void)
 {
   system_context_param[SYSTEM_ARRAY_INDEX_FIFTH] = &system_global_context;
   if (system_context_param[SYSTEM_ARRAY_INDEX_SIXTH] != 0) {
@@ -22521,7 +22521,7 @@ void system_init_subsystem_445(void)
   return;
 }
 void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t *system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_446(void)
+void system_initialize_input_system46(void)
 {
   if (system_config_param == (system_uint64_t *)SYSTEM_INIT_VALUE_NULL) {
     return;
@@ -22548,19 +22548,19 @@ void system_init_subsystem_446(void)
 return;
 }
 void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_447(void)
+void system_initialize_input_system47(void)
 {
   InitializeSystemCore(system_context_param,*(system_uint64_t *)(system_context_param + INIT_SIZE_COMPARE),system_memory_param,system_thread_param,INIT_VALUE_HANDLE_INVALID_DEFAULT);
   return;
 }
 void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_448(void)
+void system_initialize_input_system48(void)
 {
   InitializeSystemCore(system_context_param,*(system_uint64_t *)(system_context_param + INIT_SIZE_COMPARE),system_memory_param,system_thread_param,INIT_VALUE_HANDLE_INVALID_DEFAULT);
   return;
 }
 void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_449(void)
+void system_initialize_input_system49(void)
 {
   InitializeSystemCore(system_context_param,*(system_uint64_t *)(system_context_param + INIT_SIZE_COMPARE),system_memory_param,system_thread_param,INIT_VALUE_HANDLE_INVALID_DEFAULT);
   return;
@@ -22578,7 +22578,7 @@ void system_init_subsystem_449(void)
  * 简化实现：保持代码语义不变，仅添加详细文档注释
 
 void InitializeInputSystem(system_uint64_t *system_context_param)
-void system_init_subsystem_450(void)
+void system_initialize_input_system50(void)
 {
   *system_context_param = &system_global_context;
   if (system_context_param[SYSTEM_ARRAY_INDEX_SECONDARY] != 0) {
@@ -22591,7 +22591,7 @@ void system_init_subsystem_450(void)
   return;
 }
 void system_init_with_context_config(longlong system_context_param,longlong system_config_param)
-void system_init_subsystem_451(void)
+void system_initialize_input_system51(void)
 {
   longlong system_memory_allocation_result;
   
@@ -22630,13 +22630,13 @@ void system_init_subsystem_451(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_452(void)
+void system_initialize_input_system52(void)
 {
   _Mtx_destroy_in_situ();
   return;
 }
 system_uint64_t InitializeSystemCore(longlong system_context_param,system_uint_standard_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_453(void)
+void system_initialize_input_system53(void)
 {
   int system_initialization_parameter;
   system_uint64_t system_configuration_value;
@@ -22694,7 +22694,7 @@ system_init_label_network_connect:
 return;
 }
 void InitializeSystemCore(system_uint64_t *system_context_param)
-void system_init_subsystem_454(void)
+void system_initialize_input_system54(void)
 {
   *system_context_param = &system_global_context;
   _Mtx_destroy_in_situ();
@@ -22706,7 +22706,7 @@ void system_init_subsystem_454(void)
   return;
 }
 system_uint64_t system_init_with_context_ulong_config(system_uint64_t system_context_param,ulonglong system_config_param)
-void system_init_subsystem_455(void)
+void system_initialize_input_system55(void)
 {
   InitializeSystemCore();
   if ((system_config_param & 1) != 0) {
@@ -22716,14 +22716,14 @@ void system_init_subsystem_455(void)
 return;
 }
 void InitializeSystemCore(system_uint64_t *system_context_param)
-void system_init_subsystem_456(void)
+void system_initialize_input_system56(void)
 {
   *system_context_param = &system_global_context;
   *system_context_param = &system_global_context;
   return;
 }
 system_uint64_t InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param)
-void system_init_subsystem_457(void)
+void system_initialize_input_system57(void)
 {
   system_uint64_t system_initialization_flags_mask;
   longlong system_initialization_loop_counter;
@@ -22735,7 +22735,7 @@ void system_init_subsystem_457(void)
 return;
 }
 void system_init_with_context_config(longlong system_context_param,longlong system_config_param)
-void system_init_subsystem_458(void)
+void system_initialize_input_system58(void)
 {
   longlong system_memory_allocation_result;
   
@@ -22749,7 +22749,7 @@ void system_init_subsystem_458(void)
 }
 system_uint64_t *
 InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_459(void)
+void system_initialize_input_system59(void)
 {
   *system_context_param = &system_global_context;
   *system_context_param = &system_global_context;
@@ -22760,7 +22760,7 @@ void system_init_subsystem_459(void)
 return;
 }
 bool InitializeSystemCore(void)
-void system_init_subsystem_460(void)
+void system_initialize_input_system60(void)
 {
   char system_init_validation_flag;
   system_uint_standard_t *system_init_buffer_pointer;
@@ -22833,7 +22833,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_461(void)
+void system_initialize_input_system61(void)
 {
   char system_init_validation_flag;
   system_uint_standard_t *system_init_buffer_pointer;
@@ -22916,7 +22916,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_462(void)
+void system_initialize_input_system62(void)
 {
   system_uint64_t system_initialization_loop_counter;
   
@@ -22943,7 +22943,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_463(void)
+void system_initialize_input_system63(void)
 {
   char system_init_validation_flag;
   system_uint64_t *system_init_buffer_pointer;
@@ -23024,7 +23024,7 @@ void system_init_subsystem_463(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_464(void)
+void system_initialize_input_system64(void)
 {
   longlong *system_primary_longptr;
   longlong system_initialization_loop_counter;
@@ -23077,7 +23077,7 @@ void system_init_subsystem_464(void)
 }
 system_uint64_t *
 InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_465(void)
+void system_initialize_input_system65(void)
 {
   system_uint_standard_t *system_context_pointer;
   system_uint64_t *system_init_buffer_pointer;
@@ -23120,7 +23120,7 @@ void system_init_subsystem_465(void)
 return;
 }
 system_uint64_t InitializeSystemCore(char system_context_param)
-void system_init_subsystem_466(void)
+void system_initialize_input_system66(void)
 {
   longlong *system_primary_longptr;
   char system_character_buffer;
@@ -23202,7 +23202,7 @@ void system_init_subsystem_466(void)
 return;
 }
 bool InitializeSystemCore(void)
-void system_init_subsystem_467(void)
+void system_initialize_input_system67(void)
 {
   int system_initialization_parameter;
   
@@ -23211,7 +23211,7 @@ void system_init_subsystem_467(void)
     return system_initialization_parameter == *(int *)(**(longlong **)(system_initialization_flag + INIT_SIZE_MEMORY_CHUNK) + SYSTEM_INIT_FLAG_ACTIVE_DEFAULT);
   }
   if ((system_initialization_parameter != *(int *)(**(longlong **)(system_initialization_flag + INIT_SIZE_MEMORY_CHUNK) + SYSTEM_INIT_FLAG_ACTIVE_DEFAULT)) && (system_initialization_parameter != system_initialization_flag))
-void system_init_subsystem_468(void)
+void system_initialize_input_system68(void)
   {
     return system_false;
   }
@@ -23219,7 +23219,7 @@ void system_init_subsystem_468(void)
 return;
 }
 void InitializeSystemCore(system_uint64_t *system_context_param)
-void system_init_subsystem_469(void)
+void system_initialize_input_system69(void)
 {
   uint system_initialization_flags_mask;
   int system_initialization_loop_counter;
@@ -23283,7 +23283,7 @@ void system_init_subsystem_469(void)
 return;
 }
 longlong * InitializeSystemCore(longlong *system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_470(void)
+void system_initialize_input_system70(void)
 {
   *system_context_param = (longlong)&system_global_context;
   system_context_param[SYSTEM_ARRAY_INDEX_SECONDARY] = 0;
@@ -23301,7 +23301,7 @@ void system_init_subsystem_470(void)
 return;
 }
 void InitializeSystemCore(system_uint_standard_t *system_context_param)
-void system_init_subsystem_471(void)
+void system_initialize_input_system71(void)
 {
   int system_initialization_parameter;
   int system_initialization_loop_counter;
@@ -23315,7 +23315,7 @@ void system_init_subsystem_471(void)
 }
 system_uint64_t *
 InitializeSystemCore(system_uint64_t *system_context_param,longlong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_472(void)
+void system_initialize_input_system72(void)
 {
   void* *system_context_pointer;
   
@@ -23336,19 +23336,19 @@ void system_init_subsystem_472(void)
 return;
 }
 void InitializeSystemCore(system_uint64_t *system_context_param)
-void system_init_subsystem_473(void)
+void system_initialize_input_system73(void)
 {
   *system_context_param = &system_global_context;
   return;
 }
 void InitializeSystemCore(system_uint64_t *system_context_param)
-void system_init_subsystem_474(void)
+void system_initialize_input_system74(void)
 {
   *system_context_param = &system_global_context;
   return;
 }
 void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_475(void)
+void system_initialize_input_system75(void)
 {
   system_uint64_t *system_context_pointer;
   
@@ -23361,7 +23361,7 @@ void system_init_subsystem_475(void)
   return;
 }
 void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_476(void)
+void system_initialize_input_system76(void)
 {
   system_uint64_t *system_context_pointer;
   
@@ -23374,7 +23374,7 @@ void system_init_subsystem_476(void)
   return;
 }
 void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_477(void)
+void system_initialize_input_system77(void)
 {
   system_uint64_t *system_context_pointer;
   
@@ -23387,7 +23387,7 @@ void system_init_subsystem_477(void)
   return;
 }
 void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t *system_config_param)
-void system_init_subsystem_478(void)
+void system_initialize_input_system78(void)
 {
   if (system_config_param != (system_uint64_t *)SYSTEM_INIT_VALUE_NULL) {
     InitializeSystemCore(system_context_param,*system_config_param);
@@ -23397,7 +23397,7 @@ void system_init_subsystem_478(void)
   return;
 }
 void system_init_with_context_ptr_64(system_uint64_t *system_context_param)
-void system_init_subsystem_479(void)
+void system_initialize_input_system79(void)
 {
   system_uint64_t *system_register_rbx_input;
   
@@ -23420,12 +23420,12 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_480(void)
+void system_initialize_input_system80(void)
 {
   return;
 }
 system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_config_param)
-void system_init_subsystem_481(void)
+void system_initialize_input_system81(void)
 {
   *system_context_param = &system_global_context;
   if ((system_config_param & 1) != 0) {
@@ -23435,7 +23435,7 @@ void system_init_subsystem_481(void)
 return;
 }
 system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_config_param)
-void system_init_subsystem_482(void)
+void system_initialize_input_system82(void)
 {
   *system_context_param = &system_global_context;
   if ((system_config_param & 1) != 0) {
@@ -23445,7 +23445,7 @@ void system_init_subsystem_482(void)
 return;
 }
 void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_483(void)
+void system_initialize_input_system83(void)
 {
   longlong system_memory_allocation_result;
   int system_initialization_loop_counter;
@@ -23482,7 +23482,7 @@ void system_init_subsystem_483(void)
 return;
 }
 system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_config_param)
-void system_init_subsystem_484(void)
+void system_initialize_input_system84(void)
 {
   *system_context_param = &system_global_context;
   if ((system_config_param & 1) != 0) {
@@ -23492,7 +23492,7 @@ void system_init_subsystem_484(void)
 return;
 }
 system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_config_param)
-void system_init_subsystem_485(void)
+void system_initialize_input_system85(void)
 {
   *system_context_param = &system_global_context;
   if ((system_config_param & 1) != 0) {
@@ -23524,7 +23524,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_486(void)
+void system_initialize_input_system86(void)
 {
   int system_initialization_parameter;
   ulonglong *system_init_buffer_pointer;
@@ -23538,19 +23538,19 @@ void system_init_subsystem_486(void)
 return;
 }
 void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_487(void)
+void system_initialize_input_system87(void)
 {
   InitializeSystemCore(system_context_param,*(system_uint64_t *)(system_context_param + INIT_SIZE_COMPARE),system_memory_param,system_thread_param,INIT_VALUE_HANDLE_INVALID_DEFAULT);
   return;
 }
 void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_488(void)
+void system_initialize_input_system88(void)
 {
   InitializeSystemCore(system_context_param,*(system_uint64_t *)(system_context_param + INIT_SIZE_COMPARE),system_memory_param,system_thread_param,INIT_VALUE_HANDLE_INVALID_DEFAULT);
   return;
 }
 void InitializeSystemCore(system_uint64_t *system_context_param)
-void system_init_subsystem_489(void)
+void system_initialize_input_system89(void)
 {
   int system_initialization_parameter;
   
@@ -23562,31 +23562,31 @@ void system_init_subsystem_489(void)
   return;
 }
 void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_490(void)
+void system_initialize_input_system90(void)
 {
   InitializeSystemCore(system_context_param,*(system_uint64_t *)(system_context_param + INIT_SIZE_COMPARE),system_memory_param,system_thread_param,INIT_VALUE_HANDLE_INVALID_DEFAULT);
   return;
 }
 void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_491(void)
+void system_initialize_input_system91(void)
 {
   InitializeSystemCore(system_context_param,*(system_uint64_t *)(system_context_param + INIT_SIZE_COMPARE),system_memory_param,system_thread_param,INIT_VALUE_HANDLE_INVALID_DEFAULT);
   return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_492(void)
+void system_initialize_input_system92(void)
 {
   InitializeSystemCore(system_context_param + INIT_OFFSET_BASE);
   return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_493(void)
+void system_initialize_input_system93(void)
 {
   InitializeSystemCore(system_context_param + INIT_OFFSET_BASE);
   return;
 }
 void system_init_with_full_params(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_494(void)
+void system_initialize_input_system94(void)
 {
   system_uint64_t *system_context_pointer;
   longlong system_initialization_loop_counter;
@@ -23634,19 +23634,19 @@ void system_init_subsystem_494(void)
   return;
 }
 void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_495(void)
+void system_initialize_input_system95(void)
 {
   InitializeSystemCore(system_context_param,*(system_uint64_t *)(system_context_param + INIT_SIZE_COMPARE),system_memory_param,system_thread_param,INIT_VALUE_HANDLE_INVALID_DEFAULT);
   return;
 }
 void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_496(void)
+void system_initialize_input_system96(void)
 {
   InitializeSystemCore(system_context_param,*(system_uint64_t *)(system_context_param + INIT_SIZE_COMPARE),system_memory_param,system_thread_param,INIT_VALUE_HANDLE_INVALID_DEFAULT);
   return;
 }
 system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param)
-void system_init_subsystem_497(void)
+void system_initialize_input_system97(void)
 {
   *system_context_param = &system_global_context;
   system_context_param[SYSTEM_ARRAY_INDEX_SECONDARY] = 0;
@@ -23688,7 +23688,7 @@ void system_init_subsystem_497(void)
 return;
 }
 void InitializeSystemCore(longlong *system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_498(void)
+void system_initialize_input_system98(void)
 {
   system_uint64_t *system_context_pointer;
   system_uint64_t *system_init_buffer_pointer;
@@ -23707,7 +23707,7 @@ void system_init_subsystem_498(void)
 return;
 }
 void InitializeSystemCore(longlong *system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_499(void)
+void system_initialize_input_system99(void)
 {
   system_uint64_t *system_context_pointer;
   system_uint64_t *system_init_buffer_pointer;
@@ -23726,7 +23726,7 @@ void system_init_subsystem_499(void)
 return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_500(void)
+void system_initialize_network_system00(void)
 {
   int system_initialization_parameter;
   longlong system_initialization_loop_counter;
@@ -23763,7 +23763,7 @@ void system_init_subsystem_500(void)
   return;
 }
 void InitializeSystemCore(longlong *system_context_param)
-void system_init_subsystem_501(void)
+void system_initialize_network_system01(void)
 {
   longlong system_memory_allocation_result;
   
@@ -23788,7 +23788,7 @@ void system_init_subsystem_501(void)
 return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_502(void)
+void system_initialize_network_system02(void)
 {
   int *system_int_ptr_main;
   longlong system_initialization_loop_counter;
@@ -23838,7 +23838,7 @@ void system_init_subsystem_502(void)
   return;
 }
 void InitializeSystemCore(longlong *system_context_param)
-void system_init_subsystem_503(void)
+void system_initialize_network_system03(void)
 {
   longlong system_memory_allocation_result;
   longlong system_initialization_loop_counter;
@@ -23867,7 +23867,7 @@ return;
  * 简化实现：保持代码语义不变，仅添加详细文档注释
 
 void SetupMemoryManager(longlong *system_context_param)
-void system_init_subsystem_504(void)
+void system_initialize_network_system04(void)
 {
   longlong *system_primary_longptr;
   longlong *system_secondary_longptr;
@@ -23886,7 +23886,7 @@ void system_init_subsystem_504(void)
 return;
 }
 system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param)
-void system_init_subsystem_505(void)
+void system_initialize_network_system05(void)
 {
   *system_context_param = 0;
   system_context_param[SYSTEM_ARRAY_INDEX_SECONDARY] = 0;
@@ -23896,7 +23896,7 @@ void system_init_subsystem_505(void)
 return;
 }
 void InitializeSystemCore(longlong *system_context_param)
-void system_init_subsystem_506(void)
+void system_initialize_network_system06(void)
 {
   longlong system_memory_allocation_result;
   longlong system_initialization_loop_counter;
@@ -23913,7 +23913,7 @@ void system_init_subsystem_506(void)
 return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_507(void)
+void system_initialize_network_system07(void)
 {
   int *system_int_ptr_main;
   longlong system_initialization_loop_counter;
@@ -23963,7 +23963,7 @@ void system_init_subsystem_507(void)
   return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_508(void)
+void system_initialize_network_system08(void)
 {
   void* *system_context_pointer;
   system_uint8_t system_stack_array_buffer_secondary [SYSTEM_ARRAY_INDEX_NINTH];
@@ -23985,7 +23985,7 @@ void system_init_subsystem_508(void)
   system_stack_uint_data_offset = INIT_VALUE_HANDLE_INVALID_DEFAULT;
   if (system_context_param == 0) {
 void InitializeSystemCore(ulonglong *system_context_param)
-void system_init_subsystem_509(void)
+void system_initialize_network_system09(void)
 {
   int *system_int_ptr_main;
   system_uint64_t *system_init_buffer_pointer;
@@ -24018,7 +24018,7 @@ void system_init_subsystem_509(void)
   return;
 }
 void InitializeSystemCore(longlong *system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_510(void)
+void system_initialize_network_system10(void)
 {
   system_uint64_t *system_context_pointer;
   system_uint64_t *system_init_buffer_pointer;
@@ -24037,14 +24037,14 @@ void system_init_subsystem_510(void)
 return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_511(void)
+void system_initialize_network_system11(void)
 {
   uint system_initialization_flags_mask;
   longlong system_initialization_loop_counter;
   
   if (system_context_param == 0) {
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_512(void)
+void system_initialize_network_system12(void)
 {
   uint system_initialization_flags_mask;
   longlong system_initialization_loop_counter;
@@ -24075,7 +24075,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_513(void)
+void system_initialize_network_system13(void)
 {
   system_code *system_char_pointer_offset;
   
@@ -24086,7 +24086,7 @@ void system_init_subsystem_513(void)
 }
 system_uint8_t *
 InitializeSystemCore(system_uint8_t *system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_514(void)
+void system_initialize_network_system14(void)
 {
   longlong *system_primary_longptr;
   longlong *system_secondary_longptr;
@@ -24146,7 +24146,7 @@ void system_init_subsystem_514(void)
 return;
 }
 system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param)
-void system_init_subsystem_515(void)
+void system_initialize_network_system15(void)
 {
   longlong *system_primary_longptr;
   longlong *system_secondary_longptr;
@@ -24394,7 +24394,7 @@ return;
  * 简化实现：保持代码语义不变，仅添加详细文档注释
 
 void InitializeAudioSystem(longlong *system_context_param)
-void system_init_subsystem_516(void)
+void system_initialize_network_system16(void)
 {
   if ((longlong *)*system_context_param != (longlong *)SYSTEM_INIT_VALUE_NULL) {
     (**(system_code **)(*(longlong *)*system_context_param + INIT_SIZE_MEMORY_CHUNK_STANDARD))();
@@ -24403,7 +24403,7 @@ void system_init_subsystem_516(void)
 }
 system_uint64_t *
 InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_517(void)
+void system_initialize_network_system17(void)
 {
   if (system_context_param[SYSTEM_ARRAY_INDEX_TERTIARY] != 0) {
                     // WARNING: Subroutine does not return
@@ -24418,7 +24418,7 @@ void system_init_subsystem_517(void)
 return;
 }
 void InitializeSystemCore(system_uint64_t *system_context_param)
-void system_init_subsystem_518(void)
+void system_initialize_network_system18(void)
 {
   if (system_context_param[SYSTEM_ARRAY_INDEX_TERTIARY] != 0) {
                     // WARNING: Subroutine does not return
@@ -24429,7 +24429,7 @@ void system_init_subsystem_518(void)
   return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_519(void)
+void system_initialize_network_system19(void)
 {
   longlong system_memory_allocation_result;
   int system_initialization_loop_counter;
@@ -24468,7 +24468,7 @@ void system_init_subsystem_519(void)
   return;
 }
 void InitializeSystemCore(longlong *system_context_param)
-void system_init_subsystem_520(void)
+void system_initialize_network_system20(void)
 {
   system_uint64_t *system_context_pointer;
   longlong system_initialization_loop_counter;
@@ -24665,7 +24665,7 @@ void system_init_subsystem_520(void)
  * 简化实现：保持代码语义不变，仅添加详细文档注释
 
 void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
-void system_init_subsystem_521(void)
+void system_initialize_network_system21(void)
 {
   byte system_system_init_validation_flag_primary;
   system_uint8_t system_configuration_value;
@@ -24845,7 +24845,7 @@ void system_init_subsystem_521(void)
         }
         if (system_bool_secondary) {
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_522(void)
+void system_initialize_network_system22(void)
 {
   int *system_int_ptr_main;
   system_uint_standard_t system_configuration_value;
@@ -24905,7 +24905,7 @@ system_init_label_protocol_check:
 return;
 }
 system_uint_standard_t system_init_get_special_context(void)
-void system_init_subsystem_523(void)
+void system_initialize_network_system23(void)
 {
   system_uint8_t system_primary_uint_array [16];
   longlong system_initialization_loop_counter;
@@ -25055,7 +25055,7 @@ return;
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_NULL)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_NULLx10)
 void system_init_with_full_params(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_524(void)
+void system_initialize_network_system24(void)
 {
   uint system_initialization_flags_mask;
   uint system_configuration_value;
@@ -25139,7 +25139,7 @@ void system_init_subsystem_524(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_525(void)
+void system_initialize_network_system25(void)
 {
   int system_initialization_parameter;
   longlong system_initialization_loop_counter;
@@ -25292,7 +25292,7 @@ void system_init_subsystem_525(void)
 return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_526(void)
+void system_initialize_network_system26(void)
 {
   int *system_int_ptr_main;
   longlong system_initialization_loop_counter;
@@ -25342,7 +25342,7 @@ void system_init_subsystem_526(void)
   return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_527(void)
+void system_initialize_network_system27(void)
 {
   int *system_int_ptr_main;
   longlong system_initialization_loop_counter;
@@ -25405,7 +25405,7 @@ void system_init_subsystem_527(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_528(void)
+void system_initialize_network_system28(void)
 {
   system_uint64_t *system_context_pointer;
   char *system_callback_function;
@@ -25568,7 +25568,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_529(void)
+void system_initialize_network_system29(void)
 {
   longlong *system_primary_longptr;
   system_uint64_t *system_init_buffer_pointer;
@@ -25691,7 +25691,7 @@ void system_init_subsystem_529(void)
       __Throw_C_error_std__YAXH_Z(system_offset_value);
     }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_530(void)
+void system_initialize_network_system30(void)
 {
   longlong *system_primary_longptr;
   system_uint64_t *system_init_buffer_pointer;
@@ -25808,7 +25808,7 @@ void system_init_subsystem_530(void)
       __Throw_C_error_std__YAXH_Z(system_int_size);
     }
 void system_init_with_context_config_ptrs(longlong *system_context_param,system_uint64_t *system_config_param)
-void system_init_subsystem_531(void)
+void system_initialize_network_system31(void)
 {
   longlong *system_primary_longptr;
   char system_character_buffer;
@@ -25864,7 +25864,7 @@ void system_init_subsystem_531(void)
   }
   else {
 void SetupFileSystem(longlong system_context_param)
-void system_init_subsystem_532(void)
+void system_initialize_network_system32(void)
 {
   int *system_int_ptr_main;
   system_uint64_t *system_init_buffer_pointer;
@@ -25897,7 +25897,7 @@ void system_init_subsystem_532(void)
   return;
 }
 system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t *system_config_param)
-void system_init_subsystem_533(void)
+void system_initialize_network_system33(void)
 {
   longlong *system_primary_longptr;
   longlong system_initialization_loop_counter;
@@ -25980,7 +25980,7 @@ void system_init_subsystem_533(void)
 return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_534(void)
+void system_initialize_network_system34(void)
 {
   longlong system_memory_allocation_result;
   longlong system_initialization_loop_counter;
@@ -26055,7 +26055,7 @@ void system_init_subsystem_534(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_535(void)
+void system_initialize_network_system35(void)
 {
   longlong system_memory_allocation_result;
   longlong system_initialization_loop_counter;
@@ -26085,7 +26085,7 @@ void system_init_subsystem_535(void)
   return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_536(void)
+void system_initialize_network_system36(void)
 {
   longlong system_memory_allocation_result;
   longlong system_initialization_loop_counter;
@@ -26132,12 +26132,12 @@ void system_init_subsystem_536(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_537(void)
+void system_initialize_network_system37(void)
 {
   return;
 }
 bool InitializeSystemCore(longlong system_context_param)
-void system_init_subsystem_538(void)
+void system_initialize_network_system38(void)
 {
   system_uint64_t *system_context_pointer;
   byte system_system_init_validation_flag_secondary;
@@ -26219,14 +26219,14 @@ return;
 }
 system_uint64_t
 InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_539(void)
+void system_initialize_network_system39(void)
 {
   system_return_result(system_config_param,system_initialization_flag + SYSTEM_INIT_FLAG_INITIALIZEDc0,system_memory_param,system_thread_param,0,INIT_VALUE_HANDLE_INVALID_DEFAULT);
   return system_config_param;
 return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_540(void)
+void system_initialize_network_system40(void)
 {
   system_uint64_t *system_context_pointer;
   int system_initialization_loop_counter;
@@ -26254,7 +26254,7 @@ void system_init_subsystem_540(void)
 return;
 }
 void InitializeSystemCore(longlong system_context_param,longlong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_541(void)
+void system_initialize_network_system41(void)
 {
   longlong *system_primary_longptr;
   system_uint_standard_t system_configuration_value;
@@ -26333,7 +26333,7 @@ void system_init_subsystem_541(void)
 return;
 }
 system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param)
-void system_init_subsystem_542(void)
+void system_initialize_network_system42(void)
 {
   longlong system_memory_allocation_result;
   system_uint_standard_t system_configuration_value;
@@ -26392,7 +26392,7 @@ void system_init_subsystem_542(void)
 return;
 }
 void InitializeSystemCore(longlong system_context_param,float system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_543(void)
+void system_initialize_network_system43(void)
 {
   ulonglong system_initialization_flags_mask;
   float system_coefficient_b;
@@ -26574,7 +26574,7 @@ system_init_label_parameter_set:
   return;
 }
 void InitializeSystemCore(longlong *system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint8_t system_thread_param)
-void system_init_subsystem_544(void)
+void system_initialize_network_system44(void)
 {
   int system_initialization_parameter;
   longlong system_initialization_loop_counter;
@@ -26711,7 +26711,7 @@ void system_init_subsystem_544(void)
  * 简化实现：保持代码语义不变，仅添加详细文档注释
 
 void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param)
-void system_init_subsystem_545(void)
+void system_initialize_network_system45(void)
 {
   system_uint_standard_t *system_context_pointer;
   int system_initialization_loop_counter;
@@ -26922,7 +26922,7 @@ return;
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_NULL)
 // WARNING: Removing unreachable block (ram,SYSTEM_INIT_VALUE_NULL)
 void system_init_with_context_config_ptrs_memory(system_uint64_t system_context_param,system_uint64_t *system_config_param,longlong *system_memory_param)
-void system_init_subsystem_546(void)
+void system_initialize_network_system46(void)
 {
   longlong system_memory_allocation_result;
   longlong system_initialization_loop_counter;
@@ -27056,7 +27056,7 @@ return;
 }
 system_uint64_t
 InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_547(void)
+void system_initialize_network_system47(void)
 {
   char system_init_validation_flag;
   char system_character_buffer;
@@ -27180,7 +27180,7 @@ system_init_label_scheduler_start:
 return;
 }
 void InitializeSystemCore(longlong *system_context_param,longlong system_config_param)
-void system_init_subsystem_548(void)
+void system_initialize_network_system48(void)
 {
   uint system_initialization_flags_mask;
   int system_initialization_loop_counter;
@@ -27407,7 +27407,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_549(void)
+void system_initialize_network_system49(void)
 {
   uint system_initialization_loop_counter;
   longlong *system_secondary_longptr;
@@ -27812,7 +27812,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_550(void)
+void system_initialize_network_system50(void)
 {
   system_uint64_t *system_context_pointer;
   system_uint64_t *system_init_buffer_pointer;
@@ -27876,7 +27876,7 @@ void system_init_subsystem_550(void)
 return;
 }
 void InitializeSystemCore(longlong *system_context_param)
-void system_init_subsystem_551(void)
+void system_initialize_network_system51(void)
 {
   longlong system_memory_allocation_result;
   longlong system_initialization_loop_counter;
@@ -27893,13 +27893,13 @@ void system_init_subsystem_551(void)
 return;
 }
 void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_552(void)
+void system_initialize_network_system52(void)
 {
   InitializeSystemCore(system_context_param,*(system_uint64_t *)(system_context_param + INIT_SIZE_COMPARE),system_memory_param,system_thread_param,INIT_VALUE_HANDLE_INVALID_DEFAULT);
   return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_553(void)
+void system_initialize_network_system53(void)
 {
   longlong system_memory_allocation_result;
   longlong system_initialization_loop_counter;
@@ -27932,7 +27932,7 @@ void system_init_subsystem_553(void)
   return;
 }
 longlong InitializeSystemCore(longlong system_context_param)
-void system_init_subsystem_554(void)
+void system_initialize_network_system54(void)
 {
   *(system_uint64_t *)(system_context_param + INIT_SIZE_MEMORY_CHUNK) = &system_global_context;
   *(system_uint64_t *)(system_context_param + INIT_SIZE_COMPARE) = 0;
@@ -27945,7 +27945,7 @@ void system_init_subsystem_554(void)
 return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_555(void)
+void system_initialize_network_system55(void)
 {
   *(system_uint64_t *)(system_context_param + INIT_SIZE_MEMORY_CHUNK) = &system_global_context;
   if (*(longlong *)(system_context_param + INIT_SIZE_COMPARE) != 0) {
@@ -27958,13 +27958,13 @@ void system_init_subsystem_555(void)
   return;
 }
 void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_556(void)
+void system_initialize_network_system56(void)
 {
   InitializeSystemCore(system_context_param,*(system_uint64_t *)(system_context_param + INIT_SIZE_COMPARE),system_memory_param,system_thread_param,INIT_VALUE_HANDLE_INVALID_DEFAULT);
   return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_557(void)
+void system_initialize_network_system57(void)
 {
   longlong system_memory_allocation_result;
   longlong system_initialization_loop_counter;
@@ -27997,7 +27997,7 @@ void system_init_subsystem_557(void)
   return;
 }
 void system_init_with_context_special_config(system_uint64_t system_context_param,system_uint_standard_t system_config_param)
-void system_init_subsystem_558(void)
+void system_initialize_network_system58(void)
 {
   system_code *system_char_pointer_offset;
   
@@ -28024,7 +28024,7 @@ void system_init_subsystem_558(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_559(void)
+void system_initialize_network_system59(void)
 {
   system_uint64_t *system_context_pointer;
   system_uint64_t system_configuration_value;
@@ -28072,7 +28072,7 @@ void system_init_subsystem_559(void)
   return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_560(void)
+void system_initialize_network_system60(void)
 {
   char system_init_validation_flag;
   char system_character_buffer;
@@ -28217,7 +28217,7 @@ system_init_label_timer_start:
   return;
 }
 void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_561(void)
+void system_initialize_network_system61(void)
 {
   ulonglong *system_context_pointer;
   system_uint64_t *system_init_buffer_pointer;
@@ -28299,7 +28299,7 @@ void system_init_subsystem_561(void)
 return;
 }
 void InitializeSystemCore(longlong *system_context_param)
-void system_init_subsystem_562(void)
+void system_initialize_network_system62(void)
 {
   system_uint64_t *system_context_pointer;
   system_code *system_callback_function;
@@ -28360,7 +28360,7 @@ void system_init_subsystem_562(void)
 return;
 }
 system_uint64_t system_init_full_params_return_ulong(system_uint64_t system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_563(void)
+void system_initialize_network_system63(void)
 {
   system_uint64_t system_initialization_flags_mask;
   
@@ -28373,7 +28373,7 @@ void system_init_subsystem_563(void)
 return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_564(void)
+void system_initialize_network_system64(void)
 {
   uint system_initialization_flags_mask;
   double system_double_secondary;
@@ -28506,7 +28506,7 @@ void system_init_subsystem_564(void)
 return;
 }
 void system_init_with_full_params(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_565(void)
+void system_initialize_network_system65(void)
 {
   longlong system_memory_allocation_result;
   char system_character_buffer;
@@ -28544,7 +28544,7 @@ void system_init_subsystem_565(void)
   return;
 }
 void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t *system_config_param,system_uint_standard_t system_memory_param)
-void system_init_subsystem_566(void)
+void system_initialize_network_system66(void)
 {
   system_uint64_t system_initialization_flags_mask;
   void* **psystem_local_uint_ptr_secondary;
@@ -28606,7 +28606,7 @@ void system_init_subsystem_566(void)
 return;
 }
 system_uint64_t * InitializeAISystem(system_uint64_t *system_context_param)
-void system_init_subsystem_567(void)
+void system_initialize_network_system67(void)
 {
   *system_context_param = 0;
   system_context_param[SYSTEM_ARRAY_INDEX_SECONDARY] = 0;
@@ -28616,7 +28616,7 @@ void system_init_subsystem_567(void)
 return;
 }
 system_uint64_t * InitializeThreadSystem(system_uint64_t *system_context_param)
-void system_init_subsystem_568(void)
+void system_initialize_network_system68(void)
 {
   *system_context_param = 0;
   system_context_param[SYSTEM_ARRAY_INDEX_SECONDARY] = 0;
@@ -28639,13 +28639,13 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_569(void)
+void system_initialize_network_system69(void)
 {
   InitializeSystemCore();
   return;
 }
 system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param)
-void system_init_subsystem_570(void)
+void system_initialize_network_system70(void)
 {
   *system_context_param = 0;
   system_context_param[SYSTEM_ARRAY_INDEX_SECONDARY] = 0;
@@ -28655,7 +28655,7 @@ void system_init_subsystem_570(void)
 return;
 }
 system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param)
-void system_init_subsystem_571(void)
+void system_initialize_network_system71(void)
 {
   system_uint64_t *system_context_pointer;
   
@@ -28677,7 +28677,7 @@ void system_init_subsystem_571(void)
 return;
 }
 longlong * InitializeSystemCore(longlong *system_context_param,longlong *system_config_param)
-void system_init_subsystem_572(void)
+void system_initialize_network_system72(void)
 {
   longlong *system_primary_longptr;
   
@@ -28693,7 +28693,7 @@ void system_init_subsystem_572(void)
 return;
 }
 void system_init_with_context_config(longlong system_context_param,longlong system_config_param)
-void system_init_subsystem_573(void)
+void system_initialize_network_system73(void)
 {
   longlong system_memory_allocation_result;
   void* *system_init_buffer_pointer;
@@ -28724,7 +28724,7 @@ void system_init_subsystem_573(void)
   return;
 }
 void InitializeSystemCore(longlong *system_context_param)
-void system_init_subsystem_574(void)
+void system_initialize_network_system74(void)
 {
   longlong *system_primary_longptr;
   longlong system_initialization_loop_counter;
@@ -28747,7 +28747,7 @@ void system_init_subsystem_574(void)
   return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_575(void)
+void system_initialize_network_system75(void)
 {
   longlong system_register_rsi_input;
   longlong *system_register_rdi_input;
@@ -28781,7 +28781,7 @@ void system_init_subsystem_575(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_576(void)
+void system_initialize_network_system76(void)
 {
   longlong system_register_rsi_input;
   longlong *system_register_rdi_input;
@@ -28793,7 +28793,7 @@ void system_init_subsystem_576(void)
 }
 system_uint64_t *
 InitializeSystemCore(system_uint64_t *system_context_param,longlong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_577(void)
+void system_initialize_network_system77(void)
 {
   longlong system_memory_allocation_result;
   
@@ -28816,7 +28816,7 @@ void system_init_subsystem_577(void)
 return;
 }
 void InitializeSystemCore(longlong *system_context_param)
-void system_init_subsystem_578(void)
+void system_initialize_network_system78(void)
 {
   system_uint64_t *system_context_pointer;
   system_uint64_t *system_init_buffer_pointer;
@@ -28835,7 +28835,7 @@ void system_init_subsystem_578(void)
   return;
 }
 void InitializeSystemCore(longlong *system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_579(void)
+void system_initialize_network_system79(void)
 {
   system_uint64_t *system_context_pointer;
   system_uint64_t *system_init_buffer_pointer;
@@ -28854,7 +28854,7 @@ void system_init_subsystem_579(void)
 return;
 }
 void InitializeSystemCore(longlong *system_context_param,system_uint_standard_t *system_config_param)
-void system_init_subsystem_580(void)
+void system_initialize_network_system80(void)
 {
   longlong system_memory_allocation_result;
   system_uint_standard_t *system_init_buffer_pointer;
@@ -28898,7 +28898,7 @@ system_init_label_metrics_setup:
   return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_581(void)
+void system_initialize_network_system81(void)
 {
   system_uint64_t *system_context_pointer;
   
@@ -28929,7 +28929,7 @@ void system_init_subsystem_581(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_582(void)
+void system_initialize_network_system82(void)
 {
   InitializeSystemCore();
                     // WARNING: Subroutine does not return
@@ -28950,7 +28950,7 @@ return;
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_583(void)
+void system_initialize_network_system83(void)
 {
   longlong system_register_rbx_input;
   
@@ -28962,7 +28962,7 @@ void system_init_subsystem_583(void)
   return;
 }
 void InitializeSystemCore(longlong *system_context_param,ulonglong system_config_param)
-void system_init_subsystem_584(void)
+void system_initialize_network_system84(void)
 {
   longlong system_memory_allocation_result;
   ulonglong system_configuration_value;
@@ -29020,7 +29020,7 @@ void system_init_subsystem_584(void)
   return;
 }
 void InitializeSystemCore(longlong system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,longlong system_thread_param)
-void system_init_subsystem_585(void)
+void system_initialize_network_system85(void)
 {
   longlong in_RAX;
   longlong system_memory_allocation_result;
@@ -29084,7 +29084,7 @@ void system_init_subsystem_585(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_586(void)
+void system_initialize_network_system86(void)
 {
   longlong system_register_rbx_input;
   longlong system_register_rsi_input;
@@ -29098,7 +29098,7 @@ void system_init_subsystem_586(void)
   return;
 }
 void InitializeSystemCore(system_uint64_t system_context_param,longlong system_config_param,system_uint64_t system_memory_param,longlong system_thread_param)
-void system_init_subsystem_587(void)
+void system_initialize_network_system87(void)
 {
   longlong system_register_rbx_input;
   
@@ -29106,13 +29106,13 @@ void system_init_subsystem_587(void)
   return;
 }
 void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_588(void)
+void system_initialize_network_system88(void)
 {
   InitializeSystemCore(system_context_param,*(system_uint64_t *)(system_context_param + INIT_SIZE_COMPARE),system_memory_param,system_thread_param,INIT_VALUE_HANDLE_INVALID_DEFAULT);
   return;
 }
 void InitializeSystemCore(longlong *system_context_param)
-void system_init_subsystem_589(void)
+void system_initialize_network_system89(void)
 {
   longlong system_memory_allocation_result;
   longlong system_initialization_loop_counter;
@@ -29129,19 +29129,19 @@ void system_init_subsystem_589(void)
 return;
 }
 void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_590(void)
+void system_initialize_network_system90(void)
 {
   InitializeSystemCore(system_context_param,*(system_uint64_t *)(system_context_param + INIT_SIZE_COMPARE),system_memory_param,system_thread_param,INIT_VALUE_HANDLE_INVALID_DEFAULT);
   return;
 }
 void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_591(void)
+void system_initialize_network_system91(void)
 {
   InitializeSystemCore(system_context_param,*(system_uint64_t *)(system_context_param + INIT_SIZE_COMPARE),system_memory_param,system_thread_param,INIT_VALUE_HANDLE_INVALID_DEFAULT);
   return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_592(void)
+void system_initialize_network_system92(void)
 {
   int *system_int_ptr_main;
   longlong system_initialization_loop_counter;
@@ -29191,7 +29191,7 @@ void system_init_subsystem_592(void)
   return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_593(void)
+void system_initialize_network_system93(void)
 {
   int *system_int_ptr_main;
   longlong system_initialization_loop_counter;
@@ -29254,7 +29254,7 @@ void system_init_subsystem_593(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_594(void)
+void system_initialize_network_system94(void)
 {
   int *system_int_ptr_main;
   system_uint64_t *system_init_buffer_pointer;
@@ -29315,7 +29315,7 @@ void system_init_subsystem_594(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_595(void)
+void system_initialize_network_system95(void)
 {
   int *system_int_ptr_main;
   system_uint64_t *system_init_buffer_pointer;
@@ -29364,7 +29364,7 @@ void system_init_subsystem_595(void)
  * 
  * @note 这是简化实现，保持代码语义不变，仅进行语义化美化
  */
-void system_init_subsystem_596(void)
+void system_initialize_network_system96(void)
 {
   int *system_int_ptr_main;
   system_uint64_t *system_init_buffer_pointer;
@@ -29398,13 +29398,13 @@ void system_init_subsystem_596(void)
   return;
 }
 void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_597(void)
+void system_initialize_network_system97(void)
 {
   InitializeSystemCore(system_context_param,*(system_uint64_t *)(system_context_param + INIT_SIZE_COMPARE),system_memory_param,system_thread_param,INIT_VALUE_HANDLE_INVALID_DEFAULT);
   return;
 }
 void InitializeSystemCore(longlong *system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void system_init_subsystem_598(void)
+void system_initialize_network_system98(void)
 {
   system_uint64_t *system_context_pointer;
   system_uint64_t *system_init_buffer_pointer;
@@ -29423,7 +29423,7 @@ void system_init_subsystem_598(void)
 return;
 }
 void system_init_with_context(longlong system_context_param)
-void system_init_subsystem_599(void)
+void system_initialize_network_system99(void)
 {
   longlong system_memory_allocation_result;
   longlong system_initialization_loop_counter;
