@@ -171,9 +171,9 @@ typedef unsigned long ulonglong;
 #define SYSTEM_INIT_RESOURCE_COOKIE_NETWORK INIT_BASE_VALUE_MAGIC
 
 // 全局变量声明
-static system_uint64_t *system_global_context_ptr = NULL;
-static system_uint64_t system_initialized = 0;
-static system_uint64_t *system_buffer_ptr = NULL;
+static system_uint64_t *global_system_context_pointer = NULL;
+static system_uint64_t system_initialization_status = 0;
+static system_uint64_t *system_buffer_pointer = NULL;
 
 /**
  * @brief 系统初始化状态检查函数
@@ -184,10 +184,10 @@ static system_uint64_t *system_buffer_ptr = NULL;
  */
 int system_check_initialization_status(void)
 {
-    if (system_global_context_ptr == NULL) {
+    if (global_system_context_pointer == NULL) {
         return -1;
     }
-    return (system_initialized != 0) ? 0 : -1;
+    return (system_initialization_status != 0) ? 0 : -1;
 }
 
 /**
@@ -236,8 +236,8 @@ int system_initialize_core(system_uint64_t context_param, system_uint64_t config
     }
     
     // 设置全局系统上下文和初始化状态
-    system_global_context_ptr = (system_uint64_t *)context_param;
-    system_initialized = 1;
+    global_system_context_pointer = (system_uint64_t *)context_param;
+    system_initialization_status = 1;
     
     // 清理临时资源
     free(temp_memory_ptr);
@@ -255,11 +255,11 @@ int system_initialize_core(system_uint64_t context_param, system_uint64_t config
  */
 void system_initialize_with_context(int64_t context_param)
 {
-    system_uint64_t *context_ptr = (system_uint64_t *)context_param;
+    system_uint64_t *context_pointer = (system_uint64_t *)context_param;
     
-    if (context_ptr != NULL) {
-        system_global_context_ptr = context_ptr;
-        system_initialized = 1;
+    if (context_pointer != NULL) {
+        global_system_context_pointer = context_pointer;
+        system_initialization_status = 1;
     }
 }
 
@@ -271,10 +271,10 @@ void system_initialize_with_context(int64_t context_param)
  */
 void system_initialize_core_context(void)
 {
-    if (system_global_context_ptr == NULL) {
-        system_global_context_ptr = (system_uint64_t *)malloc(INIT_SIZE_STANDARD_COMPARE);
-        if (system_global_context_ptr != NULL) {
-            system_initialized = 1;
+    if (global_system_context_pointer == NULL) {
+        global_system_context_pointer = (system_uint64_t *)malloc(INIT_STANDARD_COMPARE_SIZE);
+        if (global_system_context_pointer != NULL) {
+            system_initialization_status = 1;
         }
     }
 }
