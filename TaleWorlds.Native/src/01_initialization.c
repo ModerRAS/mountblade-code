@@ -215,9 +215,9 @@ typedef unsigned long ulonglong;
 #define SYSTEM_INIT_SIZE_BUFFER_D0 0x106                 // 缓冲区D0大小
 #define SYSTEM_INIT_SIZE_STACK_0x102 0x102               // 栈大小0x102
 #define SYSTEM_INIT_FLAG_AUDIO_ENABLED 0xEC              // 音频启用标志
-#define SYSTEM_INIT_FLAG_NETWORK_PRIMARY 0x65706f6c      // 网络主标志
-#define SYSTEM_INIT_FLAG_NETWORK_SECONDARY 0x76726574    // 网络次标志
-#define SYSTEM_INIT_FLAG_NETWORK_TERTIARY 0x69746e65     // 网络第三标志
+#define SYSTEM_INIT_FLAG_NETWORK_PRIMARY SYSTEM_INIT_FLAG_NETWORK_PRIMARY      // 网络主标志
+#define SYSTEM_INIT_FLAG_NETWORK_SECONDARY SYSTEM_INIT_FLAG_NETWORK_SECONDARY    // 网络次标志
+#define SYSTEM_INIT_FLAG_NETWORK_TERTIARY SYSTEM_INIT_FLAG_NETWORK_TERTIARY     // 网络第三标志
 #define SYSTEM_INIT_FLAG_NETWORK_QUATERNARY 0x7010206e6f // 网络第四标志
 #define SYSTEM_INIT_FLAG_NETWORK_QUINARY 0x65676775      // 网络第五标志
 #define SYSTEM_INIT_FLAG_MEMORY_POOL 0x657470x10        // 内存池标志
@@ -26144,10 +26144,10 @@ void system_init_anonymous_function_564(void)
     system_call_service(&system_stack_uint_pointer_size_large,system_parameter_value + SYSTEM_INIT_FLAG_INITIALIZEDb);
     system_ptr_pool = (system_uint_standard_t *)(psystem_stack_temp_value + system_stack_uint_index_secondary);
     *system_ptr_pool = SYSTEM_INIT_MAGIC_COOKIE_DEVICE_HEADER;
-    system_ptr_pool[SYSTEM_ARRAY_INDEX_SECONDARY] = 0x65706f6c;
+    system_ptr_pool[SYSTEM_ARRAY_INDEX_SECONDARY] = SYSTEM_INIT_FLAG_NETWORK_PRIMARY;
     system_ptr_pool[SYSTEM_ARRAY_INDEX_TERTIARY] = SYSTEM_INIT_CONFIG_INDEX_SECONDARY692072;
-    system_ptr_pool[SYSTEM_ARRAY_INDEX_FOURTH] = 0x76726574;
-    system_ptr_pool[SYSTEM_ARRAY_INDEX_FIFTH] = 0x69746e65;
+    system_ptr_pool[SYSTEM_ARRAY_INDEX_FOURTH] = SYSTEM_INIT_FLAG_NETWORK_SECONDARY;
+    system_ptr_pool[SYSTEM_ARRAY_INDEX_FIFTH] = SYSTEM_INIT_FLAG_NETWORK_TERTIARY;
     system_ptr_pool[SYSTEM_ARRAY_INDEX_SIXTH] = 0x7010206e6f;
     system_ptr_pool[SYSTEM_ARRAY_INDEX_SEVENTH] = 0x65676775;
     system_ptr_pool[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_VALUE_CONFIG_PRIMARY;
