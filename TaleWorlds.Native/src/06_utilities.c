@@ -1,12 +1,20 @@
- /*
- */
-#include "TaleWorlds.Native.Split.h"
+ #include "TaleWorlds.Native.Split.h"
+
+// ============================================================================
+// 工具系统基础常量定义
+// ============================================================================
+
+// 系统容量限制
 #define UTILITY_MAX_THREADS 8                  // 最大线程数
 #define UTILITY_MAX_EVENTS 16                  // 最大事件数
 #define UTILITY_MAX_HANDLERS 32                // 最大处理器数
+
+// 系统状态定义
 #define UTILITY_STATE_RUNNING UTILITY_STATUS_RUNNING_STATE               // 系统运行中
 #define UTILITY_STATE_PAUSED UTILITY_STATUS_ENABLED_FLAG_QUATERNARY_VALUE                // 系统已暂停
 #define UTILITY_STATE_STOPPED UTILITY_STATUS_FLAG_MASK_8_BIT_VALUE               // 系统已停止
+
+// 错误代码定义
 #define UTILITY_ERROR_NONE UTILITY_FLAG_FALSE
 #define UTILITY_ERROR_MEMORY UTILITY_FLAG_TRUE
 #define UTILITY_ERROR_TIMEOUT UTILITY_STATUS_RUNNING_STATE
@@ -238,8 +246,8 @@
 #define UTILITY_MEMORY_POINTER_OFFSET_MEDIUM_VALUE 0x60
 #define UTILITY_MEMORY_POINTER_OFFSET_LARGE_VALUE 0x80
 // 工具系统浮点数组常量定义
-#define UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_VALUE UTILITY_STATUS_RESOURCE_LOCKED_VALUE00
-#define UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_VALUE UTILITY_STATUS_MEMORY_IN_USE_VALUE00
+#define UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_VALUE 0x100
+#define UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_VALUE 0x200
 #define UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY_VALUE 0x400
 // 工具系统上下文常量定义
 #define UTILITY_CONTEXT_STRUCT_SIZE_44_BYTES_VALUE UTILITY_STATUS_MEMORY_IN_USE_VALUEC
@@ -249,7 +257,7 @@
 #define UTILITY_CONTEXT_OFFSET_BUFFER_PRIMARY_VALUE 0x900
 // 工具系统内存常量定义
 #define UTILITY_MEMORY_PAGE_ALIGNMENT_MASK 0xFFFFF000
-#define UTILITY_MEMORY_BLOCK_SIZE_EXTRA_LARGE_VALUE UTILITY_STATUS_RESOURCE_LOCKED_VALUE00000
+#define UTILITY_MEMORY_BLOCK_SIZE_EXTRA_LARGE_VALUE 0x100000
 // 工具系统标志常量定义
 #define UTILITY_FLAG_MASK_WORD 0xFFFF
 #define UTILITY_FLAG_MASK_WORD_FFc0 0xFFc0
@@ -257,7 +265,7 @@
 #define UTILITY_FLOAT_FLAG_MASK_F800000 0xF800000
 #define UTILITY_OFFSET_FOURTEEN 14
 #define UTILITY_HANDLE_COMPARE_LIMIT_50 50
-#define UTILITY_POINTER_THRESHOLD_VALUE UTILITY_STATUS_RESOURCE_LOCKED_VALUE000
+#define UTILITY_POINTER_THRESHOLD_VALUE 0x1000
 // 工具系统特殊常量定义
 #define UTILITY_DATA_AREA_OFFSET UTILITY_STATUS_RESOURCE_LOCKED_VALUE000
 #define UTILITY_CONTROL_BLOCK_OFFSET UTILITY_STATUS_MEMORY_IN_USE_VALUE000
@@ -401,7 +409,7 @@
 #define UTILITY_OFFSET_NEGATIVE_60 -0x3c
 #define UTILITY_OFFSET_NEGATIVE_44 -UTILITY_STATUS_MEMORY_IN_USE_VALUEc
 #define UTILITY_RESOURCE_FLAG_E9 0xe9
-#define UTILITY_STACK_OFFSET_SMALL_VALUE UTILITY_STATUS_MEMORY_IN_USE_VALUE5
+#define UTILITY_STACK_OFFSET_SMALL_VALUE 0x25
 #define UTILITY_STACK_OFFSET_LARGE_VALUE 0xa8
 #define UTILITY_BUFFER_ELEMENT_SIZE_VALUE 0xc
 #define UTILITY_FLAG_MASK_BYTE_VALUE 0xff
@@ -496,10 +504,10 @@
 #define UTILITY_HANDLE_COMPARE_LIMIT_4 0x39
 #define UTILITY_HANDLE_COMPARE_LIMIT_5 0x5e
 #define UTILITY_DATA_INDEX_OFFSET_VALUE 0x4e4
-#define UTILITY_CONTEXT_RESOURCE_OFFSET_VALUE UTILITY_STATUS_MEMORY_IN_USE_VALUE4
+#define UTILITY_CONTEXT_RESOURCE_OFFSET_VALUE 0x24
 #define UTILITY_CONTEXT_ITERATOR_OFFSET_VALUE UTILITY_STREAM_COMPARE_LIMIT_18
 #define UTILITY_CONTEXT_VALIDATION_OFFSET_VALUE 0xf8
-#define UTILITY_CONTEXT_HANDLER_OFFSET_VALUE UTILITY_STATUS_MEMORY_IN_USE_VALUE40
+#define UTILITY_CONTEXT_HANDLER_OFFSET_VALUE 0x240
 #define UTILITY_CONTEXT_STRUCT_SIZE_44_BYTES_VALUE 0x44
 #define UTILITY_CALC_MULTIPLIER_OFFSET_VALUE UTILITY_CHARACTER_COMPARE_LIMIT
 #define UTILITY_CALC_RESULT_OFFSET_VALUE UTILITY_CHARACTER_COMPARE_LIMIT_34
@@ -696,8 +704,6 @@ uint32_t utility_context_system_auxiliary;
 double utility_context_system_backup;
 uint32_t utility_context_system_reserve;
 uint8_t utility_context_system_extended;
-/*
- */
  * utility_process_thread_local_storage - 处理线程本地存储
  *
  * 该函数负责处理线程本地存储的初始化和管理，包括资源分配、
@@ -708,10 +714,6 @@ uint8_t utility_context_system_extended;
  *  * @return void
  * @note 此函数为简化实现，主要处理线程本地存储的基本操作
  */
-/*
- */
-/*
- */
  * 处理线程本地存储数据
  *
  *  * @param thread_handle 线程句柄，用于标识特定线程
@@ -720,32 +722,20 @@ uint8_t utility_context_system_extended;
  * 该函数负责处理线程本地存储的初始化、资源分配和上下文管理
  * 通过校验和验证确保数据完整性，并管理线程相关的资源生命周期
  */
-/*
- */
-void utility_process_thread_storage(int64_t thread_handle, int64_t context_data)
-/*
- */
-/*
- */
 uint64_t resource_handle_semaphore_pointer(int64_t utility_context_ptr)
 {
     // 基本框架实现
     return UTILITY_STATUS_SUCCESS;
-/*
- */
+}
+uint64_t resource_handle_semaphore_pointer(int64_t utility_context_ptr)
+{
+    // 基本框架实现
+    return UTILITY_STATUS_SUCCESS;
 uint64_t utility_resource_operation_handler(int64_t utility_context_ptr)
 {
     // 基本框架实现
     return UTILITY_STATUS_SUCCESS;
-/*
- */
-/*
- */
 uint64_t context_storage_ptr_manager(int64_t resource_count,uint64_t utility_context_ptr)
-/*
- */
-/*
- */
 uint64_t utility_resource_iterator_handler(int64_t resource_count,int64_t utility_context_ptr)
 UTILITY_LABEL_RESOURCE_VALIDATION_SUCCESS:
     utility_free_context_resources(*(uint64_t *)(utility_context_ptr + UTILITY_CONTEXT_SERVICE_OFFSET),utility_context_ptr);
@@ -754,14 +744,8 @@ UTILITY_LABEL_RESOURCE_VALIDATION_SUCCESS:
     utility_refresh_context_resources(*(uint64_t *)(utility_context_ptr + UTILITY_CONTEXT_SERVICE_OFFSET),utility_context_ptr);
 UTILITY_LABEL_CONTEXT_INITIALIZATION_COMPLETE:
     utility_free_context_resources(*(uint64_t *)(utility_context_ptr + UTILITY_CONTEXT_SERVICE_OFFSET),utility_context_ptr);
-/*
- */
 uint64_t utility_process_resource_context(int64_t resource_count, int64_t operation_flag)
-/*
- */
 uint64_t utility_validate_resource_parameters(int64_t resource_count,int64_t utility_context_ptr)
-/*
- */
 uint64_t utility_cleanup_resource_context(int64_t resource_count,int64_t utility_context_ptr)
     iteration_index = UTILITY_FALSE;
     iteration_index = utility_stack_context + UTILITY_POINTER_OFFSET;
@@ -862,16 +846,8 @@ void InitializeFileMap(void) {
 }
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
     context_storage[1] = context_storage;
-/*
- */
-/*
- */
 uint64_t utility_socket_creator(int64_t resource_count,int utility_context_ptr,uint *buffer_ptr)
 uint32_t utility_network_address_validator(uint64_t utility_context_ptr)
-/*
- */
-/*
- */
 uint64_t utility_system_config_loader(int64_t utility_context_ptr)
     context_storage = (int)*(uint *)(utility_context_ptr + UTILITY_THREAD_STATUS_OFFSET) >> UTILITY_STATUS_FLAG_F;
     if (((int)((*(uint *)(utility_context_ptr + UTILITY_THREAD_STATUS_OFFSET) ^ context_storage) - context_storage) < utility_status_code) &&
@@ -881,18 +857,8 @@ uint64_t utility_system_config_loader(int64_t utility_context_ptr)
 *(int *)(utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) = utility_status_code;
 memory_copy_pointer((int64_t)utility_status_code + *(int64_t *)(utility_context_ptr + UTILITY_THREAD_CONFIG_OFFSET),utility_context_ptr,(int64_t)utility_status_code);
 memset((int64_t)utility_status_code + *(int64_t *)(utility_context_ptr + UTILITY_THREAD_CONFIG_OFFSET),0,(int64_t)(utility_status_code - utility_status_code));
-/*
- */
-/*
- */
 uint64_t utility_environment_variable_reader(int64_t *buffer_ptr,int utility_context_ptr)
-/*
- */
-/*
- */
 uint64_t utility_time_converter(uint64_t *buffer_ptr,int64_t utility_context_ptr)
-/*
- */
 uint64_t utility_time_initializer(int64_t *buffer_ptr,uint32_t *buffer_ptr)
     if ((uint64_t)context_storage[2] < (uint64_t)stack_buffer[0] + UTILITY_DEFAULT_ALLOCATION_SIZE) {
     utility_status_code = UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX;
@@ -901,14 +867,8 @@ goto UTILITY_LABEL_SERVICE_READY;
 UTILITY_LABEL_SERVICE_READY:
     if (utility_status_code == UTILITY_FALSE) {
     *buffer_ptr = stack_buffer[0];
-/*
- */
 uint64_t utility_time_zone_handler(int64_t *buffer_ptr,int64_t *buffer_ptr)
-/*
- */
 uint64_t utility_time_zone_processor(uint64_t resource_count,int64_t *buffer_ptr)
-/*
- */
 uint64_t utility_time_zone_converter(int64_t resource_count,int64_t *buffer_ptr)
     context_storage = (int)resource_identifier + 1;
     context_storage = (uint64_t)context_storage;
@@ -1141,8 +1101,6 @@ GetModuleHandle(utility_context_ptr,utility_context_ptr + UTILITY_STATUS_ENABLED
     utility_valueidation_result = utility_operation_verify();
     if (utility_status_code != UTILITY_FALSE) {
 GetModuleHandle();
-/*
- */
 uint64_t utility_system_processor_info_reader(int64_t resource_count,int64_t utility_context_ptr)
     utility_status_code = SetLocalTime(utility_context_ptr,utility_context_ptr + (int64_t)utility_status_code * UTILITY_CONTEXT_MULTIPLIER_C + 7);
     if (utility_status_code != UTILITY_FALSE) {
@@ -1294,8 +1252,6 @@ else {
 *(uint32_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_FLAG_EXTENDED_SMALL_HEX)
 ;
 (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
-/*
- */
 uint64_t utility_system_disk_info_reader(int64_t resource_count,int64_t utility_context_ptr)
  * 系统状态管理器函数
  * 功能：管理系统状态，处理状态转换和资源管理
@@ -1309,36 +1265,16 @@ uint64_t utility_system_disk_info_reader(int64_t resource_count,int64_t utility_
  *  * @param utility_context_ptr 状态参数指针
  *  * @return 操作结果状态码
  */
-/*
- */
 uint64_t utility_system_state_manager(int64_t resource_count,uint32_t *buffer_ptr)
-/*
- */
 uint64_t utility_system_process_handler(int64_t resource_count,uint64_t *buffer_ptr)
-/*
- */
 uint64_t utility_system_monitor_start(void)
-/*
- */
 uint64_t utility_system_controller_execute(int64_t resource_count,uint64_t *buffer_ptr)
-/*
- */
 uint64_t utility_stream_writer_push(void)
-/*
- */
 void DebugBreak(int64_t resource_count,uint64_t utility_context_ptr,uint32_t utility_context_ptr,uint32_t utility_context_ptr,
     utility_stream_close(utility_context_ptr,utility_stack_network_buffer_primary);
-/*
- */
 uint64_t utility_stream_manager_flush(void)
-/*
- */
 uint64_t utility_thread_scheduler_run(int64_t resource_count,uint64_t *buffer_ptr)
-/*
- */
 uint64_t utility_network_connector_link(int64_t resource_count,int64_t *buffer_ptr)
-/*
- */
 uint64_t utility_network_receiver_get(int utility_context_ptr)
     if ((uint64_t)context_storage[2] < (uint64_t)utility_stack_uint_data + 1) {
     utility_status_code = UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX;
@@ -1347,15 +1283,11 @@ goto UTILITY_LABEL_CLEANUP_DONE;
 UTILITY_LABEL_CLEANUP_DONE:
     if (utility_status_code == UTILITY_FALSE) {
 *(bool *)(utility_input_parameter + UTILITY_STATUS_FLAG_OFFSET_C) = buffer_ptr != '\0';
-/*
- */
 uint64_t utility_security_validator_verify(void)
  * 安全加密器编码
  *  * @param utility_context_ptr 加密参数
  *  * @param utility_context_ptr 加密数据
  *  * @return 编码结果状态码
- */
-/*
  */
 uint64_t utility_security_encryptor_encode(int64_t resource_count,uint64_t *buffer_ptr)
     utility_status_code = UTILITY_FALSE;
@@ -1371,8 +1303,6 @@ do {
     utility_status_code = utility_status_code + 1;
 } while (utility_status_code < (int)context_storage);
     utility_stream_close();
-/*
- */
 uint64_t utility_security_decryptor_decode(int64_t resource_count,int64_t *buffer_ptr)
     if (*(int *)(context_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
     context_storage = *buffer_ptr;
@@ -1403,8 +1333,6 @@ else {
     utility_status_code = utility_status_code + 1;
 } while (utility_status_code < (int)context_storage);
     utility_stream_close();
-/*
- */
 uint64_t utility_interface_controller_handle(int64_t resource_count,uint64_t *buffer_ptr)
     utility_status_code = utility_resource_validate(*buffer_ptr,stack_buffer);
     context_storage = stack_buffer[0];
@@ -1516,8 +1444,6 @@ else {
     utility_status_code = utility_resource_prepare();
     if (utility_status_code == UTILITY_FALSE) {
     utility_system_shutdown();
-/*
- */
 uint64_t utility_process_resource_context_primary(int64_t resource_count,uint64_t *buffer_ptr)
 void InitializeEncryption(void)
     context_storage = utility_stream_create(utility_context_ptr,stack_buffer_array_output,0,UTILITY_STREAM_TYPE_BMRP);
@@ -1768,44 +1694,18 @@ else {
 } while ((int)resource_identifier < (int)context_storage);
 goto UTILITY_LABEL_ITERATION_DONE;
         return resource_identifier;
-/*
- */
 uint64_t utility_cleanup_resource_context(void)
-/*
- */
 uint64_t utility_device_controller_initialize(int64_t resource_count,int64_t *buffer_ptr)
-/*
- */
 uint64_t utility_configure_resource_handler(int64_t resource_count,int64_t *buffer_ptr)
-/*
- */
 uint64_t utility_validate_resource_access(int64_t resource_count,uint64_t *buffer_ptr)
-/*
- */
 uint64_t resource_identifier_validator_primary(uint64_t resource_count,int64_t *buffer_ptr)
-/*
- */
 uint64_t resource_identifier_validator_tertiary(void)
-/*
- */
 uint64_t utility_manage_resource_pool(int64_t resource_count,uint64_t *buffer_ptr)
-/*
- */
 uint64_t utility_context_process_primary(int64_t resource_count,uint64_t *buffer_ptr)
-/*
- */
 uint64_t utility_context_ptr_handler(int64_t resource_count,uint64_t *buffer_ptr)
-/*
- */
 uint64_t utility_manage_memory_pool(int64_t resource_count,uint64_t *buffer_ptr)
-/*
- */
 uint64_t resource_handle_thread_operation(int64_t resource_count,int64_t *buffer_ptr)
-/*
- */
 uint64_t context_storage_ptr_processor(int64_t resource_count,uint64_t *buffer_ptr)
-/*
- */
 uint64_t context_storage_ptr_cleanup(int64_t resource_count,int64_t *buffer_ptr)
 goto UTILITY_LABEL_FINAL_CHECK;
 else if ((utility_accumulator_value == UTILITY_STATUS_ENABLED_FLAG_SECONDARY) && (*(uint *)(resource_identifier + UTILITY_POINTER_OFFSET) < UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_VALUE)) {
@@ -1835,15 +1735,9 @@ else if (*(int *)(resource_identifier[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTI
     if (utility_status_code != UTILITY_FALSE) {
 UTILITY_LABEL_FINAL_CHECK:
     utility_resource_manager_cleanup();
-/*
- */
 uint64_t utility_manage_system_resources(int64_t resource_count,uint64_t *buffer_ptr,uint32_t utility_context_ptr,uint32_t utility_context_ptr,
 char utility_context_ptr)
-/*
- */
 uint64_t context_storage_ptr_creator(int64_t resource_count,int64_t *buffer_ptr)
-/*
- */
 uint64_t resource_identifier_validator_validator(int64_t resource_count,uint64_t *buffer_ptr)
     context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
     if (resource_identifier != UTILITY_FALSE) {
@@ -4825,8 +4719,6 @@ terminate();
  *  * @param utility_context_ptr 上下文句柄，包含异常处理的上下文信息
  *  * @return 无返回值
  */
-/*
- */
 void utility_catch_memory_exception_handler(uint64_t resource_count,int64_t utility_context_ptr)
     *buffer_ptr = &utility_system_reserved_memory;
     utility_context_ptr[7] = &utility_system_data;
@@ -5505,8 +5397,6 @@ else {
  *  * @param resource_count 资源计数，用于标识系统状态处理所需的资源数量
  *  * @param utility_context_ptr 上下文句柄，包含系统状态上下文信息
  *  * @return 无返回值
- */
-/*
  */
 void utility_catch_system_state_handler(uint64_t resource_count,int64_t utility_context_ptr)
 LOCK();
@@ -6608,10 +6498,6 @@ else {
  *  * @param utility_context_ptr 上下文句柄，包含网络处理上下文信息
  *  * @return 无返回值
  */
-/*
- */
-/*
- */
 void utility_catch_network_connection_handler(uint64_t resource_count,int64_t utility_context_ptr)
     context_storage[1] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 3) = UTILITY_FALSE;
@@ -6622,8 +6508,6 @@ void utility_catch_network_connection_handler(uint64_t resource_count,int64_t ut
  *  * @param resource_count 资源计数，用于标识网络处理所需的资源数量
  *  * @param utility_context_ptr 上下文句柄，包含网络处理上下文信息
  *  * @return 无返回值
- */
-/*
  */
 void utility_catch_network_timeout_handler(uint64_t resource_count,int64_t utility_context_ptr)
     if (*buffer_ptr == UTILITY_FALSE) {
@@ -12092,18 +11976,10 @@ else {
 *(uint64_t *)(iteration_index + UTILITY_CHARACTER_COMPARE_LIMIT_20) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + 0x3c0) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + 0x3a8) = &utility_system_reserved_memory;
-/*
- */
 void utility_initialize_event_handler(uint64_t resource_count,int64_t utility_context_ptr)
-/*
- */
 void utility_activate_event_handler(uint64_t resource_count,int64_t utility_context_ptr)
-/*
- */
 void utility_configure_event_handler(uint64_t *buffer_ptr,int64_t utility_context_ptr)
 bool utility_system_validator(uint64_t *buffer_ptr)
-/*
- */
 void utility_process_event_secondary(uint64_t resource_count,int64_t utility_context_ptr)
 uint32_t utility_status_checker(uint64_t resource_count,int64_t utility_context_ptr)
     context_storage = (uint64_t)utility_system_reserved_memory & UTILITY_MAX_UINT32ffc00000;
@@ -12130,24 +12006,12 @@ void utility_initialize_global_pointer_(void)
 * 功能：初始化系统全局指针，设置全局数据结构
 * 功能描述：设置系统全局指针，初始化全局数据结构
  */
-/*
- */
 void utility_initialize_pointer(void)
-/*
- */
-/*
- */
 void utility_setup_pointer(void)
-/*
- */
 void utility_cleanup_pointer(void)
-/*
- */
 void utility_release_pointer(void)
 {
     return;
-/*
- */
 void utility_process_resource(uint64_t resource_count, uint64_t utility_context_ptr, uint64_t utility_context_ptr, uint64_t utility_context_ptr)
 {
     return;
@@ -12169,8 +12033,6 @@ void InitializeThreadManager(void)
 void ProcessThreadQueue(uint64_t queueHandle, uint64_t utility_context_ptr, uint64_t callbackData, uint64_t userData)
 {
     return;
-/*
- */
 int resource_handle_service_request(uint32_t service_id, int64_t context_array[])
 {
     if (service_id == 0 || context_array == NULL) {
