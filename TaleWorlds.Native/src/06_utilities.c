@@ -415,14 +415,6 @@ void utility_process_thread_local_data(int64_t thread_handle, int64_t context_da
     // 计算最终校验和
     utility_checksum_calculator(utility_checksum ^ (uint64_t)utility_large_workspace_buffer);
 }
- * @brief 清理线程资源
- * 
- * 该函数负责释放和清理线程相关的所有资源，包括资源句柄的释放、
- * 上下文管理器的清理，以及缓冲区的清理工作。
- * 
- * @param context_pointer 线程上下文指针，包含需要清理的资源信息
- * @return 无返回值
- */
 /**
  * @brief 清理线程相关数据
  * 
@@ -486,10 +478,12 @@ void utility_cleanup_thread_data(int64_t context_pointer)
     // 计算校验和
     utility_checksum_calculator((uint64_t)utility_buffer_ptr ^ (uint64_t)utility_buffer_workspace_array);
 }
- * @brief 验证资源状态的有效性
+/**
+ * @brief 验证资源状态
  * 
- * 检查系统资源的当前状态，验证其是否处于有效状态。
- * 通过检查资源标志位来验证资源状态，并在需要时激活上下文管理器。
+ * 该函数负责验证系统中所有资源的状态，检查资源标志位，
+ * 并在需要时激活上下文管理器。函数会确保所有资源都处于
+ * 正确的状态，并执行必要的清理操作。
  * 
  * @return 无返回值
  */
