@@ -233,48 +233,64 @@ uint8_t utility_context_system_extended;
  * @param contextData 上下文数据，包含线程初始化所需的配置信息
  * @return 无返回值
  */
+/**
+ * @brief 处理线程本地存储
+ * 负责管理和处理线程相关的本地存储资源
+ * @param thread_handle 线程句柄
+ * @param context_data 上下文数据
+ * @return 无返回值
+ */
 void utility_process_thread_local_storage(int64_t thread_handle, int64_t context_data)
 {
-uint64_t utility_resource_handle;
-int utility_system_status;
-int64_t utility_loop_counter;
-int utility_processed_count;
-uint8_t utility_thread_workspace [32];
-int64_t utility_context_storage [2];
-uint8_t *utility_buffer_ptr;
-int utility_resource_counter;
-uint32_t utility_buffer_attributes;
-uint8_t utility_large_workspace [512];
-uint64_t utility_checksum_result;
-utility_checksum_result = utility_system_reserved_data ^ (uint64_t)utility_thread_workspace;
-utility_system_status = utility_system_service_manager(*(uint32_t *)(thread_handle + UTILITY_THREAD_HANDLE_OFFSET), utility_context_storage);
-if ((utility_system_status == 0) && (*(int64_t *)(utility_context_storage[0] + 8) != 0)) {
-utility_buffer_ptr = utility_large_workspace;
-utility_processed_count = 0;
-utility_loop_counter = 0;
-utility_buffer_attributes = UTILITY_BUFFER_FLAGS_DEFAULT;
-utility_resource_handle = utility_resource_manager_create(*(uint64_t *)(context_data + UTILITY_RESOURCE_HANDLE_OFFSET), *(int64_t *)(utility_context_storage[0] + 8), &utility_buffer_ptr);
-if (utility_operation_status == 0) {
-if (0 < utility_resource_count) {
-utility_loop_counter = 0;
-do {
-utility_current_resource_handle = *(uint64_t *)(utility_buffer_pointer + utility_loop_counter);
-utility_initialized_resource = utility_context_manager_initialize(utility_current_resource_data);
-if (utility_operation_result != 2) {
-utility_context_manager_activate(utility_resource_context, 1);
+    uint64_t utility_resource_handle;
+    int utility_system_status;
+    int64_t utility_loop_counter;
+    int utility_processed_count;
+    uint8_t utility_thread_workspace[32];
+    int64_t utility_context_storage[2];
+    uint8_t *utility_buffer_ptr;
+    int utility_resource_counter;
+    uint32_t utility_buffer_attributes;
+    uint8_t utility_large_workspace[512];
+    uint64_t utility_checksum_result;
+    
+    utility_checksum_result = (uint64_t)utility_system_reserved_data ^ (uint64_t)utility_thread_workspace;
+    utility_system_status = utility_system_service_manager(*(uint32_t *)(thread_handle + UTILITY_THREAD_HANDLE_OFFSET), utility_context_storage);
+    
+    if ((utility_system_status == 0) && (*(int64_t *)(utility_context_storage[0] + 8) != 0)) {
+        utility_buffer_ptr = utility_large_workspace;
+        utility_processed_count = 0;
+        utility_loop_counter = 0;
+        utility_buffer_attributes = UTILITY_BUFFER_FLAGS_DEFAULT;
+        utility_resource_handle = utility_resource_manager_create(*(uint64_t *)(context_data + UTILITY_RESOURCE_HANDLE_OFFSET), *(int64_t *)(utility_context_storage[0] + 8), &utility_buffer_ptr);
+        
+        if (utility_system_status == 0) {
+            if (0 < utility_resource_counter) {
+                utility_loop_counter = 0;
+                do {
+                    utility_resource_handle = *(uint64_t *)(utility_buffer_ptr + utility_loop_counter);
+                    utility_system_status = utility_context_manager_initialize(utility_resource_handle);
+                    if (utility_system_status != 2) {
+                        utility_context_manager_activate(utility_resource_handle, 1);
+                    }
+                    utility_processed_count = utility_processed_count + 1;
+                    utility_loop_counter = utility_loop_counter + 8;
+                } while (utility_processed_count < utility_resource_counter);
+            }
+            utility_buffer_manager_cleanup(&utility_buffer_ptr);
+        }
+        else {
+            utility_buffer_manager_cleanup(&utility_buffer_ptr);
+        }
+    }
+    utility_calculate_checksum(utility_checksum_result ^ (uint64_t)utility_large_workspace);
 }
-utility_processed_count = utility_processed_items + 1;
-utility_loop_counter = utility_iteration_index + 8;
-} while (utility_processed_items < utility_resource_count);
-}
-utility_buffer_manager_cleanup(&utility_buffer_ptr);
-}
-else {
-utility_buffer_manager_cleanup(&utility_buffer_ptr);
-}
-}
-utility_calculate_checksum(utility_checksum_result ^ (uint64_t)utility_large_workspace);
-}
+/**
+ * @brief 清理线程资源
+ * 负责释放和清理线程相关的所有资源
+ * @param context_pointer 线程上下文指针
+ * @return 无返回值
+ */
 /**
  * @brief 清理线程资源
  * 负责释放和清理线程相关的所有资源
@@ -293,31 +309,33 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
     uint64_t utility_resource_value;
     int64_t utility_resource_pointer;
     uint8_t utility_buffer_workspace[512];
+    
     if (*(int64_t *)(context_pointer + 8) != 0) {
-        utility_buffer_ptr = &utility_buffer_workspace;
+        utility_buffer_ptr = utility_buffer_workspace;
         utility_operation_status = 0;
         utility_loop_counter = 0;
         utility_buffer_flags = UTILITY_BUFFER_FLAGS_DEFAULT;
-        utility_created_resource_handle = utility_resource_manager_create(*(uint64_t *)(utility_resource_pointer + UTILITY_RESOURCE_HANDLE_OFFSET), *(int64_t *)(context_pointer + 8), &utility_buffer_workspace);
+        utility_resource_value = utility_resource_manager_create(*(uint64_t *)(context_pointer + UTILITY_RESOURCE_HANDLE_OFFSET), *(int64_t *)(context_pointer + 8), &utility_buffer_ptr);
+        
         if (utility_operation_status == 0) {
             if (0 < utility_process_count) {
                 utility_loop_counter = 0;
                 do {
-                    utility_current_resource_handle = *(uint64_t *)(utility_buffer_pointer + utility_loop_counter);
-                    utility_initialized_resource = utility_context_manager_initialize(utility_current_resource_data);
-                    if (utility_operation_result != 2) {
-                        utility_context_manager_activate(utility_resource_context, 1);
+                    utility_resource_value = *(uint64_t *)(utility_buffer_ptr + utility_loop_counter);
+                    utility_operation_status = utility_context_manager_initialize(utility_resource_value);
+                    if (utility_operation_status != 2) {
+                        utility_context_manager_activate(utility_resource_value, 1);
                     }
-                    utility_loop_counter = utility_iteration_index + 8;
-                } while (utility_iteration_index < utility_process_count);
+                    utility_loop_counter = utility_loop_counter + 8;
+                } while (utility_loop_counter < utility_process_count);
             }
-            utility_buffer_manager_cleanup(&utility_buffer_workspace);
+            utility_buffer_manager_cleanup(&utility_buffer_ptr);
         }
         else {
-            utility_buffer_manager_cleanup(&utility_buffer_workspace);
+            utility_buffer_manager_cleanup(&utility_buffer_ptr);
         }
-}
-    utility_calculate_checksum(utility_buffer_pointer ^ (uint64_t)&utility_buffer_workspace);
+    }
+    utility_calculate_checksum((uint64_t)utility_buffer_ptr ^ (uint64_t)utility_buffer_workspace);
 }
 /**
  * @brief 验证资源状态的有效性
@@ -329,14 +347,15 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
  */
 void utility_validate_resource_state(void)
 {
-int64_t utility_resource_pointer = 0;
-uint64_t utility_buffer_ptr = 0;
-uint8_t utility_buffer_workspace[512];
-if ((*(uint *)(utility_resource_pointer + UTILITY_MEMORY_FLAG_OFFSET) >> 7 & 1) != 0) {
-utility_context_manager_activate(utility_resource_pointer);
-}
-utility_buffer_manager_cleanup(&utility_buffer_workspace);
-utility_calculate_checksum(utility_buffer_pointer ^ (uint64_t)&utility_buffer_workspace);
+    int64_t utility_resource_pointer = 0;
+    uint64_t utility_buffer_value = 0;
+    uint8_t utility_buffer_workspace[512];
+    
+    if ((*(uint *)(utility_resource_pointer + UTILITY_MEMORY_FLAG_OFFSET) >> 7 & 1) != 0) {
+        utility_context_manager_activate(utility_resource_pointer);
+    }
+    utility_buffer_manager_cleanup(&utility_buffer_workspace);
+    utility_calculate_checksum(utility_buffer_value ^ (uint64_t)utility_buffer_workspace);
 }
 /**
  * @brief 处理资源指针的转换和管理
