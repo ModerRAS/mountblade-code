@@ -11805,44 +11805,54 @@ longlong function_(void)
   local_uint1 = timeGetTime();
   return (ulonglong)local_uint1 * 1000;
 }
-uint function_(longlong system_context,int network_context,int thread_context,char memory_context)
+/**
+ * @brief 系统位操作处理函数
+ * @param system_context 系统上下文地址
+ * @param network_context 网络上下文参数
+ * @param thread_context 线程上下文参数
+ * @param memory_context 内存上下文参数
+ * @return 位操作结果
+ * 
+ * 该函数负责处理复杂的位操作，包括位提取、位移和位合并操作
+ */
+uint system_bit_operation_handler(longlong system_context,int network_context,int thread_context,char memory_context)
 {
-  ulonglong local_uint1;
-  byte local_bool2;
-  int local_int3;
-  int local_int4;
-  uint data_definitions_local_uint5;
-  uint local_uint6;
-  data_definitions_local_uint5 = 0;
-  local_uint6 = 0;
-  local_int3 = 0;
-  local_int4 = local_int3;
+  ulonglong loop_counter;
+  byte bit_offset;
+  int bit_index;
+  int network_param;
+  uint bit_result;
+  uint current_bit;
+  bit_result = 0;
+  current_bit = 0;
+  bit_index = 0;
+  network_param = bit_index;
   if (0 < thread_context) {
     do {
-      local_bool2 = (byte)network_context & 7;
-      local_int4 = network_context;
+      bit_offset = (byte)network_context & 7;
+      network_param = network_context;
       if (network_context < 0) {
-        local_int4 = network_context + 7;
-        local_bool2 = local_bool2 - 8;
+        network_param = network_context + 7;
+        bit_offset = bit_offset - 8;
       }
       network_context = network_context + 1;
-      local_uint6 = *(byte *)((local_int4 >> 3) + system_context) >> (local_bool2 & 0x1f) & 1;
-      local_int4 = local_int3 + 1;
-      data_definitions_local_uint5 = data_definitions_local_uint5 | local_uint6 << ((byte)local_int3 & 0x1f);
-      local_int3 = local_int4;
-    } while (local_int4 < thread_context);
+      current_bit = *(byte *)((network_param >> 3) + system_context) >> (bit_offset & 0x1f) & 1;
+      network_param = bit_index + 1;
+      bit_result = bit_result | current_bit << ((byte)bit_index & 0x1f);
+      bit_index = network_param;
+    } while (network_param < thread_context);
   }
-  if (((memory_context != '\0') && (local_uint6 != 0)) && (local_int4 < 0x20)) {
-    local_bool2 = (byte)local_int4 & 0x1f;
-    local_uint6 = 1 << local_bool2 | 1U >> 0x20 - local_bool2;
-    local_uint1 = (ulonglong)(0x20 - local_int4);
+  if (((memory_context != '\0') && (current_bit != 0)) && (network_param < 0x20)) {
+    bit_offset = (byte)network_param & 0x1f;
+    current_bit = 1 << bit_offset | 1U >> 0x20 - bit_offset;
+    loop_counter = (ulonglong)(0x20 - network_param);
     do {
-      data_definitions_local_uint5 = data_definitions_local_uint5 | local_uint6;
-      local_uint6 = local_uint6 << 1 | (uint)((int)local_uint6 < 0);
-      local_uint1 = local_uint1 - 1;
-    } while (local_uint1 != 0);
+      bit_result = bit_result | current_bit;
+      current_bit = current_bit << 1 | (uint)((int)current_bit < 0);
+      loop_counter = loop_counter - 1;
+    } while (loop_counter != 0);
   }
-  return data_definitions_local_uint5;
+  return bit_result;
 }
   global_data = 1;
   global_data = 1;
