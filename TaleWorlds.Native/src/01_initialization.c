@@ -682,7 +682,7 @@ void* system_data_resource_e;
 void* system_data_resource_f;
 void* system_data_resource_g;
 
-void* FUN_1800670d0;
+void* system_function_initialize_resource;
 void* system_resource_ptr_ch;
 void* system_data_resource_h;
 void* system_resource_ptr_ci;
@@ -1251,7 +1251,7 @@ void system_initialize_input(void)
   puVar7 = puVar2;
   puVar6 = (uint8_t *)puVar2[1];
   while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c8c8,0x10);
+    iVar3 = memcmp(puVar6 + 4,&system_config_data_ptr,0x10);
     if (iVar3 < 0) {
       puVar8 = (uint8_t *)puVar6[2];
       puVar6 = puVar7;
@@ -1263,7 +1263,7 @@ void system_initialize_input(void)
     puVar6 = puVar8;
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8c8,puVar7 + 4,0x10), iVar3 < 0)) {
+  if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_config_data_ptr,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = system_allocate_memory(plVar4);
     system_initialize_context(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
@@ -1319,7 +1319,7 @@ void system_initialize_module(void)
   puVar7 = puVar2;
   puVar6 = (uint8_t *)puVar2[1];
   while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_1809fe0d0,0x10);
+    iVar3 = memcmp(puVar6 + 4,&system_memory_data_ptr,0x10);
     if (iVar3 < 0) {
       puVar8 = (uint8_t *)puVar6[2];
       puVar6 = puVar7;
@@ -1331,7 +1331,7 @@ void system_initialize_module(void)
     puVar6 = puVar8;
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fe0d0,puVar7 + 4,0x10), iVar3 < 0)) {
+  if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_data_ptr,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = system_allocate_memory(plVar4);
     system_initialize_context(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
@@ -2078,7 +2078,7 @@ void FUN_18002e0e0(void)
   puVar7 = puVar2;
   puVar6 = (uint8_t *)puVar2[1];
   while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_1809fe0d0,0x10);
+    iVar3 = memcmp(puVar6 + 4,&system_memory_data_ptr,0x10);
     if (iVar3 < 0) {
       puVar8 = (uint8_t *)puVar6[2];
       puVar6 = puVar7;
@@ -2090,7 +2090,7 @@ void FUN_18002e0e0(void)
     puVar6 = puVar8;
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fe0d0,puVar7 + 4,0x10), iVar3 < 0)) {
+  if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_data_ptr,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = system_allocate_memory(plVar4);
     system_initialize_context(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
@@ -3334,7 +3334,7 @@ void FUN_18002ff70(void)
   puVar7 = puVar2;
   puVar6 = (uint8_t *)puVar2[1];
   while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_1809fe0d0,0x10);
+    iVar3 = memcmp(puVar6 + 4,&system_memory_data_ptr,0x10);
     if (iVar3 < 0) {
       puVar8 = (uint8_t *)puVar6[2];
       puVar6 = puVar7;
@@ -3346,7 +3346,7 @@ void FUN_18002ff70(void)
     puVar6 = puVar8;
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fe0d0,puVar7 + 4,0x10), iVar3 < 0)) {
+  if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_data_ptr,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = system_allocate_memory(plVar4);
     system_initialize_context(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
@@ -6875,7 +6875,7 @@ void FUN_180036350(void)
   puVar7 = puVar2;
   puVar6 = (uint8_t *)puVar2[1];
   while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_1809fe0d0,0x10);
+    iVar3 = memcmp(puVar6 + 4,&system_memory_data_ptr,0x10);
     if (iVar3 < 0) {
       puVar8 = (uint8_t *)puVar6[2];
       puVar6 = puVar7;
@@ -6887,7 +6887,7 @@ void FUN_180036350(void)
     puVar6 = puVar8;
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fe0d0,puVar7 + 4,0x10), iVar3 < 0)) {
+  if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_data_ptr,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = system_allocate_memory(plVar4);
     system_initialize_context(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
@@ -7687,7 +7687,7 @@ void FUN_1800374f0(void)
   puVar7 = puVar2;
   puVar6 = (uint8_t *)puVar2[1];
   while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_1809fe0d0,0x10);
+    iVar3 = memcmp(puVar6 + 4,&system_memory_data_ptr,0x10);
     if (iVar3 < 0) {
       puVar8 = (uint8_t *)puVar6[2];
       puVar6 = puVar7;
@@ -7699,7 +7699,7 @@ void FUN_1800374f0(void)
     puVar6 = puVar8;
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fe0d0,puVar7 + 4,0x10), iVar3 < 0)) {
+  if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_data_ptr,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = system_allocate_memory(plVar4);
     system_initialize_context(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
@@ -8200,7 +8200,7 @@ void FUN_180037f80(void)
   puVar7 = puVar2;
   puVar6 = (uint8_t *)puVar2[1];
   while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c8c8,0x10);
+    iVar3 = memcmp(puVar6 + 4,&system_config_data_ptr,0x10);
     if (iVar3 < 0) {
       puVar8 = (uint8_t *)puVar6[2];
       puVar6 = puVar7;
@@ -8212,7 +8212,7 @@ void FUN_180037f80(void)
     puVar6 = puVar8;
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8c8,puVar7 + 4,0x10), iVar3 < 0)) {
+  if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_config_data_ptr,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = system_allocate_memory(plVar4);
     system_initialize_context(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
@@ -10318,7 +10318,7 @@ void FUN_18003abb0(void)
   puVar7 = puVar2;
   puVar6 = (uint8_t *)puVar2[1];
   while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c8c8,0x10);
+    iVar3 = memcmp(puVar6 + 4,&system_config_data_ptr,0x10);
     if (iVar3 < 0) {
       puVar8 = (uint8_t *)puVar6[2];
       puVar6 = puVar7;
@@ -10330,7 +10330,7 @@ void FUN_18003abb0(void)
     puVar6 = puVar8;
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8c8,puVar7 + 4,0x10), iVar3 < 0)) {
+  if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_config_data_ptr,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = system_allocate_memory(plVar4);
     system_initialize_context(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
@@ -10841,7 +10841,7 @@ void FUN_18003caf0(void)
   puVar7 = puVar2;
   puVar6 = (uint8_t *)puVar2[1];
   while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c8c8,0x10);
+    iVar3 = memcmp(puVar6 + 4,&system_config_data_ptr,0x10);
     if (iVar3 < 0) {
       puVar8 = (uint8_t *)puVar6[2];
       puVar6 = puVar7;
@@ -10853,7 +10853,7 @@ void FUN_18003caf0(void)
     puVar6 = puVar8;
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8c8,puVar7 + 4,0x10), iVar3 < 0)) {
+  if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_config_data_ptr,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = system_allocate_memory(plVar4);
     system_initialize_context(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
@@ -12551,7 +12551,7 @@ void FUN_18003f790(void)
   puVar7 = puVar2;
   puVar6 = (uint8_t *)puVar2[1];
   while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c8c8,0x10);
+    iVar3 = memcmp(puVar6 + 4,&system_config_data_ptr,0x10);
     if (iVar3 < 0) {
       puVar8 = (uint8_t *)puVar6[2];
       puVar6 = puVar7;
@@ -12563,7 +12563,7 @@ void FUN_18003f790(void)
     puVar6 = puVar8;
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8c8,puVar7 + 4,0x10), iVar3 < 0)) {
+  if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_config_data_ptr,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = system_allocate_memory(plVar4);
     system_initialize_context(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
@@ -13241,7 +13241,7 @@ void FUN_1800406b0(void)
   puVar7 = puVar2;
   puVar6 = (uint8_t *)puVar2[1];
   while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c8c8,0x10);
+    iVar3 = memcmp(puVar6 + 4,&system_config_data_ptr,0x10);
     if (iVar3 < 0) {
       puVar8 = (uint8_t *)puVar6[2];
       puVar6 = puVar7;
@@ -13253,7 +13253,7 @@ void FUN_1800406b0(void)
     puVar6 = puVar8;
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8c8,puVar7 + 4,0x10), iVar3 < 0)) {
+  if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_config_data_ptr,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = system_allocate_memory(plVar4);
     system_initialize_context(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
@@ -13927,7 +13927,7 @@ void FUN_1800415e0(void)
   puVar7 = puVar2;
   puVar6 = (uint8_t *)puVar2[1];
   while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_1809fe0d0,0x10);
+    iVar3 = memcmp(puVar6 + 4,&system_memory_data_ptr,0x10);
     if (iVar3 < 0) {
       puVar8 = (uint8_t *)puVar6[2];
       puVar6 = puVar7;
@@ -13939,7 +13939,7 @@ void FUN_1800415e0(void)
     puVar6 = puVar8;
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_1809fe0d0,puVar7 + 4,0x10), iVar3 < 0)) {
+  if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_memory_data_ptr,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = system_allocate_memory(plVar4);
     system_initialize_context(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
@@ -15325,7 +15325,7 @@ void FUN_1800433d0(void)
   puVar7 = puVar2;
   puVar6 = (uint8_t *)puVar2[1];
   while (cVar1 == '\0') {
-    iVar3 = memcmp(puVar6 + 4,&DAT_18098c8c8,0x10);
+    iVar3 = memcmp(puVar6 + 4,&system_config_data_ptr,0x10);
     if (iVar3 < 0) {
       puVar8 = (uint8_t *)puVar6[2];
       puVar6 = puVar7;
@@ -15337,7 +15337,7 @@ void FUN_1800433d0(void)
     puVar6 = puVar8;
     cVar1 = *(char *)((int64_t)puVar8 + 0x19);
   }
-  if ((puVar7 == puVar2) || (iVar3 = memcmp(&DAT_18098c8c8,puVar7 + 4,0x10), iVar3 < 0)) {
+  if ((puVar7 == puVar2) || (iVar3 = memcmp(&system_config_data_ptr,puVar7 + 4,0x10), iVar3 < 0)) {
     lVar5 = system_allocate_memory(plVar4);
     system_initialize_context(plVar4,&puStackX_10,puVar7,lVar5 + 0x20,lVar5);
     puVar7 = puStackX_10;
@@ -38201,7 +38201,7 @@ void FUN_180067070(int64_t *param_1)
 
 
 
-void FUN_1800670d0(void)
+void system_cache_initialize_function(void)
 
 {
   FUN_180067070();
