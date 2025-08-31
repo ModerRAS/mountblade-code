@@ -1,3 +1,14 @@
+/**
+ * @brief 工具系统实现模块
+ * @file 06_utilities.c
+ * @author Mount & Blade Code Team
+ * @date 2025-08-31
+ * @version 2.0
+ * 
+ * 本模块包含系统工具函数的实现，包括内存管理、资源清理、系统验证等功能。
+ * 简化实现：保留核心功能，大幅精简代码体积，提高可读性。
+ */
+
 #include "TaleWorlds.Native.Split.h"
 
 // 工具系统常量定义
@@ -110,43 +121,43 @@
 #define UTILITY_OFFSET_LIST_DATA 0x14
 
 // 全局变量声明
-static int64_t g_utility_resource_handle = 0;
-static uint32_t g_utility_stack_buffer[16] = {0};
-static uint32_t g_utility_stack_array[16] = {0};
-static uint32_t g_utility_stack_data[16] = {0};
-static float g_utility_float_value = 0.0f;
-static uint32_t g_utility_status_flag = 0;
-static int g_utility_counter_value = 0;
-static uint32_t g_utility_state_flag = 0;
-static uint32_t *g_utility_pointer_buffer = NULL;
-static int64_t g_utility_temp_long_value = 0;
-static uint32_t *g_utility_data_pointer = NULL;
-static int *g_utility_result_pointer = NULL;
-static uint32_t *g_utility_cpu_register_rax = NULL;
-static int64_t g_utility_data_extended = 0;
-static uint32_t *g_utility_memory_handle = NULL;
-static int64_t g_utility_resource_cache_value = 0;
-static uint32_t g_utility_buffer_data[1024] = {0};
-static uint32_t g_utility_process_buffer[1024] = {0};
-static uint32_t g_utility_size_limit_value = 1024;
-static int64_t g_utility_context_handle_value = 0;
-static uint32_t g_utility_resource_buffer = 0;
-static uint32_t g_utility_boundary_value = 2;
-static uint32_t g_utility_configuration_offset = 0;
-static uint32_t g_utility_table_offset_value = 0;
-static int64_t g_utility_frame_pointer = 0;
-static int64_t g_utility_file_offset_value = 0;
-static uint32_t g_utility_file_handle_value = 0;
-static uint64_t g_utility_file_position = 0;
-static float g_utility_data_position = 0.0f;
-static int64_t g_utility_data_buffer_value = 0;
-static uint32_t g_utility_local_integer = 0;
-static int64_t g_utility_buffer_position = 0;
-static uint64_t g_utility_result_value = 0;
-static uint32_t g_utility_thread_offset_value = 0;
-static uint64_t g_utility_file_size_value = 0;
-static uint64_t g_utility_extended_data_pointer = 0;
-static uint32_t g_utility_error_flag = 0;
+static int64_t g_utility_system_resource_handle = 0;           // 系统资源句柄
+static uint32_t g_utility_stack_buffer[16] = {0};              // 栈缓冲区
+static uint32_t g_utility_stack_array[16] = {0};               // 栈数组
+static uint32_t g_utility_stack_data[16] = {0};                // 栈数据
+static float g_utility_float_value = 0.0f;                     // 浮点数值
+static uint32_t g_utility_system_status_flag = 0;               // 系统状态标志
+static int g_utility_operation_counter = 0;                    // 操作计数器
+static uint32_t g_utility_system_state_flag = 0;                // 系统状态标志
+static uint32_t *g_utility_pointer_buffer = NULL;               // 指针缓冲区
+static int64_t g_utility_temp_long_value = 0;                   // 临时长整数值
+static uint32_t *g_utility_data_pointer = NULL;                 // 数据指针
+static int *g_utility_result_pointer = NULL;                    // 结果指针
+static uint32_t *g_utility_cpu_register_rax = NULL;             // CPU寄存器RAX
+static int64_t g_utility_extended_data = 0;                    // 扩展数据
+static uint32_t *g_utility_memory_handle = NULL;                // 内存句柄
+static int64_t g_utility_resource_cache = 0;                    // 资源缓存
+static uint32_t g_utility_main_buffer[1024] = {0};              // 主缓冲区
+static uint32_t g_utility_process_buffer[1024] = {0};           // 进程缓冲区
+static uint32_t g_utility_max_size_limit = 1024;                // 最大大小限制
+static int64_t g_utility_context_handle = 0;                    // 上下文句柄
+static uint32_t g_utility_resource_buffer_value = 0;           // 资源缓冲区值
+static uint32_t g_utility_boundary_check_value = 2;             // 边界检查值
+static uint32_t g_utility_system_config_offset = 0;             // 系统配置偏移量
+static uint32_t g_utility_lookup_table_offset = 0;              // 查找表偏移量
+static int64_t g_utility_stack_frame_pointer = 0;               // 栈帧指针
+static int64_t g_utility_file_offset = 0;                       // 文件偏移量
+static uint32_t g_utility_file_handle = 0;                      // 文件句柄
+static uint64_t g_utility_file_current_position = 0;            // 文件当前位置
+static float g_utility_data_position_value = 0.0f;              // 数据位置值
+static int64_t g_utility_data_buffer = 0;                       // 数据缓冲区
+static uint32_t g_utility_local_variable = 0;                   // 局部变量
+static int64_t g_utility_buffer_current_position = 0;           // 缓冲区当前位置
+static uint64_t g_utility_operation_result = 0;                 // 操作结果
+static uint32_t g_utility_thread_local_offset = 0;              // 线程本地偏移量
+static uint64_t g_utility_file_total_size = 0;                  // 文件总大小
+static uint64_t g_utility_extended_data_ptr = 0;                // 扩展数据指针
+static uint32_t g_utility_system_error_flag = 0;                // 系统错误标志
 
 // 函数声明
 uint64_t system_memory_operation(uint32_t operation_type, void **resource_handle);
