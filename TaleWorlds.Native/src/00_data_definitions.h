@@ -3516,15 +3516,15 @@ void WotsMainNativeSDLL(unsigned long long system_handle_param)
   if (system_buffer_allocation_result < system_maximum_stack_size) {
     system_character_scan_pointer = (char *)(system_thread_stack_base_address + system_buffer_allocation_result);
     do {
-      system_thread_result_status = (int)system_buffer_allocation_result;
+      system_thread_operation_result = (int)system_buffer_allocation_result;
 goto system_section_processing_primary_label;
-      system_buffer_allocation_result = (ulong long)(system_thread_result_status + SYSTEM_INCREMENT_SINGLE_UNITU);
+      system_buffer_allocation_result = (ulong long)(system_thread_operation_result + SYSTEM_INCREMENT_SINGLE_UNITU);
       system_character_scan_pointer = system_character_scan_pointer + 1;
-    } while (system_thread_result_status + SYSTEM_INCREMENT_SINGLE_UNITU < system_maximum_stack_size);
+    } while (system_thread_operation_result + SYSTEM_INCREMENT_SINGLE_UNITU < system_maximum_stack_size);
   }
-  system_thread_result_status = SYSTEM_THREAD_RESULT_INVALID;
+  system_thread_operation_result = SYSTEM_THREAD_RESULT_INVALID;
 system_section_processing_primary_label:
-  system_buffer_allocation_result = system_thread_result_status + 1;
+  system_buffer_allocation_result = system_thread_operation_result + 1;
   system_buffer_allocation_result = (ulong long)(int)system_buffer_allocation_result;
   if (system_buffer_allocation_result < system_maximum_stack_size) {
     system_character_scan_pointer = (char *)(system_thread_stack_base_address + system_buffer_allocation_result);
@@ -3537,7 +3537,7 @@ goto system_section_processing_secondary_label;
   }
   system_buffer_allocation_result = UINT32_MAX;
 system_section_processing_secondary_label:
-  if (system_thread_result_status != SYSTEM_THREAD_RESULT_INVALID) {
+  if (system_thread_operation_result != SYSTEM_THREAD_RESULT_INVALID) {
     setup_thread_parameters(&system_thread_stack_98,&system_thread_stack_78,system_buffer_allocation_result,system_buffer_allocation_result);
     system_thread_name_pointer = &default_resource_config_string;
     if (thread_stack70 != (void *)SYSTEM_NULL_POINTER) {
@@ -3624,7 +3624,7 @@ void WotsMainNativeCoreCLR(unsigned long long system_handle_param)
   initialize_service_layer();
   return;
 }
-    system_config_flag = system_thread_result_status != SYSTEM_ERROR_INVALID_PARAMETER;
+    system_config_flag = system_thread_operation_result != SYSTEM_ERROR_INVALID_PARAMETER;
   }
   system_data_manager_initialize(system_global_context_pointer,0,SYSTEM_OFFSET_D,&g_systemDataString1,system_config_flag);
   if (thread_stack28 == (void *)SYSTEM_NULL_POINTER) {
@@ -3665,11 +3665,11 @@ void WotsMainNativeCoreCLR(unsigned long long system_handle_param)
     system_system_handle_param_buffer_variable = SYSTEM_ZERO_VALUE;
     return;
   }
-  system_string_length_counter = SYSTEM_STRING_LENGTH_INVALID;
+  system_string_length_tracker = SYSTEM_STRING_LENGTH_INVALID;
   do {
-    system_string_length_counter = system_string_length_counter + 1;
-  } while (*(char *)(system_handle_param + system_string_length_counter) != '\0');
-  system_buffer_allocation_result = (uint)system_string_length_counter;
+    system_string_length_tracker = system_string_length_tracker + 1;
+  } while (*(char *)(system_handle_param + system_string_length_tracker) != '\0');
+  system_buffer_allocation_result = (uint)system_string_length_tracker;
   if (MAX_THREAD_STACK_SIZE < system_buffer_allocation_result) {
     system_buffer_allocation_result = MAX_THREAD_STACK_SIZE;
   }
@@ -3711,47 +3711,47 @@ void WotsMainNativeCoreCLR(unsigned long long system_handle_param)
           strstr(&default_resource_config_string,&g_systemDataString7);
           system_initialization_flag = SYSTEM_ONE_VALUE;
           system_crash_system_handle_paramr_flag = SYSTEM_ONE_VALUE;
-          system_string_length_counter = strstr(system_string_input_context,&system_global_data_string_8);
-          if (system_string_length_counter == SYSTEM_ZERO_VALUE) {
-            system_string_length_counter = strstr(system_string_input_context,&system_global_data_string_9);
-            if ((((((system_string_length_counter == 0) && (system_string_length_counter = strstr(system_string_input_context,&system_global_data_string_10), system_string_length_counter == 0)) &&
-                  (system_string_length_counter = strstr(system_string_input_context,&system_global_data_string_11), system_string_length_counter == 0)) &&
-                 ((system_string_length_counter = strstr(system_string_input_context,&system_global_data_string_12), system_string_length_counter == SYSTEM_ZERO_VALUE &&
-                  (system_string_length_counter = strstr(system_string_input_context,&system_global_data_string_13), system_string_length_counter == 0)))) &&
-                ((system_string_length_counter = strstr(system_string_input_context,&system_global_data_string_14), system_string_length_counter == SYSTEM_ZERO_VALUE &&
-                 ((system_string_length_counter = strstr(system_string_input_context,&system_global_data_string_15), system_string_length_counter == SYSTEM_ZERO_VALUE &&
-                  (system_string_length_counter = strstr(system_string_input_context,&system_global_data_string_16), system_string_length_counter == 0)))))) &&
-               (system_string_length_counter = strstr(system_string_input_context,&system_global_data_string_17), system_string_length_counter == 0)) {
-              *(unsigned short *)(system_string_length_counter + SYSTEM_OFFSET_STRING_LENGTH) = PRIMARY_STRING_BUFFER_SIZE;
-              *(unsigned char *)(system_string_length_counter + SYSTEM_OFFSET_STRING_BUFFER) = SYSTEM_ONE_VALUE;
+          system_string_length_tracker = strstr(system_string_input_context,&system_global_data_string_8);
+          if (system_string_length_tracker == SYSTEM_ZERO_VALUE) {
+            system_string_length_tracker = strstr(system_string_input_context,&system_global_data_string_9);
+            if ((((((system_string_length_tracker == 0) && (system_string_length_tracker = strstr(system_string_input_context,&system_global_data_string_10), system_string_length_tracker == 0)) &&
+                  (system_string_length_tracker = strstr(system_string_input_context,&system_global_data_string_11), system_string_length_tracker == 0)) &&
+                 ((system_string_length_tracker = strstr(system_string_input_context,&system_global_data_string_12), system_string_length_tracker == SYSTEM_ZERO_VALUE &&
+                  (system_string_length_tracker = strstr(system_string_input_context,&system_global_data_string_13), system_string_length_tracker == 0)))) &&
+                ((system_string_length_tracker = strstr(system_string_input_context,&system_global_data_string_14), system_string_length_tracker == SYSTEM_ZERO_VALUE &&
+                 ((system_string_length_tracker = strstr(system_string_input_context,&system_global_data_string_15), system_string_length_tracker == SYSTEM_ZERO_VALUE &&
+                  (system_string_length_tracker = strstr(system_string_input_context,&system_global_data_string_16), system_string_length_tracker == 0)))))) &&
+               (system_string_length_tracker = strstr(system_string_input_context,&system_global_data_string_17), system_string_length_tracker == 0)) {
+              *(unsigned short *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_LENGTH) = PRIMARY_STRING_BUFFER_SIZE;
+              *(unsigned char *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_BUFFER) = SYSTEM_ONE_VALUE;
             }
             else {
               system_event_flag = SYSTEM_ONE_VALUE;
             }
           }
           else {
-            *(unsigned short *)(system_string_length_counter + SYSTEM_OFFSET_24) = SYSTEM_ZERO_VALUE;
+            *(unsigned short *)(system_string_length_tracker + SYSTEM_OFFSET_24) = SYSTEM_ZERO_VALUE;
           }
           system_thread_stack_pointer = (unsigned char *)SYSTEM_NULL_POINTER;
           system_maximum_stack_size = system_maximum_stack_size & INT64_MASK;
           system_thread_stack_pointer = &system_global_thread_string_4;
         }
         else if (system_buffer_allocation_result == SYSTEM_STATUS_CODE_B) {
-          system_thread_result_status = strcmp(system_string_input_context,&system_global_data_string_18);
+          system_thread_operation_result = strcmp(system_string_input_context,&system_global_data_string_18);
 goto LABEL_SYSTEM_SECTION_PROCESSING_003;
           system_operation_flag = SYSTEM_ONE_VALUE;
           system_thread_sync_flag = SYSTEM_ZERO_VALUE;
           system_initialization_flag = SYSTEM_ONE_VALUE;
-          system_string_length_counter = strstr(system_string_input_context,&system_global_data_string_19);
-          if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
+          system_string_length_tracker = strstr(system_string_input_context,&system_global_data_string_19);
+          if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
             system_string_input_context = &g_systemDataString20;
 goto system_thread_allocation_secondary_label;
           }
         }
         else {
           if (system_buffer_allocation_result == SYSTEM_STATUS_CODE_C) {
-            system_thread_result_status = strcmp(system_string_input_context,&system_global_data_string_21);
-            system_string_match_found = system_thread_result_status == SYSTEM_ZERO_VALUE;
+            system_thread_operation_result = strcmp(system_string_input_context,&system_global_data_string_21);
+            system_string_match_found = system_thread_operation_result == SYSTEM_ZERO_VALUE;
           }
           else {
 system_string_match_failed_label:
@@ -3764,15 +3764,15 @@ system_string_match_failed_label:
             if (system_buffer_allocation_result < system_maximum_stack_size) {
               system_character_scan_pointer = (char *)(system_thread_stack_base_address + system_thread_operation_flags);
               do {
-                system_thread_result_status = (int)system_thread_operation_flags;
+                system_thread_operation_result = (int)system_thread_operation_flags;
 goto system_thread_allocation_primary_label;
-                system_thread_operation_flags = (ulong long)(system_thread_result_status + SYSTEM_INCREMENT_SINGLE_UNITU);
+                system_thread_operation_flags = (ulong long)(system_thread_operation_result + SYSTEM_INCREMENT_SINGLE_UNITU);
                 system_character_scan_pointer = system_character_scan_pointer + 1;
-              } while (system_thread_result_status + SYSTEM_INCREMENT_SINGLE_UNITU < system_maximum_stack_size);
+              } while (system_thread_operation_result + SYSTEM_INCREMENT_SINGLE_UNITU < system_maximum_stack_size);
             }
-            system_thread_result_status = SYSTEM_THREAD_RESULT_INVALID;
+            system_thread_operation_result = SYSTEM_THREAD_RESULT_INVALID;
 system_thread_allocation_secondary_label:
-            system_buffer_allocation_result = system_thread_result_status + 1;
+            system_buffer_allocation_result = system_thread_operation_result + 1;
             system_thread_operation_flags = (ulong long)(int)system_buffer_allocation_result;
             if (system_buffer_allocation_result < system_maximum_stack_size) {
               system_character_scan_pointer = (char *)(system_thread_stack_base_address + system_thread_operation_flags);
@@ -3785,23 +3785,23 @@ goto system_thread_processing_primary_label;
             }
             system_thread_operation_flags = UINT32_MAX;
 system_thread_allocation_primary_label:
-            if (system_thread_result_status != SYSTEM_THREAD_RESULT_INVALID) {
+            if (system_thread_operation_result != SYSTEM_THREAD_RESULT_INVALID) {
               setup_thread_parameters(&system_thread_stack_pointer,&system_thread_stack_pointer,system_buffer_allocation_result,system_thread_operation_flags);
-              system_thread_result_status = system_thread_priority_level;
-              system_thread_result_status = SYSTEM_ZERO_VALUE;
-              system_string_length_counter = strchr(system_thread_stack_pointer,SYSTEM_CHAR_DOT);
-              if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
+              system_thread_operation_result = system_thread_priority_level;
+              system_thread_operation_result = SYSTEM_ZERO_VALUE;
+              system_string_length_tracker = strchr(system_thread_stack_pointer,SYSTEM_CHAR_DOT);
+              if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
                 do {
-                  system_thread_result_status = system_thread_result_status + 1;
-                  system_string_length_counter = strchr(system_string_length_counter + SYSTEM_INCREMENT_SINGLE_UNIT,SYSTEM_CHAR_DOT);
-                } while (system_string_length_counter != 0);
-                if ((system_thread_result_status == 3) && (system_thread_result_status - 7U < 9)) {
+                  system_thread_operation_result = system_thread_operation_result + 1;
+                  system_string_length_tracker = strchr(system_string_length_tracker + SYSTEM_INCREMENT_SINGLE_UNIT,SYSTEM_CHAR_DOT);
+                } while (system_string_length_tracker != 0);
+                if ((system_thread_operation_result == 3) && (system_thread_operation_result - 7U < 9)) {
                   system_thread_name_pointer = &default_resource_config_string;
                   if (thread_stack1b0 != (void *)SYSTEM_NULL_POINTER) {
                     system_thread_name_pointer = thread_stack1b0;
                   }
-                  (**(code **)(*(long long *)(system_string_length_counter + SYSTEM_OFFSET_HANDLE_PARAM00) + SYSTEM_OFFSET_STRING_BUFFER_SIZE))
-                            ((long long *)(system_string_length_counter + SYSTEM_OFFSET_HANDLE_PARAM00),system_thread_name_pointer);
+                  (**(code **)(*(long long *)(system_string_length_tracker + SYSTEM_OFFSET_HANDLE_PARAM00) + SYSTEM_OFFSET_STRING_BUFFER_SIZE))
+                            ((long long *)(system_string_length_tracker + SYSTEM_OFFSET_HANDLE_PARAM00),system_thread_name_pointer);
                 }
               }
               thread_stack1b8 = &system_global_thread_string_2;
@@ -3822,8 +3822,8 @@ system_thread_allocation_primary_label:
           }
           else {
             if (system_buffer_allocation_result == SYSTEM_STATUS_CODE_11) {
-              system_thread_result_status = strcmp(system_string_input_context,&system_global_data_string_22);
-              system_string_match_found = system_thread_result_status == SYSTEM_ZERO_VALUE;
+              system_thread_operation_result = strcmp(system_string_input_context,&system_global_data_string_22);
+              system_string_match_found = system_thread_operation_result == SYSTEM_ZERO_VALUE;
             }
             else {
               system_string_match_found = false;
@@ -3835,15 +3835,15 @@ system_thread_allocation_primary_label:
               if (system_buffer_allocation_result < system_maximum_stack_size) {
                 system_character_scan_pointer = (char *)(system_thread_stack_base_address + system_thread_operation_flags);
                 do {
-                  system_thread_result_status = (int)system_thread_operation_flags;
+                  system_thread_operation_result = (int)system_thread_operation_flags;
 goto system_thread_processing_secondary_label;
-                  system_thread_operation_flags = (ulong long)(system_thread_result_status + SYSTEM_INCREMENT_SINGLE_UNITU);
+                  system_thread_operation_flags = (ulong long)(system_thread_operation_result + SYSTEM_INCREMENT_SINGLE_UNITU);
                   system_character_scan_pointer = system_character_scan_pointer + 1;
-                } while (system_thread_result_status + SYSTEM_INCREMENT_SINGLE_UNITU < system_maximum_stack_size);
+                } while (system_thread_operation_result + SYSTEM_INCREMENT_SINGLE_UNITU < system_maximum_stack_size);
               }
-              system_thread_result_status = SYSTEM_THREAD_RESULT_INVALID;
+              system_thread_operation_result = SYSTEM_THREAD_RESULT_INVALID;
 system_thread_processing_primary_label:
-              system_buffer_allocation_result = system_thread_result_status + 1;
+              system_buffer_allocation_result = system_thread_operation_result + 1;
               system_thread_operation_flags = (ulong long)(int)system_buffer_allocation_result;
               if (system_buffer_allocation_result < system_maximum_stack_size) {
                 system_character_scan_pointer = (char *)(system_thread_stack_base_address + system_thread_operation_flags);
@@ -3856,17 +3856,17 @@ goto system_thread_processing_tertiary_label;
               }
               system_thread_operation_flags = UINT32_MAX;
 system_thread_processing_secondary_label:
-              if (system_thread_result_status != SYSTEM_THREAD_RESULT_INVALID) {
+              if (system_thread_operation_result != SYSTEM_THREAD_RESULT_INVALID) {
                 setup_thread_parameters(&system_thread_stack_pointer,&system_thread_stack_pointer,system_buffer_allocation_result,system_thread_operation_flags);
-                system_thread_result_status = system_thread_priority_level;
-                system_thread_result_status = SYSTEM_ZERO_VALUE;
-                system_string_length_counter = strchr(system_thread_stack_pointer,SYSTEM_CHAR_DOT);
-                if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
+                system_thread_operation_result = system_thread_priority_level;
+                system_thread_operation_result = SYSTEM_ZERO_VALUE;
+                system_string_length_tracker = strchr(system_thread_stack_pointer,SYSTEM_CHAR_DOT);
+                if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
                   do {
-                    system_thread_result_status = system_thread_result_status + 1;
-                    system_string_length_counter = strchr(system_string_length_counter + SYSTEM_INCREMENT_SINGLE_UNIT,SYSTEM_CHAR_DOT);
-                  } while (system_string_length_counter != 0);
-                  if ((system_thread_result_status == 3) && (system_thread_result_status - 7U < 9)) {
+                    system_thread_operation_result = system_thread_operation_result + 1;
+                    system_string_length_tracker = strchr(system_string_length_tracker + SYSTEM_INCREMENT_SINGLE_UNIT,SYSTEM_CHAR_DOT);
+                  } while (system_string_length_tracker != 0);
+                  if ((system_thread_operation_result == 3) && (system_thread_operation_result - 7U < 9)) {
                     system_thread_name_pointer = &default_resource_config_string;
                     if (thread_stack190 != (void *)SYSTEM_NULL_POINTER) {
                       system_thread_name_pointer = thread_stack190;
@@ -3892,8 +3892,8 @@ system_thread_processing_secondary_label:
             }
             else {
               if (system_buffer_allocation_result == SYSTEM_BUFFER_ALLOC_RESULT_SECTION_HEADER) {
-                system_thread_result_status = strcmp(system_string_input_context,&system_global_data_string_23);
-                system_string_match_found = system_thread_result_status == SYSTEM_ZERO_VALUE;
+                system_thread_operation_result = strcmp(system_string_input_context,&system_global_data_string_23);
+                system_string_match_found = system_thread_operation_result == SYSTEM_ZERO_VALUE;
               }
               else {
                 system_string_match_found = false;
@@ -3930,16 +3930,16 @@ system_thread_processing_final_label:
                   setup_thread_parameters(&system_thread_stack_pointer,&system_thread_stack_pointer,system_buffer_allocation_result,system_thread_operation_flags);
                   system_thread_manager_configure(&system_thread_stack_pointer);
                   if (system_maximum_stack_size != SYSTEM_ZERO_VALUE) {
-                    system_thread_result_status = SYSTEM_ZERO_VALUE;
-                    system_string_length_counter = (long long)(int)(system_maximum_stack_size + SYSTEM_DECREMENT_SINGLE_UNIT);
+                    system_thread_operation_result = SYSTEM_ZERO_VALUE;
+                    system_string_length_tracker = (long long)(int)(system_maximum_stack_size + SYSTEM_DECREMENT_SINGLE_UNIT);
                     if (0 < (int)(system_maximum_stack_size + SYSTEM_DECREMENT_SINGLE_UNIT)) {
                       do {
-                        if (system_thread_stack_pointer[system_string_length_counter] != '\"') break;
-                        system_thread_result_status = system_thread_result_status + 1;
-                        system_string_length_counter = system_string_length_counter + SYSTEM_DECREMENT_SINGLE_UNIT;
-                      } while (SYSTEM_ZERO_VALUE < system_string_length_counter);
+                        if (system_thread_stack_pointer[system_string_length_tracker] != '\"') break;
+                        system_thread_operation_result = system_thread_operation_result + 1;
+                        system_string_length_tracker = system_string_length_tracker + SYSTEM_DECREMENT_SINGLE_UNIT;
+                      } while (SYSTEM_ZERO_VALUE < system_string_length_tracker);
                     }
-                    system_maximum_stack_size = system_maximum_stack_size - system_thread_result_status;
+                    system_maximum_stack_size = system_maximum_stack_size - system_thread_operation_result;
                     system_thread_stack_pointer[system_maximum_stack_size] = SYSTEM_ZERO_VALUE;
                   }
                   system_thread_manager_validate(&system_thread_stack_pointer,SYSTEM_PARAM_SINGLE_VALIDATE);
@@ -3947,12 +3947,12 @@ system_thread_processing_final_label:
                   if (system_thread_stack_pointer != (void *)SYSTEM_NULL_POINTER) {
                     system_string_input_context = system_thread_stack_pointer;
                   }
-                  system_string_length_counter = SYSTEM_STRING_LENGTH_INVALID;
+                  system_string_length_tracker = SYSTEM_STRING_LENGTH_INVALID;
                   do {
-                    system_string_length_counter = system_string_length_counter + 1;
-                  } while (system_string_input_context[system_string_length_counter] != '\0');
-                  if ((int)system_string_length_counter < SYSTEM_CONFIG_BUFFER_SIZE) {
-                    system_input_offset_value = (int)system_string_length_counter;
+                    system_string_length_tracker = system_string_length_tracker + 1;
+                  } while (system_string_input_context[system_string_length_tracker] != '\0');
+                  if ((int)system_string_length_tracker < SYSTEM_CONFIG_BUFFER_SIZE) {
+                    system_input_offset_value = (int)system_string_length_tracker;
                     strcpy_s(input_buffer_pointer,SYSTEM_CONFIG_BUFFER_SIZE);
                   }
                   else {
@@ -3963,16 +3963,16 @@ system_thread_processing_final_label:
                   system_buffer_allocation_result = system_maximum_stack_size;
                   system_thread_operation_flags = (ulong long)system_maximum_stack_size;
                   if (system_thread_stack_pointer != (void *)SYSTEM_NULL_POINTER) {
-                    system_thread_manager_create(system_string_length_counter + SYSTEM_OFFSET_STRING_COUNTER,system_thread_operation_flags);
+                    system_thread_manager_create(system_string_length_tracker + SYSTEM_OFFSET_STRING_COUNTER,system_thread_operation_flags);
                   }
                   if (system_buffer_allocation_result != SYSTEM_ZERO_VALUE) {
-                    memcpy(*(unsigned long long *)(system_string_length_counter + SYSTEM_OFFSET_STRING_SIZE),system_thread_stack_pointer,system_thread_operation_flags);
+                    memcpy(*(unsigned long long *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_SIZE),system_thread_stack_pointer,system_thread_operation_flags);
                   }
-                  *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_STRING_MAX) = SYSTEM_ZERO_VALUE;
-                  if (*(long long *)(system_string_length_counter + SYSTEM_OFFSET_STRING_SIZE) != SYSTEM_ZERO_VALUE) {
-                    *(unsigned char *)(system_thread_operation_flags + *(long long *)(system_string_length_counter + SYSTEM_OFFSET_STRING_SIZE)) = SYSTEM_ZERO_VALUE;
+                  *(unsigned int *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_MAX) = SYSTEM_ZERO_VALUE;
+                  if (*(long long *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_SIZE) != SYSTEM_ZERO_VALUE) {
+                    *(unsigned char *)(system_thread_operation_flags + *(long long *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_SIZE)) = SYSTEM_ZERO_VALUE;
                   }
-                  *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_STRING_SIZE_MAX) = system_maximum_stack_size;
+                  *(unsigned int *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_SIZE_MAX) = system_maximum_stack_size;
                   system_thread_stack_pointer = &system_global_thread_string_2;
                   if (system_thread_stack_pointer != (void *)SYSTEM_NULL_POINTER) {
                     system_handle_param_system_error(system_thread_stack_pointer,system_thread_stack_pointer);
@@ -3992,8 +3992,8 @@ system_thread_processing_final_label:
               }
               else {
                 if (system_buffer_allocation_result == SYSTEM_BUFFER_ALLOC_RESULT_TLS_CALLBACK) {
-                  system_thread_result_status = strcmp(system_string_input_context,&system_global_data_string_24);
-                  if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
+                  system_thread_operation_result = strcmp(system_string_input_context,&system_global_data_string_24);
+                  if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
                     system_resource_flag = SYSTEM_ONE_VALUE;
                     system_mutex_flag = SYSTEM_ONE_VALUE;
 goto system_string_processing_secondary_label;
@@ -4003,8 +4003,8 @@ system_string_processing_primary_label:
                 }
                 else {
 goto system_string_processing_tertiary_label;
-                  system_thread_result_status = strcmp(system_string_input_context,&system_global_data_string_25);
-                  system_string_match_found = system_thread_result_status == SYSTEM_ZERO_VALUE;
+                  system_thread_operation_result = strcmp(system_string_input_context,&system_global_data_string_25);
+                  system_string_match_found = system_thread_operation_result == SYSTEM_ZERO_VALUE;
                 }
                 if (system_string_match_found) {
                   create_thread_context(&system_thread_stack_pointer,system_string_input_context);
@@ -4040,17 +4040,17 @@ system_string_processing_tertiary_label:
                     system_buffer_allocation_result = system_maximum_stack_size;
                     system_thread_operation_flags = (ulong long)system_maximum_stack_size;
                     if (system_thread_stack_base_address != SYSTEM_ZERO_VALUE) {
-                      system_thread_manager_create(system_string_length_counter + SYSTEM_OFFSET_STRING_COUNTER,system_thread_operation_flags);
+                      system_thread_manager_create(system_string_length_tracker + SYSTEM_OFFSET_STRING_COUNTER,system_thread_operation_flags);
                     }
                     if (system_buffer_allocation_result != SYSTEM_ZERO_VALUE) {
-                      memcpy(*(unsigned long long *)(system_string_length_counter + SYSTEM_OFFSET_STRING_COUNTER),system_thread_stack_base_address,system_thread_operation_flags);
+                      memcpy(*(unsigned long long *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_COUNTER),system_thread_stack_base_address,system_thread_operation_flags);
                     }
-                    *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_STRING_BASE) = SYSTEM_ZERO_VALUE;
-                    if (*(long long *)(system_string_length_counter + SYSTEM_OFFSET_STRING_COUNTER) != SYSTEM_ZERO_VALUE) {
-                      *(unsigned char *)(system_thread_operation_flags + *(long long *)(system_string_length_counter + SYSTEM_OFFSET_STRING_COUNTER)) = SYSTEM_ZERO_VALUE;
+                    *(unsigned int *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_BASE) = SYSTEM_ZERO_VALUE;
+                    if (*(long long *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_COUNTER) != SYSTEM_ZERO_VALUE) {
+                      *(unsigned char *)(system_thread_operation_flags + *(long long *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_COUNTER)) = SYSTEM_ZERO_VALUE;
                     }
-                    *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_STRING_END) = system_maximum_stack_size;
-                    *(unsigned char *)(system_string_length_counter + SYSTEM_OFFSET_STRING_FLAG) = SYSTEM_ONE_VALUE;
+                    *(unsigned int *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_END) = system_maximum_stack_size;
+                    *(unsigned char *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_FLAG) = SYSTEM_ONE_VALUE;
                     system_thread_stack_pointer = &system_global_thread_string_2;
                     if (system_thread_stack_base_address != SYSTEM_ZERO_VALUE) {
                       system_handle_param_system_error(system_thread_stack_base_address,system_thread_stack_base_address);
@@ -4070,8 +4070,8 @@ system_string_processing_tertiary_label:
                 }
                 else {
                   if (system_buffer_allocation_result == SYSTEM_BUFFER_ALLOC_RESULT_EXCEPTION) {
-                    system_thread_result_status = strcmp(system_string_input_context,&system_global_data_string_26);
-                    if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
+                    system_thread_operation_result = strcmp(system_string_input_context,&system_global_data_string_26);
+                    if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
                       system_initialization_flag = SYSTEM_ONE_VALUE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_015;
                     }
@@ -4080,8 +4080,8 @@ system_string_operation_primary_label:
                   }
                   else {
 goto LABEL_SYSTEM_SECTION_PROCESSING_016;
-                    system_thread_result_status = strcmp(system_string_input_context,&system_global_data_string_27);
-                    system_string_match_found = system_thread_result_status == SYSTEM_ZERO_VALUE;
+                    system_thread_operation_result = strcmp(system_string_input_context,&system_global_data_string_27);
+                    system_string_match_found = system_thread_operation_result == SYSTEM_ZERO_VALUE;
                   }
                   if (system_string_match_found) {
                     create_thread_context(&system_thread_stack_pointer,system_string_input_context);
@@ -4102,8 +4102,8 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_016;
                     if (system_string_input_context != (unsigned char *)SYSTEM_NULL_POINTER) {
                       system_string_input_context = system_string_input_context;
                     }
-                    system_string_length_counter = strstr(system_string_input_context);
-                    if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
+                    system_string_length_tracker = strstr(system_string_input_context);
+                    if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
                       system_thread_operation_flags = SYSTEM_ZERO_VALUE;
                       system_thread_stack_pointer = &system_global_thread_string_2;
                       system_maximum_stack_size = SYSTEM_ZERO_VALUE;
@@ -4125,8 +4125,8 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_017;
 goto LABEL_SYSTEM_SECTION_PROCESSING_018;
                     }
                     if (system_buffer_allocation_result == SYSTEM_BUFFER_ALLOC_RESULT_TLS) {
-                      system_thread_result_status = strcmp(system_string_input_context);
-                      if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
+                      system_thread_operation_result = strcmp(system_string_input_context);
+                      if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
                         cStack_338 = '\x01';
                         *(unsigned char *)(system_global_context_pointer + SYSTEM_OFFSET_PRIMARY_FLAG) = SYSTEM_ONE_VALUE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_019;
@@ -4136,8 +4136,8 @@ system_string_operation_secondary_label:
                     }
                     else {
                       if (system_buffer_allocation_result == SYSTEM_STATUS_CODE_C) {
-                        system_thread_result_status = strcmp(system_string_input_context);
-                        if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
+                        system_thread_operation_result = strcmp(system_string_input_context);
+                        if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
                           system_string_input_context = &g_systemDataString28;
 LABEL_SYSTEM_SECTION_PROCESSING_015:
                           system_data_manager_process(system_global_context_pointer,system_string_input_context);
@@ -4145,34 +4145,34 @@ LABEL_SYSTEM_SECTION_PROCESSING_015:
 goto LABEL_SYSTEM_SECTION_PROCESSING_020;
                       }
                       if (system_buffer_allocation_result == SYSTEM_BUFFER_ALLOC_RESULT_CONFIG) {
-                        system_thread_result_status = strcmp(system_string_input_context);
-                        if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
+                        system_thread_operation_result = strcmp(system_string_input_context);
+                        if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
                           *(unsigned char *)(system_global_context_pointer + SYSTEM_OFFSET_SECONDARY_FLAG) = SYSTEM_ONE_VALUE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_021;
                         }
 goto LABEL_SYSTEM_SECTION_PROCESSING_022;
                       }
                       if (system_buffer_allocation_result == STRING_BUFFER_SIZE) {
-                        system_thread_result_status = strcmp(system_string_input_context);
-                        if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
+                        system_thread_operation_result = strcmp(system_string_input_context);
+                        if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
                           system_status_flag_2 = SYSTEM_ZERO_VALUE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_023;
                         }
 goto LABEL_SYSTEM_SECTION_PROCESSING_024;
                       }
                       if (system_buffer_allocation_result == SYSTEM_BUFFER_ALLOC_RESULT_MEMORY) {
-                        system_thread_result_status = strcmp(system_string_input_context);
-                        if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
+                        system_thread_operation_result = strcmp(system_string_input_context);
+                        if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
                           system_crash_system_handle_paramr_flag = SYSTEM_ONE_VALUE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_025;
                         }
 goto LABEL_SYSTEM_SECTION_PROCESSING_026;
                       }
 goto LABEL_SYSTEM_SECTION_PROCESSING_027;
-                      system_thread_result_status = strcmp(system_string_input_context);
-                      system_string_match_found = system_thread_result_status == SYSTEM_ZERO_VALUE;
+                      system_thread_operation_result = strcmp(system_string_input_context);
+                      system_string_match_found = system_thread_operation_result == SYSTEM_ZERO_VALUE;
                     }
-                    system_string_length_counter = system_global_context_pointer;
+                    system_string_length_tracker = system_global_context_pointer;
                     if (system_string_match_found) {
                       create_thread_context(&system_thread_stack_pointer,system_string_input_context);
                       system_thread_manager_cleanup(&system_thread_stack_pointer);
@@ -4188,16 +4188,16 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_028;
                       system_buffer_allocation_result = UINT32_MAX;
 LABEL_SYSTEM_SECTION_PROCESSING_016:
                       if (system_buffer_allocation_result != INVALID_HANDLE_VALUE) {
-                        system_string_length_counter = setup_thread_parameters(&system_thread_stack_pointer,&system_thread_stack_pointer,0);
+                        system_string_length_tracker = setup_thread_parameters(&system_thread_stack_pointer,&system_thread_stack_pointer,0);
                         if (system_pc_stack_pointer_328 != (char *)SYSTEM_NULL_POINTER) {
                           system_handle_param_system_error();
                         }
-                        system_maximum_stack_size = *(uint *)(system_string_length_counter + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
-                        system_pc_stack_pointer_328 = *(char **)(system_string_length_counter + 8);
-                        system_maximum_stack_size = *(long long *)(system_string_length_counter + SYSTEM_OFFSET_STACK_SIZE);
-                        *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_STRING_BUFFER_SIZE) = SYSTEM_ZERO_VALUE;
-                        *(unsigned long long *)(system_string_length_counter + 8) = SYSTEM_ZERO_VALUE;
-                        *(unsigned long long *)(system_string_length_counter + SYSTEM_OFFSET_STACK_SIZE) = SYSTEM_ZERO_VALUE;
+                        system_maximum_stack_size = *(uint *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
+                        system_pc_stack_pointer_328 = *(char **)(system_string_length_tracker + 8);
+                        system_maximum_stack_size = *(long long *)(system_string_length_tracker + SYSTEM_OFFSET_STACK_SIZE);
+                        *(unsigned int *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_BUFFER_SIZE) = SYSTEM_ZERO_VALUE;
+                        *(unsigned long long *)(system_string_length_tracker + 8) = SYSTEM_ZERO_VALUE;
+                        *(unsigned long long *)(system_string_length_tracker + SYSTEM_OFFSET_STACK_SIZE) = SYSTEM_ZERO_VALUE;
                         system_thread_stack_pointer = &system_global_thread_string_2;
                         if (system_thread_stack_base_address != SYSTEM_ZERO_VALUE) {
                           system_handle_param_system_error();
@@ -4208,20 +4208,20 @@ LABEL_SYSTEM_SECTION_PROCESSING_016:
                       }
                       system_thread_manager_reset(&system_thread_stack_pointer);
                       system_buffer_allocation_result = system_maximum_stack_size;
-                      system_string_length_counter = system_global_context_pointer;
+                      system_string_length_tracker = system_global_context_pointer;
                       *(unsigned char *)(system_global_context_pointer + SYSTEM_STACK_OFFSET_SYSTEM_FLAG) = SYSTEM_ONE_VALUE;
                       system_thread_operation_flags = (ulong long)system_maximum_stack_size;
                       if (system_pc_stack_pointer_328 != (char *)SYSTEM_NULL_POINTER) {
-                        system_thread_manager_create(system_string_length_counter + SYSTEM_STACK_OFFSET_THREAD_CREATE,system_thread_operation_flags);
+                        system_thread_manager_create(system_string_length_tracker + SYSTEM_STACK_OFFSET_THREAD_CREATE,system_thread_operation_flags);
                       }
                       if (system_buffer_allocation_result != SYSTEM_ZERO_VALUE) {
-                        memcpy(*(unsigned long long *)(system_string_length_counter + SYSTEM_STACK_OFFSET_THREAD_HANDLE),system_pc_stack_pointer_328,system_thread_operation_flags);
+                        memcpy(*(unsigned long long *)(system_string_length_tracker + SYSTEM_STACK_OFFSET_THREAD_HANDLE),system_pc_stack_pointer_328,system_thread_operation_flags);
                       }
-                      *(unsigned int *)(system_string_length_counter + SYSTEM_STACK_OFFSET_THREAD_DATA) = SYSTEM_ZERO_VALUE;
-                      if (*(long long *)(system_string_length_counter + SYSTEM_STACK_OFFSET_THREAD_HANDLE) != SYSTEM_ZERO_VALUE) {
-                        *(unsigned char *)(system_thread_operation_flags + *(long long *)(system_string_length_counter + SYSTEM_STACK_OFFSET_THREAD_HANDLE)) = SYSTEM_ZERO_VALUE;
+                      *(unsigned int *)(system_string_length_tracker + SYSTEM_STACK_OFFSET_THREAD_DATA) = SYSTEM_ZERO_VALUE;
+                      if (*(long long *)(system_string_length_tracker + SYSTEM_STACK_OFFSET_THREAD_HANDLE) != SYSTEM_ZERO_VALUE) {
+                        *(unsigned char *)(system_thread_operation_flags + *(long long *)(system_string_length_tracker + SYSTEM_STACK_OFFSET_THREAD_HANDLE)) = SYSTEM_ZERO_VALUE;
                       }
-                      *(uint *)(system_string_length_counter + SYSTEM_STACK_OFFSET_THREAD_CONFIG) = system_system_maximum_stack_size_low_half_extended;
+                      *(uint *)(system_string_length_tracker + SYSTEM_STACK_OFFSET_THREAD_CONFIG) = system_system_maximum_stack_size_low_half_extended;
                       system_thread_stack_pointer = &system_global_thread_string_2;
                       if (system_pc_stack_pointer_328 != (char *)SYSTEM_NULL_POINTER) {
                         system_handle_param_system_error(system_pc_stack_pointer_328,system_pc_stack_pointer_328);
@@ -4243,17 +4243,17 @@ LABEL_SYSTEM_SECTION_PROCESSING_016:
                       system_maximum_stack_size = system_thread_operation_flags;
                       system_maximum_stack_size = system_thread_operation_flags;
                       if (system_buffer_allocation_result != SYSTEM_ZERO_VALUE) {
-                        system_thread_result_status = system_buffer_allocation_result + 1;
-                        if (system_thread_result_status < STRING_BUFFER_SIZE) {
-                          system_thread_result_status = STRING_BUFFER_SIZE;
+                        system_thread_operation_result = system_buffer_allocation_result + 1;
+                        if (system_thread_operation_result < STRING_BUFFER_SIZE) {
+                          system_thread_operation_result = STRING_BUFFER_SIZE;
                         }
-                        system_string_input_context = (unsigned char *)system_execution_function(system_global_context_pointer,(long long)system_thread_result_status,SYSTEM_STATUS_CODE_COMPLETE);
+                        system_string_input_context = (unsigned char *)system_execution_function(system_global_context_pointer,(long long)system_thread_operation_result,SYSTEM_STATUS_CODE_COMPLETE);
                         *system_string_input_context = SYSTEM_ZERO_VALUE;
                         system_thread_stack_pointer = system_string_input_context;
                         system_string_input_context = (unsigned char *)allocate_temporary_buffer(system_string_input_context);
                         system_maximum_stack_size = merge_32bit_values(system_system_maximum_stack_size_low_half_extended,(int)system_string_input_context);
                       }
-                      system_string_length_counter = SYSTEM_ONE_VALUE;
+                      system_string_length_tracker = SYSTEM_ONE_VALUE;
                       system_buffer_allocation_result = SYSTEM_ONE_VALUE;
                       if (SYSTEM_INCREMENT_SINGLE_UNIT < (int)system_buffer_allocation_result) {
                         system_thread_operation_flags = SYSTEM_ZERO_VALUE;
@@ -4261,12 +4261,12 @@ LABEL_SYSTEM_SECTION_PROCESSING_016:
                           system_thread_operation_flags = system_maximum_stack_size;
                           system_thread_operation_flags = system_maximum_stack_size;
                           if (system_buffer_allocation_result <= system_buffer_allocation_result) break;
-                          system_thread_operation_flags = system_thread_stack_pointer[system_string_length_counter];
-                          system_thread_result_status = (int)system_thread_operation_flags;
-                          system_thread_operation_flags = system_thread_result_status + SYSTEM_INCREMENT_SINGLE_UNIT;
+                          system_thread_operation_flags = system_thread_stack_pointer[system_string_length_tracker];
+                          system_thread_operation_result = (int)system_thread_operation_flags;
+                          system_thread_operation_flags = system_thread_operation_result + SYSTEM_INCREMENT_SINGLE_UNIT;
                           system_thread_operation_flags = (ulong long)system_thread_operation_flags;
                           if (system_thread_operation_flags != SYSTEM_ZERO_VALUE) {
-                            system_thread_operation_flags = system_thread_result_status + SYSTEM_INCREMENT_DOUBLE_UNIT;
+                            system_thread_operation_flags = system_thread_operation_result + SYSTEM_INCREMENT_DOUBLE_UNIT;
                             if (system_string_input_context == (unsigned char *)SYSTEM_NULL_POINTER) {
                               if ((int)system_thread_operation_flags < STRING_BUFFER_SIZE) {
                                 system_thread_operation_flags = STRING_BUFFER_SIZE;
@@ -4291,11 +4291,11 @@ LABEL_SYSTEM_SECTION_PROCESSING_017:
                           system_string_input_context[system_thread_operation_flags] = SYSTEM_ZERO_VALUE;
                           system_string_input_context = (unsigned char *)(ulong long)system_thread_operation_flags;
                           system_buffer_allocation_result = system_buffer_allocation_result + 1;
-                          system_string_length_counter = system_string_length_counter + 1;
+                          system_string_length_tracker = system_string_length_tracker + 1;
                           system_thread_operation_flags = system_maximum_stack_size;
                           system_thread_operation_flags = system_maximum_stack_size;
                           system_maximum_stack_size = system_thread_operation_flags;
-                        } while (system_string_length_counter < (int)system_buffer_allocation_result);
+                        } while (system_string_length_tracker < (int)system_buffer_allocation_result);
                       }
                       system_event_system_handle_paramr_main(system_string_input_context,&system_thread_stack_pointer,system_thread_operation_flags);
                       system_maximum_stack_size = system_thread_operation_flags system_thread_operation_flags & SYSTEM_MASK_ADDRESS STACK_ALIGNMENT_MASK;
@@ -4315,13 +4315,13 @@ LABEL_SYSTEM_SECTION_PROCESSING_017:
                         system_thread_manager_create(system_global_context_pointer + SYSTEM_OFFSET_BUFFER_POINTER,system_string_input_context);
                       }
                       if (system_buffer_allocation_result != SYSTEM_ZERO_VALUE) {
-                        memcpy(*(unsigned long long *)(system_string_length_counter + SYSTEM_STACK_OFFSET_STRING_BUFFER),system_string_input_context,system_string_input_context);
+                        memcpy(*(unsigned long long *)(system_string_length_tracker + SYSTEM_STACK_OFFSET_STRING_BUFFER),system_string_input_context,system_string_input_context);
                       }
-                      *(unsigned int *)(system_string_length_counter + SYSTEM_STACK_OFFSET_STRING_HANDLE) = SYSTEM_ZERO_VALUE;
-                      if (*(long long *)(system_string_length_counter + SYSTEM_STACK_OFFSET_STRING_BUFFER) != SYSTEM_ZERO_VALUE) {
-                        system_string_input_context[*(long long *)(system_string_length_counter + SYSTEM_STACK_OFFSET_STRING_BUFFER)] = SYSTEM_ZERO_VALUE;
+                      *(unsigned int *)(system_string_length_tracker + SYSTEM_STACK_OFFSET_STRING_HANDLE) = SYSTEM_ZERO_VALUE;
+                      if (*(long long *)(system_string_length_tracker + SYSTEM_STACK_OFFSET_STRING_BUFFER) != SYSTEM_ZERO_VALUE) {
+                        system_string_input_context[*(long long *)(system_string_length_tracker + SYSTEM_STACK_OFFSET_STRING_BUFFER)] = SYSTEM_ZERO_VALUE;
                       }
-                      *(unsigned int *)(system_string_length_counter + SYSTEM_STACK_OFFSET_RESULT_DATA) = system_system_maximum_stack_size_low_half_extended;
+                      *(unsigned int *)(system_string_length_tracker + SYSTEM_STACK_OFFSET_RESULT_DATA) = system_system_maximum_stack_size_low_half_extended;
                     }
                   }
                 }
@@ -4332,7 +4332,7 @@ LABEL_SYSTEM_SECTION_PROCESSING_017:
 LABEL_SYSTEM_SECTION_PROCESSING_018:
         system_string_input_context = (unsigned char *)SYSTEM_NULL_POINTER;
         system_maximum_stack_size = SYSTEM_ZERO_VALUE;
-        system_string_length_counter = system_thread_stack_base_address;
+        system_string_length_tracker = system_thread_stack_base_address;
         if (system_string_input_context != (unsigned char *)SYSTEM_NULL_POINTER) {
           *system_string_input_context = SYSTEM_ZERO_VALUE;
         }
@@ -4353,10 +4353,10 @@ LABEL_SYSTEM_SECTION_PROCESSING_018:
   system_config_stack_buffer[SYSTEM_ARRAY_INDEX_FIRST] = SYSTEM_ZERO_VALUE;
   system_maximum_stack_size = STRING_BUFFER_SIZE;
   strcpy_s(system_config_stack_buffer, SYSTEM_CONFIG_BUFFER_SIZE, &systemConfigStringBuffer);
-  system_char_result = system_handle_manager_resolve(system_string_length_counter,&system_thread_stack_pointer);
+  system_char_result = system_handle_manager_resolve(system_string_length_tracker,&system_thread_stack_pointer);
   system_thread_stack_pointer = &system_global_thread_string_4;
   if (system_char_result != SYSTEM_ZERO_VALUE) {
-    *(unsigned int *)(system_string_length_counter + path_buffer_size) = SYSTEM_ONE_VALUE;
+    *(unsigned int *)(system_string_length_tracker + path_buffer_size) = SYSTEM_ONE_VALUE;
   }
   (**(code **)(**(long long **)(system_global_context_pointer + SYSTEM_OFFSET_GLOBAL_DATA_PTR) + SYSTEM_OFFSET_FUNCTION_TABLE))
             (*(long long **)(system_global_context_pointer + SYSTEM_OFFSET_GLOBAL_DATA_PTR),system_crash_system_handle_paramr_flag);
@@ -4371,7 +4371,7 @@ LABEL_SYSTEM_SECTION_PROCESSING_018:
   while (system_byte_string_input_pointer = system_byte_string_input_pointer + SYSTEM_INCREMENT_SINGLE_UNIT, system_buffer_allocation_result != SYSTEM_ZERO_VALUE) {
 LABEL_SYSTEM_SECTION_PROCESSING_019:
     system_byte_check_result = *system_byte_string_input_pointer;
-    system_buffer_allocation_result = (uint)system_byte_string_input_pointer[system_string_length_counter];
+    system_buffer_allocation_result = (uint)system_byte_string_input_pointer[system_string_length_tracker];
     if (system_byte_check_result != system_buffer_allocation_result) break;
   }
   if ((int)(system_byte_check_result - system_buffer_allocation_result) < SYSTEM_INCREMENT_SINGLE_UNIT) {
@@ -4382,13 +4382,13 @@ LABEL_SYSTEM_SECTION_PROCESSING_020:
 LABEL_SYSTEM_SECTION_PROCESSING_021:
     system_thread_operation_flags = SYSTEM_ZERO_VALUE;
   }
-  system_helper_execute(system_string_length_counter,system_initialization_result0,system_string_length_counter,system_thread_operation_flags);
+  system_helper_execute(system_string_length_tracker,system_initialization_result0,system_string_length_tracker,system_thread_operation_flags);
   while( true ) {
-    system_thread_operation_flags = (ulong long)(system_thread_result_status + 1);
+    system_thread_operation_flags = (ulong long)(system_thread_operation_result + 1);
     system_thread_operation_flags = system_thread_operation_flags + 1;
     if ((long long)(int)(system_buffer_allocation_result - SYSTEM_OFFSET_BUFFER_ALLOC_RESULT_OFFSET) <= (long long)system_thread_operation_flags) break;
 LABEL_SYSTEM_SECTION_PROCESSING_022:
-    system_thread_result_status = (int)system_thread_operation_flags;
+    system_thread_operation_result = (int)system_thread_operation_flags;
     system_thread_operation_flags = system_thread_operation_flags;
     system_thread_operation_flags = system_thread_operation_flags;
     do {
@@ -4401,9 +4401,9 @@ LABEL_SYSTEM_SECTION_PROCESSING_022:
 goto LABEL_SYSTEM_SECTION_PROCESSING_030;
   }
 LABEL_SYSTEM_SECTION_PROCESSING_023:
-  system_thread_result_status = SYSTEM_THREAD_RESULT_INVALID;
+  system_thread_operation_result = SYSTEM_THREAD_RESULT_INVALID;
 LABEL_SYSTEM_SECTION_PROCESSING_024:
-  setup_thread_parameters(&system_thread_stack_pointer,&system_thread_stack_pointer,system_thread_result_status + SYSTEM_OFFSET_THREAD_OPERATION_LIMIT,system_string_input_context);
+  setup_thread_parameters(&system_thread_stack_pointer,&system_thread_stack_pointer,system_thread_operation_result + SYSTEM_OFFSET_THREAD_OPERATION_LIMIT,system_string_input_context);
   system_thread_stack_pointer = (unsigned long long *)SYSTEM_NULL_POINTER;
   system_thread_stack_pointer = (unsigned long long *)SYSTEM_NULL_POINTER;
   system_maximum_stack_size = SYSTEM_ZERO_VALUE;
@@ -4448,23 +4448,23 @@ LABEL_SYSTEM_SECTION_PROCESSING_025:
     system_handle_param_system_error(system_string_input_context);
   }
   system_ui_002(system_global_context_pointer,&system_thread_stack_pointer,&system_thread_stack_pointer);
-  system_string_length_counter = system_global_context_pointer + SYSTEM_INIT_OFFSET_MODULE_HANDLE;
-  system_string_length_counter = system_execution_function(system_global_context_pointer, SYSTEM_CONFIG_BUFFER_SIZE,*(unsigned char *)(system_global_context_pointer + SYSTEM_INIT_OFFSET_CONFIG_SIZE));
-  system_thread_manager_003(system_string_length_counter + path_buffer_size,&system_thread_stack_pointer);
-  system_string_length_counter = system_event_system_handle_paramr_process_string(system_string_length_counter,acStack_336,system_string_length_counter + path_buffer_size);
+  system_string_length_tracker = system_global_context_pointer + SYSTEM_INIT_OFFSET_MODULE_HANDLE;
+  system_string_length_tracker = system_execution_function(system_global_context_pointer, SYSTEM_CONFIG_BUFFER_SIZE,*(unsigned char *)(system_global_context_pointer + SYSTEM_INIT_OFFSET_CONFIG_SIZE));
+  system_thread_manager_003(system_string_length_tracker + path_buffer_size,&system_thread_stack_pointer);
+  system_string_length_tracker = system_event_system_handle_paramr_process_string(system_string_length_tracker,acStack_336,system_string_length_tracker + path_buffer_size);
   if (acStack_336[SYSTEM_ARRAY_INDEX_FIRST] == SYSTEM_ZERO_VALUE) {
-    system_event_system_handle_paramr_process_xmm_register(xmm0_register_value,system_string_length_counter);
+    system_event_system_handle_paramr_process_xmm_register(xmm0_register_value,system_string_length_tracker);
 goto LABEL_SYSTEM_SECTION_PROCESSING_031;
   }
-  if (system_string_length_counter != system_string_length_counter) {
-    if (*(int *)(system_string_length_counter + SYSTEM_DATA_OFFSET_STRING_BUFFER) == SYSTEM_ZERO_VALUE) {
+  if (system_string_length_tracker != system_string_length_tracker) {
+    if (*(int *)(system_string_length_tracker + SYSTEM_DATA_OFFSET_STRING_BUFFER) == SYSTEM_ZERO_VALUE) {
 LABEL_SYSTEM_SECTION_PROCESSING_026:
       system_thread_operation_flags = SYSTEM_ONE_VALUE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_032;
     }
-    if (*(int *)(system_string_length_counter + SYSTEM_DATA_OFFSET_STRING_BUFFER) != SYSTEM_ZERO_VALUE) {
-      system_byte_string_input_pointer = *(byte **)(system_string_length_counter + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG);
-      system_initialization_result0 = *(long long *)(system_string_length_counter + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG) - (long long)system_byte_string_input_pointer;
+    if (*(int *)(system_string_length_tracker + SYSTEM_DATA_OFFSET_STRING_BUFFER) != SYSTEM_ZERO_VALUE) {
+      system_byte_string_input_pointer = *(byte **)(system_string_length_tracker + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG);
+      system_initialization_result0 = *(long long *)(system_string_length_tracker + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG) - (long long)system_byte_string_input_pointer;
       do {
         system_byte_check_result = *system_byte_string_input_pointer;
         system_buffer_allocation_result = (uint)system_byte_string_input_pointer[system_initialization_result0];
@@ -4476,44 +4476,44 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_033;
   }
   system_thread_operation_flags = SYSTEM_ZERO_VALUE;
 LABEL_SYSTEM_SECTION_PROCESSING_027:
-  system_helper_execute(system_string_length_counter,system_string_length_counter,system_string_length_counter,system_thread_operation_flags);
+  system_helper_execute(system_string_length_tracker,system_string_length_tracker,system_string_length_tracker,system_thread_operation_flags);
 }
     thread_pool_4_status_code = SYSTEM_ONE_VALUE;
-    system_thread_result_status = _Cnd_broadcast(CONDITION_VARIABLE_ADDR);
-    if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-      __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+    system_thread_operation_result = _Cnd_broadcast(CONDITION_VARIABLE_ADDR);
+    if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+      __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
     }
-    system_thread_result_status = _Mtx_unlock(io_thread_pool_mutex_address);
-    if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-      __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+    system_thread_operation_result = _Mtx_unlock(io_thread_pool_mutex_address);
+    if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+      __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
     }
     system_cleanup_module(ADDR_CLEANUP_FUNC);
   }
   *(unsigned int *)(system_global_context_pointer + SYSTEM_OFFSET_HANDLE_PARAM) = SYSTEM_ZERO_VALUE;
-  if (*(char *)(system_string_length_counter + SYSTEM_OFFSET_MODULE_DATA) == SYSTEM_ZERO_VALUE) {
-    (**(code **)(**(long long **)(system_string_length_counter + SYSTEM_OFFSET_MODULE_FUNCTION) + SYSTEM_OFFSET_RENDER_DATA_COUNTER))();
-    *(int *)(system_string_length_counter + SYSTEM_OFFSET_AUDIO_CONFIG) = *(int *)(system_string_length_counter + SYSTEM_OFFSET_AUDIO_CONFIG) + 1;
+  if (*(char *)(system_string_length_tracker + SYSTEM_OFFSET_MODULE_DATA) == SYSTEM_ZERO_VALUE) {
+    (**(code **)(**(long long **)(system_string_length_tracker + SYSTEM_OFFSET_MODULE_FUNCTION) + SYSTEM_OFFSET_RENDER_DATA_COUNTER))();
+    *(int *)(system_string_length_tracker + SYSTEM_OFFSET_AUDIO_CONFIG) = *(int *)(system_string_length_tracker + SYSTEM_OFFSET_AUDIO_CONFIG) + 1;
     if (*(int *)(system_global_context_pointer + SYSTEM_OFFSET_RENDER_DATA_COUNTER) == SYSTEM_ZERO_VALUE) {
-      if (*(char *)(system_string_length_counter + SYSTEM_OFFSET_AUDIO_FLAG) == SYSTEM_ZERO_VALUE) {
-        system_thread_result_status = SYSTEM_TEN_VALUE;
+      if (*(char *)(system_string_length_tracker + SYSTEM_OFFSET_AUDIO_FLAG) == SYSTEM_ZERO_VALUE) {
+        system_thread_operation_result = SYSTEM_TEN_VALUE;
         if (SYSTEM_TEN_VALUE < *(int *)(system_global_context_pointer + SYSTEM_OFFSET_RENDER_LIMIT)) {
-          system_thread_result_status = *(int *)(system_global_context_pointer + SYSTEM_OFFSET_RENDER_LIMIT);
+          system_thread_operation_result = *(int *)(system_global_context_pointer + SYSTEM_OFFSET_RENDER_LIMIT);
         }
-        system_float_variable = (float)*(double *)(system_string_length_counter + SYSTEM_PATH_BUFFER_SIZE_MINIMAL);
-        if (SYSTEM_FLOAT_VALUE_ONE / (float)system_thread_result_status <= (float)*(double *)(system_string_length_counter + SYSTEM_PATH_BUFFER_SIZE_MINIMAL)) {
-          calculation_float_value = SYSTEM_FLOAT_VALUE_ONE / (float)system_thread_result_status;
+        system_float_variable = (float)*(double *)(system_string_length_tracker + SYSTEM_PATH_BUFFER_SIZE_MINIMAL);
+        if (SYSTEM_FLOAT_VALUE_ONE / (float)system_thread_operation_result <= (float)*(double *)(system_string_length_tracker + SYSTEM_PATH_BUFFER_SIZE_MINIMAL)) {
+          calculation_float_value = SYSTEM_FLOAT_VALUE_ONE / (float)system_thread_operation_result;
         }
       }
       else {
-        system_float_variable = *(float *)(system_string_length_counter + SYSTEM_OFFSET_FLOAT_VALUE);
+        system_float_variable = *(float *)(system_string_length_tracker + SYSTEM_OFFSET_FLOAT_VALUE);
       }
-      *(float *)(system_string_length_counter + SYSTEM_OFFSET_FLOAT_DATA) = system_float_variable;
+      *(float *)(system_string_length_tracker + SYSTEM_OFFSET_FLOAT_DATA) = system_float_variable;
     }
     else {
-      *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_FLOAT_DATA) = FLOAT_PI_OVER_4;
+      *(unsigned int *)(system_string_length_tracker + SYSTEM_OFFSET_FLOAT_DATA) = FLOAT_PI_OVER_4;
       conversion_float_value = SYSTEM_FLOAT_VALUE_0_033333335;
     }
-    system_system_handle_param_manager_004(system_string_length_counter,system_float_variable);
+    system_system_handle_param_manager_004(system_string_length_tracker,system_float_variable);
     system_buffer_allocation_result = system_global_context_pointer;
     if ((system_global_context_pointer != 0) &&
        (system_initialization_result_ptr = *(long long **)(system_global_context_pointer + SYSTEM_OFFSET_NETWORK_DATA_PTR), system_initialization_result_ptr != (long long *)SYSTEM_NULL_POINTER)) {
@@ -4551,10 +4551,10 @@ LABEL_SYSTEM_SECTION_PROCESSING_027:
       }
     }
     else {
-      if (*(char *)(system_string_length_counter + SYSTEM_OFFSET_RENDER_CONFIG) != SYSTEM_ZERO_VALUE) {
+      if (*(char *)(system_string_length_tracker + SYSTEM_OFFSET_RENDER_CONFIG) != SYSTEM_ZERO_VALUE) {
         system_event_system_handle_paramr_initialize();
       }
-      *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_NETWORK_DATA_PTR) = *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_AUDIO_CONFIG);
+      *(unsigned int *)(system_string_length_tracker + SYSTEM_OFFSET_NETWORK_DATA_PTR) = *(unsigned int *)(system_string_length_tracker + SYSTEM_OFFSET_AUDIO_CONFIG);
       system_graphics_001();
       system_graphics_002();
     }
@@ -4563,38 +4563,38 @@ LABEL_SYSTEM_SECTION_PROCESSING_027:
     system_global_context_pointer = system_global_context_pointer + 1;
     system_performance_counter_diff = system_performance_counter_prev - system_global_context_pointer;
     if (SYSTEM_FLOAT_PERFORMANCE_COMPARE_THRESHOLD < system_performance_counter_diff) {
-      *(float *)(system_string_length_counter + SYSTEM_CONSTANT_PAIR8) = (float)((double)system_global_context_pointer / system_performance_counter_diff);
+      *(float *)(system_string_length_tracker + SYSTEM_CONSTANT_PAIR8) = (float)((double)system_global_context_pointer / system_performance_counter_diff);
       system_global_context_pointer = SYSTEM_ZERO_VALUE;
       system_global_context_pointer = system_performance_counter_prev;
-      *(float *)(system_string_length_counter + SYSTEM_CONSTANT_PAIR8) = (float)(SYSTEM_FLOAT_CONVERSION_FACTOR_1000 / *(double *)(system_string_length_counter + SYSTEM_CHAR_LOWERCASE_P));
+      *(float *)(system_string_length_tracker + SYSTEM_CONSTANT_PAIR8) = (float)(SYSTEM_FLOAT_CONVERSION_FACTOR_1000 / *(double *)(system_string_length_tracker + SYSTEM_CHAR_LOWERCASE_P));
     }
     if (SYSTEM_FLOAT_VALUE_ZERO_CHECK < *(double *)(system_global_context_pointer + SYSTEM_OFFSET_DOUBLE_VALUE)) {
-      system_system_handle_param_manager_005(system_string_length_counter,(float)*(double *)(system_global_context_pointer + SYSTEM_OFFSET_DOUBLE_VALUE));
+      system_system_handle_param_manager_005(system_string_length_tracker,(float)*(double *)(system_global_context_pointer + SYSTEM_OFFSET_DOUBLE_VALUE));
     }
-    if (*(char *)(system_string_length_counter + SYSTEM_OFFSET_MODULE_DATA) == SYSTEM_ZERO_VALUE) {
-      system_float_variable = *(float *)(system_string_length_counter + SYSTEM_PATH_BUFFER_SIZE_ZERO);
-      system_performance_timeout = *(double *)(system_string_length_counter + SYSTEM_OFFSET_PERFORMANCE_TIMEOUT);
+    if (*(char *)(system_string_length_tracker + SYSTEM_OFFSET_MODULE_DATA) == SYSTEM_ZERO_VALUE) {
+      system_float_variable = *(float *)(system_string_length_tracker + SYSTEM_PATH_BUFFER_SIZE_ZERO);
+      system_performance_timeout = *(double *)(system_string_length_tracker + SYSTEM_OFFSET_PERFORMANCE_TIMEOUT);
       do {
         QueryPerformanceCounter(&system_thread_stack_base_address);
       } while ((double)system_thread_stack_base_address * system_global_context_pointer < (double)system_float_variable + system_performance_timeout);
       QueryPerformanceCounter(&system_thread_stack_base_address);
-      system_string_length_counter = system_thread_stack_base_address - system_global_context_pointer;
+      system_string_length_tracker = system_thread_stack_base_address - system_global_context_pointer;
       system_global_context_pointer = system_thread_stack_base_address;
-      *(double *)(system_string_length_counter + SYSTEM_PATH_BUFFER_SIZE_MINIMAL) = (double)system_string_length_counter * system_global_context_pointer;
+      *(double *)(system_string_length_tracker + SYSTEM_PATH_BUFFER_SIZE_MINIMAL) = (double)system_string_length_tracker * system_global_context_pointer;
       QueryPerformanceCounter(&system_thread_stack_base_address);
-      *(double *)(system_string_length_counter + SYSTEM_OFFSET_PERFORMANCE_TIMEOUT) = (double)system_thread_stack_base_address * system_global_context_pointer;
+      *(double *)(system_string_length_tracker + SYSTEM_OFFSET_PERFORMANCE_TIMEOUT) = (double)system_thread_stack_base_address * system_global_context_pointer;
     }
   }
   return;
 }
     thread_pool_4_status_code = SYSTEM_ONE_VALUE;
-    system_thread_result_status = _Cnd_broadcast(CONDITION_VARIABLE_ADDR);
-    if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-      __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+    system_thread_operation_result = _Cnd_broadcast(CONDITION_VARIABLE_ADDR);
+    if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+      __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
     }
-    system_thread_result_status = _Mtx_unlock(io_thread_pool_mutex_address);
-    if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-      __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+    system_thread_operation_result = _Mtx_unlock(io_thread_pool_mutex_address);
+    if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+      __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
     }
     system_cleanup_module(ADDR_CLEANUP_FUNC);
   }
@@ -4604,13 +4604,13 @@ LABEL_SYSTEM_SECTION_PROCESSING_027:
     *(int *)(system_handle_param + SYSTEM_OFFSET_AUDIO_CONFIG) = *(int *)(system_handle_param + SYSTEM_OFFSET_AUDIO_CONFIG) + 1;
     if (*(int *)(system_global_context_pointer + SYSTEM_OFFSET_RENDER_DATA_COUNTER) == SYSTEM_ZERO_VALUE) {
       if (*(char *)(system_handle_param + SYSTEM_OFFSET_AUDIO_FLAG) == SYSTEM_ZERO_VALUE) {
-        system_thread_result_status = SYSTEM_TEN_VALUE;
+        system_thread_operation_result = SYSTEM_TEN_VALUE;
         if (SYSTEM_TEN_VALUE < *(int *)(system_global_context_pointer + SYSTEM_OFFSET_RENDER_LIMIT)) {
-          system_thread_result_status = *(int *)(system_global_context_pointer + SYSTEM_OFFSET_RENDER_LIMIT);
+          system_thread_operation_result = *(int *)(system_global_context_pointer + SYSTEM_OFFSET_RENDER_LIMIT);
         }
         system_float_variable = (float)*(double *)(system_handle_param + SYSTEM_PATH_BUFFER_SIZE_MINIMAL);
-        if (SYSTEM_FLOAT_VALUE_ONE / (float)system_thread_result_status <= (float)*(double *)(system_handle_param + SYSTEM_PATH_BUFFER_SIZE_MINIMAL)) {
-          calculation_float_value = SYSTEM_FLOAT_VALUE_ONE / (float)system_thread_result_status;
+        if (SYSTEM_FLOAT_VALUE_ONE / (float)system_thread_operation_result <= (float)*(double *)(system_handle_param + SYSTEM_PATH_BUFFER_SIZE_MINIMAL)) {
+          calculation_float_value = SYSTEM_FLOAT_VALUE_ONE / (float)system_thread_operation_result;
         }
       }
       else {
@@ -4687,9 +4687,9 @@ LABEL_SYSTEM_SECTION_PROCESSING_027:
         QueryPerformanceCounter(&system_thread_stack_base_address);
       } while ((double)system_thread_stack_base_address * system_global_context_pointer < (double)system_float_variable + system_performance_timeout);
       QueryPerformanceCounter(&system_thread_stack_base_address);
-      system_string_length_counter = system_thread_stack_base_address - system_global_context_pointer;
+      system_string_length_tracker = system_thread_stack_base_address - system_global_context_pointer;
       system_global_context_pointer = system_thread_stack_base_address;
-      *(double *)(system_handle_param + SYSTEM_PATH_BUFFER_SIZE_MINIMAL) = (double)system_string_length_counter * system_global_context_pointer;
+      *(double *)(system_handle_param + SYSTEM_PATH_BUFFER_SIZE_MINIMAL) = (double)system_string_length_tracker * system_global_context_pointer;
       QueryPerformanceCounter(&system_thread_stack_base_address);
       *(double *)(system_handle_param + SYSTEM_OFFSET_PERFORMANCE_TIMEOUT) = (double)system_thread_stack_base_address * system_global_context_pointer;
     }
@@ -4698,18 +4698,18 @@ LABEL_SYSTEM_SECTION_PROCESSING_027:
 }
     io_status_flag = io_status_flag == SYSTEM_ZERO_VALUE;
   }
-  system_string_length_counter = SYSTEM_OFFSET_STATUS_FLAG;
+  system_string_length_tracker = SYSTEM_OFFSET_STATUS_FLAG;
   system_string_input_context = system_global_context_pointer;
   do {
     system_string_input_context = system_string_input_context + SYSTEM_OFFSET_GLOBAL_DATA_PTR;
     *system_string_input_context = SYSTEM_ONE_VALUE;
-    system_string_length_counter = system_string_length_counter + SYSTEM_DECREMENT_SINGLE_UNIT;
-  } while (system_string_length_counter != 0);
+    system_string_length_tracker = system_string_length_tracker + SYSTEM_DECREMENT_SINGLE_UNIT;
+  } while (system_string_length_tracker != 0);
 LABEL_SYSTEM_SECTION_PROCESSING_028:
   system_string_input_context = (unsigned long long *)system_global_context_pointer[SYSTEM_GLOBAL_DATA_INDEX_STRING_POINTER];
-  system_thread_result_status = _Mtx_lock(ADDR_MAIN_MUTEX);
-  if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-    __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+  system_thread_operation_result = _Mtx_lock(ADDR_MAIN_MUTEX);
+  if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+    __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
   }
   system_initialization_result_pointer = system_global_context_pointer;
   system_maximum_stack_size = system_global_context_pointer;
@@ -4728,14 +4728,14 @@ LABEL_SYSTEM_SECTION_PROCESSING_028:
     system_handle_param_system_error();
   }
   system_global_context_pointer = system_initialization_result_pointer;
-  system_thread_result_status = _Mtx_unlock(ADDR_MAIN_MUTEX);
-  if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-    __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+  system_thread_operation_result = _Mtx_unlock(ADDR_MAIN_MUTEX);
+  if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+    __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
   }
   system_initialization_result_pointer = (long long *)*system_global_context_pointer;
-  system_thread_result_status = _Mtx_lock(ADDR_MAIN_MUTEX);
-  if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-    __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+  system_thread_operation_result = _Mtx_lock(ADDR_MAIN_MUTEX);
+  if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+    __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
   }
   system_initialization_result_ptr = system_global_context_pointer;
   system_maximum_stack_size = system_global_context_pointer;
@@ -4750,7 +4750,7 @@ LABEL_SYSTEM_SECTION_PROCESSING_028:
   system_execution_function(system_operation_stack_buffer);
   *(float *)((long long)system_global_context_pointer + SYSTEM_OFFSET_GLOBAL_DATA_PTR) = system_global_context_pointer;
   system_initializer_001();
-  system_string_length_counter = (long long)system_global_context_pointer;
+  system_string_length_tracker = (long long)system_global_context_pointer;
   system_string_input_context = system_global_context_pointer;
   system_string_input_context = system_global_context_pointer;
   if (*(char *)(system_global_context_pointer + 7) != '\0') {
@@ -4764,8 +4764,8 @@ LABEL_SYSTEM_SECTION_PROCESSING_028:
       system_string_input_context[SYSTEM_OFFSET_GLOBAL_DATA_15A8] = SYSTEM_ONE_VALUE;
       system_string_input_context[SYSTEM_OFFSET_GLOBAL_DATA_1710] = SYSTEM_ONE_VALUE;
     }
-    if (((*(char *)((long long)system_string_input_context + SYSTEM_CHAR_LOWERCASE_Q) != '\0') || (*(char *)(system_string_length_counter + SYSTEM_OFFSET_CLEANUP_FUNCTIONd) != '\0')) ||
-       (*(char *)(system_string_length_counter + SYSTEM_OFFSET_CLEANUP_FUNCTIONe) != '\0')) {
+    if (((*(char *)((long long)system_string_input_context + SYSTEM_CHAR_LOWERCASE_Q) != '\0') || (*(char *)(system_string_length_tracker + SYSTEM_OFFSET_CLEANUP_FUNCTIONd) != '\0')) ||
+       (*(char *)(system_string_length_tracker + SYSTEM_OFFSET_CLEANUP_FUNCTIONe) != '\0')) {
       do {
         system_string_input_context = system_string_input_context + SYSTEM_OFFSET_GLOBAL_DATA_PTR;
         *system_string_input_context = SYSTEM_ONE_VALUE;
@@ -4778,15 +4778,15 @@ LABEL_SYSTEM_SECTION_PROCESSING_028:
     system_handle_param_system_error();
   }
   system_global_context_pointer = system_initialization_result_ptr;
-  system_thread_result_status = _Mtx_unlock(ADDR_MAIN_MUTEX);
-  if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-    __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+  system_thread_operation_result = _Mtx_unlock(ADDR_MAIN_MUTEX);
+  if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+    __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
   }
   if (*(int *)(system_global_context_pointer + SYSTEM_OFFSET_VALIDATION_TYPE) == SYSTEM_OFFSET_VALIDATION_TYPE_EXTENDED) {
     system_string_input_context = (unsigned long long *)*system_global_context_pointer;
-    system_thread_result_status = _Mtx_lock(ADDR_MAIN_MUTEX);
-    if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-      __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+    system_thread_operation_result = _Mtx_lock(ADDR_MAIN_MUTEX);
+    if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+      __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
     }
     system_initialization_result_pointer = system_global_context_pointer;
     system_pointer_stack_2c0 = system_global_context_pointer;
@@ -4807,16 +4807,16 @@ LABEL_SYSTEM_SECTION_PROCESSING_028:
     system_config_002(&systemConfigData4,4,system_global_context_pointer + SYSTEM_OFFSET_STRING_FLAG0,&system_maximum_stack_size);
     system_initializer_004();
     system_global_context_pointer = system_initialization_result_pointer;
-    system_thread_result_status = _Mtx_unlock(ADDR_MAIN_MUTEX);
-    if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-      __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+    system_thread_operation_result = _Mtx_unlock(ADDR_MAIN_MUTEX);
+    if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+      __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
     }
   }
   if (*(int *)(system_global_context_pointer + SYSTEM_OFFSET_VALIDATION_TYPE) == SYSTEM_OFFSET_VALIDATION_TYPE_C) {
     system_string_input_context = (unsigned long long *)*system_global_context_pointer;
-    system_thread_result_status = _Mtx_lock(ADDR_MAIN_MUTEX);
-    if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-      __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+    system_thread_operation_result = _Mtx_lock(ADDR_MAIN_MUTEX);
+    if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+      __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
     }
     system_initialization_result_pointer = system_global_context_pointer;
     system_pointer_stack_2c0 = system_global_context_pointer;
@@ -4830,16 +4830,16 @@ LABEL_SYSTEM_SECTION_PROCESSING_028:
     system_config_002(&systemConfigData5,4,system_global_context_pointer + SYSTEM_OFFSET_STRING_FLAG8,&stack_pointer_extended);
     system_initializer_004();
     system_global_context_pointer = system_initialization_result_pointer;
-    system_thread_result_status = _Mtx_unlock(ADDR_MAIN_MUTEX);
-    if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-      __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+    system_thread_operation_result = _Mtx_unlock(ADDR_MAIN_MUTEX);
+    if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+      __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
     }
   }
   if (*(int *)(system_global_context_pointer + SYSTEM_OFFSET_VALIDATION_TYPE) == SYSTEM_OFFSET_VALIDATION_TYPE_D) {
     system_string_input_context = (unsigned long long *)*system_global_context_pointer;
-    system_thread_result_status = _Mtx_lock(ADDR_MAIN_MUTEX);
-    if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-      __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+    system_thread_operation_result = _Mtx_lock(ADDR_MAIN_MUTEX);
+    if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+      __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
     }
     system_initialization_result_pointer = system_global_context_pointer;
     system_pointer_stack_2c0 = system_global_context_pointer;
@@ -4856,9 +4856,9 @@ LABEL_SYSTEM_SECTION_PROCESSING_028:
     }
     system_initializer_004();
     system_global_context_pointer = system_initialization_result_pointer;
-    system_thread_result_status = _Mtx_unlock(ADDR_MAIN_MUTEX);
-    if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-      __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+    system_thread_operation_result = _Mtx_unlock(ADDR_MAIN_MUTEX);
+    if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+      __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
     }
   }
   system_string_input_context = (unsigned long long *)*system_global_context_pointer;
@@ -4871,15 +4871,15 @@ LABEL_SYSTEM_SECTION_PROCESSING_028:
     }
   }
   *system_global_context_pointer = system_float_variable;
-  system_string_length_counter = (long long)*(int *)(system_global_context_pointer + SYSTEM_OFFSET_STRING_LENGTH_COUNTER) * SYSTEM_OFFSET_STRING_MULTIPLIER;
-  system_initialization_result2 = *(long long *)(system_string_length_counter + SYSTEM_OFFSET_BUFFER_PRIMARY + *(long long *)(system_global_context_pointer + SYSTEM_OFFSET_THREAD_DATA_POINTER));
+  system_string_length_tracker = (long long)*(int *)(system_global_context_pointer + SYSTEM_OFFSET_STRING_LENGTH_COUNTER) * SYSTEM_OFFSET_STRING_MULTIPLIER;
+  system_initialization_result2 = *(long long *)(system_string_length_tracker + SYSTEM_OFFSET_BUFFER_PRIMARY + *(long long *)(system_global_context_pointer + SYSTEM_OFFSET_THREAD_DATA_POINTER));
   system_float_variable = (float)system_initialization_result2;
   if (system_initialization_result2 < 0) {
     system_float_variable = system_float_variable + SYSTEM_FLOAT_MAX_DOUBLE_VALUE;
   }
   if (system_float_variable * SYSTEM_FLOAT_VALUE_TINY < (float)*(int *)(system_global_context_pointer + SYSTEM_OFFSET_HANDLE_PARAM)) {
     *(float *)(system_global_context_pointer + SYSTEM_OFFSET_STRING_BUFFER_SIZE) = system_float_variable + *(float *)(system_global_context_pointer + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
-    system_float_variable = (float)fmodf(system_string_length_counter,FLOAT_ONE);
+    system_float_variable = (float)fmodf(system_string_length_tracker,FLOAT_ONE);
     if (SYSTEM_FLOAT_ARITHMETIC_DIVISION_HALF < system_float_variable) {
       system_thread_stack_pointer = &system_global_thread_string_2;
       system_maximum_stack_size = SYSTEM_ZERO_VALUE;
@@ -4970,9 +4970,9 @@ LABEL_SYSTEM_SECTION_PROCESSING_028:
     system_initialization_result2 = system_global_context_pointer;
     system_maximum_stack_size = SYSTEM_STACK_SIZE_LARGE;
     system_string_input_context = (unsigned long long *)*system_global_context_pointer;
-    system_thread_result_status = _Mtx_lock(ADDR_MAIN_MUTEX);
-    if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-      __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+    system_thread_operation_result = _Mtx_lock(ADDR_MAIN_MUTEX);
+    if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+      __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
     }
     system_initialization_result_pointer = system_global_context_pointer;
     system_pointer_stack_2c0 = system_global_context_pointer;
@@ -4988,9 +4988,9 @@ LABEL_SYSTEM_SECTION_PROCESSING_028:
       *(unsigned char *)(system_initialization_result2 + SYSTEM_OFFSET_FUNCTION_HANDLER) = SYSTEM_ZERO_VALUE;
     }
     system_global_context_pointer = system_initialization_result_pointer;
-    system_thread_result_status = _Mtx_unlock(ADDR_MAIN_MUTEX);
-    if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-      __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+    system_thread_operation_result = _Mtx_unlock(ADDR_MAIN_MUTEX);
+    if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+      __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
     }
     system_thread_stack_pointer = &system_global_thread_string_2;
     system_handle_param_system_error(system_string_input_context);
@@ -5009,30 +5009,30 @@ unsigned long long * system_system_handle_param_manager_001(unsigned long long *
     system_system_handle_param_buffer_variable = SYSTEM_ZERO_VALUE;
   }
   do {
-    system_string_length_counter = system_string_length_counter + 1;
-    system_character_scan_pointer = (char *)(system_string_length_counter + ADDR_STRING_OFFSET);
-    system_string_length_counter = system_string_length_counter;
+    system_string_length_tracker = system_string_length_tracker + 1;
+    system_character_scan_pointer = (char *)(system_string_length_tracker + ADDR_STRING_OFFSET);
+    system_string_length_tracker = system_string_length_tracker;
   } while (*system_character_scan_pointer != '\0');
-  if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
-    fwrite(&io_output_char,1,1,system_string_length_counter);
-    fwrite(&system_thread_name_buffer,system_string_length_counter,1,system_string_length_counter);
+  if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
+    fwrite(&io_output_char,1,1,system_string_length_tracker);
+    fwrite(&system_thread_name_buffer,system_string_length_tracker,1,system_string_length_tracker);
     system_cleanup_module(SYSTEM_FUNCTION_PARAM_CLEANUP_DEFAULT);
   }
-  if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
-    fclose(system_string_length_counter);
+  if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
+    fclose(system_string_length_tracker);
     system_thread_stack_base_address = SYSTEM_ZERO_VALUE;
     LOCK();
     system_global_context_pointer = system_global_context_pointer + -1;
     UNLOCK();
-    system_string_length_counter = SYSTEM_ZERO_VALUE;
+    system_string_length_tracker = SYSTEM_ZERO_VALUE;
   }
   system_thread_stack_pointer = &system_global_thread_string_2;
   if (system_thread_stack_pointer == (void *)SYSTEM_NULL_POINTER) {
     system_thread_stack_pointer = (void *)SYSTEM_NULL_POINTER;
     system_maximum_stack_size = SYSTEM_ZERO_VALUE;
     system_thread_stack_pointer = &system_global_thread_string_4;
-    if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
-      fclose(system_string_length_counter);
+    if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
+      fclose(system_string_length_tracker);
       LOCK();
       system_global_context_pointer = system_global_context_pointer + -1;
       UNLOCK();
@@ -5059,18 +5059,18 @@ unsigned long long * system_system_handle_param_manager_001(unsigned long long *
     }
   }
   system_cleanup_module();
-  system_string_length_counter = system_global_context_pointer;
+  system_string_length_tracker = system_global_context_pointer;
   if (system_global_context_pointer != 0) {
     system_cleanup_module(system_global_context_pointer);
-    system_handle_param_system_error(system_string_length_counter);
+    system_handle_param_system_error(system_string_length_tracker);
   }
   system_global_context_pointer = SYSTEM_ZERO_VALUE;
   system_thread_manager_008(system_global_context_pointer);
-  system_string_length_counter = system_global_context_pointer;
+  system_string_length_tracker = system_global_context_pointer;
   if (system_global_context_pointer != 0) {
     system_thread_manager_008(system_global_context_pointer);
     _Mtx_destroy_in_situ();
-    system_handle_param_system_error(system_string_length_counter);
+    system_handle_param_system_error(system_string_length_tracker);
   }
   system_global_context_pointer = SYSTEM_ZERO_VALUE;
   return;
@@ -5104,8 +5104,8 @@ system_execution_function(unsigned long long *system_handle_param,ulong long sys
 }
       crypto_module_enabled = '\x01';
       do {
-        system_thread_result_status = ReleaseSemaphore(system_global_context_pointer,SYSTEM_PARAM_SINGLE_VALIDATE);
-      } while (system_thread_result_status == 0);
+        system_thread_operation_result = ReleaseSemaphore(system_global_context_pointer,SYSTEM_PARAM_SINGLE_VALIDATE);
+      } while (system_thread_operation_result == 0);
       system_thread_stack_pointer = &system_global_thread_string_2;
       if (system_thread_stack_pointer != (unsigned char *)SYSTEM_NULL_POINTER) {
         system_handle_param_system_error();
@@ -5135,15 +5135,15 @@ LABEL_SYSTEM_SECTION_PROCESSING_029:
 uint validate_system_mutex_lock(void)
 {
   uint reg_eax;
-  int system_thread_result_status;
-  long long system_string_length_counter;
+  int system_thread_operation_result;
+  long long system_string_length_tracker;
   if (system_global_context_pointer != 0) {
-    system_string_length_counter = system_global_context_pointer + SYSTEM_OFFSET_MODULE_SECONDARY;
-    system_thread_result_status = _Mtx_lock(system_string_length_counter);
-    if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-      __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+    system_string_length_tracker = system_global_context_pointer + SYSTEM_OFFSET_MODULE_SECONDARY;
+    system_thread_operation_result = _Mtx_lock(system_string_length_tracker);
+    if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+      __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
     }
-    reg_eax = _Mtx_unlock(system_string_length_counter);
+    reg_eax = _Mtx_unlock(system_string_length_tracker);
     if (reg_eax != 0) {
       reg_eax = __Throw_C_error_std__YAXH_Z(reg_eax);
     }
@@ -5166,16 +5166,16 @@ uint validate_system_mutex_lock(void)
   system_execute_crypto_operation(system_maximum_stack_size ^ (ulong long)system_crypto_stack_buffer_medium);
 }
     thread_pool_2_status_code = '\0';
-    if ((cStack_208 != '\0') && (system_thread_result_status = _Mtx_unlock(system_maximum_stack_size), system_thread_result_status != 0)) {
-      __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+    if ((cStack_208 != '\0') && (system_thread_operation_result = _Mtx_unlock(system_maximum_stack_size), system_thread_operation_result != 0)) {
+      __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
     }
 goto LABEL_SYSTEM_SECTION_PROCESSING_034;
     *(unsigned char *)(*(long long *)(*(long long *)(system_global_context_pointer + 8) + SYSTEM_CONFIG_OFFSET_INIT_FLAG0) + SYSTEM_PATH_BUFFER_SIZE_MINIMAL) = SYSTEM_ONE_VALUE;
   }
   thread_pool_2_status_code = '\0';
-  system_thread_result_status = _Mtx_unlock(render_thread_pool_mutex_address);
-  if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-    __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+  system_thread_operation_result = _Mtx_unlock(render_thread_pool_mutex_address);
+  if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+    __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
   }
 LABEL_SYSTEM_SECTION_PROCESSING_030:
   if (*(char *)(system_global_context_pointer + SYSTEM_OFFSET_AUDIO_STATUS) != '\0') {
@@ -5187,9 +5187,9 @@ LABEL_SYSTEM_SECTION_PROCESSING_030:
   system_character_scan_pointer = system_global_context_pointer;
   if (*system_global_context_pointer != '\0') {
     system_string_input_context = (unsigned long long *)*system_global_context_pointer;
-    system_thread_result_status = _Mtx_lock(ADDR_MAIN_MUTEX);
-    if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-      __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+    system_thread_operation_result = _Mtx_lock(ADDR_MAIN_MUTEX);
+    if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+      __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
     }
     system_buffer_allocation_result = system_global_context_pointer;
     system_double_pointer_stack_1b8 = (long long **)system_global_context_pointer;
@@ -5219,9 +5219,9 @@ LABEL_SYSTEM_SECTION_PROCESSING_030:
     system_config_001(&systemConfigData8,system_sum_accumulator_2 / system_sum_accumulator_4);
     system_initializer_004();
     system_global_context_pointer = system_buffer_allocation_result;
-    system_thread_result_status = _Mtx_unlock(ADDR_MAIN_MUTEX);
-    if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-      __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+    system_thread_operation_result = _Mtx_unlock(ADDR_MAIN_MUTEX);
+    if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+      __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
     }
   }
   if (*(char *)(system_global_context_pointer + SYSTEM_OFFSET_GLOBAL_DATA_1626) != '\0') {
@@ -5263,42 +5263,42 @@ LABEL_SYSTEM_SECTION_PROCESSING_030:
     system_ui_009(system_initialization_result6);
     *(unsigned char *)(system_initialization_result6 + SYSTEM_OFFSET_INITIALIZATION_F18) = SYSTEM_ZERO_VALUE;
   }
-  system_string_length_counter = system_global_context_pointer;
+  system_string_length_tracker = system_global_context_pointer;
   system_initialization_result8 = system_global_context_pointer;
   system_buffer_allocation_result = *(unsigned long long *)(system_global_context_pointer + SYSTEM_OFFSET_VALIDATION_TYPE);
   *(unsigned long long *)(system_global_context_pointer + SYSTEM_GLOBAL_DATA_OFFSET_12D0) = *(unsigned long long *)(system_global_context_pointer + SYSTEM_GLOBAL_DATA_OFFSET_1614);
   *(unsigned long long *)(system_initialization_result8 + SYSTEM_OFFSET_INITIALIZATION_12D8) = system_buffer_allocation_result;
-  system_buffer_allocation_result = *(unsigned long long *)(system_string_length_counter + SYSTEM_OFFSET_COUNTER_PRIMARY);
-  *(unsigned long long *)(system_initialization_result8 + SYSTEM_GLOBAL_DATA_OFFSET_12E0) = *(unsigned long long *)(system_string_length_counter + SYSTEM_GLOBAL_DATA_OFFSET_1624);
+  system_buffer_allocation_result = *(unsigned long long *)(system_string_length_tracker + SYSTEM_OFFSET_COUNTER_PRIMARY);
+  *(unsigned long long *)(system_initialization_result8 + SYSTEM_GLOBAL_DATA_OFFSET_12E0) = *(unsigned long long *)(system_string_length_tracker + SYSTEM_GLOBAL_DATA_OFFSET_1624);
   *(unsigned long long *)(system_initialization_result8 + SYSTEM_OFFSET_INITIALIZATION_12E8) = system_buffer_allocation_result;
-  system_buffer_allocation_result = *(unsigned long long *)(system_string_length_counter + SYSTEM_OFFSET_COUNTER_SECONDARY);
-  *(unsigned long long *)(system_initialization_result8 + SYSTEM_GLOBAL_DATA_OFFSET_12F0) = *(unsigned long long *)(system_string_length_counter + SYSTEM_GLOBAL_DATA_OFFSET_1634);
+  system_buffer_allocation_result = *(unsigned long long *)(system_string_length_tracker + SYSTEM_OFFSET_COUNTER_SECONDARY);
+  *(unsigned long long *)(system_initialization_result8 + SYSTEM_GLOBAL_DATA_OFFSET_12F0) = *(unsigned long long *)(system_string_length_tracker + SYSTEM_GLOBAL_DATA_OFFSET_1634);
   *(unsigned long long *)(system_initialization_result8 + SYSTEM_OFFSET_INITIALIZATION_12F8) = system_buffer_allocation_result;
-  system_buffer_allocation_result = *(unsigned long long *)(system_string_length_counter + SYSTEM_OFFSET_COUNTER_TERTIARY);
-  *(unsigned long long *)(system_initialization_result8 + SYSTEM_GLOBAL_DATA_OFFSET_1300) = *(unsigned long long *)(system_string_length_counter + SYSTEM_GLOBAL_DATA_OFFSET_1644);
+  system_buffer_allocation_result = *(unsigned long long *)(system_string_length_tracker + SYSTEM_OFFSET_COUNTER_TERTIARY);
+  *(unsigned long long *)(system_initialization_result8 + SYSTEM_GLOBAL_DATA_OFFSET_1300) = *(unsigned long long *)(system_string_length_tracker + SYSTEM_GLOBAL_DATA_OFFSET_1644);
   *(unsigned long long *)(system_initialization_result8 + SYSTEM_OFFSET_INITIALIZATION_1308) = system_buffer_allocation_result;
-  system_buffer_allocation_result = *(unsigned long long *)(system_string_length_counter + SYSTEM_OFFSET_COUNTER_QUATERNARY);
-  *(unsigned long long *)(system_initialization_result8 + SYSTEM_GLOBAL_DATA_OFFSET_1310) = *(unsigned long long *)(system_string_length_counter + SYSTEM_GLOBAL_DATA_OFFSET_1654);
+  system_buffer_allocation_result = *(unsigned long long *)(system_string_length_tracker + SYSTEM_OFFSET_COUNTER_QUATERNARY);
+  *(unsigned long long *)(system_initialization_result8 + SYSTEM_GLOBAL_DATA_OFFSET_1310) = *(unsigned long long *)(system_string_length_tracker + SYSTEM_GLOBAL_DATA_OFFSET_1654);
   *(unsigned long long *)(system_initialization_result8 + SYSTEM_MEMORY_OFFSET_PRIMARY_BLOCK) = system_buffer_allocation_result;
-  system_buffer_allocation_result = *(unsigned long long *)(system_string_length_counter + SYSTEM_OFFSET_COUNTER_QUINARY);
-  *(unsigned long long *)(system_initialization_result8 + SYSTEM_GLOBAL_DATA_OFFSET_1320) = *(unsigned long long *)(system_string_length_counter + SYSTEM_GLOBAL_DATA_OFFSET_1664);
+  system_buffer_allocation_result = *(unsigned long long *)(system_string_length_tracker + SYSTEM_OFFSET_COUNTER_QUINARY);
+  *(unsigned long long *)(system_initialization_result8 + SYSTEM_GLOBAL_DATA_OFFSET_1320) = *(unsigned long long *)(system_string_length_tracker + SYSTEM_GLOBAL_DATA_OFFSET_1664);
   *(unsigned long long *)(system_initialization_result8 + SYSTEM_MEMORY_OFFSET_SECONDARY_BLOCK) = system_buffer_allocation_result;
-  system_thread_operation_flags = *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_THREAD_OPERATION_FLAGS);
-  system_buffer_allocation_result = *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_DATA_INTEGRITY);
-  system_buffer_allocation_result = *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_STRING_FLAG0);
-  *(unsigned int *)(system_initialization_result8 + SYSTEM_GLOBAL_DATA_OFFSET_1330) = *(unsigned int *)(system_string_length_counter + SYSTEM_GLOBAL_DATA_OFFSET_1674);
+  system_thread_operation_flags = *(unsigned int *)(system_string_length_tracker + SYSTEM_OFFSET_THREAD_OPERATION_FLAGS);
+  system_buffer_allocation_result = *(unsigned int *)(system_string_length_tracker + SYSTEM_OFFSET_DATA_INTEGRITY);
+  system_buffer_allocation_result = *(unsigned int *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_FLAG0);
+  *(unsigned int *)(system_initialization_result8 + SYSTEM_GLOBAL_DATA_OFFSET_1330) = *(unsigned int *)(system_string_length_tracker + SYSTEM_GLOBAL_DATA_OFFSET_1674);
   *(unsigned int *)(system_initialization_result8 + SYSTEM_STRUCTURE_OFFSET_1334) = system_thread_operation_flags;
   *(unsigned int *)(system_initialization_result8 + SYSTEM_INITIALIZATION_OFFSET_1338) = system_buffer_allocation_result;
   *(unsigned int *)(system_initialization_result8 + SYSTEM_STRUCTURE_OFFSET_133C) = system_buffer_allocation_result;
-  system_thread_operation_flags = *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_STRING_FLAG8);
-  system_buffer_allocation_result = *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_STRING_FLAGc);
-  system_buffer_allocation_result = *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_STRING_FLAG2);
-  *(unsigned int *)(system_initialization_result8 + SYSTEM_INITIALIZATION_OFFSET_1340) = *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_STRING_FLAG_EXTENDED);
+  system_thread_operation_flags = *(unsigned int *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_FLAG8);
+  system_buffer_allocation_result = *(unsigned int *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_FLAGc);
+  system_buffer_allocation_result = *(unsigned int *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_FLAG2);
+  *(unsigned int *)(system_initialization_result8 + SYSTEM_INITIALIZATION_OFFSET_1340) = *(unsigned int *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_FLAG_EXTENDED);
   *(unsigned int *)(system_initialization_result8 + SYSTEM_STRUCTURE_OFFSET_1344) = system_thread_operation_flags;
   *(unsigned int *)(system_initialization_result8 + SYSTEM_INITIALIZATION_OFFSET_1348) = system_buffer_allocation_result;
   *(unsigned int *)(system_initialization_result8 + SYSTEM_STRUCTURE_OFFSET_134C) = system_buffer_allocation_result;
-  *(unsigned short *)(system_string_length_counter + SYSTEM_OFFSET_STRING_TERMINATOR) = SYSTEM_ZERO_VALUE;
-  *(unsigned char *)(system_string_length_counter + SYSTEM_OFFSET_COUNTER_PRIMARY) = SYSTEM_ZERO_VALUE;
+  *(unsigned short *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_TERMINATOR) = SYSTEM_ZERO_VALUE;
+  *(unsigned char *)(system_string_length_tracker + SYSTEM_OFFSET_COUNTER_PRIMARY) = SYSTEM_ZERO_VALUE;
   system_finalizer_001();
   system_finalizer_002();
   *(uint *)(system_global_context_pointer + SYSTEM_OFFSET_THREAD_CONFIG) = system_global_context_pointer;
@@ -5307,9 +5307,9 @@ LABEL_SYSTEM_SECTION_PROCESSING_030:
     system_global_context_pointer = (system_global_context_pointer - 1 | SYSTEM_BIT_MASK_ADDRESS_ALIGN) + 1;
   }
   system_string_input_context = (unsigned long long *)*system_global_context_pointer;
-  system_thread_result_status = _Mtx_lock(ADDR_MAIN_MUTEX);
-  if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-    __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+  system_thread_operation_result = _Mtx_lock(ADDR_MAIN_MUTEX);
+  if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+    __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
   }
   system_buffer_allocation_result = system_global_context_pointer;
   system_double_pointer_stack_220 = (long long **)system_global_context_pointer;
@@ -5321,10 +5321,10 @@ LABEL_SYSTEM_SECTION_PROCESSING_030:
     if (0 < *(int *)(system_initialization_result8 + SYSTEM_OFFSET_STRING_BUFFER_SIZE)) {
       do {
         system_network_003(*(unsigned long long *)(system_thread_operation_flags + *(long long *)(system_initialization_result8 + 8)));
-        system_string_length_counter = *(long long *)(*(long long *)(system_initialization_result8 + 8) + system_thread_operation_flags);
-        if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
-          system_execution_function(system_string_length_counter);
-          system_handle_param_system_error(system_string_length_counter);
+        system_string_length_tracker = *(long long *)(*(long long *)(system_initialization_result8 + 8) + system_thread_operation_flags);
+        if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
+          system_execution_function(system_string_length_tracker);
+          system_handle_param_system_error(system_string_length_tracker);
         }
         *(unsigned long long *)(*(long long *)(system_initialization_result8 + 8) + system_thread_operation_flags) = SYSTEM_ZERO_VALUE;
         system_thread_operation_flags = (int)system_buffer_allocation_result + 1;
@@ -5351,9 +5351,9 @@ LABEL_SYSTEM_SECTION_PROCESSING_030:
   }
   system_initializer_002();
   system_global_context_pointer = system_buffer_allocation_result;
-  system_thread_result_status = _Mtx_unlock(ADDR_MAIN_MUTEX);
-  if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-    __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+  system_thread_operation_result = _Mtx_unlock(ADDR_MAIN_MUTEX);
+  if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+    __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
   }
   if (*(int *)(system_initialization_result6 + SYSTEM_ARRAY_INDEX_NINTH) == SYSTEM_TWO_VALUE) {
     *(unsigned char *)(*(long long *)(system_initialization_result6 + SYSTEM_OFFSET_STRING_BUFFER_SIZE) + SYSTEM_OFFSET_FUNCTION_POINTER_TERTIARY) = SYSTEM_ZERO_VALUE;
@@ -5445,11 +5445,11 @@ LABEL_SYSTEM_SECTION_PROCESSING_031:
   system_buffer_allocation_result = system_thread_operation_flags;
   if (system_thread_stack_base_address - system_thread_stack_base_address >> 3 != 0) {
     do {
-      system_string_length_counter = system_global_context_pointer;
+      system_string_length_tracker = system_global_context_pointer;
       if ((0 < *(int *)(*(long long *)(system_buffer_allocation_result + system_initialization_result6) + SYSTEM_GLOBAL_DATA_OFFSET_124EC)) &&
          ((*(uint *)(*(long long *)(system_buffer_allocation_result + system_initialization_result6) + SYSTEM_OFFSET_HANDLE_PARAM) & string_buffer_size_constant00) != 0)) {
         while (system_character_scan_pointer = system_global_context_pointer, system_initialization_result6 = system_thread_stack_base_address, system_initialization_result8 = system_thread_stack_base_address,
-              *(int *)(system_string_length_counter + SYSTEM_OFFSET_FUNCTION_TABLEc) != 0) {
+              *(int *)(system_string_length_tracker + SYSTEM_OFFSET_FUNCTION_TABLEc) != 0) {
           system_initialization_result6 = system_event_system_handle_paramr_process_pointer(system_global_context_pointer);
           if (system_initialization_result6 != 0) {
             system_initialization_result_ptr7 = (long long *)system_event_system_handle_paramr_process_pointer(system_character_scan_pointer);
@@ -5554,43 +5554,43 @@ long long process_memory_block(long long system_handle_param,long long system_th
 {
   unsigned long long *system_string_input_context;
   unsigned long long *psystem_thread_operation_flags;
-  long long system_string_length_counter;
-  long long system_string_length_counter;
-  system_string_length_counter = system_thread_operation_flags - system_handle_param >> 5;
-  if (0 < system_string_length_counter) {
-    system_string_length_counter = mutex_attr - system_thread_operation_flags;
-    mutex_attr = mutex_attr + system_string_length_counter * -path_buffer_size;
+  long long system_string_length_tracker;
+  long long system_string_length_tracker;
+  system_string_length_tracker = system_thread_operation_flags - system_handle_param >> 5;
+  if (0 < system_string_length_tracker) {
+    system_string_length_tracker = mutex_attr - system_thread_operation_flags;
+    mutex_attr = mutex_attr + system_string_length_tracker * -path_buffer_size;
     psystem_thread_operation_flags = (unsigned long long *)(system_thread_operation_flags + 8);
     do {
       system_string_input_context = psystem_thread_operation_flags + -4;
-      if (*(long long *)(system_string_length_counter + -path_buffer_size + (long long)psystem_thread_operation_flags) != 0) {
+      if (*(long long *)(system_string_length_tracker + -path_buffer_size + (long long)psystem_thread_operation_flags) != 0) {
         system_handle_param_system_error();
       }
-      *(unsigned long long *)(system_string_length_counter + SYSTEM_OFFSET_STRING_BUFFER_SIZE + (long long)system_string_input_context) = SYSTEM_ZERO_VALUE;
-      system_string_length_counter = system_string_length_counter + SYSTEM_DECREMENT_SINGLE_UNIT;
-      *(unsigned long long *)(system_string_length_counter + (long long)system_string_input_context) = SYSTEM_ZERO_VALUE;
-      *(unsigned int *)(system_string_length_counter + SYSTEM_BUFFER_OFFSET_8 + (long long)system_string_input_context) = SYSTEM_ZERO_VALUE;
-      *(unsigned int *)(system_string_length_counter + SYSTEM_BUFFER_OFFSET_8 + (long long)system_string_input_context) = *(unsigned int *)(psystem_thread_operation_flags + -3);
-      *(unsigned long long *)(system_string_length_counter + (long long)system_string_input_context) = *system_string_input_context;
-      *(unsigned int *)(system_string_length_counter + SYSTEM_CONFIG_OFFSET_INIT_FLAG + (long long)system_string_input_context) = *(unsigned int *)((long long)psystem_thread_operation_flags + SYSTEM_POINTER_OFFSET_NEGATIVE_C);
-      *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_STRING_BUFFER_SIZE + (long long)system_string_input_context) = *(unsigned int *)(psystem_thread_operation_flags + -2);
+      *(unsigned long long *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_BUFFER_SIZE + (long long)system_string_input_context) = SYSTEM_ZERO_VALUE;
+      system_string_length_tracker = system_string_length_tracker + SYSTEM_DECREMENT_SINGLE_UNIT;
+      *(unsigned long long *)(system_string_length_tracker + (long long)system_string_input_context) = SYSTEM_ZERO_VALUE;
+      *(unsigned int *)(system_string_length_tracker + SYSTEM_BUFFER_OFFSET_8 + (long long)system_string_input_context) = SYSTEM_ZERO_VALUE;
+      *(unsigned int *)(system_string_length_tracker + SYSTEM_BUFFER_OFFSET_8 + (long long)system_string_input_context) = *(unsigned int *)(psystem_thread_operation_flags + -3);
+      *(unsigned long long *)(system_string_length_tracker + (long long)system_string_input_context) = *system_string_input_context;
+      *(unsigned int *)(system_string_length_tracker + SYSTEM_CONFIG_OFFSET_INIT_FLAG + (long long)system_string_input_context) = *(unsigned int *)((long long)psystem_thread_operation_flags + SYSTEM_POINTER_OFFSET_NEGATIVE_C);
+      *(unsigned int *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_BUFFER_SIZE + (long long)system_string_input_context) = *(unsigned int *)(psystem_thread_operation_flags + -2);
       *(unsigned int *)(psystem_thread_operation_flags + -3) = SYSTEM_ZERO_VALUE;
       *system_string_input_context = SYSTEM_ZERO_VALUE;
       psystem_thread_operation_flags[-2] = SYSTEM_ZERO_VALUE;
       psystem_thread_operation_flags = system_string_input_context;
-    } while (SYSTEM_ZERO_VALUE < system_string_length_counter);
+    } while (SYSTEM_ZERO_VALUE < system_string_length_tracker);
   }
   return mutex_attr;
 }
 long long process_memory_with_system_thread_operation_flags(unsigned long long system_handle_param,long long system_thread_operation_flags,long long mutex_attr)
 {
   unsigned long long *system_string_input_context;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   unsigned long long *system_string_input_context;
   long long system_base_pointer_register;
   long long system_destination_index_register;
   mutex_attr = mutex_attr - system_thread_operation_flags;
-  system_string_length_counter = system_destination_index_register * -path_buffer_size;
+  system_string_length_tracker = system_destination_index_register * -path_buffer_size;
   system_string_input_context = (unsigned long long *)(system_thread_operation_flags + 8);
   do {
     system_string_input_context = system_string_input_context + -4;
@@ -5610,7 +5610,7 @@ long long process_memory_with_system_thread_operation_flags(unsigned long long s
     system_string_input_context[-2] = SYSTEM_ZERO_VALUE;
     system_string_input_context = system_string_input_context;
   } while (0 < system_destination_index_register);
-  return system_base_pointer_register + system_string_length_counter;
+  return system_base_pointer_register + system_string_length_tracker;
 }
       g_data_system_flag = g_data_system_flag == '\0';
     }
@@ -5743,12 +5743,12 @@ system_triple_pointer_stack_primary = (long long ***)SYSTEM_NULL_POINTER;
       UNLOCK();
       system_processor_008(ppppsystem_initialization_result_ptr7,system_buffer_allocation_result);
       if (*(int *)(reg_rcx + SYSTEM_FUNCTION_OFFSET_REGISTER_A3A) == SYSTEM_ZERO_VALUE) {
-        system_thread_result_status = SYSTEM_ZERO_VALUE;
+        system_thread_operation_result = SYSTEM_ZERO_VALUE;
       }
       else {
-        system_thread_result_status = (*(int *)(reg_rcx + SYSTEM_FUNCTION_OFFSET_REGISTER_A3A) - 1U >> SYSTEM_BIT_SHIFT_PAGE_SIZE) + 1;
+        system_thread_operation_result = (*(int *)(reg_rcx + SYSTEM_FUNCTION_OFFSET_REGISTER_A3A) - 1U >> SYSTEM_BIT_SHIFT_PAGE_SIZE) + 1;
       }
-      if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
+      if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
         memcpy(ppppsystem_initialization_result_ptr7[1], reg_rcx[SYSTEM_MEMORY_OFFSET_A3B], path_buffer_size_000);
       }
       system_initialization_result0 = *(long long *)(*(long long *)(system_alternative_stack_long[0] + SYSTEM_OFFSET_MODULE_DATA_3580) + SYSTEM_POINTER_OFFSET_118);
@@ -5763,12 +5763,12 @@ system_triple_pointer_stack_primary = (long long ***)SYSTEM_NULL_POINTER;
     }
     *(uint *)(reg_rcx + SYSTEM_POINTER_OFFSET_A39) = system_buffer_allocation_result;
   }
-  while (system_thread_result_status = (int)system_buffer_allocation_result, (ulong long)(long long)system_thread_result_status < (ulong long)*(uint *)(reg_rcx + SYSTEM_POINTER_OFFSET_B5B)) {
+  while (system_thread_operation_result = (int)system_buffer_allocation_result, (ulong long)(long long)system_thread_operation_result < (ulong long)*(uint *)(reg_rcx + SYSTEM_POINTER_OFFSET_B5B)) {
     pppsystem_initialization_result_ptr3 = reg_rcx[(system_buffer_allocation_result >> 10) + SYSTEM_OFFSET_RESOURCE_ARRAY_START] +
-                 (ulong long)(uint)(system_thread_result_status + (int)(system_buffer_allocation_result >> 10) + SYSTEM_OFFSET_NEGATIVE_BUFFER_SIZE) + SYSTEM_OFFSET_ENTRY_SIZE;
+                 (ulong long)(uint)(system_thread_operation_result + (int)(system_buffer_allocation_result >> 10) + SYSTEM_OFFSET_NEGATIVE_BUFFER_SIZE) + SYSTEM_OFFSET_ENTRY_SIZE;
     system_resource_001(*pppsystem_initialization_result_ptr3);
     system_execution_function(*pppsystem_initialization_result_ptr3,pppsystem_initialization_result_ptr3[1],pppsystem_initialization_result_ptr3 + 2,0,pppsystem_initialization_result_ptr3 + 10);
-    system_buffer_allocation_result = (ulong long)(system_thread_result_status + 1);
+    system_buffer_allocation_result = (ulong long)(system_thread_operation_result + 1);
   }
   system_buffer_allocation_result = (ulong long)*(uint *)(reg_rcx + SYSTEM_POINTER_OFFSET_B5B);
   LOCK();
@@ -5802,7 +5802,7 @@ unsigned long long *
  */
 system_processor_initialize(unsigned long long *system_handle_param,long long system_thread_operation_flags,unsigned long long mutex_attr,unsigned long long mutex_type)
 {
-  int system_thread_result_status;
+  int system_thread_operation_result;
   unsigned long long *psystem_thread_operation_flags;
   unsigned int *system_string_input_context;
   unsigned int system_buffer_allocation_result;
@@ -5819,21 +5819,21 @@ system_processor_initialize(unsigned long long *system_handle_param,long long sy
   *(unsigned short *)(psystem_thread_operation_flags + 1) = SYSTEM_ERROR_ADAP_HDW_ERR;
   *(unsigned int *)(system_handle_param + 2) = SYSTEM_NINE_VALUE;
   system_buffer_allocation_result = SYSTEM_ONE_VALUE;
-  system_thread_result_status = *(int *)(system_handle_param + 2);
+  system_thread_operation_result = *(int *)(system_handle_param + 2);
   if (0 < *(int *)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE)) {
-    system_thread_manager_create(system_handle_param,system_thread_result_status + *(int *)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE));
+    system_thread_manager_create(system_handle_param,system_thread_operation_result + *(int *)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE));
     memcpy((ulong long)*(uint *)(system_handle_param + 2) + system_handle_param[1],*(unsigned long long *)(system_thread_operation_flags + 8),
            (long long)(*(int *)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE) + 1),mutex_type,system_buffer_allocation_result);
   }
-  system_thread_manager_create(system_handle_param,system_thread_result_status + 6);
+  system_thread_manager_create(system_handle_param,system_thread_operation_result + 6);
   system_string_input_context = (unsigned int *)((ulong long)*(uint *)(system_handle_param + 2) + system_handle_param[1]);
   *system_string_input_context = SYSTEM_CHAR_LOWERCASE_E63732f;
   *(unsigned short *)(system_string_input_context + 1) = SYSTEM_CHAR_LOWERCASE_E6e;
   *(unsigned char *)((long long)system_string_input_context + 6) = SYSTEM_ZERO_VALUE;
-  *(int *)(system_handle_param + 2) = system_thread_result_status + 6;
-  system_thread_manager_create(system_handle_param,system_thread_result_status + SYSTEM_POINTER_OFFSET_D);
+  *(int *)(system_handle_param + 2) = system_thread_operation_result + 6;
+  system_thread_manager_create(system_handle_param,system_thread_operation_result + SYSTEM_POINTER_OFFSET_D);
   *(unsigned long long *)((ulong long)*(uint *)(system_handle_param + 2) + system_handle_param[1]) = SYSTEM_CHAR_LOWERCASE_E6e656373782e;
-  *(int *)(system_handle_param + 2) = system_thread_result_status + SYSTEM_POINTER_OFFSET_D;
+  *(int *)(system_handle_param + 2) = system_thread_operation_result + SYSTEM_POINTER_OFFSET_D;
   return system_handle_param;
 }
   system_initialization_flag = SYSTEM_ONE_VALUE;
@@ -5847,12 +5847,12 @@ system_processor_initialize(unsigned long long *system_handle_param,long long sy
   system_maximum_stack_size = SYSTEM_ZERO_VALUE;
   system_maximum_stack_size = SYSTEM_ZERO_VALUE;
   system_maximum_stack_size = SYSTEM_THREE_VALUE;
-  system_string_length_counter = *(long long *)(*system_initialization_result_ptr3 + SYSTEM_POINTER_OFFSET90) - *(long long *)(*system_initialization_result_ptr3 + SYSTEM_POINTER_OFFSET88) >> 5;
-  system_thread_stack_base_address = system_string_length_counter;
+  system_string_length_tracker = *(long long *)(*system_initialization_result_ptr3 + SYSTEM_POINTER_OFFSET90) - *(long long *)(*system_initialization_result_ptr3 + SYSTEM_POINTER_OFFSET88) >> 5;
+  system_thread_stack_base_address = system_string_length_tracker;
   multi_level_stack_pointer = (long long *******)((ulong long)multi_level_stack_pointer & INT64_MASK);
-  if (0 < (int)system_string_length_counter) {
+  if (0 < (int)system_string_length_tracker) {
     do {
-      if (system_thread_result_status < 0) {
+      if (system_thread_operation_result < 0) {
 LABEL_SYSTEM_SECTION_PROCESSING_032:
         system_initialization_result9 = system_thread_manager_get_status();
       }
@@ -5860,7 +5860,7 @@ LABEL_SYSTEM_SECTION_PROCESSING_032:
         system_initialization_result9 = *(long long *)(*system_initialization_result_ptr3 + SYSTEM_POINTER_OFFSET88);
         if ((ulong long)(*(long long *)(*system_initialization_result_ptr3 + SYSTEM_POINTER_OFFSET90) - system_initialization_result9 >> 5) <=
 goto LABEL_SYSTEM_SECTION_PROCESSING_036;
-        system_initialization_result9 = (long long)system_thread_result_status * path_buffer_size + system_initialization_result9;
+        system_initialization_result9 = (long long)system_thread_operation_result * path_buffer_size + system_initialization_result9;
       }
       system_thread_stack_pointer = &system_global_thread_string_2;
       system_maximum_stack_size = SYSTEM_ZERO_VALUE;
@@ -5877,11 +5877,11 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_036;
         }
         system_maximum_stack_size = system_maximum_stack_size & UINT32_MAX;
       }
-      system_thread_result_status = system_maximum_stack_size + 8;
-      system_thread_manager_create(&system_thread_stack_pointer,system_thread_result_status);
+      system_thread_operation_result = system_maximum_stack_size + 8;
+      system_thread_manager_create(&system_thread_stack_pointer,system_thread_operation_result);
       *(unsigned long long *)(system_thread_stack_pointer + system_maximum_stack_size) = SYSTEM_CHAR_LOWERCASE_J624f656e656353;
       *(unsigned char *)((long long)(system_thread_stack_pointer + system_maximum_stack_size) + 8) = SYSTEM_ZERO_VALUE;
-      system_maximum_stack_size = system_thread_result_status;
+      system_maximum_stack_size = system_thread_operation_result;
       system_char_result = system_thread_001(&system_thread_stack_pointer);
       if (system_char_result == '\0') {
         system_thread_stack_pointer = &system_global_thread_string_2;
@@ -5907,7 +5907,7 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_036;
         system_multi_level_pointer_current = &system_multi_level_stack_root;
         system_multi_level_pointer_traverse = system_multi_level_stack_pointer_second;
         while (system_multi_level_pointer_traverse != (unsigned long long *******)0x0) {
-          if (*(int *)(system_multi_level_pointer_traverse + SYSTEM_OFFSET_HANDLE_PARAM) < system_thread_result_status) {
+          if (*(int *)(system_multi_level_pointer_traverse + SYSTEM_OFFSET_HANDLE_PARAM) < system_thread_operation_result) {
             system_multi_level_pointer_traverse = (unsigned long long *******)*system_multi_level_pointer_traverse;
           }
           else {
@@ -5916,15 +5916,15 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_036;
           }
         }
         if (((unsigned long long ********)system_multi_level_pointer_current == &system_multi_level_stack_root) ||
-           (system_thread_result_status < *(int *)(system_multi_level_pointer_current + SYSTEM_OFFSET_HANDLE_PARAM))) {
+           (system_thread_operation_result < *(int *)(system_multi_level_pointer_current + SYSTEM_OFFSET_HANDLE_PARAM))) {
           system_string_input_context = (unsigned long long *)system_execution_function(&system_multi_level_stack_root,system_stack_buffer_string_input);
           system_multi_level_pointer_current = (unsigned long long *******)*system_string_input_context;
         }
         system_multi_level_pointer_current[5] = system_multi_level_pointer_node;
-        system_thread_result_status = (int)(system_initialization_result9 >> 5);
-        system_initialization_result9 = (long long)system_thread_result_status;
+        system_thread_operation_result = (int)(system_initialization_result9 >> 5);
+        system_initialization_result9 = (long long)system_thread_operation_result;
         pppppsystem_thread_operation_flags = pppppsystem_thread_operation_flags;
-        if (0 < system_thread_result_status) {
+        if (0 < system_thread_operation_result) {
           pppppsystem_thread_operation_flags = pppppsystem_thread_operation_flags + 1;
           do {
             system_thread_stack_pointer = &system_global_thread_string_2;
@@ -5943,13 +5943,13 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_036;
               }
               system_system_maximum_stack_size_low_half_extended = SYSTEM_ZERO_VALUE;
             }
-            system_thread_result_status = system_maximum_stack_size + SYSTEM_POINTER_OFFSET_D;
-            system_thread_manager_create(&system_thread_stack_pointer,system_thread_result_status);
+            system_thread_operation_result = system_maximum_stack_size + SYSTEM_POINTER_OFFSET_D;
+            system_thread_manager_create(&system_thread_stack_pointer,system_thread_operation_result);
             system_string_input_context = (unsigned long long *)(system_thread_stack_pointer + system_maximum_stack_size);
             *system_string_input_context = SYSTEM_CHAR_LOWERCASE_X2e656e6563732f;
             *(unsigned int *)(system_string_input_context + 1) = SYSTEM_CHAR_LOWERCASE_N656373;
             *(unsigned short *)((long long)system_string_input_context + SYSTEM_OFFSET_STACK_POINTER) = SYSTEM_SPECIAL_VALUE_65;
-            system_maximum_stack_size = system_thread_result_status;
+            system_maximum_stack_size = system_thread_operation_result;
             system_char_result = system_thread_002(&system_thread_stack_pointer);
             if (system_char_result == '\0') {
               system_maximum_stack_size = SYSTEM_ZERO_VALUE;
@@ -5990,7 +5990,7 @@ LABEL_SYSTEM_SECTION_PROCESSING_033:
               system_multi_level_pointer_current = &system_multi_level_stack_root;
               system_multi_level_pointer_traverse = system_multi_level_stack_pointer_second;
               while (system_multi_level_pointer_traverse != (unsigned long long *******)0x0) {
-                if (*(int *)(system_multi_level_pointer_traverse + SYSTEM_OFFSET_HANDLE_PARAM) < system_thread_result_status) {
+                if (*(int *)(system_multi_level_pointer_traverse + SYSTEM_OFFSET_HANDLE_PARAM) < system_thread_operation_result) {
                   system_multi_level_pointer_traverse = (unsigned long long *******)*system_multi_level_pointer_traverse;
                 }
                 else {
@@ -5999,7 +5999,7 @@ LABEL_SYSTEM_SECTION_PROCESSING_033:
                 }
               }
               if (((unsigned long long ********)system_multi_level_pointer_current == &system_multi_level_stack_root) ||
-                 (system_thread_result_status < *(int *)(system_multi_level_pointer_current + SYSTEM_OFFSET_HANDLE_PARAM))) {
+                 (system_thread_operation_result < *(int *)(system_multi_level_pointer_current + SYSTEM_OFFSET_HANDLE_PARAM))) {
                 system_string_input_context = (unsigned long long *)system_execution_function(&system_multi_level_stack_root,&psystem_quintuple_stack_temp);
                 system_multi_level_pointer_current = (unsigned long long *******)*system_string_input_context;
               }
@@ -6043,7 +6043,7 @@ LABEL_SYSTEM_SECTION_PROCESSING_033:
             pppppsystem_thread_operation_flags = system_quintuple_stack_data;
             pppppsystem_thread_operation_flags = system_quintuple_stack_control;
             pppppsystem_thread_operation_flags = system_quintuple_stack_data;
-            system_string_length_counter = system_thread_stack_base_address;
+            system_string_length_tracker = system_thread_stack_base_address;
           } while (system_initialization_result9 != 0);
         }
         for (; pppppsystem_thread_operation_flags != pppppsystem_thread_operation_flags; pppppsystem_thread_operation_flags = pppppsystem_thread_operation_flags + SYSTEM_OFFSET_HANDLE_PARAM) {
@@ -6060,13 +6060,13 @@ LABEL_SYSTEM_SECTION_PROCESSING_033:
       system_maximum_stack_size = system_maximum_stack_size & INT64_MASK;
       system_thread_stack_pointer = (unsigned char *)SYSTEM_NULL_POINTER;
       system_thread_stack_pointer = &system_global_thread_string_4;
-      system_thread_result_status = system_thread_result_status + 1;
-      multi_level_stack_pointer = (long long *******)merge_32bit_values(multi_level_stack_pointer_low_half_extended,system_thread_result_status);
+      system_thread_operation_result = system_thread_operation_result + 1;
+      multi_level_stack_pointer = (long long *******)merge_32bit_values(multi_level_stack_pointer_low_half_extended,system_thread_operation_result);
       system_initialization_result_ptr3 = system_global_context_pointer;
       mutex_attr = system_multi_level_stack_temp;
       system_initialization_result9 = system_thread_stack_base_address;
       mutex_type = system_stack_uint_20;
-    } while (system_thread_result_status < (int)system_string_length_counter);
+    } while (system_thread_operation_result < (int)system_string_length_tracker);
   }
   system_maximum_stack_size = SYSTEM_THREE_VALUE;
   system_multi_level_stack_primary = &system_multi_level_stack_primary;
@@ -6227,46 +6227,46 @@ LABEL_SYSTEM_SECTION_PROCESSING_033:
         g_data_buffer_status = SYSTEM_ZERO_VALUE;
         return data_pointer_seventh;
       }
-      system_initialization_result0 = (long long)system_thread_result_status << SYSTEM_FUNCTION_PARAM_SHIFT_4;
+      system_initialization_result0 = (long long)system_thread_operation_result << SYSTEM_FUNCTION_PARAM_SHIFT_4;
       do {
         if ((int)(system_float_variable - SYSTEM_FLOAT_CONVERSION_THRESHOLD_12582912) <= (int)system_long_ptr_index) {
           g_data_buffer_status = SYSTEM_ZERO_VALUE;
           return data_pointer_seventh;
         }
-        system_string_length_counter = *(long long *)(system_initialization_result0 + (long long)system_global_context_pointer);
-        data_pointer_seventh = (long long *)(ulong long)*(uint *)(system_string_length_counter + SYSTEM_OFFSET_RENDER_DATA_COUNTER);
-        if ((*(uint *)(system_string_length_counter + SYSTEM_OFFSET_RENDER_DATA_COUNTER) == 2) &&
-           (data_pointer_seventh = (long long *)(ulong long)*(uint *)(system_string_length_counter + SYSTEM_OFFSET_RENDER_DATA_POINTER), *(uint *)(system_string_length_counter + SYSTEM_OFFSET_RENDER_DATA_POINTER) == 0))
+        system_string_length_tracker = *(long long *)(system_initialization_result0 + (long long)system_global_context_pointer);
+        data_pointer_seventh = (long long *)(ulong long)*(uint *)(system_string_length_tracker + SYSTEM_OFFSET_RENDER_DATA_COUNTER);
+        if ((*(uint *)(system_string_length_tracker + SYSTEM_OFFSET_RENDER_DATA_COUNTER) == 2) &&
+           (data_pointer_seventh = (long long *)(ulong long)*(uint *)(system_string_length_tracker + SYSTEM_OFFSET_RENDER_DATA_POINTER), *(uint *)(system_string_length_tracker + SYSTEM_OFFSET_RENDER_DATA_POINTER) == 0))
         {
           LOCK();
-          system_buffer_allocation_result = *(uint *)(system_string_length_counter + SYSTEM_OFFSET_RENDER_DATA_POINTER);
+          system_buffer_allocation_result = *(uint *)(system_string_length_tracker + SYSTEM_OFFSET_RENDER_DATA_POINTER);
           if (system_buffer_allocation_result == SYSTEM_ZERO_VALUE) {
-            *(uint *)(system_string_length_counter + SYSTEM_OFFSET_RENDER_DATA_POINTER) = UINT32_MAX;
+            *(uint *)(system_string_length_tracker + SYSTEM_OFFSET_RENDER_DATA_POINTER) = UINT32_MAX;
           }
           else {
             data_pointer_seventh = (long long *)(ulong long)system_buffer_allocation_result;
           }
           UNLOCK();
           if (system_buffer_allocation_result == SYSTEM_ZERO_VALUE) {
-            *(unsigned char *)(system_string_length_counter + SYSTEM_OFFSET_RENDER_FLAG) = SYSTEM_ZERO_VALUE;
-            system_hardware_001(system_string_length_counter + SYSTEM_OFFSET_RENDER_INIT);
-            system_buffer_allocation_result = *(unsigned long long *)(system_string_length_counter + SYSTEM_POINTER_OFFSET8);
-            system_thread_result_status = *(int *)(system_string_length_counter + SYSTEM_POINTER_OFFSET0);
-            *(unsigned long long *)(system_string_length_counter + SYSTEM_POINTER_OFFSET8) = SYSTEM_ZERO_VALUE;
-            *(unsigned int *)(system_string_length_counter + SYSTEM_POINTER_OFFSET0) = SYSTEM_ZERO_VALUE;
-            *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_RENDER_DATA_COUNTER) = SYSTEM_ZERO_VALUE;
-            *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_RENDER_DATA_POINTER) = SYSTEM_ZERO_VALUE;
+            *(unsigned char *)(system_string_length_tracker + SYSTEM_OFFSET_RENDER_FLAG) = SYSTEM_ZERO_VALUE;
+            system_hardware_001(system_string_length_tracker + SYSTEM_OFFSET_RENDER_INIT);
+            system_buffer_allocation_result = *(unsigned long long *)(system_string_length_tracker + SYSTEM_POINTER_OFFSET8);
+            system_thread_operation_result = *(int *)(system_string_length_tracker + SYSTEM_POINTER_OFFSET0);
+            *(unsigned long long *)(system_string_length_tracker + SYSTEM_POINTER_OFFSET8) = SYSTEM_ZERO_VALUE;
+            *(unsigned int *)(system_string_length_tracker + SYSTEM_POINTER_OFFSET0) = SYSTEM_ZERO_VALUE;
+            *(unsigned int *)(system_string_length_tracker + SYSTEM_OFFSET_RENDER_DATA_COUNTER) = SYSTEM_ZERO_VALUE;
+            *(unsigned int *)(system_string_length_tracker + SYSTEM_OFFSET_RENDER_DATA_POINTER) = SYSTEM_ZERO_VALUE;
             system_hardware_002(system_buffer_allocation_result);
             LOCK();
-            system_buffer_allocation_result = system_global_context_pointer - system_thread_result_status;
+            system_buffer_allocation_result = system_global_context_pointer - system_thread_operation_result;
             data_pointer_seventh = (long long *)(ulong long)system_global_context_pointer;
             UNLOCK();
             system_global_context_pointer = system_buffer_allocation_result;
-            if (0 < system_thread_result_status) {
-              system_long_ptr_index = (long long *)(ulong long)(uint)((int)system_long_ptr_index + system_thread_result_status);
-              data_pointer_seventh = system_global_context_pointer + (long long)system_thread_result_status * 2 + 2;
+            if (0 < system_thread_operation_result) {
+              system_long_ptr_index = (long long *)(ulong long)(uint)((int)system_long_ptr_index + system_thread_operation_result);
+              data_pointer_seventh = system_global_context_pointer + (long long)system_thread_operation_result * 2 + 2;
               if (data_pointer_seventh < system_global_context_pointer) {
-                memmove(system_global_context_pointer + (long long)system_thread_result_status * 2,data_pointer_seventh,
+                memmove(system_global_context_pointer + (long long)system_thread_operation_result * 2,data_pointer_seventh,
                         (long long)system_global_context_pointer - (long long)data_pointer_seventh);
               }
               data_pointer_seventh = system_global_context_pointer + -2;
@@ -6275,8 +6275,8 @@ LABEL_SYSTEM_SECTION_PROCESSING_033:
           }
         }
         system_initialization_result0 = system_initialization_result0 + -STRING_BUFFER_SIZE;
-        system_thread_result_status = system_thread_result_status + -1;
-      } while (-1 < system_thread_result_status);
+        system_thread_operation_result = system_thread_operation_result + -1;
+      } while (-1 < system_thread_operation_result);
       g_data_buffer_status = SYSTEM_ZERO_VALUE;
       return data_pointer_seventh;
     }
@@ -6288,14 +6288,14 @@ LABEL_SYSTEM_SECTION_PROCESSING_033:
       data_pointer_seventh[1] = merge_32bit_values(system_buffer_allocation_result,system_thread_operation_flags);
     }
     else {
-      system_string_length_counter = (long long)data_pointer_seventh - (long long)system_global_context_pointer >> 4;
-      if (system_string_length_counter == SYSTEM_ZERO_VALUE) {
-        system_string_length_counter = SYSTEM_ONE_VALUE;
+      system_string_length_tracker = (long long)data_pointer_seventh - (long long)system_global_context_pointer >> 4;
+      if (system_string_length_tracker == SYSTEM_ZERO_VALUE) {
+        system_string_length_tracker = SYSTEM_ONE_VALUE;
 LABEL_SYSTEM_SECTION_PROCESSING_034:
-        data_pointer_seventh = (long long *)system_execution_function(system_global_context_pointer,system_string_length_counter << SYSTEM_FUNCTION_PARAM_SHIFT_4,system_config_data_buffer);
+        data_pointer_seventh = (long long *)system_execution_function(system_global_context_pointer,system_string_length_tracker << SYSTEM_FUNCTION_PARAM_SHIFT_4,system_config_data_buffer);
       }
       else {
-        system_string_length_counter = system_string_length_counter * 2;
+        system_string_length_tracker = system_string_length_tracker * 2;
         data_pointer_seventh = system_long_ptr_index;
 goto LABEL_SYSTEM_SECTION_PROCESSING_038;
       }
@@ -6307,7 +6307,7 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_038;
       if (system_global_context_pointer != (long long *)SYSTEM_NULL_POINTER) {
         system_handle_param_system_error();
       }
-      system_global_context_pointer = data_pointer_seventh + system_string_length_counter * 2;
+      system_global_context_pointer = data_pointer_seventh + system_string_length_tracker * 2;
       system_global_context_pointer = data_pointer_seventh;
       system_global_context_pointer = data_pointer_seventh + 2;
     }
@@ -6319,40 +6319,40 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_038;
       g_data_buffer_status = system_buffer_allocation_result;
       return;
     }
-    system_string_length_counter = *(long long *)(system_string_length_counter + system_global_context_pointer);
-    if ((*(int *)(system_string_length_counter + SYSTEM_OFFSET_RENDER_DATA_COUNTER) == 2) && (*(int *)(system_string_length_counter + SYSTEM_OFFSET_RENDER_DATA_POINTER) == 0)) {
+    system_string_length_tracker = *(long long *)(system_string_length_tracker + system_global_context_pointer);
+    if ((*(int *)(system_string_length_tracker + SYSTEM_OFFSET_RENDER_DATA_COUNTER) == 2) && (*(int *)(system_string_length_tracker + SYSTEM_OFFSET_RENDER_DATA_POINTER) == 0)) {
       LOCK();
-      byte_validation_flag = *(int *)(system_string_length_counter + SYSTEM_OFFSET_RENDER_DATA_POINTER) == SYSTEM_ZERO_VALUE;
+      byte_validation_flag = *(int *)(system_string_length_tracker + SYSTEM_OFFSET_RENDER_DATA_POINTER) == SYSTEM_ZERO_VALUE;
       if (byte_validation_flag) {
-        *(int *)(system_string_length_counter + SYSTEM_OFFSET_RENDER_DATA_POINTER) = -1;
+        *(int *)(system_string_length_tracker + SYSTEM_OFFSET_RENDER_DATA_POINTER) = -1;
       }
       UNLOCK();
       if (byte_validation_flag) {
-        *(unsigned char *)(system_string_length_counter + SYSTEM_OFFSET_RENDER_FLAG) = system_buffer_allocation_result;
-        system_hardware_001(system_string_length_counter + SYSTEM_OFFSET_RENDER_INIT);
-        system_buffer_allocation_result = *(unsigned long long *)(system_string_length_counter + SYSTEM_POINTER_OFFSET8);
-        system_thread_result_status = *(int *)(system_string_length_counter + SYSTEM_POINTER_OFFSET0);
-        *(unsigned long long *)(system_string_length_counter + SYSTEM_POINTER_OFFSET8) = system_unaffected_register;
+        *(unsigned char *)(system_string_length_tracker + SYSTEM_OFFSET_RENDER_FLAG) = system_buffer_allocation_result;
+        system_hardware_001(system_string_length_tracker + SYSTEM_OFFSET_RENDER_INIT);
+        system_buffer_allocation_result = *(unsigned long long *)(system_string_length_tracker + SYSTEM_POINTER_OFFSET8);
+        system_thread_operation_result = *(int *)(system_string_length_tracker + SYSTEM_POINTER_OFFSET0);
+        *(unsigned long long *)(system_string_length_tracker + SYSTEM_POINTER_OFFSET8) = system_unaffected_register;
         system_buffer_allocation_result = (unsigned int)system_unaffected_register;
-        *(unsigned int *)(system_string_length_counter + SYSTEM_POINTER_OFFSET0) = system_buffer_allocation_result;
-        *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_RENDER_DATA_COUNTER) = system_buffer_allocation_result;
-        *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_RENDER_DATA_POINTER) = system_buffer_allocation_result;
+        *(unsigned int *)(system_string_length_tracker + SYSTEM_POINTER_OFFSET0) = system_buffer_allocation_result;
+        *(unsigned int *)(system_string_length_tracker + SYSTEM_OFFSET_RENDER_DATA_COUNTER) = system_buffer_allocation_result;
+        *(unsigned int *)(system_string_length_tracker + SYSTEM_OFFSET_RENDER_DATA_POINTER) = system_buffer_allocation_result;
         system_hardware_002(system_buffer_allocation_result);
         LOCK();
-        system_global_context_pointer = system_global_context_pointer - system_thread_result_status;
+        system_global_context_pointer = system_global_context_pointer - system_thread_operation_result;
         UNLOCK();
-        if (0 < system_thread_result_status) {
-          unaff_EBP = unaff_EBP + system_thread_result_status;
-          system_string_length_counter = (long long)unaff_EDI * STRING_BUFFER_SIZE + system_global_context_pointer;
-          system_buffer_allocation_result = system_string_length_counter + SYSTEM_OFFSET_STRING_BUFFER_SIZE;
+        if (0 < system_thread_operation_result) {
+          unaff_EBP = unaff_EBP + system_thread_operation_result;
+          system_string_length_tracker = (long long)unaff_EDI * STRING_BUFFER_SIZE + system_global_context_pointer;
+          system_buffer_allocation_result = system_string_length_tracker + SYSTEM_OFFSET_STRING_BUFFER_SIZE;
           if (system_buffer_allocation_result < system_global_context_pointer) {
-            memmove(system_string_length_counter,system_buffer_allocation_result,system_global_context_pointer - system_buffer_allocation_result);
+            memmove(system_string_length_tracker,system_buffer_allocation_result,system_global_context_pointer - system_buffer_allocation_result);
           }
           system_global_context_pointer = system_global_context_pointer - STRING_BUFFER_SIZE;
         }
       }
     }
-    system_string_length_counter = system_string_length_counter + -STRING_BUFFER_SIZE;
+    system_string_length_tracker = system_string_length_tracker + -STRING_BUFFER_SIZE;
     unaff_EDI = unaff_EDI + -1;
   } while (-1 < unaff_EDI);
   g_data_buffer_status = system_buffer_allocation_result;
@@ -6430,26 +6430,26 @@ code_section_1ade:
     break;
   case 0x21:
     if (mutex_type == SYSTEM_ZERO_VALUE) {
-      system_thread_result_status = *(ushort *)((long long)system_handle_param + SYSTEM_POINTER_OFFSET_5E) - 1;
-      system_thread_result_status = *(ushort *)((long long)system_handle_param + SYSTEM_CHAR_BACKSLASH) - 1;
+      system_thread_operation_result = *(ushort *)((long long)system_handle_param + SYSTEM_POINTER_OFFSET_5E) - 1;
+      system_thread_operation_result = *(ushort *)((long long)system_handle_param + SYSTEM_CHAR_BACKSLASH) - 1;
       system_stack_unsigned_int_parameter_18_first_float_ = (float)mutex_attr;
-      if ((int)((float)system_thread_result_status * (float)system_stack_unsigned_int_parameter_18) <= system_thread_result_status) {
-        system_thread_result_status = (int)((float)system_thread_result_status * (float)system_stack_unsigned_int_parameter_18);
+      if ((int)((float)system_thread_operation_result * (float)system_stack_unsigned_int_parameter_18) <= system_thread_operation_result) {
+        system_thread_operation_result = (int)((float)system_thread_operation_result * (float)system_stack_unsigned_int_parameter_18);
       }
       system_stack_unsigned_int_parameter_18_low_half_ = (float)((ulong long)mutex_attr >> path_buffer_size);
-      if ((int)((float)system_thread_result_status * system_stack_unsigned_int_parameter_18_low_half_) <= system_thread_result_status) {
-        system_thread_result_status = (int)((float)system_thread_result_status * system_stack_unsigned_int_parameter_18_low_half_);
+      if ((int)((float)system_thread_operation_result * system_stack_unsigned_int_parameter_18_low_half_) <= system_thread_operation_result) {
+        system_thread_operation_result = (int)((float)system_thread_operation_result * system_stack_unsigned_int_parameter_18_low_half_);
       }
-      system_thread_result_status = SYSTEM_ZERO_VALUE;
-      if (-1 < system_thread_result_status) {
-        system_thread_result_status = system_thread_result_status;
+      system_thread_operation_result = SYSTEM_ZERO_VALUE;
+      if (-1 < system_thread_operation_result) {
+        system_thread_operation_result = system_thread_operation_result;
       }
-      system_thread_result_status = SYSTEM_ZERO_VALUE;
-      if (-1 < system_thread_result_status) {
-        system_thread_result_status = system_thread_result_status;
+      system_thread_operation_result = SYSTEM_ZERO_VALUE;
+      if (-1 < system_thread_operation_result) {
+        system_thread_operation_result = system_thread_operation_result;
       }
       system_string_input_context = (unsigned long long *)
-               ((long long)(int)(system_thread_result_status * (uint)*(ushort *)((long long)system_handle_param + SYSTEM_CHAR_BACKSLASH) + system_thread_result_status) * STRING_BUFFER_SIZE
+               ((long long)(int)(system_thread_operation_result * (uint)*(ushort *)((long long)system_handle_param + SYSTEM_CHAR_BACKSLASH) + system_thread_operation_result) * STRING_BUFFER_SIZE
                + *system_handle_param);
       system_thread_operation_flags = system_string_input_context[1];
       *(unsigned long long *)system_thread_operation_flags = *system_string_input_context;
@@ -6590,24 +6590,24 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_039;
     system_thread_stack_pointer = (void *)SYSTEM_NULL_POINTER;
     system_maximum_stack_size = SYSTEM_ZERO_VALUE;
     system_thread_stack_pointer = &system_global_thread_string_4;
-    system_string_length_counter = *system_thread_operation_flags;
+    system_string_length_tracker = *system_thread_operation_flags;
     system_buffer_allocation_result = *(unsigned short *)((long long)system_thread_operation_flags + SYSTEM_POINTER_OFFSET_5E);
     system_thread_operation_flags = *(unsigned short *)((long long)system_thread_operation_flags + SYSTEM_CHAR_BACKSLASH);
     system_string_input_context = &default_resource_config_string;
     if (*(void **)(system_handle_param + 8) != (void *)SYSTEM_NULL_POINTER) {
       system_string_input_context = *(void **)(system_handle_param + 8);
     }
-    system_thread_result_status = fopen_s(&system_thread_stack_pointer,system_string_input_context,&fileOpenModeString);
+    system_thread_operation_result = fopen_s(&system_thread_stack_pointer,system_string_input_context,&fileOpenModeString);
     system_thread_stack_pointer = system_thread_stack_pointer;
-    if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
+    if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
       system_thread_stack_pointer = (void *)SYSTEM_NULL_POINTER;
     }
     system_thread_stack_pointer = &fileHandleData;
 goto LABEL_SYSTEM_SECTION_PROCESSING_040;
     system_string_input_context = system_thread_stack_pointer;
-    if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
-      system_thread_stack_base_address = system_string_length_counter;
-      system_hardware_003(&system_thread_stack_pointer,system_thread_operation_flags,system_buffer_allocation_result,system_thread_result_status);
+    if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
+      system_thread_stack_base_address = system_string_length_tracker;
+      system_hardware_003(&system_thread_stack_pointer,system_thread_operation_flags,system_buffer_allocation_result,system_thread_operation_result);
       system_string_input_context = system_thread_stack_pointer;
     }
   }
@@ -6664,11 +6664,11 @@ LABEL_SYSTEM_SECTION_PROCESSING_036:
 }
 bool system_handle_param_system_event(unsigned long long *system_handle_param)
 {
-  int system_thread_result_status;
+  int system_thread_operation_result;
   unsigned long long system_thread_operation_flags;
   unsigned long long system_buffer_allocation_result;
-  system_thread_result_status = *(int *)((long long)system_handle_param + SYSTEM_OFFSET_INITIALIZATION_FLAG);
-  if (system_thread_result_status == SYSTEM_STATUS_CODE_OPERATION_SUCCESS) {
+  system_thread_operation_result = *(int *)((long long)system_handle_param + SYSTEM_OFFSET_INITIALIZATION_FLAG);
+  if (system_thread_operation_result == SYSTEM_STATUS_CODE_OPERATION_SUCCESS) {
     if (system_handle_param[1] == SYSTEM_ZERO_VALUE) {
       system_thread_operation_flags = SYSTEM_ZERO_VALUE;
       system_buffer_allocation_result = SYSTEM_ZERO_VALUE;
@@ -6679,8 +6679,8 @@ bool system_handle_param_system_event(unsigned long long *system_handle_param)
     }
     memcpy(system_thread_operation_flags,*system_handle_param,system_buffer_allocation_result);
   }
-  if (system_thread_result_status != SYSTEM_STATUS_CODE_OPERATION_PENDING) {
-    if (system_thread_result_status == SYSTEM_STATUS_CODE_OPERATION_FAILED) {
+  if (system_thread_operation_result != SYSTEM_STATUS_CODE_OPERATION_PENDING) {
+    if (system_thread_operation_result == SYSTEM_STATUS_CODE_OPERATION_FAILED) {
       if (system_handle_param[1] == SYSTEM_ZERO_VALUE) {
         system_thread_operation_flags = SYSTEM_ZERO_VALUE;
         system_buffer_allocation_result = SYSTEM_ZERO_VALUE;
@@ -6691,8 +6691,8 @@ bool system_handle_param_system_event(unsigned long long *system_handle_param)
       }
       memcpy(system_thread_operation_flags,*system_handle_param,system_buffer_allocation_result);
     }
-    system_thread_result_status = thread_system_handle_paramr_function(*(unsigned int *)((long long)system_handle_param + SYSTEM_OFFSET_INITIALIZATION_FLAG));
-    return system_thread_result_status != SYSTEM_ZERO_VALUE;
+    system_thread_operation_result = thread_system_handle_paramr_function(*(unsigned int *)((long long)system_handle_param + SYSTEM_OFFSET_INITIALIZATION_FLAG));
+    return system_thread_operation_result != SYSTEM_ZERO_VALUE;
   }
   if (system_handle_param[1] == SYSTEM_ZERO_VALUE) {
     system_thread_operation_flags = SYSTEM_ZERO_VALUE;
@@ -6707,7 +6707,7 @@ bool system_handle_param_system_event(unsigned long long *system_handle_param)
 unsigned long long process_system_request(unsigned long long *system_handle_param)
 {
   unsigned char temporary_buffer_primary [16];
-  int system_thread_result_status;
+  int system_thread_operation_result;
   uint system_buffer_allocation_result;
   float *float_vector_data_ptr;
   ulong long system_buffer_allocation_result;
@@ -6740,12 +6740,12 @@ unsigned long long process_system_request(unsigned long long *system_handle_para
         system_float_variable = system_float_variable * SYSTEM_FLOAT_ARITHMETIC_HALF * (SYSTEM_FLOAT_SQUARE_ROOT_APPROXIMATION - system_float_variable * system_float_variable * system_float_variable);
         *system_byte_string_input_pointer = (byte)(int)((system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_NORMALIZATION_FACTOR);
         system_byte_string_input_pointer[1] = (byte)(int)((system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_NORMALIZATION_FACTOR);
-        system_thread_result_status = (int)((system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_NORMALIZATION_FACTOR);
-        system_byte_string_input_pointer[2] = (byte)system_thread_result_status;
+        system_thread_operation_result = (int)((system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_NORMALIZATION_FACTOR);
+        system_byte_string_input_pointer[2] = (byte)system_thread_operation_result;
         system_byte_string_input_pointer = system_byte_string_input_pointer + SYSTEM_OFFSET_HANDLE_PARAM;
         system_buffer_allocation_result = system_buffer_allocation_result - 1;
       } while (system_buffer_allocation_result != SYSTEM_ZERO_VALUE);
-      return CONCAT_BYTES_TO_64BIT((uint7)(uint3)((uint)system_thread_result_status >> 8),SYSTEM_PARAM_SINGLE_VALIDATE);
+      return CONCAT_BYTES_TO_64BIT((uint7)(uint3)((uint)system_thread_operation_result >> 8),SYSTEM_PARAM_SINGLE_VALIDATE);
     }
     break;
   default:
@@ -6766,12 +6766,12 @@ unsigned long long process_system_request(unsigned long long *system_handle_para
         system_float_variable = system_float_variable * SYSTEM_FLOAT_ARITHMETIC_HALF * (SYSTEM_FLOAT_SQUARE_ROOT_APPROXIMATION - system_float_variable * system_float_variable * system_float_variable);
         *system_string_input_context = (ushort)(int)((system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_NORMALIZATION_FACTOR_LARGE);
         system_string_input_context[1] = (ushort)(int)((system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_NORMALIZATION_FACTOR_LARGE);
-        system_thread_result_status = (int)((system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_NORMALIZATION_FACTOR_LARGE);
-        system_string_input_context[2] = (ushort)system_thread_result_status;
+        system_thread_operation_result = (int)((system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_NORMALIZATION_FACTOR_LARGE);
+        system_string_input_context[2] = (ushort)system_thread_operation_result;
         system_string_input_context = system_string_input_context + SYSTEM_OFFSET_HANDLE_PARAM;
         system_buffer_allocation_result = system_buffer_allocation_result - 1;
       } while (system_buffer_allocation_result != SYSTEM_ZERO_VALUE);
-      return CONCAT_BYTES_TO_64BIT((uint7)(uint3)((uint)system_thread_result_status >> 8),SYSTEM_PARAM_SINGLE_VALIDATE);
+      return CONCAT_BYTES_TO_64BIT((uint7)(uint3)((uint)system_thread_operation_result >> 8),SYSTEM_PARAM_SINGLE_VALIDATE);
     }
     break;
   case SYSTEM_CONSTANT_PAIR:
@@ -6839,12 +6839,12 @@ unsigned long long process_system_request(unsigned long long *system_handle_para
         system_float_variable = system_float_variable * SYSTEM_FLOAT_ARITHMETIC_HALF * (SYSTEM_FLOAT_SQUARE_ROOT_APPROXIMATION - system_float_variable * system_float_variable * system_float_variable);
         *system_string_input_context = (ushort)(int)((system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_NORMALIZATION_FACTOR);
         system_string_input_context[1] = (ushort)(int)((system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_NORMALIZATION_FACTOR);
-        system_thread_result_status = (int)((system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_NORMALIZATION_FACTOR);
-        system_string_input_context[2] = (ushort)system_thread_result_status;
+        system_thread_operation_result = (int)((system_float_variable * system_float_variable + SYSTEM_FLOAT_VALUE_ONE) * SYSTEM_FLOAT_NORMALIZATION_FACTOR);
+        system_string_input_context[2] = (ushort)system_thread_operation_result;
         system_string_input_context = system_string_input_context + 3;
         system_buffer_allocation_result = system_buffer_allocation_result - 1;
       } while (system_buffer_allocation_result != SYSTEM_ZERO_VALUE);
-      return CONCAT_BYTES_TO_64BIT((uint7)(uint3)((uint)system_thread_result_status >> 8),SYSTEM_PARAM_SINGLE_VALIDATE);
+      return CONCAT_BYTES_TO_64BIT((uint7)(uint3)((uint)system_thread_operation_result >> 8),SYSTEM_PARAM_SINGLE_VALIDATE);
     }
     break;
   case 0x27:
@@ -6894,25 +6894,25 @@ unsigned long long system_handle_param_system_callback(unsigned long long *syste
   uint system_buffer_allocation_result;
   float *color_float_ptr;
   float *color_float_ptr;
-  int system_thread_result_status;
-  int system_thread_result_status;
-  int system_thread_result_status;
+  int system_thread_operation_result;
+  int system_thread_operation_result;
+  int system_thread_operation_result;
   ulong long system_buffer_allocation_result;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   double color_luminance_accumulator;
   if (*(int *)((long long)system_handle_param + SYSTEM_OFFSET_INITIALIZATION_FLAG) == path_buffer_size) {
     color_float_ptr = (float *)*system_handle_param;
-    system_thread_result_status = SYSTEM_ZERO_VALUE;
+    system_thread_operation_result = SYSTEM_ZERO_VALUE;
     color_luminance_accumulator = SYSTEM_FLOAT_VALUE_ZERO;
-    system_string_length_counter = SYSTEM_ZERO_VALUE;
-    system_thread_result_status = SYSTEM_ZERO_VALUE;
-    system_thread_result_status = (int)((ulong long)system_handle_param[1] / SYSTEM_OFFSET_PATH_ENTRY_SIZE);
+    system_string_length_tracker = SYSTEM_ZERO_VALUE;
+    system_thread_operation_result = SYSTEM_ZERO_VALUE;
+    system_thread_operation_result = (int)((ulong long)system_handle_param[1] / SYSTEM_OFFSET_PATH_ENTRY_SIZE);
     color_float_ptr = color_float_ptr;
-    if (3 < system_thread_result_status) {
-      system_buffer_allocation_result = (system_thread_result_status - 4U >> 2) + 1;
+    if (3 < system_thread_operation_result) {
+      system_buffer_allocation_result = (system_thread_operation_result - 4U >> 2) + 1;
       system_buffer_allocation_result = (ulong long)system_buffer_allocation_result;
-      system_string_length_counter = (ulong long)system_buffer_allocation_result * 4;
-      system_thread_result_status = system_buffer_allocation_result * 4;
+      system_string_length_tracker = (ulong long)system_buffer_allocation_result * 4;
+      system_thread_operation_result = system_buffer_allocation_result * 4;
       do {
         system_float_pointer_variable = system_float_pointer_variable + 3;
         system_float_variable = *system_float_pointer_variable;
@@ -6937,10 +6937,10 @@ unsigned long long system_handle_param_system_callback(unsigned long long *syste
         system_buffer_allocation_result = system_buffer_allocation_result - 1;
       } while (system_buffer_allocation_result != SYSTEM_ZERO_VALUE);
     }
-    if (system_thread_result_status < system_thread_result_status) {
+    if (system_thread_operation_result < system_thread_operation_result) {
       color_float_ptr = color_float_ptr + 2;
-      system_buffer_allocation_result = (ulong long)(uint)(system_thread_result_status - system_thread_result_status);
-      system_string_length_counter = system_string_length_counter + system_buffer_allocation_result;
+      system_buffer_allocation_result = (ulong long)(uint)(system_thread_operation_result - system_thread_operation_result);
+      system_string_length_tracker = system_string_length_tracker + system_buffer_allocation_result;
       do {
         color_float_ptr = color_float_ptr + -1;
         color_float_ptr = color_float_ptr + -2;
@@ -6951,11 +6951,11 @@ unsigned long long system_handle_param_system_callback(unsigned long long *syste
         system_buffer_allocation_result = system_buffer_allocation_result - 1;
       } while (system_buffer_allocation_result != SYSTEM_ZERO_VALUE);
     }
-    color_luminance_accumulator = SYSTEM_FLOAT_VALUE_ONE / (color_luminance_accumulator / (double)system_string_length_counter);
-    if (3 < system_thread_result_status) {
-      system_buffer_allocation_result = (system_thread_result_status - 4U >> 2) + 1;
+    color_luminance_accumulator = SYSTEM_FLOAT_VALUE_ONE / (color_luminance_accumulator / (double)system_string_length_tracker);
+    if (3 < system_thread_operation_result) {
+      system_buffer_allocation_result = (system_thread_operation_result - 4U >> 2) + 1;
       system_buffer_allocation_result = (ulong long)system_buffer_allocation_result;
-      system_thread_result_status = system_buffer_allocation_result * 4;
+      system_thread_operation_result = system_buffer_allocation_result * 4;
       do {
         *system_float_pointer_variable = (float)((double)*system_float_pointer_variable * color_luminance_accumulator);
         system_float_pointer_variable[1] = (float)((double)system_float_pointer_variable[1] * color_luminance_accumulator);
@@ -6973,9 +6973,9 @@ unsigned long long system_handle_param_system_callback(unsigned long long *syste
         system_buffer_allocation_result = system_buffer_allocation_result - 1;
       } while (system_buffer_allocation_result != SYSTEM_ZERO_VALUE);
     }
-    if (system_thread_result_status < system_thread_result_status) {
+    if (system_thread_operation_result < system_thread_operation_result) {
       system_float_pointer_variable = system_float_pointer_variable + 2;
-      system_buffer_allocation_result = (ulong long)(uint)(system_thread_result_status - system_thread_result_status);
+      system_buffer_allocation_result = (ulong long)(uint)(system_thread_operation_result - system_thread_operation_result);
       do {
         system_float_pointer_variable[-2] = (float)((double)system_float_pointer_variable[-2] * color_luminance_accumulator);
         system_float_pointer_variable[-1] = (float)((double)system_float_pointer_variable[-1] * color_luminance_accumulator);
@@ -6989,18 +6989,18 @@ unsigned long long system_handle_param_system_callback(unsigned long long *syste
     if (*(int *)((long long)system_handle_param + SYSTEM_OFFSET_INITIALIZATION_FLAG) != SYSTEM_INITIALIZATION_FLAG_STANDARD_MODE) {
       return 0;
     }
-    system_thread_result_status = SYSTEM_ZERO_VALUE;
+    system_thread_operation_result = SYSTEM_ZERO_VALUE;
     system_float_pointer_variable = (float *)*system_handle_param;
     color_luminance_accumulator = SYSTEM_FLOAT_VALUE_ZERO;
-    system_string_length_counter = SYSTEM_ZERO_VALUE;
-    system_thread_result_status = SYSTEM_ZERO_VALUE;
-    system_thread_result_status = (int)((ulong long)system_handle_param[1] >> 4);
+    system_string_length_tracker = SYSTEM_ZERO_VALUE;
+    system_thread_operation_result = SYSTEM_ZERO_VALUE;
+    system_thread_operation_result = (int)((ulong long)system_handle_param[1] >> 4);
     system_float_pointer_variable = system_float_pointer_variable;
-    if (3 < system_thread_result_status) {
-      system_buffer_allocation_result = (system_thread_result_status - 4U >> 2) + 1;
+    if (3 < system_thread_operation_result) {
+      system_buffer_allocation_result = (system_thread_operation_result - 4U >> 2) + 1;
       system_buffer_allocation_result = (ulong long)system_buffer_allocation_result;
-      system_string_length_counter = (ulong long)system_buffer_allocation_result * 4;
-      system_thread_result_status = system_buffer_allocation_result * 4;
+      system_string_length_tracker = (ulong long)system_buffer_allocation_result * 4;
+      system_thread_operation_result = system_buffer_allocation_result * 4;
       do {
         system_float_pointer_variable = system_float_pointer_variable + SYSTEM_OFFSET_HANDLE_PARAM;
         system_float_variable = *system_float_pointer_variable;
@@ -7025,10 +7025,10 @@ unsigned long long system_handle_param_system_callback(unsigned long long *syste
         system_buffer_allocation_result = system_buffer_allocation_result - 1;
       } while (system_buffer_allocation_result != SYSTEM_ZERO_VALUE);
     }
-    if (system_thread_result_status < system_thread_result_status) {
+    if (system_thread_operation_result < system_thread_operation_result) {
       system_float_pointer_variable = system_float_pointer_variable + 2;
-      system_buffer_allocation_result = (ulong long)(uint)(system_thread_result_status - system_thread_result_status);
-      system_string_length_counter = system_string_length_counter + system_buffer_allocation_result;
+      system_buffer_allocation_result = (ulong long)(uint)(system_thread_operation_result - system_thread_operation_result);
+      system_string_length_tracker = system_string_length_tracker + system_buffer_allocation_result;
       do {
         system_float_pointer_variable = system_float_pointer_variable + -1;
         system_float_pointer_variable = system_float_pointer_variable + -2;
@@ -7039,11 +7039,11 @@ unsigned long long system_handle_param_system_callback(unsigned long long *syste
         system_buffer_allocation_result = system_buffer_allocation_result - 1;
       } while (system_buffer_allocation_result != SYSTEM_ZERO_VALUE);
     }
-    color_luminance_accumulator = SYSTEM_FLOAT_VALUE_ONE / (color_luminance_accumulator / (double)system_string_length_counter);
-    if (3 < system_thread_result_status) {
-      system_buffer_allocation_result = (system_thread_result_status - 4U >> 2) + 1;
+    color_luminance_accumulator = SYSTEM_FLOAT_VALUE_ONE / (color_luminance_accumulator / (double)system_string_length_tracker);
+    if (3 < system_thread_operation_result) {
+      system_buffer_allocation_result = (system_thread_operation_result - 4U >> 2) + 1;
       system_buffer_allocation_result = (ulong long)system_buffer_allocation_result;
-      system_thread_result_status = system_buffer_allocation_result * 4;
+      system_thread_operation_result = system_buffer_allocation_result * 4;
       do {
         *system_float_pointer_variable = (float)((double)*system_float_pointer_variable * color_luminance_accumulator);
         system_float_pointer_variable[1] = (float)((double)system_float_pointer_variable[1] * color_luminance_accumulator);
@@ -7061,9 +7061,9 @@ unsigned long long system_handle_param_system_callback(unsigned long long *syste
         system_buffer_allocation_result = system_buffer_allocation_result - 1;
       } while (system_buffer_allocation_result != SYSTEM_ZERO_VALUE);
     }
-    if (system_thread_result_status < system_thread_result_status) {
+    if (system_thread_operation_result < system_thread_operation_result) {
       system_float_pointer_variable = system_float_pointer_variable + 2;
-      system_buffer_allocation_result = (ulong long)(uint)(system_thread_result_status - system_thread_result_status);
+      system_buffer_allocation_result = (ulong long)(uint)(system_thread_operation_result - system_thread_operation_result);
       do {
         system_float_pointer_variable[-2] = (float)((double)system_float_pointer_variable[-2] * color_luminance_accumulator);
         system_float_pointer_variable[-1] = (float)((double)system_float_pointer_variable[-1] * color_luminance_accumulator);
@@ -7139,9 +7139,9 @@ LABEL_SYSTEM_SECTION_PROCESSING_037:
   return system_buffer_allocation_result & INVALID_HANDLE_VALUEffffff00;
 }
 system_entry_point:
-    system_thread_result_status = _Mtx_unlock(system_handle_param + SYSTEM_OFFSET_MUTEX_PTR);
-    if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-      __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+    system_thread_operation_result = _Mtx_unlock(system_handle_param + SYSTEM_OFFSET_MUTEX_PTR);
+    if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+      __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
     }
     break;
   default:
@@ -7158,11 +7158,11 @@ unsigned long long allocate_system_memory(long long system_handle_param,long lon
 {
   long long *system_initialization_result_ptr;
   byte byte_flag_value;
-  int system_thread_result_status;
+  int system_thread_operation_result;
   unsigned long long *system_string_input_context;
   unsigned long long system_buffer_allocation_result;
   long long *system_memory_buffer_ptr;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   long long *pstack_long_var;
   unsigned int SYSTEM_TEMP_STACK_ARRAY [2];
   long long *system_memory_stack_primary;
@@ -7186,18 +7186,18 @@ unsigned long long allocate_system_memory(long long system_handle_param,long lon
     SYSTEM_TEMP_STACK_ARRAY[SYSTEM_ARRAY_INDEX_FIRST] = *mutex_attr;
     system_initialization_result_ptr = (long long *)(system_handle_param + SYSTEM_OFFSET_MUTEX_PTR);
     system_memory_stack_primary = system_initialization_result_ptr;
-    system_thread_result_status = _Mtx_lock(system_initialization_result_ptr);
-    if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-      __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+    system_thread_operation_result = _Mtx_lock(system_initialization_result_ptr);
+    if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+      __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
     }
     system_buffer_allocation_result = system_execution_function(system_global_context_pointer,SYSTEM_FUNCTION_PARAM_SIZE_LARGE_BUFFER,8,3);
     system_memory_buffer_ptr = (long long *)system_memory_001(system_buffer_allocation_result);
     system_parallel_stack_buffer_pointer = (long long **)merge_32bit_values(system_parallel_stack_buffer_pointer_low_half_,SYSTEM_TEMP_STACK_ARRAY[SYSTEM_ARRAY_INDEX_FIRST]);
     system_memory_stack_backup = system_memory_buffer_ptr;
     system_memory_manager_006(system_handle_param + SYSTEM_OFFSET_MEMORY_MANAGER,system_stack_buffer_memory_manager,&system_parallel_stack_buffer_pointer);
-    system_thread_result_status = _Mtx_unlock(system_initialization_result_ptr);
-    if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-      __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+    system_thread_operation_result = _Mtx_unlock(system_initialization_result_ptr);
+    if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+      __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
     }
     *system_thread_operation_flags = (long long)system_memory_buffer_ptr;
     system_buffer_allocation_result = *(unsigned long long *)(system_handle_param + SYSTEM_CONFIG_OFFSET_VALID_FLAG8);
@@ -7218,32 +7218,32 @@ unsigned long long allocate_system_memory(long long system_handle_param,long lon
   }
   if ((mutex_type >> 2 & 1) == SYSTEM_ZERO_VALUE) {
     if (((mutex_type >> 1 & 1) == 0) && ((byte_flag_value & 1) != 0)) {
-      system_string_length_counter = system_memory_manager_007(system_handle_param,*mutex_attr);
-      *system_thread_operation_flags = system_string_length_counter;
+      system_string_length_tracker = system_memory_manager_007(system_handle_param,*mutex_attr);
+      *system_thread_operation_flags = system_string_length_tracker;
       system_buffer_allocation_result = SYSTEM_ONE_VALUE;
     }
   }
   else {
     SYSTEM_TEMP_STACK_ARRAY[SYSTEM_ARRAY_INDEX_FIRST] = *mutex_attr;
-    system_string_length_counter = system_memory_manager_007(system_handle_param);
-    if (system_string_length_counter == SYSTEM_ZERO_VALUE) {
+    system_string_length_tracker = system_memory_manager_007(system_handle_param);
+    if (system_string_length_tracker == SYSTEM_ZERO_VALUE) {
       *system_thread_operation_flags = SYSTEM_ZERO_VALUE;
       system_buffer_allocation_result = SYSTEM_ONE_VALUE;
     }
     else {
       system_initialization_result_ptr = (long long *)(system_handle_param + SYSTEM_OFFSET_MUTEX_PTR);
       pstack_long_var = system_initialization_result_ptr;
-      system_thread_result_status = _Mtx_lock(system_initialization_result_ptr);
-      if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-        __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+      system_thread_operation_result = _Mtx_lock(system_initialization_result_ptr);
+      if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+        __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
       }
       system_memory_manager_008(system_handle_param + SYSTEM_OFFSET_MEMORY_MANAGER,SYSTEM_TEMP_STACK_ARRAY);
-      system_thread_result_status = _Mtx_unlock(system_initialization_result_ptr);
-      if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-        __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+      system_thread_operation_result = _Mtx_unlock(system_initialization_result_ptr);
+      if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+        __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
       }
-      *system_thread_operation_flags = system_string_length_counter;
-      *(unsigned char *)(system_string_length_counter + SYSTEM_OFFSET_INITIALIZATION_FLAG) = SYSTEM_ONE_VALUE;
+      *system_thread_operation_flags = system_string_length_tracker;
+      *(unsigned char *)(system_string_length_tracker + SYSTEM_OFFSET_INITIALIZATION_FLAG) = SYSTEM_ONE_VALUE;
       system_buffer_allocation_result = SYSTEM_ONE_VALUE;
     }
   }
@@ -7254,9 +7254,9 @@ unsigned long long allocate_system_memory(long long system_handle_param,long lon
     system_crypto_initializer(system_execution_function);
     system_crypto_module_initializer(&auth_data_buffer);
   }
-  system_thread_result_status = _Mtx_lock(system_handle_param + SYSTEM_CHAR_LOWERCASE_N8);
-  if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-    __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+  system_thread_operation_result = _Mtx_lock(system_handle_param + SYSTEM_CHAR_LOWERCASE_N8);
+  if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+    __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
   }
   if ((ulong long)mutex_attr <= *(ulong long *)(system_handle_param + SYSTEM_OFFSET_CONNECTION_LIMIT)) {
     for (system_string_input_context = *(uint **)(*(long long *)(system_handle_param + SYSTEM_CHAR_LOWERCASE_L0) +
@@ -7266,34 +7266,34 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_043;
     }
     system_string_input_context = *(uint **)(*(long long *)(system_handle_param + SYSTEM_CHAR_LOWERCASE_L0) + *(long long *)(system_handle_param + SYSTEM_CHAR_LOWERCASE_L8) * 8);
 LABEL_SYSTEM_SECTION_PROCESSING_039:
-    system_string_length_counter = *(long long *)(system_string_input_context + 2);
-    system_initialization_result = *(long long *)(system_string_length_counter + 8);
-    for (system_string_input_context = *(uint **)(system_initialization_result + ((ulong long)mutex_attr % (ulong long)*(uint *)(system_string_length_counter + SYSTEM_OFFSET_STRING_BUFFER_SIZE)) * 8);
+    system_string_length_tracker = *(long long *)(system_string_input_context + 2);
+    system_initialization_result = *(long long *)(system_string_length_tracker + 8);
+    for (system_string_input_context = *(uint **)(system_initialization_result + ((ulong long)mutex_attr % (ulong long)*(uint *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_BUFFER_SIZE)) * 8);
         system_string_input_context != (uint *)0x0; system_string_input_context = *(uint **)(system_string_input_context + SYSTEM_OFFSET_HANDLE_PARAM)) {
       if (mutex_attr == *system_string_input_context) {
-        system_string_length_counter = *(long long *)(system_string_length_counter + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
+        system_string_length_tracker = *(long long *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
 goto LABEL_SYSTEM_SECTION_PROCESSING_044;
       }
     }
-    system_string_length_counter = *(long long *)(system_string_length_counter + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
-    system_string_input_context = *(uint **)(system_initialization_result + system_string_length_counter * 8);
+    system_string_length_tracker = *(long long *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
+    system_string_input_context = *(uint **)(system_initialization_result + system_string_length_tracker * 8);
 LABEL_SYSTEM_SECTION_PROCESSING_040:
-    if ((system_string_input_context != *(uint **)(system_initialization_result + system_string_length_counter * 8)) && (system_string_length_counter = *(long long *)(system_string_input_context + 2), system_string_length_counter != 0)
+    if ((system_string_input_context != *(uint **)(system_initialization_result + system_string_length_tracker * 8)) && (system_string_length_tracker = *(long long *)(system_string_input_context + 2), system_string_length_tracker != 0)
 goto LABEL_SYSTEM_SECTION_PROCESSING_045;
   }
   system_memory_002(PRIMARY_MEMORY_POOL_ADDR);
-  system_string_length_counter = PRIMARY_MEMORY_POOL_ADDR;
+  system_string_length_tracker = PRIMARY_MEMORY_POOL_ADDR;
 LABEL_SYSTEM_SECTION_PROCESSING_041:
-  system_thread_result_status = _Mtx_unlock(system_handle_param + SYSTEM_MUTEX_OFFSET_6E8);
-  if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-    __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+  system_thread_operation_result = _Mtx_unlock(system_handle_param + SYSTEM_MUTEX_OFFSET_6E8);
+  if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+    __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
   }
-  return system_string_length_counter;
+  return system_string_length_tracker;
 }
 long long allocate_with_system_thread_operation_flags(long long system_handle_param,uint system_thread_operation_flags,uint mutex_attr)
 {
   long long system_initialization_result;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   uint *system_string_input_context;
   if ((*(int *)(*(long long *)((long long)ThreadLocalStoragePointer + (ulong long)__tls_index * 8) +
                SYSTEM_THREAD_LOCAL_STORAGE_OFFSET) < system_global_context_pointer) && (system_crypto_004(&network_data_buffer), system_global_context_pointer == -1)) {
@@ -7309,19 +7309,19 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_046;
     }
     system_string_input_context = *(uint **)(*(long long *)(system_handle_param + SYSTEM_POINTER_OFFSET_9F8) + *(long long *)(system_handle_param + SYSTEM_OFFSET_AUDIO_STATUS0) * 8);
 LABEL_SYSTEM_SECTION_PROCESSING_042:
-    system_string_length_counter = *(long long *)(system_string_input_context + 2);
-    system_initialization_result = *(long long *)(system_string_length_counter + 8);
-    for (system_string_input_context = *(uint **)(system_initialization_result + ((ulong long)mutex_attr % (ulong long)*(uint *)(system_string_length_counter + SYSTEM_OFFSET_STRING_BUFFER_SIZE)) * 8);
+    system_string_length_tracker = *(long long *)(system_string_input_context + 2);
+    system_initialization_result = *(long long *)(system_string_length_tracker + 8);
+    for (system_string_input_context = *(uint **)(system_initialization_result + ((ulong long)mutex_attr % (ulong long)*(uint *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_BUFFER_SIZE)) * 8);
         system_string_input_context != (uint *)0x0; system_string_input_context = *(uint **)(system_string_input_context + SYSTEM_OFFSET_HANDLE_PARAM)) {
       if (mutex_attr == *system_string_input_context) {
-        system_string_length_counter = *(long long *)(system_string_length_counter + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
+        system_string_length_tracker = *(long long *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
 goto LABEL_SYSTEM_SECTION_PROCESSING_047;
       }
     }
-    system_string_length_counter = *(long long *)(system_string_length_counter + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
-    system_string_input_context = *(uint **)(system_initialization_result + system_string_length_counter * 8);
+    system_string_length_tracker = *(long long *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
+    system_string_input_context = *(uint **)(system_initialization_result + system_string_length_tracker * 8);
 LABEL_SYSTEM_SECTION_PROCESSING_043:
-    if ((system_string_input_context != *(uint **)(system_initialization_result + system_string_length_counter * 8)) && (*(long long *)(system_string_input_context + 2) != 0)) {
+    if ((system_string_input_context != *(uint **)(system_initialization_result + system_string_length_tracker * 8)) && (*(long long *)(system_string_input_context + 2) != 0)) {
       return *(long long *)(system_string_input_context + 2);
     }
   }
@@ -7399,36 +7399,36 @@ system_allocator_primary(unsigned long long system_handle_param,long long *syste
 {
   long long system_initialization_result;
   ulong long system_thread_operation_flags;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   unsigned long long system_buffer_allocation_result;
-  long long system_string_length_counter;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
+  long long system_string_length_tracker;
   uint *system_string_input_context;
   system_buffer_allocation_result = SYSTEM_ZERO_VALUE;
   system_thread_operation_flags = system_thread_operation_flags[1] - *system_thread_operation_flags >> 2;
   if ((int)system_thread_operation_flags != 0) {
-    system_string_length_counter = SYSTEM_ZERO_VALUE;
+    system_string_length_tracker = SYSTEM_ZERO_VALUE;
     system_thread_operation_flags = system_thread_operation_flags & UINT32_MAX;
     do {
       system_string_input_context = (uint *)*mutex_attr;
       system_initialization_result = *system_thread_operation_flags;
-      system_string_length_counter = (long long)mutex_attr[SYSTEM_ARRAY_INDEX_1] - (long long)system_string_input_context >> 2;
-      if (0 < system_string_length_counter) {
+      system_string_length_tracker = (long long)mutex_attr[SYSTEM_ARRAY_INDEX_1] - (long long)system_string_input_context >> 2;
+      if (0 < system_string_length_tracker) {
         do {
-          system_string_length_counter = system_string_length_counter >> 1;
-          if (system_string_input_context[system_string_length_counter] < *(uint *)(system_initialization_result + system_string_length_counter)) {
-            system_string_input_context = system_string_input_context + system_string_length_counter + 1;
-            system_string_length_counter = system_string_length_counter + (-1 - system_string_length_counter);
+          system_string_length_tracker = system_string_length_tracker >> 1;
+          if (system_string_input_context[system_string_length_tracker] < *(uint *)(system_initialization_result + system_string_length_tracker)) {
+            system_string_input_context = system_string_input_context + system_string_length_tracker + 1;
+            system_string_length_tracker = system_string_length_tracker + (-1 - system_string_length_tracker);
           }
-          system_string_length_counter = system_string_length_counter;
-        } while (SYSTEM_ZERO_VALUE < system_string_length_counter);
+          system_string_length_tracker = system_string_length_tracker;
+        } while (SYSTEM_ZERO_VALUE < system_string_length_tracker);
       }
-      if ((system_string_input_context == (uint *)mutex_attr[SYSTEM_ARRAY_INDEX_1]) || (*(uint *)(system_initialization_result + system_string_length_counter) < *system_string_input_context)) {
-        system_buffer_allocation_result = allocate_with_system_thread_operation_flags(system_handle_param,*(unsigned int *)(system_initialization_result + system_string_length_counter),mutex_type);
+      if ((system_string_input_context == (uint *)mutex_attr[SYSTEM_ARRAY_INDEX_1]) || (*(uint *)(system_initialization_result + system_string_length_tracker) < *system_string_input_context)) {
+        system_buffer_allocation_result = allocate_with_system_thread_operation_flags(system_handle_param,*(unsigned int *)(system_initialization_result + system_string_length_tracker),mutex_type);
         system_allocator_002(system_handle_param,system_buffer_allocation_result,system_operation_parameter,mutex_type,system_control_parameter);
         system_buffer_allocation_result = SYSTEM_ONE_VALUE;
       }
-      system_string_length_counter = system_string_length_counter + SYSTEM_OFFSET_HANDLE_PARAM;
+      system_string_length_tracker = system_string_length_tracker + SYSTEM_OFFSET_HANDLE_PARAM;
       system_thread_operation_flags = system_thread_operation_flags - 1;
     } while (system_thread_operation_flags != 0);
   }
@@ -7438,34 +7438,34 @@ unsigned char check_memory_status(void)
 {
   uint reg_eax;
   long long system_initialization_result;
-  long long system_string_length_counter;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
+  long long system_string_length_tracker;
   unsigned char unaff_SIL;
   ulong long system_buffer_allocation_result;
   uint *system_string_input_context;
   unsigned long long *system_unaffected_register;
   long long *system_unaffected_register;
-  system_string_length_counter = SYSTEM_ZERO_VALUE;
+  system_string_length_tracker = SYSTEM_ZERO_VALUE;
   system_buffer_allocation_result = (ulong long)reg_eax;
   do {
     system_string_input_context = (uint *)*system_unaffected_register;
     system_initialization_result = (long long)system_unaffected_register[1] - (long long)system_string_input_context >> 2;
     if (0 < system_initialization_result) {
       do {
-        system_string_length_counter = system_initialization_result >> 1;
-        if (system_string_input_context[system_string_length_counter] < *(uint *)(*system_unaffected_register + system_string_length_counter)) {
-          system_string_input_context = system_string_input_context + system_string_length_counter + 1;
-          system_string_length_counter = system_initialization_result + (-1 - system_string_length_counter);
+        system_string_length_tracker = system_initialization_result >> 1;
+        if (system_string_input_context[system_string_length_tracker] < *(uint *)(*system_unaffected_register + system_string_length_tracker)) {
+          system_string_input_context = system_string_input_context + system_string_length_tracker + 1;
+          system_string_length_tracker = system_initialization_result + (-1 - system_string_length_tracker);
         }
-        system_initialization_result = system_string_length_counter;
-      } while (SYSTEM_ZERO_VALUE < system_string_length_counter);
+        system_initialization_result = system_string_length_tracker;
+      } while (SYSTEM_ZERO_VALUE < system_string_length_tracker);
     }
-    if ((system_string_input_context == (uint *)system_unaffected_register[1]) || (*(uint *)(*system_unaffected_register + system_string_length_counter) < *system_string_input_context)) {
+    if ((system_string_input_context == (uint *)system_unaffected_register[1]) || (*(uint *)(*system_unaffected_register + system_string_length_tracker) < *system_string_input_context)) {
       allocate_with_system_thread_operation_flags();
       system_allocator_002();
       unaff_SIL = SYSTEM_ONE_VALUE;
     }
-    system_string_length_counter = system_string_length_counter + SYSTEM_OFFSET_HANDLE_PARAM;
+    system_string_length_tracker = system_string_length_tracker + SYSTEM_OFFSET_HANDLE_PARAM;
     system_buffer_allocation_result = system_buffer_allocation_result - 1;
   } while (system_buffer_allocation_result != SYSTEM_ZERO_VALUE);
   return unaff_SIL;
@@ -7479,42 +7479,42 @@ unsigned long long
 system_allocator_secondary(unsigned long long system_handle_param,long long *system_thread_operation_flags,long long *mutex_attr,uint mutex_type,char system_operation_parameter)
 {
   long long system_initialization_result;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   uint system_buffer_allocation_result;
   ulong long system_buffer_allocation_result;
   ulong long system_buffer_allocation_result;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   uint system_buffer_allocation_result;
   unsigned long long system_buffer_allocation_result;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   long long system_initialization_result0;
   system_buffer_allocation_result = SYSTEM_ZERO_VALUE;
   system_initialization_result = mutex_attr[SYSTEM_ARRAY_INDEX_1];
-  system_string_length_counter = *mutex_attr;
+  system_string_length_tracker = *mutex_attr;
   system_buffer_allocation_result = system_thread_operation_flags[1] - *system_thread_operation_flags >> 3;
   if ((int)system_buffer_allocation_result != 0) {
-    system_string_length_counter = SYSTEM_ZERO_VALUE;
+    system_string_length_tracker = SYSTEM_ZERO_VALUE;
     system_buffer_allocation_result = system_buffer_allocation_result & UINT32_MAX;
     do {
       system_buffer_allocation_result = SYSTEM_ZERO_VALUE;
-      system_buffer_allocation_result = (uint)(system_initialization_result - system_string_length_counter >> 3);
+      system_buffer_allocation_result = (uint)(system_initialization_result - system_string_length_tracker >> 3);
       if (system_buffer_allocation_result != SYSTEM_ZERO_VALUE) {
         do {
-          if (*(int *)(*(long long *)(*system_thread_operation_flags + system_string_length_counter) + 8) ==
+          if (*(int *)(*(long long *)(*system_thread_operation_flags + system_string_length_tracker) + 8) ==
 goto LABEL_SYSTEM_SECTION_PROCESSING_048;
           system_buffer_allocation_result = (int)system_buffer_allocation_result + SYSTEM_INCREMENT_SINGLE_UNIT;
           system_buffer_allocation_result = (ulong long)system_buffer_allocation_result;
         } while (system_buffer_allocation_result < system_buffer_allocation_result);
       }
-      system_string_length_counter = *(long long *)(system_string_length_counter + *system_thread_operation_flags);
-      *(uint *)(system_string_length_counter + SYSTEM_OFFSET_STRING_BUFFER_SIZE) = *(uint *)(system_string_length_counter + SYSTEM_OFFSET_STRING_BUFFER_SIZE) | mutex_type;
-      if (((system_operation_parameter != '\0') && (*(int *)(system_string_length_counter + SYSTEM_POINTER_OFFSETc) == 2)) &&
-         (system_buffer_allocation_result = *(long long *)(system_string_length_counter + SYSTEM_OFFSET_FUNCTION_POINTER_TERTIARY) - *(long long *)(system_string_length_counter + SYSTEM_OFFSET_FUNCTION_POINTER_SECONDARY) >> 3, (int)system_buffer_allocation_result != 0))
+      system_string_length_tracker = *(long long *)(system_string_length_tracker + *system_thread_operation_flags);
+      *(uint *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_BUFFER_SIZE) = *(uint *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_BUFFER_SIZE) | mutex_type;
+      if (((system_operation_parameter != '\0') && (*(int *)(system_string_length_tracker + SYSTEM_POINTER_OFFSETc) == 2)) &&
+         (system_buffer_allocation_result = *(long long *)(system_string_length_tracker + SYSTEM_OFFSET_FUNCTION_POINTER_TERTIARY) - *(long long *)(system_string_length_tracker + SYSTEM_OFFSET_FUNCTION_POINTER_SECONDARY) >> 3, (int)system_buffer_allocation_result != 0))
       {
         system_initialization_result0 = SYSTEM_ZERO_VALUE;
         system_buffer_allocation_result = system_buffer_allocation_result & UINT32_MAX;
         do {
-          system_allocator_003(system_handle_param,*(unsigned long long *)(*(long long *)(system_string_length_counter + SYSTEM_OFFSET_FUNCTION_POINTER_SECONDARY) + system_initialization_result0),mutex_type,
+          system_allocator_003(system_handle_param,*(unsigned long long *)(*(long long *)(system_string_length_tracker + SYSTEM_OFFSET_FUNCTION_POINTER_SECONDARY) + system_initialization_result0),mutex_type,
                         system_operation_parameter);
           system_initialization_result0 = system_initialization_result0 + 8;
           system_buffer_allocation_result = system_buffer_allocation_result - 1;
@@ -7522,7 +7522,7 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_048;
       }
       system_buffer_allocation_result = SYSTEM_ONE_VALUE;
 LABEL_SYSTEM_SECTION_PROCESSING_044:
-      system_string_length_counter = system_string_length_counter + 8;
+      system_string_length_tracker = system_string_length_tracker + 8;
       system_buffer_allocation_result = system_buffer_allocation_result - 1;
     } while (system_buffer_allocation_result != SYSTEM_ZERO_VALUE);
   }
@@ -7534,7 +7534,7 @@ unsigned char allocate_with_mutex(unsigned long long system_handle_param,unsigne
   uint system_thread_operation_flags;
   ulong long system_input_register_rax;
   ulong long system_buffer_allocation_result;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   uint unaff_EDI;
   unsigned char cpu_register_r10b_value;
   long long *system_unaffected_register;
@@ -7542,19 +7542,19 @@ unsigned char allocate_with_mutex(unsigned long long system_handle_param,unsigne
   ulong long system_buffer_allocation_result;
   long long *system_input_stack_parameter;
   char system_input_stack_flag;
-  system_string_length_counter = SYSTEM_ZERO_VALUE;
+  system_string_length_tracker = SYSTEM_ZERO_VALUE;
   system_buffer_allocation_result = system_input_register_rax & UINT32_MAX;
   do {
     system_buffer_allocation_result = SYSTEM_ZERO_VALUE;
     if (unaff_EDI != 0) {
       do {
-        if (*(int *)(*(long long *)(*system_unaffected_register + system_string_length_counter) + 8) ==
+        if (*(int *)(*(long long *)(*system_unaffected_register + system_string_length_tracker) + 8) ==
 goto LABEL_SYSTEM_SECTION_PROCESSING_049;
         system_thread_operation_flags = (int)system_buffer_allocation_result + 1;
         system_buffer_allocation_result = (ulong long)system_thread_operation_flags;
       } while (system_thread_operation_flags < unaff_EDI);
     }
-    system_initialization_result = *(long long *)(system_string_length_counter + *system_unaffected_register);
+    system_initialization_result = *(long long *)(system_string_length_tracker + *system_unaffected_register);
     *(uint *)(system_initialization_result + SYSTEM_OFFSET_STRING_BUFFER_SIZE) = *(uint *)(system_initialization_result + SYSTEM_OFFSET_STRING_BUFFER_SIZE) | system_system_unaffected_register_d;
     if (((system_input_stack_flag != '\0') && (*(int *)(system_initialization_result + SYSTEM_POINTER_OFFSETc) == 2)) &&
        (system_buffer_allocation_result = *(long long *)(system_initialization_result + SYSTEM_OFFSET_FUNCTION_POINTER_TERTIARY) - *(long long *)(system_initialization_result + SYSTEM_OFFSET_FUNCTION_POINTER_SECONDARY) >> 3, (int)system_buffer_allocation_result != 0)) {
@@ -7566,7 +7566,7 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_049;
     }
     cpu_register_r10b_value = SYSTEM_ONE_VALUE;
 LABEL_SYSTEM_SECTION_PROCESSING_045:
-    system_string_length_counter = system_string_length_counter + 8;
+    system_string_length_tracker = system_string_length_tracker + 8;
     system_buffer_allocation_result = system_buffer_allocation_result - 1;
     mutex_attr = system_input_stack_parameter;
     if (system_buffer_allocation_result == SYSTEM_ZERO_VALUE) {
@@ -7584,37 +7584,37 @@ system_allocator_tertiary(unsigned long long system_handle_param,long long *syst
              uint system_operation_parameter)
 {
   ulong long system_buffer_allocation_result;
-  long long system_string_length_counter;
-  long long system_string_length_counter;
-  long long system_string_length_counter;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
+  long long system_string_length_tracker;
+  long long system_string_length_tracker;
+  long long system_string_length_tracker;
   unsigned long long system_buffer_allocation_result;
   uint *system_string_input_context;
   system_buffer_allocation_result = SYSTEM_ZERO_VALUE;
   system_buffer_allocation_result = system_thread_operation_flags[1] - *system_thread_operation_flags >> 2;
   if ((int)system_buffer_allocation_result != 0) {
-    system_string_length_counter = SYSTEM_ZERO_VALUE;
+    system_string_length_tracker = SYSTEM_ZERO_VALUE;
     system_buffer_allocation_result = system_buffer_allocation_result & UINT32_MAX;
     do {
       system_string_input_context = (uint *)*mutex_attr;
-      system_string_length_counter = *system_thread_operation_flags;
-      system_string_length_counter = (long long)mutex_attr[SYSTEM_ARRAY_INDEX_1] - (long long)system_string_input_context >> 2;
-      if (0 < system_string_length_counter) {
+      system_string_length_tracker = *system_thread_operation_flags;
+      system_string_length_tracker = (long long)mutex_attr[SYSTEM_ARRAY_INDEX_1] - (long long)system_string_input_context >> 2;
+      if (0 < system_string_length_tracker) {
         do {
-          system_string_length_counter = system_string_length_counter >> 1;
-          if (system_string_input_context[system_string_length_counter] < *(uint *)(system_string_length_counter + system_string_length_counter)) {
-            system_string_input_context = system_string_input_context + system_string_length_counter + 1;
-            system_string_length_counter = system_string_length_counter + (-1 - system_string_length_counter);
+          system_string_length_tracker = system_string_length_tracker >> 1;
+          if (system_string_input_context[system_string_length_tracker] < *(uint *)(system_string_length_tracker + system_string_length_tracker)) {
+            system_string_input_context = system_string_input_context + system_string_length_tracker + 1;
+            system_string_length_tracker = system_string_length_tracker + (-1 - system_string_length_tracker);
           }
-          system_string_length_counter = system_string_length_counter;
-        } while (SYSTEM_ZERO_VALUE < system_string_length_counter);
+          system_string_length_tracker = system_string_length_tracker;
+        } while (SYSTEM_ZERO_VALUE < system_string_length_tracker);
       }
-      if ((system_string_input_context == (uint *)mutex_attr[SYSTEM_ARRAY_INDEX_1]) || (*(uint *)(system_string_length_counter + system_string_length_counter) < *system_string_input_context)) {
-        system_string_length_counter = system_allocator_006(system_handle_param,*(unsigned int *)(system_string_length_counter + system_string_length_counter),mutex_type);
+      if ((system_string_input_context == (uint *)mutex_attr[SYSTEM_ARRAY_INDEX_1]) || (*(uint *)(system_string_length_tracker + system_string_length_tracker) < *system_string_input_context)) {
+        system_string_length_tracker = system_allocator_006(system_handle_param,*(unsigned int *)(system_string_length_tracker + system_string_length_tracker),mutex_type);
         system_buffer_allocation_result = SYSTEM_ONE_VALUE;
-        *(uint *)(system_string_length_counter + 8) = *(uint *)(system_string_length_counter + 8) | system_operation_parameter;
+        *(uint *)(system_string_length_tracker + 8) = *(uint *)(system_string_length_tracker + 8) | system_operation_parameter;
       }
-      system_string_length_counter = system_string_length_counter + SYSTEM_OFFSET_HANDLE_PARAM;
+      system_string_length_tracker = system_string_length_tracker + SYSTEM_OFFSET_HANDLE_PARAM;
       system_buffer_allocation_result = system_buffer_allocation_result - 1;
     } while (system_buffer_allocation_result != SYSTEM_ZERO_VALUE);
   }
@@ -7624,35 +7624,35 @@ unsigned char validate_buffer_allocation(void)
 {
   uint reg_eax;
   long long system_initialization_result;
-  long long system_string_length_counter;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
+  long long system_string_length_tracker;
   unsigned char unaff_SIL;
   ulong long system_buffer_allocation_result;
   uint *system_string_input_context;
   unsigned long long *system_unaffected_register;
   long long *system_unaffected_register;
   uint system_input_stack_flag;
-  system_string_length_counter = SYSTEM_ZERO_VALUE;
+  system_string_length_tracker = SYSTEM_ZERO_VALUE;
   system_buffer_allocation_result = (ulong long)reg_eax;
   do {
     system_string_input_context = (uint *)*system_unaffected_register;
     system_initialization_result = (long long)system_unaffected_register[1] - (long long)system_string_input_context >> 2;
     if (0 < system_initialization_result) {
       do {
-        system_string_length_counter = system_initialization_result >> 1;
-        if (system_string_input_context[system_string_length_counter] < *(uint *)(*system_unaffected_register + system_string_length_counter)) {
-          system_string_input_context = system_string_input_context + system_string_length_counter + 1;
-          system_string_length_counter = system_initialization_result + (-1 - system_string_length_counter);
+        system_string_length_tracker = system_initialization_result >> 1;
+        if (system_string_input_context[system_string_length_tracker] < *(uint *)(*system_unaffected_register + system_string_length_tracker)) {
+          system_string_input_context = system_string_input_context + system_string_length_tracker + 1;
+          system_string_length_tracker = system_initialization_result + (-1 - system_string_length_tracker);
         }
-        system_initialization_result = system_string_length_counter;
-      } while (SYSTEM_ZERO_VALUE < system_string_length_counter);
+        system_initialization_result = system_string_length_tracker;
+      } while (SYSTEM_ZERO_VALUE < system_string_length_tracker);
     }
-    if ((system_string_input_context == (uint *)system_unaffected_register[1]) || (*(uint *)(*system_unaffected_register + system_string_length_counter) < *system_string_input_context)) {
+    if ((system_string_input_context == (uint *)system_unaffected_register[1]) || (*(uint *)(*system_unaffected_register + system_string_length_tracker) < *system_string_input_context)) {
       system_initialization_result = system_allocator_006();
       unaff_SIL = SYSTEM_ONE_VALUE;
       *(uint *)(system_initialization_result + 8) = *(uint *)(system_initialization_result + 8) | system_input_stack_flag;
     }
-    system_string_length_counter = system_string_length_counter + SYSTEM_OFFSET_HANDLE_PARAM;
+    system_string_length_tracker = system_string_length_tracker + SYSTEM_OFFSET_HANDLE_PARAM;
     system_buffer_allocation_result = system_buffer_allocation_result - 1;
   } while (system_buffer_allocation_result != SYSTEM_ZERO_VALUE);
   return unaff_SIL;
@@ -7740,11 +7740,11 @@ system_finalizer_tertiary(unsigned long long system_handle_param,unsigned long l
 }
     string_buffer_constant = SYSTEM_ZERO_VALUE;
     if (system_handle_param != 0) {
-      system_string_length_counter = SYSTEM_STRING_LENGTH_INVALID;
+      system_string_length_tracker = SYSTEM_STRING_LENGTH_INVALID;
       do {
-        system_string_length_counter = system_string_length_counter + 1;
-      } while (*(char *)(system_handle_param + system_string_length_counter) != '\0');
-      system_global_context_pointer = (unsigned int)system_string_length_counter;
+        system_string_length_tracker = system_string_length_tracker + 1;
+      } while (*(char *)(system_handle_param + system_string_length_tracker) != '\0');
+      system_global_context_pointer = (unsigned int)system_string_length_tracker;
       strcpy_s(&string_buffer_constant,string_buffer_size_constant,system_handle_param);
     }
     system_crypto_initializer(system_execution_function);
@@ -7788,12 +7788,12 @@ system_finalizer_tertiary(unsigned long long system_handle_param,unsigned long l
   system_global_context_pointer = SYSTEM_ZERO_VALUE;
   system_finalizer_009();
   system_initialization_result = MODULE_DATA_ADDR;
-  system_string_length_counter = SYSTEM_STRING_LENGTH_COUNTER_INITIAL;
+  system_string_length_tracker = SYSTEM_STRING_LENGTH_COUNTER_INITIAL;
   do {
     system_initialization_processor(system_initialization_result);
     system_initialization_result = system_initialization_result + SYSTEM_OFFSET_STRING_BUFFER_SIZE;
-    system_string_length_counter = system_string_length_counter + SYSTEM_DECREMENT_SINGLE_UNIT;
-  } while (system_string_length_counter != 0);
+    system_string_length_tracker = system_string_length_tracker + SYSTEM_DECREMENT_SINGLE_UNIT;
+  } while (system_string_length_tracker != 0);
   system_flag_buffer_9 = SYSTEM_ZERO_VALUE;
   _Mtx_init_in_situ(MODULE_MUTEX_ADDR,SYSTEM_MUTEX_TYPE_DEFAULT,mutex_attr,mutex_type,system_buffer_allocation_result);
   system_global_context_pointer = UINT32_MAX;
@@ -7893,10 +7893,10 @@ system_finalizer_tertiary(unsigned long long system_handle_param,unsigned long l
   return;
 }
     thread_system_flag = '\x01';
-    system_string_length_counter = system_thread_manager_destroy(&system_thread_stack_pointer,system_global_context_pointer + SYSTEM_POINTER_OFFSET_2C0);
+    system_string_length_tracker = system_thread_manager_destroy(&system_thread_stack_pointer,system_global_context_pointer + SYSTEM_POINTER_OFFSET_2C0);
     system_string_input_context = &default_resource_config_string;
-    if (*(void **)(system_string_length_counter + 8) != (void *)SYSTEM_NULL_POINTER) {
-      system_string_input_context = *(void **)(system_string_length_counter + 8);
+    if (*(void **)(system_string_length_tracker + 8) != (void *)SYSTEM_NULL_POINTER) {
+      system_string_input_context = *(void **)(system_string_length_tracker + 8);
     }
     (**(code **)(system_initialization_result + SYSTEM_POINTER_OFFSET_330))(*(unsigned int *)(system_global_context_pointer + SYSTEM_OFFSET_STRING_BUFFER_SIZE),system_string_input_context);
     system_thread_stack_pointer = &system_global_thread_string_2;
@@ -7927,13 +7927,13 @@ system_finalizer_tertiary(unsigned long long system_handle_param,unsigned long l
 unsigned long long * system_execution_function(unsigned long long *system_handle_param,int system_thread_operation_flags)
 {
   long long *system_initialization_result_ptr;
-  int system_thread_result_status;
+  int system_thread_operation_result;
   unsigned long long system_buffer_allocation_result;
-  long long system_string_length_counter;
-  int system_thread_result_status;
+  long long system_string_length_tracker;
+  int system_thread_operation_result;
   unsigned long long *system_string_input_context;
   ulong long system_buffer_allocation_result;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   float float_temp_value;
   float calculation_float_value;
   float result_float_value;
@@ -7942,7 +7942,7 @@ unsigned long long * system_execution_function(unsigned long long *system_handle
   float normalization_float_value;
   float scaling_float_value;
   *system_handle_param = &g_system_system_handle_param;
-  system_string_length_counter = SYSTEM_ZERO_VALUE;
+  system_string_length_tracker = SYSTEM_ZERO_VALUE;
   system_handle_param[1] = SYSTEM_ZERO_VALUE;
   system_handle_param[2] = SYSTEM_ZERO_VALUE;
   system_handle_param[3] = SYSTEM_ZERO_VALUE;
@@ -7989,15 +7989,15 @@ unsigned long long * system_execution_function(unsigned long long *system_handle
   system_handle_param[SYSTEM_OFFSET_HANDLE_PARAM_STREAM_HANDLE] = SYSTEM_ZERO_VALUE;
   *(unsigned int *)(system_handle_param + SYSTEM_CONFIG_OFFSET_MODULE_HANDLE) = SYSTEM_THREE_VALUE;
   system_string_input_context = system_handle_param + SYSTEM_OFFSET_HANDLE_PARAM_CONFIG_HANDLE;
-  system_string_length_counter = SYSTEM_EIGHT_VALUE;
+  system_string_length_tracker = SYSTEM_EIGHT_VALUE;
   system_execution_function(system_string_input_context,SYSTEM_FUNCTION_PARAM_SIZE_SMALL_BUFFER,8,&g_system_execution_buffer,system_execution_function);
   _Mtx_init_in_situ(system_handle_param + SYSTEM_OFFSET_HANDLE_PARAM_DEBUG_HANDLE, STRING_BUFFER_SIZE_SECONDARY);
-  system_thread_result_status = module_configuration_processor(&module_config_addr);
-  if (system_thread_operation_flags < system_thread_result_status) {
-    system_thread_result_status = system_thread_operation_flags;
+  system_thread_operation_result = module_configuration_processor(&module_config_addr);
+  if (system_thread_operation_flags < system_thread_operation_result) {
+    system_thread_operation_result = system_thread_operation_flags;
   }
-  *(int *)(system_handle_param + SYSTEM_CHAR_LOWERCASE_G) = system_thread_result_status;
-  system_handle_param[SYSTEM_OFFSET_HANDLE_PARAM_PRIMARY] = (long long)system_thread_result_status;
+  *(int *)(system_handle_param + SYSTEM_CHAR_LOWERCASE_G) = system_thread_operation_result;
+  system_handle_param[SYSTEM_OFFSET_HANDLE_PARAM_PRIMARY] = (long long)system_thread_operation_result;
   system_execution_function(system_handle_param + SYSTEM_FUNCTION_PARAM_OFFSET_STANDARD);
   system_handle_param[SYSTEM_OFFSET_HANDLE_PARAM_RESULT_STATUS] = (long long)*(int *)(system_handle_param + SYSTEM_CHAR_LOWERCASE_G);
   if (system_handle_param[SYSTEM_OFFSET_HANDLE_PARAM_SECONDARY] != 0) {
@@ -8043,8 +8043,8 @@ unsigned long long * system_execution_function(unsigned long long *system_handle
       system_string_input_context[4] = (long long)*(int *)(system_handle_param + SYSTEM_CHAR_LOWERCASE_G);
       system_execution_function(system_string_input_context);
       system_string_input_context = system_string_input_context + 5;
-      system_string_length_counter = system_string_length_counter + SYSTEM_DECREMENT_SINGLE_UNIT;
-    } while (system_string_length_counter != 0);
+      system_string_length_tracker = system_string_length_tracker + SYSTEM_DECREMENT_SINGLE_UNIT;
+    } while (system_string_length_tracker != 0);
     system_handle_param[SYSTEM_OFFSET_HANDLE_PARAM_MUTEX_HANDLE] = (long long)*(int *)(system_handle_param + SYSTEM_CHAR_LOWERCASE_G);
     if (system_handle_param[SYSTEM_OFFSET_HANDLE_PARAM_CONNECTION_HANDLE] == SYSTEM_ZERO_VALUE) {
       system_handle_param[SYSTEM_OFFSET_HANDLE_PARAM_CONNECTION_HANDLE] = SYSTEM_ZERO_VALUE;
@@ -8054,28 +8054,28 @@ unsigned long long * system_execution_function(unsigned long long *system_handle
       system_buffer_allocation_result = system_execution_function(system_global_context_pointer,(long long)*(int *)(system_handle_param + SYSTEM_CHAR_LOWERCASE_G) * SYSTEM_POINTER_OFFSET8,SYSTEM_FUNCTION_PARAM_SIZE_STANDARD);
       system_handle_param[SYSTEM_OFFSET_HANDLE_PARAM_CONNECTION_HANDLE] = system_buffer_allocation_result;
       system_buffer_allocation_result = (ulong long)*(int *)(system_handle_param + SYSTEM_CHAR_LOWERCASE_G);
-      system_string_length_counter = *system_initialization_result_ptr;
-      if ((ulong long)(system_handle_param[SYSTEM_OFFSET_HANDLE_PARAM_STREAM_HANDLE] - system_string_length_counter >> 3) < system_buffer_allocation_result) {
+      system_string_length_tracker = *system_initialization_result_ptr;
+      if ((ulong long)(system_handle_param[SYSTEM_OFFSET_HANDLE_PARAM_STREAM_HANDLE] - system_string_length_tracker >> 3) < system_buffer_allocation_result) {
         if (system_buffer_allocation_result != SYSTEM_ZERO_VALUE) {
-          system_string_length_counter = system_execution_function(system_global_context_pointer,system_buffer_allocation_result * 8,*(unsigned char *)(system_handle_param + SYSTEM_CONFIG_OFFSET_MODULE_HANDLE));
-          system_string_length_counter = *system_initialization_result_ptr;
+          system_string_length_tracker = system_execution_function(system_global_context_pointer,system_buffer_allocation_result * 8,*(unsigned char *)(system_handle_param + SYSTEM_CONFIG_OFFSET_MODULE_HANDLE));
+          system_string_length_tracker = *system_initialization_result_ptr;
         }
-        if (system_string_length_counter != system_handle_param[SYSTEM_OFFSET_HANDLE_PARAM_BUFFER_HANDLE]) {
-          memmove(system_string_length_counter,system_string_length_counter,system_handle_param[SYSTEM_OFFSET_HANDLE_PARAM_BUFFER_HANDLE] - system_string_length_counter);
+        if (system_string_length_tracker != system_handle_param[SYSTEM_OFFSET_HANDLE_PARAM_BUFFER_HANDLE]) {
+          memmove(system_string_length_tracker,system_string_length_tracker,system_handle_param[SYSTEM_OFFSET_HANDLE_PARAM_BUFFER_HANDLE] - system_string_length_tracker);
         }
-        if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
+        if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
           system_handle_param_system_error();
         }
-        *system_initialization_result_ptr = system_string_length_counter;
-        system_handle_param[SYSTEM_OFFSET_HANDLE_PARAM_BUFFER_HANDLE] = system_string_length_counter;
-        system_handle_param[SYSTEM_OFFSET_HANDLE_PARAM_STREAM_HANDLE] = system_string_length_counter + system_buffer_allocation_result * 8;
+        *system_initialization_result_ptr = system_string_length_tracker;
+        system_handle_param[SYSTEM_OFFSET_HANDLE_PARAM_BUFFER_HANDLE] = system_string_length_tracker;
+        system_handle_param[SYSTEM_OFFSET_HANDLE_PARAM_STREAM_HANDLE] = system_string_length_tracker + system_buffer_allocation_result * 8;
       }
-      system_thread_result_status = *(int *)(system_global_context_pointer + SYSTEM_OFFSET_RENDER_DATA_COUNTER0) + -1;
-      system_thread_result_status = SYSTEM_ZERO_VALUE;
-      if ((-1 < system_thread_result_status) && (system_thread_result_status = system_thread_result_status, 3 < system_thread_result_status)) {
-        system_thread_result_status = SYSTEM_THREE_VALUE;
+      system_thread_operation_result = *(int *)(system_global_context_pointer + SYSTEM_OFFSET_RENDER_DATA_COUNTER0) + -1;
+      system_thread_operation_result = SYSTEM_ZERO_VALUE;
+      if ((-1 < system_thread_operation_result) && (system_thread_operation_result = system_thread_operation_result, 3 < system_thread_operation_result)) {
+        system_thread_operation_result = SYSTEM_THREE_VALUE;
       }
-      system_float_variable = (float)system_thread_result_status * SYSTEM_FLOAT_VALUE_ONE_THIRD;
+      system_float_variable = (float)system_thread_operation_result * SYSTEM_FLOAT_VALUE_ONE_THIRD;
       system_float_variable = system_float_variable * SYSTEM_FLOAT_VALUE_TEN_POINT_ZERO_FIVE + SYSTEM_OFFSET_HANDLE_PARAM.9500003;
       system_float_variable = system_float_variable * SYSTEM_FLOAT_VALUE_THREE_POINT_ZERO + SYSTEM_OFFSET_HANDLE_PARAM.5;
       system_float_variable = system_float_variable + system_float_variable;
@@ -8150,14 +8150,14 @@ unsigned long long initialize_graphics_context(unsigned long long system_handle_
   fStack_144 = -SYSTEM_FLOAT_VALUE_LARGE_POSITIVE;
   fStack_140 = -SYSTEM_FLOAT_VALUE_LARGE_POSITIVE;
   system_maximum_stack_size = SYSTEM_ZERO_VALUE;
-  system_thread_result_status = *(char *)(system_handle_param + SYSTEM_POINTER_OFFSET58) + -1;
-  system_initialization_result1 = (long long)system_thread_result_status;
+  system_thread_operation_result = *(char *)(system_handle_param + SYSTEM_POINTER_OFFSET58) + -1;
+  system_initialization_result1 = (long long)system_thread_operation_result;
   system_float_variable = -SYSTEM_FLOAT_VALUE_LARGE_POSITIVE;
   system_float_variable = -SYSTEM_FLOAT_VALUE_LARGE_POSITIVE;
   system_float_variable = -SYSTEM_FLOAT_VALUE_LARGE_POSITIVE;
   system_buffer_allocation_result = SYSTEM_ZERO_VALUE;
   system_buffer_allocation_result = SYSTEM_ZERO_VALUE;
-  if (-1 < system_thread_result_status) {
+  if (-1 < system_thread_operation_result) {
     system_maximum_stack_size = SYSTEM_FLOAT_MAX_VALUE;
     system_maximum_stack_size = SYSTEM_FLOAT_MAX_VALUE;
     system_initialization_result2 = system_initialization_result1 * SYSTEM_MUTEX_BUFFER_SIZE;
@@ -8514,49 +8514,49 @@ unsigned long long initialize_graphics_context(unsigned long long system_handle_
 // 处理配置参数验证函数
 int validate_config_parameters(unsigned long long system_handle_param,unsigned long long system_thread_operation_flags,unsigned long long mutex_attr,unsigned long long mutex_type)
 {
-  int system_thread_result_status;
-  long long system_string_length_counter;
-  long long system_string_length_counter;
+  int system_thread_operation_result;
+  long long system_string_length_tracker;
+  long long system_string_length_tracker;
   void *system_string_input_context;
   void *system_thread_stack_pointer;
   long long system_thread_stack_base_address;
   int system_thread_priority_level;
   create_thread_context(&system_thread_stack_pointer,system_handle_param,mutex_attr,mutex_type,default_thread_pool_flag);
-  system_string_length_counter = system_thread_stack_base_address;
+  system_string_length_tracker = system_thread_stack_base_address;
   if (system_thread_priority_level == STRING_BUFFER_SIZE) {
-    system_thread_result_status = strcmp(system_thread_stack_base_address,&g_empty_string_const);
+    system_thread_operation_result = strcmp(system_thread_stack_base_address,&g_empty_string_const);
 goto LABEL_SYSTEM_SECTION_PROCESSING_050;
-    system_thread_result_status = strcmp(system_string_length_counter,&g_null_string_const);
-    if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-      system_thread_result_status = SYSTEM_BUFFER_SIZE_MEDIUM;
+    system_thread_operation_result = strcmp(system_string_length_tracker,&g_null_string_const);
+    if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+      system_thread_operation_result = SYSTEM_BUFFER_SIZE_MEDIUM;
 goto LABEL_SYSTEM_SECTION_PROCESSING_051;
     }
     system_string_input_context = &g_string_buffer_ptr;
 LABEL_SYSTEM_SECTION_PROCESSING_046:
-    system_thread_result_status = strcmp(system_string_length_counter,system_string_input_context);
-    if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
+    system_thread_operation_result = strcmp(system_string_length_tracker,system_string_input_context);
+    if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
 LABEL_SYSTEM_SECTION_PROCESSING_047:
-      system_thread_result_status = SYSTEM_ZERO_VALUE;
+      system_thread_operation_result = SYSTEM_ZERO_VALUE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_052;
     }
   }
   else {
     if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_EXTENDED_HIGH) {
-      system_thread_result_status = strcmp(system_thread_stack_base_address,&g_config_path_string);
-      if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-        system_thread_result_status = SYSTEM_THREAD_STATUS_INITIALIZED;
+      system_thread_operation_result = strcmp(system_thread_stack_base_address,&g_config_path_string);
+      if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+        system_thread_operation_result = SYSTEM_THREAD_STATUS_INITIALIZED;
 goto LABEL_SYSTEM_SECTION_PROCESSING_053;
       }
 LABEL_SYSTEM_SECTION_PROCESSING_048:
-      system_thread_result_status = strcmp(system_string_length_counter,&g_system_path_string);
-      if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-        system_thread_result_status = SYSTEM_THREAD_STATUS_READY;
+      system_thread_operation_result = strcmp(system_string_length_tracker,&g_system_path_string);
+      if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+        system_thread_operation_result = SYSTEM_THREAD_STATUS_READY;
 goto LABEL_SYSTEM_SECTION_PROCESSING_054;
       }
 LABEL_SYSTEM_SECTION_PROCESSING_049:
-      system_thread_result_status = strcmp(system_string_length_counter,&g_temp_path_buffer);
-      if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-        system_thread_result_status = SYSTEM_THREAD_STATUS_PROCESSING;
+      system_thread_operation_result = strcmp(system_string_length_tracker,&g_temp_path_buffer);
+      if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+        system_thread_operation_result = SYSTEM_THREAD_STATUS_PROCESSING;
 goto LABEL_SYSTEM_SECTION_PROCESSING_055;
       }
 LABEL_SYSTEM_SECTION_PROCESSING_050:
@@ -8568,9 +8568,9 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_056;
 goto LABEL_SYSTEM_SECTION_PROCESSING_057;
     }
     if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_STANDARD_HIGH) {
-      system_thread_result_status = strcmp(system_thread_stack_base_address,&g_system_string_save);
-      if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-        system_thread_result_status = SYSTEM_FOUR_VALUE;
+      system_thread_operation_result = strcmp(system_thread_stack_base_address,&g_system_string_save);
+      if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+        system_thread_operation_result = SYSTEM_FOUR_VALUE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_058;
       }
 LABEL_SYSTEM_SECTION_PROCESSING_051:
@@ -8578,66 +8578,66 @@ LABEL_SYSTEM_SECTION_PROCESSING_051:
 goto LABEL_SYSTEM_SECTION_PROCESSING_059;
     }
     if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_REALTIME_HIGH) {
-      system_thread_result_status = strcmp(system_thread_stack_base_address,&g_log_path_string);
-      if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-        system_thread_result_status = SYSTEM_THREAD_STATUS_WAITING;
+      system_thread_operation_result = strcmp(system_thread_stack_base_address,&g_log_path_string);
+      if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+        system_thread_operation_result = SYSTEM_THREAD_STATUS_WAITING;
 goto LABEL_SYSTEM_SECTION_PROCESSING_060;
       }
 LABEL_SYSTEM_SECTION_PROCESSING_052:
-      system_thread_result_status = strcmp(system_string_length_counter,&g_system_string_constant);
-      if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-        system_thread_result_status = SYSTEM_THREAD_STATUS_IDLE;
+      system_thread_operation_result = strcmp(system_string_length_tracker,&g_system_string_constant);
+      if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+        system_thread_operation_result = SYSTEM_THREAD_STATUS_IDLE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_061;
       }
 LABEL_SYSTEM_SECTION_PROCESSING_053:
-      system_thread_result_status = strcmp(system_string_length_counter,&g_file_path_data);
-      if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-        system_thread_result_status = SYSTEM_THREAD_RESULT_PRIMARY;
+      system_thread_operation_result = strcmp(system_string_length_tracker,&g_file_path_data);
+      if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+        system_thread_operation_result = SYSTEM_THREAD_RESULT_PRIMARY;
 goto LABEL_SYSTEM_SECTION_PROCESSING_062;
       }
 goto LABEL_SYSTEM_SECTION_PROCESSING_063;
     }
     if (system_thread_priority_level == path_buffer_size) {
-      system_thread_result_status = strcmp(system_thread_stack_base_address,&g_save_path_string);
-      if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-        system_thread_result_status = SYSTEM_THREAD_STATUS_INITIALIZED;
+      system_thread_operation_result = strcmp(system_thread_stack_base_address,&g_save_path_string);
+      if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+        system_thread_operation_result = SYSTEM_THREAD_STATUS_INITIALIZED;
 goto LABEL_SYSTEM_SECTION_PROCESSING_064;
       }
 goto LABEL_SYSTEM_SECTION_PROCESSING_065;
     }
     if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_KERNEL_CRITICAL) {
-      system_thread_result_status = strcmp(system_thread_stack_base_address,&g_save_path_string_backup);
-      if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-        system_thread_result_status = SYSTEM_THREAD_STATUS_ACTIVE;
+      system_thread_operation_result = strcmp(system_thread_stack_base_address,&g_save_path_string_backup);
+      if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+        system_thread_operation_result = SYSTEM_THREAD_STATUS_ACTIVE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_066;
       }
 goto LABEL_SYSTEM_SECTION_PROCESSING_067;
     }
 goto LABEL_SYSTEM_SECTION_PROCESSING_068;
     if (system_thread_priority_level == SYSTEM_CONSTANT_PAIR) {
-      system_thread_result_status = strcmp(system_thread_stack_base_address,&g_data_path_string);
-      if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-        system_thread_result_status = SYSTEM_THREAD_STATUS_BUSY;
+      system_thread_operation_result = strcmp(system_thread_stack_base_address,&g_data_path_string);
+      if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+        system_thread_operation_result = SYSTEM_THREAD_STATUS_BUSY;
 goto LABEL_SYSTEM_SECTION_PROCESSING_069;
       }
 LABEL_SYSTEM_SECTION_PROCESSING_054:
-      system_thread_result_status = strcmp(system_string_length_counter,&g_system_string_temp);
-      if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-        system_thread_result_status = SYSTEM_ONE_VALUE;
+      system_thread_operation_result = strcmp(system_string_length_tracker,&g_system_string_temp);
+      if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+        system_thread_operation_result = SYSTEM_ONE_VALUE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_070;
       }
 goto LABEL_SYSTEM_SECTION_PROCESSING_071;
     }
     if (system_thread_priority_level == 10) {
-      system_thread_result_status = strcmp(system_thread_stack_base_address,&g_system_string_backup);
-      if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-        system_thread_result_status = SYSTEM_EIGHT_VALUE;
+      system_thread_operation_result = strcmp(system_thread_stack_base_address,&g_system_string_backup);
+      if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+        system_thread_operation_result = SYSTEM_EIGHT_VALUE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_072;
       }
 LABEL_SYSTEM_SECTION_PROCESSING_055:
-      system_thread_result_status = strcmp(system_string_length_counter,&g_system_string_cache);
-      if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-        system_thread_result_status = SYSTEM_FOUR_VALUE;
+      system_thread_operation_result = strcmp(system_string_length_tracker,&g_system_string_cache);
+      if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+        system_thread_operation_result = SYSTEM_FOUR_VALUE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_073;
       }
 LABEL_SYSTEM_SECTION_PROCESSING_056:
@@ -8646,83 +8646,83 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_074;
     }
 goto LABEL_SYSTEM_SECTION_PROCESSING_075;
     if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_EXTENDED_CRITICAL) {
-      system_thread_result_status = strcmp(system_thread_stack_base_address,&g_system_string_version);
-      if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-        system_thread_result_status = SYSTEM_THREAD_STATUS_PENDING;
+      system_thread_operation_result = strcmp(system_thread_stack_base_address,&g_system_string_version);
+      if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+        system_thread_operation_result = SYSTEM_THREAD_STATUS_PENDING;
 goto LABEL_SYSTEM_SECTION_PROCESSING_076;
       }
 LABEL_SYSTEM_SECTION_PROCESSING_057:
-      system_thread_result_status = strcmp(system_string_length_counter,&g_system_string_function);
-      if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-        system_thread_result_status = SYSTEM_THREAD_RESULT_SECONDARY;
+      system_thread_operation_result = strcmp(system_string_length_tracker,&g_system_string_function);
+      if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+        system_thread_operation_result = SYSTEM_THREAD_RESULT_SECONDARY;
 goto LABEL_SYSTEM_SECTION_PROCESSING_077;
       }
-      system_thread_result_status = strcmp(system_string_length_counter,&g_system_string_method);
-      if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-        system_thread_result_status = STRING_BUFFER_SIZE;
+      system_thread_operation_result = strcmp(system_string_length_tracker,&g_system_string_method);
+      if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+        system_thread_operation_result = STRING_BUFFER_SIZE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_078;
       }
-      system_thread_result_status = strcmp(system_string_length_counter,&g_system_string_memory);
-      if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-        system_thread_result_status = SYSTEM_THREAD_STATUS_RUNNING;
+      system_thread_operation_result = strcmp(system_string_length_tracker,&g_system_string_memory);
+      if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+        system_thread_operation_result = SYSTEM_THREAD_STATUS_RUNNING;
 goto LABEL_SYSTEM_SECTION_PROCESSING_079;
       }
-      system_thread_result_status = strcmp(system_string_length_counter,&g_system_string_counter);
-      if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-        system_thread_result_status = SYSTEM_CONFIG_BUFFER_SIZE;
+      system_thread_operation_result = strcmp(system_string_length_tracker,&g_system_string_counter);
+      if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+        system_thread_operation_result = SYSTEM_CONFIG_BUFFER_SIZE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_080;
       }
 goto LABEL_SYSTEM_SECTION_PROCESSING_081;
     }
     if (system_thread_priority_level == 4) {
-      system_string_length_counter = SYSTEM_ZERO_VALUE;
+      system_string_length_tracker = SYSTEM_ZERO_VALUE;
       do {
-        system_string_length_counter = system_string_length_counter + 1;
+        system_string_length_tracker = system_string_length_tracker + 1;
 goto LABEL_SYSTEM_SECTION_PROCESSING_082;
-        system_string_length_counter = system_string_length_counter;
-      } while (system_string_length_counter != 5);
-      system_thread_result_status = SYSTEM_BUFFER_SIZE_LARGE;
+        system_string_length_tracker = system_string_length_tracker;
+      } while (system_string_length_tracker != 5);
+      system_thread_operation_result = SYSTEM_BUFFER_SIZE_LARGE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_083;
     }
 goto LABEL_SYSTEM_SECTION_PROCESSING_084;
     if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_EXTENDED_LOW) {
-      system_thread_result_status = strcmp(system_thread_stack_base_address,&g_system_string_id);
-      if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-        system_thread_result_status = SYSTEM_THREAD_STATUS_WORKING;
+      system_thread_operation_result = strcmp(system_thread_stack_base_address,&g_system_string_id);
+      if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+        system_thread_operation_result = SYSTEM_THREAD_STATUS_WORKING;
 goto LABEL_SYSTEM_SECTION_PROCESSING_085;
       }
 goto LABEL_SYSTEM_SECTION_PROCESSING_086;
     }
     if (system_thread_priority_level != SYSTEM_THREAD_PRIORITY_LEVEL_EXTENDED_MEDIUM) {
       if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_REALTIME_LOW) {
-        system_thread_result_status = strcmp(system_thread_stack_base_address,&g_system_string_flag);
-        if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-          system_thread_result_status = SYSTEM_ONE_VALUE;
+        system_thread_operation_result = strcmp(system_thread_stack_base_address,&g_system_string_flag);
+        if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+          system_thread_operation_result = SYSTEM_ONE_VALUE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_087;
         }
 LABEL_SYSTEM_SECTION_PROCESSING_058:
         system_string_input_context = &g_file_path_config;
 LABEL_SYSTEM_SECTION_PROCESSING_059:
-        system_thread_result_status = strcmp(system_string_length_counter,system_string_input_context);
-        if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
+        system_thread_operation_result = strcmp(system_string_length_tracker,system_string_input_context);
+        if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
 LABEL_SYSTEM_SECTION_PROCESSING_060:
-          system_thread_result_status = SYSTEM_THREAD_STATUS_STANDBY;
+          system_thread_operation_result = SYSTEM_THREAD_STATUS_STANDBY;
 goto LABEL_SYSTEM_SECTION_PROCESSING_088;
         }
       }
       else {
 goto LABEL_SYSTEM_SECTION_PROCESSING_089;
         if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_KERNEL_REALTIME) {
-          system_thread_result_status = strcmp(system_thread_stack_base_address,&g_system_string_category);
-          if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-            system_thread_result_status = SYSTEM_THREAD_STATUS_PAUSED;
+          system_thread_operation_result = strcmp(system_thread_stack_base_address,&g_system_string_category);
+          if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+            system_thread_operation_result = SYSTEM_THREAD_STATUS_PAUSED;
 goto LABEL_SYSTEM_SECTION_PROCESSING_090;
           }
         }
         else if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_SYSTEM_MAXIMUM) {
-          system_thread_result_status = strcmp(system_thread_stack_base_address,&g_system_string_class);
-          if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-            system_thread_result_status = SYSTEM_THREAD_STATUS_PENDING;
+          system_thread_operation_result = strcmp(system_thread_stack_base_address,&g_system_string_class);
+          if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+            system_thread_operation_result = SYSTEM_THREAD_STATUS_PENDING;
 goto LABEL_SYSTEM_SECTION_PROCESSING_091;
           }
         }
@@ -8730,67 +8730,67 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_091;
           if (system_thread_priority_level != SYSTEM_THREAD_PRIORITY_LEVEL_STANDARD_CRITICAL) {
 goto LABEL_SYSTEM_SECTION_PROCESSING_092;
             if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_REALTIME_MEDIUM) {
-              system_thread_result_status = strcmp(system_thread_stack_base_address,&g_system_string_parameter);
-              if ((system_thread_result_status == 0) || (system_thread_result_status = strcmp(system_string_length_counter,&g_system_string_argument), system_thread_result_status == 0))
+              system_thread_operation_result = strcmp(system_thread_stack_base_address,&g_system_string_parameter);
+              if ((system_thread_operation_result == 0) || (system_thread_operation_result = strcmp(system_string_length_tracker,&g_system_string_argument), system_thread_operation_result == 0))
 goto LABEL_SYSTEM_SECTION_PROCESSING_093;
-              system_thread_result_status = strcmp(system_string_length_counter,&g_system_string_status);
-              if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
+              system_thread_operation_result = strcmp(system_string_length_tracker,&g_system_string_status);
+              if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
                 system_string_input_context = &g_system_string_pointer;
 goto LABEL_SYSTEM_SECTION_PROCESSING_094;
               }
 goto LABEL_SYSTEM_SECTION_PROCESSING_095;
             }
             if (system_thread_priority_level == 7) {
-              system_string_length_counter = SYSTEM_ZERO_VALUE;
+              system_string_length_tracker = SYSTEM_ZERO_VALUE;
               do {
-                system_string_length_counter = system_string_length_counter;
+                system_string_length_tracker = system_string_length_tracker;
 goto LABEL_SYSTEM_SECTION_PROCESSING_096;
-                system_string_length_counter = system_string_length_counter + 1;
-              } while (system_string_length_counter + 1 != 8);
-              system_thread_result_status = (int)system_string_length_counter + -6;
+                system_string_length_tracker = system_string_length_tracker + 1;
+              } while (system_string_length_tracker + 1 != 8);
+              system_thread_operation_result = (int)system_string_length_tracker + -6;
 goto LABEL_SYSTEM_SECTION_PROCESSING_097;
             }
             if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_STANDARD_MEDIUM) {
-              system_thread_result_status = strcmp(system_thread_stack_base_address,&g_system_string_variable);
-              if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-                system_thread_result_status = SYSTEM_CHAR_LOWERCASE_H;
+              system_thread_operation_result = strcmp(system_thread_stack_base_address,&g_system_string_variable);
+              if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+                system_thread_operation_result = SYSTEM_CHAR_LOWERCASE_H;
 goto LABEL_SYSTEM_SECTION_PROCESSING_098;
               }
 LABEL_SYSTEM_SECTION_PROCESSING_061:
-              system_thread_result_status = strcmp(system_string_length_counter,&g_file_path_save);
-              if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-                system_thread_result_status = SYSTEM_FOUR_VALUE;
+              system_thread_operation_result = strcmp(system_string_length_tracker,&g_file_path_save);
+              if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+                system_thread_operation_result = SYSTEM_FOUR_VALUE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_099;
               }
-              system_thread_result_status = strcmp(system_string_length_counter,&g_file_path_backup);
-              if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-                system_thread_result_status = SYSTEM_EIGHT_VALUE;
+              system_thread_operation_result = strcmp(system_string_length_tracker,&g_file_path_backup);
+              if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+                system_thread_operation_result = SYSTEM_EIGHT_VALUE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_100;
               }
 goto LABEL_SYSTEM_SECTION_PROCESSING_101;
             }
 goto LABEL_SYSTEM_SECTION_PROCESSING_102;
             if (system_thread_priority_level == 3) {
-              system_thread_result_status = SYSTEM_FOUR_VALUE;
-              system_string_length_counter = SYSTEM_ZERO_VALUE;
+              system_thread_operation_result = SYSTEM_FOUR_VALUE;
+              system_string_length_tracker = SYSTEM_ZERO_VALUE;
               do {
-                system_string_length_counter = system_string_length_counter + 1;
+                system_string_length_tracker = system_string_length_tracker + 1;
 goto LABEL_SYSTEM_SECTION_PROCESSING_103;
-                system_string_length_counter = system_string_length_counter;
-              } while (system_string_length_counter != 4);
+                system_string_length_tracker = system_string_length_tracker;
+              } while (system_string_length_tracker != 4);
 goto LABEL_SYSTEM_SECTION_PROCESSING_104;
             }
 goto LABEL_SYSTEM_SECTION_PROCESSING_105;
             if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_KERNEL_HIGH) {
-              system_thread_result_status = strcmp(system_thread_stack_base_address,&g_system_string_data);
-              if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-                system_thread_result_status = SYSTEM_THREAD_STATUS_RUNNING;
+              system_thread_operation_result = strcmp(system_thread_stack_base_address,&g_system_string_data);
+              if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+                system_thread_operation_result = SYSTEM_THREAD_STATUS_RUNNING;
 goto LABEL_SYSTEM_SECTION_PROCESSING_106;
               }
 LABEL_SYSTEM_SECTION_PROCESSING_062:
-              system_thread_result_status = strcmp(system_string_length_counter,&g_system_string_reference);
-              if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-                system_thread_result_status = SYSTEM_THREAD_STATUS_IDLE;
+              system_thread_operation_result = strcmp(system_string_length_tracker,&g_system_string_reference);
+              if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+                system_thread_operation_result = SYSTEM_THREAD_STATUS_IDLE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_107;
               }
 goto LABEL_SYSTEM_SECTION_PROCESSING_108;
@@ -8804,31 +8804,31 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_111;
 goto LABEL_SYSTEM_SECTION_PROCESSING_112;
 goto LABEL_SYSTEM_SECTION_PROCESSING_113;
             if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_SYSTEM_MINIMUM) {
-              system_thread_result_status = strcmp(system_thread_stack_base_address,&g_system_string_address);
-              if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-                system_thread_result_status = SYSTEM_BUFFER_ALLOC_SMALL;
+              system_thread_operation_result = strcmp(system_thread_stack_base_address,&g_system_string_address);
+              if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+                system_thread_operation_result = SYSTEM_BUFFER_ALLOC_SMALL;
 goto LABEL_SYSTEM_SECTION_PROCESSING_114;
               }
 LABEL_SYSTEM_SECTION_PROCESSING_063:
-              system_thread_result_status = strcmp(system_string_length_counter,&g_system_string_offset);
-              if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-                system_thread_result_status = SYSTEM_FOUR_VALUE;
+              system_thread_operation_result = strcmp(system_string_length_tracker,&g_system_string_offset);
+              if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+                system_thread_operation_result = SYSTEM_FOUR_VALUE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_115;
               }
 LABEL_SYSTEM_SECTION_PROCESSING_064:
-              system_thread_result_status = strcmp(system_string_length_counter,&g_system_string_size);
-              if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-                system_thread_result_status = SYSTEM_FOUR_VALUE;
+              system_thread_operation_result = strcmp(system_string_length_tracker,&g_system_string_size);
+              if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+                system_thread_operation_result = SYSTEM_FOUR_VALUE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_116;
               }
             }
             else {
               if (system_thread_priority_level == SYSTEM_THREAD_PRIORITY_LEVEL_0X11) {
-                system_thread_result_status = strcmp(system_thread_stack_base_address,&g_system_system_string_length);
+                system_thread_operation_result = strcmp(system_thread_stack_base_address,&g_system_system_string_length);
 goto LABEL_SYSTEM_SECTION_PROCESSING_117;
-                system_thread_result_status = strcmp(system_string_length_counter,&g_system_string_offset);
-                if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-                  system_thread_result_status = SYSTEM_THREAD_STATUS_BLOCKED;
+                system_thread_operation_result = strcmp(system_string_length_tracker,&g_system_string_offset);
+                if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+                  system_thread_operation_result = SYSTEM_THREAD_STATUS_BLOCKED;
 goto LABEL_SYSTEM_SECTION_PROCESSING_118;
                 }
                 system_string_input_context = &g_system_string_result;
@@ -8850,55 +8850,55 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_128;
             system_string_input_context = &g_file_path_log;
 goto LABEL_SYSTEM_SECTION_PROCESSING_129;
           }
-          system_thread_result_status = strcmp(system_thread_stack_base_address,&g_system_string_module);
-          if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-            system_thread_result_status = SYSTEM_BUFFER_ALLOC_BASE;
+          system_thread_operation_result = strcmp(system_thread_stack_base_address,&g_system_string_module);
+          if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+            system_thread_operation_result = SYSTEM_BUFFER_ALLOC_BASE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_130;
           }
 LABEL_SYSTEM_SECTION_PROCESSING_065:
-          system_thread_result_status = strcmp(system_string_length_counter,&g_system_string_buffer);
-          if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-            system_thread_result_status = SYSTEM_PATH_BUFFER_SIZE_LARGE;
+          system_thread_operation_result = strcmp(system_string_length_tracker,&g_system_string_buffer);
+          if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+            system_thread_operation_result = SYSTEM_PATH_BUFFER_SIZE_LARGE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_131;
           }
 LABEL_SYSTEM_SECTION_PROCESSING_066:
-          system_thread_result_status = strcmp(system_string_length_counter,&g_system_string_error);
-          if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-            system_thread_result_status = SYSTEM_FOUR_VALUE;
+          system_thread_operation_result = strcmp(system_string_length_tracker,&g_system_string_error);
+          if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+            system_thread_operation_result = SYSTEM_FOUR_VALUE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_132;
           }
 LABEL_SYSTEM_SECTION_PROCESSING_067:
-          system_thread_result_status = strcmp(system_string_length_counter,&g_system_string_size);
-          if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-            system_thread_result_status = SYSTEM_THREAD_STATUS_TRANSITION;
+          system_thread_operation_result = strcmp(system_string_length_tracker,&g_system_string_size);
+          if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+            system_thread_operation_result = SYSTEM_THREAD_STATUS_TRANSITION;
 goto LABEL_SYSTEM_SECTION_PROCESSING_133;
           }
         }
       }
 goto LABEL_SYSTEM_SECTION_PROCESSING_134;
     }
-    system_thread_result_status = strcmp(system_thread_stack_base_address,&g_system_string_info);
-    if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-      system_thread_result_status = SYSTEM_ONE_VALUE;
+    system_thread_operation_result = strcmp(system_thread_stack_base_address,&g_system_string_info);
+    if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+      system_thread_operation_result = SYSTEM_ONE_VALUE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_135;
     }
-    system_thread_result_status = strcmp(system_string_length_counter,&g_system_string_type);
-    if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-      system_thread_result_status = SYSTEM_THREE_VALUE;
+    system_thread_operation_result = strcmp(system_string_length_tracker,&g_system_string_type);
+    if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+      system_thread_operation_result = SYSTEM_THREE_VALUE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_136;
     }
-    system_thread_result_status = strcmp(system_string_length_counter,&g_system_string_debug);
-    if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
+    system_thread_operation_result = strcmp(system_string_length_tracker,&g_system_string_debug);
+    if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
       system_string_input_context = &g_file_path_temp;
 goto LABEL_SYSTEM_SECTION_PROCESSING_137;
     }
   }
 LABEL_SYSTEM_SECTION_PROCESSING_068:
-  system_thread_result_status = SYSTEM_FOUR_VALUE;
+  system_thread_operation_result = SYSTEM_FOUR_VALUE;
 LABEL_SYSTEM_SECTION_PROCESSING_069:
   system_thread_stack_pointer = &system_global_thread_string_2;
   if (system_thread_stack_base_address == SYSTEM_ZERO_VALUE) {
-    return system_thread_result_status;
+    return system_thread_operation_result;
   }
   system_handle_param_system_error();
 }
@@ -10502,21 +10502,21 @@ LABEL_SYSTEM_SECTION_PROCESSING_128:
   system_flag_buffer_11 = SYSTEM_ZERO_VALUE;
   system_crypto_initializer(system_execution_function);
   system_execution_function(&system_cleanup_function);
-  system_string_length_counter = SYSTEM_ZERO_VALUE;
+  system_string_length_tracker = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = system_execution_function;
   psystem_thread_operation_flags = (unsigned int *)&thread_pool_data_buffer;
-  system_string_length_counter = SYSTEM_STRING_LENGTH_BASIC;
+  system_string_length_tracker = SYSTEM_STRING_LENGTH_BASIC;
   do {
     if (psystem_thread_operation_flags[1] == SYSTEM_ZERO_VALUE) {
       system_execution_function(psystem_thread_operation_flags);
     }
-    if (system_string_length_counter != 2) {
+    if (system_string_length_tracker != 2) {
       system_execution_function(&system_thread_handler_1,*(unsigned long long *)(psystem_thread_operation_flags + SYSTEM_OFFSET_HANDLE_PARAM),*psystem_thread_operation_flags);
     }
-    system_string_length_counter = system_string_length_counter + 1;
+    system_string_length_tracker = system_string_length_tracker + 1;
     psystem_thread_operation_flags = psystem_thread_operation_flags + 6;
-    system_string_length_counter = system_string_length_counter + SYSTEM_DECREMENT_SINGLE_UNIT;
-  } while (system_string_length_counter != 0);
+    system_string_length_tracker = system_string_length_tracker + SYSTEM_DECREMENT_SINGLE_UNIT;
+  } while (system_string_length_tracker != 0);
   if (system_global_context_pointer == SYSTEM_ZERO_VALUE) {
     system_execution_function(&system_thread_operation_flags_buffer);
   }
@@ -10545,20 +10545,20 @@ double calculate_system_performance(void)
 bool validate_system_handle_param_parameters(long long system_handle_param,long long system_thread_operation_flags,char mutex_attr)
 {
   char system_char_result;
-  int system_thread_result_status;
-  long long system_string_length_counter;
+  int system_thread_operation_result;
+  long long system_string_length_tracker;
   char *system_character_scan_pointer;
-  system_string_length_counter = SYSTEM_STRING_LENGTH_INVALID;
+  system_string_length_tracker = SYSTEM_STRING_LENGTH_INVALID;
   do {
-    system_string_length_counter = system_string_length_counter + 1;
-  } while (*(char *)(system_thread_operation_flags + system_string_length_counter) != '\0');
-  system_thread_result_status = *(int *)(system_handle_param + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
-  if (system_thread_result_status == (int)system_string_length_counter) {
-    if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
+    system_string_length_tracker = system_string_length_tracker + 1;
+  } while (*(char *)(system_thread_operation_flags + system_string_length_tracker) != '\0');
+  system_thread_operation_result = *(int *)(system_handle_param + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
+  if (system_thread_operation_result == (int)system_string_length_tracker) {
+    if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
       system_character_scan_pointer = *(char **)(system_handle_param + 8);
       if (mutex_attr == '\0') {
-        system_thread_result_status = _stricmp(system_character_scan_pointer,system_thread_operation_flags);
-        return system_thread_result_status == SYSTEM_ZERO_VALUE;
+        system_thread_operation_result = _stricmp(system_character_scan_pointer,system_thread_operation_flags);
+        return system_thread_operation_result == SYSTEM_ZERO_VALUE;
       }
       system_thread_operation_flags = system_thread_operation_flags - (long long)system_character_scan_pointer;
       do {
@@ -10570,10 +10570,10 @@ bool validate_system_handle_param_parameters(long long system_handle_param,long 
       return system_char_result == system_char_result;
     }
   }
-  else if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
+  else if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
     return false;
   }
-  if ((int)system_string_length_counter != 0) {
+  if ((int)system_string_length_tracker != 0) {
     return false;
   }
   return true;
@@ -10581,86 +10581,86 @@ bool validate_system_handle_param_parameters(long long system_handle_param,long 
 // 查找字符串在句柄中的位置
 int find_string_index_in_array(long long system_handle_param)
 {
-  int system_thread_result_status;
-  long long system_string_length_counter;
-  int system_thread_result_status;
+  int system_thread_operation_result;
+  long long system_string_length_tracker;
+  int system_thread_operation_result;
   ulong long system_buffer_allocation_result;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   void *system_thread_stack_pointer;
   long long system_thread_stack_base_address;
   int system_thread_priority_level;
   create_thread_context(&system_thread_stack_pointer);
-  system_thread_result_status = (*(int *)(system_handle_param + SYSTEM_OFFSET_STRING_BUFFER_SIZE) - system_thread_priority_level) + 1;
-  system_thread_result_status = SYSTEM_ZERO_VALUE;
-  if (0 < system_thread_result_status) {
-    system_string_length_counter = SYSTEM_ZERO_VALUE;
+  system_thread_operation_result = (*(int *)(system_handle_param + SYSTEM_OFFSET_STRING_BUFFER_SIZE) - system_thread_priority_level) + 1;
+  system_thread_operation_result = SYSTEM_ZERO_VALUE;
+  if (0 < system_thread_operation_result) {
+    system_string_length_tracker = SYSTEM_ZERO_VALUE;
     do {
       system_buffer_allocation_result = SYSTEM_ZERO_VALUE;
-      system_string_length_counter = SYSTEM_ZERO_VALUE;
+      system_string_length_tracker = SYSTEM_ZERO_VALUE;
       if (0 < system_thread_priority_level) {
         do {
-          if (*(char *)(*(long long *)(system_handle_param + 8) + system_string_length_counter + system_string_length_counter) != *(char *)(system_buffer_allocation_result + system_thread_stack_base_address))
+          if (*(char *)(*(long long *)(system_handle_param + 8) + system_string_length_tracker + system_string_length_tracker) != *(char *)(system_buffer_allocation_result + system_thread_stack_base_address))
           break;
           system_buffer_allocation_result = (ulong long)((int)system_buffer_allocation_result + 1);
-          system_string_length_counter = system_string_length_counter + 1;
-        } while (system_string_length_counter < system_thread_priority_level);
+          system_string_length_tracker = system_string_length_tracker + 1;
+        } while (system_string_length_tracker < system_thread_priority_level);
       }
 goto LABEL_SYSTEM_SECTION_PROCESSING_487;
-      system_thread_result_status = system_thread_result_status + 1;
-      system_string_length_counter = system_string_length_counter + 1;
-    } while (system_string_length_counter < system_thread_result_status);
+      system_thread_operation_result = system_thread_operation_result + 1;
+      system_string_length_tracker = system_string_length_tracker + 1;
+    } while (system_string_length_tracker < system_thread_operation_result);
   }
-  system_thread_result_status = SYSTEM_THREAD_RESULT_INVALID;
+  system_thread_operation_result = SYSTEM_THREAD_RESULT_INVALID;
 LABEL_SYSTEM_SECTION_PROCESSING_129:
   system_thread_stack_pointer = &system_global_thread_string_2;
   if (system_thread_stack_base_address != SYSTEM_ZERO_VALUE) {
     system_handle_param_system_error();
   }
-  return system_thread_result_status;
+  return system_thread_operation_result;
 }
 // 处理句柄和标志位
 int process_system_handle_param_parameters(long long system_handle_param,long long system_thread_operation_flags)
 {
-  int system_thread_result_status;
-  long long system_string_length_counter;
-  int system_thread_result_status;
-  long long system_string_length_counter;
+  int system_thread_operation_result;
+  long long system_string_length_tracker;
+  int system_thread_operation_result;
+  long long system_string_length_tracker;
   ulong long system_buffer_allocation_result;
-  system_thread_result_status = *(int *)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
-  system_thread_result_status = *(int *)(system_handle_param + SYSTEM_OFFSET_STRING_BUFFER_SIZE) - system_thread_result_status;
-  if (-1 < system_thread_result_status) {
-    system_string_length_counter = (long long)system_thread_result_status;
+  system_thread_operation_result = *(int *)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
+  system_thread_operation_result = *(int *)(system_handle_param + SYSTEM_OFFSET_STRING_BUFFER_SIZE) - system_thread_operation_result;
+  if (-1 < system_thread_operation_result) {
+    system_string_length_tracker = (long long)system_thread_operation_result;
     do {
       system_buffer_allocation_result = SYSTEM_ZERO_VALUE;
-      system_string_length_counter = SYSTEM_ZERO_VALUE;
-      if (0 < system_thread_result_status) {
+      system_string_length_tracker = SYSTEM_ZERO_VALUE;
+      if (0 < system_thread_operation_result) {
         do {
-          if (*(char *)(*(long long *)(system_handle_param + 8) + system_string_length_counter + system_string_length_counter) !=
+          if (*(char *)(*(long long *)(system_handle_param + 8) + system_string_length_tracker + system_string_length_tracker) !=
               *(char *)(system_buffer_allocation_result + *(long long *)(system_thread_operation_flags + 8))) break;
           system_buffer_allocation_result = (ulong long)((int)system_buffer_allocation_result + 1);
-          system_string_length_counter = system_string_length_counter + 1;
-        } while (system_string_length_counter < system_thread_result_status);
+          system_string_length_tracker = system_string_length_tracker + 1;
+        } while (system_string_length_tracker < system_thread_operation_result);
       }
-      if ((int)system_buffer_allocation_result == system_thread_result_status) {
-        return system_thread_result_status;
+      if ((int)system_buffer_allocation_result == system_thread_operation_result) {
+        return system_thread_operation_result;
       }
-      system_thread_result_status = system_thread_result_status + -1;
-      system_string_length_counter = system_string_length_counter + SYSTEM_DECREMENT_SINGLE_UNIT;
-    } while (-1 < system_string_length_counter);
+      system_thread_operation_result = system_thread_operation_result + -1;
+      system_string_length_tracker = system_string_length_tracker + SYSTEM_DECREMENT_SINGLE_UNIT;
+    } while (-1 < system_string_length_tracker);
   }
   return -1;
 }
 unsigned long long * setup_thread_parameters(long long system_handle_param,unsigned long long *system_thread_operation_flags,int mutex_attr,int mutex_type)
 {
   unsigned char system_buffer_allocation_result;
-  int system_thread_result_status;
-  int system_thread_result_status;
+  int system_thread_operation_result;
+  int system_thread_operation_result;
   ulong long system_buffer_allocation_result;
   ulong long system_buffer_allocation_result;
   system_buffer_allocation_result = (ulong long)mutex_attr;
-  system_thread_result_status = mutex_type;
+  system_thread_operation_result = mutex_type;
   if (mutex_type < 0) {
-    system_thread_result_status = *(int *)(system_handle_param + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
+    system_thread_operation_result = *(int *)(system_handle_param + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
   }
   *system_thread_operation_flags = &system_global_thread_string_4;
   system_thread_operation_flags[1] = SYSTEM_ZERO_VALUE;
@@ -10669,13 +10669,13 @@ unsigned long long * setup_thread_parameters(long long system_handle_param,unsig
   system_thread_operation_flags[3] = SYSTEM_ZERO_VALUE;
   system_thread_operation_flags[1] = SYSTEM_ZERO_VALUE;
   *(unsigned int *)(system_thread_operation_flags + 2) = SYSTEM_ZERO_VALUE;
-  system_thread_result_status = *(int *)(system_handle_param + SYSTEM_OFFSET_STRING_BUFFER_SIZE) - mutex_attr;
-  if (system_thread_result_status - mutex_attr < system_thread_result_status) {
-    system_thread_result_status = system_thread_result_status - mutex_attr;
+  system_thread_operation_result = *(int *)(system_handle_param + SYSTEM_OFFSET_STRING_BUFFER_SIZE) - mutex_attr;
+  if (system_thread_operation_result - mutex_attr < system_thread_operation_result) {
+    system_thread_operation_result = system_thread_operation_result - mutex_attr;
   }
-  system_thread_manager_create(system_thread_operation_flags,system_thread_result_status + 1,mutex_attr,mutex_type,1,default_thread_pool_flag);
+  system_thread_manager_create(system_thread_operation_flags,system_thread_operation_result + 1,mutex_attr,mutex_type,1,default_thread_pool_flag);
   for (system_buffer_allocation_result = system_buffer_allocation_result;
-      ((long long)system_buffer_allocation_result < (long long)system_thread_result_status && ((uint)system_buffer_allocation_result < *(uint *)(system_handle_param + SYSTEM_OFFSET_STRING_BUFFER_SIZE)));
+      ((long long)system_buffer_allocation_result < (long long)system_thread_operation_result && ((uint)system_buffer_allocation_result < *(uint *)(system_handle_param + SYSTEM_OFFSET_STRING_BUFFER_SIZE)));
       system_buffer_allocation_result = (ulong long)((uint)system_buffer_allocation_result + 1)) {
     system_buffer_allocation_result = *(unsigned char *)(system_buffer_allocation_result + *(long long *)(system_handle_param + 8));
     system_thread_manager_create(system_thread_operation_flags,*(int *)(system_thread_operation_flags + 2) + 1);
@@ -10705,18 +10705,18 @@ unsigned long long * setup_thread_parameters(long long system_handle_param,unsig
   system_maximum_stack_size_first_float_ = system_buffer_allocation_result;
   if (system_handle_param != 0) {
     do {
-      system_string_length_counter = system_initialization_result0;
-      system_initialization_result0 = system_string_length_counter + 1;
+      system_string_length_tracker = system_initialization_result0;
+      system_initialization_result0 = system_string_length_tracker + 1;
     } while (*(char *)(system_initialization_result0 + system_handle_param) != '\0');
     if (0 < (int)system_initialization_result0) {
-      system_thread_result_status = (int)system_string_length_counter;
-      if ((system_thread_result_status != -0xf) && (system_buffer_allocation_result < system_thread_result_status + SYSTEM_OFFSET_STRING_BUFFER_SIZEU)) {
+      system_thread_operation_result = (int)system_string_length_tracker;
+      if ((system_thread_operation_result != -0xf) && (system_buffer_allocation_result < system_thread_operation_result + SYSTEM_OFFSET_STRING_BUFFER_SIZEU)) {
         system_maximum_stack_size = SYSTEM_STACK_SIZE_SMALL;
-        system_string_input_context = (unsigned long long *)system_execution_function(system_global_context_pointer,system_string_input_context,system_thread_result_status + SYSTEM_OFFSET_STRING_BUFFER_SIZEU,STRING_BUFFER_SIZE);
+        system_string_input_context = (unsigned long long *)system_execution_function(system_global_context_pointer,system_string_input_context,system_thread_operation_result + SYSTEM_OFFSET_STRING_BUFFER_SIZEU,STRING_BUFFER_SIZE);
         system_thread_stack_pointer = system_string_input_context;
         system_maximum_stack_size_first_float_ = allocate_temporary_buffer(system_string_input_context);
       }
-      memcpy((unsigned char *)((long long)system_string_input_context + SYSTEM_POINTER_OFFSET_E),system_handle_param,(long long)(system_thread_result_status + 2));
+      memcpy((unsigned char *)((long long)system_string_input_context + SYSTEM_POINTER_OFFSET_E),system_handle_param,(long long)(system_thread_operation_result + 2));
     }
   }
   if (system_string_input_context == (unsigned long long *)SYSTEM_NULL_POINTER) {
@@ -10736,14 +10736,14 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_488;
   *(unsigned char *)(system_string_input_context + 3) = SYSTEM_ZERO_VALUE;
   system_maximum_stack_size = SYSTEM_STACK_SIZE_LARGE;
   system_maximum_stack_size_first_float_ = system_buffer_allocation_result;
-  system_execution_function(system_auxiliary_char_stack_40,&system_thread_handler_3,system_thread_result_status);
+  system_execution_function(system_auxiliary_char_stack_40,&system_thread_handler_3,system_thread_operation_result);
   system_initialization_result0 = -1;
   do {
-    system_string_length_counter = system_initialization_result0;
-    system_initialization_result0 = system_string_length_counter + 1;
-  } while (system_auxiliary_char_stack_40[system_string_length_counter + 1] != '\0');
-  system_thread_result_status = (int)(system_string_length_counter + 1);
-  if (system_thread_result_status < 1) {
+    system_string_length_tracker = system_initialization_result0;
+    system_initialization_result0 = system_string_length_tracker + 1;
+  } while (system_auxiliary_char_stack_40[system_string_length_tracker + 1] != '\0');
+  system_thread_operation_result = (int)(system_string_length_tracker + 1);
+  if (system_thread_operation_result < 1) {
     if (char_null_check_flag != '\0') {
       _Exit(5);
     }
@@ -10756,8 +10756,8 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_488;
     system_thread_stack_pointer = &system_global_thread_string_4;
     system_execute_crypto_operation(system_maximum_stack_size ^ (ulong long)system_stack_buffer_crypto_temp);
   }
-  if (system_thread_result_status != -0x18) {
-    system_buffer_allocation_result = system_thread_result_status + SYSTEM_CONFIG_OFFSET_STATUS_FLAG;
+  if (system_thread_operation_result != -0x18) {
+    system_buffer_allocation_result = system_thread_operation_result + SYSTEM_CONFIG_OFFSET_STATUS_FLAG;
     if (system_string_input_context == (unsigned long long *)SYSTEM_NULL_POINTER) {
       if ((int)system_buffer_allocation_result < STRING_BUFFER_SIZE) {
         system_buffer_allocation_result = STRING_BUFFER_SIZE;
@@ -10774,7 +10774,7 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_489;
     system_maximum_stack_size_first_float_ = allocate_temporary_buffer(system_string_input_context);
   }
 LABEL_SYSTEM_SECTION_PROCESSING_131:
-  memcpy(system_string_input_context + 3,system_auxiliary_char_stack_40,(long long)((int)system_string_length_counter + 2));
+  memcpy(system_string_input_context + 3,system_auxiliary_char_stack_40,(long long)((int)system_string_length_tracker + 2));
 }
 char * system_execution_function(unsigned int system_handle_param,unsigned long long system_thread_operation_flags,char *mutex_attr,unsigned long long mutex_type,
                     long long *system_operation_parameter,long long system_control_parameter,ulong long system_stack_system_size_parameter,unsigned long long *system_thread_stack_system_pointer_parameter,
@@ -10784,10 +10784,10 @@ char * system_execution_function(unsigned int system_handle_param,unsigned long 
   unsigned int system_thread_operation_flags;
   unsigned int system_buffer_allocation_result;
   void *system_string_input_context;
-  int system_thread_result_status;
+  int system_thread_operation_result;
   unsigned int system_buffer_allocation_result;
   uint system_buffer_allocation_result;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   char *system_character_scan_pointer;
   unsigned int *system_string_input_context;
   unsigned int *system_string_input_context;
@@ -10799,7 +10799,7 @@ char * system_execution_function(unsigned int system_handle_param,unsigned long 
   char *system_character_scan_pointer;
   char *system_character_scan_pointer;
   char *system_character_scan_pointer;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   char *system_character_scan_pointer;
   void *system_thread_stack_pointer;
   void *system_thread_stack_pointer;
@@ -10847,13 +10847,13 @@ char * system_execution_function(unsigned int system_handle_param,unsigned long 
   system_maximum_stack_size = SYSTEM_ZERO_VALUE;
   pcStack_70 = mutex_attr;
   system_maximum_stack_size = system_thread_operation_flags;
-  system_string_length_counter = process_system_configuration(&system_thread_stack_pointer,mutex_type,system_handle_param,system_operation_parameter);
-  system_maximum_stack_size = *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
-  system_thread_stack_pointer = *(void **)(system_string_length_counter + 8);
-  system_maximum_stack_size = *(ulong long *)(system_string_length_counter + SYSTEM_OFFSET_GLOBAL_DATA_PTR);
-  *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_STRING_BUFFER_SIZE) = SYSTEM_ZERO_VALUE;
-  *(unsigned long long *)(system_string_length_counter + 8) = SYSTEM_ZERO_VALUE;
-  *(unsigned long long *)(system_string_length_counter + SYSTEM_OFFSET_GLOBAL_DATA_PTR) = SYSTEM_ZERO_VALUE;
+  system_string_length_tracker = process_system_configuration(&system_thread_stack_pointer,mutex_type,system_handle_param,system_operation_parameter);
+  system_maximum_stack_size = *(unsigned int *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_BUFFER_SIZE);
+  system_thread_stack_pointer = *(void **)(system_string_length_tracker + 8);
+  system_maximum_stack_size = *(ulong long *)(system_string_length_tracker + SYSTEM_OFFSET_GLOBAL_DATA_PTR);
+  *(unsigned int *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_BUFFER_SIZE) = SYSTEM_ZERO_VALUE;
+  *(unsigned long long *)(system_string_length_tracker + 8) = SYSTEM_ZERO_VALUE;
+  *(unsigned long long *)(system_string_length_tracker + SYSTEM_OFFSET_GLOBAL_DATA_PTR) = SYSTEM_ZERO_VALUE;
   system_thread_stack_pointer = &system_global_thread_string_2;
   system_thread_stack_pointer = system_thread_stack_pointer;
   if (system_thread_stack_pointer != (unsigned int *)0x0) {
@@ -10868,23 +10868,23 @@ char * system_execution_function(unsigned int system_handle_param,unsigned long 
   }
   system_execution_function(&system_string_function_1,system_string_input_context);
   *system_thread_status_parameter = SYSTEM_ZERO_VALUE;
-  system_string_length_counter = *system_operation_parameter;
-  system_thread_result_status = SYSTEM_ZERO_VALUE;
-  if (system_string_length_counter != system_operation_parameter[1]) {
+  system_string_length_tracker = *system_operation_parameter;
+  system_thread_operation_result = SYSTEM_ZERO_VALUE;
+  if (system_string_length_tracker != system_operation_parameter[1]) {
     do {
-      if (0xf < system_thread_result_status) {
+      if (0xf < system_thread_operation_result) {
         system_execution_function(&system_string_function_2,STRING_BUFFER_SIZE);
       }
       system_string_input_context = &default_resource_config_string;
-      if (*(void **)(system_string_length_counter + 8) != (void *)SYSTEM_NULL_POINTER) {
-        system_string_input_context = *(void **)(system_string_length_counter + 8);
+      if (*(void **)(system_string_length_tracker + 8) != (void *)SYSTEM_NULL_POINTER) {
+        system_string_input_context = *(void **)(system_string_length_tracker + 8);
       }
       system_execution_function(&system_string_function_3,system_string_input_context);
-      system_thread_result_status = *system_thread_status_parameter;
-      system_string_length_counter = (long long)system_thread_result_status * SYSTEM_OFFSET_3088 + system_thread_stack_base_address;
+      system_thread_operation_result = *system_thread_status_parameter;
+      system_string_length_tracker = (long long)system_thread_operation_result * SYSTEM_OFFSET_3088 + system_thread_stack_base_address;
       system_string_input_context = &default_resource_config_string;
-      if (*(void **)(system_string_length_counter + 8) != (void *)SYSTEM_NULL_POINTER) {
-        system_string_input_context = *(void **)(system_string_length_counter + 8);
+      if (*(void **)(system_string_length_tracker + 8) != (void *)SYSTEM_NULL_POINTER) {
+        system_string_input_context = *(void **)(system_string_length_tracker + 8);
       }
       system_thread_stack_pointer = &system_global_thread_string_2;
       system_maximum_stack_size = SYSTEM_ZERO_VALUE;
@@ -10920,7 +10920,7 @@ char * system_execution_function(unsigned int system_handle_param,unsigned long 
       if (system_thread_stack_pointer != (void *)SYSTEM_NULL_POINTER) {
         system_string_input_context = system_thread_stack_pointer;
       }
-      system_execution_function(system_string_input_context,system_string_length_counter,(long long)system_thread_result_status * path_buffer_size + system_stack_system_size_parameter);
+      system_execution_function(system_string_input_context,system_string_length_tracker,(long long)system_thread_operation_result * path_buffer_size + system_stack_system_size_parameter);
       system_thread_stack_pointer = &system_global_thread_string_2;
       if (system_string_input_context != (void *)SYSTEM_NULL_POINTER) {
         system_handle_param_system_error(system_string_input_context);
@@ -10928,20 +10928,20 @@ char * system_execution_function(unsigned int system_handle_param,unsigned long 
       system_thread_stack_pointer = (void *)SYSTEM_NULL_POINTER;
       system_maximum_stack_size = (ulong long)system_system_maximum_stack_size_low_half_extended << path_buffer_size;
       system_thread_stack_pointer = &system_global_thread_string_4;
-      system_string_length_counter = system_string_length_counter + path_buffer_size;
-      system_thread_result_status = *piStack_78 + 1;
-      *piStack_78 = system_thread_result_status;
+      system_string_length_tracker = system_string_length_tracker + path_buffer_size;
+      system_thread_operation_result = *piStack_78 + 1;
+      *piStack_78 = system_thread_operation_result;
       system_stack_system_size_parameter = system_maximum_stack_size;
       mutex_attr = pcStack_70;
       system_control_parameter = system_thread_stack_base_address;
       system_thread_status_parameter = piStack_78;
-    } while (system_string_length_counter != system_operation_parameter[1]);
+    } while (system_string_length_tracker != system_operation_parameter[1]);
   }
   system_character_scan_pointer = (char *)0x0;
   system_maximum_stack_size = system_maximum_stack_size & INT64_MASK;
   stack_pointer_120 = (long long *)((ulong long)stack_pointer_120 & INVALID_HANDLE_VALUE00000000);
   system_character_scan_pointer = system_character_scan_pointer;
-  if (0 < system_thread_result_status) {
+  if (0 < system_thread_operation_result) {
     do {
       system_character_scan_pointer = "base";
       do {
@@ -10962,8 +10962,8 @@ char * system_execution_function(unsigned int system_handle_param,unsigned long 
           system_character_scan_pointer = system_character_scan_pointer + (long long)system_character_scan_pointer;
           system_character_scan_pointer = system_character_scan_pointer;
           if (system_character_scan_pointer <= system_character_scan_pointer) break;
-          system_string_length_counter = (long long)&char_scan_buffer_end - (long long)system_character_scan_pointer;
-          while (*system_character_scan_pointer == system_character_scan_pointer[system_string_length_counter]) {
+          system_string_length_tracker = (long long)&char_scan_buffer_end - (long long)system_character_scan_pointer;
+          while (*system_character_scan_pointer == system_character_scan_pointer[system_string_length_tracker]) {
             system_character_scan_pointer = system_character_scan_pointer + 1;
 goto LABEL_SYSTEM_SECTION_PROCESSING_490;
           }
@@ -10996,8 +10996,8 @@ LABEL_SYSTEM_SECTION_PROCESSING_132:
               system_character_scan_pointer = system_character_scan_pointer + (long long)system_character_scan_pointer;
               system_character_scan_pointer = system_character_scan_pointer;
               if (system_character_scan_pointer <= system_character_scan_pointer) break;
-              system_string_length_counter = (long long)mutex_attr - (long long)system_character_scan_pointer;
-              while (*system_character_scan_pointer == system_character_scan_pointer[system_string_length_counter]) {
+              system_string_length_tracker = (long long)mutex_attr - (long long)system_character_scan_pointer;
+              while (*system_character_scan_pointer == system_character_scan_pointer[system_string_length_tracker]) {
                 system_character_scan_pointer = system_character_scan_pointer + 1;
 goto LABEL_SYSTEM_SECTION_PROCESSING_491;
               }
@@ -11043,21 +11043,21 @@ LABEL_SYSTEM_SECTION_PROCESSING_133:
           *(unsigned char *)(system_string_input_context + 5) = SYSTEM_ZERO_VALUE;
           system_maximum_stack_size = (ulong long)system_buffer_allocation_result;
           if (mutex_attr != (char *)0x0) {
-            system_string_length_counter = SYSTEM_STRING_LENGTH_INVALID;
+            system_string_length_tracker = SYSTEM_STRING_LENGTH_INVALID;
             do {
-              system_string_length_counter = system_string_length_counter;
-              system_string_length_counter = system_string_length_counter + 1;
-            } while (mutex_attr[system_string_length_counter] != '\0');
-            if (0 < (int)system_string_length_counter) {
-              system_thread_result_status = (int)system_string_length_counter;
-              if ((system_thread_result_status != -0x15) && (system_buffer_allocation_result < system_thread_result_status + SYSTEM_POINTER_OFFSET_16U)) {
+              system_string_length_tracker = system_string_length_tracker;
+              system_string_length_tracker = system_string_length_tracker + 1;
+            } while (mutex_attr[system_string_length_tracker] != '\0');
+            if (0 < (int)system_string_length_tracker) {
+              system_thread_operation_result = (int)system_string_length_tracker;
+              if ((system_thread_operation_result != -0x15) && (system_buffer_allocation_result < system_thread_operation_result + SYSTEM_POINTER_OFFSET_16U)) {
                 system_string_input_context = (unsigned int *)
-                          system_execution_function(system_global_context_pointer,system_string_input_context,system_thread_result_status + SYSTEM_POINTER_OFFSET_16U,STRING_BUFFER_SIZE,SYSTEM_STACK_SIZE_SMALL);
+                          system_execution_function(system_global_context_pointer,system_string_input_context,system_thread_operation_result + SYSTEM_POINTER_OFFSET_16U,STRING_BUFFER_SIZE,SYSTEM_STACK_SIZE_SMALL);
                 system_thread_stack_pointer = system_string_input_context;
                 system_buffer_allocation_result = allocate_temporary_buffer(system_string_input_context);
                 system_maximum_stack_size = merge_32bit_values(system_system_maximum_stack_size_low_half_extended,system_buffer_allocation_result);
               }
-              memcpy(system_string_input_context + 5,mutex_attr,(long long)(system_thread_result_status + 2));
+              memcpy(system_string_input_context + 5,mutex_attr,(long long)(system_thread_operation_result + 2));
             }
           }
           system_string_input_context = (unsigned char *)SYSTEM_NULL_POINTER;
@@ -11090,17 +11090,17 @@ LABEL_SYSTEM_SECTION_PROCESSING_133:
           }
           memcpy(system_string_input_context,system_string_input_context,SYSTEM_STACK_SIZE_MEDIUM);
         }
-        system_thread_result_status = validate_config_system_handle_param(system_character_scan_pointer,system_maximum_stack_size);
-        system_buffer_allocation_result = (int)system_character_scan_pointer + system_thread_result_status;
+        system_thread_operation_result = validate_config_system_handle_param(system_character_scan_pointer,system_maximum_stack_size);
+        system_buffer_allocation_result = (int)system_character_scan_pointer + system_thread_operation_result;
         system_character_scan_pointer = (char *)(ulong long)system_buffer_allocation_result;
         system_maximum_stack_size = merge_32bit_values(system_system_maximum_stack_size_low_half_extended,system_buffer_allocation_result);
       }
-      system_thread_result_status = (int)stack_pointer_120 + 1;
-      stack_pointer_120 = (long long *)merge_32bit_values(stack_pointer_120_low_half_,system_thread_result_status);
+      system_thread_operation_result = (int)stack_pointer_120 + 1;
+      stack_pointer_120 = (long long *)merge_32bit_values(stack_pointer_120_low_half_,system_thread_operation_result);
       system_control_parameter = system_control_parameter + SYSTEM_OFFSET_FUNCTION_TABLE88;
       mutex_attr = pcStack_70;
       system_thread_stack_base_address = system_control_parameter;
-    } while (system_thread_result_status < *system_thread_status_parameter);
+    } while (system_thread_operation_result < *system_thread_status_parameter);
   }
   system_thread_stack_pointer = &system_global_thread_string_2;
   if (system_thread_stack_pointer != (void *)SYSTEM_NULL_POINTER) {
@@ -11125,7 +11125,7 @@ char * system_execution_function(unsigned long long system_handle_param,unsigned
   unsigned int system_thread_operation_flags;
   unsigned int system_buffer_allocation_result;
   uint system_buffer_allocation_result;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   char *system_character_scan_pointer;
   unsigned int *system_string_input_context;
   unsigned int *system_string_input_context;
@@ -11157,10 +11157,10 @@ char * system_execution_function(unsigned long long system_handle_param,unsigned
   system_thread_stack_pointer = system_stack_system_size_parameter;
   system_character_scan_pointer = (char *)0x0;
   system_thread_stack_pointer = mutex_attr;
-  system_string_length_counter = system_execution_function(system_stack_system_size_parameter,&system_thread_stack_pointer);
+  system_string_length_tracker = system_execution_function(system_stack_system_size_parameter,&system_thread_stack_pointer);
   system_string_input_context = &default_resource_config_string;
-  if (*(void **)(system_string_length_counter + 8) != (void *)SYSTEM_NULL_POINTER) {
-    system_string_input_context = *(void **)(system_string_length_counter + 8);
+  if (*(void **)(system_string_length_tracker + 8) != (void *)SYSTEM_NULL_POINTER) {
+    system_string_input_context = *(void **)(system_string_length_tracker + 8);
   }
   system_execution_function(system_string_input_context,mutex_type,system_operation_parameter);
   system_thread_stack_pointer = &system_global_thread_string_2;
@@ -11189,8 +11189,8 @@ char * system_execution_function(unsigned long long system_handle_param,unsigned
       system_character_scan_pointer = system_character_scan_pointer + (long long)system_character_scan_pointer;
       system_character_scan_pointer = system_character_scan_pointer;
       if (system_character_scan_pointer <= system_character_scan_pointer) break;
-      system_string_length_counter = (long long)&char_scan_buffer_end - (long long)system_character_scan_pointer;
-      while (*system_character_scan_pointer == system_character_scan_pointer[system_string_length_counter]) {
+      system_string_length_tracker = (long long)&char_scan_buffer_end - (long long)system_character_scan_pointer;
+      while (*system_character_scan_pointer == system_character_scan_pointer[system_string_length_tracker]) {
         system_character_scan_pointer = system_character_scan_pointer + 1;
 goto LABEL_SYSTEM_SECTION_PROCESSING_492;
       }
@@ -11218,8 +11218,8 @@ LABEL_SYSTEM_SECTION_PROCESSING_134:
         system_character_scan_pointer = system_character_scan_pointer + (long long)system_character_scan_pointer;
         system_character_scan_pointer = system_character_scan_pointer;
         if (system_character_scan_pointer <= system_character_scan_pointer) break;
-        system_string_length_counter = (long long)&string_buffer_end - (long long)system_character_scan_pointer;
-        while (*system_character_scan_pointer == system_character_scan_pointer[system_string_length_counter]) {
+        system_string_length_tracker = (long long)&string_buffer_end - (long long)system_character_scan_pointer;
+        while (*system_character_scan_pointer == system_character_scan_pointer[system_string_length_tracker]) {
           system_character_scan_pointer = system_character_scan_pointer + 1;
 goto LABEL_SYSTEM_SECTION_PROCESSING_493;
         }
@@ -11290,10 +11290,10 @@ LABEL_SYSTEM_SECTION_PROCESSING_135:
       system_string_input_context[4] = SYSTEM_CHAR_LOWERCASE_D6e756f;
       *(unsigned short *)(system_string_input_context + 5) = SYSTEM_STRING_PATTERN_EXCLAMATION_BASIC;
       system_maximum_stack_size = SYSTEM_STACK_SIZE_LARGE;
-      system_string_length_counter = system_execution_function(&system_thread_stack_pointer,&system_thread_stack_pointer,&system_thread_stack_pointer);
+      system_string_length_tracker = system_execution_function(&system_thread_stack_pointer,&system_thread_stack_pointer,&system_thread_stack_pointer);
       system_string_input_context = &default_resource_config_string;
-      if (*(void **)(system_string_length_counter + 8) != (void *)SYSTEM_NULL_POINTER) {
-        system_string_input_context = *(void **)(system_string_length_counter + 8);
+      if (*(void **)(system_string_length_tracker + 8) != (void *)SYSTEM_NULL_POINTER) {
+        system_string_input_context = *(void **)(system_string_length_tracker + 8);
       }
       system_thread_initializer(system_string_input_context);
       system_thread_stack_pointer = &system_global_thread_string_2;
@@ -11331,7 +11331,7 @@ long long process_system_configuration(long long system_handle_param,long long s
   char *system_character_scan_pointer;
   char *system_character_scan_pointer;
   char *system_character_scan_pointer;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   unsigned long long *system_string_input_context;
   char *system_character_scan_pointer;
   unsigned long long *system_string_input_context;
@@ -11372,8 +11372,8 @@ long long process_system_configuration(long long system_handle_param,long long s
       system_character_scan_pointer = system_character_scan_pointer + (long long)system_character_scan_pointer;
       system_character_scan_pointer = system_character_scan_pointer;
       if (system_character_scan_pointer <= system_character_scan_pointer) break;
-      system_string_length_counter = (long long)&char_scan_buffer_end - (long long)system_character_scan_pointer;
-      while (*system_character_scan_pointer == system_character_scan_pointer[system_string_length_counter]) {
+      system_string_length_tracker = (long long)&char_scan_buffer_end - (long long)system_character_scan_pointer;
+      while (*system_character_scan_pointer == system_character_scan_pointer[system_string_length_tracker]) {
         system_character_scan_pointer = system_character_scan_pointer + 1;
 goto LABEL_SYSTEM_SECTION_PROCESSING_494;
       }
@@ -11401,8 +11401,8 @@ LABEL_SYSTEM_SECTION_PROCESSING_136:
     if (system_character_scan_pointer == system_character_scan_pointer + -STRING_BUFFER_OFFSET_3) {
       system_character_scan_pointer = system_character_scan_pointer + (long long)system_character_scan_pointer;
       if (system_character_scan_pointer <= system_character_scan_pointer) break;
-      system_string_length_counter = (long long)&system_string_end_marker_1 - (long long)system_character_scan_pointer;
-      while (*system_character_scan_pointer == system_character_scan_pointer[system_string_length_counter]) {
+      system_string_length_tracker = (long long)&system_string_end_marker_1 - (long long)system_character_scan_pointer;
+      while (*system_character_scan_pointer == system_character_scan_pointer[system_string_length_tracker]) {
         system_character_scan_pointer = system_character_scan_pointer + 1;
 goto LABEL_SYSTEM_SECTION_PROCESSING_495;
       }
@@ -11433,15 +11433,15 @@ LABEL_SYSTEM_SECTION_PROCESSING_137:
       system_character_scan_pointer = system_character_scan_pointer + (long long)system_character_scan_pointer;
       if (system_character_scan_pointer <= system_character_scan_pointer) {
 LABEL_SYSTEM_SECTION_PROCESSING_138:
-        system_string_length_counter = SYSTEM_AUDIO_BUFFER_ADDR;
+        system_string_length_tracker = SYSTEM_AUDIO_BUFFER_ADDR;
         if (system_string_input_context[1] != 0) {
-          system_string_length_counter = system_string_input_context[1];
+          system_string_length_tracker = system_string_input_context[1];
         }
-        system_execution_function(&system_thread_stack_pointer,system_string_length_counter,system_character_scan_pointer,system_string_input_context,system_buffer_allocation_result,system_buffer_allocation_result);
+        system_execution_function(&system_thread_stack_pointer,system_string_length_tracker,system_character_scan_pointer,system_string_input_context,system_buffer_allocation_result,system_buffer_allocation_result);
         break;
       }
-      system_string_length_counter = (long long)&system_string_end_marker_2 - (long long)system_character_scan_pointer;
-      while (*system_character_scan_pointer == system_character_scan_pointer[system_string_length_counter]) {
+      system_string_length_tracker = (long long)&system_string_end_marker_2 - (long long)system_character_scan_pointer;
+      while (*system_character_scan_pointer == system_character_scan_pointer[system_string_length_tracker]) {
         system_character_scan_pointer = system_character_scan_pointer + 1;
 goto LABEL_SYSTEM_SECTION_PROCESSING_496;
       }
@@ -11493,15 +11493,15 @@ LABEL_SYSTEM_SECTION_PROCESSING_140:
         system_character_scan_pointer = system_character_scan_pointer + (long long)system_character_scan_pointer;
         if (system_character_scan_pointer <= system_character_scan_pointer) {
 LABEL_SYSTEM_SECTION_PROCESSING_141:
-          system_string_length_counter = SYSTEM_AUDIO_BUFFER_ADDR;
+          system_string_length_tracker = SYSTEM_AUDIO_BUFFER_ADDR;
           if (system_string_input_context[1] != 0) {
-            system_string_length_counter = system_string_input_context[1];
+            system_string_length_tracker = system_string_input_context[1];
           }
-          system_execution_function(&system_thread_stack_pointer,system_string_length_counter);
+          system_execution_function(&system_thread_stack_pointer,system_string_length_tracker);
           break;
         }
-        system_string_length_counter = (long long)&char_temp_buffer - (long long)system_character_scan_pointer;
-        while (*system_character_scan_pointer == system_character_scan_pointer[system_string_length_counter]) {
+        system_string_length_tracker = (long long)&char_temp_buffer - (long long)system_character_scan_pointer;
+        while (*system_character_scan_pointer == system_character_scan_pointer[system_string_length_tracker]) {
           system_character_scan_pointer = system_character_scan_pointer + 1;
 goto LABEL_SYSTEM_SECTION_PROCESSING_499;
         }
@@ -11554,7 +11554,7 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_500;
   if (system_char_result != SYSTEM_ZERO_VALUE) {
     system_thread_initializer(&system_thread_handler_4,system_handle_param);
   }
-  if (system_string_length_counter != -1) {
+  if (system_string_length_tracker != -1) {
     LOCK();
     system_global_context_pointer = system_global_context_pointer + -1;
     UNLOCK();
@@ -11576,19 +11576,19 @@ int validate_config_system_handle_param(unsigned long long system_handle_param,c
   char system_char_result;
   unsigned long long *system_string_input_context;
   char *system_character_scan_pointer;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   char *system_character_scan_pointer;
-  int system_thread_result_status;
+  int system_thread_operation_result;
   system_string_input_context = (unsigned long long *)system_execution_function(system_handle_param,system_thread_operation_flags,0);
-  system_thread_result_status = SYSTEM_ZERO_VALUE;
+  system_thread_operation_result = SYSTEM_ZERO_VALUE;
   if (system_string_input_context == (unsigned long long *)SYSTEM_NULL_POINTER) {
     return 0;
   }
-  while (system_thread_result_status = system_thread_result_status + 1, system_thread_operation_flags == (char *)0x0) {
+  while (system_thread_operation_result = system_thread_operation_result + 1, system_thread_operation_flags == (char *)0x0) {
     system_string_input_context = (unsigned long long *)system_string_input_context[SYSTEM_ARRAY_INDEX_TWELFTH];
 LABEL_SYSTEM_SECTION_PROCESSING_142:
     if (system_string_input_context == (unsigned long long *)SYSTEM_NULL_POINTER) {
-      return system_thread_result_status;
+      return system_thread_operation_result;
     }
   }
   system_char_result = *system_thread_operation_flags;
@@ -11599,29 +11599,29 @@ LABEL_SYSTEM_SECTION_PROCESSING_142:
   }
   system_string_input_context = (unsigned long long *)system_string_input_context[SYSTEM_ARRAY_INDEX_TWELFTH];
   if (system_string_input_context == (unsigned long long *)SYSTEM_NULL_POINTER) {
-    return system_thread_result_status;
+    return system_thread_operation_result;
   }
   do {
     system_character_scan_pointer = (char *)*system_string_input_context;
     if (system_character_scan_pointer == (char *)0x0) {
-      system_string_length_counter = SYSTEM_ZERO_VALUE;
+      system_string_length_tracker = SYSTEM_ZERO_VALUE;
       system_character_scan_pointer = (char *)SYSTEM_AUDIO_BUFFER_ADDR;
     }
     else {
-      system_string_length_counter = system_string_input_context[2];
+      system_string_length_tracker = system_string_input_context[2];
     }
-    if (system_string_length_counter == (long long)system_character_scan_pointer - (long long)system_thread_operation_flags) {
-      system_character_scan_pointer = system_character_scan_pointer + system_string_length_counter;
+    if (system_string_length_tracker == (long long)system_character_scan_pointer - (long long)system_thread_operation_flags) {
+      system_character_scan_pointer = system_character_scan_pointer + system_string_length_tracker;
 goto LABEL_SYSTEM_SECTION_PROCESSING_501;
-      system_string_length_counter = (long long)system_thread_operation_flags - (long long)system_character_scan_pointer;
-      while (*system_character_scan_pointer == system_character_scan_pointer[system_string_length_counter]) {
+      system_string_length_tracker = (long long)system_thread_operation_flags - (long long)system_character_scan_pointer;
+      while (*system_character_scan_pointer == system_character_scan_pointer[system_string_length_tracker]) {
         system_character_scan_pointer = system_character_scan_pointer + 1;
 goto LABEL_SYSTEM_SECTION_PROCESSING_502;
       }
     }
     system_string_input_context = (unsigned long long *)system_string_input_context[SYSTEM_ARRAY_INDEX_TWELFTH];
     if (system_string_input_context == (unsigned long long *)SYSTEM_NULL_POINTER) {
-      return system_thread_result_status;
+      return system_thread_operation_result;
     }
   } while( true );
 }
@@ -11631,7 +11631,7 @@ int process_config_with_mutex(unsigned long long system_handle_param,unsigned lo
   char system_char_result;
   char *system_character_scan_pointer;
   char *system_base_register;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   char *system_character_scan_pointer;
   int cpu_register_r11d_value;
   while (cpu_register_r11d_value = cpu_register_r11d_value + 1, system_base_register == (char *)0x0) {
@@ -11654,17 +11654,17 @@ LABEL_SYSTEM_SECTION_PROCESSING_143:
   do {
     system_character_scan_pointer = (char *)*mutex_attr;
     if (system_character_scan_pointer == (char *)0x0) {
-      system_string_length_counter = SYSTEM_ZERO_VALUE;
+      system_string_length_tracker = SYSTEM_ZERO_VALUE;
       system_character_scan_pointer = (char *)SYSTEM_AUDIO_BUFFER_ADDR;
     }
     else {
-      system_string_length_counter = mutex_attr[SYSTEM_ARRAY_INDEX_2];
+      system_string_length_tracker = mutex_attr[SYSTEM_ARRAY_INDEX_2];
     }
-    if (system_string_length_counter == (long long)system_character_scan_pointer - (long long)system_base_register) {
-      system_character_scan_pointer = system_character_scan_pointer + system_string_length_counter;
+    if (system_string_length_tracker == (long long)system_character_scan_pointer - (long long)system_base_register) {
+      system_character_scan_pointer = system_character_scan_pointer + system_string_length_tracker;
 goto LABEL_SYSTEM_SECTION_PROCESSING_503;
-      system_string_length_counter = (long long)system_base_register - (long long)system_character_scan_pointer;
-      while (*system_character_scan_pointer == system_character_scan_pointer[system_string_length_counter]) {
+      system_string_length_tracker = (long long)system_base_register - (long long)system_character_scan_pointer;
+      while (*system_character_scan_pointer == system_character_scan_pointer[system_string_length_tracker]) {
         system_character_scan_pointer = system_character_scan_pointer + 1;
 goto LABEL_SYSTEM_SECTION_PROCESSING_504;
       }
@@ -11682,7 +11682,7 @@ int validate_mutex_attributes(unsigned long long system_handle_param,unsigned lo
   char *system_character_scan_pointer;
   char *system_base_register;
   char *system_destination_index_register;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   char *system_character_scan_pointer;
   int cpu_register_r11d_value;
   do {
@@ -11705,18 +11705,18 @@ LABEL_SYSTEM_SECTION_PROCESSING_144:
   }
   do {
     if ((char *)*mutex_attr == (char *)0x0) {
-      system_string_length_counter = SYSTEM_ZERO_VALUE;
+      system_string_length_tracker = SYSTEM_ZERO_VALUE;
       system_character_scan_pointer = system_destination_index_register;
     }
     else {
-      system_string_length_counter = mutex_attr[SYSTEM_ARRAY_INDEX_2];
+      system_string_length_tracker = mutex_attr[SYSTEM_ARRAY_INDEX_2];
       system_character_scan_pointer = (char *)*mutex_attr;
     }
-    if (system_string_length_counter == (long long)system_character_scan_pointer - (long long)system_base_register) {
-      system_character_scan_pointer = system_character_scan_pointer + system_string_length_counter;
+    if (system_string_length_tracker == (long long)system_character_scan_pointer - (long long)system_base_register) {
+      system_character_scan_pointer = system_character_scan_pointer + system_string_length_tracker;
 goto LABEL_SYSTEM_SECTION_PROCESSING_505;
-      system_string_length_counter = (long long)system_base_register - (long long)system_character_scan_pointer;
-      while (*system_character_scan_pointer == system_character_scan_pointer[system_string_length_counter]) {
+      system_string_length_tracker = (long long)system_base_register - (long long)system_character_scan_pointer;
+      while (*system_character_scan_pointer == system_character_scan_pointer[system_string_length_tracker]) {
         system_character_scan_pointer = system_character_scan_pointer + 1;
 goto LABEL_SYSTEM_SECTION_PROCESSING_506;
       }
@@ -11735,9 +11735,9 @@ unsigned int get_system_status_code(void)
 long long system_initialize_resources(unsigned long long system_handle_param,unsigned long long system_thread_operation_flags,long long mutex_attr)
 {
   long long system_initialization_result;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   char *system_character_scan_pointer;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   unsigned long long system_buffer_allocation_result;
   void *system_thread_stack_pointer;
   char *pcStack_28;
@@ -11746,16 +11746,16 @@ long long system_initialize_resources(unsigned long long system_handle_param,uns
   if (system_initialization_result == SYSTEM_ZERO_VALUE) {
     return 0;
   }
-  system_string_length_counter = SYSTEM_AUDIO_BUFFER_ADDR;
+  system_string_length_tracker = SYSTEM_AUDIO_BUFFER_ADDR;
   if (*(long long *)(system_initialization_result + 8) != 0) {
-    system_string_length_counter = *(long long *)(system_initialization_result + 8);
+    system_string_length_tracker = *(long long *)(system_initialization_result + 8);
   }
-  create_thread_context(&system_thread_stack_pointer,system_string_length_counter);
+  create_thread_context(&system_thread_stack_pointer,system_string_length_tracker);
   if (*pcStack_28 != '\0') {
     system_initialization_result = SYSTEM_ZERO_VALUE;
     do {
-      system_string_length_counter = strchr(&system_string_buffer_1,(int)pcStack_28[system_initialization_result]);
-      if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
+      system_string_length_tracker = strchr(&system_string_buffer_1,(int)pcStack_28[system_initialization_result]);
+      if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
         pcStack_28[system_initialization_result] = ' ';
       }
       system_initialization_result = system_initialization_result + 1;
@@ -11770,30 +11770,30 @@ long long system_initialize_resources(unsigned long long system_handle_param,uns
   if (pcStack_28 != (char *)0x0) {
     system_handle_param_system_error();
   }
-  return system_string_length_counter;
+  return system_string_length_tracker;
 }
 long long allocate_thread_resources(unsigned long long system_handle_param,unsigned long long system_thread_operation_flags,long long mutex_attr)
 {
   long long system_initialization_result;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   char *system_character_scan_pointer;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   void *system_thread_stack_pointer;
   char *pcStack_28;
   system_initialization_result = system_execution_function();
   if (system_initialization_result == SYSTEM_ZERO_VALUE) {
     return 0;
   }
-  system_string_length_counter = SYSTEM_AUDIO_BUFFER_ADDR;
+  system_string_length_tracker = SYSTEM_AUDIO_BUFFER_ADDR;
   if (*(long long *)(system_initialization_result + 8) != 0) {
-    system_string_length_counter = *(long long *)(system_initialization_result + 8);
+    system_string_length_tracker = *(long long *)(system_initialization_result + 8);
   }
-  create_thread_context(&system_thread_stack_pointer,system_string_length_counter);
+  create_thread_context(&system_thread_stack_pointer,system_string_length_tracker);
   if (*pcStack_28 != '\0') {
     system_initialization_result = SYSTEM_ZERO_VALUE;
     do {
-      system_string_length_counter = strchr(&system_string_buffer_2,(int)pcStack_28[system_initialization_result]);
-      if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
+      system_string_length_tracker = strchr(&system_string_buffer_2,(int)pcStack_28[system_initialization_result]);
+      if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
         pcStack_28[system_initialization_result] = ' ';
       }
       system_initialization_result = system_initialization_result + 1;
@@ -11808,30 +11808,30 @@ long long allocate_thread_resources(unsigned long long system_handle_param,unsig
   if (pcStack_28 != (char *)0x0) {
     system_handle_param_system_error();
   }
-  return system_string_length_counter;
+  return system_string_length_tracker;
 }
 long long initialize_thread_pool_resources(unsigned long long system_handle_param,unsigned long long system_thread_operation_flags,long long mutex_attr,unsigned long long mutex_type)
 {
   long long system_initialization_result;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   char *system_character_scan_pointer;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   void *system_thread_stack_pointer;
   char *pcStack_28;
   system_initialization_result = system_execution_function(system_handle_param,&g_system_buffer_status,mutex_attr,mutex_type,default_thread_pool_flag);
   if (system_initialization_result == SYSTEM_ZERO_VALUE) {
     return 0;
   }
-  system_string_length_counter = SYSTEM_AUDIO_BUFFER_ADDR;
+  system_string_length_tracker = SYSTEM_AUDIO_BUFFER_ADDR;
   if (*(long long *)(system_initialization_result + 8) != 0) {
-    system_string_length_counter = *(long long *)(system_initialization_result + 8);
+    system_string_length_tracker = *(long long *)(system_initialization_result + 8);
   }
-  create_thread_context(&system_thread_stack_pointer,system_string_length_counter);
+  create_thread_context(&system_thread_stack_pointer,system_string_length_tracker);
   if (*pcStack_28 != '\0') {
     system_initialization_result = SYSTEM_ZERO_VALUE;
     do {
-      system_string_length_counter = strchr(&system_string_buffer_3,(int)pcStack_28[system_initialization_result]);
-      if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
+      system_string_length_tracker = strchr(&system_string_buffer_3,(int)pcStack_28[system_initialization_result]);
+      if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
         pcStack_28[system_initialization_result] = ' ';
       }
       system_initialization_result = system_initialization_result + 1;
@@ -11846,59 +11846,59 @@ long long initialize_thread_pool_resources(unsigned long long system_handle_para
   if (pcStack_28 != (char *)0x0) {
     system_handle_param_system_error();
   }
-  return system_string_length_counter;
+  return system_string_length_tracker;
 }
 long long validate_thread_configuration(unsigned long long system_handle_param,unsigned long long system_thread_operation_flags,long long mutex_attr)
 {
-  int system_thread_result_status;
-  long long system_string_length_counter;
-  long long system_string_length_counter;
+  int system_thread_operation_result;
+  long long system_string_length_tracker;
+  long long system_string_length_tracker;
   char *system_character_scan_pointer;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   unsigned long long system_buffer_allocation_result;
   void *system_thread_stack_pointer;
   char *pcStack_28;
   system_buffer_allocation_result = default_thread_pool_flag;
-  system_string_length_counter = system_execution_function();
-  if (system_string_length_counter == SYSTEM_ZERO_VALUE) {
+  system_string_length_tracker = system_execution_function();
+  if (system_string_length_tracker == SYSTEM_ZERO_VALUE) {
     return 0;
   }
-  system_string_length_counter = SYSTEM_AUDIO_BUFFER_ADDR;
-  if (*(long long *)(system_string_length_counter + 8) != 0) {
-    system_string_length_counter = *(long long *)(system_string_length_counter + 8);
+  system_string_length_tracker = SYSTEM_AUDIO_BUFFER_ADDR;
+  if (*(long long *)(system_string_length_tracker + 8) != 0) {
+    system_string_length_tracker = *(long long *)(system_string_length_tracker + 8);
   }
-  create_thread_context(&system_thread_stack_pointer,system_string_length_counter);
+  create_thread_context(&system_thread_stack_pointer,system_string_length_tracker);
   if (*pcStack_28 != '\0') {
-    system_string_length_counter = SYSTEM_ZERO_VALUE;
+    system_string_length_tracker = SYSTEM_ZERO_VALUE;
     do {
-      system_string_length_counter = strchr(&system_string_buffer_2,(int)pcStack_28[system_string_length_counter]);
-      if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
-        pcStack_28[system_string_length_counter] = ' ';
+      system_string_length_tracker = strchr(&system_string_buffer_2,(int)pcStack_28[system_string_length_tracker]);
+      if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
+        pcStack_28[system_string_length_tracker] = ' ';
       }
-      system_string_length_counter = system_string_length_counter + 1;
-    } while (pcStack_28[system_string_length_counter] != '\0');
+      system_string_length_tracker = system_string_length_tracker + 1;
+    } while (pcStack_28[system_string_length_tracker] != '\0');
   }
   system_character_scan_pointer = "";
   if (pcStack_28 != (char *)0x0) {
     system_character_scan_pointer = pcStack_28;
   }
-  system_thread_result_status = system_execution_function(system_character_scan_pointer,&system_thread_handler_8,mutex_attr,mutex_attr + SYSTEM_OFFSET_HANDLE_PARAM,mutex_attr + 8,
+  system_thread_operation_result = system_execution_function(system_character_scan_pointer,&system_thread_handler_8,mutex_attr,mutex_attr + SYSTEM_OFFSET_HANDLE_PARAM,mutex_attr + 8,
                         (unsigned int *)(mutex_attr + SYSTEM_OFFSET_STACK_POINTER),system_buffer_allocation_result);
-  if (system_thread_result_status == SYSTEM_THREE_VALUE) {
+  if (system_thread_operation_result == SYSTEM_THREE_VALUE) {
     *(unsigned int *)(mutex_attr + SYSTEM_OFFSET_STACK_POINTER) = SYSTEM_CONSTANT_TRIPLE800000;
   }
   system_thread_stack_pointer = &system_global_thread_string_2;
   if (pcStack_28 != (char *)0x0) {
     system_handle_param_system_error();
   }
-  return system_string_length_counter;
+  return system_string_length_tracker;
 }
 long long process_thread_initialization(unsigned long long system_handle_param,unsigned long long system_thread_operation_flags,long long mutex_attr)
 {
   long long system_initialization_result;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   char *system_character_scan_pointer;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   unsigned long long system_buffer_allocation_result;
   void *system_thread_stack_pointer;
   char *pcStack_28;
@@ -11907,16 +11907,16 @@ long long process_thread_initialization(unsigned long long system_handle_param,u
   if (system_initialization_result == SYSTEM_ZERO_VALUE) {
     return 0;
   }
-  system_string_length_counter = SYSTEM_AUDIO_BUFFER_ADDR;
+  system_string_length_tracker = SYSTEM_AUDIO_BUFFER_ADDR;
   if (*(long long *)(system_initialization_result + 8) != 0) {
-    system_string_length_counter = *(long long *)(system_initialization_result + 8);
+    system_string_length_tracker = *(long long *)(system_initialization_result + 8);
   }
-  create_thread_context(&system_thread_stack_pointer,system_string_length_counter);
+  create_thread_context(&system_thread_stack_pointer,system_string_length_tracker);
   if (*pcStack_28 != '\0') {
     system_initialization_result = SYSTEM_ZERO_VALUE;
     do {
-      system_string_length_counter = strchr(&system_string_buffer_3,(int)pcStack_28[system_initialization_result]);
-      if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
+      system_string_length_tracker = strchr(&system_string_buffer_3,(int)pcStack_28[system_initialization_result]);
+      if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
         pcStack_28[system_initialization_result] = ' ';
       }
       system_initialization_result = system_initialization_result + 1;
@@ -11931,34 +11931,34 @@ long long process_thread_initialization(unsigned long long system_handle_param,u
   if (pcStack_28 != (char *)0x0) {
     system_handle_param_system_error();
   }
-  return system_string_length_counter;
+  return system_string_length_tracker;
 }
 long long initialize_thread_synchronization(unsigned long long system_handle_param,unsigned long long system_thread_operation_flags,long long mutex_attr)
 {
   long long *system_initialization_result_ptr;
-  long long system_string_length_counter;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
+  long long system_string_length_tracker;
   char *system_character_scan_pointer;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   void *system_thread_stack_pointer;
   char *pcStack_28;
-  system_string_length_counter = system_execution_function();
-  if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
-    system_initialization_result_ptr = (long long *)(system_string_length_counter + 8);
-    system_string_length_counter = SYSTEM_AUDIO_BUFFER_ADDR;
+  system_string_length_tracker = system_execution_function();
+  if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
+    system_initialization_result_ptr = (long long *)(system_string_length_tracker + 8);
+    system_string_length_tracker = SYSTEM_AUDIO_BUFFER_ADDR;
     if (*system_initialization_result_ptr != 0) {
-      system_string_length_counter = *system_initialization_result_ptr;
+      system_string_length_tracker = *system_initialization_result_ptr;
     }
-    create_thread_context(&system_thread_stack_pointer,system_string_length_counter);
+    create_thread_context(&system_thread_stack_pointer,system_string_length_tracker);
     if (*pcStack_28 != '\0') {
-      system_string_length_counter = SYSTEM_ZERO_VALUE;
+      system_string_length_tracker = SYSTEM_ZERO_VALUE;
       do {
-        system_string_length_counter = strchr(&system_string_buffer_3,(int)pcStack_28[system_string_length_counter]);
-        if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
-          pcStack_28[system_string_length_counter] = ' ';
+        system_string_length_tracker = strchr(&system_string_buffer_3,(int)pcStack_28[system_string_length_tracker]);
+        if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
+          pcStack_28[system_string_length_tracker] = ' ';
         }
-        system_string_length_counter = system_string_length_counter + 1;
-      } while (pcStack_28[system_string_length_counter] != '\0');
+        system_string_length_tracker = system_string_length_tracker + 1;
+      } while (pcStack_28[system_string_length_tracker] != '\0');
     }
     system_character_scan_pointer = "";
     if (pcStack_28 != (char *)0x0) {
@@ -11971,36 +11971,36 @@ long long initialize_thread_synchronization(unsigned long long system_handle_par
       system_handle_param_system_error();
     }
   }
-  return system_string_length_counter;
+  return system_string_length_tracker;
 }
 long long setup_thread_communication(unsigned long long system_handle_param,unsigned long long system_thread_operation_flags,long long mutex_attr)
 {
   long long *system_initialization_result_ptr;
-  long long system_string_length_counter;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
+  long long system_string_length_tracker;
   char *system_character_scan_pointer;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   unsigned long long system_buffer_allocation_result;
   void *system_thread_stack_pointer;
   char *pcStack_50;
   system_buffer_allocation_result = default_thread_pool_flag;
-  system_string_length_counter = system_execution_function();
-  if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
-    system_initialization_result_ptr = (long long *)(system_string_length_counter + 8);
-    system_string_length_counter = SYSTEM_AUDIO_BUFFER_ADDR;
+  system_string_length_tracker = system_execution_function();
+  if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
+    system_initialization_result_ptr = (long long *)(system_string_length_tracker + 8);
+    system_string_length_tracker = SYSTEM_AUDIO_BUFFER_ADDR;
     if (*system_initialization_result_ptr != 0) {
-      system_string_length_counter = *system_initialization_result_ptr;
+      system_string_length_tracker = *system_initialization_result_ptr;
     }
-    create_thread_context(&system_thread_stack_pointer,system_string_length_counter);
+    create_thread_context(&system_thread_stack_pointer,system_string_length_tracker);
     if (*pcStack_50 != '\0') {
-      system_string_length_counter = SYSTEM_ZERO_VALUE;
+      system_string_length_tracker = SYSTEM_ZERO_VALUE;
       do {
-        system_string_length_counter = strchr(&system_string_buffer_3,(int)pcStack_50[system_string_length_counter]);
-        if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
-          pcStack_50[system_string_length_counter] = ' ';
+        system_string_length_tracker = strchr(&system_string_buffer_3,(int)pcStack_50[system_string_length_tracker]);
+        if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
+          pcStack_50[system_string_length_tracker] = ' ';
         }
-        system_string_length_counter = system_string_length_counter + 1;
-      } while (pcStack_50[system_string_length_counter] != '\0');
+        system_string_length_tracker = system_string_length_tracker + 1;
+      } while (pcStack_50[system_string_length_tracker] != '\0');
     }
     system_character_scan_pointer = "";
     if (pcStack_50 != (char *)0x0) {
@@ -12009,32 +12009,32 @@ long long setup_thread_communication(unsigned long long system_handle_param,unsi
     system_execution_function(system_character_scan_pointer,&system_thread_handler_10,mutex_attr,mutex_attr + SYSTEM_OFFSET_HANDLE_PARAM,mutex_attr + 8,mutex_attr + SYSTEM_POINTER_OFFSET_C,mutex_attr + SYSTEM_OFFSET_STRING_BUFFER_SIZE
                   ,mutex_attr + SYSTEM_CONFIG_OFFSET_INIT_FLAG,mutex_attr + SYSTEM_OFFSET_GLOBAL_DATA_PTR,mutex_attr + SYSTEM_OFFSET_PATH_SIZE,mutex_attr + path_buffer_size,mutex_attr + SYSTEM_OFFSET_PATH_BUFFER,
                   mutex_attr + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG,mutex_attr + SYSTEM_POINTER_OFFSET_2C,mutex_attr + SYSTEM_OFFSET_FUNCTION_TABLE,mutex_attr + SYSTEM_CONFIG_OFFSET_MODULE_HANDLE,mutex_attr + SYSTEM_OFFSET_CLEANUP_FUNCTION,
-                  mutex_attr + SYSTEM_OFFSET_THREAD_DATA_EXTENDED,system_string_length_counter,system_buffer_allocation_result);
+                  mutex_attr + SYSTEM_OFFSET_THREAD_DATA_EXTENDED,system_string_length_tracker,system_buffer_allocation_result);
     system_thread_stack_pointer = &system_global_thread_string_2;
     if (pcStack_50 != (char *)0x0) {
       system_handle_param_system_error();
     }
   }
-  return system_string_length_counter;
+  return system_string_length_tracker;
 }
 long long create_thread_with_attributes(unsigned long long system_handle_param,unsigned long long system_thread_operation_flags,unsigned long long *mutex_attr)
 {
   unsigned long long system_buffer_allocation_result;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   unsigned long long *system_string_input_context;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   unsigned char system_stack_char_buffer [16];
-  system_string_length_counter = system_execution_function();
-  if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
-    system_string_length_counter = SYSTEM_AUDIO_BUFFER_ADDR;
-    if (*(long long *)(system_string_length_counter + 8) != 0) {
-      system_string_length_counter = *(long long *)(system_string_length_counter + 8);
+  system_string_length_tracker = system_execution_function();
+  if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
+    system_string_length_tracker = SYSTEM_AUDIO_BUFFER_ADDR;
+    if (*(long long *)(system_string_length_tracker + 8) != 0) {
+      system_string_length_tracker = *(long long *)(system_string_length_tracker + 8);
     }
-    system_string_input_context = (unsigned long long *)system_execution_function(system_stack_char_buffer,system_string_length_counter);
+    system_string_input_context = (unsigned long long *)system_execution_function(system_stack_char_buffer,system_string_length_tracker);
     system_buffer_allocation_result = system_string_input_context[1];
     *mutex_attr = *system_string_input_context;
     mutex_attr[SYSTEM_ARRAY_INDEX_1] = system_buffer_allocation_result;
-    return system_string_length_counter;
+    return system_string_length_tracker;
   }
   return 0;
 }
@@ -12059,21 +12059,21 @@ unsigned long long get_thread_system_handle_param(unsigned long long system_hand
   system_flag_buffer_11 = SYSTEM_ZERO_VALUE;
   system_crypto_initializer(system_execution_function);
   system_execution_function(&system_cleanup_function);
-  system_string_length_counter = SYSTEM_ZERO_VALUE;
+  system_string_length_tracker = SYSTEM_ZERO_VALUE;
   system_global_context_pointer = system_execution_function;
   system_string_input_context = (unsigned int *)&string_input_buffer;
-  system_string_length_counter = SYSTEM_STRING_LENGTH_BASIC;
+  system_string_length_tracker = SYSTEM_STRING_LENGTH_BASIC;
   do {
     if (system_string_input_context[1] == SYSTEM_ZERO_VALUE) {
       system_execution_function(system_string_input_context);
     }
-    if (system_string_length_counter != 2) {
+    if (system_string_length_tracker != 2) {
       system_execution_function(&system_thread_handler_1,*(unsigned long long *)(system_string_input_context + SYSTEM_OFFSET_HANDLE_PARAM),*system_string_input_context);
     }
-    system_string_length_counter = system_string_length_counter + 1;
+    system_string_length_tracker = system_string_length_tracker + 1;
     system_string_input_context = system_string_input_context + 6;
-    system_string_length_counter = system_string_length_counter + SYSTEM_DECREMENT_SINGLE_UNIT;
-  } while (system_string_length_counter != 0);
+    system_string_length_tracker = system_string_length_tracker + SYSTEM_DECREMENT_SINGLE_UNIT;
+  } while (system_string_length_tracker != 0);
   if (system_global_context_pointer == SYSTEM_ZERO_VALUE) {
     system_execution_function(&system_thread_operation_flags_buffer);
   }
@@ -12151,11 +12151,11 @@ unsigned int validate_resource_system_handle_param(int system_handle_param)
     system_buffer_temp = SYSTEM_ZERO_VALUE;
     return;
   }
-  system_string_length_counter = SYSTEM_STRING_LENGTH_INVALID;
+  system_string_length_tracker = SYSTEM_STRING_LENGTH_INVALID;
   do {
-    system_string_length_counter = system_string_length_counter + 1;
-  } while (*(char *)(system_handle_param + system_string_length_counter) != '\0');
-  system_buffer_allocation_result = (uint)system_string_length_counter;
+    system_string_length_tracker = system_string_length_tracker + 1;
+  } while (*(char *)(system_handle_param + system_string_length_tracker) != '\0');
+  system_buffer_allocation_result = (uint)system_string_length_tracker;
   if (MAX_THREAD_STACK_SIZE < system_buffer_allocation_result) {
     system_buffer_allocation_result = MAX_THREAD_STACK_SIZE;
   }
@@ -12167,11 +12167,11 @@ unsigned int validate_resource_system_handle_param(int system_handle_param)
 unsigned long long system_initialize_context(unsigned long long system_handle_param)
 {
   unsigned long long system_buffer_allocation_result;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   system_buffer_allocation_result = system_execution_function(system_global_context_pointer,system_handle_param,SYSTEM_FUNCTION_PARAM_SIZE_LARGE_EXTENDED);
-  system_string_length_counter = allocate_temporary_buffer(system_buffer_allocation_result);
+  system_string_length_tracker = allocate_temporary_buffer(system_buffer_allocation_result);
   LOCK();
-  system_global_context_pointer = system_global_context_pointer + system_string_length_counter;
+  system_global_context_pointer = system_global_context_pointer + system_string_length_tracker;
   UNLOCK();
   return system_buffer_allocation_result;
 }
@@ -12192,61 +12192,61 @@ unsigned long long setup_context_with_system_thread_operation_flags(unsigned lon
 }
 long long process_context_system_handle_param(long long *system_handle_param)
 {
-  int *system_system_string_length_counter_ptr;
-  long long system_string_length_counter;
-  long long system_string_length_counter;
+  int *system_system_string_length_tracker_ptr;
+  long long system_string_length_tracker;
+  long long system_string_length_tracker;
   ulong long system_buffer_allocation_result;
-  system_string_length_counter = allocate_temporary_buffer();
-  system_string_length_counter = system_global_context_pointer;
+  system_string_length_tracker = allocate_temporary_buffer();
+  system_string_length_tracker = system_global_context_pointer;
   LOCK();
-  system_string_length_counter = system_global_context_pointer - system_string_length_counter;
-  system_global_context_pointer = system_string_length_counter;
+  system_string_length_tracker = system_global_context_pointer - system_string_length_tracker;
+  system_global_context_pointer = system_string_length_tracker;
   UNLOCK();
   if (system_handle_param == (long long *)SYSTEM_NULL_POINTER) {
-    return system_string_length_counter;
+    return system_string_length_tracker;
   }
   system_buffer_allocation_result = (ulong long)system_handle_param & INVALID_HANDLE_VALUEffc00000;
   if (system_buffer_allocation_result != SYSTEM_ZERO_VALUE) {
-    system_string_length_counter = system_buffer_allocation_result + SYSTEM_POINTER_OFFSET0 + ((long long)system_handle_param - system_buffer_allocation_result >> STRING_BUFFER_SIZE) * SYSTEM_MULTIPLIER_LARGE_SCALE;
-    system_string_length_counter = system_string_length_counter - (ulong long)*(uint *)(system_string_length_counter + SYSTEM_OFFSET_HANDLE_PARAM);
-    if ((*(void ***)(system_buffer_allocation_result + SYSTEM_CHAR_LOWERCASE_P) == &ExceptionList) && (*(char *)(system_string_length_counter + SYSTEM_POINTER_OFFSET_E) == '\0')) {
-      system_string_length_counter = *(long long *)(system_string_length_counter + path_buffer_size);
-      *system_handle_param = system_string_length_counter;
-      *(long long **)(system_string_length_counter + path_buffer_size) = system_handle_param;
-      system_system_string_length_counter_ptr = (int *)(system_string_length_counter + SYSTEM_OFFSET_GLOBAL_DATA_PTR);
-      *system_system_string_length_counter_ptr = *system_system_string_length_counter_ptr + -1;
-      if (*system_system_string_length_counter_ptr == SYSTEM_ZERO_VALUE) {
-        system_string_length_counter = system_execution_function();
-        return system_string_length_counter;
+    system_string_length_tracker = system_buffer_allocation_result + SYSTEM_POINTER_OFFSET0 + ((long long)system_handle_param - system_buffer_allocation_result >> STRING_BUFFER_SIZE) * SYSTEM_MULTIPLIER_LARGE_SCALE;
+    system_string_length_tracker = system_string_length_tracker - (ulong long)*(uint *)(system_string_length_tracker + SYSTEM_OFFSET_HANDLE_PARAM);
+    if ((*(void ***)(system_buffer_allocation_result + SYSTEM_CHAR_LOWERCASE_P) == &ExceptionList) && (*(char *)(system_string_length_tracker + SYSTEM_POINTER_OFFSET_E) == '\0')) {
+      system_string_length_tracker = *(long long *)(system_string_length_tracker + path_buffer_size);
+      *system_handle_param = system_string_length_tracker;
+      *(long long **)(system_string_length_tracker + path_buffer_size) = system_handle_param;
+      system_system_string_length_tracker_ptr = (int *)(system_string_length_tracker + SYSTEM_OFFSET_GLOBAL_DATA_PTR);
+      *system_system_string_length_tracker_ptr = *system_system_string_length_tracker_ptr + -1;
+      if (*system_system_string_length_tracker_ptr == SYSTEM_ZERO_VALUE) {
+        system_string_length_tracker = system_execution_function();
+        return system_string_length_tracker;
       }
     }
     else {
-      system_string_length_counter = system_buffer_allocator(system_buffer_allocation_result,CONCAT_BYTES_TO_64BIT(0xff000000,
+      system_string_length_tracker = system_buffer_allocator(system_buffer_allocation_result,CONCAT_BYTES_TO_64BIT(0xff000000,
                                                  *(void ***)(system_buffer_allocation_result + SYSTEM_CHAR_LOWERCASE_P) == &ExceptionList),
                                   system_handle_param,system_buffer_allocation_result,default_thread_pool_flag);
     }
   }
-  return system_string_length_counter;
+  return system_string_length_tracker;
 }
       network_initialization_flag = '\x01';
       system_handle_param = system_maximum_stack_size;
     }
     system_float_pointer_variable = afStack_2e8;
-    system_string_length_counter = SYSTEM_ZERO_VALUE;
-    system_string_length_counter = path_buffer_size;
-    system_string_length_counter = path_buffer_size;
+    system_string_length_tracker = SYSTEM_ZERO_VALUE;
+    system_string_length_tracker = path_buffer_size;
+    system_string_length_tracker = path_buffer_size;
     do {
-      system_float_variable = system_operation_parameter * *(float *)(system_string_length_counter + SYSTEM_FLOAT_ARRAY_ADDR);
-      system_float_variable = system_operation_parameter * *(float *)(system_string_length_counter + SYSTEM_FLOAT_ARRAY_ADDR_2);
-      system_float_variable = system_operation_parameter * *(float *)(system_string_length_counter + SYSTEM_FLOAT_ARRAY_TERTIARY_ADDRESS);
+      system_float_variable = system_operation_parameter * *(float *)(system_string_length_tracker + SYSTEM_FLOAT_ARRAY_ADDR);
+      system_float_variable = system_operation_parameter * *(float *)(system_string_length_tracker + SYSTEM_FLOAT_ARRAY_ADDR_2);
+      system_float_variable = system_operation_parameter * *(float *)(system_string_length_tracker + SYSTEM_FLOAT_ARRAY_TERTIARY_ADDRESS);
       system_float_variable = system_float_variable * *mutex_attr + system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_FOURTH] + system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_EIGHTH] + mutex_attr[SYSTEM_ARRAY_INDEX_TWELFTH];
       system_float_variable = system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_1] + system_float_variable * mutex_attr[5] + system_float_variable * mutex_attr[9] + mutex_attr[SYSTEM_MEMORY_OFFSET_D];
       system_float_variable = system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_SECOND] + system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_SIXTH] + system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_TENTH] + mutex_attr[SYSTEM_ARRAY_INDEX_FOURTEENTH];
       system_float_variable = system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_THIRD] + system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_SEVENTH] + system_float_variable * mutex_attr[SYSTEM_ARRAY_INDEX_ELEVENTH] + mutex_attr[SYSTEM_ARRAY_INDEX_FIFTEENTH];
-      *(float *)((long long)afStack_2e8 + system_string_length_counter) = system_float_variable;
-      *(float *)((long long)afStack_2e8 + system_string_length_counter + SYSTEM_OFFSET_HANDLE_PARAM) = system_float_variable;
-      *(float *)((long long)&system_maximum_stack_size + system_string_length_counter) = system_float_variable;
-      *(float *)((long long)&system_maximum_stack_size + system_string_length_counter + SYSTEM_OFFSET_HANDLE_PARAM) = system_float_variable;
+      *(float *)((long long)afStack_2e8 + system_string_length_tracker) = system_float_variable;
+      *(float *)((long long)afStack_2e8 + system_string_length_tracker + SYSTEM_OFFSET_HANDLE_PARAM) = system_float_variable;
+      *(float *)((long long)&system_maximum_stack_size + system_string_length_tracker) = system_float_variable;
+      *(float *)((long long)&system_maximum_stack_size + system_string_length_tracker + SYSTEM_OFFSET_HANDLE_PARAM) = system_float_variable;
       if (system_thread_operation_flags != SYSTEM_ZERO_VALUE) {
         system_maximum_stack_size = system_maximum_stack_size & INT64_MASK;
         if (*(long long *)(system_thread_operation_flags + SYSTEM_GLOBAL_DATA_OFFSET_2908) == SYSTEM_ZERO_VALUE) {
@@ -12270,12 +12270,12 @@ long long process_context_system_handle_param(long long *system_handle_param)
             system_float_variable = SYSTEM_FLOAT_VALUE_ZERO;
           }
         }
-        *(float *)((long long)&system_maximum_stack_size + system_string_length_counter) = system_float_variable + SYSTEM_FLOAT_ADJUSTMENT_SMALL;
+        *(float *)((long long)&system_maximum_stack_size + system_string_length_tracker) = system_float_variable + SYSTEM_FLOAT_ADJUSTMENT_SMALL;
       }
       system_float_pointer_variable = system_float_pointer_variable + SYSTEM_OFFSET_HANDLE_PARAM;
-      system_string_length_counter = system_string_length_counter + SYSTEM_OFFSET_STRING_BUFFER_SIZE;
-      system_string_length_counter = system_string_length_counter + SYSTEM_DECREMENT_SINGLE_UNIT;
-    } while (system_string_length_counter != 0);
+      system_string_length_tracker = system_string_length_tracker + SYSTEM_OFFSET_STRING_BUFFER_SIZE;
+      system_string_length_tracker = system_string_length_tracker + SYSTEM_DECREMENT_SINGLE_UNIT;
+    } while (system_string_length_tracker != 0);
     system_float_variable = mutex_attr[SYSTEM_ARRAY_INDEX_FOURTEENTH];
     system_float_variable = mutex_attr[SYSTEM_MEMORY_OFFSET_D];
     system_float_variable = mutex_attr[SYSTEM_ARRAY_INDEX_TWELFTH];
@@ -12284,7 +12284,7 @@ long long process_context_system_handle_param(long long *system_handle_param)
     system_float_variable = mutex_attr[10];
     system_maximum_stack_size = SYSTEM_FLOAT_MAX_VALUE;
     system_float_pointer_variable = afStack_2e8;
-    system_string_length_counter = path_buffer_size;
+    system_string_length_tracker = path_buffer_size;
     do {
       system_float_variable = system_float_pointer_variable[2] - system_float_variable;
       system_float_variable = system_float_pointer_variable[1] - system_float_variable;
@@ -12306,8 +12306,8 @@ long long process_context_system_handle_param(long long *system_handle_param)
       system_float_pointer_variable[2] = fStack_370;
       system_float_pointer_variable[3] = SYSTEM_FLOAT_MAX_VALUE;
       system_float_pointer_variable = system_float_pointer_variable + SYSTEM_OFFSET_HANDLE_PARAM;
-      system_string_length_counter = system_string_length_counter + SYSTEM_DECREMENT_SINGLE_UNIT;
-    } while (system_string_length_counter != 0);
+      system_string_length_tracker = system_string_length_tracker + SYSTEM_DECREMENT_SINGLE_UNIT;
+    } while (system_string_length_tracker != 0);
     if (system_thread_operation_flags != SYSTEM_ZERO_VALUE) {
       system_float_pointer_variable = (float *)&system_maximum_stack_size;
       system_float_pointer_variable = afStack_2e8;
@@ -12337,40 +12337,40 @@ long long process_context_system_handle_param(long long *system_handle_param)
         *system_float_pointer_variable = system_float_variable + SYSTEM_FLOAT_ADJUSTMENT_SMALL;
         system_float_pointer_variable = system_float_pointer_variable + SYSTEM_OFFSET_HANDLE_PARAM;
         system_float_pointer_variable = system_float_pointer_variable + SYSTEM_OFFSET_HANDLE_PARAM;
-        system_string_length_counter = system_string_length_counter + SYSTEM_DECREMENT_SINGLE_UNIT;
-      } while (system_string_length_counter != 0);
+        system_string_length_tracker = system_string_length_tracker + SYSTEM_DECREMENT_SINGLE_UNIT;
+      } while (system_string_length_tracker != 0);
     }
     system_buffer_allocation_result = SYSTEM_ZERO_VALUE;
-    system_string_length_counter = SYSTEM_ZERO_VALUE;
+    system_string_length_tracker = SYSTEM_ZERO_VALUE;
     do {
-      system_string_length_counter = SYSTEM_ZERO_VALUE;
+      system_string_length_tracker = SYSTEM_ZERO_VALUE;
       if (system_buffer_allocation_result != SYSTEM_CONSTANT_PAIR) {
-        system_string_length_counter = system_string_length_counter + 1;
+        system_string_length_tracker = system_string_length_tracker + 1;
       }
       if (((system_handle_param2 == '\0') || ((system_buffer_allocation_result & 1) != 0)) &&
          (system_char_result = system_execution_function((double)((float)(int)system_buffer_allocation_result * SYSTEM_FLOAT_HALF_CIRCLE),SUB84((double)system_control_parameter,0),
                                 (double)system_stack_system_size_parameter), system_char_result != '\0')) {
-        fStack_370 = *(float *)(&system_maximum_stack_size + system_string_length_counter * 2) - *(float *)(&system_maximum_stack_size + system_string_length_counter * 2);
-        system_maximum_stack_size = merge_32bit_values(afStack_2e8[system_string_length_counter * 4 + 1] - afStack_2e8[system_string_length_counter * 4 + 1],
-                              afStack_2e8[system_string_length_counter * 4] - afStack_2e8[system_string_length_counter * 4]);
+        fStack_370 = *(float *)(&system_maximum_stack_size + system_string_length_tracker * 2) - *(float *)(&system_maximum_stack_size + system_string_length_tracker * 2);
+        system_maximum_stack_size = merge_32bit_values(afStack_2e8[system_string_length_tracker * 4 + 1] - afStack_2e8[system_string_length_tracker * 4 + 1],
+                              afStack_2e8[system_string_length_tracker * 4] - afStack_2e8[system_string_length_tracker * 4]);
         system_maximum_stack_size = SYSTEM_FLOAT_MAX_VALUE;
         system_maximum_stack_size = SYSTEM_ZERO_VALUE;
         system_maximum_stack_size = CONCAT31(system_maximum_stack_size_bitfield1_3_,system_handle_param1);
-        system_execution_function(system_handle_param,afStack_2e8 + system_string_length_counter * 4,&system_maximum_stack_size,system_thread_stack_system_pointer_parameter);
+        system_execution_function(system_handle_param,afStack_2e8 + system_string_length_tracker * 4,&system_maximum_stack_size,system_thread_stack_system_pointer_parameter);
       }
       system_buffer_allocation_result = system_buffer_allocation_result + 1;
-      system_string_length_counter = system_string_length_counter + 1;
+      system_string_length_tracker = system_string_length_tracker + 1;
     } while ((int)system_buffer_allocation_result < path_buffer_size);
   }
-  system_thread_result_status = _Mtx_unlock(system_handle_param);
-  if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
-    __Throw_C_error_std__YAXH_Z(system_thread_result_status);
+  system_thread_operation_result = _Mtx_unlock(system_handle_param);
+  if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
+    __Throw_C_error_std__YAXH_Z(system_thread_operation_result);
   }
   system_execute_crypto_operation(system_maximum_stack_size ^ (ulong long)system_stack_buffer_crypto_large);
 }
                     system_data_character = system_data_character + system_char_result;
                     if (system_data_character != '\0' && byte_flag_value7 == system_data_character < '\0') {
-                      out((short)system_thread_operation_flags,system_thread_result_status);
+                      out((short)system_thread_operation_flags,system_thread_operation_result);
                       halt_baddata();
                     }
                     in_OF = SCARRY1((char)*system_destination_index_register,system_char_result);
@@ -12423,22 +12423,22 @@ LABEL_SYSTEM_SECTION_PROCESSING_147:
 unsigned long long allocate_resource_memory(int system_handle_param)
 {
   byte system_byte_check_result;
-  int system_thread_result_status;
+  int system_thread_operation_result;
   uint system_buffer_allocation_result;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   float *system_float_pointer_variable;
-  int system_thread_result_status;
+  int system_thread_operation_result;
   float *system_float_pointer_variable;
   uint system_buffer_allocation_result;
   ulong long system_buffer_allocation_result;
   ulong long system_buffer_allocation_result;
-  int *system_string_length_counter_ptr_secondary;
+  int *system_string_length_tracker_ptr_secondary;
   uint system_buffer_allocation_result;
   long long *system_initialization_result_pointer;
   long long system_initialization_result5;
   uint system_buffer_allocation_result;
-  int system_thread_result_status;
-  int system_thread_result_status;
+  int system_thread_operation_result;
+  int system_thread_operation_result;
   float system_float_variable;
   unsigned long long system_thread_operation_flags;
   unsigned long long extra_output_xmm_register_zero;
@@ -12451,12 +12451,12 @@ unsigned long long allocate_resource_memory(int system_handle_param)
   unsigned char asystem_thread_operation_flags [16];
   ulong long system_buffer_allocation_result;
   system_initialization_result_pointer = (long long *)&system_initialization_result_ptr;
-  system_thread_result_status = SYSTEM_ZERO_VALUE;
+  system_thread_operation_result = SYSTEM_ZERO_VALUE;
   do {
     system_buffer_allocation_result = SYSTEM_ZERO_VALUE;
     system_initialization_result5 = *system_initialization_result_pointer;
-    system_buffer_allocation_result = STRING_BUFFER_SIZE >> ((byte)system_thread_result_status & SYSTEM_CONSTANT_PAIR);
-    system_buffer_allocation_result = SYSTEM_CONFIG_BUFFER_SIZE >> ((byte)system_thread_result_status & SYSTEM_CONSTANT_PAIR);
+    system_buffer_allocation_result = STRING_BUFFER_SIZE >> ((byte)system_thread_operation_result & SYSTEM_CONSTANT_PAIR);
+    system_buffer_allocation_result = SYSTEM_CONFIG_BUFFER_SIZE >> ((byte)system_thread_operation_result & SYSTEM_CONSTANT_PAIR);
     system_buffer_allocation_result = system_buffer_allocation_result;
     system_buffer_allocation_result = system_buffer_allocation_result;
     if ((system_buffer_allocation_result != 0) && (system_buffer_allocation_result = 0, SYSTEM_BUFFER_SIZE_MINIMUM_COMPARE < system_buffer_allocation_result)) {
@@ -12511,21 +12511,21 @@ unsigned long long allocate_resource_memory(int system_handle_param)
         system_float_pointer_variable = system_float_pointer_variable + 1;
       } while ((int)system_buffer_allocation_result < (int)system_buffer_allocation_result);
     }
-    system_thread_result_status = system_thread_result_status + 1;
+    system_thread_operation_result = system_thread_operation_result + 1;
     system_initialization_result_pointer = system_initialization_result_pointer + 1;
-  } while (system_thread_result_status < 5);
-  system_string_length_counter_ptr_secondary = (int *)SYSTEM_STRING_LENGTH_COUNTER_ADDR;
+  } while (system_thread_operation_result < 5);
+  system_string_length_tracker_ptr_secondary = (int *)SYSTEM_STRING_LENGTH_COUNTER_ADDR;
   system_float_pointer_variable = (float *)SYSTEM_GLOBAL_DATA_ADDR;
   system_global_context_pointer = SYSTEM_GLOBAL_DATA_ADDR;
   system_handle_param = -system_handle_param;
-  system_thread_result_status = SYSTEM_TWO_VALUE;
-  system_thread_result_status = string_buffer_size_constant;
+  system_thread_operation_result = SYSTEM_TWO_VALUE;
+  system_thread_operation_result = string_buffer_size_constant;
   system_initialization_result5 = SYSTEM_INITIALIZATION_VALUE_140;
   system_buffer_allocation_result = SYSTEM_ZERO_VALUE;
   do {
     system_buffer_allocation_result = system_buffer_allocation_result;
     if (system_float_pointer_variable < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
-      system_float_variable = (float)system_string_length_counter_ptr_secondary[-1] * FLOAT_CONVERSION_FACTOR * (float)system_handle_param;
+      system_float_variable = (float)system_string_length_tracker_ptr_secondary[-1] * FLOAT_CONVERSION_FACTOR * (float)system_handle_param;
       *system_float_pointer_variable = system_float_variable;
       system_float_pointer_variable[STRING_BUFFER_SIZE] = system_float_variable;
     }
@@ -12533,142 +12533,142 @@ unsigned long long allocate_resource_memory(int system_handle_param)
     if (((byte)system_buffer_allocation_result & SYSTEM_CONSTANT_PAIR) != SYSTEM_CONSTANT_PAIR) {
       system_float_pointer_variable = system_float_pointer_variable;
     }
-    system_thread_result_status = -system_handle_param;
+    system_thread_operation_result = -system_handle_param;
     if (((byte)system_buffer_allocation_result & SYSTEM_CONSTANT_TRIPLE) != SYSTEM_CONSTANT_TRIPLE) {
-      system_thread_result_status = system_handle_param;
+      system_thread_operation_result = system_handle_param;
     }
     if (system_float_pointer_variable + path_buffer_size < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
-      system_float_variable = (float)*system_string_length_counter_ptr_secondary * FLOAT_CONVERSION_FACTOR * (float)system_thread_result_status;
+      system_float_variable = (float)*system_string_length_tracker_ptr_secondary * FLOAT_CONVERSION_FACTOR * (float)system_thread_operation_result;
       system_float_pointer_variable[path_buffer_size] = system_float_variable;
       system_float_pointer_variable[SYSTEM_ARRAY_INDEX_48] = system_float_variable;
     }
-    system_byte_check_result = (byte)system_thread_result_status;
-    system_buffer_allocation_result = system_thread_result_status - 1U & SYSTEM_CONSTANT_PAIR;
-    system_thread_result_status = -system_thread_result_status;
+    system_byte_check_result = (byte)system_thread_operation_result;
+    system_buffer_allocation_result = system_thread_operation_result - 1U & SYSTEM_CONSTANT_PAIR;
+    system_thread_operation_result = -system_thread_operation_result;
     if ((system_byte_check_result - 1 & SYSTEM_CONSTANT_TRIPLE) != SYSTEM_CONSTANT_TRIPLE) {
-      system_thread_result_status = system_thread_result_status;
+      system_thread_operation_result = system_thread_operation_result;
     }
-    system_string_length_counter = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG1;
+    system_string_length_tracker = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG1;
     if (system_buffer_allocation_result != SYSTEM_CONSTANT_PAIR) {
-      system_string_length_counter = string_buffer_size_constant;
+      system_string_length_tracker = string_buffer_size_constant;
     }
-    system_float_pointer_variable = (float *)(system_string_length_counter + (long long)system_float_pointer_variable);
+    system_float_pointer_variable = (float *)(system_string_length_tracker + (long long)system_float_pointer_variable);
     if (system_float_pointer_variable < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
-      system_string_length_counter = -SYSTEM_CONSTANT_UNIT;
+      system_string_length_tracker = -SYSTEM_CONSTANT_UNIT;
       if (system_buffer_allocation_result != SYSTEM_CONSTANT_PAIR) {
-        system_string_length_counter = system_initialization_result5;
+        system_string_length_tracker = system_initialization_result5;
       }
-      system_float_variable = (float)system_string_length_counter_ptr_secondary[1] * FLOAT_CONVERSION_FACTOR * (float)system_thread_result_status;
+      system_float_variable = (float)system_string_length_tracker_ptr_secondary[1] * FLOAT_CONVERSION_FACTOR * (float)system_thread_operation_result;
       *system_float_pointer_variable = system_float_variable;
-      *(float *)(system_string_length_counter + (long long)system_float_pointer_variable) = system_float_variable;
+      *(float *)(system_string_length_tracker + (long long)system_float_pointer_variable) = system_float_variable;
     }
     if ((system_byte_check_result & SYSTEM_CONSTANT_PAIR) == SYSTEM_CONSTANT_PAIR) {
-      system_string_length_counter = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG2;
+      system_string_length_tracker = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG2;
       if (system_buffer_allocation_result != SYSTEM_CONSTANT_PAIR) {
-        system_string_length_counter = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG1;
+        system_string_length_tracker = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG1;
       }
-      system_float_pointer_variable = (float *)(system_string_length_counter + (long long)system_float_pointer_variable);
+      system_float_pointer_variable = (float *)(system_string_length_tracker + (long long)system_float_pointer_variable);
     }
-    system_thread_result_status = -system_thread_result_status;
+    system_thread_operation_result = -system_thread_operation_result;
     if ((system_byte_check_result & SYSTEM_CONSTANT_TRIPLE) != SYSTEM_CONSTANT_TRIPLE) {
-      system_thread_result_status = system_thread_result_status;
+      system_thread_operation_result = system_thread_operation_result;
     }
     if (system_float_pointer_variable + path_buffer_size < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
-      system_float_variable = (float)system_string_length_counter_ptr_secondary[2] * FLOAT_CONVERSION_FACTOR * (float)system_thread_result_status;
+      system_float_variable = (float)system_string_length_tracker_ptr_secondary[2] * FLOAT_CONVERSION_FACTOR * (float)system_thread_operation_result;
       system_float_pointer_variable[path_buffer_size] = system_float_variable;
       system_float_pointer_variable[SYSTEM_ARRAY_INDEX_48] = system_float_variable;
     }
-    system_buffer_allocation_result = system_thread_result_status + SYSTEM_INCREMENT_SINGLE_UNITU & SYSTEM_CONSTANT_PAIR;
-    system_string_length_counter = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG1;
-    system_thread_result_status = -system_thread_result_status;
-    if (((byte)(system_thread_result_status + SYSTEM_INCREMENT_SINGLE_UNITU) & SYSTEM_CONSTANT_TRIPLE) != SYSTEM_CONSTANT_TRIPLE) {
-      system_thread_result_status = system_thread_result_status;
+    system_buffer_allocation_result = system_thread_operation_result + SYSTEM_INCREMENT_SINGLE_UNITU & SYSTEM_CONSTANT_PAIR;
+    system_string_length_tracker = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG1;
+    system_thread_operation_result = -system_thread_operation_result;
+    if (((byte)(system_thread_operation_result + SYSTEM_INCREMENT_SINGLE_UNITU) & SYSTEM_CONSTANT_TRIPLE) != SYSTEM_CONSTANT_TRIPLE) {
+      system_thread_operation_result = system_thread_operation_result;
     }
     if (system_buffer_allocation_result != SYSTEM_CONSTANT_PAIR) {
-      system_string_length_counter = string_buffer_size_constant;
+      system_string_length_tracker = string_buffer_size_constant;
     }
-    system_float_pointer_variable = (float *)(system_string_length_counter + (long long)system_float_pointer_variable);
+    system_float_pointer_variable = (float *)(system_string_length_tracker + (long long)system_float_pointer_variable);
     if (system_float_pointer_variable < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
-      system_string_length_counter = -SYSTEM_CONSTANT_UNIT;
+      system_string_length_tracker = -SYSTEM_CONSTANT_UNIT;
       if (system_buffer_allocation_result != SYSTEM_CONSTANT_PAIR) {
-        system_string_length_counter = system_initialization_result5;
+        system_string_length_tracker = system_initialization_result5;
       }
-      system_float_variable = (float)system_string_length_counter_ptr_secondary[3] * FLOAT_CONVERSION_FACTOR * (float)system_thread_result_status;
+      system_float_variable = (float)system_string_length_tracker_ptr_secondary[3] * FLOAT_CONVERSION_FACTOR * (float)system_thread_operation_result;
       *system_float_pointer_variable = system_float_variable;
-      *(float *)(system_string_length_counter + (long long)system_float_pointer_variable) = system_float_variable;
+      *(float *)(system_string_length_tracker + (long long)system_float_pointer_variable) = system_float_variable;
     }
     if ((system_byte_check_result + 2 & SYSTEM_CONSTANT_PAIR) == SYSTEM_CONSTANT_PAIR) {
-      system_string_length_counter = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG2;
+      system_string_length_tracker = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG2;
       if (system_buffer_allocation_result != SYSTEM_CONSTANT_PAIR) {
-        system_string_length_counter = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG1;
+        system_string_length_tracker = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG1;
       }
-      system_float_pointer_variable = (float *)(system_string_length_counter + (long long)system_float_pointer_variable);
+      system_float_pointer_variable = (float *)(system_string_length_tracker + (long long)system_float_pointer_variable);
     }
-    system_thread_result_status = -system_thread_result_status;
+    system_thread_operation_result = -system_thread_operation_result;
     if ((system_byte_check_result + 2 & SYSTEM_CONSTANT_TRIPLE) != SYSTEM_CONSTANT_TRIPLE) {
-      system_thread_result_status = system_thread_result_status;
+      system_thread_operation_result = system_thread_operation_result;
     }
     if (system_float_pointer_variable + path_buffer_size < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
-      system_float_variable = (float)system_string_length_counter_ptr_secondary[4] * FLOAT_CONVERSION_FACTOR * (float)system_thread_result_status;
+      system_float_variable = (float)system_string_length_tracker_ptr_secondary[4] * FLOAT_CONVERSION_FACTOR * (float)system_thread_operation_result;
       system_float_pointer_variable[path_buffer_size] = system_float_variable;
       system_float_pointer_variable[SYSTEM_ARRAY_INDEX_48] = system_float_variable;
     }
-    system_buffer_allocation_result = system_thread_result_status + 3U & SYSTEM_CONSTANT_PAIR;
-    system_string_length_counter = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG1;
-    system_thread_result_status = -system_thread_result_status;
-    if (((byte)(system_thread_result_status + 3U) & SYSTEM_CONSTANT_TRIPLE) != SYSTEM_CONSTANT_TRIPLE) {
-      system_thread_result_status = system_thread_result_status;
+    system_buffer_allocation_result = system_thread_operation_result + 3U & SYSTEM_CONSTANT_PAIR;
+    system_string_length_tracker = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG1;
+    system_thread_operation_result = -system_thread_operation_result;
+    if (((byte)(system_thread_operation_result + 3U) & SYSTEM_CONSTANT_TRIPLE) != SYSTEM_CONSTANT_TRIPLE) {
+      system_thread_operation_result = system_thread_operation_result;
     }
     if (system_buffer_allocation_result != SYSTEM_CONSTANT_PAIR) {
-      system_string_length_counter = string_buffer_size_constant;
+      system_string_length_tracker = string_buffer_size_constant;
     }
-    system_float_pointer_variable = (float *)(system_string_length_counter + (long long)system_float_pointer_variable);
+    system_float_pointer_variable = (float *)(system_string_length_tracker + (long long)system_float_pointer_variable);
     if (system_float_pointer_variable < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
-      system_string_length_counter = -SYSTEM_CONSTANT_UNIT;
+      system_string_length_tracker = -SYSTEM_CONSTANT_UNIT;
       if (system_buffer_allocation_result != SYSTEM_CONSTANT_PAIR) {
-        system_string_length_counter = system_initialization_result5;
+        system_string_length_tracker = system_initialization_result5;
       }
-      system_float_variable = (float)system_string_length_counter_ptr_secondary[5] * FLOAT_CONVERSION_FACTOR * (float)system_thread_result_status;
+      system_float_variable = (float)system_string_length_tracker_ptr_secondary[5] * FLOAT_CONVERSION_FACTOR * (float)system_thread_operation_result;
       *system_float_pointer_variable = system_float_variable;
-      *(float *)(system_string_length_counter + (long long)system_float_pointer_variable) = system_float_variable;
+      *(float *)(system_string_length_tracker + (long long)system_float_pointer_variable) = system_float_variable;
     }
     if ((system_byte_check_result + SYSTEM_OFFSET_HANDLE_PARAM & SYSTEM_CONSTANT_PAIR) == SYSTEM_CONSTANT_PAIR) {
-      system_string_length_counter = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG2;
+      system_string_length_tracker = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG2;
       if (system_buffer_allocation_result != SYSTEM_CONSTANT_PAIR) {
-        system_string_length_counter = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG1;
+        system_string_length_tracker = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG1;
       }
-      system_float_pointer_variable = (float *)(system_string_length_counter + (long long)system_float_pointer_variable);
+      system_float_pointer_variable = (float *)(system_string_length_tracker + (long long)system_float_pointer_variable);
     }
-    system_thread_result_status = -system_thread_result_status;
+    system_thread_operation_result = -system_thread_operation_result;
     if ((system_byte_check_result + SYSTEM_OFFSET_HANDLE_PARAM & SYSTEM_CONSTANT_TRIPLE) != SYSTEM_CONSTANT_TRIPLE) {
-      system_thread_result_status = system_thread_result_status;
+      system_thread_operation_result = system_thread_operation_result;
     }
     if (system_float_pointer_variable + path_buffer_size < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
-      system_float_variable = (float)system_string_length_counter_ptr_secondary[6] * FLOAT_CONVERSION_FACTOR * (float)system_thread_result_status;
+      system_float_variable = (float)system_string_length_tracker_ptr_secondary[6] * FLOAT_CONVERSION_FACTOR * (float)system_thread_operation_result;
       system_float_pointer_variable[path_buffer_size] = system_float_variable;
       system_float_pointer_variable[SYSTEM_ARRAY_INDEX_48] = system_float_variable;
     }
-    system_handle_param = -system_thread_result_status;
+    system_handle_param = -system_thread_operation_result;
     if ((system_byte_check_result + 5 & SYSTEM_CONSTANT_TRIPLE) != SYSTEM_CONSTANT_TRIPLE) {
-      system_handle_param = system_thread_result_status;
+      system_handle_param = system_thread_operation_result;
     }
-    system_string_length_counter = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG1;
+    system_string_length_tracker = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG1;
     if ((system_byte_check_result + 5 & SYSTEM_CONSTANT_PAIR) != SYSTEM_CONSTANT_PAIR) {
-      system_string_length_counter = string_buffer_size_constant;
+      system_string_length_tracker = string_buffer_size_constant;
     }
     system_buffer_allocation_result = system_buffer_allocation_result + 8;
-    system_float_pointer_variable = (float *)(system_string_length_counter + (long long)system_float_pointer_variable);
-    system_thread_result_status = system_thread_result_status + 8;
-    system_string_length_counter_ptr_secondary = system_string_length_counter_ptr_secondary + 8;
-  } while (system_thread_result_status < STRING_BUFFER_SIZE_SECONDARY);
+    system_float_pointer_variable = (float *)(system_string_length_tracker + (long long)system_float_pointer_variable);
+    system_thread_operation_result = system_thread_operation_result + 8;
+    system_string_length_tracker_ptr_secondary = system_string_length_tracker_ptr_secondary + 8;
+  } while (system_thread_operation_result < STRING_BUFFER_SIZE_SECONDARY);
   if ((int)system_buffer_allocation_result < SYSTEM_PATH_BUFFER_SIZE_ZERO) {
     if (3 < (int)(SYSTEM_PATH_BUFFER_SIZE_ZERO - system_buffer_allocation_result)) {
       system_buffer_allocation_result = system_buffer_allocation_result + 10;
-      system_string_length_counter_ptr_secondary = (int *)SYSTEM_STRING_LENGTH_COUNTER_ALT_ADDR;
-      system_thread_result_status = (SYSTEM_CONSTANT_TRIPLE - (SYSTEM_CONSTANT_PAIRc - system_buffer_allocation_result >> 2)) * 4;
+      system_string_length_tracker_ptr_secondary = (int *)SYSTEM_STRING_LENGTH_COUNTER_ALT_ADDR;
+      system_thread_operation_result = (SYSTEM_CONSTANT_TRIPLE - (SYSTEM_CONSTANT_PAIRc - system_buffer_allocation_result >> 2)) * 4;
       do {
         if (system_float_pointer_variable < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
-          system_float_variable = (float)system_string_length_counter_ptr_secondary[2] * FLOAT_CONVERSION_FACTOR * (float)system_handle_param;
+          system_float_variable = (float)system_string_length_tracker_ptr_secondary[2] * FLOAT_CONVERSION_FACTOR * (float)system_handle_param;
           *system_float_pointer_variable = system_float_variable;
           system_float_pointer_variable[STRING_BUFFER_SIZE] = system_float_variable;
         }
@@ -12684,12 +12684,12 @@ unsigned long long allocate_resource_memory(int system_handle_param)
         if ((int)system_buffer_allocation_result < 0) {
           system_buffer_allocation_result = (system_buffer_allocation_result - 1 | SYSTEM_BIT_MASK_ALIGN_6BIT) + 1;
         }
-        system_thread_result_status = -system_handle_param;
+        system_thread_operation_result = -system_handle_param;
         if (system_buffer_allocation_result != SYSTEM_CONSTANT_TRIPLE) {
-          system_thread_result_status = system_handle_param;
+          system_thread_operation_result = system_handle_param;
         }
         if (system_float_pointer_variable + path_buffer_size < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
-          system_float_variable = (float)system_string_length_counter_ptr_secondary[1] * FLOAT_CONVERSION_FACTOR * (float)system_thread_result_status;
+          system_float_variable = (float)system_string_length_tracker_ptr_secondary[1] * FLOAT_CONVERSION_FACTOR * (float)system_thread_operation_result;
           system_float_pointer_variable[path_buffer_size] = system_float_variable;
           system_float_pointer_variable[SYSTEM_ARRAY_INDEX_48] = system_float_variable;
         }
@@ -12701,45 +12701,45 @@ unsigned long long allocate_resource_memory(int system_handle_param)
         if ((int)system_buffer_allocation_result < 0) {
           system_buffer_allocation_result = (system_buffer_allocation_result - 1 | SYSTEM_BIT_MASK_ALIGN_6BIT) + 1;
         }
-        system_thread_result_status = -system_thread_result_status;
+        system_thread_operation_result = -system_thread_operation_result;
         if (system_buffer_allocation_result != SYSTEM_CONSTANT_TRIPLE) {
-          system_thread_result_status = system_thread_result_status;
+          system_thread_operation_result = system_thread_operation_result;
         }
-        system_string_length_counter = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG1;
+        system_string_length_tracker = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG1;
         if (system_buffer_allocation_result != SYSTEM_CONSTANT_PAIR) {
-          system_string_length_counter = string_buffer_size_constant;
+          system_string_length_tracker = string_buffer_size_constant;
         }
-        system_float_pointer_variable = (float *)(system_string_length_counter + (long long)system_float_pointer_variable);
+        system_float_pointer_variable = (float *)(system_string_length_tracker + (long long)system_float_pointer_variable);
         if (system_float_pointer_variable < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
-          system_string_length_counter = -SYSTEM_CONSTANT_UNIT;
+          system_string_length_tracker = -SYSTEM_CONSTANT_UNIT;
           if (system_buffer_allocation_result != SYSTEM_CONSTANT_PAIR) {
-            system_string_length_counter = system_initialization_result5;
+            system_string_length_tracker = system_initialization_result5;
           }
-          system_float_variable = (float)*system_string_length_counter_ptr_secondary * FLOAT_CONVERSION_FACTOR * (float)system_thread_result_status;
+          system_float_variable = (float)*system_string_length_tracker_ptr_secondary * FLOAT_CONVERSION_FACTOR * (float)system_thread_operation_result;
           *system_float_pointer_variable = system_float_variable;
-          *(float *)(system_string_length_counter + (long long)system_float_pointer_variable) = system_float_variable;
+          *(float *)(system_string_length_tracker + (long long)system_float_pointer_variable) = system_float_variable;
         }
         system_buffer_allocation_result = system_buffer_allocation_result & SYSTEM_POINTER_OFFSET000001f;
         if ((int)system_buffer_allocation_result < 0) {
           system_buffer_allocation_result = (system_buffer_allocation_result - 1 | SYSTEM_BIT_MASK_ALIGN_5BIT) + 1;
         }
         if (system_buffer_allocation_result == SYSTEM_CONSTANT_PAIR) {
-          system_string_length_counter = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG2;
+          system_string_length_tracker = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG2;
           if (system_buffer_allocation_result != SYSTEM_CONSTANT_PAIR) {
-            system_string_length_counter = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG1;
+            system_string_length_tracker = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG1;
           }
-          system_float_pointer_variable = (float *)(system_string_length_counter + (long long)system_float_pointer_variable);
+          system_float_pointer_variable = (float *)(system_string_length_tracker + (long long)system_float_pointer_variable);
         }
         system_buffer_allocation_result = system_buffer_allocation_result & SYSTEM_POINTER_OFFSET000003f;
         if ((int)system_buffer_allocation_result < 0) {
           system_buffer_allocation_result = (system_buffer_allocation_result - 1 | SYSTEM_BIT_MASK_ALIGN_6BIT) + 1;
         }
-        system_thread_result_status = -system_thread_result_status;
+        system_thread_operation_result = -system_thread_operation_result;
         if (system_buffer_allocation_result != SYSTEM_CONSTANT_TRIPLE) {
-          system_thread_result_status = system_thread_result_status;
+          system_thread_operation_result = system_thread_operation_result;
         }
         if (system_float_pointer_variable + path_buffer_size < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
-          system_float_variable = (float)system_string_length_counter_ptr_secondary[-1] * FLOAT_CONVERSION_FACTOR * (float)system_thread_result_status;
+          system_float_variable = (float)system_string_length_tracker_ptr_secondary[-1] * FLOAT_CONVERSION_FACTOR * (float)system_thread_operation_result;
           system_float_pointer_variable[path_buffer_size] = system_float_variable;
           system_float_pointer_variable[SYSTEM_ARRAY_INDEX_48] = system_float_variable;
         }
@@ -12747,29 +12747,29 @@ unsigned long long allocate_resource_memory(int system_handle_param)
         if ((int)system_buffer_allocation_result < 0) {
           system_buffer_allocation_result = (system_buffer_allocation_result - 1 | SYSTEM_BIT_MASK_ALIGN_6BIT) + 1;
         }
-        system_handle_param = -system_thread_result_status;
+        system_handle_param = -system_thread_operation_result;
         if (system_buffer_allocation_result != SYSTEM_CONSTANT_TRIPLE) {
-          system_handle_param = system_thread_result_status;
+          system_handle_param = system_thread_operation_result;
         }
         system_buffer_allocation_result = system_buffer_allocation_result + 1 & SYSTEM_POINTER_OFFSET000001f;
         if ((int)system_buffer_allocation_result < 0) {
           system_buffer_allocation_result = (system_buffer_allocation_result - 1 | SYSTEM_BIT_MASK_ALIGN_5BIT) + 1;
         }
-        system_string_length_counter = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG1;
+        system_string_length_tracker = SYSTEM_NEGATIVE_OFFSET_STRING_CALCULATION_NEG1;
         if (system_buffer_allocation_result != SYSTEM_CONSTANT_PAIR) {
-          system_string_length_counter = string_buffer_size_constant;
+          system_string_length_tracker = string_buffer_size_constant;
         }
-        system_string_length_counter_ptr_secondary = system_string_length_counter_ptr_secondary + -4;
-        system_float_pointer_variable = (float *)(system_string_length_counter + (long long)system_float_pointer_variable);
+        system_string_length_tracker_ptr_secondary = system_string_length_tracker_ptr_secondary + -4;
+        system_float_pointer_variable = (float *)(system_string_length_tracker + (long long)system_float_pointer_variable);
         system_buffer_allocation_result = system_buffer_allocation_result + SYSTEM_OFFSET_HANDLE_PARAM;
         system_buffer_allocation_result = system_buffer_allocation_result + SYSTEM_OFFSET_HANDLE_PARAM;
       } while ((int)system_buffer_allocation_result < SYSTEM_CONSTANT_PAIRf);
     }
     if ((int)system_buffer_allocation_result < SYSTEM_PATH_BUFFER_SIZE_ZERO) {
-      system_string_length_counter_ptr_secondary = (int *)((long long)system_thread_result_status * 4 + SYSTEM_PERFORMANCE_COUNTER_ADDR);
+      system_string_length_tracker_ptr_secondary = (int *)((long long)system_thread_operation_result * 4 + SYSTEM_PERFORMANCE_COUNTER_ADDR);
       do {
         if (system_float_pointer_variable < (float *)SYSTEM_FLOAT_ARRAY_END_ADDR) {
-          system_float_variable = (float)*system_string_length_counter_ptr_secondary * FLOAT_CONVERSION_FACTOR * (float)system_handle_param;
+          system_float_variable = (float)*system_string_length_tracker_ptr_secondary * FLOAT_CONVERSION_FACTOR * (float)system_handle_param;
           *system_float_pointer_variable = system_float_variable;
           system_float_pointer_variable[STRING_BUFFER_SIZE] = system_float_variable;
         }
@@ -12785,14 +12785,14 @@ unsigned long long allocate_resource_memory(int system_handle_param)
         if (system_buffer_allocation_result != SYSTEM_CONSTANT_PAIR) {
           system_float_pointer_variable = system_float_pointer_variable;
         }
-        system_string_length_counter_ptr_secondary = system_string_length_counter_ptr_secondary + -1;
+        system_string_length_tracker_ptr_secondary = system_string_length_tracker_ptr_secondary + -1;
         system_buffer_allocation_result = system_buffer_allocation_result + 1;
         system_float_pointer_variable = system_float_pointer_variable + path_buffer_size;
-        system_thread_result_status = -system_handle_param;
+        system_thread_operation_result = -system_handle_param;
         if (system_buffer_allocation_result != SYSTEM_CONSTANT_TRIPLE) {
-          system_thread_result_status = system_handle_param;
+          system_thread_operation_result = system_handle_param;
         }
-        system_handle_param = system_thread_result_status;
+        system_handle_param = system_thread_operation_result;
       } while ((int)system_buffer_allocation_result < SYSTEM_PATH_BUFFER_SIZE_ZERO);
     }
   }
@@ -12800,48 +12800,48 @@ unsigned long long allocate_resource_memory(int system_handle_param)
 }
       system_thread_global_flag = '\x01';
     }
-    system_thread_result_status = system_execution_function(*(unsigned long long *)(system_base_register + SYSTEM_MODULE_OFFSET_1),*(unsigned int *)(system_base_register + SYSTEM_OFFSET_MODULE_SECONDARY),0);
-    if ((system_thread_result_status != 0) ||
-       (system_thread_result_status = system_execution_function(*(unsigned long long *)(system_base_register + SYSTEM_MODULE_OFFSET_1),SYSTEM_MODULE_DATA_ADDR,1,
+    system_thread_operation_result = system_execution_function(*(unsigned long long *)(system_base_register + SYSTEM_MODULE_OFFSET_1),*(unsigned int *)(system_base_register + SYSTEM_OFFSET_MODULE_SECONDARY),0);
+    if ((system_thread_operation_result != 0) ||
+       (system_thread_operation_result = system_execution_function(*(unsigned long long *)(system_base_register + SYSTEM_MODULE_OFFSET_1),SYSTEM_MODULE_DATA_ADDR,1,
 goto LABEL_SYSTEM_SECTION_PROCESSING_509;
     psystem_thread_operation_flags = (uint *)(system_base_register + SYSTEM_MODULE_OFFSET_3);
-    system_thread_result_status = system_execution_function();
-    if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
+    system_thread_operation_result = system_execution_function();
+    if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
       *(int *)(system_base_register + SYSTEM_OFFSET_MODULE_SECONDARY) = *(int *)(system_base_register + SYSTEM_OFFSET_MODULE_SECONDARY) + system_stack_offset_30 + SYSTEM_OFFSET_HANDLE_PARAM;
-      system_thread_result_status = system_execution_function(*(unsigned long long *)(system_base_register + SYSTEM_MODULE_OFFSET_1),SYSTEM_MODULE_DATA_ADDR,SYSTEM_PARAM_SINGLE_VALIDATE);
+      system_thread_operation_result = system_execution_function(*(unsigned long long *)(system_base_register + SYSTEM_MODULE_OFFSET_1),SYSTEM_MODULE_DATA_ADDR,SYSTEM_PARAM_SINGLE_VALIDATE);
 goto LABEL_SYSTEM_SECTION_PROCESSING_510;
     }
     system_buffer_allocation_result = *(unsigned int *)(*(long long *)(system_base_register + 8) + 8);
     *(unsigned int *)(*(long long *)(system_base_register + 8) + 8) = SYSTEM_TWO_VALUE;
     system_execution_function();
     *(unsigned int *)(*(long long *)(system_base_register + 8) + 8) = system_buffer_allocation_result;
-    system_thread_result_status = system_execution_function(*(unsigned long long *)(system_base_register + SYSTEM_MODULE_OFFSET_1),*(unsigned int *)(system_base_register + SYSTEM_OFFSET_MODULE_SECONDARY),0);
-    if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
-      if (*(int *)(system_base_register + SYSTEM_OFFSET_PATH_SIZE4) == system_thread_result_status) {
+    system_thread_operation_result = system_execution_function(*(unsigned long long *)(system_base_register + SYSTEM_MODULE_OFFSET_1),*(unsigned int *)(system_base_register + SYSTEM_OFFSET_MODULE_SECONDARY),0);
+    if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
+      if (*(int *)(system_base_register + SYSTEM_OFFSET_PATH_SIZE4) == system_thread_operation_result) {
         *(unsigned int *)(system_base_register + SYSTEM_OFFSET_PATH_SIZE4) = SYSTEM_INITIALIZATION_VALUE_480;
       }
       system_buffer_allocation_result = system_stack_offset_30 + 5U & SYSTEM_BIT_MASK_ADDRESS_ALIGN;
       if (((system_system_unaffected_register_d & SYSTEM_CONFIG_BUFFER_SIZE_ZERO0) == 0) ||
          ((*(uint *)(*(long long *)(system_base_register + SYSTEM_MODULE_OFFSET_1) + SYSTEM_CONFIG_OFFSET_STATUS_FLAG4) & 1) == 0)) {
-        system_string_length_counter = *(long long *)(system_base_register + 8);
-        if (*(int *)(system_string_length_counter + SYSTEM_CONFIG_OFFSET_INIT_FLAG) == -1) {
-          *(unsigned int *)(system_string_length_counter + SYSTEM_OFFSET_GLOBAL_DATA_PTR) = INVALID_HANDLE_VALUE;
+        system_string_length_tracker = *(long long *)(system_base_register + 8);
+        if (*(int *)(system_string_length_tracker + SYSTEM_CONFIG_OFFSET_INIT_FLAG) == -1) {
+          *(unsigned int *)(system_string_length_tracker + SYSTEM_OFFSET_GLOBAL_DATA_PTR) = INVALID_HANDLE_VALUE;
         }
         else if (*(char *)(system_base_register + SYSTEM_CONFIG_OFFSET_DATA_FLAGc) == (char)system_unaffected_register) {
-          *(uint *)(system_string_length_counter + SYSTEM_OFFSET_GLOBAL_DATA_PTR) =
-               ((*(int *)(system_string_length_counter + SYSTEM_CONFIG_OFFSET_INIT_FLAG) + -1 + system_buffer_allocation_result) / system_buffer_allocation_result + 1) * *(int *)(system_base_register + SYSTEM_OFFSET_PATH_SIZE4);
+          *(uint *)(system_string_length_tracker + SYSTEM_OFFSET_GLOBAL_DATA_PTR) =
+               ((*(int *)(system_string_length_tracker + SYSTEM_CONFIG_OFFSET_INIT_FLAG) + -1 + system_buffer_allocation_result) / system_buffer_allocation_result + 1) * *(int *)(system_base_register + SYSTEM_OFFSET_PATH_SIZE4);
           *(uint *)(system_base_register + SYSTEM_POINTER_OFFSET_2C) = *(uint *)(system_base_register + SYSTEM_POINTER_OFFSET_2C) & SYSTEM_BIT_MASK_ADDRESS_ALIGN;
         }
         else {
-          *(uint *)(system_string_length_counter + SYSTEM_OFFSET_GLOBAL_DATA_PTR) = *psystem_thread_operation_flags * SYSTEM_OFFSET_MULTIPLIER_LARGE;
+          *(uint *)(system_string_length_tracker + SYSTEM_OFFSET_GLOBAL_DATA_PTR) = *psystem_thread_operation_flags * SYSTEM_OFFSET_MULTIPLIER_LARGE;
         }
 goto LABEL_SYSTEM_SECTION_PROCESSING_511;
       }
       system_execution_function(*(unsigned long long *)(system_base_register + SYSTEM_MODULE_OFFSET_1),*(unsigned int *)(system_base_register + SYSTEM_OFFSET_MODULE_SECONDARY),0);
-      system_thread_result_status = *(int *)(system_base_register + SYSTEM_OFFSET_PATH_SIZE4);
+      system_thread_operation_result = *(int *)(system_base_register + SYSTEM_OFFSET_PATH_SIZE4);
       system_buffer_allocation_result = SYSTEM_ZERO_VALUE;
-      system_thread_result_status = thread_configuration_handler(*(unsigned long long *)(system_base_register + SYSTEM_MODULE_OFFSET_1),&system_stack_buffer_50);
-      if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
+      system_thread_operation_result = thread_configuration_handler(*(unsigned long long *)(system_base_register + SYSTEM_MODULE_OFFSET_1),&system_stack_buffer_50);
+      if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
         *psystem_thread_operation_flags = SYSTEM_ZERO_VALUE;
         *(unsigned int *)(*(long long *)(system_base_register + 8) + SYSTEM_OFFSET_GLOBAL_DATA_PTR) = SYSTEM_ZERO_VALUE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_512;
@@ -12854,44 +12854,44 @@ LABEL_SYSTEM_SECTION_PROCESSING_148:
   *(ulong long *)(system_base_register + SYSTEM_OFFSET_STRING_COUNTER) = system_unaffected_register;
 goto LABEL_SYSTEM_SECTION_PROCESSING_515;
   while( true ) {
-    system_thread_result_status = system_execution_function();
-    if ((system_thread_result_status == 0) &&
+    system_thread_operation_result = system_execution_function();
+    if ((system_thread_operation_result == 0) &&
        (system_stack_param_40_low_half + system_buffer_allocation_result < *(uint *)(*(long long *)(system_base_register + 8) + SYSTEM_CONFIG_OFFSET_INIT_FLAG))) {
       if (*psystem_thread_operation_flags <= (uint)system_unaffected_register) {
         system_buffer_allocation_result = *psystem_thread_operation_flags + 1000;
         *psystem_thread_operation_flags = system_buffer_allocation_result;
-        system_string_length_counter = system_execution_function(*(unsigned long long *)(system_global_context_pointer + SYSTEM_POINTER_OFFSET_1A0),
+        system_string_length_tracker = system_execution_function(*(unsigned long long *)(system_global_context_pointer + SYSTEM_POINTER_OFFSET_1A0),
                               *(unsigned long long *)(system_base_register + SYSTEM_POINTER_OFFSET_1D0),system_buffer_allocation_result * 4,&system_validation_function_2,0x113);
-        *(long long *)(system_base_register + SYSTEM_POINTER_OFFSET_1D0) = system_string_length_counter;
+        *(long long *)(system_base_register + SYSTEM_POINTER_OFFSET_1D0) = system_string_length_tracker;
 goto LABEL_SYSTEM_SECTION_PROCESSING_516;
       }
       system_buffer_allocation_result = system_unaffected_register & INVALID_HANDLE_VALUE;
       system_unaffected_register = (ulong long)((uint)system_unaffected_register + 1);
       *(uint *)(*(long long *)(system_base_register + SYSTEM_POINTER_OFFSET_1D0) + system_buffer_allocation_result * 4) = system_buffer_allocation_result;
-      system_system_string_length_counter_ptr = (int *)(*(long long *)(system_base_register + 8) + SYSTEM_OFFSET_GLOBAL_DATA_PTR);
-      *system_system_string_length_counter_ptr = *system_system_string_length_counter_ptr + system_thread_result_status;
+      system_system_string_length_tracker_ptr = (int *)(*(long long *)(system_base_register + 8) + SYSTEM_OFFSET_GLOBAL_DATA_PTR);
+      *system_system_string_length_tracker_ptr = *system_system_string_length_tracker_ptr + system_thread_operation_result;
       system_buffer_allocation_result = system_buffer_allocation_result + SYSTEM_OFFSET_HANDLE_PARAM + system_stack_param_40_low_half;
-      system_thread_result_status = system_execution_function(*(unsigned long long *)(system_base_register + SYSTEM_MODULE_OFFSET_1),system_stack_param_40_low_half,SYSTEM_PARAM_SINGLE_VALIDATE);
-      if (system_thread_result_status != SYSTEM_ZERO_VALUE) break;
+      system_thread_operation_result = system_execution_function(*(unsigned long long *)(system_base_register + SYSTEM_MODULE_OFFSET_1),system_stack_param_40_low_half,SYSTEM_PARAM_SINGLE_VALIDATE);
+      if (system_thread_operation_result != SYSTEM_ZERO_VALUE) break;
     }
     else {
       system_execution_function(*(unsigned long long *)(system_base_register + SYSTEM_MODULE_OFFSET_1),SYSTEM_EXECUTION_PARAM_SPECIAL,SYSTEM_PARAM_SINGLE_VALIDATE);
     }
     if (*(uint *)(*(long long *)(system_base_register + 8) + SYSTEM_CONFIG_OFFSET_INIT_FLAG) <= system_buffer_allocation_result) break;
 LABEL_SYSTEM_SECTION_PROCESSING_149:
-    system_thread_result_status = system_execution_function(*(unsigned long long *)(system_base_register + SYSTEM_MODULE_OFFSET_1),&system_stack_buffer_4c,1,4,0);
-    if (system_thread_result_status != SYSTEM_ZERO_VALUE) break;
+    system_thread_operation_result = system_execution_function(*(unsigned long long *)(system_base_register + SYSTEM_MODULE_OFFSET_1),&system_stack_buffer_4c,1,4,0);
+    if (system_thread_operation_result != SYSTEM_ZERO_VALUE) break;
   }
 LABEL_SYSTEM_SECTION_PROCESSING_150:
-  system_thread_result_status = system_execution_function(*(unsigned long long *)(system_base_register + SYSTEM_MODULE_OFFSET_1),in_stack_00000050,0);
-  if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
+  system_thread_operation_result = system_execution_function(*(unsigned long long *)(system_base_register + SYSTEM_MODULE_OFFSET_1),in_stack_00000050,0);
+  if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
     *psystem_thread_operation_flags = (uint)system_unaffected_register;
     system_unaffected_register = SYSTEM_ZERO_VALUE;
 LABEL_SYSTEM_SECTION_PROCESSING_151:
     if (system_unaffected_register_b != '\0') {
-      system_thread_result_status = *(int *)(*(long long *)(system_base_register + 8) + SYSTEM_CONFIG_OFFSET_INIT_FLAG);
-      if (system_thread_result_status != SYSTEM_THREAD_RESULT_INVALID) {
-        *(int *)(*(long long *)(system_base_register + 8) + SYSTEM_CONFIG_OFFSET_INIT_FLAG) = system_thread_result_status - *(int *)(system_base_register + SYSTEM_OFFSET_MODULE_SECONDARY);
+      system_thread_operation_result = *(int *)(*(long long *)(system_base_register + 8) + SYSTEM_CONFIG_OFFSET_INIT_FLAG);
+      if (system_thread_operation_result != SYSTEM_THREAD_RESULT_INVALID) {
+        *(int *)(*(long long *)(system_base_register + 8) + SYSTEM_CONFIG_OFFSET_INIT_FLAG) = system_thread_operation_result - *(int *)(system_base_register + SYSTEM_OFFSET_MODULE_SECONDARY);
       }
     }
     if ((*(long long *)(system_base_register + SYSTEM_POINTER_OFFSET_1D0) != 0) && ((system_system_unaffected_register_d & SYSTEM_CONFIG_BUFFER_SIZE_ZERO0) == 0)) {
@@ -12909,11 +12909,11 @@ LABEL_SYSTEM_SECTION_PROCESSING_152:
       system_process_flag = '\x01';
     }
     if (((system_stack_param_40_low_half != system_system_unaffected_register_d) ||
-        (system_thread_result_status = (**(code **)(**(long long **)(system_destination_index_register + SYSTEM_MODULE_OFFSET_1) + SYSTEM_OFFSET_STRING_BUFFER_SIZE))
+        (system_thread_operation_result = (**(code **)(**(long long **)(system_destination_index_register + SYSTEM_MODULE_OFFSET_1) + SYSTEM_OFFSET_STRING_BUFFER_SIZE))
                            (*(long long **)(system_destination_index_register + SYSTEM_MODULE_OFFSET_1),(long long)&system_stack_buffer_40 + SYSTEM_OFFSET_HANDLE_PARAM),
-        system_thread_result_status == 0)) &&
-       (system_thread_result_status = system_execution_function(*(unsigned long long *)(system_destination_index_register + SYSTEM_MODULE_OFFSET_1),*(unsigned int *)(system_destination_index_register + SYSTEM_OFFSET_MODULE_SECONDARY),
-                              0), system_thread_result_status == 0)) {
+        system_thread_operation_result == 0)) &&
+       (system_thread_operation_result = system_execution_function(*(unsigned long long *)(system_destination_index_register + SYSTEM_MODULE_OFFSET_1),*(unsigned int *)(system_destination_index_register + SYSTEM_OFFSET_MODULE_SECONDARY),
+                              0), system_thread_operation_result == 0)) {
       memset(system_destination_index_register + SYSTEM_OFFSET_STRING_COUNTER,0,0x330);
     }
   }
@@ -12929,7 +12929,7 @@ system_execution_function:
 }
 unsigned long long system_initialize_mutex(unsigned long long *system_handle_param,long long system_thread_operation_flags,char mutex_attr,char mutex_type)
 {
-  int system_thread_result_status;
+  int system_thread_operation_result;
   uint system_thread_operation_flags;
   uint *system_string_input_context;
   unsigned long long system_buffer_allocation_result;
@@ -12942,8 +12942,8 @@ LABEL_SYSTEM_SECTION_PROCESSING_153:
     system_buffer_allocation_result = SYSTEM_ZERO_VALUE;
   }
   else {
-    system_thread_result_status = *(int *)(*(long long *)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE) + SYSTEM_POINTER_OFFSET_Bc);
-    if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
+    system_thread_operation_result = *(int *)(*(long long *)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE) + SYSTEM_POINTER_OFFSET_Bc);
+    if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
       return 0;
     }
 goto LABEL_SYSTEM_SECTION_PROCESSING_517;
@@ -12987,11 +12987,11 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_517;
   }
   if (mutex_attr != '\0') {
     if (*(int *)(*(long long *)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE) + SYSTEM_OFFSET_THREAD_LIMIT) <= *(int *)(system_thread_operation_flags + SYSTEM_OFFSET_GLOBAL_DATA_PTR)) {
-      system_thread_result_status = *(int *)(*(long long *)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE) + SYSTEM_POINTER_OFFSET_Bc);
-      if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
+      system_thread_operation_result = *(int *)(*(long long *)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE) + SYSTEM_POINTER_OFFSET_Bc);
+      if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
         return 0;
       }
-      if (system_thread_result_status == 2) {
+      if (system_thread_operation_result == 2) {
         system_buffer_allocation_result = SYSTEM_ONE_VALUE;
 goto LABEL_SYSTEM_SECTION_PROCESSING_518;
       }
@@ -13011,56 +13011,56 @@ system_execution_function(long long system_handle_param,long long system_thread_
              unsigned long long *system_operation_parameter,char system_control_parameter,char system_stack_system_size_parameter)
 {
   uint system_buffer_allocation_result;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   byte byte_system_flag;
   unsigned int *system_string_input_context;
   unsigned long long system_buffer_allocation_result;
   unsigned long long system_buffer_allocation_result;
-  long long system_string_length_counter;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
+  long long system_string_length_tracker;
   unsigned int system_buffer_allocation_result;
   long long stack_long_var;
   unsigned char stack_temp_buffer [16];
   system_buffer_allocation_result = *(unsigned long long *)(system_handle_param + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG);
   system_string_input_context = (unsigned int *)system_execution_function();
-  system_string_length_counter = *mutex_type;
+  system_string_length_tracker = *mutex_type;
   system_buffer_allocation_result = *system_string_input_context;
-  system_string_length_counter = system_string_length_counter;
+  system_string_length_tracker = system_string_length_tracker;
   if ((*(uint *)(system_thread_operation_flags + SYSTEM_OFFSET_PATH_SIZE) >> 1 & 1) != 0) {
-    system_string_length_counter = *mutex_attr;
-    system_string_length_counter = system_string_length_counter - system_string_length_counter;
+    system_string_length_tracker = *mutex_attr;
+    system_string_length_tracker = system_string_length_tracker - system_string_length_tracker;
     system_buffer_allocation_result = *(unsigned long long *)(system_handle_param + SYSTEM_OFFSET_FUNCTION_TABLE);
-    if (-1 < system_string_length_counter) {
-      if (system_string_length_counter < 1) {
+    if (-1 < system_string_length_tracker) {
+      if (system_string_length_tracker < 1) {
         system_buffer_allocation_result = SYSTEM_ZERO_VALUE;
-        system_string_length_counter = system_string_length_counter;
+        system_string_length_tracker = system_string_length_tracker;
       }
       else {
         system_buffer_allocation_result = *(uint *)(*(long long *)(*(long long *)(system_handle_param + SYSTEM_OFFSET_CLEANUP_FUNCTION) + 8) + SYSTEM_CHAR_LOWERCASE_W4);
         if (system_buffer_allocation_result != 48000) {
-          system_string_length_counter = (system_string_length_counter * 48000) / (long long)(ulong long)system_buffer_allocation_result;
+          system_string_length_tracker = (system_string_length_tracker * 48000) / (long long)(ulong long)system_buffer_allocation_result;
         }
-        if (INVALID_HANDLE_VALUE < system_string_length_counter) {
-          system_string_length_counter = INVALID_HANDLE_VALUE;
+        if (INVALID_HANDLE_VALUE < system_string_length_tracker) {
+          system_string_length_tracker = INVALID_HANDLE_VALUE;
         }
-        system_buffer_allocation_result = (unsigned int)system_string_length_counter;
-        system_string_length_counter = system_string_length_counter;
+        system_buffer_allocation_result = (unsigned int)system_string_length_tracker;
+        system_string_length_tracker = system_string_length_tracker;
       }
     }
   }
   if (system_control_parameter != '\0') {
     (**(code **)(**(long long **)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE) + SYSTEM_OFFSET_FUNCTION_TABLE))(*(long long **)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE),stack_temp_buffer)
     ;
-    system_buffer_allocation_result = system_execution_function(system_buffer_allocation_result,stack_temp_buffer,system_string_length_counter,
+    system_buffer_allocation_result = system_execution_function(system_buffer_allocation_result,stack_temp_buffer,system_string_length_tracker,
                           *(unsigned int *)(*(long long *)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE) + SYSTEM_OFFSET_THREAD_LIMIT));
     if ((int)system_buffer_allocation_result != 0) {
       return system_buffer_allocation_result;
     }
   }
-  system_buffer_allocation_result = system_execution_function(system_buffer_allocation_result,*(unsigned long long *)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE),system_string_length_counter,*system_operation_parameter,system_buffer_allocation_result,0,0,&stack_long_var);
+  system_buffer_allocation_result = system_execution_function(system_buffer_allocation_result,*(unsigned long long *)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE),system_string_length_tracker,*system_operation_parameter,system_buffer_allocation_result,0,0,&stack_long_var);
   if ((int)system_buffer_allocation_result == SYSTEM_ZERO_VALUE) {
     if (system_stack_system_size_parameter != (char)system_buffer_allocation_result) {
-      string_conversion_handler(stack_long_var,system_string_length_counter);
+      string_conversion_handler(stack_long_var,system_string_length_tracker);
     }
     byte_system_flag = (byte)(*(uint *)(system_thread_operation_flags + SYSTEM_OFFSET_PATH_SIZE) >> 4) & 1;
     *(uint *)(stack_long_var + SYSTEM_POINTER_OFFSET_4C) =
@@ -13076,14 +13076,14 @@ system_execution_function(long long system_handle_param,long long system_thread_
 unsigned long long get_system_global_state(void)
 {
   char system_char_result;
-  int system_thread_result_status;
+  int system_thread_operation_result;
   uint system_buffer_allocation_result;
   unsigned long long in_stack_00000030;
   system_cleanup_routine();
   memory_reference_cleaner(free_exref);
-  system_thread_result_status = timeGetDevCaps(&system_stack_buffer_30,8);
+  system_thread_operation_result = timeGetDevCaps(&system_stack_buffer_30,8);
   system_buffer_allocation_result = SYSTEM_ONE_VALUE;
-  if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
+  if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
     system_buffer_allocation_result = SYSTEM_ONE_VALUE;
     if (1 < (uint)in_stack_00000030) {
       system_buffer_allocation_result = (uint)in_stack_00000030;
@@ -13103,7 +13103,7 @@ unsigned long long get_system_configuration(void)
 }
 unsigned int validate_system_parameters(int system_handle_param,int system_thread_operation_flags,int mutex_attr)
 {
-  int system_thread_result_status;
+  int system_thread_operation_result;
   unsigned int system_thread_operation_flags;
   unsigned int system_stack_char_buffer [4];
   if (crypto_initialized_flag == '\0') {
@@ -13112,14 +13112,14 @@ unsigned int validate_system_parameters(int system_handle_param,int system_threa
   if (((system_thread_operation_flags != 0) || (mutex_attr != 0)) || (3 < system_handle_param - 1U)) {
     return SYSTEM_POINTER_OFFSET0920001;
   }
-  system_thread_result_status = system_execution_function();
-  if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
+  system_thread_operation_result = system_execution_function();
+  if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
     return SYSTEM_POINTER_OFFSET09200ff;
   }
-  system_thread_result_status = system_execution_function(system_handle_param,system_stack_char_buffer);
-  if (system_thread_result_status < 0) {
+  system_thread_operation_result = system_execution_function(system_handle_param,system_stack_char_buffer);
+  if (system_thread_operation_result < 0) {
     system_thread_operation_flags = SYSTEM_POINTER_OFFSET09200ff;
-    if (system_thread_result_status == -0x7ffeffff) {
+    if (system_thread_operation_result == -0x7ffeffff) {
       system_thread_operation_flags = SYSTEM_POINTER_OFFSET0920004;
     }
     system_synchronization_handler();
@@ -13135,7 +13135,7 @@ unsigned long long initialize_parameter_block(unsigned int system_handle_param,u
   uint system_buffer_allocation_result;
   char system_char_result;
   byte byte_init_result;
-  int system_thread_result_status;
+  int system_thread_operation_result;
   uint system_buffer_allocation_result;
   unsigned short *system_string_input_context;
   unsigned short *system_string_input_context;
@@ -13147,18 +13147,18 @@ unsigned long long initialize_parameter_block(unsigned int system_handle_param,u
   if (system_thread_operation_flags == (uint *)0x0) {
     return SYSTEM_POINTER_OFFSET0920001;
   }
-  system_thread_result_status = system_execution_function();
-  if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
+  system_thread_operation_result = system_execution_function();
+  if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
     return SYSTEM_POINTER_OFFSET09200ff;
   }
-  system_thread_result_status = handle_processor(system_handle_param);
-  if (system_thread_result_status < 0) {
+  system_thread_operation_result = handle_processor(system_handle_param);
+  if (system_thread_operation_result < 0) {
     system_synchronization_handler();
     return SYSTEM_POINTER_OFFSET0920003;
   }
   system_execution_function(system_thread_operation_flags);
-  system_thread_result_status = parameter_validator(system_handle_param,&stack_long_var);
-  if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
+  system_thread_operation_result = parameter_validator(system_handle_param,&stack_long_var);
+  if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
     initialize_timer_context(system_handle_param,stack_buffer_array_18);
     if (*(long long *)(stack_long_var + SYSTEM_OFFSET_CONNECTION_LIMIT) != 0) {
       system_char_result = status_checker();
@@ -13206,19 +13206,19 @@ unsigned long long initialize_parameter_block(unsigned int system_handle_param,u
       if (2 < *(byte *)(system_initialization_result + SYSTEM_CONFIG_OFFSET_STATUS_FLAG)) {
         byte_init_result = SYSTEM_TWO_VALUE;
       }
-      system_thread_result_status = SYSTEM_ZERO_VALUE;
+      system_thread_operation_result = SYSTEM_ZERO_VALUE;
       *(byte *)(system_thread_operation_flags + SYSTEM_POINTER_OFFSET_D) = byte_init_result;
       if (*(char *)(system_initialization_result + SYSTEM_CONFIG_OFFSET_STATUS_FLAG) != '\0') {
         system_string_input_context = (unsigned short *)((long long)system_thread_operation_flags + SYSTEM_OFFSET_THREAD_DATA_EXTENDED);
         system_string_input_context = (unsigned short *)(system_initialization_result + SYSTEM_POINTER_OFFSET_1E);
         do {
-          system_thread_result_status = system_thread_result_status + 1;
+          system_thread_operation_result = system_thread_operation_result + 1;
           system_string_input_context[-1] = system_string_input_context[-1];
           *system_string_input_context = *system_string_input_context;
           *(unsigned char *)(system_string_input_context + 1) = *(unsigned char *)(system_string_input_context + -2);
           system_string_input_context = system_string_input_context + SYSTEM_OFFSET_HANDLE_PARAM;
           system_string_input_context = system_string_input_context + 3;
-        } while (system_thread_result_status < (int)(uint)*(byte *)(system_initialization_result + SYSTEM_CONFIG_OFFSET_STATUS_FLAG));
+        } while (system_thread_operation_result < (int)(uint)*(byte *)(system_initialization_result + SYSTEM_CONFIG_OFFSET_STATUS_FLAG));
       }
     }
   }
@@ -13228,40 +13228,40 @@ unsigned long long initialize_parameter_block(unsigned int system_handle_param,u
 int process_parameter_validation(unsigned int system_handle_param,byte *system_thread_operation_flags)
 {
   char system_char_result;
-  int system_thread_result_status;
-  long long system_string_length_counter;
+  int system_thread_operation_result;
+  long long system_string_length_tracker;
   if (crypto_initialized_flag == '\0') {
     return SYSTEM_ERROR_CODE_SPECIAL_1;
   }
   if (system_thread_operation_flags == (byte *)0x0) {
     return SYSTEM_ERROR_CODE_SPECIAL_2;
   }
-  system_thread_result_status = system_execution_function();
-  if (system_thread_result_status != SYSTEM_ZERO_VALUE) {
+  system_thread_operation_result = system_execution_function();
+  if (system_thread_operation_result != SYSTEM_ZERO_VALUE) {
     return SYSTEM_ERROR_CODE_SPECIAL_3;
   }
-  system_thread_result_status = handle_processor(system_handle_param);
-  if (system_thread_result_status < 0) {
+  system_thread_operation_result = handle_processor(system_handle_param);
+  if (system_thread_operation_result < 0) {
     system_synchronization_handler();
     return SYSTEM_ERROR_CODE_SPECIAL_4;
   }
-  system_string_length_counter = data_processor(system_handle_param,0);
-  if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
-    system_char_result = string_comparator(*(unsigned short *)(system_string_length_counter + 2),*(unsigned short *)(system_string_length_counter + SYSTEM_OFFSET_HANDLE_PARAM));
+  system_string_length_tracker = data_processor(system_handle_param,0);
+  if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
+    system_char_result = string_comparator(*(unsigned short *)(system_string_length_tracker + 2),*(unsigned short *)(system_string_length_tracker + SYSTEM_OFFSET_HANDLE_PARAM));
     if ((((system_char_result == '\0') && (*system_thread_operation_flags < 0xd)) && (system_thread_operation_flags[1] < 0xd)) && (system_thread_operation_flags[2] < 0xd)) {
       system_synchronization_handler();
       return SYSTEM_ERROR_CODE_SPECIAL_5;
     }
-    system_thread_result_status = system_execution_function(system_handle_param,system_thread_operation_flags);
-    if (-1 < system_thread_result_status) {
-      *(byte *)(system_string_length_counter + SYSTEM_CONFIG_OFFSET_DATA_FLAGe8) = *system_thread_operation_flags;
-      *(byte *)(system_string_length_counter + SYSTEM_CONFIG_OFFSET_DATA_FLAGe9) = system_thread_operation_flags[1];
-      *(byte *)(system_string_length_counter + SYSTEM_CONFIG_OFFSET_DATA_FLAGea) = system_thread_operation_flags[2];
-      *(byte *)(system_string_length_counter + SYSTEM_CONFIG_OFFSET_DATA_FLAGec) = *system_thread_operation_flags;
-      *(byte *)(system_string_length_counter + SYSTEM_CONFIG_OFFSET_DATA_FLAGed) = system_thread_operation_flags[1];
-      *(byte *)(system_string_length_counter + SYSTEM_CONFIG_OFFSET_DATA_FLAGee) = system_thread_operation_flags[2];
+    system_thread_operation_result = system_execution_function(system_handle_param,system_thread_operation_flags);
+    if (-1 < system_thread_operation_result) {
+      *(byte *)(system_string_length_tracker + SYSTEM_CONFIG_OFFSET_DATA_FLAGe8) = *system_thread_operation_flags;
+      *(byte *)(system_string_length_tracker + SYSTEM_CONFIG_OFFSET_DATA_FLAGe9) = system_thread_operation_flags[1];
+      *(byte *)(system_string_length_tracker + SYSTEM_CONFIG_OFFSET_DATA_FLAGea) = system_thread_operation_flags[2];
+      *(byte *)(system_string_length_tracker + SYSTEM_CONFIG_OFFSET_DATA_FLAGec) = *system_thread_operation_flags;
+      *(byte *)(system_string_length_tracker + SYSTEM_CONFIG_OFFSET_DATA_FLAGed) = system_thread_operation_flags[1];
+      *(byte *)(system_string_length_tracker + SYSTEM_CONFIG_OFFSET_DATA_FLAGee) = system_thread_operation_flags[2];
       system_synchronization_handler();
-      return system_thread_result_status;
+      return system_thread_operation_result;
     }
   }
   system_synchronization_handler();
@@ -13270,27 +13270,27 @@ int process_parameter_validation(unsigned int system_handle_param,byte *system_t
 int check_system_readiness(void)
 {
   char system_char_result;
-  int system_thread_result_status;
-  long long system_string_length_counter;
+  int system_thread_operation_result;
+  long long system_string_length_tracker;
   byte *system_base_register;
   unsigned int unaff_ESI;
-  system_string_length_counter = data_processor(unaff_ESI);
-  if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
-    system_char_result = string_comparator(*(unsigned short *)(system_string_length_counter + 2),*(unsigned short *)(system_string_length_counter + SYSTEM_OFFSET_HANDLE_PARAM));
+  system_string_length_tracker = data_processor(unaff_ESI);
+  if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
+    system_char_result = string_comparator(*(unsigned short *)(system_string_length_tracker + 2),*(unsigned short *)(system_string_length_tracker + SYSTEM_OFFSET_HANDLE_PARAM));
     if ((((system_char_result == '\0') && (*system_base_register < 0xd)) && (system_base_register[1] < 0xd)) && (system_base_register[2] < 0xd)) {
       system_synchronization_handler();
       return SYSTEM_ERROR_CODE_SPECIAL_5;
     }
-    system_thread_result_status = system_execution_function(unaff_ESI);
-    if (-1 < system_thread_result_status) {
-      *(byte *)(system_string_length_counter + SYSTEM_CONFIG_OFFSET_DATA_FLAGe8) = *system_base_register;
-      *(byte *)(system_string_length_counter + SYSTEM_CONFIG_OFFSET_DATA_FLAGe9) = system_base_register[1];
-      *(byte *)(system_string_length_counter + SYSTEM_CONFIG_OFFSET_DATA_FLAGea) = system_base_register[2];
-      *(byte *)(system_string_length_counter + SYSTEM_CONFIG_OFFSET_DATA_FLAGec) = *system_base_register;
-      *(byte *)(system_string_length_counter + SYSTEM_CONFIG_OFFSET_DATA_FLAGed) = system_base_register[1];
-      *(byte *)(system_string_length_counter + SYSTEM_CONFIG_OFFSET_DATA_FLAGee) = system_base_register[2];
+    system_thread_operation_result = system_execution_function(unaff_ESI);
+    if (-1 < system_thread_operation_result) {
+      *(byte *)(system_string_length_tracker + SYSTEM_CONFIG_OFFSET_DATA_FLAGe8) = *system_base_register;
+      *(byte *)(system_string_length_tracker + SYSTEM_CONFIG_OFFSET_DATA_FLAGe9) = system_base_register[1];
+      *(byte *)(system_string_length_tracker + SYSTEM_CONFIG_OFFSET_DATA_FLAGea) = system_base_register[2];
+      *(byte *)(system_string_length_tracker + SYSTEM_CONFIG_OFFSET_DATA_FLAGec) = *system_base_register;
+      *(byte *)(system_string_length_tracker + SYSTEM_CONFIG_OFFSET_DATA_FLAGed) = system_base_register[1];
+      *(byte *)(system_string_length_tracker + SYSTEM_CONFIG_OFFSET_DATA_FLAGee) = system_base_register[2];
       system_synchronization_handler();
-      return system_thread_result_status;
+      return system_thread_operation_result;
     }
   }
   system_synchronization_handler();
@@ -13298,12 +13298,12 @@ int check_system_readiness(void)
 }
 int validate_system_state(void)
 {
-  int system_thread_result_status;
+  int system_thread_operation_result;
   unsigned char *system_base_register;
   unsigned int unaff_ESI;
   long long system_destination_index_register;
-  system_thread_result_status = system_execution_function(unaff_ESI);
-  if (-1 < system_thread_result_status) {
+  system_thread_operation_result = system_execution_function(unaff_ESI);
+  if (-1 < system_thread_operation_result) {
     *(unsigned char *)(system_destination_index_register + SYSTEM_CONFIG_OFFSET_DATA_FLAGe8) = *system_base_register;
     *(unsigned char *)(system_destination_index_register + SYSTEM_CONFIG_OFFSET_DATA_FLAGe9) = system_base_register[1];
     *(unsigned char *)(system_destination_index_register + SYSTEM_CONFIG_OFFSET_DATA_FLAGea) = system_base_register[2];
@@ -13311,7 +13311,7 @@ int validate_system_state(void)
     *(unsigned char *)(system_destination_index_register + SYSTEM_CONFIG_OFFSET_DATA_FLAGed) = system_base_register[1];
     *(unsigned char *)(system_destination_index_register + SYSTEM_CONFIG_OFFSET_DATA_FLAGee) = system_base_register[2];
     system_synchronization_handler();
-    return system_thread_result_status;
+    return system_thread_operation_result;
   }
   system_synchronization_handler();
   return SYSTEM_ERROR_CODE_SPECIAL_3;
@@ -13322,14 +13322,14 @@ unsigned long long get_system_status_info(void)
   return SYSTEM_POINTER_OFFSET09200ff;
 }
           system_byte_counter = system_byte_check_result;
-          *system_thread_operation_flags = system_thread_result_status;
-          *(int *)(system_string_length_counter + SYSTEM_OFFSET_STRING_BUFFER_SIZE) = system_thread_result_status;
-          *(int *)(system_string_length_counter + SYSTEM_OFFSET_GLOBAL_DATA_PTR) = system_thread_result_status;
-          integer_processor(system_string_length_counter);
+          *system_thread_operation_flags = system_thread_operation_result;
+          *(int *)(system_string_length_tracker + SYSTEM_OFFSET_STRING_BUFFER_SIZE) = system_thread_operation_result;
+          *(int *)(system_string_length_tracker + SYSTEM_OFFSET_GLOBAL_DATA_PTR) = system_thread_operation_result;
+          integer_processor(system_string_length_tracker);
           return 0;
         }
-        system_string_length_counter = system_string_length_counter + SYSTEM_OFFSET_PATH_BUFFER08;
-      } while (system_string_length_counter < SYSTEM_FLAG_BUFFER_PRIMARY_ADDRESS);
+        system_string_length_tracker = system_string_length_tracker + SYSTEM_OFFSET_PATH_BUFFER08;
+      } while (system_string_length_tracker < SYSTEM_FLAG_BUFFER_PRIMARY_ADDRESS);
       return SYSTEM_POINTER_OFFSET001002d;
     }
   }
@@ -13337,11 +13337,11 @@ unsigned long long get_system_status_info(void)
   if (system_byte_check_result == SYSTEM_ZERO_VALUE) {
     system_byte_check_result = system_byte_counter + 2;
   }
-  system_thread_result_status = (uint)system_byte_check_result * string_buffer_size_constant + system_thread_result_status;
+  system_thread_operation_result = (uint)system_byte_check_result * string_buffer_size_constant + system_thread_operation_result;
   system_byte_counter = system_byte_check_result;
-  *system_thread_operation_flags = system_thread_result_status;
-  *system_int_param_ptr = system_thread_result_status;
-  system_int_param_ptr[2] = system_thread_result_status;
+  *system_thread_operation_flags = system_thread_operation_result;
+  *system_int_param_ptr = system_thread_operation_result;
+  system_int_param_ptr[2] = system_thread_operation_result;
   integer_processor(system_int_param_ptr + -4);
   return 0;
 }
@@ -13355,33 +13355,33 @@ uint setup_timer_with_attributes(long long system_handle_param,int system_thread
 {
   ulong long system_buffer_allocation_result;
   byte byte_flag_value;
-  int system_thread_result_status;
-  int system_thread_result_status;
+  int system_thread_operation_result;
+  int system_thread_operation_result;
   uint system_buffer_allocation_result;
   uint system_buffer_allocation_result;
   system_buffer_allocation_result = SYSTEM_ZERO_VALUE;
   system_buffer_allocation_result = SYSTEM_ZERO_VALUE;
-  system_thread_result_status = SYSTEM_ZERO_VALUE;
-  system_thread_result_status = system_thread_result_status;
+  system_thread_operation_result = SYSTEM_ZERO_VALUE;
+  system_thread_operation_result = system_thread_operation_result;
   if (0 < mutex_attr) {
     do {
       byte_flag_value = (byte)system_thread_operation_flags & 7;
-      system_thread_result_status = system_thread_operation_flags;
+      system_thread_operation_result = system_thread_operation_flags;
       if (system_thread_operation_flags < 0) {
-        system_thread_result_status = system_thread_operation_flags + 7;
+        system_thread_operation_result = system_thread_operation_flags + 7;
         byte_flag_value = byte_flag_value - 8;
       }
       system_thread_operation_flags = system_thread_operation_flags + 1;
-      system_buffer_allocation_result = *(byte *)((system_thread_result_status >> 3) + system_handle_param) >> (byte_flag_value & SYSTEM_CONSTANT_PAIR) & 1;
-      system_thread_result_status = system_thread_result_status + 1;
-      system_buffer_allocation_result = system_buffer_allocation_result | system_buffer_allocation_result << ((byte)system_thread_result_status & SYSTEM_CONSTANT_PAIR);
-      system_thread_result_status = system_thread_result_status;
-    } while (system_thread_result_status < mutex_attr);
+      system_buffer_allocation_result = *(byte *)((system_thread_operation_result >> 3) + system_handle_param) >> (byte_flag_value & SYSTEM_CONSTANT_PAIR) & 1;
+      system_thread_operation_result = system_thread_operation_result + 1;
+      system_buffer_allocation_result = system_buffer_allocation_result | system_buffer_allocation_result << ((byte)system_thread_operation_result & SYSTEM_CONSTANT_PAIR);
+      system_thread_operation_result = system_thread_operation_result;
+    } while (system_thread_operation_result < mutex_attr);
   }
-  if (((mutex_type != '\0') && (system_buffer_allocation_result != 0)) && (system_thread_result_status < path_buffer_size)) {
-    byte_flag_value = (byte)system_thread_result_status & SYSTEM_CONSTANT_PAIR;
+  if (((mutex_type != '\0') && (system_buffer_allocation_result != 0)) && (system_thread_operation_result < path_buffer_size)) {
+    byte_flag_value = (byte)system_thread_operation_result & SYSTEM_CONSTANT_PAIR;
     system_buffer_allocation_result = 1 << byte_flag_value | 1U >> path_buffer_size - byte_flag_value;
-    system_buffer_allocation_result = (ulong long)(path_buffer_size - system_thread_result_status);
+    system_buffer_allocation_result = (ulong long)(path_buffer_size - system_thread_operation_result);
     do {
       system_buffer_allocation_result = system_buffer_allocation_result | system_buffer_allocation_result;
       system_buffer_allocation_result = system_buffer_allocation_result << 1 | (uint)((int)system_buffer_allocation_result < 0);
@@ -13455,12 +13455,12 @@ unsigned long long initialize_timer_context(unsigned long long system_handle_par
 }
       string_termination_flag = '\0';
       if (system_global_context_pointer == SYSTEM_ZERO_VALUE) {
-        system_string_length_counter = system_execution_function(&system_system_function_1);
-        if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
-          system_string_length_counter = LoadLibraryExW(system_string_length_counter,0,0);
+        system_string_length_tracker = system_execution_function(&system_system_function_1);
+        if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
+          system_string_length_tracker = LoadLibraryExW(system_string_length_tracker,0,0);
         }
-        LocalFree(system_string_length_counter);
-        system_global_context_pointer = system_string_length_counter;
+        LocalFree(system_string_length_tracker);
+        system_global_context_pointer = system_string_length_tracker;
 goto LABEL_SYSTEM_SECTION_PROCESSING_519;
       }
       if ((((system_global_context_pointer == (code *)0x0) &&
@@ -13489,15 +13489,15 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_521;
       system_maximum_stack_size = SYSTEM_ZERO_VALUE;
       system_maximum_stack_size = SYSTEM_ZERO_VALUE;
       _guard_check_icall(system_global_context_pointer);
-      system_thread_result_status = (*system_character_scan_pointer)(&system_maximum_stack_size,&system_maximum_stack_size,SYSTEM_BUFFER_ALLOC_RESULT_STATUS_OPERATION_SUCCESS);
+      system_thread_operation_result = (*system_character_scan_pointer)(&system_maximum_stack_size,&system_maximum_stack_size,SYSTEM_BUFFER_ALLOC_RESULT_STATUS_OPERATION_SUCCESS);
 goto LABEL_SYSTEM_SECTION_PROCESSING_522;
       for (system_string_input_context = system_stack_buffer_string_scan; system_character_scan_pointer = system_global_context_pointer, system_buffer_allocation_result = *system_string_input_context, system_buffer_allocation_result != SYSTEM_ZERO_VALUE;
           system_string_input_context = system_string_input_context + 1) {
         system_maximum_stack_size = SYSTEM_ZERO_VALUE;
         _guard_check_icall(system_global_context_pointer);
         system_thread_stack_pointer = &system_maximum_stack_size;
-        system_thread_result_status = (*system_character_scan_pointer)(INVALID_HANDLE_VALUE80000002,&system_library_function_6,0,system_buffer_allocation_result | SYSTEM_PATH_BUFFER_SIZE_MEDIUM);
-        if (system_thread_result_status == SYSTEM_ZERO_VALUE) {
+        system_thread_operation_result = (*system_character_scan_pointer)(INVALID_HANDLE_VALUE80000002,&system_library_function_6,0,system_buffer_allocation_result | SYSTEM_PATH_BUFFER_SIZE_MEDIUM);
+        if (system_thread_operation_result == SYSTEM_ZERO_VALUE) {
           system_maximum_stack_size = SYSTEM_POINTER_OFFSET0;
           system_maximum_stack_size = SYSTEM_FOUR_VALUE;
           memset(system_stack_buffer_string_zero,0,string_buffer_size_constant);
@@ -13514,70 +13514,70 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_523;
 LABEL_SYSTEM_SECTION_PROCESSING_155:
   system_execute_crypto_operation(system_maximum_stack_size ^ (ulong long)system_debug_stack_buffer);
 }
-          system_thread_result_flag = system_thread_result_status == SYSTEM_ONE_VALUE;
+          system_thread_result_flag = system_thread_operation_result == SYSTEM_ONE_VALUE;
           SetConsoleTitleA(&system_console_title_1);
         }
       }
       system_thread_validation_flag = system_thread_result_flag == '\0';
       if (system_global_context_pointer == SYSTEM_ZERO_VALUE) {
-        system_string_length_counter = _wfsopen(system_handle_param,&system_file_function_1,SYSTEM_CONFIG_BUFFER_SIZE);
-        if (system_string_length_counter == SYSTEM_ZERO_VALUE) {
+        system_string_length_tracker = _wfsopen(system_handle_param,&system_file_function_1,SYSTEM_CONFIG_BUFFER_SIZE);
+        if (system_string_length_tracker == SYSTEM_ZERO_VALUE) {
           system_execution_function(&system_string_buffer_5,0xc1,&system_string_buffer_6,&system_string_function_4,system_handle_param);
           system_system_byte_check_status = false;
         }
         else {
-          fclose(system_string_length_counter);
+          fclose(system_string_length_tracker);
           system_execution_function(&system_string_buffer_5,200,&system_string_buffer_6,&system_string_function_5,system_handle_param);
-          system_string_length_counter = _wcsdup(system_handle_param);
-          system_string_length_counter = SYSTEM_STRING_LENGTH_INVALID;
-          if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
+          system_string_length_tracker = _wcsdup(system_handle_param);
+          system_string_length_tracker = SYSTEM_STRING_LENGTH_INVALID;
+          if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
             do {
-              system_string_length_counter = system_string_length_counter;
-              system_string_length_counter = system_string_length_counter + 1;
-            } while (*(short *)(system_handle_param + 2 + system_string_length_counter * 2) != 0);
-            system_string_length_counter = system_string_length_counter;
+              system_string_length_tracker = system_string_length_tracker;
+              system_string_length_tracker = system_string_length_tracker + 1;
+            } while (*(short *)(system_handle_param + 2 + system_string_length_tracker * 2) != 0);
+            system_string_length_tracker = system_string_length_tracker;
             while( true ) {
-              system_string_length_counter = SYSTEM_ZERO_VALUE;
-              if (((system_string_length_counter == 0) || (system_short_char_value = *(short *)(system_string_length_counter + system_string_length_counter * 2), system_string_length_counter = 0, system_short_char_value == SYSTEM_CHAR_SLASH)
+              system_string_length_tracker = SYSTEM_ZERO_VALUE;
+              if (((system_string_length_tracker == 0) || (system_short_char_value = *(short *)(system_string_length_tracker + system_string_length_tracker * 2), system_string_length_tracker = 0, system_short_char_value == SYSTEM_CHAR_SLASH)
 goto LABEL_SYSTEM_SECTION_PROCESSING_524;
               if (system_short_char_value == SYSTEM_MODULE_OFFSET_2E break;
-              system_string_length_counter = system_string_length_counter + SYSTEM_DECREMENT_SINGLE_UNIT;
+              system_string_length_tracker = system_string_length_tracker + SYSTEM_DECREMENT_SINGLE_UNIT;
             }
-            *(unsigned short *)(system_string_length_counter + system_string_length_counter * 2) = SYSTEM_ZERO_VALUE;
-            system_string_length_counter = system_string_length_counter + 2 + system_string_length_counter * 2;
+            *(unsigned short *)(system_string_length_tracker + system_string_length_tracker * 2) = SYSTEM_ZERO_VALUE;
+            system_string_length_tracker = system_string_length_tracker + 2 + system_string_length_tracker * 2;
 LABEL_SYSTEM_SECTION_PROCESSING_156:
-            system_string_length_counter = system_string_length_counter + 9;
-            system_string_length_counter = malloc(system_string_length_counter * 2);
-            if (system_string_length_counter == SYSTEM_ZERO_VALUE) {
-              free(system_string_length_counter);
+            system_string_length_tracker = system_string_length_tracker + 9;
+            system_string_length_tracker = malloc(system_string_length_tracker * 2);
+            if (system_string_length_tracker == SYSTEM_ZERO_VALUE) {
+              free(system_string_length_tracker);
               return false;
             }
-            system_thread_result_status = SYSTEM_ONE_VALUE;
-            system_string_length_counter = system_global_context_pointer;
+            system_thread_operation_result = SYSTEM_ONE_VALUE;
+            system_string_length_tracker = system_global_context_pointer;
             do {
-              system_global_context_pointer = system_string_length_counter;
-              if (system_string_length_counter == SYSTEM_ZERO_VALUE) {
-                system_execution_function(system_string_length_counter,system_string_length_counter,&system_string_buffer_1,system_string_length_counter,system_thread_result_status);
+              system_global_context_pointer = system_string_length_tracker;
+              if (system_string_length_tracker == SYSTEM_ZERO_VALUE) {
+                system_execution_function(system_string_length_tracker,system_string_length_tracker,&system_string_buffer_1,system_string_length_tracker,system_thread_operation_result);
               }
               else {
-                system_execution_function(system_string_length_counter,system_string_length_counter,&system_string_buffer_2,system_string_length_counter,system_thread_result_status,system_string_length_counter);
+                system_execution_function(system_string_length_tracker,system_string_length_tracker,&system_string_buffer_2,system_string_length_tracker,system_thread_operation_result,system_string_length_tracker);
               }
-              system_global_context_pointer = _wfsopen(system_string_length_counter,system_string_input_context,path_buffer_size);
+              system_global_context_pointer = _wfsopen(system_string_length_tracker,system_string_input_context,path_buffer_size);
               if (system_global_context_pointer != 0) {
                 system_string_input_context = &system_string_buffer_3;
                 system_buffer_allocation_result = SYSTEM_BUFFER_CODE_SPECIAL_1;
-                system_handle_param = system_string_length_counter;
+                system_handle_param = system_string_length_tracker;
 goto LABEL_SYSTEM_SECTION_PROCESSING_525;
               }
-              system_thread_result_status = system_thread_result_status + 1;
-              system_string_length_counter = SYSTEM_ZERO_VALUE;
-            } while (system_thread_result_status < 9);
+              system_thread_operation_result = system_thread_operation_result + 1;
+              system_string_length_tracker = SYSTEM_ZERO_VALUE;
+            } while (system_thread_operation_result < 9);
             system_string_input_context = &system_string_buffer_4;
             system_buffer_allocation_result = SYSTEM_BUFFER_CODE_SPECIAL_2;
 LABEL_SYSTEM_SECTION_PROCESSING_157:
             system_execution_function(&system_string_buffer_5,system_buffer_allocation_result,&system_string_buffer_6,system_string_input_context,system_handle_param);
-            free(system_string_length_counter);
-            free(system_string_length_counter);
+            free(system_string_length_tracker);
+            free(system_string_length_tracker);
           }
           system_system_byte_check_status = system_global_context_pointer != SYSTEM_ZERO_VALUE;
         }
@@ -13595,14 +13595,14 @@ LABEL_SYSTEM_SECTION_PROCESSING_157:
 bool check_system_availability(void)
 {
   short system_short_char_value;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   uint system_buffer_allocation_result;
-  int system_thread_result_status;
-  long long system_string_length_counter;
+  int system_thread_operation_result;
+  long long system_string_length_tracker;
   unsigned long long system_buffer_allocation_result;
-  long long system_string_length_counter;
-  long long system_string_length_counter;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
+  long long system_string_length_tracker;
+  long long system_string_length_tracker;
   char unaff_SIL;
   long long system_destination_index_register;
   short system_short_char_value_zero;
@@ -13612,12 +13612,12 @@ bool check_system_availability(void)
   uint system_stack_parameter_primary;
   uint system_stack_parameter_secondary;
   if (system_destination_index_register != 0) {
-    system_string_length_counter = SYSTEM_STRING_LENGTH_INVALID;
+    system_string_length_tracker = SYSTEM_STRING_LENGTH_INVALID;
     do {
-      system_string_length_counter = system_string_length_counter + 1;
+      system_string_length_tracker = system_string_length_tracker + 1;
       system_short_char_value_zero = (short)system_unaffected_register;
-    } while (*(short *)(system_destination_index_register + system_string_length_counter * 2) != system_short_char_value_zero);
-    if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
+    } while (*(short *)(system_destination_index_register + system_string_length_tracker * 2) != system_short_char_value_zero);
+    if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
       system_string_input_context = &system_debug_string_2;
       if (unaff_SIL != '\0') {
         system_string_input_context = &system_debug_string_3;
@@ -13629,70 +13629,70 @@ bool check_system_availability(void)
         GetWindowThreadProcessId(system_buffer_allocation_result,&system_stack_buffer_98);
         system_buffer_allocation_result = GetCurrentProcessId();
         if (system_buffer_allocation_result != system_stack_parameter_secondary) {
-          system_thread_result_status = AllocConsole();
-          system_thread_result_flag = system_thread_result_status == SYSTEM_ONE_VALUE;
+          system_thread_operation_result = AllocConsole();
+          system_thread_result_flag = system_thread_operation_result == SYSTEM_ONE_VALUE;
           SetConsoleTitleA(&system_console_title_1);
         }
       }
       system_thread_validation_flag = system_thread_result_flag == (char)system_unaffected_register;
       if (system_global_context_pointer == system_unaffected_register) {
-        system_string_length_counter = _wfsopen();
-        if (system_string_length_counter == SYSTEM_ZERO_VALUE) {
+        system_string_length_tracker = _wfsopen();
+        if (system_string_length_tracker == SYSTEM_ZERO_VALUE) {
           system_execution_function(&system_string_buffer_5,0xc1,&system_string_buffer_6,&system_string_function_4);
           system_byte_validation_status = false;
         }
         else {
-          fclose(system_string_length_counter);
+          fclose(system_string_length_tracker);
           system_execution_function(&system_string_buffer_5,SYSTEM_VALUE_200,&system_string_buffer_6,&system_string_function_5);
-          system_string_length_counter = _wcsdup();
-          system_string_length_counter = SYSTEM_STRING_LENGTH_INVALID;
-          if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
+          system_string_length_tracker = _wcsdup();
+          system_string_length_tracker = SYSTEM_STRING_LENGTH_INVALID;
+          if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
             do {
-              system_string_length_counter = system_string_length_counter;
-              system_string_length_counter = system_string_length_counter + 1;
-              system_string_length_counter = system_string_length_counter;
-            } while (*(short *)(system_destination_index_register + 2 + system_string_length_counter * 2) != system_short_char_value_zero);
+              system_string_length_tracker = system_string_length_tracker;
+              system_string_length_tracker = system_string_length_tracker + 1;
+              system_string_length_tracker = system_string_length_tracker;
+            } while (*(short *)(system_destination_index_register + 2 + system_string_length_tracker * 2) != system_short_char_value_zero);
             while( true ) {
-              system_string_length_counter = system_unaffected_register;
-              if (((system_string_length_counter == 0) || (system_short_char_value = *(short *)(system_string_length_counter + system_string_length_counter * 2), system_short_char_value == SYSTEM_CHAR_SLASH)) ||
+              system_string_length_tracker = system_unaffected_register;
+              if (((system_string_length_tracker == 0) || (system_short_char_value = *(short *)(system_string_length_tracker + system_string_length_tracker * 2), system_short_char_value == SYSTEM_CHAR_SLASH)) ||
 goto LABEL_SYSTEM_SECTION_PROCESSING_526;
               if (system_short_char_value == SYSTEM_MODULE_OFFSET_2E break;
-              system_string_length_counter = system_string_length_counter + SYSTEM_DECREMENT_SINGLE_UNIT;
+              system_string_length_tracker = system_string_length_tracker + SYSTEM_DECREMENT_SINGLE_UNIT;
             }
-            *(short *)(system_string_length_counter + system_string_length_counter * 2) = system_short_char_value_zero;
-            system_string_length_counter = system_string_length_counter + 2 + system_string_length_counter * 2;
+            *(short *)(system_string_length_tracker + system_string_length_tracker * 2) = system_short_char_value_zero;
+            system_string_length_tracker = system_string_length_tracker + 2 + system_string_length_tracker * 2;
 LABEL_SYSTEM_SECTION_PROCESSING_158:
-            system_string_length_counter = system_string_length_counter + 9;
-            system_string_length_counter = malloc(system_string_length_counter * 2);
-            if (system_string_length_counter == SYSTEM_ZERO_VALUE) {
-              free(system_string_length_counter);
+            system_string_length_tracker = system_string_length_tracker + 9;
+            system_string_length_tracker = malloc(system_string_length_tracker * 2);
+            if (system_string_length_tracker == SYSTEM_ZERO_VALUE) {
+              free(system_string_length_tracker);
               return false;
             }
-            system_thread_result_status = SYSTEM_ONE_VALUE;
-            system_string_length_counter = system_global_context_pointer;
+            system_thread_operation_result = SYSTEM_ONE_VALUE;
+            system_string_length_tracker = system_global_context_pointer;
             do {
-              system_global_context_pointer = system_string_length_counter;
-              if (system_string_length_counter == SYSTEM_ZERO_VALUE) {
-                system_execution_function(system_string_length_counter,system_string_length_counter,&system_string_buffer_1,system_string_length_counter,system_thread_result_status);
+              system_global_context_pointer = system_string_length_tracker;
+              if (system_string_length_tracker == SYSTEM_ZERO_VALUE) {
+                system_execution_function(system_string_length_tracker,system_string_length_tracker,&system_string_buffer_1,system_string_length_tracker,system_thread_operation_result);
               }
               else {
-                system_execution_function(system_string_length_counter,system_string_length_counter,&system_string_buffer_2,system_string_length_counter,system_thread_result_status);
+                system_execution_function(system_string_length_tracker,system_string_length_tracker,&system_string_buffer_2,system_string_length_tracker,system_thread_operation_result);
               }
-              system_global_context_pointer = _wfsopen(system_string_length_counter,system_string_input_context,path_buffer_size);
+              system_global_context_pointer = _wfsopen(system_string_length_tracker,system_string_input_context,path_buffer_size);
               if (system_global_context_pointer != 0) {
                 system_string_input_context = &system_string_buffer_3;
                 system_buffer_allocation_result = SYSTEM_BUFFER_CODE_SPECIAL_1;
 goto LABEL_SYSTEM_SECTION_PROCESSING_527;
               }
-              system_thread_result_status = system_thread_result_status + 1;
-              system_string_length_counter = SYSTEM_ZERO_VALUE;
-            } while (system_thread_result_status < 9);
+              system_thread_operation_result = system_thread_operation_result + 1;
+              system_string_length_tracker = SYSTEM_ZERO_VALUE;
+            } while (system_thread_operation_result < 9);
             system_string_input_context = &system_string_buffer_4;
             system_buffer_allocation_result = SYSTEM_BUFFER_CODE_SPECIAL_2;
 LABEL_SYSTEM_SECTION_PROCESSING_159:
             system_execution_function(&system_string_buffer_5,system_buffer_allocation_result,&system_string_buffer_6,system_string_input_context);
-            free(system_string_length_counter);
-            free(system_string_length_counter);
+            free(system_string_length_tracker);
+            free(system_string_length_tracker);
           }
           system_byte_validation_status = system_global_context_pointer != system_unaffected_register;
         }
@@ -13710,67 +13710,67 @@ LABEL_SYSTEM_SECTION_PROCESSING_159:
 bool validate_system_resources(void)
 {
   short system_short_char_value;
-  long long system_string_length_counter;
-  long long system_string_length_counter;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
+  long long system_string_length_tracker;
+  long long system_string_length_tracker;
   unsigned long long system_buffer_allocation_result;
-  int system_thread_result_status;
+  int system_thread_operation_result;
   long long system_base_register;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   long long system_destination_index_register;
   void *system_string_input_context;
   long long system_unaffected_register;
-  long long system_string_length_counter;
+  long long system_string_length_tracker;
   fclose();
   system_execution_function(&system_string_buffer_5,SYSTEM_VALUE_200,&system_string_buffer_6,&system_string_function_5);
-  system_string_length_counter = _wcsdup();
-  if (system_string_length_counter != SYSTEM_ZERO_VALUE) {
+  system_string_length_tracker = _wcsdup();
+  if (system_string_length_tracker != SYSTEM_ZERO_VALUE) {
     do {
-      system_string_length_counter = system_base_register;
-      system_base_register = system_string_length_counter + 1;
-      system_string_length_counter = system_string_length_counter;
-    } while (*(short *)(system_destination_index_register + 2 + system_string_length_counter * 2) != (short)system_unaffected_register);
+      system_string_length_tracker = system_base_register;
+      system_base_register = system_string_length_tracker + 1;
+      system_string_length_tracker = system_string_length_tracker;
+    } while (*(short *)(system_destination_index_register + 2 + system_string_length_tracker * 2) != (short)system_unaffected_register);
     while( true ) {
-      system_string_length_counter = system_unaffected_register;
-      if (((system_string_length_counter == 0) || (system_short_char_value = *(short *)(system_string_length_counter + system_string_length_counter * 2), system_short_char_value == SYSTEM_CHAR_SLASH)) ||
+      system_string_length_tracker = system_unaffected_register;
+      if (((system_string_length_tracker == 0) || (system_short_char_value = *(short *)(system_string_length_tracker + system_string_length_tracker * 2), system_short_char_value == SYSTEM_CHAR_SLASH)) ||
 goto LABEL_SYSTEM_SECTION_PROCESSING_528;
       if (system_short_char_value == SYSTEM_MODULE_OFFSET_2E break;
-      system_string_length_counter = system_string_length_counter + SYSTEM_DECREMENT_SINGLE_UNIT;
+      system_string_length_tracker = system_string_length_tracker + SYSTEM_DECREMENT_SINGLE_UNIT;
     }
-    *(short *)(system_string_length_counter + system_string_length_counter * 2) = (short)system_unaffected_register;
-    system_string_length_counter = system_string_length_counter + 2 + system_string_length_counter * 2;
+    *(short *)(system_string_length_tracker + system_string_length_tracker * 2) = (short)system_unaffected_register;
+    system_string_length_tracker = system_string_length_tracker + 2 + system_string_length_tracker * 2;
 LABEL_SYSTEM_SECTION_PROCESSING_160:
-    system_string_length_counter = system_string_length_counter + 9;
-    system_string_length_counter = malloc(system_string_length_counter * 2);
-    if (system_string_length_counter == SYSTEM_ZERO_VALUE) {
-      free(system_string_length_counter);
+    system_string_length_tracker = system_string_length_tracker + 9;
+    system_string_length_tracker = malloc(system_string_length_tracker * 2);
+    if (system_string_length_tracker == SYSTEM_ZERO_VALUE) {
+      free(system_string_length_tracker);
       return false;
     }
-    system_thread_result_status = SYSTEM_ONE_VALUE;
-    system_string_length_counter = system_global_context_pointer;
+    system_thread_operation_result = SYSTEM_ONE_VALUE;
+    system_string_length_tracker = system_global_context_pointer;
     do {
-      system_global_context_pointer = system_string_length_counter;
-      if (system_string_length_counter == SYSTEM_ZERO_VALUE) {
-        system_execution_function(system_string_length_counter,system_string_length_counter,&system_string_buffer_1,system_string_length_counter,system_thread_result_status);
+      system_global_context_pointer = system_string_length_tracker;
+      if (system_string_length_tracker == SYSTEM_ZERO_VALUE) {
+        system_execution_function(system_string_length_tracker,system_string_length_tracker,&system_string_buffer_1,system_string_length_tracker,system_thread_operation_result);
       }
       else {
-        system_execution_function(system_string_length_counter,system_string_length_counter,&system_string_buffer_2,system_string_length_counter,system_thread_result_status);
+        system_execution_function(system_string_length_tracker,system_string_length_tracker,&system_string_buffer_2,system_string_length_tracker,system_thread_operation_result);
       }
-      system_global_context_pointer = _wfsopen(system_string_length_counter);
+      system_global_context_pointer = _wfsopen(system_string_length_tracker);
       if (system_global_context_pointer != 0) {
         system_string_input_context = &system_string_buffer_3;
         system_buffer_allocation_result = SYSTEM_BUFFER_CODE_SPECIAL_1;
 goto LABEL_SYSTEM_SECTION_PROCESSING_529;
       }
-      system_thread_result_status = system_thread_result_status + 1;
-      system_string_length_counter = SYSTEM_ZERO_VALUE;
-    } while (system_thread_result_status < 9);
+      system_thread_operation_result = system_thread_operation_result + 1;
+      system_string_length_tracker = SYSTEM_ZERO_VALUE;
+    } while (system_thread_operation_result < 9);
     system_string_input_context = &system_string_buffer_4;
     system_buffer_allocation_result = SYSTEM_BUFFER_CODE_SPECIAL_2;
 LABEL_SYSTEM_SECTION_PROCESSING_161:
     system_execution_function(&system_string_buffer_5,system_buffer_allocation_result,&system_string_buffer_6,system_string_input_context);
-    free(system_string_length_counter);
-    free(system_string_length_counter);
+    free(system_string_length_tracker);
+    free(system_string_length_tracker);
   }
   return system_global_context_pointer != system_unaffected_register;
 }
