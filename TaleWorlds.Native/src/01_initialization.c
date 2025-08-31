@@ -13873,6 +13873,11 @@ void system_main_entry(uint64_t param_1)
 {
   uint64_t astack_unsigned_value_18 [2];
   
+/**
+ * @brief 系统参数处理函数
+ * 处理系统启动参数和配置选项
+ * @param param_1 参数指针
+ */
 void system_process_arguments(longlong param_1)
 {
   longlong system_memory_allocation_result;
