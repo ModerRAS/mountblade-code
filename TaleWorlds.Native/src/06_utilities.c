@@ -368,8 +368,10 @@ uint32_t utility_get_memory_usage(void)
  * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
+ * 主要用于资源上下文的生命周期管理和状态维护。
  *
- * 简化实现：提供基本的上下文管理功能。
+ * @note 简化实现：提供基本的上下文管理功能，原本实现应包含完整的上下文创建、切换和销毁逻辑。
+ * @return UTILITY_ZERO 表示上下文管理成功，其他值表示管理失败
  */
 uint64_t utility_context_manager(void)
 {
@@ -460,8 +462,10 @@ uint64_t utility_file_operation_handler(void)
  * @return uint64_t 网络通信结果状态码
  *
  * 该函数负责处理网络通信操作，包括连接建立和数据传输。
+ * 主要用于网络通信管理和数据交换。
  *
- * 简化实现：提供基本的网络通信功能。
+ * @note 简化实现：提供基本的网络通信功能，原本实现应包含完整的网络连接管理、数据传输协议实现等。
+ * @return UTILITY_ZERO 表示网络通信处理成功，其他值表示通信失败
  */
 uint64_t utility_network_communication_handler(void)
 {
@@ -473,8 +477,10 @@ uint64_t utility_network_communication_handler(void)
  * @return uint64_t 数据库操作结果状态码
  *
  * 该函数负责处理数据库操作，包括数据查询和更新。
+ * 主要用于数据库管理和数据持久化操作。
  *
- * 简化实现：提供基本的数据库操作功能。
+ * @note 简化实现：提供基本的数据库操作功能，原本实现应包含完整的数据库连接管理、SQL查询执行、事务处理等。
+ * @return UTILITY_ZERO 表示数据库操作成功，其他值表示操作失败
  */
 uint64_t utility_database_operation_handler(void)
 {
