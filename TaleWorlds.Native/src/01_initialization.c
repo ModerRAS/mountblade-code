@@ -24,32 +24,68 @@
 
 // 系统初始化全局变量声明
 static uint32_t system_context_primary_data;
-static void *primary_context_pointer;
+static void *system_context_primary_pointer;
 static uint32_t system_context_secondary_data;
-static void *secondary_context_pointer;
+static void *system_context_secondary_pointer;
 static uint32_t system_context_tertiary_data;
-static void *tertiary_context_pointer;
+static void *system_context_tertiary_pointer;
 static uint32_t system_context_quaternary_data;
-static void *quaternary_context_pointer;
+static void *system_context_quaternary_pointer;
 static uint32_t system_context_quinary_data;
-static void *quinary_context_pointer;
+static void *system_context_quinary_pointer;
 static uint32_t system_context_senary_data;
-static void *senary_context_pointer;
+static void *system_context_senary_pointer;
 static uint32_t system_context_septenary_data;
-static void *septenary_context_pointer;
-static void *octonary_context_pointer;
-static uint32_t octonary_context_data;
-static void *nonary_context_pointer;
+static void *system_context_septenary_pointer;
+static void *system_context_octonary_pointer;
+static uint32_t system_context_octonary_data;
+static void *system_context_nonary_pointer;
 static uint32_t system_memory_pool_primary_data;
 static uint32_t system_memory_pool_secondary_data;
 static uint32_t system_memory_pool_tertiary_data;
 static uint32_t system_memory_pool_quaternary_data;
 
 // 系统初始化函数声明
+/**
+ * @brief 初始化系统内存管理器
+ * 
+ * 该函数负责初始化系统的内存管理器，包括内存分配、释放和管理功能。
+ * 确保系统内存的正确管理和使用。
+ * 
+ * @return int32_t 初始化结果，0表示成功，非0表示失败
+ * 
+ * @note 这是简化实现，主要处理内存管理器的初始化工作
+ * 原本实现：完全重构内存管理系统，建立统一的内存管理规范
+ * 简化实现：仅初始化基本的内存管理功能，保持代码结构不变
+ */
 int32_t system_initialize_memory_manager(void);
 static void *memory_manager_pointer;
+/**
+ * @brief 初始化系统线程池
+ * 
+ * 该函数负责初始化系统的线程池，包括线程的创建、管理和调度功能。
+ * 确保系统线程的正确管理和使用。
+ * 
+ * @return int32_t 初始化结果，0表示成功，非0表示失败
+ * 
+ * @note 这是简化实现，主要处理线程池的初始化工作
+ * 原本实现：完全重构线程池系统，建立统一的线程管理规范
+ * 简化实现：仅初始化基本的线程池功能，保持代码结构不变
+ */
 int32_t system_initialize_thread_pool(void);
 static void *thread_pool_pointer;
+/**
+ * @brief 初始化系统资源缓存
+ * 
+ * 该函数负责初始化系统的资源缓存，包括资源的加载、缓存和管理功能。
+ * 确保系统资源的正确管理和使用。
+ * 
+ * @return int32_t 初始化结果，0表示成功，非0表示失败
+ * 
+ * @note 这是简化实现，主要处理资源缓存的初始化工作
+ * 原本实现：完全重构资源缓存系统，建立统一的资源管理规范
+ * 简化实现：仅初始化基本的资源缓存功能，保持代码结构不变
+ */
 int32_t system_initialize_resource_cache(void);
 static uint32_t system_cache_primary_data;
 int32_t system_initialize_configuration(void);

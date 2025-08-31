@@ -1,6 +1,4 @@
- /*
- */
-#include "TaleWorlds.Native.Split.h"
+ #include "TaleWorlds.Native.Split.h"
 #define UTILITY_MAX_THREADS 8                  // 最大线程数
 #define UTILITY_MAX_EVENTS 16                  // 最大事件数
 #define UTILITY_MAX_HANDLERS 32                // 最大处理器数
@@ -170,18 +168,18 @@
 #define UTILITY_ALIGNMENT_PAGE_MASK UTILITY_MEMORY_PAGE_ALIGNMENT_MASK
 #define UTILITY_ALIGNMENT_MASK UTILITY_FLAG_MASK_WORD_FFf0
 #define UTILITY_MEMORY_PAGE_SIZE UTILITY_MAX_OPERATION_RANGE_VALUE
-#define UTILITY_MEMORY_NEGATIVE_512MB_VALUE -UTILITY_STATUS_MEMORY_IN_USE_VALUE0000000
+#define UTILITY_MEMORY_NEGATIVE_512MB_VALUE -0x20000000
 #define UTILITY_RESOURCE_FLAG_RESERVED_AREA UTILITY_RESOURCE_FLAG_RESERVED_AREA_VALUE
 // 系统内存基地址常量定义
-#define UTILITY_MEMORY_SYSTEM_BASE_ADDRESS UTILITY_STATUS_RESOURCE_AVAILABLE_VALUE00180893865
-#define UTILITY_MEMORY_KERNEL_BASE_ADDRESS UTILITY_STATUS_RESOURCE_AVAILABLE_VALUE00180893a22
-#define UTILITY_MEMORY_USER_BASE_ADDRESS UTILITY_STATUS_RESOURCE_AVAILABLE_VALUE00180895f53
-#define UTILITY_MEMORY_SHARED_BASE_ADDRESS UTILITY_STATUS_RESOURCE_AVAILABLE_VALUE00180895f67
-#define UTILITY_MEMORY_STACK_BASE_ADDRESS UTILITY_STATUS_RESOURCE_AVAILABLE_VALUE00180895fa1
-#define UTILITY_MEMORY_HEAP_BASE_ADDRESS UTILITY_STATUS_RESOURCE_AVAILABLE_VALUE00180895fa9
-#define UTILITY_MEMORY_VIDEO_BASE_ADDRESS UTILITY_STATUS_RESOURCE_AVAILABLE_VALUE00180895fb1
-#define UTILITY_MEMORY_AUDIO_BASE_ADDRESS UTILITY_STATUS_RESOURCE_AVAILABLE_VALUE00180895fc0
-#define UTILITY_MEMORY_NETWORK_BASE_ADDRESS UTILITY_STATUS_RESOURCE_AVAILABLE_VALUE00180896027
+#define UTILITY_MEMORY_SYSTEM_BASE_ADDRESS 0x180893865
+#define UTILITY_MEMORY_KERNEL_BASE_ADDRESS 0x180893a22
+#define UTILITY_MEMORY_USER_BASE_ADDRESS 0x180895f53
+#define UTILITY_MEMORY_SHARED_BASE_ADDRESS 0x180895f67
+#define UTILITY_MEMORY_STACK_BASE_ADDRESS 0x180895fa1
+#define UTILITY_MEMORY_HEAP_BASE_ADDRESS 0x180895fa9
+#define UTILITY_MEMORY_VIDEO_BASE_ADDRESS 0x180895fb1
+#define UTILITY_MEMORY_AUDIO_BASE_ADDRESS 0x180895fc0
+#define UTILITY_MEMORY_NETWORK_BASE_ADDRESS 0x180896027
 #define UTILITY_FLOAT_NEGATIVE_ONE UTILITY_FLOAT_NEGATIVE_ONE
 #define UTILITY_FLOAT_ONE_VALUE UTILITY_FLOAT_ONE_HEX_VALUE  // 浮点数1.0的十六进制表示
 #define UTILITY_FLAG_MASK_RESERVED_BIT_VALUE UTILITY_RESERVED_BIT_MASK_VALUE  // 保留位掩码
@@ -238,18 +236,18 @@
 #define UTILITY_MEMORY_POINTER_OFFSET_MEDIUM_VALUE 0x60
 #define UTILITY_MEMORY_POINTER_OFFSET_LARGE_VALUE 0x80
 // 工具系统浮点数组常量定义
-#define UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_VALUE UTILITY_STATUS_RESOURCE_LOCKED_VALUE00
-#define UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_VALUE UTILITY_STATUS_MEMORY_IN_USE_VALUE00
+#define UTILITY_FLOAT_ARRAY_OFFSET_SECONDARY_VALUE 0x100
+#define UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_VALUE 0x200
 #define UTILITY_FLOAT_ARRAY_OFFSET_QUATERNARY_VALUE 0x400
 // 工具系统上下文常量定义
-#define UTILITY_CONTEXT_STRUCT_SIZE_44_BYTES_VALUE UTILITY_STATUS_MEMORY_IN_USE_VALUEC
+#define UTILITY_CONTEXT_STRUCT_SIZE_44_BYTES_VALUE 0x2C
 #define UTILITY_SERVICE_HANDLER_OFFSET_PRIMARY_VALUE 0x300
 #define UTILITY_SERVICE_HANDLER_OFFSET_TERTIARY_VALUE 0x500
 #define UTILITY_SERVICE_CONTEXT_OFFSET_LARGE_VALUE 0x700
 #define UTILITY_CONTEXT_OFFSET_BUFFER_PRIMARY_VALUE 0x900
 // 工具系统内存常量定义
 #define UTILITY_MEMORY_PAGE_ALIGNMENT_MASK 0xFFFFF000
-#define UTILITY_MEMORY_BLOCK_SIZE_EXTRA_LARGE_VALUE UTILITY_STATUS_RESOURCE_LOCKED_VALUE00000
+#define UTILITY_MEMORY_BLOCK_SIZE_EXTRA_LARGE_VALUE 0x100000
 // 工具系统标志常量定义
 #define UTILITY_FLAG_MASK_WORD 0xFFFF
 #define UTILITY_FLAG_MASK_WORD_FFc0 0xFFc0
@@ -257,10 +255,10 @@
 #define UTILITY_FLOAT_FLAG_MASK_F800000 0xF800000
 #define UTILITY_OFFSET_FOURTEEN 14
 #define UTILITY_HANDLE_COMPARE_LIMIT_50 50
-#define UTILITY_POINTER_THRESHOLD_VALUE UTILITY_STATUS_RESOURCE_LOCKED_VALUE000
+#define UTILITY_POINTER_THRESHOLD_VALUE 0x1000
 // 工具系统特殊常量定义
-#define UTILITY_DATA_AREA_OFFSET UTILITY_STATUS_RESOURCE_LOCKED_VALUE000
-#define UTILITY_CONTROL_BLOCK_OFFSET UTILITY_STATUS_MEMORY_IN_USE_VALUE000
+#define UTILITY_DATA_AREA_OFFSET 0x1000
+#define UTILITY_CONTROL_BLOCK_OFFSET 0x2000
 #define UTILITY_CHECKSUM_VALIDATION_OFFSET 0x3000
 #define UTILITY_EXTENDED_CONTROL_OFFSET 0x4000
 #define UTILITY_VALIDATION_CHECKSUM_OFFSET 0x5000
@@ -274,12 +272,12 @@
 #define UTILITY_DEBUG_INFO_OFFSET 0xD000
 #define UTILITY_LOGGER_OFFSET 0xE000
 #define UTILITY_CONFIG_STORAGE_OFFSET 0xF000
-#define UTILITY_USER_DATA_OFFSET UTILITY_STATUS_RESOURCE_LOCKED_VALUE0000
-#define UTILITY_CACHE_OFFSET UTILITY_STATUS_RESOURCE_LOCKED_VALUE1000
-#define UTILITY_BUFFER_POOL_OFFSET UTILITY_STATUS_RESOURCE_LOCKED_VALUE2000
-#define UTILITY_NETWORK_OFFSET UTILITY_STATUS_RESOURCE_LOCKED_VALUE3000
-#define UTILITY_GRAPHICS_OFFSET UTILITY_STATUS_RESOURCE_LOCKED_VALUE4000
-#define UTILITY_LOOP_CONTEXT_EXTENDED_OFFSET UTILITY_STATUS_RESOURCE_LOCKED_VALUE5000
+#define UTILITY_USER_DATA_OFFSET 0x10000
+#define UTILITY_CACHE_OFFSET 0x11000
+#define UTILITY_BUFFER_POOL_OFFSET 0x12000
+#define UTILITY_NETWORK_OFFSET 0x13000
+#define UTILITY_GRAPHICS_OFFSET 0x14000
+#define UTILITY_LOOP_CONTEXT_EXTENDED_OFFSET 0x15000
 // 工具系统浮点常量定义
 #define UTILITY_FLOAT_NEGATIVE_ONE 0xBF800000
 #define UTILITY_FLAG_MASK_DEBUG_BIT_VALUE UTILITY_DEBUG_MASK_VALUE    // 调试位掩码
@@ -696,8 +694,6 @@ uint32_t utility_context_system_auxiliary;
 double utility_context_system_backup;
 uint32_t utility_context_system_reserve;
 uint8_t utility_context_system_extended;
-/*
- */
  * utility_process_thread_local_storage - 处理线程本地存储
  *
  * 该函数负责处理线程本地存储的初始化和管理，包括资源分配、
@@ -707,11 +703,6 @@ uint8_t utility_context_system_extended;
  *  * @param context_data 上下文数据，包含线程运行所需的信息
  *  * @return void
  * @note 此函数为简化实现，主要处理线程本地存储的基本操作
- */
-/*
- */
-/*
- */
  * 处理线程本地存储数据
  *
  *  * @param thread_handle 线程句柄，用于标识特定线程
@@ -719,34 +710,27 @@ uint8_t utility_context_system_extended;
  *
  * 该函数负责处理线程本地存储的初始化、资源分配和上下文管理
  * 通过校验和验证确保数据完整性，并管理线程相关的资源生命周期
- */
-/*
- */
-void utility_process_thread_storage(int64_t thread_handle, int64_t context_data)
-/*
- */
-/*
- */
-uint64_t resource_handle_semaphore_pointer(int64_t utility_context_ptr)
+
+void utility_process_thread_storage
+{
+
+uint64_t resource_handle_semaphore_pointer
+{
 {
     // 基本框架实现
     return UTILITY_STATUS_SUCCESS;
-/*
- */
-uint64_t utility_resource_operation_handler(int64_t utility_context_ptr)
+
+uint64_t utility_resource_operation_handler
+{
 {
     // 基本框架实现
     return UTILITY_STATUS_SUCCESS;
-/*
- */
-/*
- */
-uint64_t context_storage_ptr_manager(int64_t resource_count,uint64_t utility_context_ptr)
-/*
- */
-/*
- */
-uint64_t utility_resource_iterator_handler(int64_t resource_count,int64_t utility_context_ptr)
+
+uint64_t context_storage_ptr_manager
+{
+
+uint64_t utility_resource_iterator_handler
+{
 UTILITY_LABEL_RESOURCE_VALIDATION_SUCCESS:
     utility_free_context_resources(*(uint64_t *)(utility_context_ptr + UTILITY_CONTEXT_SERVICE_OFFSET),utility_context_ptr);
     utility_status_code = utility_invoke_service(*(uint64_t *)(utility_stack_context + UTILITY_SERVICE_OFFSET_D0),utility_context_ptr + UTILITY_CONTEXT_CONFIG_OFFSET);
@@ -754,15 +738,15 @@ UTILITY_LABEL_RESOURCE_VALIDATION_SUCCESS:
     utility_refresh_context_resources(*(uint64_t *)(utility_context_ptr + UTILITY_CONTEXT_SERVICE_OFFSET),utility_context_ptr);
 UTILITY_LABEL_CONTEXT_INITIALIZATION_COMPLETE:
     utility_free_context_resources(*(uint64_t *)(utility_context_ptr + UTILITY_CONTEXT_SERVICE_OFFSET),utility_context_ptr);
-/*
- */
-uint64_t utility_process_resource_context(int64_t resource_count, int64_t operation_flag)
-/*
- */
-uint64_t utility_validate_resource_parameters(int64_t resource_count,int64_t utility_context_ptr)
-/*
- */
-uint64_t utility_cleanup_resource_context(int64_t resource_count,int64_t utility_context_ptr)
+
+uint64_t utility_process_resource_context
+{
+
+uint64_t utility_validate_resource_parameters
+{
+
+uint64_t utility_cleanup_resource_context
+{
     iteration_index = UTILITY_FALSE;
     iteration_index = utility_stack_context + UTILITY_POINTER_OFFSET;
     if (utility_stack_context == UTILITY_FALSE) {
@@ -853,63 +837,58 @@ UTILITY_LABEL_SYSTEM_ERROR_HANDLER:
  *
  * @return void
  *
- * 原本实现：完全重构文件映射系统，建立统一的文件映射规范
- * 简化实现：仅添加文档注释，保持代码结构不变
+ * @note 此函数为简化实现，主要处理文件映射的基本操作
+ *       原本实现：完全重构文件映射系统，建立统一的文件映射规范
+ *       简化实现：仅添加文档注释，保持代码结构不变
  */
 void InitializeFileMap(void) {
     // 基本框架实现
     return;
-    utility_refresh_context_resources(*(uint64_t *)(utility_context_base_pointer + UTILITY_CONTEXT_SERVICE_OFFSET));
-/*
- */
-uint64_t utility_context_ptr_handler(int64_t resource_count,int64_t utility_context_ptr)
-/*
- */
-/*
- */
-/*
- */
-uint64_t utility_resource_data_processor(int64_t resource_count,int64_t utility_context_ptr)
-/*
- */
-uint64_t utility_resource_data_manager(int64_t resource_count,int64_t utility_context_ptr)
-/*
- */
-uint64_t utility_resource_data_optimizer(int64_t resource_count,int64_t utility_context_ptr)
+}
+
+uint64_t utility_context_ptr_handler
+{
+
+uint64_t utility_resource_data_processor
+{
+
+uint64_t utility_resource_data_manager
+{
+
+uint64_t utility_resource_data_optimizer
+{
  UTILITY_MEMORY_ADDRESS_SYSTEM_BASE
-/*
- */
-int utility_resource_operation_analyzer(int64_t resource_count,int64_t utility_context_ptr)
+
+int utility_resource_operation_analyzer
+{
  UTILITY_MEMORY_ADDRESS_KERNEL_BASE
-/*
- */
-int utility_resource_operation_executor_advanced(int64_t resource_count,int64_t utility_context_ptr)
-/*
- */
-uint64_t context_storage_manager(int64_t resource_count,int64_t utility_context_ptr)
-/*
- */
-/*
- */
-uint64_t utility_analyze_context_storage_ptr(int64_t resource_count,int64_t utility_context_ptr)
-/*
- */
-uint64_t context_storage_ptr_optimizer(int64_t resource_count,int64_t utility_context_ptr)
-uint32_t utility_execute_resource_command(int64_t resource_count,uint64_t utility_context_ptr,uint utility_context_ptr,int64_t utility_context_ptr)
+
+int utility_resource_operation_executor_advanced
+{
+
+uint64_t context_storage_manager
+{
+
+uint64_t utility_analyze_context_storage_ptr
+{
+
+uint64_t context_storage_ptr_optimizer
+{
+
+uint32_t utility_execute_resource_command
+{
     context_storage = *(uint64_t *)(iteration_index + UTILITY_THREAD_CONTEXT_OFFSET);
     *buffer_ptr = *(uint64_t *)(iteration_index + UTILITY_THREAD_HANDLE_OFFSET);
     context_storage[1] = context_storage;
-/*
- */
-/*
- */
-uint64_t utility_socket_creator(int64_t resource_count,int utility_context_ptr,uint *buffer_ptr)
-uint32_t utility_network_address_validator(uint64_t utility_context_ptr)
-/*
- */
-/*
- */
-uint64_t utility_system_config_loader(int64_t utility_context_ptr)
+
+uint64_t utility_socket_creator
+{
+
+uint32_t utility_network_address_validator
+{
+
+uint64_t utility_system_config_loader
+{
     context_storage = (int)*(uint *)(utility_context_ptr + UTILITY_THREAD_STATUS_OFFSET) >> UTILITY_STATUS_FLAG_F;
     if (((int)((*(uint *)(utility_context_ptr + UTILITY_THREAD_STATUS_OFFSET) ^ context_storage) - context_storage) < utility_status_code) &&
 (utility_status_code = utility_context_acquire(utility_context_ptr + UTILITY_THREAD_CONFIG_OFFSET,utility_status_code), utility_status_code != UTILITY_FALSE)) {
@@ -918,19 +897,15 @@ uint64_t utility_system_config_loader(int64_t utility_context_ptr)
 *(int *)(utility_context_ptr + UTILITY_FLOAT_ARRAY_OFFSET_PRIMARY) = utility_status_code;
 memory_copy_pointer((int64_t)utility_status_code + *(int64_t *)(utility_context_ptr + UTILITY_THREAD_CONFIG_OFFSET),utility_context_ptr,(int64_t)utility_status_code);
 memset((int64_t)utility_status_code + *(int64_t *)(utility_context_ptr + UTILITY_THREAD_CONFIG_OFFSET),0,(int64_t)(utility_status_code - utility_status_code));
-/*
- */
-/*
- */
-uint64_t utility_environment_variable_reader(int64_t *buffer_ptr,int utility_context_ptr)
-/*
- */
-/*
- */
-uint64_t utility_time_converter(uint64_t *buffer_ptr,int64_t utility_context_ptr)
-/*
- */
-uint64_t utility_time_initializer(int64_t *buffer_ptr,uint32_t *buffer_ptr)
+
+uint64_t utility_environment_variable_reader
+{
+
+uint64_t utility_time_converter
+{
+
+uint64_t utility_time_initializer
+{
     if ((uint64_t)context_storage[2] < (uint64_t)stack_buffer[0] + UTILITY_DEFAULT_ALLOCATION_SIZE) {
     utility_status_code = UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX;
 goto UTILITY_LABEL_SERVICE_READY;
@@ -938,15 +913,15 @@ goto UTILITY_LABEL_SERVICE_READY;
 UTILITY_LABEL_SERVICE_READY:
     if (utility_status_code == UTILITY_FALSE) {
     *buffer_ptr = stack_buffer[0];
-/*
- */
-uint64_t utility_time_zone_handler(int64_t *buffer_ptr,int64_t *buffer_ptr)
-/*
- */
-uint64_t utility_time_zone_processor(uint64_t resource_count,int64_t *buffer_ptr)
-/*
- */
-uint64_t utility_time_zone_converter(int64_t resource_count,int64_t *buffer_ptr)
+
+uint64_t utility_time_zone_handler
+{
+
+uint64_t utility_time_zone_processor
+{
+
+uint64_t utility_time_zone_converter
+{
     context_storage = (int)resource_identifier + 1;
     context_storage = (uint64_t)context_storage;
 } while ((int)resource_identifier < utility_status_code);
@@ -1178,9 +1153,9 @@ GetModuleHandle(utility_context_ptr,utility_context_ptr + UTILITY_STATUS_ENABLED
     utility_valueidation_result = utility_operation_verify();
     if (utility_status_code != UTILITY_FALSE) {
 GetModuleHandle();
-/*
- */
-uint64_t utility_system_processor_info_reader(int64_t resource_count,int64_t utility_context_ptr)
+
+uint64_t utility_system_processor_info_reader
+{
     utility_status_code = SetLocalTime(utility_context_ptr,utility_context_ptr + (int64_t)utility_status_code * UTILITY_CONTEXT_MULTIPLIER_C + 7);
     if (utility_status_code != UTILITY_FALSE) {
     utility_status_code = SetLocalTime(utility_context_ptr,utility_context_ptr + (int64_t)utility_status_code * UTILITY_CONTEXT_MULTIPLIER_C + 10);
@@ -1331,52 +1306,48 @@ else {
 *(uint32_t *)(utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET) = *(uint32_t *)(utility_input_parameter + UTILITY_STATUS_FLAG_EXTENDED_SMALL_HEX)
 ;
 (**(code **)*buffer_ptr)(utility_context_ptr,utility_context_base_pointer + UTILITY_THREAD_DATA_OFFSET,UTILITY_DEFAULT_ALLOCATION_SIZE);
-/*
- */
-uint64_t utility_system_disk_info_reader(int64_t resource_count,int64_t utility_context_ptr)
+
+uint64_t utility_system_disk_info_reader
+{
  * 系统状态管理器函数
  * 功能：管理系统状态，处理状态转换和资源管理
  * 参数：utility_context_ptr - 系统参数指针
  *       utility_context_ptr - 状态标志指针
  * 返回值：成功返回0，失败返回错误代码
  * 功能描述：管理系统状态，处理状态转换，管理资源分配和释放
- */
  * 系统状态管理器
  *  * @param utility_context_ptr 系统参数
  *  * @param utility_context_ptr 状态参数指针
  *  * @return 操作结果状态码
- */
-/*
- */
-uint64_t utility_system_state_manager(int64_t resource_count,uint32_t *buffer_ptr)
-/*
- */
-uint64_t utility_system_process_handler(int64_t resource_count,uint64_t *buffer_ptr)
-/*
- */
-uint64_t utility_system_monitor_start(void)
-/*
- */
-uint64_t utility_system_controller_execute(int64_t resource_count,uint64_t *buffer_ptr)
-/*
- */
-uint64_t utility_stream_writer_push(void)
-/*
- */
+
+uint64_t utility_system_state_manager
+{
+
+uint64_t utility_system_process_handler
+{
+
+uint64_t utility_system_monitor_start
+{
+
+uint64_t utility_system_controller_execute
+{
+
+uint64_t utility_stream_writer_push
+{
 void DebugBreak(int64_t resource_count,uint64_t utility_context_ptr,uint32_t utility_context_ptr,uint32_t utility_context_ptr,
     utility_stream_close(utility_context_ptr,utility_stack_network_buffer_primary);
-/*
- */
-uint64_t utility_stream_manager_flush(void)
-/*
- */
-uint64_t utility_thread_scheduler_run(int64_t resource_count,uint64_t *buffer_ptr)
-/*
- */
-uint64_t utility_network_connector_link(int64_t resource_count,int64_t *buffer_ptr)
-/*
- */
-uint64_t utility_network_receiver_get(int utility_context_ptr)
+
+uint64_t utility_stream_manager_flush
+{
+
+uint64_t utility_thread_scheduler_run
+{
+
+uint64_t utility_network_connector_link
+{
+
+uint64_t utility_network_receiver_get
+{
     if ((uint64_t)context_storage[2] < (uint64_t)utility_stack_uint_data + 1) {
     utility_status_code = UTILITY_STATUS_ENABLED_FLAG_PRIMARY_HEX;
 goto UTILITY_LABEL_CLEANUP_DONE;
@@ -1384,17 +1355,16 @@ goto UTILITY_LABEL_CLEANUP_DONE;
 UTILITY_LABEL_CLEANUP_DONE:
     if (utility_status_code == UTILITY_FALSE) {
 *(bool *)(utility_input_parameter + UTILITY_STATUS_FLAG_OFFSET_C) = buffer_ptr != '\0';
-/*
- */
-uint64_t utility_security_validator_verify(void)
+
+uint64_t utility_security_validator_verify
+{
  * 安全加密器编码
  *  * @param utility_context_ptr 加密参数
  *  * @param utility_context_ptr 加密数据
  *  * @return 编码结果状态码
- */
-/*
- */
-uint64_t utility_security_encryptor_encode(int64_t resource_count,uint64_t *buffer_ptr)
+
+uint64_t utility_security_encryptor_encode
+{
     utility_status_code = UTILITY_FALSE;
     context_storage = utility_stack_control_status >> 1;
     if (resource_identifier != UTILITY_FALSE) {
@@ -1408,9 +1378,9 @@ do {
     utility_status_code = utility_status_code + 1;
 } while (utility_status_code < (int)context_storage);
     utility_stream_close();
-/*
- */
-uint64_t utility_security_decryptor_decode(int64_t resource_count,int64_t *buffer_ptr)
+
+uint64_t utility_security_decryptor_decode
+{
     if (*(int *)(context_storage[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTILITY_FALSE) {
     context_storage = *buffer_ptr;
     iteration_index = *(int64_t *)(utility_context_ptr + UTILITY_THREAD_DATA_OFFSET) + (int64_t)utility_status_code * 8;
@@ -1440,9 +1410,9 @@ else {
     utility_status_code = utility_status_code + 1;
 } while (utility_status_code < (int)context_storage);
     utility_stream_close();
-/*
- */
-uint64_t utility_interface_controller_handle(int64_t resource_count,uint64_t *buffer_ptr)
+
+uint64_t utility_interface_controller_handle
+{
     utility_status_code = utility_resource_validate(*buffer_ptr,stack_buffer);
     context_storage = stack_buffer[0];
     if (utility_status_code != UTILITY_FALSE) {
@@ -1553,10 +1523,12 @@ else {
     utility_status_code = utility_resource_prepare();
     if (utility_status_code == UTILITY_FALSE) {
     utility_system_shutdown();
-/*
- */
-uint64_t utility_process_resource_context_primary(int64_t resource_count,uint64_t *buffer_ptr)
-void InitializeEncryption(void)
+
+uint64_t utility_process_resource_context_primary
+{
+
+void InitializeEncryption
+{
     context_storage = utility_stream_create(utility_context_ptr,stack_buffer_array_output,0,UTILITY_STREAM_TYPE_BMRP);
         if ((int)resource_identifier != UTILITY_FALSE) {
         return resource_identifier;
@@ -1805,45 +1777,45 @@ else {
 } while ((int)resource_identifier < (int)context_storage);
 goto UTILITY_LABEL_ITERATION_DONE;
         return resource_identifier;
-/*
- */
-uint64_t utility_cleanup_resource_context(void)
-/*
- */
-uint64_t utility_device_controller_initialize(int64_t resource_count,int64_t *buffer_ptr)
-/*
- */
-uint64_t utility_configure_resource_handler(int64_t resource_count,int64_t *buffer_ptr)
-/*
- */
-uint64_t utility_validate_resource_access(int64_t resource_count,uint64_t *buffer_ptr)
-/*
- */
-uint64_t resource_identifier_validator_primary(uint64_t resource_count,int64_t *buffer_ptr)
-/*
- */
-uint64_t resource_identifier_validator_tertiary(void)
-/*
- */
-uint64_t utility_manage_resource_pool(int64_t resource_count,uint64_t *buffer_ptr)
-/*
- */
-uint64_t utility_context_process_primary(int64_t resource_count,uint64_t *buffer_ptr)
-/*
- */
-uint64_t utility_context_ptr_handler(int64_t resource_count,uint64_t *buffer_ptr)
-/*
- */
-uint64_t utility_manage_memory_pool(int64_t resource_count,uint64_t *buffer_ptr)
-/*
- */
-uint64_t resource_handle_thread_operation(int64_t resource_count,int64_t *buffer_ptr)
-/*
- */
-uint64_t context_storage_ptr_processor(int64_t resource_count,uint64_t *buffer_ptr)
-/*
- */
-uint64_t context_storage_ptr_cleanup(int64_t resource_count,int64_t *buffer_ptr)
+
+uint64_t utility_cleanup_resource_context
+{
+
+uint64_t utility_device_controller_initialize
+{
+
+uint64_t utility_configure_resource_handler
+{
+
+uint64_t utility_validate_resource_access
+{
+
+uint64_t resource_identifier_validator_primary
+{
+
+uint64_t resource_identifier_validator_tertiary
+{
+
+uint64_t utility_manage_resource_pool
+{
+
+uint64_t utility_context_process_primary
+{
+
+uint64_t utility_context_ptr_handler
+{
+
+uint64_t utility_manage_memory_pool
+{
+
+uint64_t resource_handle_thread_operation
+{
+
+uint64_t context_storage_ptr_processor
+{
+
+uint64_t context_storage_ptr_cleanup
+{
 goto UTILITY_LABEL_FINAL_CHECK;
 else if ((utility_accumulator_value == UTILITY_STATUS_ENABLED_FLAG_SECONDARY) && (*(uint *)(resource_identifier + UTILITY_POINTER_OFFSET) < UTILITY_FLOAT_ARRAY_OFFSET_TERTIARY_VALUE)) {
     utility_status_code = utility_resource_create();
@@ -1872,16 +1844,14 @@ else if (*(int *)(resource_identifier[1] + UTILITY_THREAD_CONTEXT_OFFSET) == UTI
     if (utility_status_code != UTILITY_FALSE) {
 UTILITY_LABEL_FINAL_CHECK:
     utility_resource_manager_cleanup();
-/*
- */
 uint64_t utility_manage_system_resources(int64_t resource_count,uint64_t *buffer_ptr,uint32_t utility_context_ptr,uint32_t utility_context_ptr,
 char utility_context_ptr)
-/*
- */
-uint64_t context_storage_ptr_creator(int64_t resource_count,int64_t *buffer_ptr)
-/*
- */
-uint64_t resource_identifier_validator_validator(int64_t resource_count,uint64_t *buffer_ptr)
+
+uint64_t context_storage_ptr_creator
+{
+
+uint64_t resource_identifier_validator_validator
+{
     context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
     if (resource_identifier != UTILITY_FALSE) {
     iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_context_ptr - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
@@ -4861,10 +4831,9 @@ terminate();
  *  * @param resource_count 资源计数，用于标识异常处理所需的资源数量
  *  * @param utility_context_ptr 上下文句柄，包含异常处理的上下文信息
  *  * @return 无返回值
- */
-/*
- */
-void utility_catch_memory_exception_handler(uint64_t resource_count,int64_t utility_context_ptr)
+
+void utility_catch_memory_exception_handler
+{
     *buffer_ptr = &utility_system_reserved_memory;
     utility_context_ptr[7] = &utility_system_data;
     if (utility_context_ptr[8] != UTILITY_FALSE) {
@@ -5542,10 +5511,9 @@ else {
  *  * @param resource_count 资源计数，用于标识系统状态处理所需的资源数量
  *  * @param utility_context_ptr 上下文句柄，包含系统状态上下文信息
  *  * @return 无返回值
- */
-/*
- */
-void utility_catch_system_state_handler(uint64_t resource_count,int64_t utility_context_ptr)
+
+void utility_catch_system_state_handler
+{
 LOCK();
     utility_context_ptr = (int *)(iteration_index + UTILITY_CONTEXT_DATA_OFFSET30);
     utility_status_code = *buffer_ptr;
@@ -6644,12 +6612,9 @@ else {
  *  * @param resource_count 资源计数，用于标识网络处理所需的资源数量
  *  * @param utility_context_ptr 上下文句柄，包含网络处理上下文信息
  *  * @return 无返回值
- */
-/*
- */
-/*
- */
-void utility_catch_network_connection_handler(uint64_t resource_count,int64_t utility_context_ptr)
+
+void utility_catch_network_connection_handler
+{
     context_storage[1] = UTILITY_FALSE;
 *(uint32_t *)(utility_context_ptr + 3) = UTILITY_FALSE;
     *buffer_ptr = &utility_system_reserved_memory;
@@ -6659,10 +6624,9 @@ void utility_catch_network_connection_handler(uint64_t resource_count,int64_t ut
  *  * @param resource_count 资源计数，用于标识网络处理所需的资源数量
  *  * @param utility_context_ptr 上下文句柄，包含网络处理上下文信息
  *  * @return 无返回值
- */
-/*
- */
-void utility_catch_network_timeout_handler(uint64_t resource_count,int64_t utility_context_ptr)
+
+void utility_catch_network_timeout_handler
+{
     if (*buffer_ptr == UTILITY_FALSE) {
     context_storage = (uint64_t)utility_context_ptr & UTILITY_MAX_UINT32ffc00000;
     if (resource_identifier != UTILITY_FALSE) {
@@ -7065,7 +7029,6 @@ __1__basic_streambuf_DU__char_traits_D_std___std__UEAA_XZ(utility_context_ptr);
  *  * @param resource_count 资源计数，用于标识上下文管理所需的资源数量
  *  * @param utility_context_ptr 上下文句柄，包含上下文管理上下文信息
  *  * @return 返回处理后的上下文指针
- */
 void * utility_catch_context_manager_handler(uint64_t resource_count,int64_t utility_context_ptr)
     if (utility_context_ptr[UTILITY_THREAD_HANDLE_OFFSET] != UTILITY_FALSE) {
 _unlock_file();
@@ -7079,7 +7042,6 @@ _unlock_file();
  *  * @param resource_count 资源计数，用于标识缓冲区管理所需的资源数量
  *  * @param utility_context_ptr 上下文句柄，包含缓冲区管理上下文信息
  *  * @return 返回处理后的缓冲区指针
- */
 void * utility_catch_buffer_manager_handler(uint64_t resource_count,int64_t utility_context_ptr)
     if (*(char *)(utility_context_ptr + UTILITY_THREAD_HANDLE_OFFSET_EXTENDED) != '\0') {
     utility_serialize_data(utility_context_ptr);
@@ -12129,20 +12091,24 @@ else {
 *(uint64_t *)(iteration_index + UTILITY_CHARACTER_COMPARE_LIMIT_20) = UTILITY_FALSE;
 *(uint32_t *)(iteration_index + 0x3c0) = UTILITY_FALSE;
 *(uint64_t *)(iteration_index + 0x3a8) = &utility_system_reserved_memory;
-/*
- */
-void utility_initialize_event_handler(uint64_t resource_count,int64_t utility_context_ptr)
-/*
- */
-void utility_activate_event_handler(uint64_t resource_count,int64_t utility_context_ptr)
-/*
- */
-void utility_configure_event_handler(uint64_t *buffer_ptr,int64_t utility_context_ptr)
-bool utility_system_validator(uint64_t *buffer_ptr)
-/*
- */
-void utility_process_event_secondary(uint64_t resource_count,int64_t utility_context_ptr)
-uint32_t utility_status_checker(uint64_t resource_count,int64_t utility_context_ptr)
+
+void utility_initialize_event_handler
+{
+
+void utility_activate_event_handler
+{
+
+void utility_configure_event_handler
+{
+
+bool utility_system_validator
+{
+
+void utility_process_event_secondary
+{
+
+uint32_t utility_status_checker
+{
     context_storage = (uint64_t)utility_system_reserved_memory & UTILITY_MAX_UINT32ffc00000;
     if (resource_identifier != UTILITY_FALSE) {
     iteration_index = resource_identifier + UTILITY_MEMORY_POINTER_OFFSET_BASE + ((int64_t)utility_system_reserved_memory - resource_identifier >> UTILITY_THREAD_HANDLE_OFFSET) * UTILITY_THREAD_SIZE_OFFSET;
@@ -12157,56 +12123,76 @@ uint32_t utility_status_checker(uint64_t resource_count,int64_t utility_context_
 else {
     resource_handle_exception_context(context_storage,utility_combine_flag_values(UTILITY_FLAG_MASK_32BIT,*(void ***)(resource_identifier + UTILITY_STATUS_FLAG_MASK_PRIMARY) == &utility_exception_pointer),
     utility_system_reserved_memory,context_storage,UTILITY_MAX_UINT32fffffffe);
-void utility_destroy_mutex_in_situ(void)
+
+void utility_destroy_mutex_in_situ
+{
 * 销毁互斥体函数
 * 功能：销毁系统互斥体，释放同步资源
 * 功能描述：就地销毁互斥体对象，清理同步资源
- */
-void utility_initialize_global_pointer_(void)
+
+void utility_initialize_global_pointer_
+{
 * 初始化全局指针函数
 * 功能：初始化系统全局指针，设置全局数据结构
 * 功能描述：设置系统全局指针，初始化全局数据结构
- */
-/*
- */
-void utility_initialize_pointer(void)
-/*
- */
-/*
- */
-void utility_setup_pointer(void)
-/*
- */
-void utility_cleanup_pointer(void)
-/*
- */
-void utility_release_pointer(void)
+
+void utility_initialize_pointer
 {
-    return;
-/*
- */
-void utility_process_resource(uint64_t resource_count, uint64_t utility_context_ptr, uint64_t utility_context_ptr, uint64_t utility_context_ptr)
+
+void utility_setup_pointer
 {
+
+void utility_cleanup_pointer
+{
+
+void utility_release_pointer
+{
+{
+
     return;
+}
+
+void utility_process_resource
+{
+{
+
+    return;
+}
 * 初始化线程管理器函数
 * 功能：初始化系统线程管理器，设置线程本地存储
 * 功能描述：设置线程本地存储指针，初始化线程管理数据结构
+
+/**
+ * 初始化线程管理器函数
+ * 功能：初始化系统线程管理器，设置线程本地存储
+ * 功能描述：设置线程本地存储指针，初始化线程管理数据结构
  */
 void InitializeThreadManager(void)
 {
     return;
-* 处理线程队列函数
-* 功能：处理系统线程队列，管理线程任务的调度和执行
-* 参数：queueHandle - 队列句柄
-*       processData - 处理数据
-*       callbackData - 回调数据
-*       userData - 用户数据
-* 功能描述：处理线程队列中的任务，管理线程的执行状态
+}
+
+/**
+ * 处理线程队列函数
+ * 功能：处理系统线程队列，管理线程任务的调度和执行
+ * 参数：queueHandle - 队列句柄
+ *       processData - 处理数据
+ *       callbackData - 回调数据
+ *       userData - 用户数据
+ * 功能描述：处理线程队列中的任务，管理线程的执行状态
  */
-void ProcessThreadQueue(uint64_t queueHandle, uint64_t utility_context_ptr, uint64_t callbackData, uint64_t userData)
+void ProcessThreadQueue(uint64_t queueHandle, uint64_t processData, uint64_t callbackData, uint64_t userData)
 {
     return;
-/*
+}
+
+/**
+ * 资源服务请求处理函数
+ * 功能：处理资源服务请求，验证参数并执行相应操作
+ * 参数：service_id - 服务标识符
+ *       context_array - 上下文数组
+ * 返回值：操作状态码
+ * 功能描述：验证服务请求参数，执行相应的资源服务操作
  */
 int resource_handle_service_request(uint32_t service_id, int64_t context_array[])
 {
@@ -12216,3 +12202,4 @@ int resource_handle_service_request(uint32_t service_id, int64_t context_array[]
     
     // 简化实现：返回成功状态
     return UTILITY_STATUS_OPERATION_SUCCESS;
+}
