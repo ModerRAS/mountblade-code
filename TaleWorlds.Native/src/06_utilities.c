@@ -1435,27 +1435,63 @@ uint64 utility_process_resource_data(longlong resource_handle)
   
   return UTILITY_SUCCESS;
 }
+/**
+ * @brief 获取内存使用情况函数
+ * 
+ * 获取系统当前内存使用情况，包括资源管理和内存释放。
+ * 主要功能：
+ * 1. 验证输入寄存器
+ * 2. 处理资源上下文
+ * 3. 检查资源状态
+ * 4. 释放相关内存
+ * 
+ * @return uint32 内存使用状态码
+ * 
+ * 简化实现：仅美化变量名和添加基本注释
+ * 原本实现：完全重构内存管理系统，建立完整的监控机制
+ */
 uint32 utility_get_memory_usage(void)
 {
-  longlong utility_register_input_primary;
-  longlong utility_primary_resource_cache;
-  if (utility_register_input_primary == utility_zero) {
-    utility_resource_context_handle = utility_zero;
+  longlong input_register_primary;
+  longlong resource_cache_primary;
+  longlong resource_context_handle;
+  
+  // 验证输入寄存器并处理资源上下文
+  if (input_register_primary == UTILITY_ZERO) {
+    resource_context_handle = UTILITY_ZERO;
   }
   else {
-    utility_resource_context_handle = utility_register_input_primary + utility_memory_offset_negative_eight;
+    resource_context_handle = input_register_primary + UTILITY_MEMORY_OFFSET_NEGATIVE_EIGHT;
   }
-  if (*(longlong *)(utility_resource_context_handle + utility_resource_offset_standard) == utility_zero) {
-    return utility_offset_flag_byte;
+  
+  // 检查资源状态
+  if (*(longlong *)(resource_context_handle + UTILITY_RESOURCE_OFFSET_STANDARD) == UTILITY_ZERO) {
+    return UTILITY_OFFSET_FLAG_BYTE;
   }
-      
-  utility_free_memory(*(longlong *)(utility_resource_context_handle + utility_resource_offset_standard),utility_memory_release_flag); // Memory block release function
+  
+  // 释放相关内存
+  utility_free_memory(*(longlong *)(resource_context_handle + UTILITY_RESOURCE_OFFSET_STANDARD), UTILITY_MEMORY_RELEASE_FLAG);
+  
+  return UTILITY_SUCCESS;
 }
-// 函数: void utility_release_memory_and_exit(void)
+/**
+ * @brief 释放内存并退出函数
+ * 
+ * 释放系统内存资源并准备退出当前操作。
+ * 主要功能：
+ * 1. 释放所有分配的内存
+ * 2. 清理系统资源
+ * 3. 准备安全退出
+ * 
+ * 简化实现：仅美化函数结构和添加基本注释
+ * 原本实现：完全重构内存释放机制，建立完整的资源清理流程
+ */
 void utility_release_memory_and_exit(void)
 {
-      
-  utility_free_memory(); // Memory block release function
+  // 释放所有分配的内存资源
+  utility_free_memory();
+  
+  return;
 }
 // 函数: void utility_cleanup_resource_function(void)
 void utility_cleanup_resource_function(void)
