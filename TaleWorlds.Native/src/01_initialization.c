@@ -17209,7 +17209,7 @@ int system_function_46890(int64_t system_context_ptr,int64_t system_config_flags
   int system_context_int_var_e;
   int64_t system_long_var_f;
   int64_t system_long_var_g;
-  uint64_t uVar8;
+  uint64_t system_byte_var_8;
   uint8_t ****system_pppp_byte_var;
   uint8_t ***system_ppp_stack_ptr_x;
   uint8_t *system_stack_byte_ptr;
@@ -17286,27 +17286,27 @@ int system_function_46890(int64_t system_context_ptr,int64_t system_config_flags
   system_stack_uint_var = 0;
   system_stack_uint_var = 0;
   system_stack_uint_var = 0;
-  uVar8 = *(uint64_t *)(system_context_ptr + 0x10);
-  if (uVar8 < *(uint64_t *)(system_context_ptr + 0x18)) {
-    *(uint64_t *)(system_context_ptr + 0x10) = uVar8 + 0x100;
-    system_function_48a90(uVar8,&system_stack_byte_ptr);
+  system_byte_var_8 = *(uint64_t *)(system_context_ptr + 0x10);
+  if (system_byte_var_8 < *(uint64_t *)(system_context_ptr + 0x18)) {
+    *(uint64_t *)(system_context_ptr + 0x10) = system_byte_var_8 + 0x100;
+    system_function_48a90(system_byte_var_8,&system_stack_byte_ptr);
     system_pppp_byte_var = *(uint8_t *****)(system_context_ptr + 0x10);
     goto system_label;
   }
   system_long_var_d = *(int64_t *)(system_context_ptr + 8);
-  system_long_var_g = (int64_t)(uVar8 - system_long_var_d) >> 8;
+  system_long_var_g = (int64_t)(system_byte_var_8 - system_long_var_d) >> 8;
   if (system_long_var_g == 0) {
     system_long_var_g = 1;
 system_label:
     system_long_var = system_function_18062b420(system_global_data,system_long_var_g << 8,*(uint8_t* *)(system_context_ptr + 0x20));
-    uVar8 = *(uint64_t *)(system_context_ptr + 0x10);
+    system_byte_var_8 = *(uint64_t *)(system_context_ptr + 0x10);
     system_long_var_d = *(int64_t *)(system_context_ptr + 8);
   }
   else {
     system_long_var_g = system_long_var_g * 2;
     if (system_long_var_g != 0) goto system_label;
   }
-  system_function_491b0(&system_ppp_stack_ptr_x,system_long_var_d,uVar8,system_long_var);
+  system_function_491b0(&system_ppp_stack_ptr_x,system_long_var_d,system_byte_var_8,system_long_var);
   system_pptr_var = system_ppp_stack_ptr_x;
   system_function_48a90(system_ppp_stack_ptr_x,&system_stack_byte_ptr);
   system_pppp_byte_var = (uint8_t ****)(system_pptr_var + 0x20);
@@ -18396,7 +18396,7 @@ uint8_t system_function_48c70(uint8_t system_context_ptr,uint64_t system_config_
 
 uint8_t *
 system_function_48cc0(int64_t *system_context_ptr,uint8_t *system_config_flags,uint8_t system_thread_count,int64_t *system_memory_size,
-             int64_t param_5)
+             int64_t system_context_parameter)
 
 {
   byte system_bool_var_a;
@@ -18406,15 +18406,15 @@ system_function_48cc0(int64_t *system_context_ptr,uint8_t *system_config_flags,u
   byte *system_byte_pointer_e;
   uint system_uint_var_f;
   int64_t system_long_var_g;
-  uint8_t uVar8;
+  uint8_t system_byte_var_8;
   int64_t *system_stack_long_ptr_x;
   
   system_global_context_handle = (int64_t *)*system_context_ptr;
   if ((system_memory_size == system_global_context_handle) || (system_memory_size == system_context_ptr)) {
-    if ((system_context_ptr[4] != 0) && (*(int *)(param_5 + 0x10) != 0)) {
+    if ((system_context_ptr[4] != 0) && (*(int *)(system_context_parameter + 0x10) != 0)) {
       system_memory_size = system_global_context_handle;
       if (*(int *)(system_global_context_handle + 6) != 0) {
-        system_byte_pointer_e = *(byte **)(param_5 + 8);
+        system_byte_pointer_e = *(byte **)(system_context_parameter + 8);
         system_long_var_g = system_global_context_handle[5] - (int64_t)system_byte_pointer_e;
         do {
           system_bool_var_a = *system_byte_pointer_e;
@@ -18425,19 +18425,19 @@ system_function_48cc0(int64_t *system_context_ptr,uint8_t *system_config_flags,u
         if ((int)(system_bool_var_a - system_uint_var_f) < 1) goto system_label;
       }
 system_label:
-      uVar8 = 0;
+      system_byte_var_8 = 0;
 system_label:
       if (system_memory_size != (int64_t *)0x0) {
-        system_function_48ee0(system_context_ptr,system_config_flags,system_memory_size,uVar8,param_5);
+        system_function_48ee0(system_context_ptr,system_config_flags,system_memory_size,system_byte_var_8,system_context_parameter);
         return system_config_flags;
       }
     }
   }
   else {
     system_global_context_handle = (int64_t *)system_function(system_memory_size);
-    if (*(int *)(param_5 + 0x10) != 0) {
+    if (*(int *)(system_context_parameter + 0x10) != 0) {
       if ((int)system_memory_size[6] != 0) {
-        system_byte_pointer_e = *(byte **)(param_5 + 8);
+        system_byte_pointer_e = *(byte **)(system_context_parameter + 8);
         system_long_var_g = system_memory_size[5] - (int64_t)system_byte_pointer_e;
         do {
           system_bool_var_a = *system_byte_pointer_e;
@@ -18449,7 +18449,7 @@ system_label:
       }
       if ((int)system_global_context_handle[6] != 0) {
         system_byte_pointer_e = (byte *)system_global_context_handle[5];
-        system_long_var_g = *(int64_t *)(param_5 + 8) - (int64_t)system_byte_pointer_e;
+        system_long_var_g = *(int64_t *)(system_context_parameter + 8) - (int64_t)system_byte_pointer_e;
         do {
           system_bool_var_a = *system_byte_pointer_e;
           system_uint_var_f = (uint)system_byte_pointer_e[system_long_var_g];
@@ -18458,7 +18458,7 @@ system_label:
         } while (system_uint_var_f != 0);
         if (0 < (int)(system_bool_var_a - system_uint_var_f)) {
           if (*system_memory_size == 0) goto system_label;
-          uVar8 = 1;
+          system_byte_var_8 = 1;
           system_memory_size = system_global_context_handle;
           goto system_label;
         }
@@ -18477,12 +18477,12 @@ system_label:
       system_global_context_handle = (int64_t *)*system_global_context_handle;
     }
     else {
-      if (*(int *)(param_5 + 0x10) == 0) {
+      if (*(int *)(system_context_parameter + 0x10) == 0) {
         system_bool_var_b = true;
       }
       else {
         system_byte_pointer_e = (byte *)system_global_context_handle[5];
-        system_long_var_g = *(int64_t *)(param_5 + 8) - (int64_t)system_byte_pointer_e;
+        system_long_var_g = *(int64_t *)(system_context_parameter + 8) - (int64_t)system_byte_pointer_e;
         do {
           system_bool_var_a = *system_byte_pointer_e;
           system_uint_var_f = (uint)system_byte_pointer_e[system_long_var_g];
@@ -18504,9 +18504,9 @@ system_label:
   }
   else {
 system_label:
-    if (*(int *)(param_5 + 0x10) == 0) goto system_label;
+    if (*(int *)(system_context_parameter + 0x10) == 0) goto system_label;
     if ((int)system_global_context_handle[6] != 0) {
-      system_byte_pointer_e = *(byte **)(param_5 + 8);
+      system_byte_pointer_e = *(byte **)(system_context_parameter + 8);
       system_long_var_g = system_global_context_handle[5] - (int64_t)system_byte_pointer_e;
       do {
         system_bool_var_a = *system_byte_pointer_e;
@@ -18517,7 +18517,7 @@ system_label:
       if ((int)(system_bool_var_a - system_uint_var_f) < 1) goto system_label;
     }
   }
-  system_function_48ee0(system_context_ptr,&system_stack_long_ptr_x,psystem_long_var_3,0,param_5);
+  system_function_48ee0(system_context_ptr,&system_stack_long_ptr_x,psystem_long_var_3,0,system_context_parameter);
   system_global_context_handle = system_stack_long_ptr_x;
 system_label:
   *system_config_flags = system_global_context_handle;
@@ -18530,7 +18530,7 @@ system_label:
 
 
 void system_function_48ee0(int64_t system_context_ptr,uint8_t system_config_flags,int64_t system_thread_count,uint8_t system_memory_size,
-                  int64_t param_5)
+                  int64_t system_context_parameter)
 
 {
   byte system_bool_var_a;
@@ -18545,9 +18545,9 @@ void system_function_48ee0(int64_t system_context_ptr,uint8_t system_config_flag
   system_uint_var_f = 0;
   if (((char)system_memory_size != '\0') || (system_thread_count == system_context_ptr)) goto system_label;
   if (*(int *)(system_thread_count + 0x30) != 0) {
-    if (*(int *)(param_5 + 0x10) == 0) goto system_label;
+    if (*(int *)(system_context_parameter + 0x10) == 0) goto system_label;
     system_byte_pointer_b = *(byte **)(system_thread_count + 0x28);
-    system_context_offset_value = *(int64_t *)(param_5 + 8) - (int64_t)system_byte_pointer_b;
+    system_context_offset_value = *(int64_t *)(system_context_parameter + 8) - (int64_t)system_byte_pointer_b;
     do {
       system_bool_var_a = *system_byte_pointer_b;
       system_uint_var_c = (uint)system_byte_pointer_b[system_context_offset_value];
@@ -18560,7 +18560,7 @@ void system_function_48ee0(int64_t system_context_ptr,uint8_t system_config_flag
 system_label:
   system_context_offset_value = system_function_18062b420(system_global_data,0x68,*(uint8_t* *)(system_context_ptr + 0x28),system_memory_size,
                         0xfffffffffffffffe);
-  system_function_180627ae0(system_context_offset_value + 0x20,param_5);
+  system_function_180627ae0(system_context_offset_value + 0x20,system_context_parameter);
   system_byte_pointer_d = (uint8_t *)(system_context_offset_value + 0x40);
   *(uint8_t *)(system_context_offset_value + 0x50) = 0;
   *(uint8_t *)(system_context_offset_value + 0x58) = 0;
@@ -21544,7 +21544,7 @@ void system_function_4d020(uint8_t system_context_ptr,int64_t system_config_flag
   char system_char_var_e;
   int iVar6;
   uint32_t* uVar7;
-  uint uVar8;
+  uint system_byte_var_8;
   int64_t lVar9;
   int64_t system_long_var;
   uint8_t* *system_context_pointer_var_11;
@@ -21691,7 +21691,7 @@ void system_function_4d020(uint8_t system_context_ptr,int64_t system_config_flag
   if (uVar21 != 0) {
     do {
       system_bool_var_a = system_context_pointer_var_17[system_stack_uint_var];
-      uVar8 = (uint)system_context_pointer_var_14;
+      system_byte_var_8 = (uint)system_context_pointer_var_14;
       if ((system_bool_var_a & 0xdf) == 0) {
         system_long_var = system_long_var + 0x2e0;
         lVar9 = system_function_18062b420(system_global_data,0x40,*(uint8_t* *)(system_long_var + 0x308));
@@ -21706,7 +21706,7 @@ void system_function_4d020(uint8_t system_context_ptr,int64_t system_config_flag
           goto system_label;
         }
         system_function_5d1f0(extraout_XMM0_Da,lVar9);
-        if (uVar8 == 8) {
+        if (system_byte_var_8 == 8) {
           iVar6 = strcmp(system_context_pointer_var_11,&system_data_ptr);
           bVar31 = iVar6 == 0;
         }
@@ -23481,7 +23481,7 @@ void system_function_52ef0(int64_t *system_context_ptr,uint8_t system_config_fla
   int64_t *psystem_long_var_5;
   int *piVar6;
   int64_t system_long_var_g;
-  uint64_t uVar8;
+  uint64_t system_byte_var_8;
   uint uVar9;
   uint64_t uVar10;
   float system_float_var_k;
@@ -23503,16 +23503,16 @@ void system_function_52ef0(int64_t *system_context_ptr,uint8_t system_config_fla
   }
   system_long_var = system_global_data;
   if (system_global_data != 0) {
-    uVar8 = 0;
+    system_byte_var_8 = 0;
     system_long_var_g = *(int64_t *)(system_global_data + 0x1868);
-    uVar10 = uVar8;
+    uVar10 = system_byte_var_8;
     if (*(int64_t *)(system_global_data + 0x1870) - system_long_var_g >> 3 != 0) {
       do {
-        if (*(int64_t **)(uVar8 + system_long_var_g) != (int64_t *)0x0) {
-          (**(code **)(**(int64_t **)(uVar8 + system_long_var_g) + 0x108))();
+        if (*(int64_t **)(system_byte_var_8 + system_long_var_g) != (int64_t *)0x0) {
+          (**(code **)(**(int64_t **)(system_byte_var_8 + system_long_var_g) + 0x108))();
         }
         uVar9 = (int)uVar10 + 1;
-        uVar8 = uVar8 + 8;
+        system_byte_var_8 = system_byte_var_8 + 8;
         system_long_var_g = *(int64_t *)(system_long_var + 0x1868);
         uVar10 = (uint64_t)uVar9;
       } while ((uint64_t)(int64_t)(int)uVar9 <
@@ -23827,7 +23827,7 @@ void system_function_533d0(uint8_t system_context_ptr,uint8_t system_config_flag
   uint system_uint_var_e;
   uint system_uint_var_f;
   uint8_t* *system_context_current_pointer;
-  uint64_t uVar8;
+  uint64_t system_byte_var_8;
   void* *system_byte_pointer_i;
   int64_t system_long_var;
   uint uVar11;
@@ -23867,10 +23867,10 @@ void system_function_533d0(uint8_t system_context_ptr,uint8_t system_config_flag
   system_stack_uint_var = 0;
   system_function_1806277c0(&system_stack_byte_ptr,6);
   system_long_var = system_stack_long_var;
-  uVar8 = (uint64_t)system_stack_uint_var;
-  *(uint32_t* *)(uVar8 + system_stack_long_var) = 0x44495020;
-  *(void*2 *)(uVar8 + 4 + system_stack_long_var) = 0x203a;
-  *(uint8_t* *)(uVar8 + 6 + system_stack_long_var) = 0;
+  system_byte_var_8 = (uint64_t)system_stack_uint_var;
+  *(uint32_t* *)(system_byte_var_8 + system_stack_long_var) = 0x44495020;
+  *(void*2 *)(system_byte_var_8 + 4 + system_stack_long_var) = 0x203a;
+  *(uint8_t* *)(system_byte_var_8 + 6 + system_stack_long_var) = 0;
   system_stack_uint_var = 6;
   system_function_60680(acStack_58,&system_data_ptr,system_uint_var_c);
   system_long_var = -1;
@@ -23899,14 +23899,14 @@ void system_function_533d0(uint8_t system_context_ptr,uint8_t system_config_flag
   system_stack_uint_var = 0;
   system_stack_uint_var = 2;
   system_uint_var_f = *(uint *)(system_thread_count + 0x10);
-  uVar8 = (uint64_t)system_uint_var_f;
+  system_byte_var_8 = (uint64_t)system_uint_var_f;
   system_uint_var_e = 0;
   if (*(int64_t *)(system_thread_count + 8) == 0) {
 system_label:
     uVar11 = system_uint_var_e;
     if (system_uint_var_f != 0) {
                     // WARNING: Subroutine does not return
-      memcpy(system_context_current_pointer,*(uint8_t *)(system_thread_count + 8),uVar8);
+      memcpy(system_context_current_pointer,*(uint8_t *)(system_thread_count + 8),system_byte_var_8);
     }
   }
   else if (system_uint_var_f != 0) {
@@ -23922,7 +23922,7 @@ system_label:
     goto system_label;
   }
   if (system_context_current_pointer != (uint8_t* *)0x0) {
-    system_context_current_pointer[uVar8] = 0;
+    system_context_current_pointer[system_byte_var_8] = 0;
   }
   system_stack_uint_var = *(uint32_t* *)(system_thread_count + 0x1c);
   system_stack_uint_var = CONCAT44(system_stack_uint_var,(uint32_t*)system_stack_uint_var);
@@ -23947,7 +23947,7 @@ system_label:
   }
 system_label:
                     // WARNING: Subroutine does not return
-  memcpy(system_context_current_pointer + uVar8,system_long_var,7);
+  memcpy(system_context_current_pointer + system_byte_var_8,system_long_var,7);
 }
 
 
@@ -23965,7 +23965,7 @@ system_function_54120(uint8_t system_context_ptr,uint8_t system_config_flags,uin
   uint8_t *system_byte_pointer_e;
   int64_t system_long_var_f;
   char *pcVar7;
-  uint uVar8;
+  uint system_byte_var_8;
   int *system_context_int_pointer_var_10;
   uint64_t uVar11;
   uint8_t uVar12;
@@ -24033,10 +24033,10 @@ system_label:
       if ((byte)(system_stack_byte_ptr[uVar14] + 0xbf) < 0x1a) {
         system_stack_byte_ptr[uVar14] = system_stack_byte_ptr[uVar14] + ' ';
       }
-      uVar8 = (int)uVar9 + 1;
-      uVar9 = (uint64_t)uVar8;
+      system_byte_var_8 = (int)uVar9 + 1;
+      uVar9 = (uint64_t)system_byte_var_8;
       uVar14 = uVar14 + 1;
-    } while (uVar8 < system_stack_uint_var);
+    } while (system_byte_var_8 < system_stack_uint_var);
   }
   system_long_var_f = system_function(&system_stack_byte_ptr);
   system_context_pointer_var_16 = (uint8_t *)&system_data_ptr;
@@ -24072,10 +24072,10 @@ system_label:
   system_stack_byte_ptr = (uint8_t* *)0x0;
   system_stack_uint_var = (uint64_t)system_stack_uint_var._4_4_ << 0x20;
   system_stack_byte_ptr = &system_data_ptr;
-  uVar8 = (int)uVar13 + 1;
-  uVar13 = (uint64_t)uVar8;
+  system_byte_var_8 = (int)uVar13 + 1;
+  uVar13 = (uint64_t)system_byte_var_8;
   system_context_int_pointer_var_10 = system_context_int_pointer_var_10 + 8;
-  if (uVar11 <= (uint64_t)(int64_t)(int)uVar8) goto system_label;
+  if (uVar11 <= (uint64_t)(int64_t)(int)system_byte_var_8) goto system_label;
   goto system_label;
 }
 
@@ -25148,7 +25148,7 @@ void system_function_56410(int64_t system_context_ptr,uint8_t system_config_flag
   uint64_t system_uint_var_e;
   int64_t system_long_var_f;
   uint uVar7;
-  uint64_t uVar8;
+  uint64_t system_byte_var_8;
   int64_t lVar9;
   uint8_t uVar10;
   
@@ -25157,7 +25157,7 @@ void system_function_56410(int64_t system_context_ptr,uint8_t system_config_flag
   system_context_pointer_var_1 = (uint64_t *)(system_context_ptr + 0x48);
   system_uint_var_d = *system_context_pointer_var_1;
   system_uint_var_e = system_uint_var_c;
-  uVar8 = system_uint_var_c;
+  system_byte_var_8 = system_uint_var_c;
   if ((int64_t)(*(int64_t *)(system_context_ptr + 0x50) - system_uint_var_d) >> 3 != 0) {
     do {
       system_function_56410(*(uint8_t *)(system_uint_var_d + system_uint_var_e));
@@ -25187,10 +25187,10 @@ void system_function_56410(int64_t system_context_ptr,uint8_t system_config_flag
         system_function_18064e900();
       }
       *(uint8_t *)(*system_context_pointer_var_1 + system_uint_var_e) = 0;
-      uVar7 = (int)uVar8 + 1;
+      uVar7 = (int)system_byte_var_8 + 1;
       system_uint_var_d = *system_context_pointer_var_1;
       system_uint_var_e = system_uint_var_e + 8;
-      uVar8 = (uint64_t)uVar7;
+      system_byte_var_8 = (uint64_t)uVar7;
     } while ((uint64_t)(int64_t)(int)uVar7 <
              (uint64_t)((int64_t)(*(int64_t *)(system_context_ptr + 0x50) - system_uint_var_d) >> 3));
   }
@@ -30971,7 +30971,7 @@ void system_function_5cc00(void* **system_context_ptr,uint8_t system_config_flag
   byte *system_byte_pointer_e;
   void* **psystem_ptr_var_6;
   int64_t system_long_var_g;
-  uint8_t uVar8;
+  uint8_t system_byte_var_8;
   void* **ppuStackX_8;
   char acStackX_20 [8];
   uint32_t* uVar9;
@@ -30983,7 +30983,7 @@ void system_function_5cc00(void* **system_context_ptr,uint8_t system_config_flag
   
   system_long_var = system_global_data;
   acStackX_20[0] = (char)system_memory_size;
-  uVar8 = 0;
+  system_byte_var_8 = 0;
   psystem_ptr_var_6 = (void* **)(system_global_data + 0x70);
   ppuStackX_8 = system_context_ptr;
   system_function_58080(psystem_ptr_var_6,&ppuStackX_8,system_config_flags,system_memory_size,0,0xfffffffffffffffe);
@@ -31033,10 +31033,10 @@ void system_function_5cc00(void* **system_context_ptr,uint8_t system_config_flag
     } while (system_uint_var_b != 0);
     if (0 < (int)(system_bool_var_a - system_uint_var_b)) goto system_label;
   }
-  uVar8 = 1;
+  system_byte_var_8 = 1;
 system_label:
                     // WARNING: Subroutine does not return
-  system_function_18066bdc0(system_long_var,ppuVar4,psystem_ptr_var_6,uVar8,uVar9);
+  system_function_18066bdc0(system_long_var,ppuVar4,psystem_ptr_var_6,system_byte_var_8,uVar9);
 }
 
 
@@ -32048,7 +32048,7 @@ void system_function_5dbb0(void)
   uint8_t *system_byte_pointer_d;
   int64_t system_context_offset_value;
   int64_t system_long_var_g;
-  uint64_t uVar8;
+  uint64_t system_byte_var_8;
   uint64_t uVar9;
   int64_t system_long_var;
   int64_t system_long_var;
@@ -32165,7 +32165,7 @@ void system_function_5dbb0(void)
   system_long_var = (int64_t)system_int_var;
   system_function_57340(psystem_long_var_1,system_long_var);
   if (0 < system_long_var) {
-    uVar8 = uVar9;
+    system_byte_var_8 = uVar9;
     uVar14 = uVar9;
     do {
       system_stack_byte_ptr = &system_data_ptr;
@@ -32173,7 +32173,7 @@ void system_function_5dbb0(void)
       auStack_148[0] = 0;
       system_stack_uint_var = 10;
       strcpy_s(auStack_148,0x10,&system_unk_ptr_9fe1a0);
-      system_function_60680(acStack_48,&system_data_ptr,uVar8);
+      system_function_60680(acStack_48,&system_data_ptr,system_byte_var_8);
       system_long_var_f = -1;
       do {
         system_long_var_g = system_long_var_f;
@@ -32191,29 +32191,29 @@ void system_function_5dbb0(void)
       *system_byte_pointer_d = &system_unk_ptr_9fe258;
       *(uint8_t **)(*psystem_long_var_1 + uVar14 * 8) = system_byte_pointer_d;
       system_stack_byte_ptr = &system_data_ptr;
-      uVar8 = (uint64_t)((int)uVar8 + 1);
+      system_byte_var_8 = (uint64_t)((int)system_byte_var_8 + 1);
       uVar14 = uVar14 + 1;
       psystem_context_pointer_var_15 = ppuStack_170;
     } while ((int64_t)uVar14 < system_long_var);
   }
-  uVar8 = uVar9;
+  system_byte_var_8 = uVar9;
   uVar14 = uVar9;
   if (((int64_t *)psystem_context_pointer_var_15)[1] - (int64_t)*psystem_context_pointer_var_15 >> 3 != 0) {
     do {
-      system_function_18020e840(*(uint8_t *)((int64_t)*psystem_context_pointer_var_15 + uVar8));
+      system_function_18020e840(*(uint8_t *)((int64_t)*psystem_context_pointer_var_15 + system_byte_var_8));
       uVar13 = (int)uVar14 + 1;
-      uVar8 = uVar8 + 8;
+      system_byte_var_8 = system_byte_var_8 + 8;
       uVar14 = (uint64_t)uVar13;
     } while ((uint64_t)(int64_t)(int)uVar13 <
              (uint64_t)(((int64_t *)psystem_context_pointer_var_15)[1] - (int64_t)*psystem_context_pointer_var_15 >> 3));
   }
-  uVar8 = uVar9;
+  system_byte_var_8 = uVar9;
   if (*(int64_t *)(system_long_var + 0x30) - *psystem_long_var_1 >> 3 != 0) {
     do {
       system_function_18020e840(*(uint8_t *)(*psystem_long_var_1 + uVar9));
-      uVar13 = (int)uVar8 + 1;
+      uVar13 = (int)system_byte_var_8 + 1;
       uVar9 = uVar9 + 8;
-      uVar8 = (uint64_t)uVar13;
+      system_byte_var_8 = (uint64_t)uVar13;
     } while ((uint64_t)(int64_t)(int)uVar13 <
              (uint64_t)(*(int64_t *)(system_long_var + 0x30) - *psystem_long_var_1 >> 3));
   }
@@ -33007,7 +33007,7 @@ int64_t system_function_5ec11(void)
   uint64_t *system_byte_pointer_e;
   uint64_t system_uint_var_f;
   int64_t system_long_var_g;
-  uint64_t uVar8;
+  uint64_t system_byte_var_8;
   uint64_t uVar9;
   uint64_t unaff_RSI;
   uint64_t *unaff_RDI;
@@ -33032,11 +33032,11 @@ int64_t system_function_5ec11(void)
       if ((system_uint_var_d & 1) == 0) {
         system_byte_pointer_e = *(uint64_t **)(unaff_R14 + 0x30);
         unaff_RDI = system_byte_pointer_e;
-        uVar8 = *system_byte_pointer_e;
+        system_byte_var_8 = *system_byte_pointer_e;
         if (*system_byte_pointer_e >> 1 <= uVar9) {
           do {
-            system_uint_var_f = uVar8;
-            uVar8 = system_uint_var_f * 2;
+            system_uint_var_f = system_byte_var_8;
+            system_byte_var_8 = system_uint_var_f * 2;
           } while ((system_uint_var_f & 0x7fffffffffffffff) <= uVar9);
           unaff_RDI = (uint64_t *)system_function_18062b420(system_global_data,system_uint_var_f * 0x20 + 0x1f,10);
           if (unaff_RDI == (uint64_t *)0x0) {
@@ -33046,10 +33046,10 @@ int64_t system_function_5ec11(void)
             *(uint32_t* *)(unaff_R14 + 600) = 0;
             return 0;
           }
-          *unaff_RDI = uVar8;
+          *unaff_RDI = system_byte_var_8;
           unaff_RDI[1] = (uint64_t)(-(int)(unaff_RDI + 3) & 7) + (int64_t)(unaff_RDI + 3);
           system_long_var_g = 0;
-          for (; uVar8 != 0; uVar8 = uVar8 - 1) {
+          for (; system_byte_var_8 != 0; system_byte_var_8 = system_byte_var_8 - 1) {
             *(uint8_t *)(system_long_var_g + 8 + unaff_RDI[1]) = 0;
             *(uint32_t* *)(system_long_var_g + unaff_RDI[1]) = 0;
             system_long_var_g = system_long_var_g + 0x10;
@@ -33148,7 +33148,7 @@ int64_t system_function_5ed54(void)
   uint64_t unaff_RBP;
   uint64_t unaff_RSI;
   uint64_t *unaff_RDI;
-  uint32_t* uVar8;
+  uint32_t* system_byte_var_8;
   int64_t unaff_R12;
   int64_t unaff_R14;
   int unaff_R15D;
@@ -33157,8 +33157,8 @@ int64_t system_function_5ed54(void)
   
   while( true ) {
     do {
-      uVar8 = (uint32_t*)unaff_R12;
-      *(uint32_t* *)(unaff_R14 + 600) = uVar8;
+      system_byte_var_8 = (uint32_t*)unaff_R12;
+      *(uint32_t* *)(unaff_R14 + 600) = system_byte_var_8;
       do {
         do {
           if (unaff_RBP < (*unaff_RDI >> 2) + (*unaff_RDI >> 1)) {
@@ -33215,7 +33215,7 @@ int64_t system_function_5ed54(void)
     system_long_var_f = unaff_R12;
     for (; uVar7 != 0; uVar7 = uVar7 - 1) {
       *(int64_t *)(system_long_var_f + 8 + unaff_RDI[1]) = unaff_R12;
-      *(uint32_t* *)(system_long_var_f + unaff_RDI[1]) = uVar8;
+      *(uint32_t* *)(system_long_var_f + unaff_RDI[1]) = system_byte_var_8;
       system_long_var_f = system_long_var_f + 0x10;
     }
     unaff_RDI[2] = (uint64_t)system_byte_pointer_d;
@@ -33224,7 +33224,7 @@ int64_t system_function_5ed54(void)
   LOCK();
   *(int64_t *)(unaff_R14 + 0x38) = *(int64_t *)(unaff_R14 + 0x38) + -1;
   UNLOCK();
-  *(uint32_t* *)(unaff_R14 + 600) = uVar8;
+  *(uint32_t* *)(unaff_R14 + 600) = system_byte_var_8;
   return 0;
 }
 
@@ -33242,7 +33242,7 @@ uint8_t * system_function_5ee30(int64_t *system_context_ptr,char system_config_f
   uint8_t *system_byte_pointer_e;
   uint8_t *system_data_buffer_pointer;
   uint64_t uVar7;
-  uint64_t uVar8;
+  uint64_t system_byte_var_8;
   bool bVar9;
   
   system_data_buffer_pointer = (uint8_t *)0x0;
@@ -33297,14 +33297,14 @@ uint8_t * system_function_5ee30(int64_t *system_context_ptr,char system_config_f
         uVar7 = system_context_ptr[4] - 1U | system_context_ptr[4] - 1U >> 1;
         uVar7 = uVar7 | uVar7 >> 2;
         uVar7 = uVar7 | uVar7 >> 4;
-        uVar8 = 1;
+        system_byte_var_8 = 1;
         do {
-          uVar7 = uVar7 | uVar7 >> (((byte)uVar8 & 7) << 3);
-          uVar8 = uVar8 * 2;
-        } while (uVar8 < 8);
-        uVar8 = uVar7 + 1 >> 1;
-        if ((uint64_t)system_context_base_pointer[0xd] < uVar8) {
-          system_context_base_pointer[0xd] = uVar8;
+          uVar7 = uVar7 | uVar7 >> (((byte)system_byte_var_8 & 7) << 3);
+          system_byte_var_8 = system_byte_var_8 * 2;
+        } while (system_byte_var_8 < 8);
+        system_byte_var_8 = uVar7 + 1 >> 1;
+        if ((uint64_t)system_context_base_pointer[0xd] < system_byte_var_8) {
+          system_context_base_pointer[0xd] = system_byte_var_8;
         }
         system_function_5f340(system_context_base_pointer,0);
       }
@@ -33678,7 +33678,7 @@ uint64_t system_function_5f570(int64_t system_context_ptr,int64_t *system_config
   int64_t *psystem_long_var_5;
   uint32_t* system_uint_var_f;
   uint32_t* uVar7;
-  uint32_t* uVar8;
+  uint32_t* system_byte_var_8;
   int64_t *plVar9;
   uint64_t uVar10;
   int64_t system_long_var;
@@ -33804,11 +33804,11 @@ joined_r0x00018005f6ef:
             system_context_base_pointer = (uint32_t* *)(*(int64_t *)(system_context_ptr + 0x78) + uVar16 * 0x10);
             system_uint_var_f = system_context_base_pointer[1];
             uVar7 = system_context_base_pointer[2];
-            uVar8 = system_context_base_pointer[3];
+            system_byte_var_8 = system_context_base_pointer[3];
             *system_ptr_var_21 = *system_context_base_pointer;
             system_ptr_var_21[1] = system_uint_var_f;
             system_ptr_var_21[2] = uVar7;
-            system_ptr_var_21[3] = uVar8;
+            system_ptr_var_21[3] = system_byte_var_8;
             system_long_var = system_long_var + 1;
             system_ptr_var_21 = system_ptr_var_21 + 4;
             uVar16 = uVar16 + 1 & system_long_var - 1U;
@@ -33975,7 +33975,7 @@ uint64_t system_function_5fb30(int64_t system_context_ptr,int64_t *system_config
   int64_t *psystem_long_var_5;
   int64_t system_long_var_f;
   uint64_t uVar7;
-  uint64_t uVar8;
+  uint64_t system_byte_var_8;
   char cVar9;
   uint64_t uVar10;
   uint64_t uVar11;
@@ -34031,7 +34031,7 @@ uint64_t system_function_5fb30(int64_t system_context_ptr,int64_t *system_config
     }
     system_long_var = system_long_var + -0x20;
     uVar10 = uVar10 + 0x20;
-    uVar8 = uVar7;
+    system_byte_var_8 = uVar7;
     if (((*(int64_t *)(system_context_ptr + 0x28) - uVar10) - 0x20 < 0x8000000000000001) ||
        (psystem_long_var_5 = *(int64_t **)(system_context_ptr + 0x60), psystem_long_var_5 == (int64_t *)0x0))
     goto joined_r0x00018005fdcd;
@@ -34149,7 +34149,7 @@ system_label:
   psystem_long_var_5[1] = psystem_long_var_5[1] - 1U & *psystem_long_var_5 - 1U;
   system_ptr_var_20[1] = 0;
 joined_r0x00018005fdcd:
-  for (; uVar8 != 0; uVar8 = *(uint64_t *)(uVar8 + 0x100)) {
+  for (; system_byte_var_8 != 0; system_byte_var_8 = *(uint64_t *)(system_byte_var_8 + 0x100)) {
     uVar18 = uVar18 + 0x20;
     psystem_long_var_5 = *(int64_t **)(system_context_ptr + 0x60);
     *(uint8_t *)
@@ -36696,7 +36696,7 @@ void system_function_64c00(int64_t *system_context_ptr,int64_t system_config_fla
   uint8_t* *system_byte_pointer_e;
   void* *system_data_buffer_pointer;
   uint *system_context_current_pointer;
-  uint64_t uVar8;
+  uint64_t system_byte_var_8;
   uint64_t uVar9;
   int64_t system_long_var;
   int64_t system_long_var;
@@ -36779,17 +36779,17 @@ void system_function_64c00(int64_t *system_context_ptr,int64_t system_config_fla
   system_stack_byte_ptr = system_byte_pointer_c;
   if (system_byte_pointer_c == (uint8_t *)0xffffffffffffffff) {
     if (0xf < system_stack_uint_var) {
-      uVar8 = system_stack_uint_var + 1;
+      system_byte_var_8 = system_stack_uint_var + 1;
       uVar13 = uVar9;
-      if (0xfff < uVar8) {
-        uVar8 = system_stack_uint_var + 0x28;
+      if (0xfff < system_byte_var_8) {
+        system_byte_var_8 = system_stack_uint_var + 0x28;
         uVar13 = *(uint64_t *)(uVar9 - 8);
         if (0x1f < (uVar9 - uVar13) - 8) {
                     // WARNING: Subroutine does not return
           _invalid_parameter_noinfo_noreturn();
         }
       }
-      free(uVar13,uVar8);
+      free(uVar13,system_byte_var_8);
     }
     system_stack_uint_var = 0;
     system_stack_uint_var = 0xf;
@@ -37731,7 +37731,7 @@ void system_function_66140(int64_t *system_context_ptr,uint8_t system_config_fla
 
 
 void system_function_66320(uint8_t system_context_ptr,uint8_t system_config_flags,char system_thread_count,char system_memory_size,
-                  uint8_t param_5)
+                  uint8_t system_context_parameter)
 
 {
   char system_initialization_status;
@@ -37903,7 +37903,7 @@ system_label:
     ppuStack_a8 = &system_stack_byte_ptr;
     system_uint_var_e = system_function_180627ae0(&system_stack_byte_ptr,&system_stack_byte_ptr);
     system_function_63820(system_uint_var_e);
-    system_function_63b30(&system_stack_byte_ptr,param_5);
+    system_function_63b30(&system_stack_byte_ptr,system_context_parameter);
     system_function_63cf0(&system_stack_byte_ptr);
     system_function_ba940(&system_stack_byte_ptr);
     system_function_180627e10(&system_stack_byte_ptr,&system_stack_byte_ptr,&system_data_ptr);
@@ -37984,7 +37984,7 @@ system_label:
 
 
 void system_function_669c0(uint8_t system_context_ptr,uint8_t system_config_flags,char system_thread_count,uint8_t system_memory_size,
-                  uint8_t param_5)
+                  uint8_t system_context_parameter)
 
 {
   int64_t system_long_var;
@@ -38081,7 +38081,7 @@ system_label:
       memcpy(system_stack_context_pointer_98,&system_data_c84870,iVar6);
     }
     system_stack_uint_var = 0;
-    system_function_65f00(&system_stack_context_pointer_a0,param_5);
+    system_function_65f00(&system_stack_context_pointer_a0,system_context_parameter);
     system_stack_context_pointer_a0 = &system_data_ptr;
     if (system_stack_context_pointer_98 != (uint8_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -38185,7 +38185,7 @@ system_label:
 
 
 int64_t system_function_66f90(int64_t system_context_ptr,uint64_t system_config_flags,uint8_t system_thread_count,char *system_memory_size,
-                      uint64_t param_5)
+                      uint64_t system_context_parameter)
 
 {
   char system_initialization_status;
@@ -38193,15 +38193,15 @@ int64_t system_function_66f90(int64_t system_context_ptr,uint64_t system_config_
   int64_t system_long_var;
   int64_t system_long_var_d;
   
-  if (param_5 <= system_config_flags) {
-    if (param_5 == 0) {
+  if (system_context_parameter <= system_config_flags) {
+    if (system_context_parameter == 0) {
       return 0;
     }
     system_initialization_status = *system_memory_size;
-    system_long_var_d = (system_context_ptr - param_5) + system_config_flags;
+    system_long_var_d = (system_context_ptr - system_context_parameter) + system_config_flags;
     for (system_long_var = memchr(system_context_ptr,(int)system_initialization_status,(system_long_var_d + 1) - system_context_ptr); system_long_var != 0;
         system_long_var = memchr(system_long_var + 1,(int)system_initialization_status,(system_long_var_d + 1) - (system_long_var + 1))) {
-      system_int_var = memcmp(system_long_var,system_memory_size,param_5);
+      system_int_var = memcmp(system_long_var,system_memory_size,system_context_parameter);
       if (system_int_var == 0) {
         return system_long_var - system_context_ptr;
       }
@@ -38769,7 +38769,7 @@ void system_function_67f60(int64_t system_context_ptr,int64_t system_config_flag
   void* *system_stack_byte_ptr;
   void* *system_stack_byte_ptr;
   uint64_t system_stack_uint_var;
-  uint64_t uVar8;
+  uint64_t system_byte_var_8;
   
   system_stack_uint_var = 0xfffffffffffffffe;
   system_stack_uint_var = system_global_data ^ (uint64_t)auStack_2e8;
@@ -38808,8 +38808,8 @@ void system_function_67f60(int64_t system_context_ptr,int64_t system_config_flag
   }
   system_byte_pointer_e = *(uint8_t **)(system_context_ptr + 0x2133d8);
   if (system_byte_pointer_e == (uint8_t *)0x0) {
-    uVar8 = *(uint64_t *)(system_context_ptr + 0x2133d0);
-    if (0xff < uVar8) {
+    system_byte_var_8 = *(uint64_t *)(system_context_ptr + 0x2133d0);
+    if (0xff < system_byte_var_8) {
       system_int_var = _Mtx_unlock(system_long_var);
       if (system_int_var != 0) {
         __Throw_C_error_std__YAXH_Z(system_int_var);
@@ -38820,24 +38820,24 @@ void system_function_67f60(int64_t system_context_ptr,int64_t system_config_flag
         system_byte_pointer_d = *(void* **)(system_config_flags + 8);
       }
       strcpy_s(system_global_data,0x100,system_byte_pointer_d);
-      uVar8 = system_uint_var_f;
+      system_byte_var_8 = system_uint_var_f;
       if (0 < *(int *)(system_config_flags + 0x10)) {
         do {
-          system_uint_var_f = system_uint_var_f * 0x1f + (int64_t)*(char *)(uVar8 + *(int64_t *)(system_config_flags + 8));
-          uVar7 = (int)uVar8 + 1;
-          uVar8 = (uint64_t)uVar7;
+          system_uint_var_f = system_uint_var_f * 0x1f + (int64_t)*(char *)(system_byte_var_8 + *(int64_t *)(system_config_flags + 8));
+          uVar7 = (int)system_byte_var_8 + 1;
+          system_byte_var_8 = (uint64_t)uVar7;
         } while ((int)uVar7 < *(int *)(system_config_flags + 0x10));
       }
       lRam0000000000000128 = system_long_var;
       system_stack_uint_var = system_uint_var_f;
-      system_function_68860(system_context_ptr + 0x330,alStack_288,uVar8,system_config_flags);
+      system_function_68860(system_context_ptr + 0x330,alStack_288,system_byte_var_8,system_config_flags);
       *(uint8_t *)(alStack_288[0] + 0x118) = 0;
       system_stack_byte_ptr = &system_data_ptr;
                     // WARNING: Subroutine does not return
       system_internal_func_050(system_stack_uint_var ^ (uint64_t)auStack_2e8);
     }
-    system_byte_pointer_e = (uint8_t *)(uVar8 * 0x130 + system_context_ptr + 0x2003d0);
-    *(uint64_t *)(system_context_ptr + 0x2133d0) = uVar8 + 1;
+    system_byte_pointer_e = (uint8_t *)(system_byte_var_8 * 0x130 + system_context_ptr + 0x2003d0);
+    *(uint64_t *)(system_context_ptr + 0x2133d0) = system_byte_var_8 + 1;
   }
   else {
     *(uint8_t *)(system_context_ptr + 0x2133d8) = *system_byte_pointer_e;
@@ -38860,10 +38860,10 @@ uint8_t system_function_68250(int64_t system_context_ptr,int64_t system_config_f
   uint64_t system_uint_var_e;
   uint8_t *system_data_buffer_pointer;
   uint64_t uVar7;
-  uint64_t uVar8;
+  uint64_t system_byte_var_8;
   
-  uVar8 = *(uint64_t *)(system_thread_count + 0x118) & 0xfffffffffffff000;
-  system_uint_var_e = (*(int64_t *)(system_thread_count + 0x120) - uVar8) + *(uint64_t *)(system_thread_count + 0x118);
+  system_byte_var_8 = *(uint64_t *)(system_thread_count + 0x118) & 0xfffffffffffff000;
+  system_uint_var_e = (*(int64_t *)(system_thread_count + 0x120) - system_byte_var_8) + *(uint64_t *)(system_thread_count + 0x118);
   uVar7 = (uint64_t)(-(uint)((system_uint_var_e & 0xfff) != 0) & 0x1000) + (system_uint_var_e & 0xfffffffffffff000);
   system_memory_compare_result = _Mtx_lock(system_context_ptr + 0x200380);
   if (system_memory_compare_result != 0) {
@@ -38891,10 +38891,10 @@ uint8_t system_function_68250(int64_t system_context_ptr,int64_t system_config_f
         _system_data_null_ptr = 0;
         system_global_data = 0;
         LOCK();
-        system_global_data = uVar8;
+        system_global_data = system_byte_var_8;
         uRam00000000000001c8 = system_uint_var_e;
         uRam00000000000001d0 = uVar7;
-        uRam00000000000001d8 = uVar8;
+        uRam00000000000001d8 = system_byte_var_8;
         lRam00000000000001f8 = system_config_flags;
         *(int *)(system_config_flags + 0x120) = *(int *)(system_config_flags + 0x120) + 1;
         UNLOCK();
@@ -39094,7 +39094,7 @@ void system_function_687d0(int64_t system_context_ptr,uint8_t *system_config_fla
 
 int64_t *
 system_function_68860(int64_t system_context_ptr,int64_t *system_config_flags,uint8_t system_thread_count,uint8_t system_memory_size,
-             uint64_t param_5)
+             uint64_t system_context_parameter)
 
 {
   int64_t system_long_var;
@@ -39102,21 +39102,21 @@ system_function_68860(int64_t system_context_ptr,int64_t *system_config_flags,ui
   int64_t system_long_var;
   uint8_t system_uint_var_d;
   
-  system_uint_var_b = param_5 % (uint64_t)*(uint *)(system_context_ptr + 0x10);
+  system_uint_var_b = system_context_parameter % (uint64_t)*(uint *)(system_context_ptr + 0x10);
   system_long_var = system_function(system_context_ptr,*(uint8_t *)(*(int64_t *)(system_context_ptr + 8) + system_uint_var_b * 8),
                               system_memory_size);
   if (system_long_var == 0) {
-    system_function_18066c220(system_context_ptr + 0x20,&param_5,*(uint32_t* *)(system_context_ptr + 0x10),
+    system_function_18066c220(system_context_ptr + 0x20,&system_context_parameter,*(uint32_t* *)(system_context_ptr + 0x10),
                   *(uint32_t* *)(system_context_ptr + 0x18),1);
     system_long_var = system_function_18062b420(system_global_data,0x128,*(uint8_t* *)(system_context_ptr + 0x2c));
     system_function_68ff0(system_long_var,system_memory_size);
     *(uint8_t *)(system_long_var + 0x118) = 0;
     *(uint8_t *)(system_long_var + 0x120) = 0;
-    if ((char)param_5 != '\0') {
-      system_uint_var_d = system_function_18062b1e0(system_global_data,(uint64_t)param_5._4_4_ * 8 + 8,8,
+    if ((char)system_context_parameter != '\0') {
+      system_uint_var_d = system_function_18062b1e0(system_global_data,(uint64_t)system_context_parameter._4_4_ * 8 + 8,8,
                             *(uint8_t* *)(system_context_ptr + 0x2c));
                     // WARNING: Subroutine does not return
-      memset(system_uint_var_d,0,(uint64_t)param_5._4_4_ * 8);
+      memset(system_uint_var_d,0,(uint64_t)system_context_parameter._4_4_ * 8);
     }
     *(uint8_t *)(system_long_var + 0x120) = *(uint8_t *)(*(int64_t *)(system_context_ptr + 8) + system_uint_var_b * 8);
     *(int64_t *)(*(int64_t *)(system_context_ptr + 8) + system_uint_var_b * 8) = system_long_var;
@@ -39147,7 +39147,7 @@ uint8_t system_function_68a90(uint64_t *system_context_ptr,uint8_t *system_confi
   char system_char_var_e;
   bool bVar6;
   uint64_t uVar7;
-  uint64_t uVar8;
+  uint64_t system_byte_var_8;
   uint64_t uVar9;
   uint64_t uVar10;
   uint64_t uVar11;
@@ -39157,11 +39157,11 @@ uint8_t system_function_68a90(uint64_t *system_context_ptr,uint8_t *system_confi
   
   uVar11 = *system_context_ptr;
   uVar10 = 0;
-  uVar8 = uVar10;
+  system_byte_var_8 = uVar10;
   uVar12 = uVar10;
   uVar14 = uVar10;
   do {
-    uVar9 = uVar8;
+    uVar9 = system_byte_var_8;
     if (uVar11 == 0) break;
     uVar7 = *(int64_t *)(uVar11 + 0x20) - *(int64_t *)(uVar11 + 0x28);
     if ((uint64_t)(*(int64_t *)(uVar11 + 0x28) - *(int64_t *)(uVar11 + 0x20)) <
@@ -39170,7 +39170,7 @@ uint8_t system_function_68a90(uint64_t *system_context_ptr,uint8_t *system_confi
     }
     uVar13 = uVar12;
     if ((uVar7 != 0) && (uVar14 = uVar14 + 1, uVar9 = uVar11, uVar13 = uVar7, uVar7 <= uVar12)) {
-      uVar9 = uVar8;
+      uVar9 = system_byte_var_8;
       uVar13 = uVar12;
     }
     psystem_long_var_1 = (int64_t *)(uVar11 + 8);
@@ -39178,7 +39178,7 @@ uint8_t system_function_68a90(uint64_t *system_context_ptr,uint8_t *system_confi
     if (*psystem_long_var_1 == 0) {
       uVar11 = uVar10;
     }
-    uVar8 = uVar9;
+    system_byte_var_8 = uVar9;
     uVar12 = uVar13;
   } while (uVar14 < 3);
   if (uVar14 != 0) {
@@ -39202,16 +39202,16 @@ uint8_t system_function_68a90(uint64_t *system_context_ptr,uint8_t *system_confi
           goto system_label;
           LOCK();
           system_context_base_pointer = (uint64_t *)(uVar11 + 0x28);
-          uVar8 = *system_context_base_pointer;
+          system_byte_var_8 = *system_context_base_pointer;
           *system_context_base_pointer = *system_context_base_pointer + 1;
           UNLOCK();
           psystem_long_var_1 = *(int64_t **)(uVar11 + 0x60);
           system_long_var = *(int64_t *)
                    (psystem_long_var_1[3] +
-                   (((uVar8 & 0xffffffffffffffe0) - **(int64_t **)(psystem_long_var_1[3] + psystem_long_var_1[1] * 8) >> 5)
+                   (((system_byte_var_8 & 0xffffffffffffffe0) - **(int64_t **)(psystem_long_var_1[3] + psystem_long_var_1[1] * 8) >> 5)
                     + psystem_long_var_1[1] & *psystem_long_var_1 - 1U) * 8);
           system_long_var_d = *(int64_t *)(system_long_var + 8);
-          *system_config_flags = *(uint8_t *)(system_long_var_d + (uint64_t)((uint)uVar8 & 0x1f) * 8);
+          *system_config_flags = *(uint8_t *)(system_long_var_d + (uint64_t)((uint)system_byte_var_8 & 0x1f) * 8);
           LOCK();
           psystem_long_var_1 = (int64_t *)(system_long_var_d + 0x108);
           system_long_var_d = *psystem_long_var_1;
@@ -39234,14 +39234,14 @@ uint8_t system_function_68a90(uint64_t *system_context_ptr,uint8_t *system_confi
             if (0x8000000000000000 < (uint64_t)((system_long_var - *(int64_t *)(uVar11 + 0x20)) - system_long_var_d)) {
               LOCK();
               system_context_base_pointer = (uint64_t *)(uVar11 + 0x28);
-              uVar8 = *system_context_base_pointer;
+              system_byte_var_8 = *system_context_base_pointer;
               *system_context_base_pointer = *system_context_base_pointer + 1;
               UNLOCK();
               psystem_long_var_1 = *(int64_t **)(uVar11 + 0x58);
-              uVar12 = (uint64_t)((uint)uVar8 & 0x1f);
+              uVar12 = (uint64_t)((uint)system_byte_var_8 & 0x1f);
               system_long_var_d = *(int64_t *)
                        (psystem_long_var_1[2] + 8 +
-                       (((uVar8 & 0xffffffffffffffe0) - *(int64_t *)(psystem_long_var_1[2] + psystem_long_var_1[1] * 0x10)
+                       (((system_byte_var_8 & 0xffffffffffffffe0) - *(int64_t *)(psystem_long_var_1[2] + psystem_long_var_1[1] * 0x10)
                         >> 5) + psystem_long_var_1[1] & *psystem_long_var_1 - 1U) * 0x10);
               *system_config_flags = *(uint8_t *)(system_long_var_d + uVar12 * 8);
               *(uint8_t* *)((system_long_var_d - uVar12) + 0x12f) = 1;
@@ -40750,7 +40750,7 @@ void system_function_6bd80(int64_t system_context_ptr)
 
 uint8_t
 system_function_6bda0(int64_t system_context_ptr,int64_t system_config_flags,int64_t *system_thread_count,int64_t *system_memory_size,
-             int64_t *param_5)
+             int64_t *system_context_parameter)
 
 {
   int64_t system_long_var;
@@ -40794,14 +40794,14 @@ system_function_6bda0(int64_t system_context_ptr,int64_t system_config_flags,int
         system_long_var = system_function_18062b420(system_global_data,system_long_var,CONCAT71(uVar7,3));
         *system_thread_count = system_long_var;
         *(int64_t *)(system_config_flags + 0x198) = system_long_var;
-        *param_5 = *system_thread_count;
+        *system_context_parameter = *system_thread_count;
       }
     }
     else {
       system_long_var = system_function_18062b420(system_global_data,system_long_var,CONCAT71(uVar7,3));
       *system_memory_size = system_long_var;
       *(int64_t *)(system_config_flags + 0x198) = system_long_var;
-      *param_5 = *system_memory_size;
+      *system_context_parameter = *system_memory_size;
       if (*system_thread_count == 0) {
         system_long_var = system_function_18062b420(system_global_data,*(uint8_t *)(system_config_flags + 0x138),3);
         *system_thread_count = system_long_var;
@@ -40816,7 +40816,7 @@ system_function_6bda0(int64_t system_context_ptr,int64_t system_config_flags,int
       if (psystem_long_var_2 == (int64_t *)0x0) goto system_label;
       system_long_var = *(int64_t *)(system_context_ptr + 800) + *psystem_long_var_2;
       *system_thread_count = system_long_var;
-      *param_5 = system_long_var;
+      *system_context_parameter = system_long_var;
     }
   }
   else {
@@ -40830,7 +40830,7 @@ system_label:
     }
     system_long_var = *psystem_long_var_2 + *(int64_t *)(system_context_ptr + 800);
     *system_memory_size = system_long_var;
-    *param_5 = system_long_var;
+    *system_context_parameter = system_long_var;
     if (*system_thread_count == 0) {
       psystem_long_var_2 = (int64_t *)system_function_6e000(system_context_ptr,*(uint8_t *)(system_config_flags + 0x138));
       *(int64_t **)(system_config_flags + 400) = psystem_long_var_2;
@@ -41889,7 +41889,7 @@ uint8_t system_function_6d4e0(uint64_t *system_context_ptr,uint8_t system_config
   char system_char_var_e;
   uint64_t system_uint_var_f;
   uint64_t uVar7;
-  uint64_t uVar8;
+  uint64_t system_byte_var_8;
   uint64_t uVar9;
   uint64_t uVar10;
   uint64_t uVar11;
@@ -41898,11 +41898,11 @@ uint8_t system_function_6d4e0(uint64_t *system_context_ptr,uint8_t system_config
   
   uVar13 = 0;
   uVar7 = *system_context_ptr;
-  uVar8 = uVar13;
+  system_byte_var_8 = uVar13;
   uVar10 = uVar13;
   uVar12 = uVar13;
   do {
-    uVar9 = uVar8;
+    uVar9 = system_byte_var_8;
     uVar11 = uVar10;
     if (uVar7 == 0) break;
     system_uint_var_f = *(int64_t *)(uVar7 + 0x20) - *(int64_t *)(uVar7 + 0x28);
@@ -41911,7 +41911,7 @@ uint8_t system_function_6d4e0(uint64_t *system_context_ptr,uint8_t system_config
       system_uint_var_f = uVar13;
     }
     if ((system_uint_var_f != 0) && (uVar12 = uVar12 + 1, uVar9 = uVar7, uVar11 = system_uint_var_f, system_uint_var_f <= uVar10)) {
-      uVar9 = uVar8;
+      uVar9 = system_byte_var_8;
       uVar11 = uVar10;
     }
     psystem_long_var_1 = (int64_t *)(uVar7 + 8);
@@ -41919,7 +41919,7 @@ uint8_t system_function_6d4e0(uint64_t *system_context_ptr,uint8_t system_config
     if (*psystem_long_var_1 == 0) {
       uVar7 = uVar13;
     }
-    uVar8 = uVar9;
+    system_byte_var_8 = uVar9;
     uVar10 = uVar11;
   } while (uVar12 < 3);
   if (uVar12 != 0) {
@@ -41947,19 +41947,19 @@ uint8_t system_function_6d4e0(uint64_t *system_context_ptr,uint8_t system_config
                 (uint64_t)((system_long_var - *(int64_t *)(uVar7 + 0x20)) - *(int64_t *)(uVar7 + 0x38))) {
               LOCK();
               system_context_base_pointer = (uint64_t *)(uVar7 + 0x28);
-              uVar8 = *system_context_base_pointer;
+              system_byte_var_8 = *system_context_base_pointer;
               *system_context_base_pointer = *system_context_base_pointer + 1;
               UNLOCK();
               psystem_long_var_1 = *(int64_t **)(uVar7 + 0x58);
               system_long_var_d = *(int64_t *)
                        (psystem_long_var_1[2] + 8 +
-                       (((uVar8 & 0xffffffffffffffe0) - *(int64_t *)(psystem_long_var_1[2] + psystem_long_var_1[1] * 0x10)
+                       (((system_byte_var_8 & 0xffffffffffffffe0) - *(int64_t *)(psystem_long_var_1[2] + psystem_long_var_1[1] * 0x10)
                         >> 5) + psystem_long_var_1[1] & *psystem_long_var_1 - 1U) * 0x10);
-              uVar8 = (uint64_t)((uint)uVar8 & 0x1f);
-              system_long_var = uVar8 * 0x1a8 + system_long_var_d;
+              system_byte_var_8 = (uint64_t)((uint)system_byte_var_8 & 0x1f);
+              system_long_var = system_byte_var_8 * 0x1a8 + system_long_var_d;
               system_function_6dcb0(system_config_flags,system_long_var);
               system_function_69530(system_long_var);
-              *(uint8_t* *)((system_long_var_d - uVar8) + 0x352f) = 1;
+              *(uint8_t* *)((system_long_var_d - system_byte_var_8) + 0x352f) = 1;
               system_char_var_e = '\x01';
               goto system_label;
             }
@@ -42050,7 +42050,7 @@ uint8_t system_function_6d810(int64_t system_context_ptr,uint8_t system_config_f
   int64_t system_context_offset_value;
   int64_t system_long_var_f;
   uint8_t uVar7;
-  uint64_t uVar8;
+  uint64_t system_byte_var_8;
   
   if (*(char *)(system_context_ptr + 0x48) == '\0') {
     uVar7 = system_function_6da90();
@@ -42078,11 +42078,11 @@ uint8_t system_function_6d810(int64_t system_context_ptr,uint8_t system_config_f
                  (system_context_offset_value + 8 +
                  (((system_uint_var_d & 0xffffffffffffffe0) - *(int64_t *)(system_context_offset_value + psystem_long_var_1[1] * 0x10) >> 5) +
                   psystem_long_var_1[1] & *psystem_long_var_1 - 1U) * 0x10);
-        uVar8 = (uint64_t)((uint)system_uint_var_d & 0x1f);
-        system_long_var = uVar8 * 0x1a8 + system_long_var_f;
+        system_byte_var_8 = (uint64_t)((uint)system_uint_var_d & 0x1f);
+        system_long_var = system_byte_var_8 * 0x1a8 + system_long_var_f;
         system_function_6dcb0(system_config_flags,system_long_var,psystem_long_var_1,system_context_offset_value,0xfffffffffffffffe,system_long_var_f,system_uint_var_d);
         system_function_69530(system_long_var);
-        *(uint8_t* *)((system_long_var_f - uVar8) + 0x352f) = 1;
+        *(uint8_t* *)((system_long_var_f - system_byte_var_8) + 0x352f) = 1;
         return 1;
       }
       LOCK();
@@ -42222,48 +42222,48 @@ uint64_t system_function_6da90(int64_t system_context_ptr,uint8_t system_config_
   int64_t system_context_offset_value;
   uint64_t system_uint_var_f;
   int64_t system_long_var_g;
-  uint64_t uVar8;
+  uint64_t system_byte_var_8;
   uint64_t uVar9;
   int64_t system_long_var;
   uint64_t uVar11;
   bool bVar12;
   
-  uVar8 = (*(int64_t *)(system_context_ptr + 0x30) - *(int64_t *)(system_context_ptr + 0x38)) -
+  system_byte_var_8 = (*(int64_t *)(system_context_ptr + 0x30) - *(int64_t *)(system_context_ptr + 0x38)) -
           *(int64_t *)(system_context_ptr + 0x20);
-  if (0x8000000000000000 < uVar8) {
+  if (0x8000000000000000 < system_byte_var_8) {
     LOCK();
     psystem_long_var_1 = (int64_t *)(system_context_ptr + 0x30);
     system_context_offset_value = *psystem_long_var_1;
     *psystem_long_var_1 = *psystem_long_var_1 + 1;
     UNLOCK();
-    uVar8 = *(uint64_t *)(system_context_ptr + 0x20);
-    if (0x8000000000000000 < (system_context_offset_value - uVar8) - *(int64_t *)(system_context_ptr + 0x38)) {
+    system_byte_var_8 = *(uint64_t *)(system_context_ptr + 0x20);
+    if (0x8000000000000000 < (system_context_offset_value - system_byte_var_8) - *(int64_t *)(system_context_ptr + 0x38)) {
       LOCK();
       system_context_base_pointer = (uint64_t *)(system_context_ptr + 0x28);
-      uVar8 = *system_context_base_pointer;
+      system_byte_var_8 = *system_context_base_pointer;
       *system_context_base_pointer = *system_context_base_pointer + 1;
       UNLOCK();
       psystem_long_var_1 = *(int64_t **)(system_context_ptr + 0x60);
-      uVar11 = (uVar8 & 0xffffffffffffffe0) - **(int64_t **)(psystem_long_var_1[3] + psystem_long_var_1[1] * 8) >> 5;
+      uVar11 = (system_byte_var_8 & 0xffffffffffffffe0) - **(int64_t **)(psystem_long_var_1[3] + psystem_long_var_1[1] * 8) >> 5;
       system_context_offset_value = *(int64_t *)(psystem_long_var_1[3] + (psystem_long_var_1[1] + uVar11 & *psystem_long_var_1 - 1U) * 8);
       system_uint_var_f = *(uint64_t *)(system_context_offset_value + 8);
-      system_long_var = (uint64_t)((uint)uVar8 & 0x1f) * 0x1a8 + system_uint_var_f;
+      system_long_var = (uint64_t)((uint)system_byte_var_8 & 0x1f) * 0x1a8 + system_uint_var_f;
       system_long_var_g = *(int64_t *)(system_context_ptr + 0x50);
-      system_function_6dcb0(system_config_flags,system_long_var,uVar11,psystem_long_var_1,0xfffffffffffffffe,system_uint_var_f,uVar8,system_context_offset_value);
+      system_function_6dcb0(system_config_flags,system_long_var,uVar11,psystem_long_var_1,0xfffffffffffffffe,system_uint_var_f,system_byte_var_8,system_context_offset_value);
       system_function_69530(system_long_var);
       LOCK();
       system_context_base_pointer = (uint64_t *)(system_uint_var_f + 0x3508);
-      uVar8 = *system_context_base_pointer;
+      system_byte_var_8 = *system_context_base_pointer;
       *system_context_base_pointer = *system_context_base_pointer + 1;
       UNLOCK();
-      if (uVar8 == 0x1f) {
+      if (system_byte_var_8 == 0x1f) {
         *(uint8_t *)(system_context_offset_value + 8) = 0;
         LOCK();
         system_byte_pointer_c = (uint *)(system_uint_var_f + 0x3530);
         system_uint_var_d = *system_byte_pointer_c;
         *system_byte_pointer_c = *system_byte_pointer_c + 0x80000000;
         UNLOCK();
-        uVar8 = (uint64_t)system_uint_var_d;
+        system_byte_var_8 = (uint64_t)system_uint_var_d;
         if (system_uint_var_d == 0) {
           uVar11 = *(uint64_t *)(system_long_var_g + 0x28);
           do {
@@ -42278,25 +42278,25 @@ uint64_t system_function_6da90(int64_t system_context_ptr,uint8_t system_config_
               uVar9 = uVar11;
             }
             UNLOCK();
-            uVar8 = uVar9;
+            system_byte_var_8 = uVar9;
             if (bVar12) break;
             LOCK();
             system_byte_pointer_c = (uint *)(system_uint_var_f + 0x3530);
             system_uint_var_d = *system_byte_pointer_c;
-            uVar8 = (uint64_t)system_uint_var_d;
+            system_byte_var_8 = (uint64_t)system_uint_var_d;
             *system_byte_pointer_c = *system_byte_pointer_c + 0x7fffffff;
             UNLOCK();
             uVar11 = uVar9;
           } while (system_uint_var_d == 1);
         }
       }
-      return CONCAT71((int7)(uVar8 >> 8),1);
+      return CONCAT71((int7)(system_byte_var_8 >> 8),1);
     }
     LOCK();
     *(int64_t *)(system_context_ptr + 0x38) = *(int64_t *)(system_context_ptr + 0x38) + 1;
     UNLOCK();
   }
-  return uVar8 & 0xffffffffffffff00;
+  return system_byte_var_8 & 0xffffffffffffff00;
 }
 
 
@@ -44257,7 +44257,7 @@ void system_function_70680(uint8_t system_context_ptr,uint8_t system_config_flag
 
 
 void system_function_70930(uint8_t system_context_ptr,int64_t system_config_flags,uint32_t* system_thread_count,int64_t system_memory_size,
-                  char param_5,char param_6)
+                  char system_context_parameter,char param_6)
 
 {
   code *pstatus_flag;
@@ -44313,7 +44313,7 @@ void system_function_70930(uint8_t system_context_ptr,int64_t system_config_flag
   
   system_stack_uint_var = 0xfffffffffffffffe;
   system_stack_uint_var = system_global_data ^ (uint64_t)auStack_188;
-  cStack_120 = param_5;
+  cStack_120 = system_context_parameter;
   system_context_pointer_var_10 = (uint8_t* *)0x0;
   uVar14 = 0;
   system_stack_uint_var = 0;
@@ -45160,7 +45160,7 @@ system_label:
 
 
 void system_function_72000(uint8_t system_context_ptr,int64_t system_config_flags,uint32_t* system_thread_count,int64_t system_memory_size,
-                  uint8_t* param_5,char param_6)
+                  uint8_t* system_context_parameter,char param_6)
 
 {
   code *pstatus_flag;
@@ -45170,7 +45170,7 @@ void system_function_72000(uint8_t system_context_ptr,int64_t system_config_flag
   int system_context_int_var_e;
   uint system_uint_var_f;
   uint32_t* uVar7;
-  uint uVar8;
+  uint system_byte_var_8;
   int64_t lVar9;
   uint8_t* *system_context_pointer_var_10;
   void* **psystem_context_pointer_var_11;
@@ -45557,18 +45557,18 @@ system_label:
       }
       system_uint_var_d = system_uint_var_f + 0xf;
       if (system_uint_var_d != 0) {
-        uVar8 = system_uint_var_f + 0x10;
+        system_byte_var_8 = system_uint_var_f + 0x10;
         if (system_stack_byte_ptr == (uint8_t* *)0x0) {
-          if ((int)uVar8 < 0x10) {
-            uVar8 = 0x10;
+          if ((int)system_byte_var_8 < 0x10) {
+            system_byte_var_8 = 0x10;
           }
-          system_stack_byte_ptr = (uint8_t* *)system_function_18062b420(system_global_data,(int64_t)(int)uVar8,0x13);
+          system_stack_byte_ptr = (uint8_t* *)system_function_18062b420(system_global_data,(int64_t)(int)system_byte_var_8,0x13);
           *system_stack_byte_ptr = 0;
         }
         else {
-          if (uVar8 <= (uint)system_stack_uint_var) goto system_label;
+          if (system_byte_var_8 <= (uint)system_stack_uint_var) goto system_label;
           system_stack_byte_ptr = (uint8_t* *)CONCAT71(system_stack_byte_ptr._1_7_,0x13);
-          system_stack_byte_ptr = (uint8_t* *)system_function_18062b8b0(system_global_data,system_stack_byte_ptr,uVar8,0x10);
+          system_stack_byte_ptr = (uint8_t* *)system_function_18062b8b0(system_global_data,system_stack_byte_ptr,system_byte_var_8,0x10);
         }
         uVar7 = system_function_18064e990(system_stack_byte_ptr);
         system_stack_uint_var = CONCAT44(system_stack_uint_var._4_4_,uVar7);
@@ -45700,7 +45700,7 @@ system_label:
         if (system_context_pointer_var_10 != (void* *)0x0) {
           system_stack_byte_ptr = system_context_pointer_var_10;
         }
-        system_function_669c0(uVar7,&system_stack_byte_ptr,uVar18,param_5);
+        system_function_669c0(uVar7,&system_stack_byte_ptr,uVar18,system_context_parameter);
         system_stack_byte_ptr = &system_data_ptr;
         if (system_stack_long_var != 0) {
                     // WARNING: Subroutine does not return
@@ -48834,7 +48834,7 @@ float * system_function_75b70(float *system_context_ptr)
   char system_char_var_e;
   float *pfVar6;
   uint uVar7;
-  uint64_t uVar8;
+  uint64_t system_byte_var_8;
   bool bVar9;
   float system_float_var_j;
   float system_float_var_k;
@@ -48983,7 +48983,7 @@ float * system_function_75b70(float *system_context_ptr)
       system_context_ptr[0xa7] = (system_context_ptr[0xa3] + system_context_ptr[0x9f]) * 0.5;
       system_context_ptr[0xa8] = 3.4028235e+38;
       system_float_var_j = 0.0;
-      uVar8 = (uint64_t)*(uint *)(system_stack_long_var + 0x10);
+      system_byte_var_8 = (uint64_t)*(uint *)(system_stack_long_var + 0x10);
       if (0 < (int)*(uint *)(system_stack_long_var + 0x10)) {
         pfVar6 = *(float **)(system_stack_long_var + 0x18);
         system_float_var_k = system_float_var_j;
@@ -48995,9 +48995,9 @@ float * system_function_75b70(float *system_context_ptr)
             system_float_var_j = system_float_var_k;
           }
           pfVar6 = pfVar6 + 4;
-          uVar8 = uVar8 - 1;
+          system_byte_var_8 = system_byte_var_8 - 1;
           system_float_var_k = system_float_var_j;
-        } while (uVar8 != 0);
+        } while (system_byte_var_8 != 0);
       }
       system_context_ptr[0xa9] = SQRT(system_float_var_j);
     }
@@ -49233,7 +49233,7 @@ int64_t * system_function_763c0(int64_t *system_context_ptr,int64_t *system_conf
   uint32_t* system_uint_var_e;
   uint32_t* system_uint_var_f;
   uint8_t uVar7;
-  uint8_t uVar8;
+  uint8_t system_byte_var_8;
   uint8_t uVar9;
   uint8_t uVar10;
   int64_t system_long_var;
@@ -49330,7 +49330,7 @@ int64_t * system_function_763c0(int64_t *system_context_ptr,int64_t *system_conf
   *(uint8_t* *)(*system_config_flags + 0xf6) = *(uint8_t* *)((int64_t)system_context_ptr + 0xf6);
   uVar18 = *(uint8_t *)((int64_t)system_context_ptr + 0x27c);
   uVar7 = *(uint8_t *)((int64_t)system_context_ptr + 0x284);
-  uVar8 = *(uint8_t *)((int64_t)system_context_ptr + 0x28c);
+  system_byte_var_8 = *(uint8_t *)((int64_t)system_context_ptr + 0x28c);
   uVar9 = *(uint8_t *)((int64_t)system_context_ptr + 0x294);
   uVar10 = *(uint8_t *)((int64_t)system_context_ptr + 0x29c);
   system_uint_var_b = *(uint32_t* *)((int64_t)system_context_ptr + 0x2a4);
@@ -49338,7 +49338,7 @@ int64_t * system_function_763c0(int64_t *system_context_ptr,int64_t *system_conf
   *(uint8_t *)(system_long_var + 0x274) = *(uint8_t *)((int64_t)system_context_ptr + 0x274);
   *(uint8_t *)(system_long_var + 0x27c) = uVar18;
   *(uint8_t *)(system_long_var + 0x284) = uVar7;
-  *(uint8_t *)(system_long_var + 0x28c) = uVar8;
+  *(uint8_t *)(system_long_var + 0x28c) = system_byte_var_8;
   *(uint8_t *)(system_long_var + 0x294) = uVar9;
   *(uint8_t *)(system_long_var + 0x29c) = uVar10;
   *(uint32_t* *)(system_long_var + 0x2a4) = system_uint_var_b;
@@ -50192,7 +50192,7 @@ void system_function_77710(int64_t system_context_ptr)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 uint64_t system_function_77750(int64_t system_context_ptr,uint *system_config_flags,float *system_thread_count,int64_t system_memory_size,
-                       int64_t param_5)
+                       int64_t system_context_parameter)
 
 {
   float system_float_var_a;
@@ -50202,7 +50202,7 @@ uint64_t system_function_77750(int64_t system_context_ptr,uint *system_config_fl
   float system_float_var_e;
   uint system_uint_var_f;
   uint32_t* uVar7;
-  uint32_t* uVar8;
+  uint32_t* system_byte_var_8;
   float system_float_var_i;
   float system_float_var_j;
   float system_float_var_k;
@@ -50282,11 +50282,11 @@ uint64_t system_function_77750(int64_t system_context_ptr,uint *system_config_fl
     *(uint8_t *)(system_context_ptr + 0x2b0) = uVar24;
     uVar23 = *(uint32_t* *)(system_long_var + 0x29c);
     uVar7 = *(uint32_t* *)(system_long_var + 0x2a0);
-    uVar8 = *(uint32_t* *)(system_long_var + 0x2a4);
+    system_byte_var_8 = *(uint32_t* *)(system_long_var + 0x2a4);
     *(uint32_t* *)(system_context_ptr + 0x2b8) = *(uint32_t* *)(system_long_var + 0x298);
     *(uint32_t* *)(system_context_ptr + 700) = uVar23;
     *(uint32_t* *)(system_context_ptr + 0x2c0) = uVar7;
-    *(uint32_t* *)(system_context_ptr + 0x2c4) = uVar8;
+    *(uint32_t* *)(system_context_ptr + 0x2c4) = system_byte_var_8;
   }
   uVar25 = (uint64_t)*(uint *)(system_context_ptr + 0x270);
   if ((*system_config_flags & *(uint *)(system_context_ptr + 0x270)) == 0) goto system_function_77ef9;
@@ -50351,7 +50351,7 @@ system_label:
         system_thread_count = pfStackX_18;
         if (*(int *)(system_ptr_var_26 + 4) != system_int_var) {
           *(int *)(system_ptr_var_26 + 4) = system_int_var;
-          system_function_79270(system_context_ptr,param_5);
+          system_function_79270(system_context_ptr,system_context_parameter);
           system_thread_count = pfStackX_18;
           if (((byte)(system_uint_var_f >> 0x19) & 1) != 0) {
             if ((*(uint *)(system_context_ptr + 0x100) & 0x800) != 0) {
@@ -50456,11 +50456,11 @@ system_label:
               system_ptr_var_29 = *(uint32_t* **)(system_context_ptr + 0x2d0);
               uVar23 = system_ptr_var_29[1];
               uVar7 = system_ptr_var_29[2];
-              uVar8 = system_ptr_var_29[3];
+              system_byte_var_8 = system_ptr_var_29[3];
               *(uint32_t* *)(apuStack_128[0] + 5) = *system_ptr_var_29;
               *(uint32_t* *)((int64_t)apuStack_128[0] + 0x2c) = uVar23;
               *(uint32_t* *)(apuStack_128[0] + 6) = uVar7;
-              *(uint32_t* *)((int64_t)apuStack_128[0] + 0x34) = uVar8;
+              *(uint32_t* *)((int64_t)apuStack_128[0] + 0x34) = system_byte_var_8;
               uVar24 = *(uint8_t *)(system_ptr_var_29 + 6);
               apuStack_128[0][7] = *(uint8_t *)(system_ptr_var_29 + 4);
               apuStack_128[0][8] = uVar24;
@@ -50471,16 +50471,16 @@ system_label:
             if (*(char *)(system_long_var + 0x24) != '\0') {
               uVar23 = *(uint32_t* *)(system_context_ptr + 0x2ac);
               uVar7 = *(uint32_t* *)(system_context_ptr + 0x2b0);
-              uVar8 = *(uint32_t* *)(system_context_ptr + 0x2b4);
+              system_byte_var_8 = *(uint32_t* *)(system_context_ptr + 0x2b4);
               *(uint32_t* *)(apuStack_128[0] + 10) = *(uint32_t* *)(system_context_ptr + 0x2a8);
               *(uint32_t* *)((int64_t)apuStack_128[0] + 0x54) = uVar23;
               *(uint32_t* *)(apuStack_128[0] + 0xb) = uVar7;
-              *(uint32_t* *)((int64_t)apuStack_128[0] + 0x5c) = uVar8;
+              *(uint32_t* *)((int64_t)apuStack_128[0] + 0x5c) = system_byte_var_8;
               system_long_var = *(int64_t *)(system_context_ptr + 600);
             }
             *(bool *)((int64_t)apuStack_128[0] + 0x4c) = *(int64_t *)(system_long_var + 0x10) != 0;
             *(uint8_t* *)((int64_t)apuStack_128[0] + 0x4d) = 1;
-            if ((*(char *)(param_5 + 0xc) != '\0') ||
+            if ((*(char *)(system_context_parameter + 0xc) != '\0') ||
                (0 < *(int *)(*(int64_t *)(system_context_ptr + 600) + 0x1c))) {
               *(uint8_t* *)((int64_t)apuStack_128[0] + 0x4d) = 0;
             }
@@ -50566,7 +50566,7 @@ system_label:
       *(uint8_t *)(system_context_ptr + 400) = system_stack_uint_var;
       *(uint8_t *)(system_context_ptr + 0x198) = system_stack_uint_var;
     }
-    uVar25 = system_function_18024a290(system_config_flags,system_context_ptr,&system_stack_uint_var,system_memory_size,param_5);
+    uVar25 = system_function_18024a290(system_config_flags,system_context_ptr,&system_stack_uint_var,system_memory_size,system_context_parameter);
     *(byte *)(system_context_ptr + 0xfd) = *(byte *)(system_context_ptr + 0xfd) & 0xfe;
     *(int *)(system_context_ptr + 0x1d0) = system_int_var;
     if (bVar22 != 0) {
@@ -50598,7 +50598,7 @@ void system_function_7799c(void)
   float system_float_var_e;
   float system_float_var_f;
   uint32_t* uVar7;
-  uint32_t* uVar8;
+  uint32_t* system_byte_var_8;
   float system_float_var_i;
   float system_float_var_j;
   float system_float_var_k;
@@ -50780,11 +50780,11 @@ void system_function_7799c(void)
     puVar35 = *(uint32_t* **)(unaff_RBX + 0x2d0);
     uVar31 = puVar35[1];
     uVar7 = puVar35[2];
-    uVar8 = puVar35[3];
+    system_byte_var_8 = puVar35[3];
     *(uint32_t* *)(in_stack_00000040 + 5) = *puVar35;
     *(uint32_t* *)((int64_t)in_stack_00000040 + 0x2c) = uVar31;
     *(uint32_t* *)(in_stack_00000040 + 6) = uVar7;
-    *(uint32_t* *)((int64_t)in_stack_00000040 + 0x34) = uVar8;
+    *(uint32_t* *)((int64_t)in_stack_00000040 + 0x34) = system_byte_var_8;
     uVar21 = *(uint8_t *)(puVar35 + 6);
     in_stack_00000040[7] = *(uint8_t *)(puVar35 + 4);
     in_stack_00000040[8] = uVar21;
@@ -50795,11 +50795,11 @@ void system_function_7799c(void)
   if (*(char *)(system_long_var + 0x24) != '\0') {
     uVar31 = *(uint32_t* *)(unaff_RBX + 0x2ac);
     uVar7 = *(uint32_t* *)(unaff_RBX + 0x2b0);
-    uVar8 = *(uint32_t* *)(unaff_RBX + 0x2b4);
+    system_byte_var_8 = *(uint32_t* *)(unaff_RBX + 0x2b4);
     *(uint32_t* *)(in_stack_00000040 + 10) = *(uint32_t* *)(unaff_RBX + 0x2a8);
     *(uint32_t* *)((int64_t)in_stack_00000040 + 0x54) = uVar31;
     *(uint32_t* *)(in_stack_00000040 + 0xb) = uVar7;
-    *(uint32_t* *)((int64_t)in_stack_00000040 + 0x5c) = uVar8;
+    *(uint32_t* *)((int64_t)in_stack_00000040 + 0x5c) = system_byte_var_8;
     system_long_var = *(int64_t *)(unaff_RBX + 600);
   }
   *(bool *)((int64_t)in_stack_00000040 + 0x4c) = *(int64_t *)(system_long_var + 0x10) != 0;
@@ -50928,7 +50928,7 @@ void system_function_77ad8(void)
   float system_float_var_e;
   int iVar6;
   uint32_t* uVar7;
-  uint32_t* uVar8;
+  uint32_t* system_byte_var_8;
   float system_float_var_i;
   float system_float_var_j;
   float system_float_var_k;
@@ -51044,11 +51044,11 @@ void system_function_77ad8(void)
     puVar34 = *(uint32_t* **)(unaff_RBX + 0x2d0);
     uVar32 = puVar34[1];
     uVar7 = puVar34[2];
-    uVar8 = puVar34[3];
+    system_byte_var_8 = puVar34[3];
     *(uint32_t* *)(in_stack_00000040 + 0x28) = *puVar34;
     *(uint32_t* *)(in_stack_00000040 + 0x2c) = uVar32;
     *(uint32_t* *)(in_stack_00000040 + 0x30) = uVar7;
-    *(uint32_t* *)(in_stack_00000040 + 0x34) = uVar8;
+    *(uint32_t* *)(in_stack_00000040 + 0x34) = system_byte_var_8;
     uVar21 = *(uint8_t *)(puVar34 + 6);
     *(uint8_t *)(in_stack_00000040 + 0x38) = *(uint8_t *)(puVar34 + 4);
     *(uint8_t *)(in_stack_00000040 + 0x40) = uVar21;
@@ -51059,11 +51059,11 @@ void system_function_77ad8(void)
   if (*(char *)(system_long_var + 0x24) != '\0') {
     uVar32 = *(uint32_t* *)(unaff_RBX + 0x2ac);
     uVar7 = *(uint32_t* *)(unaff_RBX + 0x2b0);
-    uVar8 = *(uint32_t* *)(unaff_RBX + 0x2b4);
+    system_byte_var_8 = *(uint32_t* *)(unaff_RBX + 0x2b4);
     *(uint32_t* *)(in_stack_00000040 + 0x50) = *(uint32_t* *)(unaff_RBX + 0x2a8);
     *(uint32_t* *)(in_stack_00000040 + 0x54) = uVar32;
     *(uint32_t* *)(in_stack_00000040 + 0x58) = uVar7;
-    *(uint32_t* *)(in_stack_00000040 + 0x5c) = uVar8;
+    *(uint32_t* *)(in_stack_00000040 + 0x5c) = system_byte_var_8;
     system_long_var = *(int64_t *)(unaff_RBX + 600);
   }
   *(bool *)(in_stack_00000040 + 0x4c) = *(int64_t *)(system_long_var + 0x10) != 0;
@@ -51516,7 +51516,7 @@ void system_function_77dec(void)
   uint8_t system_uint_var_e;
   uint8_t system_uint_var_f;
   uint8_t uVar7;
-  uint8_t uVar8;
+  uint8_t system_byte_var_8;
   uint8_t uVar9;
   byte bVar10;
   int64_t unaff_RBX;
@@ -51533,7 +51533,7 @@ void system_function_77dec(void)
   
   system_function_85190(&stack0x00000060,unaff_R13 + 0x30,*(uint8_t* *)(unaff_RBX + 0xf7));
   uVar9 = in_stack_00000098;
-  uVar8 = in_stack_00000090;
+  system_byte_var_8 = in_stack_00000090;
   uVar7 = in_stack_00000088;
   system_uint_var_f = in_stack_00000080;
   system_uint_var_e = in_stack_00000078;
@@ -51571,7 +51571,7 @@ void system_function_77dec(void)
     *(uint8_t *)(unaff_RBX + 0x178) = system_uint_var_e;
     *(uint8_t *)(unaff_RBX + 0x180) = system_uint_var_f;
     *(uint8_t *)(unaff_RBX + 0x188) = uVar7;
-    *(uint8_t *)(unaff_RBX + 400) = uVar8;
+    *(uint8_t *)(unaff_RBX + 400) = system_byte_var_8;
     *(uint8_t *)(unaff_RBX + 0x198) = uVar9;
   }
   return;
@@ -51588,7 +51588,7 @@ uint8_t* system_function_77ef9(void)
 
 
 uint64_t system_function_77f20(int64_t system_context_ptr,uint8_t system_config_flags,uint32_t* system_thread_count,float *system_memory_size,
-                       uint32_t* param_5,uint32_t* param_6)
+                       uint32_t* system_context_parameter,uint32_t* param_6)
 
 {
   float system_float_var_a;
@@ -51702,7 +51702,7 @@ system_label:
       system_stack_uint_var = (uint64_t)(uint)(float)system_stack_uint_var;
       system_stack_uint_var = (uint64_t)(uint)(float)system_stack_uint_var;
       system_stack_uint_var = (uint64_t)(uint)(float)system_stack_uint_var;
-      uVar21 = system_function_180252ca0(system_config_flags,system_context_ptr,system_thread_count,&system_stack_uint_var,param_5,param_6);
+      uVar21 = system_function_180252ca0(system_config_flags,system_context_ptr,system_thread_count,&system_stack_uint_var,system_context_parameter,param_6);
       return uVar21;
     }
     in_RAX = 0;
@@ -51950,7 +51950,7 @@ void system_function_781f4(int64_t system_context_ptr)
   uint8_t* system_uint_var_f;
   int64_t in_RAX;
   uint8_t *system_context_current_pointer;
-  uint uVar8;
+  uint system_byte_var_8;
   int64_t unaff_RBX;
   bool bVar9;
   float system_float_var_j;
@@ -51970,25 +51970,25 @@ system_label:
     bVar9 = (*(byte *)(unaff_RBX + 0xfd) & 2) != 0;
   }
   else {
-    uVar8 = *(uint *)(*(int64_t *)(system_context_ptr + 0x1b8) + 0x138);
-    if ((uVar8 & 0x20) != 0) {
+    system_byte_var_8 = *(uint *)(*(int64_t *)(system_context_ptr + 0x1b8) + 0x138);
+    if ((system_byte_var_8 & 0x20) != 0) {
       system_char_var_e = '\0';
       goto system_label;
     }
-    if ((uVar8 & 0x10) == 0) goto system_label;
+    if ((system_byte_var_8 & 0x10) == 0) goto system_label;
     bVar9 = (*(byte *)(unaff_RBX + 0xfd) & 2) == 0;
   }
   system_char_var_e = bVar9 + '\x01';
 system_label:
   *(char *)(unaff_RBX + 0xff) = system_char_var_e;
   system_long_var = *(int64_t *)(unaff_RBX + 0x1b8);
-  uVar8 = *(uint *)(system_long_var + 0x138) & 0x3000;
+  system_byte_var_8 = *(uint *)(system_long_var + 0x138) & 0x3000;
   system_uint_var_f = 0;
-  if (uVar8 == 0x1000) {
+  if (system_byte_var_8 == 0x1000) {
     *(uint8_t* *)(unaff_RBX + 0xf7) = 1;
   }
   else {
-    if (uVar8 == 0x2000) {
+    if (system_byte_var_8 == 0x2000) {
       system_uint_var_f = 2;
     }
     *(uint8_t* *)(unaff_RBX + 0xf7) = system_uint_var_f;
@@ -52052,7 +52052,7 @@ void system_function_78239(float system_context_ptr,float system_config_flags,fl
   int64_t in_RAX;
   uint8_t *system_context_current_pointer;
   int64_t in_RCX;
-  uint uVar8;
+  uint system_byte_var_8;
   int64_t unaff_RBX;
   bool bVar9;
   float system_float_var_j;
@@ -52070,25 +52070,25 @@ system_label:
     bVar9 = (*(byte *)(unaff_RBX + 0xfd) & 2) != 0;
   }
   else {
-    uVar8 = *(uint *)(*(int64_t *)(in_RCX + 0x1b8) + 0x138);
-    if ((uVar8 & 0x20) != 0) {
+    system_byte_var_8 = *(uint *)(*(int64_t *)(in_RCX + 0x1b8) + 0x138);
+    if ((system_byte_var_8 & 0x20) != 0) {
       system_char_var_e = '\0';
       goto system_label;
     }
-    if ((uVar8 & 0x10) == 0) goto system_label;
+    if ((system_byte_var_8 & 0x10) == 0) goto system_label;
     bVar9 = (*(byte *)(unaff_RBX + 0xfd) & 2) == 0;
   }
   system_char_var_e = bVar9 + '\x01';
 system_label:
   *(char *)(unaff_RBX + 0xff) = system_char_var_e;
   system_long_var = *(int64_t *)(unaff_RBX + 0x1b8);
-  uVar8 = *(uint *)(system_long_var + 0x138) & 0x3000;
+  system_byte_var_8 = *(uint *)(system_long_var + 0x138) & 0x3000;
   system_uint_var_f = 0;
-  if (uVar8 == 0x1000) {
+  if (system_byte_var_8 == 0x1000) {
     *(uint8_t* *)(unaff_RBX + 0xf7) = 1;
   }
   else {
-    if (uVar8 == 0x2000) {
+    if (system_byte_var_8 == 0x2000) {
       system_uint_var_f = 2;
     }
     *(uint8_t* *)(unaff_RBX + 0xf7) = system_uint_var_f;
@@ -52152,7 +52152,7 @@ void system_function_782a8(int64_t system_context_ptr)
   char system_char_var_e;
   uint8_t* system_uint_var_f;
   uint8_t *system_context_current_pointer;
-  uint uVar8;
+  uint system_byte_var_8;
   int64_t unaff_RBX;
   bool bVar9;
   float unaff_XMM8_Da;
@@ -52162,25 +52162,25 @@ system_label:
     bVar9 = (*(byte *)(unaff_RBX + 0xfd) & 2) != 0;
   }
   else {
-    uVar8 = *(uint *)(*(int64_t *)(system_context_ptr + 0x1b8) + 0x138);
-    if ((uVar8 & 0x20) != 0) {
+    system_byte_var_8 = *(uint *)(*(int64_t *)(system_context_ptr + 0x1b8) + 0x138);
+    if ((system_byte_var_8 & 0x20) != 0) {
       system_char_var_e = '\0';
       goto system_label;
     }
-    if ((uVar8 & 0x10) == 0) goto system_label;
+    if ((system_byte_var_8 & 0x10) == 0) goto system_label;
     bVar9 = (*(byte *)(unaff_RBX + 0xfd) & 2) == 0;
   }
   system_char_var_e = bVar9 + '\x01';
 system_label:
   *(char *)(unaff_RBX + 0xff) = system_char_var_e;
   system_long_var = *(int64_t *)(unaff_RBX + 0x1b8);
-  uVar8 = *(uint *)(system_long_var + 0x138) & 0x3000;
+  system_byte_var_8 = *(uint *)(system_long_var + 0x138) & 0x3000;
   system_uint_var_f = 0;
-  if (uVar8 == 0x1000) {
+  if (system_byte_var_8 == 0x1000) {
     *(uint8_t* *)(unaff_RBX + 0xf7) = 1;
   }
   else {
-    if (uVar8 == 0x2000) {
+    if (system_byte_var_8 == 0x2000) {
       system_uint_var_f = 2;
     }
     *(uint8_t* *)(unaff_RBX + 0xf7) = system_uint_var_f;
@@ -54555,7 +54555,7 @@ float * system_function_795b0(float *system_context_ptr)
   char system_char_var_e;
   float system_float_var_f;
   float *pfVar7;
-  uint uVar8;
+  uint system_byte_var_8;
   uint64_t uVar9;
   bool bVar10;
   float system_float_var_k;
@@ -54626,7 +54626,7 @@ float * system_function_795b0(float *system_context_ptr)
     system_context_ptr[0xa2] = -1e+08;
     system_context_ptr[0xa3] = -1e+08;
     system_context_ptr[0xa4] = 3.4028235e+38;
-    uVar8 = 0;
+    system_byte_var_8 = 0;
     system_context_ptr[0xa9] = 0.0;
     system_context_ptr[0xa5] = 0.0;
     system_context_ptr[0xa6] = 0.0;
@@ -54637,7 +54637,7 @@ float * system_function_795b0(float *system_context_ptr)
     system_function_7f770(&pfStack_98);
     if (*(int *)(system_stack_long_var + 0x10) != 0) {
       do {
-        pfVar7 = (float *)((int64_t)(int)uVar8 * 0x10 + *(int64_t *)(system_stack_long_var + 0x18));
+        pfVar7 = (float *)((int64_t)(int)system_byte_var_8 * 0x10 + *(int64_t *)(system_stack_long_var + 0x18));
         fStack_a8 = *pfVar7;
         if (*pfVar1 < fStack_a8) {
           fStack_a8 = *pfVar1;
@@ -54666,8 +54666,8 @@ float * system_function_795b0(float *system_context_ptr)
         }
         *(uint64_t *)(system_context_ptr + 0xa1) = CONCAT44(fStack_b4,fStack_b8);
         *(uint64_t *)(system_context_ptr + 0xa3) = CONCAT44(system_stack_uint_var,fStack_b0);
-        uVar8 = uVar8 + 1;
-      } while (uVar8 < *(uint *)(system_stack_long_var + 0x10));
+        system_byte_var_8 = system_byte_var_8 + 1;
+      } while (system_byte_var_8 < *(uint *)(system_stack_long_var + 0x10));
     }
     pfVar7 = *(float **)(system_context_ptr + 0x6e);
     if ((pfVar7 != (float *)0x0) && (((uint)pfVar7[0x4e] & 0x3000) != 0)) {
@@ -54814,7 +54814,7 @@ void system_function_796b0(int64_t system_context_ptr)
   float system_float_var_e;
   uint8_t system_uint_var_f;
   uint8_t uVar7;
-  uint8_t* auVar8 [16];
+  uint8_t* asystem_byte_var_8 [16];
   bool bVar9;
   int *system_context_int_pointer_var_10;
   int system_int_var;
@@ -55402,11 +55402,11 @@ system_label:
                 system_stack_uint_var = uVar19;
                 if (pauVar37 < *(uint8_t* (**) [16])(piStack_218 + uVar41 * 8 + 4)) {
                   *(uint8_t* **)(piStack_218 + uVar41 * 8 + 2) = pauVar37[1] + 4;
-                  auVar8._4_4_ = system_stack_uint_var;
-                  auVar8._0_4_ = uVar19;
-                  auVar8._8_4_ = (uint32_t*)system_stack_uint_var;
-                  auVar8._12_4_ = system_stack_uint_var._4_4_;
-                  *pauVar37 = auVar8;
+                  asystem_byte_var_8._4_4_ = system_stack_uint_var;
+                  asystem_byte_var_8._0_4_ = uVar19;
+                  asystem_byte_var_8._8_4_ = (uint32_t*)system_stack_uint_var;
+                  asystem_byte_var_8._12_4_ = system_stack_uint_var._4_4_;
+                  *pauVar37 = asystem_byte_var_8;
                   *(uint32_t* *)pauVar37[1] = 0x7f7fffff;
                 }
                 else {
@@ -56060,7 +56060,7 @@ uint64_t system_function_7b240(int64_t system_context_ptr,int64_t *system_config
   byte bVar5;
   int64_t system_long_var_f;
   uint8_t *system_context_current_pointer;
-  uint64_t uVar8;
+  uint64_t system_byte_var_8;
   uint8_t uVar9;
   int64_t *psystem_long_var_10;
   int64_t *psystem_long_var_11;
@@ -56177,8 +56177,8 @@ system_label:
       LOCK();
       *(uint8_t* *)((int64_t)psystem_long_var_14 + 0x15) = 4;
       UNLOCK();
-      uVar8 = system_function_7f840(&system_stack_long_var);
-      return uVar8 & 0xffffffffffffff00;
+      system_byte_var_8 = system_function_7f840(&system_stack_long_var);
+      return system_byte_var_8 & 0xffffffffffffff00;
     }
   }
   else {
@@ -56827,7 +56827,7 @@ void system_function_7bbb0(int64_t system_context_ptr,int64_t system_config_flag
 
 
 
-void system_function_7c490(int64_t *system_context_ptr,byte system_config_flags,int64_t *system_thread_count,int64_t *system_memory_size,char param_5)
+void system_function_7c490(int64_t *system_context_ptr,byte system_config_flags,int64_t *system_thread_count,int64_t *system_memory_size,char system_context_parameter)
 
 {
   char *pstatus_flag;
@@ -56880,7 +56880,7 @@ void system_function_7c490(int64_t *system_context_ptr,byte system_config_flags,
   else {
     (**(code **)((void* *)*system_context_ptr + 0x28))(system_context_ptr);
   }
-  if (param_5 == '\0') {
+  if (system_context_parameter == '\0') {
     system_global_context_handle = *(int64_t **)(system_context_ptr[0x15] + 0x88);
     pcVar5 = *(code **)(*system_global_context_handle + 0x70);
     pcStack_f0 = (code *)&system_data_ptr;
@@ -58101,7 +58101,7 @@ void system_function_7e5b0(int64_t system_context_ptr,int64_t *system_config_fla
   int system_context_int_var_e;
   int iVar6;
   int64_t system_long_var_g;
-  uint64_t uVar8;
+  uint64_t system_byte_var_8;
   uint64_t uVar9;
   uint8_t uVar10;
   
@@ -58144,14 +58144,14 @@ void system_function_7e5b0(int64_t system_context_ptr,int64_t *system_config_fla
   *system_byte_pointer_c = system_uint_var_a;
   system_config_flags[1] = system_config_flags[1] + 4;
   system_function_18063a180(system_config_flags,*(uint8_t *)(system_context_ptr + 0x90),(int64_t)*(int *)(system_context_ptr + 0x88) * 0xc);
-  uVar8 = (uint64_t)*(ushort *)(system_context_ptr + 0xc0);
-  uVar9 = uVar8 * 4 + 4;
+  system_byte_var_8 = (uint64_t)*(ushort *)(system_context_ptr + 0xc0);
+  uVar9 = system_byte_var_8 * 4 + 4;
   system_long_var_g = system_config_flags[2];
   system_byte_pointer_c = (uint32_t* *)system_config_flags[1];
   system_long_var_d = *system_config_flags;
   if ((uint64_t)((system_long_var_d - (int64_t)system_byte_pointer_c) + system_long_var_g) <= uVar9) {
     system_function_180639bf0(system_config_flags,(int64_t)system_byte_pointer_c + (uVar9 - system_long_var_d));
-    uVar8 = (uint64_t)*(ushort *)(system_context_ptr + 0xc0);
+    system_byte_var_8 = (uint64_t)*(ushort *)(system_context_ptr + 0xc0);
     system_long_var_g = system_config_flags[2];
     system_byte_pointer_c = (uint32_t* *)system_config_flags[1];
     system_long_var_d = *system_config_flags;
@@ -58160,7 +58160,7 @@ void system_function_7e5b0(int64_t system_context_ptr,int64_t *system_config_fla
     system_function_180639bf0(system_config_flags,(int64_t)system_byte_pointer_c + (4 - system_long_var_d));
     system_byte_pointer_c = (uint32_t* *)system_config_flags[1];
   }
-  *system_byte_pointer_c = (int)uVar8;
+  *system_byte_pointer_c = (int)system_byte_var_8;
   system_config_flags[1] = system_config_flags[1] + 4;
   system_function_18063a180(system_config_flags,*(uint8_t *)(system_context_ptr + 0xb8),(uint64_t)*(ushort *)(system_context_ptr + 0xc0) << 2)
   ;
@@ -58472,7 +58472,7 @@ void system_function_7ee70(int64_t system_context_ptr)
   uint system_uint_var_e;
   uint system_uint_var_f;
   int system_int_var;
-  uint uVar8;
+  uint system_byte_var_8;
   int64_t lVar9;
   int64_t system_long_var;
   uint64_t uVar11;
@@ -58502,12 +58502,12 @@ void system_function_7ee70(int64_t system_context_ptr)
           system_uint_var_b = *(uint *)(*(int64_t *)(system_context_ptr + 0x2d0) + 0x18);
           system_uint_var_e = (uint)uVar13;
           if (system_uint_var_e == system_uint_var_f + system_int_var >> 0xb) {
-            uVar8 = system_uint_var_b >> 0xb;
-            if (uVar8 == system_uint_var_b + system_uint_var_f >> 0xb) {
+            system_byte_var_8 = system_uint_var_b >> 0xb;
+            if (system_byte_var_8 == system_uint_var_b + system_uint_var_f >> 0xb) {
                     // WARNING: Subroutine does not return
               memcpy(*(int64_t *)(lVar9 + 8 + uVar13 * 8) + (uint64_t)(system_int_var + system_uint_var_e * -0x800) * 8
-                     ,*(int64_t *)(system_long_var + 8 + (uint64_t)uVar8 * 8) +
-                      (uint64_t)(system_uint_var_b + uVar8 * -0x800) * 8,(int64_t)(int)system_uint_var_f << 3);
+                     ,*(int64_t *)(system_long_var + 8 + (uint64_t)system_byte_var_8 * 8) +
+                      (uint64_t)(system_uint_var_b + system_byte_var_8 * -0x800) * 8,(int64_t)(int)system_uint_var_f << 3);
             }
           }
           if (0 < (int)system_uint_var_f) {
@@ -58688,7 +58688,7 @@ void system_function_7ef9a(int64_t system_context_ptr,int64_t system_config_flag
   uint uVar7;
   int64_t unaff_RBX;
   uint32_t* unaff_EBP;
-  uint64_t uVar8;
+  uint64_t system_byte_var_8;
   uint64_t uVar9;
   int64_t system_long_var;
   
@@ -58700,7 +58700,7 @@ void system_function_7ef9a(int64_t system_context_ptr,int64_t system_config_flag
   system_config_flags = (int64_t)*(int *)(system_config_flags + 0x910) * 0x488 + system_config_flags;
   system_uint_var_e = system_function_80480(system_config_flags,*(uint32_t* *)(system_context_ptr + 0x14));
   system_int_var = (int)system_uint_var_e;
-  uVar8 = system_uint_var_e & 0xffffffff;
+  system_byte_var_8 = system_uint_var_e & 0xffffffff;
   if (-1 < system_int_var) {
     uVar9 = system_uint_var_e >> 0xb & 0x1fffff;
     system_uint_var_c = *(uint *)(*(int64_t *)(unaff_RBX + 0x2d0) + 0x14);
@@ -58718,11 +58718,11 @@ void system_function_7ef9a(int64_t system_context_ptr,int64_t system_config_flag
     }
     if (0 < (int)system_uint_var_c) {
       do {
-        system_int_var = (int)uVar8;
+        system_int_var = (int)system_byte_var_8;
         uVar7 = (system_uint_var_a - system_int_var) + system_int_var;
         system_uint_var_c = uVar7 >> 0xb;
-        uVar9 = uVar8 >> 0xb;
-        uVar8 = (uint64_t)(system_int_var + 1);
+        uVar9 = system_byte_var_8 >> 0xb;
+        system_byte_var_8 = (uint64_t)(system_int_var + 1);
         *(uint8_t *)
          (*(int64_t *)(system_config_flags + 8 + uVar9 * 8) +
          (uint64_t)(uint)(system_int_var + (int)uVar9 * -0x800) * 8) =
@@ -61381,7 +61381,7 @@ uint8_t system_function_1807797e0(int64_t system_context_ptr,uint system_config_
   int system_context_int_var_e;
   uint system_uint_var_f;
   uint64_t uVar7;
-  uint64_t uVar8;
+  uint64_t system_byte_var_8;
   uint uVar9;
   uint uVar10;
   int64_t system_long_var;
@@ -61398,7 +61398,7 @@ uint8_t system_function_1807797e0(int64_t system_context_ptr,uint system_config_
   float fVar22;
   uint32_t* system_stack_uint_var_x;
   
-  uVar8 = (uint64_t)system_config_flags;
+  system_byte_var_8 = (uint64_t)system_config_flags;
   system_stack_uint_var_x = 1;
   system_context_int_var_e = 1 << ((byte)system_config_flags & 0x1f);
   system_uint_var_f = system_context_int_var_e / 2;
@@ -61552,8 +61552,8 @@ uint8_t system_function_1807797e0(int64_t system_context_ptr,uint system_config_
       }
       system_stack_uint_var_x = system_stack_uint_var_x * 2;
       system_uint_var_f = system_uint_var_f >> 1;
-      uVar8 = uVar8 - 1;
-    } while (uVar8 != 0);
+      system_byte_var_8 = system_byte_var_8 - 1;
+    } while (system_byte_var_8 != 0);
   }
   return 0;
 }
@@ -61570,7 +61570,7 @@ uint8_t system_function_180779832(uint8_t system_context_ptr,uint8_t system_conf
   uint64_t system_uint_var_e;
   uint64_t system_uint_var_f;
   uint uVar7;
-  uint uVar8;
+  uint system_byte_var_8;
   int64_t lVar9;
   int system_int_var;
   int system_int_var;
@@ -61600,9 +61600,9 @@ uint8_t system_function_180779832(uint8_t system_context_ptr,uint8_t system_conf
         uVar12 = unaff_R13D;
         if (unaff_R13D != 0) {
           do {
-            uVar8 = (uint)system_uint_var_e;
+            system_byte_var_8 = (uint)system_uint_var_e;
             system_uint_var_e = system_uint_var_e >> 1;
-            uVar7 = uVar7 * 2 | uVar8 & 1;
+            uVar7 = uVar7 * 2 | system_byte_var_8 & 1;
             uVar12 = uVar12 - 1;
           } while (uVar12 != 0);
         }
@@ -61612,17 +61612,17 @@ uint8_t system_function_180779832(uint8_t system_context_ptr,uint8_t system_conf
         }
         uVar12 = uVar12 & 0x7fff;
         system_uint_var_e = (uint64_t)uVar12;
-        uVar8 = uVar12 >> 0xd;
+        system_byte_var_8 = uVar12 >> 0xd;
         if (uVar12 >> 0xd == 0) {
           fVar20 = *(float *)(in_R11 + 0x4cc + system_uint_var_e * 4);
         }
-        else if (uVar8 == 1) {
+        else if (system_byte_var_8 == 1) {
           fVar20 = -*(float *)(in_R11 + (0x4132 - (uint64_t)uVar12) * 4);
         }
-        else if (uVar8 == 2) {
+        else if (system_byte_var_8 == 2) {
           fVar20 = -*(float *)(in_R11 + -0xfb34 + system_uint_var_e * 4);
         }
-        else if (uVar8 == 3) {
+        else if (system_byte_var_8 == 3) {
           fVar20 = *(float *)(in_R11 + (0x8132 - system_uint_var_e) * 4);
         }
         else {
