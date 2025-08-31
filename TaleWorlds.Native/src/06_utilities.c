@@ -259,30 +259,6 @@ uint64_t utility_resource_data_processor(void)
   return UTILITY_ZERO;
 }
 
-/**
- * @brief 获取内存使用情况 - 监控系统内存使用状态
- *
- * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
- *
- * @return uint32_t 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
- */
-uint32_t utility_get_memory_usage(void)
-{
-  return UTILITY_ZERO;
-}
-
-/**
- * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64_t 上下文管理结果状态码
- *
- * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
- *
- * 简化实现：提供基本的上下文管理功能。
- */
-uint64_t utility_context_manager(void)
-{
-  return UTILITY_ZERO;
-}
 
 
 /**
@@ -295,7 +271,7 @@ uint64_t utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 uint64_t utility_resource_data_processor_duplicate(void)
-{{
+{
   uint64_t utility_result;
   int64_t utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
@@ -15773,7 +15749,6 @@ uint32_t utility_get_memory_usage(void)
  * 简化实现：提供基本的上下文管理功能。
  */
 uint64_t utility_context_manager(void)
-uint32_t utility_get_memory_usage_extended(void)
 {
   return UTILITY_ZERO;
 }
