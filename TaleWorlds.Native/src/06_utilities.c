@@ -177,11 +177,11 @@ void utility_memory_cleanup_handler(void)
 }
 
 /**
- * @brief 处理资源数据
- * @param utility_resource_primary_handle 主要资源句柄
+ * @brief 处理系统资源数据
+ * @param resource_handle 资源句柄
  * @return uint64 操作结果状态码
  *
- * 该函数负责处理系统资源数据，包括：
+ * 处理系统资源数据，包括：
  * - 执行系统内存操作
  * - 验证操作结果状态
  * - 返回处理结果
@@ -237,11 +237,11 @@ uint64 utility_resource_data_processor(void)
 }
 
 /**
- * @brief 获取内存使用情况 - 监控系统内存使用状态
+ * @brief 获取系统内存使用状态
+ * @return uint32 内存使用状态码
  *
- * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
- *
- * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
+ * 获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
+ * 返回UTILITY_ERROR_GENERAL表示错误，其他值表示正常状态。
  */
 uint32 utility_get_memory_usage(void)
 {
