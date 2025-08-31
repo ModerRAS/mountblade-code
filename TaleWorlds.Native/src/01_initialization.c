@@ -63944,9 +63944,9 @@ longlong *system_memory_pool_pointer;
 #define SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Y      0xa2    // 边界最大Y索引
 #define SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_Z      0xa010    // 边界最大Z索引
 #define SYSTEM_INIT_CONTEXT_INDEX_BOUND_MAX_W      SYSTEM_INIT_OFFSET_STACK_A4    // 边界最大W索引
-#define SYSTEM_INIT_CONTEXT_INDEX_CENTER_X         0xa5    // 中心X索引
-#define SYSTEM_INIT_CONTEXT_INDEX_CENTER_Y         0xa6    // 中心Y索引
-#define SYSTEM_INIT_CONTEXT_INDEX_CENTER_Z         0xa7    // 中心Z索引
+#define SYSTEM_INIT_CONTEXT_INDEX_CENTER_X         SYSTEM_INIT_CONTEXT_INDEX_CENTER_X    // 中心X索引
+#define SYSTEM_INIT_CONTEXT_INDEX_CENTER_Y         SYSTEM_INIT_CONTEXT_INDEX_CENTER_Y    // 中心Y索引
+#define SYSTEM_INIT_CONTEXT_INDEX_CENTER_Z         SYSTEM_INIT_CONTEXT_INDEX_CENTER_Z    // 中心Z索引
 #define SYSTEM_INIT_CONTEXT_INDEX_RADIUS           0xa9    // 半径索引
 // 系统初始化硬编码值语义化常量（2025年8月30日最终批次最新完成）
 #define SYSTEM_INIT_MUTEX_PRIORITY_MEDIUM      2       // 中等互斥锁优先级
@@ -63980,7 +63980,7 @@ longlong *system_memory_pool_pointer;
 #define SYSTEM_INIT_OFFSET_STACK_7A8          0x7a8    // 栈偏移量7A8
 #define SYSTEM_INIT_OFFSET_STACK_9F8          0x9f8    // 栈偏移量9F8
 #define SYSTEM_INIT_OFFSET_STACK_A28          0xa28    // 栈偏移量A28
-#define SYSTEM_INIT_OFFSET_STACK_ASYSTEM_INIT_SIZE_STANDARD0          0xa0100    // 栈偏移量ASYSTEM_INIT_SIZE_STANDARD0
+#define SYSTEM_INIT_OFFSET_STACK_A100          0xa0100    // 栈偏移量A100
 #define SYSTEM_INIT_OFFSET_STACK_A108          0xa0108    // 栈偏移量A108
 #define SYSTEM_INIT_OFFSET_STACK_A90          0xa90    // 栈偏移量A90
 #define SYSTEM_INIT_OFFSET_STACK_56           0x56     // 栈偏移量56
