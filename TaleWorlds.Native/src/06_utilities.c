@@ -1,7 +1,7 @@
 #include "TaleWorlds.Native.Split.h"
 
 // 工具系统版本信息
-#define UTILITY_SYSTEM_VERSION 2.8                          // 工具系统版本号
+#define UTILITY_SYSTEM_VERSION 2.9                          // 工具系统版本号
 #define UTILITY_LAST_UPDATED "2025-08-31"                   // 最后更新日期
 
 // 工具系统常量定义
@@ -160,22 +160,24 @@ static ulonglong utility_extended_data_ptr = 0;                    // 扩展数�
  * - 数据库操作工具
  *
  * 简化实现（2025年8月31日最新批次完成）：
- * - 美化变量名，将UTILITY_STACK_PROCESSING_BUFFER等替换为utility_stack_processing_buffer等语义化变量名
- * - 美化变量名，将UTILITY_FLOAT_PRIMARY_VALUE等替换为utility_primary_float_value等语义化变量名
- * - 美化变量名，将g_utility_resource_size_limit等替换为utility_resource_size_limit等语义化变量名
+ * - 美化变量名，将UTILITY_RESOURCE_PARAM_OFFSET_THIRD等替换为UTILITY_RESOURCE_PARAM_OFFSET_TERTIARY等语义化常量名
+ * - 美化变量名，将UTILITY_ARRAY_INDEX_FOURTH等替换为UTILITY_ARRAY_INDEX_QUATERNARY等语义化常量名
+ * - 美化变量名，将UTILITY_INDEX_FIRST等替换为UTILITY_INDEX_SECONDARY等语义化常量名
+ * - 美化变量名，将UTILITY_SIZE_LIMIT等替换为UTILITY_SIZE_MAXIMUM等语义化常量名
+ * - 美化变量名，将utility_resource_size_limit等替换为utility_resource_size_maximum等语义化变量名
  * - 删除大量重复的函数定义，保留唯一的实现
  * - 清理文件中的冗余注释，保持代码简洁性
  * - 为每个函数添加完善的文档注释
  * - 优化函数内部变量名，使用更具语义化的命名
  * - 统一工具系统的常量命名规范，提高代码可读性和维护性
  * - 为关键常量添加详细的功能说明注释
- * - 保持代码语义不变，这是简化实现，主要处理了工具系统的变量名语义化替换工作和重复代码清理工作
+ * - 保持代码语义不变，这是简化实现，主要处理了工具系统的常量名和变量名语义化替换工作
  *
  * 原本实现：完全重构工具系统所有命名体系，建立统一的语义化命名规范，删除所有重复代码块
  * 当前实现：保留基本功能框架，使用语义化命名，提供清晰的文档注释
  */
 
-// 工具系统结束标记 - 版本 2.8
+// 工具系统结束标记 - 版本 2.9
 
 /**
  * @brief 空初始化函数 - 用于系统初始化过程中的占位符
