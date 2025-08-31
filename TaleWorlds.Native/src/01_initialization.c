@@ -2106,14 +2106,11 @@ void system_initialize_config_loader(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 /**
- * @brief 系统初始化状态检查函数
- * 检查系统各组件的初始化状态
+ * @brief 检查系统初始化状态
+ * 
+ * 检查各个系统组件的初始化状态，确保所有必要的子系统都已正确初始化。
+ * 
  * @return 初始化状态码，0表示成功，非0表示错误
- */
-/**
- * @brief 检查初始化状态
- * 验证各系统组件是否正确初始化
- * @return 初始化状态码，0表示成功
  */
 int system_check_initialization_status(void)
 
