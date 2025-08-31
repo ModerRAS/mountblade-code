@@ -3,7 +3,7 @@
 /*
  * 01_initialization.c - 系统初始化模块
  * 
- * 简化实现：美化system_function_函数名、system_data_数据变量、system_unknown_未知变量和undefined类型，添加详细文档注释
+ * 简化实现：清理重复声明，美化剩余变量名
  * 原本实现：完全重构所有命名体系，建立统一的语义化命名规范
  */
 
@@ -196,7 +196,6 @@ char resource_system_ready;
 char network_system_ready;
 void *system_memory_config_ptr;
 void *system_thread_config_ptr;
-void *system_resource_config_ptr;
 void *system_network_config_ptr;
 void *system_graphics_config_ptr;
 void *system_audio_flag;
@@ -254,7 +253,6 @@ void *system_network_context_ptr;
 void *system_network_state_ptr;
 void *system_network_thread_ptr;
 void *system_network_memory_ptr;
-void *system_network_config_ptr;
 void *system_network_graphics_ptr;
 char system_network_flag;
 void *system_graphics_config_flag;
@@ -285,7 +283,6 @@ void *system_graphics_state_manager_ptr;
 
 // 函数: void *system_initialize_filesystem;
 void *system_initialize_filesystem;
-void *system_filesystem_manager_ptr;
 void *system_filesystem_handler_ptr;
 void *system_filesystem_context_ptr;
 void *system_filesystem_flag;
@@ -317,7 +314,6 @@ void *system_unknown_180a06950;
 void *system_unknown_180a069b0;
 void *system_unknown_180a069c0;
 void *system_unknown_180a071f8;
-char system_error_flag;
 void *system_unknown_180a069e8;
 void *system_unknown_180a06be0;
 void *system_data_18098c090;
@@ -1317,7 +1313,7 @@ int system_setup_resource_caches(void)
   longlong lVar1;
   
   _system_data_180c91900 = CreateSemaphoreW(0,1,0x7fffffff,0,0xfffffffffffffffe);
-  lVar1 = system_register_memory_pool(FUN_1809417a0);
+  lVar1 = system_register_memory_pool(system_resource_cache_register);
   return (lVar1 != 0) - 1;
 }
 
@@ -1429,7 +1425,7 @@ int system_initialize_network_system(uint64_t param_1,uint64_t param_2,uint64_t 
   longlong lVar1;
   
   _Mtx_init_in_situ(0x180c91910,2,param_3,param_4,0xfffffffffffffffe);
-  lVar1 = system_register_memory_pool(FUN_1809417c0);
+  lVar1 = system_register_memory_pool(system_thread_pool_register);
   return (lVar1 != 0) - 1;
 }
 
@@ -1828,7 +1824,7 @@ void system_initialize_shader_system(void)
   system_context_ptr = (longlong *)system_get_global_context();
   system_data_ptr = (uint64_t *)*system_context_ptr;
   system_status_flag = *(char *)((longlong)system_data_ptr[1] + 0x19);
-  system_allocator_ptr = FUN_18025d510;
+  system_allocator_ptr = system_graphics_initializer;
   system_parent_ptr = system_data_ptr;
   system_node_ptr = (uint64_t *)system_data_ptr[1];
   while (system_status_flag == '\0') {
@@ -5782,7 +5778,7 @@ void system_function_034c40(void)
   system_context_ptr = (longlong *)system_get_global_context();
   system_data_ptr = (uint64_t *)*system_context_ptr;
   system_status_flag = *(char *)((longlong)system_data_ptr[1] + 0x19);
-  system_allocator_ptr = FUN_18025d510;
+  system_allocator_ptr = system_graphics_initializer;
   system_parent_ptr = system_data_ptr;
   system_node_ptr = (uint64_t *)system_data_ptr[1];
   while (system_status_flag == '\0') {
@@ -6732,7 +6728,7 @@ void system_function_035f50(void)
   system_context_ptr = (longlong *)system_get_global_context();
   system_data_ptr = (uint64_t *)*system_context_ptr;
   system_status_flag = *(char *)((longlong)system_data_ptr[1] + 0x19);
-  system_allocator_ptr = FUN_18025d510;
+  system_allocator_ptr = system_graphics_initializer;
   system_parent_ptr = system_data_ptr;
   system_node_ptr = (uint64_t *)system_data_ptr[1];
   while (system_status_flag == '\0') {
@@ -13637,7 +13633,7 @@ void system_function_040be0(void)
   system_context_ptr = (longlong *)system_get_global_context();
   system_data_ptr = (uint64_t *)*system_context_ptr;
   system_status_flag = *(char *)((longlong)system_data_ptr[1] + 0x19);
-  system_allocator_ptr = FUN_18025d510;
+  system_allocator_ptr = system_graphics_initializer;
   system_parent_ptr = system_data_ptr;
   system_node_ptr = (uint64_t *)system_data_ptr[1];
   while (system_status_flag == '\0') {
@@ -14275,9 +14271,9 @@ int system_function_0418e0(void)
 {
   longlong lVar1;
   
-  system_create_memory_pool(&network_status_ptr,8,5,&resource_loader_callback,FUN_180045af0);
-  system_create_memory_pool(0x180c96248,8,5,&resource_loader_callback,FUN_180045af0);
-  system_create_memory_pool(0x180c96298,8,5,&resource_loader_callback,FUN_180045af0);
+  system_create_memory_pool(&network_status_ptr,8,5,&resource_loader_callback,system_resource_loader_callback);
+  system_create_memory_pool(0x180c96248,8,5,&resource_loader_callback,system_resource_loader_callback);
+  system_create_memory_pool(0x180c96298,8,5,&resource_loader_callback,system_resource_loader_callback);
   _Mtx_init_in_situ(0x180c962c0,2);
   _system_data_180c96310 = 0;
   _system_data_180c96318 = 0;
@@ -14291,7 +14287,7 @@ int system_function_0418e0(void)
   uRam0000000180c96358 = 0;
   _system_data_180c96360 = 0;
   _system_data_180c96368 = 3;
-  FUN_1804ac640();
+  system_audio_initializer();
   lVar1 = system_register_memory_pool(&graphics_renderer_callback);
   return (lVar1 != 0) - 1;
 }
@@ -14538,7 +14534,7 @@ int system_function_041fa0(uint64_t param_1,uint64_t param_2,uint64_t param_3,ui
   longlong lVar1;
   
   _Mtx_init_in_situ(0x180c96690,2,param_3,param_4,0xfffffffffffffffe);
-  lVar1 = system_register_memory_pool(FUN_180943070);
+  lVar1 = system_register_memory_pool(system_input_manager_register);
   return (lVar1 != 0) - 1;
 }
 
@@ -15636,7 +15632,7 @@ int system_function_043580(void)
 {
   longlong lVar1;
   
-  FUN_180629770();
+  system_network_initializer();
   lVar1 = system_register_memory_pool(&system_unknown_180943130);
   return (lVar1 != 0) - 1;
 }
@@ -15649,7 +15645,7 @@ int system_function_0435a0(uint64_t param_1,uint64_t param_2,uint64_t param_3,ui
   longlong lVar1;
   
   _Mtx_init_in_situ(0x180c966f0,2,param_3,param_4,0xfffffffffffffffe);
-  lVar1 = system_register_memory_pool(FUN_180943140);
+  lVar1 = system_register_memory_pool(system_physics_manager_register);
   return (lVar1 != 0) - 1;
 }
 
@@ -15661,7 +15657,7 @@ int system_function_0435e0(uint64_t param_1,uint64_t param_2,uint64_t param_3,ui
   longlong lVar1;
   
   _Mtx_init_in_situ(0x180c96740,2,param_3,param_4,0xfffffffffffffffe);
-  lVar1 = system_register_memory_pool(FUN_180943160);
+  lVar1 = system_register_memory_pool(system_ui_manager_register);
   return (lVar1 != 0) - 1;
 }
 
@@ -15680,7 +15676,7 @@ int system_function_043610(void)
   _system_data_180c967a0 = 0;
   _system_data_180c967a8 = 0;
   _system_data_180c967b0 = 0;
-  lVar1 = system_register_memory_pool(FUN_180943180);
+  lVar1 = system_register_memory_pool(system_animation_manager_register);
   return (lVar1 != 0) - 1;
 }
 
@@ -15712,7 +15708,7 @@ void system_function_043690(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-uint64_t FUN_180043720(void)
+uint64_t system_script_engine_initializer(void)
 
 {
   longlong lVar1;
@@ -15743,7 +15739,7 @@ uint64_t FUN_180043720(void)
   *piVar2 = 0;
   *(int **)(lVar1 + 0x50) = piVar2;
 LAB_1808fd14a:
-  *(code **)(piVar2 + (longlong)*piVar2 * 2 + 4) = FUN_1809431a0;
+  *(code **)(piVar2 + (longlong)*piVar2 * 2 + 4) = system_script_manager_register;
   *piVar2 = *piVar2 + 1;
   return 0;
 }
@@ -16419,7 +16415,7 @@ void system_function_044dc0(uint64_t param_1,longlong param_2)
   
   uStack_58 = 0xfffffffffffffffe;
   uVar5 = FUN_180043f90();
-  FUN_180629770();
+  system_network_initializer();
   plVar6 = (longlong *)FUN_18062b1e0(_system_data_180c8ed18,0x68,8,3);
   pplVar1 = (longlong **)(plVar6 + 1);
   plStackX_10 = plVar6;
@@ -20692,8 +20688,8 @@ void system_function_04bb00(longlong param_1,uint64_t param_2,uint64_t param_3,u
 
 
 
-// 函数: void system_function_04bb30(longlong param_1)
-void system_function_04bb30(longlong param_1)
+// 函数: void system_cleanup_resource_manager(longlong param_1)
+void system_cleanup_resource_manager(longlong param_1)
 
 {
   FUN_180057010(param_1 + 0x60);
@@ -28361,8 +28357,8 @@ void system_function_058c16(void)
 
 
 
-// 函数: void system_function_058c20(longlong param_1)
-void system_function_058c20(longlong param_1)
+// 函数: void system_cleanup_memory_manager(longlong param_1)
+void system_cleanup_memory_manager(longlong param_1)
 
 {
   FUN_1800591c0();
@@ -52956,7 +52952,7 @@ uint64_t * FUN_1800784e0(uint64_t *param_1,ulonglong param_2)
   uVar1 = 0xfffffffffffffffe;
   *param_1 = &system_filesystem_context_ptr;
   FUN_180078550();
-  FUN_1808fc8a8(param_1 + 1,8,7,FUN_180045af0,uVar1);
+  FUN_1808fc8a8(param_1 + 1,8,7,system_resource_loader_callback,uVar1);
   if ((param_2 & 1) != 0) {
     free(param_1,0x158);
   }
@@ -62498,30 +62494,30 @@ uint64_t system_cleanup_final(void)
 
 
 
-// 函数: void *system_function_058c20;
-void *system_function_058c20;
+// 函数: void *system_cleanup_memory_manager;
+void *system_cleanup_memory_manager;
 
-// 函数: void *system_function_04bb30;
-void *system_function_04bb30;
-void *system_data_180d49830;
-uint64_t system_unknown_180d498a0;
-uint32_t system_unknown_180d498a8;
-void **system_unknown_180d498b0;
-uint8_t *system_unknown_180d498b8;
-uint32_t system_unknown_180d498c0;
-longlong system_unknown_180d49908;
-longlong system_unknown_180d49910;
-longlong system_unknown_180d49928;
-longlong system_unknown_180d49930;
-uint32_t system_unknown_180d49948;
-uint32_t system_unknown_180d4994c;
-void *system_data_180d49950;
-void *system_data_180d49970;
-void *system_data_180bfc140;
-void *system_data_1803f48b2;
-void *system_unknown_180d49d58;
-longlong system_unknown_180d49d68;
-uint64_t system_unknown_180d49d70;
-longlong system_unknown_180d49d78;
-longlong *system_unknown_180c96358;
+// 函数: void *system_cleanup_resource_manager;
+void *system_cleanup_resource_manager;
+void *system_memory_pool_handle;
+uint64_t system_memory_pool_size;
+uint32_t system_memory_pool_flags;
+void **system_memory_pool_table;
+uint8_t *system_memory_pool_status;
+uint32_t system_memory_pool_index;
+longlong system_resource_offset;
+longlong system_resource_size;
+longlong system_resource_alignment;
+longlong system_resource_flags;
+uint32_t system_resource_type;
+uint32_t system_resource_count;
+void *system_resource_handler;
+void *system_resource_cache;
+void *system_resource_database;
+void *system_resource_config;
+void *system_cleanup_context;
+longlong system_cleanup_status;
+uint64_t system_cleanup_flags;
+longlong system_cleanup_handler;
+longlong *system_cleanup_table;
 
