@@ -317,13 +317,13 @@ uint64 utility_execute_resource_management_command(longlong utility_resource_pri
       utility_counter = *(uint *)(*(longlong *)(utility_resource_context_handle + utility_offset_ptr_primary) + UTILITY_SIZE_FIELD_OFFSET);
       utility_counter = utility_counter >> UTILITY_QUAD_COUNT;
       if ((utility_counter & (UTILITY_UNIT << UTILITY_BIT_MASK)) == UTILITY_ZERO) {
-        if ((((utility_counter >> UTILITY_SIZE_MULTIPLIER & (UTILITY_UNIT << UTILITY_BIT_MASK)) != UTILITY_ZERO) && (utility_temp_security_var = (int)utility_float_value, utility_temp_integer_var != -UTILITY_INTEGER_MIN)) &&
-           ((float)utility_temp_integer_var != utility_float_value)) {
+        if ((((utility_counter >> UTILITY_SIZE_MULTIPLIER & (UTILITY_UNIT << UTILITY_BIT_MASK)) != UTILITY_ZERO) && (utility_temp_security_token = (int)utility_float_value, utility_temp_integer_value != -UTILITY_INTEGER_MIN)) &&
+           ((float)utility_temp_integer_value != utility_float_value)) {
           utility_float_buffer.utility_float_component_high = utility_float_value;
           utility_float_buffer.utility_float_component_low = utility_float_value;
           utility_float_buffer.int_part = UTILITY_ZERO;
           utility_counter = movmskps(utility_counter,utility_float_buffer);
-          utility_float_value = (float)(int)(utility_temp_integer_var - (utility_counter & (UTILITY_UNIT << UTILITY_BIT_MASK)));
+          utility_float_value = (float)(int)(utility_temp_integer_value - (utility_counter & (UTILITY_UNIT << UTILITY_BIT_MASK)));
         }
         utility_float_value = (float)calc_resource_data_size(*(longlong *)(utility_resource_context_handle + utility_offset_ptr_primary),utility_float_value);
         if (((*(char *)(utility_resource_context_handle + UTILITY_SIZE_FIELD_OFFSET) == UTILITY_CHAR_NULL) ||
@@ -1469,13 +1469,13 @@ uint64 utility_get_file_position(longlong utility_resource_primary_handle)
       utility_counter = *(uint *)(*(longlong *)(utility_resource_context_handle + utility_offset_ptr_primary) + UTILITY_SIZE_FIELD_OFFSET);
       utility_counter = utility_counter >> UTILITY_QUAD_COUNT;
       if ((utility_counter & (UTILITY_UNIT << UTILITY_BIT_MASK)) == UTILITY_ZERO) {
-        if ((((utility_counter >> UTILITY_SIZE_MULTIPLIER & (UTILITY_UNIT << UTILITY_BIT_MASK)) != UTILITY_ZERO) && (utility_temp_security_var = (int)utility_float_value, utility_temp_integer_var != -UTILITY_INTEGER_MIN)) &&
-           ((float)utility_temp_integer_var != utility_float_value)) {
+        if ((((utility_counter >> UTILITY_SIZE_MULTIPLIER & (UTILITY_UNIT << UTILITY_BIT_MASK)) != UTILITY_ZERO) && (utility_temp_security_token = (int)utility_float_value, utility_temp_integer_value != -UTILITY_INTEGER_MIN)) &&
+           ((float)utility_temp_integer_value != utility_float_value)) {
           utility_float_buffer.utility_float_component_high = utility_float_value;
           utility_float_buffer.utility_float_component_low = utility_float_value;
           utility_float_buffer.int_part = UTILITY_ZERO;
           utility_counter = movmskps(utility_counter,utility_float_buffer);
-          utility_float_value = (float)(int)(utility_temp_integer_var - (utility_counter & (UTILITY_UNIT << UTILITY_BIT_MASK)));
+          utility_float_value = (float)(int)(utility_temp_integer_value - (utility_counter & (UTILITY_UNIT << UTILITY_BIT_MASK)));
         }
         utility_float_value = (float)calc_resource_data_size(*(longlong *)(utility_resource_context_handle + utility_offset_ptr_primary),utility_float_value);
         if (((*(char *)(utility_resource_context_handle + UTILITY_SIZE_FIELD_OFFSET) == UTILITY_CHAR_NULL) ||
@@ -2499,12 +2499,12 @@ void utility_execute_resource_command(longlong utility_resource_primary_handle,l
   int utility_result;
   longlong utility_buffer_index_var;
   longlong *utility_long_pointer_buffer_var;
-ulonglong utility_temp_int_var;
+ulonglong utility_temp_int_value;
   byte utility_local_security_buffer_var [UTILITY_STRUCTURE_SIZE_MEDIUM];
   longlong utility_local_stack_position_var;
   byte utility_encryption_data_var [utility_encryption_data_var_size_standard];
   ulonglong utility_temporary_storage_size;
-  utility_temp_security_var = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer_var;
+  utility_temp_security_token = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer_var;
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + utility_data_offset),&utility_stack_data_ptr);
   if (utility_result == UTILITY_ZERO) {
     if (utility_stack_data_ptr != UTILITY_ZERO) {
@@ -2526,7 +2526,7 @@ ulonglong utility_temp_int_var;
     }
   }
       
-  execute_security_validation(utility_temp_integer_var ^ (ulonglong)utility_local_security_buffer_var);
+  execute_security_validation(utility_temp_integer_value ^ (ulonglong)utility_local_security_buffer_var);
 }
 void utility_handle_resource_allocation(longlong *utility_resource_primary_handle,longlong utility_resource_cache)
 {
@@ -2559,7 +2559,7 @@ uint64 utility_validate_resource_transaction(longlong utility_resource_primary_h
   uint32 utility_counter;
   uint32 utility_status_value;
   uint64 utility_state;
-int utility_temp_int_var;
+int utility_temp_int_value;
   int utility_resource_count;
   int utility_status_count;
   int utility_buffer_capacity;
@@ -2573,44 +2573,44 @@ int utility_temp_int_var;
   if ((*(uint *)(utility_resource_primary_handle + utility_pointer_offset) & float_infinity_mask) == float_infinity_mask) {
     utility_buffer_capacity = utility_error_code_timeout;
   }
-  utility_temp_security_var = utility_status_count;
+  utility_temp_security_token = utility_status_count;
   if ((*(uint *)(utility_resource_primary_handle + utility_offset_flag) & float_infinity_mask) == float_infinity_mask) {
-    utility_temp_security_var = utility_error_code_timeout;
+    utility_temp_security_token = utility_error_code_timeout;
   }
   utility_resource_count = utility_status_count;
   if ((*(uint *)(utility_resource_primary_handle + utility_offset_resource_ptr) & float_infinity_mask) == float_infinity_mask) {
     utility_resource_count = utility_error_code_timeout;
   }
-  if ((utility_buffer_capacity != UTILITY_ZERO || utility_temp_integer_var != UTILITY_ZERO) || utility_resource_count != UTILITY_ZERO) {
+  if ((utility_buffer_capacity != UTILITY_ZERO || utility_temp_integer_value != UTILITY_ZERO) || utility_resource_count != UTILITY_ZERO) {
     return utility_error_code_failed;
   }
   utility_buffer_capacity = UTILITY_ZERO;
   if ((*(uint *)(utility_resource_primary_handle + utility_offset_padding) & float_infinity_mask) == float_infinity_mask) {
     utility_status_count = utility_error_code_timeout;
   }
-  utility_temp_security_var = utility_buffer_capacity;
+  utility_temp_security_token = utility_buffer_capacity;
   if ((*(uint *)(utility_resource_primary_handle + utility_secondary_byte_offset) & float_infinity_mask) == float_infinity_mask) {
-    utility_temp_security_var = utility_error_code_timeout;
+    utility_temp_security_token = utility_error_code_timeout;
   }
   utility_resource_count = utility_buffer_capacity;
   if ((*(uint *)(utility_resource_primary_handle + utility_field_offset) & float_infinity_mask) == float_infinity_mask) {
     utility_resource_count = utility_error_code_timeout;
   }
-  if ((utility_status_count != UTILITY_ZERO || utility_temp_integer_var != UTILITY_ZERO) || utility_resource_count != UTILITY_ZERO) {
+  if ((utility_status_count != UTILITY_ZERO || utility_temp_integer_value != UTILITY_ZERO) || utility_resource_count != UTILITY_ZERO) {
     return utility_error_code_failed;
   }
   utility_status_count = utility_buffer_capacity;
   if ((*(uint *)(utility_resource_primary_handle + utility_offset_structure) & float_infinity_mask) == float_infinity_mask) {
     utility_status_count = utility_error_code_timeout;
   }
-  utility_temp_security_var = utility_buffer_capacity;
+  utility_temp_security_token = utility_buffer_capacity;
   if ((*(uint *)(utility_resource_primary_handle + UTILITY_SIZE_FIELD_OFFSET) & float_infinity_mask) == float_infinity_mask) {
-    utility_temp_security_var = utility_error_code_timeout;
+    utility_temp_security_token = utility_error_code_timeout;
   }
   if (((uint)*(float *)(utility_resource_primary_handle + UTILITY_FIELD_PRIMARY_OFFSET_STANDARD) & float_infinity_mask) == float_infinity_mask) {
     utility_buffer_capacity = utility_error_code_timeout;
   }
-  if ((utility_status_count != UTILITY_ZERO || utility_temp_integer_var != UTILITY_ZERO) || utility_buffer_capacity != UTILITY_ZERO) {
+  if ((utility_status_count != UTILITY_ZERO || utility_temp_integer_value != UTILITY_ZERO) || utility_buffer_capacity != UTILITY_ZERO) {
     return utility_error_code_failed;
   }
   utility_float_value = *(float *)(utility_resource_primary_handle + resource_config_offset);
@@ -2622,14 +2622,14 @@ int utility_temp_int_var;
   if (((uint)utility_float_value & float_infinity_mask) == float_infinity_mask) {
     utility_buffer_capacity = utility_error_code_timeout;
   }
-  utility_temp_security_var = utility_status_count;
+  utility_temp_security_token = utility_status_count;
   if ((utility_stack_buffer_validation & float_infinity_mask) == float_infinity_mask) {
-    utility_temp_security_var = utility_error_code_timeout;
+    utility_temp_security_token = utility_error_code_timeout;
   }
   if (((uint)utility_stack_float_value & float_infinity_mask) == float_infinity_mask) {
     utility_status_count = utility_error_code_timeout;
   }
-  if ((utility_buffer_capacity == UTILITY_ZERO && utility_temp_security_var == UTILITY_ZERO) && utility_status_count == UTILITY_ZERO) {
+  if ((utility_buffer_capacity == UTILITY_ZERO && utility_temp_security_token == UTILITY_ZERO) && utility_status_count == UTILITY_ZERO) {
     if (((*(float *)(utility_resource_primary_handle + UTILITY_FIELD_PRIMARY_OFFSET_STANDARD) == utility_null_pointer) && (*(float *)(utility_resource_primary_handle + UTILITY_SIZE_FIELD_OFFSET) == utility_null_pointer)) &&
        (*(float *)(utility_resource_primary_handle + utility_offset_structure) == utility_null_pointer)) {
       return utility_error_code_failed;
@@ -2706,7 +2706,7 @@ uint64 utility_handle_resource_response(longlong utility_resource_primary_handle
   float utility_float_value;
   longlong utility_data_pointer_primary_extended_main;
   uint64 utility_counter;
-  float utility_temp_float_storage;
+  float utility_temp_float_value;
   longlong utility_temp_stack_buffer [UTILITY_STACK_BUFFER_SIZE];
   utility_system_resource_handle = utility_bit_concat_primary_secondary(utility_system_resource_handle.bit_field_primary_secondary,*(uint *)(utility_resource_primary_handle + utility_pointer_offset));
   if ((*(uint *)(utility_resource_primary_handle + utility_pointer_offset) & float_infinity_mask) == float_infinity_mask) {
@@ -2734,13 +2734,13 @@ uint64 utility_handle_resource_response(longlong utility_resource_primary_handle
         return utility_error_code_failed;
       }
       utility_float_value = *(float *)(utility_resource_primary_handle + utility_pointer_offset);
-      utility_temp_float_storage = *(float *)(utility_data_pointer_primary_extended + utility_offset_structure);
+      utility_temp_float_value = *(float *)(utility_data_pointer_primary_extended + utility_offset_structure);
       if ((*(float *)(utility_data_pointer_primary_extended + utility_offset_structure) <= utility_float_value) &&
-         (utility_temp_float_storage = *(float *)(utility_data_pointer_primary_extended + resource_prop_offset), utility_float_value <= *(float *)(utility_data_pointer_primary_extended + resource_prop_offset))) {
-        utility_temp_float_storage = utility_float_value;
+         (utility_temp_float_value = *(float *)(utility_data_pointer_primary_extended + resource_prop_offset), utility_float_value <= *(float *)(utility_data_pointer_primary_extended + resource_prop_offset))) {
+        utility_temp_float_value = utility_float_value;
       }
-      *(float *)(utility_resource_primary_handle + utility_pointer_offset) = utility_temp_float_storage;
-      *(float *)(utility_system_resource_handle + utility_offset_float) = utility_temp_float_storage;
+      *(float *)(utility_resource_primary_handle + utility_pointer_offset) = utility_temp_float_value;
+      *(float *)(utility_system_resource_handle + utility_offset_float) = utility_temp_float_value;
       
       utility_release_resource_handle(*(uint64 *)(utility_resource_context_handle + utility_offset_resource_ptr),utility_resource_primary_handle);
     }
@@ -2914,7 +2914,7 @@ uint64 utility_analyze_resource_performance(longlong utility_resource_primary_ha
   longlong utility_buffer_index_var;
   uint64 utility_status_value;
   longlong utility_memory_offset;
-  float utility_temp_float_storage;
+  float utility_temp_float_value;
   uint utility_stack_primary [UTILITY_STACK_BUFFER_SIZE];
   longlong utility_stack_temporary_buffer;
   utility_stack_primary[UTILITY_ZERO] = *(uint *)(utility_resource_primary_handle + utility_offset_resource_ptr);
@@ -2943,14 +2943,14 @@ uint64 utility_analyze_resource_performance(longlong utility_resource_primary_ha
     utility_buffer_index_var = *(longlong *)(utility_memory_offset + utility_offset_resource_ptr + (longlong)(int)utility_stack_primary[UTILITY_ZERO] * utility_offset_ptr_primary);
     if ((*(byte *)(utility_buffer_index_var + UTILITY_SIZE_FIELD_OFFSET) & utility_access_flag) == UTILITY_ZERO) {
       utility_float_value = *(float *)(utility_resource_primary_handle + utility_offset_resource_ptr);
-      utility_temp_float_storage = *(float *)(utility_buffer_index_var + utility_offset_structure);
+      utility_temp_float_value = *(float *)(utility_buffer_index_var + utility_offset_structure);
       if ((*(float *)(utility_buffer_index_var + utility_offset_structure) <= utility_float_value) &&
-         (utility_temp_float_storage = *(float *)(utility_buffer_index_var + resource_prop_offset), utility_float_value <= *(float *)(utility_buffer_index_var + resource_prop_offset))) {
-        utility_temp_float_storage = utility_float_value;
+         (utility_temp_float_value = *(float *)(utility_buffer_index_var + resource_prop_offset), utility_float_value <= *(float *)(utility_buffer_index_var + resource_prop_offset))) {
+        utility_temp_float_value = utility_float_value;
       }
-      *(float *)(utility_resource_primary_handle + utility_offset_resource_ptr) = utility_temp_float_storage;
+      *(float *)(utility_resource_primary_handle + utility_offset_resource_ptr) = utility_temp_float_value;
       utility_data_pointer_primary_extended = *(longlong *)(utility_data_pointer_primary_extended + UTILITY_MEMORY_OFFSET_STANDARD);
-      *(float *)(utility_memory_offset + utility_float_count + (longlong)(int)utility_stack_primary[UTILITY_ZERO] * utility_offset_ptr_primary) = utility_temp_float_storage;
+      *(float *)(utility_memory_offset + utility_float_count + (longlong)(int)utility_stack_primary[UTILITY_ZERO] * utility_offset_ptr_primary) = utility_temp_float_value;
       *(uint64 *)(utility_resource_primary_handle + utility_pointer_offset) = *(uint64 *)(utility_data_pointer_primary_extended + (longlong)(int)utility_stack_primary[UTILITY_ZERO] * utility_memory_standard);
       
       utility_release_resource_handle(*(uint64 *)(utility_resource_context_handle + utility_offset_resource_ptr),utility_resource_primary_handle);
@@ -3016,7 +3016,7 @@ uint64 utility_execute_resource_task(longlong utility_resource_primary_handle,lo
   uint64 utility_status_value;
   longlong utility_memory_offset;
   uint64 utility_cpu_context;
-  float utility_temp_float_storage;
+  float utility_temp_float_value;
   utility_system_resource_handle = utility_bit_concat_primary_secondary(utility_system_resource_handle.bit_field_primary_secondary,*(uint *)(utility_resource_primary_handle + utility_pointer_offset));
   if ((*(uint *)(utility_resource_primary_handle + utility_pointer_offset) & float_infinity_mask) == float_infinity_mask) {
     return utility_error_code_timeout;
@@ -3040,13 +3040,13 @@ uint64 utility_execute_resource_task(longlong utility_resource_primary_handle,lo
   }
   if ((*(byte *)(utility_buffer_index_var + UTILITY_SIZE_FIELD_OFFSET) & utility_access_flag) == UTILITY_ZERO) {
     utility_float_value = *(float *)(utility_resource_primary_handle + utility_pointer_offset);
-    utility_temp_float_storage = *(float *)(utility_buffer_index_var + utility_offset_structure);
+    utility_temp_float_value = *(float *)(utility_buffer_index_var + utility_offset_structure);
     if ((*(float *)(utility_buffer_index_var + utility_offset_structure) <= utility_float_value) &&
-       (utility_temp_float_storage = *(float *)(utility_buffer_index_var + resource_prop_offset), utility_float_value <= *(float *)(utility_buffer_index_var + resource_prop_offset))) {
-      utility_temp_float_storage = utility_float_value;
+       (utility_temp_float_value = *(float *)(utility_buffer_index_var + resource_prop_offset), utility_float_value <= *(float *)(utility_buffer_index_var + resource_prop_offset))) {
+      utility_temp_float_value = utility_float_value;
     }
-    *(float *)(utility_resource_primary_handle + utility_pointer_offset) = utility_temp_float_storage;
-    *(float *)(utility_memory_offset + utility_float_offset_standard) = utility_temp_float_storage;
+    *(float *)(utility_resource_primary_handle + utility_pointer_offset) = utility_temp_float_value;
+    *(float *)(utility_memory_offset + utility_float_offset_standard) = utility_temp_float_value;
     utility_status_value = utility_validate_resource_handle(utility_memory_offset,utility_resource_primary_handle + utility_offset_flag);
     if ((int)utility_status_value != UTILITY_ZERO) {
       return utility_status_value;
@@ -3161,7 +3161,7 @@ uint64 utility_complete_resource_cycle(void)
   uint utility_cpu_register_data_primary;
   uint utility_iteration_index;
   longlong utility_cpu_context;
-  float utility_temp_float_storage;
+  float utility_temp_float_value;
   utility_state = utility_register_input - UTILITY_SIZE_OFFSET_extended_byte;
   if (utility_register_input == UTILITY_ZERO) {
     utility_state = (ulonglong)utility_cpu_register_data_primary;
@@ -3192,12 +3192,12 @@ uint64 utility_complete_resource_cycle(void)
         if (*(uint *)(utility_memory_offset + UTILITY_FIELD_PRIMARY_OFFSET_STANDARD) != utility_cpu_register_data_primary) {
           return utility_error_code_failed;
         }
-        utility_temp_float_storage = *(float *)(utility_memory_offset + utility_offset_structure);
+        utility_temp_float_value = *(float *)(utility_memory_offset + utility_offset_structure);
         if ((*(float *)(utility_memory_offset + utility_offset_structure) <= utility_float_value) &&
-           (utility_temp_float_storage = *(float *)(utility_memory_offset + resource_prop_offset), utility_float_value <= *(float *)(utility_memory_offset + resource_prop_offset))) {
-          utility_temp_float_storage = utility_float_value;
+           (utility_temp_float_value = *(float *)(utility_memory_offset + resource_prop_offset), utility_float_value <= *(float *)(utility_memory_offset + resource_prop_offset))) {
+          utility_temp_float_value = utility_float_value;
         }
-        *utility_source_float_pointer = utility_temp_float_storage;
+        *utility_source_float_pointer = utility_temp_float_value;
       }
       utility_iteration_index = utility_iteration_index + UTILITY_INT_ONE;
       utility_source_float_pointer = utility_source_float_pointer + UTILITY_INT_ONE;
@@ -3235,8 +3235,8 @@ void utility_process_resource_cycle(longlong utility_resource_primary_handle,uin
   longlong utility_frame_offset;
   uint64 utility_temp_resource_count;
   ulonglong utility_temporary_storage_size;
-  utility_temp_security_var = utility_security_token_mask ^ (ulonglong)utility_local_array;
-  utility_temp_security_var = utility_resource_context_handle;
+  utility_temp_security_token = utility_security_token_mask ^ (ulonglong)utility_local_array;
+  utility_temp_security_token = utility_resource_context_handle;
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + utility_data_offset),utility_local_array);
   if (utility_result == UTILITY_ZERO) {
     utility_bool_result = utility_local_array[UTILITY_ZERO] == UTILITY_ZERO;
@@ -3254,7 +3254,7 @@ void utility_process_resource_cycle(longlong utility_resource_primary_handle,uin
     utility_process_resource_data(utility_data_pointer_primary_extended_main,utility_counter & utility_memory_alignment_mask);
   }
       
-  execute_security_validation(utility_temp_integer_var ^ (ulonglong)utility_local_array);
+  execute_security_validation(utility_temp_integer_value ^ (ulonglong)utility_local_array);
 }
 void utility_manage_resource_cycle(longlong utility_resource_primary_handle,longlong utility_resource_cache)
 {
@@ -3483,7 +3483,7 @@ uint64 utility_analyze_resource_cycle(longlong utility_resource_primary_handle,l
   float utility_float_value;
   longlong utility_data_pointer_primary_extended_main;
   uint64 utility_counter;
-  float utility_temp_float_storage;
+  float utility_temp_float_value;
   uint utility_stack_buffer;
   uint32 utility_stack_buffer;
   utility_stack_buffer = *(uint *)(utility_resource_primary_handle + utility_offset_data);
@@ -3502,13 +3502,13 @@ uint64 utility_analyze_resource_cycle(longlong utility_resource_primary_handle,l
     return utility_error_code_failed;
   }
   utility_float_value = *(float *)(utility_resource_primary_handle + utility_offset_data);
-  utility_temp_float_storage = *(float *)(utility_data_pointer_primary_extended + utility_offset_structure);
+  utility_temp_float_value = *(float *)(utility_data_pointer_primary_extended + utility_offset_structure);
   if ((*(float *)(utility_data_pointer_primary_extended + utility_offset_structure) <= utility_float_value) &&
-     (utility_temp_float_storage = *(float *)(utility_data_pointer_primary_extended + resource_prop_offset), utility_float_value <= *(float *)(utility_data_pointer_primary_extended + resource_prop_offset))) {
-    utility_temp_float_storage = utility_float_value;
+     (utility_temp_float_value = *(float *)(utility_data_pointer_primary_extended + resource_prop_offset), utility_float_value <= *(float *)(utility_data_pointer_primary_extended + resource_prop_offset))) {
+    utility_temp_float_value = utility_float_value;
   }
-  *(float *)(utility_resource_primary_handle + utility_offset_data) = utility_temp_float_storage;
-  *(float *)(utility_bit_concat_primary_secondary(utility_resource_buffer,utility_resource_buffer) + utility_float_offset_standard) = utility_temp_float_storage;
+  *(float *)(utility_resource_primary_handle + utility_offset_data) = utility_temp_float_value;
+  *(float *)(utility_bit_concat_primary_secondary(utility_resource_buffer,utility_resource_buffer) + utility_float_offset_standard) = utility_temp_float_value;
       
   utility_release_resource_handle(*(uint64 *)(utility_resource_context_handle + utility_offset_resource_ptr),utility_resource_primary_handle);
 }
@@ -3520,12 +3520,12 @@ uint64 utility_monitor_resource_cycle(longlong utility_resource_primary_handle,l
   uint32 utility_temp_loop_counter;
   uint32 utility_temp_loop_counter;
   uint32 utility_temp_loop_counter;
-  utility_temp_security_var = *(uint32 *)(utility_resource_primary_handle + utility_data_offset);
-  utility_temp_security_var = *(uint32 *)(utility_resource_primary_handle + utility_offset_data);
-  utility_temp_security_var = *(uint32 *)(utility_resource_primary_handle + utility_offset_resource_ptr);
-  utility_temp_security_var = *(uint32 *)(utility_resource_primary_handle + utility_offset_flag);
+  utility_temp_security_token = *(uint32 *)(utility_resource_primary_handle + utility_data_offset);
+  utility_temp_security_token = *(uint32 *)(utility_resource_primary_handle + utility_offset_data);
+  utility_temp_security_token = *(uint32 *)(utility_resource_primary_handle + utility_offset_resource_ptr);
+  utility_temp_security_token = *(uint32 *)(utility_resource_primary_handle + utility_offset_flag);
   utility_resource_context_handle = (**(code **)(**(longlong **)(utility_resource_context_handle + utility_resource_utility_data_pointer_primary_extended_size) + utility_operation_offset_extended_extended)
-                    (*(longlong **)(utility_resource_context_handle + utility_resource_utility_data_pointer_primary_extended_size),&utility_temp_integer_var,UTILITY_INDEX_INCREMENT);
+                    (*(longlong **)(utility_resource_context_handle + utility_resource_utility_data_pointer_primary_extended_size),&utility_temp_integer_value,UTILITY_INDEX_INCREMENT);
   if ((utility_resource_context_handle == UTILITY_ZERO) || (*(longlong *)(utility_resource_context_handle + utility_validation_result_offset) == UTILITY_ZERO)) {
     utility_counter = utility_error_code_invalid;
   }
@@ -3547,12 +3547,12 @@ uint64 utility_report_resource_cycle(longlong utility_resource_primary_handle,lo
   uint32 utility_temp_loop_counter;
   uint32 utility_temp_loop_counter;
   char utility_temp_stack_buffer [UTILITY_STACK_BUFFER_SIZE];
-  utility_temp_security_var = *(uint32 *)(utility_resource_primary_handle + utility_data_offset);
-  utility_temp_security_var = *(uint32 *)(utility_resource_primary_handle + utility_offset_data);
-  utility_temp_security_var = *(uint32 *)(utility_resource_primary_handle + utility_offset_resource_ptr);
-  utility_temp_security_var = *(uint32 *)(utility_resource_primary_handle + utility_offset_flag);
+  utility_temp_security_token = *(uint32 *)(utility_resource_primary_handle + utility_data_offset);
+  utility_temp_security_token = *(uint32 *)(utility_resource_primary_handle + utility_offset_data);
+  utility_temp_security_token = *(uint32 *)(utility_resource_primary_handle + utility_offset_resource_ptr);
+  utility_temp_security_token = *(uint32 *)(utility_resource_primary_handle + utility_offset_flag);
   utility_resource_context_handle = (**(code **)(**(longlong **)(utility_resource_context_handle + utility_resource_utility_data_pointer_primary_extended_size) + utility_operation_offset_extended_extended)
-                    (*(longlong **)(utility_resource_context_handle + utility_resource_utility_data_pointer_primary_extended_size),&utility_temp_integer_var,UTILITY_INDEX_INCREMENT);
+                    (*(longlong **)(utility_resource_context_handle + utility_resource_utility_data_pointer_primary_extended_size),&utility_temp_integer_value,UTILITY_INDEX_INCREMENT);
   if ((utility_resource_context_handle == UTILITY_ZERO) || (*(longlong *)(utility_resource_context_handle + utility_validation_result_offset) == UTILITY_ZERO)) {
     return utility_error_code_invalid;
   }
@@ -3772,7 +3772,7 @@ uint64 close_network_socket(longlong utility_resource_primary_handle,longlong ut
   float utility_float_value;
   uint64 utility_counter;
   longlong utility_buffer_index_var;
-  float utility_temp_float_storage;
+  float utility_temp_float_value;
   uint32 utility_stack_resource_data [UTILITY_STACK_BUFFER_SIZE];
   if ((*(uint *)(utility_resource_primary_handle + utility_offset_resource_ptr) & float_infinity_mask) == float_infinity_mask) {
     return utility_error_code_timeout;
@@ -3785,13 +3785,13 @@ uint64 close_network_socket(longlong utility_resource_primary_handle,longlong ut
       return utility_error_code_failed;
     }
     utility_float_value = *(float *)(utility_resource_primary_handle + utility_offset_resource_ptr);
-    utility_temp_float_storage = *(float *)(utility_buffer_index_var + utility_offset_structure);
+    utility_temp_float_value = *(float *)(utility_buffer_index_var + utility_offset_structure);
     if ((*(float *)(utility_buffer_index_var + utility_offset_structure) <= utility_float_value) &&
-       (utility_temp_float_storage = *(float *)(utility_buffer_index_var + resource_prop_offset), utility_float_value <= *(float *)(utility_buffer_index_var + resource_prop_offset))) {
-      utility_temp_float_storage = utility_float_value;
+       (utility_temp_float_value = *(float *)(utility_buffer_index_var + resource_prop_offset), utility_float_value <= *(float *)(utility_buffer_index_var + resource_prop_offset))) {
+      utility_temp_float_value = utility_float_value;
     }
-    *(float *)(utility_resource_primary_handle + utility_offset_resource_ptr) = utility_temp_float_storage;
-    utility_counter = memory_config_func(utility_resource_context_handle + utility_data_start_offset_extended,utility_stack_resource_data[UTILITY_ZERO],utility_temp_float_storage);
+    *(float *)(utility_resource_primary_handle + utility_offset_resource_ptr) = utility_temp_float_value;
+    utility_counter = memory_config_func(utility_resource_context_handle + utility_data_start_offset_extended,utility_stack_resource_data[UTILITY_ZERO],utility_temp_float_value);
     if ((int)utility_counter == UTILITY_ZERO) {
       
       utility_release_resource_handle(*(uint64 *)(utility_resource_context_handle + utility_offset_resource_ptr),utility_resource_primary_handle);
@@ -3806,7 +3806,7 @@ uint64 shutdown_network_socket(uint64 utility_resource_primary_handle,uint64 uti
   longlong utility_buffer_index_var;
   longlong utility_context_ptr;
   longlong utility_cpu_context;
-  float utility_temp_float_storage;
+  float utility_temp_float_value;
   uint32 utility_thread_stack_primary_offset_value;
   utility_thread_stack_primary_offset_value = UTILITY_ZERO;
   utility_counter = utility_process_resource_data(UTILITY_CPU_BASE + utility_data_start_offset_extended,utility_resource_cache,&utility_stack_buffer_address_cache);
@@ -3816,13 +3816,13 @@ uint64 shutdown_network_socket(uint64 utility_resource_primary_handle,uint64 uti
       return utility_error_code_failed;
     }
     utility_float_value = *(float *)(utility_context_ptr + utility_offset_ptr_primary);
-    utility_temp_float_storage = *(float *)(utility_buffer_index_var + utility_offset_structure);
+    utility_temp_float_value = *(float *)(utility_buffer_index_var + utility_offset_structure);
     if ((*(float *)(utility_buffer_index_var + utility_offset_structure) <= utility_float_value) &&
-       (utility_temp_float_storage = *(float *)(utility_buffer_index_var + resource_prop_offset), utility_float_value <= *(float *)(utility_buffer_index_var + resource_prop_offset))) {
-      utility_temp_float_storage = utility_float_value;
+       (utility_temp_float_value = *(float *)(utility_buffer_index_var + resource_prop_offset), utility_float_value <= *(float *)(utility_buffer_index_var + resource_prop_offset))) {
+      utility_temp_float_value = utility_float_value;
     }
-    *(float *)(utility_context_ptr + utility_offset_ptr_primary) = utility_temp_float_storage;
-    utility_counter = memory_config_func(UTILITY_CPU_BASE + utility_data_start_offset_extended,utility_thread_stack_primary_offset_value,utility_temp_float_storage);
+    *(float *)(utility_context_ptr + utility_offset_ptr_primary) = utility_temp_float_value;
+    utility_counter = memory_config_func(UTILITY_CPU_BASE + utility_data_start_offset_extended,utility_thread_stack_primary_offset_value,utility_temp_float_value);
     if ((int)utility_counter == UTILITY_ZERO) {
       
       utility_release_resource_handle(*(uint64 *)(UTILITY_CPU_BASE + utility_offset_resource_ptr));
@@ -3838,16 +3838,16 @@ void utility_initialize_network_stack(void)
   uint32 utility_cpu_register_input_value;
   longlong utility_context_ptr;
   longlong utility_cpu_context;
-  float utility_temp_float_storage;
+  float utility_temp_float_value;
   uint32 utility_stack_unsigned_context;
-  utility_temp_float_storage = *(float *)(utility_bit_concat_primary_secondary(utility_cpu_register_input_value,utility_accumulator) + utility_offset_structure);
+  utility_temp_float_value = *(float *)(utility_bit_concat_primary_secondary(utility_cpu_register_input_value,utility_accumulator) + utility_offset_structure);
   utility_float_value = *(float *)(utility_context_ptr + utility_offset_ptr_primary);
-  if ((utility_temp_float_storage <= utility_float_value) &&
-     (utility_temp_float_storage = *(float *)(utility_bit_concat_primary_secondary(utility_cpu_register_input_value,utility_accumulator) + resource_prop_offset), utility_float_value <= utility_temp_float_storage)) {
-    utility_temp_float_storage = utility_float_value;
+  if ((utility_temp_float_value <= utility_float_value) &&
+     (utility_temp_float_value = *(float *)(utility_bit_concat_primary_secondary(utility_cpu_register_input_value,utility_accumulator) + resource_prop_offset), utility_float_value <= utility_temp_float_value)) {
+    utility_temp_float_value = utility_float_value;
   }
-  *(float *)(utility_context_ptr + utility_offset_ptr_primary) = utility_temp_float_storage;
-  utility_result = memory_config_func(UTILITY_CPU_BASE + utility_data_start_offset_extended,utility_stack_unsigned_context,utility_temp_float_storage);
+  *(float *)(utility_context_ptr + utility_offset_ptr_primary) = utility_temp_float_value;
+  utility_result = memory_config_func(UTILITY_CPU_BASE + utility_data_start_offset_extended,utility_stack_unsigned_context,utility_temp_float_value);
   if (utility_result == UTILITY_ZERO) {
       
     utility_release_resource_handle(*(uint64 *)(UTILITY_CPU_BASE + utility_offset_resource_ptr));
@@ -3947,7 +3947,7 @@ uint64 utility_create_network_communication_connection(longlong utility_resource
   uint64 utility_counter;
   longlong utility_buffer_index_var;
   uint64 *utility_unsigned_pointer_buffer;
-  float utility_temp_float_storage;
+  float utility_temp_float_value;
   uint utility_stack_primary [UTILITY_STACK_BUFFER_SIZE];
   uint32 utility_stack_resource_data [UTILITY_STACK_BUFFER_SIZE];
   utility_stack_primary[UTILITY_ZERO] = *(uint *)(utility_resource_primary_handle + utility_data_offset);
@@ -3962,13 +3962,13 @@ uint64 utility_create_network_communication_connection(longlong utility_resource
       return utility_error_code_failed;
     }
     utility_float_value = *(float *)(utility_resource_primary_handle + utility_data_offset);
-    utility_temp_float_storage = *(float *)(utility_buffer_index_var + utility_offset_structure);
+    utility_temp_float_value = *(float *)(utility_buffer_index_var + utility_offset_structure);
     if ((*(float *)(utility_buffer_index_var + utility_offset_structure) <= utility_float_value) &&
-       (utility_temp_float_storage = *(float *)(utility_buffer_index_var + resource_prop_offset), utility_float_value <= *(float *)(utility_buffer_index_var + resource_prop_offset))) {
-      utility_temp_float_storage = utility_float_value;
+       (utility_temp_float_value = *(float *)(utility_buffer_index_var + resource_prop_offset), utility_float_value <= *(float *)(utility_buffer_index_var + resource_prop_offset))) {
+      utility_temp_float_value = utility_float_value;
     }
-    *(float *)(utility_resource_primary_handle + utility_data_offset) = utility_temp_float_storage;
-    utility_counter = memory_config_func(utility_resource_context_handle + utility_data_start_offset_extended,utility_stack_resource_data[UTILITY_ZERO],utility_temp_float_storage);
+    *(float *)(utility_resource_primary_handle + utility_data_offset) = utility_temp_float_value;
+    utility_counter = memory_config_func(utility_resource_context_handle + utility_data_start_offset_extended,utility_stack_resource_data[UTILITY_ZERO],utility_temp_float_value);
     if ((int)utility_counter == UTILITY_ZERO) {
       utility_unsigned_pointer_buffer = (uint64 *)utility_memory_init_function(utility_resource_context_handle + utility_data_start_offset_extended,utility_stack_primary,utility_stack_resource_data[UTILITY_ZERO]);
       *(uint64 *)(utility_resource_primary_handle + utility_offset_resource_ptr) = *utility_unsigned_pointer_buffer;
@@ -3986,20 +3986,20 @@ uint64 utility_get_network_statistics(void)
   uint64 *utility_unsigned_pointer_buffer;
   longlong utility_context_ptr;
   longlong utility_cpu_context;
-  float utility_temp_float_storage;
+  float utility_temp_float_value;
   uint32 utility_stack_unsigned_context;
   utility_data_pointer_primary_extended = memoryallocatefunction();
   if ((*(uint *)(utility_data_pointer_primary_extended + UTILITY_SIZE_FIELD_OFFSET) >> utility_bit_shift_four & (UTILITY_UNIT << UTILITY_BIT_MASK)) != UTILITY_ZERO) {
     return utility_error_code_failed;
   }
   utility_float_value = *(float *)(utility_context_ptr + utility_offset_resource_ptr);
-  utility_temp_float_storage = *(float *)(utility_data_pointer_primary_extended + utility_offset_structure);
+  utility_temp_float_value = *(float *)(utility_data_pointer_primary_extended + utility_offset_structure);
   if ((*(float *)(utility_data_pointer_primary_extended + utility_offset_structure) <= utility_float_value) &&
-     (utility_temp_float_storage = *(float *)(utility_data_pointer_primary_extended + resource_prop_offset), utility_float_value <= *(float *)(utility_data_pointer_primary_extended + resource_prop_offset))) {
-    utility_temp_float_storage = utility_float_value;
+     (utility_temp_float_value = *(float *)(utility_data_pointer_primary_extended + resource_prop_offset), utility_float_value <= *(float *)(utility_data_pointer_primary_extended + resource_prop_offset))) {
+    utility_temp_float_value = utility_float_value;
   }
-  *(float *)(utility_context_ptr + utility_offset_resource_ptr) = utility_temp_float_storage;
-  utility_counter = memory_config_func(UTILITY_CPU_BASE + utility_data_start_offset_extended,utility_stack_unsigned_context,utility_temp_float_storage);
+  *(float *)(utility_context_ptr + utility_offset_resource_ptr) = utility_temp_float_value;
+  utility_counter = memory_config_func(UTILITY_CPU_BASE + utility_data_start_offset_extended,utility_stack_unsigned_context,utility_temp_float_value);
   if ((int)utility_counter == UTILITY_ZERO) {
     utility_unsigned_pointer_buffer = (uint64 *)utility_memory_init_function(UTILITY_CPU_BASE + utility_data_start_offset_extended,&utility_stack_utility_working_buffer_primary,utility_stack_unsigned_context);
     *(uint64 *)(utility_context_ptr + utility_offset_ptr_primary) = *utility_unsigned_pointer_buffer;
@@ -4017,16 +4017,16 @@ void utility_initialize_ssl_context(void)
   uint32 utility_cpu_register_input_value;
   longlong utility_context_ptr;
   longlong utility_cpu_context;
-  float utility_temp_float_storage;
+  float utility_temp_float_value;
   uint32 utility_stack_unsigned_context;
-  utility_temp_float_storage = *(float *)(utility_bit_concat_primary_secondary(utility_cpu_register_input_value,utility_accumulator) + utility_offset_structure);
+  utility_temp_float_value = *(float *)(utility_bit_concat_primary_secondary(utility_cpu_register_input_value,utility_accumulator) + utility_offset_structure);
   utility_float_value = *(float *)(utility_context_ptr + utility_offset_resource_ptr);
-  if ((utility_temp_float_storage <= utility_float_value) &&
-     (utility_temp_float_storage = *(float *)(utility_bit_concat_primary_secondary(utility_cpu_register_input_value,utility_accumulator) + resource_prop_offset), utility_float_value <= utility_temp_float_storage)) {
-    utility_temp_float_storage = utility_float_value;
+  if ((utility_temp_float_value <= utility_float_value) &&
+     (utility_temp_float_value = *(float *)(utility_bit_concat_primary_secondary(utility_cpu_register_input_value,utility_accumulator) + resource_prop_offset), utility_float_value <= utility_temp_float_value)) {
+    utility_temp_float_value = utility_float_value;
   }
-  *(float *)(utility_context_ptr + utility_offset_resource_ptr) = utility_temp_float_storage;
-  utility_buffer_index_var = memory_config_func(UTILITY_CPU_BASE + utility_data_start_offset_extended,utility_stack_unsigned_context,utility_temp_float_storage);
+  *(float *)(utility_context_ptr + utility_offset_resource_ptr) = utility_temp_float_value;
+  utility_buffer_index_var = memory_config_func(UTILITY_CPU_BASE + utility_data_start_offset_extended,utility_stack_unsigned_context,utility_temp_float_value);
   if (utility_buffer_index_var == UTILITY_ZERO) {
     utility_iter_ptr = (uint64 *)utility_memory_init_function(UTILITY_CPU_BASE + utility_data_start_offset_extended,&utility_stack_utility_working_buffer_primary,utility_stack_unsigned_context);
     *(uint64 *)(utility_context_ptr + utility_offset_ptr_primary) = *utility_iter_ptr;
@@ -4145,7 +4145,7 @@ void utility_execute_database_query_operation(longlong utility_resource_primary_
   longlong utility_buffer_position;
   longlong utility_frame_offset;
   ulonglong utility_temporary_storage_size;
-  utility_temp_security_var = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer_var;
+  utility_temp_security_token = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer_var;
   utility_local_stack_resource_offset = utility_resource_context_handle + utility_data_start_offset_extended;
   utility_buffer_position = utility_resource_primary_handle + utility_offset_resource_ptr + (longlong)*(int *)(utility_resource_primary_handle + utility_data_offset) * utility_memory_standard;
   utility_frame_offset = utility_resource_context_handle;
@@ -4286,27 +4286,27 @@ void utility_extract_resource_info(longlong utility_resource_primary_handle,uint
   longlong utility_local_stack_position_var;
   byte utility_encryption_data_var [utility_encryption_data_var_size_standard];
   ulonglong utility_temporary_storage_size;
-  utility_temp_security_var = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer_var;
+  utility_temp_security_token = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer_var;
   utility_resource_data_ptr = *(longlong **)(utility_resource_primary_handle + utility_resource_utility_data_pointer_primary_extended_size);
   if (utility_resource_data_ptr != (longlong *)utility_null_pointer) {
-    utility_temp_security_var = *memory_block_size;
-    utility_temp_security_var = utility_resource_context_handle[utility_security_token_offset_secondary];
-    utility_temp_security_var = utility_resource_context_handle[utility_array_index_data_size];
-    utility_temp_security_var = utility_resource_context_handle[UTILITY_SIZE_MULTIPLIER];
-    utility_buffer_index_var = (**(code **)(*utility_resource_data_ptr + utility_resource_access_offset_extended_extended_extended))(utility_resource_data_ptr,&utility_temp_integer_var,UTILITY_INDEX_INCREMENT);
+    utility_temp_security_token = *memory_block_size;
+    utility_temp_security_token = utility_resource_context_handle[utility_security_token_offset_secondary];
+    utility_temp_security_token = utility_resource_context_handle[utility_array_index_data_size];
+    utility_temp_security_token = utility_resource_context_handle[UTILITY_SIZE_MULTIPLIER];
+    utility_buffer_index_var = (**(code **)(*utility_resource_data_ptr + utility_resource_access_offset_extended_extended_extended))(utility_resource_data_ptr,&utility_temp_integer_value,UTILITY_INDEX_INCREMENT);
     if (utility_buffer_index_var == UTILITY_ZERO) {
-      utility_temp_security_var = utility_temp_integer_var >> utility_offset_ptr_primary;
-      utility_temp_security_var = utility_temp_integer_var >> utility_offset_ptr_primary;
-      utility_temp_security_var = utility_temp_integer_var >> utility_offset_resource_ptr;
-      utility_temp_security_var = utility_temp_integer_var >> utility_offset_resource_ptr & UTILITY_BYTE_MASK;
-      utility_temp_security_var = utility_temp_integer_var >> utility_byte_shift_octal & UTILITY_BYTE_MASK;
-      utility_temp_security_var = utility_temp_integer_var & UTILITY_BYTE_MASK;
-      utility_temp_security_var = utility_temp_integer_var >> utility_offset_resource_ptr & UTILITY_BYTE_MASK;
-      utility_temp_security_var = utility_temp_integer_var >> utility_byte_shift_octal & UTILITY_BYTE_MASK;
-      utility_temp_security_var = utility_temp_integer_var & UTILITY_BYTE_MASK;
-      utility_temp_security_var = utility_temp_integer_var & UTILITY_WORD_MASK;
+      utility_temp_security_token = utility_temp_integer_value >> utility_offset_ptr_primary;
+      utility_temp_security_token = utility_temp_integer_value >> utility_offset_ptr_primary;
+      utility_temp_security_token = utility_temp_integer_value >> utility_offset_resource_ptr;
+      utility_temp_security_token = utility_temp_integer_value >> utility_offset_resource_ptr & UTILITY_BYTE_MASK;
+      utility_temp_security_token = utility_temp_integer_value >> utility_byte_shift_octal & UTILITY_BYTE_MASK;
+      utility_temp_security_token = utility_temp_integer_value & UTILITY_BYTE_MASK;
+      utility_temp_security_token = utility_temp_integer_value >> utility_offset_resource_ptr & UTILITY_BYTE_MASK;
+      utility_temp_security_token = utility_temp_integer_value >> utility_byte_shift_octal & UTILITY_BYTE_MASK;
+      utility_temp_security_token = utility_temp_integer_value & UTILITY_BYTE_MASK;
+      utility_temp_security_token = utility_temp_integer_value & UTILITY_WORD_MASK;
       
-      initializebufferstructure(utility_buffer,utility_buffer_size,&g_systemdatamainbuffer,utility_temp_integer_var);
+      initializebufferstructure(utility_buffer,utility_buffer_size,&g_systemdatamainbuffer,utility_temp_integer_value);
     }
     if (((*(byte *)(utility_buffer_index_var + byte_offset_flag) & (UTILITY_INDEX_INCREMENT << UTILITY_BIT_MASK)) != UTILITY_ZERO) &&
        ((utility_local_stack_position_var = *(longlong *)(utility_buffer_index_var + utility_offset_list_handle), utility_stack_data_ptr != UTILITY_ZERO ||
@@ -4315,7 +4315,7 @@ void utility_extract_resource_info(longlong utility_resource_primary_handle,uint
     }
   }
       
-  execute_security_validation(utility_temp_integer_var ^ (ulonglong)utility_local_security_buffer_var);
+  execute_security_validation(utility_temp_integer_value ^ (ulonglong)utility_local_security_buffer_var);
 }
 void utility_initialize_thread_local_storage(void)
 {
@@ -4350,27 +4350,27 @@ void utility_analyze_resource_data(longlong utility_resource_primary_handle,uint
   uint utility_status_analysis_flag;
   byte utility_encryption_data_var [utility_encryption_data_var_size_standard];
   ulonglong utility_temporary_storage_size;
-  utility_temp_security_var = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer_var;
+  utility_temp_security_token = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer_var;
   utility_resource_data_ptr = *(longlong **)(utility_resource_primary_handle + utility_resource_utility_data_pointer_primary_extended_size);
   if (utility_resource_data_ptr != (longlong *)utility_null_pointer) {
-    utility_temp_security_var = *memory_block_size;
-    utility_temp_security_var = utility_resource_context_handle[utility_security_token_offset_secondary];
-    utility_temp_security_var = utility_resource_context_handle[utility_array_index_data_size];
-    utility_temp_security_var = utility_resource_context_handle[UTILITY_SIZE_MULTIPLIER];
-    utility_buffer_index_var = (**(code **)(*utility_resource_data_ptr + utility_data_process_offset))(utility_resource_data_ptr,&utility_temp_integer_var,UTILITY_INDEX_INCREMENT);
+    utility_temp_security_token = *memory_block_size;
+    utility_temp_security_token = utility_resource_context_handle[utility_security_token_offset_secondary];
+    utility_temp_security_token = utility_resource_context_handle[utility_array_index_data_size];
+    utility_temp_security_token = utility_resource_context_handle[UTILITY_SIZE_MULTIPLIER];
+    utility_buffer_index_var = (**(code **)(*utility_resource_data_ptr + utility_data_process_offset))(utility_resource_data_ptr,&utility_temp_integer_value,UTILITY_INDEX_INCREMENT);
     if (utility_buffer_index_var == UTILITY_ZERO) {
-      utility_temp_security_var = utility_temp_integer_var >> utility_offset_ptr_primary;
-      utility_temp_security_var = utility_temp_integer_var >> utility_offset_ptr_primary;
-      utility_temp_security_var = utility_temp_integer_var >> utility_offset_resource_ptr;
-      utility_temp_security_var = utility_temp_integer_var >> utility_offset_resource_ptr & UTILITY_BYTE_MASK;
-      utility_temp_security_var = utility_temp_integer_var >> utility_byte_shift_octal & UTILITY_BYTE_MASK;
-      utility_temp_security_var = utility_temp_integer_var & UTILITY_BYTE_MASK;
-      utility_temp_security_var = utility_temp_integer_var >> utility_offset_resource_ptr & UTILITY_BYTE_MASK;
-      utility_temp_security_var = utility_temp_integer_var >> utility_byte_shift_octal & UTILITY_BYTE_MASK;
-      utility_temp_security_var = utility_temp_integer_var & UTILITY_BYTE_MASK;
-      utility_temp_security_var = utility_temp_integer_var & UTILITY_WORD_MASK;
+      utility_temp_security_token = utility_temp_integer_value >> utility_offset_ptr_primary;
+      utility_temp_security_token = utility_temp_integer_value >> utility_offset_ptr_primary;
+      utility_temp_security_token = utility_temp_integer_value >> utility_offset_resource_ptr;
+      utility_temp_security_token = utility_temp_integer_value >> utility_offset_resource_ptr & UTILITY_BYTE_MASK;
+      utility_temp_security_token = utility_temp_integer_value >> utility_byte_shift_octal & UTILITY_BYTE_MASK;
+      utility_temp_security_token = utility_temp_integer_value & UTILITY_BYTE_MASK;
+      utility_temp_security_token = utility_temp_integer_value >> utility_offset_resource_ptr & UTILITY_BYTE_MASK;
+      utility_temp_security_token = utility_temp_integer_value >> utility_byte_shift_octal & UTILITY_BYTE_MASK;
+      utility_temp_security_token = utility_temp_integer_value & UTILITY_BYTE_MASK;
+      utility_temp_security_token = utility_temp_integer_value & UTILITY_WORD_MASK;
       
-      initializebufferstructure(utility_buffer,utility_buffer_size,&g_systemdatamainbuffer,utility_temp_integer_var);
+      initializebufferstructure(utility_buffer,utility_buffer_size,&g_systemdatamainbuffer,utility_temp_integer_value);
     }
     if ((**(int **)(utility_buffer_index_var + utility_offset_struct_one) != UTILITY_ZERO) ||
        (utility_result = utility_validate_resource_handle(*(uint32 *)(utility_resource_primary_handle + utility_offset_resource_ptr)), utility_result == UTILITY_ZERO)) {
@@ -4378,7 +4378,7 @@ void utility_analyze_resource_data(longlong utility_resource_primary_handle,uint
     }
   }
       
-  execute_security_validation(utility_temp_integer_var ^ (ulonglong)utility_local_security_buffer_var);
+  execute_security_validation(utility_temp_integer_value ^ (ulonglong)utility_local_security_buffer_var);
 }
 void utility_set_thread_local_resource_data(ulonglong utility_resource_primary_handle)
 {
@@ -4434,27 +4434,27 @@ void utility_generate_resource_report(longlong utility_resource_primary_handle,u
   longlong utility_local_stack_position_var;
   byte utility_encryption_data_var [utility_encryption_data_var_size_standard];
   ulonglong utility_temporary_storage_size;
-  utility_temp_security_var = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer_var;
+  utility_temp_security_token = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer_var;
   utility_resource_data_ptr = *(longlong **)(utility_resource_primary_handle + utility_resource_utility_data_pointer_primary_extended_size);
   if (utility_resource_data_ptr != (longlong *)utility_null_pointer) {
-    utility_temp_security_var = *memory_block_size;
-    utility_temp_security_var = utility_resource_context_handle[utility_security_token_offset_secondary];
-    utility_temp_security_var = utility_resource_context_handle[utility_array_index_data_size];
-    utility_temp_security_var = utility_resource_context_handle[UTILITY_SIZE_MULTIPLIER];
-    utility_buffer_index_var = (**(code **)(*utility_resource_data_ptr + utility_function_pointer_offset))(utility_resource_data_ptr,&utility_temp_integer_var,UTILITY_INDEX_INCREMENT);
+    utility_temp_security_token = *memory_block_size;
+    utility_temp_security_token = utility_resource_context_handle[utility_security_token_offset_secondary];
+    utility_temp_security_token = utility_resource_context_handle[utility_array_index_data_size];
+    utility_temp_security_token = utility_resource_context_handle[UTILITY_SIZE_MULTIPLIER];
+    utility_buffer_index_var = (**(code **)(*utility_resource_data_ptr + utility_function_pointer_offset))(utility_resource_data_ptr,&utility_temp_integer_value,UTILITY_INDEX_INCREMENT);
     if (utility_buffer_index_var == UTILITY_ZERO) {
-      utility_temp_security_var = utility_temp_integer_var >> utility_offset_ptr_primary;
-      utility_temp_security_var = utility_temp_integer_var >> utility_offset_ptr_primary;
-      utility_temp_security_var = utility_temp_integer_var >> utility_offset_resource_ptr;
-      utility_temp_security_var = utility_temp_integer_var >> utility_offset_resource_ptr & UTILITY_BYTE_MASK;
-      utility_temp_security_var = utility_temp_integer_var >> utility_byte_shift_octal & UTILITY_BYTE_MASK;
-      utility_temp_security_var = utility_temp_integer_var & UTILITY_BYTE_MASK;
-      utility_temp_security_var = utility_temp_integer_var >> utility_offset_resource_ptr & UTILITY_BYTE_MASK;
-      utility_temp_security_var = utility_temp_integer_var >> utility_byte_shift_octal & UTILITY_BYTE_MASK;
-      utility_temp_security_var = utility_temp_integer_var & UTILITY_BYTE_MASK;
-      utility_temp_security_var = utility_temp_integer_var & UTILITY_WORD_MASK;
+      utility_temp_security_token = utility_temp_integer_value >> utility_offset_ptr_primary;
+      utility_temp_security_token = utility_temp_integer_value >> utility_offset_ptr_primary;
+      utility_temp_security_token = utility_temp_integer_value >> utility_offset_resource_ptr;
+      utility_temp_security_token = utility_temp_integer_value >> utility_offset_resource_ptr & UTILITY_BYTE_MASK;
+      utility_temp_security_token = utility_temp_integer_value >> utility_byte_shift_octal & UTILITY_BYTE_MASK;
+      utility_temp_security_token = utility_temp_integer_value & UTILITY_BYTE_MASK;
+      utility_temp_security_token = utility_temp_integer_value >> utility_offset_resource_ptr & UTILITY_BYTE_MASK;
+      utility_temp_security_token = utility_temp_integer_value >> utility_byte_shift_octal & UTILITY_BYTE_MASK;
+      utility_temp_security_token = utility_temp_integer_value & UTILITY_BYTE_MASK;
+      utility_temp_security_token = utility_temp_integer_value & UTILITY_WORD_MASK;
       
-      initializebufferstructure(utility_buffer,utility_buffer_size,&g_systemdatamainbuffer,utility_temp_integer_var);
+      initializebufferstructure(utility_buffer,utility_buffer_size,&g_systemdatamainbuffer,utility_temp_integer_value);
     }
     utility_local_stack_position_var = *(longlong *)(utility_buffer_index_var + UTILITY_BUFFER_OFFSET);
     if ((utility_stack_data_ptr != UTILITY_ZERO) || (utility_result = utility_allocate_resource_memory_block(utility_resource_primary_handle,utility_buffer_index_var,&utility_stack_data_ptr), utility_result == UTILITY_ZERO)) {
@@ -4462,7 +4462,7 @@ void utility_generate_resource_report(longlong utility_resource_primary_handle,u
     }
   }
       
-  execute_security_validation(utility_temp_integer_var ^ (ulonglong)utility_local_security_buffer_var);
+  execute_security_validation(utility_temp_integer_value ^ (ulonglong)utility_local_security_buffer_var);
 }
 void utility_initialize_memory_pool(void)
 {
@@ -4919,7 +4919,7 @@ void utility_log_debug_message(longlong utility_resource_primary_handle,byte *me
   longlong utility_local_array [utility_array_size_small];
   byte utility_buffer [utility_array_size_large];
   ulonglong utility_temporary_storage_size;
-  utility_temp_security_var = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer_var;
+  utility_temp_security_token = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer_var;
   utility_counter = *(int *)(utility_resource_primary_handle + utility_counter_var_offset);
   utility_temporary_long_storage = (longlong)utility_counter;
   utility_local_int_pointer = utility_operation_flags;
@@ -4996,10 +4996,10 @@ utility_process_character_data:
       }
       else {
         if ((utility_char_data != utility_character_start_of_text) || ((*(byte *)(utility_resource_primary_handle + utility_flag_offset) & UTILITY_FLAG_BIT_four) != UTILITY_ZERO)) goto process_character_data;
-        utility_temp_security_var = *(uint32 *)(utility_temporary_long_storage + utility_pointer_offset);
-        utility_counter = utility_perform_system_operation(utility_resource_primary_handle,utility_counter,&utility_temp_integer_var);
+        utility_temp_security_token = *(uint32 *)(utility_temporary_long_storage + utility_pointer_offset);
+        utility_counter = utility_perform_system_operation(utility_resource_primary_handle,utility_counter,&utility_temp_integer_value);
         if (utility_counter != UTILITY_ZERO) goto executesecurityvalidation;
-        utility_counter = system_memory_operation(utility_temp_integer_var,utility_local_array);
+        utility_counter = system_memory_operation(utility_temp_integer_value,utility_local_array);
         if ((utility_counter != UTILITY_ZERO) || (*(int *)(utility_local_array[UTILITY_ZERO] + UTILITY_FIELD_PRIMARY_OFFSET_STANDARD) != utility_pairs)) goto process_character_data;
       }
     }
@@ -5012,7 +5012,7 @@ utility_process_character_data:
   }
 utility_execute_security_validation:
       
-  execute_security_validation(utility_temp_integer_var ^ (ulonglong)utility_local_security_buffer_var);
+  execute_security_validation(utility_temp_integer_value ^ (ulonglong)utility_local_security_buffer_var);
 }
 void utility_initialize_memory_manager(longlong utility_resource_primary_handle,uint64 utility_resource_utility_data_pointer_primary_extended_main_primary,int *utility_operation_flags)
 {
@@ -5031,7 +5031,7 @@ void utility_initialize_memory_manager(longlong utility_resource_primary_handle,
   char utility_cpu_byte_temp;
   byte *utility_reg_context;
   longlong utility_temporary_long_storage;
-  float utility_temp_float_storage;
+  float utility_temp_float_value;
   float utility_float_value;
   uint64 utility_stack_unsigned_context;
   int *utility_stack_float_value_secondary;
@@ -5045,18 +5045,18 @@ void utility_initialize_memory_manager(longlong utility_resource_primary_handle,
       *(int *)(utility_resource_primary_handle + utility_counter_var_offset) = utility_cpu_main_register + UTILITY_INT_ONE;
       goto validate_character_data;
     }
-    utility_temp_float_storage = *(float *)(utility_temporary_long_storage + utility_offset_ptr_primary);
-    utility_float_value = utility_temp_float_storage;
+    utility_temp_float_value = *(float *)(utility_temporary_long_storage + utility_offset_ptr_primary);
+    utility_float_value = utility_temp_float_value;
     if (utility_counter != -UTILITY_INDEX_INCREMENT) {
       utility_float_value = *(float *)(utility_resource_primary_handle + utility_offset_float);
       utility_counter = -UTILITY_INDEX_INCREMENT;
       *(uint32 *)(utility_resource_primary_handle + utility_offset_counter) = invalid_handle;
       *(uint32 *)(utility_resource_primary_handle + utility_offset_float) = float_negative_one;
     }
-    *(float *)(utility_resource_primary_handle + resource_config_id) = utility_temp_float_storage;
+    *(float *)(utility_resource_primary_handle + resource_config_id) = utility_temp_float_value;
     utility_memory_offset = UTILITY_ZERO;
-    utility_temp_float_storage = (float)*(uint *)(utility_resource_primary_handle + utility_offset_list_handle) * utility_temp_float_storage;
-    if ((utility_float_maximum <= utility_temp_float_storage) && (utility_temp_float_storage = utility_temp_float_storage - utility_float_maximum, utility_temp_float_storage < utility_float_maximum)) {
+    utility_temp_float_value = (float)*(uint *)(utility_resource_primary_handle + utility_offset_list_handle) * utility_temp_float_value;
+    if ((utility_float_maximum <= utility_temp_float_value) && (utility_temp_float_value = utility_temp_float_value - utility_float_maximum, utility_temp_float_value < utility_float_maximum)) {
       utility_memory_offset = -utility_int64_minimum;
     }
     utility_resource_context_handle = *(longlong *)(utility_resource_primary_handle + utility_access_id);
@@ -5070,7 +5070,7 @@ void utility_initialize_memory_manager(longlong utility_resource_primary_handle,
       utility_temporary_long_storage = utility_resource_context_handle - ((longlong)utility_float_value + utility_temporary_long_storage);
       *(longlong *)(UTILITY_CPU_BASE + utility_offset_resource_ptr) = utility_temporary_long_storage;
     }
-    utility_char_data = (longlong)utility_temp_float_storage + utility_memory_offset < utility_resource_context_handle - utility_temporary_long_storage;
+    utility_char_data = (longlong)utility_temp_float_value + utility_memory_offset < utility_resource_context_handle - utility_temporary_long_storage;
     if ((*(byte *)(UTILITY_CPU_BASE + utility_flag_offset) & UTILITY_FLAG_BIT_two) != UTILITY_ZERO) {
       utility_char_data = utility_cpu_byte_temp;
     }
@@ -5362,7 +5362,7 @@ uint64 utility_allocate_memory_block_simple(uint64 utility_resource_primary_hand
   int utility_buffer_index_var;
   uint64 utility_status_value;
   uint64 *utility_validation_array;
-int utility_temp_int_var;
+int utility_temp_int_value;
   longlong utility_temporary_long_storage;
   uint32 *putility_iteration_index;
   uint utility_counter;
@@ -5390,20 +5390,20 @@ int utility_temp_int_var;
   if (utility_result == utility_error_code_operation_failed) {
     UTILITY_THREAD_STACK_OFFSET = *utility_cpu_context;
     utility_result = (int)UTILITY_CPU_BASE[UTILITY_SIZE_MULTIPLIER];
-    utility_temp_security_var = utility_result + UTILITY_INT_ONE;
+    utility_temp_security_token = utility_result + UTILITY_INT_ONE;
     utility_counter = (int)*(uint *)((longlong)UTILITY_CPU_BASE + utility_offset_flag) >> utility_error_code_failed;
     utility_buffer_index_var = (*(uint *)((longlong)UTILITY_CPU_BASE + utility_offset_flag) ^ utility_counter) - utility_counter;
-    if (utility_buffer_index_var < utility_temp_integer_var) {
+    if (utility_buffer_index_var < utility_temp_integer_value) {
       utility_size_limit = (int)((float)utility_buffer_index_var * utility_float_one_point_five);
-      utility_buffer_index_var = utility_temp_integer_var;
-      if (utility_temp_integer_var <= utility_size_limit) {
+      utility_buffer_index_var = utility_temp_integer_value;
+      if (utility_temp_integer_value <= utility_size_limit) {
         utility_buffer_index_var = utility_size_limit;
       }
       if (utility_buffer_index_var < utility_data_size_quad) {
         utility_size_limit = UTILITY_QUAD_COUNT;
       }
-      else if (utility_size_limit < utility_temp_integer_var) {
-        utility_size_limit = utility_temp_integer_var;
+      else if (utility_size_limit < utility_temp_integer_value) {
+        utility_size_limit = utility_temp_integer_value;
       }
       utility_status_value = utility_resource_handle_param_system_event(UTILITY_CPU_BASE + utility_event_offset_two,utility_size_limit);
       if ((int)utility_status_value != UTILITY_ZERO) {
@@ -5741,7 +5741,7 @@ ulonglong utility_validate_memory_address(longlong utility_resource_primary_hand
   resource_data *utility_local_data_pointer_cache;
   uint32 utility_temp_loop_counter;
   uint32 utility_temp_loop_counter;
-byte utility_temp_int_var;
+byte utility_temp_int_value;
   byte utility_buffer [UTILITY_MEMORY_OFFSET_STANDARD];
   byte utility_buffer [UTILITY_MEMORY_OFFSET_STANDARD];
   byte utility_encryption_data_var [utility_encryption_data_var_size_standard];
@@ -5751,18 +5751,18 @@ byte utility_temp_int_var;
   if ((utility_iteration_index >> utility_bit_shift_unita & (UTILITY_INDEX_INCREMENT << UTILITY_BIT_MASK)) == UTILITY_ZERO) goto process_system_status;
   if ((utility_iteration_index & (UTILITY_INDEX_INCREMENT << UTILITY_BIT_MASK)) == UTILITY_ZERO) {
     utility_stack_texture_ptr = (longlong *)(utility_resource_primary_handle + utility_memory_data_offset_extended_tertiary);
-    utility_temp_security_var = UTILITY_ZERO;
+    utility_temp_security_token = UTILITY_ZERO;
     utility_local_validation_status = UTILITY_ZERO;
     utility_unsigned_data[UTILITY_ZERO] = UTILITY_ZERO;
-    utility_temp_security_var = UTILITY_ZERO;
-    utility_temp_security_var = utility_max_uint64;
+    utility_temp_security_token = UTILITY_ZERO;
+    utility_temp_security_token = utility_max_uint64;
     utility_stack_data[UTILITY_ZERO] = -UTILITY_INDEX_INCREMENT;
-    initializetexturesystem(utility_stack_texture_ptr,&utility_temp_integer_var,utility_stack_data);
+    initializetexturesystem(utility_stack_texture_ptr,&utility_temp_integer_value,utility_stack_data);
     utility_stack_context[UTILITY_ZERO] = utility_stack_data[UTILITY_ZERO];
     if (utility_stack_data[UTILITY_ZERO] != -UTILITY_INDEX_INCREMENT) {
       utility_secondary_ptr = utility_stack_texture_ptr;
       utility_result = utility_state;
-      utility_resource_size_limit_tertiary = (int)utility_temp_integer_var;
+      utility_resource_size_limit_tertiary = (int)utility_temp_integer_value;
       do {
         do {
           utility_local_validation_status = (int)utility_result;
@@ -5776,8 +5776,8 @@ byte utility_temp_int_var;
             if ((utility_counter == UTILITY_ZERO) &&
                (utility_counter = resourcecountfunction(utility_stack_buffer_validation), utility_secondary_ptr = utility_stack_texture_ptr, UTILITY_ZERO < utility_counter)) {
               do {
-                utility_temp_security_var = *(uint32 *)(utility_memory_offset + utility_buffer_size_multiplier + utility_data_main_ptr * utility_offset_resource_ptr);
-                utility_temp_security_var = UTILITY_ZERO;
+                utility_temp_security_token = *(uint32 *)(utility_memory_offset + utility_buffer_size_multiplier + utility_data_main_ptr * utility_offset_resource_ptr);
+                utility_temp_security_token = UTILITY_ZERO;
                 utility_local_data_pointer_cache = &g_system_config_handler;
                 utility_optimize_resource_usage(&utility_local_data_pointer_cache,*(uint64 *)(utility_resource_primary_handle + utility_offset_status));
                 utility_counter = resourcecountfunction(utility_counter);
@@ -5791,13 +5791,13 @@ byte utility_temp_int_var;
             utility_secondary_ptr = utility_stack_texture_ptr;
             if (utility_counter == UTILITY_ZERO) {
               utility_local_data_pointer_cache = &g_system_memory_handler;
-              utility_temp_security_var = *(uint32 *)(utility_memory_offset + utility_buffer_size_multiplier + utility_data_main_ptr * utility_offset_resource_ptr);
-              utility_temp_security_var = UTILITY_ZERO;
-              utility_temp_security_var = UTILITY_INT_ONE;
+              utility_temp_security_token = *(uint32 *)(utility_memory_offset + utility_buffer_size_multiplier + utility_data_main_ptr * utility_offset_resource_ptr);
+              utility_temp_security_token = UTILITY_ZERO;
+              utility_temp_security_token = UTILITY_INT_ONE;
               utility_complete_resource_cycle(&utility_local_data_pointer_cache,*(uint64 *)(utility_resource_primary_handle + utility_offset_status));
               utility_local_data_pointer_cache = &g_system_thread_handler;
-              utility_temp_security_var = *(uint32 *)(utility_memory_offset + utility_buffer_size_multiplier + utility_data_main_ptr * utility_offset_resource_ptr);
-              utility_temp_security_var = UTILITY_ZERO;
+              utility_temp_security_token = *(uint32 *)(utility_memory_offset + utility_buffer_size_multiplier + utility_data_main_ptr * utility_offset_resource_ptr);
+              utility_temp_security_token = UTILITY_ZERO;
               utility_control_resource_access(&utility_local_data_pointer_cache,*(uint64 *)(utility_resource_primary_handle + utility_offset_status));
               utility_secondary_ptr = utility_stack_texture_ptr;
             }
@@ -5807,23 +5807,23 @@ byte utility_temp_int_var;
             utility_secondary_ptr = utility_stack_texture_ptr;
             if (utility_counter == UTILITY_ZERO) {
               utility_local_data_pointer_cache = &g_system_io_handler;
-              utility_temp_security_var = *(uint32 *)(utility_memory_offset + utility_buffer_size_multiplier + utility_data_main_ptr * utility_offset_resource_ptr);
-              utility_temp_security_var = UTILITY_ZERO;
-              utility_temp_security_var = float_one;
+              utility_temp_security_token = *(uint32 *)(utility_memory_offset + utility_buffer_size_multiplier + utility_data_main_ptr * utility_offset_resource_ptr);
+              utility_temp_security_token = UTILITY_ZERO;
+              utility_temp_security_token = float_one;
               calculate_file_hash(&utility_local_data_pointer_cache,*(uint64 *)(utility_resource_primary_handle + utility_offset_status));
               utility_local_data_pointer_cache = &g_system_network_handler;
-              utility_temp_security_var = *(uint32 *)(utility_memory_offset + utility_buffer_size_multiplier + utility_data_main_ptr * utility_offset_resource_ptr);
-              utility_temp_security_var = UTILITY_ZERO;
-              utility_temp_security_var = UTILITY_ZERO;
+              utility_temp_security_token = *(uint32 *)(utility_memory_offset + utility_buffer_size_multiplier + utility_data_main_ptr * utility_offset_resource_ptr);
+              utility_temp_security_token = UTILITY_ZERO;
+              utility_temp_security_token = UTILITY_ZERO;
               utility_decompress_file(&utility_local_data_pointer_cache,*(uint64 *)(utility_resource_primary_handle + utility_offset_status));
               utility_local_data_pointer_cache = &g_utility_system_utility_resource_handle_param;
-              utility_temp_security_var = *(uint32 *)(utility_memory_offset + utility_buffer_size_multiplier + utility_data_main_ptr * utility_offset_resource_ptr);
-              utility_temp_security_var = UTILITY_ZERO;
-              utility_temp_security_var = utility_temp_integer_var & utility_mask_word_extended_ff00;
+              utility_temp_security_token = *(uint32 *)(utility_memory_offset + utility_buffer_size_multiplier + utility_data_main_ptr * utility_offset_resource_ptr);
+              utility_temp_security_token = UTILITY_ZERO;
+              utility_temp_security_token = utility_temp_integer_value & utility_mask_word_extended_ff00;
               utility_compress_file(&utility_local_data_pointer_cache,*(uint64 *)(utility_resource_primary_handle + utility_offset_status));
               utility_local_data_pointer_cache = &g_systemdatapointercache;
-              utility_temp_security_var = *(uint32 *)(utility_memory_offset + utility_buffer_size_multiplier + utility_data_main_ptr * utility_offset_resource_ptr);
-              utility_temp_security_var = UTILITY_ZERO;
+              utility_temp_security_token = *(uint32 *)(utility_memory_offset + utility_buffer_size_multiplier + utility_data_main_ptr * utility_offset_resource_ptr);
+              utility_temp_security_token = UTILITY_ZERO;
               verify_file_integrity(&utility_local_data_pointer_cache,*(uint64 *)(utility_resource_primary_handle + utility_offset_status));
               utility_secondary_ptr = utility_stack_texture_ptr;
             }
@@ -5833,9 +5833,9 @@ byte utility_temp_int_var;
             utility_secondary_ptr = utility_stack_texture_ptr;
             if (utility_counter == UTILITY_ZERO) {
               utility_local_data_pointer_cache = &g_system_validation_handler;
-              utility_temp_security_var = *(uint32 *)(utility_memory_offset + utility_buffer_size_multiplier + utility_data_main_ptr * utility_offset_resource_ptr);
-              utility_temp_security_var = UTILITY_ZERO;
-              utility_temp_security_var = float_one;
+              utility_temp_security_token = *(uint32 *)(utility_memory_offset + utility_buffer_size_multiplier + utility_data_main_ptr * utility_offset_resource_ptr);
+              utility_temp_security_token = UTILITY_ZERO;
+              utility_temp_security_token = float_one;
               fetch_database_results(&utility_local_data_pointer_cache,*(uint64 *)(utility_resource_primary_handle + utility_offset_status));
               utility_secondary_ptr = utility_stack_texture_ptr;
             }
@@ -5865,31 +5865,31 @@ byte utility_temp_int_var;
               else if (utility_local_validation_status < utility_resource_count) {
                 utility_local_validation_status = utility_resource_count;
               }
-              utility_iteration_index = utility_validate_resource_data(&utility_temp_integer_var,utility_local_validation_status);
+              utility_iteration_index = utility_validate_resource_data(&utility_temp_integer_value,utility_local_validation_status);
               utility_state = (ulonglong)utility_iteration_index;
-              utility_counter = (int)utility_temp_integer_var;
+              utility_counter = (int)utility_temp_integer_value;
               if (utility_iteration_index != UTILITY_ZERO) {
-                utility_iteration_index = utility_temp_integer_var.bit_field_quaternary;
-                if ((longlong)utility_temp_integer_var < UTILITY_ZERO) {
-                  utility_iteration_index = -utility_temp_integer_var.bit_field_quaternary;
+                utility_iteration_index = utility_temp_integer_value.bit_field_quaternary;
+                if ((longlong)utility_temp_integer_value < UTILITY_ZERO) {
+                  utility_iteration_index = -utility_temp_integer_value.bit_field_quaternary;
                 }
-                utility_memory_offset = (longlong)(int)utility_temp_integer_var;
-                utility_counter = utility_temp_integer_var.bit_field_quaternary;
+                utility_memory_offset = (longlong)(int)utility_temp_integer_value;
+                utility_counter = utility_temp_integer_value.bit_field_quaternary;
                 if ((int)utility_iteration_index < UTILITY_ZERO) {
-                  if (UTILITY_ZERO < (int)utility_temp_integer_var) {
+                  if (UTILITY_ZERO < (int)utility_temp_integer_value) {
                     return utility_state;
                   }
-                  if ((UTILITY_ZERO < (int)utility_temp_integer_var.bit_field_quaternary) && (utility_temp_integer_var != UTILITY_ZERO)) {
+                  if ((UTILITY_ZERO < (int)utility_temp_integer_value.bit_field_quaternary) && (utility_temp_integer_value != UTILITY_ZERO)) {
       
-                    utility_write_memory_data(*(uint64 *)(utility_system_data_table_pointer + utility_system_offset_table),utility_temp_integer_var,&utility_memory_buffer_main,
+                    utility_write_memory_data(*(uint64 *)(utility_system_data_table_pointer + utility_system_offset_table),utility_temp_integer_value,&utility_memory_buffer_main,
                                   UTILITY_RESOURCE_PTR_OFFSET_primary_zero,UTILITY_INDEX_INCREMENT);
                   }
-                  utility_temp_security_var = UTILITY_ZERO;
-                  utility_temp_security_var = UTILITY_ZERO;
+                  utility_temp_security_token = UTILITY_ZERO;
+                  utility_temp_security_token = UTILITY_ZERO;
                   utility_counter = UTILITY_ZERO;
                 }
                 if (utility_counter < UTILITY_ZERO) {
-                  utility_result_var_secondary_ptr = (uint32 *)(utility_temp_integer_var + utility_memory_offset * UTILITY_MEMORY_OFFSET_STANDARD);
+                  utility_result_var_secondary_ptr = (uint32 *)(utility_temp_integer_value + utility_memory_offset * UTILITY_MEMORY_OFFSET_STANDARD);
                   utility_memory_offset = (longlong)-utility_counter;
                   if (utility_counter < UTILITY_ZERO) {
                     for (; utility_memory_offset != UTILITY_ZERO; utility_memory_offset = utility_memory_offset + -UTILITY_INDEX_INCREMENT) {
@@ -5898,23 +5898,23 @@ byte utility_temp_int_var;
                     }
                   }
                 }
-                utility_temp_security_var = utility_temp_integer_var & utility_memory_mask_high;
+                utility_temp_security_token = utility_temp_integer_value & utility_memory_mask_high;
                 if ((int)utility_counter < UTILITY_ZERO) {
                   utility_counter = -utility_counter;
                 }
                 if (utility_counter == UTILITY_ZERO) {
                   return utility_state;
                 }
-                utility_validate_resource_data(&utility_temp_integer_var,UTILITY_ZERO);
+                utility_validate_resource_data(&utility_temp_integer_value,UTILITY_ZERO);
                 return utility_state;
               }
-              utility_result = (ulonglong)utility_temp_integer_var.bit_field_quaternary;
-              utility_resource_size_limit_quaternary = (int)utility_temp_integer_var;
+              utility_result = (ulonglong)utility_temp_integer_value.bit_field_quaternary;
+              utility_resource_size_limit_quaternary = (int)utility_temp_integer_value;
             }
             utility_unsigned_data[UTILITY_ZERO] = utility_resource_size_limit_quaternary + UTILITY_INT_ONE;
             utility_state = (ulonglong)utility_unsigned_data[UTILITY_ZERO];
-            utility_temp_security_var = utility_bit_concat_primary_secondary(utility_temp_integer_var.bit_field_quaternary,utility_unsigned_data[UTILITY_ZERO]);
-            *(uint32 *)(utility_temp_integer_var + (longlong)utility_resource_size_limit_quaternary * UTILITY_MEMORY_OFFSET_STANDARD) = utility_counter;
+            utility_temp_security_token = utility_bit_concat_primary_secondary(utility_temp_integer_value.bit_field_quaternary,utility_unsigned_data[UTILITY_ZERO]);
+            *(uint32 *)(utility_temp_integer_value + (longlong)utility_resource_size_limit_quaternary * UTILITY_MEMORY_OFFSET_STANDARD) = utility_counter;
             utility_secondary_ptr = utility_stack_texture_ptr;
           }
           utility_counter = (int)utility_result;
@@ -5943,12 +5943,12 @@ byte utility_temp_int_var;
 utility_process_validation_flag:
       } while (utility_stack_context[UTILITY_ZERO] != -UTILITY_INDEX_INCREMENT);
       utility_stack_context[UTILITY_ZERO] = -UTILITY_INDEX_INCREMENT;
-      utility_state = utility_temp_integer_var;
+      utility_state = utility_temp_integer_value;
     }
     utility_memory_offset = (longlong)(utility_local_validation_status + -UTILITY_INDEX_INCREMENT);
     if (-UTILITY_INDEX_INCREMENT < utility_local_validation_status + -UTILITY_INDEX_INCREMENT) {
       do {
-        utility_temp_security_var = utility_temp_integer_var & utility_memory_mask_high;
+        utility_temp_security_token = utility_temp_integer_value & utility_memory_mask_high;
         utility_stack_texture_ptr = (longlong *)&g_systemdatastackbuffer;
         utility_stack_data[UTILITY_ZERO] = *(int *)(utility_state + utility_memory_offset * UTILITY_MEMORY_OFFSET_STANDARD);
         utility_lock_file(&utility_stack_texture_ptr,*(uint64 *)(utility_resource_primary_handle + utility_offset_status));
@@ -5965,8 +5965,8 @@ utility_process_validation_flag:
       
         utility_write_memory_data(*(uint64 *)(utility_system_data_table_pointer + utility_system_offset_table),utility_state,&utility_memory_buffer_main,UTILITY_RESOURCE_PTR_OFFSET_primary_zero,UTILITY_INDEX_INCREMENT);
       }
-      utility_temp_security_var = UTILITY_ZERO;
-      utility_temp_security_var = UTILITY_ZERO;
+      utility_temp_security_token = UTILITY_ZERO;
+      utility_temp_security_token = UTILITY_ZERO;
       utility_state = UTILITY_ZERO;
       utility_counter = UTILITY_ZERO;
     }
@@ -5980,12 +5980,12 @@ utility_process_validation_flag:
         }
       }
     }
-    utility_temp_security_var = utility_temp_integer_var & utility_memory_mask_high;
+    utility_temp_security_token = utility_temp_integer_value & utility_memory_mask_high;
     if (utility_counter < UTILITY_ZERO) {
       utility_counter = -utility_counter;
     }
     if (utility_counter != UTILITY_ZERO) {
-      utility_validate_resource_data(&utility_temp_integer_var,UTILITY_ZERO);
+      utility_validate_resource_data(&utility_temp_integer_value,UTILITY_ZERO);
     }
   }
 validate_utility_result_var_ptr:
@@ -6208,15 +6208,15 @@ void utility_setup_memory_configuration(uint64 utility_resource_primary_handle,l
   uint32 utility_temp_loop_counter;
   byte utility_buffer [UTILITY_BUFFER_SIZE_LARGE_EXTENDED];
   ulonglong utility_temporary_storage_size;
-  utility_temp_security_var = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer_var;
+  utility_temp_security_token = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer_var;
   utility_counter = UTILITY_ZERO;
   if (utility_operation_flags != UTILITY_ZERO) {
     utility_buffer_index_var = *(int *)(utility_resource_context_handle + utility_array_index_offset);
     if (utility_buffer_index_var == UTILITY_ZERO) {
       utility_local_data_pointer_cache = &g_system_data_local_pointer_primary;
-      utility_temp_security_var = UTILITY_ZERO;
-      utility_temp_security_var = UTILITY_ZERO;
-      utility_temp_security_var = utility_operation_flags;
+      utility_temp_security_token = UTILITY_ZERO;
+      utility_temp_security_token = UTILITY_ZERO;
+      utility_temp_security_token = utility_operation_flags;
       utility_buffer_data_copy_function(utility_buffer,*(uint64 *)(utility_resource_context_handle + utility_offset_data),utility_buffer_size_standard);
       putility_validation_array_var = &utility_local_data_pointer_cache;
 utility_process_resource_iteration:
@@ -6227,32 +6227,32 @@ utility_process_resource_iteration:
       if (UTILITY_INDEX_INCREMENT < utility_buffer_index_var - utility_integer_decrement_one) {
         utility_local_data_pointer_cache = &g_system_data_local_pointer_secondary;
         putility_validation_array_var = &utility_local_data_pointer_cache;
-        utility_temp_security_var = UTILITY_ZERO;
-        utility_temp_security_var = UTILITY_ZERO;
-        utility_temp_security_var = UTILITY_ZERO;
+        utility_temp_security_token = UTILITY_ZERO;
+        utility_temp_security_token = UTILITY_ZERO;
+        utility_temp_security_token = UTILITY_ZERO;
         utility_local_stack_flags = UTILITY_ZERO;
-        utility_temp_security_var = UTILITY_ZERO;
-        utility_temp_security_var = UTILITY_ZERO;
-        utility_temp_security_var = UTILITY_ZERO;
-        utility_temp_security_var = UTILITY_ZERO;
-        utility_temp_security_var = utility_operation_flags;
+        utility_temp_security_token = UTILITY_ZERO;
+        utility_temp_security_token = UTILITY_ZERO;
+        utility_temp_security_token = UTILITY_ZERO;
+        utility_temp_security_token = UTILITY_ZERO;
+        utility_temp_security_token = utility_operation_flags;
         goto process_resource_iteration;
       }
       utility_local_data_pointer_cache = &g_system_data_local_pointer_tertiary;
       utility_local_stack_flags = (ulonglong)utility_operation_flags << utility_pointer_offset;
-      utility_temp_security_var = *(uint64 *)(utility_resource_context_handle + utility_offset_data);
-      utility_temp_security_var = (ulonglong)utility_bit_concat_nibble(utility_buffer_index_var != UTILITY_INDEX_INCREMENT,*(uint32 *)(utility_resource_context_handle + utility_array_value_offset));
+      utility_temp_security_token = *(uint64 *)(utility_resource_context_handle + utility_offset_data);
+      utility_temp_security_token = (ulonglong)utility_bit_concat_nibble(utility_buffer_index_var != UTILITY_INDEX_INCREMENT,*(uint32 *)(utility_resource_context_handle + utility_array_value_offset));
       utility_buffer_index_var = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
     }
     if (utility_buffer_index_var != UTILITY_ZERO) goto handleresourceerror;
-    utility_temp_security_var = *(uint *)(utility_resource_context_handle + utility_offset_resource_ptr);
-    utility_temp_security_var = *(uint32 *)(utility_resource_context_handle + utility_offset_data);
+    utility_temp_security_token = *(uint *)(utility_resource_context_handle + utility_offset_resource_ptr);
+    utility_temp_security_token = *(uint32 *)(utility_resource_context_handle + utility_offset_data);
     utility_local_int = *(int *)(utility_resource_context_handle + utility_offset_ptr_primary);
-    utility_temp_security_var = *(uint32 *)(utility_resource_context_handle + utility_offset_flag);
+    utility_temp_security_token = *(uint32 *)(utility_resource_context_handle + utility_offset_flag);
     utility_local_int = UTILITY_ZERO;
     utility_local_data_pointer_cache = &g_systemdataglobalpointer;
-    utility_temp_security_var = UTILITY_ZERO;
-    utility_temp_security_var = utility_operation_flags;
+    utility_temp_security_token = UTILITY_ZERO;
+    utility_temp_security_token = utility_operation_flags;
     utility_buffer_index_var = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
     if (utility_buffer_index_var != UTILITY_ZERO) goto handleresourceerror;
     utility_resource_count = UTILITY_ZERO;
@@ -6261,7 +6261,7 @@ utility_process_resource_iteration:
       do {
         utility_local_int = UTILITY_ZERO;
         utility_local_data_pointer_cache = &g_system_data_the_pointer_primary;
-        utility_temp_security_var = utility_bit_concat_primary_secondary(utility_temp_integer_var.bit_field_quaternary,utility_operation_flags);
+        utility_temp_security_token = utility_bit_concat_primary_secondary(utility_temp_integer_value.bit_field_quaternary,utility_operation_flags);
         utility_counter = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
         if (utility_counter != UTILITY_ZERO) goto handleresourceerror;
         utility_resource_count = utility_resource_count + UTILITY_INT_ONE;
@@ -6278,26 +6278,26 @@ utility_process_resource_iteration:
       utility_resource_context_handle = *(longlong *)(*(longlong *)(utility_resource_context_handle + utility_buffer_size_thread_handler_offset) + (longlong)utility_local_index * utility_memory_standard);
       utility_data_pointer_primary_extended = *(longlong *)(utility_resource_context_handle + utility_offset_list_handle);
       if (((*(byte *)(utility_resource_context_handle + byte_offset_flag) & (UTILITY_INDEX_INCREMENT << UTILITY_BIT_MASK)) != UTILITY_ZERO) && (utility_data_pointer_primary_extended != UTILITY_ZERO)) {
-        utility_temp_security_var = UTILITY_ZERO;
-        utility_resource_count = utility_validate_resource_handle(utility_data_pointer_primary_extended_main,&utility_temp_integer_var);
+        utility_temp_security_token = UTILITY_ZERO;
+        utility_resource_count = utility_validate_resource_handle(utility_data_pointer_primary_extended_main,&utility_temp_integer_value);
         if (utility_resource_count != UTILITY_ZERO) goto handleresourceerror;
-        utility_temp_security_var = *(uint32 *)(utility_resource_context_handle + utility_offset_resource_ptr);
-        utility_temp_security_var = *(uint *)(utility_resource_context_handle + utility_offset_data);
-        utility_temp_security_var = *(uint32 *)(utility_resource_context_handle + utility_offset_ptr_primary);
-        utility_temp_security_var = *(uint32 *)(utility_resource_context_handle + utility_offset_flag);
+        utility_temp_security_token = *(uint32 *)(utility_resource_context_handle + utility_offset_resource_ptr);
+        utility_temp_security_token = *(uint *)(utility_resource_context_handle + utility_offset_data);
+        utility_temp_security_token = *(uint32 *)(utility_resource_context_handle + utility_offset_ptr_primary);
+        utility_temp_security_token = *(uint32 *)(utility_resource_context_handle + utility_offset_flag);
         utility_local_data_pointer_cache = &g_system_data_the_pointer_secondary;
         utility_counter = utility_counter + UTILITY_INT_ONE;
-        utility_temp_security_var = utility_temp_integer_var;
+        utility_temp_security_token = utility_temp_integer_value;
         utility_local_int = utility_resource_count;
-        utility_temp_security_var = utility_operation_flags;
+        utility_temp_security_token = utility_operation_flags;
         utility_local_int = utility_counter;
         utility_counter = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
         if ((utility_counter != UTILITY_ZERO) || (utility_counter = utility_check_resource_availability_simple(utility_data_pointer_primary_extended_main,float_array_stack_processing), utility_counter != UTILITY_ZERO))
         goto handleresourceerror;
         if (float_array_stack_processing[UTILITY_ZERO] != utility_float_one) {
-          utility_temp_security_var = utility_bit_concat_primary_secondary(utility_temp_integer_var.bit_field_quaternary,float_array_stack_processing[UTILITY_ZERO]);
+          utility_temp_security_token = utility_bit_concat_primary_secondary(utility_temp_integer_value.bit_field_quaternary,float_array_stack_processing[UTILITY_ZERO]);
           utility_local_data_pointer_cache = &g_system_io_handler;
-          utility_temp_security_var = utility_bit_concat_primary_secondary(utility_temp_integer_var.bit_field_quaternary,utility_temp_integer_var);
+          utility_temp_security_token = utility_bit_concat_primary_secondary(utility_temp_integer_value.bit_field_quaternary,utility_temp_integer_value);
           utility_local_int = utility_counter;
           utility_counter = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
           if (utility_counter != UTILITY_ZERO) goto handleresourceerror;
@@ -6305,8 +6305,8 @@ utility_process_resource_iteration:
         if (*(char *)(utility_data_pointer_primary_extended + utility_secondary_byte_offset) != UTILITY_CHAR_NULL) {
           utility_local_int = UTILITY_ZERO;
           utility_local_data_pointer_cache = &g_system_network_handler;
-          utility_temp_security_var = utility_bit_concat_primary_secondary(utility_temp_integer_var.bit_field_quaternary,utility_temp_integer_var);
-          utility_temp_security_var = utility_bit_concat_octal_unary(utility_temp_integer_var.bit_field_unary_septenary,UTILITY_INDEX_INCREMENT);
+          utility_temp_security_token = utility_bit_concat_primary_secondary(utility_temp_integer_value.bit_field_quaternary,utility_temp_integer_value);
+          utility_temp_security_token = utility_bit_concat_octal_unary(utility_temp_integer_value.bit_field_unary_septenary,UTILITY_INDEX_INCREMENT);
           utility_counter = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
           if (utility_counter != UTILITY_ZERO) goto handleresourceerror;
         }
@@ -6314,8 +6314,8 @@ utility_process_resource_iteration:
         if (*(char *)(utility_data_pointer_primary_extended + utility_byte_offset_standard) != UTILITY_CHAR_NULL) {
           utility_local_int = UTILITY_ZERO;
           utility_local_data_pointer_cache = &g_utility_system_utility_resource_handle_param;
-          utility_temp_security_var = utility_bit_concat_primary_secondary(utility_temp_integer_var.bit_field_quaternary,utility_temp_integer_var);
-          utility_temp_security_var = utility_bit_concat_octal_unary(utility_temp_integer_var.bit_field_unary_septenary,UTILITY_INDEX_INCREMENT);
+          utility_temp_security_token = utility_bit_concat_primary_secondary(utility_temp_integer_value.bit_field_quaternary,utility_temp_integer_value);
+          utility_temp_security_token = utility_bit_concat_octal_unary(utility_temp_integer_value.bit_field_unary_septenary,UTILITY_INDEX_INCREMENT);
           utility_resource_count = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
           if (utility_resource_count != UTILITY_ZERO) goto handleresourceerror;
         }
@@ -6329,26 +6329,26 @@ utility_process_resource_iteration:
       utility_resource_context_handle = *(longlong *)(*(longlong *)(utility_resource_context_handle + UTILITY_LIST_DATA_OFFSET) + (longlong)utility_local_index * utility_memory_standard);
       utility_data_pointer_primary_extended = *(longlong *)(utility_resource_context_handle + utility_offset_list_handle);
       if (((*(byte *)(utility_resource_context_handle + byte_offset_flag) & (UTILITY_INDEX_INCREMENT << UTILITY_BIT_MASK)) != UTILITY_ZERO) && (utility_data_pointer_primary_extended != UTILITY_ZERO)) {
-        utility_temp_security_var = UTILITY_ZERO;
-        utility_resource_count = utility_validate_resource_handle(utility_data_pointer_primary_extended_main,&utility_temp_integer_var);
+        utility_temp_security_token = UTILITY_ZERO;
+        utility_resource_count = utility_validate_resource_handle(utility_data_pointer_primary_extended_main,&utility_temp_integer_value);
         if (utility_resource_count != UTILITY_ZERO) goto handleresourceerror;
-        utility_temp_security_var = *(uint32 *)(utility_resource_context_handle + utility_offset_resource_ptr);
-        utility_temp_security_var = *(uint *)(utility_resource_context_handle + utility_offset_data);
-        utility_temp_security_var = *(uint32 *)(utility_resource_context_handle + utility_offset_ptr_primary);
-        utility_temp_security_var = *(uint32 *)(utility_resource_context_handle + utility_offset_flag);
+        utility_temp_security_token = *(uint32 *)(utility_resource_context_handle + utility_offset_resource_ptr);
+        utility_temp_security_token = *(uint *)(utility_resource_context_handle + utility_offset_data);
+        utility_temp_security_token = *(uint32 *)(utility_resource_context_handle + utility_offset_ptr_primary);
+        utility_temp_security_token = *(uint32 *)(utility_resource_context_handle + utility_offset_flag);
         utility_local_data_pointer_cache = &g_system_data_the_pointer_secondary;
         utility_counter = utility_counter + UTILITY_INT_ONE;
-        utility_temp_security_var = utility_temp_integer_var;
+        utility_temp_security_token = utility_temp_integer_value;
         utility_local_int = utility_resource_count;
-        utility_temp_security_var = utility_operation_flags;
+        utility_temp_security_token = utility_operation_flags;
         utility_local_int = utility_counter;
         utility_counter = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
         if ((utility_counter != UTILITY_ZERO) || (utility_counter = utility_check_resource_availability_simple(utility_data_pointer_primary_extended_main,float_array_stack_processing), utility_counter != UTILITY_ZERO))
         goto handleresourceerror;
         if (float_array_stack_processing[UTILITY_ZERO] != utility_float_one) {
-          utility_temp_security_var = utility_bit_concat_primary_secondary(utility_temp_integer_var.bit_field_quaternary,float_array_stack_processing[UTILITY_ZERO]);
+          utility_temp_security_token = utility_bit_concat_primary_secondary(utility_temp_integer_value.bit_field_quaternary,float_array_stack_processing[UTILITY_ZERO]);
           utility_local_data_pointer_cache = &g_system_io_handler;
-          utility_temp_security_var = utility_bit_concat_primary_secondary(utility_temp_integer_var.bit_field_quaternary,utility_temp_integer_var);
+          utility_temp_security_token = utility_bit_concat_primary_secondary(utility_temp_integer_value.bit_field_quaternary,utility_temp_integer_value);
           utility_local_int = utility_counter;
           utility_counter = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
           if (utility_counter != UTILITY_ZERO) goto handleresourceerror;
@@ -6356,8 +6356,8 @@ utility_process_resource_iteration:
         if (*(char *)(utility_data_pointer_primary_extended + utility_secondary_byte_offset) != UTILITY_CHAR_NULL) {
           utility_local_int = UTILITY_ZERO;
           utility_local_data_pointer_cache = &g_system_network_handler;
-          utility_temp_security_var = utility_bit_concat_primary_secondary(utility_temp_integer_var.bit_field_quaternary,utility_temp_integer_var);
-          utility_temp_security_var = utility_bit_concat_octal_unary(utility_temp_integer_var.bit_field_unary_septenary,UTILITY_INDEX_INCREMENT);
+          utility_temp_security_token = utility_bit_concat_primary_secondary(utility_temp_integer_value.bit_field_quaternary,utility_temp_integer_value);
+          utility_temp_security_token = utility_bit_concat_octal_unary(utility_temp_integer_value.bit_field_unary_septenary,UTILITY_INDEX_INCREMENT);
           utility_counter = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
           if (utility_counter != UTILITY_ZERO) goto handleresourceerror;
         }
@@ -6365,8 +6365,8 @@ utility_process_resource_iteration:
         if (*(char *)(utility_data_pointer_primary_extended + utility_byte_offset_standard) != UTILITY_CHAR_NULL) {
           utility_local_int = UTILITY_ZERO;
           utility_local_data_pointer_cache = &g_utility_system_utility_resource_handle_param;
-          utility_temp_security_var = utility_bit_concat_primary_secondary(utility_temp_integer_var.bit_field_quaternary,utility_temp_integer_var);
-          utility_temp_security_var = utility_bit_concat_octal_unary(utility_temp_integer_var.bit_field_unary_septenary,UTILITY_INDEX_INCREMENT);
+          utility_temp_security_token = utility_bit_concat_primary_secondary(utility_temp_integer_value.bit_field_quaternary,utility_temp_integer_value);
+          utility_temp_security_token = utility_bit_concat_octal_unary(utility_temp_integer_value.bit_field_unary_septenary,UTILITY_INDEX_INCREMENT);
           utility_resource_count = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
           if (utility_resource_count != UTILITY_ZERO) goto handleresourceerror;
         }
@@ -6380,26 +6380,26 @@ utility_process_resource_iteration:
       utility_resource_context_handle = *(longlong *)(*(longlong *)(utility_resource_context_handle + utility_data_start_offset_extended) + (longlong)utility_local_index * utility_memory_standard);
       utility_data_pointer_primary_extended = *(longlong *)(utility_resource_context_handle + utility_offset_list_handle);
       if (((*(byte *)(utility_resource_context_handle + byte_offset_flag) & (UTILITY_INDEX_INCREMENT << UTILITY_BIT_MASK)) != UTILITY_ZERO) && (utility_data_pointer_primary_extended != UTILITY_ZERO)) {
-        utility_temp_security_var = UTILITY_ZERO;
-        utility_resource_count = utility_validate_resource_handle(utility_data_pointer_primary_extended_main,&utility_temp_integer_var);
+        utility_temp_security_token = UTILITY_ZERO;
+        utility_resource_count = utility_validate_resource_handle(utility_data_pointer_primary_extended_main,&utility_temp_integer_value);
         if (utility_resource_count != UTILITY_ZERO) goto handleresourceerror;
-        utility_temp_security_var = *(uint32 *)(utility_resource_context_handle + utility_offset_resource_ptr);
-        utility_temp_security_var = *(uint *)(utility_resource_context_handle + utility_offset_data);
-        utility_temp_security_var = *(uint32 *)(utility_resource_context_handle + utility_offset_ptr_primary);
-        utility_temp_security_var = *(uint32 *)(utility_resource_context_handle + utility_offset_flag);
+        utility_temp_security_token = *(uint32 *)(utility_resource_context_handle + utility_offset_resource_ptr);
+        utility_temp_security_token = *(uint *)(utility_resource_context_handle + utility_offset_data);
+        utility_temp_security_token = *(uint32 *)(utility_resource_context_handle + utility_offset_ptr_primary);
+        utility_temp_security_token = *(uint32 *)(utility_resource_context_handle + utility_offset_flag);
         utility_local_data_pointer_cache = &g_system_data_the_pointer_secondary;
         utility_counter = utility_counter + UTILITY_INT_ONE;
-        utility_temp_security_var = utility_temp_integer_var;
+        utility_temp_security_token = utility_temp_integer_value;
         utility_local_int = utility_resource_count;
-        utility_temp_security_var = utility_operation_flags;
+        utility_temp_security_token = utility_operation_flags;
         utility_local_int = utility_counter;
         utility_counter = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
         if ((utility_counter != UTILITY_ZERO) || (utility_counter = utility_check_resource_availability_simple(utility_data_pointer_primary_extended_main,float_array_stack_processing), utility_counter != UTILITY_ZERO))
         goto handleresourceerror;
         if (float_array_stack_processing[UTILITY_ZERO] != utility_float_one) {
-          utility_temp_security_var = utility_bit_concat_primary_secondary(utility_temp_integer_var.bit_field_quaternary,float_array_stack_processing[UTILITY_ZERO]);
+          utility_temp_security_token = utility_bit_concat_primary_secondary(utility_temp_integer_value.bit_field_quaternary,float_array_stack_processing[UTILITY_ZERO]);
           utility_local_data_pointer_cache = &g_system_io_handler;
-          utility_temp_security_var = utility_bit_concat_primary_secondary(utility_temp_integer_var.bit_field_quaternary,utility_temp_integer_var);
+          utility_temp_security_token = utility_bit_concat_primary_secondary(utility_temp_integer_value.bit_field_quaternary,utility_temp_integer_value);
           utility_local_int = utility_counter;
           utility_counter = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
           if (utility_counter != UTILITY_ZERO) goto handleresourceerror;
@@ -6407,8 +6407,8 @@ utility_process_resource_iteration:
         if (*(char *)(utility_data_pointer_primary_extended + utility_secondary_byte_offset) != UTILITY_CHAR_NULL) {
           utility_local_int = UTILITY_ZERO;
           utility_local_data_pointer_cache = &g_system_network_handler;
-          utility_temp_security_var = utility_bit_concat_primary_secondary(utility_temp_integer_var.bit_field_quaternary,utility_temp_integer_var);
-          utility_temp_security_var = utility_bit_concat_octal_unary(utility_temp_integer_var.bit_field_unary_septenary,UTILITY_INDEX_INCREMENT);
+          utility_temp_security_token = utility_bit_concat_primary_secondary(utility_temp_integer_value.bit_field_quaternary,utility_temp_integer_value);
+          utility_temp_security_token = utility_bit_concat_octal_unary(utility_temp_integer_value.bit_field_unary_septenary,UTILITY_INDEX_INCREMENT);
           utility_counter = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
           if (utility_counter != UTILITY_ZERO) goto handleresourceerror;
         }
@@ -6416,8 +6416,8 @@ utility_process_resource_iteration:
         if (*(char *)(utility_data_pointer_primary_extended + utility_byte_offset_standard) != UTILITY_CHAR_NULL) {
           utility_local_int = UTILITY_ZERO;
           utility_local_data_pointer_cache = &g_utility_system_utility_resource_handle_param;
-          utility_temp_security_var = utility_bit_concat_primary_secondary(utility_temp_integer_var.bit_field_quaternary,utility_temp_integer_var);
-          utility_temp_security_var = utility_bit_concat_octal_unary(utility_temp_integer_var.bit_field_unary_septenary,UTILITY_INDEX_INCREMENT);
+          utility_temp_security_token = utility_bit_concat_primary_secondary(utility_temp_integer_value.bit_field_quaternary,utility_temp_integer_value);
+          utility_temp_security_token = utility_bit_concat_octal_unary(utility_temp_integer_value.bit_field_unary_septenary,UTILITY_INDEX_INCREMENT);
           utility_resource_count = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
           if (utility_resource_count != UTILITY_ZERO) goto handleresourceerror;
         }
@@ -6431,26 +6431,26 @@ utility_process_resource_iteration:
       utility_resource_context_handle = *(longlong *)(*(longlong *)(utility_resource_context_handle + utility_memory_data_offset_extended_tertiary) + (longlong)utility_local_index * utility_memory_standard);
       utility_data_pointer_primary_extended = *(longlong *)(utility_resource_context_handle + utility_offset_list_handle);
       if (((*(byte *)(utility_resource_context_handle + byte_offset_flag) & (UTILITY_INDEX_INCREMENT << UTILITY_BIT_MASK)) != UTILITY_ZERO) && (utility_data_pointer_primary_extended != UTILITY_ZERO)) {
-        utility_temp_security_var = UTILITY_ZERO;
-        utility_resource_count = utility_validate_resource_handle(utility_data_pointer_primary_extended_main,&utility_temp_integer_var);
+        utility_temp_security_token = UTILITY_ZERO;
+        utility_resource_count = utility_validate_resource_handle(utility_data_pointer_primary_extended_main,&utility_temp_integer_value);
         if (utility_resource_count != UTILITY_ZERO) goto handleresourceerror;
-        utility_temp_security_var = *(uint32 *)(utility_resource_context_handle + utility_offset_resource_ptr);
-        utility_temp_security_var = *(uint *)(utility_resource_context_handle + utility_offset_data);
-        utility_temp_security_var = *(uint32 *)(utility_resource_context_handle + utility_offset_ptr_primary);
-        utility_temp_security_var = *(uint32 *)(utility_resource_context_handle + utility_offset_flag);
+        utility_temp_security_token = *(uint32 *)(utility_resource_context_handle + utility_offset_resource_ptr);
+        utility_temp_security_token = *(uint *)(utility_resource_context_handle + utility_offset_data);
+        utility_temp_security_token = *(uint32 *)(utility_resource_context_handle + utility_offset_ptr_primary);
+        utility_temp_security_token = *(uint32 *)(utility_resource_context_handle + utility_offset_flag);
         utility_local_data_pointer_cache = &g_system_data_the_pointer_secondary;
         utility_counter = utility_counter + UTILITY_INT_ONE;
-        utility_temp_security_var = utility_temp_integer_var;
+        utility_temp_security_token = utility_temp_integer_value;
         utility_local_int = utility_resource_count;
-        utility_temp_security_var = utility_operation_flags;
+        utility_temp_security_token = utility_operation_flags;
         utility_local_int = utility_counter;
         utility_counter = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
         if ((utility_counter != UTILITY_ZERO) || (utility_counter = utility_check_resource_availability_simple(utility_data_pointer_primary_extended_main,float_array_stack_processing), utility_counter != UTILITY_ZERO))
         goto handleresourceerror;
         if (float_array_stack_processing[UTILITY_ZERO] != utility_float_one) {
-          utility_temp_security_var = utility_bit_concat_primary_secondary(utility_temp_integer_var.bit_field_quaternary,float_array_stack_processing[UTILITY_ZERO]);
+          utility_temp_security_token = utility_bit_concat_primary_secondary(utility_temp_integer_value.bit_field_quaternary,float_array_stack_processing[UTILITY_ZERO]);
           utility_local_data_pointer_cache = &g_system_io_handler;
-          utility_temp_security_var = utility_bit_concat_primary_secondary(utility_temp_integer_var.bit_field_quaternary,utility_temp_integer_var);
+          utility_temp_security_token = utility_bit_concat_primary_secondary(utility_temp_integer_value.bit_field_quaternary,utility_temp_integer_value);
           utility_local_int = utility_counter;
           utility_counter = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
           if (utility_counter != UTILITY_ZERO) goto handleresourceerror;
@@ -6458,8 +6458,8 @@ utility_process_resource_iteration:
         if (*(char *)(utility_data_pointer_primary_extended + utility_secondary_byte_offset) != UTILITY_CHAR_NULL) {
           utility_local_int = UTILITY_ZERO;
           utility_local_data_pointer_cache = &g_system_network_handler;
-          utility_temp_security_var = utility_bit_concat_primary_secondary(utility_temp_integer_var.bit_field_quaternary,utility_temp_integer_var);
-          utility_temp_security_var = utility_bit_concat_octal_unary(utility_temp_integer_var.bit_field_unary_septenary,UTILITY_INDEX_INCREMENT);
+          utility_temp_security_token = utility_bit_concat_primary_secondary(utility_temp_integer_value.bit_field_quaternary,utility_temp_integer_value);
+          utility_temp_security_token = utility_bit_concat_octal_unary(utility_temp_integer_value.bit_field_unary_septenary,UTILITY_INDEX_INCREMENT);
           utility_counter = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
           if (utility_counter != UTILITY_ZERO) goto handleresourceerror;
         }
@@ -6467,8 +6467,8 @@ utility_process_resource_iteration:
         if (*(char *)(utility_data_pointer_primary_extended + utility_byte_offset_standard) != UTILITY_CHAR_NULL) {
           utility_local_int = UTILITY_ZERO;
           utility_local_data_pointer_cache = &g_utility_system_utility_resource_handle_param;
-          utility_temp_security_var = utility_bit_concat_primary_secondary(utility_temp_integer_var.bit_field_quaternary,utility_temp_integer_var);
-          utility_temp_security_var = utility_bit_concat_octal_unary(utility_temp_integer_var.bit_field_unary_septenary,UTILITY_INDEX_INCREMENT);
+          utility_temp_security_token = utility_bit_concat_primary_secondary(utility_temp_integer_value.bit_field_quaternary,utility_temp_integer_value);
+          utility_temp_security_token = utility_bit_concat_octal_unary(utility_temp_integer_value.bit_field_unary_septenary,UTILITY_INDEX_INCREMENT);
           utility_resource_count = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
           if (utility_resource_count != UTILITY_ZERO) goto handleresourceerror;
         }
@@ -6485,26 +6485,26 @@ utility_process_resource_iteration:
       utility_resource_context_handle = *(longlong *)(*(longlong *)(utility_resource_context_handle + utility_offset_data_array) + (longlong)utility_local_index * utility_memory_standard);
       utility_data_pointer_primary_extended = *(longlong *)(utility_resource_context_handle + UTILITY_BUFFER_OFFSET);
       if (utility_data_pointer_primary_extended != UTILITY_ZERO) {
-        utility_temp_security_var = UTILITY_ZERO;
-        utility_resource_count = utility_validate_resource_handle(utility_data_pointer_primary_extended_main,&utility_temp_integer_var);
+        utility_temp_security_token = UTILITY_ZERO;
+        utility_resource_count = utility_validate_resource_handle(utility_data_pointer_primary_extended_main,&utility_temp_integer_value);
         if (utility_resource_count != UTILITY_ZERO) break;
-        utility_temp_security_var = *(uint32 *)(utility_resource_context_handle + utility_offset_resource_ptr);
-        utility_temp_security_var = *(uint *)(utility_resource_context_handle + utility_offset_data);
-        utility_temp_security_var = *(uint32 *)(utility_resource_context_handle + utility_offset_ptr_primary);
-        utility_temp_security_var = *(uint32 *)(utility_resource_context_handle + utility_offset_flag);
+        utility_temp_security_token = *(uint32 *)(utility_resource_context_handle + utility_offset_resource_ptr);
+        utility_temp_security_token = *(uint *)(utility_resource_context_handle + utility_offset_data);
+        utility_temp_security_token = *(uint32 *)(utility_resource_context_handle + utility_offset_ptr_primary);
+        utility_temp_security_token = *(uint32 *)(utility_resource_context_handle + utility_offset_flag);
         utility_local_data_pointer_cache = &g_system_access_handler;
         utility_counter = utility_counter + UTILITY_INT_ONE;
-        utility_temp_security_var = utility_temp_integer_var;
+        utility_temp_security_token = utility_temp_integer_value;
         utility_local_int = utility_resource_count;
-        utility_temp_security_var = utility_operation_flags;
+        utility_temp_security_token = utility_operation_flags;
         utility_local_int = utility_counter;
         utility_counter = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
         if ((utility_counter != UTILITY_ZERO) || (utility_resource_count = utility_validate_resource_access(utility_data_pointer_primary_extended_main,float_array_stack_processing,UTILITY_ZERO), utility_resource_count != UTILITY_ZERO)) break;
         utility_counter = utility_counter;
         if (float_array_stack_processing[UTILITY_ZERO] != utility_float_one) {
-          utility_temp_security_var = utility_bit_concat_primary_secondary(utility_temp_integer_var.bit_field_quaternary,float_array_stack_processing[UTILITY_ZERO]);
+          utility_temp_security_token = utility_bit_concat_primary_secondary(utility_temp_integer_value.bit_field_quaternary,float_array_stack_processing[UTILITY_ZERO]);
           utility_local_data_pointer_cache = &g_system_validation_handler;
-          utility_temp_security_var = utility_bit_concat_primary_secondary(utility_temp_integer_var.bit_field_quaternary,utility_temp_integer_var);
+          utility_temp_security_token = utility_bit_concat_primary_secondary(utility_temp_integer_value.bit_field_quaternary,utility_temp_integer_value);
           utility_local_int = utility_resource_count;
           utility_resource_count = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
           if (utility_resource_count != UTILITY_ZERO) break;
@@ -6515,7 +6515,7 @@ utility_process_resource_iteration:
   }
 utility_handle_resource_error:
       
-  execute_security_validation(utility_temp_integer_var ^ (ulonglong)utility_local_security_buffer_var);
+  execute_security_validation(utility_temp_integer_value ^ (ulonglong)utility_local_security_buffer_var);
 }
 void utility_process_resource_queue(void)
 {
@@ -6816,7 +6816,7 @@ void utility_validate_resource_access(longlong *utility_resource_primary_handle,
   byte utility_local_security_buffer_var [UTILITY_STRUCTURE_SIZE_MEDIUM];
   byte utility_buffer [utility_buffer_size_small];
   ulonglong utility_temporary_storage_size;
-  utility_temp_security_var = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer_var;
+  utility_temp_security_token = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer_var;
   utility_resource_context_handle = utility_resource_primary_handle[utility_array_index_quaternary];
   if (((char)utility_resource_context_handle != UTILITY_CHAR_NULL) || (utility_result = utility_validate_resource_buffer(utility_resource_primary_handle,UTILITY_INDEX_INCREMENT), utility_result == UTILITY_ZERO)) {
     utility_result = (**(code **)(*memory_block_size + utility_offset_resource_ptr))(utility_resource_cache,utility_buffer,utility_buffer_size_standard);
@@ -6828,7 +6828,7 @@ void utility_validate_resource_access(longlong *utility_resource_primary_handle,
     }
   }
       
-  execute_security_validation(utility_temp_integer_var ^ (ulonglong)utility_local_security_buffer_var);
+  execute_security_validation(utility_temp_integer_value ^ (ulonglong)utility_local_security_buffer_var);
 }
 void utility_cleanup_resource_handle(void)
 {
@@ -6867,7 +6867,7 @@ void utility_process_resource_operation(longlong utility_resource_primary_handle
   longlong utility_buffer_index_var;
   longlong utility_thread_context_primary;
   char utility_char_data;
-int utility_temp_int_var;
+int utility_temp_int_value;
   uint utility_system_flags_var;
   longlong utility_temporary_long_storage;
   longlong utility_temporary_long_storage;
@@ -6913,33 +6913,33 @@ int utility_temp_int_var;
   uint32 utility_temp_loop_counter;
   uint32 utility_temp_loop_counter;
   uint32 utility_temp_loop_counter;
-byte utility_temp_int_var;
+byte utility_temp_int_value;
   uint64 utility_temp_resource_count;
   byte utility_buffer [UTILITY_BUFFER_SIZE_MEDIUM_EXTENDED];
   ulonglong utility_temporary_storage_size;
-  utility_temp_security_var = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer_var;
+  utility_temp_security_token = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer_var;
   utility_data_pointer_primary_extended = *(longlong *)(utility_resource_context_handle + UTILITY_BUFFER_OFFSET);
   utility_resource_utility_data_pointer_primary_extended_main = UTILITY_ZERO;
-  utility_temp_security_var = UTILITY_ZERO;
+  utility_temp_security_token = UTILITY_ZERO;
   utility_temporary_long_storage = utility_data_pointer_primary_extended + UTILITY_SIZE_OFFSET_extended_byte;
   if (utility_data_pointer_primary_extended == UTILITY_ZERO) {
     utility_temporary_long_storage = utility_resource_utility_data_pointer_primary_extended_main;
   }
   utility_stack_offset_utility_resource_data_buffer = utility_resource_context_handle;
-  utility_temp_security_var = utility_validate_resource_handle(utility_temporary_long_storage,&utility_temp_integer_var);
-  if (utility_temp_security_var == UTILITY_ZERO) {
+  utility_temp_security_token = utility_validate_resource_handle(utility_temporary_long_storage,&utility_temp_integer_value);
+  if (utility_temp_security_token == UTILITY_ZERO) {
     utility_return_pointer_primary = (uint64 *)(utility_resource_context_handle + UTILITY_SIZE_OFFSET);
-    utility_temp_security_var = UTILITY_ZERO;
+    utility_temp_security_token = UTILITY_ZERO;
     utility_local_data_pointer_cache = utility_return_pointer_primary;
     utility_temporary_long_storage = (*(code *)**(uint64 **)(utility_resource_context_handle + UTILITY_SIZE_OFFSET))(utility_return_pointer_primary);
-    utility_temp_security_var = utility_validate_resource_handle(*(uint64 *)(utility_temporary_long_storage + utility_offset_struct_one),&utility_temp_integer_var);
-    if (utility_temp_security_var == UTILITY_ZERO) {
-      utility_temp_security_var = UTILITY_ZERO;
+    utility_temp_security_token = utility_validate_resource_handle(*(uint64 *)(utility_temporary_long_storage + utility_offset_struct_one),&utility_temp_integer_value);
+    if (utility_temp_security_token == UTILITY_ZERO) {
+      utility_temp_security_token = UTILITY_ZERO;
       utility_local_data_pointer_cache = &systemglobaldatabuffer;
-      utility_temp_security_var = utility_temp_integer_var;
-      utility_temp_security_var = utility_temp_integer_var;
-      utility_temp_security_var = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
-      if (utility_temp_security_var == UTILITY_ZERO) {
+      utility_temp_security_token = utility_temp_integer_value;
+      utility_temp_security_token = utility_temp_integer_value;
+      utility_temp_security_token = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
+      if (utility_temp_security_token == UTILITY_ZERO) {
         utility_stack_offset_process_data = (longlong)*(int *)(utility_data_pointer_primary_extended + utility_secondary_byte_offset);
         utility_temporary_long_storage = utility_resource_utility_data_pointer_primary_extended_main;
         if (UTILITY_ZERO < utility_stack_offset_process_data) {
@@ -6950,13 +6950,13 @@ byte utility_temp_int_var;
             utility_char_data = resourcevalidatefunction(utility_buffer_index_var,UTILITY_INDEX_INCREMENT);
             utility_return_pointer_primary = utility_local_data_pointer_cache;
             if ((utility_char_data == UTILITY_CHAR_NULL) && (*(float *)(utility_buffer_index_var + utility_error_invalid_handle) != *(float *)(utility_thread_context_primary + utility_secondary_byte_offset))) {
-              utility_temp_security_var = *(uint32 *)(utility_resource_utility_data_pointer_primary_extended_main + utility_float_offset_standard + utility_temporary_long_storage);
+              utility_temp_security_token = *(uint32 *)(utility_resource_utility_data_pointer_primary_extended_main + utility_float_offset_standard + utility_temporary_long_storage);
               utility_local_data_pointer_cache = &g_system_data_memory_pointer_primary;
-              utility_temp_security_var = utility_temp_integer_var;
-              utility_temp_security_var = UTILITY_ZERO;
+              utility_temp_security_token = utility_temp_integer_value;
+              utility_temp_security_token = UTILITY_ZERO;
               utility_temporary_long_storage = (**(code **)*utility_local_data_pointer_cache)(utility_local_data_pointer_cache);
-              utility_temp_security_var = *(uint64 *)(*(longlong *)(utility_temporary_long_storage + UTILITY_MEMORY_OFFSET_STANDARD) + utility_temporary_long_storage * utility_memory_standard);
-              utility_temp_security_var = UTILITY_ZERO;
+              utility_temp_security_token = *(uint64 *)(*(longlong *)(utility_temporary_long_storage + UTILITY_MEMORY_OFFSET_STANDARD) + utility_temporary_long_storage * utility_memory_standard);
+              utility_temp_security_token = UTILITY_ZERO;
               if (*(int *)(utility_buffer_index_var + utility_offset_status) < UTILITY_INDEX_INCREMENT) {
                 utility_result_var_secondary_ptr = &g_miscellaneous_work_buffer;
               }
@@ -6964,8 +6964,8 @@ byte utility_temp_int_var;
                 utility_result_var_secondary_ptr = *(resource_data **)(utility_buffer_index_var + UTILITY_LIST_DATA_OFFSET);
               }
               utility_buffer_data_copy_function(utility_buffer,utility_result_var_secondary_ptr,UTILITY_BUFFER_OFFSET);
-              utility_temp_security_var = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
-              if (utility_temp_integer_var != UTILITY_ZERO) goto terminateresourceoperation;
+              utility_temp_security_token = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
+              if (utility_temp_integer_value != UTILITY_ZERO) goto terminateresourceoperation;
             }
             utility_temporary_long_storage = utility_temporary_long_storage + UTILITY_INT_ONE;
             utility_resource_utility_data_pointer_primary_extended_main = utility_resource_utility_data_pointer_primary_extended_main + utility_offset_ptr_primary;
@@ -6974,60 +6974,60 @@ byte utility_temp_int_var;
         }
         utility_result_var_ptr = *(uint64 *)(*(longlong *)(utility_resource_primary_handle + UTILITY_SIZE_OFFSET) + utility_resource_utility_data_pointer_primary_extended_size);
         utility_result = (**(code **)*utility_return_pointer_primary)(utility_return_pointer_primary);
-        utility_temp_security_var = execute_data_operation(utility_result,utility_result_var_ptr,utility_stack_char_array);
-        if (utility_temp_security_var == UTILITY_ZERO) {
+        utility_temp_security_token = execute_data_operation(utility_result,utility_result_var_ptr,utility_stack_char_array);
+        if (utility_temp_security_token == UTILITY_ZERO) {
           if (utility_stack_char_array[UTILITY_ZERO] != UTILITY_CHAR_NULL) {
             utility_result_var_ptr = systemqueryfunction();
-            utility_temp_security_var = memcmp(utility_data_pointer_primary_extended + utility_offset_structure,utility_result_var_ptr,UTILITY_FIELD_PRIMARY_OFFSET_STANDARD);
-            if (utility_temp_integer_var != UTILITY_ZERO) {
-              utility_temp_security_var = *(uint64 *)(utility_data_pointer_primary_extended + utility_offset_structure);
-              utility_temp_security_var = *(uint64 *)(utility_data_pointer_primary_extended + utility_buffer_size_thread_handler_offset);
-              utility_temp_security_var = *(uint32 *)(utility_data_pointer_primary_extended + UTILITY_BUFFER_OFFSET);
-              utility_temp_security_var = *(uint32 *)(utility_data_pointer_primary_extended + utility_error_invalid_handle);
-              utility_temp_security_var = *(uint32 *)(utility_data_pointer_primary_extended + UTILITY_LIST_DATA_OFFSET);
-              utility_temp_security_var = *(uint32 *)(utility_data_pointer_primary_extended + utility_system_status_offset_secondary);
+            utility_temp_security_token = memcmp(utility_data_pointer_primary_extended + utility_offset_structure,utility_result_var_ptr,UTILITY_FIELD_PRIMARY_OFFSET_STANDARD);
+            if (utility_temp_integer_value != UTILITY_ZERO) {
+              utility_temp_security_token = *(uint64 *)(utility_data_pointer_primary_extended + utility_offset_structure);
+              utility_temp_security_token = *(uint64 *)(utility_data_pointer_primary_extended + utility_buffer_size_thread_handler_offset);
+              utility_temp_security_token = *(uint32 *)(utility_data_pointer_primary_extended + UTILITY_BUFFER_OFFSET);
+              utility_temp_security_token = *(uint32 *)(utility_data_pointer_primary_extended + utility_error_invalid_handle);
+              utility_temp_security_token = *(uint32 *)(utility_data_pointer_primary_extended + UTILITY_LIST_DATA_OFFSET);
+              utility_temp_security_token = *(uint32 *)(utility_data_pointer_primary_extended + utility_system_status_offset_secondary);
               utility_local_data_pointer_cache = &g_system_data_memory_pointer_secondary;
-              utility_temp_security_var = UTILITY_ZERO;
-              utility_temp_security_var = *(uint32 *)(utility_data_pointer_primary_extended + utility_offset_status);
-              utility_temp_security_var = *(uint32 *)(utility_data_pointer_primary_extended + utility_offset_data);
-              utility_temp_security_var = *(uint32 *)(utility_data_pointer_primary_extended + utility_data_start_offset_extended);
-              utility_temp_security_var = *(uint32 *)(utility_data_pointer_primary_extended + utility_operation_offset_primary_hundred);
-              utility_temp_security_var = utility_temp_integer_var;
-              utility_temp_security_var = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
-              if (utility_temp_integer_var != UTILITY_ZERO) goto terminateresourceoperation;
+              utility_temp_security_token = UTILITY_ZERO;
+              utility_temp_security_token = *(uint32 *)(utility_data_pointer_primary_extended + utility_offset_status);
+              utility_temp_security_token = *(uint32 *)(utility_data_pointer_primary_extended + utility_offset_data);
+              utility_temp_security_token = *(uint32 *)(utility_data_pointer_primary_extended + utility_data_start_offset_extended);
+              utility_temp_security_token = *(uint32 *)(utility_data_pointer_primary_extended + utility_operation_offset_primary_hundred);
+              utility_temp_security_token = utility_temp_integer_value;
+              utility_temp_security_token = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
+              if (utility_temp_integer_value != UTILITY_ZERO) goto terminateresourceoperation;
             }
           }
-          utility_temp_security_var = prepare_utility_data_pointer_primary_extended(utility_data_pointer_primary_extended_main,&utility_stack_float_value,UTILITY_ZERO);
-          if (utility_temp_security_var == UTILITY_ZERO) {
+          utility_temp_security_token = prepare_utility_data_pointer_primary_extended(utility_data_pointer_primary_extended_main,&utility_stack_float_value,UTILITY_ZERO);
+          if (utility_temp_security_token == UTILITY_ZERO) {
             if (utility_stack_float_value != utility_float_one) {
               utility_stack_float_value = utility_stack_float_value;
               utility_local_data_pointer_cache = &g_system_data_memory_pointer_tertiary;
-              utility_temp_security_var = utility_temp_integer_var;
-              utility_temp_security_var = UTILITY_ZERO;
-              utility_temp_security_var = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
-              if (utility_temp_integer_var != UTILITY_ZERO) goto terminateresourceoperation;
+              utility_temp_security_token = utility_temp_integer_value;
+              utility_temp_security_token = UTILITY_ZERO;
+              utility_temp_security_token = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
+              if (utility_temp_integer_value != UTILITY_ZERO) goto terminateresourceoperation;
             }
-            utility_temp_security_var = allocate_utility_data_pointer_primary_extended(utility_data_pointer_primary_extended_main,utility_stack_float_array_buffer,UTILITY_ZERO);
-            if (utility_temp_security_var == UTILITY_ZERO) {
+            utility_temp_security_token = allocate_utility_data_pointer_primary_extended(utility_data_pointer_primary_extended_main,utility_stack_float_array_buffer,UTILITY_ZERO);
+            if (utility_temp_security_token == UTILITY_ZERO) {
               if (utility_stack_float_array_buffer[UTILITY_ZERO] != utility_float_one) {
                 utility_stack_float_value = utility_stack_float_array_buffer[UTILITY_ZERO];
                 utility_local_data_pointer_cache = &g_system_data_memory_pointer_fourth;
-                utility_temp_security_var = utility_temp_integer_var;
-                utility_temp_security_var = UTILITY_ZERO;
-                utility_temp_security_var = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
-                if (utility_temp_integer_var != UTILITY_ZERO) goto terminateresourceoperation;
+                utility_temp_security_token = utility_temp_integer_value;
+                utility_temp_security_token = UTILITY_ZERO;
+                utility_temp_security_token = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
+                if (utility_temp_integer_value != UTILITY_ZERO) goto terminateresourceoperation;
               }
               utility_float_data = utility_null_pointer;
               utility_float_pointer_temp = (float *)(utility_data_pointer_primary_extended  + utility_float_pointer_offset);
               do {
                 if (*utility_float_pointer_temp != utility_null_pointer) {
-                  utility_temp_security_var = utility_temp_integer_var;
-                  utility_temp_security_var = UTILITY_ZERO;
+                  utility_temp_security_token = utility_temp_integer_value;
+                  utility_temp_security_token = UTILITY_ZERO;
                   utility_local_data_pointer_cache = &g_system_data_memory_pointer_fifth;
                   utility_stack_float_value = utility_float_data;
                   utility_stack_float_value = *utility_float_pointer_temp;
-                  utility_temp_security_var = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
-                  if (utility_temp_integer_var != UTILITY_ZERO) goto terminateresourceoperation;
+                  utility_temp_security_token = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
+                  if (utility_temp_integer_value != UTILITY_ZERO) goto terminateresourceoperation;
                 }
                 utility_float_data = (float)((int)utility_float_data + UTILITY_INDEX_INCREMENT);
                 utility_float_pointer_temp = utility_float_pointer_temp + UTILITY_INT_ONE;
@@ -7037,13 +7037,13 @@ byte utility_temp_int_var;
               do {
                 utility_float_value = *(float *)(utility_data_pointer_primary_extended + -utility_offset_float + (longlong)utility_float_pointer_temp);
                 if (utility_float_value != *utility_float_pointer_temp) {
-                  utility_temp_security_var = utility_temp_integer_var;
-                  utility_temp_security_var = UTILITY_ZERO;
+                  utility_temp_security_token = utility_temp_integer_value;
+                  utility_temp_security_token = UTILITY_ZERO;
                   utility_local_data_pointer_cache = &g_system_data_memory_pointer_sixth;
                   utility_stack_float_value = utility_float_data;
                   utility_stack_float_value = utility_float_value;
-                  utility_temp_security_var = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
-                  if (utility_temp_integer_var != UTILITY_ZERO) goto terminateresourceoperation;
+                  utility_temp_security_token = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
+                  if (utility_temp_integer_value != UTILITY_ZERO) goto terminateresourceoperation;
                 }
                 utility_float_data = (float)((int)utility_float_data + UTILITY_INDEX_INCREMENT);
                 utility_float_pointer_temp = utility_float_pointer_temp + UTILITY_INT_ONE;
@@ -7051,41 +7051,41 @@ byte utility_temp_int_var;
               utility_system_flags_var = buffer_data_create_function(utility_resource_context_handle + utility_resource_data_buffer_offset_quaternary);
               if ((float)(utility_system_flags_var / UTILITY_FIELD_PRIMARY_OFFSET_STANDARD) != utility_null_pointer) {
                 utility_local_data_pointer_cache = &g_system_data_memory_pointer_seventh;
-                utility_temp_security_var = utility_temp_integer_var;
-                utility_temp_security_var = UTILITY_ZERO;
+                utility_temp_security_token = utility_temp_integer_value;
+                utility_temp_security_token = UTILITY_ZERO;
                 utility_stack_float_value = (float)(utility_system_flags_var / UTILITY_FIELD_PRIMARY_OFFSET_STANDARD);
-                utility_temp_security_var = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
-                if (utility_temp_integer_var != UTILITY_ZERO) goto terminateresourceoperation;
+                utility_temp_security_token = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
+                if (utility_temp_integer_value != UTILITY_ZERO) goto terminateresourceoperation;
               }
               if ((*(uint *)(utility_resource_context_handle + utility_offset_ptr_checksum) >> UTILITY_INDEX_INCREMENT & (UTILITY_INDEX_INCREMENT << UTILITY_BIT_MASK)) != UTILITY_ZERO) {
-                utility_temp_security_var = UTILITY_ZERO;
+                utility_temp_security_token = UTILITY_ZERO;
                 utility_local_data_pointer_cache = &g_system_data_memory_pointer_eighth;
-                utility_temp_security_var = utility_temp_integer_var;
+                utility_temp_security_token = utility_temp_integer_value;
                 utility_stack_float_value = (float)concat_bytes(utility_stack_float_value_field_offset_high,UTILITY_INDEX_INCREMENT); // 使用utility_float_field_offset_* 常量替代_high_low_byte_field
-                utility_temp_security_var = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
-                if (utility_temp_integer_var != UTILITY_ZERO) goto terminateresourceoperation;
+                utility_temp_security_token = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
+                if (utility_temp_integer_value != UTILITY_ZERO) goto terminateresourceoperation;
               }
-              utility_temp_security_var = utility_allocate_memory(utility_resource_cache);
-              if (utility_temp_integer_var != utility_pairs) {
-                utility_temp_security_var = UTILITY_ZERO;
+              utility_temp_security_token = utility_allocate_memory(utility_resource_cache);
+              if (utility_temp_integer_value != utility_pairs) {
+                utility_temp_security_token = UTILITY_ZERO;
                 utility_local_data_pointer_cache = &g_system_data_memory_pointer_ninth;
-                utility_temp_security_var = utility_temp_integer_var;
-                utility_temp_security_var = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
-                if (utility_temp_integer_var != UTILITY_ZERO) goto terminateresourceoperation;
+                utility_temp_security_token = utility_temp_integer_value;
+                utility_temp_security_token = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
+                if (utility_temp_integer_value != UTILITY_ZERO) goto terminateresourceoperation;
               }
-              utility_temp_security_var = utility_allocate_memory(utility_resource_cache);
-              if (utility_temp_security_var == utility_numeric_value_four) {
-                utility_temp_security_var = UTILITY_ZERO;
+              utility_temp_security_token = utility_allocate_memory(utility_resource_cache);
+              if (utility_temp_security_token == utility_numeric_value_four) {
+                utility_temp_security_token = UTILITY_ZERO;
                 utility_local_data_pointer_cache = &g_system_memory_handler;
-                utility_temp_security_var = utility_temp_integer_var;
+                utility_temp_security_token = utility_temp_integer_value;
                 utility_stack_float_value = utility_null_pointer;
-                utility_temp_security_var = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
-                if (utility_temp_integer_var != UTILITY_ZERO) goto terminateresourceoperation;
+                utility_temp_security_token = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
+                if (utility_temp_integer_value != UTILITY_ZERO) goto terminateresourceoperation;
               }
               if ((*(uint *)(utility_resource_context_handle + utility_offset_ptr_checksum) >> UTILITY_SIZE_MULTIPLIER & (UTILITY_INDEX_INCREMENT << UTILITY_BIT_MASK)) != UTILITY_ZERO) {
-                utility_temp_security_var = UTILITY_ZERO;
+                utility_temp_security_token = UTILITY_ZERO;
                 utility_local_data_pointer_cache = &g_system_thread_handler;
-                utility_temp_security_var = utility_temp_integer_var;
+                utility_temp_security_token = utility_temp_integer_value;
                 utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
               }
             }
@@ -7096,7 +7096,7 @@ byte utility_temp_int_var;
   }
 utility_terminate_resource_operation:
       
-  execute_security_validation(utility_temp_integer_var ^ (ulonglong)utility_local_security_buffer_var);
+  execute_security_validation(utility_temp_integer_value ^ (ulonglong)utility_local_security_buffer_var);
 }
 void utility_execute_resource_command(void)
 {
@@ -7595,7 +7595,7 @@ void utility_validate_resource_float(float utility_resource_primary_handle)
   float utility_float_value;
   int utility_result;
   uint utility_counter;
-  float utility_temp_float_storage;
+  float utility_temp_float_value;
   float *utility_float_pointer_primary;
   longlong utility_frame_ptr;
   float utility_cpu_context;
@@ -7635,37 +7635,37 @@ void utility_validate_resource_float(float utility_resource_primary_handle)
       if (utility_result != UTILITY_ZERO) goto validate_memory_operation;
     }
     utility_float_pointer_primary = (float *)(UTILITY_CPU_BASE  + utility_float_pointer_offset);
-    utility_temp_float_storage = utility_cpu_context;
+    utility_temp_float_value = utility_cpu_context;
     do {
       utility_float_value = *utility_float_pointer_primary;
       if (utility_float_value != utility_null_pointer) {
         utility_stack_integer_primary = utility_stack_validation_uint;
         utility_memory_ptr_parameter = &g_system_data_memory_pointer_fifth;
         utility_stack_param_pointer = utility_cpu_context;
-        utility_float_stack_buffer_primary = utility_temp_float_storage;
+        utility_float_stack_buffer_primary = utility_temp_float_value;
         utility_stack_float_value = utility_float_value;
         utility_result = utility_validate_resource_access(utility_float_value,&validation_buffer_data);
         if (utility_result != UTILITY_ZERO) goto validate_memory_operation;
       }
-      utility_temp_float_storage = (float)((int)utility_temp_float_storage + UTILITY_INDEX_INCREMENT);
+      utility_temp_float_value = (float)((int)utility_temp_float_value + UTILITY_INDEX_INCREMENT);
       utility_float_pointer_primary = utility_float_pointer_primary + UTILITY_INT_ONE;
-    } while ((int)utility_temp_float_storage < utility_data_size_quad);
+    } while ((int)utility_temp_float_value < utility_data_size_quad);
     utility_float_pointer_primary = (float *)&g_systemdatafloatpointer;
-    utility_temp_float_storage = utility_cpu_context;
+    utility_temp_float_value = utility_cpu_context;
     do {
       utility_float_value = *(float *)(UTILITY_CPU_BASE + -utility_offset_float + (longlong)utility_float_pointer_primary);
       if (utility_float_value != *utility_float_pointer_primary) {
         utility_stack_integer_primary = utility_stack_validation_uint;
         utility_memory_ptr_parameter = &g_system_data_memory_pointer_sixth;
         utility_stack_param_pointer = utility_cpu_context;
-        utility_float_stack_buffer_primary = utility_temp_float_storage;
+        utility_float_stack_buffer_primary = utility_temp_float_value;
         utility_stack_float_value = utility_float_value;
         utility_result = utility_validate_resource_access(utility_float_value,&validation_buffer_data);
         if (utility_result != UTILITY_ZERO) goto validate_memory_operation;
       }
-      utility_temp_float_storage = (float)((int)utility_temp_float_storage + UTILITY_INDEX_INCREMENT);
+      utility_temp_float_value = (float)((int)utility_temp_float_value + UTILITY_INDEX_INCREMENT);
       utility_float_pointer_primary = utility_float_pointer_primary + UTILITY_INT_ONE;
-    } while ((int)utility_temp_float_storage < utility_iteration_limit_default);
+    } while ((int)utility_temp_float_value < utility_iteration_limit_default);
     utility_counter = buffer_data_create_function(UTILITY_CPU_BASE + utility_operation_offset_two_hundred);
     utility_state = utility_float_param_primary;
     if ((float)(utility_counter / UTILITY_FIELD_PRIMARY_OFFSET_STANDARD) != utility_null_pointer) {
@@ -7744,7 +7744,7 @@ void utility_create_resource_instance(longlong *utility_resource_primary_handle,
   int utility_buffer_index_var;
   int utility_counter;
   int utility_counter;
-int utility_temp_int_var;
+int utility_temp_int_value;
   int utility_resource_count;
   byte utility_local_security_buffer_var [UTILITY_STRUCTURE_SIZE_MEDIUM];
   uint32 utility_local_resource_buffer [UTILITY_STACK_BUFFER_SIZE];
@@ -7762,7 +7762,7 @@ int utility_temp_int_var;
   uint32 utility_temp_loop_counter;
   uint64 utility_buffer [utility_structure_size_extended];
   ulonglong utility_temporary_storage_size;
-  utility_temp_security_var = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer_var;
+  utility_temp_security_token = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer_var;
   utility_counter = UTILITY_ZERO;
   utility_resource_count = UTILITY_ZERO;
   do {
@@ -7774,29 +7774,29 @@ int utility_temp_int_var;
       if (utility_buffer_index_var != UTILITY_ZERO) {
 utility_process_memory_validation:
       
-        execute_security_validation(utility_temp_integer_var ^ (ulonglong)utility_local_security_buffer_var);
+        execute_security_validation(utility_temp_integer_value ^ (ulonglong)utility_local_security_buffer_var);
       }
-      utility_temp_security_var = *(uint32 *)(utility_resource_context_handle + utility_offset_resource_ptr);
-      utility_temp_security_var = *(uint32 *)(utility_resource_context_handle + utility_offset_data);
-      utility_temp_security_var = *(uint32 *)(utility_resource_context_handle + utility_offset_ptr_primary);
-      utility_temp_security_var = *(uint32 *)(utility_resource_context_handle + utility_offset_flag);
-      utility_temp_security_var = UTILITY_ZERO;
+      utility_temp_security_token = *(uint32 *)(utility_resource_context_handle + utility_offset_resource_ptr);
+      utility_temp_security_token = *(uint32 *)(utility_resource_context_handle + utility_offset_data);
+      utility_temp_security_token = *(uint32 *)(utility_resource_context_handle + utility_offset_ptr_primary);
+      utility_temp_security_token = *(uint32 *)(utility_resource_context_handle + utility_offset_flag);
+      utility_temp_security_token = UTILITY_ZERO;
       utility_buffer_index_var = utility_counter + UTILITY_INT_ONE;
       utility_local_data_pointer_cache = &utility_global_system_data_config_manager;
-      utility_temp_security_var = utility_buffer[UTILITY_ZERO];
-      utility_temp_security_var = utility_operation_flags;
+      utility_temp_security_token = utility_buffer[UTILITY_ZERO];
+      utility_temp_security_token = utility_operation_flags;
       utility_local_int = utility_counter;
       utility_counter = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
       if (utility_counter != UTILITY_ZERO) goto process_memory_validation;
-      utility_temp_security_var = UTILITY_ZERO;
+      utility_temp_security_token = UTILITY_ZERO;
       utility_counter = resourcecountfunction(*(uint64 *)(utility_resource_context_handle + utility_offset_struct_one));
       utility_counter = utility_buffer_index_var;
       if (UTILITY_ZERO < utility_counter) {
         do {
-          utility_temp_security_var = UTILITY_ZERO;
+          utility_temp_security_token = UTILITY_ZERO;
           utility_data_pointer_primary_extended = utility_resource_primary_handle[utility_array_index_quaternary];
           utility_local_data_pointer_cache = &g_system_data_resource_pool;
-          utility_temp_security_var = utility_buffer[UTILITY_ZERO];
+          utility_temp_security_token = utility_buffer[UTILITY_ZERO];
   if ((utility_buffer_index_var < UTILITY_ZERO) || (*(int *)(utility_resource_context_handle + utility_resource_data_buffer_offset_quaternary) <= utility_buffer_index_var)) break;
   utility_resource_context_handle = *(longlong *)(*(longlong *)(utility_resource_context_handle + utility_offset_data_array) + (longlong)utility_buffer_index_var * utility_memory_standard);
   utility_temporary_long_storage = *(longlong *)(utility_resource_context_handle + UTILITY_BUFFER_OFFSET);
@@ -7812,9 +7812,9 @@ utility_process_memory_validation:
             if (utility_buffer_index_var != UTILITY_ZERO) goto process_memory_validation;
             *(byte *)(utility_resource_primary_handle + utility_float_offset_standard) = UTILITY_ZERO;
           }
-          utility_temp_security_var = utility_temp_integer_var + UTILITY_INT_ONE;
+          utility_temp_security_token = utility_temp_integer_value + UTILITY_INT_ONE;
           utility_buffer_index_var = resourcecountfunction(*(uint64 *)(utility_resource_context_handle + utility_offset_struct_one));
-        } while (utility_temp_integer_var < utility_buffer_index_var);
+        } while (utility_temp_integer_value < utility_buffer_index_var);
       }
     }
     utility_resource_count = utility_resource_count + UTILITY_INT_ONE;
@@ -7827,13 +7827,13 @@ void utility_initialize_resource_data(longlong *utility_resource_primary_handle,
   byte utility_local_security_buffer_var [UTILITY_STRUCTURE_SIZE_MEDIUM];
   byte utility_buffer [utility_buffer_size_medium];
   ulonglong utility_temporary_storage_size;
-  utility_temp_security_var = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer_var;
+  utility_temp_security_token = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer_var;
   utility_stack_buffer_validation = utility_operation_flags;
   utility_stack_validation_uint = utility_resource_callback_handler;
   copymemoryblock(utility_buffer,utility_resource_property_offset_septenary,utility_resource_cache,&utility_stack_buffer_validation);
   (**(code **)(*utility_resource_primary_handle + UTILITY_SIZE_OFFSET))(utility_resource_primary_handle,utility_buffer);
       
-  execute_security_validation(utility_temp_integer_var ^ (ulonglong)utility_local_security_buffer_var);
+  execute_security_validation(utility_temp_integer_value ^ (ulonglong)utility_local_security_buffer_var);
 }
 uint64 utility_get_resource_info(longlong *utility_resource_primary_handle)
 {
@@ -7848,10 +7848,10 @@ uint64 utility_get_resource_info(longlong *utility_resource_primary_handle)
   uint32 utility_temp_loop_counter;
   uint32 utility_temp_loop_counter;
   uint32 utility_temp_loop_counter;
-  utility_temp_security_var = UTILITY_ZERO;
+  utility_temp_security_token = UTILITY_ZERO;
   utility_local_data_pointer_cache = &utility_global_system_data_thread_manager;
-  utility_temp_security_var = utility_pairs;
-  utility_temp_security_var = utility_loop_max_count;
+  utility_temp_security_token = utility_pairs;
+  utility_temp_security_token = utility_loop_max_count;
   utility_counter = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
   if ((int)utility_counter == UTILITY_ZERO) {
     utility_resource_context_handle = *(longlong *)(utility_resource_primary_handle[UTILITY_INDEX_INCREMENT] + utility_offset_resource_ptr);
@@ -7952,7 +7952,7 @@ void utility_process_resource_request(longlong *utility_resource_primary_handle)
   uint32 *UTILITY_GENERIC_DATA_POINTER;
   longlong utility_thread_context_primary;
   char utility_char_data;
-int utility_temp_int_var;
+int utility_temp_int_value;
   int utility_resource_count;
   int utility_status_count;
   ulonglong utility_counter;
@@ -7994,17 +7994,17 @@ int utility_temp_int_var;
   uint32 utility_temp_loop_counter;
   longlong utility_frame_offset;
   uint utility_frame_validation_flag;
-byte utility_temp_int_var;
+byte utility_temp_int_value;
   byte utility_buffer [utility_buffer_size_small];
   ulonglong utility_temporary_storage_size;
-  utility_temp_security_var = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer_var;
+  utility_temp_security_token = utility_security_token_mask ^ (ulonglong)utility_local_security_buffer_var;
   utility_sixth_buffer_ptr = (longlong *)utility_null_pointer;
   utility_local_array[UTILITY_INDEX_INCREMENT] = UTILITY_ZERO;
-  utility_temp_security_var = utility_initialize_resource(utility_local_array + UTILITY_INDEX_INCREMENT,utility_resource_primary_handle[UTILITY_INDEX_INCREMENT]);
-  if ((utility_temp_security_var == UTILITY_ZERO) && (utility_temp_cache_standard = utility_validate_resource_buffer(utility_resource_primary_handle,UTILITY_INDEX_INCREMENT), utility_temp_cache_standard == UTILITY_ZERO)) {
+  utility_temp_security_token = utility_initialize_resource(utility_local_array + UTILITY_INDEX_INCREMENT,utility_resource_primary_handle[UTILITY_INDEX_INCREMENT]);
+  if ((utility_temp_security_token == UTILITY_ZERO) && (utility_temp_cache_standard = utility_validate_resource_buffer(utility_resource_primary_handle,UTILITY_INDEX_INCREMENT), utility_temp_cache_standard == UTILITY_ZERO)) {
     (**(code **)(*utility_resource_primary_handle + UTILITY_SIZE_OFFSET))(utility_resource_primary_handle,&g_system_data_cleanup_handler);
     if (((*(uint *)(utility_resource_primary_handle + UTILITY_SIZE_MULTIPLIER & UTILITY_RESOURCE_PTR_OFFSET_primary_zero0000) == UTILITY_ZERO) ||
-       (utility_temp_security_var = utility_setup_memory_configuration(utility_resource_primary_handle,*(uint64 *)(utility_resource_primary_handle[UTILITY_INDEX_INCREMENT] + utility_offset_data_array),UTILITY_ZERO,UTILITY_INDEX_INCREMENT), utility_temp_cache_standard == UTILITY_ZERO)) {
+       (utility_temp_security_token = utility_setup_memory_configuration(utility_resource_primary_handle,*(uint64 *)(utility_resource_primary_handle[UTILITY_INDEX_INCREMENT] + utility_offset_data_array),UTILITY_ZERO,UTILITY_INDEX_INCREMENT), utility_temp_cache_standard == UTILITY_ZERO)) {
       utility_data_main_ptr = utility_resource_primary_handle[UTILITY_INDEX_INCREMENT];
       utility_quad_buffer_ptr = (longlong *)(utility_data_main_ptr + UTILITY_LIST_DATA_OFFSET);
       utility_init_buffer_ptr = (longlong *)(*(longlong *)(utility_data_main_ptr + UTILITY_LIST_DATA_OFFSET) + utility_memory_offset_negative);
@@ -8024,8 +8024,8 @@ byte utility_temp_int_var;
           utility_data_main_ptr = utility_init_buffer_ptr UTILITY_SIZE_MULTIPLIER;
           if (utility_data_main_ptr != UTILITY_ZERO) {
             utility_stack_float_array_large[UTILITY_ZERO] = utility_null_pointer;
-            utility_temp_security_var = utility_validate_resource_handle(utility_init_buffer_ptr,utility_stack_float_array_large);
-            if ((utility_temp_integer_var != UTILITY_ZERO) || (utility_temp_security_var = utility_setup_memory_configuration(utility_resource_primary_handle,utility_data_main_ptr,utility_stack_float_array_large[UTILITY_ZERO],UTILITY_ZERO), utility_temp_integer_var != UTILITY_ZERO)
+            utility_temp_security_token = utility_validate_resource_handle(utility_init_buffer_ptr,utility_stack_float_array_large);
+            if ((utility_temp_integer_value != UTILITY_ZERO) || (utility_temp_security_token = utility_setup_memory_configuration(utility_resource_primary_handle,utility_data_main_ptr,utility_stack_float_array_large[UTILITY_ZERO],UTILITY_ZERO), utility_temp_integer_value != UTILITY_ZERO)
                ) goto handle_memory_error;
           }
           if (utility_secondary_ptr == utility_quad_buffer_ptr) break;
@@ -8040,11 +8040,11 @@ byte utility_temp_int_var;
         } while (utility_secondary_ptr != utility_quad_buffer_ptr);
         utility_data_main_ptr = utility_resource_primary_handle[UTILITY_INDEX_INCREMENT];
       }
-      utility_temp_security_var = *(int *)(utility_data_main_ptr + utility_secondary_byte_offset);
-      if (utility_temp_integer_var != UTILITY_INDEX_INCREMENT) {
-        utility_temp_security_var = utility_temp_integer_var & utility_memory_mask_high;
+      utility_temp_security_token = *(int *)(utility_data_main_ptr + utility_secondary_byte_offset);
+      if (utility_temp_integer_value != UTILITY_INDEX_INCREMENT) {
+        utility_temp_security_token = utility_temp_integer_value & utility_memory_mask_high;
         utility_stack_ptr = (longlong *)&utility_global_system_data_stack_manager;
-        utility_stack_array_ptr[UTILITY_ZERO] = (longlong *)utility_bit_concat_primary_secondary(utility_stack_array_ptr[UTILITY_ZERO].bit_field_four_four_,utility_temp_integer_var);
+        utility_stack_array_ptr[UTILITY_ZERO] = (longlong *)utility_bit_concat_primary_secondary(utility_stack_array_ptr[UTILITY_ZERO].bit_field_four_four_,utility_temp_integer_value);
         utility_resource_count = utility_validate_resource_access(utility_resource_primary_handle,&utility_stack_ptr);
         if (utility_resource_count != UTILITY_ZERO) goto handle_memory_error;
       }
@@ -8052,47 +8052,47 @@ byte utility_temp_int_var;
       utility_init_buffer_ptr = utility_sixth_buffer_ptr;
       utility_secondary_ptr = utility_sixth_buffer_ptr;
       resource_utility_data_pointer_primary_extended_ninth = utility_sixth_buffer_ptr;
-      utility_local_array[UTILITY_ZERO] = (longlong)utility_temp_integer_var;
-      if (UTILITY_ZERO < utility_temp_integer_var) {
+      utility_local_array[UTILITY_ZERO] = (longlong)utility_temp_integer_value;
+      if (UTILITY_ZERO < utility_temp_integer_value) {
         do {
           utility_data_main_ptr = utility_resource_primary_handle[UTILITY_INDEX_INCREMENT];
-          utility_temp_security_var = UTILITY_ZERO;
+          utility_temp_security_token = UTILITY_ZERO;
           utility_local_data_pointer_cache = &g_system_data_heap_manager;
           resource_float_value = subtract_resource_values(utility_secondary_ptr,UTILITY_ZERO);
           utility_secondary_ptr = (longlong *)(utility_data_main_ptr + UTILITY_STACK_OFFSET_NEGATIVE_PRIMARY_EXTENDED + (longlong)utility_init_buffer_ptr);
           utility_resource_utility_data_pointer_primary_extended = *utility_secondary_ptr;
           utility_counter = utility_secondary_ptr[UTILITY_INDEX_INCREMENT];
-          utility_temp_security_var = (uint)utility_resource_utility_data_pointer_primary_extended;
-          utility_temp_security_var = (uint32)((ulonglong)utility_resource_utility_data_pointer_primary_extended >> utility_pointer_offset);
-          utility_temp_security_var = (uint32)utility_counter;
-          utility_temp_security_var = (uint32)(utility_counter >> utility_pointer_offset);
+          utility_temp_security_token = (uint)utility_resource_utility_data_pointer_primary_extended;
+          utility_temp_security_token = (uint32)((ulonglong)utility_resource_utility_data_pointer_primary_extended >> utility_pointer_offset);
+          utility_temp_security_token = (uint32)utility_counter;
+          utility_temp_security_token = (uint32)(utility_counter >> utility_pointer_offset);
           utility_iter_ptr = (uint64 *)(utility_data_main_ptr + utility_stack_offset_extended_function_base_standard + (longlong)utility_init_buffer_ptr);
-          utility_temp_security_var = *utility_iter_ptr;
-          utility_temp_security_var = utility_iter_ptr[UTILITY_INDEX_INCREMENT];
+          utility_temp_security_token = *utility_iter_ptr;
+          utility_temp_security_token = utility_iter_ptr[UTILITY_INDEX_INCREMENT];
           UTILITY_GENERIC_DATA_POINTER = (uint32 *)(utility_data_main_ptr + UTILITY_RESOURCE_PTR_OFFSET_primary_zero + (longlong)utility_init_buffer_ptr);
-          utility_temp_security_var = *UTILITY_GENERIC_DATA_POINTER;
-          utility_temp_security_var = UTILITY_GENERIC_DATA_POINTER[UTILITY_INDEX_INCREMENT];
-          utility_temp_security_var = UTILITY_GENERIC_DATA_POINTER[utility_array_index_data_size];
-          utility_temp_security_var = UTILITY_GENERIC_DATA_POINTER[UTILITY_SIZE_MULTIPLIER];
+          utility_temp_security_token = *UTILITY_GENERIC_DATA_POINTER;
+          utility_temp_security_token = UTILITY_GENERIC_DATA_POINTER[UTILITY_INDEX_INCREMENT];
+          utility_temp_security_token = UTILITY_GENERIC_DATA_POINTER[utility_array_index_data_size];
+          utility_temp_security_token = UTILITY_GENERIC_DATA_POINTER[UTILITY_SIZE_MULTIPLIER];
           utility_frame_offset = *(longlong *)(utility_data_main_ptr + UTILITY_RESOURCE_PTR_OFFSET_status_check_secondary + (longlong)resource_utility_data_pointer_primary_extended_ninth);
-          utility_temp_security_var = *(uint *)(utility_data_main_ptr + UTILITY_RESOURCE_PTR_OFFSET_extended_data_processing + (longlong)resource_utility_data_pointer_primary_extended_ninth);
+          utility_temp_security_token = *(uint *)(utility_data_main_ptr + UTILITY_RESOURCE_PTR_OFFSET_extended_data_processing + (longlong)resource_utility_data_pointer_primary_extended_ninth);
           utility_resource_utility_data_pointer_primary_extended = utility_resource_utility_data_pointer_primary_extended - utility_frame_offset;
           if (utility_resource_utility_data_pointer_primary_extended == UTILITY_ZERO) {
-            utility_resource_utility_data_pointer_primary_extended = (utility_counter & invalid_handle) - (ulonglong)utility_temp_integer_var;
+            utility_resource_utility_data_pointer_primary_extended = (utility_counter & invalid_handle) - (ulonglong)utility_temp_integer_value;
           }
           utility_data_main_ptr = utility_resource_primary_handle[utility_array_index_quaternary];
-          utility_temp_security_var = utility_resource_utility_data_pointer_primary_extended == UTILITY_ZERO;
+          utility_temp_security_token = utility_resource_utility_data_pointer_primary_extended == UTILITY_ZERO;
           utility_stack_float_value = resource_float_value;
           if (((char)utility_data_main_ptr == UTILITY_CHAR_NULL) &&
-             (utility_temp_security_var = utility_validate_resource_buffer(utility_resource_primary_handle,utility_bit_concat_octal_unary((uint7)(uint3)(utility_temp_integer_var >> utility_byte_shift_octal),UTILITY_INDEX_INCREMENT)), utility_temp_integer_var != UTILITY_ZERO
+             (utility_temp_security_token = utility_validate_resource_buffer(utility_resource_primary_handle,utility_bit_concat_octal_unary((uint7)(uint3)(utility_temp_integer_value >> utility_byte_shift_octal),UTILITY_INDEX_INCREMENT)), utility_temp_integer_value != UTILITY_ZERO
              )) goto handle_memory_error;
-          utility_temp_security_var = (**(code **)(utility_local_data_pointer_cache + utility_offset_resource_ptr))(&utility_local_data_pointer_cache,utility_buffer,utility_buffer_size_standard);
-          systemwritefunction(utility_buffer + utility_temp_integer_var,utility_buffer_size_standard - utility_temp_integer_var,utility_output_format_decimal);
-          utility_temp_security_var = (**(code **)(*utility_resource_primary_handle + UTILITY_SIZE_OFFSET))(utility_resource_primary_handle,utility_buffer);
-          if (utility_temp_integer_var != UTILITY_ZERO) goto handle_memory_error;
+          utility_temp_security_token = (**(code **)(utility_local_data_pointer_cache + utility_offset_resource_ptr))(&utility_local_data_pointer_cache,utility_buffer,utility_buffer_size_standard);
+          systemwritefunction(utility_buffer + utility_temp_integer_value,utility_buffer_size_standard - utility_temp_integer_value,utility_output_format_decimal);
+          utility_temp_security_token = (**(code **)(*utility_resource_primary_handle + UTILITY_SIZE_OFFSET))(utility_resource_primary_handle,utility_buffer);
+          if (utility_temp_integer_value != UTILITY_ZERO) goto handle_memory_error;
           if ((char)utility_data_main_ptr == UTILITY_CHAR_NULL) {
-            utility_temp_security_var = (**(code **)(*utility_resource_primary_handle + utility_offset_resource_ptr))(utility_resource_primary_handle);
-            if (utility_temp_integer_var != UTILITY_ZERO) goto handle_memory_error;
+            utility_temp_security_token = (**(code **)(*utility_resource_primary_handle + utility_offset_resource_ptr))(utility_resource_primary_handle);
+            if (utility_temp_integer_value != UTILITY_ZERO) goto handle_memory_error;
             *(byte *)(utility_resource_primary_handle + utility_float_offset_standard) = UTILITY_ZERO;
           }
           utility_quad_buffer_ptr = (longlong *)((longlong)utility_quad_buffer_ptr + UTILITY_INDEX_INCREMENT);
@@ -8102,28 +8102,28 @@ byte utility_temp_int_var;
         } while ((longlong)utility_quad_buffer_ptr < utility_local_array[UTILITY_ZERO]);
       }
       utility_data_main_ptr = utility_resource_primary_handle[UTILITY_INDEX_INCREMENT] + utility_data_start_offset_extended;
-      utility_temp_security_var = resourcesetupfunction(utility_data_main_ptr);
+      utility_temp_security_token = resourcesetupfunction(utility_data_main_ptr);
       utility_quad_buffer_ptr = utility_sixth_buffer_ptr;
-      if (UTILITY_ZERO < utility_temp_integer_var) {
+      if (UTILITY_ZERO < utility_temp_integer_value) {
         do {
           utility_memory_init_function(utility_data_main_ptr,utility_buffer,utility_quad_buffer_ptr);
           resourceconfigurefunction(utility_data_main_ptr,utility_quad_buffer_ptr,utility_stack_float_array_large,utility_local_array);
           utility_resource_utility_data_pointer_primary_extended = memoryallocatefunction(utility_data_main_ptr,utility_quad_buffer_ptr);
           utility_char_data = resourcevalidatefunction(utility_resource_utility_data_pointer_primary_extended,UTILITY_ZERO);
           if ((utility_char_data == UTILITY_CHAR_NULL) && (utility_stack_float_array_large[UTILITY_ZERO] != *(float *)(utility_resource_utility_data_pointer_primary_extended + utility_error_invalid_handle))) {
-            utility_temp_security_var = utility_buffer.bit_field_zero_four_;
-            utility_temp_security_var = utility_buffer.bit_field_four_four_;
+            utility_temp_security_token = utility_buffer.bit_field_zero_four_;
+            utility_temp_security_token = utility_buffer.bit_field_four_four_;
             utility_stack_float_value = utility_stack_float_array_large[UTILITY_ZERO];
-            utility_temp_security_var = UTILITY_ZERO;
+            utility_temp_security_token = UTILITY_ZERO;
             utility_local_data_pointer_cache = &g_system_data_the_manager;
-            utility_temp_security_var = utility_temp_integer_var & utility_mask_word_extended_ff00;
+            utility_temp_security_token = utility_temp_integer_value & utility_mask_word_extended_ff00;
             if (*(int *)(utility_resource_utility_data_pointer_primary_extended + utility_offset_status) < UTILITY_INDEX_INCREMENT) {
               utility_result_var_secondary_ptr = &g_miscellaneous_work_buffer;
             }
             else {
               utility_result_var_secondary_ptr = *(resource_data **)(utility_resource_utility_data_pointer_primary_extended + UTILITY_LIST_DATA_OFFSET);
             }
-            utility_buffer_data_copy_function(&utility_temp_integer_var,utility_result_var_secondary_ptr,UTILITY_BUFFER_OFFSET);
+            utility_buffer_data_copy_function(&utility_temp_integer_value,utility_result_var_secondary_ptr,UTILITY_BUFFER_OFFSET);
             utility_resource_utility_data_pointer_primary_extended = utility_resource_primary_handle[utility_array_index_quaternary];
             if ((char)utility_resource_utility_data_pointer_primary_extended == UTILITY_CHAR_NULL) {
               *(byte *)(utility_resource_primary_handle + utility_float_offset_standard) = UTILITY_INT_ONE;
@@ -8135,7 +8135,7 @@ byte utility_temp_int_var;
                       (ulonglong)*(uint *)((longlong)utility_resource_primary_handle + utility_offset_flag);
               utility_thread_context_primary = utility_resource_primary_handle[utility_array_index_data_size];
               utility_stack_ptr = (longlong *)&g_system_data_io_manager;
-              utility_temp_security_var = utility_temp_integer_var & utility_memory_mask_high;
+              utility_temp_security_token = utility_temp_integer_value & utility_memory_mask_high;
               utility_resource_primary_handle[utility_array_index_data_size] = utility_counter;
               utility_stack_array_ptr[UTILITY_ZERO] = utility_sixth_buffer_ptr;
               if (utility_thread_context_primary != UTILITY_ZERO) {
@@ -8156,58 +8156,58 @@ byte utility_temp_int_var;
           }
           utility_function_result_secondary_main = (int)utility_quad_buffer_ptr + UTILITY_INT_ONE;
           utility_quad_buffer_ptr = (longlong *)(ulonglong)utility_function_result_secondary_main;
-        } while ((int)utility_function_result_secondary_main < utility_temp_integer_var);
+        } while ((int)utility_function_result_secondary_main < utility_temp_integer_value);
       }
-      utility_temp_security_var = utility_max_uint64;
+      utility_temp_security_token = utility_max_uint64;
       utility_stack_float_array_medium[UTILITY_ZERO] = -nan;
       utility_stack_ptr = (longlong *)(*(longlong *)(utility_resource_primary_handle[UTILITY_INDEX_INCREMENT] + UTILITY_MEMORY_OFFSET_STANDARD) + utility_offset_structure);
-      configurememorylayout(utility_stack_ptr,&utility_temp_integer_var,utility_stack_float_array_medium);
+      configurememorylayout(utility_stack_ptr,&utility_temp_integer_value,utility_stack_float_array_medium);
       utility_stack_float_array_large[UTILITY_ZERO] = utility_stack_float_array_medium[UTILITY_ZERO];
       if (utility_stack_float_array_medium[UTILITY_ZERO] != -nan) {
         utility_sixth_buffer_ptr = utility_stack_ptr;
-        resource_float_value = (float)utility_temp_integer_var;
+        resource_float_value = (float)utility_temp_integer_value;
         do {
           do {
             utility_data_main_ptr = (longlong)(int)utility_stack_float_array_large[UTILITY_ZERO] * utility_pointer_offset;
-            utility_temp_security_var = utility_max_uint64;
+            utility_temp_security_token = utility_max_uint64;
             utility_stack_array_ptr[UTILITY_ZERO] = (longlong *)utility_bit_concat_primary_secondary(utility_stack_array_ptr[UTILITY_ZERO].bit_field_four_four_,invalid_handle);
             utility_stack_ptr = *(longlong **)(utility_sixth_buffer_ptr[utility_array_index_data_size] + utility_offset_ptr_primary + utility_data_main_ptr);
             utility_frame_offset = utility_data_main_ptr;
-            initializetexturesystem(utility_stack_ptr,&utility_temp_integer_var,utility_stack_array_ptr);
+            initializetexturesystem(utility_stack_ptr,&utility_temp_integer_value,utility_stack_array_ptr);
             utility_quad_buffer_ptr = utility_stack_ptr;
             if ((int)utility_stack_array_ptr[UTILITY_ZERO] != -UTILITY_INDEX_INCREMENT) {
-              utility_temp_security_var = (int)utility_stack_array_ptr[UTILITY_ZERO];
-              utility_resource_count = (int)utility_temp_integer_var;
+              utility_temp_security_token = (int)utility_stack_array_ptr[UTILITY_ZERO];
+              utility_resource_count = (int)utility_temp_integer_value;
               do {
                 do {
-                  utility_data_main_ptr = *(longlong *)(utility_quad_buffer_ptr[utility_array_index_data_size] + UTILITY_MEMORY_OFFSET_STANDARD + (longlong)utility_temp_integer_var * utility_offset_resource_ptr);
+                  utility_data_main_ptr = *(longlong *)(utility_quad_buffer_ptr[utility_array_index_data_size] + UTILITY_MEMORY_OFFSET_STANDARD + (longlong)utility_temp_integer_value * utility_offset_resource_ptr);
                   if (((*(longlong *)(utility_data_main_ptr + UTILITY_BUFFER_OFFSET) != UTILITY_ZERO) && (*(longlong *)(utility_data_main_ptr + utility_stack_offset_extended_buffer_check_extended) == UTILITY_ZERO))
                      && (utility_status_count = processresourceoperation(utility_resource_primary_handle), utility_status_count != UTILITY_ZERO)) goto handle_memory_error;
-                } while ((utility_temp_integer_var != -UTILITY_INDEX_INCREMENT) &&
-                        (utility_temp_security_var = *(int *)(utility_quad_buffer_ptr[utility_array_index_data_size] + utility_float_offset_standard + (longlong)utility_temp_integer_var * utility_offset_resource_ptr), utility_temp_integer_var != -UTILITY_INDEX_INCREMENT));
-                utility_temp_security_var = utility_resource_count + UTILITY_INT_ONE;
+                } while ((utility_temp_integer_value != -UTILITY_INDEX_INCREMENT) &&
+                        (utility_temp_security_token = *(int *)(utility_quad_buffer_ptr[utility_array_index_data_size] + utility_float_offset_standard + (longlong)utility_temp_integer_value * utility_offset_resource_ptr), utility_temp_integer_value != -UTILITY_INDEX_INCREMENT));
+                utility_temp_security_token = utility_resource_count + UTILITY_INT_ONE;
                 resource_validation_flag = utility_resource_count != -UTILITY_INDEX_INCREMENT;
                 utility_resource_count = UTILITY_ZERO;
                 if (resource_validation_flag) {
-                  utility_resource_count = utility_temp_integer_var;
+                  utility_resource_count = utility_temp_integer_value;
                 }
                 if (utility_resource_count != (int)utility_quad_buffer_ptr[UTILITY_INDEX_INCREMENT]) {
                   utility_data_main_ptr = (longlong)utility_resource_count;
                   do {
                     if (*(int *)(*utility_quad_buffer_ptr + utility_data_main_ptr * UTILITY_MEMORY_OFFSET_STANDARD) != -UTILITY_INDEX_INCREMENT) {
-                      utility_temp_security_var = *(int *)(*utility_quad_buffer_ptr + (longlong)utility_resource_count * UTILITY_MEMORY_OFFSET_STANDARD);
+                      utility_temp_security_token = *(int *)(*utility_quad_buffer_ptr + (longlong)utility_resource_count * UTILITY_MEMORY_OFFSET_STANDARD);
                       goto process_memory_cleanup;
                     }
                     utility_resource_count = utility_resource_count + UTILITY_INT_ONE;
                     utility_data_main_ptr = utility_data_main_ptr + UTILITY_INT_ONE;
                   } while (utility_data_main_ptr != (int)utility_quad_buffer_ptr[UTILITY_INDEX_INCREMENT]);
                 }
-                utility_temp_security_var = -UTILITY_INDEX_INCREMENT;
-                utility_resource_count = utility_temp_integer_var;
+                utility_temp_security_token = -UTILITY_INDEX_INCREMENT;
+                utility_resource_count = utility_temp_integer_value;
 utility_process_memory_cleanup:
                 utility_data_main_ptr = utility_frame_offset;
                 utility_sixth_buffer_ptr = utility_stack_ptr;
-              } while (utility_temp_integer_var != -UTILITY_INDEX_INCREMENT);
+              } while (utility_temp_integer_value != -UTILITY_INDEX_INCREMENT);
             }
           } while ((utility_stack_float_array_large[UTILITY_ZERO] != -nan) &&
                   (utility_stack_float_array_large[UTILITY_ZERO] = *(float *)(utility_sixth_buffer_ptr[utility_array_index_data_size] + utility_offset_resource_ptr + utility_data_main_ptr), utility_stack_float_array_large[UTILITY_ZERO] != -nan))
@@ -8235,8 +8235,8 @@ utility_validate_memory_cleanup:
         } while (utility_stack_float_array_large[UTILITY_ZERO] != -nan);
       }
       (**(code **)(*utility_resource_primary_handle + UTILITY_SIZE_OFFSET))(utility_resource_primary_handle,&g_system_resource_datarror_handler);
-      utility_temp_security_var = (**(code **)(*utility_resource_primary_handle + utility_offset_resource_ptr))(utility_resource_primary_handle);
-      if (utility_temp_security_var == UTILITY_ZERO) {
+      utility_temp_security_token = (**(code **)(*utility_resource_primary_handle + utility_offset_resource_ptr))(utility_resource_primary_handle);
+      if (utility_temp_security_token == UTILITY_ZERO) {
         *(byte *)(utility_resource_primary_handle + utility_float_offset_standard) = UTILITY_ZERO;
       }
     }
@@ -8250,16 +8250,16 @@ void utility_setup_resource_memory(longlong utility_resource_primary_handle,uint
   int utility_buffer_index_var;
   int utility_counter;
   uint utility_state;
-int utility_temp_int_var;
+int utility_temp_int_value;
   utility_result = resourcecheckfunction(utility_resource_cache);
   utility_result = *(int *)(utility_resource_primary_handle + UTILITY_FIELD_PRIMARY_OFFSET_STANDARD);
   utility_state = (int)*(uint *)(utility_resource_primary_handle + UTILITY_SIZE_FIELD_OFFSET) >> utility_error_code_failed;
   utility_buffer_index_var = (*(uint *)(utility_resource_primary_handle + UTILITY_SIZE_FIELD_OFFSET) ^ utility_state) - utility_state;
-  utility_temp_security_var = utility_size_limit + utility_result;
-  if (utility_buffer_index_var < utility_temp_integer_var) {
+  utility_temp_security_token = utility_size_limit + utility_result;
+  if (utility_buffer_index_var < utility_temp_integer_value) {
     utility_counter = (int)((float)utility_buffer_index_var * utility_float_one_point_five);
-    utility_buffer_index_var = utility_temp_integer_var;
-    if (utility_temp_integer_var <= utility_counter) {
+    utility_buffer_index_var = utility_temp_integer_value;
+    if (utility_temp_integer_value <= utility_counter) {
       utility_buffer_index_var = utility_counter;
     }
     if (utility_buffer_index_var < utility_buffer_size_thread_handler_offset) {
@@ -8271,18 +8271,18 @@ int utility_temp_int_var;
     }
   }
   utility_state = (int)*(uint *)(utility_resource_primary_handle + UTILITY_SIZE_FIELD_OFFSET) >> utility_error_code_failed;
-  if (((int)((*(uint *)(utility_resource_primary_handle + UTILITY_SIZE_FIELD_OFFSET) ^ utility_state) - utility_state) < utility_temp_integer_var) &&
-     (utility_buffer_index_var = process_system_request(utility_resource_primary_handle + utility_secondary_byte_offset,utility_temp_integer_var), utility_buffer_index_var != UTILITY_ZERO)) {
+  if (((int)((*(uint *)(utility_resource_primary_handle + UTILITY_SIZE_FIELD_OFFSET) ^ utility_state) - utility_state) < utility_temp_integer_value) &&
+     (utility_buffer_index_var = process_system_request(utility_resource_primary_handle + utility_secondary_byte_offset,utility_temp_integer_value), utility_buffer_index_var != UTILITY_ZERO)) {
     return;
   }
   utility_buffer_index_var = *(int *)(utility_resource_primary_handle + UTILITY_FIELD_PRIMARY_OFFSET_STANDARD);
-  if (utility_temp_integer_var <= utility_buffer_index_var) {
-    *(int *)(utility_resource_primary_handle + UTILITY_FIELD_PRIMARY_OFFSET_STANDARD) = utility_temp_integer_var;
+  if (utility_temp_integer_value <= utility_buffer_index_var) {
+    *(int *)(utility_resource_primary_handle + UTILITY_FIELD_PRIMARY_OFFSET_STANDARD) = utility_temp_integer_value;
       
     memcpy((longlong)utility_size_limit + *(longlong *)(utility_resource_primary_handle + utility_secondary_byte_offset),utility_resource_cache,(longlong)utility_result);
   }
       
-  memset((longlong)utility_buffer_index_var + *(longlong *)(utility_resource_primary_handle + utility_secondary_byte_offset),UTILITY_ZERO,(longlong)(utility_temp_integer_var - utility_buffer_index_var));
+  memset((longlong)utility_buffer_index_var + *(longlong *)(utility_resource_primary_handle + utility_secondary_byte_offset),UTILITY_ZERO,(longlong)(utility_temp_integer_value - utility_buffer_index_var));
 }
 uint64 utility_allocate_resource_buffer(longlong *utility_resource_primary_handle,int utility_resource_cache)
 {
@@ -8322,10 +8322,10 @@ uint64 utility_validate_resource_buffer(longlong *utility_resource_primary_handl
     utility_status_value = utility_counter - utility_resource_context_handle;
     if (((utility_resource_context_handle != UTILITY_CHAR_NULL) || (utility_resource_context_handle == UTILITY_ZERO)) || (utility_system_status_threshold < utility_status_value)) {
       utility_resource_primary_handle[utility_array_index_data_size] = utility_counter;
-      utility_temp_security_var = UTILITY_ZERO;
-      utility_temp_security_var = UTILITY_ZERO;
+      utility_temp_security_token = UTILITY_ZERO;
+      utility_temp_security_token = UTILITY_ZERO;
       if (utility_resource_context_handle != UTILITY_ZERO) {
-        utility_temp_security_var = utility_status_value;
+        utility_temp_security_token = utility_status_value;
       }
       utility_local_data_pointer_cache = &g_system_data_io_manager;
       utility_counter = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
@@ -10017,7 +10017,7 @@ uint64 utility_allocate_resource_memory(longlong utility_resource_primary_handle
   uint64 utility_result;
   float *utility_float_pointer_secondary;
   int utility_buffer_index_var;
-  float utility_temp_float_storage;
+  float utility_temp_float_value;
   uint16_t utility_stack_primary [utility_array_index_quaternary];
   utility_stack_primary[UTILITY_ZERO] = utility_bit_concat_low_byte(utility_stack_data_primary_field,*(byte *)(utility_resource_context_handle + utility_resource_handle_param_offset_quaternary));
   utility_result = (**(code **)**(uint64 **)(utility_resource_primary_handle + UTILITY_SIZE_OFFSET))(*(uint64 **)(utility_resource_primary_handle + UTILITY_SIZE_OFFSET),utility_stack_primary,UTILITY_INDEX_INCREMENT);
@@ -10026,31 +10026,31 @@ uint64 utility_allocate_resource_memory(longlong utility_resource_primary_handle
     if (UTILITY_ZERO < *(short *)(utility_resource_context_handle + utility_resource_handle_param_offset_quaternary)) {
       utility_float_pointer_secondary = (float *)(utility_resource_context_handle + utility_resource_counter_offset);
       do {
-        utility_temp_float_storage = utility_float_pointer_secondary[-utility_pointer_offset] * utility_float_quarter;
-        if (utility_null_pointer <= utility_temp_float_storage) {
-          if (utility_float_one <= utility_temp_float_storage) {
-            utility_temp_float_storage = utility_float_one;
+        utility_temp_float_value = utility_float_pointer_secondary[-utility_pointer_offset] * utility_float_quarter;
+        if (utility_null_pointer <= utility_temp_float_value) {
+          if (utility_float_one <= utility_temp_float_value) {
+            utility_temp_float_value = utility_float_one;
           }
         }
         else {
-          utility_temp_float_storage = utility_null_pointer;
+          utility_temp_float_value = utility_null_pointer;
         }
-        utility_stack_primary[UTILITY_ZERO] = (resource_data_short)(int)(utility_temp_float_storage * utility_float_to_int_scale);
+        utility_stack_primary[UTILITY_ZERO] = (resource_data_short)(int)(utility_temp_float_value * utility_float_to_int_scale);
         utility_result = (**(code **)**(uint64 **)(utility_resource_primary_handle + UTILITY_SIZE_OFFSET))
                           (*(uint64 **)(utility_resource_primary_handle + UTILITY_SIZE_OFFSET),utility_stack_primary,utility_pairs);
         if ((int)utility_result != UTILITY_ZERO) {
           return utility_result;
         }
-        utility_temp_float_storage = *utility_float_pointer_secondary * utility_float_quarter;
-        if (utility_null_pointer <= utility_temp_float_storage) {
-          if (utility_float_one <= utility_temp_float_storage) {
-            utility_temp_float_storage = utility_float_one;
+        utility_temp_float_value = *utility_float_pointer_secondary * utility_float_quarter;
+        if (utility_null_pointer <= utility_temp_float_value) {
+          if (utility_float_one <= utility_temp_float_value) {
+            utility_temp_float_value = utility_float_one;
           }
         }
         else {
-          utility_temp_float_storage = utility_null_pointer;
+          utility_temp_float_value = utility_null_pointer;
         }
-        utility_stack_primary[UTILITY_ZERO] = (resource_data_short)(int)(utility_temp_float_storage * utility_float_to_int_scale);
+        utility_stack_primary[UTILITY_ZERO] = (resource_data_short)(int)(utility_temp_float_value * utility_float_to_int_scale);
         utility_result = (**(code **)**(uint64 **)(utility_resource_primary_handle + UTILITY_SIZE_OFFSET))
                           (*(uint64 **)(utility_resource_primary_handle + UTILITY_SIZE_OFFSET),utility_stack_primary,utility_pairs);
         if ((int)utility_result != UTILITY_ZERO) {
@@ -10071,37 +10071,37 @@ uint64 utility_initialize_memory_allocator(void)
   longlong utility_frame_ptr;
   longlong utility_cpu_context;
   int utility_buffer_index_var;
-  float utility_temp_float_storage;
+  float utility_temp_float_value;
   uint16_t security_validation_mask;
   utility_buffer_index_var = UTILITY_ZERO;
   if (UTILITY_ZERO < *(short *)(UTILITY_CPU_BASE + utility_resource_handle_param_offset_quaternary)) {
     utility_float_pointer_secondary = (float *)(UTILITY_CPU_BASE + utility_resource_counter_offset);
     do {
-      utility_temp_float_storage = utility_float_pointer_secondary[-utility_pointer_offset] * utility_float_quarter;
-      if (utility_null_pointer <= utility_temp_float_storage) {
-        if (utility_float_one <= utility_temp_float_storage) {
-          utility_temp_float_storage = utility_float_one;
+      utility_temp_float_value = utility_float_pointer_secondary[-utility_pointer_offset] * utility_float_quarter;
+      if (utility_null_pointer <= utility_temp_float_value) {
+        if (utility_float_one <= utility_temp_float_value) {
+          utility_temp_float_value = utility_float_one;
         }
       }
       else {
-        utility_temp_float_storage = utility_null_pointer;
+        utility_temp_float_value = utility_null_pointer;
       }
-      security_validation_mask = (resource_data_short)(int)(utility_temp_float_storage * utility_float_to_int_scale);
+      security_validation_mask = (resource_data_short)(int)(utility_temp_float_value * utility_float_to_int_scale);
       utility_result = (**(code **)**(uint64 **)(utility_frame_ptr + UTILITY_SIZE_OFFSET))
                         (*(uint64 **)(utility_frame_ptr + UTILITY_SIZE_OFFSET),&context_buffer_data,utility_pairs);
       if ((int)utility_result != UTILITY_ZERO) {
         return utility_result;
       }
-      utility_temp_float_storage = *utility_float_pointer_secondary * utility_float_quarter;
-      if (utility_null_pointer <= utility_temp_float_storage) {
-        if (utility_float_one <= utility_temp_float_storage) {
-          utility_temp_float_storage = utility_float_one;
+      utility_temp_float_value = *utility_float_pointer_secondary * utility_float_quarter;
+      if (utility_null_pointer <= utility_temp_float_value) {
+        if (utility_float_one <= utility_temp_float_value) {
+          utility_temp_float_value = utility_float_one;
         }
       }
       else {
-        utility_temp_float_storage = utility_null_pointer;
+        utility_temp_float_value = utility_null_pointer;
       }
-      security_validation_mask = (resource_data_short)(int)(utility_temp_float_storage * utility_float_to_int_scale);
+      security_validation_mask = (resource_data_short)(int)(utility_temp_float_value * utility_float_to_int_scale);
       utility_result = (**(code **)**(uint64 **)(utility_frame_ptr + UTILITY_SIZE_OFFSET))
                         (*(uint64 **)(utility_frame_ptr + UTILITY_SIZE_OFFSET),&context_buffer_data,utility_pairs);
       if ((int)utility_result != UTILITY_ZERO) {
@@ -10284,17 +10284,17 @@ void classifyutilitytypes(uint32 utility_resource_primary_handle)
   longlong utility_thread_context_primary;
   longlong utility_cpu_context;
   uint64 utility_state;
-int utility_temp_int_var;
+int utility_temp_int_value;
   uint32 utility_float_parameter_zero;
   uint32 utility_float_param_primary;
   uint32 utility_float_param_secondary;
   uint32 utility_float_param_tertiary;
   uint32 utility_float_param_quaternary;
   uint32 utility_float_param_quinary;
-  utility_temp_security_var = UTILITY_ZERO;
+  utility_temp_security_token = UTILITY_ZERO;
   if (UTILITY_ZERO < *(int *)(UTILITY_CPU_BASE + utility_system_offset_table)) {
     do {
-      utility_thread_context_primary = (longlong)utility_temp_integer_var * UTILITY_FIELD_PRIMARY_OFFSET_STANDARD + utility_cpu_context;
+      utility_thread_context_primary = (longlong)utility_temp_integer_value * UTILITY_FIELD_PRIMARY_OFFSET_STANDARD + utility_cpu_context;
       utility_buffer_index_var = finalizeresourcebuffer(utility_resource_primary_handle,utility_thread_context_primary + utility_offset_resource_ptr);
       if (utility_buffer_index_var != UTILITY_ZERO) {
         return;
@@ -10311,9 +10311,9 @@ int utility_temp_int_var;
       if (utility_buffer_index_var != UTILITY_ZERO) {
         return;
       }
-      utility_temp_security_var = utility_temp_integer_var + UTILITY_INT_ONE;
+      utility_temp_security_token = utility_temp_integer_value + UTILITY_INT_ONE;
       utility_resource_primary_handle = utility_float_param_tertiary;
-    } while (utility_temp_integer_var < *(int *)(UTILITY_CPU_BASE + utility_system_offset_table));
+    } while (utility_temp_integer_value < *(int *)(UTILITY_CPU_BASE + utility_system_offset_table));
   }
   utility_result = *(uint *)(UTILITY_CPU_BASE + UTILITY_MEMORY_ADDRESS_OFFSET_PRIMARY;
   utility_iter_ptr = *(uint64 **)(utility_context_ptr + UTILITY_SIZE_OFFSET);
@@ -10325,61 +10325,61 @@ int utility_temp_int_var;
     utility_state = UTILITY_QUAD_COUNT;
     *(uint *)(utility_frame_ptr + utility_pointer_offset) = (utility_result & UTILITY_MASK_HIGH_BITS | UTILITY_RESOURCE_PROPERTY_OFFSET_PRIMARY) * utility_size_standard | utility_result & UTILITY_MASK_STATUS_VALID;
   }
-  utility_temp_security_var = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,utility_state);
-  if (utility_temp_security_var == UTILITY_ZERO) {
+  utility_temp_security_token = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,utility_state);
+  if (utility_temp_security_token == UTILITY_ZERO) {
     utility_iter_ptr = *(uint64 **)(utility_context_ptr + UTILITY_SIZE_OFFSET);
     *(uint32 *)(utility_frame_ptr + utility_pointer_offset) = *(uint32 *)(UTILITY_CPU_BASE + UTILITY_DATA_OFFSET_extended_access_primary);
-    utility_temp_security_var = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_QUAD_COUNT);
-    if (((utility_temp_security_var == UTILITY_ZERO) && (utility_temp_cache_standard = utility_check_resource_status(utility_float_param_quaternary,UTILITY_CPU_BASE + UTILITY_DATA_OFFSET_extended_extended), utility_temp_cache_standard == UTILITY_ZERO))
-       && (utility_temp_security_var = utility_check_resource_status(utility_float_param_quinary,UTILITY_CPU_BASE + UTILITY_DATA_OFFSET_extended_access_secondary), utility_temp_cache_standard == UTILITY_ZERO)) {
+    utility_temp_security_token = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_QUAD_COUNT);
+    if (((utility_temp_security_token == UTILITY_ZERO) && (utility_temp_cache_standard = utility_check_resource_status(utility_float_param_quaternary,UTILITY_CPU_BASE + UTILITY_DATA_OFFSET_extended_extended), utility_temp_cache_standard == UTILITY_ZERO))
+       && (utility_temp_security_token = utility_check_resource_status(utility_float_param_quinary,UTILITY_CPU_BASE + UTILITY_DATA_OFFSET_extended_access_secondary), utility_temp_cache_standard == UTILITY_ZERO)) {
       utility_iter_ptr = *(uint64 **)(utility_context_ptr + UTILITY_SIZE_OFFSET);
       *(uint32 *)(utility_frame_ptr + utility_pointer_offset) = *(uint32 *)(UTILITY_CPU_BASE + UTILITY_DATA_OFFSET_extended_access_tertiary);
-      utility_temp_security_var = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_QUAD_COUNT);
-      if (utility_temp_security_var == UTILITY_ZERO) {
+      utility_temp_security_token = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_QUAD_COUNT);
+      if (utility_temp_security_token == UTILITY_ZERO) {
         utility_iter_ptr = *(uint64 **)(utility_context_ptr + UTILITY_SIZE_OFFSET);
         *(uint32 *)(utility_frame_ptr + utility_pointer_offset) = *(uint32 *)(UTILITY_CPU_BASE + UTILITY_DATA_OFFSET_extended_access_quaternary);
-        utility_temp_security_var = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_QUAD_COUNT);
-        if (utility_temp_security_var == UTILITY_ZERO) {
+        utility_temp_security_token = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_QUAD_COUNT);
+        if (utility_temp_security_token == UTILITY_ZERO) {
           utility_iter_ptr = *(uint64 **)(utility_context_ptr + UTILITY_SIZE_OFFSET);
           *(uint32 *)(utility_frame_ptr + utility_pointer_offset) = *(uint32 *)(UTILITY_CPU_BASE + UTILITY_DATA_OFFSET_PRIMARY);
-          utility_temp_security_var = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_QUAD_COUNT);
-          if (utility_temp_security_var == UTILITY_ZERO) {
+          utility_temp_security_token = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_QUAD_COUNT);
+          if (utility_temp_security_token == UTILITY_ZERO) {
             utility_iter_ptr = *(uint64 **)(utility_context_ptr + UTILITY_SIZE_OFFSET);
             *(uint32 *)(utility_frame_ptr + utility_pointer_offset) = *(uint32 *)(UTILITY_CPU_BASE + UTILITY_DATA_OFFSET_extended_access_septenary);
-            utility_temp_security_var = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_QUAD_COUNT);
-            if (utility_temp_security_var == UTILITY_ZERO) {
+            utility_temp_security_token = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_QUAD_COUNT);
+            if (utility_temp_security_token == UTILITY_ZERO) {
               utility_iter_ptr = *(uint64 **)(utility_context_ptr + UTILITY_SIZE_OFFSET);
               *(uint32 *)(utility_frame_ptr + utility_pointer_offset) = *(uint32 *)(UTILITY_CPU_BASE + UTILITY_DATA_OFFSET_extended_access_octonary);
-              utility_temp_security_var = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_QUAD_COUNT);
-              if (utility_temp_security_var == UTILITY_ZERO) {
+              utility_temp_security_token = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_QUAD_COUNT);
+              if (utility_temp_security_token == UTILITY_ZERO) {
                 utility_iter_ptr = *(uint64 **)(utility_context_ptr + UTILITY_SIZE_OFFSET);
                 *(uint32 *)(utility_frame_ptr + utility_pointer_offset) = *(uint32 *)(UTILITY_CPU_BASE + UTILITY_DATA_OFFSET_extended_access_senary);
-                utility_temp_security_var = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_QUAD_COUNT);
-                if (utility_temp_security_var == UTILITY_ZERO) {
+                utility_temp_security_token = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_QUAD_COUNT);
+                if (utility_temp_security_token == UTILITY_ZERO) {
                   utility_iter_ptr = *(uint64 **)(utility_context_ptr + UTILITY_SIZE_OFFSET);
                   *(uint32 *)(utility_frame_ptr + utility_pointer_offset) = *(uint32 *)(UTILITY_CPU_BASE + UTILITY_DATA_OFFSET_SECONDARY);
-                  utility_temp_security_var = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_QUAD_COUNT);
-                  if (utility_temp_security_var == UTILITY_ZERO) {
+                  utility_temp_security_token = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_QUAD_COUNT);
+                  if (utility_temp_security_token == UTILITY_ZERO) {
                     utility_iter_ptr = *(uint64 **)(utility_context_ptr + UTILITY_SIZE_OFFSET);
                     *(uint64 *)(utility_frame_ptr + utility_pointer_offset) = *(uint64 *)(UTILITY_CPU_BASE + UTILITY_DATA_OFFSET_extended_access_denary);
-                    utility_temp_security_var = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_MEMORY_OFFSET_STANDARD);
-                    if (utility_temp_security_var == UTILITY_ZERO) {
+                    utility_temp_security_token = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_MEMORY_OFFSET_STANDARD);
+                    if (utility_temp_security_token == UTILITY_ZERO) {
                       utility_iter_ptr = *(uint64 **)(utility_context_ptr + UTILITY_SIZE_OFFSET);
                       *(uint64 *)(utility_frame_ptr + utility_pointer_offset) = *(uint64 *)(UTILITY_CPU_BASE + UTILITY_DATA_OFFSET_extended_access_undenary);
-                      utility_temp_security_var = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_MEMORY_OFFSET_STANDARD);
-                      if (utility_temp_security_var == UTILITY_ZERO) {
+                      utility_temp_security_token = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_MEMORY_OFFSET_STANDARD);
+                      if (utility_temp_security_token == UTILITY_ZERO) {
                         utility_iter_ptr = *(uint64 **)(utility_context_ptr + UTILITY_SIZE_OFFSET);
                         *(uint64 *)(utility_frame_ptr + utility_pointer_offset) = *(uint64 *)(UTILITY_CPU_BASE + UTILITY_DATA_OFFSET_extended_config);
-                        utility_temp_security_var = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_MEMORY_OFFSET_STANDARD);
-                        if (utility_temp_security_var == UTILITY_ZERO) {
+                        utility_temp_security_token = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_MEMORY_OFFSET_STANDARD);
+                        if (utility_temp_security_token == UTILITY_ZERO) {
                           utility_iter_ptr = *(uint64 **)(utility_context_ptr + UTILITY_SIZE_OFFSET);
                           *(uint32 *)(utility_frame_ptr + utility_pointer_offset) = *(uint32 *)(UTILITY_CPU_BASE + UTILITY_DATA_OFFSET_TERTIARY);
-                          utility_temp_security_var = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_QUAD_COUNT);
-                          if (utility_temp_security_var == UTILITY_ZERO) {
+                          utility_temp_security_token = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_QUAD_COUNT);
+                          if (utility_temp_security_token == UTILITY_ZERO) {
                             utility_iter_ptr = *(uint64 **)(utility_context_ptr + UTILITY_SIZE_OFFSET);
                             *(uint32 *)(utility_frame_ptr + utility_pointer_offset) = *(uint32 *)(UTILITY_CPU_BASE + UTILITY_MEMORY_DATA_OFFSET_SECONDARY);
-                            utility_temp_security_var = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_QUAD_COUNT);
-                            if (utility_temp_security_var == UTILITY_ZERO) {
+                            utility_temp_security_token = (**(code **)*utility_iter_ptr)(utility_iter_ptr,utility_frame_ptr + utility_pointer_offset,UTILITY_QUAD_COUNT);
+                            if (utility_temp_security_token == UTILITY_ZERO) {
                               utility_iter_ptr = *(uint64 **)(utility_context_ptr + UTILITY_SIZE_OFFSET);
                               *(uint32 *)(utility_frame_ptr + utility_pointer_offset) = *(uint32 *)(UTILITY_CPU_BASE + utility_system_data_offset)
                             ;
@@ -11380,10 +11380,10 @@ ulonglong processsystemrequest(longlong utility_resource_primary_handle,uint64 *
   uint32 utility_temp_loop_counter;
   byte utility_local_security_buffer_var [UTILITY_STRUCTURE_SIZE_MEDIUM];
   utility_iter_ptr = (uint32 *)utility_allocate_memory_block_simple();
-  utility_temp_security_var = *utility_iter_ptr;
-  utility_temp_security_var = utility_iter_ptr[UTILITY_INDEX_INCREMENT];
-  utility_temp_security_var = utility_iter_ptr[utility_array_index_data_size];
-  utility_temp_security_var = utility_iter_ptr UTILITY_SIZE_MULTIPLIER;
+  utility_temp_security_token = *utility_iter_ptr;
+  utility_temp_security_token = utility_iter_ptr[UTILITY_INDEX_INCREMENT];
+  utility_temp_security_token = utility_iter_ptr[utility_array_index_data_size];
+  utility_temp_security_token = utility_iter_ptr UTILITY_SIZE_MULTIPLIER;
   utility_counter = createresourcebuffer(utility_resource_cache,utility_buffer,UTILITY_ZERO,UTILITY_RESOURCE_PROP_OFFSET_PRIMARY);
   if ((((int)utility_counter == UTILITY_ZERO) && (utility_counter = assessutilityquality(utility_resource_cache,utility_resource_primary_handle + utility_data_offset), (int)utility_counter == UTILITY_ZERO)) &&
      (utility_counter = assessutilityquality(utility_resource_cache,utility_resource_primary_handle + utility_pointer_offset), (int)utility_counter == UTILITY_ZERO)) {
@@ -11391,10 +11391,10 @@ ulonglong processsystemrequest(longlong utility_resource_primary_handle,uint64 *
     if (*(uint *)(utility_resource_context_handle + UTILITY_SIZE_OFFSET) < UTILITY_SIZE_THRESHOLD_SMALL_PRIMARY) {
       if (*(int *)(utility_resource_context_handle[UTILITY_INDEX_INCREMENT] + utility_offset_ptr_primary) == UTILITY_ZERO) {
         utility_result = *memory_block_size;
-        utility_counter = writeresourcedata(utility_result,&utility_temp_integer_var,UTILITY_QUAD_COUNT);
-        if ((((int)utility_counter == UTILITY_ZERO) && (utility_counter = writeresourcedata(utility_result,&utility_temp_integer_var,utility_numeric_value_two), (int)utility_counter == UTILITY_ZERO)) &&
-           (utility_counter = writeresourcedata(utility_result,(longlong)&utility_temp_integer_var + utility_event_offset_two,utility_numeric_value_two), (int)utility_counter == UTILITY_ZERO)) {
-          utility_counter = writeresourcedata(utility_result,&utility_temp_integer_var,UTILITY_MEMORY_OFFSET_STANDARD);
+        utility_counter = writeresourcedata(utility_result,&utility_temp_integer_value,UTILITY_QUAD_COUNT);
+        if ((((int)utility_counter == UTILITY_ZERO) && (utility_counter = writeresourcedata(utility_result,&utility_temp_integer_value,utility_numeric_value_two), (int)utility_counter == UTILITY_ZERO)) &&
+           (utility_counter = writeresourcedata(utility_result,(longlong)&utility_temp_integer_value + utility_event_offset_two,utility_numeric_value_two), (int)utility_counter == UTILITY_ZERO)) {
+          utility_counter = writeresourcedata(utility_result,&utility_temp_integer_value,UTILITY_MEMORY_OFFSET_STANDARD);
         }
       }
       else {
@@ -13035,27 +13035,27 @@ ulonglong initializedatavalidator(longlong utility_resource_primary_handle,uint6
   }
   putility_iteration_index = (uint32 *)utility_allocate_memory_block_simple();
   utility_system_flags_var = UTILITY_ZERO;
-  utility_temp_security_var = *putility_iteration_index;
-  utility_temp_security_var = putility_iteration_index[UTILITY_INDEX_INCREMENT];
-  utility_temp_security_var = putility_iteration_index[utility_array_index_data_size];
-  utility_temp_security_var = putility_iteration_index UTILITY_SIZE_MULTIPLIER;
+  utility_temp_security_token = *putility_iteration_index;
+  utility_temp_security_token = putility_iteration_index[UTILITY_INDEX_INCREMENT];
+  utility_temp_security_token = putility_iteration_index[utility_array_index_data_size];
+  utility_temp_security_token = putility_iteration_index UTILITY_SIZE_MULTIPLIER;
   utility_state = UTILITY_ZERO;
   if (*(uint *)(utility_resource_context_handle + UTILITY_SIZE_OFFSET) < utility_iteration_threshold_primary) {
     if (*(int *)(utility_resource_context_handle[UTILITY_INDEX_INCREMENT] + utility_offset_ptr_primary) == UTILITY_ZERO) {
       utility_result = *memory_block_size;
-      utility_system_flags_var = writeresourcedata(utility_result,&utility_temp_integer_var,UTILITY_QUAD_COUNT);
+      utility_system_flags_var = writeresourcedata(utility_result,&utility_temp_integer_value,UTILITY_QUAD_COUNT);
       if ((int)utility_system_flags_var != UTILITY_ZERO) {
         return utility_system_flags_var;
       }
-      utility_system_flags_var = writeresourcedata(utility_result,&utility_temp_integer_var,utility_numeric_value_two);
+      utility_system_flags_var = writeresourcedata(utility_result,&utility_temp_integer_value,utility_numeric_value_two);
       if ((int)utility_system_flags_var != UTILITY_ZERO) {
         return utility_system_flags_var;
       }
-      utility_system_flags_var = writeresourcedata(utility_result,(longlong)&utility_temp_integer_var + utility_event_offset_two,utility_numeric_value_two);
+      utility_system_flags_var = writeresourcedata(utility_result,(longlong)&utility_temp_integer_value + utility_event_offset_two,utility_numeric_value_two);
       if ((int)utility_system_flags_var != UTILITY_ZERO) {
         return utility_system_flags_var;
       }
-      utility_system_flags_var = writeresourcedata(utility_result,&utility_temp_integer_var,UTILITY_MEMORY_OFFSET_STANDARD);
+      utility_system_flags_var = writeresourcedata(utility_result,&utility_temp_integer_value,UTILITY_MEMORY_OFFSET_STANDARD);
     }
     else {
       utility_system_flags_var = utility_offset_flag;
@@ -13073,27 +13073,27 @@ ulonglong initializedatavalidator(longlong utility_resource_primary_handle,uint6
   }
   if (*(uint *)(utility_resource_context_handle + UTILITY_SIZE_OFFSET) < utility_iteration_threshold_septenary) {
     utility_local_data_pointer_cache = (uint64 *)utility_null_pointer;
-    utility_temp_security_var = UTILITY_ZERO;
+    utility_temp_security_token = UTILITY_ZERO;
     utility_state = utility_get_task_status_secondary(utility_resource_cache,&utility_local_data_pointer_cache,UTILITY_ZERO);
     utility_system_flags_var = (ulonglong)utility_state;
     if (utility_state != UTILITY_ZERO) {
 utility_label_validation_failed:
-      utility_state = utility_temp_integer_var.bit_field_pair;
-      if ((longlong)utility_temp_integer_var < UTILITY_ZERO) {
-        utility_state = -utility_temp_integer_var.bit_field_pair;
+      utility_state = utility_temp_integer_value.bit_field_pair;
+      if ((longlong)utility_temp_integer_value < UTILITY_ZERO) {
+        utility_state = -utility_temp_integer_value.bit_field_pair;
       }
-      utility_result = (int)utility_temp_integer_var;
-      utility_counter = utility_temp_integer_var.bit_field_quaternary;
+      utility_result = (int)utility_temp_integer_value;
+      utility_counter = utility_temp_integer_value.bit_field_quaternary;
       if ((int)utility_state < UTILITY_ZERO) {
-        if (UTILITY_ZERO < (int)utility_temp_integer_var) {
+        if (UTILITY_ZERO < (int)utility_temp_integer_value) {
           return utility_system_flags_var;
         }
-        if ((UTILITY_ZERO < (int)utility_temp_integer_var.bit_field_pair) && (utility_local_data_pointer_cache != (uint64 *)utility_null_pointer)) {
+        if ((UTILITY_ZERO < (int)utility_temp_integer_value.bit_field_pair) && (utility_local_data_pointer_cache != (uint64 *)utility_null_pointer)) {
       
           utility_write_memory_data(*(uint64 *)(utility_system_data_table_pointer + utility_system_offset_table),utility_local_data_pointer_cache,&utility_memory_buffer_main,UTILITY_RESOURCE_PTR_OFFSET_primary_zero,UTILITY_INDEX_INCREMENT);
         }
         utility_local_data_pointer_cache = (uint64 *)utility_null_pointer;
-        utility_temp_security_var = utility_temp_integer_var & invalid_handle;
+        utility_temp_security_token = utility_temp_integer_value & invalid_handle;
         utility_counter = utility_state;
       }
       if (utility_result < UTILITY_ZERO) {
@@ -13113,10 +13113,10 @@ utility_label_validation_failed:
             utility_data_main_ptr = utility_data_main_ptr + -UTILITY_INDEX_INCREMENT;
             utility_resource_utility_data_pointer_primary_extended = utility_resource_utility_data_pointer_primary_extended + utility_offset_ptr_primary;
           } while (utility_data_main_ptr != UTILITY_ZERO);
-          utility_counter = utility_temp_integer_var.bit_field_quaternary;
+          utility_counter = utility_temp_integer_value.bit_field_quaternary;
         }
       }
-      utility_temp_security_var = utility_temp_integer_var & utility_memory_mask_high;
+      utility_temp_security_token = utility_temp_integer_value & utility_memory_mask_high;
       if ((int)utility_counter < UTILITY_ZERO) {
         utility_counter = -utility_counter;
       }
@@ -13126,19 +13126,19 @@ utility_label_validation_failed:
       execute_resource_task_secondary(&utility_local_data_pointer_cache,UTILITY_ZERO);
       return utility_system_flags_var;
     }
-    if ((int)utility_temp_security_var == UTILITY_ZERO) {
+    if ((int)utility_temp_security_token == UTILITY_ZERO) {
       utility_result = UTILITY_ZERO;
     }
     else {
       utility_state = (int)*(uint *)(utility_resource_primary_handle + utility_system_status_offset_secondary) >> utility_error_code_failed;
       utility_return_buffer_ptr = utility_local_data_pointer_cache;
-      if ((int)((*(uint *)(utility_resource_primary_handle + utility_system_status_offset_secondary) ^ utility_state) - utility_state) < (int)utility_temp_integer_var) {
-        utility_state = utility_validate_resource_size_secondary(utility_resource_primary_handle + UTILITY_BUFFER_OFFSET,utility_temp_integer_var & invalid_handle);
+      if ((int)((*(uint *)(utility_resource_primary_handle + utility_system_status_offset_secondary) ^ utility_state) - utility_state) < (int)utility_temp_integer_value) {
+        utility_state = utility_validate_resource_size_secondary(utility_resource_primary_handle + UTILITY_BUFFER_OFFSET,utility_temp_integer_value & invalid_handle);
         utility_system_flags_var = (ulonglong)utility_state;
         utility_return_buffer_ptr = utility_local_data_pointer_cache;
         if (utility_state != UTILITY_ZERO) goto utility_label_validation_failed;
       }
-      for (; (utility_result = (int)utility_temp_integer_var, utility_local_data_pointer_cache <= utility_return_buffer_ptr &&
+      for (; (utility_result = (int)utility_temp_integer_value, utility_local_data_pointer_cache <= utility_return_buffer_ptr &&
              (utility_return_buffer_ptr < utility_local_data_pointer_cache + (longlong)utility_result * UTILITY_SIZE_MULTIPLIER); utility_return_buffer_ptr = utility_return_buffer_ptr + UTILITY_SIZE_MULTIPLIER {
         putility_stack_buffer_validation = (uint64 *)utility_null_pointer;
         utility_state = utility_process_resource_request_secondary(utility_resource_primary_handle + UTILITY_BUFFER_OFFSET,&utility_stack_buffer_validation_ptr);
@@ -13153,19 +13153,19 @@ utility_label_validation_failed:
         *(byte *)(utility_stack_buffer_validation_ptr + UTILITY_SIZE_MULTIPLIER) = UTILITY_INT_ONE;
       }
     }
-    utility_state = utility_temp_integer_var.bit_field_pair;
-    if ((longlong)utility_temp_integer_var < UTILITY_ZERO) {
-      utility_state = -utility_temp_integer_var.bit_field_pair;
+    utility_state = utility_temp_integer_value.bit_field_pair;
+    if ((longlong)utility_temp_integer_value < UTILITY_ZERO) {
+      utility_state = -utility_temp_integer_value.bit_field_pair;
     }
-    utility_counter = utility_temp_integer_var.bit_field_quaternary;
+    utility_counter = utility_temp_integer_value.bit_field_quaternary;
     if ((int)utility_state < UTILITY_ZERO) {
       if (UTILITY_ZERO < utility_result) goto utility_label_continue_processing;
-      if ((UTILITY_ZERO < (int)utility_temp_integer_var.bit_field_pair) && (utility_local_data_pointer_cache != (uint64 *)utility_null_pointer)) {
+      if ((UTILITY_ZERO < (int)utility_temp_integer_value.bit_field_pair) && (utility_local_data_pointer_cache != (uint64 *)utility_null_pointer)) {
       
         utility_write_memory_data(*(uint64 *)(utility_system_data_table_pointer + utility_system_offset_table),utility_local_data_pointer_cache,&utility_memory_buffer_main,UTILITY_RESOURCE_PTR_OFFSET_primary_zero,UTILITY_INDEX_INCREMENT);
       }
       utility_local_data_pointer_cache = (uint64 *)utility_null_pointer;
-      utility_temp_security_var = utility_temp_integer_var & invalid_handle;
+      utility_temp_security_token = utility_temp_integer_value & invalid_handle;
       utility_counter = utility_state;
     }
     if (utility_result < UTILITY_ZERO) {
@@ -13185,10 +13185,10 @@ utility_label_validation_failed:
           utility_data_main_ptr = utility_data_main_ptr + -UTILITY_INDEX_INCREMENT;
           utility_resource_utility_data_pointer_primary_extended = utility_resource_utility_data_pointer_primary_extended + utility_offset_ptr_primary;
         } while (utility_data_main_ptr != UTILITY_ZERO);
-        utility_counter = utility_temp_integer_var.bit_field_quaternary;
+        utility_counter = utility_temp_integer_value.bit_field_quaternary;
       }
     }
-    utility_temp_security_var = utility_temp_integer_var & utility_memory_mask_high;
+    utility_temp_security_token = utility_temp_integer_value & utility_memory_mask_high;
     if ((int)utility_counter < UTILITY_ZERO) {
       utility_counter = -utility_counter;
     }
@@ -13224,8 +13224,8 @@ uint64 * utility_process_validation_request(void)
   uint64 utility_result;
   uint32 utility_counter;
   uint32 utility_status_value;
-  float utility_temp_float_storage;
-  float utility_temp_float_storage;
+  float utility_temp_float_value;
+  float utility_temp_float_value;
   float utility_float_value;
   uint utility_iteration_index;
   uint utility_counter;
@@ -13419,12 +13419,12 @@ utility_label_validation_failed:
         do {
           float_ptr = (float *)utility_allocate_memory_block_simple();
           utility_float_data = *float_ptr;
-          utility_temp_float_storage = float_ptr[UTILITY_INDEX_INCREMENT];
-          utility_temp_float_storage = float_ptr[utility_array_index_data_size];
+          utility_temp_float_value = float_ptr[UTILITY_INDEX_INCREMENT];
+          utility_temp_float_value = float_ptr[utility_array_index_data_size];
           utility_float_value = float_ptr UTILITY_SIZE_MULTIPLIER;
           *(float *)(utility_resource_utility_data_pointer_primary_extended_seventh + -utility_offset_data) = utility_float_data;
-          *(float *)(utility_resource_utility_data_pointer_primary_extended_seventh + -utility_offset_resource_ptr) = utility_temp_float_storage;
-          *(float *)(utility_resource_utility_data_pointer_primary_extended_seventh + -utility_buffer_size_multiplier) = utility_temp_float_storage;
+          *(float *)(utility_resource_utility_data_pointer_primary_extended_seventh + -utility_offset_resource_ptr) = utility_temp_float_value;
+          *(float *)(utility_resource_utility_data_pointer_primary_extended_seventh + -utility_buffer_size_multiplier) = utility_temp_float_value;
           *(float *)(utility_resource_utility_data_pointer_primary_extended_seventh + utility_memory_offset_negative) = utility_float_value;
           *(uint64 *)(utility_resource_utility_data_pointer_primary_extended_seventh + -UTILITY_QUAD_COUNT) = UTILITY_ZERO;
           utility_resource_utility_data_pointer_primary_extended_eighth = utility_resource_utility_data_pointer_primary_extended_eighth + -UTILITY_INDEX_INCREMENT;
@@ -13471,8 +13471,8 @@ uint64 * utility_handle_validation_callback(void)
   uint64 utility_result;
   uint32 utility_counter;
   uint32 utility_status_value;
-  float utility_temp_float_storage;
-  float utility_temp_float_storage;
+  float utility_temp_float_value;
+  float utility_temp_float_value;
   float utility_float_value;
   uint utility_iteration_index;
   uint utility_counter;
@@ -13658,12 +13658,12 @@ utility_label_validation_failed:
         do {
           float_ptr = (float *)utility_allocate_memory_block_simple();
           utility_float_data = *float_ptr;
-          utility_temp_float_storage = float_ptr[UTILITY_INDEX_INCREMENT];
-          utility_temp_float_storage = float_ptr[utility_array_index_data_size];
+          utility_temp_float_value = float_ptr[UTILITY_INDEX_INCREMENT];
+          utility_temp_float_value = float_ptr[utility_array_index_data_size];
           utility_float_value = float_ptr UTILITY_SIZE_MULTIPLIER;
           *(float *)(utility_resource_utility_data_pointer_primary_extended_seventh + -utility_offset_data) = utility_float_data;
-          *(float *)(utility_resource_utility_data_pointer_primary_extended_seventh + -utility_offset_resource_ptr) = utility_temp_float_storage;
-          *(float *)(utility_resource_utility_data_pointer_primary_extended_seventh + -utility_buffer_size_multiplier) = utility_temp_float_storage;
+          *(float *)(utility_resource_utility_data_pointer_primary_extended_seventh + -utility_offset_resource_ptr) = utility_temp_float_value;
+          *(float *)(utility_resource_utility_data_pointer_primary_extended_seventh + -utility_buffer_size_multiplier) = utility_temp_float_value;
           *(float *)(utility_resource_utility_data_pointer_primary_extended_seventh + utility_memory_offset_negative) = utility_float_value;
           *(uint64 *)(utility_resource_utility_data_pointer_primary_extended_seventh + -UTILITY_QUAD_COUNT) = UTILITY_ZERO;
           utility_resource_utility_data_pointer_primary_extended_eighth = utility_resource_utility_data_pointer_primary_extended_eighth + -UTILITY_INDEX_INCREMENT;
@@ -13709,9 +13709,9 @@ ulonglong validatedataintegrity(uint64 utility_resource_primary_handle)
 {
   uint32 utility_result;
   uint32 utility_counter;
-  float utility_temp_float_storage;
-  float utility_temp_float_storage;
-  float utility_temp_float_storage;
+  float utility_temp_float_value;
+  float utility_temp_float_value;
+  float utility_temp_float_value;
   uint64 utility_system_flags_var;
   uint utility_accumulator;
   uint utility_iteration_index;
@@ -13862,13 +13862,13 @@ utility_label_validation_failed:
         do {
           float_ptr = (float *)utility_allocate_memory_block_simple();
           utility_float_data = *float_ptr;
-          utility_temp_float_storage = float_ptr[UTILITY_INDEX_INCREMENT];
-          utility_temp_float_storage = float_ptr[utility_array_index_data_size];
-          utility_temp_float_storage = float_ptr UTILITY_SIZE_MULTIPLIER;
+          utility_temp_float_value = float_ptr[UTILITY_INDEX_INCREMENT];
+          utility_temp_float_value = float_ptr[utility_array_index_data_size];
+          utility_temp_float_value = float_ptr UTILITY_SIZE_MULTIPLIER;
           *(float *)(utility_resource_data_buffer_secondary + -utility_offset_data) = utility_float_data;
-          *(float *)(utility_resource_data_buffer_secondary + -utility_offset_resource_ptr) = utility_temp_float_storage;
-          *(float *)(utility_resource_data_buffer_secondary + -utility_buffer_size_multiplier) = utility_temp_float_storage;
-          *(float *)(utility_resource_data_buffer_secondary + utility_memory_offset_negative) = utility_temp_float_storage;
+          *(float *)(utility_resource_data_buffer_secondary + -utility_offset_resource_ptr) = utility_temp_float_value;
+          *(float *)(utility_resource_data_buffer_secondary + -utility_buffer_size_multiplier) = utility_temp_float_value;
+          *(float *)(utility_resource_data_buffer_secondary + utility_memory_offset_negative) = utility_temp_float_value;
           *(uint64 **)(utility_resource_data_buffer_secondary + -UTILITY_QUAD_COUNT) = utility_cpu_register_pointer_secondary;
           utility_resource_utility_data_pointer_primary_extended_seventh = utility_resource_utility_data_pointer_primary_extended_seventh + -UTILITY_INDEX_INCREMENT;
           utility_resource_data_buffer_secondary = utility_resource_data_buffer_secondary + utility_offset_ptr_primary;
@@ -13991,12 +13991,12 @@ utility_label_array_boundary_check:
     }
     if (utility_counter == UTILITY_ZERO) {
       utility_stack_utility_data_pointer_primary_extended[UTILITY_ZERO] = (uint)((char)utility_stack_resource_data[UTILITY_ZERO] != UTILITY_CHAR_NULL);
-      utility_temp_security_var = (uint)((char)utility_stack_resource_data[UTILITY_ZERO] == UTILITY_CHAR_NULL);
+      utility_temp_security_token = (uint)((char)utility_stack_resource_data[UTILITY_ZERO] == UTILITY_CHAR_NULL);
       utility_counter = UTILITY_ZERO;
     }
     else {
       utility_stack_utility_data_pointer_primary_extended[UTILITY_ZERO] = UTILITY_ZERO;
-      utility_temp_security_var = UTILITY_INT_ONE;
+      utility_temp_security_token = UTILITY_INT_ONE;
       if (utility_counter == UTILITY_ZERO) {
         utility_counter = utility_iteration_index;
       }
@@ -14004,7 +14004,7 @@ utility_label_array_boundary_check:
   }
   else {
 utility_label_process_next_item:
-    utility_temp_security_var = UTILITY_INT_ONE;
+    utility_temp_security_token = UTILITY_INT_ONE;
     utility_stack_utility_data_pointer_primary_extended[UTILITY_ZERO] = UTILITY_ZERO;
   }
   if (utility_counter != UTILITY_ZERO) {
@@ -14029,13 +14029,13 @@ utility_label_process_next_item:
         goto utility_label_skip_to_next;
       }
     }
-    utility_counter = read_resource_data(*utility_resource_data_ptr,&utility_temp_integer_var,UTILITY_INDEX_INCREMENT,UTILITY_QUAD_COUNT,UTILITY_ZERO);
+    utility_counter = read_resource_data(*utility_resource_data_ptr,&utility_temp_integer_value,UTILITY_INDEX_INCREMENT,UTILITY_QUAD_COUNT,UTILITY_ZERO);
   }
 utility_label_skip_to_next:
   if ((int)utility_counter != UTILITY_ZERO) {
     return utility_counter;
   }
-  switch(utility_temp_integer_var) {
+  switch(utility_temp_integer_value) {
   case utility_status_code_zero:
     utility_status_value = utility_status_code_zero;
     break;
@@ -14132,10 +14132,10 @@ utility_label_iterate_array_element:
       utility_counter = read_resource_data(*utility_resource_data_ptr,utility_stack_resource_data,UTILITY_INDEX_INCREMENT,UTILITY_INDEX_INCREMENT,UTILITY_ZERO);
     }
     else {
-      utility_temp_security_var = UTILITY_ZERO;
-      utility_counter = utility_data_process_function(*utility_resource_data_ptr,&utility_temp_integer_var);
+      utility_temp_security_token = UTILITY_ZERO;
+      utility_counter = utility_data_process_function(*utility_resource_data_ptr,&utility_temp_integer_value);
       if (utility_counter == UTILITY_ZERO) {
-        if ((ulonglong)utility_temp_integer_var + UTILITY_INDEX_INCREMENT <= (ulonglong)utility_resource_data_ptr[utility_array_index_data_size]) goto utility_label_iterate_array_element;
+        if ((ulonglong)utility_temp_integer_value + UTILITY_INDEX_INCREMENT <= (ulonglong)utility_resource_data_ptr[utility_array_index_data_size]) goto utility_label_iterate_array_element;
         utility_counter = utility_access_flag;
       }
     }
@@ -14188,10 +14188,10 @@ utility_label_continue_array_iteration:
         utility_counter = read_resource_data(*utility_resource_data_ptr,utility_stack_resource_data,UTILITY_INDEX_INCREMENT,UTILITY_INDEX_INCREMENT,UTILITY_ZERO);
       }
       else {
-        utility_temp_security_var = UTILITY_ZERO;
-        utility_counter = utility_data_process_function(*utility_resource_data_ptr,&utility_temp_integer_var);
+        utility_temp_security_token = UTILITY_ZERO;
+        utility_counter = utility_data_process_function(*utility_resource_data_ptr,&utility_temp_integer_value);
         if (utility_counter == UTILITY_ZERO) {
-          if ((ulonglong)utility_temp_integer_var + UTILITY_INDEX_INCREMENT <= (ulonglong)utility_resource_data_ptr[utility_array_index_data_size]) goto utility_label_continue_array_iteration;
+          if ((ulonglong)utility_temp_integer_value + UTILITY_INDEX_INCREMENT <= (ulonglong)utility_resource_data_ptr[utility_array_index_data_size]) goto utility_label_continue_array_iteration;
           utility_counter = utility_access_flag;
         }
       }
@@ -14214,7 +14214,7 @@ utility_label_continue_array_iteration:
     utility_counter = *(uint *)(utility_resource_context_handle + UTILITY_SIZE_OFFSET);
     if (utility_counter < utility_memory_data_offset_extended_tertiary) {
       *(uint *)(utility_resource_primary_handle + UTILITY_SIZE_FIELD_OFFSET) =
-           (((utility_stack_utility_data_pointer_primary_extended[UTILITY_ZERO] | *(uint *)(utility_resource_primary_handle + UTILITY_SIZE_FIELD_OFFSET)) & ~utility_temp_integer_var | utility_counter * utility_size_standard) & ~(utility_system_flags_var * utility_size_standard) |
+           (((utility_stack_utility_data_pointer_primary_extended[UTILITY_ZERO] | *(uint *)(utility_resource_primary_handle + UTILITY_SIZE_FIELD_OFFSET)) & ~utility_temp_integer_value | utility_counter * utility_size_standard) & ~(utility_system_flags_var * utility_size_standard) |
            utility_iteration_index * UTILITY_MEMORY_OFFSET_STANDARD) & ~(utility_state * UTILITY_MEMORY_OFFSET_STANDARD);
       utility_counter = *(uint *)(utility_resource_context_handle + UTILITY_SIZE_OFFSET);
     }
@@ -14290,7 +14290,7 @@ ulonglong utility_initialize_integrity_system(void)
   float utility_float_param_quaternary;
   float utility_float_param_quinary;
   float utility_float_param_sixth;
-  float utility_temp_float_storage;
+  float utility_temp_float_value;
   float utility_float_param_seventh;
   uint32 utility_float_output_result;
   uint32 utility_xmm_register_result_primary;
@@ -14465,7 +14465,7 @@ utility_label_finalize_processing:
     return utility_status_value;
   }
   utility_status_value = utility_system_flags_var;
-  utility_temp_float_storage = float_parameter_zero;
+  utility_temp_float_value = float_parameter_zero;
   utility_state = utility_state;
   utility_iteration_index = utility_cpu_context;
   if (*(uint *)(utility_context_ptr + UTILITY_SIZE_OFFSET) < utility_memory_data_offset_extended_tertiary) {
@@ -14478,12 +14478,12 @@ utility_label_finalize_processing:
       else if (utility_resource_data_ptr[utility_array_index_data_size] == UTILITY_ZERO) {
 utility_label_iterate_array_element:
         utility_counter = read_resource_data(*utility_resource_data_ptr,utility_frame_ptr + utility_stack_data_offset_standard,utility_cpu_context,utility_cpu_context,UTILITY_ZERO);
-        utility_temp_float_storage = utility_float_param_secondary;
+        utility_temp_float_value = utility_float_param_secondary;
       }
       else {
         *(uint32 *)(utility_frame_ptr + -resource_attribute_id) = UTILITY_ZERO;
         utility_counter = utility_data_process_function(utility_data_pointer_primary_extended_main,utility_frame_ptr + -resource_attribute_id);
-        utility_temp_float_storage = utility_float_param_primary;
+        utility_temp_float_value = utility_float_param_primary;
         if (utility_counter == UTILITY_ZERO) {
           if ((ulonglong)*(uint *)(utility_frame_ptr + -resource_attribute_id) + UTILITY_INDEX_INCREMENT <= (ulonglong)utility_resource_data_ptr[utility_array_index_data_size])
           goto utility_label_iterate_array_element;
@@ -14511,14 +14511,14 @@ utility_label_iterate_array_element:
     return utility_status_value;
   }
   if ((*(uint *)(utility_context_ptr + UTILITY_SIZE_OFFSET) < utility_data_start_offset_extended) &&
-     (utility_status_value = system_test_func(), utility_temp_float_storage = utility_float_param_tertiary, (int)utility_status_value != UTILITY_ZERO)) {
+     (utility_status_value = system_test_func(), utility_temp_float_value = utility_float_param_tertiary, (int)utility_status_value != UTILITY_ZERO)) {
     return utility_status_value;
   }
   utility_status_value = utility_system_flags_var;
   if (UTILITY_CPU_REGISTER_LIMIT_MEDIUM < *(uint *)(utility_context_ptr + UTILITY_SIZE_OFFSET)) {
     if (*(int *)(utility_context_ptr[UTILITY_INDEX_INCREMENT] + utility_offset_ptr_primary) == UTILITY_ZERO) {
       utility_status_value = utility_rate_utility_effectiveness(*utility_context_ptr,utility_reg_context + UTILITY_BUFFER_OFFSET);
-      utility_temp_float_storage = utility_float_param_quaternary;
+      utility_temp_float_value = utility_float_param_quaternary;
     }
     else {
       utility_status_value = utility_offset_flag;
@@ -14541,12 +14541,12 @@ utility_label_iterate_array_element:
   else if (utility_resource_data_ptr[utility_array_index_data_size] == UTILITY_ZERO) {
 utility_label_continue_array_iteration:
     utility_counter = read_resource_data(*utility_resource_data_ptr,utility_frame_ptr + utility_stack_data_offset_standard,utility_cpu_context,utility_cpu_context,UTILITY_ZERO);
-    utility_temp_float_storage = utility_float_param_sixth;
+    utility_temp_float_value = utility_float_param_sixth;
   }
   else {
     *(uint32 *)(utility_frame_ptr + -resource_attribute_id) = UTILITY_ZERO;
     utility_counter = utility_data_process_function(utility_data_pointer_primary_extended_main,utility_frame_ptr + -resource_attribute_id);
-    utility_temp_float_storage = utility_float_param_quinary;
+    utility_temp_float_value = utility_float_param_quinary;
     if (utility_counter == UTILITY_ZERO) {
       if ((ulonglong)*(uint *)(utility_frame_ptr + -resource_attribute_id) + UTILITY_INDEX_INCREMENT <= (ulonglong)utility_resource_data_ptr[utility_array_index_data_size]) goto utility_label_continue_array_iteration;
       utility_counter = utility_access_flag;
@@ -14574,8 +14574,8 @@ utility_label_array_processing_complete:
     utility_counter = *(uint *)(utility_context_ptr + UTILITY_SIZE_OFFSET);
   }
   if ((utility_counter < utility_iteration_limit_primary) && ((*(uint *)(utility_reg_context + UTILITY_SIZE_FIELD_OFFSET) >> UTILITY_SIZE_MULTIPLIER & (UTILITY_INDEX_INCREMENT << UTILITY_BIT_MASK)) != UTILITY_ZERO)) {
-    utility_temp_float_storage = *(float *)(utility_reg_context + resource_prop_offset) - utility_float_one;
-    *(float *)(utility_reg_context + resource_prop_offset) = utility_temp_float_storage;
+    utility_temp_float_value = *(float *)(utility_reg_context + resource_prop_offset) - utility_float_one;
+    *(float *)(utility_reg_context + resource_prop_offset) = utility_temp_float_value;
     utility_counter = *(uint *)(utility_context_ptr + UTILITY_SIZE_OFFSET);
   }
   if (UTILITY_SIZE_THRESHOLD_SYSTEM_MAXIMUM < utility_counter) {
@@ -14592,10 +14592,10 @@ utility_label_array_processing_complete:
     }
     *(uint32 *)(utility_frame_ptr + utility_stack_data_offset_standard) = UTILITY_ZERO;
     utility_status_value = utility_system_flags_var;
-    utility_temp_float_storage = utility_float_param_seventh;
+    utility_temp_float_value = utility_float_param_seventh;
     if (utility_state >> UTILITY_INDEX_INCREMENT != UTILITY_ZERO) {
       do {
-        utility_status_value = process_system_data(utility_temp_float_storage,utility_status_value);
+        utility_status_value = process_system_data(utility_temp_float_value,utility_status_value);
         if ((int)utility_status_value != UTILITY_ZERO) {
           return utility_status_value;
         }
@@ -14620,12 +14620,12 @@ utility_label_array_processing_complete:
         utility_iteration_index = *(uint *)(utility_frame_ptr + utility_stack_data_offset_standard) & -(utility_state & (UTILITY_INDEX_INCREMENT << UTILITY_BIT_MASK));
         utility_status_value = (ulonglong)utility_iteration_index;
         *(uint *)(utility_frame_ptr + utility_stack_data_offset_standard) = utility_iteration_index;
-        utility_temp_float_storage = utility_xmm_register_result_primary;
+        utility_temp_float_value = utility_xmm_register_result_primary;
       } while ((int)utility_state < (int)(utility_state >> UTILITY_INDEX_INCREMENT));
     }
   }
       
-  free_utility_resource_data_buffer(utility_temp_float_storage,utility_frame_ptr + UTILITY_STACK_OFFSET_NEGATIVE_PRIMARY_EXTENDED);
+  free_utility_resource_data_buffer(utility_temp_float_value,utility_frame_ptr + UTILITY_STACK_OFFSET_NEGATIVE_PRIMARY_EXTENDED);
 }
 ulonglong utility_get_integrity_status(void)
 {
@@ -17239,26 +17239,26 @@ ulonglong processsystemoperationsecondary(longlong utility_resource_primary_hand
      (utility_status_value = assessutilityquality(utility_resource_cache,utility_resource_primary_handle + utility_data_offset), (int)utility_status_value == UTILITY_ZERO)) {
     utility_validation_array = (uint32 *)utility_allocate_memory_block_simple();
     utility_status_value = UTILITY_ZERO;
-    utility_temp_security_var = *utility_validation_array;
-    utility_temp_security_var = utility_validation_array[UTILITY_INDEX_INCREMENT];
-    utility_temp_security_var = utility_validation_array[utility_array_index_data_size];
-    utility_temp_security_var = utility_validation_array UTILITY_SIZE_MULTIPLIER;
+    utility_temp_security_token = *utility_validation_array;
+    utility_temp_security_token = utility_validation_array[UTILITY_INDEX_INCREMENT];
+    utility_temp_security_token = utility_validation_array[utility_array_index_data_size];
+    utility_temp_security_token = utility_validation_array UTILITY_SIZE_MULTIPLIER;
     if (*(uint *)(utility_resource_context_handle + UTILITY_SIZE_OFFSET) < utility_iteration_threshold_primary) {
       if (*(int *)(utility_resource_context_handle[UTILITY_INDEX_INCREMENT] + utility_offset_ptr_primary) == UTILITY_ZERO) {
         utility_counter = *memory_block_size;
-        utility_status_value = writeresourcedata(utility_counter,&utility_temp_integer_var,UTILITY_QUAD_COUNT);
+        utility_status_value = writeresourcedata(utility_counter,&utility_temp_integer_value,UTILITY_QUAD_COUNT);
         if ((int)utility_status_value != UTILITY_ZERO) {
           return utility_status_value;
         }
-        utility_status_value = writeresourcedata(utility_counter,&utility_temp_integer_var,utility_pairs);
+        utility_status_value = writeresourcedata(utility_counter,&utility_temp_integer_value,utility_pairs);
         if ((int)utility_status_value != UTILITY_ZERO) {
           return utility_status_value;
         }
-        utility_status_value = writeresourcedata(utility_counter,(longlong)&utility_temp_integer_var + utility_event_offset_two,utility_pairs);
+        utility_status_value = writeresourcedata(utility_counter,(longlong)&utility_temp_integer_value + utility_event_offset_two,utility_pairs);
         if ((int)utility_status_value != UTILITY_ZERO) {
           return utility_status_value;
         }
-        utility_status_value = writeresourcedata(utility_counter,&utility_temp_integer_var,UTILITY_MEMORY_OFFSET_STANDARD);
+        utility_status_value = writeresourcedata(utility_counter,&utility_temp_integer_value,UTILITY_MEMORY_OFFSET_STANDARD);
       }
       else {
         utility_status_value = utility_offset_flag;
@@ -17268,7 +17268,7 @@ ulonglong processsystemoperationsecondary(longlong utility_resource_primary_hand
        (utility_status_value = utility_process_data_validation_tertiary(utility_resource_cache,utility_resource_primary_handle + UTILITY_BUFFER_OFFSET,UTILITY_ZERO), (int)utility_status_value == UTILITY_ZERO)) {
       if (*(uint *)(utility_resource_context_handle + UTILITY_SIZE_OFFSET) < UTILITY_CPU_REGISTER_LIMIT_TRANSFER_MAXIMUM) {
         utility_local_data_pointer_cache = (uint32 *)utility_null_pointer;
-        utility_temp_security_var = UTILITY_ZERO;
+        utility_temp_security_token = UTILITY_ZERO;
         utility_counter = configureresourcememory(utility_resource_cache,&utility_local_data_pointer_cache,UTILITY_ZERO);
         utility_status_value = (ulonglong)utility_counter;
         if (utility_counter != UTILITY_ZERO) {
@@ -17277,8 +17277,8 @@ utility_label_validation_loop:
           return utility_status_value;
         }
         utility_validation_array = utility_local_data_pointer_cache;
-        if ((int)utility_temp_integer_var != UTILITY_ZERO) {
-          for (; (utility_local_data_pointer_cache <= utility_validation_array && (utility_validation_array < utility_local_data_pointer_cache + (int)utility_temp_integer_var));
+        if ((int)utility_temp_integer_value != UTILITY_ZERO) {
+          for (; (utility_local_data_pointer_cache <= utility_validation_array && (utility_validation_array < utility_local_data_pointer_cache + (int)utility_temp_integer_value));
               utility_validation_array = utility_validation_array + UTILITY_INDEX_INCREMENT) {
             utility_temporary_long_storage = utility_access_system_memory_resource(*(uint64 *)(utility_system_data_table_pointer + utility_system_offset_table),utility_secondary_byte_offset,&g_system_data_network_buffer UTILITY_RESOURCE_PTR_OFFSET_extended_secondary_standard,
                                   utility_null_pointer,UTILITY_INDEX_INCREMENT);
@@ -17320,7 +17320,7 @@ ulonglong utility_initialize_system_operator(void)
   uint32 utility_counter;
   uint32 utility_status_value;
   uint utility_state;
-int utility_temp_int_var;
+int utility_temp_int_value;
   uint32 *utility_pointer_utility_data_pointer_primary_extended;
   ulonglong utility_iteration_index;
   longlong utility_temporary_long_storage;
@@ -17380,10 +17380,10 @@ utility_label_validation_loop:
         utility_initialize_data_validator_tertiary(utility_frame_ptr + -utility_byte_offset_standard);
         return utility_iteration_index;
       }
-      utility_temp_security_var = *(int *)(utility_frame_ptr + UTILITY_STACK_OFFSET_NEGATIVE_PRIMARY_EXTENDED);
-      if (utility_temp_integer_var != UTILITY_ZERO) {
+      utility_temp_security_token = *(int *)(utility_frame_ptr + UTILITY_STACK_OFFSET_NEGATIVE_PRIMARY_EXTENDED);
+      if (utility_temp_integer_value != UTILITY_ZERO) {
         utility_pointer_utility_data_pointer_primary_extended = *(uint32 **)(utility_frame_ptr + -utility_byte_offset_standard);
-        for (utility_return_buffer_ptr = utility_pointer_utility_data_pointer_primary_extended; (utility_pointer_utility_data_pointer_primary_extended <= utility_return_buffer_ptr && (utility_return_buffer_ptr < utility_pointer_utility_data_pointer_primary_extended + utility_temp_integer_var));
+        for (utility_return_buffer_ptr = utility_pointer_utility_data_pointer_primary_extended; (utility_pointer_utility_data_pointer_primary_extended <= utility_return_buffer_ptr && (utility_return_buffer_ptr < utility_pointer_utility_data_pointer_primary_extended + utility_temp_integer_value));
             utility_return_buffer_ptr = utility_return_buffer_ptr + UTILITY_INDEX_INCREMENT) {
           utility_temporary_long_storage = utility_access_system_memory_resource(*(uint64 *)(utility_system_data_table_pointer + utility_system_offset_table),utility_secondary_byte_offset,&g_system_data_network_buffer UTILITY_RESOURCE_PTR_OFFSET_extended_secondary_standard,UTILITY_ZERO)
         ;
@@ -17400,7 +17400,7 @@ utility_label_validation_loop:
           utility_state = utility_system_control_function_secondary(UTILITY_CPU_BASE + utility_offset_status,utility_temporary_long_storage);
           utility_iteration_index = (ulonglong)utility_state;
           if (utility_state != UTILITY_ZERO) goto utility_lab_validation_loop;
-          utility_temp_security_var = *(int *)(utility_frame_ptr + UTILITY_STACK_OFFSET_NEGATIVE_PRIMARY_EXTENDED);
+          utility_temp_security_token = *(int *)(utility_frame_ptr + UTILITY_STACK_OFFSET_NEGATIVE_PRIMARY_EXTENDED);
           utility_pointer_utility_data_pointer_primary_extended = *(uint32 **)(utility_frame_ptr + -utility_byte_offset_standard);
         }
       }
@@ -17617,11 +17617,11 @@ utility_label_skip_array_process:
           utility_counter = read_resource_data(*utility_data_pointer_primary_extended,utility_stack_char_buffer,UTILITY_INDEX_INCREMENT,UTILITY_INDEX_INCREMENT,UTILITY_ZERO);
           goto utility_lab_process_array_data;
         }
-        utility_temp_security_var = UTILITY_ZERO;
-        utility_counter = utility_data_process_function(*utility_data_pointer_primary_extended,&utility_temp_integer_var);
+        utility_temp_security_token = UTILITY_ZERO;
+        utility_counter = utility_data_process_function(*utility_data_pointer_primary_extended,&utility_temp_integer_value);
         utility_temp_boolean_register = utility_counter == UTILITY_ZERO;
         if (utility_temp_bool_flag) {
-          if ((ulonglong)utility_data_pointer_primary_extended[utility_array_index_data_size] < (ulonglong)utility_temp_integer_var + UTILITY_INDEX_INCREMENT) {
+          if ((ulonglong)utility_data_pointer_primary_extended[utility_array_index_data_size] < (ulonglong)utility_temp_integer_value + UTILITY_INDEX_INCREMENT) {
             utility_counter = utility_access_flag;
             goto utility_lab_process_array_data;
           }
@@ -17652,10 +17652,10 @@ utility_label_iterate_unsigned_var:
         utility_counter = read_resource_data(*utility_data_pointer_primary_extended,utility_stack_char_buffer,UTILITY_INDEX_INCREMENT,UTILITY_INDEX_INCREMENT,UTILITY_ZERO);
       }
       else {
-        utility_temp_security_var = UTILITY_ZERO;
-        utility_counter = utility_data_process_function(*utility_data_pointer_primary_extended,&utility_temp_integer_var);
+        utility_temp_security_token = UTILITY_ZERO;
+        utility_counter = utility_data_process_function(*utility_data_pointer_primary_extended,&utility_temp_integer_value);
         if (utility_counter == UTILITY_ZERO) {
-          if ((ulonglong)utility_temp_integer_var + UTILITY_INDEX_INCREMENT <= (ulonglong)utility_data_pointer_primary_extended[utility_array_index_data_size]) goto utility_lab_iterate_unsigned_var;
+          if ((ulonglong)utility_temp_integer_value + UTILITY_INDEX_INCREMENT <= (ulonglong)utility_data_pointer_primary_extended[utility_array_index_data_size]) goto utility_lab_iterate_unsigned_var;
           utility_counter = utility_access_flag;
         }
       }
@@ -17686,10 +17686,10 @@ utility_label_continue_unsigned_iteration:
         utility_counter = read_resource_data(*utility_data_pointer_primary_extended,utility_stack_char_buffer,UTILITY_INDEX_INCREMENT,UTILITY_INDEX_INCREMENT,UTILITY_ZERO);
       }
       else {
-        utility_temp_security_var = UTILITY_ZERO;
-        utility_counter = utility_data_process_function(*utility_data_pointer_primary_extended,&utility_temp_integer_var);
+        utility_temp_security_token = UTILITY_ZERO;
+        utility_counter = utility_data_process_function(*utility_data_pointer_primary_extended,&utility_temp_integer_value);
         if (utility_counter == UTILITY_ZERO) {
-          if ((ulonglong)utility_temp_integer_var + UTILITY_INDEX_INCREMENT <= (ulonglong)utility_data_pointer_primary_extended[utility_array_index_data_size]) goto utility_label_continue_unsigned_iteration;
+          if ((ulonglong)utility_temp_integer_value + UTILITY_INDEX_INCREMENT <= (ulonglong)utility_data_pointer_primary_extended[utility_array_index_data_size]) goto utility_label_continue_unsigned_iteration;
           utility_counter = utility_access_flag;
         }
       }
@@ -17720,10 +17720,10 @@ utility_label_unsigned_processing_continue:
         utility_counter = read_resource_data(*utility_data_pointer_primary_extended,utility_stack_char_buffer,UTILITY_INDEX_INCREMENT,UTILITY_INDEX_INCREMENT,UTILITY_ZERO);
       }
       else {
-        utility_temp_security_var = UTILITY_ZERO;
-        utility_counter = utility_data_process_function(*utility_data_pointer_primary_extended,&utility_temp_integer_var);
+        utility_temp_security_token = UTILITY_ZERO;
+        utility_counter = utility_data_process_function(*utility_data_pointer_primary_extended,&utility_temp_integer_value);
         if (utility_counter == UTILITY_ZERO) {
-          if ((ulonglong)utility_temp_integer_var + UTILITY_INDEX_INCREMENT <= (ulonglong)utility_data_pointer_primary_extended[utility_array_index_data_size]) goto utility_lab_unsigned_processing_continue;
+          if ((ulonglong)utility_temp_integer_value + UTILITY_INDEX_INCREMENT <= (ulonglong)utility_data_pointer_primary_extended[utility_array_index_data_size]) goto utility_lab_unsigned_processing_continue;
           utility_counter = utility_access_flag;
         }
       }
@@ -17752,10 +17752,10 @@ utility_label_unsigned_iteration_final:
         utility_counter = read_resource_data(*utility_data_pointer_primary_extended,utility_stack_char_buffer,UTILITY_INDEX_INCREMENT,UTILITY_INDEX_INCREMENT,UTILITY_ZERO);
       }
       else {
-        utility_temp_security_var = UTILITY_ZERO;
-        utility_counter = utility_data_process_function(*utility_data_pointer_primary_extended,&utility_temp_integer_var);
+        utility_temp_security_token = UTILITY_ZERO;
+        utility_counter = utility_data_process_function(*utility_data_pointer_primary_extended,&utility_temp_integer_value);
         if (utility_counter == UTILITY_ZERO) {
-          if ((ulonglong)utility_temp_integer_var + UTILITY_INDEX_INCREMENT <= (ulonglong)utility_data_pointer_primary_extended[utility_array_index_data_size]) goto utility_lab_unsigned_iteration_final;
+          if ((ulonglong)utility_temp_integer_value + UTILITY_INDEX_INCREMENT <= (ulonglong)utility_data_pointer_primary_extended[utility_array_index_data_size]) goto utility_lab_unsigned_iteration_final;
           utility_counter = utility_access_flag;
         }
       }
@@ -18980,10 +18980,10 @@ ulonglong initializetaskoperator(longlong utility_resource_primary_handle,longlo
   uint32 utility_temporary_loop_counter_quaternary;
   byte utility_encryption_data_var [utility_encryption_data_var_size_standard];
   UTILITY_GENERIC_DATA_POINTER = (uint32 *)utility_allocate_memory_block_simple();
-  utility_temp_security_var = *UTILITY_GENERIC_DATA_POINTER;
-  utility_temp_security_var = UTILITY_GENERIC_DATA_POINTER[UTILITY_INDEX_INCREMENT];
-  utility_temp_security_var = UTILITY_GENERIC_DATA_POINTER[utility_array_index_data_size];
-  utility_temp_security_var = UTILITY_GENERIC_DATA_POINTER[UTILITY_SIZE_MULTIPLIER];
+  utility_temp_security_token = *UTILITY_GENERIC_DATA_POINTER;
+  utility_temp_security_token = UTILITY_GENERIC_DATA_POINTER[UTILITY_INDEX_INCREMENT];
+  utility_temp_security_token = UTILITY_GENERIC_DATA_POINTER[utility_array_index_data_size];
+  utility_temp_security_token = UTILITY_GENERIC_DATA_POINTER[UTILITY_SIZE_MULTIPLIER];
   utility_status_value = utility_validate_operation_handle_secondary(utility_resource_cache,utility_buffer,UTILITY_ZERO,UTILITY_RESOURCE_PROP_OFFSET_PRIMARY,UTILITY_ZERO);
   if ((int)utility_status_value != UTILITY_ZERO) {
     return utility_status_value;
@@ -19001,21 +19001,21 @@ ulonglong initializetaskoperator(longlong utility_resource_primary_handle,longlo
         utility_status_value = utility_offset_flag;
         utility_counter = UTILITY_ZERO;
         if ((*(uint *)(utility_resource_context_handle + UTILITY_SIZE_OFFSET) < UTILITY_SIZE_THRESHOLD_SMALL_PRIMARY) && (utility_counter = utility_offset_flag, *(int *)(utility_resource_context_handle[UTILITY_INDEX_INCREMENT] + utility_offset_ptr_primary) == UTILITY_ZERO)) {
-          utility_buffer[UTILITY_ZERO] = utility_temp_integer_var;
+          utility_buffer[UTILITY_ZERO] = utility_temp_integer_value;
           utility_resource_context_handle = *memory_block_size;
           utility_counter = (**(code **)**(uint64 **)(utility_resource_context_handle + UTILITY_SIZE_OFFSET))
                             (*(uint64 **)(utility_resource_context_handle + UTILITY_SIZE_OFFSET),utility_buffer,UTILITY_QUAD_COUNT);
           if (utility_counter == UTILITY_ZERO) {
-            utility_stack_resource_data[UTILITY_ZERO] = (resource_data_short)utility_temp_integer_var;
+            utility_stack_resource_data[UTILITY_ZERO] = (resource_data_short)utility_temp_integer_value;
             utility_counter = (**(code **)**(uint64 **)(utility_resource_context_handle + UTILITY_SIZE_OFFSET))
                               (*(uint64 **)(utility_resource_context_handle + UTILITY_SIZE_OFFSET),utility_stack_resource_data,utility_pairs);
             if (utility_counter == UTILITY_ZERO) {
-              utility_stack_utility_data_pointer_primary_extended[UTILITY_ZERO] = utility_temp_integer_var.secondary_word;
+              utility_stack_utility_data_pointer_primary_extended[UTILITY_ZERO] = utility_temp_integer_value.secondary_word;
               utility_counter = (**(code **)**(uint64 **)(utility_resource_context_handle + UTILITY_SIZE_OFFSET))
                                 (*(uint64 **)(utility_resource_context_handle + UTILITY_SIZE_OFFSET),utility_stack_utility_data_pointer_primary_extended,utility_pairs);
               if (utility_counter == UTILITY_ZERO) {
                 utility_counter = (**(code **)**(uint64 **)(utility_resource_context_handle + UTILITY_SIZE_OFFSET))
-                                  (*(uint64 **)(utility_resource_context_handle + UTILITY_SIZE_OFFSET),&utility_temp_integer_var,UTILITY_MEMORY_OFFSET_STANDARD);
+                                  (*(uint64 **)(utility_resource_context_handle + UTILITY_SIZE_OFFSET),&utility_temp_integer_value,UTILITY_MEMORY_OFFSET_STANDARD);
               }
             }
           }
@@ -21972,7 +21972,7 @@ void utility_unwind_exception_handler_clean_all_zero(uint64 utility_resource_pri
   }
   return;
 }
-void utilityunwindexceptionhandlerpurgezerozerozeroallzero(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
+void utility_unwind_exception_handler_purge_all_zero(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
 {
   longlong utility_resource_cache;
   uint64 utility_counter;
@@ -21985,7 +21985,7 @@ void utilityunwindexceptionhandlerpurgezerozerozeroallzero(uint64 utility_resour
   utility_register_resource_callback(utility_resource_context_handle + utility_offset_structure,UTILITY_MEMORY_OFFSET_STANDARD,utility_pointer_offset,utility_module_handler_primary);
   return;
 }
-void utilityunwindexceptionhandlerwipezerozerozeroallzero(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
+void utility_unwind_exception_handler_wipe_all_zero(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
 {
   longlong *utility_resource_data_ptr;
   longlong utility_data_pointer_primary_extended_main;
@@ -30531,7 +30531,7 @@ void utility_close_resource_handler(uint64 utility_resource_primary_handle,longl
   longlong *utility_array_handle_pointer;
   longlong *utility_long_pointer_buffer_var;
   uint64 *utility_validation_array;
-int utility_temp_int_var;
+int utility_temp_int_value;
   int *utility_int_pointer;
   longlong *utility_temporary_long_pointer;
   uint utility_counter;
@@ -30546,19 +30546,19 @@ int utility_temp_int_var;
   *(byte *)((longlong)utility_validation_array + UTILITY_DATA_OFFSET_EXTENDED2) = UTILITY_INT_ONE;
   utility_data_pointer_primary_extended = utility_validation_array + UTILITY_BIT_SHIFT_TWO;
   pointer_long_stack_variable = utility_data_pointer_primary_extended;
-  utility_temp_security_var = _Mtx_lock(utility_data_pointer_primary_extended);
-  if (utility_temp_integer_var != UTILITY_ZERO) {
-    __Throw_C_error_std__yaxh_Z(utility_temp_integer_var);
+  utility_temp_security_token = _Mtx_lock(utility_data_pointer_primary_extended);
+  if (utility_temp_integer_value != UTILITY_ZERO) {
+    __Throw_C_error_std__yaxh_Z(utility_temp_integer_value);
   }
   utility_result = UTILITY_ZERO;
   utility_result_var_ptr = utility_result;
   if (utility_validation_array[utility_validation_result_index_nine] != UTILITY_ZERO) {
     do {
       utility_function_result_secondary_main = utility_result_var_ptr % (ulonglong)*(uint *)(utility_validation_array + UTILITY_SIZE_OFFSET);
-      utility_temp_security_var = (int)utility_result;
+      utility_temp_security_token = (int)utility_result;
       for (utility_int_pointer = *(int **)(utility_validation_array[utility_validation_result_index_seven] + utility_function_result_secondary_main * utility_memory_standard); utility_int_pointer != (int *)utility_null_pointer;
           utility_int_pointer = *(int **)(utility_int_pointer + utility_float_offset_standard)) {
-        if (utility_temp_security_var == *utility_int_pointer) {
+        if (utility_temp_security_token == *utility_int_pointer) {
           if (utility_int_pointer != (int *)utility_null_pointer) goto utility_lab_pointer_validation;
           break;
         }
@@ -30566,7 +30566,7 @@ int utility_temp_int_var;
       executesystemfunctioncall(utility_validation_array + utility_operation_offset_extended_extended&pointer_long_stack_variable,(ulonglong)*(uint *)(utility_validation_array + UTILITY_SIZE_OFFSET),
                     *(uint32 *)(utility_validation_array + utility_nonet_unit),UTILITY_INDEX_INCREMENT);
       utility_int_pointer = (int *)getsystemfunctionpointeraddress(system_function_table,utility_offset_ptr_primary,*(byte *)((longlong)utility_validation_array + utility_offset_data));
-      *utility_int_pointer = utility_temp_integer_var;
+      *utility_int_pointer = utility_temp_integer_value;
       utility_int_pointer[utility_array_index_data_size] = UTILITY_ZERO;
       utility_int_pointer UTILITY_SIZE_MULTIPLIER = UTILITY_ZERO;
       utility_int_pointer[utility_array_index_quaternary] = UTILITY_ZERO;
@@ -30585,7 +30585,7 @@ utility_lab_pointer_validation_complete:
       if (utility_stack_memory_offset_ptr != (longlong *)utility_null_pointer) {
         (**(code **)(*utility_stack_memory_offset_ptr + utility_offset_structure))();
       }
-      utility_counter = utility_temp_integer_var + UTILITY_INT_ONE;
+      utility_counter = utility_temp_integer_value + UTILITY_INT_ONE;
       utility_result = (ulonglong)utility_counter;
       utility_result_var_ptr = (longlong)(int)utility_counter;
     } while ((ulonglong)(longlong)(int)utility_counter < (ulonglong)utility_validation_array[utility_validation_result_index_nine]);
@@ -30605,9 +30605,9 @@ utility_lab_pointer_validation_complete:
     utility_temporary_long_pointer = (longlong *)*utility_array_handle_pointer;
   }
   utility_validation_array[utility_error_code_invalid_input] = utility_temporary_long_pointer;
-  utility_temp_security_var = _Mtx_unlock(utility_data_pointer_primary_extended);
-  if (utility_temp_integer_var != UTILITY_ZERO) {
-    __Throw_C_error_std__yaxh_Z(utility_temp_integer_var);
+  utility_temp_security_token = _Mtx_unlock(utility_data_pointer_primary_extended);
+  if (utility_temp_integer_value != UTILITY_ZERO) {
+    __Throw_C_error_std__yaxh_Z(utility_temp_integer_value);
   }
   if (utility_validation_array[utility_error_code_invalid] != UTILITY_ZERO) {
     free();
@@ -31013,7 +31013,7 @@ void utilityconfigureadvancedsystem(uint64 utility_resource_primary_handle,longl
   longlong *utility_array_handle_pointer;
   longlong *utility_long_pointer_buffer_var;
   uint64 *utility_validation_array;
-int utility_temp_int_var;
+int utility_temp_int_value;
   int *utility_int_pointer;
   longlong *utility_temporary_long_pointer;
   uint utility_counter;
@@ -31028,19 +31028,19 @@ int utility_temp_int_var;
   *(byte *)((longlong)utility_validation_array + UTILITY_DATA_OFFSET_EXTENDED2) = UTILITY_INT_ONE;
   utility_data_pointer_primary_extended = utility_validation_array + UTILITY_BIT_SHIFT_TWO;
   pointer_long_stack_variable = utility_data_pointer_primary_extended;
-  utility_temp_security_var = _Mtx_lock(utility_data_pointer_primary_extended);
-  if (utility_temp_integer_var != UTILITY_ZERO) {
-    __Throw_C_error_std__yaxh_Z(utility_temp_integer_var);
+  utility_temp_security_token = _Mtx_lock(utility_data_pointer_primary_extended);
+  if (utility_temp_integer_value != UTILITY_ZERO) {
+    __Throw_C_error_std__yaxh_Z(utility_temp_integer_value);
   }
   utility_result = UTILITY_ZERO;
   utility_result_var_ptr = utility_result;
   if (utility_validation_array[utility_validation_result_index_nine] != UTILITY_ZERO) {
     do {
       utility_function_result_secondary_main = utility_result_var_ptr % (ulonglong)*(uint *)(utility_validation_array + UTILITY_SIZE_OFFSET);
-      utility_temp_security_var = (int)utility_result;
+      utility_temp_security_token = (int)utility_result;
       for (utility_int_pointer = *(int **)(utility_validation_array[utility_validation_result_index_seven] + utility_function_result_secondary_main * utility_memory_standard); utility_int_pointer != (int *)utility_null_pointer;
           utility_int_pointer = *(int **)(utility_int_pointer + utility_float_offset_standard)) {
-        if (utility_temp_security_var == *utility_int_pointer) {
+        if (utility_temp_security_token == *utility_int_pointer) {
           if (utility_int_pointer != (int *)utility_null_pointer) goto utility_lab_pointer_validation;
           break;
         }
@@ -31048,7 +31048,7 @@ int utility_temp_int_var;
       executesystemfunctioncall(utility_validation_array + utility_operation_offset_extended_extended&pointer_long_stack_variable,(ulonglong)*(uint *)(utility_validation_array + UTILITY_SIZE_OFFSET),
                     *(uint32 *)(utility_validation_array + utility_nonet_unit),UTILITY_INDEX_INCREMENT);
       utility_int_pointer = (int *)getsystemfunctionpointeraddress(system_function_table,utility_offset_ptr_primary,*(byte *)((longlong)utility_validation_array + utility_offset_data));
-      *utility_int_pointer = utility_temp_integer_var;
+      *utility_int_pointer = utility_temp_integer_value;
       utility_int_pointer[utility_array_index_data_size] = UTILITY_ZERO;
       utility_int_pointer UTILITY_SIZE_MULTIPLIER = UTILITY_ZERO;
       utility_int_pointer[utility_array_index_quaternary] = UTILITY_ZERO;
@@ -31067,7 +31067,7 @@ utility_lab_pointer_validation_complete:
       if (utility_stack_memory_offset_ptr != (longlong *)utility_null_pointer) {
         (**(code **)(*utility_stack_memory_offset_ptr + utility_offset_structure))();
       }
-      utility_counter = utility_temp_integer_var + UTILITY_INT_ONE;
+      utility_counter = utility_temp_integer_value + UTILITY_INT_ONE;
       utility_result = (ulonglong)utility_counter;
       utility_result_var_ptr = (longlong)(int)utility_counter;
     } while ((ulonglong)(longlong)(int)utility_counter < (ulonglong)utility_validation_array[utility_validation_result_index_nine]);
@@ -31087,9 +31087,9 @@ utility_lab_pointer_validation_complete:
     utility_temporary_long_pointer = (longlong *)*utility_array_handle_pointer;
   }
   utility_validation_array[utility_error_code_invalid_input] = utility_temporary_long_pointer;
-  utility_temp_security_var = _Mtx_unlock(utility_data_pointer_primary_extended);
-  if (utility_temp_integer_var != UTILITY_ZERO) {
-    __Throw_C_error_std__yaxh_Z(utility_temp_integer_var);
+  utility_temp_security_token = _Mtx_unlock(utility_data_pointer_primary_extended);
+  if (utility_temp_integer_value != UTILITY_ZERO) {
+    __Throw_C_error_std__yaxh_Z(utility_temp_integer_value);
   }
   if (utility_validation_array[utility_error_code_invalid] != UTILITY_ZERO) {
     free();
