@@ -1090,7 +1090,7 @@ int64_t stack_pointer;
 }
     if ((*char *(loop_counter ) = 0;
 ((*(uint *)(loop_counter = 0;
-    utility_resource_ctx_handle = *(uint *)(loop_counter = 0;
+    utility_resource_ctx_handle = *(uint *)(loop_counter);
     utility_resource_ctx_handle = resource_handle_value >> 4;
     if ((resource_handle_value & 1) == UTILITY_STATUS_OPERATION_FAILED) {
     if ((((resource_handle_value >> 3 & 1) != UTILITY_STATUS_OPERATION_FAILED) && (utility_status_code = (int)network_float_value, utility_status_code != UTILITY_NEGATIVE_512MB)) &&
@@ -1101,11 +1101,11 @@ int64_t stack_pointer;
     utility_resource_ctx_handle = utility_move_mask_pointer(utility_resource_ctx_handle,utility_resource_ctx_handle);
     network_float_value = (float)(int)(utility_status_code - (resource_handle_value & 1));
 }
-    network_float_value = (float)utility_float_calculator(loop_counter = 0;
+    network_float_value = (float)utility_float_calculator(loop_counter);
     if (((*char *(loop_counter ) = 0;
 ((*(uint *)(loop_counter = 0;
-(network_float_value != *float *(loop_counter ) = 0;
-*float *(loop_counter ) = 0;
+(network_float_value != *(float *)(loop_counter)) {
+*(float *)(loop_counter) = 0.0f;
     utility_release_iteration_counter++;
 loop_counter = 0;
 }
@@ -1713,9 +1713,7 @@ int64_t stack_pointer;
     loop_counter = 0;
     if (loop_counter < max_iterations) {
     network_float_value = *(float *)(context_pointer + UTILITY_STATUS_ENABLED_FLAG_QUATERNARY);
-for (context_pointer = *uint64_t **(loop_counter ) = 0;
-(*uint64_t **(loop_counter ) = 0;
-(context_pointer < *uint64_t **(loop_counter ) = 0;
+for (loop_counter = 0; loop_counter < max_iterations; loop_counter++) {
     utility_resource_ctx_handle = utility_process_resource(*data_storage_pointer,network_float_value,0);
     if ((int)status != UTILITY_STATUS_OPERATION_FAILED) {
     return status;
@@ -1723,7 +1721,7 @@ for (context_pointer = *uint64_t **(loop_counter ) = 0;
 }
     if ((*char *(loop_counter ) = 0;
 ((*(uint *)(loop_counter = 0;
-    utility_resource_ctx_handle = *(uint *)(loop_counter = 0;
+    utility_resource_ctx_handle = *(uint *)(loop_counter);
     utility_resource_ctx_handle = resource_handle_value >> 4;
     if ((resource_handle_value & 1) == UTILITY_STATUS_OPERATION_FAILED) {
     if ((((resource_handle_value >> 3 & 1) != UTILITY_STATUS_OPERATION_FAILED) && (utility_status_code = (int)network_float_value, utility_status_code != UTILITY_NEGATIVE_512MB)) &&
@@ -1734,11 +1732,11 @@ for (context_pointer = *uint64_t **(loop_counter ) = 0;
     utility_resource_ctx_handle = utility_move_mask_pointer(utility_resource_ctx_handle,utility_resource_ctx_handle);
     network_float_value = (float)(int)(utility_status_code - (resource_handle_value & 1));
 }
-    network_float_value = (float)utility_float_calculator(loop_counter = 0;
+    network_float_value = (float)utility_float_calculator(loop_counter);
     if (((*char *(loop_counter ) = 0;
 ((*(uint *)(loop_counter = 0;
-(network_float_value != *float *(loop_counter ) = 0;
-*float *(loop_counter ) = 0;
+(network_float_value != *(float *)(loop_counter)) {
+*(float *)(loop_counter) = 0.0f;
     utility_release_iteration_counter++;
 loop_counter = 0;
 }
