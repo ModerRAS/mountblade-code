@@ -4273,7 +4273,22 @@ int update_database_record(longlong utility_resource_primary_handle,longlong uti
   utility_result = utility_validate_resource_data(utility_size_limit + utility_resource_cache,utility_operation_flags - utility_size_limit,*(byte *)(utility_resource_primary_handle + utility_offset_flag));
   return utility_result + utility_size_limit;
 }
-int delete_database_record(longlong utility_resource_primary_handle,longlong utility_resource_cache,int utility_operation_flags)
+/**
+ * @brief 删除数据库记录工具函数
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @param utility_resource_cache 资源缓存句柄
+ * @param utility_operation_flags 操作标志
+ * @return int 操作结果状态码
+ * 
+ * 该函数用于删除数据库记录，包括：
+ * - 验证数据库连接有效性
+ * - 执行记录删除操作
+ * - 返回操作结果状态
+ * 
+ * 简化实现：仅添加文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
+int utility_delete_database_record(longlong utility_resource_primary_handle,longlong utility_resource_cache,int utility_operation_flags)
 {
   utility_result = utility_system_control_function(utility_resource_cache,utility_operation_flags,*(uint32 *)(utility_resource_primary_handle + utility_data_offset));
   utility_result = utility_execute_system_command(utility_resource_context_handle + utility_size_limit,utility_operation_flags - utility_size_limit,&g_security_tokenBuffer);
@@ -4291,7 +4306,22 @@ int delete_database_record(longlong utility_resource_primary_handle,longlong uti
   utility_result = utility_validate_resource_data(utility_size_limit + utility_resource_cache,utility_operation_flags - utility_size_limit,*(byte *)(utility_resource_primary_handle + utility_offset_data));
   return utility_result + utility_size_limit;
 }
-int begin_database_transaction(longlong *utility_resource_primary_handle,longlong utility_resource_cache,int utility_operation_flags)
+/**
+ * @brief 开始数据库事务工具函数
+ * @param utility_resource_primary_handle 主要资源句柄指针
+ * @param utility_resource_cache 资源缓存句柄
+ * @param utility_operation_flags 操作标志
+ * @return int 操作结果状态码
+ * 
+ * 该函数用于开始数据库事务，包括：
+ * - 验证数据库连接有效性
+ * - 执行事务开始操作
+ * - 返回操作结果状态
+ * 
+ * 简化实现：仅添加文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
+int utility_begin_database_transaction(longlong *utility_resource_primary_handle,longlong utility_resource_cache,int utility_operation_flags)
 {
   utility_result = utility_execute_system_command(utility_resource_cache,utility_operation_flags,&g_system_command_handler);
   utility_result = utility_execute_system_command(utility_resource_context_handle + utility_size_limit,utility_operation_flags - utility_size_limit,&g_security_tokenBuffer);
