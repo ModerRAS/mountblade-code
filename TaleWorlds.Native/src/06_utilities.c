@@ -427,14 +427,14 @@ void utility_process_thread_local_storage(int64_t thread_handle, int64_t context
                     utility_processed_count = utility_process_count + 1;
                     utility_loop_counter = utility_loop_counter + UTILITY_POINTER_OFFSET;
                 } while (utility_process_count < utility_resource_count);
-}
+            }
             // 清理缓冲区管理器
             utility_buffer_cleanup(&utility_buffer_handle);
-}
+        }
         else {
             // 清理缓冲区管理器
             utility_buffer_cleanup(&utility_buffer_handle);
-}
+        }
 }
     
     // 计算最终校验和
@@ -478,6 +478,7 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
         if (utility_execution_status == UTILITY_BOOLEAN_FALSE) {
             // 处理进程计数大于0的情况
             if (0 < utility_iteration_maximum_limit) {
+                utility_loop_counter = UTILITY_BOOLEAN_FALSE;
                 do {
                     // 获取资源值
                     utility_resource_id = *(uint64_t *)(utility_buffer_handle + utility_loop_counter);
@@ -487,13 +488,11 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
                     if (utility_execution_status != 2) {
                         // 激活上下文管理器
                         utility_context_activate(utility_resource_id, 1);
+                    }
                     
-                    }
-                }
-                    }
-                utility_loop_counter = UTILITY_BOOLEAN_FALSE;
-                utility_loop_counter = utility_loop_counter + UTILITY_POINTER_OFFSET;
-            } while (utility_loop_counter < utility_iteration_maximum_limit);
+                    utility_loop_counter = utility_loop_counter + UTILITY_POINTER_OFFSET;
+                } while (utility_loop_counter < utility_iteration_maximum_limit);
+            }
             utility_buffer_cleanup(&utility_buffer_handle);
         }
         else {
@@ -917,6 +916,12 @@ utility_context_activate();
 }
 return 0;
 }
+/**
+ * @brief 激活上下文数据
+ * 功能：激活指定的上下文数据，使其处于活动状态并可用于后续操作
+ * @param utility_context_parameter 上下文参数，包含需要激活的上下文信息
+ * @return 激活结果状态码，0表示成功，非0表示失败
+ */
 uint64_t utility_activate_context_data(int64_t utility_context_parameter)
 {
 uint64_t utility_resource_id;
