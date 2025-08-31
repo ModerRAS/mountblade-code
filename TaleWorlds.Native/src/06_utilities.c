@@ -3200,12 +3200,11 @@ utility_free_context_resources(*(uint64_t *)(utility_context_pointer + UTILITY_C
 // 语法错误修复 - 可能缺少函数声明
 {
 int utility_operation_status;
-int utility_operation_status;
 uint32_t utility_context_storage_ptr;
 int64_t utility_base_context_ptr;
 int64_t utility_aux_context_ptr;
-int64_t utility_buffer_pointer;
-int64_t utility_buffer_pointer;
+int64_t utility_buffer_pointer_primary;
+int64_t utility_buffer_pointer_secondary;
 utility_operation_status = utility_bufferfer_operation_processor(utility_context_pointer,utility_context_pointer,*(uint64_t *)(utility_buffer_pointer + UTILITY_POINTER_OFFSET));
 if (utility_operation_status != UTILITY_FALSE) {
     
@@ -3270,7 +3269,6 @@ utility_free_context_resources(*(uint64_t *)(utility_auxiliary_context_ptr + UTI
 }
 // 语法错误修复 - 可能缺少函数声明
 {
-int utility_operation_status;
 int utility_operation_status;
 int64_t utility_context_main;
 uint32_t utility_context_storage_ptr;
@@ -4606,13 +4604,12 @@ return UTILITY_STATUS_FLAG_F;
 uint64_t utility_resource_data_finalizer(int64_t resource_count,int64_t utility_context_pointer)
 {
 int utility_operation_status;
-int utility_operation_status;
 uint64_t utility_resource_handle;
-float *utility_buffer_pointer;
+float *utility_buffer_pointer_primary;
 int64_t utility_iteration_index;
 uint64_t utility_temporary_storage;
-float *utility_buffer_pointer;
-uint64_t utility_temporary_storage;
+float *utility_buffer_pointer_secondary;
+uint64_t utility_temp_storage_secondary;
 uint32_t utility_context_storage_ptr;
 float utility_network_float_parameter;
 float utility_float_value;
@@ -4701,13 +4698,12 @@ uint64_t utility_resource_data_initializer(void)
 {
 float utility_network_float_parameter;
 int utility_operation_status;
-int utility_operation_status;
 int64_t utility_context_main;
-float *utility_buffer_pointer;
+float *utility_buffer_pointer_primary;
 int64_t utility_resource_handle;
 int64_t utility_iteration_index;
 uint64_t utility_temporary_storage;
-float *utility_buffer_pointer;
+float *utility_buffer_pointer_secondary;
 uint32_t utility_context_temp_counter;
 uint32_t utility_context_storage_ptr;
 int64_t utility_service_context_handle;
