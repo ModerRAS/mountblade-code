@@ -478,13 +478,10 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
                         utility_context_activate(utility_resource_id, 1);
                     
                     }
-                } while (utility_loop_index < utility_iteration_maximum_limit);
 }
             utility_buffer_cleanup(&utility_buffer_handle);
-}
         else {
             utility_buffer_cleanup(&utility_buffer_handle);
-}
 }
     // 计算校验和
 }
