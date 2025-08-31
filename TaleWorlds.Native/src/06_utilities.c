@@ -841,6 +841,17 @@ void utility_validate_resource_state(void)
  * 原本实现：完全重构
  * 简化实现：仅进行变量名语义化替换
  */
+/**
+ * @brief 处理资源句柄的工具函数
+ * 
+ * 该函数负责处理系统中的资源句柄，包括资源的分配、验证和状态管理。
+ * 通过上下文句柄来定位和管理资源，返回资源ID或状态码。
+ * 
+ * @param context_handle 资源上下文句柄，用于标识要处理的资源上下文
+ * @return uint64_t 返回资源ID或状态码，成功时返回资源ID，失败时返回错误状态
+ * 
+ * @note 这是简化实现，原本实现应该完全重构资源管理系统
+ */
 uint64_t utility_process_resource_handle(int64_t context_handle)
 {
     int64_t resource_current_position;
