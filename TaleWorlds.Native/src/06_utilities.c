@@ -2418,13 +2418,18 @@ void initialize_utility_system(long long context_pointer,long long data_ptr)
   void * utility_data_buffer [512];
   ulong long utility_security_cookie;
   
+  // 初始化安全cookie，用于栈溢出检测
   utility_security_cookie = system_security_seed ^ (ulong long)utility_stack_buffer;
+  // 调用系统函数获取初始化参数
   utility_status_code = system_call_function(*(void **)(context_pointer + 0x10),utility_stack_params);
   if ((utility_status_code == 0) && (*(long long *)(utility_stack_params[0] + 8) != 0)) {
+  // 初始化栈指针和数据缓冲区
     utility_stack_pointer = utility_data_buffer;
     utility_system_item_count = 0;
     utility_stack_index = 0;
+  // 设置栈标志位
     utility_stack_flags = 0xffffffc0;
+  // 处理系统数据
     utility_status_code = system_process_data(*(void **)(data_ptr + 0x90),*(long long *)(utility_stack_params[0] + 8),
                           &utility_stack_pointer);
     if (utility_status_code == 0) {
@@ -2434,15 +2439,18 @@ void initialize_utility_system(long long context_pointer,long long data_ptr)
           return_value = *(void **)(utility_stack_pointer + utility_loop_counter);
           utility_status_code = system_transform_data(return_value);
           if (utility_status_code != 2) {
+  // 处理数据项
             system_process_item(return_value,1);
           }
           utility_system_item_count = utility_system_item_count + 1;
           utility_loop_counter = utility_loop_counter + 8;
         } while (utility_system_item_count < utility_stack_index);
       }
+  // 清理资源
       system_cleanup_resource(&utility_stack_pointer);
     }
     else {
+  // 清理资源
       system_cleanup_resource(&utility_stack_pointer);
     }
   }
@@ -2500,6 +2508,7 @@ void cleanup_utility_system(void)
     utility_system_item_count = 0;
     utility_buffer_index = 0;
     utility_temp_var = 0xffffffc0;
+  // 处理系统数据
     utility_status_code = system_process_data(*(void **)(system_data_pointer + 0x90),*(long long *)(utility_context_handle + 8),
                           &utility_stack_buffer);
     if (utility_status_code == 0) {
@@ -2509,6 +2518,7 @@ void cleanup_utility_system(void)
           return_value = *(void **)(utility_buffer_ptr + utility_loop_counter);
           utility_status_code = system_transform_data(return_value);
           if (utility_status_code != 2) {
+  // 处理数据项
             system_process_item(return_value,1);
           }
           utility_system_item_count = utility_system_item_count + 1;
@@ -5710,6 +5720,7 @@ void * utility_data_manager_allocate(long long context_pointer,long long data_pt
         else {
           ptr_var = *(void ***)(context_handle + 0x50);
         }
+  // 调用系统函数获取初始化参数
         utility_status_code = system_call_function(ptr_var,context_pointer + 0x1c);
         if (utility_status_code == 0) {
           utility_result_ptr = system_call_function(utility_temp_long_var,context_pointer + UTILITY_THREAD_TLS_CONTEXT_OFFSET);
@@ -5766,6 +5777,7 @@ void * utility_data_processor_transform(void)
       else {
         ptr_var = *(void ***)(context_handle + 0x50);
       }
+  // 调用系统函数获取初始化参数
       utility_status_code = system_call_function(ptr_var);
       if (utility_status_code == 0) {
         utility_result_ptr = system_call_function(utility_temp_long_var,utility_global_register_r14 + UTILITY_THREAD_TLS_CONTEXT_OFFSET);
@@ -5878,6 +5890,7 @@ void utility_data_analyzer_evaluate(long long context_pointer,long long data_ptr
   ulong long utility_temp_var;
   
   utility_temp_var = system_security_seed ^ (ulong long)asystem_temp_var;
+  // 调用系统函数获取初始化参数
   utility_status_code = system_call_function(*(void **)(context_pointer + 0x10),&utility_utility_stack_long_var_48);
   if (utility_status_code == 0) {
     if (utility_utility_stack_long_var_48 != 0) {
@@ -7304,6 +7317,7 @@ int utility_data_queue_enqueue(long long context_pointer,long long data_ptr)
     else {
       utility_status_code = context_pointer_process_data(data_ptr,context_pointer + 0x24);
       if ((utility_status_code == 0) &&
+  // 调用系统函数获取初始化参数
          (utility_status_code = system_call_function(*(void **)(context_pointer + 0x24),&utility_stack_context_variable), utility_status_code == 0)) {
         if (*(int *)(utility_stack_context_variable + UTILITY_THREAD_TLS_STATUS_OFFSET) == 1) {
           *(void **)(utility_stack_context_variable + UTILITY_THREAD_TLS_STATUS_OFFSET) = 2;
@@ -7453,6 +7467,7 @@ void utility_buffer_manager_cleanup(void)
     utility_float_var = utility_float_var;
   }
   *(float *)(system_data_pointer + UTILITY_THREAD_TLS_CONTEXT_OFFSET) = utility_float_var;
+  // 调用系统函数获取初始化参数
   utility_status_code = system_call_function(utility_global_register_rsi + 0x60,utility_utility_stack_param,utility_float_var);
   if (utility_status_code == 0) {
     utility_system_notify_handler(*(void **)(utility_global_register_rsi + 0x98));
@@ -7827,6 +7842,7 @@ void * utility_buffer_initializer_setup(void)
   long long utility_utility_stack_long_var_40;
   ulong long utility_security_cookie;
   
+  // 初始化安全cookie，用于栈溢出检测
   utility_security_cookie = system_security_seed ^ (ulong long)asystem_temp_var;
   utility_utility_stack_long_var_60 = data_ptr + 0x60;
   utility_utility_stack_long_var_50 = context_pointer + UTILITY_THREAD_TLS_CONTEXT_OFFSET + (long long)*(int *)(context_pointer + 0x10) * 8;
@@ -7866,6 +7882,7 @@ int utility_buffer_reader_read(long long context_pointer,long long data_ptr,int 
   result_int = system_call_function(data_ptr,param,*(void **)(context_pointer + 0x10));
   utility_status_code = context_pointer_process_data(data_ptr + result_int,param - result_int,&UTILITY_GLOBAL_DATA_SECURITY_CONTEXT);
   result_int = result_int + utility_status_code;
+  // 调用系统函数获取初始化参数
   utility_status_code = system_call_function(result_int + data_ptr,param - result_int,*(void **)(context_pointer + UTILITY_THREAD_TLS_CONTEXT_OFFSET));
   result_int = result_int + utility_status_code;
   utility_status_code = context_pointer_process_data(result_int + data_ptr,param - result_int,&UTILITY_GLOBAL_DATA_SECURITY_CONTEXT);
@@ -7891,6 +7908,7 @@ int utility_buffer_seeker_seek(long long context_pointer,long long data_ptr,int 
   result_int = system_call_function(data_ptr,param,*(void **)(context_pointer + 0x10));
   utility_status_code = context_pointer_process_data(data_ptr + result_int,param - result_int,&UTILITY_GLOBAL_DATA_SECURITY_CONTEXT);
   result_int = result_int + utility_status_code;
+  // 调用系统函数获取初始化参数
   utility_status_code = system_call_function(result_int + data_ptr,param - result_int,*(void **)(context_pointer + UTILITY_THREAD_TLS_CONTEXT_OFFSET));
   result_int = result_int + utility_status_code;
   utility_status_code = context_pointer_process_data(result_int + data_ptr,param - result_int,&UTILITY_GLOBAL_DATA_SECURITY_CONTEXT);
@@ -7945,6 +7963,7 @@ int utility_buffer_contractor_shrink(long long *context_pointer,long long data_p
   result_int = context_pointer_process_data(data_ptr,param,&utility_system_segment_context);
   utility_status_code = context_pointer_process_data(data_ptr + result_int,param - result_int,&UTILITY_GLOBAL_DATA_SECURITY_CONTEXT);
   result_int = result_int + utility_status_code;
+  // 调用系统函数获取初始化参数
   utility_status_code = system_call_function(result_int + data_ptr,param - result_int,(int)context_pointer[3] * 8 + UTILITY_THREAD_TLS_DATA_OFFSET);
   result_int = result_int + utility_status_code;
   utility_status_code = context_pointer_process_data(result_int + data_ptr,param - result_int,&UTILITY_GLOBAL_DATA_SECURITY_CONTEXT);
@@ -7964,6 +7983,7 @@ int utility_buffer_flusher_clear(long long *context_pointer,long long data_ptr,i
   result_int = context_pointer_process_data(data_ptr,param,&utility_system_segment_buffer);
   utility_status_code = context_pointer_process_data(data_ptr + result_int,param - result_int,&UTILITY_GLOBAL_DATA_SECURITY_CONTEXT);
   result_int = result_int + utility_status_code;
+  // 调用系统函数获取初始化参数
   utility_status_code = system_call_function(result_int + data_ptr,param - result_int,(int)context_pointer[3] * 0xc + UTILITY_THREAD_TLS_DATA_OFFSET);
   result_int = result_int + utility_status_code;
   utility_status_code = context_pointer_process_data(result_int + data_ptr,param - result_int,&UTILITY_GLOBAL_DATA_SECURITY_CONTEXT);
@@ -7983,6 +8003,7 @@ int context_pointer_process_data(long long *context_pointer,long long data_ptr,i
   result_int = context_pointer_process_data(data_ptr,param,&UTILITY_GLOBAL_DATA_PROCESS_CONTEXT_180982240);
   utility_status_code = context_pointer_process_data(data_ptr + result_int,param - result_int,&UTILITY_GLOBAL_DATA_SECURITY_CONTEXT);
   result_int = result_int + utility_status_code;
+  // 调用系统函数获取初始化参数
   utility_status_code = system_call_function(result_int + data_ptr,param - result_int,((int)context_pointer[2] + 2) * 0xc);
   result_int = result_int + utility_status_code;
   utility_status_code = context_pointer_process_data(result_int + data_ptr,param - result_int,&UTILITY_GLOBAL_DATA_SECURITY_CONTEXT);
@@ -10135,6 +10156,7 @@ int context_pointer_process_data(long long context_pointer,long long data_ptr,in
   int result_int;
   
   return_value = *(void **)(context_pointer + 0x14);
+  // 调用系统函数获取初始化参数
   utility_status_code = system_call_function(data_ptr,param,*(void **)(context_pointer + 0x10));
   result_int = context_pointer_process_data(data_ptr + utility_status_code,param - utility_status_code,&UTILITY_GLOBAL_DATA_SECURITY_CONTEXT);
   utility_status_code = utility_status_code + result_int;
@@ -11868,6 +11890,7 @@ void utility_event_handler_dispatch(void)
   void * utility_data_buffer [64];
   ulong long utility_security_cookie;
   
+  // 初始化安全cookie，用于栈溢出检测
   utility_security_cookie = system_security_seed ^ (ulong long)asystem_temp_var8;
   utility_system_item_count = 0;
   result_int = 0;
@@ -12129,6 +12152,7 @@ void utility_sync_manager_control(long long *context_pointer)
   void * utility_data_buffer [512];
   ulong long utility_security_cookie;
   
+  // 初始化安全cookie，用于栈溢出检测
   utility_security_cookie = system_security_seed ^ (ulong long)asystem_temp_var8;
   context_data_pointer6 = (long long *)0x0;
   utility_utility_stack_long_var_array_300[1] = 0;
@@ -12408,6 +12432,7 @@ void context_pointer_process_data(long long context_pointer,void * data_ptr)
   uint utility_result_ptr;
   int utility_calculated_value;
   
+  // 调用系统函数获取初始化参数
   utility_status_code = system_call_function(data_ptr);
   utility_result_code = *(int *)(context_pointer + UTILITY_THREAD_TLS_STATUS_OFFSET);
   utility_result_ptr = (int)*(uint *)(context_pointer + 0x34) >> 0x1f;
@@ -12932,6 +12957,7 @@ void * context_pointer_process_data(void * context_pointer,ulong long data_ptr)
     result_int = (int)utility_global_register_rbp;
     if ((utility_result_ptr & 0xffffff) != 0xffffff) {
       utility_temp_long_var = (ulong long)(utility_result_ptr & 0xffffff) + utility_global_register_r14[4];
+  // 调用系统函数获取初始化参数
       utility_status_code = system_call_function(utility_temp_long_var);
       if (result_int != 0) {
         ptr_var = (void **)((utility_status_code + -1) + utility_temp_long_var);
@@ -16464,6 +16490,7 @@ void utility_cache_manager_clear(void)
   else {
     if (context_data_pointer[2] != 0) {
       utility_temp_var = 0;
+  // 调用系统函数获取初始化参数
       utility_status_code = system_call_function(*context_data_pointer,&utility_work_buffer);
       if (utility_status_code != 0) {
         return;
@@ -20246,6 +20273,7 @@ ulong long utility_context_data_handler(void)
     else {
       if (system_context_data_ptr[2] != 0) {
         utility_stack_param_primary = 0;
+  // 调用系统函数获取初始化参数
         utility_status_code = system_call_function(*system_context_data_ptr,&utility_stack_buffer);
         if ((int)utility_status_code != 0) {
           return utility_status_code;
@@ -78879,6 +78907,7 @@ void utility_check_and_reset_state(void * context_pointer,long long data_ptr)
   int utility_status_code;
   
   utility_char_var = *(char *)(data_ptr + 0x40);
+  // 调用系统函数获取初始化参数
   utility_status_code = system_call_function();
   if ((utility_status_code != 0) && (utility_char_var == '\0')) {
     LOCK();
@@ -78903,6 +78932,7 @@ void utility_initialize_context(void * context_pointer,long long data_ptr)
   
   utility_general_functionc();
   utility_char_var = *(char *)(data_ptr + 0x38);
+  // 调用系统函数获取初始化参数
   utility_status_code = system_call_function();
   if ((utility_status_code != 0) && (utility_char_var == '\0')) {
     LOCK();
