@@ -8,6 +8,15 @@
 // - 将 utility_word_mask_clear_fifth_bit 替换为 UTILITY_WORD_MASK_CLEAR_FIFTH_BIT
 // - 将 utility_word_mask_clear_sixth_bit 替换为 UTILITY_WORD_MASK_CLEAR_SIXTH_BIT
 // - 将 utility_word_mask_low_bytebf 替换为 UTILITY_WORD_MASK_LOW_BYTE_BF
+// - 将 UTILITY_DATA_OFFSET_EXTENDED0 替换为 UTILITY_DATA_OFFSET_EXTENDED_ZERO
+// - 将 UTILITY_DATA_OFFSET_EXTENDED2 替换为 UTILITY_DATA_OFFSET_EXTENDED_TWO
+// - 将 UTILITY_DATA_OFFSET_EXTENDED8 替换为 UTILITY_DATA_OFFSET_EXTENDED_EIGHT
+// - 将 UTILITY_DATA_OFFSET_EXTENDED10 替换为 UTILITY_DATA_OFFSET_EXTENDED_TEN
+// - 将 UTILITY_DATA_OFFSET_EXTENDED20 替换为 UTILITY_DATA_OFFSET_EXTENDED_TWENTY
+// - 将 UTILITY_DATA_OFFSET_EXTENDED30 替换为 UTILITY_DATA_OFFSET_EXTENDED_THIRTY
+// - 将 UTILITY_DATA_OFFSET_EXTENDED40 替换为 UTILITY_DATA_OFFSET_EXTENDED_FORTY
+// - 将 UTILITY_DATA_OFFSET_EXTENDEDb0 替换为 UTILITY_DATA_OFFSET_EXTENDED_B0
+// - 将 UTILITY_DATA_OFFSET_EXTENDEDa0 替换为 UTILITY_DATA_OFFSET_EXTENDED_A0
 // - 为所有关键函数添加详细的文档注释
 // - 删除冗余注释，保持代码简洁性
 /**
@@ -120,7 +129,7 @@ void utility_cleanup_resource_function(void)
  * 简化实现：添加函数文档注释，保持代码逻辑不变
  * 原本实现：完全重构函数文档体系，建立完整的文档规范
  */
-uint64 utility_utility_validate_resource_access(longlong utility_resource_primary_handle)
+uint64 utility_validate_resource_access(longlong utility_resource_primary_handle)
 {
   uint64 utility_result;
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + utility_data_offset),&utility_system_resource_handle);
@@ -301,12 +310,12 @@ uint64 utility_execute_resource_management_command(longlong utility_resource_pri
 {
   longlong utility_resource_cache;
   uint utility_counter;
-  uint utility_primary_utility_loop_counter_secondary;
+  uint utility_primary_loop_counter;
   uint64 utility_status_value;
   uint64 *utility_validation_array;
-  int utility_temp_int_primary_var;
-  float utility_temp_float_secondary_var;
-  int utility_temp_int_secondary_var;
+  int utility_temp_int_var_1_var;
+  float utility_temp_float_var_2_var;
+  int utility_temp_int_var_2_var;
   float utility_float_primary_var;
   byte utility_float_buffer [UTILITY_STRUCTURE_SIZE_SMALL];
   utility_status_value = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + utility_offset_flag),&utility_system_resource_handle);
@@ -6511,7 +6520,7 @@ utility_process_resource_iteration:
         utility_temp_security_var = utility_operation_flags;
         utility_local_int = utility_counter;
         utility_counter = utility_validate_resource_access(utility_resource_primary_handle,&utility_local_data_pointer_cache);
-        if ((utility_counter != utility_zero) || (utility_resource_count = utility_utility_validate_resource_access(utility_data_pointer_primary_extended_main,float_array_stack_processing,utility_zero), utility_resource_count != utility_zero)) break;
+        if ((utility_counter != utility_zero) || (utility_resource_count = utility_validate_resource_access(utility_data_pointer_primary_extended_main,float_array_stack_processing,utility_zero), utility_resource_count != utility_zero)) break;
         utility_counter = utility_counter;
         if (float_array_stack_processing[utility_zero] != utility_float_one) {
           utility_temp_security_var = utility_bit_concat_primary_secondary(utility_temp_integer_register.bit_field_quaternary,float_array_stack_processing[utility_zero]);
@@ -6798,7 +6807,7 @@ void utility_process_resource_queue(void)
         *(uint32 *)(utility_frame_ptr + -utility_offset_resource_ptr) = utility_state;
         *(uint32 *)(utility_frame_ptr + -utility_offset_status) = utility_state;
         utility_buffer_capacity = utility_validate_resource_access(utility_counter,utility_frame_ptr + -UTILITY_BUFFER_OFFSET);
-        if ((utility_buffer_capacity != utility_zero) || (utility_buffer_capacity = utility_utility_validate_resource_access(utility_data_pointer_primary_extended_main,&utility_stack_float_primary_temp,utility_zero), utility_buffer_capacity != utility_zero)) break;
+        if ((utility_buffer_capacity != utility_zero) || (utility_buffer_capacity = utility_validate_resource_access(utility_data_pointer_primary_extended_main,&utility_stack_float_primary_temp,utility_zero), utility_buffer_capacity != utility_zero)) break;
         if (utility_stack_float_primary_temp != utility_float_one) {
           utility_stack_float_value_secondary = utility_stack_float_primary_temp;
           utility_stack_param_pointer = &g_system_validation_handler;
@@ -33162,7 +33171,7 @@ void utility_close_resource_handler(uint64 utility_resource_primary_handle,longl
   *(uint64 *)(utility_resource_context_handle + UTILITY_SIZE_THRESHOLD_SMALL_PRIMARY) = utility_zero;
   return;
 }
-void utility_utility_destroy_mutex(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
+void utility_destroy_mutex_extended(uint64 utility_resource_primary_handle,longlong utility_resource_cache)
 {
   longlong *utility_resource_data_ptr;
   longlong *utility_data_pointer_primary_extended;
