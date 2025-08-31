@@ -1619,119 +1619,58 @@ void system_initialize_thread_pool(void)
  * @return 无返回值
  */
 
-void system_initialize_resource_manager(void)
-
-{
-  char initialization_status;
-  uint64_t *data_pointer;
-  int comparison_status;
-  longlong *context_pointer;
-  longlong audio_resource_id;
-  uint64_t *node_pointer;
-  uint64_t *parent_pointer;
-  uint64_t *child_pointer;
-  uint64_t *temp_pointer;
-  uint64_t system_stack_initialization_flag;
-  
-  context_pointer = (longlong *)system_get_global_context();
-  data_pointer = (uint64_t *)*context_pointer;
-  initialization_status = *(char *)((longlong)data_pointer[1] + SYSTEM_STATUS_FLAG_OFFSET);
-  system_stack_initialization_flag = 0;
-  parent_pointer = data_pointer;
-  node_pointer = (uint64_t *)data_pointer[1];
-  while (initialization_status == '\0') {
-    comparison_status = memcmp(node_pointer + 4,&system_config_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (comparison_status < 0) {
-      child_pointer = (uint64_t *)node_pointer[2];
-      node_pointer = parent_pointer;
-    }
-    else {
-      child_pointer = (uint64_t *)*node_pointer;
-    }
-    parent_pointer = node_pointer;
-    node_pointer = child_pointer;
-    initialization_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
-  }
-  if ((parent_pointer == data_pointer) || (comparison_status = memcmp(&system_config_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), comparison_status < 0)) {
-    audio_resource_id = system_allocate_resource_block(context_pointer);
-    system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
-    parent_pointer = temp_pointer;
-  }
-  parent_pointer[6] = SYSTEM_RESOURCE_MANAGER_MAGIC;
-  parent_pointer[7] = SYSTEM_RESOURCE_MANAGER_MAGIC_SECONDARY;
-  parent_pointer[8] = &system_handler_config;
-  parent_pointer[9] = 0;
-  parent_pointer[10] = system_stack_initialization_flag;
-  return;
-}
-
-
-
-
 /**
- * @brief 回调系统初始化函数
- * 初始化系统回调机制和事件处理
+ * @brief 初始化资源管理器
  * 
- * @return void
- */
-/**
- * @brief 初始化回调系统
- * 设置事件回调和异步处理机制 设置事件回调机制和函数指针管理
- * 
- * @return void
- */
-/**
- * @brief 回调系统初始化函数
- * 
- * 初始化系统的回调机制，设置事件处理和回调函数注册。
- * 该函数负责创建和配置回调系统所需的核心数据结构。
+ * 初始化系统资源管理器，负责管理游戏中的各种资源（音频、纹理、模型等）。
+ * 该函数创建资源管理器的核心数据结构，设置资源分配和释放机制。
+ * 资源管理器是游戏引擎的核心组件，确保资源的高效加载和内存管理。
  *
  * @return 无返回值
  */
-
-void system_initialize_callback_system(void)
+void system_initialize_resource_manager(void)
 
 {
-  char initialization_status;
-  uint64_t *data_pointer;
-  int comparison_status;
-  longlong *context_pointer;
-  longlong audio_resource_id;
-  uint64_t *node_pointer;
-  uint64_t *parent_pointer;
-  uint64_t *child_pointer;
-  uint64_t *temp_pointer;
-  uint64_t system_stack_initialization_flag;
+  char resource_manager_init_status;
+  uint64_t *system_data_pointer;
+  int config_comparison_result;
+  longlong *global_context_pointer;
+  longlong resource_allocation_id;
+  uint64_t *resource_node_pointer;
+  uint64_t *resource_parent_pointer;
+  uint64_t *resource_child_pointer;
+  uint64_t *new_resource_pointer;
+  uint64_t stack_initialization_flag;
   
-  context_pointer = (longlong *)system_get_global_context();
-  data_pointer = (uint64_t *)*context_pointer;
-  initialization_status = *(char *)((longlong)data_pointer[1] + SYSTEM_STATUS_FLAG_OFFSET);
-  system_stack_initialization_flag = 0;
-  parent_pointer = data_pointer;
-  node_pointer = (uint64_t *)data_pointer[1];
-  while (initialization_status == '\0') {
-    comparison_status = memcmp(node_pointer + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (comparison_status < 0) {
-      child_pointer = (uint64_t *)node_pointer[2];
-      node_pointer = parent_pointer;
+  global_context_pointer = (longlong *)system_get_global_context();
+  system_data_pointer = (uint64_t *)*global_context_pointer;
+  resource_manager_init_status = *(char *)((longlong)system_data_pointer[1] + SYSTEM_STATUS_FLAG_OFFSET);
+  stack_initialization_flag = 0;
+  resource_parent_pointer = system_data_pointer;
+  resource_node_pointer = (uint64_t *)system_data_pointer[1];
+  while (resource_manager_init_status == '\0') {
+    config_comparison_result = memcmp(resource_node_pointer + 4,&system_config_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (config_comparison_result < 0) {
+      resource_child_pointer = (uint64_t *)resource_node_pointer[2];
+      resource_node_pointer = resource_parent_pointer;
     }
     else {
-      child_pointer = (uint64_t *)*node_pointer;
+      resource_child_pointer = (uint64_t *)*resource_node_pointer;
     }
-    parent_pointer = node_pointer;
-    node_pointer = child_pointer;
-    initialization_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
+    resource_parent_pointer = resource_node_pointer;
+    resource_node_pointer = resource_child_pointer;
+    resource_manager_init_status = *(char *)((longlong)resource_child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == data_pointer) || (comparison_status = memcmp(&system_state_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), comparison_status < 0)) {
-    audio_resource_id = system_allocate_resource_block(context_pointer);
-    system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
-    parent_pointer = temp_pointer;
+  if ((resource_parent_pointer == system_data_pointer) || (config_comparison_result = memcmp(&system_config_ptr,resource_parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), config_comparison_result < 0)) {
+    resource_allocation_id = system_allocate_resource_block(global_context_pointer);
+    system_initialize_resource_block(global_context_pointer,&new_resource_pointer,resource_parent_pointer,resource_allocation_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,resource_allocation_id);
+    resource_parent_pointer = new_resource_pointer;
   }
-  parent_pointer[6] = SYSTEM_CALLBACK_SYSTEM_MAGIC;
-  parent_pointer[7] = SYSTEM_CALLBACK_SYSTEM_MAGIC_2;
-  parent_pointer[8] = &system_handler_state;
-  parent_pointer[9] = 0;
-  parent_pointer[10] = system_stack_initialization_flag;
+  resource_parent_pointer[6] = SYSTEM_RESOURCE_MANAGER_MAGIC;
+  resource_parent_pointer[7] = SYSTEM_RESOURCE_MANAGER_MAGIC_SECONDARY;
+  resource_parent_pointer[8] = &system_handler_config;
+  resource_parent_pointer[9] = 0;
+  resource_parent_pointer[10] = stack_initialization_flag;
   return;
 }
 
@@ -1739,60 +1678,115 @@ void system_initialize_callback_system(void)
 
 
 /**
- * @brief 事件系统初始化函数
- * 初始化系统事件队列和分发器
+ * @brief 初始化回调系统
  * 
- * @return void
+ * 初始化系统回调机制，负责处理异步事件和函数调用。
+ * 该函数创建回调系统的核心数据结构，设置事件回调注册和处理机制。
+ * 回调系统允许系统在特定事件发生时执行预定义的函数，支持异步处理。
+ *
+ * @return 无返回值
  */
+void system_initialize_callback_system(void)
+
+{
+  char callback_system_init_status;
+  uint64_t *system_data_pointer;
+  int state_comparison_result;
+  longlong *global_context_pointer;
+  longlong callback_resource_id;
+  uint64_t *callback_node_pointer;
+  uint64_t *callback_parent_pointer;
+  uint64_t *callback_child_pointer;
+  uint64_t *new_callback_pointer;
+  uint64_t stack_initialization_flag;
+  
+  global_context_pointer = (longlong *)system_get_global_context();
+  system_data_pointer = (uint64_t *)*global_context_pointer;
+  callback_system_init_status = *(char *)((longlong)system_data_pointer[1] + SYSTEM_STATUS_FLAG_OFFSET);
+  stack_initialization_flag = 0;
+  callback_parent_pointer = system_data_pointer;
+  callback_node_pointer = (uint64_t *)system_data_pointer[1];
+  while (callback_system_init_status == '\0') {
+    state_comparison_result = memcmp(callback_node_pointer + 4,&system_state_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (state_comparison_result < 0) {
+      callback_child_pointer = (uint64_t *)callback_node_pointer[2];
+      callback_node_pointer = callback_parent_pointer;
+    }
+    else {
+      callback_child_pointer = (uint64_t *)*callback_node_pointer;
+    }
+    callback_parent_pointer = callback_node_pointer;
+    callback_node_pointer = callback_child_pointer;
+    callback_system_init_status = *(char *)((longlong)callback_child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
+  }
+  if ((callback_parent_pointer == system_data_pointer) || (state_comparison_result = memcmp(&system_state_ptr,callback_parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), state_comparison_result < 0)) {
+    callback_resource_id = system_allocate_resource_block(global_context_pointer);
+    system_initialize_resource_block(global_context_pointer,&new_callback_pointer,callback_parent_pointer,callback_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,callback_resource_id);
+    callback_parent_pointer = new_callback_pointer;
+  }
+  callback_parent_pointer[6] = SYSTEM_CALLBACK_SYSTEM_MAGIC;
+  callback_parent_pointer[7] = SYSTEM_CALLBACK_SYSTEM_MAGIC_2;
+  callback_parent_pointer[8] = &system_handler_state;
+  callback_parent_pointer[9] = 0;
+  callback_parent_pointer[10] = stack_initialization_flag;
+  return;
+}
+
+
+
+
 /**
  * @brief 初始化事件系统
- * 设置事件队列和事件分发机制 建立事件队列和分发机制
  * 
- * @return void
+ * 初始化系统事件队列和分发机制，负责管理和处理系统中的各种事件。
+ * 该函数创建事件系统的核心数据结构，设置事件队列和事件分发机制。
+ * 事件系统允许系统组件之间进行松耦合的通信，支持事件的发布和订阅。
+ *
+ * @return 无返回值
  */
 void system_initialize_event_system(void)
 
 {
-  char initialization_status;
-  uint64_t *data_pointer;
-  int comparison_status;
-  longlong *context_pointer;
-  longlong audio_resource_id;
-  uint64_t *node_pointer;
-  uint64_t *parent_pointer;
-  uint64_t *child_pointer;
-  uint64_t *temp_pointer;
-  uint64_t system_stack_initialization_flag;
+  char event_system_init_status;
+  uint64_t *system_data_pointer;
+  int status_comparison_result;
+  longlong *global_context_pointer;
+  longlong event_resource_id;
+  uint64_t *event_node_pointer;
+  uint64_t *event_parent_pointer;
+  uint64_t *event_child_pointer;
+  uint64_t *new_event_pointer;
+  uint64_t stack_initialization_flag;
   
-  context_pointer = (longlong *)system_get_global_context();
-  data_pointer = (uint64_t *)*context_pointer;
-  initialization_status = *(char *)((longlong)data_pointer[1] + SYSTEM_STATUS_FLAG_OFFSET);
-  system_stack_initialization_flag = 0;
-  parent_pointer = data_pointer;
-  node_pointer = (uint64_t *)data_pointer[1];
-  while (initialization_status == '\0') {
-    comparison_status = memcmp(node_pointer + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (comparison_status < 0) {
-      child_pointer = (uint64_t *)node_pointer[2];
-      node_pointer = parent_pointer;
+  global_context_pointer = (longlong *)system_get_global_context();
+  system_data_pointer = (uint64_t *)*global_context_pointer;
+  event_system_init_status = *(char *)((longlong)system_data_pointer[1] + SYSTEM_STATUS_FLAG_OFFSET);
+  stack_initialization_flag = 0;
+  event_parent_pointer = system_data_pointer;
+  event_node_pointer = (uint64_t *)system_data_pointer[1];
+  while (event_system_init_status == '\0') {
+    status_comparison_result = memcmp(event_node_pointer + 4,&system_status_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (status_comparison_result < 0) {
+      event_child_pointer = (uint64_t *)event_node_pointer[2];
+      event_node_pointer = event_parent_pointer;
     }
     else {
-      child_pointer = (uint64_t *)*node_pointer;
+      event_child_pointer = (uint64_t *)*event_node_pointer;
     }
-    parent_pointer = node_pointer;
-    node_pointer = child_pointer;
-    initialization_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
+    event_parent_pointer = event_node_pointer;
+    event_node_pointer = event_child_pointer;
+    event_system_init_status = *(char *)((longlong)event_child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == data_pointer) || (comparison_status = memcmp(&system_status_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), comparison_status < 0)) {
-    audio_resource_id = system_allocate_resource_block(context_pointer);
-    system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
-    parent_pointer = temp_pointer;
+  if ((event_parent_pointer == system_data_pointer) || (status_comparison_result = memcmp(&system_status_ptr,event_parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), status_comparison_result < 0)) {
+    event_resource_id = system_allocate_resource_block(global_context_pointer);
+    system_initialize_resource_block(global_context_pointer,&new_event_pointer,event_parent_pointer,event_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,event_resource_id);
+    event_parent_pointer = new_event_pointer;
   }
-  parent_pointer[6] = SYSTEM_EVENT_SYSTEM_MAGIC;
-  parent_pointer[7] = SYSTEM_EVENT_SYSTEM_MAGIC_SECONDARY;
-  parent_pointer[8] = &system_handler_status;
-  parent_pointer[9] = 0;
-  parent_pointer[10] = system_stack_initialization_flag;
+  event_parent_pointer[6] = SYSTEM_EVENT_SYSTEM_MAGIC;
+  event_parent_pointer[7] = SYSTEM_EVENT_SYSTEM_MAGIC_SECONDARY;
+  event_parent_pointer[8] = &system_handler_status;
+  event_parent_pointer[9] = 0;
+  event_parent_pointer[10] = stack_initialization_flag;
   return;
 }
 
@@ -1800,60 +1794,57 @@ void system_initialize_event_system(void)
 
 
 /**
- * @brief 消息队列初始化函数
- * 初始化系统消息队列和处理器
- * 
- * @return void
- */
-/**
  * @brief 初始化消息队列系统
- * 设置消息缓冲区和消息处理机制 设置系统内部通信的消息传递机制
  * 
- * @return void
+ * 初始化系统消息队列和消息处理机制，负责系统内部组件间的消息传递。
+ * 该函数创建消息队列系统的核心数据结构，设置消息缓冲区和消息处理机制。
+ * 消息队列系统为系统组件提供可靠的异步通信机制。
+ *
+ * @return 无返回值
  */
 void system_initialize_message_queue(void)
 
 {
-  char initialization_status;
-  uint64_t *data_pointer;
-  int comparison_status;
-  longlong *context_pointer;
-  longlong audio_resource_id;
-  uint64_t *node_pointer;
-  uint64_t *parent_pointer;
-  uint64_t *child_pointer;
-  uint64_t *temp_pointer;
-  uint64_t system_stack_initialization_flag;
+  char message_queue_init_status;
+  uint64_t *system_data_pointer;
+  int control_comparison_result;
+  longlong *global_context_pointer;
+  longlong message_resource_id;
+  uint64_t *message_node_pointer;
+  uint64_t *message_parent_pointer;
+  uint64_t *message_child_pointer;
+  uint64_t *new_message_pointer;
+  uint64_t stack_initialization_flag;
   
-  context_pointer = (longlong *)system_get_global_context();
-  data_pointer = (uint64_t *)*context_pointer;
-  initialization_status = *(char *)((longlong)data_pointer[1] + SYSTEM_STATUS_FLAG_OFFSET);
-  system_stack_initialization_flag = 0;
-  parent_pointer = data_pointer;
-  node_pointer = (uint64_t *)data_pointer[1];
-  while (initialization_status == '\0') {
-    comparison_status = memcmp(node_pointer + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (comparison_status < 0) {
-      child_pointer = (uint64_t *)node_pointer[2];
-      node_pointer = parent_pointer;
+  global_context_pointer = (longlong *)system_get_global_context();
+  system_data_pointer = (uint64_t *)*global_context_pointer;
+  message_queue_init_status = *(char *)((longlong)system_data_pointer[1] + SYSTEM_STATUS_FLAG_OFFSET);
+  stack_initialization_flag = 0;
+  message_parent_pointer = system_data_pointer;
+  message_node_pointer = (uint64_t *)system_data_pointer[1];
+  while (message_queue_init_status == '\0') {
+    control_comparison_result = memcmp(message_node_pointer + 4,&system_control_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (control_comparison_result < 0) {
+      message_child_pointer = (uint64_t *)message_node_pointer[2];
+      message_node_pointer = message_parent_pointer;
     }
     else {
-      child_pointer = (uint64_t *)*node_pointer;
+      message_child_pointer = (uint64_t *)*message_node_pointer;
     }
-    parent_pointer = node_pointer;
-    node_pointer = child_pointer;
-    initialization_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
+    message_parent_pointer = message_node_pointer;
+    message_node_pointer = message_child_pointer;
+    message_queue_init_status = *(char *)((longlong)message_child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == data_pointer) || (comparison_status = memcmp(&system_control_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), comparison_status < 0)) {
-    audio_resource_id = system_allocate_resource_block(context_pointer);
-    system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
-    parent_pointer = temp_pointer;
+  if ((message_parent_pointer == system_data_pointer) || (control_comparison_result = memcmp(&system_control_ptr,message_parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), control_comparison_result < 0)) {
+    message_resource_id = system_allocate_resource_block(global_context_pointer);
+    system_initialize_resource_block(global_context_pointer,&new_message_pointer,message_parent_pointer,message_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,message_resource_id);
+    message_parent_pointer = new_message_pointer;
   }
-  parent_pointer[6] = SYSTEM_MESSAGE_QUEUE_MAGIC;
-  parent_pointer[7] = SYSTEM_MESSAGE_QUEUE_MAGIC_SECONDARY;
-  parent_pointer[8] = &system_handler_control;
-  parent_pointer[9] = 3;
-  parent_pointer[10] = system_stack_initialization_flag;
+  message_parent_pointer[6] = SYSTEM_MESSAGE_QUEUE_MAGIC;
+  message_parent_pointer[7] = SYSTEM_MESSAGE_QUEUE_MAGIC_SECONDARY;
+  message_parent_pointer[8] = &system_handler_control;
+  message_parent_pointer[9] = 3;
+  message_parent_pointer[10] = stack_initialization_flag;
   return;
 }
 
@@ -1861,60 +1852,57 @@ void system_initialize_message_queue(void)
 
 
 /**
- * @brief 信号处理器初始化函数
- * 初始化系统信号处理机制
- * 
- * @return void
- */
-/**
  * @brief 初始化信号处理器
- * 设置系统信号捕获和处理机制 配置系统信号处理和异常捕获
  * 
- * @return void
+ * 初始化系统信号处理机制，负责处理系统级别的信号和异常。
+ * 该函数创建信号处理器的核心数据结构，设置系统信号捕获和处理机制。
+ * 信号处理器确保系统能够优雅地处理各种信号和异常情况。
+ *
+ * @return 无返回值
  */
 void system_initialize_signal_handler(void)
 
 {
-  char initialization_status;
-  uint64_t *data_pointer;
-  int comparison_status;
-  longlong *context_pointer;
-  longlong audio_resource_id;
-  uint64_t *node_pointer;
-  uint64_t *parent_pointer;
-  uint64_t *child_pointer;
-  uint64_t *temp_pointer;
-  uint64_t system_stack_initialization_flag;
+  char signal_handler_init_status;
+  uint64_t *system_data_pointer;
+  int manager_comparison_result;
+  longlong *global_context_pointer;
+  longlong signal_resource_id;
+  uint64_t *signal_node_pointer;
+  uint64_t *signal_parent_pointer;
+  uint64_t *signal_child_pointer;
+  uint64_t *new_signal_pointer;
+  uint64_t stack_initialization_flag;
   
-  context_pointer = (longlong *)system_get_global_context();
-  data_pointer = (uint64_t *)*context_pointer;
-  initialization_status = *(char *)((longlong)data_pointer[1] + SYSTEM_STATUS_FLAG_OFFSET);
-  system_stack_initialization_flag = 0;
-  parent_pointer = data_pointer;
-  node_pointer = (uint64_t *)data_pointer[1];
-  while (initialization_status == '\0') {
-    comparison_status = memcmp(node_pointer + 4,&system_manager_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (comparison_status < 0) {
-      child_pointer = (uint64_t *)node_pointer[2];
-      node_pointer = parent_pointer;
+  global_context_pointer = (longlong *)system_get_global_context();
+  system_data_pointer = (uint64_t *)*global_context_pointer;
+  signal_handler_init_status = *(char *)((longlong)system_data_pointer[1] + SYSTEM_STATUS_FLAG_OFFSET);
+  stack_initialization_flag = 0;
+  signal_parent_pointer = system_data_pointer;
+  signal_node_pointer = (uint64_t *)system_data_pointer[1];
+  while (signal_handler_init_status == '\0') {
+    manager_comparison_result = memcmp(signal_node_pointer + 4,&system_manager_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (manager_comparison_result < 0) {
+      signal_child_pointer = (uint64_t *)signal_node_pointer[2];
+      signal_node_pointer = signal_parent_pointer;
     }
     else {
-      child_pointer = (uint64_t *)*node_pointer;
+      signal_child_pointer = (uint64_t *)*signal_node_pointer;
     }
-    parent_pointer = node_pointer;
-    node_pointer = child_pointer;
-    initialization_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
+    signal_parent_pointer = signal_node_pointer;
+    signal_node_pointer = signal_child_pointer;
+    signal_handler_init_status = *(char *)((longlong)signal_child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == data_pointer) || (comparison_status = memcmp(&system_manager_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), comparison_status < 0)) {
-    audio_resource_id = system_allocate_resource_block(context_pointer);
-    system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
-    parent_pointer = temp_pointer;
+  if ((signal_parent_pointer == system_data_pointer) || (manager_comparison_result = memcmp(&system_manager_ptr,signal_parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), manager_comparison_result < 0)) {
+    signal_resource_id = system_allocate_resource_block(global_context_pointer);
+    system_initialize_resource_block(global_context_pointer,&new_signal_pointer,signal_parent_pointer,signal_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,signal_resource_id);
+    signal_parent_pointer = new_signal_pointer;
   }
-  parent_pointer[6] = SYSTEM_SIGNAL_HANDLER_MAGIC;
-  parent_pointer[7] = SYSTEM_SIGNAL_HANDLER_MAGIC_SECONDARY;
-  parent_pointer[8] = &system_handler_manager;
-  parent_pointer[9] = 3;
-  parent_pointer[10] = system_stack_initialization_flag;
+  signal_parent_pointer[6] = SYSTEM_SIGNAL_HANDLER_MAGIC;
+  signal_parent_pointer[7] = SYSTEM_SIGNAL_HANDLER_MAGIC_SECONDARY;
+  signal_parent_pointer[8] = &system_handler_manager;
+  signal_parent_pointer[9] = 3;
+  signal_parent_pointer[10] = stack_initialization_flag;
   return;
 }
 
@@ -1922,60 +1910,57 @@ void system_initialize_signal_handler(void)
 
 
 /**
- * @brief 中断处理器初始化函数
- * 初始化系统中断处理机制
- * 
- * @return void
- */
-/**
  * @brief 初始化中断处理器
- * 设置硬件中断和异常处理机制 设置硬件中断和系统中断处理
  * 
- * @return void
+ * 初始化系统中断处理机制，负责处理硬件中断和系统中断。
+ * 该函数创建中断处理器的核心数据结构，设置硬件中断和异常处理机制。
+ * 中断处理器确保系统能够及时响应和处理各种中断事件。
+ *
+ * @return 无返回值
  */
 void system_initialize_interrupt_handler(void)
 
 {
-  char initialization_status;
-  uint64_t *data_pointer;
-  int comparison_status;
-  longlong *context_pointer;
-  longlong audio_resource_id;
-  uint64_t *node_pointer;
-  uint64_t *parent_pointer;
-  uint64_t *child_pointer;
-  uint64_t *temp_pointer;
-  uint64_t system_stack_initialization_flag;
+  char interrupt_handler_init_status;
+  uint64_t *system_data_pointer;
+  int handler_comparison_result;
+  longlong *global_context_pointer;
+  longlong interrupt_resource_id;
+  uint64_t *interrupt_node_pointer;
+  uint64_t *interrupt_parent_pointer;
+  uint64_t *interrupt_child_pointer;
+  uint64_t *new_interrupt_pointer;
+  uint64_t stack_initialization_flag;
   
-  context_pointer = (longlong *)system_get_global_context();
-  data_pointer = (uint64_t *)*context_pointer;
-  initialization_status = *(char *)((longlong)data_pointer[1] + SYSTEM_STATUS_FLAG_OFFSET);
-  system_stack_initialization_flag = 0;
-  parent_pointer = data_pointer;
-  node_pointer = (uint64_t *)data_pointer[1];
-  while (initialization_status == '\0') {
-    comparison_status = memcmp(node_pointer + 4,&system_handler_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (comparison_status < 0) {
-      child_pointer = (uint64_t *)node_pointer[2];
-      node_pointer = parent_pointer;
+  global_context_pointer = (longlong *)system_get_global_context();
+  system_data_pointer = (uint64_t *)*global_context_pointer;
+  interrupt_handler_init_status = *(char *)((longlong)system_data_pointer[1] + SYSTEM_STATUS_FLAG_OFFSET);
+  stack_initialization_flag = 0;
+  interrupt_parent_pointer = system_data_pointer;
+  interrupt_node_pointer = (uint64_t *)system_data_pointer[1];
+  while (interrupt_handler_init_status == '\0') {
+    handler_comparison_result = memcmp(interrupt_node_pointer + 4,&system_handler_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (handler_comparison_result < 0) {
+      interrupt_child_pointer = (uint64_t *)interrupt_node_pointer[2];
+      interrupt_node_pointer = interrupt_parent_pointer;
     }
     else {
-      child_pointer = (uint64_t *)*node_pointer;
+      interrupt_child_pointer = (uint64_t *)*interrupt_node_pointer;
     }
-    parent_pointer = node_pointer;
-    node_pointer = child_pointer;
-    initialization_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
+    interrupt_parent_pointer = interrupt_node_pointer;
+    interrupt_node_pointer = interrupt_child_pointer;
+    interrupt_handler_init_status = *(char *)((longlong)interrupt_child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == data_pointer) || (comparison_status = memcmp(&system_handler_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), comparison_status < 0)) {
-    audio_resource_id = system_allocate_resource_block(context_pointer);
-    system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
-    parent_pointer = temp_pointer;
+  if ((interrupt_parent_pointer == system_data_pointer) || (handler_comparison_result = memcmp(&system_handler_ptr,interrupt_parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), handler_comparison_result < 0)) {
+    interrupt_resource_id = system_allocate_resource_block(global_context_pointer);
+    system_initialize_resource_block(global_context_pointer,&new_interrupt_pointer,interrupt_parent_pointer,interrupt_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,interrupt_resource_id);
+    interrupt_parent_pointer = new_interrupt_pointer;
   }
-  parent_pointer[6] = SYSTEM_INTERRUPT_HANDLER_MAGIC;
-  parent_pointer[7] = SYSTEM_INTERRUPT_HANDLER_MAGIC_SECONDARY;
-  parent_pointer[8] = &system_handler_context;
-  parent_pointer[9] = 0;
-  parent_pointer[10] = system_stack_initialization_flag;
+  interrupt_parent_pointer[6] = SYSTEM_INTERRUPT_HANDLER_MAGIC;
+  interrupt_parent_pointer[7] = SYSTEM_INTERRUPT_HANDLER_MAGIC_SECONDARY;
+  interrupt_parent_pointer[8] = &system_handler_context;
+  interrupt_parent_pointer[9] = 0;
+  interrupt_parent_pointer[10] = stack_initialization_flag;
   return;
 }
 
@@ -1983,60 +1968,57 @@ void system_initialize_interrupt_handler(void)
 
 
 /**
- * @brief 安全系统初始化函数
- * 初始化系统安全检查和验证
- * 
- * @return void
- */
-/**
  * @brief 初始化安全系统
- * 设置权限检查和安全防护机制 配置权限管理、加密和安全检查
  * 
- * @return void
+ * 初始化系统安全检查和验证机制，负责权限管理、加密和安全检查。
+ * 该函数创建安全系统的核心数据结构，设置权限检查和安全防护机制。
+ * 安全系统确保系统的安全性和完整性，防止未授权访问。
+ *
+ * @return 无返回值
  */
 void system_initialize_security_system(void)
 
 {
-  char initialization_status;
-  uint64_t *data_pointer;
-  int comparison_status;
-  longlong *context_pointer;
-  longlong audio_resource_id;
-  uint64_t *node_pointer;
-  uint64_t *parent_pointer;
-  uint64_t *child_pointer;
-  uint64_t *temp_pointer;
-  code *allocator_pointer;
+  char security_system_init_status;
+  uint64_t *system_data_pointer;
+  int context_comparison_result;
+  longlong *global_context_pointer;
+  longlong security_resource_id;
+  uint64_t *security_node_pointer;
+  uint64_t *security_parent_pointer;
+  uint64_t *security_child_pointer;
+  uint64_t *new_security_pointer;
+  code *security_allocator_pointer;
   
-  context_pointer = (longlong *)system_get_global_context();
-  data_pointer = (uint64_t *)*context_pointer;
-  initialization_status = *(char *)((longlong)data_pointer[1] + SYSTEM_STATUS_FLAG_OFFSET);
-  allocator_pointer = system_get_security_context;
-  parent_pointer = data_pointer;
-  node_pointer = (uint64_t *)data_pointer[1];
-  while (initialization_status == '\0') {
-    comparison_status = memcmp(node_pointer + 4,&context_pointer,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (comparison_status < 0) {
-      child_pointer = (uint64_t *)node_pointer[2];
-      node_pointer = parent_pointer;
+  global_context_pointer = (longlong *)system_get_global_context();
+  system_data_pointer = (uint64_t *)*global_context_pointer;
+  security_system_init_status = *(char *)((longlong)system_data_pointer[1] + SYSTEM_STATUS_FLAG_OFFSET);
+  security_allocator_pointer = system_get_security_context;
+  security_parent_pointer = system_data_pointer;
+  security_node_pointer = (uint64_t *)system_data_pointer[1];
+  while (security_system_init_status == '\0') {
+    context_comparison_result = memcmp(security_node_pointer + 4,&global_context_pointer,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (context_comparison_result < 0) {
+      security_child_pointer = (uint64_t *)security_node_pointer[2];
+      security_node_pointer = security_parent_pointer;
     }
     else {
-      child_pointer = (uint64_t *)*node_pointer;
+      security_child_pointer = (uint64_t *)*security_node_pointer;
     }
-    parent_pointer = node_pointer;
-    node_pointer = child_pointer;
-    initialization_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
+    security_parent_pointer = security_node_pointer;
+    security_node_pointer = security_child_pointer;
+    security_system_init_status = *(char *)((longlong)security_child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == data_pointer) || (comparison_status = memcmp(&context_pointer,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), comparison_status < 0)) {
-    audio_resource_id = system_allocate_resource_block(context_pointer);
-    system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
-    parent_pointer = temp_pointer;
+  if ((security_parent_pointer == system_data_pointer) || (context_comparison_result = memcmp(&global_context_pointer,security_parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), context_comparison_result < 0)) {
+    security_resource_id = system_allocate_resource_block(global_context_pointer);
+    system_initialize_resource_block(global_context_pointer,&new_security_pointer,security_parent_pointer,security_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,security_resource_id);
+    security_parent_pointer = new_security_pointer;
   }
-  parent_pointer[6] = SYSTEM_SECURITY_SYSTEM_MAGIC;
-  parent_pointer[7] = SYSTEM_STACK_UINT_INITIAL_VALUEec25de793b7afa6;
-  parent_pointer[8] = &system_handler_buffer;
-  parent_pointer[9] = 0;
-  parent_pointer[10] = allocator_pointer;
+  security_parent_pointer[6] = SYSTEM_SECURITY_SYSTEM_MAGIC;
+  security_parent_pointer[7] = SYSTEM_STACK_UINT_INITIAL_VALUEec25de793b7afa6;
+  security_parent_pointer[8] = &system_handler_buffer;
+  security_parent_pointer[9] = 0;
+  security_parent_pointer[10] = security_allocator_pointer;
   return;
 }
 
@@ -2044,60 +2026,57 @@ void system_initialize_security_system(void)
 
 
 /**
- * @brief 配置加载器初始化函数
- * 初始化系统配置文件加载和解析
- * 
- * @return void
- */
-/**
  * @brief 初始化配置加载器
- * 设置配置文件读取和解析机制 设置系统配置文件的读取和解析
  * 
- * @return void
+ * 初始化系统配置文件加载和解析机制，负责读取和解析系统配置文件。
+ * 该函数创建配置加载器的核心数据结构，设置配置文件读取和解析机制。
+ * 配置加载器确保系统能够正确加载和应用配置信息。
+ *
+ * @return 无返回值
  */
 void system_initialize_config_loader(void)
 
 {
-  char initialization_status;
-  uint64_t *data_pointer;
-  int comparison_status;
-  longlong *context_pointer;
-  longlong audio_resource_id;
-  uint64_t *node_pointer;
-  uint64_t *parent_pointer;
-  uint64_t *child_pointer;
-  uint64_t *temp_pointer;
-  uint64_t system_stack_initialization_flag;
+  char config_loader_init_status;
+  uint64_t *system_data_pointer;
+  int buffer_comparison_result;
+  longlong *global_context_pointer;
+  longlong config_resource_id;
+  uint64_t *config_node_pointer;
+  uint64_t *config_parent_pointer;
+  uint64_t *config_child_pointer;
+  uint64_t *new_config_pointer;
+  uint64_t stack_initialization_flag;
   
-  context_pointer = (longlong *)system_get_global_context();
-  data_pointer = (uint64_t *)*context_pointer;
-  initialization_status = *(char *)((longlong)data_pointer[1] + SYSTEM_STATUS_FLAG_OFFSET);
-  system_stack_initialization_flag = 0;
-  parent_pointer = data_pointer;
-  node_pointer = (uint64_t *)data_pointer[1];
-  while (initialization_status == '\0') {
-    comparison_status = memcmp(node_pointer + 4,&system_buffer_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
-    if (comparison_status < 0) {
-      child_pointer = (uint64_t *)node_pointer[2];
-      node_pointer = parent_pointer;
+  global_context_pointer = (longlong *)system_get_global_context();
+  system_data_pointer = (uint64_t *)*global_context_pointer;
+  config_loader_init_status = *(char *)((longlong)system_data_pointer[1] + SYSTEM_STATUS_FLAG_OFFSET);
+  stack_initialization_flag = 0;
+  config_parent_pointer = system_data_pointer;
+  config_node_pointer = (uint64_t *)system_data_pointer[1];
+  while (config_loader_init_status == '\0') {
+    buffer_comparison_result = memcmp(config_node_pointer + 4,&system_buffer_ptr,SYSTEM_CONFIG_DATA_SIZE_16);
+    if (buffer_comparison_result < 0) {
+      config_child_pointer = (uint64_t *)config_node_pointer[2];
+      config_node_pointer = config_parent_pointer;
     }
     else {
-      child_pointer = (uint64_t *)*node_pointer;
+      config_child_pointer = (uint64_t *)*config_node_pointer;
     }
-    parent_pointer = node_pointer;
-    node_pointer = child_pointer;
-    initialization_status = *(char *)((longlong)child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
+    config_parent_pointer = config_node_pointer;
+    config_node_pointer = config_child_pointer;
+    config_loader_init_status = *(char *)((longlong)config_child_pointer + SYSTEM_STATUS_FLAG_OFFSET);
   }
-  if ((parent_pointer == data_pointer) || (comparison_status = memcmp(&system_buffer_ptr,parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), comparison_status < 0)) {
-    audio_resource_id = system_allocate_resource_block(context_pointer);
-    system_initialize_resource_block(context_pointer,&temp_pointer,parent_pointer,audio_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,audio_resource_id);
-    parent_pointer = temp_pointer;
+  if ((config_parent_pointer == system_data_pointer) || (buffer_comparison_result = memcmp(&system_buffer_ptr,config_parent_pointer + 4,SYSTEM_CONFIG_DATA_SIZE_16), buffer_comparison_result < 0)) {
+    config_resource_id = system_allocate_resource_block(global_context_pointer);
+    system_initialize_resource_block(global_context_pointer,&new_config_pointer,config_parent_pointer,config_resource_id + SYSTEM_RESOURCE_BLOCK_OFFSET_20,config_resource_id);
+    config_parent_pointer = new_config_pointer;
   }
-  parent_pointer[6] = SYSTEM_CONFIG_LOADER_MAGIC;
-  parent_pointer[7] = SYSTEM_CONFIG_LOADER_MAGIC_SECONDARY;
-  parent_pointer[8] = &system_handler_resource;
-  parent_pointer[9] = 1;
-  parent_pointer[10] = system_stack_initialization_flag;
+  config_parent_pointer[6] = SYSTEM_CONFIG_LOADER_MAGIC;
+  config_parent_pointer[7] = SYSTEM_CONFIG_LOADER_MAGIC_SECONDARY;
+  config_parent_pointer[8] = &system_handler_resource;
+  config_parent_pointer[9] = 1;
+  config_parent_pointer[10] = stack_initialization_flag;
   return;
 }
 
