@@ -39,8 +39,8 @@
 #define SYSTEM_INIT_FLAG_INITIALIZED_STATUS 0x10458
 
 // 初始化系统值常量
-#define SYSTEM_INIT_MAGIC_COOKIE_STANDARD SYSTEM_INIT_SIZE_STANDARD
-#define SYSTEM_INIT_MAGIC_COOKIE_PREFAB SYSTEM_INIT_SIZE_STANDARD
+#define SYSTEM_INIT_MAGIC_COOKIE_STANDARD 0x10
+#define SYSTEM_INIT_MAGIC_COOKIE_PREFAB 0x10
 
 void* system_core_initializer;
 uint8_t initialization_status_array[27];// 系统初始化状态数组（27个元素）
@@ -526,46 +526,46 @@ char system_initialized;
 void initialize_system_core_basic(void)
 
 {
-  char system_validation_flag;                    // 系统验证标志
-  system_uint64_t *system_buffer_pointer;         // 系统缓冲区指针
-  int system_comparison_result;                   // 系统比较结果
-  longlong *system_context_base_address;          // 系统上下文基地址
-  longlong system_initialization_status;          // 系统初始化状态
-  system_uint64_t *system_module_data_address;    // 系统模块数据地址
-  system_uint64_t *system_config_data_pointer;    // 系统配置数据指针
-  system_uint64_t *system_temp_data_pointer;      // 系统临时数据指针
-  system_uint64_t *system_stack_frame_address;    // 系统栈帧地址
-  system_code *system_core_init_function;         // 系统核心初始化函数指针
+  char validation_flag;                    // 系统验证标志
+  system_uint64_t *buffer_pointer;         // 系统缓冲区指针
+  int comparison_result;                   // 系统比较结果
+  longlong *context_base_address;          // 系统上下文基地址
+  longlong initialization_status;          // 系统初始化状态
+  system_uint64_t *module_data_address;    // 系统模块数据地址
+  system_uint64_t *config_data_pointer;    // 系统配置数据指针
+  system_uint64_t *temp_data_pointer;      // 系统临时数据指针
+  system_uint64_t *stack_frame_address;    // 系统栈帧地址
+  system_code *core_init_function;         // 系统核心初始化函数指针
   
-  system_context_base_address = (longlong *)InitializeSystemCore();
-  system_buffer_pointer = (system_uint64_t *)*system_context_base_address;
-  system_validation_flag = *(char *)((longlong)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
-  system_core_init_function = InitializeSystemCore;
-  system_config_data_pointer = system_buffer_pointer;
-  system_module_data_address = (system_uint64_t *)system_buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
-  while (system_validation_flag == '\0') {
-    system_comparison_result = memcmp(system_module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
-    if (system_comparison_result < 0) {
-      system_temp_data_pointer = (system_uint64_t *)system_module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
-      system_module_data_address = system_config_data_pointer;
+  context_base_address = (longlong *)InitializeSystemCore();
+  buffer_pointer = (system_uint64_t *)*context_base_address;
+  validation_flag = *(char *)((longlong)buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND] + SYSTEM_INIT_OFFSET_CHAR_CHECK);
+  core_init_function = InitializeSystemCore;
+  config_data_pointer = buffer_pointer;
+  module_data_address = (system_uint64_t *)buffer_pointer[SYSTEM_ARRAY_INDEX_SECOND];
+  while (validation_flag == '\0') {
+    comparison_result = memcmp(module_data_address + SYSTEM_INIT_SIZE_COMPARE,&system_initialized,SYSTEM_INIT_SIZE_COMPARE);
+    if (comparison_result < 0) {
+      temp_data_pointer = (system_uint64_t *)module_data_address[SYSTEM_ARRAY_INDEX_THIRD];
+      module_data_address = config_data_pointer;
     }
     else {
-      system_temp_data_pointer = (system_uint64_t *)*system_module_data_address;
+      temp_data_pointer = (system_uint64_t *)*module_data_address;
     }
-    system_config_data_pointer = system_module_data_address;
-    system_module_data_address = system_temp_data_pointer;
-    system_validation_flag = *(char *)((longlong)system_temp_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
+    config_data_pointer = module_data_address;
+    module_data_address = temp_data_pointer;
+    validation_flag = *(char *)((longlong)temp_data_pointer + SYSTEM_INIT_OFFSET_CHAR_CHECK);
   }
-  if ((system_config_data_pointer == system_buffer_pointer) || (system_comparison_result = memcmp(&system_initialized,system_config_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), system_comparison_result < 0)) {
-    system_initialization_status = InitializeSystemCore(system_context_base_address);
-    InitializeSystemCore(system_context_base_address,&system_stack_frame_address,system_config_data_pointer,system_initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,system_initialization_status);
-    system_config_data_pointer = system_stack_frame_address;
+  if ((config_data_pointer == buffer_pointer) || (comparison_result = memcmp(&system_initialized,config_data_pointer + SYSTEM_INIT_SIZE_COMPARE,SYSTEM_INIT_SIZE_COMPARE), comparison_result < 0)) {
+    initialization_status = InitializeSystemCore(context_base_address);
+    InitializeSystemCore(context_base_address,&stack_frame_address,config_data_pointer,initialization_status + SYSTEM_INIT_OFFSET_STACK_PARAM,initialization_status);
+    config_data_pointer = stack_frame_address;
   }
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_BASIC_PRIMARY;
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_BASIC_SECONDARY;
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_global_contextsystem_global_context;
-  system_config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
-  system_config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = system_core_init_function;
+  config_data_pointer[SYSTEM_ARRAY_INDEX_SEVENTH] = SYSTEM_INIT_MAGIC_COOKIE_BASIC_PRIMARY;
+  config_data_pointer[SYSTEM_ARRAY_INDEX_EIGHTH] = SYSTEM_INIT_MAGIC_COOKIE_BASIC_SECONDARY;
+  config_data_pointer[SYSTEM_ARRAY_INDEX_NINTH] = &system_global_contextsystem_global_context;
+  config_data_pointer[SYSTEM_ARRAY_INDEX_TENTH] = SYSTEM_INIT_VALUE_ZERO;
+  config_data_pointer[SYSTEM_INIT_CONFIG_POINTER_INDEX_TEN] = core_init_function;
   return;
 }
 
