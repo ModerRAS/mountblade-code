@@ -901,11 +901,11 @@ uint32_t utility_get_stream_status(void)
  */
 void ResetEvent(void)
 {
-    utility_iteration_index = UTILITY_FALSE;
-    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
-        return;
+    // 重置事件状态：将事件重置为无信号状态
+    utility_iteration_index = UTILITY_FLAG_TRUE;
+    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_FALSE) {
+        utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_SECONDARY);
     }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
 }
 /** 
  * @brief 等待事件触发
@@ -916,11 +916,11 @@ void ResetEvent(void)
  */
 void WaitForEvent(void)
 {
-    utility_iteration_index = UTILITY_FALSE;
-    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
-        return;
+    // 等待事件触发：阻塞当前线程直到事件被触发
+    utility_iteration_index = UTILITY_FLAG_TRUE;
+    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_FALSE) {
+        utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_TERTIARY);
     }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
 }
 /** 
  * @brief 获取缓存状态
@@ -931,12 +931,13 @@ void WaitForEvent(void)
  */
 uint32_t utility_get_cache_status(void)
 {
-    utility_iteration_index = UTILITY_FALSE;
-    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
-        return UTILITY_STATUS_THREAD_CREATED;
+    // 获取缓存状态：检查系统缓存的当前状态
+    utility_iteration_index = UTILITY_FLAG_TRUE;
+    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_FALSE) {
+        utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
+        return UTILITY_STATUS_RESOURCE_AVAILABLE;
     }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
-    return UTILITY_STATUS_RESOURCE_AVAILABLE;
+    return UTILITY_STATUS_OPERATION_FAILED;
 }
 /** 
  * @brief 关闭事件对象
@@ -947,11 +948,11 @@ uint32_t utility_get_cache_status(void)
  */
 void CloseEvent(void)
 {
-    utility_iteration_index = UTILITY_FALSE;
-    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
-        return;
+    // 关闭事件对象：释放事件资源并清理相关状态
+    utility_iteration_index = UTILITY_FLAG_TRUE;
+    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) != UTILITY_FALSE) {
+        utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_SECONDARY);
     }
-    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), UTILITY_CONTEXT_MODE_PRIMARY);
 }
 /** 
  * @brief 初始化互斥体对象
