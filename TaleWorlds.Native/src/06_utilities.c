@@ -116,7 +116,7 @@ void utility_memory_cleanup_handler(void)
 
 /**
  * @brief 处理资源数据
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @return uint64 操作结果状态码
  *
  * 该函数负责处理系统资源数据，包括：
@@ -125,9 +125,9 @@ void utility_memory_cleanup_handler(void)
  * - 返回处理结果
  *
  */
-uint64 utility_process_resource_data(longlong UTILITY_RESOURCE_PRIMARY_HANDLE)
+uint64 utility_process_resource_data(longlong utility_resource_primary_handle)
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   UTILITY_RESULT = system_memory_operation(*(uint32 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET),&UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)UTILITY_RESULT != UTILITY_ZERO) {
     return UTILITY_RESULT;
@@ -158,7 +158,7 @@ uint64 utility_process_resource_data(longlong UTILITY_RESOURCE_PRIMARY_HANDLE)
  */
 uint64 utility_resource_data_processor(void)
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   UTILITY_RESULT = system_memory_operation(*(uint32 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET),&UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)UTILITY_RESULT != UTILITY_ZERO) {
     return UTILITY_RESULT;
@@ -244,12 +244,11 @@ void utility_release_memory_and_exit(void)
  */
 void utility_handle_allocator(void)
 {
+  utility_free_memory(NULL, UTILITY_MEMORY_FLAG);
   return;
 }
-{
-  utility_free_memory(NULL, UTILITY_MEMORY_FLAG);
 
-
+/**
  * @brief 清理资源函数 - 执行系统资源的清理操作
  *
  * 该函数负责清理系统资源，确保资源被正确释放。
@@ -260,10 +259,8 @@ void utility_cleanup_resource_function(void)
 {
   return;
 }
-{
-  return;
 
-
+/**
  * @brief 内存分配器 - 管理系统内存分配操作
  * @return 无返回值
  *
@@ -275,12 +272,10 @@ void utility_memory_deallocator(void)
 {
   return;
 }
-{
-  return;
 
 
  * @brief 验证资源访问权限 - 检查系统资源的访问权限
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @return uint64 验证结果状态码，UTILITY_ERROR_FLAG表示错误，其他值表示成功
  *
  * 该函数负责验证系统资源的访问权限，包括：
@@ -307,7 +302,7 @@ void utility_resource_validator(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   UTILITY_RESULT = system_memory_operation(*(uint32 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET),&UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)UTILITY_RESULT != UTILITY_ZERO) {
     return UTILITY_RESULT;
@@ -425,7 +420,7 @@ void utility_memory_manager(void)
 
 
  * @brief 执行资源句柄操作 - 处理系统资源句柄的相关操作
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @return uint64 操作结果状态码
  *
  * 该函数负责执行资源句柄的相关操作，包括：
@@ -450,7 +445,7 @@ void utility_resource_cleaner(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   longlong UTILITY_STACK_BUFFER_ARRAY [UTILITY_STACK_BUFFER_SIZE];
   longlong UTILITY_STACK_PROCESSING_BUFFER [UTILITY_STACK_BUFFER_SIZE];
   UTILITY_RESULT = system_memory_operation(*(uint32 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET),UTILITY_STACK_PROCESSING_BUFFER);
@@ -481,7 +476,7 @@ void utility_resource_cleaner(void)
 
 
  * @brief 管理资源句柄操作 - 管理系统资源句柄的生命周期
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @return uint64 操作结果状态码
  *
  * 该函数负责管理系统资源句柄的生命周期，包括：
@@ -506,7 +501,7 @@ void utility_context_initializer(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   longlong UTILITY_STACK_BUFFER_ARRAY [UTILITY_STACK_BUFFER_SIZE];
   longlong UTILITY_STACK_PROCESSING_BUFFER [UTILITY_STACK_BUFFER_SIZE];
   UTILITY_RESULT = system_memory_operation(*(uint32 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET),UTILITY_STACK_PROCESSING_BUFFER);
@@ -537,7 +532,7 @@ void utility_context_initializer(void)
 
 
  * @brief 执行资源管理命令 - 执行系统资源的管理命令
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @return uint64 操作结果状态码
  *
  * 该函数负责执行系统资源的管理命令，包括：
@@ -617,7 +612,7 @@ void utility_data_processor(void)
 
 
  * @brief 验证资源操作 - 验证系统资源的操作状态
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @return uint64 验证结果状态码
  *
  * 该函数负责验证系统资源的操作状态，包括：
@@ -828,7 +823,7 @@ void utility_context_processor(void)
 
 
  * @brief 分配系统资源 - 为系统分配必要的资源
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @return uint64 分配结果状态码
  *
  * 该函数负责为系统分配必要的资源，包括：
@@ -855,7 +850,7 @@ void utility_data_manager(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   int *UTILITY_RESULT_POINTER[UTILITY_TOKEN_OFFSET];
   uint32 *UTILITY_GENERIC_DATA_POINTER;
   uint UTILITY_STATUS_VALUE;
@@ -924,7 +919,7 @@ void utility_handle_processor(void)
 }
 {
   longlong UTILITY_REGISTER_INPUT;
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   int *UTILITY_RESULT_POINTER[UTILITY_TOKEN_OFFSET];
   longlong UTILITY_FRAME_PTR;
   uint32 *UTILITY_GENERIC_DATA_POINTER;
@@ -1031,7 +1026,7 @@ void utility_thread_initializer(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   longlong UTILITY_SYSTEM_RESOURCE_HANDLE;
   UTILITY_RESULT = system_memory_operation(*(uint32 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET),&UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)UTILITY_RESULT != UTILITY_ZERO) {
@@ -1143,7 +1138,7 @@ void utility_handle_registrar(void)
 
 /**
  * @brief 管理线程池 - 管理系统线程池
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @return uint64 管理结果状态码
  *
  * 该函数负责管理系统线程池。
@@ -1169,7 +1164,7 @@ void utility_data_validator(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   longlong UTILITY_SYSTEM_RESOURCE_HANDLE;
   UTILITY_RESULT = system_memory_operation(*(uint32 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET),&UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)UTILITY_RESULT != UTILITY_ZERO) {
@@ -1295,7 +1290,7 @@ void utility_memory_mapper(void)
 
 
  * @brief 锁定互斥锁 - 锁定系统互斥锁
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @return uint64 锁定结果状态码
  *
  * 该函数负责锁定系统互斥锁。
@@ -1317,7 +1312,7 @@ void utility_handle_validator(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   longlong UTILITY_DATA_POINTER_PRIMARY_EXTENDED_MAIN;
   UTILITY_RESULT = system_memory_operation(*(uint32 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET),&UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)UTILITY_RESULT != UTILITY_ZERO) {
@@ -1424,7 +1419,7 @@ void utility_memory_compactor(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   UTILITY_RESULT = system_memory_operation(*(uint32 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET),&UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)UTILITY_RESULT != UTILITY_ZERO) {
     return UTILITY_RESULT;
@@ -1543,7 +1538,7 @@ void utility_context_serializer(void)
 
 
  * @brief 等待事件 - 等待系统事件
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @return uint64 等待结果状态码
  *
  * 该函数负责等待系统事件。
@@ -1565,7 +1560,7 @@ void utility_resource_optimizer(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   UTILITY_RESULT = system_memory_operation(*(uint32 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET),&UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)UTILITY_RESULT != UTILITY_ZERO) {
     return UTILITY_RESULT;
@@ -1694,7 +1689,7 @@ void utility_data_optimizer(void)
 
 
  * @brief 创建系统定时器 - 创建系统定时器
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @return uint64 创建结果状态码
  *
  * 该函数负责创建系统定时器。
@@ -1716,7 +1711,7 @@ void UTILITY_INITIALIZE_CRITICAL_SECTION(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   UTILITY_RESULT = system_memory_operation(*(uint32 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET),&UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)UTILITY_RESULT != UTILITY_ZERO) {
     return UTILITY_RESULT;
@@ -1835,7 +1830,7 @@ void UTILITY_DELETE_CRITICAL_SECTION(void)
 
 
  * @brief 获取定时器经过时间 - 获取系统定时器经过时间
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @return uint64 经过时间状态码
  *
  * 该函数负责获取系统定时器经过时间。
@@ -1857,7 +1852,7 @@ void UTILITY_CREATE_MUTEX(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   UTILITY_RESULT = system_memory_operation(*(uint32 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET),&UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)UTILITY_RESULT != UTILITY_ZERO) {
     return UTILITY_RESULT;
@@ -2007,7 +2002,7 @@ void utility_system_cleaner(void)
 
 
  * @brief 打开文件资源
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @return uint64 操作结果状态码
  *
  * 该函数负责打开文件资源，包括：
@@ -2018,7 +2013,7 @@ void utility_system_cleaner(void)
  */
 /**
  * @brief 打开文件资源句柄 - 打开文件资源句柄
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @return uint64 打开结果状态码
  *
  * 该函数负责打开文件资源句柄。
@@ -2040,7 +2035,7 @@ void utility_process_cleaner(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   UTILITY_RESULT = system_memory_operation(*(uint32 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET),&UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)UTILITY_RESULT != UTILITY_ZERO) {
     return UTILITY_RESULT;
@@ -2182,7 +2177,7 @@ void utility_data_cleaner(void)
 
 
  * @brief 设置文件位置指针
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param utility_file_position_offset 文件位置偏移量
  * @return 无返回值
  *
@@ -2223,7 +2218,7 @@ void utility_context_cleaner(void)
 
 
  * @brief 获取文件位置
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @return uint64 文件位置状态码
  *
  * 该函数负责获取文件位置，包括：
@@ -2302,7 +2297,7 @@ void utility_handle_cleaner(void)
 
 
  * @brief 获取文件数据大小 - 获取文件数据大小
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @return int 文件数据大小
  *
  * 该函数负责获取文件数据大小。
@@ -2349,7 +2344,7 @@ void utility_system_validator(void)
 
 
  * @brief 截断文件 - 截断文件
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param utility_resource_utility_data_pointer_primary_extended_main_primary 扩展数据指针
  * @return 无返回值
  *
@@ -2396,7 +2391,7 @@ void utility_process_validator(void)
 
 
  * @brief 创建文件系统目录 - 创建文件系统目录
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param utility_resource_utility_data_pointer_primary_extended_main_primary 扩展数据指针
  * @return ulonglong 创建结果状态码
  *
@@ -2457,7 +2452,7 @@ void utility_thread_validator(void)
 
 
  * @brief 删除文件工具函数
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @return int 操作结果状态码
  *
  * 该函数用于删除指定文件，包括：
@@ -2613,7 +2608,7 @@ void utility_data_transmitter(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   int *UTILITY_RESULT_POINTER[UTILITY_TOKEN_OFFSET];
   uint32 *UTILITY_GENERIC_DATA_POINTER;
   int UTILITY_COUNTER;
@@ -2707,7 +2702,7 @@ void utility_packet_handler(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   longlong UTILITY_STACK_BUFFER_ARRAY [UTILITY_STACK_BUFFER_SIZE_quad];
   UTILITY_RESULT = system_memory_operation(*(uint32 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET),UTILITY_STACK_BUFFER_ARRAY);
   if ((int)UTILITY_RESULT == UTILITY_ZERO) {
@@ -2960,7 +2955,7 @@ void utility_stream_sender(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   UTILITY_RESULT = system_memory_operation(*(uint32 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET),&UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)UTILITY_RESULT == UTILITY_ZERO) {
     if (*(longlong *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_SIZE_OFFSET) == UTILITY_ZERO) {
@@ -2986,7 +2981,7 @@ void utility_network_cleaner(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   UTILITY_RESULT = system_memory_operation(*(uint32 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET),&UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)UTILITY_RESULT != UTILITY_ZERO) {
     return UTILITY_RESULT;
@@ -3061,7 +3056,7 @@ void utility_protocol_cleaner(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint UTILITY_STACK_BUFFER;
   uint32 UTILITY_STACK_BUFFER;
   UTILITY_STACK_BUFFER = *(uint *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_OFFSET_RESOURCE_PTR);
@@ -3091,7 +3086,7 @@ void utility_file_initializer(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   UTILITY_RESULT = system_memory_operation(*(uint32 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET),&UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)UTILITY_RESULT != UTILITY_ZERO) {
     return UTILITY_RESULT;
@@ -3606,7 +3601,7 @@ void utility_file_unmounter(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   UTILITY_RESULT = system_memory_operation(*(uint32 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET),&UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)UTILITY_RESULT == UTILITY_ZERO) {
     if (UTILITY_SYSTEM_RESOURCE_HANDLE != UTILITY_ZERO) {
@@ -3636,7 +3631,7 @@ void utility_directory_unmounter(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   UTILITY_RESULT = system_memory_operation(*(uint32 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET),&UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)UTILITY_RESULT == UTILITY_ZERO) {
     if (UTILITY_SYSTEM_RESOURCE_HANDLE != UTILITY_ZERO) {
@@ -4120,7 +4115,7 @@ int UTILITY_CALCULATED_INTEGER_RESULT;
   return UTILITY_ERROR_CODE_FAILED;
 
  * @brief 完成资源处理过程 - 清理资源处理过程中的临时数据和状态
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param UTILITY_RESOURCE_CACHE 资源缓存
  * @return 无返回值
  *
@@ -4168,7 +4163,7 @@ void utility_config_system_monitor(void)
 
 
  * @brief 处理资源响应 - 处理系统资源的响应数据和状态
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param UTILITY_RESOURCE_CACHE 资源缓存
  * @return uint64 处理结果状态码
  *
@@ -5124,7 +5119,7 @@ void utility_config_handler_disk_monitor(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   longlong UTILITY_DATA_POINTER_PRIMARY_EXTENDED_MAIN;
   if  UTILITY_SIZE_FACTOR< *(uint *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_OFFSET_RESOURCE_PTR)) {
     return UTILITY_ERROR_CODE_FAILED;
@@ -5179,7 +5174,7 @@ void utility_config_handler_network_monitor(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   longlong UTILITY_DATA_POINTER_PRIMARY_EXTENDED_MAIN;
   uint UTILITY_STACK_BUFFER;
   uint32 UTILITY_STACK_BUFFER;
@@ -5476,7 +5471,7 @@ void utility_config_handler_cache_manager(void)
 
 
  * @brief 绑定网络套接字工具函数
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param UTILITY_RESOURCE_CACHE 资源缓存句柄
  * @return int 操作结果状态码
  *
@@ -5535,7 +5530,7 @@ void utility_config_handler_stream_handler(void)
 
 
  * @brief 连接网络套接字工具函数
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param utility_resource_utility_data_pointer_primary_extended_main_primary 资源数据指针
  * @return int 操作结果状态码
  *
@@ -5639,7 +5634,7 @@ void utility_config_handler_event_listener(void)
 
 
  * @brief 接受网络连接工具函数
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param UTILITY_RESOURCE_CACHE 资源缓存句柄
  * @return int 操作结果状态码
  *
@@ -6362,7 +6357,7 @@ void utility_config_handler_access_control(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint UTILITY_STACK_BUFFER;
   uint32 UTILITY_STACK_BUFFER;
   UTILITY_STACK_BUFFER = *(uint *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_OFFSET_RESOURCE_PTR);
@@ -6445,7 +6440,7 @@ void utility_config_handler_security_context(void)
 
 
  * @brief 删除数据库记录工具函数
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param UTILITY_RESOURCE_CACHE 资源缓存句柄
  * @param UTILITY_OPERATION_FLAGS 操作标志
  * @return int 操作结果状态码
@@ -6490,7 +6485,7 @@ void utility_config_handler_authentication(void)
 
 
  * @brief 开始数据库事务工具函数
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄指针
+ * @param utility_resource_primary_handle 主要资源句柄指针
  * @param UTILITY_RESOURCE_CACHE 资源缓存句柄
  * @param UTILITY_OPERATION_FLAGS 操作标志
  * @return int 操作结果状态码
@@ -7810,7 +7805,7 @@ void utility_config_handler_token_manager(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   int *UTILITY_RESULT_POINTER[UTILITY_TOKEN_OFFSET];
   longlong UTILITY_BUFFER_INDEX;
   longlong utility_thread_context_primary;
@@ -7967,7 +7962,7 @@ void utility_config_handler_session_manager(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   longlong UTILITY_REGISTER_INPUT;
   uint64 *utility_iter_ptr;
   int *UTILITY_CPU_CONTEXT;
@@ -8595,7 +8590,7 @@ uint64 utility_free_memory_resource(void)
   return UTILITY_ERROR_RESOURCE_ACCESS_FAILURE;
 
  * @brief 验证内存地址 - 验证系统内存地址的有效性
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @return ulonglong 验证结果状态码
  *
  * 该函数负责验证系统内存地址的有效性，包括：
@@ -9084,7 +9079,7 @@ int utility_execute_memory_command(longlong UTILITY_RESOURCE_PRIMARY_HANDLE,long
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   int UTILITY_RESULT;
   int UTILITY_BUFFER_INDEX;
   UTILITY_RESULT = *(uint64 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET);
@@ -9118,7 +9113,7 @@ uint64 initialize_memory_context(longlong UTILITY_RESOURCE_PRIMARY_HANDLE,uint64
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   UTILITY_RESULT = setup_resource_configuration(UTILITY_OPERATION_FLAGS,UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_DATA_OFFSET);
   if ((int)UTILITY_RESULT == UTILITY_ZERO) {
     *(uint32 *)(UTILITY_RESOURCE_PRIMARY_HANDLE + UTILITY_OFFSET_DATA) = UTILITY_ZERO;
@@ -9130,7 +9125,7 @@ uint64 initialize_memory_context(longlong UTILITY_RESOURCE_PRIMARY_HANDLE,uint64
   return UTILITY_RESULT;
 
  * @brief 配置内存系统设置
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param UTILITY_RESOURCE_CACHE 资源缓存句柄
  * @param UTILITY_OPERATION_FLAGS 操作标志
  * @param utility_resource_callback_handler 资源回调处理器
@@ -9852,7 +9847,7 @@ int UTILITY_CALCULATED_INTEGER_RESULT;
   uint UTILITY_SYSTEM_FLAGS_VAR;
   longlong UTILITY_TEMPORARY_LONG_STORAGE;
   longlong UTILITY_TEMPORARY_LONG_STORAGE;
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint64 UTILITY_RESULT_POINTER;
   resource_data *UTILITY_RESULT_SECONDARY_POINTER;
   float utility_float_data;
@@ -11434,7 +11429,7 @@ utility_binary_search_in_array(longlong utility_array_handle, uint *utility_sear
   longlong utility_data_array_ptr;
   int utility_boundary_right;
   int utility_comparison_result;
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint *utility_current_element;
   int utility_middle_index;
   int utility_boundary_left;
@@ -12005,7 +12000,7 @@ uint64 utility_get_resource_capacity(longlong *UTILITY_RESOURCE_PRIMARY_HANDLE,u
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint32 UTILITY_STACK_PRIMARY [UTILITY_MEMORY_STANDARD_OFFSET];
   if (*(int *)(UTILITY_RESOURCE_PRIMARY_HANDLE[UTILITY_INDEX_STANDARD_INCREMENT] + UTILITY_OFFSET_PTR_PRIMARY) != UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
@@ -12018,7 +12013,7 @@ uint64 utility_check_resource_capacity(longlong *UTILITY_RESOURCE_PRIMARY_HANDLE
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint32 UTILITY_STACK_PRIMARY [UTILITY_MEMORY_STANDARD_OFFSET];
   if (*(int *)(UTILITY_RESOURCE_PRIMARY_HANDLE[UTILITY_INDEX_STANDARD_INCREMENT] + UTILITY_OFFSET_PTR_PRIMARY) != UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
@@ -12031,7 +12026,7 @@ uint64 utility_resize_resource_buffer(uint64 *UTILITY_RESOURCE_PRIMARY_HANDLE,lo
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint64 UTILITY_COUNTER;
   if (*(int *)(UTILITY_RESOURCE_PRIMARY_HANDLE[UTILITY_INDEX_STANDARD_INCREMENT] + UTILITY_OFFSET_PTR_PRIMARY) != UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
@@ -12145,7 +12140,7 @@ uint64 utility_validate_resource_buffer_config(uint64 *UTILITY_RESOURCE_PRIMARY_
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint64 UTILITY_COUNTER;
   if (*(int *)(UTILITY_RESOURCE_PRIMARY_HANDLE[UTILITY_INDEX_STANDARD_INCREMENT] + UTILITY_OFFSET_PTR_PRIMARY) != UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
@@ -12173,7 +12168,7 @@ uint64 utility_examine_utility_behavior(longlong *UTILITY_RESOURCE_PRIMARY_HANDL
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint UTILITY_STACK_PRIMARY [UTILITY_STACK_BUFFER_SIZE];
   uint UTILITY_RESOURCE_STACK_DATA [UTILITY_ARRAY_INDEX_QUATERNARY];
   if (*(int *)(UTILITY_RESOURCE_PRIMARY_HANDLE[UTILITY_INDEX_STANDARD_INCREMENT] + UTILITY_OFFSET_PTR_PRIMARY) != UTILITY_ZERO) {
@@ -12212,7 +12207,7 @@ uint64 utility_review_utility_result_vars(longlong *UTILITY_RESOURCE_PRIMARY_HAN
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint *UTILITY_CPU_CONTEXT;
   uint UTILITY_UNSIGNED_STACK_CONTEXT;
   uint UTILITY_SECURITY_PARAM_CONTEXT;
@@ -12278,7 +12273,7 @@ uint64 utility_assess_utility_quality(uint64 *UTILITY_RESOURCE_PRIMARY_HANDLE,lo
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint64 UTILITY_COUNTER;
   if (*(int *)(UTILITY_RESOURCE_PRIMARY_HANDLE[UTILITY_INDEX_STANDARD_INCREMENT] + UTILITY_OFFSET_PTR_PRIMARY) != UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
@@ -12300,7 +12295,7 @@ uint64 utility_judge_utility_efficiency(uint64 *UTILITY_RESOURCE_PRIMARY_HANDLE,
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   longlong UTILITY_DATA_POINTER_PRIMARY_EXTENDED_MAIN;
   uint *UTILITY_GENERIC_DATA_POINTER;
   int UTILITY_STACK_CONTEXT [UTILITY_STACK_BUFFER_SIZE];
@@ -12415,7 +12410,7 @@ uint64 validate_resource_handleData(longlong *UTILITY_RESOURCE_PRIMARY_HANDLE,lo
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   int UTILITY_RESULT;
   int UTILITY_STACK_CONTEXT [UTILITY_STACK_BUFFER_SIZE];
   uint utility_unsigned_data [UTILITY_ARRAY_SIZE_INDEX];
@@ -12463,7 +12458,7 @@ uint64 utility_validate_resource_handle_simple(uint64 UTILITY_RESOURCE_PRIMARY_H
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   UTILITY_RESULT = utility_write_resource_data(UTILITY_RESOURCE_PRIMARY_HANDLE,UTILITY_RESOURCE_CACHE,utility_data_size_dword);
   if (((int)UTILITY_RESULT == UTILITY_ZERO) && (UTILITY_RESULT = utility_write_resource_data(UTILITY_RESOURCE_PRIMARY_HANDLE,UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_INDEX_STANDARD_INCREMENT,utility_numeric_value_four), (int)UTILITY_RESULT == utility_access_flag)) {
     UTILITY_RESOURCE_CONTEXT_HANDLE[UTILITY_INDEX_STANDARD_INCREMENT] = *memory_block_size;
@@ -12475,7 +12470,7 @@ uint64 utility_initialize_resource_validator(void)
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint32 *UTILITY_CONTEXT_PTR;
   UTILITY_RESULT = utility_write_resource_data();
   if ((int)UTILITY_RESULT != utility_access_flag) {
@@ -13080,7 +13075,7 @@ uint64 utility_allocate_resource_memory(longlong UTILITY_RESOURCE_PRIMARY_HANDLE
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   float *utility_float_pointer_secondary;
   int UTILITY_BUFFER_INDEX;
   float UTILITY_CALCULATED_FLOAT_RESULT;
@@ -13134,7 +13129,7 @@ uint64 utility_initialize_memory_allocator(void)
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   float *utility_float_pointer_secondary;
   longlong UTILITY_FRAME_PTR;
   longlong UTILITY_CPU_CONTEXT;
@@ -13744,7 +13739,7 @@ uint64 utility_handle_resource_operation(longlong UTILITY_RESOURCE_PRIMARY_HANDL
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint UTILITY_COUNTER;
   uint utility_unsigned_data [UTILITY_ARRAY_SIZE_INDEX];
   UTILITY_COUNTER = *(int *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_INDEX_STANDARD_INCREMENT) - UTILITY_INTEGER_ONE;
@@ -14015,7 +14010,7 @@ uint64 utility_process_resource_request(longlong UTILITY_RESOURCE_PRIMARY_HANDLE
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   if (*(int *)(UTILITY_RESOURCE_CONTEXT_HANDLE[UTILITY_INDEX_STANDARD_INCREMENT] + UTILITY_OFFSET_PTR_PRIMARY) != UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
   }
@@ -14095,7 +14090,7 @@ uint64 utility_handle_resource_callback(longlong UTILITY_RESOURCE_PRIMARY_HANDLE
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   byte utility_local_security_buffer_var [UTILITY_STRUCTURE_SIZE_MEDIUM];
   byte utility_buffer [UTILITY_BUFFER_SIZE_STANDARD];
   UTILITY_RESULT = createresourcebuffer(UTILITY_RESOURCE_CACHE,utility_buffer,UTILITY_INDEX_STANDARD_INCREMENT,utility_resource_property_offset_quinary_large_primary);
@@ -14133,7 +14128,7 @@ uint64 utility_initialize_callback_system(void)
 }
 {
   longlong UTILITY_REGISTER_INPUT;
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint64 *UTILITY_CONTEXT_PTR;
   longlong UTILITY_CPU_CONTEXT;
   if (*(int *)(UTILITY_REGISTER_INPUT + UTILITY_OFFSET_PTR_PRIMARY) == UTILITY_ZERO) {
@@ -14492,7 +14487,7 @@ ulonglong processsystemrequest(longlong UTILITY_RESOURCE_PRIMARY_HANDLE,uint64 *
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint32 *utility_iter_ptr;
   ulonglong UTILITY_COUNTER;
   uint UTILITY_STATUS_VALUE;
@@ -14547,7 +14542,7 @@ ulonglong utility_initialize_request_handler(void)
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   int utility_accumulator;
   ulonglong UTILITY_COUNTER;
   uint64 *UTILITY_CONTEXT_PTR;
@@ -14594,7 +14589,7 @@ ulonglong utility_get_request_status(void)
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint UTILITY_COUNTER;
   ulonglong UTILITY_COUNTER;
   uint64 *UTILITY_CONTEXT_PTR;
@@ -15028,7 +15023,7 @@ uint64 utility_handle_operation_callback(longlong UTILITY_RESOURCE_PRIMARY_HANDL
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   int UTILITY_RESULT;
   uint UTILITY_COUNTER;
   uint UTILITY_STATUS_VALUE;
@@ -15847,7 +15842,7 @@ uint64 utility_validate_resource_allocator(longlong UTILITY_RESOURCE_PRIMARY_HAN
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   UTILITY_RESULT = process_system_data(UTILITY_RESOURCE_CACHE,UTILITY_ZERO);
   if ((int)UTILITY_RESULT == UTILITY_ZERO) {
     if (*(int *)(UTILITY_RESOURCE_CONTEXT_HANDLE[UTILITY_INDEX_STANDARD_INCREMENT] + UTILITY_OFFSET_PTR_PRIMARY) != UTILITY_ZERO) {
@@ -16145,7 +16140,7 @@ ulonglong initializedatavalidator(longlong UTILITY_RESOURCE_PRIMARY_HANDLE,uint6
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint32 UTILITY_COUNTER;
   uint32 UTILITY_STATUS_VALUE;
   uint UTILITY_STATE;
@@ -16372,7 +16367,7 @@ utility_label_continue_processing:
   free_utility_resource_data_buffer(UTILITY_RESOURCE_CACHE,utility_buffer);
 uint64 * utility_process_validation_request(void)
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint32 UTILITY_COUNTER;
   uint32 UTILITY_STATUS_VALUE;
   float UTILITY_CALCULATED_FLOAT_RESULT;
@@ -16618,7 +16613,7 @@ utility_label_continue_processing:
   free_utility_resource_data_buffer(utility_float_data,UTILITY_FRAME_PTR + -utility_nonet_unit);
 uint64 * utility_handle_validation_callback(void)
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint32 UTILITY_COUNTER;
   uint32 UTILITY_STATUS_VALUE;
   float UTILITY_CALCULATED_FLOAT_RESULT;
@@ -19330,7 +19325,7 @@ uint64 utility_buffer_data(longlong UTILITY_RESOURCE_PRIMARY_HANDLE,uint64 *memo
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   UTILITY_RESULT = process_system_data(UTILITY_RESOURCE_CACHE,UTILITY_ZERO);
   if ((int)UTILITY_RESULT == UTILITY_ZERO) {
     if (*(int *)(UTILITY_RESOURCE_CONTEXT_HANDLE[UTILITY_INDEX_STANDARD_INCREMENT] + UTILITY_OFFSET_PTR_PRIMARY) != UTILITY_ZERO) {
@@ -19468,7 +19463,7 @@ ulonglong utility_process_validation_request(longlong UTILITY_RESOURCE_PRIMARY_H
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint UTILITY_COUNTER;
   ulonglong UTILITY_COUNTER;
   ulonglong UTILITY_STATUS_VALUE;
@@ -19553,7 +19548,7 @@ ulonglong utility_initialize_validation_handler(void)
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint UTILITY_COUNTER;
   longlong UTILITY_REGISTER_INPUT;
   ulonglong UTILITY_COUNTER;
@@ -19632,7 +19627,7 @@ ulonglong utility_get_validation_status(void)
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint UTILITY_COUNTER;
   ulonglong UTILITY_COUNTER;
   uint64 *UTILITY_CONTEXT_PTR;
@@ -19706,7 +19701,7 @@ ulonglong utility_validate_system_resources(void)
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint UTILITY_COUNTER;
   ulonglong UTILITY_COUNTER;
   uint64 *UTILITY_CONTEXT_PTR;
@@ -19776,7 +19771,7 @@ ulonglong utility_process_resource_validation(void)
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   ulonglong UTILITY_COUNTER;
   uint64 *UTILITY_CONTEXT_PTR;
   longlong UTILITY_CPU_CONTEXT;
@@ -19861,7 +19856,7 @@ uint64 handleresourcevalidation(longlong UTILITY_RESOURCE_PRIMARY_HANDLE,uint64 
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint64 UTILITY_COUNTER;
   byte utility_local_security_buffer_var [UTILITY_STRUCTURE_SIZE_MEDIUM];
   byte utility_local_security_buffer_var [UTILITY_STRUCTURE_SIZE_MEDIUM];
@@ -19908,7 +19903,7 @@ uint64 utility_get_validation_result_secondary(void)
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   longlong UTILITY_REGISTER_INPUT;
   uint64 UTILITY_COUNTER;
   uint64 *UTILITY_CONTEXT_PTR;
@@ -19949,7 +19944,7 @@ uint64 utility_validate_resource_data(void)
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint64 UTILITY_COUNTER;
   uint64 *UTILITY_CONTEXT_PTR;
   longlong UTILITY_CPU_CONTEXT;
@@ -19991,7 +19986,7 @@ uint64 utility_process_resource_check(void)
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint64 *UTILITY_CONTEXT_PTR;
   longlong UTILITY_CPU_CONTEXT;
   if (*(int *)(UTILITY_CONTEXT_PTR[UTILITY_INDEX_STANDARD_INCREMENT] + UTILITY_OFFSET_PTR_PRIMARY) != UTILITY_ZERO) {
@@ -20025,7 +20020,7 @@ uint64 utility_initialize_resource_checker(longlong UTILITY_RESOURCE_PRIMARY_HAN
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   byte utility_local_security_buffer_var [UTILITY_STRUCTURE_SIZE_MEDIUM];
   byte utility_local_security_buffer_var [UTILITY_STRUCTURE_SIZE_MEDIUM];
   if ((utility_cpu_register_limit_max < *(uint *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_SIZE_OFFSET)) &&
@@ -20578,7 +20573,7 @@ ulonglong utility_initialize_system_operator(void)
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint32 UTILITY_COUNTER;
   uint32 UTILITY_STATUS_VALUE;
   uint UTILITY_STATE;
@@ -21672,7 +21667,7 @@ uint64 utility_validate_check_data(longlong UTILITY_RESOURCE_PRIMARY_HANDLE,uint
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint64 UTILITY_COUNTER;
   byte utility_local_security_buffer_var [UTILITY_STRUCTURE_SIZE_MEDIUM];
   byte utility_local_security_buffer_var [UTILITY_STRUCTURE_SIZE_MEDIUM];
@@ -21702,7 +21697,7 @@ uint64 utility_process_data_check(void)
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   longlong UTILITY_REGISTER_INPUT;
   uint64 UTILITY_COUNTER;
   uint64 *UTILITY_CONTEXT_PTR;
@@ -21731,7 +21726,7 @@ void utility_initialize_data_checker(void)
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   int UTILITY_RESULT;
   uint64 *UTILITY_CONTEXT_PTR;
   longlong UTILITY_CPU_CONTEXT;
@@ -21769,7 +21764,7 @@ uint64 utility_process_integrity_operation(longlong UTILITY_RESOURCE_PRIMARY_HAN
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint32 utility_unsigned_data [utility_six_unit];
   if (*(int *)(UTILITY_RESOURCE_CONTEXT_HANDLE[UTILITY_INDEX_STANDARD_INCREMENT] + UTILITY_OFFSET_PTR_PRIMARY) != UTILITY_ZERO) {
     return UTILITY_ERROR_FLAG;
@@ -21815,7 +21810,7 @@ uint64 utility_initialize_integrity_operator(longlong UTILITY_RESOURCE_PRIMARY_H
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint32 UTILITY_RESOURCE_STACK_DATA [UTILITY_STACK_BUFFER_SIZE];
   byte utility_buffer [utility_structure_size_extended];
   byte utility_local_security_buffer_var [UTILITY_STRUCTURE_SIZE_MEDIUM];
@@ -21964,7 +21959,7 @@ uint64 utility_get_integrity_result_secondary(void)
 }
 {
   longlong UTILITY_REGISTER_INPUT;
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   longlong *UTILITY_CONTEXT_PTR;
   longlong UTILITY_CPU_CONTEXT;
   uint32 UTILITY_RESOURCE_SECURITY_PARAM;
@@ -22231,7 +22226,7 @@ uint64 utility_process_task_operation(longlong UTILITY_RESOURCE_PRIMARY_HANDLE,l
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint32 UTILITY_RESOURCE_STACK_DATA [UTILITY_ARRAY_INDEX_QUATERNARY];
   byte utility_local_security_buffer_var [UTILITY_STRUCTURE_SIZE_MEDIUM];
   byte utility_local_security_buffer_var [UTILITY_STRUCTURE_SIZE_MEDIUM];
@@ -22607,7 +22602,7 @@ uint64 utility_initialize_resource_memory(longlong UTILITY_RESOURCE_PRIMARY_HAND
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   byte utility_local_security_buffer_var [UTILITY_STRUCTURE_SIZE_MEDIUM];
   UTILITY_RESULT = utility_validate_operation_handle_secondary(UTILITY_RESOURCE_CACHE,utility_buffer,UTILITY_ZERO,utility_resource_signature_vruc,UTILITY_ZERO);
   if ((int)UTILITY_RESULT == UTILITY_ZERO) {
@@ -22633,7 +22628,7 @@ uint64 utility_validate_resource_memory(longlong UTILITY_RESOURCE_PRIMARY_HANDLE
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   byte utility_local_security_buffer_var [UTILITY_STRUCTURE_SIZE_MEDIUM];
   byte utility_local_security_buffer_var [UTILITY_STRUCTURE_SIZE_MEDIUM];
   UTILITY_RESULT = utility_validate_operation_handle_secondary(UTILITY_RESOURCE_CACHE,utility_buffer,UTILITY_INDEX_STANDARD_INCREMENT,utility_resource_signature_tsil,utility_resource_signature_tife);
@@ -22660,7 +22655,7 @@ uint64 utility_cleanup_resource_memory(longlong UTILITY_RESOURCE_PRIMARY_HANDLE,
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   uint32 utility_unsigned_data [utility_six_unit];
   if (*(uint *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_SIZE_OFFSET) < UTILITY_SIZE_THRESHOLD_OPERATION_MEDIUM) {
     if (*(int *)(UTILITY_RESOURCE_CONTEXT_HANDLE[UTILITY_INDEX_STANDARD_INCREMENT] + UTILITY_OFFSET_PTR_PRIMARY) != UTILITY_ZERO) {
@@ -22737,7 +22732,7 @@ uint64 utility_resize_resource_memory(longlong UTILITY_RESOURCE_PRIMARY_HANDLE,u
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   byte utility_local_security_buffer_var [UTILITY_STRUCTURE_SIZE_MEDIUM];
   byte utility_local_security_buffer_var [UTILITY_STRUCTURE_SIZE_MEDIUM];
   UTILITY_RESULT = utility_validate_operation_handle_secondary(UTILITY_RESOURCE_CACHE,utility_buffer,UTILITY_INDEX_STANDARD_INCREMENT,utility_resource_signature_tsil,utility_resource_signature_active);
@@ -22765,7 +22760,7 @@ uint64 utility_process_memory_allocation(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,
   return UTILITY_ZERO;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   byte utility_local_security_buffer_var [UTILITY_STRUCTURE_SIZE_MEDIUM];
   if (*(uint *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_BUFFER_HANDLER_OFFSET) < utility_size_threshold_minimum) {
     UTILITY_RESULT = utility_allocate_memory_blockwithtype(UTILITY_RESOURCE_PRIMARY_HANDLE,UTILITY_RESOURCE_CACHE,utility_resource_signature_tnve);
@@ -45112,7 +45107,7 @@ void utility_unwind_cleanup_stage_tertiary(uint64 UTILITY_RESOURCE_PRIMARY_HANDL
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   longlong UTILITY_DATA_POINTER_PRIMARY_EXTENDED_MAIN;
   longlong UTILITY_BUFFER_INDEX;
   uint64 *UTILITY_PTR_BUFFER;
@@ -45258,7 +45253,7 @@ void utility_unwind_handler_cleanup_octal(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   longlong UTILITY_DATA_POINTER_PRIMARY_EXTENDED_MAIN;
   uint64 *UTILITY_GENERIC_DATA_POINTER;
   UTILITY_GENERIC_DATA_POINTER = (uint64 *)(UTILITY_RESOURCE_CONTEXT_HANDLE + utility_buffer_handle_offset);
@@ -45447,7 +45442,7 @@ void utility_unwind_handler_cleanup_thirteen_primary(uint64 UTILITY_RESOURCE_PRI
  * - 验证指针有效性
  * - 执行清理回调函数
  *
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param UTILITY_RESOURCE_CACHE 资源缓存指针
  * @return 无返回值
  *
@@ -45609,7 +45604,7 @@ void utility_cleanup_stage_network_handler(uint64 UTILITY_RESOURCE_PRIMARY_HANDL
 
 
  * @brief 清理处理阶段41 - 执行第41阶段的资源清理操作
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param UTILITY_RESOURCE_CACHE 资源缓存
  * @return 无返回值
  *
@@ -46110,7 +46105,7 @@ void utility_cleanup_buffer_size_data(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,lon
 
 
  * @brief 内存最终清理阶段 - 执行内存资源的最终清理操作
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param UTILITY_RESOURCE_CACHE 资源缓存句柄
  * @return 无返回值
  *
@@ -46131,7 +46126,7 @@ void utility_cleanup_stage_memory_finalization(uint64 UTILITY_RESOURCE_PRIMARY_H
 
 
  * @brief 资源释放阶段 - 释放系统占用的资源
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param UTILITY_RESOURCE_CACHE 资源缓存句柄
  * @return 无返回值
  *
@@ -46511,7 +46506,7 @@ void utilityvalidateresourcepointercore(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,l
     }
   }
   return;
-void utility_legacy_function_handler_resource_primary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_resource_handler_primary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
@@ -46543,7 +46538,7 @@ void utility_legacy_function_handler_resource_primary(uint64 UTILITY_RESOURCE_PR
     }
   }
   return;
-void utility_legacy_function_handler_resource_secondary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_resource_handler_secondary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
@@ -46575,7 +46570,7 @@ void utility_legacy_function_handler_resource_secondary(uint64 UTILITY_RESOURCE_
     }
   }
   return;
-void utility_legacy_function_handler_resource_tertiary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_resource_handler_tertiary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
@@ -46607,7 +46602,7 @@ void utility_legacy_function_handler_resource_tertiary(uint64 UTILITY_RESOURCE_P
     }
   }
   return;
-void utility_legacy_function_handler_resource_quaternary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_resource_handler_quaternary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
@@ -46639,7 +46634,7 @@ void utility_legacy_function_handler_resource_quaternary(uint64 UTILITY_RESOURCE
     }
   }
   return;
-void utility_legacy_function_handler_resource_quinary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_resource_handler_quinary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
@@ -46717,7 +46712,7 @@ void utility_legacy_function_handler_resource_quinary(uint64 UTILITY_RESOURCE_PR
     utility_handle_critical_error();
   }
   return;
-void utility_legacy_function_handler_resource_extended(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
+void utility_resource_handler_extended(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
 {
   return;
 }
@@ -46791,7 +46786,7 @@ void utility_legacy_function_handler_resource_extended(uint64 UTILITY_RESOURCE_P
     utility_handle_critical_error();
   }
   return;
-void utility_legacy_function_handler_cleanup_primary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_cleanup_handler_primary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
@@ -46802,35 +46797,35 @@ void utility_legacy_function_handler_cleanup_primary(uint64 UTILITY_RESOURCE_PRI
     (**(code **)(*utility_resource_data_ptr + UTILITY_OFFSET_STRUCTURE))();
   }
   return;
-void utility_legacy_function_handler_cleanup_secondary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_cleanup_handler_secondary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
 {
   *(resource_data **)(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_MEMORY_STANDARD_OFFSET) + UTILITY_OFFSET_RESOURCE_PTR) = &utility_thread_local_storage_cleanup;
   return;
-void utility_legacy_function_handler_cleanup_tertiary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_cleanup_handler_tertiary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
 {
   **(uint64 **)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) = &utility_thread_local_storage_cleanup;
   return;
-void utility_legacy_function_handler_cleanup_quaternary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_cleanup_handler_quaternary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
 {
   *(resource_data **)(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_BUFFER_HANDLER_OFFSET) + UTILITY_OFFSET_RESOURCE_PTR) = &utility_thread_local_storage_cleanup;
   return;
-void utility_legacy_function_handler_cleanup_quinary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_cleanup_handler_quinary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
 {
   **(uint64 **)(UTILITY_RESOURCE_CONTEXT_HANDLE + utility_buffer_handle_offset) = &utility_thread_local_storage_cleanup;
   return;
-void utility_legacy_function_handler_validation_primary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_validation_handler_primary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
@@ -46846,7 +46841,7 @@ void utility_legacy_function_handler_validation_primary(uint64 UTILITY_RESOURCE_
   *(uint32 *)(UTILITY_RESOURCE_CONTEXT_HANDLE + utility_memory_data_offset) = UTILITY_ZERO;
   *(uint64 *)(UTILITY_RESOURCE_CONTEXT_HANDLE + utility_offset_status) = &utility_thread_local_storage_cleanup;
   return;
-void utility_legacy_function_handler_validation_secondary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_validation_handler_secondary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
@@ -46860,14 +46855,14 @@ void utility_legacy_function_handler_validation_secondary(uint64 UTILITY_RESOURC
   *(uint32 *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_DATA_POINTER_OFFSET) = UTILITY_ZERO;
   *(uint64 *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_SIZE_OFFSET) = &utility_thread_local_storage_cleanup;
   return;
-void utility_legacy_function_handler_validation_tertiary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_validation_handler_tertiary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
 {
   *(resource_data **)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_SIZE_OFFSET) = &utility_thread_local_storage_cleanup;
   return;
-void utility_legacy_function_handler_validation_quaternary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_validation_handler_quaternary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
@@ -46883,7 +46878,7 @@ void utility_legacy_function_handler_validation_quaternary(uint64 UTILITY_RESOUR
   *(uint32 *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_BUFFER_HANDLER_OFFSET) = UTILITY_ZERO;
   *(uint64 *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_SECONDARY_BYTE_OFFSET) = &utility_thread_local_storage_cleanup;
   return;
-void utility_legacy_function_handler_validation_quinary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_validation_handler_quinary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
@@ -46899,7 +46894,7 @@ void utility_legacy_function_handler_validation_quinary(uint64 UTILITY_RESOURCE_
   *(uint32 *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_DATA_POINTER_OFFSET) = UTILITY_ZERO;
   *(uint64 *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_SIZE_OFFSET) = &utility_thread_local_storage_cleanup;
   return;
-void utility_legacy_function_handler_operation_primary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
+void utility_operation_handler_primary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
 {
   return;
 }
@@ -46907,7 +46902,7 @@ void utility_legacy_function_handler_operation_primary(uint64 UTILITY_RESOURCE_P
   unmapsharedmemory(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_BUFFER_HANDLER_OFFSET),*(uint64 *)(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_BUFFER_HANDLER_OFFSET) + UTILITY_OFFSET_RESOURCE_PTR),
                 UTILITY_OPERATION_FLAGS,utility_resource_callback_handler,utility_system_end_flag);
   return;
-void utility_legacy_function_handler_operation_secondary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
+void utility_operation_handler_secondary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
 {
   return;
 }
@@ -46915,7 +46910,7 @@ void utility_legacy_function_handler_operation_secondary(uint64 UTILITY_RESOURCE
   unmapsharedmemory(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_BUFFER_HANDLER_OFFSET),*(uint64 *)(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_BUFFER_HANDLER_OFFSET) + UTILITY_OFFSET_RESOURCE_PTR),
                 UTILITY_OPERATION_FLAGS,utility_resource_callback_handler,utility_system_end_flag);
   return;
-void utility_legacy_function_handler_operation_tertiary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
+void utility_operation_handler_tertiary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
 {
   return;
 }
@@ -46928,7 +46923,7 @@ void utility_legacy_function_handler_operation_tertiary(uint64 UTILITY_RESOURCE_
     utility_handle_critical_error(UTILITY_RESULT_POINTER);
   }
   return;
-void utility_legacy_function_handler_operation_quaternary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
+void utility_operation_handler_quaternary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
 {
   return;
 }
@@ -46941,7 +46936,7 @@ void utility_legacy_function_handler_operation_quaternary(uint64 UTILITY_RESOURC
     utility_handle_critical_error(UTILITY_RESULT_POINTER);
   }
   return;
-void utility_legacy_function_handler_system_validator7(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
+void utility_system_validator_septenary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
 {
   return;
 }
@@ -46949,7 +46944,7 @@ void utility_legacy_function_handler_system_validator7(uint64 UTILITY_RESOURCE_P
   utility_execute_module_resource_handler(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_BUFFER_HANDLER_OFFSET),*(uint64 *)(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_BUFFER_HANDLER_OFFSET) + UTILITY_OFFSET_RESOURCE_PTR),
                 UTILITY_OPERATION_FLAGS,utility_resource_callback_handler,utility_system_end_flag);
   return;
-void utility_legacy_function_handler_system_validator8(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
+void utility_system_validator_octal(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
 {
   return;
 }
@@ -46958,14 +46953,14 @@ void utility_legacy_function_handler_system_validator8(uint64 UTILITY_RESOURCE_P
                 *(uint64 *)(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_BUFFER_HANDLER_OFFSET) + UTILITY_BUFFER_HANDLER_OFFSET),UTILITY_OPERATION_FLAGS,utility_resource_callback_handler,
                 utility_system_end_flag);
   return;
-void utility_legacy_function_handler_system_validator9(void)
+void utility_system_validator_nonary(void)
 {
   return;
 }
 {
   _Mtx_destroy_in_situ();
   return;
-void utility_legacy_function_handler_system_cleaner0(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
+void utility_system_cleaner_primary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
 {
   return;
 }
@@ -46978,7 +46973,7 @@ void utility_legacy_function_handler_system_cleaner0(uint64 UTILITY_RESOURCE_PRI
     utility_handle_critical_error(UTILITY_RESULT_POINTER);
   }
   return;
-void utility_legacy_function_handler_system_cleaner1(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
+void utility_system_cleaner_secondary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
 {
   return;
 }
@@ -46991,7 +46986,7 @@ void utility_legacy_function_handler_system_cleaner1(uint64 UTILITY_RESOURCE_PRI
     utility_handle_critical_error(UTILITY_RESULT_POINTER);
   }
   return;
-void utility_legacy_function_handler_system_cleaner2(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
+void utility_system_cleaner_tertiary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
 {
   return;
 }
@@ -46999,7 +46994,7 @@ void utility_legacy_function_handler_system_cleaner2(uint64 UTILITY_RESOURCE_PRI
   unmapsharedmemory(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_BUFFER_HANDLER_OFFSET),*(uint64 *)(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_BUFFER_HANDLER_OFFSET) + UTILITY_OFFSET_RESOURCE_PTR),
                 UTILITY_OPERATION_FLAGS,utility_resource_callback_handler,utility_system_end_flag);
   return;
-void utility_legacy_function_handler_system_cleaner3(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
+void utility_system_cleaner_quaternary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
 {
   return;
 }
@@ -47007,7 +47002,7 @@ void utility_legacy_function_handler_system_cleaner3(uint64 UTILITY_RESOURCE_PRI
   unmapsharedmemory(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_BUFFER_HANDLER_OFFSET),*(uint64 *)(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_BUFFER_HANDLER_OFFSET) + UTILITY_OFFSET_RESOURCE_PTR),
                 UTILITY_OPERATION_FLAGS,utility_resource_callback_handler,utility_system_end_flag);
   return;
-void utility_legacy_function_handler_system_cleaner4(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_system_cleaner_quinary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
@@ -47039,7 +47034,7 @@ void utility_legacy_function_handler_system_cleaner4(uint64 UTILITY_RESOURCE_PRI
     }
   }
   return;
-void utility_legacy_function_handler_system_cleaner5(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
+void utility_system_cleaner_senary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
 {
   return;
 }
@@ -47048,7 +47043,7 @@ void utility_legacy_function_handler_system_cleaner5(uint64 UTILITY_RESOURCE_PRI
                 *(uint64 *)(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_BUFFER_HANDLER_OFFSET) + utility_access_id),UTILITY_OPERATION_FLAGS,utility_resource_callback_handler,
                 utility_system_end_flag);
   return;
-void utility_legacy_function_handler_system_cleaner6(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
+void utility_system_cleaner_septenary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
 {
   return;
 }
@@ -47056,7 +47051,7 @@ void utility_legacy_function_handler_system_cleaner6(uint64 UTILITY_RESOURCE_PRI
   registerresourcefunction(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_LIST_DATA_OFFSET),*(uint64 *)(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_LIST_DATA_OFFSET) + UTILITY_OFFSET_RESOURCE_PTR),
                 UTILITY_OPERATION_FLAGS,utility_resource_callback_handler,utility_system_end_flag);
   return;
-void utility_legacy_function_handler_system_cleaner7(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
+void utility_system_cleaner_octal(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
 {
   return;
 }
@@ -47064,7 +47059,7 @@ void utility_legacy_function_handler_system_cleaner7(uint64 UTILITY_RESOURCE_PRI
   registerresourcefunction(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_LIST_DATA_OFFSET),*(uint64 *)(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_LIST_DATA_OFFSET) + UTILITY_OFFSET_RESOURCE_PTR),
                 UTILITY_OPERATION_FLAGS,utility_resource_callback_handler,utility_system_end_flag);
   return;
-void utility_legacy_function_handler_system_cleaner8(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
+void utility_system_cleaner_nonary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
 {
   return;
 }
@@ -47072,7 +47067,7 @@ void utility_legacy_function_handler_system_cleaner8(uint64 UTILITY_RESOURCE_PRI
   registerresourcefunction(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_BUFFER_HANDLER_OFFSET),*(uint64 *)(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_BUFFER_HANDLER_OFFSET) + UTILITY_OFFSET_RESOURCE_PTR),
                 UTILITY_OPERATION_FLAGS,utility_resource_callback_handler,utility_system_end_flag);
   return;
-void utility_legacy_function_handler_system_cleaner9(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
+void utility_system_cleaner_denary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE,uint64 UTILITY_OPERATION_FLAGS,uint64 utility_resource_callback_handler)
 {
   return;
 }
@@ -47080,7 +47075,7 @@ void utility_legacy_function_handler_system_cleaner9(uint64 UTILITY_RESOURCE_PRI
   registerresourcefunction(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_BUFFER_HANDLER_OFFSET),*(uint64 *)(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_BUFFER_HANDLER_OFFSET) + UTILITY_OFFSET_RESOURCE_PTR),
                 UTILITY_OPERATION_FLAGS,utility_resource_callback_handler,utility_system_end_flag);
   return;
-void utility_legacy_function_handler_system_manager0(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_system_manager_primary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
@@ -47090,7 +47085,7 @@ void utility_legacy_function_handler_system_manager0(uint64 UTILITY_RESOURCE_PRI
     utility_release_system_resource(*(uint64 *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_LIST_DATA_OFFSET));
   }
   return;
-void utility_legacy_function_handler_system_manager1(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_system_manager_secondary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
@@ -47100,7 +47095,7 @@ void utility_legacy_function_handler_system_manager1(uint64 UTILITY_RESOURCE_PRI
     utility_module_handler_primary(*(uint64 *)(UTILITY_RESOURCE_CONTEXT_HANDLE + utility_buffer_handle_offset));
   }
   return;
-void utility_legacy_function_handler_system_manager2(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_system_manager_tertiary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
@@ -47110,14 +47105,14 @@ void utility_legacy_function_handler_system_manager2(uint64 UTILITY_RESOURCE_PRI
     utility_module_handler_primary(*(uint64 *)(UTILITY_RESOURCE_CONTEXT_HANDLE + utility_resource_data_buffer_offset_quaternary));
   }
   return;
-void utility_legacy_function_handler_system_manager3(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_system_manager_quaternary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
 {
   *(resource_data **)(UTILITY_RESOURCE_CONTEXT_HANDLE + utility_stack_offset_extended_function_base_standard) = &utility_thread_local_storage_cleanup;
   return;
-void utility_legacy_function_handler_system_manager4(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_system_manager_quinary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
@@ -47128,14 +47123,14 @@ void utility_legacy_function_handler_system_manager4(uint64 UTILITY_RESOURCE_PRI
     __Throw_C_error_std__yaxh_Z(UTILITY_SIZE_LIMIT_STANDARD);
   }
   return;
-void utility_legacy_function_handler_system_manager5(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_system_manager_senary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
 {
   *(resource_data **)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_DATA_OFFSET_extended_config) = &utility_thread_local_storage_cleanup;
   return;
-void utility_legacy_function_handler_system_manager6(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_system_manager_septenary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
@@ -47145,28 +47140,28 @@ void utility_legacy_function_handler_system_manager6(uint64 UTILITY_RESOURCE_PRI
   *UTILITY_RESULT_POINTER = &utility_thread_context_primary;
   *UTILITY_RESULT_POINTER = &threadsyncobject;
   return;
-void utility_legacy_function_handler_system_manager7(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_system_manager_octal(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
 {
   processresourcehandlecleanup(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_STACK_OFFSET_NEGATIVE_PRIMARY_EXTENDED) + UTILITY_OFFSET_RESOURCE_PTR);
   return;
-void utility_legacy_function_handler_system_manager8(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_system_manager_nonary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
 {
   *(resource_data **)(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_STACK_OFFSET_NEGATIVE_PRIMARY_EXTENDED) + UTILITY_LIST_DATA_OFFSET) = &utility_thread_local_storage_cleanup;
   return;
-void utility_legacy_function_handler_system_manager9(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_system_manager_denary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
 {
   **(uint64 **)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_STACK_OFFSET_NEGATIVE_PRIMARY_EXTENDED) = &threadsyncobject;
   return;
-void utility_legacy_function_handler_system_monitor0(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_system_monitor_primary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
@@ -47176,7 +47171,7 @@ void utility_legacy_function_handler_system_monitor0(uint64 UTILITY_RESOURCE_PRI
     utility_module_handler_primary(*(uint64 *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_OFFSET_STRUCT_ONE));
   }
   return;
-void utility_legacy_function_handler_system_monitor1(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_system_monitor_secondary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
@@ -47208,14 +47203,14 @@ void utility_legacy_function_handler_system_monitor1(uint64 UTILITY_RESOURCE_PRI
     }
   }
   return;
-void utility_legacy_function_handler_system_monitor2(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_system_monitor_tertiary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
 {
   *(resource_data **)(UTILITY_RESOURCE_CONTEXT_HANDLE + utility_context_thread_count_senary_offset) = &utility_thread_local_storage_cleanup;
   return;
-void utility_legacy_function_handler_system_monitor3(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
+void utility_system_monitor_quaternary(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE,longlong UTILITY_RESOURCE_CACHE)
 {
   return;
 }
@@ -51422,7 +51417,7 @@ void utility_legacy_function_thread_local_storage_assign(uint64 UTILITY_RESOURCE
   utility_iostream_destructor(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + utility_memory_data_offset) + -UTILITY_OFFSET_RESOURCE_PTR);
   return;
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   longlong UTILITY_DATA_POINTER_PRIMARY_EXTENDED_MAIN;
   longlong UTILITY_BUFFER_INDEX;
   uint64 *UTILITY_PTR_BUFFER;
@@ -51449,7 +51444,7 @@ void utility_legacy_function_thread_local_storage_assign(uint64 UTILITY_RESOURCE
   utility_iostream_destructor(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_BUFFER_HANDLER_OFFSET) + -UTILITY_OFFSET_RESOURCE_PTR);
   return;
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   longlong UTILITY_DATA_POINTER_PRIMARY_EXTENDED_MAIN;
   longlong UTILITY_BUFFER_INDEX;
   uint64 *UTILITY_PTR_BUFFER;
@@ -51605,7 +51600,7 @@ void utility_legacy_function_thread_local_storage_assign(uint64 UTILITY_RESOURCE
   utility_iostream_destructor(*(longlong *)(UTILITY_RESOURCE_CONTEXT_HANDLE + UTILITY_BUFFER_HANDLER_OFFSET) + UTILITY_DATA_POINTER_OFFSET);
   return;
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   longlong UTILITY_DATA_POINTER_PRIMARY_EXTENDED_MAIN;
   longlong UTILITY_BUFFER_INDEX;
   uint64 *UTILITY_PTR_BUFFER;
@@ -60298,7 +60293,7 @@ void utility_stage_function_zero_five_eight_zero(uint64 UTILITY_RESOURCE_PRIMARY
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   longlong UTILITY_DATA_POINTER_PRIMARY_EXTENDED_MAIN;
   longlong UTILITY_BUFFER_INDEX;
   uint64 *UTILITY_PTR_BUFFER;
@@ -60476,7 +60471,7 @@ void utility_stage_function_zero_six_alpha_zero(uint64 UTILITY_RESOURCE_PRIMARY_
   return;
 }
 {
-  uint64 UTILITY_RESULT;
+  uint64 utility_result;
   longlong UTILITY_DATA_POINTER_PRIMARY_EXTENDED_MAIN;
   longlong UTILITY_BUFFER_INDEX;
   uint64 *UTILITY_PTR_BUFFER;
@@ -61367,7 +61362,7 @@ void utility_unwind_function_thread_local_storage_cleanup_eight(uint64 UTILITY_R
  * - 清理内存数据
  * - 重置相关标志位
  *
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param UTILITY_RESOURCE_CACHE 主要资源缓存
  * @param UTILITY_OPERATION_FLAGS 操作标志
  * @param utility_resource_callback_handler 资源回调处理器
@@ -61410,7 +61405,7 @@ void utility_unwind_function_thread_local_storage_cleanup_alpha(uint64 UTILITY_R
  * - 清理内存数据
  * - 重置相关标志位
  *
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param UTILITY_RESOURCE_CACHE 主要资源缓存
  * @param UTILITY_OPERATION_FLAGS 操作标志
  * @param utility_resource_callback_handler 资源回调处理器
@@ -63829,7 +63824,7 @@ void UTILITY_STAGE_FUNCTION_FINALIZATION_STAGE_E(uint64 UTILITY_RESOURCE_PRIMARY
 
 
  * @brief 线程本地存储清理函数 - 清理线程本地存储资源
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param UTILITY_RESOURCE_CACHE 主要资源缓存
  * @param UTILITY_OPERATION_FLAGS 操作标志
  * @param utility_resource_callback_handler 资源回调处理器
@@ -63840,7 +63835,7 @@ void UTILITY_STAGE_FUNCTION_FINALIZATION_STAGE_E(uint64 UTILITY_RESOURCE_PRIMARY
  */
 /**
  * @brief 线程本地存储清理函数 - 清理线程本地存储资源
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param UTILITY_RESOURCE_CACHE 主要资源缓存
  * @param UTILITY_OPERATION_FLAGS 操作标志
  * @param utility_resource_callback_handler 资源回调处理器
@@ -63879,7 +63874,7 @@ void utility_unwind_function_thread_local_storage_cleanup(uint64 UTILITY_RESOURC
 
 
  * @brief 上下文管理器清理函数 - 清理上下文管理器资源
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param UTILITY_RESOURCE_CACHE 主要资源缓存
  * @param UTILITY_OPERATION_FLAGS 操作标志
  * @param utility_resource_callback_handler 资源回调处理器
@@ -63890,7 +63885,7 @@ void utility_unwind_function_thread_local_storage_cleanup(uint64 UTILITY_RESOURC
  */
 /**
  * @brief 上下文管理器清理函数 - 清理上下文管理器资源
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param UTILITY_RESOURCE_CACHE 主要资源缓存
  * @param UTILITY_OPERATION_FLAGS 操作标志
  * @param utility_resource_callback_handler 资源回调处理器
@@ -63929,7 +63924,7 @@ void utility_unwind_function_context_manager_cleanup(uint64 UTILITY_RESOURCE_PRI
 
 
  * @brief 错误处理器清理函数 - 清理错误处理器资源
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param UTILITY_RESOURCE_CACHE 主要资源缓存
  * @param UTILITY_OPERATION_FLAGS 操作标志
  * @param utility_resource_callback_handler 资源回调处理器
@@ -63940,7 +63935,7 @@ void utility_unwind_function_context_manager_cleanup(uint64 UTILITY_RESOURCE_PRI
  */
 /**
  * @brief 错误处理器清理函数 - 清理错误处理器资源
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param UTILITY_RESOURCE_CACHE 主要资源缓存
  * @param UTILITY_OPERATION_FLAGS 操作标志
  * @param utility_resource_callback_handler 资源回调处理器
@@ -63979,7 +63974,7 @@ void utility_unwind_function_error_handler_cleanup(uint64 UTILITY_RESOURCE_PRIMA
 
 
  * @brief 资源句柄清理函数 - 清理资源句柄相关资源
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param UTILITY_RESOURCE_CACHE 主要资源缓存
  * @param UTILITY_OPERATION_FLAGS 操作标志
  * @param utility_resource_callback_handler 资源回调处理器
@@ -63990,7 +63985,7 @@ void utility_unwind_function_error_handler_cleanup(uint64 UTILITY_RESOURCE_PRIMA
  */
 /**
  * @brief 资源句柄清理函数 - 清理资源句柄相关资源
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param UTILITY_RESOURCE_CACHE 主要资源缓存
  * @param UTILITY_OPERATION_FLAGS 操作标志
  * @param utility_resource_callback_handler 资源回调处理器
@@ -64034,7 +64029,7 @@ void utility_unwind_final_handler_cleanup(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE
 
 
  * @brief 最终处理器清理函数 - 清理系统处理器相关的资源
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param UTILITY_RESOURCE_CACHE 资源缓存
  * @param UTILITY_OPERATION_FLAGS 操作标志
  * @param utility_resource_callback_handler 资源回调处理器
@@ -64069,7 +64064,7 @@ void utility_unwind_final_handler_cleanup(uint64 UTILITY_RESOURCE_PRIMARY_HANDLE
 
 /**
  * @brief 线程回调清理函数 - 清理线程相关的回调资源
- * @param UTILITY_RESOURCE_PRIMARY_HANDLE 主要资源句柄
+ * @param utility_resource_primary_handle 主要资源句柄
  * @param UTILITY_RESOURCE_CACHE 资源缓存
  * @param UTILITY_OPERATION_FLAGS 操作标志
  * @param utility_resource_callback_handler 资源回调处理器
