@@ -700,7 +700,7 @@ while( true ) {
 int64_t utility_loop_counter = 0;
     int utility_status_code = UTILITY_STATUS_FALSE;
     uint64_t utility_status;
-int64_t utility_stack_data_buffer [2];
+int64_t stack_data_buffer[2];
     utility_status = utility_handle_service_request(*(uint32_t *)(utility_context_pointer + UTILITY_THREAD_HANDLE_OFFSET), utility_stack_data_buffer);
     utility_loop_counter = 0;
     if ((int)utility_status != UTILITY_STATUS_FALSE) {
@@ -709,7 +709,7 @@ int64_t utility_stack_data_buffer [2];
 (int *)(stack_base_ptr + UTILITY_RESOURCE_FLAG_OFFSET) = *(int *)(stack_base_ptr + UTILITY_RESOURCE_FLAG_OFFSET) + 1;
     if (*(int *)(stack_base_ptr + UTILITY_RESOURCE_SIZE_OFFSET) + *(int *)(stack_base_ptr + UTILITY_RESOURCE_COUNT_OFFSET) +
 *(int *)(stack_base_ptr + UTILITY_RESOURCE_FLAG_OFFSET) == UTILITY_STATUS_TRUE) {
-    utility_stack_buffer[0] = UTILITY_STATUS_FALSE;
+    stack_buffer[0] = UTILITY_STATUS_FALSE;
     utility_status_code = utility_process_stack_main(utility_stack_data_buffer);
     if (utility_status_code == UTILITY_STATUS_FALSE) {
     utility_status_code = utility_stack_operation_secondary(utility_loop_counter);
@@ -734,7 +734,7 @@ int64_t utility_stack_data_buffer [2];
 int64_t utility_loop_counter = 0;
     uint64_t utility_status;
     int64_t *resource_manager;
-int64_t utility_stack_data_buffer [4];
+int64_t stack_data_buffer[4];
     utility_status = utility_handle_service_request(*(uint32_t *)(utility_context_pointer + UTILITY_THREAD_HANDLE_OFFSET), utility_stack_data_buffer);
     if ((int)utility_status == UTILITY_STATUS_FALSE) {
     utility_context_pointer = *(int64_t **)(stack_base_ptr + UTILITY_THREAD_DATA_OFFSET);
@@ -766,7 +766,7 @@ int64_t utility_stack_data_buffer [4];
 int64_t utility_loop_counter = 0;
     uint64_t utility_status;
     int utility_status_code;
-int64_t utility_stack_data_buffer [2];
+int64_t stack_data_buffer[2];
     utility_status = utility_handle_service_request(*(uint32_t *)(utility_context_pointer + UTILITY_THREAD_HANDLE_OFFSET), utility_stack_data_buffer);
     utility_loop_counter = 0;
     if ((int)utility_status != UTILITY_STATUS_FALSE) {
@@ -780,7 +780,7 @@ int64_t utility_stack_data_buffer [2];
     if (*(int *)(stack_base_ptr + UTILITY_RESOURCE_SIZE_OFFSET) + *(int *)(stack_base_ptr + UTILITY_RESOURCE_COUNT_OFFSET) + utility_status_code != UTILITY_STATUS_FALSE) {
     return 0;
 }
-    utility_stack_buffer[0] = UTILITY_STATUS_FALSE;
+    stack_buffer[0] = UTILITY_STATUS_FALSE;
     utility_status_code = utility_process_stack_main(utility_stack_data_buffer);
     if (utility_status_code == UTILITY_STATUS_FALSE) {
     utility_status_code = utility_stack_operation_tertiary(utility_loop_counter);
@@ -807,13 +807,13 @@ int64_t utility_stack_data_buffer [2];
 
 int64_t utility_loop_counter = 0;
     uint64_t utility_status;
-int64_t utility_stack_data_buffer [4];
+int64_t stack_data_buffer[4];
     utility_status = utility_handle_service_request(*(uint32_t *)(utility_context_pointer + UTILITY_THREAD_HANDLE_OFFSET), utility_stack_data_buffer);
     if ((int)utility_status != UTILITY_STATUS_FALSE) {
     return utility_status;
 }
-    if (utility_stack_buffer[0] != UTILITY_STATUS_FALSE) {
-    utility_stack_buffer[0] -= 8;
+    if (stack_buffer[0] != UTILITY_STATUS_FALSE) {
+    stack_buffer[0] -= 8;
 }
     utility_loop_counter = 0;
     if (utility_loop_counter < utility_max_iterations) {
@@ -985,7 +985,7 @@ void initialize_thread_local_storage(void)
 uint64_t create_thread(int64_t context_pointer)
 {
     uint64_t utility_status;
-    int64_t utility_stack_buffer[2];
+    int64_t stack_buffer[2];
     int64_t stack_base_ptr;
     int64_t utility_resource_ctx_handle;
     int utility_status_code;
@@ -993,16 +993,16 @@ uint64_t create_thread(int64_t context_pointer)
     utility_status = utility_handle_service_request(*(uint32_t *)(utility_context_pointer + UTILITY_THREAD_HANDLE_OFFSET), utility_stack_data_buffer);
     utility_status = utility_handle_service_request(*(uint32_t *)(utility_context_pointer + UTILITY_THREAD_HANDLE_OFFSET), utility_stack_data_buffer);
     if ((int)utility_status == UTILITY_STATUS_FALSE) {
-        if (utility_stack_buffer[0] == UTILITY_STATUS_FALSE) {
-            utility_stack_buffer[0] = UTILITY_STATUS_FALSE;
+        if (stack_buffer[0] == UTILITY_STATUS_FALSE) {
+            stack_buffer[0] = UTILITY_STATUS_FALSE;
         } else {
-            utility_stack_buffer[0] -= 8;
+            stack_buffer[0] -= 8;
         }
-        utility_stack_buffer[0] = UTILITY_STATUS_FALSE;
+        stack_buffer[0] = UTILITY_STATUS_FALSE;
         
         utility_resource_ctx_handle = utility_create_context(stack_base_ptr, utility_context_pointer + UTILITY_THREAD_DATA_OFFSET, utility_stack_data_buffer);
         if ((int)utility_status == UTILITY_STATUS_FALSE) {
-            if (utility_stack_buffer[0] != UTILITY_STATUS_FALSE) {
+            if (stack_buffer[0] != UTILITY_STATUS_FALSE) {
                 if (*(int64_t *)(stack_base_ptr + UTILITY_MEMORY_POINTER_OFFSET) == UTILITY_STATUS_FALSE) {
                     return UTILITY_STATUS_THREAD_CREATED;
                 }
@@ -1633,13 +1633,13 @@ void ExitThread(void)
 {
 
     int utility_status_code;
-    uint64_t utility_stack_data_buffer [4];
-    uint32_t utility_stack_data_buffer [2];
+    uint64_t stack_data_buffer[4];
+    uint32_t stack_data_buffer[2];
 long long computed_stack_value;
     uint32_t temp_stack_id;
     computed_stack_value = *(uint64_t *)(utility_context_pointer + UTILITY_THREAD_HANDLE_OFFSET);
     temp_stack_id = *(uint32_t *)(utility_context_pointer + UTILITY_THREAD_CONTEXT_OFFSET);
-    utility_stack_buffer[0] = 2;
+    stack_buffer[0] = 2;
     utility_status_code = utility_execute_operation(utility_context_pointer,utility_stack_data_buffer,*(uint32_t *)(utility_context_pointer + UTILITY_STATUS_THREAD_CREATED),utility_stack_data_buffer);
     if (utility_status_code == UTILITY_STATUS_FALSE) {
     utility_process_primary_resources(utility_context_pointer,stack_base_ptr);
@@ -1712,7 +1712,7 @@ utility_loop_counter = 0;
 
     int utility_status_code;
 int64_t utility_loop_counter = 0;
-    uint8_t utility_stack_data_buffer [8];
+    uint8_t stack_data_buffer[8];
     uint8_t utility_stack_context_id_buffer [72];
     utility_current_counter = UTILITY_STATUS_FALSE;
     if (0 < *(int *)(utility_context_pointer + UTILITY_THREAD_DATA_OFFSET)) {
@@ -1749,7 +1749,7 @@ return;
     uint64_t utility_resource_context_data_status;
 int64_t utility_loop_counter = 0;
 long long utility_parameter_data;
-    uint32_t utility_stack_data_buffer [2];
+    uint32_t stack_data_buffer[2];
 int64_t utility_stack_long_context;
     int stack_int_count;
     utility_status = utility_handle_service_request;(*(uint32_t *)(utility_context_pointer + UTILITY_CONTEXT_RESOURCE_OFFSET),&utility_parameter_data);
@@ -1759,12 +1759,12 @@ stack_int_count = *(int *)(utility_context_pointer + UTILITY_THREAD_CONTEXT_OFFS
     utility_current_counter = UTILITY_STATUS_FALSE;
     if (*(uint *)(utility_context_pointer + UTILITY_STATUS_THREAD_CREATED) == UTILITY_STATUS_FALSE) {
     utility_stack_long_context = *(int64_t *)(utility_context_pointer + UTILITY_THREAD_HANDLE_OFFSET);
-    utility_stack_buffer[0] = UTILITY_STATUS_TRUE;
+    stack_buffer[0] = UTILITY_STATUS_TRUE;
     utility_loop_counter = 0;
 }
 else {
     utility_stack_long_context = *(int64_t *)(utility_context_pointer + UTILITY_THREAD_HANDLE_OFFSET);
-    utility_stack_buffer[0] = 2;
+    stack_buffer[0] = 2;
 }
     utility_resource_ctx_handle = utility_run_resource_command(utility_context_pointer,utility_stack_data_buffer,*(uint32_t *)(utility_context_pointer + UTILITY_THREAD_DATA_OFFSET),utility_parameter_data);
     utility_resource_ctx_handle = (uint64_t)utility_resource_ctx_handle;
@@ -1877,11 +1877,11 @@ int process_resource_manager(void)
 {
     int64_t *resource_manager;
     int utility_status_code;
-    uint64_t utility_stack_buffer[2];
+    uint64_t stack_buffer[2];
     int64_t *utility_context_pointer;
     
     utility_context_pointer = (int64_t *)UTILITY_NULL;
-    utility_stack_buffer[0] = UTILITY_STATUS_FALSE;
+    stack_buffer[0] = UTILITY_STATUS_FALSE;
     utility_status_code = utility_process_stack_main(utility_stack_data_buffer);
     
     if ((utility_status_code == UTILITY_STATUS_FALSE) && 
