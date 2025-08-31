@@ -15,6 +15,11 @@
 #define UTILITY_ERROR_MEMORY 0x1
 #define UTILITY_ERROR_TIMEOUT 0x2
 #define UTILITY_ERROR_INVALID_PARAM 0x4
+
+/* 工具系统返回状态码 */
+#define UTILITY_STATUS_RESOURCE_LOCKED 0x2e
+#define UTILITY_STATUS_RESOURCE_AVAILABLE 0x4c
+#define UTILITY_STATUS_OPERATION_SUCCESS 0x0
 /* 工具系统全局变量定义 */
 /* 全局数据管理 */
 void *utility_global_data_primary;
@@ -3644,7 +3649,17 @@ void DeleteFiber(longlong utility_parameter,longlong utility_parameter)
 LAB_180891a52:
   utility_release_context_resources(*(uint64_t *)(utility_parameter + 0x98),utility_parameter);
 }
-uint64_t FUN_180891a80(longlong utility_parameter,longlong utility_parameter)
+/**
+ * @brief 处理资源上下文的主要工具函数
+ * @param utility_parameter 第一个工具参数（资源上下文指针）
+ * @param utility_parameter 第二个工具参数（操作标志）
+ * @return uint64_t 操作结果状态码
+ * 
+ * 该函数负责处理资源上下文的创建、验证和释放操作。
+ * 首先通过系统函数获取资源上下文，然后根据上下文状态
+ * 执行相应的资源管理操作，包括引用计数管理和资源释放。
+ */
+uint64_t utility_process_resource_context(longlong utility_parameter,longlong utility_parameter)
 {
   int utility_operation_result;;
   long long utility_resource_context;
@@ -3652,7 +3667,7 @@ uint64_t FUN_180891a80(longlong utility_parameter,longlong utility_parameter)
   utility_resource_context = utility_system_function_primary(*(uint32_t *)(utility_parameter + 0x10),&utility_stack_variable);
   if ((int)utility_resource_context == 0) {
     if (*(int *)(utility_stack_variable + 0x34) != 0) {
-      return 0x2e;
+      return UTILITY_STATUS_RESOURCE_LOCKED;
     }
     utility_operation_result = *(int *)(utility_stack_variable + 0x28);
     *(int *)(utility_stack_variable + 0x28) = utility_operation_result + 1;
@@ -3675,7 +3690,16 @@ void CreateFiber(longlong utility_parameter,longlong utility_parameter)
   }
   return;
 }
-uint64_t FUN_180891b40(longlong utility_parameter,longlong utility_parameter)
+/**
+ * @brief 验证资源参数的有效性
+ * @param utility_parameter 第一个工具参数（资源参数指针）
+ * @param utility_parameter 第二个工具参数（验证标志）
+ * @return uint64_t 验证结果状态码
+ * 
+ * 该函数负责验证传入的资源参数是否有效，包括参数范围检查
+ * 和资源状态验证。如果参数无效或资源状态异常，返回相应的错误码。
+ */
+uint64_t utility_validate_resource_parameters(longlong utility_parameter,longlong utility_parameter)
 {
   int utility_operation_result;;
   long long utility_resource_context;
@@ -3683,14 +3707,14 @@ uint64_t FUN_180891b40(longlong utility_parameter,longlong utility_parameter)
   utility_resource_context = utility_system_function_primary(*(uint32_t *)(utility_parameter + 0x10),&utility_stack_variable);
   if ((int)utility_resource_context == 0) {
     if (*(int *)(utility_stack_variable + 0x34) != 0) {
-      return 0x2e;
+      return UTILITY_STATUS_RESOURCE_LOCKED;
     }
     utility_operation_result = *(int *)(utility_stack_variable + 0x28);
     if (utility_operation_result < 0) {
       return 0x1c;
     }
     if (utility_operation_result == 0) {
-      return 0x4c;
+      return UTILITY_STATUS_RESOURCE_AVAILABLE;
     }
     *(int *)(utility_stack_variable + 0x28) = utility_operation_result + -1;
     if (utility_operation_result == 1) {
@@ -3700,21 +3724,30 @@ uint64_t FUN_180891b40(longlong utility_parameter,longlong utility_parameter)
   }
   return utility_resource_context;
 }
-uint64_t FUN_180891bd0(longlong utility_parameter,longlong utility_parameter)
+/**
+ * @brief 分配资源内存块
+ * @param utility_parameter 第一个工具参数（内存分配参数）
+ * @param utility_parameter 第二个工具参数（分配标志）
+ * @return uint64_t 分配结果状态码
+ * 
+ * 该函数负责为系统资源分配内存块，包括内存大小计算、
+ * 对齐检查和分配结果验证。如果分配失败，返回相应的错误码。
+ */
+uint64_t utility_allocate_resource_memory(longlong utility_parameter,longlong utility_parameter)
 {
   long long utility_resource_context;
   longlong utility_stack_variable;
   utility_resource_context = utility_system_function_primary(*(uint32_t *)(utility_parameter + 0x10),&utility_stack_variable);
   if ((int)utility_resource_context == 0) {
     if (*(longlong *)(utility_stack_variable + 8) == 0) {
-      return 0x4c;
+      return UTILITY_STATUS_RESOURCE_AVAILABLE;
     }
     *(uint64_t *)(utility_parameter + 0x18) = *(uint64_t *)(*(longlong *)(utility_stack_variable + 8) + 0x78);
     utility_resource_context = utility_update_context_resources(*(uint64_t *)(utility_parameter + 0x98),utility_parameter);
   }
   return utility_resource_context;
 }
-uint64_t FUN_180891c40(longlong utility_parameter,longlong utility_parameter)
+uint64_t utility_release_resource_memory(longlong utility_parameter,longlong utility_parameter)
 {
   long long utility_resource_context;
   longlong utility_stack_variable;
@@ -3752,7 +3785,7 @@ void GetFiberData(longlong utility_parameter,longlong utility_parameter)
   }
   return;
 }
-uint64_t FUN_180891d40(longlong utility_parameter,longlong utility_parameter)
+uint64_t utility_cleanup_resource_context(longlong utility_parameter,longlong utility_parameter)
 {
   long long utility_resource_context;
   uint utility_stack_unsigned;
@@ -4126,7 +4159,7 @@ uint64_t utility_resource_context_handler(longlong utility_parameter,longlong ut
       utility_stack_variable = utility_stack_variable + -8;
     }
     if (*(longlong *)(utility_stack_variable + 0x10) == 0) {
-      return 0x4c;
+      return UTILITY_STATUS_RESOURCE_AVAILABLE;
     }
     *(uint64_t *)(utility_parameter + 0x18) =
          *(uint64_t *)(*(longlong *)(*(longlong *)(utility_stack_variable + 0x10) + 0x2b0) + 0x78);
@@ -7636,7 +7669,7 @@ ulonglong FUN_180896140(longlong utility_parameter)
               stack_uint_c8 = *(uint32_t *)(utility_iteration_count + 0xc + utility_iteration_count * 0x10);
               stack_uint_d0 = 0;
               stack_uint_c0 = 0x3f800000;
-              FUN_180891d40(&stack_pointer_8,*(uint64_t *)(utility_parameter + 0x58));
+              utility_cleanup_resource_context(&stack_pointer_8,*(uint64_t *)(utility_parameter + 0x58));
               stack_pointer_98 = &utility_system_reserved_;
               stack_uint_88 = *(uint32_t *)(utility_iteration_count + 0xc + utility_iteration_count * 0x10);
               stack_uint_90 = 0;

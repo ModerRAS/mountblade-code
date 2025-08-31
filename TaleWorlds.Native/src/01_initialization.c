@@ -1302,7 +1302,7 @@ int system_setup_thread_pools(void)
 {
   longlong lVar1;
   
-  system_create_memory_pool(0x180c91800,0x20,8,FUN_1800637f0,system_memory_cleanup_handler);
+  system_create_memory_pool(0x180c91800,0x20,8,system_memory_pool_initializer,system_memory_cleanup_handler);
   lVar1 = system_register_memory_pool(&system_unknown_180941780);
   return (lVar1 != 0) - 1;
 }
@@ -36737,7 +36737,7 @@ longlong system_memory_pool_callback(longlong param_1)
 
 
 
-longlong FUN_1800637f0(longlong param_1)
+longlong system_memory_pool_initializer(longlong param_1)
 
 {
   *(uint64_t *)(param_1 + 0x10) = 0;
