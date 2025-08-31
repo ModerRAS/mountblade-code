@@ -612,17 +612,17 @@ uint64_t process_resource_pointer(int64_t context_pointer)
             } while ((int64_t)resource_handle_value < (int64_t)utility_status_code);
         }
         utility_status_code = utility_status_code + 1;
-        if (*(int *)(resource_current_counter + UTILITY_CALC_MULTIPLIER_OFFSET) < utility_status_code) {
-            utility_status_code = (int)((float)*(int *)(resource_current_counter + UTILITY_CALC_MULTIPLIER_OFFSET) * 1.5);
-            if (utility_status_code < 8) {
-                utility_status_code = 8;
+        if (*(int *)(resource_current_counter + UTILITY_CALC_MULTIPLIER_OFFSET) < status_code) {
+            status_code = (int)((float)*(int *)(resource_current_counter + UTILITY_CALC_MULTIPLIER_OFFSET) * 1.5);
+            if (status_code < 8) {
+                status_code = 8;
             }
-            else if (utility_status_code < 1024) {
-                utility_status_code = utility_status_code;
+            else if (status_code < 1024) {
+                status_code = status_code;
             }
         }
-        utility_status_code = process_operation_result(resource_context_data, utility_status_code);
-        if (utility_status_code != UTILITY_STATUS_OPERATION_FAILED) {
+        status_code = process_operation_result(resource_context_data, status_code);
+        if (status_code != UTILITY_STATUS_OPERATION_FAILED) {
             return 0;
         }
     }
@@ -640,15 +640,12 @@ uint64_t process_resource_pointer(int64_t context_pointer)
     return 0;
 }
 
-/** 处理资源分配请求
- * 
- * 该函数负责处理资源分配请求，管理资源池和分配策略
- * 
+ * 功能：处理资源分配请求，管理资源池和分配策略
  * @param resource_count 请求的资源数量
  * @param context_pointer 上下文参数
  * @return 分配的资源句柄，0表示失败
  */
-uint64_t handle_resource(int64_t resource_count, int64_t context_pointer)
+  uint64_t handle_resource(int64_t resource_count, int64_t context_pointer)
 {
 
     int64_t *resource_manager_ptr;
@@ -734,14 +731,12 @@ while( true ) {
     return status;
 }
 /** 验证资源上下文
- * 
  * 验证主要资源上下文的有效性和状态
- * 
  * @param resource_count 资源数量参数
  * @param context_pointer 上下文句柄
  * @return 验证结果状态码，0表示成功，非0表示失败
  */
-uint64_t validate_resource_context(int64_t resource_count, int64_t context_pointer)
+    uint64_t validate_resource_context(int64_t resource_count,int64_t context_pointer)
 {
 
 int64_t loop_counter = 0;
