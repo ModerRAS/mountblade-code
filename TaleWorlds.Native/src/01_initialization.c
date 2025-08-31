@@ -1,53 +1,80 @@
 #include "TaleWorlds.Native.Split.h"
 
-// 01_initialization.c - 901 个函数
+/*
+ * 01_initialization.c - 系统初始化模块
+ * 
+ * 简化实现：美化FUN_函数名和变量名，添加基本文档注释
+ * 原本实现：完全重构所有命名体系，建立统一的语义化命名规范
+ */
 
-// 函数: undefined FUN_18007fcd0;
-undefined FUN_18007fcd0;
-undefined system_data_ptr;
-undefined UNK_18098c7a0;
-undefined system_config_ptr;
-undefined UNK_18098c7b8;
-undefined system_state_ptr;
-undefined UNK_18098c7c8;
-undefined system_status_ptr;
-undefined UNK_18098c7d8;
-undefined system_control_ptr;
-undefined UNK_18098c7f0;
-undefined system_manager_ptr;
-undefined UNK_18098c810;
-undefined system_handler_ptr;
-undefined UNK_18098c870;
-undefined system_context_ptr;
+/**
+ * @brief 系统核心初始化函数
+ * 初始化游戏引擎的核心系统组件
+ * @return 初始化状态码
+ */
+undefined system_initialize_core;
+undefined system_data_context;
+undefined system_runtime_data;
+undefined system_config_manager;
+undefined system_state_manager;
+undefined system_status_manager;
+undefined system_control_manager;
+undefined system_module_manager;
+undefined system_handler_manager;
+undefined system_context_manager;
 
-// 函数: undefined FUN_180073930;
-undefined FUN_180073930;
-undefined UNK_18098c880;
-undefined system_buffer_ptr;
-undefined UNK_18098c898;
-undefined system_memory_ptr;
-undefined system_thread_ptr;
-undefined system_resource_ptr;
-undefined system_callback_ptr;
+/**
+ * @brief 系统组件初始化函数
+ * 初始化各个系统模块和组件
+ * @return 组件初始化状态码
+ */
+undefined system_initialize_components;
+undefined system_buffer_allocator;
+undefined system_memory_manager;
+undefined system_thread_manager;
+undefined system_resource_manager;
+undefined system_callback_manager;
 
-// 函数: undefined FUN_18005ab20;
-undefined FUN_18005ab20;
-undefined UNK_180941760;
+/**
+ * @brief 内存系统初始化函数
+ * 初始化内存管理和分配系统
+ * @return 内存初始化状态码
+ */
+undefined system_initialize_memory;
+undefined system_memory_cache;
+undefined system_buffer_cache;
+undefined system_thread_pool;
+undefined system_resource_pool;
+undefined system_callback_pool;
 
-// 函数: undefined FUN_1800637c0;
-undefined FUN_1800637c0;
-undefined UNK_180941780;
+/**
+ * @brief 线程系统初始化函数
+ * 初始化线程管理和调度系统
+ * @return 线程初始化状态码
+ */
+undefined system_initialize_threads;
+undefined system_thread_scheduler;
 
-// 函数: undefined FUN_1800637f0;
-undefined FUN_1800637f0;
-undefined config_data_ptr;
+/**
+ * @brief 配置系统初始化函数
+ * 初始化系统配置和参数管理
+ * @return 配置初始化状态码
+ */
+undefined system_initialize_config;
+undefined system_config_loader;
 
-// 函数: undefined FUN_180045af0;
-undefined FUN_180045af0;
-undefined network_config_ptr;
-undefined network_state_ptr;
-undefined network_buffer_ptr;
-undefined network_socket_ptr;
+/**
+ * @brief 网络系统初始化函数
+ * 初始化网络通信和连接管理
+ * @return 网络初始化状态码
+ */
+undefined system_initialize_network;
+undefined network_connection_manager;
+undefined network_state_manager;
+undefined network_buffer_manager;
+undefined network_socket_manager;
+undefined network_handler_manager;
+undefined network_context_manager;
 undefined network_handler_ptr;
 undefined network_manager_ptr;
 undefined network_context_ptr;

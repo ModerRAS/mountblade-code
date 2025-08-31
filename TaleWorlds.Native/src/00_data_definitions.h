@@ -295,48 +295,79 @@ int FUN_18002e6f0(void)
   lVar1 = FUN_1808fc7d0(FUN_1809418e0);
   return (lVar1 != 0) - 1;
 }
-int FUN_18002e760(void)
+/**
+ * @brief 初始化游戏界面字符串
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责设置游戏界面相关的字符串信息
+ */
+int game_ui_string_initialize(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf66b0 = &UNK_1809fdc18;
-  _DAT_180bf66b8 = &DAT_180bf66c8;
-  DAT_180bf66c8 = 0;
-  _DAT_180bf66c0 = 5;
-  strcpy_s(&DAT_180bf66c8,0x10,&UNK_180a00548,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180941900);
-  return (lVar1 != 0) - 1;
+  longlong init_result;
+  undefined8 string_param;
+  ui_string_data_ptr = &global_string_data;
+  ui_string_callback_ptr = &ui_string_callback;
+  ui_string_callback = 0;
+  ui_string_length = 5;
+  strcpy_s(&ui_string_callback, 0x10, &ui_string_template, string_param, 0xfffffffffffffffe);
+  init_result = system_initialize_callback(ui_setup_function);
+  return (init_result != 0) - 1;
 }
-int FUN_18002e7d0(void)
+
+/**
+ * @brief 初始化游戏脚本字符串
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责设置游戏脚本相关的字符串信息
+ */
+int game_script_string_initialize(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf52e8 = &UNK_18098bc80;
-  _DAT_180bf52f0 = &DAT_180bf5300;
-  DAT_180bf5300 = 0;
-  _DAT_180bf52f8 = 0xd;
-  strcpy_s(&DAT_180bf5300,0x20,&UNK_180a01300,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_180941980);
-  return (lVar1 != 0) - 1;
+  longlong init_result;
+  undefined8 string_param;
+  script_string_data_ptr = &global_input_data;
+  script_string_callback_ptr = &script_string_callback;
+  script_string_callback = 0;
+  script_string_length = 0xd;
+  strcpy_s(&script_string_callback, 0x20, &script_string_template, string_param, 0xfffffffffffffffe);
+  init_result = system_initialize_callback(script_setup_function);
+  return (init_result != 0) - 1;
 }
-int FUN_18002e840(void)
+
+/**
+ * @brief 初始化游戏逻辑字符串
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责设置游戏逻辑相关的字符串信息
+ */
+int game_logic_string_initialize(void)
 {
-  longlong lVar1;
-  undefined8 in_R9;
-  _DAT_180bf5738 = &UNK_18098bc80;
-  _DAT_180bf5740 = &DAT_180bf5750;
-  DAT_180bf5750 = 0;
-  _DAT_180bf5748 = 9;
-  strcpy_s(&DAT_180bf5750,0x20,&UNK_180a01330,in_R9,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_1809419a0);
-  return (lVar1 != 0) - 1;
+  longlong init_result;
+  undefined8 string_param;
+  logic_string_data_ptr = &global_input_data;
+  logic_string_callback_ptr = &logic_string_callback;
+  logic_string_callback = 0;
+  logic_string_length = 9;
+  strcpy_s(&logic_string_callback, 0x20, &logic_string_template, string_param, 0xfffffffffffffffe);
+  init_result = system_initialize_callback(logic_setup_function);
+  return (init_result != 0) - 1;
 }
-int FUN_18002e8b0(undefined8 param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
+
+/**
+ * @brief 初始化游戏渲染互斥锁
+ * @param param_1 互斥锁参数1
+ * @param param_2 互斥锁参数2
+ * @param param_3 互斥锁参数3
+ * @param param_4 互斥锁参数4
+ * @return 成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化游戏渲染系统的互斥锁
+ */
+int game_render_mutex_initialize(undefined8 param_1, undefined8 param_2, undefined8 param_3, undefined8 param_4)
 {
-  longlong lVar1;
-  _Mtx_init_in_situ(0x180c91970,0x102,param_3,param_4,0xfffffffffffffffe);
-  lVar1 = FUN_1808fc7d0(FUN_1809419c0);
-  return (lVar1 != 0) - 1;
+  longlong init_result;
+  _Mtx_init_in_situ(0x180c91970, 0x102, param_3, param_4, 0xfffffffffffffffe);
+  init_result = system_initialize_callback(render_mutex_setup_function);
+  return (init_result != 0) - 1;
 }
   DAT_180bf6768 = 0;
   _DAT_180bf6760 = 0x13;

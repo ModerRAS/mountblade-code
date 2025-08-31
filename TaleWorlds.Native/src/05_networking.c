@@ -90,8 +90,13 @@ void *network_config_primary;
 void *network_config_secondary;
 
 /* 网络套接字管理 */
+/** 主网络套接字 */
 int network_socket_primary;
+
+/** 辅助网络套接字 */
 int network_socket_secondary;
+
+/** 第三网络套接字 */
 int network_socket_tertiary;
 
 /** 网络连接句柄 */
@@ -104,25 +109,54 @@ unsigned long network_thread_id;
 int network_error_code;
 
 /* 网络缓冲区管理 */
+/** 网络缓冲区起始地址 */
 void *network_buffer_start;
+
+/** 网络缓冲区结束地址 */
 void *network_buffer_end;
+
+/** 网络缓冲区大小 */
 size_t network_buffer_size;
+
+/** 网络缓冲区指针 */
 void *network_buffer_pointer;
+
+/** 网络缓冲区容量 */
 size_t network_buffer_capacity;
+
+/** 网络缓冲区标志 */
 int network_buffer_flags;
 
 /* 网络数据包管理 */
+/** 网络数据包计数器 */
 unsigned int network_packet_counter;
+
+/** 网络数据包大小 */
 size_t network_packet_size;
+
+/** 网络数据包类型 */
 int network_packet_type;
+
+/** 网络数据包标志 */
 int network_packet_flags;
+
+/** 网络数据包校验和 */
 unsigned int network_packet_checksum;
+
+/** 网络数据包序列号 */
 unsigned int network_packet_sequence;
+
+/** 网络数据包时间戳 */
 unsigned long network_packet_timestamp;
 
 /* 网络配置参数 */
+/** 网络配置超时时间 */
 int network_config_timeout;
+
+/** 网络配置重试次数 */
 int network_config_retry_count;
+
+/** 网络配置最大连接数 */
 int network_config_max_connections;
 
 /* 网络连接处理器层次结构 */
@@ -318,7 +352,7 @@ void *network_connection_context_septenary_extended;
 /* 网络数据传输管理 */
 /**
  * @brief 网络数据传输初始化函数
- * 负责初始化网络数据传输
+ * 负责初始化网络数据传输系统，建立数据传输通道
  */
 void *network_initialize_data_transfer;
 
