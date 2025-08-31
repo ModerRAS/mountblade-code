@@ -1,4 +1,4 @@
-/* 工具系统实现文件 - 语义化美化版本 */
+/* 工具系统实现文件 */
 #include "TaleWorlds.Native.Split.h"
 #define UTILITY_MAX_BUFFER_SIZE 0x1000
 #define UTILITY_MAX_THREADS 8
