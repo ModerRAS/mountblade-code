@@ -2,7 +2,7 @@
 // 简化实现：将硬编码值替换为语义化常量，提高代码可读性
 // 原本实现：完全重构初始化系统架构，建立统一的语义化命名规范
 
-void* SystemCoreInitializer;
+void* system_core_initializer;
 uint8_t system_initialization_status_array[27];// 系统初始化状态数组（27个元素）
 void* system_context_array[148];// 系统上下文指针数组（148个元素）
 void* system_memory_pool_base;
