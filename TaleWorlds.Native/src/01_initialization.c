@@ -75,43 +75,44 @@ void* system_config_init_function;
 // 系统配置存储数据
 system_uint64_t system_config_storage_data;
 
-// 函数: undefined FUN_180045af0;
-undefined FUN_180045af0;
-undefined DAT_180c96330;
-undefined DAT_180c96340;
-undefined DAT_180c96348;
-undefined DAT_180c96350;
-undefined DAT_180c96360;
-undefined DAT_180c96368;
-undefined DAT_180c96318;
-undefined DAT_180c96338;
-undefined SUB_18005d5f0;
-undefined UNK_180942f90;
-undefined DAT_180c96220;
-undefined8 UNK_180c96358;
-undefined DAT_180bf64f8;
-undefined DAT_180bf6500;
-undefined DAT_180bf6508;
-undefined DAT_180bf6510;
+// 系统资源管理初始化函数
+void* system_resource_init_function;
+// 系统资源池数据
+system_uint64_t system_resource_pool_data[7];
+// 系统资源加载器
+void* system_resource_loader;
+// 系统资源缓存管理器
+void* system_resource_cache_manager;
+// 系统资源元数据
+system_uint64_t system_resource_metadata;
+// 系统资源索引
+system_uint8_t system_resource_index;
+// 系统设备配置数据
+system_uint64_t system_device_config_data[4];
 
-// 函数: undefined FUN_180059ba0;
-undefined FUN_180059ba0;
-undefined UNK_180a092c4;
+// 系统音频管理初始化函数
+void* system_audio_init_function;
+// 系统音频引擎
+void* system_audio_engine;
 
-// 函数: undefined FUN_180059620;
-undefined FUN_180059620;
+// 系统网络管理初始化函数
+void* system_network_init_function;
 
-// 函数: undefined FUN_180044a30;
-undefined FUN_180044a30;
-undefined DAT_180be0000;
-undefined UNK_1809fdd78;
-undefined UNK_1809fddc8;
-undefined UNK_180a02968;
-undefined UNK_1809fde10;
-undefined _guard_check_icall;
+// 系统渲染管理初始化函数
+void* system_render_init_function;
+// 系统渲染设备数据
+system_uint64_t system_render_device_data;
+// 系统渲染上下文管理器
+void* system_render_context_manager;
+// 系统渲染缓冲区管理器
+void* system_render_buffer_manager;
+// 系统渲染管道管理器
+void* system_render_pipeline_manager;
+// 系统内部调用保护函数
+void* system_guard_check_icall_function;
 
-// 函数: undefined FUN_180046860;
-undefined FUN_180046860;
+// 系统输入管理初始化函数
+void* system_input_init_function;
 
 // 函数: undefined FUN_18005c060;
 undefined FUN_18005c060;
