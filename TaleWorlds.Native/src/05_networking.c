@@ -31524,7 +31524,16 @@ NETWORK_ADDRESS_LABEL_18088f7b5:
   network_socket_id = (uint64_t)buffer_pointer[1];
   buffer_pointer = buffer_pointer + 1;
   goto NETWORK_ADDRESS_LABEL_18088f755;
+}
+
+/**
+ * @brief 网络操作执行函数（返回指针类型）
+ * 执行网络系统的内部操作并返回结果指针
+ * @param network_context_pointer 网络上下文指针
+ * @return 操作结果指针
+ */
 int64_t * execute_network_operation(uint64_t network_context_pointer[NETWORK_CONFIG_INDEX_PRIMARY])
+{
   int64_t primary_network_context;
   int64_t primary_network_context;
   uint32_t connection_secondary_state;
@@ -31625,7 +31634,15 @@ NETWORK_ADDRESS_LABEL_18088f951:
     }
   }
   return primary_network_context;
+}
+
+/**
+ * @brief 网络连接池清理函数（返回指针类型）
+ * 清理网络连接池中的资源并返回结果指针
+ * @return 清理结果指针
+ */
 int64_t * network_cleanup_connection_pool(void)
+{
   int64_t primary_network_context;
   int64_t primary_network_context;
   uint32_t connection_secondary_state;
@@ -31788,7 +31805,15 @@ int64_t execute_network_operation(uint64_t network_context_pointer[NETWORK_CONFI
     }
   }
   return primary_network_context;
+}
+
+/**
+ * @brief 网络连接池清理函数（返回int64_t类型）
+ * 清理网络连接池中的资源
+ * @return 清理结果，0表示成功，非0表示失败
+ */
 int64_t network_cleanup_connection_pool(void)
+{
   int64_t primary_network_context;
   int64_t primary_network_context;
   int64_t *primary_network_context;

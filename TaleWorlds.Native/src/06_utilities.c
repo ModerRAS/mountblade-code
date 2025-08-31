@@ -5163,11 +5163,11 @@ void context_pointer_process_data(long long context_pointer,long long data_ptr)
     if (result_int < 8) {
       result_int = 8;
     }
-    if (result_int < *(int *)(utility_utility_stack_long_variable_var + 0x28)) goto LAB_180891fc0;
+    if (result_int < *(int *)(utility_utility_stack_long_variable_var + 0x28)) goto UTILITY_LABEL_STACK_CLEANUP_1;
     if (result_int != 0) {
       if ((0x3ffffffe < result_int * 8 - 1U) ||
          (utility_loop_counter = utility_file_flush_buffer(*(void **)(UTILITY_GLOBAL_DATA_CONTEXT_HANDLER + 0x1a0),result_int * 8,&UTILITY_GLOBAL_DATA_FILE_BUFFER2,
-                                0xf4,0,0,1), utility_loop_counter == 0)) goto LAB_180891fc0;
+                                0xf4,0,0,1), utility_loop_counter == 0)) goto UTILITY_LABEL_STACK_CLEANUP_1;
       if (*(int *)(utility_utility_stack_long_variable_var + 0x28) != 0) {
         memcpy(utility_loop_counter,*(void **)(utility_utility_stack_long_variable_var + UTILITY_THREAD_TLS_DATA_OFFSET),(long long)*(int *)(utility_utility_stack_long_variable_var + 0x28) << 3);
       }
@@ -5182,7 +5182,7 @@ void context_pointer_process_data(long long context_pointer,long long data_ptr)
   *(long long *)(*(long long *)(utility_utility_stack_long_variable_var + UTILITY_THREAD_TLS_DATA_OFFSET) + (long long)*(int *)(utility_utility_stack_long_variable_var + 0x28) * 8) =
        utility_utility_stack_long_variable_8;
   *(int *)(utility_utility_stack_long_variable_var + 0x28) = *(int *)(utility_utility_stack_long_variable_var + 0x28) + 1;
-LAB_180891fc0:
+UTILITY_LABEL_STACK_CLEANUP_1:
   utility_system_notify_handler(*(void **)(data_ptr + 0x98),context_pointer);
 }
 
@@ -5228,11 +5228,11 @@ void utility_data_processor_transform(void * context_pointer,void * data_ptr)
     if (result_int < 8) {
       result_int = 8;
     }
-    if (result_int < *(int *)(utility_utility_stack_param + 0x28)) goto LAB_180891fc0;
+    if (result_int < *(int *)(utility_utility_stack_param + 0x28)) goto UTILITY_LABEL_STACK_CLEANUP_2;
     if (result_int != 0) {
       if ((0x3ffffffe < result_int * 8 - 1U) ||
          (utility_loop_counter = utility_file_flush_buffer(*(void **)(UTILITY_GLOBAL_DATA_CONTEXT_HANDLER + 0x1a0),result_int * 8,&UTILITY_GLOBAL_DATA_FILE_BUFFER2,
-                                0xf4,0), utility_loop_counter == 0)) goto LAB_180891fc0;
+                                0xf4,0), utility_loop_counter == 0)) goto UTILITY_LABEL_STACK_CLEANUP_2;
       if (*(int *)(utility_utility_stack_param + 0x28) != 0) {
         memcpy(utility_loop_counter,*(void **)(utility_utility_stack_param + UTILITY_THREAD_TLS_DATA_OFFSET),
                (long long)*(int *)(utility_utility_stack_param + 0x28) << 3);
@@ -5250,7 +5250,7 @@ void utility_data_processor_transform(void * context_pointer,void * data_ptr)
    (*(long long *)(utility_utility_stack_param + UTILITY_THREAD_TLS_DATA_OFFSET) + (long long)*(int *)(utility_utility_stack_param + 0x28) * 8) =
        utility_utility_stack_param;
   *(int *)(utility_utility_stack_param + 0x28) = *(int *)(utility_utility_stack_param + 0x28) + 1;
-LAB_180891fc0:
+UTILITY_LABEL_STACK_CLEANUP_2:
   utility_system_notify_handler(*(void **)(utility_global_register_r14 + 0x98));
 }
 
