@@ -195,7 +195,7 @@ void* g_render_context_data_ptr;                             // 渲染上下文�
 void* g_render_buffer_data_ptr;                              // 渲染缓冲区数据指针
 uint8_t g_render_system_status;                             // 渲染系统状态标志
 
-void ShutdownRenderEngine(void);
+void shutdown_render_engine_function(void);
 
 // 网络系统数据
 void* initialize_network_engine_function_ptr;               // 网络引擎初始化函数指针
@@ -301,7 +301,7 @@ uint8_t g_particle_system_status;                          // 粒子系统状态
  *          - 返回非零值表示初始化失败
  *          - 失败时会自动清理已初始化的子系统
  */
-int InitializeEngineCoreFunction(void);
+int initialize_engine_core_function(void);
 
 /**
  * @brief 引擎系统主循环
@@ -325,7 +325,7 @@ int InitializeEngineCoreFunction(void);
  *          - 内部包含帧率控制逻辑
  *          - 支持暂停和恢复功能
  */
-void EngineMainLoopFunction(void);
+void engine_main_loop_function(void);
 
 /**
  * @brief 关闭引擎系统
@@ -349,7 +349,7 @@ void EngineMainLoopFunction(void);
  *          - 防止内存泄漏
  *          - 保存必要的状态信息
  */
-void ShutdownEngineFunction(void);
+void shutdown_engine_function(void);
 
 /**
  * @brief 初始化引擎子系统
@@ -376,7 +376,7 @@ void ShutdownEngineFunction(void);
  *          - -2: 子系统初始化失败
  *          - -3: 依赖子系统未初始化
  */
-int InitializeEngineSubsystemFunction(int subsystem_id);
+int initialize_engine_subsystem_function(int subsystem_id);
 
 /**
  * @brief 处理引擎渲染帧
@@ -401,7 +401,7 @@ int InitializeEngineSubsystemFunction(int subsystem_id);
  *          - 实现视锥体剔除
  *          - 支持LOD级别切换
  */
-void ProcessEngineFrameFunction(float frame_time);
+void process_engine_frame_function(float frame_time);
 
 /**
  * @brief 更新引擎状态
@@ -426,7 +426,7 @@ void ProcessEngineFrameFunction(float frame_time);
  *          - 支持暂停状态下跳过更新
  *          - 保持更新频率的稳定性
  */
-void UpdateEngineFunction(float delta_time);
+void update_engine_function(float delta_time);
 
 /**
  * @brief 引擎错误处理函数
@@ -452,7 +452,7 @@ void UpdateEngineFunction(float delta_time);
  *          - 通知相关子系统
  *          - 必要时安全关闭引擎
  */
-void HandleEngineErrorFunction(int error_code);
+void handle_engine_error_function(int error_code);
 
 /**
  * @brief 引擎内存管理函数
@@ -479,7 +479,7 @@ void HandleEngineErrorFunction(int error_code);
  *          - 记录内存分配失败日志
  *          - 触发垃圾回收机制
  */
-void* EngineAllocateMemoryFunction(size_t size);
+void* engine_allocate_memory_function(size_t size);
 
 /**
  * @brief 引擎内存释放函数
@@ -502,11 +502,11 @@ void* EngineAllocateMemoryFunction(size_t size);
  *          - 更新内存统计信息
  *          
  *          注意事项：
- *          - 必须使用EngineAllocateMemory分配的内存
+ *          - 必须使用engine_allocate_memory_function分配的内存
  *          - 释放后指针自动设置为NULL
  *          - 支持批量内存释放
  */
-void EngineFreeMemoryFunction(void* ptr);
+void engine_free_memory_function(void* ptr);
 
 /**
  * @brief 核心引擎系统模块结束
