@@ -11357,16 +11357,16 @@ LAB_MODULE_LOAD_START:
   system_initialize_buffer_type7(ppstack_pointer_8,&system_ptr_uint_138);
   ppppointer_nonary = (uint64_t ****)(pppointer_primary + SYSTEM_CONFIG_BLOCK_SIZE);
   system_memory_buffer_ptr = *(longlong *)(system_context_ptr + SYSTEM_CONFIG_SIGNATURE_SIZE);
-  transform_temp6 = *(longlong *)(system_context_ptr + 8);
-  if (transform_temp6 != system_memory_buffer_ptr) {
+  system_transform_temporary_six = *(longlong *)(system_context_ptr + 8);
+  if (system_transform_temporary_six != system_memory_buffer_ptr) {
     do {
-      system_cleanup_buffer_type1(transform_temp6);
-      transform_temp6 = transform_temp6 + SYSTEM_CONFIG_SIGNATURE_SIZE0;
-    } while (transform_temp6 != system_memory_buffer_ptr);
-    transform_temp6 = *(longlong *)(system_context_ptr + 8);
+      system_cleanup_buffer_type1(system_transform_temporary_six);
+      system_transform_temporary_six = system_transform_temporary_six + SYSTEM_CONFIG_SIGNATURE_SIZE0;
+    } while (system_transform_temporary_six != system_memory_buffer_ptr);
+    system_transform_temporary_six = *(longlong *)(system_context_ptr + 8);
   }
-  if (transform_temp6 != 0) {
-    system_processor_cleanup(transform_temp6);
+  if (system_transform_temporary_six != 0) {
+    system_processor_cleanup(system_transform_temporary_six);
   }
   *(longlong *)(system_context_ptr + 8) = system_memory_secondary_ptr;
   *(uint64_t *****)(system_context_ptr + SYSTEM_CONFIG_SIGNATURE_SIZE) = ppppointer_nonary;
@@ -11416,10 +11416,10 @@ ulonglong system_initialize_ulonglong_return(longlong system_context_ptr,longlon
     integer_secondary_variable = *(int *)(unsigned_value_primary_var0 * SYSTEM_CONFIG_SIGNATURE_SIZE0 + SYSTEM_CONFIG_SIGNATURE_SIZE + system_memory_result);
     if (integer_secondary_variable == integer_count_var_var) {
       if (integer_secondary_variable != 0) {
-        pbyte_temp4 = *(byte **)(unsigned_value_primary_var0 * SYSTEM_CONFIG_SIGNATURE_SIZE0 + 8 + system_memory_result);
-        system_transform_temp_8 = *(longlong *)(system_flags_var + 8) - (longlong)pbyte_temp4;
+        system_byte_temporary_pointer_four = *(byte **)(unsigned_value_primary_var0 * SYSTEM_CONFIG_SIGNATURE_SIZE0 + 8 + system_memory_result);
+        system_transform_temp_8 = *(longlong *)(system_flags_var + 8) - (longlong)system_byte_temporary_pointer_four;
         do {
-          psystem_byte_temp1 = pbyte_temp4 + system_transform_temp_8;
+          system_byte_temporary_pointer_one = system_byte_temporary_pointer_four + system_transform_temp_8;
           integer_count_var_var = (uint)*pbyte_temp4 - (uint)*psystem_byte_temp1;
           if (integer_count_var_var != 0) break;
           pbyte_temp4 = pbyte_temp4 + 1;
@@ -11444,9 +11444,9 @@ LAB_MODULE_VALIDATION_START:
       if (integer_secondary_variable == integer_count_var_var) {
         if (integer_secondary_variable != 0) {
           pbyte_temp4 = *(byte **)(unsigned_value_primary_var1 + 8 + system_memory_result);
-          system_transform_temp_8 = *(longlong *)(system_flags_var + 8) - (longlong)pbyte_temp4;
+          system_transform_temp_8 = *(longlong *)(system_flags_var + 8) - (longlong)system_byte_temporary_pointer_four;
           do {
-            psystem_byte_temp1 = pbyte_temp4 + system_transform_temp_8;
+            system_byte_temporary_pointer_one = system_byte_temporary_pointer_four + system_transform_temp_8;
             integer_index_var_var_var = (uint)*pbyte_temp4 - (uint)*psystem_byte_temp1;
             if (integer_index_var_var_var != 0) break;
             pbyte_temp4 = pbyte_temp4 + 1;
@@ -11967,7 +11967,7 @@ void system_initialize_triple_pointer(uint64_t system_context_ptr,uint64_t syste
       system_char_flag = *psystem_stack_80;
       while (system_char_flag != '\0') {
         transform_temp6 = strchr(&SYSTEM_CONFIG_DATA_TYPE_7,(int)psystem_stack_80[system_memory_alloc_result1]);
-        if (transform_temp6 != 0) {
+        if (system_transform_temporary_six != 0) {
           psystem_stack_80[system_memory_alloc_result1] = '_';
         }
         system_memory_alloc_result1 = system_memory_alloc_result1 + 1;
@@ -13460,7 +13460,7 @@ void system_initialize_basic_operation(void)
     system_memory_alloc_size = 0;
     do {
       transform_temp6 = strchr(&SYSTEM_CONFIG_DATA_TYPE_9,(int)string_result_pointer_var[system_memory_alloc_size]);
-      if (transform_temp6 != 0) {
+      if (system_transform_temporary_six != 0) {
         *(int32_t *)(system_memory_alloc_size + system_config_primary_ptr[2]) = 0x2f;
       }
       system_memory_alloc_size = system_memory_alloc_size + 1;
@@ -18205,7 +18205,7 @@ void system_config_180056410(longlong system_context_ptr,uint64_t system_flags_v
   system_transform_type = *(uint *)(system_context_ptr + 0x60);
   loop_bound_limit = vertex_count_var - system_vertex_offset;
   transform_temp6 = loop_bound_limit >> 3;
-  if (transform_temp6 != 0) {
+  if (system_transform_temporary_six != 0) {
     system_transform_result = system_memory_allocate_buffer(system_memory_allocator_config,transform_temp6 * 8,system_transform_type & 0xff,system_allocator_param,unsigned_value_primary_var0,0,0,0,system_transform_type);
   }
   transform_temp6 = system_transform_result + transform_temp6 * 8;
