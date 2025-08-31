@@ -174,13 +174,13 @@
 
 // 引擎核心上下文数据
 void* GetEngineContext;                           // 引擎上下文获取函数指针
-void* g_engine_context_data;                       // 引擎上下文数据指针
-void* g_engine_memory_config_data;                 // 引擎内存配置数据指针
-void* g_engine_config_data;                       // 引擎配置数据指针
+void* g_engine_context_data_value;                       // 引擎上下文数据指针
+void* g_engine_memory_config_data_value;                 // 引擎内存配置数据指针
+void* g_engine_config_data_value;                       // 引擎配置数据指针
 void* g_engine_memory_base_address;                // 引擎内存基地址指针
-void* g_engine_memory_pool_data;                   // 引擎内存池数据指针
-void* g_engine_render_context_data;                // 引擎渲染上下文数据指针
-void* g_engine_audio_context_data;                 // 引擎音频上下文数据指针
+void* g_engine_memory_pool_data_value;                   // 引擎内存池数据指针
+void* g_engine_render_context_data_value;                // 引擎渲染上下文数据指针
+void* g_engine_audio_context_data_value;                 // 引擎音频上下文数据指针
 
 // 音频系统数据
 void* InitializeAudioEngine;                       // 音频引擎初始化函数指针
