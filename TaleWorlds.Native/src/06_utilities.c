@@ -396,7 +396,6 @@
 #define UTILITY_CONTEXT_OFFSET_AUXILIARY UTILITY_STACK_OFFSET_LARGE_VALUE
 #define UTILITY_BYTE_MASK_CLEAR_LSB UTILITY_BYTE_MASK_CLEAR_LSB
 #define UTILITY_STATUS_FLAG_F UTILITY_STATUS_ENABLED_FLAG_4_BITS_VALUE
-// 删除重复的常量定义，保留第62行的定义
 // 新增常量定义 - 用于替换硬编码值
 #define UTILITY_NEGATIVE_OFFSET_THIRTY_SEVEN -UTILITY_STACK_OFFSET_SMALL_VALUE
 #define UTILITY_NEGATIVE_OFFSET_SIXTY_NINE -0x45
@@ -715,7 +714,8 @@ uint32_t utility_context_system_auxiliary;
 double utility_context_system_backup;
 uint32_t utility_context_system_reserve;
 uint8_t utility_context_system_extended;
- /**
+
+/**
  * @brief 处理线程存储操作
  *
  * 负责管理系统线程的存储操作，包括线程数据的存储和检索
