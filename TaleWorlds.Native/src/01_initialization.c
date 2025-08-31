@@ -17257,10 +17257,10 @@ void system_function_046b10(uint64_t *system_param_1,uint64_t system_param_2,uin
 ulonglong system_compare_memory_blocks(longlong system_param_1,longlong system_param_2)
 
 {
-  byte *pbVar1;
+  byte *system_byte_ptr_;
   int system_int_context;
   longlong system_long_handle;
-  byte *pbVar4;
+  byte *system_byte_ptr_;
   int system_int_config;
   int system_int_status;
   ulonglong system_local_uint;
@@ -17276,14 +17276,14 @@ ulonglong system_compare_memory_blocks(longlong system_param_1,longlong system_p
     system_int_context = *(int *)(system_local_uint * 0x100 + 0x10 + system_long_handle);
     if (system_int_context == system_int_config) {
       if (system_int_context != 0) {
-        pbVar4 = *(byte **)(system_local_uint * 0x100 + 8 + system_long_handle);
-        system_local_long = *(longlong *)(system_param_2 + 8) - (longlong)pbVar4;
+        system_byte_ptr_ = *(byte **)(system_local_uint * 0x100 + 8 + system_long_handle);
+        system_local_long = *(longlong *)(system_param_2 + 8) - (longlong)system_byte_ptr_;
         do {
-          pbVar1 = pbVar4 + system_local_long;
-          system_int_config = (uint)*pbVar4 - (uint)*pbVar1;
+          system_byte_ptr_ = system_byte_ptr_ + system_local_long;
+          system_int_config = (uint)*system_byte_ptr_ - (uint)*system_byte_ptr_;
           if (system_int_config != 0) break;
-          pbVar4 = pbVar4 + 1;
-        } while (*pbVar1 != 0);
+          system_byte_ptr_ = system_byte_ptr_ + 1;
+        } while (*system_byte_ptr_ != 0);
       }
     }
     else if (system_int_context != 0) goto SYSTEM_LABEL;
@@ -17303,14 +17303,14 @@ SYSTEM_LABEL:
       system_int_status = system_int_config;
       if (system_int_context == system_int_config) {
         if (system_int_context != 0) {
-          pbVar4 = *(byte **)(system_local_uint + 8 + system_long_handle);
-          system_local_long = *(longlong *)(system_param_2 + 8) - (longlong)pbVar4;
+          system_byte_ptr_ = *(byte **)(system_local_uint + 8 + system_long_handle);
+          system_local_long = *(longlong *)(system_param_2 + 8) - (longlong)system_byte_ptr_;
           do {
-            pbVar1 = pbVar4 + system_local_long;
-            system_int_status = (uint)*pbVar4 - (uint)*pbVar1;
+            system_byte_ptr_ = system_byte_ptr_ + system_local_long;
+            system_int_status = (uint)*system_byte_ptr_ - (uint)*system_byte_ptr_;
             if (system_int_status != 0) break;
-            pbVar4 = pbVar4 + 1;
-          } while (*pbVar1 != 0);
+            system_byte_ptr_ = system_byte_ptr_ + 1;
+          } while (*system_byte_ptr_ != 0);
         }
 SYSTEM_LABEL:
         if (system_int_status == 0) {
@@ -17689,7 +17689,7 @@ void system_function_047e70(uint64_t system_param_1,uint64_t system_param_2,long
   int system_comparison_result;
   uint64_t *system_buffer_ptr;
   uint system_uint_config;
-  byte *pbVar6;
+  byte *system_byte_ptr_;
   uint64_t *system_parent_ptr;
   uint64_t *system_child_ptr;
   uint64_t *system_manager_ptr;
@@ -17715,13 +17715,13 @@ void system_function_047e70(uint64_t system_param_1,uint64_t system_param_2,long
           system_byte_context = true;
         }
         else {
-          pbVar6 = *(byte **)(system_param_3 + 8);
-          system_local_long = system_child_ptr[5] - (longlong)pbVar6;
+          system_byte_ptr_ = *(byte **)(system_param_3 + 8);
+          system_local_long = system_child_ptr[5] - (longlong)system_byte_ptr_;
           do {
-            system_uint_config = (uint)pbVar6[system_local_long];
-            system_comparison_result = *pbVar6 - system_uint_config;
-            if (*pbVar6 != system_uint_config) break;
-            pbVar6 = pbVar6 + 1;
+            system_uint_config = (uint)system_byte_ptr_[system_local_long];
+            system_comparison_result = *system_byte_ptr_ - system_uint_config;
+            if (*system_byte_ptr_ != system_uint_config) break;
+            system_byte_ptr_ = system_byte_ptr_ + 1;
           } while (system_uint_config != 0);
           system_byte_context = 0 < system_comparison_result;
           if (system_comparison_result < 1) {
@@ -17742,13 +17742,13 @@ SYSTEM_LABEL:
   if (system_buffer_ptr != system_parent_ptr) {
     if (*(int *)(system_buffer_ptr + 6) == 0) goto SYSTEM_LABEL;
     if (*(int *)(system_param_3 + 0x10) != 0) {
-      pbVar6 = (byte *)system_buffer_ptr[5];
-      system_local_long = *(longlong *)(system_param_3 + 8) - (longlong)pbVar6;
+      system_byte_ptr_ = (byte *)system_buffer_ptr[5];
+      system_local_long = *(longlong *)(system_param_3 + 8) - (longlong)system_byte_ptr_;
       do {
-        system_byte_value = *pbVar6;
-        system_uint_config = (uint)pbVar6[system_local_long];
+        system_byte_value = *system_byte_ptr_;
+        system_uint_config = (uint)system_byte_ptr_[system_local_long];
         if (system_byte_value != system_uint_config) break;
-        pbVar6 = pbVar6 + 1;
+        system_byte_ptr_ = system_byte_ptr_ + 1;
       } while (system_uint_config != 0);
       if ((int)(system_byte_value - system_uint_config) < 1) goto SYSTEM_LABEL;
     }
@@ -18302,14 +18302,14 @@ uint64_t system_execute_memory_command(uint64_t system_param_1,ulonglong system_
 
 uint64_t *
 system_process_memory_request(longlong *system_param_1,uint64_t *system_param_2,uint64_t system_param_3,longlong *system_param_4,
-             longlong param_5)
+             longlong system_param_)
 
 {
   byte system_byte_value;
   bool system_byte_context;
   longlong *system_long_handle_ptr;
   longlong *system_context_ptr;
-  byte *pbVar5;
+  byte *system_byte_ptr_;
   uint system_uint_status;
   longlong system_local_long;
   uint64_t system_local_uint;
@@ -18317,16 +18317,16 @@ system_process_memory_request(longlong *system_param_1,uint64_t *system_param_2,
   
   system_context_ptr = (longlong *)*system_param_1;
   if ((system_param_4 == system_context_ptr) || (system_param_4 == system_param_1)) {
-    if ((system_param_1[4] != 0) && (*(int *)(param_5 + 0x10) != 0)) {
+    if ((system_param_1[4] != 0) && (*(int *)(system_param_ + 0x10) != 0)) {
       system_param_4 = system_context_ptr;
       if (*(int *)(system_context_ptr + 6) != 0) {
-        pbVar5 = *(byte **)(param_5 + 8);
-        system_local_long = system_context_ptr[5] - (longlong)pbVar5;
+        system_byte_ptr_ = *(byte **)(system_param_ + 8);
+        system_local_long = system_context_ptr[5] - (longlong)system_byte_ptr_;
         do {
-          system_byte_value = *pbVar5;
-          system_uint_status = (uint)pbVar5[system_local_long];
+          system_byte_value = *system_byte_ptr_;
+          system_uint_status = (uint)system_byte_ptr_[system_local_long];
           if (system_byte_value != system_uint_status) break;
-          pbVar5 = pbVar5 + 1;
+          system_byte_ptr_ = system_byte_ptr_ + 1;
         } while (system_uint_status != 0);
         if ((int)(system_byte_value - system_uint_status) < 1) goto SYSTEM_LABEL;
       }
@@ -18334,33 +18334,33 @@ SYSTEM_LABEL:
       system_local_uint = 0;
 SYSTEM_LABEL:
       if (system_param_4 != (longlong *)0x0) {
-        system_create_graphics_buffer(system_param_1,system_param_2,system_param_4,system_local_uint,param_5);
+        system_create_graphics_buffer(system_param_1,system_param_2,system_param_4,system_local_uint,system_param_);
         return system_param_2;
       }
     }
   }
   else {
     system_context_ptr = (longlong *)func_0x00018066bd70(system_param_4);
-    if (*(int *)(param_5 + 0x10) != 0) {
+    if (*(int *)(system_param_ + 0x10) != 0) {
       if ((int)system_param_4[6] != 0) {
-        pbVar5 = *(byte **)(param_5 + 8);
-        system_local_long = system_param_4[5] - (longlong)pbVar5;
+        system_byte_ptr_ = *(byte **)(system_param_ + 8);
+        system_local_long = system_param_4[5] - (longlong)system_byte_ptr_;
         do {
-          system_byte_value = *pbVar5;
-          system_uint_status = (uint)pbVar5[system_local_long];
+          system_byte_value = *system_byte_ptr_;
+          system_uint_status = (uint)system_byte_ptr_[system_local_long];
           if (system_byte_value != system_uint_status) break;
-          pbVar5 = pbVar5 + 1;
+          system_byte_ptr_ = system_byte_ptr_ + 1;
         } while (system_uint_status != 0);
         if ((int)(system_byte_value - system_uint_status) < 1) goto SYSTEM_LABEL;
       }
       if ((int)system_context_ptr[6] != 0) {
-        pbVar5 = (byte *)system_context_ptr[5];
-        system_local_long = *(longlong *)(param_5 + 8) - (longlong)pbVar5;
+        system_byte_ptr_ = (byte *)system_context_ptr[5];
+        system_local_long = *(longlong *)(system_param_ + 8) - (longlong)system_byte_ptr_;
         do {
-          system_byte_value = *pbVar5;
-          system_uint_status = (uint)pbVar5[system_local_long];
+          system_byte_value = *system_byte_ptr_;
+          system_uint_status = (uint)system_byte_ptr_[system_local_long];
           if (system_byte_value != system_uint_status) break;
-          pbVar5 = pbVar5 + 1;
+          system_byte_ptr_ = system_byte_ptr_ + 1;
         } while (system_uint_status != 0);
         if (0 < (int)(system_byte_value - system_uint_status)) {
           if (*system_param_4 == 0) goto SYSTEM_LABEL;
@@ -18383,17 +18383,17 @@ SYSTEM_LABEL:
       system_context_ptr = (longlong *)*system_context_ptr;
     }
     else {
-      if (*(int *)(param_5 + 0x10) == 0) {
+      if (*(int *)(system_param_ + 0x10) == 0) {
         system_byte_context = true;
       }
       else {
-        pbVar5 = (byte *)system_context_ptr[5];
-        system_local_long = *(longlong *)(param_5 + 8) - (longlong)pbVar5;
+        system_byte_ptr_ = (byte *)system_context_ptr[5];
+        system_local_long = *(longlong *)(system_param_ + 8) - (longlong)system_byte_ptr_;
         do {
-          system_byte_value = *pbVar5;
-          system_uint_status = (uint)pbVar5[system_local_long];
+          system_byte_value = *system_byte_ptr_;
+          system_uint_status = (uint)system_byte_ptr_[system_local_long];
           if (system_byte_value != system_uint_status) break;
-          pbVar5 = pbVar5 + 1;
+          system_byte_ptr_ = system_byte_ptr_ + 1;
         } while (system_uint_status != 0);
         system_byte_context = 0 < (int)(system_byte_value - system_uint_status);
       }
@@ -18410,20 +18410,20 @@ SYSTEM_LABEL:
   }
   else {
 SYSTEM_LABEL:
-    if (*(int *)(param_5 + 0x10) == 0) goto SYSTEM_LABEL;
+    if (*(int *)(system_param_ + 0x10) == 0) goto SYSTEM_LABEL;
     if ((int)system_context_ptr[6] != 0) {
-      pbVar5 = *(byte **)(param_5 + 8);
-      system_local_long = system_context_ptr[5] - (longlong)pbVar5;
+      system_byte_ptr_ = *(byte **)(system_param_ + 8);
+      system_local_long = system_context_ptr[5] - (longlong)system_byte_ptr_;
       do {
-        system_byte_value = *pbVar5;
-        system_uint_status = (uint)pbVar5[system_local_long];
+        system_byte_value = *system_byte_ptr_;
+        system_uint_status = (uint)system_byte_ptr_[system_local_long];
         if (system_byte_value != system_uint_status) break;
-        pbVar5 = pbVar5 + 1;
+        system_byte_ptr_ = system_byte_ptr_ + 1;
       } while (system_uint_status != 0);
       if ((int)(system_byte_value - system_uint_status) < 1) goto SYSTEM_LABEL;
     }
   }
-  system_create_graphics_buffer(system_param_1,&plStackX_8,system_long_handle_ptr,0,param_5);
+  system_create_graphics_buffer(system_param_1,&plStackX_8,system_long_handle_ptr,0,system_param_);
   system_context_ptr = plStackX_8;
 SYSTEM_LABEL:
   *system_param_2 = system_context_ptr;
@@ -18437,11 +18437,11 @@ SYSTEM_LABEL:
 
 // 函数: void system_function_048ee0(longlong system_param_1,uint64_t system_param_2,longlong system_param_3,uint64_t system_param_4,
 void system_function_048ee0(longlong system_param_1,uint64_t system_param_2,longlong system_param_3,uint64_t system_param_4,
-                  longlong param_5)
+                  longlong system_param_)
 
 {
   byte system_byte_value;
-  byte *pbVar2;
+  byte *system_byte_ptr_;
   uint system_uint_handle;
   uint64_t *system_buffer_ptr;
   longlong system_resource_handle;
@@ -18452,14 +18452,14 @@ void system_function_048ee0(longlong system_param_1,uint64_t system_param_2,long
   system_uint_status = 0;
   if (((char)system_param_4 != '\0') || (system_param_3 == system_param_1)) goto SYSTEM_LABEL;
   if (*(int *)(system_param_3 + 0x30) != 0) {
-    if (*(int *)(param_5 + 0x10) == 0) goto SYSTEM_LABEL;
-    pbVar2 = *(byte **)(system_param_3 + 0x28);
-    system_resource_handle = *(longlong *)(param_5 + 8) - (longlong)pbVar2;
+    if (*(int *)(system_param_ + 0x10) == 0) goto SYSTEM_LABEL;
+    system_byte_ptr_ = *(byte **)(system_param_3 + 0x28);
+    system_resource_handle = *(longlong *)(system_param_ + 8) - (longlong)system_byte_ptr_;
     do {
-      system_byte_value = *pbVar2;
-      system_uint_handle = (uint)pbVar2[system_resource_handle];
+      system_byte_value = *system_byte_ptr_;
+      system_uint_handle = (uint)system_byte_ptr_[system_resource_handle];
       if (system_byte_value != system_uint_handle) break;
-      pbVar2 = pbVar2 + 1;
+      system_byte_ptr_ = system_byte_ptr_ + 1;
     } while (system_uint_handle != 0);
     if (0 < (int)(system_byte_value - system_uint_handle)) goto SYSTEM_LABEL;
   }
@@ -18467,7 +18467,7 @@ void system_function_048ee0(longlong system_param_1,uint64_t system_param_2,long
 SYSTEM_LABEL:
   system_resource_handle = system_allocate_resource_block(_system_data_180c8ed18,0x68,*(uint8_t *)(system_param_1 + 0x28),system_param_4,
                         0xfffffffffffffffe);
-  system_initialize_ui_components(system_resource_handle + 0x20,param_5);
+  system_initialize_ui_components(system_resource_handle + 0x20,system_param_);
   system_buffer_ptr = (uint64_t *)(system_resource_handle + 0x40);
   *(uint64_t *)(system_resource_handle + 0x50) = 0;
   *(uint64_t *)(system_resource_handle + 0x58) = 0;
@@ -22918,7 +22918,7 @@ bool system_validate_network_connection(longlong system_param_1)
   uint64_t *system_data_ptr;
   byte system_byte_context;
   bool system_byte_handle;
-  byte *pbVar4;
+  byte *system_byte_ptr_;
   uint system_uint_config;
   int system_int_status;
   longlong system_local_long;
@@ -22945,12 +22945,12 @@ bool system_validate_network_connection(longlong system_param_1)
           system_byte_handle = true;
         }
         else {
-          pbVar4 = pbStack_28;
+          system_byte_ptr_ = pbStack_28;
           do {
-            system_uint_config = (uint)pbVar4[system_child_ptr[5] - (longlong)pbStack_28];
-            system_int_status = *pbVar4 - system_uint_config;
-            if (*pbVar4 != system_uint_config) break;
-            pbVar4 = pbVar4 + 1;
+            system_uint_config = (uint)system_byte_ptr_[system_child_ptr[5] - (longlong)pbStack_28];
+            system_int_status = *system_byte_ptr_ - system_uint_config;
+            if (*system_byte_ptr_ != system_uint_config) break;
+            system_byte_ptr_ = system_byte_ptr_ + 1;
           } while (system_uint_config != 0);
           system_byte_handle = 0 < system_int_status;
           if (system_int_status < 1) {
@@ -22971,13 +22971,13 @@ SYSTEM_LABEL:
     if (system_handler_ptr != system_data_ptr) {
       if (*(int *)(system_handler_ptr + 6) == 0) goto SYSTEM_LABEL;
       if (iStack_20 != 0) {
-        pbVar4 = (byte *)system_handler_ptr[5];
-        system_local_long = (longlong)pbStack_28 - (longlong)pbVar4;
+        system_byte_ptr_ = (byte *)system_handler_ptr[5];
+        system_local_long = (longlong)pbStack_28 - (longlong)system_byte_ptr_;
         do {
-          system_byte_context = *pbVar4;
-          system_uint_config = (uint)pbVar4[system_local_long];
+          system_byte_context = *system_byte_ptr_;
+          system_uint_config = (uint)system_byte_ptr_[system_local_long];
           if (system_byte_context != system_uint_config) break;
-          pbVar4 = pbVar4 + 1;
+          system_byte_ptr_ = system_byte_ptr_ + 1;
         } while (system_uint_config != 0);
         if ((int)(system_byte_context - system_uint_config) < 1) goto SYSTEM_LABEL;
       }
@@ -26763,7 +26763,7 @@ longlong * system_initialize_resource_table(longlong system_param_1,longlong *sy
   uint system_uint_context;
   longlong system_long_handle;
   longlong system_long_buffer;
-  byte *pbVar5;
+  byte *system_byte_ptr_;
   longlong system_long_status;
   uint64_t system_local_uint;
   char acStackX_8 [8];
@@ -26784,13 +26784,13 @@ SYSTEM_LABEL:
       goto SYSTEM_LABEL;
     }
     if (*(int *)(system_long_handle + 0x30) != 0) {
-      pbVar5 = *(byte **)(system_long_buffer + 0x28);
-      system_long_status = *(longlong *)(system_long_handle + 0x28) - (longlong)pbVar5;
+      system_byte_ptr_ = *(byte **)(system_long_buffer + 0x28);
+      system_long_status = *(longlong *)(system_long_handle + 0x28) - (longlong)system_byte_ptr_;
       do {
-        system_byte_value = *pbVar5;
-        system_uint_context = (uint)pbVar5[system_long_status];
+        system_byte_value = *system_byte_ptr_;
+        system_uint_context = (uint)system_byte_ptr_[system_long_status];
         if (system_byte_value != system_uint_context) break;
-        pbVar5 = pbVar5 + 1;
+        system_byte_ptr_ = system_byte_ptr_ + 1;
       } while (system_uint_context != 0);
       if ((int)(system_byte_value - system_uint_context) < 1) goto SYSTEM_LABEL;
     }
@@ -27032,7 +27032,7 @@ uint64_t * FUN_180058080(uint64_t *system_param_1,uint64_t *system_param_2,longl
 {
   byte system_byte_value;
   bool system_byte_context;
-  byte *pbVar3;
+  byte *system_byte_ptr_;
   uint system_uint_buffer;
   int system_int_config;
   longlong system_long_status;
@@ -27054,13 +27054,13 @@ uint64_t * FUN_180058080(uint64_t *system_param_1,uint64_t *system_param_2,longl
           system_byte_context = true;
         }
         else {
-          pbVar3 = *(byte **)(system_param_3 + 8);
-          system_long_status = system_parent_ptr[5] - (longlong)pbVar3;
+          system_byte_ptr_ = *(byte **)(system_param_3 + 8);
+          system_long_status = system_parent_ptr[5] - (longlong)system_byte_ptr_;
           do {
-            system_uint_buffer = (uint)pbVar3[system_long_status];
-            system_int_config = *pbVar3 - system_uint_buffer;
-            if (*pbVar3 != system_uint_buffer) break;
-            pbVar3 = pbVar3 + 1;
+            system_uint_buffer = (uint)system_byte_ptr_[system_long_status];
+            system_int_config = *system_byte_ptr_ - system_uint_buffer;
+            if (*system_byte_ptr_ != system_uint_buffer) break;
+            system_byte_ptr_ = system_byte_ptr_ + 1;
           } while (system_uint_buffer != 0);
           system_byte_context = 0 < system_int_config;
           if (system_int_config < 1) {
@@ -27085,13 +27085,13 @@ SYSTEM_LABEL:
         return system_param_2;
       }
       if (*(int *)(system_param_3 + 0x10) != 0) {
-        pbVar3 = (byte *)system_manager_ptr[5];
-        system_long_status = *(longlong *)(system_param_3 + 8) - (longlong)pbVar3;
+        system_byte_ptr_ = (byte *)system_manager_ptr[5];
+        system_long_status = *(longlong *)(system_param_3 + 8) - (longlong)system_byte_ptr_;
         do {
-          system_byte_value = *pbVar3;
-          system_uint_buffer = (uint)pbVar3[system_long_status];
+          system_byte_value = *system_byte_ptr_;
+          system_uint_buffer = (uint)system_byte_ptr_[system_long_status];
           if (system_byte_value != system_uint_buffer) break;
-          pbVar3 = pbVar3 + 1;
+          system_byte_ptr_ = system_byte_ptr_ + 1;
         } while (system_uint_buffer != 0);
         if ((int)(system_byte_value - system_uint_buffer) < 1) goto SYSTEM_LABEL;
       }
@@ -28575,7 +28575,7 @@ uint64_t * system_process_shader_data(uint64_t *system_param_1,uint8_t *system_p
   uint64_t *system_handle_ptr;
   uint64_t *system_buffer_ptr;
   uint system_uint_config;
-  byte *pbVar6;
+  byte *system_byte_ptr_;
   longlong system_local_long;
   
   system_byte_context = true;
@@ -28593,13 +28593,13 @@ SYSTEM_LABEL:
         system_byte_context = true;
       }
       else {
-        pbVar6 = (byte *)system_buffer_ptr[5];
-        system_local_long = *(longlong *)(system_param_3 + 8) - (longlong)pbVar6;
+        system_byte_ptr_ = (byte *)system_buffer_ptr[5];
+        system_local_long = *(longlong *)(system_param_3 + 8) - (longlong)system_byte_ptr_;
         do {
-          system_byte_value = *pbVar6;
-          system_uint_config = (uint)pbVar6[system_local_long];
+          system_byte_value = *system_byte_ptr_;
+          system_uint_config = (uint)system_byte_ptr_[system_local_long];
           if (system_byte_value != system_uint_config) break;
-          pbVar6 = pbVar6 + 1;
+          system_byte_ptr_ = system_byte_ptr_ + 1;
         } while (system_uint_config != 0);
         system_byte_context = 0 < (int)(system_byte_value - system_uint_config);
       }
@@ -28617,13 +28617,13 @@ SYSTEM_LABEL:
   }
   if (*(int *)(system_param_3 + 0x10) != 0) {
     if (*(int *)(system_buffer_ptr + 6) != 0) {
-      pbVar6 = *(byte **)(system_param_3 + 8);
-      system_local_long = system_buffer_ptr[5] - (longlong)pbVar6;
+      system_byte_ptr_ = *(byte **)(system_param_3 + 8);
+      system_local_long = system_buffer_ptr[5] - (longlong)system_byte_ptr_;
       do {
-        system_byte_value = *pbVar6;
-        system_uint_config = (uint)pbVar6[system_local_long];
+        system_byte_value = *system_byte_ptr_;
+        system_uint_config = (uint)system_byte_ptr_[system_local_long];
         if (system_byte_value != system_uint_config) break;
-        pbVar6 = pbVar6 + 1;
+        system_byte_ptr_ = system_byte_ptr_ + 1;
       } while (system_uint_config != 0);
       if ((int)(system_byte_value - system_uint_config) < 1) goto SYSTEM_LABEL;
     }
@@ -30891,7 +30891,7 @@ void system_function_05cc00(void ***system_param_1,uint64_t system_param_2,uint6
   uint system_uint_context;
   longlong system_long_handle;
   void ***psystem_uint_ptr;
-  byte *pbVar5;
+  byte *system_byte_ptr_;
   void ***psystem_node_ptr;
   longlong system_local_long;
   uint64_t system_local_uint;
@@ -30946,13 +30946,13 @@ void system_function_05cc00(void ***system_param_1,uint64_t system_param_2,uint6
   if (psystem_uint_ptr == psystem_node_ptr) goto SYSTEM_LABEL;
   if (*(int *)(psystem_uint_ptr + 6) != 0) {
     if (*(int *)(system_long_handle + 0x30) == 0) goto SYSTEM_LABEL;
-    pbVar5 = psystem_uint_ptr[5];
-    system_local_long = *(longlong *)(system_long_handle + 0x28) - (longlong)pbVar5;
+    system_byte_ptr_ = psystem_uint_ptr[5];
+    system_local_long = *(longlong *)(system_long_handle + 0x28) - (longlong)system_byte_ptr_;
     do {
-      system_byte_value = *pbVar5;
-      system_uint_context = (uint)pbVar5[system_local_long];
+      system_byte_value = *system_byte_ptr_;
+      system_uint_context = (uint)system_byte_ptr_[system_local_long];
       if (system_byte_value != system_uint_context) break;
-      pbVar5 = pbVar5 + 1;
+      system_byte_ptr_ = system_byte_ptr_ + 1;
     } while (system_uint_context != 0);
     if (0 < (int)(system_byte_value - system_uint_context)) goto SYSTEM_LABEL;
   }
@@ -33075,7 +33075,7 @@ longlong FUN_18005ed54(void)
   longlong system_register;
   longlong system_register;
   int system_register;
-  bool bVar9;
+  bool system_byte_var_;
   char system_stack_param;
   
   while( true ) {
@@ -33102,12 +33102,12 @@ longlong FUN_18005ed54(void)
               if (*(int *)(system_register[1] + system_local_uint * 0x10) == 0) {
                 system_local_int_ptr = (int *)(system_register[1] + system_local_uint * 0x10);
                 LOCK();
-                bVar9 = *system_local_int_ptr == 0;
-                if (bVar9) {
+                system_byte_var_ = *system_local_int_ptr == 0;
+                if (system_byte_var_) {
                   *system_local_int_ptr = system_register;
                 }
                 UNLOCK();
-                if (bVar9) {
+                if (system_byte_var_) {
                   *(longlong *)(system_register[1] + 8 + system_local_uint * 0x10) = system_long_status;
                   return system_long_status;
                 }
@@ -33166,7 +33166,7 @@ uint64_t * FUN_18005ee30(longlong *system_param_1,char system_param_2,uint8_t *s
   uint64_t *system_node_ptr;
   ulonglong system_local_uint;
   ulonglong system_local_uint;
-  bool bVar9;
+  bool system_byte_var_;
   
   system_node_ptr = (uint64_t *)0x0;
   system_data_ptr = (uint64_t *)*system_param_1;
@@ -33245,26 +33245,26 @@ uint64_t * FUN_18005ee30(longlong *system_param_1,char system_param_2,uint8_t *s
           system_data_ptr[1] = system_config_ptr;
           LOCK();
           system_long_buffer = *system_param_1;
-          bVar9 = system_long_handle == system_long_buffer;
-          if (bVar9) {
+          system_byte_var_ = system_long_handle == system_long_buffer;
+          if (system_byte_var_) {
             *system_param_1 = (longlong)system_data_ptr;
             system_long_buffer = system_long_handle;
           }
           UNLOCK();
           system_long_handle = system_long_buffer;
           system_config_ptr = system_data_ptr;
-        } while (!bVar9);
+        } while (!system_byte_var_);
       }
       return system_config_ptr;
     }
     if ((*(char *)(system_data_ptr + 2) != '\0') && (*(char *)(system_data_ptr + 9) == system_param_2)) {
       LOCK();
-      bVar9 = *(char *)(system_data_ptr + 2) == '\x01';
-      if (bVar9) {
+      system_byte_var_ = *(char *)(system_data_ptr + 2) == '\x01';
+      if (system_byte_var_) {
         *(char *)(system_data_ptr + 2) = '\0';
       }
       UNLOCK();
-      if (bVar9) {
+      if (system_byte_var_) {
         *system_param_3 = 1;
         return system_data_ptr;
       }
@@ -35972,12 +35972,12 @@ int system_function_0634b0(uint64_t system_param_1,uint64_t system_param_2,uint6
 ulonglong FUN_180063510(longlong *system_param_1,longlong system_param_2)
 
 {
-  byte *pbVar1;
+  byte *system_byte_ptr_;
   uint system_uint_context;
   uint system_uint_handle;
   longlong system_long_buffer;
   ulonglong system_register_rax;
-  byte *pbVar5;
+  byte *system_byte_ptr_;
   uint system_uint_status;
   ulonglong system_local_uint;
   longlong system_local_long;
@@ -35992,22 +35992,22 @@ ulonglong FUN_180063510(longlong *system_param_1,longlong system_param_2)
     system_local_long = 0;
     do {
       system_uint_handle = *(uint *)(system_local_long + 0x10 + system_long_buffer);
-      pbVar5 = (byte *)(ulonglong)system_uint_handle;
+      system_byte_ptr_ = (byte *)(ulonglong)system_uint_handle;
       system_uint_status = system_uint_context;
       if (system_uint_handle == system_uint_context) {
         if (system_uint_handle != 0) {
-          pbVar5 = *(byte **)(system_local_long + 8 + system_long_buffer);
-          system_local_long = *(longlong *)(system_param_2 + 8) - (longlong)pbVar5;
+          system_byte_ptr_ = *(byte **)(system_local_long + 8 + system_long_buffer);
+          system_local_long = *(longlong *)(system_param_2 + 8) - (longlong)system_byte_ptr_;
           do {
-            pbVar1 = pbVar5 + system_local_long;
-            system_uint_status = (uint)*pbVar5 - (uint)*pbVar1;
+            system_byte_ptr_ = system_byte_ptr_ + system_local_long;
+            system_uint_status = (uint)*system_byte_ptr_ - (uint)*system_byte_ptr_;
             if (system_uint_status != 0) break;
-            pbVar5 = pbVar5 + 1;
-          } while (*pbVar1 != 0);
+            system_byte_ptr_ = system_byte_ptr_ + 1;
+          } while (*system_byte_ptr_ != 0);
         }
 SYSTEM_LABEL:
         if (system_uint_status == 0) {
-          return CONCAT71((int7)((ulonglong)pbVar5 >> 8),1);
+          return CONCAT71((int7)((ulonglong)system_byte_ptr_ >> 8),1);
         }
       }
       else if (system_uint_handle == 0) goto SYSTEM_LABEL;
@@ -36901,7 +36901,7 @@ SYSTEM_LABEL:
 void system_function_065160(uint64_t system_param_1)
 
 {
-  byte *pbVar1;
+  byte *system_byte_ptr_;
   int system_int_context;
   bool system_byte_handle;
   uint64_t *system_buffer_ptr;
@@ -37257,11 +37257,11 @@ void system_function_065160(uint64_t system_param_1)
                   pbVar13 = (byte *)*system_uint_ptr;
                   system_local_long = (longlong)pcStack_298 - (longlong)pbVar13;
                   do {
-                    pbVar1 = pbVar13 + system_local_long;
-                    system_local_int = (uint)*pbVar13 - (uint)*pbVar1;
+                    system_byte_ptr_ = pbVar13 + system_local_long;
+                    system_local_int = (uint)*pbVar13 - (uint)*system_byte_ptr_;
                     if (system_local_int != 0) break;
                     pbVar13 = pbVar13 + 1;
-                  } while (*pbVar1 != 0);
+                  } while (*system_byte_ptr_ != 0);
                 }
 SYSTEM_LABEL:
                 if (system_local_int == 0) {
@@ -37655,7 +37655,7 @@ void system_function_066140(longlong *system_param_1,uint64_t system_param_2,uin
 
 // 函数: void system_function_066320(uint64_t system_param_1,uint64_t system_param_2,char system_param_3,char system_param_4,
 void system_function_066320(uint64_t system_param_1,uint64_t system_param_2,char system_param_3,char system_param_4,
-                  uint64_t param_5)
+                  uint64_t system_param_)
 
 {
   char system_status_flag;
@@ -37827,7 +37827,7 @@ SYSTEM_LABEL:
     psystem_stack_uint_ptr = &system_stack_ptr;
     system_uint_config = system_initialize_ui_components(&system_stack_ptr,&system_stack_ptr);
     FUN_180063820(system_uint_config);
-    FUN_180063b30(&system_stack_ptr,param_5);
+    FUN_180063b30(&system_stack_ptr,system_param_);
     FUN_180063cf0(&system_stack_ptr);
     system_initialize_render_state(&system_stack_ptr);
     FUN_180627e10(&system_stack_ptr,&system_stack_uint_ptr,&system_memory_config_ptr);
@@ -37909,7 +37909,7 @@ SYSTEM_LABEL:
 
 // 函数: void system_function_0669c0(uint64_t system_param_1,uint64_t system_param_2,char system_param_3,uint64_t system_param_4,
 void system_function_0669c0(uint64_t system_param_1,uint64_t system_param_2,char system_param_3,uint64_t system_param_4,
-                  uint64_t param_5)
+                  uint64_t system_param_)
 
 {
   longlong system_long_value;
@@ -38006,7 +38006,7 @@ SYSTEM_LABEL:
       memcpy(system_stack_ptr,&system_data_180c84870,system_int_status);
     }
     system_stack_uint = 0;
-    FUN_180065f00(&system_stack_uint_ptr,param_5);
+    FUN_180065f00(&system_stack_uint_ptr,system_param_);
     system_stack_uint_ptr = &system_unknown_180a3c3e0;
     if (system_stack_ptr != (uint64_t *)0x0) {
                     // WARNING: Subroutine does not return
@@ -38110,7 +38110,7 @@ SYSTEM_LABEL:
 
 
 longlong FUN_180066f90(longlong system_param_1,ulonglong system_param_2,uint64_t system_param_3,char *system_param_4,
-                      ulonglong param_5)
+                      ulonglong system_param_)
 
 {
   char system_status_flag;
@@ -38118,15 +38118,15 @@ longlong FUN_180066f90(longlong system_param_1,ulonglong system_param_2,uint64_t
   longlong system_long_handle;
   longlong system_long_buffer;
   
-  if (param_5 <= system_param_2) {
-    if (param_5 == 0) {
+  if (system_param_ <= system_param_2) {
+    if (system_param_ == 0) {
       return 0;
     }
     system_status_flag = *system_param_4;
-    system_long_buffer = (system_param_1 - param_5) + system_param_2;
+    system_long_buffer = (system_param_1 - system_param_) + system_param_2;
     for (system_long_handle = memchr(system_param_1,(int)system_status_flag,(system_long_buffer + 1) - system_param_1); system_long_handle != 0;
         system_long_handle = memchr(system_long_handle + 1,(int)system_status_flag,(system_long_buffer + 1) - (system_long_handle + 1))) {
-      system_int_context = memcmp(system_long_handle,system_param_4,param_5);
+      system_int_context = memcmp(system_long_handle,system_param_4,system_param_);
       if (system_int_context == 0) {
         return system_long_handle - system_param_1;
       }
@@ -39019,7 +39019,7 @@ void system_function_0687d0(longlong system_param_1,uint64_t *system_param_2)
 
 longlong *
 FUN_180068860(longlong system_param_1,longlong *system_param_2,uint64_t system_param_3,uint64_t system_param_4,
-             ulonglong param_5)
+             ulonglong system_param_)
 
 {
   longlong system_long_value;
@@ -39027,21 +39027,21 @@ FUN_180068860(longlong system_param_1,longlong *system_param_2,uint64_t system_p
   longlong system_long_handle;
   uint64_t system_uint_buffer;
   
-  system_uint_context = param_5 % (ulonglong)*(uint *)(system_param_1 + 0x10);
+  system_uint_context = system_param_ % (ulonglong)*(uint *)(system_param_1 + 0x10);
   system_long_handle = func_0x0001800694c0(system_param_1,*(uint64_t *)(*(longlong *)(system_param_1 + 8) + system_uint_context * 8),
                               system_param_4);
   if (system_long_handle == 0) {
-    FUN_18066c220(system_param_1 + 0x20,&param_5,*(uint32_t *)(system_param_1 + 0x10),
+    FUN_18066c220(system_param_1 + 0x20,&system_param_,*(uint32_t *)(system_param_1 + 0x10),
                   *(uint32_t *)(system_param_1 + 0x18),1);
     system_long_handle = system_allocate_resource_block(_system_data_180c8ed18,0x128,*(uint8_t *)(system_param_1 + 0x2c));
     FUN_180068ff0(system_long_handle,system_param_4);
     *(uint64_t *)(system_long_handle + 0x118) = 0;
     *(uint64_t *)(system_long_handle + 0x120) = 0;
-    if ((char)param_5 != '\0') {
-      system_uint_buffer = system_allocate_memory_context(_system_data_180c8ed18,(ulonglong)param_5._4_4_ * 8 + 8,8,
+    if ((char)system_param_ != '\0') {
+      system_uint_buffer = system_allocate_memory_context(_system_data_180c8ed18,(ulonglong)system_param_._4_4_ * 8 + 8,8,
                             *(uint8_t *)(system_param_1 + 0x2c));
                     // WARNING: Subroutine does not return
-      memset(system_uint_buffer,0,(ulonglong)param_5._4_4_ * 8);
+      memset(system_uint_buffer,0,(ulonglong)system_param_._4_4_ * 8);
     }
     *(uint64_t *)(system_long_handle + 0x120) = *(uint64_t *)(*(longlong *)(system_param_1 + 8) + system_uint_context * 8);
     *(longlong *)(*(longlong *)(system_param_1 + 8) + system_uint_context * 8) = system_long_handle;
@@ -40675,7 +40675,7 @@ void system_function_06bd80(longlong system_param_1)
 
 uint64_t
 FUN_18006bda0(longlong system_param_1,longlong system_param_2,longlong *system_param_3,longlong *system_param_4,
-             longlong *param_5)
+             longlong *system_param_)
 
 {
   longlong system_long_value;
@@ -40719,14 +40719,14 @@ FUN_18006bda0(longlong system_param_1,longlong system_param_2,longlong *system_p
         system_long_handle = system_allocate_resource_block(_system_data_180c8ed18,system_long_handle,CONCAT71(system_local_uint,3));
         *system_param_3 = system_long_handle;
         *(longlong *)(system_param_2 + 0x198) = system_long_handle;
-        *param_5 = *system_param_3;
+        *system_param_ = *system_param_3;
       }
     }
     else {
       system_long_handle = system_allocate_resource_block(_system_data_180c8ed18,system_long_handle,CONCAT71(system_local_uint,3));
       *system_param_4 = system_long_handle;
       *(longlong *)(system_param_2 + 0x198) = system_long_handle;
-      *param_5 = *system_param_4;
+      *system_param_ = *system_param_4;
       if (*system_param_3 == 0) {
         system_long_handle = system_allocate_resource_block(_system_data_180c8ed18,*(uint64_t *)(system_param_2 + 0x138),3);
         *system_param_3 = system_long_handle;
@@ -40741,7 +40741,7 @@ FUN_18006bda0(longlong system_param_1,longlong system_param_2,longlong *system_p
       if (system_long_context_ptr == (longlong *)0x0) goto SYSTEM_LABEL;
       system_long_handle = *(longlong *)(system_param_1 + 800) + *system_long_context_ptr;
       *system_param_3 = system_long_handle;
-      *param_5 = system_long_handle;
+      *system_param_ = system_long_handle;
     }
   }
   else {
@@ -40755,7 +40755,7 @@ SYSTEM_LABEL:
     }
     system_long_handle = *system_long_context_ptr + *(longlong *)(system_param_1 + 800);
     *system_param_4 = system_long_handle;
-    *param_5 = system_long_handle;
+    *system_param_ = system_long_handle;
     if (*system_param_3 == 0) {
       system_long_context_ptr = (longlong *)FUN_18006e000(system_param_1,*(uint64_t *)(system_param_2 + 0x138));
       *(longlong **)(system_param_2 + 400) = system_long_context_ptr;
@@ -40793,11 +40793,11 @@ void system_function_06c070(longlong system_param_1)
 {
   longlong *system_long_data_ptr;
   int *system_local_int_ptr;
-  byte *pbVar3;
+  byte *system_byte_ptr_;
   uint64_t system_uint_buffer;
   uint64_t *system_config_ptr;
   uint64_t *system_node_ptr;
-  bool bVar7;
+  bool system_byte_var_;
   longlong system_local_long;
   char cVar9;
   longlong system_local_long;
@@ -40914,18 +40914,18 @@ void system_function_06c070(longlong system_param_1)
           if (system_local_int != 0) {
             __Throw_C_error_std__YAXH_Z(system_local_int);
           }
-          bVar7 = false;
+          system_byte_var_ = false;
         }
         else {
           system_local_int = _Mtx_unlock();
           if (system_local_int != 0) {
             __Throw_C_error_std__YAXH_Z(system_local_int);
           }
-          bVar7 = true;
+          system_byte_var_ = true;
         }
       }
       else {
-        bVar7 = true;
+        system_byte_var_ = true;
       }
     }
     else {
@@ -40971,7 +40971,7 @@ void system_function_06c070(longlong system_param_1)
       system_stack_uint = *(uint64_t *)(system_local_long + 0x1a0);
       *(longlong *)(system_param_1 + 0x3d0) = *(longlong *)(system_param_1 + 0x3d0) + -0x1a8;
       FUN_180069530();
-      bVar7 = true;
+      system_byte_var_ = true;
     }
     system_data_ptr0 = *(uint64_t **)(system_param_1 + 0xc0);
     if ((void **)*system_data_ptr0 == &system_unknown_1809fee70) {
@@ -41023,7 +41023,7 @@ void system_function_06c070(longlong system_param_1)
     else {
       (**(code **)((void **)*system_data_ptr0 + 0x18))(system_data_ptr0);
     }
-    if (bVar7) {
+    if (system_byte_var_) {
       plVar23 = *(longlong **)(system_param_1 + 0xc0);
       system_local_uint = system_local_uint;
       if (0 < iStack_1e8) {
@@ -41041,11 +41041,11 @@ void system_function_06c070(longlong system_param_1)
           if (iStack_1e8 != 0) {
             pbVar12 = pbStack_1f0;
             do {
-              pbVar3 = pbVar12 + (*(longlong *)(system_local_long + 8) - (longlong)pbStack_1f0);
-              system_local_int = (uint)*pbVar12 - (uint)*pbVar3;
+              system_byte_ptr_ = pbVar12 + (*(longlong *)(system_local_long + 8) - (longlong)pbStack_1f0);
+              system_local_int = (uint)*pbVar12 - (uint)*system_byte_ptr_;
               if (system_local_int != 0) break;
               pbVar12 = pbVar12 + 1;
-            } while (*pbVar3 != 0);
+            } while (*system_byte_ptr_ != 0);
           }
 SYSTEM_LABEL:
           if (system_local_int == 0) {
@@ -42237,7 +42237,7 @@ void system_function_06dc10(longlong *system_param_1)
   longlong system_resource_handle;
   longlong system_long_status;
   longlong system_local_long;
-  bool bVar8;
+  bool system_byte_var_;
   
   FUN_180069530((ulonglong)(*(uint *)(system_param_1 + 1) & 0x1f) * 0x1a8 + *system_param_1);
   LOCK();
@@ -42262,13 +42262,13 @@ void system_function_06dc10(longlong *system_param_1)
         system_long_data_ptr = (longlong *)(system_resource_handle + 0x28);
         LOCK();
         system_long_status = *system_long_data_ptr;
-        bVar8 = system_local_long == system_long_status;
-        if (bVar8) {
+        system_byte_var_ = system_local_long == system_long_status;
+        if (system_byte_var_) {
           *system_long_data_ptr = system_long_buffer;
           system_long_status = system_local_long;
         }
         UNLOCK();
-        if (bVar8) {
+        if (system_byte_var_) {
           return;
         }
         LOCK();
@@ -43469,7 +43469,7 @@ ulonglong FUN_18006f620(uint64_t system_param_1,uint64_t system_param_2)
   int system_int_status;
   ulonglong system_local_uint;
   void **system_child_ptr;
-  bool bVar9;
+  bool system_byte_var_;
   void **system_stack_ptr;
   void **system_stack_ptr;
   uint32_t system_stack_uint;
@@ -43485,7 +43485,7 @@ ulonglong FUN_18006f620(uint64_t system_param_1,uint64_t system_param_2)
   if (system_long_handle != 0) {
     FUN_18005dab0(system_long_handle);
   }
-  bVar9 = true;
+  system_byte_var_ = true;
   system_char_buffer = (**(code **)**(uint64_t **)(_system_data_180c8ed08 + 0x18))();
   if ((system_char_buffer == '\0') && (system_int_config = IsDebuggerPresent(), system_int_config != 0)) {
     system_byte_context = true;
@@ -43496,7 +43496,7 @@ ulonglong FUN_18006f620(uint64_t system_param_1,uint64_t system_param_2)
   if (system_long_handle != 0) {
     system_int_config = *(int *)(**(longlong **)(system_long_handle + 8) + 0x48);
     system_int_status = _Thrd_id();
-    bVar9 = system_int_status == system_int_config;
+    system_byte_var_ = system_int_status == system_int_config;
   }
   FUN_1800f9ce0(asystem_stack_uint,0);
   system_stack_ptr = &system_unknown_180a3c3e0;
@@ -43523,7 +43523,7 @@ ulonglong FUN_18006f620(uint64_t system_param_1,uint64_t system_param_2)
   OutputDebugStringA(system_child_ptr);
   FUN_18004c2b0(system_param_2);
   system_long_handle = _system_data_180c86950;
-  if (((bVar9) && (_system_data_180c86950 != 0)) && (*(char *)(_system_data_180c86950 + 0x1609) != '\x01')) {
+  if (((system_byte_var_) && (_system_data_180c86950 != 0)) && (*(char *)(_system_data_180c86950 + 0x1609) != '\x01')) {
     FUN_1801723a0(*(uint64_t *)(_system_data_180c86870 + 8),*(char *)(_system_data_180c868d0 + 0x2028) != '\0',
                   *(uint32_t *)(_system_data_180c86950 + 0x160c));
     *(uint8_t *)(system_long_handle + 0x1609) = 1;
@@ -44092,7 +44092,7 @@ void system_function_070680(uint64_t system_param_1,uint64_t system_param_2)
   void **system_node_ptr;
   uint64_t system_local_uint;
   void **system_child_ptr;
-  bool bVar9;
+  bool system_byte_var_;
   void **system_stack_ptr;
   void **system_stack_ptr;
   uint32_t system_stack_uint;
@@ -44105,7 +44105,7 @@ void system_function_070680(uint64_t system_param_1,uint64_t system_param_2)
   if (system_comparison_result != 0) {
     return;
   }
-  bVar9 = true;
+  system_byte_var_ = true;
   system_char_context = (**(code **)**(uint64_t **)(_system_data_180c8ed08 + 0x18))();
   if ((system_char_context == '\0') && (system_comparison_result = IsDebuggerPresent(), system_comparison_result != 0)) {
     system_byte_value = true;
@@ -44116,7 +44116,7 @@ void system_function_070680(uint64_t system_param_1,uint64_t system_param_2)
   if (_system_data_180c82868 != 0) {
     system_comparison_result = *(int *)(**(longlong **)(_system_data_180c82868 + 8) + 0x48);
     system_int_buffer = _Thrd_id();
-    bVar9 = system_int_buffer == system_comparison_result;
+    system_byte_var_ = system_int_buffer == system_comparison_result;
   }
   system_child_ptr = (void **)0x0;
   if (!system_byte_value) {
@@ -44157,7 +44157,7 @@ void system_function_070680(uint64_t system_param_1,uint64_t system_param_2)
   }
   OutputDebugStringA(system_child_ptr);
   system_resource_handle = _system_data_180c86950;
-  if (((bVar9) && (_system_data_180c86950 != 0)) && (*(char *)(_system_data_180c86950 + 0x1609) != '\x01')) {
+  if (((system_byte_var_) && (_system_data_180c86950 != 0)) && (*(char *)(_system_data_180c86950 + 0x1609) != '\x01')) {
     FUN_1801723a0(*(uint64_t *)(_system_data_180c86870 + 8),*(char *)(_system_data_180c868d0 + 0x2028) != '\0',
                   *(uint32_t *)(_system_data_180c86950 + 0x160c));
     *(uint8_t *)(system_resource_handle + 0x1609) = 1;
@@ -44183,7 +44183,7 @@ void system_function_070680(uint64_t system_param_1,uint64_t system_param_2)
 
 // 函数: void system_function_070930(uint64_t system_param_1,longlong system_param_2,uint32_t system_param_3,longlong system_param_4,
 void system_function_070930(uint64_t system_param_1,longlong system_param_2,uint32_t system_param_3,longlong system_param_4,
-                  char param_5,char param_6)
+                  char system_param_,char system_param_)
 
 {
   code *psystem_status_flag;
@@ -44239,7 +44239,7 @@ void system_function_070930(uint64_t system_param_1,longlong system_param_2,uint
   
   system_stack_uint = 0xfffffffffffffffe;
   system_stack_uint = _system_data_180bf00a8 ^ (ulonglong)asystem_stack_uint;
-  cStack_120 = param_5;
+  cStack_120 = system_param_;
   system_handler_ptr = (uint8_t *)0x0;
   system_local_uint = 0;
   system_stack_uintc = 0;
@@ -44634,7 +44634,7 @@ SYSTEM_LABEL:
   FUN_18004c2b0(system_local_long);
   if (system_data_180c82860 != '\0') {
     if (bVar13 != 0) {
-      if (((cStack_147 == '\0') && (param_6 != '\0')) && (*(int *)(_system_data_180c86870 + 0x340) != 2)) {
+      if (((cStack_147 == '\0') && (system_param_ != '\0')) && (*(int *)(_system_data_180c86870 + 0x340) != 2)) {
         system_stack_uint = 1;
       }
       else if (system_data_180c82851 == '\0') {
@@ -44712,7 +44712,7 @@ SYSTEM_LABEL:
           system_configure_system_parameters(_system_data_180c86928,3,0xffffffff00000000,0xd);
         }
       }
-      else if (((param_6 == '\0') || (*(int *)(_system_data_180c86870 + 0x340) == 2)) &&
+      else if (((system_param_ == '\0') || (*(int *)(_system_data_180c86870 + 0x340) == 2)) &&
               (system_data_180c82851 == '\0')) {
         psystem_status_flag = (code *)swi(3);
         (*psystem_status_flag)();
@@ -45087,7 +45087,7 @@ SYSTEM_LABEL:
 
 // 函数: void system_function_072000(uint64_t system_param_1,longlong system_param_2,uint32_t system_param_3,longlong system_param_4,
 void system_function_072000(uint64_t system_param_1,longlong system_param_2,uint32_t system_param_3,longlong system_param_4,
-                  uint8_t param_5,char param_6)
+                  uint8_t system_param_,char system_param_)
 
 {
   code *psystem_status_flag;
@@ -45275,7 +45275,7 @@ SYSTEM_LABEL:
         if ((bool)cStack_117) goto SYSTEM_LABEL;
       }
       if (system_char_context != '\0') {
-        if ((param_6 == '\0') || (*(int *)(_system_data_180c86870 + 0x340) == 2)) {
+        if ((system_param_ == '\0') || (*(int *)(_system_data_180c86870 + 0x340) == 2)) {
           psystem_status_flag = (code *)swi(3);
           (*psystem_status_flag)();
           return;
@@ -45627,7 +45627,7 @@ SYSTEM_LABEL:
         if (system_handler_ptr != (void **)0x0) {
           system_stack_ptr = system_handler_ptr;
         }
-        FUN_1800669c0(system_local_uint,&system_stack_uint_ptr,system_local_uint,param_5);
+        FUN_1800669c0(system_local_uint,&system_stack_uint_ptr,system_local_uint,system_param_);
         system_stack_uint_ptr = &system_unknown_180a3c3e0;
         if (lStack_e8 != 0) {
                     // WARNING: Subroutine does not return
@@ -48564,7 +48564,7 @@ void system_function_075630(longlong system_param_1,uint64_t *system_param_2)
 void system_function_0756e0(uint64_t *system_param_1)
 
 {
-  byte *pbVar1;
+  byte *system_byte_ptr_;
   longlong *system_long_context_ptr;
   longlong system_long_handle;
   uint64_t system_uint_buffer;
@@ -48628,8 +48628,8 @@ void system_function_0756e0(uint64_t *system_param_1)
     FUN_180080060();
     system_param_1[0x3d] = 0;
     if (system_param_1[0x3e] != 0) {
-      pbVar1 = (byte *)(system_param_1[0x3e] + 0xfe);
-      *pbVar1 = *pbVar1 & 0xfb;
+      system_byte_ptr_ = (byte *)(system_param_1[0x3e] + 0xfe);
+      *system_byte_ptr_ = *system_byte_ptr_ & 0xfb;
     }
   }
   system_long_context_ptr = (longlong *)system_param_1[0x42];
@@ -48764,7 +48764,7 @@ float * FUN_180075b70(float *system_param_1)
   float *system_local_float_ptr;
   uint system_local_uint;
   ulonglong system_local_uint;
-  bool bVar9;
+  bool system_byte_var_;
   float system_local_float;
   float system_local_float;
   float fStack_b8;
@@ -48934,13 +48934,13 @@ float * FUN_180075b70(float *system_param_1)
       while( true ) {
         LOCK();
         system_char_config = *(char *)(system_local_float_ptr + 0x3b);
-        bVar9 = system_char_config == '\0';
-        if (bVar9) {
+        system_byte_var_ = system_char_config == '\0';
+        if (system_byte_var_) {
           *(char *)(system_local_float_ptr + 0x3b) = '\x01';
           system_char_config = '\0';
         }
         UNLOCK();
-        if (bVar9) break;
+        if (system_byte_var_) break;
         system_local_float = (float)_Thrd_id();
         if ((system_local_float_ptr[0x3c] == system_local_float) || (system_local_float_ptr[0x3c] != 0.0)) goto SYSTEM_LABEL;
         Sleep();
@@ -49155,7 +49155,7 @@ void system_function_075ff0(longlong *system_param_1)
 longlong * FUN_1800763c0(longlong *system_param_1,longlong *system_param_2)
 
 {
-  byte *pbVar1;
+  byte *system_byte_ptr_;
   uint32_t system_uint_context;
   longlong system_long_handle;
   uint32_t system_uint_buffer;
@@ -49220,8 +49220,8 @@ longlong * FUN_1800763c0(longlong *system_param_1,longlong *system_param_2)
     (**(code **)(*system_param_1 + 0x38))(system_param_1);
   }
   *(longlong *)(*system_param_2 + 0xa8) = system_param_1[0x15];
-  pbVar1 = (byte *)(*system_param_2 + 0xfd);
-  *pbVar1 = *pbVar1 ^ (*(byte *)(*system_param_2 + 0xfd) ^ *(byte *)((longlong)system_param_1 + 0xfd)) & 2;
+  system_byte_ptr_ = (byte *)(*system_param_2 + 0xfd);
+  *system_byte_ptr_ = *system_byte_ptr_ ^ (*(byte *)(*system_param_2 + 0xfd) ^ *(byte *)((longlong)system_param_1 + 0xfd)) & 2;
   *(int *)(*system_param_2 + 0x100) = (int)system_param_1[0x20];
   system_local_long = system_param_1[0x48];
   system_long_handle = *system_param_2;
@@ -49313,8 +49313,8 @@ longlong * FUN_1800763c0(longlong *system_param_1,longlong *system_param_2)
   *(uint32_t *)(system_long_handle + 0x194) = system_uint_config;
   *(int *)(system_long_handle + 0x198) = (int)system_local_long;
   *(uint32_t *)(system_long_handle + 0x19c) = system_uint_status;
-  pbVar1 = (byte *)(*system_param_2 + 0xfd);
-  *pbVar1 = *pbVar1 ^ (*(byte *)(*system_param_2 + 0xfd) ^ *(byte *)((longlong)system_param_1 + 0xfd)) & 1;
+  system_byte_ptr_ = (byte *)(*system_param_2 + 0xfd);
+  *system_byte_ptr_ = *system_byte_ptr_ ^ (*(byte *)(*system_param_2 + 0xfd) ^ *(byte *)((longlong)system_param_1 + 0xfd)) & 1;
   *(uint8_t *)(*system_param_2 + 0xf7) = *(uint8_t *)((longlong)system_param_1 + 0xf7);
   *(int *)(*system_param_2 + 0x208) = (int)system_param_1[0x41];
   *(int *)(*system_param_2 + 0x1f8) = (int)system_param_1[0x3f];
@@ -50121,7 +50121,7 @@ void system_function_077710(longlong system_param_1)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 ulonglong FUN_180077750(longlong system_param_1,uint *system_param_2,float *system_param_3,longlong system_param_4,
-                       longlong param_5)
+                       longlong system_param_)
 
 {
   float system_float_value;
@@ -50280,7 +50280,7 @@ SYSTEM_LABEL:
         system_param_3 = pfStackX_18;
         if (*(int *)(system_data_ptr6 + 4) != system_comparison_result3) {
           *(int *)(system_data_ptr6 + 4) = system_comparison_result3;
-          FUN_180079270(system_param_1,param_5);
+          FUN_180079270(system_param_1,system_param_);
           system_param_3 = pfStackX_18;
           if (((byte)(system_uint_status >> 0x19) & 1) != 0) {
             if ((*(uint *)(system_param_1 + 0x100) & 0x800) != 0) {
@@ -50409,7 +50409,7 @@ SYSTEM_LABEL:
             }
             *(bool *)((longlong)asystem_stack_ptr[0] + 0x4c) = *(longlong *)(system_local_long + 0x10) != 0;
             *(uint8_t *)((longlong)asystem_stack_ptr[0] + 0x4d) = 1;
-            if ((*(char *)(param_5 + 0xc) != '\0') ||
+            if ((*(char *)(system_param_ + 0xc) != '\0') ||
                (0 < *(int *)(*(longlong *)(system_param_1 + 600) + 0x1c))) {
               *(uint8_t *)((longlong)asystem_stack_ptr[0] + 0x4d) = 0;
             }
@@ -50495,7 +50495,7 @@ SYSTEM_LABEL:
       *(uint64_t *)(system_param_1 + 400) = uStack_d8;
       *(uint64_t *)(system_param_1 + 0x198) = uStack_d0;
     }
-    system_local_uint = FUN_18024a290(system_param_2,system_param_1,&system_stack_uint,system_param_4,param_5);
+    system_local_uint = FUN_18024a290(system_param_2,system_param_1,&system_stack_uint,system_param_4,system_param_);
     *(byte *)(system_param_1 + 0xfd) = *(byte *)(system_param_1 + 0xfd) & 0xfe;
     *(int *)(system_param_1 + 0x1d0) = system_comparison_result3;
     if (bVar22 != 0) {
@@ -51298,7 +51298,7 @@ void system_function_077dc6(void)
   byte bVar28;
   float *system_local_float_ptr;
   longlong system_register;
-  uint32_t uStack0000000000000030;
+  uint32_t system_stack_uint_;
   uint64_t system_stack_param;
   uint64_t system_stack_param;
   uint64_t system_stack_param;
@@ -51334,7 +51334,7 @@ void system_function_077dc6(void)
   float *system_stack_param;
   uint64_t system_stack_param;
   
-  uStack0000000000000030 = 0xffffffff;
+  system_stack_uint_ = 0xffffffff;
   FUN_180080e90(system_register + 0x3388,&stack0x00000030);
   system_local_float_ptr = system_stack_param;
   if ((*(uint *)(system_register + 0x100) & 0x4000000) != 0) {
@@ -51517,7 +51517,7 @@ uint8_t FUN_180077ef9(void)
 
 
 ulonglong FUN_180077f20(longlong system_param_1,uint64_t system_param_2,uint32_t system_param_3,float *system_param_4,
-                       uint32_t param_5,uint32_t param_6)
+                       uint32_t system_param_,uint32_t system_param_)
 
 {
   float system_float_value;
@@ -51631,7 +51631,7 @@ SYSTEM_LABEL:
       system_stack_uint = (ulonglong)(uint)(float)system_stack_uint;
       system_stack_uint = (ulonglong)(uint)(float)system_stack_uint;
       system_stack_uint = (ulonglong)(uint)(float)system_stack_uint;
-      system_local_uint = FUN_180252ca0(system_param_2,system_param_1,system_param_3,&system_stack_uint,param_5,param_6);
+      system_local_uint = FUN_180252ca0(system_param_2,system_param_1,system_param_3,&system_stack_uint,system_param_,system_param_);
       return system_local_uint;
     }
     system_register_rax = 0;
@@ -51668,23 +51668,23 @@ void system_function_078051(uint64_t system_param_1,uint64_t system_param_2,floa
   float in_XMM4_Db;
   float in_XMM4_Dc;
   float in_XMM5_Da;
-  uint32_t uStack0000000000000028;
+  uint32_t system_stack_uint_;
   float fStack0000000000000030;
   float fStack0000000000000034;
   float fStack0000000000000038;
-  uint32_t uStack000000000000003c;
+  uint32_t system_stack_uint_;
   float fStack0000000000000040;
   float fStack0000000000000044;
   float fStack0000000000000048;
-  uint32_t uStack000000000000004c;
+  uint32_t system_stack_uint_;
   float fStack0000000000000050;
   float fStack0000000000000054;
   float fStack0000000000000058;
-  uint32_t uStack000000000000005c;
+  uint32_t system_stack_uint_;
   float fStack0000000000000060;
   float fStack0000000000000064;
   float fStack0000000000000068;
-  uint32_t uStack000000000000006c;
+  uint32_t system_stack_uint_;
   uint32_t system_stack_param;
   uint32_t system_stack_param;
   
@@ -51715,11 +51715,11 @@ void system_function_078051(uint64_t system_param_1,uint64_t system_param_2,floa
   fStack0000000000000060 = system_param_3 * in_XMM4_Da + system_float_context * system_float_buffer + system_float_value * system_local_float + system_register[0xc];
   fStack0000000000000064 = system_param_3 * in_XMM4_Db + system_float_context * system_float_config + system_float_value * system_local_float + system_register[0xd];
   fStack0000000000000068 = system_param_3 * in_XMM4_Dc + system_float_context * system_float_status + system_float_value * system_local_float + system_register[0xe];
-  uStack0000000000000028 = system_stack_param;
-  uStack000000000000006c = 0x3f800000;
-  uStack000000000000005c = 0;
-  uStack000000000000004c = 0;
-  uStack000000000000003c = 0;
+  system_stack_uint_ = system_stack_param;
+  system_stack_uint_ = 0x3f800000;
+  system_stack_uint_ = 0;
+  system_stack_uint_ = 0;
+  system_stack_uint_ = 0;
   FUN_180252ca0(0x3f800000,system_float_value * system_local_float,system_register,&stack0x00000030,system_stack_param);
   return;
 }
@@ -51732,32 +51732,32 @@ void system_function_078143(void)
 {
   uint64_t *system_register;
   uint32_t system_register;
-  uint32_t uStack0000000000000028;
-  uint64_t uStack0000000000000030;
-  ulonglong uStack0000000000000038;
-  uint64_t uStack0000000000000040;
-  ulonglong uStack0000000000000048;
-  uint64_t uStack0000000000000050;
-  ulonglong uStack0000000000000058;
-  uint32_t uStack0000000000000060;
-  uint32_t uStack0000000000000064;
-  uint32_t uStack0000000000000068;
-  uint32_t uStack000000000000006c;
+  uint32_t system_stack_uint_;
+  uint64_t system_stack_uint_;
+  ulonglong system_stack_uint_;
+  uint64_t system_stack_uint_;
+  ulonglong system_stack_uint_;
+  uint64_t system_stack_uint_;
+  ulonglong system_stack_uint_;
+  uint32_t system_stack_uint_;
+  uint32_t system_stack_uint_;
+  uint32_t system_stack_uint_;
+  uint32_t system_stack_uint_;
   uint32_t system_stack_param;
   uint32_t system_stack_param;
   
-  uStack0000000000000030 = *system_register;
-  uStack0000000000000040 = system_register[2];
-  uStack0000000000000050 = system_register[4];
-  uStack0000000000000060 = *(uint32_t *)(system_register + 6);
-  uStack0000000000000064 = *(uint32_t *)((longlong)system_register + 0x34);
-  uStack0000000000000068 = *(uint32_t *)(system_register + 7);
-  uStack0000000000000028 = system_stack_param;
-  uStack000000000000006c = 0x3f800000;
-  uStack0000000000000058 = system_register[5] & 0xffffffff;
-  uStack0000000000000048 = system_register[3] & 0xffffffff;
-  uStack0000000000000038 = system_register[1] & 0xffffffff;
-  FUN_180252ca0(0x3f800000,uStack0000000000000060,system_register,&stack0x00000030,system_stack_param);
+  system_stack_uint_ = *system_register;
+  system_stack_uint_ = system_register[2];
+  system_stack_uint_ = system_register[4];
+  system_stack_uint_ = *(uint32_t *)(system_register + 6);
+  system_stack_uint_ = *(uint32_t *)((longlong)system_register + 0x34);
+  system_stack_uint_ = *(uint32_t *)(system_register + 7);
+  system_stack_uint_ = system_stack_param;
+  system_stack_uint_ = 0x3f800000;
+  system_stack_uint_ = system_register[5] & 0xffffffff;
+  system_stack_uint_ = system_register[3] & 0xffffffff;
+  system_stack_uint_ = system_register[1] & 0xffffffff;
+  FUN_180252ca0(0x3f800000,system_stack_uint_,system_register,&stack0x00000030,system_stack_param);
   return;
 }
 
@@ -51881,7 +51881,7 @@ void system_function_0781f4(longlong system_param_1)
   uint64_t *system_parent_ptr;
   uint system_local_uint;
   longlong system_register;
-  bool bVar9;
+  bool system_byte_var_;
   float system_local_float;
   
   if ((system_register_rax != 0) && (system_long_value = *(longlong *)(system_register_rax + 0x28), system_long_value != 0)) {
@@ -51896,7 +51896,7 @@ void system_function_0781f4(longlong system_param_1)
   }
   if (*(longlong *)(system_param_1 + 0x1b8) == 0) {
 SYSTEM_LABEL:
-    bVar9 = (*(byte *)(system_register + 0xfd) & 2) != 0;
+    system_byte_var_ = (*(byte *)(system_register + 0xfd) & 2) != 0;
   }
   else {
     system_local_uint = *(uint *)(*(longlong *)(system_param_1 + 0x1b8) + 0x138);
@@ -51905,9 +51905,9 @@ SYSTEM_LABEL:
       goto SYSTEM_LABEL;
     }
     if ((system_local_uint & 0x10) == 0) goto SYSTEM_LABEL;
-    bVar9 = (*(byte *)(system_register + 0xfd) & 2) == 0;
+    system_byte_var_ = (*(byte *)(system_register + 0xfd) & 2) == 0;
   }
-  system_char_config = bVar9 + '\x01';
+  system_char_config = system_byte_var_ + '\x01';
 SYSTEM_LABEL:
   *(char *)(system_register + 0xff) = system_char_config;
   system_long_value = *(longlong *)(system_register + 0x1b8);
@@ -51983,7 +51983,7 @@ void system_function_078239(float system_param_1,float system_param_2,float syst
   longlong in_RCX;
   uint system_local_uint;
   longlong system_register;
-  bool bVar9;
+  bool system_byte_var_;
   float system_local_float;
   float in_XMM4_Da;
   float in_XMM5_Da;
@@ -51996,7 +51996,7 @@ void system_function_078239(float system_param_1,float system_param_2,float syst
                              *(float *)(system_register_rax + 0x98) < system_register_Da);
   if (*(longlong *)(in_RCX + 0x1b8) == 0) {
 SYSTEM_LABEL:
-    bVar9 = (*(byte *)(system_register + 0xfd) & 2) != 0;
+    system_byte_var_ = (*(byte *)(system_register + 0xfd) & 2) != 0;
   }
   else {
     system_local_uint = *(uint *)(*(longlong *)(in_RCX + 0x1b8) + 0x138);
@@ -52005,9 +52005,9 @@ SYSTEM_LABEL:
       goto SYSTEM_LABEL;
     }
     if ((system_local_uint & 0x10) == 0) goto SYSTEM_LABEL;
-    bVar9 = (*(byte *)(system_register + 0xfd) & 2) == 0;
+    system_byte_var_ = (*(byte *)(system_register + 0xfd) & 2) == 0;
   }
-  system_char_config = bVar9 + '\x01';
+  system_char_config = system_byte_var_ + '\x01';
 SYSTEM_LABEL:
   *(char *)(system_register + 0xff) = system_char_config;
   system_long_value = *(longlong *)(system_register + 0x1b8);
@@ -52083,12 +52083,12 @@ void system_function_0782a8(longlong system_param_1)
   uint64_t *system_parent_ptr;
   uint system_local_uint;
   longlong system_register;
-  bool bVar9;
+  bool system_byte_var_;
   float system_register_Da;
   
   if (*(longlong *)(system_param_1 + 0x1b8) == 0) {
 SYSTEM_LABEL:
-    bVar9 = (*(byte *)(system_register + 0xfd) & 2) != 0;
+    system_byte_var_ = (*(byte *)(system_register + 0xfd) & 2) != 0;
   }
   else {
     system_local_uint = *(uint *)(*(longlong *)(system_param_1 + 0x1b8) + 0x138);
@@ -52097,9 +52097,9 @@ SYSTEM_LABEL:
       goto SYSTEM_LABEL;
     }
     if ((system_local_uint & 0x10) == 0) goto SYSTEM_LABEL;
-    bVar9 = (*(byte *)(system_register + 0xfd) & 2) == 0;
+    system_byte_var_ = (*(byte *)(system_register + 0xfd) & 2) == 0;
   }
-  system_char_config = bVar9 + '\x01';
+  system_char_config = system_byte_var_ + '\x01';
 SYSTEM_LABEL:
   *(char *)(system_register + 0xff) = system_char_config;
   system_long_value = *(longlong *)(system_register + 0x1b8);
@@ -52953,7 +52953,7 @@ void system_function_079270(longlong system_param_1,longlong system_param_2)
   longlong *system_long_data_ptr;
   int *system_local_int_ptr;
   longlong *system_long_handle_ptr;
-  byte *pbVar4;
+  byte *system_byte_ptr_;
   uint64_t *system_config_ptr;
   float system_float_status;
   float system_local_float;
@@ -53168,9 +53168,9 @@ void system_function_079270(longlong system_param_1,longlong system_param_2)
             do {
               system_comparison_result9 = *(int *)(system_local_long + 0x30) + system_local_int;
               system_local_int = system_local_int + 1;
-              pbVar4 = (byte *)(*(longlong *)(system_local_long + 0x10) + system_local_long);
+              system_byte_ptr_ = (byte *)(*(longlong *)(system_local_long + 0x10) + system_local_long);
               system_local_long = system_local_long + 1;
-              *(int *)(*system_long_data_ptr + (ulonglong)*pbVar4 * 4) = system_comparison_result9;
+              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_ptr_ * 4) = system_comparison_result9;
             } while (system_local_long < system_local_int);
           }
         }
@@ -53262,7 +53262,7 @@ void system_function_079284(longlong system_param_1)
   longlong *system_long_data_ptr;
   int *system_local_int_ptr;
   longlong *system_long_handle_ptr;
-  byte *pbVar4;
+  byte *system_byte_ptr_;
   uint64_t *system_config_ptr;
   float system_float_status;
   float system_local_float;
@@ -53479,9 +53479,9 @@ void system_function_079284(longlong system_param_1)
             do {
               system_comparison_result9 = *(int *)(system_local_long + 0x30) + system_local_int;
               system_local_int = system_local_int + 1;
-              pbVar4 = (byte *)(*(longlong *)(system_local_long + 0x10) + system_local_long);
+              system_byte_ptr_ = (byte *)(*(longlong *)(system_local_long + 0x10) + system_local_long);
               system_local_long = system_local_long + 1;
-              *(int *)(*system_long_data_ptr + (ulonglong)*pbVar4 * 4) = system_comparison_result9;
+              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_ptr_ * 4) = system_comparison_result9;
             } while (system_local_long < system_local_int);
           }
         }
@@ -53572,7 +53572,7 @@ void system_function_0792ea(void)
 {
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
-  byte *pbVar3;
+  byte *system_byte_ptr_;
   uint64_t *system_buffer_ptr;
   float system_float_config;
   float system_float_status;
@@ -53622,7 +53622,7 @@ void system_function_0792ea(void)
   bool bVar48;
   uint32_t system_register_Da;
   uint32_t system_register_Db;
-  uint64_t uStack0000000000000050;
+  uint64_t system_stack_uint_;
   uint64_t system_stack_param;
   
   system_local_uint = (int)*(char *)(system_register + 0xd) + *(int *)(system_register + 0x18);
@@ -53685,7 +53685,7 @@ void system_function_0792ea(void)
     system_local_int = *(int *)(system_local_long + 0x1c) + *(int *)(system_local_long + 0x18);
     *(int *)(system_local_long + 0x28) = *(int *)(_system_data_180c86870 + 0x224);
     if (0 < system_local_int) {
-      uStack0000000000000050 = system_stack_param;
+      system_stack_uint_ = system_stack_param;
       system_local_long = (longlong)*(int *)(_system_data_180c86890 + 0xe78) * 0x128 + _system_data_180c86890 + 0xc28;
       system_local_uint = FUN_180080380(system_local_long,system_local_int,system_local_long,system_local_float_ptr,CONCAT44(system_register_Db,system_register_Da));
       *(uint32_t *)(system_local_long + 0x30) = system_local_uint;
@@ -53771,9 +53771,9 @@ void system_function_0792ea(void)
             do {
               system_comparison_result6 = *(int *)(system_local_long + 0x30) + system_local_int;
               system_local_int = system_local_int + 1;
-              pbVar3 = (byte *)(*(longlong *)(system_local_long + 0x10) + system_local_long);
+              system_byte_ptr_ = (byte *)(*(longlong *)(system_local_long + 0x10) + system_local_long);
               system_local_long = system_local_long + 1;
-              *(int *)(*system_long_data_ptr + (ulonglong)*pbVar3 * 4) = system_comparison_result6;
+              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_ptr_ * 4) = system_comparison_result6;
             } while (system_local_long < system_local_int);
           }
         }
@@ -53864,7 +53864,7 @@ void system_function_079309(longlong system_param_1,uint system_param_2,uint64_t
 {
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
-  byte *pbVar3;
+  byte *system_byte_ptr_;
   uint64_t *system_buffer_ptr;
   float system_float_config;
   float system_float_status;
@@ -53913,7 +53913,7 @@ void system_function_079309(longlong system_param_1,uint system_param_2,uint64_t
   bool bVar47;
   uint32_t system_register_Da;
   uint32_t system_register_Db;
-  uint64_t uStack0000000000000050;
+  uint64_t system_stack_uint_;
   uint64_t system_stack_param;
   
   system_param_1 = (longlong)*(int *)(system_param_1 + 0x250) * 0x128 + system_param_1;
@@ -53973,7 +53973,7 @@ void system_function_079309(longlong system_param_1,uint system_param_2,uint64_t
     system_comparison_result9 = *(int *)(system_local_long + 0x1c) + *(int *)(system_local_long + 0x18);
     *(int *)(system_local_long + 0x28) = *(int *)(_system_data_180c86870 + 0x224);
     if (0 < system_comparison_result9) {
-      uStack0000000000000050 = system_stack_param;
+      system_stack_uint_ = system_stack_param;
       system_local_long = (longlong)*(int *)(_system_data_180c86890 + 0xe78) * 0x128 + _system_data_180c86890 + 0xc28;
       system_local_uint = FUN_180080380(system_local_long,system_comparison_result9,system_param_1,system_param_4,CONCAT44(system_register_Db,system_register_Da));
       *(uint32_t *)(system_local_long + 0x30) = system_local_uint;
@@ -54059,9 +54059,9 @@ void system_function_079309(longlong system_param_1,uint system_param_2,uint64_t
             do {
               system_comparison_result5 = *(int *)(system_local_long + 0x30) + system_local_int;
               system_local_int = system_local_int + 1;
-              pbVar3 = (byte *)(*(longlong *)(system_local_long + 0x10) + system_local_long);
+              system_byte_ptr_ = (byte *)(*(longlong *)(system_local_long + 0x10) + system_local_long);
               system_local_long = system_local_long + 1;
-              *(int *)(*system_long_data_ptr + (ulonglong)*pbVar3 * 4) = system_comparison_result5;
+              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_ptr_ * 4) = system_comparison_result5;
             } while (system_local_long < system_local_int);
           }
         }
@@ -54152,7 +54152,7 @@ void system_function_07940e(void)
 {
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
-  byte *pbVar3;
+  byte *system_byte_ptr_;
   char system_char_buffer;
   longlong system_resource_handle;
   uint32_t system_uint_status;
@@ -54175,7 +54175,7 @@ void system_function_07940e(void)
   ulonglong system_local_uint;
   ulonglong system_local_uint;
   bool bVar24;
-  uint64_t uStack0000000000000050;
+  uint64_t system_stack_uint_;
   uint64_t system_stack_param;
   
   system_resource_handle = *(longlong *)(system_register + 600);
@@ -54183,7 +54183,7 @@ void system_function_07940e(void)
     system_local_int = *(int *)(system_resource_handle + 0x1c) + *(int *)(system_resource_handle + 0x18);
     *(int *)(system_resource_handle + 0x28) = *(int *)(_system_data_180c86870 + 0x224);
     if (0 < system_local_int) {
-      uStack0000000000000050 = system_stack_param;
+      system_stack_uint_ = system_stack_param;
       system_local_long = (longlong)*(int *)(_system_data_180c86890 + 0xe78) * 0x128 + _system_data_180c86890 + 0xc28;
       system_uint_status = FUN_180080380(system_local_long,system_local_int);
       *(uint32_t *)(system_resource_handle + 0x30) = system_uint_status;
@@ -54269,9 +54269,9 @@ void system_function_07940e(void)
             do {
               system_local_int = *(int *)(system_resource_handle + 0x30) + system_local_int;
               system_local_int = system_local_int + 1;
-              pbVar3 = (byte *)(*(longlong *)(system_resource_handle + 0x10) + system_local_long);
+              system_byte_ptr_ = (byte *)(*(longlong *)(system_resource_handle + 0x10) + system_local_long);
               system_local_long = system_local_long + 1;
-              *(int *)(*system_long_data_ptr + (ulonglong)*pbVar3 * 4) = system_local_int;
+              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_ptr_ * 4) = system_local_int;
             } while (system_local_long < system_local_int);
           }
         }
@@ -54744,7 +54744,7 @@ void system_function_0796b0(longlong system_param_1)
   uint64_t system_uint_status;
   uint64_t system_local_uint;
   uint8_t auVar8 [16];
-  bool bVar9;
+  bool system_byte_var_;
   int *system_local_int_ptr;
   int system_local_int;
   longlong system_local_long;
@@ -55651,7 +55651,7 @@ SYSTEM_LABEL:
         piStack_1b0 = (int *)0x0;
         system_stack_uinta8 = 3;
         bVar44 = false;
-        bVar9 = false;
+        system_byte_var_ = false;
         system_local_uint = 0;
         system_stack_uint = (longlong)piStack_210 - (longlong)piStack_218 >> 2;
         system_local_int_ptr = (int *)0x0;
@@ -55699,7 +55699,7 @@ SYSTEM_LABEL:
               }
               system_local_int_ptr = system_local_int_ptr + 1;
               system_stack_uintb8 = system_local_int_ptr;
-              bVar44 = bVar9;
+              bVar44 = system_byte_var_;
             }
             else {
               system_stack_uintc8 = system_stack_uintc8 | system_stack_ptr[system_local_int];
@@ -55748,7 +55748,7 @@ SYSTEM_LABEL:
             psystem_comparison_result4 = (int *)(ulonglong)system_local_uint;
             system_local_int_ptr = piStack_1f0;
             system_local_int_ptr = piStack_190;
-            bVar9 = bVar44;
+            system_byte_var_ = bVar44;
           } while ((ulonglong)(longlong)(int)system_local_uint < system_stack_uint);
         }
         plVar39 = system_stack_ptr;
@@ -55982,7 +55982,7 @@ uint8_t FUN_18007b1e0(longlong system_param_1)
 ulonglong FUN_18007b240(longlong system_param_1,longlong *system_param_2,byte system_param_3,char system_param_4)
 
 {
-  byte *pbVar1;
+  byte *system_byte_ptr_;
   char system_char_context;
   int system_comparison_result;
   int system_int_buffer;
@@ -56023,7 +56023,7 @@ ulonglong FUN_18007b240(longlong system_param_1,longlong *system_param_2,byte sy
   while ((system_long_status = system_param_1, (*(byte *)(system_param_1 + 0xfd) & 0x20) == 0 &&
          (system_long_status = func_0x000180085de0(*(uint64_t *)(system_param_1 + 0x1b0)), system_long_status != system_param_1))) {
     if ((system_param_4 != '\0') ||
-       (pbVar1 = (byte *)(system_param_1 + 0x100), system_param_1 = system_long_status, (*pbVar1 & 8) != 0)) {
+       (system_byte_ptr_ = (byte *)(system_param_1 + 0x100), system_param_1 = system_long_status, (*system_byte_ptr_ & 8) != 0)) {
       system_param_4 = '\x01';
       system_param_1 = system_long_status;
     }
@@ -56044,8 +56044,8 @@ ulonglong FUN_18007b240(longlong system_param_1,longlong *system_param_2,byte sy
       UNLOCK();
     }
     if (system_param_2[1] != 0) {
-      pbVar1 = (byte *)(system_param_2[1] + 0xfe);
-      *pbVar1 = *pbVar1 & 0xfb;
+      system_byte_ptr_ = (byte *)(system_param_2[1] + 0xfe);
+      *system_byte_ptr_ = *system_byte_ptr_ & 0xfb;
     }
   }
   LOCK();
@@ -56741,7 +56741,7 @@ void system_function_07bbb0(longlong system_param_1,longlong system_param_2,long
 
 
 
-void system_function_07c490(longlong *system_param_1,byte system_param_2,longlong *system_param_3,longlong *system_param_4,char param_5)
+void system_function_07c490(longlong *system_param_1,byte system_param_2,longlong *system_param_3,longlong *system_param_4,char system_param_)
 
 {
   char *psystem_status_flag;
@@ -56794,7 +56794,7 @@ void system_function_07c490(longlong *system_param_1,byte system_param_2,longlon
   else {
     (**(code **)((void **)*system_param_1 + 0x28))(system_param_1);
   }
-  if (param_5 == '\0') {
+  if (system_param_ == '\0') {
     system_context_ptr = *(longlong **)(system_param_1[0x15] + 0x88);
     pcVar5 = *(code **)(*system_context_ptr + 0x70);
     pcStack_f0 = (code *)&system_unknown_180083180;
@@ -58998,11 +58998,11 @@ void system_function_07f4c0(uint8_t *system_param_1,uint64_t system_param_2,uint
   uint32_t system_uint_status;
   longlong system_local_long;
   void **system_child_ptr;
-  bool bVar9;
+  bool system_byte_var_;
   uint64_t system_local_uint;
   
   system_local_uint = 0xfffffffffffffffe;
-  bVar9 = false;
+  system_byte_var_ = false;
   if ((*(byte *)(*(longlong *)(system_param_1 + 8) + 0xfd) & 0x20) != 0) {
     FUN_18007baa0();
     system_local_long = 0;
@@ -59010,7 +59010,7 @@ void system_function_07f4c0(uint8_t *system_param_1,uint64_t system_param_2,uint
       system_char_buffer = *(char *)(*(longlong *)(*(longlong *)(system_param_1 + 8) + 0x1e0) + 0x15 + system_local_long * 0x18);
       if (system_char_buffer == '\x01') {
         Sleep(0);
-        bVar9 = true;
+        system_byte_var_ = true;
       }
       system_long_value = system_local_long + 1;
       system_local_long = 0;
@@ -59018,7 +59018,7 @@ void system_function_07f4c0(uint8_t *system_param_1,uint64_t system_param_2,uint
         system_local_long = system_long_value;
       }
     } while (system_local_long < 0x10);
-    if ((bVar9) &&
+    if ((system_byte_var_) &&
        ((system_local_long = *(longlong *)(system_param_1 + 8), *(char *)(system_local_long + 0xfa) == '\0' ||
         (*(char *)(system_local_long + 0xfb) == '\0')))) {
       system_child_ptr = &system_data_18098bc73;
@@ -59033,13 +59033,13 @@ void system_function_07f4c0(uint8_t *system_param_1,uint64_t system_param_2,uint
   while( true ) {
     LOCK();
     system_char_buffer = *(char *)(system_local_long + 0xec);
-    bVar9 = system_char_buffer == '\0';
-    if (bVar9) {
+    system_byte_var_ = system_char_buffer == '\0';
+    if (system_byte_var_) {
       *(char *)(system_local_long + 0xec) = '\x01';
       system_char_buffer = '\0';
     }
     UNLOCK();
-    if (bVar9) break;
+    if (system_byte_var_) break;
     system_int_config = _Thrd_id();
     if (*(int *)(system_local_long + 0xf0) == system_int_config) goto SYSTEM_LABEL;
     Sleep();
@@ -59326,7 +59326,7 @@ void system_function_07f8f0(longlong system_param_1)
 {
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
-  byte *pbVar3;
+  byte *system_byte_ptr_;
   char system_char_buffer;
   uint32_t system_uint_config;
   uint system_uint_status;
@@ -59437,9 +59437,9 @@ void system_function_07f8f0(longlong system_param_1)
             do {
               system_local_int = *(int *)(system_param_1 + 0x30) + system_local_int;
               system_local_int = system_local_int + 1;
-              pbVar3 = (byte *)(*(longlong *)(system_param_1 + 0x10) + system_local_long);
+              system_byte_ptr_ = (byte *)(*(longlong *)(system_param_1 + 0x10) + system_local_long);
               system_local_long = system_local_long + 1;
-              *(int *)(*system_long_data_ptr + (ulonglong)*pbVar3 * 4) = system_local_int;
+              *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_ptr_ * 4) = system_local_int;
             } while (system_local_long < system_local_int);
           }
         }
@@ -59530,7 +59530,7 @@ void system_function_07f90f(uint32_t system_param_1)
 {
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
-  byte *pbVar3;
+  byte *system_byte_ptr_;
   char system_char_buffer;
   uint32_t system_uint_config;
   uint system_uint_status;
@@ -59642,9 +59642,9 @@ void system_function_07f90f(uint32_t system_param_1)
           do {
             system_local_int = *(int *)(system_register + 0x30) + system_local_int;
             system_local_int = system_local_int + 1;
-            pbVar3 = (byte *)(*(longlong *)(system_register + 0x10) + system_local_long);
+            system_byte_ptr_ = (byte *)(*(longlong *)(system_register + 0x10) + system_local_long);
             system_local_long = system_local_long + 1;
-            *(int *)(*system_long_data_ptr + (ulonglong)*pbVar3 * 4) = system_local_int;
+            *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_ptr_ * 4) = system_local_int;
           } while (system_local_long < system_local_int);
         }
       }
@@ -59734,7 +59734,7 @@ void system_function_07f933(uint64_t system_param_1,longlong system_param_2)
 {
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
-  byte *pbVar3;
+  byte *system_byte_ptr_;
   char system_char_buffer;
   uint32_t system_uint_config;
   uint system_uint_status;
@@ -59843,9 +59843,9 @@ void system_function_07f933(uint64_t system_param_1,longlong system_param_2)
         do {
           system_local_int = *(int *)(system_register + 0x30) + system_local_int;
           system_local_int = system_local_int + 1;
-          pbVar3 = (byte *)(*(longlong *)(system_register + 0x10) + system_local_long);
+          system_byte_ptr_ = (byte *)(*(longlong *)(system_register + 0x10) + system_local_long);
           system_local_long = system_local_long + 1;
-          *(int *)(*system_long_data_ptr + (ulonglong)*pbVar3 * 4) = system_local_int;
+          *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_ptr_ * 4) = system_local_int;
         } while (system_local_long < system_local_int);
       }
     }
@@ -59933,7 +59933,7 @@ void system_function_07f976(void)
 {
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
-  byte *pbVar3;
+  byte *system_byte_ptr_;
   uint32_t system_uint_buffer;
   uint system_uint_config;
   uint system_uint_status;
@@ -60026,9 +60026,9 @@ void system_function_07f976(void)
       do {
         system_local_int = *(int *)(system_register + 0x30) + system_local_int;
         system_local_int = system_local_int + 1;
-        pbVar3 = (byte *)(*(longlong *)(system_register + 0x10) + system_local_long);
+        system_byte_ptr_ = (byte *)(*(longlong *)(system_register + 0x10) + system_local_long);
         system_local_long = system_local_long + 1;
-        *(int *)(*system_long_data_ptr + (ulonglong)*pbVar3 * 4) = system_local_int;
+        *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_ptr_ * 4) = system_local_int;
       } while (system_local_long < system_local_int);
     }
   }
@@ -60115,7 +60115,7 @@ void system_function_07f983(void)
 {
   longlong *system_long_data_ptr;
   longlong *system_long_context_ptr;
-  byte *pbVar3;
+  byte *system_byte_ptr_;
   uint32_t system_uint_buffer;
   uint system_uint_config;
   uint system_uint_status;
@@ -60209,9 +60209,9 @@ void system_function_07f983(void)
       do {
         system_local_int = *(int *)(system_register + 0x30) + system_local_int;
         system_local_int = system_local_int + 1;
-        pbVar3 = (byte *)(*(longlong *)(system_register + 0x10) + system_local_long);
+        system_byte_ptr_ = (byte *)(*(longlong *)(system_register + 0x10) + system_local_long);
         system_local_long = system_local_long + 1;
-        *(int *)(*system_long_data_ptr + (ulonglong)*pbVar3 * 4) = system_local_int;
+        *(int *)(*system_long_data_ptr + (ulonglong)*system_byte_ptr_ * 4) = system_local_int;
       } while (system_local_long < system_local_int);
     }
   }
