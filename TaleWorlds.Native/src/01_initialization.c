@@ -314,17 +314,17 @@ int SystemInitializationMain(void)
   // 调用核心初始化函数
   InitializeSystemCore();
   
-    // 初始化栈内存
-    InitializeSystemStackMemory();
-    
-    // 检查初始化状态
-    init_result = CheckSystemInitializationStatus((void**)&g_system_context);
-    
-    // 处理初始化错误
-    if (init_result != SYSTEM_INIT_COMPLETE) {
-      CleanupSystemResources();
-      return SYSTEM_INIT_ERROR_GENERIC;
-    }
+  // 初始化栈内存
+  InitializeSystemStackMemory();
+  
+  // 检查初始化状态
+  init_result = CheckSystemInitializationStatus((void**)&g_system_context);
+  
+  // 处理初始化错误
+  if (init_result != SYSTEM_INIT_COMPLETE) {
+    CleanupSystemResources();
+    return SYSTEM_INIT_ERROR_GENERIC;
+  }
   
   return SYSTEM_INIT_COMPLETE;
 }
