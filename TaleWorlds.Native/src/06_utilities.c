@@ -16,17 +16,17 @@
 #define UTILITY_ARRAY_INDEX_QUATERNARY 0x4
 
 // 资源清理偏移量常量
-#define UTILITY_RESOURCE_CLEANUP_OFFSET_C60 0xC60
-#define UTILITY_RESOURCE_CLEANUP_OFFSET_1CF0 0x1CF0
+#define UTILITY_RESOURCE_CLEANUP_OFFSET_PRIMARY 0xC60
+#define UTILITY_RESOURCE_CLEANUP_OFFSET_SECONDARY 0x1CF0
 
 // 线程本地存储偏移量常量
-#define UTILITY_TLS_OFFSET_23A0 0x23A0
+#define UTILITY_TLS_OFFSET_THREAD_DATA 0x23A0
 
 // 数据偏移量常量
-#define UTILITY_DATA_OFFSET_1B00 0x1B00
-#define UTILITY_DATA_OFFSET_1B40 0x1B40
-#define UTILITY_DATA_OFFSET_1B48 0x1B48
-#define UTILITY_DATA_OFFSET_1B80 0x1B80
+#define UTILITY_DATA_OFFSET_PRIMARY 0x1B00
+#define UTILITY_DATA_OFFSET_SECONDARY 0x1B40
+#define UTILITY_DATA_OFFSET_TERTIARY 0x1B48
+#define UTILITY_DATA_OFFSET_QUATERNARY 0x1B80
 #define UTILITY_DATA_POINTER_OFFSET 0x8
 #define UTILITY_FIELD_OFFSET 0xC
 #define UTILITY_OFFSET_DATA 0x10
@@ -34,18 +34,18 @@
 #define UTILITY_PADDING_OFFSET 0x18
 
 // 检查标志常量
-#define UTILITY_CHECK_FLAG_10 0x10
-#define UTILITY_CHECK_FLAG_28 0x28
-#define UTILITY_CHECK_FLAG_30 0x30
-#define UTILITY_CHECK_FLAG_50 0x50
-#define UTILITY_CHECK_FLAG_60 0x60
-#define UTILITY_CHECK_FLAG_70 0x70
-#define UTILITY_CHECK_FLAG_98 0x98
-#define UTILITY_CHECK_FLAG_B0 0xB0
-#define UTILITY_CHECK_FLAG_B8 0xB8
-#define UTILITY_CHECK_FLAG_D0 0xD0
-#define UTILITY_CHECK_FLAG_E0 0xE0
-#define UTILITY_CHECK_FLAG_F0 0xF0
+#define UTILITY_CHECK_FLAG_INITIALIZED 0x10
+#define UTILITY_CHECK_FLAG_VALIDATION 0x28
+#define UTILITY_CHECK_FLAG_PROCESSING 0x30
+#define UTILITY_CHECK_FLAG_ACTIVE 0x50
+#define UTILITY_CHECK_FLAG_ENABLED 0x60
+#define UTILITY_CHECK_FLAG_READY 0x70
+#define UTILITY_CHECK_FLAG_COMPLETE 0x98
+#define UTILITY_CHECK_FLAG_SUCCESS 0xB0
+#define UTILITY_CHECK_FLAG_PENDING 0xB8
+#define UTILITY_CHECK_FLAG_AVAILABLE 0xD0
+#define UTILITY_CHECK_FLAG_LOCKED 0xE0
+#define UTILITY_CHECK_FLAG_RESERVED 0xF0
 
 // 新增语义化偏移量常量
 #define UTILITY_OFFSET_LIST_HANDLE 0x4
@@ -70,7 +70,7 @@
 #define UTILITY_ERROR_OFFSET 0x4
 
 // 索引常量
-#define UTILITY_INDEX_ONE 0x1
+#define UTILITY_INDEX_FIRST 0x1
 #define UTILITY_INDEX_ZERO 0x0
 
 // 大小限制常量
@@ -80,11 +80,11 @@
 #define UTILITY_SIZE_LIMIT 0x1000
 
 // 字节掩码常量
-#define UTILITY_BYTE_MASK_EF 0xEF
-#define UTILITY_BYTE_MASK_DF 0xDF
-#define UTILITY_BYTE_MASK_BF 0xBF
+#define UTILITY_BYTE_MASK_CLEAR_BIT4 0xEF
+#define UTILITY_BYTE_MASK_CLEAR_BIT5 0xDF
+#define UTILITY_BYTE_MASK_CLEAR_BIT6 0xBF
 #define UTILITY_BYTE_MASK_PRIMARY 0xFF
-#define UTILITY_WORD_MASK_FEFF 0xFEFF
+#define UTILITY_WORD_MASK_CLEAR_BIT0 0xFEFF
 
 // 其他常量
 #define UTILITY_CHAR_NULL '\0'
@@ -98,37 +98,37 @@ static uint32_t g_utility_stack_buffer[16] = {0};
 static uint32_t g_utility_stack_array[16] = {0};
 static uint32_t g_utility_stack_data[16] = {0};
 static float g_utility_float_value = 0.0f;
-static uint32_t g_utility_status = 0;
-static int g_utility_counter = 0;
-static uint32_t g_utility_state = 0;
-static uint32_t *g_utility_ptr_buffer = NULL;
-static int64_t g_utility_temp_long = 0;
-static uint32_t *g_utility_data_ptr = NULL;
-static int *g_utility_result_ptr = NULL;
-static uint32_t *g_utility_cpu_rax = NULL;
-static int64_t g_utility_data_ext = 0;
-static uint32_t *g_utility_mem_handle = NULL;
-static int64_t g_utility_resource_cache = 0;
-static uint32_t g_utility_buffer[1024] = {0};
-static uint32_t g_utility_proc_buffer[1024] = {0};
-static uint32_t g_utility_size_limit = 1024;
-static int64_t g_utility_context_handle = 0;
-static uint32_t g_utility_resource_buf = 0;
-static uint32_t g_utility_boundary = 2;
-static uint32_t g_utility_config_offset = 0;
-static uint32_t g_utility_table_offset = 0;
-static int64_t g_utility_frame_ptr = 0;
-static int64_t g_utility_file_offset = 0;
-static uint32_t g_utility_file_handle = 0;
-static uint64_t g_utility_file_pos = 0;
-static float g_utility_data_pos = 0.0f;
-static int64_t g_utility_data_buffer = 0;
-static uint32_t g_utility_local_int = 0;
-static int64_t g_utility_buffer_pos = 0;
-static uint64_t g_utility_result = 0;
-static uint32_t g_utility_thread_offset = 0;
-static uint64_t g_utility_file_size = 0;
-static uint64_t g_utility_ext_data_ptr = 0;
+static uint32_t g_utility_status_flag = 0;
+static int g_utility_counter_value = 0;
+static uint32_t g_utility_state_flag = 0;
+static uint32_t *g_utility_pointer_buffer = NULL;
+static int64_t g_utility_temp_long_value = 0;
+static uint32_t *g_utility_data_pointer = NULL;
+static int *g_utility_result_pointer = NULL;
+static uint32_t *g_utility_cpu_register_rax = NULL;
+static int64_t g_utility_data_extended = 0;
+static uint32_t *g_utility_memory_handle = NULL;
+static int64_t g_utility_resource_cache_value = 0;
+static uint32_t g_utility_buffer_data[1024] = {0};
+static uint32_t g_utility_process_buffer[1024] = {0};
+static uint32_t g_utility_size_limit_value = 1024;
+static int64_t g_utility_context_handle_value = 0;
+static uint32_t g_utility_resource_buffer = 0;
+static uint32_t g_utility_boundary_value = 2;
+static uint32_t g_utility_configuration_offset = 0;
+static uint32_t g_utility_table_offset_value = 0;
+static int64_t g_utility_frame_pointer = 0;
+static int64_t g_utility_file_offset_value = 0;
+static uint32_t g_utility_file_handle_value = 0;
+static uint64_t g_utility_file_position = 0;
+static float g_utility_data_position = 0.0f;
+static int64_t g_utility_data_buffer_value = 0;
+static uint32_t g_utility_local_integer = 0;
+static int64_t g_utility_buffer_position = 0;
+static uint64_t g_utility_result_value = 0;
+static uint32_t g_utility_thread_offset_value = 0;
+static uint64_t g_utility_file_size_value = 0;
+static uint64_t g_utility_extended_data_pointer = 0;
 
 // 函数声明
 uint64_t system_memory_operation(uint32_t operation_type, void **resource_handle);
@@ -188,12 +188,12 @@ void utility_memory_cleanup_handler(void)
  */
 uint64_t utility_resource_manager(void)
 {
-  uint64_t utility_result;
+  uint64_t utility_result_value;
   int64_t utility_resource_primary_handle = 0;
   
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &g_utility_resource_handle);
-  if ((int)utility_result != UTILITY_ZERO) {
-    return utility_result;
+  utility_result_value = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET_PRIMARY), &g_utility_resource_handle);
+  if ((int)utility_result_value != UTILITY_ZERO) {
+    return utility_result_value;
   }
   
   if (g_utility_resource_handle == UTILITY_ZERO) {
@@ -285,7 +285,7 @@ uint64_t utility_context_manager(void)
  *
  * 简化实现：提供基本的配置处理功能。
  */
-uint64_t utility_config_handler_primary(void)
+uint64_t utility_config_handler(void)
 {
   return UTILITY_ZERO;
 }
