@@ -1167,8 +1167,6 @@ utility_release_iteration_resources(utility_loop_index);
 }
 }
 }
-return 0;
-}
 return UTILITY_STATUS_THREAD_CREATED;
 }
 /**
