@@ -14397,6 +14397,16 @@ void system_initialize_timekeeping(longlong system_context_parameter,longlong sy
                     // WARNING: Subroutine does not return
   system_calculate_checksum(system_context_id ^ (ulonglong)system_config_buffer);
 }
+/**
+ * 设置时间戳系统
+ * 
+ * 初始化时间戳生成和管理机制
+ * 为系统提供精确的时间服务
+ *
+ * @param system_context_parameter 系统上下文参数指针
+ * @param system_context_parameter 时间戳配置参数
+ * @return 无返回值
+ */
 void system_setup_timestamp_system(uint64_t *system_context_parameter,uint64_t system_context_parameter)
 
 {
@@ -14407,6 +14417,15 @@ void system_setup_timestamp_system(uint64_t *system_context_parameter,uint64_t s
   } while (system_int_value == 0);
   return;
 }
+/**
+ * 创建时间戳实例
+ * 
+ * 生成新的时间戳对象并初始化
+ * 为事件记录提供时间戳支持
+ *
+ * @param system_context_parameter 系统上下文参数指针
+ * @return 无返回值
+ */
 void system_create_timestamp_instance(uint64_t *system_context_parameter)
 
 {
@@ -14431,6 +14450,18 @@ void system_create_timestamp_instance(uint64_t *system_context_parameter)
  * @param system_context_parameter 扩展配置参数
  * @param system_context_parameter 预留配置参数
  * @return 设置状态码，1表示成功
+/**
+ * 设置内存管理器
+ * 
+ * 初始化内存管理系统的核心组件
+ * 为系统提供内存管理服务
+ *
+ * @param system_context_parameter 系统上下文参数
+ * @param system_context_parameter 内存配置参数
+ * @param system_context_parameter 池大小参数
+ * @param system_context_parameter 对齐参数
+ * @return 设置结果状态码
+ */
 uint64_t system_setup_memory_manager(longlong system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
 
 {
@@ -14473,6 +14504,16 @@ uint64_t system_setup_memory_manager(longlong system_context_parameter,uint64_t 
  * @param system_context_parameter 内存指针配置参数
  * @param system_context_parameter 验证规则参数
  * @return 验证结果，0表示成功，非0表示错误码
+/**
+ * 验证内存指针
+ * 
+ * 检查内存指针的有效性和安全性
+ * 防止内存访问错误
+ *
+ * @param system_context_parameter 内存指针参数1
+ * @param system_context_parameter 内存指针参数2
+ * @return 验证结果 (0=有效，非0=无效)
+ */
 longlong system_validate_memory_pointers(uint64_t *system_context_parameter,uint64_t *system_context_parameter)
 
 {
@@ -14500,6 +14541,16 @@ longlong system_validate_memory_pointers(uint64_t *system_context_parameter,uint
 }
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
+/**
+ * 记录时间戳事件
+ * 
+ * 记录事件发生的时间和相关信息
+ * 为后续分析提供时间数据
+ *
+ * @param system_context_parameter 事件标识符
+ * @param system_context_parameter 时间戳数据
+ * @return 无返回值
+ */
 void system_record_timestamp_event(uint64_t system_context_parameter,uint64_t system_context_parameter)
 
 {
@@ -14562,6 +14613,17 @@ void system_compare_timestamp_values(longlong system_context_parameter,longlong 
   **(uint0x01_t **)(system_context_parameter + 0x01) = 0;
   return;
 }
+/**
+ * 计算时间差
+ * 
+ * 计算两个时间戳之间的时间差
+ * 为性能分析提供时间间隔数据
+ *
+ * @param system_context_parameter 起始时间参数
+ * @param system_context_parameter 结束时间参数
+ * @param system_context_parameter 计算精度参数
+ * @return 无返回值
+ */
 void system_calculate_time_difference(longlong system_context_parameter,uint64_t system_context_parameter,int system_context_parameter)
 
 {
@@ -14603,6 +14665,17 @@ uint64_t * system_get_buffer_pointer(uint64_t *system_context_parameter)
 }
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
+/**
+ * 初始化性能分析系统
+ * 
+ * 设置性能监控、数据收集和分析工具
+ * 为系统提供性能优化支持
+ *
+ * @param system_context_parameter 系统上下文参数
+ * @param system_context_parameter 分析配置参数
+ * @param system_context_parameter 采样频率参数
+ * @return 无返回值
+ */
 void system_initialize_profiling_system(longlong system_context_parameter,longlong system_context_parameter,longlong system_context_parameter)
 
 {
@@ -14650,6 +14723,15 @@ uint64_t * system_resize_buffer(uint64_t *system_context_parameter,ulonglong sys
   }
   return system_context_parameter;
 }
+/**
+ * 开始性能分析会话
+ * 
+ * 启动性能数据收集和监控
+ * 开始记录系统运行时的性能指标
+ *
+ * @param system_context_parameter 系统上下文参数指针
+ * @return 无返回值
+ */
 void system_start_profiling_session(uint64_t *system_context_parameter)
 
 {
@@ -14661,6 +14743,15 @@ void system_start_profiling_session(uint64_t *system_context_parameter)
   }
   return;
 }
+/**
+ * 停止性能分析会话
+ * 
+ * 结束性能数据收集并生成报告
+ * 完成当前的性能分析任务
+ *
+ * @param system_context_parameter 系统上下文参数
+ * @return 无返回值
+ */
 void system_stop_profiling_session(longlong system_context_parameter)
 
 {
@@ -14681,6 +14772,15 @@ void system_stop_profiling_session(longlong system_context_parameter)
   }
   return;
 }
+/**
+ * 记录性能分析事件
+ * 
+ * 记录特定的性能事件和时间戳
+ * 为性能分析提供详细数据
+ *
+ * @param system_context_parameter 事件数据指针
+ * @return 无返回值
+ */
 void system_record_profiling_event(uint64_t *system_context_parameter)
 
 {
@@ -14786,6 +14886,16 @@ void system_initialize_security(ulonglong *system_context_parameter)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * 计算性能指标
+ * 
+ * 分析性能数据并计算关键指标
+ * 为性能优化提供数据支持
+ *
+ * @param system_context_parameter 性能数据参数1
+ * @param system_context_parameter 性能数据参数2
+ * @return 计算结果状态码
+ */
 int system_calculate_performance_metrics(longlong system_context_parameter,longlong system_context_parameter)
 
 {
@@ -14953,6 +15063,16 @@ void system_initialize_monitoring_system(uint64_t *system_context_parameter,uint
   return;
 }
 
+/**
+ * 比较内存块
+ * 
+ * 比较两个内存块的内容是否相同
+ * 用于内存数据验证和完整性检查
+ *
+ * @param system_context_parameter 内存块1参数
+ * @param system_context_parameter 内存块2参数
+ * @return 比较结果 (0=相同，非0=不同)
+ */
 ulonglong system_compare_memory_blocks(longlong system_context_parameter,longlong system_context_parameter)
 
 {
@@ -15027,6 +15147,16 @@ SYSTEM_VALIDATION_CHECK:
 }
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
+/**
+ * 设置性能计数器
+ * 
+ * 初始化硬件性能计数器并配置监控参数
+ * 为系统提供性能监控支持
+ *
+ * @param system_context_parameter 性能计数器配置指针
+ * @param system_context_parameter 监控参数指针
+ * @return 无返回值
+ */
 void system_setup_performance_counters(longlong *system_context_parameter,uint64_t *system_context_parameter)
 
 {
