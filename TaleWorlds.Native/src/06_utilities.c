@@ -1016,6 +1016,7 @@ uint64 utility_context_manager(void)
  *
  * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
+uint32_t utility_get_memory_usage(void)
 {
   return UTILITY_ZERO;
 }
@@ -1028,6 +1029,8 @@ uint64 utility_context_manager(void)
  *
  * 简化实现：提供基本的上下文管理功能。
  */
+
+uint64_t utility_context_manager(void)
 {
   return UTILITY_ZERO;
 }
@@ -1046,6 +1049,7 @@ uint64 utility_context_manager(void)
   }
   utility_free_memory(*(longlong *)(utility_system_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
   return UTILITY_ZERO;
+uint64_t utility_system_validator(int64_t resource_handle, uint32_t validation_flag)
 }
 
 /**
@@ -1064,6 +1068,7 @@ uint64 utility_context_manager(void)
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
+uint64_t utility_system_cleaner(uint32_t cleanup_flag)
   if (utility_system_resource_handle == UTILITY_ZERO) {
     utility_system_resource_handle = UTILITY_ZERO;
   }
@@ -1082,6 +1087,7 @@ uint64 utility_context_manager(void)
  *
  * 该函数用于获取当前系统的内存使用情况，包括内存句柄验证和内存释放操作。
  *
+uint64_t utility_system_manager(uint32_t management_flag)
  * @return uint32 内存使用状态码，UTILITY_ERROR_FLAG表示错误，其他值表示正常状态
  */
 {
