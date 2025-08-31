@@ -345,13 +345,20 @@ void system_initialize_with_context_config_memory(int64_t context_param, system_
 
 /**
  * @brief 使用完整参数的系统初始化函数
- * @param context_param 系统上下文参数
- * @param config_param 系统配置参数
- * @param memory_param 系统内存参数
- * @param thread_param 系统线程参数
+ * @param context_param 系统上下文参数，指向系统上下文结构的指针
+ * @param config_param 系统配置参数，包含系统配置信息
+ * @param memory_param 系统内存参数，指定内存管理相关设置
+ * @param thread_param 系统线程参数，包含线程管理相关设置
  * 
- * 该函数使用完整参数初始化系统。
- * 这是简化实现，提供基本的初始化功能。
+ * 该函数使用完整参数初始化系统，设置上下文结构中的配置、内存和线程参数。
+ * 这是一个简化的初始化函数，提供基本的系统初始化功能。
+ * 
+ * @note 这是简化实现，提供基本的初始化功能
+ * @warning 所有参数必须有效，context_param不能为NULL，其他参数不能为0
+ * @param context_param 系统上下文参数，不能为NULL
+ * @param config_param 系统配置参数，不能为0
+ * @param memory_param 系统内存参数，不能为0
+ * @param thread_param 系统线程参数，不能为0
  */
 void system_initialize_with_full_parameters(system_uint64_t context_param, system_uint64_t config_param, 
                                            system_uint64_t memory_param, system_uint64_t thread_param)
@@ -370,10 +377,14 @@ void system_initialize_with_full_parameters(system_uint64_t context_param, syste
 
 /**
  * @brief 资源管理器初始化函数
- * @param context_param 系统上下文参数
+ * @param context_param 系统上下文参数，指向系统上下文结构的指针
  * 
- * 该函数初始化系统的资源管理器。
- * 这是简化实现，提供基本的资源管理器初始化功能。
+ * 该函数初始化系统的资源管理器，设置全局系统上下文指针和初始化状态。
+ * 这是一个简化的资源管理器初始化函数，提供基本的资源管理功能。
+ * 
+ * @note 这是简化实现，提供基本的资源管理器初始化功能
+ * @warning 传入的context_param必须为有效的指针
+ * @param context_param 系统上下文参数，不能为NULL
  */
 void system_initialize_resource_manager(uint64_t *context_param)
 {
@@ -454,10 +465,14 @@ system_uint8_t system_initialize_full_parameters_return_byte(int64_t context_par
 
 /**
  * @brief 系统初始化系数计算函数
- * @return system_uint64_t 计算结果
+ * @return system_uint64_t 计算结果，返回初始化系数值
  * 
  * 该函数计算系统初始化所需的系数。
- * 这是简化实现，提供基本的系数计算功能。
+ * 这是一个简化的系数计算函数，提供基本的系数计算功能。
+ * 
+ * @note 这是简化实现，提供基本的系数计算功能
+ * @warning 该函数返回固定的系数值，实际应用中可能需要更复杂的计算
+ * @return 返回初始化系数值，用于系统初始化过程
  */
 system_uint64_t system_calculate_initialization_coefficients(void)
 {
