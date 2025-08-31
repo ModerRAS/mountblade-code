@@ -238,9 +238,9 @@ uint64_t utility_process_resource_data(int64_t utility_resource_primary_handle)
  *
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
-uint64_t_t utility_resource_data_processor(void)
+uint64_t utility_resource_data_processor(void)
 {
-  uint64_t_t utility_result;
+  uint64_t utility_result;
   int64_t utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -284,21 +284,6 @@ uint64_t utility_context_manager(void)
   return UTILITY_ZERO;
 }
 
-  if ((int)utility_result != UTILITY_ZERO) {
-    return utility_result;
-  }
-  if (UTILITY_SYSTEM_RESOURCE_HANDLE == UTILITY_ZERO) {
-    UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_ZERO;
-  }
-  else {
-    UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
-  }
-  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
-    return UTILITY_ERROR_FLAG;
-  }
-  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
-  return UTILITY_ZERO;
-}
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
@@ -309,7 +294,8 @@ uint64_t utility_context_manager(void)
  *
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
-{
+uint64_t utility_resource_data_processor_duplicate(void)
+{{
   uint64_t utility_result;
   int64_t utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
