@@ -2,9 +2,8 @@
 
 /* 
  * 网络系统头文件
- * 
- * 简化实现：整理网络系统常量、变量和函数指针的声明，添加清晰的分组注释
- * 原本实现：完全重构网络系统所有声明体系，建立统一的语义化命名规范
+ * 简化实现：美化网络系统常量定义和变量声明，添加详细的文档注释
+ * 原本实现：完全重构网络系统所有命名体系，建立统一的语义化命名规范
  */
 /* 网络系统核心常量定义 */
 #define NETWORK_OFFSET_STANDARD_BYTE_OFFSET 0xb
@@ -518,28 +517,86 @@ void *network_packet_extended_secondary;
 void *network_packet_extended_tertiary;
 void *network_packet_extended_quaternary;
 
-/** 扩展连接上下文 */
+/** 
+ * @brief 扩展网络连接上下文
+ * 管理扩展的网络连接数据和状态信息
+ */
 void *network_connection_context_extended;
 
-/* 网络连接池 */
+/* 网络连接池管理 */
+/** 
+ * @brief 主网络连接池
+ * 管理主要网络连接资源的池化对象
+ */
 void *network_connection_pool_primary;
+
+/** 
+ * @brief 辅助网络连接池
+ * 管理辅助网络连接资源的池化对象
+ */
 void *network_connection_pool_secondary;
 
 /* 网络安全管理 */
+/** 
+ * @brief 主网络安全管理器
+ * 负责主要网络安全相关的操作和验证
+ */
 void *network_security_primary;
+
+/** 
+ * @brief 辅助网络安全管理器
+ * 负责辅助网络安全相关的操作和验证
+ */
 void *network_security_secondary;
+
+/** 
+ * @brief 第三网络安全管理器
+ * 负责第三级网络安全相关的操作和验证
+ */
 void *network_security_tertiary;
 
 /* 网络压缩管理 */
+/** 
+ * @brief 主网络压缩管理器
+ * 负责网络数据压缩和解压缩操作
+ */
 void *network_compression_primary;
 
 /* 网络验证管理 */
+/** 
+ * @brief 主网络验证管理器
+ * 负责主要网络数据验证和完整性检查
+ */
 void *network_validation_primary;
+
+/** 
+ * @brief 辅助网络验证管理器
+ * 负责辅助网络数据验证和完整性检查
+ */
 void *network_validation_secondary;
+
+/** 
+ * @brief 第三网络验证管理器
+ * 负责第三级网络数据验证和完整性检查
+ */
 void *network_validation_tertiary;
+
+/** 
+ * @brief 第四网络验证管理器
+ * 负责第四级网络数据验证和完整性检查
+ */
 void *network_validation_quaternary;
 
 /* 网络认证管理 */
+/** 
+ * @brief 主网络认证管理器
+ * 负责主要网络身份认证和授权管理
+ */
 void *network_authentication_primary;
+
+/** 
+ * @brief 辅助网络认证管理器
+ * 负责辅助网络身份认证和授权管理
+ */
 void *network_authentication_secondary;
 
