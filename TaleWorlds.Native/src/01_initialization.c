@@ -3345,17 +3345,17 @@ void system_initialize_database(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = SYSTEM_STACK_INITIAL_VALUE;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_network_config_path,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_runtime_data_0x010026c = system_create_thread_context(&system_thread_global_context_ptr);
+  system_graphics_thread_context = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 /**
@@ -4086,17 +4086,17 @@ void system_initialize_thread_context_stage_2(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x07;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_security_config_path,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_primary = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_primary = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -4107,17 +4107,17 @@ void system_initialize_thread_context_stage_3(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x04;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_context_141,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_secondary = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_secondary = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -4128,17 +4128,17 @@ void system_initialize_thread_context_stage_4(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x03;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_memory_pool0a14640,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_tertiary = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_tertiary = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -4149,17 +4149,17 @@ void system_initialize_thread_context_stage_5(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x08;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_context_142,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_quaternary = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_quaternary = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 /**
@@ -6423,17 +6423,17 @@ void system_initialize_event_system_stage_5(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x04;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_context_143,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_backup = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_backup = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -6452,17 +6452,17 @@ void system_initialize_thread_management_stage_1(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x016;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_memory_pool0a16c50,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_fallback = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_fallback = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -6471,17 +6471,17 @@ void system_initialize_thread_management_stage_2(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x016;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_memory_pool0a16c3001,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_reserve = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_reserve = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 void system_initialize_thread_management_stage_3(void)
@@ -6850,17 +6850,17 @@ void system_initialize_resource_management_stage_1(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x0A;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_context_144,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_emergency = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_emergency = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 void system_initialize_resource_management_stage_2(void)
@@ -7364,17 +7364,17 @@ void system_initialize_graphics_management_stage_3(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x02;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_context_145,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_critical = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_critical = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -7383,17 +7383,17 @@ void system_initialize_graphics_management_stage_4(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x01;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_context_146,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_priority = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_priority = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -7402,17 +7402,17 @@ void system_initialize_graphics_management_stage_5(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = SYSTEM_STACK_INITIAL_VALUE;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_context_0x014003,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_main = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_main = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -7421,17 +7421,17 @@ void system_initialize_audio_management_stage_1(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x06;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_context_0x014001,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_worker = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_worker = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -7440,17 +7440,17 @@ void system_initialize_audio_management_stage_2(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x0A;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_context_0x014002,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_service = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_service = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -7459,17 +7459,17 @@ void system_initialize_audio_management_stage_3(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x09;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_context_150,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_handler = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_handler = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -7478,17 +7478,17 @@ void system_initialize_audio_management_stage_4(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x05;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_context_151,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_manager = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_manager = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -7497,17 +7497,17 @@ void system_initialize_audio_management_stage_5(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x01a;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_context_152,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_controller = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_controller = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -7516,17 +7516,17 @@ void system_initialize_ui_management_stage_1(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x08;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_context_153,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_supervisor = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_supervisor = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 void system_initialize_ui_management_stage_2(void)
@@ -9245,17 +9245,17 @@ void system_initialize_system_services_stage_5(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x016;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_audio_config_path,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_monitor = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_monitor = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -9726,17 +9726,17 @@ void system_setup_animation_pipeline(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x012;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_video_config_path,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_observer = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_observer = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -9745,17 +9745,17 @@ void system_setup_ai_pipeline(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x01;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_network_config_path,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_watcher = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_watcher = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 void system_setup_script_pipeline(void)
@@ -10772,17 +10772,17 @@ void system_initialize_sound_config(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x01b;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_resource_pool_base3,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_inspector = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_inspector = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -11294,17 +11294,17 @@ void system_setup_audio_filters(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = SYSTEM_CONFIG_DATA_SIZE;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_resource_pool_base5,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_validator = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_validator = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -11313,17 +11313,17 @@ void system_calibrate_audio_volume(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x07;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_memory_pool0a2c1d0,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_checker = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_checker = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -11332,17 +11332,17 @@ void system_adjust_audio_balance(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = SYSTEM_STATUS_FLAG_OFFSET;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_memory_pool0a2c33001,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_verifier = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_verifier = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -11351,17 +11351,17 @@ void system_set_audio_parameters(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x014;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_memory_pool0a2c510,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_confirmer = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_confirmer = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -12684,17 +12684,17 @@ void system_initialize_gpu_resources(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x06;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_resource_pool_base1,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_finalizer = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_finalizer = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -13098,17 +13098,17 @@ void system_initialize_lock_manager(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x01b;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_resource_pool_base2,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_cleaner = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_cleaner = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -13204,17 +13204,17 @@ void system_initialize_critical_section(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = SYSTEM_CONFIG_DATA_SIZE;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_callback_pool_base6,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_collector = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_collector = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -13277,17 +13277,17 @@ void system_initialize_spinlock_system(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x01003;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_callback_pool_base3,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_recycler = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_recycler = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -13304,17 +13304,17 @@ void system_initialize_barrier_system(void)
 
 {
   uint64_t system_audio_register_value;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint32_t *system_buffer_temp_pointer;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [SYSTEM_HEADER_BUFFER_SIZE];
   
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = &system_thread_context_worker_config;
   system_buffer_temp_pointer = system_config_buffer;
   system_config_buffer[0] = 0;
   system_context_identifier = 0x011;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_callback_pool_base1,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  system_thread_context_disposer = system_create_thread_context(&system_thread_global_context_ptr);
+  system_thread_context_disposer = system_create_thread_context(&system_thread_context_ptr);
   return;
 }
 
@@ -13904,8 +13904,8 @@ void system_reset_timer_instance(uint64_t system_context_parameter,longlong syst
   longlong *system_buffer_temp_pointer_10;
   longlong **system_stack_long_int_ptr;
   longlong system_stack_long_int_20;
-  void **system_thread_global_context_ptr;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
+  void **system_thread_context_ptr;
   uint64_t system_context_identifier_a0;
   void **system_buffer_temp_pointer;
   longlong system_stack_long_int_0x020;
@@ -13936,10 +13936,10 @@ void system_reset_timer_instance(uint64_t system_context_parameter,longlong syst
     __Throw_C_error_std__YAXH_Z(system_int_context);
   }
   SymSetOptions(SYSTEM_RESOURCE_BLOCK_OFFSET_0x0201003);
-  system_process_stack_data(&system_thread_global_context_ptr);
+  system_process_stack_data(&system_thread_context_ptr);
   system_uint_pointer = &system_data_memory_pool0x02001bc0033;
-  if (system_thread_global_context_ptr != (void **)0x00) {
-    system_uint_pointer = system_thread_global_context_ptr;
+  if (system_thread_context_ptr != (void **)0x00) {
+    system_uint_pointer = system_thread_context_ptr;
   }
   SymSetSearchPath(_system_data_memory_pool0c2621001,system_uint_pointer);
   system_audio_temp_pointer = system_long_status_ptr[SYSTEM_STACK_INITIAL_VALUE];
@@ -13947,8 +13947,8 @@ void system_reset_timer_instance(uint64_t system_context_parameter,longlong syst
     system_audio_temp_pointer = LoadLibraryA(&system_data_callback_pool_base4);
     system_long_status_ptr[SYSTEM_STACK_INITIAL_VALUE] = system_audio_temp_pointer;
     if (system_audio_temp_pointer != 0) goto SYSTEM_LABEL;
-    system_thread_global_context_ptr = &system_data_callback_pool_base2;
-    if (system_thread_global_context_ptr != (void **)0x00) {
+    system_thread_context_ptr = &system_data_callback_pool_base2;
+    if (system_thread_context_ptr != (void **)0x00) {
                     // WARNING: Subroutine does not return
       system_initialize_component();
     }
@@ -13959,8 +13959,8 @@ SYSTEM_VALIDATION_CHECK:
       system_audio_temp_pointer = GetProcAddress(system_audio_temp_pointer,&system_data_callback_pool_base3);
       system_long_status_ptr[0x04] = system_audio_temp_pointer;
       if (system_audio_temp_pointer == 0) {
-        system_thread_global_context_ptr = &system_data_callback_pool_base2;
-        if (system_thread_global_context_ptr != (void **)0x00) {
+        system_thread_context_ptr = &system_data_callback_pool_base2;
+        if (system_thread_context_ptr != (void **)0x00) {
                     // WARNING: Subroutine does not return
           system_initialize_component();
         }
@@ -13968,21 +13968,21 @@ SYSTEM_VALIDATION_CHECK:
       }
     }
     system_uint_pointer = &system_data_memory_pool0x02001bc0033;
-    if (system_thread_global_context_ptr != (void **)0x00) {
-      system_uint_pointer = system_thread_global_context_ptr;
+    if (system_thread_context_ptr != (void **)0x00) {
+      system_uint_pointer = system_thread_context_ptr;
     }
     system_int_context = SymInitialize(_system_data_memory_pool0c2621001,system_uint_pointer,1);
     if (system_int_context == 0) {
-      system_thread_global_context_ptr = &system_data_callback_pool_base2;
-      if (system_thread_global_context_ptr != (void **)0x00) {
+      system_thread_context_ptr = &system_data_callback_pool_base2;
+      if (system_thread_context_ptr != (void **)0x00) {
                     // WARNING: Subroutine does not return
         system_initialize_component();
       }
     }
     else {
       *(char *)system_long_status_ptr = '\x1';
-      system_thread_global_context_ptr = &system_data_callback_pool_base2;
-      if (system_thread_global_context_ptr != (void **)0x00) {
+      system_thread_context_ptr = &system_data_callback_pool_base2;
+      if (system_thread_context_ptr != (void **)0x00) {
                     // WARNING: Subroutine does not return
         system_initialize_component();
       }
@@ -13990,8 +13990,8 @@ SYSTEM_VALIDATION_CHECK:
   }
 SYSTEM_VALIDATION_CHECK:
   system_context_identifier_a0 = 0;
-  system_thread_global_context_ptr = (void **)0x00;
-  system_thread_global_context_ptr = &system_data_animation_pool_base;
+  system_thread_context_ptr = (void **)0x00;
+  system_thread_context_ptr = &system_data_animation_pool_base;
   system_int_context = _Mtx_unlock(system_long_ptr_ptr);
   if (system_int_context != 0) {
     __Throw_C_error_std__YAXH_Z(system_int_context);
@@ -15737,11 +15737,11 @@ void system_generate_performance_report(uint64_t system_context_parameter,uint64
   longlong system_audio_temp_pointer;
   char *pinit_status4;
   void **system_uint_pointer;
-  void **system_thread_global_context_ptr;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
+  void **system_thread_context_ptr;
   uint system_context_identifier_b1;
   uint64_t system_context_identifier_b0;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   char *pcStack_a0;
   uint64_t system_context_identifier;
   ulonglong system_context_identifier;
@@ -15755,30 +15755,30 @@ void system_generate_performance_report(uint64_t system_context_parameter,uint64
   if (system_data_memory_pool0bf5240 == '\0') {
     return;
   }
-  system_thread_global_context_ptr = &system_data_callback_pool_base2;
+  system_thread_context_ptr = &system_data_callback_pool_base2;
   system_context_identifier_b0 = 0;
-  system_thread_global_context_ptr = (void **)0x00;
+  system_thread_context_ptr = (void **)0x00;
   system_context_identifier_b1 = 0;
   system_audio_temp_value = *(uint *)(system_main_context + 0x010010);
   system_audio_temp_value = (ulonglong)system_audio_temp_value;
   if (*(longlong *)(system_main_context + 0x01003001) != 0) {
-    system_set_ui_parameter(&system_thread_global_context_ptr,system_audio_temp_value,system_context_parameter,system_context_parameter,1,SYSTEM_INVALID_HANDLE_VALUE);
+    system_set_ui_parameter(&system_thread_context_ptr,system_audio_temp_value,system_context_parameter,system_context_parameter,1,SYSTEM_INVALID_HANDLE_VALUE);
   }
   if (system_audio_temp_value != 0) {
                     // WARNING: Subroutine does not return
-    memcpy(system_thread_global_context_ptr,*(uint64_t *)(system_audio_temp_pointer + 0x01003001),system_audio_temp_value);
+    memcpy(system_thread_context_ptr,*(uint64_t *)(system_audio_temp_pointer + 0x01003001),system_audio_temp_value);
   }
-  if (system_thread_global_context_ptr != (void **)0x00) {
-    system_thread_global_context_ptr[system_audio_temp_value] = 0;
+  if (system_thread_context_ptr != (void **)0x00) {
+    system_thread_context_ptr[system_audio_temp_value] = 0;
   }
   system_context_identifier_b0 = CONCAT44(*(uint64_t *)(system_audio_temp_pointer + 0x01001c),(uint64_t)system_context_identifier_b0);
   system_context_identifier_b1 = system_audio_temp_value;
-  system_set_ui_parameter(&system_thread_global_context_ptr,5);
-  *(uint64_t *)(system_thread_global_context_ptr + system_context_identifier_b1) = 0x03360036f6c;
-  *(uint16_t *)((longlong)(system_thread_global_context_ptr + system_context_identifier_b1) + 4) = 0x02f;
+  system_set_ui_parameter(&system_thread_context_ptr,5);
+  *(uint64_t *)(system_thread_context_ptr + system_context_identifier_b1) = 0x03360036f6c;
+  *(uint16_t *)((longlong)(system_thread_context_ptr + system_context_identifier_b1) + 4) = 0x02f;
   system_context_identifier_b1 = 5;
-  system_set_ui_parameter(&system_thread_global_context_ptr,0x01001);
-  child_node = (uint64_t *)(system_thread_global_context_ptr + system_context_identifier_b1);
+  system_set_ui_parameter(&system_thread_context_ptr,0x01001);
+  child_node = (uint64_t *)(system_thread_context_ptr + system_context_identifier_b1);
   *child_node = 0x0660032650030;
   child_node[1] = 0x0616d00326f;
   child_node[2] = 0x05f65636e;
@@ -15787,8 +15787,8 @@ void system_generate_performance_report(uint64_t system_context_parameter,uint64
   system_context_identifier_b1 = 0x01001;
   system_config_ptr = (uint64_t *)system_allocate_memory_context(system_context_memory_pool,0x01001,0x01,3);
   system_manager_ptr = &system_data_memory_pool0x02001bc0033;
-  if (system_thread_global_context_ptr != (void **)0x00) {
-    system_manager_ptr = system_thread_global_context_ptr;
+  if (system_thread_context_ptr != (void **)0x00) {
+    system_manager_ptr = system_thread_context_ptr;
   }
   *system_config_ptr = 0;
   *(uint32_t *)(system_config_ptr + 2) = 0;
@@ -15930,11 +15930,11 @@ void system_generate_performance_report(uint64_t system_context_parameter,uint64
       system_uint_buffer = (uint)system_audio_temp_value;
       while (system_audio_temp_pointer != system_audio_temp_pointer) {
         system_long_status = 0;
-        system_thread_global_context_ptr = &system_data_callback_pool_base2;
+        system_thread_context_ptr = &system_data_callback_pool_base2;
         system_context_identifier = 0;
         pcStack_a0 = (char *)0x00;
         system_context_identifier = 0;
-        system_set_ui_parameter(&system_thread_global_context_ptr,*(uint64_t *)(system_audio_temp_pointer + SYSTEM_RESOURCE_COUNT_OFFSET));
+        system_set_ui_parameter(&system_thread_context_ptr,*(uint64_t *)(system_audio_temp_pointer + SYSTEM_RESOURCE_COUNT_OFFSET));
         if (*(int *)(system_audio_temp_pointer + SYSTEM_RESOURCE_COUNT_OFFSET) != 0) {
                     // WARNING: Subroutine does not return
           memcpy(pcStack_a0,*(uint64_t *)(system_audio_temp_pointer + SYSTEM_RESOURCE_TABLE_OFFSET),*(int *)(system_audio_temp_pointer + SYSTEM_RESOURCE_COUNT_OFFSET) + 1);
@@ -15960,14 +15960,14 @@ void system_generate_performance_report(uint64_t system_context_parameter,uint64
           pinit_status4 = pcStack_a0;
         }
         system_configure_ui_component(system_config_ptr,&system_data_43,pinit_status4,*(uint64_t *)(system_audio_temp_pointer + SYSTEM_CALLBACK_TABLE_OFFSET));
-        system_thread_global_context_ptr = &system_data_callback_pool_base2;
+        system_thread_context_ptr = &system_data_callback_pool_base2;
         if (pcStack_a0 != (char *)0x00) {
                     // WARNING: Subroutine does not return
           system_initialize_component();
         }
         pcStack_a0 = (char *)0x00;
         system_context_identifier = system_context_identifier & 0x07fffffff00000000;
-        system_thread_global_context_ptr = &system_data_animation_pool_base;
+        system_thread_context_ptr = &system_data_animation_pool_base;
         system_audio_temp_pointer = system_get_next_resource_node(system_audio_temp_pointer);
         system_uint_buffer = system_audio_temp_value;
       }
@@ -16793,16 +16793,16 @@ void system_initialize_watchpoint_system(longlong system_context_parameter,longl
   longlong system_long_handle;
   uint32_t system_config_buffer [0x040];
   uint64_t system_context_identifier_f1;
-  void **system_thread_global_context_ptr;
-  uint32_t *system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
+  uint32_t *system_thread_context_ptr;
   uint64_t system_context_identifier_d1;
   uint32_t context_buffer_d0 [SYSTEM_HEADER_BUFFER_SIZE];
   ulonglong system_context_identifier;
   
   system_context_identifier_f1 = SYSTEM_INVALID_HANDLE_VALUE;
   system_context_identifier = _system_data_memory_pool0bf00a1 ^ (ulonglong)system_config_buffer;
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
-  system_thread_global_context_ptr = context_buffer_d0;
+  system_thread_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = context_buffer_d0;
   system_context_identifier_d1 = 0;
   context_buffer_d0[0] = 0;
   system_audio_temp_pointer = strstr(*(uint64_t *)(system_context_parameter + 0x01));
@@ -16816,9 +16816,9 @@ void system_initialize_watchpoint_system(longlong system_context_parameter,longl
       system_long_context = system_long_context + 1;
     } while (*(char *)(system_long_context + system_context_parameter) != '\0');
                     // WARNING: Subroutine does not return
-    memcpy(system_thread_global_context_ptr,*(longlong *)(system_context_parameter + 0x01),system_audio_temp_pointer - *(longlong *)(system_context_parameter + 0x01));
+    memcpy(system_thread_context_ptr,*(longlong *)(system_context_parameter + 0x01),system_audio_temp_pointer - *(longlong *)(system_context_parameter + 0x01));
   }
-  system_thread_global_context_ptr = &system_data_animation_pool_base;
+  system_thread_context_ptr = &system_data_animation_pool_base;
                     // WARNING: Subroutine does not return
   system_calculate_checksum(system_context_identifier ^ (ulonglong)system_config_buffer);
 }
@@ -16930,16 +16930,16 @@ void system_initialize_tracing_system(longlong system_context_parameter,longlong
   longlong system_long_handle;
   uint32_t asystem_context_identifier_d1 [0x040];
   uint64_t system_context_identifier_b1;
-  void **system_thread_global_context_ptr;
-  uint32_t *system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
+  uint32_t *system_thread_context_ptr;
   uint64_t system_context_identifier;
   uint32_t system_config_buffer [0x032];
   ulonglong system_context_identifier;
   
   system_context_identifier_b1 = SYSTEM_INVALID_HANDLE_VALUE;
   system_context_identifier = _system_data_memory_pool0bf00a1 ^ (ulonglong)asystem_context_identifier_d1;
-  system_thread_global_context_ptr = &system_data_audio_buffer;
-  system_thread_global_context_ptr = system_config_buffer;
+  system_thread_context_ptr = &system_data_audio_buffer;
+  system_thread_context_ptr = system_config_buffer;
   system_context_identifier = 0;
   system_config_buffer[0] = 0;
   system_audio_temp_pointer = strstr(*(uint64_t *)(system_context_parameter + 0x01));
@@ -16953,9 +16953,9 @@ void system_initialize_tracing_system(longlong system_context_parameter,longlong
       system_long_context = system_long_context + 1;
     } while (*(char *)(system_long_context + system_context_parameter) != '\0');
                     // WARNING: Subroutine does not return
-    memcpy(system_thread_global_context_ptr,*(longlong *)(system_context_parameter + 0x01),system_audio_temp_pointer - *(longlong *)(system_context_parameter + 0x01));
+    memcpy(system_thread_context_ptr,*(longlong *)(system_context_parameter + 0x01),system_audio_temp_pointer - *(longlong *)(system_context_parameter + 0x01));
   }
-  system_thread_global_context_ptr = &system_data_animation_pool_base;
+  system_thread_context_ptr = &system_data_animation_pool_base;
                     // WARNING: Subroutine does not return
   system_calculate_checksum(system_context_identifier ^ (ulonglong)asystem_context_identifier_d1);
 }
@@ -18341,7 +18341,7 @@ void system_repair_archive_errors(longlong system_context_parameter)
 {
   void **data_context;
   uint32_t system_stack_byte_array_a1 [0x01];
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint system_context_identifier;
   uint64_t system_context_identifier;
   uint64_t system_context_identifier;
@@ -19122,11 +19122,11 @@ void system_decrypt_data_block(uint64_t system_context_parameter,longlong system
   void **system_buffer_temp_pointer;
   longlong system_stack_long_int_100;
   uint64_t system_context_identifier_f0;
-  uint64_t *system_thread_global_context_ptr;
-  uint64_t *system_thread_global_context_ptr;
+  uint64_t *system_thread_context_ptr;
+  uint64_t *system_thread_context_ptr;
   uint64_t system_context_identifier_d1;
   uint64_t system_context_identifier_d0;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   longlong system_stack_long_int_c0;
   uint64_t system_context_identifier_b0;
   uint64_t system_context_identifier_a1;
@@ -19261,11 +19261,11 @@ uint64_t system_complete_initialization(void)
   uint64_t *system_buffer_context;
   uint system_audio_config_value;
   int system_return_code;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   longlong system_stack_long_int_c0;
   uint system_context_identifier_b1;
   ulonglong system_context_identifier_b0;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   longlong system_stack_long_int_a0;
   uint system_context_identifier;
   uint64_t system_context_identifier;
@@ -19279,27 +19279,27 @@ uint64_t system_complete_initialization(void)
             (*(longlong *)(_system_data_memory_pool0c160010030 + 0x01) + 0x04c +
             (ulonglong)(*(uint *)(*(longlong *)(_system_data_memory_pool0c160010030 + 0x01) + 0x08c) & 1) * 0x04001);
   if ((system_audio_config_array.w != 0) && (system_audio_config_array.z != 0)) {
-    system_thread_global_context_ptr = &system_data_callback_pool_base2;
+    system_thread_context_ptr = &system_data_callback_pool_base2;
     system_context_identifier_b0 = 0;
     system_stack_long_int_c0 = 0;
     system_context_identifier_b1 = 0;
-    system_configure_audio_stream(&system_thread_global_context_ptr,system_audio_config_array.x);
+    system_configure_audio_stream(&system_thread_context_ptr,system_audio_config_array.x);
     system_audio_config_value = system_context_identifier_b1 + 1;
-    system_set_ui_parameter(&system_thread_global_context_ptr,system_audio_config_value);
+    system_set_ui_parameter(&system_thread_context_ptr,system_audio_config_value);
     *(uint16_t *)((ulonglong)system_context_identifier_b1 + system_stack_long_int_c0) = 0x02c;
     system_context_identifier_b1 = system_audio_config_value;
-    system_configure_audio_stream(&system_thread_global_context_ptr,system_audio_config_array.xy >> SYSTEM_RESOURCE_BLOCK_OFFSET);
+    system_configure_audio_stream(&system_thread_context_ptr,system_audio_config_array.xy >> SYSTEM_RESOURCE_BLOCK_OFFSET);
     system_audio_config_value = system_context_identifier_b1 + 1;
-    system_set_ui_parameter(&system_thread_global_context_ptr,system_audio_config_value);
+    system_set_ui_parameter(&system_thread_context_ptr,system_audio_config_value);
     *(uint16_t *)((ulonglong)system_context_identifier_b1 + system_stack_long_int_c0) = 0x02c;
     system_context_identifier_b1 = system_audio_config_value;
-    system_configure_audio_stream(&system_thread_global_context_ptr,system_audio_config_array.zw & 0x07fffffff);
+    system_configure_audio_stream(&system_thread_context_ptr,system_audio_config_array.zw & 0x07fffffff);
     system_return_code = system_context_identifier_b1 + 1;
-    system_set_ui_parameter(&system_thread_global_context_ptr,system_return_code);
+    system_set_ui_parameter(&system_thread_context_ptr,system_return_code);
     *(uint16_t *)((ulonglong)system_context_identifier_b1 + system_stack_long_int_c0) = 0x02c;
     system_context_identifier_b1 = system_return_code;
-    system_configure_audio_stream(&system_thread_global_context_ptr,system_audio_config_array.zw >> SYSTEM_RESOURCE_BLOCK_OFFSET);
-    system_buffer_context = (uint64_t *)system_initialize_ui_components(system_config_buffer,&system_thread_global_context_ptr);
+    system_configure_audio_stream(&system_thread_context_ptr,system_audio_config_array.zw >> SYSTEM_RESOURCE_BLOCK_OFFSET);
+    system_buffer_context = (uint64_t *)system_initialize_ui_components(system_config_buffer,&system_thread_context_ptr);
     system_audio_register_value_audio_callback(_system_data_memory_pool0c16001b0 + 0x0530,system_buffer_context);
     *system_buffer_context = &system_data_callback_pool_base2;
     if (system_buffer_context[1] != 0) {
@@ -19309,39 +19309,39 @@ uint64_t system_complete_initialization(void)
     system_buffer_context[1] = 0;
     *(uint64_t *)(system_buffer_context + 3) = 0;
     *system_buffer_context = &system_data_animation_pool_base;
-    system_thread_global_context_ptr = &system_data_callback_pool_base2;
+    system_thread_context_ptr = &system_data_callback_pool_base2;
     if (system_stack_long_int_c0 != 0) {
                     // WARNING: Subroutine does not return
       system_initialize_component();
     }
     system_stack_long_int_c0 = 0;
     system_context_identifier_b0 = system_context_identifier_b0 & 0x07fffffff00000000;
-    system_thread_global_context_ptr = &system_data_animation_pool_base;
+    system_thread_context_ptr = &system_data_animation_pool_base;
   }
   system_long_context = *(longlong *)(system_long_handle + 0x01);
   system_audio_config_array = *(uint32_t (*) [16])(system_long_context + 0x06c + (ulonglong)(*(uint *)(system_long_context + 0x08c) & 1) * 0x04001);
   if ((system_audio_config_array.w != 0) && (system_audio_config_array.z != 0)) {
-    system_thread_global_context_ptr = &system_data_callback_pool_base2;
+    system_thread_context_ptr = &system_data_callback_pool_base2;
     system_context_identifier = 0;
     system_stack_long_int_a0 = 0;
     system_context_identifier = 0;
-    system_configure_audio_stream(&system_thread_global_context_ptr,system_audio_config_array.x);
+    system_configure_audio_stream(&system_thread_context_ptr,system_audio_config_array.x);
     system_audio_config_value = system_context_identifier + 1;
-    system_set_ui_parameter(&system_thread_global_context_ptr,system_audio_config_value);
+    system_set_ui_parameter(&system_thread_context_ptr,system_audio_config_value);
     *(uint16_t *)((ulonglong)system_context_identifier + system_stack_long_int_a0) = 0x02c;
     system_context_identifier = system_audio_config_value;
-    system_configure_audio_stream(&system_thread_global_context_ptr,system_audio_config_array.xy >> SYSTEM_RESOURCE_BLOCK_OFFSET);
+    system_configure_audio_stream(&system_thread_context_ptr,system_audio_config_array.xy >> SYSTEM_RESOURCE_BLOCK_OFFSET);
     system_audio_config_value = system_context_identifier + 1;
-    system_set_ui_parameter(&system_thread_global_context_ptr,system_audio_config_value);
+    system_set_ui_parameter(&system_thread_context_ptr,system_audio_config_value);
     *(uint16_t *)((ulonglong)system_context_identifier + system_stack_long_int_a0) = 0x02c;
     system_context_identifier = system_audio_config_value;
-    system_configure_audio_stream(&system_thread_global_context_ptr,system_audio_config_array.zw & 0x07fffffff);
+    system_configure_audio_stream(&system_thread_context_ptr,system_audio_config_array.zw & 0x07fffffff);
     system_return_code = system_context_identifier + 1;
-    system_set_ui_parameter(&system_thread_global_context_ptr,system_return_code);
+    system_set_ui_parameter(&system_thread_context_ptr,system_return_code);
     *(uint16_t *)((ulonglong)system_context_identifier + system_stack_long_int_a0) = 0x02c;
     system_context_identifier = system_return_code;
-    system_configure_audio_stream(&system_thread_global_context_ptr,system_audio_config_array.zw >> SYSTEM_RESOURCE_BLOCK_OFFSET);
-    system_buffer_context = (uint64_t *)system_initialize_ui_components(system_config_buffer,&system_thread_global_context_ptr);
+    system_configure_audio_stream(&system_thread_context_ptr,system_audio_config_array.zw >> SYSTEM_RESOURCE_BLOCK_OFFSET);
+    system_buffer_context = (uint64_t *)system_initialize_ui_components(system_config_buffer,&system_thread_context_ptr);
     system_audio_register_value_audio_callback(_system_data_memory_pool0c16001b0 + 0x05f0,system_buffer_context);
     *system_buffer_context = &system_data_callback_pool_base2;
     if (system_buffer_context[1] != 0) {
@@ -19351,7 +19351,7 @@ uint64_t system_complete_initialization(void)
     system_buffer_context[1] = 0;
     *(uint64_t *)(system_buffer_context + 3) = 0;
     *system_buffer_context = &system_data_animation_pool_base;
-    system_thread_global_context_ptr = &system_data_callback_pool_base2;
+    system_thread_context_ptr = &system_data_callback_pool_base2;
     if (system_stack_long_int_a0 != 0) {
                     // WARNING: Subroutine does not return
       system_initialize_component();
@@ -20999,7 +20999,7 @@ void system_initialize_testing_system(uint64_t system_context_parameter,longlong
   uint64_t system_context_identifier;
   int system_stack_int_0x01001001;
   uint32_t asystem_context_identifier_e1 [16];
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint64_t system_context_identifier_d0;
   int system_stack_int_c1;
   ulonglong system_context_identifier;
@@ -21047,8 +21047,8 @@ void system_initialize_testing_system(uint64_t system_context_parameter,longlong
   *(uint16_t *)((ulonglong)*(uint *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) + *(longlong *)(system_context_parameter + 0x01)) = 10;
   *(int *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE) = system_int_context + 0x04;
   system_buffer_temp_pointer = &system_data_animation_pool_base;
-  psystem_buffer_temp_pointera1 = &system_thread_global_context_ptr;
-  system_thread_global_context_ptr = &system_data_animation_pool_base;
+  psystem_buffer_temp_pointera1 = &system_thread_context_ptr;
+  system_thread_context_ptr = &system_data_animation_pool_base;
                     // WARNING: Subroutine does not return
   system_calculate_checksum(system_context_identifier ^ (ulonglong)system_config_bufferc1);
 }
@@ -21219,12 +21219,12 @@ void system_run_unit_tests(uint64_t system_context_parameter,uint64_t system_con
   uint32_t *system_buffer_temp_pointera1;
   uint system_context_identifiera0;
   uint64_t system_context_identifier;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   longlong system_stack_long_int_e1;
   uint system_context_identifier_e0;
   uint64_t system_context_identifier_d1;
   uint64_t system_context_identifier_d0;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   uint64_t system_context_identifier_c0;
   uint64_t system_context_identifier_b1;
   uint64_t system_context_identifier_b0;
@@ -21241,11 +21241,11 @@ void system_run_unit_tests(uint64_t system_context_parameter,uint64_t system_con
   system_context_identifier_d0 = system_context_parameter;
   system_context_identifier = system_context_parameter;
   system_uint_handle = GetCurrentProcessId();
-  system_thread_global_context_ptr = &system_data_callback_pool_base2;
+  system_thread_context_ptr = &system_data_callback_pool_base2;
   system_context_identifier_d1 = 0;
   system_stack_long_int_e1 = 0;
   system_context_identifier_e0 = 0;
-  system_set_ui_parameter(&system_thread_global_context_ptr,6);
+  system_set_ui_parameter(&system_thread_context_ptr,6);
   system_audio_temp_pointer = system_stack_long_int_e1;
   system_audio_temp_value = (ulonglong)system_context_identifier_e0;
   *(uint64_t *)(system_audio_temp_value + system_stack_long_int_e1) = 0x04440025020;
@@ -21259,7 +21259,7 @@ void system_run_unit_tests(uint64_t system_context_parameter,uint64_t system_con
     system_long_context = system_audio_temp_pointer + 1;
   } while (system_stack_char_0x05001[system_audio_temp_pointer + 1] != '\0');
   if (0 < (int)(system_audio_temp_pointer + 1)) {
-    system_set_ui_parameter(&system_thread_global_context_ptr,(int)system_audio_temp_pointer + 0x03);
+    system_set_ui_parameter(&system_thread_context_ptr,(int)system_audio_temp_pointer + 0x03);
                     // WARNING: Subroutine does not return
     memcpy((ulonglong)system_context_identifier_e0 + system_stack_long_int_e1,system_stack_char_0x05001,(longlong)((int)system_audio_temp_pointer + 2));
   }
@@ -21268,7 +21268,7 @@ void system_run_unit_tests(uint64_t system_context_parameter,uint64_t system_con
     system_manager_ptr = &system_network_protocol_handler;
   }
   system_setup_render_target(system_config_buffer,system_manager_ptr);
-  system_thread_global_context_ptr = &system_data_callback_pool_base2;
+  system_thread_context_ptr = &system_data_callback_pool_base2;
   system_context_identifier_b0 = 0;
   system_context_identifier_c0 = 0;
   system_context_identifier_b1 = 0;
@@ -21514,9 +21514,9 @@ void system_execute_integration_tests(longlong *system_context_parameter,longlon
   uint64_t system_context_identifier;
   uint64_t system_context_identifier;
   uint64_t system_context_identifier_f1;
-  void ***psystem_thread_global_context_ptr;
-  void **system_thread_global_context_ptr;
-  uint32_t *system_thread_global_context_ptr;
+  void ***psystem_thread_context_ptr;
+  void **system_thread_context_ptr;
+  uint32_t *system_thread_context_ptr;
   uint64_t system_context_identifier_d1;
   uint32_t context_buffer_d0 [SYSTEM_HEADER_BUFFER_SIZE];
   ulonglong system_context_identifier;
@@ -21524,7 +21524,7 @@ void system_execute_integration_tests(longlong *system_context_parameter,longlon
   system_context_identifier_f1 = SYSTEM_INVALID_HANDLE_VALUE;
   system_context_identifier = _system_data_memory_pool0bf00a1 ^ (ulonglong)system_config_buffer;
   system_context_identifiere1 = 0;
-  psystem_thread_global_context_ptr = &system_buffer_temp_pointerc0;
+  psystem_thread_context_ptr = &system_buffer_temp_pointerc0;
   system_buffer_temp_pointerc0 = &system_data_callback_pool_base2;
   system_context_identifiera1 = 0;
   system_stack_long_int_1b1 = 0;
@@ -21564,8 +21564,8 @@ void system_execute_integration_tests(longlong *system_context_parameter,longlon
   system_context_identifier = SYSTEM_CONFIG_DATA_SIZE10101;
   system_context_identifier = 1;
   system_context_identifier = 1;
-  system_thread_global_context_ptr = &system_thread_context_worker_config;
-  system_thread_global_context_ptr = context_buffer_d0;
+  system_thread_context_ptr = &system_thread_context_worker_config;
+  system_thread_context_ptr = context_buffer_d0;
   context_buffer_d0[0] = 0;
   system_context_identifier_d1 = *(uint64_t *)(system_context_parameter + SYSTEM_CONFIG_DATA_SIZE);
   system_config_ptr = &system_data_memory_pool0x02001bc0033;
@@ -21573,8 +21573,8 @@ void system_execute_integration_tests(longlong *system_context_parameter,longlon
     system_config_ptr = *(void ***)(system_context_parameter + 0x01);
   }
   strcpy_s(context_buffer_d0,SYSTEM_STANDARD_BUFFER_SIZE,system_config_ptr);
-  system_configure_memory_allocator(&system_buffer_temp_pointer,&system_thread_global_context_ptr);
-  system_thread_global_context_ptr = &system_data_animation_pool_base;
+  system_configure_memory_allocator(&system_buffer_temp_pointer,&system_thread_context_ptr);
+  system_thread_context_ptr = &system_data_animation_pool_base;
   system_buffer_temp_pointere0 = &system_data_callback_pool_base2;
   system_context_identifierc1 = 0;
   system_stack_long_int_1d1 = 0;
@@ -21703,11 +21703,11 @@ void system_generate_test_report(void)
   uint64_t system_context_identifier;
   ulonglong system_context_identifier;
   int system_stack_int_f1;
-  void **system_thread_global_context_ptr;
-  uint32_t *system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
+  uint32_t *system_thread_context_ptr;
   uint64_t system_context_identifier_e0;
   ulonglong system_context_identifier_d1;
-  void **system_thread_global_context_ptr;
+  void **system_thread_context_ptr;
   longlong system_stack_long_int_c1;
   int system_stack_int_c0;
   uint64_t system_context_identifier_b1;
@@ -21818,15 +21818,15 @@ SYSTEM_VALIDATION_CHECK:
         system_config_ptr = system_buffer_temp_pointer;
         system_handle_ptr = system_buffer_temp_pointer;
         system_audio_temp_pointer = (longlong)system_buffer_temp_pointer - (longlong)system_buffer_temp_pointer;
-        system_set_initialization_flag(&system_thread_global_context_ptr);
+        system_set_initialization_flag(&system_thread_context_ptr);
         current_node = &system_data_memory_pool0x02001bc0033;
         if (system_buffer_temp_pointer != (uint32_t *)0x00) {
           current_node = system_buffer_temp_pointer;
         }
-        system_process_network_data(&system_thread_global_context_ptr,&system_network_data_handler,current_node);
-        system_current_character = system_create_ui_window(&system_thread_global_context_ptr);
+        system_process_network_data(&system_thread_context_ptr,&system_network_data_handler,current_node);
+        system_current_character = system_create_ui_window(&system_thread_context_ptr);
         if (system_current_character == '\0') {
-          system_setup_ui_event_handlers(&system_thread_global_context_ptr);
+          system_setup_ui_event_handlers(&system_thread_context_ptr);
         }
         system_long_context_ptr = psystem_stack_long_int_a1;
         system_audio_loop_counter = (int)(system_audio_temp_pointer >> 5);
