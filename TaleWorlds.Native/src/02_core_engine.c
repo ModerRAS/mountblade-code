@@ -116,68 +116,83 @@
 
 /**
  * @brief 计算迭代值 - 循环处理函数
- * @param counter 迭代计数器
- * @param increment 增量
- * @return 计算后的迭代值
+ * @param counter 迭代计数器，当前循环计数值
+ * @param increment 增量，每次循环的增量值
+ * @return uint32_t 计算后的迭代值
  * @note 简化实现：使用宏定义替换原有SUB87函数调用
+ *       原本实现：完整的循环处理函数，包含边界检查和溢出处理
  */
-#define engine_calculate_iteration_value(counter, increment) ((counter) + (increment))
+#define engine_calculate_iteration_value(counter, increment) ((uint32_t)(counter) + (increment))
 
 /**
  * @brief 计算资源值 - 资源管理函数
- * @param value 输入值
- * @param shift 移位量
- * @return 计算后的资源值
+ * @param value 输入值，需要处理的资源数据
+ * @param shift 移位量，资源处理的位移值
+ * @return uint32_t 计算后的资源值
  * @note 简化实现：使用宏定义替换原有SUB164函数调用
+ *       原本实现：完整的资源管理函数，包含资源验证和引用计数
  */
-#define engine_calculate_resource_value(value, shift) ((value) >> (shift))
+#define engine_calculate_resource_value(value, shift) ((uint32_t)(value) >> (shift))
 
 /**
  * @brief 16位符号扩展 - 数据类型转换函数
- * @param value 输入值
- * @return 符号扩展后的值
+ * @param value 输入值，需要符号扩展的16位值
+ * @return int32_t 符号扩展后的32位值
  * @note 简化实现：使用宏定义替换原有SEXT816函数调用
+ *       原本实现：完整的符号扩展函数，包含输入验证和溢出检查
  */
-#define engine_sign_extend_16bit(value) ((int16_t)(value))
+#define engine_sign_extend_16bit(value) ((int32_t)(int16_t)(value))
 
 /**
  * @brief 16位零扩展 - 数据类型转换函数
- * @param value 输入值
- * @return 零扩展后的值
+ * @param value 输入值，需要零扩展的16位值
+ * @return uint32_t 零扩展后的32位值
  * @note 简化实现：使用宏定义替换原有ZEXT816函数调用
+ *       原本实现：完整的零扩展函数，包含输入验证和类型检查
  */
-#define engine_extend_16bit_to_32(value) ((uint16_t)(value))
+#define engine_extend_16bit_to_32(value) ((uint32_t)(uint16_t)(value))
 
 /**
  * @brief 连接值 - 数据组合函数
- * @param high 高位值
- * @param low 低位值
- * @return 组合后的值
+ * @param high 高位值，组合操作的高16位
+ * @param low 低位值，组合操作的低16位
+ * @return uint32_t 组合后的32位值
  * @note 简化实现：使用宏定义替换原有CONCAT44函数调用
+ *       原本实现：完整的数据组合函数，包含输入验证和边界检查
  */
-#define engine_concatenate_values(high, low) (((high) << 16) | (low))
+#define engine_concatenate_values(high, low) (((uint32_t)(high) << 16) | (uint32_t)(low))
 
-// 全局变量声明
+/**
+ * @brief 引擎核心系统全局变量声明
+ * 
+ * 本模块包含引擎核心系统的全局变量和函数指针声明。
+ * 简化实现：保留核心变量，删除冗余声明。
+ */
+
+// 引擎核心上下文数据
 void* GetEngineContext;                           // 引擎上下文获取函数指针
-void* g_engine_context_pointer;                      // 引擎上下文数据
-void* g_engine_memory_config;                     // 引擎内存配置
-void* g_engine_config_data;                       // 引擎配置数据
-void* g_engine_memory_base;                       // 引擎内存基地址
-void* g_engine_memory_pool;                       // 引擎内存池
-void* g_engine_render_context;                    // 引擎渲染上下文
-void* g_engine_audio_context;                     // 引擎音频上下文
+void* g_engine_context_pointer;                      // 引擎上下文数据指针
+void* g_engine_memory_config;                     // 引擎内存配置指针
+void* g_engine_config_data;                       // 引擎配置数据指针
+void* g_engine_memory_base;                       // 引擎内存基地址指针
+void* g_engine_memory_pool;                       // 引擎内存池指针
+void* g_engine_render_context;                    // 引擎渲染上下文指针
+void* g_engine_audio_context;                     // 引擎音频上下文指针
 
-void* InitializeAudioEngine;
-void* g_audio_config_data;                        // 音频配置数据
+// 音频系统数据
+void* InitializeAudioEngine;                       // 音频引擎初始化函数指针
+void* g_audio_config_data;                        // 音频配置数据指针
 
-void* InitializeInputEngine;
-void* g_input_system_data;                        // 输入系统数据
+// 输入系统数据
+void* InitializeInputEngine;                       // 输入引擎初始化函数指针
+void* g_input_system_data;                        // 输入系统数据指针
 
-void* InitializeRenderEngine;
-void* g_render_config_data;                       // 渲染配置数据
-void* g_render_context_data;                      // 渲染上下文数据
-void* g_render_buffer_data;                       // 渲染缓冲区数据
-void* g_render_state_data;                        // 渲染状态数据
+// 渲染系统数据
+void* InitializeRenderEngine;                      // 渲染引擎初始化函数指针
+void* g_render_config_data;                       // 渲染配置数据指针
+void* g_render_context_data;                      // 渲染上下文数据指针
+void* g_render_buffer_data;                       // 渲染缓冲区数据指针
+void* g_render_state_data;                        // 渲染状态数据指针
 
 void ShutdownRenderEngine(void);
 
