@@ -542,7 +542,7 @@ uint64_t utility_process_resource_pointer(int64_t utility_context_pointer)
     }
     
     if (*(int *)(utility_current_counter + UTILITY_MEMORY_STATUS_OFFSET) == -1) {
-        utility_resource_context_data_status = utility_resource_context_data_init(utility_current_counter, utility_char_buffer);
+        utility_resource_context_data_status = utility_resource_context_init(utility_current_counter, utility_char_buffer);
         if ((int)utility_status != UTILITY_STATUS_FALSE) {
             return utility_status;
         }
@@ -698,10 +698,9 @@ while( true ) {
 {
 
 int64_t utility_loop_counter = 0;
-    int utility_status_code;
+    int utility_status_code = UTILITY_STATUS_FALSE;
     uint64_t utility_status;
 int64_t utility_stack_data_buffer [2];
-    int utility_status_code = UTILITY_STATUS_FALSE;
     utility_status = utility_handle_service_request(*(uint32_t *)(utility_context_pointer + UTILITY_THREAD_HANDLE_OFFSET), utility_stack_data_buffer);
     utility_loop_counter = 0;
     if ((int)utility_status != UTILITY_STATUS_FALSE) {
@@ -728,7 +727,7 @@ int64_t utility_stack_data_buffer [2];
  * @param utility_context_pointer 上下文句柄
  * @return 初始化结果状态码，0表示成功，非0表示失败
  */
-    uint64_t utility_resource_context_data_init(int64_t utility_context_pointer)
+    uint64_t utility_resource_context_init(int64_t utility_context_pointer)
 {
 
     uint *utility_data_storage_pointer;

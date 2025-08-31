@@ -1418,18 +1418,18 @@ void *system_data_config_debug;
 void *system_data_config_logging;
 void *system_data_input_config;
 void *system_data_physics_config;
-void *system_data_memory_pool0;
-void *system_data_memory_pool1;
-void *system_data_memory_pool2;
+void *system_memory_pool_zero;
+void *system_memory_pool_one;
+void *system_memory_pool_two;
 void *system_data_animation_config;
 void *system_data_ai_config;
-void *system_data_memory_pool3;
-void *system_data_memory_pool4;
-void *system_data_memory_pool5;
-void *system_data_memory_pool6;
-void *system_data_memory_pool0x03;
-void *system_data_memory_pool0x01;
-void *system_data_memory_pool0x02;
+void *system_memory_pool_three;
+void *system_memory_pool_four;
+void *system_memory_pool_five;
+void *system_memory_pool_six;
+void *system_memory_pool_extended_three;
+void *system_memory_pool_extended_one;
+void *system_memory_pool_extended_two;
 void *system_data_thread_pool0;
 void *system_data_thread_pool1;
 void *system_data_thread_pool2;
@@ -6350,7 +6350,7 @@ int system_initialize_network(void)
   uint64_t system_audio_register_value;
   
   system_graphics_memory_pool = &system_data_physics_pool_base;
-  _system_data_memory_pool0bf20b001 = &system_data_memory_pool0bf20c001;
+  system_resource_backup = &system_resource_cache;
 
 void system_initialize_thread_management_stage_1(void)
 
@@ -6385,7 +6385,7 @@ void system_initialize_thread_management_stage_2(void)
   system_config_buffer[0] = 0;
   system_context_id = 0x016;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_memory_pool0a16c3001,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c21dac = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_reserve = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 void system_initialize_thread_management_stage_3(void)
@@ -6764,7 +6764,7 @@ void system_initialize_resource_management_stage_1(void)
   system_config_buffer[0] = 0;
   system_context_id = 0x0A;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_context_144,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c21ee001 = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_emergency = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 void system_initialize_resource_management_stage_2(void)
@@ -7278,7 +7278,7 @@ void system_initialize_graphics_management_stage_3(void)
   system_config_buffer[0] = 0;
   system_context_id = 0x02;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_context_145,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c21ef001 = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_critical = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 
@@ -7297,7 +7297,7 @@ void system_initialize_graphics_management_stage_4(void)
   system_config_buffer[0] = 0;
   system_context_id = 0x01;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_context_146,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c21efc = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_priority = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 
@@ -7316,7 +7316,7 @@ void system_initialize_graphics_management_stage_5(void)
   system_config_buffer[0] = 0;
   system_context_id = SYSTEM_STACK_UINT_INITIAL_VALUE;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_context_0x014003,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c21f00 = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_main = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 
@@ -7335,7 +7335,7 @@ void system_initialize_audio_management_stage_1(void)
   system_config_buffer[0] = 0;
   system_context_id = 0x06;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_context_0x014001,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c21f04 = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_worker = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 
@@ -7354,7 +7354,7 @@ void system_initialize_audio_management_stage_2(void)
   system_config_buffer[0] = 0;
   system_context_id = 0x0A;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_context_0x014002,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c21f0001 = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_service = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 
@@ -7373,7 +7373,7 @@ void system_initialize_audio_management_stage_3(void)
   system_config_buffer[0] = 0;
   system_context_id = 0x09;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_context_150,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c21f0c = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_handler = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 
@@ -7392,7 +7392,7 @@ void system_initialize_audio_management_stage_4(void)
   system_config_buffer[0] = 0;
   system_context_id = 0x05;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_context_151,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c21f10 = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_manager = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 
@@ -7411,7 +7411,7 @@ void system_initialize_audio_management_stage_5(void)
   system_config_buffer[0] = 0;
   system_context_id = 0x01a;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_context_152,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c21f14 = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_controller = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 
@@ -7430,7 +7430,7 @@ void system_initialize_ui_management_stage_1(void)
   system_config_buffer[0] = 0;
   system_context_id = 0x08;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_context_153,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c21f30 = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_supervisor = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 void system_initialize_ui_management_stage_2(void)
@@ -9159,7 +9159,7 @@ void system_initialize_system_services_stage_5(void)
   system_config_buffer[0] = 0;
   system_context_id = 0x016;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_audio_config_path,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c21f6001 = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_monitor = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 
@@ -9171,8 +9171,8 @@ int system_initialize_input(void)
   longlong system_audio_long_value;
   uint64_t system_audio_register_value;
   
-  _system_data_memory_pool0bf21b0 = &system_data_audio_buffer;
-  _system_data_memory_pool0bf21b001 = &system_data_memory_pool0bf21c001;
+  system_audio_cache = &system_audio_buffer_data;
+  system_audio_cache_backup = &system_audio_buffer_backup;
 
 void system_setup_rendering_pipeline(void)
 
@@ -9640,7 +9640,7 @@ void system_setup_animation_pipeline(void)
   system_config_buffer[0] = 0;
   system_context_id = 0x012;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_video_config_path,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c21f6c = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_observer = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 
@@ -9659,7 +9659,7 @@ void system_setup_ai_pipeline(void)
   system_config_buffer[0] = 0;
   system_context_id = 0x01;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_network_config_path,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c21fcc = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_watcher = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 void system_setup_script_pipeline(void)
@@ -9986,8 +9986,8 @@ int system_validate_thread_config(void)
   longlong system_audio_long_value;
   uint64_t system_audio_register_value;
   
-  _system_data_memory_pool0bfa350 = &system_thread_context_workeronfig;
-  _system_data_memory_pool0bfa35001 = &system_data_memory_pool0bfa36001;
+  system_worker_config = &system_worker_context;
+  system_worker_config_backup = &system_worker_context_backup;
 
 void system_cleanup_rendering_resources(void)
 
@@ -10686,7 +10686,7 @@ void system_initialize_sound_config(void)
   system_config_buffer[0] = 0;
   system_context_id = 0x01b;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_resource_pool_base3,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c2246c = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_inspector = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 
@@ -11208,7 +11208,7 @@ void system_setup_audio_filters(void)
   system_config_buffer[0] = 0;
   system_context_id = SYSTEM_CONFIG_DATA_SIZE_16;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_resource_pool_base5,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c224ac = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_validator = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 
@@ -11227,7 +11227,7 @@ void system_calibrate_audio_volume(void)
   system_config_buffer[0] = 0;
   system_context_id = 0x07;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_memory_pool0a2c1d0,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c224b0 = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_checker = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 
@@ -11246,7 +11246,7 @@ void system_adjust_audio_balance(void)
   system_config_buffer[0] = 0;
   system_context_id = SYSTEM_STATUS_FLAG_OFFSET;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_memory_pool0a2c33001,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c224b4 = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_verifier = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 
@@ -11265,7 +11265,7 @@ void system_set_audio_parameters(void)
   system_config_buffer[0] = 0;
   system_context_id = 0x014;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_memory_pool0a2c510,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c224b001 = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_confirmer = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 
@@ -11278,7 +11278,7 @@ int system_get_audio_configuration(void)
   uint64_t system_audio_register_value;
   
   system_video_memory_pool = &system_data_physics_pool_base;
-  _system_data_memory_pool0bf6050 = &system_data_memory_pool0bf6060;
+  system_data_cache = &system_data_buffer;
 
 void system_initialize_video_config(void)
 
@@ -12598,7 +12598,7 @@ void system_initialize_gpu_resources(void)
   system_config_buffer[0] = 0;
   system_context_id = 0x06;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_resource_pool_base1,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c25ecc = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_finalizer = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 
@@ -13012,7 +13012,7 @@ void system_initialize_lock_manager(void)
   system_config_buffer[0] = 0;
   system_context_id = 0x01b;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_resource_pool_base2,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c2606c = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_cleaner = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 
@@ -13118,7 +13118,7 @@ void system_initialize_critical_section(void)
   system_config_buffer[0] = 0;
   system_context_id = SYSTEM_CONFIG_DATA_SIZE_16;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_callback_pool_base6,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c26003d0 = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_collector = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 
@@ -13191,7 +13191,7 @@ void system_initialize_spinlock_system(void)
   system_config_buffer[0] = 0;
   system_context_id = 0x01003;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_callback_pool_base3,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c26003d4 = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_recycler = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 
@@ -13218,7 +13218,7 @@ void system_initialize_barrier_system(void)
   system_config_buffer[0] = 0;
   system_context_id = 0x011;
   strcpy_s(system_config_buffer,SYSTEM_STANDARD_BUFFER_SIZE,&system_data_callback_pool_base1,system_audio_register_value,SYSTEM_INVALID_HANDLE_VALUE);
-  _system_data_memory_pool0c26003d001 = system_create_thread_context(&system_thread_context_pointer);
+  system_thread_context_disposer = system_create_thread_context(&system_thread_context_pointer);
   return;
 }
 
