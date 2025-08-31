@@ -1498,7 +1498,7 @@ void *utility_unknown_segment_a188e0;
 void *utility_unknown_segment_a188f8;
 void *utility_unknown_segment_a18908;
 void *utility_system_segment_logger;
-void *utility_unknown_segment_a1892c;
+void *utility_system_segment_validator;
 void *utility_unknown_segment_a18938;
 void *utility_unknown_segment_a18980;
 void *utility_unknown_segment_a18998;
