@@ -115,9 +115,9 @@ void* system_render_pipeline_manager;
 void* system_icall_guard;
 
 // 系统输入管理初始化函数
-void* system_input_init_function;
+void* system_input_initializer;
 
-void* system_initialize_subsystem;
+void* system_subsystem_initializer;
 // 系统子系统管理器
 void* system_subsystem_manager;
 // 系统子系统配置管理器
@@ -344,7 +344,7 @@ void* system_reserved_object_pointer_feec8;
 // 系统未知对象指针4
 void* system_reserved_object_pointer_feed8;
 // 系统字符数据1
-char system_char_data_82840;
+char system_reserved_char_data_82840;
 // 系统未知对象指针5
 void* system_reserved_object_pointer_6a030;
 // 系统未知对象指针6
@@ -364,7 +364,7 @@ void* system_reserved_object_pointer_ff3e8;
 // 系统未知对象指针12
 void* system_reserved_object_pointer_ff488;
 // 系统字符数据2
-char system_char_data_8aa69;
+char system_reserved_char_data_8aa69;
 // 系统未知对象指针13
 void* system_reserved_object_pointer_ff538;
 // 系统未知对象指针14
