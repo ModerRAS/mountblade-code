@@ -626,7 +626,6 @@ uint64_t utility_process_resource_pointer(int64_t utility_context_parameter_ptr)
     *(int64_t *)(*utility_buffer_pointer + (int64_t)*(int *)(utility_current_index + UTILITY_DATA_INDEX_OFFSET) * 8) = utility_current_index;
     *(int *)(utility_current_index + UTILITY_DATA_INDEX_OFFSET) = *(int *)(utility_current_index + UTILITY_DATA_INDEX_OFFSET) + 1;
     *(int *)(utility_current_index + UTILITY_DATA_COUNTER_OFFSET) = *(int *)(utility_current_index + UTILITY_DATA_COUNTER_OFFSET) + 1;
-    }
     else {
         utility_context_value_temp = utility_create_resource_iterator(utility_current_index + UTILITY_CONTEXT_ITERATOR_OFFSET, utility_current_index);
         if ((int)utility_resource_pointer != UTILITY_BOOLEAN_FALSE) {
@@ -956,7 +955,7 @@ uint32_t utility_queue_status_checker(void)
  */
 void utility_memory_block_allocator(void)
 {
-utility_context_activate();
+    utility_context_activate();
 }
 /**
  * @brief 释放内存块
@@ -1031,23 +1030,14 @@ void utility_thread_local_initializer(void)
     utility_context_activate();
 }
 /**
- * 处理资源指针的转换和管理
- * 将原始资源指针转换为系统可用的资源引用
- * 
- * @param utility_context_parameter_ptr 输入的原始资源指针值
- * @return 转换后的资源指针，0表示失败
- */
-/**
- * 线程创建处理函数
- * 功能：处理线程创建和初始化过程
- * 参数：utility_context_parameter_ptr - 线程上下文句柄
- * 返回值：操作结果状态码
- */
-/**
  * @brief 线程创建器
- * 功能：创建新的系统线程，初始化线程上下文
- * @param utility_context_parameter_ptr 线程上下文参数
+ * 创建新的系统线程，初始化线程上下文和资源管理
+ * 
+ * @param utility_context_parameter_ptr 线程上下文参数，包含线程配置信息
  * @return 创建的线程句柄，0表示失败
+ * 
+ * @note 这是简化实现，主要处理线程创建和资源分配
+ * 原本实现：完全重构线程管理系统，建立统一的线程生命周期管理
  */
 uint64_t utility_thread_creator(int64_t utility_context_parameter_ptr)
 {
