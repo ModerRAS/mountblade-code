@@ -229,25 +229,25 @@ static void *system_pointer_180a13a28;
 static void *system_pointer_180a00208;
 static void *system_pointer_180a00270;
 static void *system_pointer_180277350;
-int32_t system_function_18007bb70(void);
+int32_t system_initialize_graphics(void);
 static void *system_pointer_1809ffa98;
 static void *system_pointer_1802426a0;
 static void *system_pointer_180a001e8;
 static uint32_t system_data_180c8aa00;
 static void *system_pointer_1809ffae0;
 static uint32_t system_data_180d49158;
-int32_t system_function_18004c030(void);
+int32_t system_initialize_audio(void);
 static void *system_pointer_180a02b98;
-int32_t system_function_180056e10(void);
-int32_t system_function_180051cc0(void);
-int32_t system_function_180051d00(void);
+int32_t system_initialize_input(void);
+int32_t system_initialize_network(void);
+int32_t system_initialize_physics(void);
 static void *system_pointer_1800e7f50;
 static void *system_pointer_1800e7f80;
 static void *system_pointer_1800e7fb0;
 static void *system_pointer_1800e7fe0;
 static void *system_pointer_1800e8020;
 static void *system_pointer_1801b9b60;
-int32_t system_function_1800596a0(void);
+int32_t system_initialize_resources(void);
 static void *system_pointer_180a06950;
 static void *system_pointer_180a069b0;
 static void *system_pointer_180a069c0;
@@ -283,8 +283,8 @@ static uint32_t system_data_180a06998;
 static uint32_t system_data_180a069a0;
 static uint32_t system_data_180a069a8;
 static void *system_pointer_18014f7f0;
-int32_t system_function_180049b30(void);
-int32_t system_function_18004ca00(void);
+int32_t system_validate_system(void);
+int32_t system_cleanup_system(void);
 static void *system_pointer_180a08fd0;
 static void *system_pointer_180a09008;
 static void *system_pointer_180a09048;
@@ -316,7 +316,7 @@ static uint32_t system_data_180a089b0;
 static void *system_pointer_1800830b0;
 static void *system_pointer_1800830c0;
 static void *system_pointer_180083130;
-int32_t system_function_18004a130(void);
+int32_t system_start_services(void);
 static void *system_pointer_180a0c9a0;
 static void *system_pointer_180a0cb40;
 static void *system_pointer_180a0c808;
@@ -324,10 +324,10 @@ static void *system_pointer_180a0c9b0;
 static void *system_pointer_180a0c7d8;
 static void *system_pointer_180a0c7f0;
 static void *system_pointer_180a0c508;
-int32_t system_function_180049cd0(void);
-int32_t system_function_180049970(void);
-int32_t system_function_1800586e0(void);
-int32_t system_function_180046480(void);
+int32_t system_stop_services(void);
+int32_t system_restart_services(void);
+int32_t system_pause_services(void);
+int32_t system_resume_services(void);
 static void *system_pointer_180a13ad0;
 static uint32_t system_data_180a0ba58;
 static uint32_t system_data_180a0d580;
@@ -350,7 +350,7 @@ static void *system_pointer_180a13c94;
 static void *system_pointer_180a13ca0;
 static void *system_pointer_180a13cac;
 static void *system_pointer_180239520;
-int32_t system_function_180056de0(void);
+int32_t system_configure_services(void);
 static void *system_pointer_180a172e0;
 static void *system_pointer_180a17308;
 static void *system_pointer_180a17398;
@@ -466,7 +466,7 @@ static uint32_t system_data_180d48db8;
 static uint32_t system_data_180d48dc0;
 static uint32_t system_data_180d48dc8;
 static uint32_t system_data_180d48dd0;
-int32_t system_function_1800670d0(void);
+int32_t system_initialize_database(void);
 static void *system_pointer_180a25980;
 static uint32_t system_data_180bfc170;
 static void *system_pointer_180a258e0;
@@ -546,7 +546,7 @@ static void *system_pointer_180a25ef8;
 static void *system_pointer_180a25900;
 static void *system_pointer_180a25ad0;
 static void *system_pointer_180a25a6c;
-int32_t system_function_18006b8f0(void);
+int32_t system_initialize_cache(void);
 /**
  * @brief 初始化系统配置数据结构
  * 
@@ -653,7 +653,7 @@ void system_initialize_memory_pool(void)
   config_data_pointer[10] = uStackX_18;
   return;
 }
-void FUN_18002c540(void)
+void system_load_modules(void)
 {
   char config_status_flag;
   undefined8 *config_pointer_primary;
@@ -697,7 +697,7 @@ void FUN_18002c540(void)
   config_data_pointer[10] = uStackX_18;
   return;
 }
-void FUN_18002c640(void)
+void system_register_components(void)
 {
   char config_status_flag;
   undefined8 *config_pointer_primary;
@@ -741,7 +741,7 @@ void FUN_18002c640(void)
   config_data_pointer[10] = uStackX_18;
   return;
 }
-void FUN_18002c740(void)
+void system_initialize_threads(void)
 {
   char config_status_flag;
   undefined8 *config_pointer_primary;
@@ -785,7 +785,7 @@ void FUN_18002c740(void)
   config_data_pointer[10] = uStackX_18;
   return;
 }
-void FUN_18002c840(void)
+void system_start_threads(void)
 {
   char config_status_flag;
   undefined8 *config_pointer_primary;
@@ -829,7 +829,7 @@ void FUN_18002c840(void)
   config_data_pointer[10] = uStackX_18;
   return;
 }
-void FUN_18002c940(void)
+void system_monitor_resources(void)
 {
   char config_status_flag;
   undefined8 *config_pointer_primary;
@@ -873,7 +873,7 @@ void FUN_18002c940(void)
   config_data_pointer[10] = uStackX_18;
   return;
 }
-void FUN_18002ca40(void)
+void system_handle_events(void)
 {
   char config_status_flag;
   undefined8 *config_pointer_primary;
@@ -13779,12 +13779,12 @@ int FUN_180043ce0(void)
   lVar1 = FUN_1808fc7d0(&UNK_180943320);
   return (lVar1 != 0) - 1;
 }
-void WotsMainSDLL(undefined8 param_1)
+void system_main_entry(undefined8 param_1)
 {
   undefined8 auStackX_18 [2];
   
-                    // 0x43d20  31  WotsMainSDLL
-void FUN_180043d40(longlong param_1)
+                    // 0x43d20  31  system_main_entry
+void system_process_arguments(longlong param_1)
 {
   longlong lVar1;
   longlong *plVar2;
@@ -13874,17 +13874,17 @@ FUN_180043f30(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined
   }
   return param_1;
 }
-void FUN_180043f90(void)
+void system_initialize_environment(void)
 {
                     // WARNING: Subroutine does not return
   FUN_1808fd200();
 }
-void FUN_180044a30(undefined8 *param_1)
+void system_setup_logging(undefined8 *param_1)
 {
   *param_1 = &UNK_18098bcb0;
   return;
 }
-void FUN_180044a50(void)
+void system_configure_paths(void)
 {
   undefined8 *puVar1;
   code *pcVar2;
@@ -14031,7 +14031,7 @@ LAB_180044db8:
                     // WARNING: Subroutine does not return
   FUN_1808fc050(uStack_28 ^ (ulonglong)auStack_248);
 }
-void FUN_180044dc0(undefined8 param_1,longlong param_2)
+void system_load_configuration(undefined8 param_1,longlong param_2)
 {
   longlong **pplVar1;
   int iVar2;
@@ -14066,7 +14066,7 @@ void FUN_180044dc0(undefined8 param_1,longlong param_2)
   longlong *plStack_48;
   
   uStack_58 = 0xfffffffffffffffe;
-  uVar5 = FUN_180043f90();
+  uVar5 = system_initialize_environment();
   FUN_180629770();
   plVar6 = (longlong *)FUN_18062b1e0(_DAT_180c8ed18,0x68,8,3);
   pplVar1 = (longlong **)(plVar6 + 1);
@@ -14175,7 +14175,7 @@ LAB_180044faf:
   }
   _DAT_180c8ed58 = 0;
   _DAT_180c8ed40 = lStackX_20;
-void FUN_180045380(void)
+void system_validate_platform(void)
 {
   undefined8 uVar1;
   undefined4 uVar2;
@@ -14360,11 +14360,11 @@ undefined4 FUN_180045580(void)
                     // WARNING: Subroutine does not return
   FUN_18064e900(pppplVar14);
 }
-void WotsMain(undefined8 param_1)
+void system_main_function(undefined8 param_1)
 {
   undefined8 auStackX_18 [2];
   
-                    // 0x45a00  27  WotsMain
+                    // 0x45a00  27  system_main_function
 void FUN_180045af0(longlong *param_1)
 {
   if ((longlong *)*param_1 != (longlong *)0x0) {
@@ -14451,7 +14451,7 @@ undefined8 * FUN_180045dc0(undefined8 *param_1,uint param_2)
   }
   return param_1;
 }
-void _guard_check_icall(void)
+void system_validate_icall(void)
 {
   return;
 }
@@ -24931,8 +24931,8 @@ void FUN_1800593f0(undefined8 param_1,undefined8 *param_2,undefined8 param_3,und
 }
 void FUN_1800594b0(undefined8 *param_1)
 {
-  FUN_1808fc8a8(param_1 + 0x7d,0x58,4,FUN_180044a30,0xfffffffffffffffe);
-  FUN_1808fc8a8(param_1 + 0x51,0x58,4,FUN_180044a30);
+  FUN_1808fc8a8(param_1 + 0x7d,0x58,4,system_setup_logging,0xfffffffffffffffe);
+  FUN_1808fc8a8(param_1 + 0x51,0x58,4,system_setup_logging);
   FUN_1808fc8a8(param_1 + 0x11,0x20,0x10,FUN_180059620);
   param_1[8] = &UNK_180a3c3e0;
   if (param_1[9] != 0) {
@@ -26107,7 +26107,7 @@ longlong FUN_18005b730(longlong param_1)
   *(undefined8 *)(param_1 + 0x30) = 0;
   *(undefined4 *)(param_1 + 0x38) = 0;
   *(undefined8 *)(param_1 + 0x60) = 0;
-  *(code **)(param_1 + 0x68) = int32_t system_guard_check_icall(void *target);
+  *(code **)(param_1 + 0x68) = int32_t systemsystem_validate_icall(void *target);
   return param_1;
 }
 void FUN_18005b7c0(longlong param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
@@ -26171,7 +26171,7 @@ undefined8 * FUN_18005b870(undefined8 *param_1)
   param_1[0x11] = 0;
   *(undefined4 *)(param_1 + 0x12) = 0;
   param_1[0x16] = 0;
-  param_1[0x17] = int32_t system_guard_check_icall(void *target);
+  param_1[0x17] = int32_t systemsystem_validate_icall(void *target);
   return param_1;
 }
 void FUN_18005b960(undefined8 *param_1,undefined8 param_2,undefined8 param_3,undefined8 param_4)
@@ -26326,7 +26326,7 @@ FUN_18005c2a0(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefin
   *param_1 = &UNK_1809fdea8;
   puVar1 = param_1 + 4;
   param_1[6] = 0;
-  param_1[7] = int32_t system_guard_check_icall(void *target);
+  param_1[7] = int32_t systemsystem_validate_icall(void *target);
   if (puVar1 != param_2) {
     if ((code *)param_1[6] != (code *)0x0) {
       (*(code *)param_1[6])(puVar1,0,0,param_4,0xfffffffffffffffe);
@@ -26427,7 +26427,7 @@ FUN_18005c590(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefin
   *param_1 = &UNK_1809fdf38;
   puVar1 = param_1 + 0x18;
   param_1[0x1a] = 0;
-  param_1[0x1b] = int32_t system_guard_check_icall(void *target);
+  param_1[0x1b] = int32_t systemsystem_validate_icall(void *target);
   if (puVar1 != param_2) {
     if ((code *)param_1[0x1a] != (code *)0x0) {
       (*(code *)param_1[0x1a])(puVar1,0,0,param_4,uVar3);
@@ -26485,7 +26485,7 @@ void FUN_18005c650(longlong *param_1)
     uVar4 = FUN_18062b1e0(_DAT_180c8ed18,0xe8,8,3);
     plStack_108 = alStack_f8;
     pcStack_e8 = (code *)0x0;
-    pcStack_e0 = int32_t system_guard_check_icall(void *target);
+    pcStack_e0 = int32_t systemsystem_validate_icall(void *target);
     if (alStack_f8 != param_1) {
       pcVar6 = (code *)param_1[2];
       if (pcVar6 != (code *)0x0) {
@@ -27402,7 +27402,7 @@ void FUN_18005d790(longlong param_1,undefined8 param_2,undefined8 param_3,undefi
     (**(code **)(_DAT_180c8ed18 + 0x20))(_DAT_180c8ed18 + 0x10,0,0,param_4,0xfffffffffffffffe);
   }
   *(undefined8 *)(allocation_size + 0x20) = 0;
-  *(code **)(allocation_size + 0x28) = int32_t system_guard_check_icall(void *target);
+  *(code **)(allocation_size + 0x28) = int32_t systemsystem_validate_icall(void *target);
   iVar6 = 0;
   plVar1 = (longlong *)(param_1 + 8);
   if (*(longlong *)(param_1 + 0x10) - *plVar1 >> 3 != 0) {
@@ -31356,7 +31356,7 @@ longlong FUN_1800637c0(longlong param_1)
 longlong FUN_1800637f0(longlong param_1)
 {
   *(undefined8 *)(param_1 + 0x10) = 0;
-  *(code **)(param_1 + 0x18) = int32_t system_guard_check_icall(void *target);
+  *(code **)(param_1 + 0x18) = int32_t systemsystem_validate_icall(void *target);
   return param_1;
 }
 void FUN_180063820(undefined8 param_1)
@@ -34295,7 +34295,7 @@ longlong FUN_180068ec0(longlong *param_1,longlong *param_2,int param_3,undefined
         lVar1 = FUN_18062b1e0(_DAT_180c8ed18,0x20,8,DAT_180bf65bc);
         lVar2 = *param_2;
         *(undefined8 *)(lVar1 + 0x10) = 0;
-        *(code **)(lVar1 + 0x18) = int32_t system_guard_check_icall(void *target);
+        *(code **)(lVar1 + 0x18) = int32_t systemsystem_validate_icall(void *target);
         if (lVar1 != lVar2) {
           pcVar3 = *(code **)(lVar2 + 0x10);
           if (pcVar3 != (code *)0x0) {
@@ -34348,9 +34348,9 @@ undefined8 * FUN_180069070(undefined8 *param_1)
   *(undefined4 *)(param_1 + 2) = 0;
   *(undefined1 *)(param_1 + 3) = 0;
   param_1[0x2b] = 0;
-  param_1[0x2c] = int32_t system_guard_check_icall(void *target);
+  param_1[0x2c] = int32_t systemsystem_validate_icall(void *target);
   param_1[0x2f] = 0;
-  param_1[0x30] = int32_t system_guard_check_icall(void *target);
+  param_1[0x30] = int32_t systemsystem_validate_icall(void *target);
   param_1[0x27] = 0xffffffffffffffff;
   param_1[0x24] = 0xffffffffffffffff;
   param_1[0x23] = 0xffffffffffffffff;
@@ -34370,7 +34370,7 @@ void FUN_180069130(longlong param_1,longlong param_2)
   }
   *(code **)(param_1 + 0x10) = pconfig_status_flag;
   *(undefined8 *)(param_1 + 0x18) = *(undefined8 *)(param_2 + 0x18);
-  *(code **)(param_2 + 0x18) = int32_t system_guard_check_icall(void *target);
+  *(code **)(param_2 + 0x18) = int32_t systemsystem_validate_icall(void *target);
   *(undefined8 *)(param_2 + 0x10) = 0;
   return;
 }
@@ -34893,7 +34893,7 @@ FUN_180069e10(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefin
   param_1[3] = 0xffffffffffffffff;
   *param_1 = &UNK_1809feed8;
   param_1[6] = 0;
-  param_1[7] = int32_t system_guard_check_icall(void *target);
+  param_1[7] = int32_t systemsystem_validate_icall(void *target);
   if (param_1 + 4 != param_2) {
     pconfig_status_flag = (code *)param_2[2];
     if (pconfig_status_flag != (code *)0x0) {
@@ -35225,7 +35225,7 @@ FUN_18006b640(undefined8 *param_1,undefined8 *param_2,undefined8 param_3,undefin
   FUN_180049830();
   *param_1 = &UNK_1809fefb0;
   param_1[0x1a] = 0;
-  param_1[0x1b] = int32_t system_guard_check_icall(void *target);
+  param_1[0x1b] = int32_t systemsystem_validate_icall(void *target);
   if (param_1 + 0x18 != param_2) {
     pconfig_status_flag = (code *)param_2[2];
     if (pconfig_status_flag != (code *)0x0) {
@@ -35628,10 +35628,10 @@ void FUN_18006c070(longlong param_1)
     iStack_1e8 = 0;
     abStack_1e0[0] = 0;
     pcStack_a0 = (code *)0x0;
-    pcStack_98 = int32_t system_guard_check_icall(void *target);
+    pcStack_98 = int32_t systemsystem_validate_icall(void *target);
     ppuStack_248 = (undefined **)auStack_90;
     pcStack_80 = (code *)0x0;
-    pcStack_78 = int32_t system_guard_check_icall(void *target);
+    pcStack_78 = int32_t systemsystem_validate_icall(void *target);
     lStack_c0 = -1;
     uStack_d8 = 0xffffffffffffffff;
     uStack_e0 = 0xffffffffffffffff;
@@ -35869,13 +35869,13 @@ LAB_18006c852:
           FUN_18006cc50(param_1 + 0x3c8,&puStack_1f8);
 LAB_18006ca44:
           pcVar22 = *(code **)(**(longlong **)(param_1 + 0xc0) + 0x28);
-          if (pcVar22 != _guard_check_icall) {
+          if (pcVar22 != system_validate_icall) {
             (*pcVar22)();
           }
           Sleep(1);
         }
         pcVar22 = *(code **)(**(longlong **)(param_1 + 0xc0) + 0x20);
-        if (pcVar22 != _guard_check_icall) {
+        if (pcVar22 != system_validate_icall) {
           (*pcVar22)();
         }
         goto LAB_18006ca95;
@@ -35989,7 +35989,7 @@ LAB_18006c9ac:
     }
     else {
       pcVar22 = *(code **)(**(longlong **)(param_1 + 0xc0) + 0x28);
-      if (pcVar22 != _guard_check_icall) {
+      if (pcVar22 != system_validate_icall) {
         (*pcVar22)();
       }
 LAB_18006ca95:
@@ -36059,7 +36059,7 @@ ulonglong FUN_18006cc50(longlong *param_1,longlong param_2)
     *(undefined8 *)(uVar2 + 0x138) = *(undefined8 *)(param_2 + 0x138);
     *(undefined1 *)(uVar2 + 0x140) = *(undefined1 *)(param_2 + 0x140);
     *(undefined8 *)(uVar2 + 0x158) = 0;
-    *(code **)(uVar2 + 0x160) = int32_t system_guard_check_icall(void *target);
+    *(code **)(uVar2 + 0x160) = int32_t systemsystem_validate_icall(void *target);
     if (uVar2 + 0x148 != param_2 + 0x148) {
       pcVar5 = *(code **)(param_2 + 0x158);
       if (pcVar5 != (code *)0x0) {
@@ -36070,7 +36070,7 @@ ulonglong FUN_18006cc50(longlong *param_1,longlong param_2)
       *(undefined8 *)(uVar2 + 0x160) = *(undefined8 *)(param_2 + 0x160);
     }
     *(undefined8 *)(uVar2 + 0x178) = 0;
-    *(code **)(uVar2 + 0x180) = int32_t system_guard_check_icall(void *target);
+    *(code **)(uVar2 + 0x180) = int32_t systemsystem_validate_icall(void *target);
     if (uVar2 + 0x168 != param_2 + 0x168) {
       pcVar5 = *(code **)(param_2 + 0x178);
       if (pcVar5 != (code *)0x0) {
@@ -36191,7 +36191,7 @@ longlong FUN_18006cd80(longlong param_1,longlong param_2,undefined8 param_3,unde
   *(undefined8 *)(param_1 + 0x138) = *(undefined8 *)(param_2 + 0x138);
   *(undefined1 *)(param_1 + 0x140) = *(undefined1 *)(param_2 + 0x140);
   *(undefined8 *)(param_1 + 0x158) = 0;
-  *(code **)(param_1 + 0x160) = int32_t system_guard_check_icall(void *target);
+  *(code **)(param_1 + 0x160) = int32_t systemsystem_validate_icall(void *target);
   if (param_1 + 0x148 != param_2 + 0x148) {
     pconfig_status_flag = *(code **)(param_2 + 0x158);
     if (pconfig_status_flag != (code *)0x0) {
@@ -36202,7 +36202,7 @@ longlong FUN_18006cd80(longlong param_1,longlong param_2,undefined8 param_3,unde
     *(undefined8 *)(param_1 + 0x160) = *(undefined8 *)(param_2 + 0x160);
   }
   *(undefined8 *)(param_1 + 0x178) = 0;
-  *(code **)(param_1 + 0x180) = int32_t system_guard_check_icall(void *target);
+  *(code **)(param_1 + 0x180) = int32_t systemsystem_validate_icall(void *target);
   if (param_1 + 0x168 != param_2 + 0x168) {
     pconfig_status_flag = *(code **)(param_2 + 0x178);
     if (pconfig_status_flag != (code *)0x0) {
@@ -37039,7 +37039,7 @@ FUN_18006de00(longlong *param_1,undefined8 *param_2,undefined8 *param_3,undefine
       param_4[0x27] = puVar3[-4];
       *(undefined1 *)(param_4 + 0x28) = *(undefined1 *)(puVar3 + -3);
       param_4[0x2b] = 0;
-      param_4[0x2c] = int32_t system_guard_check_icall(void *target);
+      param_4[0x2c] = int32_t systemsystem_validate_icall(void *target);
       if (param_4 + 0x29 != puVar3 + -2) {
         pcVar2 = (code *)*puVar3;
         if (pcVar2 != (code *)0x0) {
@@ -37049,10 +37049,10 @@ FUN_18006de00(longlong *param_1,undefined8 *param_2,undefined8 *param_3,undefine
         param_4[0x2b] = pcVar2;
         param_4[0x2c] = puVar3[1];
         *puVar3 = 0;
-        puVar3[1] = int32_t system_guard_check_icall(void *target);
+        puVar3[1] = int32_t systemsystem_validate_icall(void *target);
       }
       param_4[0x2f] = 0;
-      param_4[0x30] = int32_t system_guard_check_icall(void *target);
+      param_4[0x30] = int32_t systemsystem_validate_icall(void *target);
       if (param_4 + 0x2d != puVar3 + 2) {
         pcVar2 = (code *)puVar3[4];
         if (pcVar2 != (code *)0x0) {
@@ -37062,7 +37062,7 @@ FUN_18006de00(longlong *param_1,undefined8 *param_2,undefined8 *param_3,undefine
         param_4[0x2f] = pcVar2;
         param_4[0x30] = puVar3[5];
         puVar3[4] = 0;
-        puVar3[5] = int32_t system_guard_check_icall(void *target);
+        puVar3[5] = int32_t systemsystem_validate_icall(void *target);
       }
       param_4[0x31] = puVar3[6];
       param_4[0x32] = puVar3[7];
@@ -43842,7 +43842,7 @@ int FUN_180076c50(longlong param_1,longlong *param_2)
         puStack_80 = (ulonglong *)0x0;
         plStack_78 = (longlong *)0x0;
         pcStack_70 = (code *)0x0;
-        pcStack_68 = int32_t system_guard_check_icall(void *target);
+        pcStack_68 = int32_t systemsystem_validate_icall(void *target);
         FUN_1800b6f90(extraout_XMM0_Da,param_1,&puStack_80);
         if (pcStack_70 != (code *)0x0) {
           (*pcStack_70)(&puStack_80,0,0);
