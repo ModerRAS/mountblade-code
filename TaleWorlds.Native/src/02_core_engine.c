@@ -172,28 +172,28 @@
 
 // 引擎核心上下文数据
 void* GetEngineContext;                                     // 引擎上下文获取函数指针
-void* g_engine_context_data_pointer;                       // 引擎上下文数据指针
-void* g_engine_memory_config_pointer;                      // 引擎内存配置数据指针
-void* g_engine_config_pointer;                             // 引擎配置数据指针
-void* g_engine_memory_base_pointer;                        // 引擎内存基地址指针
-void* g_engine_memory_pool_pointer;                        // 引擎内存池数据指针
-void* g_engine_render_context_pointer;                     // 引擎渲染上下文数据指针
-void* g_engine_audio_context_pointer;                      // 引擎音频上下文数据指针
+void* g_engine_context_data;                               // 引擎上下文数据指针
+void* g_engine_memory_config;                              // 引擎内存配置数据指针
+void* g_engine_config;                                     // 引擎配置数据指针
+void* g_engine_memory_base;                                // 引擎内存基地址指针
+void* g_engine_memory_pool;                                // 引擎内存池数据指针
+void* g_engine_render_context;                             // 引擎渲染上下文数据指针
+void* g_engine_audio_context;                              // 引擎音频上下文数据指针
 
 // 音频系统数据
 void* InitializeAudioEngine;                               // 音频引擎初始化函数指针
-void* g_audio_config_pointer;                              // 音频配置数据指针
+void* g_audio_config;                                       // 音频配置数据指针
 
 // 输入系统数据
 void* InitializeInputEngine;                               // 输入引擎初始化函数指针
-void* g_input_system_pointer;                               // 输入系统数据指针
+void* g_input_system;                                       // 输入系统数据指针
 
 // 渲染系统数据
 void* InitializeRenderEngine;                              // 渲染引擎初始化函数指针
-void* g_render_config_pointer;                              // 渲染配置数据指针
-void* g_render_context_pointer;                             // 渲染上下文数据指针
-void* g_render_buffer_pointer;                              // 渲染缓冲区数据指针
-void* g_render_state_pointer;                               // 渲染状态数据指针
+void* g_render_config;                                      // 渲染配置数据指针
+void* g_render_context;                                     // 渲染上下文数据指针
+void* g_render_buffer;                                      // 渲染缓冲区数据指针
+void* g_render_state;                                       // 渲染状态数据指针
 
 void ShutdownRenderEngine(void);
 
