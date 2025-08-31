@@ -63947,7 +63947,7 @@ longlong *system_memory_pool_pointer;
 #define SYSTEM_INIT_CONTEXT_INDEX_CENTER_X         SYSTEM_INIT_CONTEXT_INDEX_CENTER_X    // 中心X索引
 #define SYSTEM_INIT_CONTEXT_INDEX_CENTER_Y         SYSTEM_INIT_CONTEXT_INDEX_CENTER_Y    // 中心Y索引
 #define SYSTEM_INIT_CONTEXT_INDEX_CENTER_Z         SYSTEM_INIT_CONTEXT_INDEX_CENTER_Z    // 中心Z索引
-#define SYSTEM_INIT_CONTEXT_INDEX_RADIUS           0xa9    // 半径索引
+#define SYSTEM_INIT_CONTEXT_INDEX_RADIUS           SYSTEM_INIT_CONTEXT_INDEX_RADIUS    // 半径索引
 // 系统初始化硬编码值语义化常量（2025年8月30日最终批次最新完成）
 #define SYSTEM_INIT_MUTEX_PRIORITY_MEDIUM      2       // 中等互斥锁优先级
 #define SYSTEM_INIT_CONFIG_VALUE_EXTENDED      INIT_SIZE_COMPARE       // 扩展配置值
@@ -63957,8 +63957,8 @@ longlong *system_memory_pool_pointer;
 #define SYSTEM_INIT_STACK_VALUE_TEN            10      // 栈值十
 // 系统初始化硬编码值语义化常量（2025年8月30日最终批次最新补充）
 // 内存布局偏移量常量
-#define SYSTEM_INIT_OFFSET_GLOBAL_7AB8        0x7ab8   // 全局偏移量7AB8
-#define SYSTEM_INIT_OFFSET_GLOBAL_560         0x560    // 全局偏移量560
+#define SYSTEM_INIT_OFFSET_GLOBAL_7AB8        SYSTEM_INIT_OFFSET_GLOBAL_PRIMARY   // 全局偏移量7AB8
+#define SYSTEM_INIT_OFFSET_GLOBAL_560         SYSTEM_INIT_OFFSET_GLOBAL_SECONDARY    // 全局偏移量560
 #define SYSTEM_INIT_OFFSET_GLOBAL_544         0x544    // 全局偏移量544
 #define SYSTEM_INIT_OFFSET_GLOBAL_CONFIG_SYSTEM_INIT_SIZE_STANDARDF4         SYSTEM_INIT_SIZE_STANDARDf4    // 全局偏移量SYSTEM_INIT_SIZE_STANDARDF4
 #define SYSTEM_INIT_OFFSET_GLOBAL_CONFIG_SYSTEM_INIT_SIZE_STANDARDF0         SYSTEM_INIT_SIZE_STANDARDf0    // 全局偏移量SYSTEM_INIT_SIZE_STANDARDF0
@@ -63982,7 +63982,7 @@ longlong *system_memory_pool_pointer;
 #define SYSTEM_INIT_OFFSET_STACK_A28          0xa28    // 栈偏移量A28
 #define SYSTEM_INIT_OFFSET_STACK_A100          0xa0100    // 栈偏移量A100
 #define SYSTEM_INIT_OFFSET_STACK_A108          0xa0108    // 栈偏移量A108
-#define SYSTEM_INIT_OFFSET_STACK_A90          0xa90    // 栈偏移量A90
+#define SYSTEM_INIT_OFFSET_STACK_A90          SYSTEM_INIT_CONTEXT_INDEX_RADIUS0    // 栈偏移量A90
 #define SYSTEM_INIT_OFFSET_STACK_56           0x56     // 栈偏移量56
 #define SYSTEM_INIT_OFFSET_STACK_A4           0xa4     // 栈偏移量A4
 #define SYSTEM_INIT_OFFSET_STACK_62           0x62     // 栈偏移量62
