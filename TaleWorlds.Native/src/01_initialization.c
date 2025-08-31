@@ -207,11 +207,11 @@ int32_t system_initialize_components(void);
  * 简化实现：仅初始化基本的模块功能，保持代码结构不变
  */
 int32_t system_initialize_modules(void);
-static uint32_t primary_module_data;
-static void *primary_module_pointer;
-static void *secondary_module_pointer;
-static void *tertiary_module_pointer;
-static void *quaternary_module_pointer;
+static uint32_t module_data_primary;
+static void *module_ptr_primary;
+static void *module_ptr_secondary;
+static void *module_ptr_tertiary;
+static void *module_ptr_quaternary;
 /**
  * @brief 验证ICall目标
  * 
