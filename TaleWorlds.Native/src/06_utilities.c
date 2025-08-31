@@ -14,15 +14,15 @@
 #define UTILITY_RESOURCE_PARAM_OFFSET_PRIMARY 0x1      // 第一级参数偏移量
 #define UTILITY_RESOURCE_PARAM_OFFSET_SECONDARY 0x2    // 第二级参数偏移量
 #define UTILITY_RESOURCE_PARAM_OFFSET_TERTIARY 0x3     // 第三级参数偏移量
-#define UTILITY_RESOURCE_PARAM_OFFSET_QUATERNARY 0x4    // 第四级参数偏移量
-#define UTILITY_RESOURCE_PARAM_OFFSET_QUINARY 0x5       // 第五级参数偏移量
-#define UTILITY_RESOURCE_PARAM_OFFSET_SENARY 0x6        // 第六级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_FOURTH 0x4        // 第四级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_FIFTH 0x5         // 第五级参数偏移量
+#define UTILITY_RESOURCE_PARAM_OFFSET_SIXTH 0x6         // 第六级参数偏移量
 
 // 数组索引常量
 #define UTILITY_ARRAY_INDEX_PRIMARY 0x0                 // 第一级数组索引
 #define UTILITY_ARRAY_INDEX_SECONDARY 0x1               // 第二级数组索引
 #define UTILITY_ARRAY_INDEX_TERTIARY 0x2                // 第三级数组索引
-#define UTILITY_ARRAY_INDEX_QUATERNARY 0x4              // 第四级数组索引
+#define UTILITY_ARRAY_INDEX_FOURTH 0x4                  // 第四级数组索引
 
 // 资源清理偏移量常量
 #define UTILITY_CLEANUP_OFFSET_C60 0xC60                // 清理操作偏移量C60
@@ -96,7 +96,7 @@
 #define UTILITY_STRUCTURE_OFFSET 0x10                              // 结构体偏移量
 #define UTILITY_LIST_OFFSET 0x14                                    // 列表偏移量
 
-// 全局变量声明 - 语义化美化（版本 2.8）
+// 全局变量声明 - 语义化美化（版本 2.9）
 // 系统核心变量
 static longlong utility_system_resource_handle = 0;               // 系统资源主句柄，用于标识和管理系统资源
 static uint32 utility_stack_processing_buffer[16] = {0};          // 栈处理缓冲区，用于临时数据存储和处理
@@ -122,17 +122,17 @@ static longlong utility_resource_cache = 0;                        // 资源缓�
 // 缓冲区变量
 static uint32 utility_buffer[1024] = {0};                          // 主缓冲区，用于数据存储和处理
 static uint32 utility_processing_buffer[1024] = {0};              // 处理缓冲区，用于数据处理操作
-static uint32 utility_resource_size_maximum = 1024;                // 资源最大大小，控制资源分配的最大大小
+static uint32 utility_resource_size_limit = 1024;                   // 资源大小限制，控制资源分配的最大大小
 
 // 资源管理变量
 static longlong utility_resource_context_handle = 0;               // 资源上下文句柄，用于资源上下文管理
 static uint32 utility_resource_buffer = 0;                        // 资源缓冲区，用于资源数据的临时存储
-static uint32 utility_boundary_two = 2;                           // 边界值常量，用于边界检查和验证
+static uint32 utility_boundary_value = 2;                          // 边界值常量，用于边界检查和验证
 static uint32 utility_resource_config_offset = 0;                  // 资源配置偏移量，用于资源配置数据访问
 static uint32 utility_resource_table_offset = 0;                  // 资源表偏移量，用于资源表数据访问
 
 // 文件系统变量
-static longlong utility_frame_ptr = 0;                             // 帧指针，用于栈帧管理和调试
+static longlong utility_frame_pointer = 0;                          // 帧指针，用于栈帧管理和调试
 static longlong utility_file_data_offset = 0;                      // 文件数据偏移量，用于文件数据访问
 static uint32 utility_file_handle_offset = 0;                      // 文件句柄偏移量，用于文件句柄管理
 static uint64 utility_file_position_offset = 0;                   // 文件位置偏移量，用于文件位置管理
@@ -144,8 +144,8 @@ static uint32 utility_local_integer_value = 0;                    // 本地整�
 static longlong utility_buffer_position = 0;                      // 缓冲区位置，用于缓冲区位置管理
 static uint64 utility_result = 0;                                  // 操作结果，用于存储操作结果
 static uint32 utility_thread_offset = 0;                           // 线程偏移量，用于线程相关操作
-static uint64 utility_file_size_param = 0;                        // 文件大小参数，用于文件大小管理
-static ulonglong utility_extended_data_ptr = 0;                    // 扩展数据指针，用于扩展数据访问
+static uint64 utility_file_size_parameter = 0;                     // 文件大小参数，用于文件大小管理
+static ulonglong utility_extended_data_pointer = 0;                 // 扩展数据指针，用于扩展数据访问
 
 /**
  * @file 06_utilities.c - 工具函数库
