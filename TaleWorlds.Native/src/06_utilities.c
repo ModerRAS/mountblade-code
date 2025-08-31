@@ -201,23 +201,23 @@ uint64_t utility_resource_manager(void)
   uint64_t utility_result;
   int64_t utility_resource_primary_handle = 0;
   
-  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
+  utility_result = system_memory_operation(*(uint32_t *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &g_utility_resource_handle);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
   }
   
-  if (UTILITY_SYSTEM_RESOURCE_HANDLE == UTILITY_ZERO) {
-    UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_ZERO;
+  if (g_utility_resource_handle == UTILITY_ZERO) {
+    g_utility_resource_handle = UTILITY_ZERO;
   }
   else {
-    UTILITY_SYSTEM_RESOURCE_HANDLE = UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_MEMORY_NEGATIVE_OFFSET;
+    g_utility_resource_handle = g_utility_resource_handle + UTILITY_MEMORY_NEGATIVE_OFFSET;
   }
   
-  if (*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
-    return UTILITY_ERROR_FLAG;
+  if (*(int64_t *)(g_utility_resource_handle + UTILITY_OFFSET_RESOURCE_PTR) == UTILITY_ZERO) {
+    return UTILITY_ERROR_CODE_INVALID;
   }
   
-  utility_free_memory(*(int64_t *)(UTILITY_SYSTEM_RESOURCE_HANDLE + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_FLAG);
+  utility_free_memory(*(int64_t *)(g_utility_resource_handle + UTILITY_OFFSET_RESOURCE_PTR), UTILITY_MEMORY_OPERATION_FLAG);
   return UTILITY_ZERO;
 }
 
