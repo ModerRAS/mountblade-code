@@ -8156,7 +8156,7 @@ uint32_t utility_stack_uint_config;
 long long utility_stack_large_value;
 long long utility_stack_large_offset;
 uint32_t utility_stack_uint_2a4;
-uint32_t utility_stack_uint_2a0;
+uint32_t utility_stack_uint_data;
 uint32_t utility_stack_uint_29c;
 uint32_t utility_stack_uint_298;
 int64_t utility_stack_long_294;

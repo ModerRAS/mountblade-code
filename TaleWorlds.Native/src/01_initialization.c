@@ -35117,7 +35117,7 @@ longlong * system_release_audio_buffer_pointer(longlong *system_param_1)
 
 
 
-uint64_t FUN_180060c60(longlong system_param_1,uint64_t system_param_2)
+uint64_t system_validate_context_parameter(longlong system_param_1,uint64_t system_param_2)
 
 {
   longlong *system_long_data_ptr;
@@ -35212,7 +35212,7 @@ uint64_t FUN_180060c60(longlong system_param_1,uint64_t system_param_2)
 
 
 
-uint64_t FUN_180060d76(void)
+uint64_t system_get_context_status(void)
 
 {
   ulonglong *system_data_ptr;
@@ -35254,7 +35254,7 @@ uint64_t FUN_180060d76(void)
 
 
 
-uint8_t FUN_180060e22(void)
+uint8_t system_get_context_state(void)
 
 {
   longlong system_register;
@@ -35287,7 +35287,7 @@ uint64_t system_create_audio_stream_context(uint64_t *system_param_1,longlong sy
   if (*(longlong *)(system_param_2 + 0x10) == 0) {
     system_context_ptr = system_long_status_ptr;
   }
-  system_status_flag = FUN_180060c60(system_context_ptr,system_param_3);
+  system_status_flag = system_validate_context_parameter(system_context_ptr,system_param_3);
   if (system_status_flag == '\0') {
     system_context_ptr = (longlong *)*system_param_1;
     system_long_context_ptr = *(longlong **)(system_param_2 + 0x10);
@@ -35311,7 +35311,7 @@ uint64_t system_create_audio_stream_context(uint64_t *system_param_1,longlong sy
       if (psystem_resource_handle == system_long_context_ptr) {
         return 0;
       }
-      system_status_flag = FUN_180060c60(psystem_resource_handle,system_param_3);
+      system_status_flag = system_validate_context_parameter(psystem_resource_handle,system_param_3);
       if (system_status_flag != '\0') break;
       system_long_handle = psystem_resource_handle[1];
     }
@@ -35335,7 +35335,7 @@ uint64_t system_create_audio_stream_context(uint64_t *system_param_1,longlong sy
 
 
 
-bool FUN_180060f50(longlong system_param_1,uint64_t system_param_2,uint64_t system_param_3,uint64_t system_param_4)
+bool system_configure_context_parameter(longlong system_param_1,uint64_t system_param_2,uint64_t system_param_3,uint64_t system_param_4)
 
 {
   longlong *system_long_data_ptr;
@@ -35464,7 +35464,7 @@ void system_function_0611a0(longlong system_param_1,longlong *system_param_2,uin
     __Throw_C_error_std__YAXH_Z(system_int_buffer);
   }
   system_local_uint = 1;
-  FUN_180060fc0(system_param_1 + 0x98,system_param_2);
+  system_update_context_attribute(system_param_1 + 0x98,system_param_2);
   LOCK();
   *(int *)(system_param_1 + 0x140) = *(int *)(system_param_1 + 0x140) + 1;
   UNLOCK();
@@ -35503,7 +35503,7 @@ void system_function_0612b0(uint64_t *system_param_1)
 {
   *system_param_1 = &system_unknown_180a3cf50;
   if (*(char *)((longlong)system_param_1 + 0xb1) != '\0') {
-    FUN_180639250();
+    system_cleanup_context_resources();
   }
   _Mtx_destroy_in_situ();
   *system_param_1 = &system_unknown_data_180a30778;
@@ -35529,7 +35529,7 @@ void system_function_0612b0(uint64_t *system_param_1)
 
 
 uint64_t *
-FUN_180061300(uint64_t *system_param_1,ulonglong system_param_2,uint64_t system_param_3,uint64_t system_param_4)
+system_initialize_context_pool(uint64_t *system_param_1,ulonglong system_param_2,uint64_t system_param_3,uint64_t system_param_4)
 
 {
   uint64_t system_uint_value;
@@ -35537,7 +35537,7 @@ FUN_180061300(uint64_t *system_param_1,ulonglong system_param_2,uint64_t system_
   system_uint_value = 0xfffffffffffffffe;
   *system_param_1 = &system_unknown_180a3cf50;
   if (*(char *)((longlong)system_param_1 + 0xb1) != '\0') {
-    FUN_180639250();
+    system_cleanup_context_resources();
   }
   _Mtx_destroy_in_situ();
   FUN_1805065c0(system_param_1);
@@ -36134,10 +36134,10 @@ code_r0x0001800630e9:
     case 2:
       plVar7 = (longlong *)(*(longlong *)(system_param_1 + 0x20) + 0xd8);
       (**(code **)(*plVar7 + 0x70))(plVar7,&system_audio_config_ptr);
-      FUN_180639250(*(longlong *)(system_param_1 + 0x20) + 0xd8);
+      system_cleanup_context_resources(*(longlong *)(system_param_1 + 0x20) + 0xd8);
       plVar7 = (longlong *)(*(longlong *)(system_param_1 + 0x20) + 0x20);
       (**(code **)(*plVar7 + 0x70))(plVar7,&system_audio_config_ptr);
-      FUN_180639250(*(longlong *)(system_param_1 + 0x20) + 0x20);
+      system_cleanup_context_resources(*(longlong *)(system_param_1 + 0x20) + 0x20);
       if (((*(byte *)(*(longlong *)(system_param_1 + 0x20) + 8) & 2) != 0) &&
          (iRam0000000180c912e0 = iRam0000000180c912e0 + -1, iRam0000000180c912e0 == 0)) {
         _system_data_180c912f0 = 0;
@@ -36155,7 +36155,7 @@ code_r0x0001800630e9:
     case 3:
       plVar7 = (longlong *)(*(longlong *)(system_param_1 + 0x20) + 0xd8);
       (**(code **)(*plVar7 + 0x70))(plVar7,&system_audio_config_ptr);
-      FUN_180639250(*(longlong *)(system_param_1 + 0x20) + 0xd8);
+      system_cleanup_context_resources(*(longlong *)(system_param_1 + 0x20) + 0xd8);
       FUN_18062da70(*(longlong *)(system_param_1 + 0x20) + 0xe0);
       break;
     case 4:
