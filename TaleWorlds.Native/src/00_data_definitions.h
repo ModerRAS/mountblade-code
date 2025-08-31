@@ -14,36 +14,36 @@ typedef char int8_t;
 // 原本实现：完全重构所有命名体系，建立统一的语义化命名规范
 
 // 系统常量定义
-#define SYSTEM_CONFIG_VALUE_0X0B        0x0B    // 系统配置值0x0B - 基础配置参数
-#define SYSTEM_CONFIG_VALUE_0X0C        0x0C    // 系统配置值0x0C - 常用配置参数
-#define SYSTEM_CONFIG_VALUE_0X0E        0x0E    // 系统配置值0x0E - 扩展配置参数
-#define SYSTEM_CONFIG_VALUE_0X10        0x10    // 系统配置值0x10 - 基础缓冲区大小
-#define SYSTEM_CONFIG_VALUE_0X11        0x11    // 系统配置值0x11 - 输入配置参数
-#define SYSTEM_CONFIG_VALUE_0X12        0x12    // 系统配置值0x12 - 网络配置参数
-#define SYSTEM_CONFIG_VALUE_0X13        0x13    // 系统配置值0x13 - 音频配置参数
-#define SYSTEM_CONFIG_VALUE_0X14        0x14    // 系统配置值0x14 - 渲染配置参数
-#define SYSTEM_CONFIG_VALUE_0X16        0x16    // 系统配置值0x16 - 物理配置参数
-#define SYSTEM_CONFIG_VALUE_0X17        0x17    // 系统配置值0x17 - AI配置参数
-#define SYSTEM_CONFIG_VALUE_0X1B        0x1B    // 系统配置值0x1B - 高级配置参数
-#define SYSTEM_CONFIG_VALUE_0X1D        0x1D    // 系统配置值0x1D - 调试配置参数
-#define SYSTEM_CONFIG_VALUE_0X1E        0x1E    // 系统配置值0X1E - 性能配置参数
-#define SYSTEM_CONFIG_VALUE_0X1F        0x1F    // 系统配置值0X1F - 安全配置参数
-#define SYSTEM_CONFIG_VALUE_0X21        0x21    // 系统配置值0X21 - 内存配置参数
-#define SYSTEM_CONFIG_VALUE_0X23        0x23    // 系统配置值0X23 - 线程配置参数
-#define SYSTEM_CONFIG_VALUE_0X25        0x25    // 系统配置值0X25 - 文件配置参数
+#define SYSTEM_CONFIG_BASIC_PARAMETER       0x0B    // 系统基础配置参数
+#define SYSTEM_CONFIG_COMMON_PARAMETER        0x0C    // 系统配置值0x0C - 常用配置参数
+#define SYSTEM_CONFIG_EXTENDED_PARAMETER        0x0E    // 系统配置值0x0E - 扩展配置参数
+#define SYSTEM_CONFIG_BUFFER_SIZE        0x10    // 系统配置值0x10 - 基础缓冲区大小
+#define SYSTEM_CONFIG_INPUT_PARAMETER        0x11    // 系统配置值0x11 - 输入配置参数
+#define SYSTEM_CONFIG_NETWORK_PARAMETER        0x12    // 系统配置值0x12 - 网络配置参数
+#define SYSTEM_CONFIG_AUDIO_PARAMETER        0x13    // 系统配置值0x13 - 音频配置参数
+#define SYSTEM_CONFIG_RENDER_PARAMETER        0x14    // 系统配置值0x14 - 渲染配置参数
+#define SYSTEM_CONFIG_PHYSICS_PARAMETER        0x16    // 系统配置值0x16 - 物理配置参数
+#define SYSTEM_CONFIG_AI_PARAMETER        0x17    // 系统配置值0x17 - AI配置参数
+#define SYSTEM_CONFIG_ADVANCED_PARAMETER        0x1B    // 系统配置值0x1B - 高级配置参数
+#define SYSTEM_CONFIG_DEBUG_PARAMETER        0x1D    // 系统配置值0x1D - 调试配置参数
+#define SYSTEM_CONFIG_PERFORMANCE_PARAMETER        0x1E    // 系统配置值0X1E - 性能配置参数
+#define SYSTEM_CONFIG_SECURITY_PARAMETER        0x1F    // 系统配置值0X1F - 安全配置参数
+#define SYSTEM_CONFIG_MEMORY_PARAMETER        0x21    // 系统配置值0X21 - 内存配置参数
+#define SYSTEM_CONFIG_THREAD_PARAMETER        0x23    // 系统配置值0X23 - 线程配置参数
+#define SYSTEM_CONFIG_FILE_PARAMETER        0x25    // 系统配置值0X25 - 文件配置参数
 
 // 内存偏移量常量
-#define SYSTEM_MEMORY_OFFSET_0X7B4      0x7B4   // 内存偏移0x7B4 - 渲染缓冲区
-#define SYSTEM_MEMORY_OFFSET_0X1F0      0x1F0   // 内存偏移0x1F0 - 配置缓冲区
-#define SYSTEM_MEMORY_OFFSET_0X22       0x22    // 内存偏移0x22 - 状态标志
-#define SYSTEM_MEMORY_OFFSET_0X21       0x21    // 内存偏移0x21 - 控制标志
-#define SYSTEM_MEMORY_OFFSET_0X48       0x48    // 内存偏移0x48 - 数据缓冲区
-#define SYSTEM_MEMORY_OFFSET_0X60       0x60    // 内存偏移0x60 - 网络缓冲区
-#define SYSTEM_MEMORY_OFFSET_0X8C       0x8C    // 内存偏移0x8C - 音频缓冲区
-#define SYSTEM_MEMORY_OFFSET_0XB8       0xB8    // 内存偏移0xB8 - 输入缓冲区
-#define SYSTEM_MEMORY_OFFSET_0XC0       0xC0    // 内存偏移0xC0 - 事件缓冲区
-#define SYSTEM_MEMORY_OFFSET_0X170      0x170   // 内存偏移0x170 - 线程缓冲区
-#define SYSTEM_MEMORY_OFFSET_0X178      0x178   // 内存偏移0x178 - 同步缓冲区
+#define SYSTEM_MEMORY_OFFSET_RENDER_BUFFER      0x7B4   // 内存偏移0x7B4 - 渲染缓冲区
+#define SYSTEM_MEMORY_OFFSET_CONFIG_BUFFER      0x1F0   // 内存偏移0x1F0 - 配置缓冲区
+#define SYSTEM_MEMORY_OFFSET_STATUS_FLAG       0x22    // 内存偏移0x22 - 状态标志
+#define SYSTEM_MEMORY_OFFSET_CONTROL_FLAG       0x21    // 内存偏移0x21 - 控制标志
+#define SYSTEM_MEMORY_OFFSET_DATA_BUFFER       0x48    // 内存偏移0x48 - 数据缓冲区
+#define SYSTEM_MEMORY_OFFSET_NETWORK_BUFFER       0x60    // 内存偏移0x60 - 网络缓冲区
+#define SYSTEM_MEMORY_OFFSET_AUDIO_BUFFER       0x8C    // 内存偏移0x8C - 音频缓冲区
+#define SYSTEM_MEMORY_OFFSET_INPUT_BUFFER       0xB8    // 内存偏移0xB8 - 输入缓冲区
+#define SYSTEM_MEMORY_OFFSET_EVENT_BUFFER       0xC0    // 内存偏移0xC0 - 事件缓冲区
+#define SYSTEM_MEMORY_OFFSET_THREAD_BUFFER      0x170   // 内存偏移0x170 - 线程缓冲区
+#define SYSTEM_MEMORY_OFFSET_SYNC_BUFFER      0x178   // 内存偏移0x178 - 同步缓冲区
 
 // 错误代码常量
 #define SYSTEM_ERROR_CODE_0XEB          0xEB    // 错误代码0xEB - 文件操作错误
@@ -592,7 +592,7 @@ int system_initialize_config_0xc_buffer_SYSTEM_BUFFER_SIZE_16(void)
   system_data_pointer = &system_null_data_buffer;
   system_data_pointer = &system_global_data_buffer;
   system_global_data_buffer_buffer = 0;
-  system_data_pointer = SYSTEM_CONFIG_VALUE_0X0C;
+  system_data_pointer = SYSTEM_CONFIG_COMMON_PARAMETER;
   strcpy_s(&system_global_data_buffer, SYSTEM_BUFFER_SIZE_16, &system_null_data_buffer, system_config_parameter, SYSTEM_FLAG_MASK);
   system_result_code = system_register_callback(system_event_handler);
   return (system_result_code != 0) - 1;
@@ -1321,10 +1321,10 @@ label_:
 //    - 标志位常量（使能、禁用、初始化、运行、错误等）
 //
 // 2. 替换了所有硬编码值为语义化常量：
-//    - system_data_pointer = 0x0C → SYSTEM_CONFIG_VALUE_0X0C
-//    - system_data_pointer = 0x13 → SYSTEM_CONFIG_VALUE_0X13
-//    - system_data_pointer = 0x14 → SYSTEM_CONFIG_VALUE_0X14
-//    - *(uint32_t *)(system_data_pointer + 0x7b4) → SYSTEM_MEMORY_OFFSET_0X7B4
+//    - system_data_pointer = 0x0C → SYSTEM_CONFIG_COMMON_PARAMETER
+//    - system_data_pointer = 0x13 → SYSTEM_CONFIG_AUDIO_PARAMETER
+//    - system_data_pointer = 0x14 → SYSTEM_CONFIG_RENDER_PARAMETER
+//    - *(uint32_t *)(system_data_pointer + 0x7b4) → SYSTEM_MEMORY_OFFSET_RENDER_BUFFER
 //    - system_temp_uint5 = 0xeb → SYSTEM_ERROR_CODE_0XEB
 //
 // 3. 重复函数处理：
