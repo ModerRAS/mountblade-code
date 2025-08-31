@@ -245,18 +245,18 @@ uint64 utility_resource_data_processor(void)
  */
 uint32 utility_get_memory_usage(void)
 {
-  return UTILITY_ZERO;
+  return UTILITY_MEMORY_ZERO;
 }
 
 /**
- * @brief 上下文管理器 - 管理系统资源上下文
+ * @brief 系统资源上下文管理
  * @return uint64 上下文管理结果状态码
  *
- * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
+ * 管理系统资源上下文，包括上下文初始化和清理操作。
  *
  * 简化实现：提供基本的上下文管理功能。
  */
-uint64 utility_context_manager(void)
+uint64 utility_manage_context(void)
 {
-  return UTILITY_ZERO;
+  return UTILITY_MEMORY_ZERO;
 }
