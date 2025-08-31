@@ -5242,8 +5242,6 @@ utility_checksum_calculator(*(uint64_t *)(utility_context_base + UTILITY_CHECKSU
 }
 * @brief 初始化套接字
 * 创建并初始化网络套接字，用于网络通信
-* @brief 初始化套接字
-* 创建并初始化网络套接字，用于网络通信
 * @return 无返回值
 */
 void InitializeSocket(void)
@@ -13841,11 +13839,6 @@ utility_stream_close(utility_network_float_data,utility_context_base + -9);
 {
 return;
 }
-* @brief 初始化加密系统
-* 初始化系统加密功能模块
-* @return 无返回值
-*/
-void InitializeEncryption(void)
 * @brief 初始化加密系统
 * 初始化系统加密功能模块
 * @return 无返回值
