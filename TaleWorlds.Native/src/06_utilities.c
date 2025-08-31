@@ -10038,9 +10038,7 @@ return;
 }
 {
 int utility_execution_status;
-uint32_t utility_stack_buffer [2];
-uint32_t utility_stack_buffer [2];
-uint32_t utility_stack_buffer [2];
+uint32_t utility_stack_buffer[2];
 utility_stack_buffer[0] = *utility_buffer_handle;
 utility_execution_status = (**(code **)**(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET))(*(uint64_t **)(utility_context_parameter + UTILITY_POINTER_OFFSET),utility_stack_buffer,4);
 if (utility_execution_status == UTILITY_BOOLEAN_FALSE) {
