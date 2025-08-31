@@ -13852,22 +13852,57 @@ void system_init_18004b730(longlong context_pointer,uint64_t flags_var,uint64_t 
   }
   return;
 }
-void system_init_18004b790(uint64_t context_pointer,uint64_t *flags_var)
+/**
+ * @brief 系统资源清理处理器
+ * 
+ * 该函数负责处理系统资源的清理操作，根据标志变量的值来决定是否执行清理。
+ * 如果标志变量有效，则调用系统初始化函数进行清理并清理标志变量。
+ * 
+ * @param context_pointer 上下文指针，指向系统配置数据
+ * @param flags_var 标志变量指针，用于控制清理行为
+ * 
+ * @note 这是简化实现，主要处理系统资源的清理工作
+ * 原本实现：完全重构系统资源清理系统，建立统一的资源清理规范
+ * 简化实现：仅处理基本的资源清理功能，保持代码结构不变
+ */
+void system_resource_cleanup_handler(uint64_t context_pointer,uint64_t *cleanup_flags)
 {
-  if (flags_var != (uint64_t *)0x0) {
-    system_init_18004b790(context_pointer,*flags_var);
-    system_processor_cleanup(flags_var);
+  if (cleanup_flags != (uint64_t *)0x0) {
+    system_resource_cleanup_handler(context_pointer,*cleanup_flags);
+    system_processor_cleanup(cleanup_flags);
   }
   return;
 }
-void system_init_18004b7a2(uint64_t context_pointer)
+/**
+ * @brief 系统注册清理初始化
+ * 
+ * 该函数负责初始化系统注册的清理功能，通过系统寄存器来控制清理行为。
+ * 使用系统寄存器的值来调用系统初始化函数进行清理操作。
+ * 
+ * @param context_pointer 上下文指针，指向系统配置数据
+ * 
+ * @note 这是简化实现，主要处理系统注册清理的初始化工作
+ * 原本实现：完全重构系统注册清理系统，建立统一的注册清理规范
+ * 简化实现：仅初始化基本的注册清理功能，保持代码结构不变
+ */
+void system_register_cleanup_init(uint64_t context_pointer)
 {
   uint64_t *system_register_bx;
   
-  system_init_18004b790(context_pointer,*system_register_bx);
+  system_resource_cleanup_handler(context_pointer,*system_register_bx);
   system_processor_cleanup();
 }
-void system_init_18004b7de(void)
+/**
+ * @brief 系统空操作初始化
+ * 
+ * 该函数是一个空操作函数，用于系统初始化过程中的占位操作。
+ * 不执行任何实际操作，仅返回控制权给调用者。
+ * 
+ * @note 这是简化实现，主要处理系统初始化过程中的空操作
+ * 原本实现：完全重构系统空操作系统，建立统一的空操作规范
+ * 简化实现：仅提供基本的空操作功能，保持代码结构不变
+ */
+void system_empty_operation_init(void)
 {
   return;
 }

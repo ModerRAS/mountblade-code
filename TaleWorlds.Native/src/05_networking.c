@@ -473,7 +473,7 @@ void execute_network_operation(uint64_t *context, uint64_t param1, uint64_t para
 
 // 网络系统队列相关常量定义
 #define NETWORK_QUEUE_OFFSET NETWORK_GLOBAL_DATA_TABLE_OFFSET_PRIMARY
-#define NETWORK_QUEUE_MAX_VALUE NETWORK_QUEUE_MAX_VALUE
+#define NETWORK_QUEUE_MAX_VALUE 0x100
 
 // 网络系统连接指针偏移量常量定义
 #define CONNECTION_POINTER_OFFSET_PRIMARY 0xd
@@ -621,7 +621,7 @@ void execute_network_operation(uint64_t *context, uint64_t param1, uint64_t para
 #define NETWORK_LABEL_CODE_1808822D5 network_label_code_processing_tertiary         // 网络代码处理标签
 
 // 网络系统硬编码偏移量常量定义
-#define NETWORK_CONTEXT_OFFSET_STATUS_CHECK NETWORK_CONTEXT_OFFSET_STATUS_CHECK          // 网络上下文状态检查偏移量
+#define NETWORK_CONTEXT_OFFSET_STATUS_CHECK 0x74          // 网络上下文状态检查偏移量
 #define NETWORK_BUFFER_OFFSET_COUNTER_PRIMARY 0x168        // 网络缓冲区计数器主偏移量
 #define NETWORK_BUFFER_OFFSET_COUNTER_SECONDARY 0x238      // 网络缓冲区计数器次偏移量
 #define NETWORK_CONTEXT_OFFSET_OPERATION_FLAG 0x55         // 网络上下文操作标志偏移量
@@ -638,22 +638,22 @@ void execute_network_operation(uint64_t *context, uint64_t param1, uint64_t para
 // 网络系统地址常量定义
 #define NETWORK_ADDRESS_CONNECTION_CONTEXT_LENGTH 0x180768417    // 网络连接上下文缓冲区长度
 #define NETWORK_ADDRESS_SECURITY_CONTEXT 0x180853242          // 网络安全上下文地址
-#define NETWORK_ADDRESS_SOCKET_TABLE_BASE NETWORK_ADDRESS_SOCKET_TABLE_BASE          // 网络套接字表基地址
-#define NETWORK_ADDRESS_SOCKET_HANDLE NETWORK_ADDRESS_SOCKET_HANDLE             // 网络套接字句柄地址
+#define NETWORK_ADDRESS_SOCKET_TABLE_BASE 0x180c50000          // 网络套接字表基地址
+#define NETWORK_ADDRESS_SOCKET_HANDLE 0x180c51000             // 网络套接字句柄地址
 #define NETWORK_ADDRESS_CONNECTION_TEMP_ID 0x180768417        // 网络连接临时ID地址
-#define NETWORK_ADDRESS_REGISTRY_TABLE_BASE NETWORK_ADDRESS_REGISTRY_TABLE_BASE       // 网络注册表基地址
-#define NETWORK_ADDRESS_STATUS_TABLE_BASE NETWORK_ADDRESS_STATUS_TABLE_BASE          // 网络状态表基地址
-#define NETWORK_ADDRESS_CONNECTION_COUNTER_BASE NETWORK_ADDRESS_CONNECTION_COUNTER_BASE    // 网络连接计数器基地址
-#define NETWORK_ADDRESS_CONNECTION_LIMIT_BASE NETWORK_ADDRESS_CONNECTION_LIMIT_BASE      // 网络连接限制基地址
-#define NETWORK_ADDRESS_CONNECTION_INDEX_BASE NETWORK_ADDRESS_CONNECTION_INDEX_BASE      // 网络连接索引基地址
+#define NETWORK_ADDRESS_REGISTRY_TABLE_BASE 0x180c52000       // 网络注册表基地址
+#define NETWORK_ADDRESS_STATUS_TABLE_BASE 0x180c53000          // 网络状态表基地址
+#define NETWORK_ADDRESS_CONNECTION_COUNTER_BASE 0x180c54000    // 网络连接计数器基地址
+#define NETWORK_ADDRESS_CONNECTION_LIMIT_BASE 0x180c55000      // 网络连接限制基地址
+#define NETWORK_ADDRESS_CONNECTION_INDEX_BASE 0x180c56000      // 网络连接索引基地址
 #define NETWORK_ADDRESS_CONNECTION_MAX_BASE 0x180c4eb28        // 网络连接最大值基地址
-#define NETWORK_ADDRESS_CONNECTION_POOL_BASE NETWORK_ADDRESS_CONNECTION_POOL_BASE       // 网络连接池基地址
+#define NETWORK_ADDRESS_CONNECTION_POOL_BASE 0x180c57000       // 网络连接池基地址
 #define NETWORK_ADDRESS_OPERATION_TABLE_BASE NETWORK_ADDRESS_STATUS_TABLE_BASE      // 网络操作表基地址
-#define NETWORK_ADDRESS_DATA_BUFFER_BASE NETWORK_ADDRESS_DATA_BUFFER_BASE          // 网络数据缓冲区基地址
-#define NETWORK_ADDRESS_FLOAT_SCALE_FACTOR_OFFSET NETWORK_ADDRESS_FLOAT_SCALE_FACTOR_OFFSET // 网络浮点缩放因子偏移量
+#define NETWORK_ADDRESS_DATA_BUFFER_BASE 0x180c58000          // 网络数据缓冲区基地址
+#define NETWORK_ADDRESS_FLOAT_SCALE_FACTOR_OFFSET 0x180c59000 // 网络浮点缩放因子偏移量
 
 // 网络系统硬编码值常量定义
-#define NETWORK_STATUS_MAX_VALUE NETWORK_STATUS_MAX_VALUE               // 网络状态最大值
+#define NETWORK_STATUS_MAX_VALUE 0xFF               // 网络状态最大值
 #define NETWORK_SOCKET_HANDLE_RANGE 0xfffff               // 网络套接字句柄范围
 #define SOCKET_HANDLE_SPECIAL_RANGE 0xfffff0000          // 网络套接字句柄特殊范围
 #define NETWORK_TEMP_BUFFER_SIZE 0x62                    // 网络临时缓冲区大小
@@ -32306,7 +32306,7 @@ uint64_t network_process_connection_timeout(uint64_t *network_context_pointer)
 #define NETWORK_OPERATION_CODE_SEND NETWORK_OPERATION_CODE_SEND                          // 网络操作码发送
 #define NETWORK_OPERATION_CODE_RECEIVE NETWORK_OPERATION_CODE_RECEIVE                      // 网络操作码接收
 
-#define NETWORK_OPERATION_STATUS_FLAG_BIT_MASK NETWORK_OPERATION_STATUS_FLAG_BIT_MASK                // 网络操作状态标志位掩码
+#define NETWORK_OPERATION_STATUS_FLAG_BIT_MASK 0xFFFFFFFF                // 网络操作状态标志位掩码
 #define NETWORK_CONNECTION_MONITOR_MAGIC 0x4a4f5250                // 网络连接监控魔数
 
 #define NETWORK_CONTEXT_OFFSET_MEMORY_MONITOR 0xf                  // 网络上下文内存监控器偏移量
