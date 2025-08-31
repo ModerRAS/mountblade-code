@@ -4620,7 +4620,7 @@ utility_stack_uint_thread_offset = utility_stack_uint_buffer_data >> UTILITY_BIT
 utility_stack_uint_byte_0 = utility_stack_uint_buffer_data & UTILITY_BYTE_MASK_0XFF UTILITY_BYTE_MASK_0XFF;
 utility_stack_byte_flag_1 = utility_stack_result >> UTILITY_THREAD_HANDLE_OFFSET & UTILITY_BYTE_MASK_0XFF UTILITY_BYTE_MASK_0XFF;
 utility_stack_byte_flag_2 = utility_stack_result >> UTILITY_BIT_SHIFT_8 & UTILITY_BYTE_MASK_0XFF UTILITY_BYTE_MASK_0XFF;
-utility_stack_uint_byte_3 = utility_stack_result & UTILITY_BYTE_MASK_0XFF UTILITY_BYTE_MASK_0XFF;
+utility_stack_primary_byte_flag = utility_stack_result & UTILITY_BYTE_MASK_0XFF UTILITY_BYTE_MASK_0XFF;
 utility_stack_control_flag = utility_stack_uint_resource_data & UTILITY_FLAG_MASK_0XFFFF;
 utility_process_memory_block(utility_stack_buffer_40,UTILITY_BLOCK_SIZE_39,&utility_reserved_memory,utility_stack_uint_checksum_value);
 }
@@ -4678,7 +4678,7 @@ utility_stack_uint_handle_data = utility_stack_uint_3c & UTILITY_BYTE_MASK_0XFF 
 utility_stack_uint_byte_0 = utility_stack_uint_40 >> UTILITY_THREAD_HANDLE_OFFSET & UTILITY_BYTE_MASK_0XFF UTILITY_BYTE_MASK_0XFF;
 utility_stack_context_value_value = utility_stack_uint_40 >> UTILITY_BIT_SHIFT_8 & UTILITY_BYTE_MASK_0XFF UTILITY_BYTE_MASK_0XFF;
 utility_stack_byte_flag_1 = utility_stack_uint_40 & UTILITY_BYTE_MASK_0XFF UTILITY_BYTE_MASK_0XFF;
-utility_stack_uint_byte_3 = utility_stack_uint_44 & UTILITY_FLAG_MASK_0XFFFF;
+utility_stack_primary_byte_flag = utility_stack_operation_control_code & UTILITY_FLAG_MASK_0XFFFF;
 utility_process_memory_block(utility_utility_stack_buffer_38,UTILITY_BLOCK_SIZE_39,&utility_reserved_memory,utility_stack_temp_data);
 }
 if ((**(int **)(utility_iteration_index + UTILITY_SERVICE_OFFSET_D0) != UTILITY_BOOLEAN_FALSE) ||
@@ -4753,7 +4753,7 @@ utility_stack_uint_thread_offset = utility_stack_uint_buffer_data >> UTILITY_BIT
 utility_stack_uint_byte_0 = utility_stack_uint_buffer_data & UTILITY_BYTE_MASK_0XFF UTILITY_BYTE_MASK_0XFF;
 utility_stack_byte_flag_1 = utility_stack_result >> UTILITY_THREAD_HANDLE_OFFSET & UTILITY_BYTE_MASK_0XFF UTILITY_BYTE_MASK_0XFF;
 utility_stack_byte_flag_2 = utility_stack_result >> UTILITY_BIT_SHIFT_8 & UTILITY_BYTE_MASK_0XFF UTILITY_BYTE_MASK_0XFF;
-utility_stack_uint_byte_3 = utility_stack_result & UTILITY_BYTE_MASK_0XFF UTILITY_BYTE_MASK_0XFF;
+utility_stack_primary_byte_flag = utility_stack_result & UTILITY_BYTE_MASK_0XFF UTILITY_BYTE_MASK_0XFF;
 utility_stack_control_flag = utility_stack_uint_resource_data & UTILITY_FLAG_MASK_0XFFFF;
 utility_process_memory_block(utility_stack_buffer_40,UTILITY_BLOCK_SIZE_39,&utility_reserved_memory,utility_stack_uint_checksum_value);
 }
