@@ -22,9 +22,9 @@
 #include <stdlib.h>
 
 // 系统字符串常量定义
-#define SYSTEM_INIT_STRING_SCRIPT_PATH 0x656c706974736572    // 脚本路径字符串常量
-#define SYSTEM_INIT_STRING_SCRIPT_EXT 0x656e696c2e637073    // 脚本扩展名字符串常量
-#define SYSTEM_INIT_STRING_EN_SUFFIX 0x656e    // 英文后缀字符串常量
+#define SYSTEM_INIT_STRING_SCRIPT_PATH 0x656c706974736572    // "rescripter" - 脚本路径字符串常量
+#define SYSTEM_INIT_STRING_SCRIPT_EXT 0x656e696c2e637073    // ".spc.en" - 脚本扩展名字符串常量
+#define SYSTEM_INIT_STRING_EN_SUFFIX 0x656e    // "en" - 英文后缀字符串常量
 
 // 系统数据类型定义
 typedef uint64_t system_uint64_t;
