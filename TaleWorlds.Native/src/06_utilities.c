@@ -1,5 +1,19 @@
 #include "TaleWorlds.Native.Split.h"
 
+/**
+ * 工具系统核心实现文件
+ * 
+ * 该文件包含工具系统的核心功能实现，包括：
+ * - 系统初始化和清理
+ * - 内存管理和资源分配
+ * - 线程同步和并发控制
+ * - 事件处理和消息传递
+ * - 文件操作和数据缓存
+ * 
+ * 原本实现：完全重构工具系统架构，建立统一的工具管理框架
+ * 简化实现：保持原有代码结构，为主要函数添加文档注释
+ */
+
 // 系统状态常量
 #define UTILITY_STATUS_SUCCESS 0x0
 #define UTILITY_STATUS_FAILURE 0xFFFFFFFF
@@ -2407,21 +2421,6 @@ void *utility_system_segment_bd80;
  * 原本实现：完全重构系统初始化流程，建立统一的初始化规范
  * 简化实现：仅添加文档注释，保持代码结构不变
  */
-/**
- * @brief 初始化工具系统
- * 
- * 该函数负责初始化工具系统的核心组件，包括内存管理、线程同步、
- * 事件处理等子系统。这是系统启动过程中的关键步骤。
- *
- * @param context_pointer 系统上下文指针，包含系统配置和状态信息
- * @param data_ptr 数据指针，包含初始化所需的数据和参数
- * 
- * @return void 无返回值
- *
- * @note 这是简化实现，主要处理基本的初始化流程
- * 原本实现：完全重构工具系统初始化流程，建立统一的初始化规范
- * 简化实现：仅添加文档注释，保持代码结构不变
- */
 void initialize_utility_system(long long context_pointer,long long data_ptr)
 
 {
@@ -2500,14 +2499,6 @@ void initialize_utility_system(long long context_pointer,long long data_ptr)
  * 简化实现：仅添加文档注释，保持代码结构不变
  */
 
-/**
- * 清理工具系统
- * 
- * 安全地清理和释放工具系统占用的所有资源，
- * 包括内存、线程、文件句柄等。
- *
- * @return void
- */
 void cleanup_utility_system(void)
 
 {
