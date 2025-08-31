@@ -2,25 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-/**
- * @brief 系统初始化全局变量声明
- * 
- * 这些变量用于管理系统初始化过程中的各种状态和数据。
- * 包括上下文数据、内存池、配置信息、服务管理等。
- */
-/**
- * @brief 系统主要初始化函数
- * 
- * 该函数负责系统的主要初始化工作，包括核心组件的启动和基本配置的设置。
- * 这是系统启动的第一个主要函数，确保系统的基础设施正确初始化。
- * 
- * @return int32_t 初始化结果，0表示成功，非0表示失败
- * 
- * @note 这是简化实现，主要处理系统的基本初始化工作
- * 原本实现：完全重构系统初始化流程，建立统一的初始化规范
- * 简化实现：仅进行基本的系统初始化，保持代码结构不变
- */
-int32_t system_initialize_primary(void);
+// 系统初始化全局变量声明
 static uint32_t primary_context_data;
 static void *primary_context_pointer;
 static uint32_t secondary_context_data;
@@ -35,19 +17,6 @@ static uint32_t senary_context_data;
 static void *senary_context_pointer;
 static uint32_t septenary_context_data;
 static void *septenary_context_pointer;
-/**
- * @brief 系统次要初始化函数
- * 
- * 该函数负责系统的次要初始化工作，包括扩展组件和服务的启动。
- * 在主要初始化完成后执行，确保系统的扩展功能正确初始化。
- * 
- * @return int32_t 初始化结果，0表示成功，非0表示失败
- * 
- * @note 这是简化实现，主要处理系统的次要初始化工作
- * 原本实现：完全重构系统次要初始化流程，建立统一的初始化规范
- * 简化实现：仅进行基本的次要初始化，保持代码结构不变
- */
-int32_t system_initialize_secondary(void);
 static void *octonary_context_pointer;
 static uint32_t octonary_context_data;
 static void *nonary_context_pointer;
@@ -1445,7 +1414,7 @@ void system_initialize_config_type3(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01078,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE1,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -1457,7 +1426,7 @@ void system_initialize_config_type3(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01078,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE1,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -1489,7 +1458,7 @@ void system_initialize_config_type4(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01050,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -1501,7 +1470,7 @@ void system_initialize_config_type4(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01050,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -1533,7 +1502,7 @@ void system_initialize_config_type5(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01028,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -1545,14 +1514,14 @@ void system_initialize_config_type5(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01028,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
-  system_config_data_ptr[8] = &UNK_180a003b8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -1577,7 +1546,7 @@ void system_initialize_config_type6(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01000,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -1589,14 +1558,14 @@ void system_initialize_config_type6(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01000,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
-  system_config_data_ptr[8] = &UNK_180a003d0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -1617,11 +1586,11 @@ void system_initialize_config_type7(void)
   system_table_pointer = (longlong *)system_get_root_table();
   system_config_primary_ptr = (uint64_t *)*system_table_pointer;
   config_status_flag = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
-  stack_pointer_18 = &UNK_1800868c0;
+  stack_pointer_18 = &SYSTEM_UNKNOWN_DATA_TYPE17;
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fd8,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -1633,14 +1602,14 @@ void system_initialize_config_type7(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fd8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
-  system_config_data_ptr[8] = &UNK_180a003e8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = stack_pointer_18;
   return;
@@ -1665,7 +1634,7 @@ void system_initialize_config_type8(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -1677,14 +1646,14 @@ void system_initialize_config_type8(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
-  system_config_data_ptr[8] = &UNK_180a00400;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE4;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -1709,7 +1678,7 @@ void system_initialize_config_type9(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00e28,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE7,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -1721,14 +1690,14 @@ void system_initialize_config_type9(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00e28,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE7,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x449bafe9b77ddd3c;
   system_config_data_ptr[7] = 0xc160408bde99e59f;
-  system_config_data_ptr[8] = &UNK_180a00430;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE5;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -1753,7 +1722,7 @@ void system_initialize_config_type10(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00d48,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE8,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -1765,14 +1734,14 @@ void system_initialize_config_type10(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00d48,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x45425dc186a5d575;
   system_config_data_ptr[7] = 0xfab48faa65382fa5;
-  system_config_data_ptr[8] = &UNK_180a00460;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE6;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -1929,7 +1898,7 @@ void system_initialize_config_type14(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00bb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE9,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -1941,14 +1910,14 @@ void system_initialize_config_type14(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00bb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE9,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x40db4257e97d3df8;
   system_config_data_ptr[7] = 0x81d539e33614429f;
-  system_config_data_ptr[8] = &UNK_180a004a8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE7;
   system_config_data_ptr[9] = 4;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -1973,7 +1942,7 @@ void system_initialize_config_type15(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00b88,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE10,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -1985,14 +1954,14 @@ void system_initialize_config_type15(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00b88,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE10,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4e33c4803e67a08f;
   system_config_data_ptr[7] = 0x703a29a844ce399;
-  system_config_data_ptr[8] = &UNK_180a004c0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE8;
   system_config_data_ptr[9] = 3;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -2002,8 +1971,8 @@ int system_initialize_config_type16(void)
   longlong system_memory_allocation_result;
   uint64_t in_R9;
   
-  _DAT_180bf64d0 = &UNK_1809fdc18;
-  _DAT_180bf64d8 = &DAT_180bf64e8;
+  SYSTEM_GLOBAL_DATA_TYPE1 = &SYSTEM_UNKNOWN_DATA_TYPE18;
+  SYSTEM_GLOBAL_DATA_TYPE2 = &SYSTEM_CONFIG_DATA_TYPE12;
 void system_initialize_memory_pool(void)
 {
   uint64_t in_R9;
@@ -2016,8 +1985,8 @@ void system_initialize_memory_pool(void)
   stack_pointer_98 = stack_array_88;
   stack_array_88[0] = 0;
   stack_uint_90 = 0xb;
-  strcpy_s(stack_array_88,0x80,&UNK_180a02998,in_R9,0xfffffffffffffffe);
-  _DAT_180c9196c = system_utility_function_type1(&stack_pointer_a0);
+  strcpy_s(stack_array_88,0x80,&SYSTEM_UNKNOWN_DATA_TYPE9,in_R9,0xfffffffffffffffe);
+  SYSTEM_GLOBAL_DATA_TYPE3 = system_utility_function_type1(&stack_pointer_a0);
   return;
 }
 void system_initialize_memory_config(void)
@@ -2084,7 +2053,7 @@ void system_initialize_memory_manager(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01078,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE1,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -2096,7 +2065,7 @@ void system_initialize_memory_manager(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01078,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE1,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -2128,7 +2097,7 @@ void system_initialize_memory_handler(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01050,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -2140,7 +2109,7 @@ void system_initialize_memory_handler(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01050,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -2181,7 +2150,7 @@ void system_config_search_and_insert_handler(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01028,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -2193,14 +2162,14 @@ void system_config_search_and_insert_handler(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01028,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
-  system_config_data_ptr[8] = &UNK_180a003b8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -2234,7 +2203,7 @@ void system_config_node_initializer(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01000,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -2246,14 +2215,14 @@ void system_config_node_initializer(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01000,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
-  system_config_data_ptr[8] = &UNK_180a003d0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -2283,11 +2252,11 @@ void system_config_tree_node_handler(void)
   system_table_pointer = (longlong *)system_get_root_table();
   system_config_primary_ptr = (uint64_t *)*system_table_pointer;
   config_status_flag = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
-  stack_pointer_18 = &UNK_1800868c0;
+  stack_pointer_18 = &SYSTEM_UNKNOWN_DATA_TYPE17;
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fd8,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -2299,14 +2268,14 @@ void system_config_tree_node_handler(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fd8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
-  system_config_data_ptr[8] = &UNK_180a003e8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = stack_pointer_18;
   return;
@@ -2331,7 +2300,7 @@ void system_initialize_config_type20(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -2343,14 +2312,14 @@ void system_initialize_config_type20(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
-  system_config_data_ptr[8] = &UNK_180a00400;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE4;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -2375,7 +2344,7 @@ void system_initialize_config_type21(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00d48,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE8,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -2387,14 +2356,14 @@ void system_initialize_config_type21(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00d48,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x45425dc186a5d575;
   system_config_data_ptr[7] = 0xfab48faa65382fa5;
-  system_config_data_ptr[8] = &UNK_180a00460;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE6;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -2463,7 +2432,7 @@ void system_initialize_config_type23(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01078,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE1,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -2475,7 +2444,7 @@ void system_initialize_config_type23(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01078,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE1,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -2507,7 +2476,7 @@ void system_initialize_config_type24(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01050,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -2519,7 +2488,7 @@ void system_initialize_config_type24(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01050,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -2551,7 +2520,7 @@ void system_initialize_config_type25(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01028,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -2563,14 +2532,14 @@ void system_initialize_config_type25(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01028,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
-  system_config_data_ptr[8] = &UNK_180a003b8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -2595,7 +2564,7 @@ void system_initialize_config_type26(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01000,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -2607,14 +2576,14 @@ void system_initialize_config_type26(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01000,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
-  system_config_data_ptr[8] = &UNK_180a003d0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -2635,11 +2604,11 @@ void system_initialize_config_type27(void)
   system_table_pointer = (longlong *)system_get_root_table();
   system_config_primary_ptr = (uint64_t *)*system_table_pointer;
   config_status_flag = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
-  stack_pointer_18 = &UNK_1800868c0;
+  stack_pointer_18 = &SYSTEM_UNKNOWN_DATA_TYPE17;
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fd8,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -2651,14 +2620,14 @@ void system_initialize_config_type27(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fd8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
-  system_config_data_ptr[8] = &UNK_180a003e8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = stack_pointer_18;
   return;
@@ -2683,7 +2652,7 @@ void system_initialize_config_type28(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -2695,14 +2664,14 @@ void system_initialize_config_type28(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
-  system_config_data_ptr[8] = &UNK_180a00400;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE4;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -2771,7 +2740,7 @@ void system_initialize_config_type30(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01078,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE1,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -2783,7 +2752,7 @@ void system_initialize_config_type30(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01078,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE1,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -2815,7 +2784,7 @@ void system_initialize_config_type31(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01050,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -2827,7 +2796,7 @@ void system_initialize_config_type31(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01050,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -2859,7 +2828,7 @@ void system_initialize_config_type32(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01028,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -2871,14 +2840,14 @@ void system_initialize_config_type32(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01028,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
-  system_config_data_ptr[8] = &UNK_180a003b8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -2903,7 +2872,7 @@ void system_initialize_config_type33(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01000,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -2915,14 +2884,14 @@ void system_initialize_config_type33(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01000,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
-  system_config_data_ptr[8] = &UNK_180a003d0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -2943,11 +2912,11 @@ void system_initialize_config_type34(void)
   system_table_pointer = (longlong *)system_get_root_table();
   system_config_primary_ptr = (uint64_t *)*system_table_pointer;
   config_status_flag = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
-  stack_pointer_18 = &UNK_1800868c0;
+  stack_pointer_18 = &SYSTEM_UNKNOWN_DATA_TYPE17;
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fd8,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -2959,14 +2928,14 @@ void system_initialize_config_type34(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fd8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
-  system_config_data_ptr[8] = &UNK_180a003e8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = stack_pointer_18;
   return;
@@ -2991,7 +2960,7 @@ void system_initialize_config_type35(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -3003,14 +2972,14 @@ void system_initialize_config_type35(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
-  system_config_data_ptr[8] = &UNK_180a00400;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE4;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -3079,7 +3048,7 @@ void system_initialize_config_type37(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00d48,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE8,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -3091,14 +3060,14 @@ void system_initialize_config_type37(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00d48,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x45425dc186a5d575;
   system_config_data_ptr[7] = 0xfab48faa65382fa5;
-  system_config_data_ptr[8] = &UNK_180a00460;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE6;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -3167,7 +3136,7 @@ void system_initialize_config_type39(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01078,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE1,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -3179,7 +3148,7 @@ void system_initialize_config_type39(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01078,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE1,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -3211,7 +3180,7 @@ void system_initialize_config_type40(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01050,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -3223,7 +3192,7 @@ void system_initialize_config_type40(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01050,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -3255,7 +3224,7 @@ void system_initialize_config_type41(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01028,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -3267,14 +3236,14 @@ void system_initialize_config_type41(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01028,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
-  system_config_data_ptr[8] = &UNK_180a003b8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -3299,7 +3268,7 @@ void system_initialize_config_type42(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01000,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -3311,14 +3280,14 @@ void system_initialize_config_type42(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01000,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
-  system_config_data_ptr[8] = &UNK_180a003d0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -3339,11 +3308,11 @@ void system_initialize_config_type43(void)
   system_table_pointer = (longlong *)system_get_root_table();
   system_config_primary_ptr = (uint64_t *)*system_table_pointer;
   config_status_flag = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
-  stack_pointer_18 = &UNK_1800868c0;
+  stack_pointer_18 = &SYSTEM_UNKNOWN_DATA_TYPE17;
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fd8,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -3355,14 +3324,14 @@ void system_initialize_config_type43(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fd8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
-  system_config_data_ptr[8] = &UNK_180a003e8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = stack_pointer_18;
   return;
@@ -3387,7 +3356,7 @@ void system_initialize_config_type44(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -3399,14 +3368,14 @@ void system_initialize_config_type44(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
-  system_config_data_ptr[8] = &UNK_180a00400;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE4;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -3423,8 +3392,8 @@ void system_initialize_config_type45(void)
   stack_pointer_98 = stack_array_88;
   stack_array_88[0] = 0;
   stack_uint_90 = 8;
-  strcpy_s(stack_array_88,0x80,&UNK_180a0b1c8,in_R9,0xfffffffffffffffe);
-  _DAT_180c919e0 = system_utility_function_type1(&stack_pointer_a0);
+  strcpy_s(stack_array_88,0x80,&SYSTEM_UNKNOWN_DATA_TYPE10,in_R9,0xfffffffffffffffe);
+  SYSTEM_GLOBAL_DATA_TYPE4 = system_utility_function_type1(&stack_pointer_a0);
   return;
 }
 int system_initialize_config_type46(void)
@@ -3432,8 +3401,8 @@ int system_initialize_config_type46(void)
   longlong system_memory_allocation_result;
   uint64_t in_R9;
   
-  _DAT_180bf6750 = &UNK_1809fcc58;
-  _DAT_180bf6758 = &DAT_180bf6768;
+  SYSTEM_GLOBAL_DATA_TYPE5 = &SYSTEM_UNKNOWN_DATA_TYPE19;
+  SYSTEM_GLOBAL_DATA_TYPE6 = &SYSTEM_CONFIG_DATA_TYPE13;
 void system_initialize_system_type1(void)
 {
   char config_status_flag;
@@ -3674,7 +3643,7 @@ void system_initialize_system_type6(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01078,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE1,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -3686,7 +3655,7 @@ void system_initialize_system_type6(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01078,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE1,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -3718,7 +3687,7 @@ void system_initialize_system_type7(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01050,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -3730,7 +3699,7 @@ void system_initialize_system_type7(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01050,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -3762,7 +3731,7 @@ void system_initialize_system_type8(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01028,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -3774,14 +3743,14 @@ void system_initialize_system_type8(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01028,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
-  system_config_data_ptr[8] = &UNK_180a003b8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -3806,7 +3775,7 @@ void system_initialize_system_type9(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01000,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -3818,14 +3787,14 @@ void system_initialize_system_type9(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01000,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
-  system_config_data_ptr[8] = &UNK_180a003d0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -3846,11 +3815,11 @@ void system_initialize_system_type10(void)
   system_table_pointer = (longlong *)system_get_root_table();
   system_config_primary_ptr = (uint64_t *)*system_table_pointer;
   config_status_flag = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
-  stack_pointer_18 = &UNK_1800868c0;
+  stack_pointer_18 = &SYSTEM_UNKNOWN_DATA_TYPE17;
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fd8,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -3862,14 +3831,14 @@ void system_initialize_system_type10(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fd8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
-  system_config_data_ptr[8] = &UNK_180a003e8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = stack_pointer_18;
   return;
@@ -3894,7 +3863,7 @@ void system_initialize_system_type11(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -3906,14 +3875,14 @@ void system_initialize_system_type11(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
-  system_config_data_ptr[8] = &UNK_180a00400;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE4;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -3930,8 +3899,8 @@ void system_initialize_system_type12(void)
   stack_pointer_98 = stack_array_88;
   stack_array_88[0] = 0;
   stack_uint_90 = 0xb;
-  strcpy_s(stack_array_88,0x80,&UNK_180a13a98,in_R9,0xfffffffffffffffe);
-  _DAT_180c91d54 = system_utility_function_type1(&stack_pointer_a0);
+  strcpy_s(stack_array_88,0x80,&SYSTEM_UNKNOWN_DATA_TYPE11,in_R9,0xfffffffffffffffe);
+  SYSTEM_GLOBAL_DATA_TYPE7 = system_utility_function_type1(&stack_pointer_a0);
   return;
 }
 void system_initialize_system_type13(void)
@@ -3998,7 +3967,7 @@ void system_initialize_system_type14(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01078,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE1,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -4010,7 +3979,7 @@ void system_initialize_system_type14(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01078,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE1,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -4042,7 +4011,7 @@ void system_initialize_system_type15(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01050,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -4054,7 +4023,7 @@ void system_initialize_system_type15(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01050,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -4086,7 +4055,7 @@ void system_initialize_system_type16(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01028,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -4098,14 +4067,14 @@ void system_initialize_system_type16(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01028,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
-  system_config_data_ptr[8] = &UNK_180a003b8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -4130,7 +4099,7 @@ void system_initialize_system_type17(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01000,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -4142,14 +4111,14 @@ void system_initialize_system_type17(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01000,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
-  system_config_data_ptr[8] = &UNK_180a003d0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -4170,11 +4139,11 @@ void system_initialize_system_type18(void)
   system_table_pointer = (longlong *)system_get_root_table();
   system_config_primary_ptr = (uint64_t *)*system_table_pointer;
   config_status_flag = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
-  stack_pointer_18 = &UNK_1800868c0;
+  stack_pointer_18 = &SYSTEM_UNKNOWN_DATA_TYPE17;
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fd8,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -4186,14 +4155,14 @@ void system_initialize_system_type18(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fd8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
-  system_config_data_ptr[8] = &UNK_180a003e8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = stack_pointer_18;
   return;
@@ -4218,7 +4187,7 @@ void system_initialize_system_type19(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -4230,14 +4199,14 @@ void system_initialize_system_type19(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
-  system_config_data_ptr[8] = &UNK_180a00400;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE4;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -4254,8 +4223,8 @@ void system_initialize_system_type20(void)
   stack_pointer_98 = stack_array_88;
   stack_array_88[0] = 0;
   stack_uint_90 = 10;
-  strcpy_s(stack_array_88,0x80,&UNK_180a13e48,in_R9,0xfffffffffffffffe);
-  _DAT_180c91d5c = system_utility_function_type1(&stack_pointer_a0);
+  strcpy_s(stack_array_88,0x80,&SYSTEM_UNKNOWN_DATA_TYPE12,in_R9,0xfffffffffffffffe);
+  SYSTEM_GLOBAL_DATA_TYPE8 = system_utility_function_type1(&stack_pointer_a0);
   return;
 }
 int system_initialize_system_type21(void)
@@ -4263,8 +4232,8 @@ int system_initialize_system_type21(void)
   longlong system_memory_allocation_result;
   uint64_t in_R9;
   
-  _DAT_180bf7e90 = &UNK_1809fcc58;
-  _DAT_180bf7e98 = &DAT_180bf7ea8;
+  SYSTEM_GLOBAL_DATA_TYPE14 = &SYSTEM_UNKNOWN_DATA_TYPE19;
+  SYSTEM_GLOBAL_DATA_TYPE15 = &SYSTEM_CONFIG_DATA_TYPE14;
 void system_initialize_component_type1(void)
 {
   uint64_t in_R9;
@@ -4277,8 +4246,8 @@ void system_initialize_component_type1(void)
   stack_pointer_98 = stack_array_88;
   stack_array_88[0] = 0;
   stack_uint_90 = 9;
-  strcpy_s(stack_array_88,0x80,&UNK_180a140f8,in_R9,0xfffffffffffffffe);
-  _DAT_180c91d60 = system_utility_function_type1(&stack_pointer_a0);
+  strcpy_s(stack_array_88,0x80,&SYSTEM_UNKNOWN_DATA_TYPE13,in_R9,0xfffffffffffffffe);
+  SYSTEM_GLOBAL_DATA_TYPE9 = system_utility_function_type1(&stack_pointer_a0);
   return;
 }
 void system_initialize_component_type2(void)
@@ -4293,8 +4262,8 @@ void system_initialize_component_type2(void)
   stack_pointer_98 = stack_array_88;
   stack_array_88[0] = 0;
   stack_uint_90 = 0xf;
-  strcpy_s(stack_array_88,0x80,&UNK_180a14290,in_R9,0xfffffffffffffffe);
-  _DAT_180c91d64 = system_utility_function_type1(&stack_pointer_a0);
+  strcpy_s(stack_array_88,0x80,&SYSTEM_UNKNOWN_DATA_TYPE14,in_R9,0xfffffffffffffffe);
+  SYSTEM_GLOBAL_DATA_TYPE10 = system_utility_function_type1(&stack_pointer_a0);
   return;
 }
 void system_initialize_component_type3(void)
@@ -4309,8 +4278,8 @@ void system_initialize_component_type3(void)
   stack_pointer_98 = stack_array_88;
   stack_array_88[0] = 0;
   stack_uint_90 = 0xc;
-  strcpy_s(stack_array_88,0x80,&UNK_180a14668,in_R9,0xfffffffffffffffe);
-  _DAT_180c91d68 = system_utility_function_type1(&stack_pointer_a0);
+  strcpy_s(stack_array_88,0x80,&SYSTEM_UNKNOWN_DATA_TYPE15,in_R9,0xfffffffffffffffe);
+  SYSTEM_GLOBAL_DATA_TYPE11 = system_utility_function_type1(&stack_pointer_a0);
   return;
 }
 void system_initialize_component_type4(void)
@@ -4325,8 +4294,8 @@ void system_initialize_component_type4(void)
   stack_pointer_98 = stack_array_88;
   stack_array_88[0] = 0;
   stack_uint_90 = 7;
-  strcpy_s(stack_array_88,0x80,&DAT_180a14640,in_R9,0xfffffffffffffffe);
-  _DAT_180c91d6c = system_utility_function_type1(&stack_pointer_a0);
+  strcpy_s(stack_array_88,0x80,&SYSTEM_CONFIG_DATA_TYPE11,in_R9,0xfffffffffffffffe);
+  SYSTEM_GLOBAL_DATA_TYPE12 = system_utility_function_type1(&stack_pointer_a0);
   return;
 }
 void system_initialize_component_type5(void)
@@ -4341,8 +4310,8 @@ void system_initialize_component_type5(void)
   stack_pointer_98 = stack_array_88;
   stack_array_88[0] = 0;
   stack_uint_90 = 0x13;
-  strcpy_s(stack_array_88,0x80,&UNK_180a14840,in_R9,0xfffffffffffffffe);
-  _DAT_180c91d70 = system_utility_function_type1(&stack_pointer_a0);
+  strcpy_s(stack_array_88,0x80,&SYSTEM_UNKNOWN_DATA_TYPE16,in_R9,0xfffffffffffffffe);
+  SYSTEM_GLOBAL_DATA_TYPE13 = system_utility_function_type1(&stack_pointer_a0);
   return;
 }
 void system_initialize_component_type6(void)
@@ -4365,7 +4334,7 @@ void system_initialize_component_type6(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00bb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE9,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -4377,14 +4346,14 @@ void system_initialize_component_type6(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00bb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE9,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x40db4257e97d3df8;
   system_config_data_ptr[7] = 0x81d539e33614429f;
-  system_config_data_ptr[8] = &UNK_180a004a8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE7;
   system_config_data_ptr[9] = 4;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -4409,7 +4378,7 @@ void system_initialize_component_type7(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00b88,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE10,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -4421,14 +4390,14 @@ void system_initialize_component_type7(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00b88,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE10,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4e33c4803e67a08f;
   system_config_data_ptr[7] = 0x703a29a844ce399;
-  system_config_data_ptr[8] = &UNK_180a004c0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE8;
   system_config_data_ptr[9] = 3;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -4497,7 +4466,7 @@ void system_initialize_component_type9(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01078,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE1,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -4509,7 +4478,7 @@ void system_initialize_component_type9(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01078,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE1,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -4541,7 +4510,7 @@ void system_initialize_component_type10(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01050,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -4553,7 +4522,7 @@ void system_initialize_component_type10(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01050,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -4585,7 +4554,7 @@ void system_initialize_component_type11(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01028,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -4597,14 +4566,14 @@ void system_initialize_component_type11(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01028,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
-  system_config_data_ptr[8] = &UNK_180a003b8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -4629,7 +4598,7 @@ void system_initialize_component_type12(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01000,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -4641,14 +4610,14 @@ void system_initialize_component_type12(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01000,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
-  system_config_data_ptr[8] = &UNK_180a003d0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -4669,11 +4638,11 @@ void system_initialize_component_type13(void)
   system_table_pointer = (longlong *)system_get_root_table();
   system_config_primary_ptr = (uint64_t *)*system_table_pointer;
   config_status_flag = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
-  stack_pointer_18 = &UNK_1800868c0;
+  stack_pointer_18 = &SYSTEM_UNKNOWN_DATA_TYPE17;
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fd8,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -4685,14 +4654,14 @@ void system_initialize_component_type13(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fd8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
-  system_config_data_ptr[8] = &UNK_180a003e8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = stack_pointer_18;
   return;
@@ -4717,7 +4686,7 @@ void system_initialize_component_type14(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -4729,14 +4698,14 @@ void system_initialize_component_type14(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
-  system_config_data_ptr[8] = &UNK_180a00400;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE4;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -4805,7 +4774,7 @@ void system_initialize_component_type16(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01078,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE1,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -4817,7 +4786,7 @@ void system_initialize_component_type16(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01078,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE1,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -4849,7 +4818,7 @@ void system_initialize_component_type17(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01050,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -4861,7 +4830,7 @@ void system_initialize_component_type17(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01050,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -4893,7 +4862,7 @@ void system_initialize_component_type18(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01028,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -4905,14 +4874,14 @@ void system_initialize_component_type18(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01028,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
-  system_config_data_ptr[8] = &UNK_180a003b8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -4937,7 +4906,7 @@ void system_initialize_component_type19(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01000,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -4949,14 +4918,14 @@ void system_initialize_component_type19(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01000,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
-  system_config_data_ptr[8] = &UNK_180a003d0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -4977,11 +4946,11 @@ void system_initialize_component_type20(void)
   system_table_pointer = (longlong *)system_get_root_table();
   system_config_primary_ptr = (uint64_t *)*system_table_pointer;
   config_status_flag = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
-  stack_pointer_18 = &UNK_1800868c0;
+  stack_pointer_18 = &SYSTEM_UNKNOWN_DATA_TYPE17;
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fd8,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -4993,14 +4962,14 @@ void system_initialize_component_type20(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fd8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
-  system_config_data_ptr[8] = &UNK_180a003e8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = stack_pointer_18;
   return;
@@ -5025,7 +4994,7 @@ void system_initialize_component_type21(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -5037,14 +5006,14 @@ void system_initialize_component_type21(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
-  system_config_data_ptr[8] = &UNK_180a00400;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE4;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -5120,7 +5089,7 @@ void system_initialize_component_type23(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00d48,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE8,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -5132,14 +5101,14 @@ void system_initialize_component_type23(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00d48,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x45425dc186a5d575;
   system_config_data_ptr[7] = 0xfab48faa65382fa5;
-  system_config_data_ptr[8] = &UNK_180a00460;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE6;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -5164,7 +5133,7 @@ void system_initialize_component_type24(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00e28,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE7,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -5176,14 +5145,14 @@ void system_initialize_component_type24(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00e28,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE7,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x449bafe9b77ddd3c;
   system_config_data_ptr[7] = 0xc160408bde99e59f;
-  system_config_data_ptr[8] = &UNK_180a00430;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE5;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -5340,7 +5309,7 @@ void system_initialize_component_type28(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01078,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE1,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -5352,7 +5321,7 @@ void system_initialize_component_type28(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01078,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE1,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -5384,7 +5353,7 @@ void system_initialize_component_type29(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01050,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -5396,7 +5365,7 @@ void system_initialize_component_type29(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01050,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -5428,7 +5397,7 @@ void system_initialize_component_type30(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01028,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -5440,14 +5409,14 @@ void system_initialize_component_type30(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01028,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
-  system_config_data_ptr[8] = &UNK_180a003b8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -5472,7 +5441,7 @@ void system_initialize_component_type31(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01000,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -5484,14 +5453,14 @@ void system_initialize_component_type31(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01000,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
-  system_config_data_ptr[8] = &UNK_180a003d0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -5512,11 +5481,11 @@ void system_initialize_component_type32(void)
   system_table_pointer = (longlong *)system_get_root_table();
   system_config_primary_ptr = (uint64_t *)*system_table_pointer;
   config_status_flag = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
-  stack_pointer_18 = &UNK_1800868c0;
+  stack_pointer_18 = &SYSTEM_UNKNOWN_DATA_TYPE17;
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fd8,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -5528,14 +5497,14 @@ void system_initialize_component_type32(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fd8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
-  system_config_data_ptr[8] = &UNK_180a003e8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = stack_pointer_18;
   return;
@@ -5560,7 +5529,7 @@ void system_initialize_component_type33(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -5572,14 +5541,14 @@ void system_initialize_component_type33(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
-  system_config_data_ptr[8] = &UNK_180a00400;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE4;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -5604,7 +5573,7 @@ void system_initialize_component_type34(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00bb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE9,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -5616,14 +5585,14 @@ void system_initialize_component_type34(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00bb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE9,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x40db4257e97d3df8;
   system_config_data_ptr[7] = 0x81d539e33614429f;
-  system_config_data_ptr[8] = &UNK_180a004a8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE7;
   system_config_data_ptr[9] = 4;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -5648,7 +5617,7 @@ void system_initialize_component_type35(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00b88,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE10,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -5660,14 +5629,14 @@ void system_initialize_component_type35(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00b88,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE10,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4e33c4803e67a08f;
   system_config_data_ptr[7] = 0x703a29a844ce399;
-  system_config_data_ptr[8] = &UNK_180a004c0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE8;
   system_config_data_ptr[9] = 3;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -5736,7 +5705,7 @@ void system_initialize_component_type37(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01078,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE1,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -5748,7 +5717,7 @@ void system_initialize_component_type37(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01078,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE1,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -5780,7 +5749,7 @@ void system_initialize_component_type38(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01050,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -5792,7 +5761,7 @@ void system_initialize_component_type38(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01050,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -5824,7 +5793,7 @@ void system_initialize_component_type39(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01028,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -5836,14 +5805,14 @@ void system_initialize_component_type39(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01028,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
-  system_config_data_ptr[8] = &UNK_180a003b8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -5868,7 +5837,7 @@ void system_initialize_component_type40(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01000,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -5880,14 +5849,14 @@ void system_initialize_component_type40(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01000,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
-  system_config_data_ptr[8] = &UNK_180a003d0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -5908,11 +5877,11 @@ void system_initialize_component_type41(void)
   system_table_pointer = (longlong *)system_get_root_table();
   system_config_primary_ptr = (uint64_t *)*system_table_pointer;
   config_status_flag = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
-  stack_pointer_18 = &UNK_1800868c0;
+  stack_pointer_18 = &SYSTEM_UNKNOWN_DATA_TYPE17;
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fd8,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -5924,14 +5893,14 @@ void system_initialize_component_type41(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fd8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
-  system_config_data_ptr[8] = &UNK_180a003e8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = stack_pointer_18;
   return;
@@ -5956,7 +5925,7 @@ void system_initialize_component_type42(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -5968,14 +5937,14 @@ void system_initialize_component_type42(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
-  system_config_data_ptr[8] = &UNK_180a00400;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE4;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -6000,7 +5969,7 @@ void system_initialize_component_type43(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00e28,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE7,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -6012,14 +5981,14 @@ void system_initialize_component_type43(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00e28,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE7,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x449bafe9b77ddd3c;
   system_config_data_ptr[7] = 0xc160408bde99e59f;
-  system_config_data_ptr[8] = &UNK_180a00430;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE5;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -6044,7 +6013,7 @@ void system_initialize_component_type44(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00d48,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE8,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -6056,14 +6025,14 @@ void system_initialize_component_type44(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00d48,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x45425dc186a5d575;
   system_config_data_ptr[7] = 0xfab48faa65382fa5;
-  system_config_data_ptr[8] = &UNK_180a00460;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE6;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -6088,7 +6057,7 @@ void system_initialize_component_type45(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00bb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE9,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -6100,14 +6069,14 @@ void system_initialize_component_type45(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00bb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE9,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x40db4257e97d3df8;
   system_config_data_ptr[7] = 0x81d539e33614429f;
-  system_config_data_ptr[8] = &UNK_180a004a8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE7;
   system_config_data_ptr[9] = 4;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -6132,7 +6101,7 @@ void system_initialize_component_type46(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00b88,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE10,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -6144,14 +6113,14 @@ void system_initialize_component_type46(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00b88,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE10,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4e33c4803e67a08f;
   system_config_data_ptr[7] = 0x703a29a844ce399;
-  system_config_data_ptr[8] = &UNK_180a004c0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE8;
   system_config_data_ptr[9] = 3;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -6264,7 +6233,7 @@ void system_initialize_component_type49(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01078,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE1,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -6276,7 +6245,7 @@ void system_initialize_component_type49(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01078,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE1,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -6308,7 +6277,7 @@ void system_initialize_component_type50(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01050,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -6320,7 +6289,7 @@ void system_initialize_component_type50(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01050,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -6352,7 +6321,7 @@ void system_initialize_component_type51(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01028,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -6364,14 +6333,14 @@ void system_initialize_component_type51(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01028,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
-  system_config_data_ptr[8] = &UNK_180a003b8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -6396,7 +6365,7 @@ void system_initialize_component_type52(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01000,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -6408,14 +6377,14 @@ void system_initialize_component_type52(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01000,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
-  system_config_data_ptr[8] = &UNK_180a003d0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -6436,11 +6405,11 @@ void system_initialize_component_type53(void)
   system_table_pointer = (longlong *)system_get_root_table();
   system_config_primary_ptr = (uint64_t *)*system_table_pointer;
   config_status_flag = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
-  stack_pointer_18 = &UNK_1800868c0;
+  stack_pointer_18 = &SYSTEM_UNKNOWN_DATA_TYPE17;
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fd8,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -6452,14 +6421,14 @@ void system_initialize_component_type53(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fd8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
-  system_config_data_ptr[8] = &UNK_180a003e8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = stack_pointer_18;
   return;
@@ -6484,7 +6453,7 @@ void system_initialize_component_type54(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -6496,14 +6465,14 @@ void system_initialize_component_type54(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
-  system_config_data_ptr[8] = &UNK_180a00400;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE4;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -6520,8 +6489,8 @@ void system_initialize_component_type55(void)
   stack_pointer_98 = stack_array_88;
   stack_array_88[0] = 0;
   stack_uint_90 = 0xc;
-  strcpy_s(stack_array_88,0x80,&UNK_180a167d0,in_R9,0xfffffffffffffffe);
-  _DAT_180c91da4 = system_utility_function_type1(&stack_pointer_a0);
+  strcpy_s(stack_array_88,0x80,&SYSTEM_UNKNOWN_DATA_TYPE20,in_R9,0xfffffffffffffffe);
+  SYSTEM_GLOBAL_DATA_TYPE16 = system_utility_function_type1(&stack_pointer_a0);
   return;
 }
 int system_initialize_component_type56(void)
@@ -6529,8 +6498,8 @@ int system_initialize_component_type56(void)
   longlong system_memory_allocation_result;
   uint64_t in_R9;
   
-  _DAT_180bf90b0 = &UNK_18098bc80;
-  _DAT_180bf90b8 = &DAT_180bf90c8;
+  SYSTEM_GLOBAL_DATA_TYPE17 = &SYSTEM_UNKNOWN_DATA_TYPE22;
+  _DAT_180bf90b8 = &SYSTEM_CONFIG_DATA_TYPE15;
 void system_initialize_component_type57(void)
 {
   uint64_t in_R9;
@@ -6543,8 +6512,8 @@ void system_initialize_component_type57(void)
   stack_pointer_98 = stack_array_88;
   stack_array_88[0] = 0;
   stack_uint_90 = 0x16;
-  strcpy_s(stack_array_88,0x80,&DAT_180a16c50,in_R9,0xfffffffffffffffe);
-  _DAT_180c91da8 = system_utility_function_type1(&stack_pointer_a0);
+  strcpy_s(stack_array_88,0x80,&SYSTEM_CONFIG_DATA_TYPE16,in_R9,0xfffffffffffffffe);
+  SYSTEM_GLOBAL_DATA_TYPE18 = system_utility_function_type1(&stack_pointer_a0);
   return;
 }
 void system_initialize_component_type58(void)
@@ -6559,8 +6528,8 @@ void system_initialize_component_type58(void)
   stack_pointer_98 = stack_array_88;
   stack_array_88[0] = 0;
   stack_uint_90 = 0x16;
-  strcpy_s(stack_array_88,0x80,&DAT_180a16c38,in_R9,0xfffffffffffffffe);
-  _DAT_180c91dac = system_utility_function_type1(&stack_pointer_a0);
+  strcpy_s(stack_array_88,0x80,&SYSTEM_CONFIG_DATA_TYPE17,in_R9,0xfffffffffffffffe);
+  SYSTEM_GLOBAL_DATA_TYPE19 = system_utility_function_type1(&stack_pointer_a0);
   return;
 }
 void system_initialize_component_type59(void)
@@ -6627,7 +6596,7 @@ void system_initialize_component_type60(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01078,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE1,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -6639,7 +6608,7 @@ void system_initialize_component_type60(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01078,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE1,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -6671,7 +6640,7 @@ void system_initialize_component_type61(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01050,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -6683,7 +6652,7 @@ void system_initialize_component_type61(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01050,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -6715,7 +6684,7 @@ void system_initialize_component_type62(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01028,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -6727,14 +6696,14 @@ void system_initialize_component_type62(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01028,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
-  system_config_data_ptr[8] = &UNK_180a003b8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -6759,7 +6728,7 @@ void system_initialize_component_type63(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01000,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -6771,14 +6740,14 @@ void system_initialize_component_type63(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01000,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
-  system_config_data_ptr[8] = &UNK_180a003d0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -6799,11 +6768,11 @@ void system_initialize_component_type64(void)
   system_table_pointer = (longlong *)system_get_root_table();
   system_config_primary_ptr = (uint64_t *)*system_table_pointer;
   config_status_flag = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
-  stack_pointer_18 = &UNK_1800868c0;
+  stack_pointer_18 = &SYSTEM_UNKNOWN_DATA_TYPE17;
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fd8,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -6815,14 +6784,14 @@ void system_initialize_component_type64(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fd8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
-  system_config_data_ptr[8] = &UNK_180a003e8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = stack_pointer_18;
   return;
@@ -6847,7 +6816,7 @@ void system_initialize_component_type65(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -6859,14 +6828,14 @@ void system_initialize_component_type65(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
-  system_config_data_ptr[8] = &UNK_180a00400;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE4;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -6927,8 +6896,8 @@ void system_initialize_component_type67(void)
   stack_pointer_98 = stack_array_88;
   stack_array_88[0] = 0;
   stack_uint_90 = 0x1c;
-  strcpy_s(stack_array_88,0x80,&UNK_180a17e48,in_R9,0xfffffffffffffffe);
-  _DAT_180c91ee8 = system_utility_function_type1(&stack_pointer_a0);
+  strcpy_s(stack_array_88,0x80,&SYSTEM_UNKNOWN_DATA_TYPE21,in_R9,0xfffffffffffffffe);
+  SYSTEM_GLOBAL_DATA_TYPE20 = system_utility_function_type1(&stack_pointer_a0);
   return;
 }
 void system_initialize_component_type68(void)
@@ -7391,7 +7360,7 @@ void system_initialize_service_type10(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00d48,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE8,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -7403,14 +7372,14 @@ void system_initialize_service_type10(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00d48,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x45425dc186a5d575;
   system_config_data_ptr[7] = 0xfab48faa65382fa5;
-  system_config_data_ptr[8] = &UNK_180a00460;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE6;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -7623,7 +7592,7 @@ void system_initialize_service_type21(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01078,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE1,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -7635,7 +7604,7 @@ void system_initialize_service_type21(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01078,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE1,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -7667,7 +7636,7 @@ void system_initialize_service_type22(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01050,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -7679,7 +7648,7 @@ void system_initialize_service_type22(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01050,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -7711,7 +7680,7 @@ void system_initialize_service_type23(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01028,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -7723,14 +7692,14 @@ void system_initialize_service_type23(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01028,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
-  system_config_data_ptr[8] = &UNK_180a003b8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -7755,7 +7724,7 @@ void system_initialize_service_type24(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01000,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -7767,14 +7736,14 @@ void system_initialize_service_type24(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01000,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
-  system_config_data_ptr[8] = &UNK_180a003d0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -7795,11 +7764,11 @@ void system_initialize_service_type25(void)
   system_table_pointer = (longlong *)system_get_root_table();
   system_config_primary_ptr = (uint64_t *)*system_table_pointer;
   config_status_flag = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
-  stack_pointer_18 = &UNK_1800868c0;
+  stack_pointer_18 = &SYSTEM_UNKNOWN_DATA_TYPE17;
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fd8,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -7811,14 +7780,14 @@ void system_initialize_service_type25(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fd8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
-  system_config_data_ptr[8] = &UNK_180a003e8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = stack_pointer_18;
   return;
@@ -7843,7 +7812,7 @@ void system_initialize_service_type26(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -7855,14 +7824,14 @@ void system_initialize_service_type26(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
-  system_config_data_ptr[8] = &UNK_180a00400;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE4;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -7931,7 +7900,7 @@ void system_initialize_service_type28(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01078,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE1,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -7943,7 +7912,7 @@ void system_initialize_service_type28(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01078,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE1,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -7975,7 +7944,7 @@ void system_initialize_service_type29(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01050,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -7987,7 +7956,7 @@ void system_initialize_service_type29(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01050,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -8019,7 +7988,7 @@ void system_initialize_service_type30(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01028,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -8031,14 +8000,14 @@ void system_initialize_service_type30(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01028,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
-  system_config_data_ptr[8] = &UNK_180a003b8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -8063,7 +8032,7 @@ void system_initialize_service_type31(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01000,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -8075,14 +8044,14 @@ void system_initialize_service_type31(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01000,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
-  system_config_data_ptr[8] = &UNK_180a003d0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -8103,11 +8072,11 @@ void system_initialize_service_type32(void)
   system_table_pointer = (longlong *)system_get_root_table();
   system_config_primary_ptr = (uint64_t *)*system_table_pointer;
   config_status_flag = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
-  stack_pointer_18 = &UNK_1800868c0;
+  stack_pointer_18 = &SYSTEM_UNKNOWN_DATA_TYPE17;
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fd8,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -8119,14 +8088,14 @@ void system_initialize_service_type32(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fd8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
-  system_config_data_ptr[8] = &UNK_180a003e8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = stack_pointer_18;
   return;
@@ -8151,7 +8120,7 @@ void system_initialize_service_type33(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -8163,14 +8132,14 @@ void system_initialize_service_type33(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
-  system_config_data_ptr[8] = &UNK_180a00400;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE4;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -8239,7 +8208,7 @@ void system_initialize_service_type35(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01078,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE1,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -8251,7 +8220,7 @@ void system_initialize_service_type35(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01078,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE1,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -8283,7 +8252,7 @@ void system_initialize_service_type36(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01050,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -8295,7 +8264,7 @@ void system_initialize_service_type36(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01050,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -8327,7 +8296,7 @@ void system_initialize_service_type37(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01028,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -8339,14 +8308,14 @@ void system_initialize_service_type37(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01028,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
-  system_config_data_ptr[8] = &UNK_180a003b8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -8371,7 +8340,7 @@ void system_initialize_service_type38(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01000,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -8383,14 +8352,14 @@ void system_initialize_service_type38(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01000,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
-  system_config_data_ptr[8] = &UNK_180a003d0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -8411,11 +8380,11 @@ void system_initialize_service_type39(void)
   system_table_pointer = (longlong *)system_get_root_table();
   system_config_primary_ptr = (uint64_t *)*system_table_pointer;
   config_status_flag = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
-  stack_pointer_18 = &UNK_1800868c0;
+  stack_pointer_18 = &SYSTEM_UNKNOWN_DATA_TYPE17;
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fd8,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -8427,14 +8396,14 @@ void system_initialize_service_type39(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fd8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
-  system_config_data_ptr[8] = &UNK_180a003e8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = stack_pointer_18;
   return;
@@ -8459,7 +8428,7 @@ void system_initialize_service_type40(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -8471,14 +8440,14 @@ void system_initialize_service_type40(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
-  system_config_data_ptr[8] = &UNK_180a00400;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE4;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -8547,7 +8516,7 @@ void system_initialize_service_type42(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01078,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE1,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -8559,7 +8528,7 @@ void system_initialize_service_type42(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01078,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE1,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -8591,7 +8560,7 @@ void system_initialize_service_type43(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01050,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -8603,7 +8572,7 @@ void system_initialize_service_type43(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01050,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -8635,7 +8604,7 @@ void system_initialize_service_type44(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01028,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -8647,14 +8616,14 @@ void system_initialize_service_type44(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01028,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
-  system_config_data_ptr[8] = &UNK_180a003b8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -8679,7 +8648,7 @@ void system_initialize_service_type45(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01000,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -8691,14 +8660,14 @@ void system_initialize_service_type45(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01000,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
-  system_config_data_ptr[8] = &UNK_180a003d0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -8719,11 +8688,11 @@ void system_initialize_service_type46(void)
   system_table_pointer = (longlong *)system_get_root_table();
   system_config_primary_ptr = (uint64_t *)*system_table_pointer;
   config_status_flag = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
-  stack_pointer_18 = &UNK_1800868c0;
+  stack_pointer_18 = &SYSTEM_UNKNOWN_DATA_TYPE17;
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fd8,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -8735,14 +8704,14 @@ void system_initialize_service_type46(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fd8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
-  system_config_data_ptr[8] = &UNK_180a003e8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = stack_pointer_18;
   return;
@@ -8767,7 +8736,7 @@ void system_initialize_service_type47(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -8779,14 +8748,14 @@ void system_initialize_service_type47(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
-  system_config_data_ptr[8] = &UNK_180a00400;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE4;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -9252,7 +9221,7 @@ int system_initialize_service_type59(void)
   longlong system_memory_allocation_result;
   uint64_t in_R9;
   
-  _DAT_180bf91b0 = &UNK_1809fcc58;
+  _DAT_180bf91b0 = &SYSTEM_UNKNOWN_DATA_TYPE19;
   _DAT_180bf91b8 = &DAT_180bf91c8;
 void system_initialize_module_type1(void)
 {
@@ -9790,7 +9759,7 @@ void system_initialize_module_type14(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01078,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE1,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -9802,7 +9771,7 @@ void system_initialize_module_type14(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01078,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE1,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -9834,7 +9803,7 @@ void system_initialize_module_type15(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01050,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -9846,7 +9815,7 @@ void system_initialize_module_type15(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01050,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -9878,7 +9847,7 @@ void system_initialize_module_type16(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01028,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -9890,14 +9859,14 @@ void system_initialize_module_type16(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01028,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
-  system_config_data_ptr[8] = &UNK_180a003b8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -9922,7 +9891,7 @@ void system_initialize_module_type17(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01000,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -9934,14 +9903,14 @@ void system_initialize_module_type17(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01000,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
-  system_config_data_ptr[8] = &UNK_180a003d0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -9962,11 +9931,11 @@ void system_initialize_module_type18(void)
   system_table_pointer = (longlong *)system_get_root_table();
   system_config_primary_ptr = (uint64_t *)*system_table_pointer;
   config_status_flag = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
-  stack_pointer_18 = &UNK_1800868c0;
+  stack_pointer_18 = &SYSTEM_UNKNOWN_DATA_TYPE17;
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fd8,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -9978,14 +9947,14 @@ void system_initialize_module_type18(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fd8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
-  system_config_data_ptr[8] = &UNK_180a003e8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = stack_pointer_18;
   return;
@@ -10010,7 +9979,7 @@ void system_initialize_module_type19(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -10022,14 +9991,14 @@ void system_initialize_module_type19(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
-  system_config_data_ptr[8] = &UNK_180a00400;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE4;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -10061,7 +10030,7 @@ void system_cleanup_handler_type1(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00d48,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE8,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -10073,14 +10042,14 @@ void system_cleanup_handler_type1(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00d48,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x45425dc186a5d575;
   system_config_data_ptr[7] = 0xfab48faa65382fa5;
-  system_config_data_ptr[8] = &UNK_180a00460;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE6;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -10149,7 +10118,7 @@ void system_cleanup_handler_type3(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01078,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE1,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -10161,7 +10130,7 @@ void system_cleanup_handler_type3(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01078,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE1,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -10193,7 +10162,7 @@ void system_cleanup_handler_type4(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01050,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -10205,7 +10174,7 @@ void system_cleanup_handler_type4(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01050,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -10237,7 +10206,7 @@ void system_cleanup_handler_type5(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01028,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -10249,14 +10218,14 @@ void system_cleanup_handler_type5(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01028,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
-  system_config_data_ptr[8] = &UNK_180a003b8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -10281,7 +10250,7 @@ void system_cleanup_handler_type6(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01000,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -10293,14 +10262,14 @@ void system_cleanup_handler_type6(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01000,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
-  system_config_data_ptr[8] = &UNK_180a003d0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -10321,11 +10290,11 @@ void system_cleanup_handler_type7(void)
   system_table_pointer = (longlong *)system_get_root_table();
   system_config_primary_ptr = (uint64_t *)*system_table_pointer;
   config_status_flag = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
-  stack_pointer_18 = &UNK_1800868c0;
+  stack_pointer_18 = &SYSTEM_UNKNOWN_DATA_TYPE17;
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fd8,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -10337,14 +10306,14 @@ void system_cleanup_handler_type7(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fd8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
-  system_config_data_ptr[8] = &UNK_180a003e8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = stack_pointer_18;
   return;
@@ -10369,7 +10338,7 @@ void system_cleanup_handler_type8(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -10381,14 +10350,14 @@ void system_cleanup_handler_type8(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
-  system_config_data_ptr[8] = &UNK_180a00400;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE4;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -10457,7 +10426,7 @@ void system_cleanup_handler_type10(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01078,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE1,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -10469,7 +10438,7 @@ void system_cleanup_handler_type10(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01078,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE1,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -10501,7 +10470,7 @@ void system_cleanup_handler_type11(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01050,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -10513,7 +10482,7 @@ void system_cleanup_handler_type11(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01050,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -10545,7 +10514,7 @@ void system_cleanup_handler_type12(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01028,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -10557,14 +10526,14 @@ void system_cleanup_handler_type12(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01028,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
-  system_config_data_ptr[8] = &UNK_180a003b8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -10589,7 +10558,7 @@ void system_cleanup_handler_type13(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01000,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -10601,14 +10570,14 @@ void system_cleanup_handler_type13(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01000,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
-  system_config_data_ptr[8] = &UNK_180a003d0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -10629,11 +10598,11 @@ void system_cleanup_handler_type14(void)
   system_table_pointer = (longlong *)system_get_root_table();
   system_config_primary_ptr = (uint64_t *)*system_table_pointer;
   config_status_flag = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
-  stack_pointer_18 = &UNK_1800868c0;
+  stack_pointer_18 = &SYSTEM_UNKNOWN_DATA_TYPE17;
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fd8,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -10645,14 +10614,14 @@ void system_cleanup_handler_type14(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fd8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
-  system_config_data_ptr[8] = &UNK_180a003e8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = stack_pointer_18;
   return;
@@ -10677,7 +10646,7 @@ void system_cleanup_handler_type15(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -10689,14 +10658,14 @@ void system_cleanup_handler_type15(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
-  system_config_data_ptr[8] = &UNK_180a00400;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE4;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -11296,7 +11265,7 @@ int system_event_manager_handler(void)
   longlong system_memory_allocation_result;
   uint64_t in_R9;
   
-  _DAT_180bf6048 = &UNK_18098bc80;
+  _DAT_180bf6048 = &SYSTEM_UNKNOWN_DATA_TYPE22;
   _DAT_180bf6050 = &DAT_180bf6060;
 void system_task_manager_init(void)
 {
@@ -11934,7 +11903,7 @@ void system_task_manager_pause(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00d48,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE8,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -11946,14 +11915,14 @@ void system_task_manager_pause(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00d48,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x45425dc186a5d575;
   system_config_data_ptr[7] = 0xfab48faa65382fa5;
-  system_config_data_ptr[8] = &UNK_180a00460;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE6;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -11978,7 +11947,7 @@ void system_task_manager_resume(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00e28,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE7,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -11990,14 +11959,14 @@ void system_task_manager_resume(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00e28,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE7,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x449bafe9b77ddd3c;
   system_config_data_ptr[7] = 0xc160408bde99e59f;
-  system_config_data_ptr[8] = &UNK_180a00430;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE5;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -12154,7 +12123,7 @@ void system_config_manager_handler(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01078,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE1,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -12166,7 +12135,7 @@ void system_config_manager_handler(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01078,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE1,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -12198,7 +12167,7 @@ void system_config_manager_process(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01050,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -12210,7 +12179,7 @@ void system_config_manager_process(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01050,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -12242,7 +12211,7 @@ void system_config_manager_cleanup(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01028,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -12254,14 +12223,14 @@ void system_config_manager_cleanup(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01028,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
-  system_config_data_ptr[8] = &UNK_180a003b8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -12286,7 +12255,7 @@ void system_config_manager_update(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01000,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -12298,14 +12267,14 @@ void system_config_manager_update(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01000,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
-  system_config_data_ptr[8] = &UNK_180a003d0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -12326,11 +12295,11 @@ void system_config_manager_validate(void)
   system_table_pointer = (longlong *)system_get_root_table();
   system_config_primary_ptr = (uint64_t *)*system_table_pointer;
   config_status_flag = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
-  stack_pointer_18 = &UNK_1800868c0;
+  stack_pointer_18 = &SYSTEM_UNKNOWN_DATA_TYPE17;
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fd8,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -12342,14 +12311,14 @@ void system_config_manager_validate(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fd8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
-  system_config_data_ptr[8] = &UNK_180a003e8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = stack_pointer_18;
   return;
@@ -12374,7 +12343,7 @@ void system_config_manager_reset(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -12386,14 +12355,14 @@ void system_config_manager_reset(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
-  system_config_data_ptr[8] = &UNK_180a00400;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE4;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -12559,7 +12528,7 @@ int system_thread_manager_init(void)
   longlong system_memory_allocation_result;
   uint64_t in_R9;
   
-  _DAT_180bf64f8 = &UNK_18098bc80;
+  _DAT_180bf64f8 = &SYSTEM_UNKNOWN_DATA_TYPE22;
   _DAT_180bf6500 = &DAT_180bf6510;
 void system_thread_manager_config(void)
 {
@@ -13001,7 +12970,7 @@ void system_init_complete_type3(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01078,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_DATA_TYPE1,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -13013,7 +12982,7 @@ void system_init_complete_type3(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01078,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_DATA_TYPE1,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -13045,7 +13014,7 @@ void system_init_complete_type4(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01050,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE2,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -13057,7 +13026,7 @@ void system_init_complete_type4(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01050,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE2,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
@@ -13089,7 +13058,7 @@ void system_init_complete_type5(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01028,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE3,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -13101,14 +13070,14 @@ void system_init_complete_type5(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01028,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE3,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x49086ba08ab981a7;
   system_config_data_ptr[7] = 0xa9191d34ad910696;
-  system_config_data_ptr[8] = &UNK_180a003b8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE1;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_config_callback_func;
   return;
@@ -13133,7 +13102,7 @@ void system_init_complete_type6(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a01000,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE4,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -13145,14 +13114,14 @@ void system_init_complete_type6(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a01000,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE4,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x402feffe4481676e;
   system_config_data_ptr[7] = 0xd4c2151109de93a0;
-  system_config_data_ptr[8] = &UNK_180a003d0;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE2;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -13173,11 +13142,11 @@ void system_init_complete_type7(void)
   system_table_pointer = (longlong *)system_get_root_table();
   system_config_primary_ptr = (uint64_t *)*system_table_pointer;
   config_status_flag = *(char *)((longlong)system_config_primary_ptr[1] + 0x19);
-  stack_pointer_18 = &UNK_1800868c0;
+  stack_pointer_18 = &SYSTEM_UNKNOWN_DATA_TYPE17;
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fd8,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE5,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -13189,14 +13158,14 @@ void system_init_complete_type7(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fd8,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE5,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4384dcc4b6d3f417;
   system_config_data_ptr[7] = 0x92a15d52fe2679bd;
-  system_config_data_ptr[8] = &UNK_180a003e8;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE3;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = stack_pointer_18;
   return;
@@ -13221,7 +13190,7 @@ void system_init_complete_type8(void)
   system_config_data_ptr = system_config_primary_ptr;
   system_config_node_ptr = (uint64_t *)system_config_primary_ptr[1];
   while (config_status_flag == '\0') {
-    memory_compare_result = memcmp(system_config_node_ptr + 4,&DAT_180a00fb0,0x10);
+    memory_compare_result = memcmp(system_config_node_ptr + 4,&SYSTEM_CONFIG_SIGNATURE_TYPE6,0x10);
     if (memory_compare_result < 0) {
       system_config_next_ptr = (uint64_t *)system_config_node_ptr[2];
       system_config_node_ptr = system_config_data_ptr;
@@ -13233,14 +13202,14 @@ void system_init_complete_type8(void)
     system_config_node_ptr = system_config_next_ptr;
     config_status_flag = *(char *)((longlong)system_config_next_ptr + 0x19);
   }
-  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&DAT_180a00fb0,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
+  if ((system_config_data_ptr == system_config_primary_ptr) || (memory_compare_result = memcmp(&SYSTEM_CONFIG_SIGNATURE_TYPE6,system_config_data_ptr + 4,0x10), memory_compare_result < 0)) {
     allocation_size = system_allocate_config_memory(system_table_pointer);
     system_setup_config_block(system_table_pointer,&system_config_temp_ptr,system_config_data_ptr,allocation_size + 0x20,allocation_size);
     system_config_data_ptr = system_config_temp_ptr;
   }
   system_config_data_ptr[6] = 0x4140994454d56503;
   system_config_data_ptr[7] = 0x399eced9bb5517ad;
-  system_config_data_ptr[8] = &UNK_180a00400;
+  system_config_data_ptr[8] = &SYSTEM_UNKNOWN_DATA_TYPE4;
   system_config_data_ptr[9] = 0;
   system_config_data_ptr[10] = system_stack_value_18;
   return;
@@ -14230,7 +14199,7 @@ LAB_180044db8:
     }
     pstack_uint_228 = &UNK_18098bab0;
     system_util_1800623b0(_DAT_180c86928,5,0xffffffffffffffff,4);
-    pstack_uint_188 = &UNK_18098bc80;
+    pstack_uint_188 = &SYSTEM_UNKNOWN_DATA_TYPE22;
     pstack_uint_180 = astack_uint_170;
     stack_uint_178 = 0;
     astack_uint_170[0] = 0;
@@ -14923,7 +14892,7 @@ uint64_t * system_init_180046480(uint64_t *param_1)
   *param_1 = &UNK_18098bcb0;
   param_1[1] = 0;
   *(uint32_t *)(param_1 + 2) = 0;
-  *param_1 = &UNK_18098bc80;
+  *param_1 = &SYSTEM_UNKNOWN_DATA_TYPE22;
   param_1[1] = param_1 + 3;
   *(uint32_t *)(param_1 + 2) = 0;
   *(undefined1 *)(param_1 + 3) = 0;
@@ -14944,7 +14913,7 @@ void system_init_1800464f0(longlong param_1,longlong param_2,longlong param_3)
   
   stack_uint_88 = 0xfffffffffffffffe;
   stack_uint_48 = _DAT_180bf00a8 ^ (ulonglong)astack_uint_a8;
-  pstack_uint_80 = &UNK_18098bc80;
+  pstack_uint_80 = &SYSTEM_UNKNOWN_DATA_TYPE22;
   pstack_uint_78 = astack_uint_68;
   stack_uint_70 = 0;
   astack_uint_68[0] = 0;
@@ -15445,21 +15414,21 @@ void system_main_preinit(void)
   if (char_flag == '\0') {
     system_module_180624910(&lStack_678);
   }
-  pstack_uint_4e8 = &UNK_1809fcc58;
+  pstack_uint_4e8 = &SYSTEM_UNKNOWN_DATA_TYPE19;
   pstack_uint_4e0 = astack_uint_4d0;
   astack_uint_4d0[0] = 0;
   stack_uint_4d8 = 0x18;
   strcpy_s(astack_uint_4d0,0x40,&UNK_1809fc7b8);
   system_process_180097d40(_DAT_180c86960,&pstack_uint_4e8,&lStack_678);
   pstack_uint_4e8 = &UNK_18098bcb0;
-  pstack_uint_488 = &UNK_1809fcc58;
+  pstack_uint_488 = &SYSTEM_UNKNOWN_DATA_TYPE19;
   pstack_uint_480 = astack_uint_470;
   astack_uint_470[0] = 0;
   stack_uint_478 = 0xb;
   strcpy_s(astack_uint_470,0x40,&UNK_1809fc790);
   system_process_180097d40(_DAT_180c86960,&pstack_uint_488,&lStack_678);
   pstack_uint_488 = &UNK_18098bcb0;
-  pstack_uint_428 = &UNK_1809fcc58;
+  pstack_uint_428 = &SYSTEM_UNKNOWN_DATA_TYPE19;
   pstack_uint_420 = astack_uint_410;
   astack_uint_410[0] = 0;
   stack_uint_418 = 0x18;
@@ -15467,7 +15436,7 @@ void system_main_preinit(void)
   _DAT_180bf52b8 = (float)system_process_180095480(unsigned_value_primary0,&pstack_uint_428);
   _DAT_180bf52b8 = 1.0 / _DAT_180bf52b8;
   pstack_uint_428 = &UNK_18098bcb0;
-  pstack_uint_3c8 = &UNK_1809fcc58;
+  pstack_uint_3c8 = &SYSTEM_UNKNOWN_DATA_TYPE19;
   pstack_uint_3c0 = astack_uint_3b0;
   astack_uint_3b0[0] = 0;
   stack_uint_3b8 = 0xb;
@@ -15475,14 +15444,14 @@ void system_main_preinit(void)
   _DAT_180bf52bc = (float)system_process_180095480(unsigned_value_primary0,&pstack_uint_3c8);
   _DAT_180bf52bc = 1.0 / _DAT_180bf52bc;
   pstack_uint_3c8 = &UNK_18098bcb0;
-  pstack_uint_368 = &UNK_1809fcc58;
+  pstack_uint_368 = &SYSTEM_UNKNOWN_DATA_TYPE19;
   pstack_uint_360 = astack_uint_350;
   astack_uint_350[0] = 0;
   stack_uint_358 = 0xb;
   unsigned_value_primary0 = strcpy_s(astack_uint_350,0x40,&UNK_1809fc790);
   fVar11 = (float)system_process_180095720(unsigned_value_primary0,&pstack_uint_368);
   pstack_uint_368 = &UNK_18098bcb0;
-  pstack_uint_308 = &UNK_1809fcc58;
+  pstack_uint_308 = &SYSTEM_UNKNOWN_DATA_TYPE19;
   pstack_uint_300 = astack_uint_2f0;
   astack_uint_2f0[0] = 0;
   stack_uint_2f8 = 0x18;
@@ -16810,7 +16779,7 @@ uint64_t * system_init_180049cd0(uint64_t *param_1)
   *param_1 = &UNK_18098bcb0;
   param_1[1] = 0;
   *(uint32_t *)(param_1 + 2) = 0;
-  *param_1 = &UNK_1809fcc58;
+  *param_1 = &SYSTEM_UNKNOWN_DATA_TYPE19;
   param_1[1] = param_1 + 3;
   *(uint32_t *)(param_1 + 2) = 0;
   *(undefined1 *)(param_1 + 3) = 0;
@@ -16831,7 +16800,7 @@ void system_init_180049d20(longlong param_1,longlong param_2,longlong param_3)
   
   stack_uint_b8 = 0xfffffffffffffffe;
   stack_uint_48 = _DAT_180bf00a8 ^ (ulonglong)astack_uint_d8;
-  pstack_uint_a8 = &UNK_1809fcc58;
+  pstack_uint_a8 = &SYSTEM_UNKNOWN_DATA_TYPE19;
   stack_pointer_a0 = astack_uint_90;
   stack_uint_98 = 0;
   astack_uint_90[0] = 0;
@@ -16858,7 +16827,7 @@ system_init_180049eb0(uint64_t *param_1,longlong param_2,uint64_t param_3,uint64
   *param_1 = &UNK_18098bcb0;
   param_1[1] = 0;
   *(uint32_t *)(param_1 + 2) = 0;
-  *param_1 = &UNK_1809fcc58;
+  *param_1 = &SYSTEM_UNKNOWN_DATA_TYPE19;
   param_1[1] = param_1 + 3;
   *(uint32_t *)(param_1 + 2) = 0;
   *(undefined1 *)(param_1 + 3) = 0;
@@ -17159,7 +17128,7 @@ void system_init_18004a640(void)
     system_init_18004b1f0(1);
     system_init_18004a500();
   }
-  pstack_uint_38 = &UNK_1809fdc18;
+  pstack_uint_38 = &SYSTEM_UNKNOWN_DATA_TYPE18;
   pstack_uint_30 = astack_uint_20;
   astack_uint_20[0] = 0;
   stack_uint_28 = 6;
@@ -17481,7 +17450,7 @@ void system_init_18004b3f0(uint64_t *param_1)
   *param_1 = &UNK_18098bcb0;
   param_1[1] = 0;
   *(uint32_t *)(param_1 + 2) = 0;
-  *param_1 = &UNK_18098bc80;
+  *param_1 = &SYSTEM_UNKNOWN_DATA_TYPE22;
   param_1[1] = param_1 + 3;
   *(uint32_t *)(param_1 + 2) = 0;
   *(undefined1 *)(param_1 + 3) = 0;
@@ -17496,7 +17465,7 @@ void system_init_18004b3f0(uint64_t *param_1)
     *(undefined2 *)((ulonglong)unsigned_value_primary + param_1[1]) = 0x2e;
     *(uint *)(param_1 + 2) = unsigned_value_primary + 1;
   }
-  pstack_uint_50 = &UNK_18098bc80;
+  pstack_uint_50 = &SYSTEM_UNKNOWN_DATA_TYPE22;
   pstack_uint_48 = astack_uint_38;
   stack_uint_40 = 0;
   astack_uint_38[0] = 0;
@@ -17555,7 +17524,7 @@ system_init_18004b640(uint64_t *param_1,longlong param_2,uint64_t param_3,uint64
   *param_1 = &UNK_18098bcb0;
   param_1[1] = 0;
   *(uint32_t *)(param_1 + 2) = 0;
-  *param_1 = &UNK_18098bc80;
+  *param_1 = &SYSTEM_UNKNOWN_DATA_TYPE22;
   param_1[1] = param_1 + 3;
   *(uint32_t *)(param_1 + 2) = 0;
   *(undefined1 *)(param_1 + 3) = 0;
@@ -17806,7 +17775,7 @@ uint64_t * system_init_18004bd10(uint64_t *param_1)
   *param_1 = &UNK_18098bcb0;
   param_1[1] = 0;
   *(uint32_t *)(param_1 + 2) = 0;
-  *param_1 = &UNK_1809fcc58;
+  *param_1 = &SYSTEM_UNKNOWN_DATA_TYPE19;
   param_1[1] = param_1 + 3;
   *(uint32_t *)(param_1 + 2) = 0;
   *(undefined1 *)(param_1 + 3) = 0;
@@ -18293,7 +18262,7 @@ uint64_t * system_init_18004c480(uint64_t *param_1)
   *long_pointer_result = (longlong)&UNK_18098bcb0;
   param_1[0x33] = 0;
   *(uint32_t *)(param_1 + 0x34) = 0;
-  *long_pointer_result = (longlong)&UNK_18098bc80;
+  *long_pointer_result = (longlong)&SYSTEM_UNKNOWN_DATA_TYPE22;
   param_1[0x33] = param_1 + 0x35;
   *(uint32_t *)(param_1 + 0x34) = 0;
   *(undefined1 *)(param_1 + 0x35) = 0;
@@ -19187,7 +19156,7 @@ void system_init_18004ef60(void)
   *(uint64_t *)(long_value_result + 0x25c) = 0x3f8000003f800000;
   long_value_offset = _DAT_180c86890;
   long_value_secondary = _DAT_180c82868;
-  pstack_uint_168 = &UNK_1809fdc18;
+  pstack_uint_168 = &SYSTEM_UNKNOWN_DATA_TYPE18;
   pstack_uint_160 = astack_uint_150;
   astack_uint_150[0] = 0;
   stack_uint_158 = 0xd;
@@ -19449,7 +19418,7 @@ void system_init_18004f920(void)
     system_util_18006eb30();
   }
   system_config_18005e630(_DAT_180c82868);
-  pstack_uint_50 = &UNK_1809fdc18;
+  pstack_uint_50 = &SYSTEM_UNKNOWN_DATA_TYPE18;
   pstack_uint_48 = astack_uint_38;
   astack_uint_38[0] = 0;
   stack_uint_40 = 3;
@@ -21900,7 +21869,7 @@ void system_config_1800565f0(longlong *param_1)
     (**(code **)(*plStack_68 + 0x38))();
   }
   long_value_result = _DAT_180c82868;
-  pstack_uint_50 = &UNK_1809fdc18;
+  pstack_uint_50 = &SYSTEM_UNKNOWN_DATA_TYPE18;
   pstack_uint_48 = astack_uint_38;
   astack_uint_38[0] = 0;
   stack_uint_40 = 0xc;
@@ -22310,7 +22279,7 @@ system_config_180057090(uint64_t *param_1,longlong param_2,uint64_t param_3,uint
   *param_1 = &UNK_18098bcb0;
   param_1[1] = 0;
   *(uint32_t *)(param_1 + 2) = 0;
-  *param_1 = &UNK_1809fdc18;
+  *param_1 = &SYSTEM_UNKNOWN_DATA_TYPE18;
   param_1[1] = param_1 + 3;
   *(uint32_t *)(param_1 + 2) = 0;
   *(undefined1 *)(param_1 + 3) = 0;
@@ -24289,7 +24258,7 @@ void system_config_180059000(longlong *param_1)
       pstack_uint_300 = (uint64_t *)0x0;
       stack_uint_2f8 = 0;
       stack_uint_2f0 = 3;
-      pstack_uint_290 = &UNK_1809fdc18;
+      pstack_uint_290 = &SYSTEM_UNKNOWN_DATA_TYPE18;
       pstack_uint_288 = astack_uint_278;
       astack_uint_278[0] = 0;
       stack_uint_280 = 4;
@@ -25070,7 +25039,7 @@ void system_config_180059a20(longlong param_1,longlong param_2,longlong param_3)
   
   stack_uint_78 = 0xfffffffffffffffe;
   stack_uint_48 = _DAT_180bf00a8 ^ (ulonglong)astack_uint_98;
-  pstack_uint_70 = &UNK_1809fdc18;
+  pstack_uint_70 = &SYSTEM_UNKNOWN_DATA_TYPE18;
   pstack_uint_68 = astack_uint_58;
   stack_uint_60 = 0;
   astack_uint_58[0] = 0;
@@ -27481,7 +27450,7 @@ void system_config_18005dbb0(void)
   system_config_180057340(ppointer_primary5,system_memory_allocation_result1);
   unsigned_value_result = system_utility_function_type10(_DAT_180c8ed18,0x208,8,3);
   uVar9 = 0;
-  pstack_uint_160 = &UNK_1809fdc18;
+  pstack_uint_160 = &SYSTEM_UNKNOWN_DATA_TYPE18;
   pstack_uint_158 = astack_uint_148;
   astack_uint_148[0] = 0;
   stack_uint_150 = 4;
@@ -27493,7 +27462,7 @@ void system_config_18005dbb0(void)
   *(uint64_t *)*ppointer_primary5 = unsigned_value_result;
   pstack_uint_160 = &UNK_18098bcb0;
   pointer_quaternary = (uint64_t *)system_utility_function_type10(_DAT_180c8ed18,0x208,8,3);
-  pstack_uint_138 = &UNK_1809fdc18;
+  pstack_uint_138 = &SYSTEM_UNKNOWN_DATA_TYPE18;
   pstack_uint_130 = astack_uint_120;
   astack_uint_120[0] = 0;
   stack_uint_128 = 6;
@@ -27511,7 +27480,7 @@ void system_config_18005dbb0(void)
   if (2 < system_memory_allocation_result1) {
     system_memory_allocation_result0 = 2;
     do {
-      pstack_uint_160 = &UNK_1809fdc18;
+      pstack_uint_160 = &SYSTEM_UNKNOWN_DATA_TYPE18;
       pstack_uint_158 = astack_uint_148;
       astack_uint_148[0] = 0;
       stack_uint_150 = 7;
@@ -27551,7 +27520,7 @@ void system_config_18005dbb0(void)
     uVar8 = uVar9;
     unsigned_value_primary4 = uVar9;
     do {
-      pstack_uint_160 = &UNK_1809fdc18;
+      pstack_uint_160 = &SYSTEM_UNKNOWN_DATA_TYPE18;
       pstack_uint_158 = astack_uint_148;
       astack_uint_148[0] = 0;
       stack_uint_150 = 10;
@@ -30451,7 +30420,7 @@ void system_util_180061380(uint64_t param_1,longlong param_2)
   stack_uint_1b8 = 0xfffffffffffffffe;
   stack_uint_38 = _DAT_180bf00a8 ^ (ulonglong)astack_uint_268;
   lStack_210 = _DAT_180c86928;
-  pstack_uint_1a8 = &UNK_1809fdc18;
+  pstack_uint_1a8 = &SYSTEM_UNKNOWN_DATA_TYPE18;
   pstack_uint_1a0 = astack_uint_190;
   astack_uint_190[0] = 0;
   stack_uint_198 = 6;
@@ -31995,7 +31964,7 @@ void system_util_180065160(uint64_t param_1)
     }
   }
   system_module_180627910(&pstack_uint_1e0,pointer_primary6);
-  pstack_uint_c8 = &UNK_18098bc80;
+  pstack_uint_c8 = &SYSTEM_UNKNOWN_DATA_TYPE22;
   pstack_uint_c0 = astack_uint_b0;
   stack_uint_b8 = 0;
   astack_uint_b0[0] = 0;
@@ -32109,7 +32078,7 @@ void system_util_180065160(uint64_t param_1)
   pstack_uint_158 = (uint64_t *)0x0;
   stack_uint_150 = 0;
   stack_uint_148 = 3;
-  pstack_uint_f0 = &UNK_1809fdc18;
+  pstack_uint_f0 = &SYSTEM_UNKNOWN_DATA_TYPE18;
   pstack_uint_e8 = astack_uint_d8;
   astack_uint_d8[0] = 0;
   stack_uint_e0 = 9;
@@ -32118,7 +32087,7 @@ void system_util_180065160(uint64_t param_1)
   pointer_primary8 = pstack_uint_158;
   pointer_primary9 = pstack_uint_160;
   if (1 < (ulonglong)((longlong)pstack_uint_158 - (longlong)pstack_uint_160 >> 5)) {
-    pstack_uint_118 = &UNK_1809fdc18;
+    pstack_uint_118 = &SYSTEM_UNKNOWN_DATA_TYPE18;
     pstack_uint_110 = astack_uint_100;
     astack_uint_100[0] = 0;
     stack_uint_108 = 1;
@@ -43530,7 +43499,7 @@ void system_180077150(longlong *param_1)
   stack_uint_60 = 0xfffffffffffffffe;
   stack_uint_20 = _DAT_180bf00a8 ^ (ulonglong)stack_array_88;
   unsigned_value_primary = *(uint64_t *)(param_1[0x37] + 0x1e0);
-  pstack_uint_58 = &UNK_18098bc80;
+  pstack_uint_58 = &SYSTEM_UNKNOWN_DATA_TYPE22;
   pstack_uint_50 = astack_uint_40;
   astack_uint_40[0] = astack_uint_40[0] & 0xffffffffffffff00;
   stack_uint_48._0_4_ = 0x12;
