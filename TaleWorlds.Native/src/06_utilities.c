@@ -1083,9 +1083,8 @@ return utility_status;
  * @return 同步操作结果状态码
  */
 uint64_t utility_manage_thread_synchronization(int64_t utility_context_input_data)
-
-
-int64_t utility_loop_index = 0;
+{
+    int64_t utility_loop_index = 0;
 uint utility_resource_context_data;
 uint64_t utility_status;
 uint64_t *utility_buffer;

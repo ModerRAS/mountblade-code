@@ -13099,6 +13099,14 @@ void system_initialize_critical_section(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
+/**
+ * 脚本引擎初始化器
+ * 
+ * 初始化脚本执行环境和相关组件
+ * 为系统提供脚本支持
+ *
+ * @return 初始化状态码
+ */
 uint64_t system_script_engine_initializer(void)
 
 {
@@ -14274,6 +14282,14 @@ uint64_t * system_allocate_memory_block(uint64_t *system_context_parameter,uint 
   return system_context_parameter;
 }
 
+/**
+ * 系统安全守护
+ * 
+ * 监控系统安全状态并处理安全事件
+ * 保护系统免受恶意攻击
+ *
+ * @return 无返回值
+ */
 void system_security_guard(void)
 
 {
@@ -14725,6 +14741,15 @@ void system_generate_profiling_report(longlong *system_context_parameter)
   }
   return;
 }
+/**
+ * 初始化安全系统
+ * 
+ * 设置安全策略、权限控制和加密机制
+ * 为系统提供全面的安全保护
+ *
+ * @param system_context_parameter 系统上下文参数指针
+ * @return 无返回值
+ */
 void system_initialize_security(ulonglong *system_context_parameter)
 
 {
@@ -14901,6 +14926,18 @@ SYSTEM_VALIDATION_CHECK:
                     // WARNING: Subroutine does not return
   system_initialize_component();
 }
+/**
+ * 初始化监控系统
+ * 
+ * 设置性能监控、资源使用统计和状态跟踪
+ * 为系统提供运行时监控支持
+ *
+ * @param system_context_parameter 系统上下文参数指针
+ * @param system_context_parameter 监控配置参数
+ * @param system_context_parameter 监控间隔参数
+ * @param system_context_parameter 监控级别参数
+ * @return 无返回值
+ */
 void system_initialize_monitoring_system(uint64_t *system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter,uint64_t system_context_parameter)
 
 {
