@@ -29052,7 +29052,7 @@ utility_system_initialize();
 }
 utility_system_ctx_scheduler(utility_context_input_data + 0xffd,UTILITY_THREAD_DATA_OFFSET,5,utility_system_handler_service);
 utility_loop_index = 0;
-for (utility_loop_index = 0;
+for (int64_t i = 0; i < utility_max_iterations; i++) {
 utility_convert_encoding(utility_loop_index = 0;
 }
 if (utility_context_input_data[0xff9] != UTILITY_FALSE) {
@@ -29117,7 +29117,7 @@ utility_system_initialize();
 }
 utility_system_ctx_scheduler(utility_context_input_data + 0xffd,UTILITY_THREAD_DATA_OFFSET,5,utility_system_handler_service);
 utility_loop_index = 0;
-for (utility_loop_index = 0;
+for (int64_t i = 0; i < utility_max_iterations; i++) {
 utility_convert_encoding(utility_loop_index = 0;
 }
 if (utility_context_input_data[0xff9] != UTILITY_FALSE) {
@@ -29165,7 +29165,7 @@ utility_system_initialize();
 }
 utility_system_ctx_scheduler(utility_loop_index = 0;
 utility_loop_index = 0;
-for (utility_loop_index = 0;
+for (int64_t i = 0; i < utility_max_iterations; i++) {
 utility_convert_encoding(utility_loop_index = 0;
 }
 if (*(int64_t *)(utility_loop_index = 0;
@@ -29415,7 +29415,7 @@ utility_system_initialize();
 }
 utility_system_ctx_scheduler(utility_context_input_data + 0xffd,UTILITY_THREAD_DATA_OFFSET,5,utility_system_handler_service);
 utility_loop_index = 0;
-for (utility_loop_index = 0;
+for (int64_t i = 0; i < utility_max_iterations; i++) {
 utility_convert_encoding(utility_loop_index = 0;
 }
 if (utility_context_input_data[0xff9] != UTILITY_FALSE) {
@@ -29463,7 +29463,7 @@ utility_system_initialize();
 }
 utility_system_ctx_scheduler(utility_loop_index = 0;
 utility_loop_index = 0;
-for (utility_loop_index = 0;
+for (int64_t i = 0; i < utility_max_iterations; i++) {
 utility_convert_encoding(utility_loop_index = 0;
 }
 if (*(int64_t *)(utility_loop_index = 0;
@@ -38376,7 +38376,7 @@ utility_global_data_context = &utility_system_reserved_memory;
 if (utility_system_reserved_memory == UTILITY_FALSE) {
 utility_create_resource();
 utility_loop_index = 0;
-for (utility_loop_index = 0;
+for (int64_t i = 0; i < utility_max_iterations; i++) {
 utility_initialize_system(utility_loop_index = 0;
 }
 if (utility_system_reserved_memory == UTILITY_FALSE) {
