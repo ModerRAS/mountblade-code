@@ -20068,38 +20068,43 @@ LAB_18089cd76:
 
 
 
-ulong long utility_context_pointerr_process_data(void)
+/**
+ * 函数: utility_context_data_handler
+ * 功能: 处理上下文数据的辅助函数
+ * 返回值: 处理结果
+ */
+ulong long utility_context_data_handler(void)
 
 {
   long long *context_data_pointer;
-  uint utility_result_ptr;
+  uint utility_result_code;
   long long utility_context_handle;
-  ulong long utility_result_ptr;
+  ulong long utility_result_value;
   int utility_system_item_count;
   long long utility_global_register_rbp;
   long long *utility_global_register_rsi;
-  uint utility_utility_stack_param;
-  uint utility_utility_stack_param;
+  uint utility_stack_param1;
+  uint utility_stack_param2;
   
-  utility_result_ptr = 0x1c;
+  utility_result_code = 0x1c;
   if (*(int *)(utility_context_handle + UTILITY_THREAD_TLS_CONTEXT_OFFSET) == 0) {
     context_data_pointer = (long long *)*utility_global_register_rsi;
     if (*context_data_pointer == 0) {
-      utility_result_ptr = 0x1c;
+      utility_result_code = 0x1c;
     }
     else {
       if (context_data_pointer[2] != 0) {
-        utility_utility_stack_param = 0;
-        utility_result_ptr = system_call_function(*context_data_pointer,&utility_stack_buffer);
-        if ((int)utility_result_ptr != 0) {
-          return utility_result_ptr;
+        utility_stack_param1 = 0;
+        utility_result_code = system_call_function(*context_data_pointer,&utility_stack_buffer);
+        if ((int)utility_result_code != 0) {
+          return utility_result_code;
         }
-        if ((ulong long)context_data_pointer[2] < (ulong long)utility_utility_stack_param + 4) {
-          utility_result_ptr = 0x11;
+        if ((ulong long)context_data_pointer[2] < (ulong long)utility_stack_param1 + 4) {
+          utility_result_code = 0x11;
           goto LAB_18089cd46;
         }
       }
-      utility_result_ptr = utility_context_pointerr_process_data(*context_data_pointer,&utility_stack_buffer,1,4,0);
+      utility_result_code = utility_context_data_handler(*context_data_pointer,&utility_stack_buffer,1,4,0);
     }
 LAB_18089cd46:
     if ((int)utility_result_ptr != 0) {

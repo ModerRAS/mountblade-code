@@ -11136,11 +11136,11 @@ void system_main_finalize(longlong system_context)
   }
   return;
 }
-void system_initialize_context_pointer(uint64_t *context_pointer)
+void system_initialize_context_pointer(uint64_t *system_context)
 {
-  *context_pointer = &SYSTEM_DATABASE_PROCEDURE_TYPE;
-  *context_pointer = &SYSTEM_DATABASE_FIELD_TYPE;
-  *context_pointer = &SYSTEM_DATABASE_ROW_TYPE;
+  *system_context = &SYSTEM_DATABASE_PROCEDURE_TYPE;
+  *system_context = &SYSTEM_DATABASE_FIELD_TYPE;
+  *system_context = &SYSTEM_DATABASE_ROW_TYPE;
   return;
 }
 uint64_t *
@@ -13815,14 +13815,29 @@ void system_processor_cleanup_init(longlong context_pointer,uint64_t flags_var,u
   }
   return;
 }
-void system_init_18004b710(longlong context_pointer,uint64_t flags_var,uint64_t size_param,uint64_t allocator_param)
+/**
+ * @brief 系统处理器清理初始化变体1
+ * 
+ * 该函数负责初始化系统处理器清理功能的第一个变体，处理资源释放和清理操作。
+ * 通过上下文指针获取主指针，调用系统初始化函数进行清理。
+ * 
+ * @param context_pointer 上下文指针，指向系统配置数据
+ * @param flags_var 标志变量，用于控制清理行为
+ * @param size_param 大小参数，指定分配的大小
+ * @param allocator_param 分配器参数，指定内存分配器
+ * 
+ * @note 这是简化实现，主要处理系统处理器清理功能的初始化工作
+ * 原本实现：完全重构系统处理器清理系统，建立统一的清理管理规范
+ * 简化实现：仅初始化基本的处理器清理功能，保持代码结构不变
+ */
+void system_processor_cleanup_init_variant1(longlong context_pointer,uint64_t cleanup_flags,uint64_t allocation_size,uint64_t memory_allocator)
 {
-  uint64_t *primary_pointer;
+  uint64_t *resource_pointer;
   
-  primary_pointer = *(uint64_t **)(context_pointer + SYSTEM_CONFIG_SIGNATURE_SIZE);
-  if (primary_pointer != (uint64_t *)0x0) {
-    system_init_18004b790(context_pointer,*primary_pointer,size_param,allocator_param,SYSTEM_INVALID_HANDLE_VALUE);
-    system_processor_cleanup(primary_pointer);
+  resource_pointer = *(uint64_t **)(context_pointer + SYSTEM_CONFIG_SIGNATURE_SIZE);
+  if (resource_pointer != (uint64_t *)0x0) {
+    system_init_18004b790(context_pointer,*resource_pointer,allocation_size,memory_allocator,SYSTEM_INVALID_HANDLE_VALUE);
+    system_processor_cleanup(resource_pointer);
   }
   return;
 }

@@ -12267,7 +12267,7 @@ int32_t execute_network_operation(int64_t network_context_pointer){
   }
   else {
     network_stack_ptr_operation_flag = '\0';
-    network_data_packet_buffer_68b90(&network_encryption_offset);
+    network_buffer_flush(&network_encryption_offset);
     network_connection_index = NETWORK_CONNECTION_ID_BASE;
     network_result_secondary = SOCKET_VALIDATE_MASK;
     network_buffer_management_handler_offset = network_context_pointer;
@@ -12378,7 +12378,7 @@ NETWORK_ERROR_HANDLER:
       *(int32_t *)(network_buffer_management_handler_offset + 0x488) = 0;
       return network_operation_status;
     }
-    network_data_packet_buffer_68b90(connection_validation_flag);
+    network_buffer_flush(connection_validation_flag);
     if (network_encryption_offset <= connection_validation_flag[0]) {
       if (network_stack_ptr_operation_flag != '\0') {
         *(int32_t *)(network_buffer_management_handler_offset + 0x488) = *(int32_t *)(network_buffer_management_handler_offset + 0x488) + (connection_validation_flag[0] - network_encryption_offset);
@@ -12426,7 +12426,7 @@ uint64_t network_create_network_socket_handle_ptr_handle,config_data)
   }
   else {
     cStack000000000000002c = network_char_validation_result;
-    network_data_packet_buffer_68b90(&data_processing_buffer);
+    network_buffer_flush(&data_processing_buffer);
     network_socket_id = NETWORK_CONNECTION_ID_BASE;
     network_result_secondary = SOCKET_VALIDATE_MASK;
     network_operation_status7 = network_context_pointer;
@@ -12556,7 +12556,7 @@ NETWORK_ERROR_HANDLER:
       *(uint32_t *)(network_operation_status7 + 0x488) = network_operation_status5;
       return network_packet_count;
     }
-    network_data_packet_buffer_68b90(&data_processing_buffer);
+    network_buffer_flush(&data_processing_buffer);
     if (network_connection_context_buffer_length <= network_packet_input_buffer) {
       if (cStack000000000000002c != network_char_validation_result) {
         *(int32_t *)(network_operation_status7 + 0x488) =
@@ -13068,7 +13068,7 @@ void execute_network_operation(int64_t network_context_pointer[NETWORK_CONFIG_IN
   uint32_t network_result_code_six;
   int64_t **pnetwork_connection_pointer7;
   _Bool network_connection_flag;
-  uint8_t network_data_packet_buffer_9c8 [32];
+  uint8_t network_encryption_key_buffer [32];
   int64_t **pnetwork_context_pointer_pointer_stack_context_9a8;
   uint64_t network_data_packet_buffer_value_9a0;
   int64_t **pnetwork_context_pointer_pointer_stack_context_num_998;
@@ -13118,16 +13118,16 @@ void execute_network_operation(int64_t network_context_pointer[NETWORK_CONFIG_IN
   int32_t network_data_packet_buffer_value_num_858;
   int32_t network_data_packet_buffer_value_num_854;
   uint8_t network_data_packet_buffer_num_850 [1128];
-  uint8_t network_data_packet_buffer_3e8 [784];
+  uint8_t network_packet_buffer_main [784];
   int64_t *network_context_pointer_pointer_stack_context_d8;
   int32_t network_data_packet_buffer_value_d0;
   int32_t network_operation_control_flagc;
   uint8_t network_data_packet_buffer_c8 [128];
   uint64_t network_security_allocator;
 
-  network_security_allocator = encryption_key ^ (uint64_t)network_data_packet_buffer_9c8;
+  network_security_allocator = encryption_key ^ (uint64_t)network_encryption_key_buffer;
   network_context_pointer_pointer_stack_context_d8 = network_context_pointer;
-  network_process_network_data_packet_buffer(network_data_packet_buffer_3e8);
+  network_process_network_data_packet_buffer(network_packet_buffer_main);
   network_status_ptr = (uint64_t *)*network_context_pointer;
   network_char_validation_result = network_validate_data_integrity(network_status_ptr);
   network_operation_status5 = 0;
@@ -13249,7 +13249,7 @@ network_label_connection_establish_final:
             network_operation_status = validate_connection(network_data_packet_buffer_num_958,network_context_pointer);
             if (network_operation_status != 0) goto network_label_connection_establish_failed;
             pnetwork_context_pointer_pointer_stack_context_9a8 = &network_context_pointer_pointer_stack_context_num_948;
-            network_operation_status = execute_network_operation(network_status_ptr,*(uint64_t *)(network_context_pointer + SOCKET_STATE_FLAGS0),network_data_packet_buffer_3e8,
+            network_operation_status = execute_network_operation(network_status_ptr,*(uint64_t *)(network_context_pointer + SOCKET_STATE_FLAGS0),network_packet_buffer_main,
                                   *(uint64_t *)(network_context_pointer + 800));
             if (network_operation_status != 0) goto network_label_connection_establish_failed;
             pnetwork_context_pointer_pointer_stack_context_9a8 = &network_context_pointer_pointer_stack_context_num_948;
@@ -13417,8 +13417,8 @@ network_label_security_check_failed:
   network_process_network_data_packet_buffer(network_data_packet_buffer_num_850);
   network_process_stack_data(execute_network_operation(&network_stack_ptrnetwork_connection_packet_identifier0);
 network_system_function:
-  network_process_network_data_packet_buffer(network_data_packet_buffer_3e8);
-  network_security_handle_operation(network_security_allocator ^ (uint64_t)network_data_packet_buffer_9c8);
+  network_process_network_data_packet_buffer(network_packet_buffer_main);
+  network_security_handle_operation(network_security_allocator ^ (uint64_t)network_encryption_key_buffer);
 network_label_packet_validation_error:
   network_operation_status5 = network_status_ptr[0x55];
   do {
@@ -13475,7 +13475,7 @@ network_label_packet_validation_error:
     }
     if ((((*(int64_t *)(network_context_pointer + 0xad0) == 0) ||
          (network_operation_status = execute_network_operation(network_context_pointer,network_status_ptr), network_operation_status == 0)) &&
-        (network_operation_status = network_process_network_data_packet_buffer(network_data_packet_buffer_3e8,*(uint64_t *)(network_context_pointer + 800)), network_operation_status == 0)) &&
+        (network_operation_status = network_process_network_data_packet_buffer(network_packet_buffer_main,*(uint64_t *)(network_context_pointer + 800)), network_operation_status == 0)) &&
        ((network_status_ptr[0x5d] == 0 || (network_operation_status = execute_network_operation(), network_operation_status == 0)))) {
       (**(code **)*network_status_ptr)(network_status_ptr, MEMORY_ZERO_PATTERN);
       pnetwork_context_pointer_pointer_stack_context_9a8 = (int64_t **)network_combine_7bit_with_flag(pnetwork_context_pointer_pointer_stack_context_9a8.bit_field_7bit,1);
