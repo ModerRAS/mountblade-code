@@ -419,7 +419,7 @@ void utility_process_thread_data(int64_t thread_handle, int64_t context_data)
         // 创建资源句柄
         utility_resource_handle = utility_resource_allocator(*(uint64_t *)(context_data + UTILITY_RESOURCE_HANDLE_OFFSET), *(int64_t *)(utility_context_data_storage[0] + UTILITY_MEMORY_POINTER_OFFSET), &utility_data_buffer);
         
-        if (utility_operation_status == UTILITY_FALSE) {
+        if (utility_operation_result == UTILITY_FALSE) {
             // 处理资源计数器大于0的情况
             if (0 < utility_total_resources) {
                 // 清理缓冲区管理器
