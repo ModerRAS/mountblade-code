@@ -26219,7 +26219,7 @@ void system_init_subsystem_540(void)
   system_initialization_loop_counter = *(int *)(system_context_param + INIT_SIZE_COMPARE) + INIT_SIZE_MEMORY_CHUNK;
   system_call_service(system_context_param,system_initialization_loop_counter);
   system_context_pointer = (system_uint64_t *)((ulonglong)*(uint *)(system_context_param + INIT_SIZE_COMPARE) + *(longlong *)(system_context_param + INIT_SIZE_MEMORY_CHUNK));
-  *system_context_pointer = SYSTEM_INIT_FLAG_INITIALIZED_OFFSET_F70x106568701061726010;
+  *system_context_pointer = SYSTEM_INIT_FLAG_INITIALIZED_EXTENDED;
   *(system_uint8_t *)(system_context_pointer + 1) = 0;
   *(int *)(system_context_param + INIT_SIZE_COMPARE) = system_initialization_loop_counter;
                     // WARNING: Subroutine does not return
@@ -32990,7 +32990,7 @@ void system_init_subsystem_700(void)
   psystem_stack_frame_primary = system_init_buffer_pointer;
   system_initialization_flags_mask = system_validate_operation(system_init_buffer_pointer);
   system_stack_uint_nano_time = SYSTEM_INIT_CONCAT_TWO_UINT16(system_stack_uint_nano_time._4_4_,system_initialization_flags_mask);
-  *system_init_buffer_pointer = 0x65766544;
+  *system_init_buffer_pointer = SYSTEM_INIT_STRING_DEVICE_ID;
   system_init_buffer_pointer[SYSTEM_ARRAY_INDEX_SECONDARY] = 0x6d706f6c;
   system_init_buffer_pointer[SYSTEM_ARRAY_INDEX_TERTIARY] = SYSTEM_INIT_OFFSET_STACK_PARAMETER746e65;
   system_init_buffer_pointer[SYSTEM_ARRAY_INDEX_FOURTH] = 0x666e6f6010;
