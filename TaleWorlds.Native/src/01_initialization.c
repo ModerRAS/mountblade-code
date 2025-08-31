@@ -3,7 +3,7 @@
 /*
  * 01_initialization.c - 系统初始化模块
  * 
- * 简化实现：美化FUN_函数名和变量名，添加基本文档注释
+ * 简化实现：美化system_function_函数名、DAT_数据变量、UNK_未知变量和undefined类型，添加详细文档注释
  * 原本实现：完全重构所有命名体系，建立统一的语义化命名规范
  */
 
@@ -12,37 +12,37 @@
  * 初始化游戏引擎的核心系统组件
  * @return 初始化状态码
  */
-undefined system_initialize_core;
-undefined system_data_context;
-undefined system_runtime_data;
-undefined system_config_manager;
-undefined system_state_manager;
-undefined system_status_manager;
-undefined system_control_manager;
-undefined system_module_manager;
-undefined system_handler_manager;
-undefined system_context_manager;
+void *system_initialize_core;
+void *system_data_context;
+void *system_runtime_data;
+void *system_config_manager;
+void *system_state_manager;
+void *system_status_manager;
+void *system_control_manager;
+void *system_module_manager;
+void *system_handler_manager;
+void *system_context_manager;
 
 /**
  * @brief 系统组件初始化函数
  * 初始化各个系统模块和组件
  * @return 组件初始化状态码
  */
-undefined system_initialize_components;
-undefined system_buffer_allocator;
-undefined system_memory_manager;
-undefined system_thread_manager;
-undefined system_resource_manager;
-undefined system_callback_manager;
+void *system_initialize_components;
+void *system_buffer_allocator;
+void *system_memory_manager;
+void *system_thread_manager;
+void *system_resource_manager;
+void *system_callback_manager;
 
 /**
  * @brief 内存系统初始化函数
  * 初始化内存管理和分配系统
  * @return 内存初始化状态码
  */
-undefined system_initialize_memory;
-undefined system_memory_cache;
-undefined system_buffer_cache;
+void *system_initialize_memory;
+void *system_memory_cache;
+void *system_buffer_cache;
 undefined system_thread_pool;
 undefined system_resource_pool;
 undefined system_callback_pool;
@@ -16177,8 +16177,17 @@ LAB_180043e47:
 
 
 
+/**
+ * @brief 系统组件初始化函数
+ * 初始化系统核心组件，包括内存管理、线程管理、资源管理等
+ * @param param_1 组件配置参数
+ * @param param_2 组件大小参数
+ * @param param_3 组件标志参数
+ * @param param_4 组件选项参数
+ * @return 初始化状态码
+ */
 undefined8 *
-FUN_180043f30(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
+system_initialize_core_components(undefined8 *param_1,ulonglong param_2,undefined8 param_3,undefined8 param_4)
 
 {
   *param_1 = &UNK_18098bd40;
