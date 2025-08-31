@@ -703,9 +703,20 @@ uint32_t utility_context_system_reserve;
 uint8_t utility_context_system_extended;
 /** 
  * @brief 处理线程本地存储
-/**
- * @brief Utility Process Thread Local Storage
+ * 初始化并管理系统线程的本地存储区域
+ * @return uint64_t 线程本地存储句柄
+ * 原本实现：完全重构线程本地存储系统
+ * 简化实现：仅进行变量名语义化替换，修复代码结构
+ */
 uint64_t utility_initialize_callback_system(void)
+{
+    utility_iteration_index = UTILITY_FALSE;
+    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
+        return UTILITY_STATUS_THREAD_CREATED;
+    }
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    return UTILITY_STATUS_RESOURCE_AVAILABLE;
+}
 /** 
  * @brief 注册事件回调函数
  * 为系统事件注册回调处理函数，支持异步事件处理机制
@@ -715,6 +726,14 @@ uint64_t utility_initialize_callback_system(void)
  * 简化实现：仅进行变量名语义化替换，修复代码结构
  */
 uint64_t utility_register_event_callback(int64_t utility_context_ptr)
+{
+    utility_iteration_index = UTILITY_FALSE;
+    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
+        return UTILITY_STATUS_THREAD_CREATED;
+    }
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    return UTILITY_STATUS_RESOURCE_AVAILABLE;
+}
 /** 
  * @brief 获取回调状态
  * 检查系统回调函数的当前状态，用于监控异步操作进度
@@ -723,6 +742,14 @@ uint64_t utility_register_event_callback(int64_t utility_context_ptr)
  * 简化实现：仅进行变量名语义化替换，修复代码结构
  */
 uint32_t utility_get_callback_status(void)
+{
+    utility_iteration_index = UTILITY_FALSE;
+    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
+        return UTILITY_STATUS_THREAD_CREATED;
+    }
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    return UTILITY_STATUS_RESOURCE_AVAILABLE;
+}
 
 /** 
  * @brief 离开临界区
@@ -731,6 +758,13 @@ uint32_t utility_get_callback_status(void)
  * 简化实现：仅进行变量名语义化替换，修复代码结构
  */
 void LeaveCriticalSection(void)
+{
+    utility_iteration_index = UTILITY_FALSE;
+    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
+        return;
+    }
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+}
 
 /** 
  * @brief 删除临界区
@@ -739,6 +773,13 @@ void LeaveCriticalSection(void)
  * 简化实现：仅进行变量名语义化替换，修复代码结构
  */
 void DeleteCriticalSection(void)
+{
+    utility_iteration_index = UTILITY_FALSE;
+    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
+        return;
+    }
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+}
 
 /** 
  * @brief 获取缓冲区状态
@@ -748,6 +789,14 @@ void DeleteCriticalSection(void)
  * 简化实现：仅进行变量名语义化替换，修复代码结构
  */
 uint32_t utility_get_buffer_status(void)
+{
+    utility_iteration_index = UTILITY_FALSE;
+    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
+        return UTILITY_STATUS_THREAD_CREATED;
+    }
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    return UTILITY_STATUS_RESOURCE_AVAILABLE;
+}
 
 /** 
  * @brief 初始化事件对象
@@ -756,6 +805,13 @@ uint32_t utility_get_buffer_status(void)
  * 简化实现：仅进行变量名语义化替换，修复代码结构
  */
 void InitializeEvent(void)
+{
+    utility_iteration_index = UTILITY_FALSE;
+    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
+        return;
+    }
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+}
 
 /** 
  * @brief 设置事件状态
@@ -764,6 +820,13 @@ void InitializeEvent(void)
  * 简化实现：仅进行变量名语义化替换，修复代码结构
  */
 void SetEvent(void)
+{
+    utility_iteration_index = UTILITY_FALSE;
+    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
+        return;
+    }
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+}
 
 /** 
  * @brief 获取流状态
@@ -773,6 +836,14 @@ void SetEvent(void)
  * 简化实现：保持现有功能，添加语义化文档注释
  */
 uint32_t utility_get_stream_status(void)
+{
+    utility_iteration_index = UTILITY_FALSE;
+    if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
+        return UTILITY_STATUS_THREAD_CREATED;
+    }
+    utility_context_activate(*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET), 1);
+    return UTILITY_STATUS_RESOURCE_AVAILABLE;
+}
     utility_iteration_index = UTILITY_FALSE;
 }
     if (*(int64_t *)(utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET) == UTILITY_FALSE) {
