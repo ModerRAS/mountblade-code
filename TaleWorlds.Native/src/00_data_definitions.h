@@ -1743,9 +1743,17 @@ int initialize_main_mutex(void* handle_param, void* system_thread_operation_flag
   return (initialization_result != 0) - 1;
 }
 // 初始化数据缓冲区系统
-int initialize_data_buffer_system(void)
+/**
+ * @brief 初始化数据缓冲区系统
+ * @return int 返回初始化结果，成功返回0，失败返回-1
+ * 
+ * 该函数负责初始化系统的数据缓冲区系统，包括各种资源缓冲区的初始化。
+ * 这是简化实现，仅处理基本的数据缓冲区系统初始化。
+ * 原本实现：完整的数据缓冲区系统初始化流程
+ */
+int system_initialize_data_buffer_system(void)
 {
-  long long system_initialization_result;
+  long long initialization_result;
   unsigned long long system_string_length;
   g_system_config_buffer = SYSTEM_ZERO_VALUE;
   g_system_config_system_thread_operation_flags = FLAG_INITIALIZED;
@@ -1905,8 +1913,8 @@ int initialize_data_buffer_system(void)
   g_audio_format_buffer = SYSTEM_ZERO_VALUE;
   system_global_data_pointer_variable = SYSTEM_OPCODE_AUDIO_INIT;
   strcpy_s(&g_audio_format_buffer,SYSTEM_CONFIG_BUFFER_SIZE,&audio_format_string);
-  system_initialization_result = system_execution_function(&system_init_function_primary);
-  return SYSTEM_INITIALIZATION_RESULT_NEGATE(system_initialization_result);
+  initialization_result = system_execution_function(&system_init_function_primary);
+  return SYSTEM_INITIALIZATION_RESULT_NEGATE(initialization_result);
 }
 /**
  * @brief 初始化音频模块
