@@ -235,6 +235,8 @@
 #define UTILITY_STATUS_ENABLED_FLAG_QUATERNARY 0x4
 #define UTILITY_STATUS_SUCCESS 0x0
 #define UTILITY_STATUS_TRUE 0x1
+#define UTILITY_STATUS_FLAG_F 0xf
+#define UTILITY_CONTEXT_SIZE_MULTIPLIER_44_BYTES_BYTES 0x44
 
 void *utility_exception_handler_ptr;
 void *utility_global_context_primary_ptr;
@@ -251,6 +253,16 @@ int utility_global_status_secondary;
 void *system_context_ptr;
 long long system_config_data;
 long long system_state_value;
+int64_t resource_current_counter;
+int64_t data_storage_ptr;
+int64_t status_code;
+int64_t resource_handle_value;
+int64_t max_iterations;
+int64_t utility_release_iteration_counter;
+float network_float_value;
+void *stack_base_ptr;
+void *utility_stack_data_buffer;
+void *utility_global_context_pointer;
 void *buffer_primary_ptr;
 void *buffer_secondary_ptr;
 void *buffer_tertiary_ptr;
@@ -354,6 +366,49 @@ uint context_system_auxiliary;
 double context_system_backup;
 uint32_t context_system_reserve;
 uint8_t context_system_extended;
+
+// 函数声明
+uint64_t handle_service_request(uint32_t handle, void *buffer);
+uint64_t resource_allocator(uint64_t handle, int64_t offset, void **buffer);
+void cleanup_buffer(void **buffer);
+void compute_checksum(uint64_t checksum);
+uint64_t initialize_context(uint64_t context);
+void activate_context(uint64_t context, int32_t flag);
+uint64_t initialize_resource_context(uint64_t context, char *buffer);
+uint64_t initialize_system_resource(uint64_t context);
+uint64_t create_resource_iterator(uint64_t offset, uint64_t context);
+uint64_t process_operation_result(uint64_t context, int32_t count);
+uint64_t create_resource_handle(uint64_t handle, int64_t offset, void **buffer);
+void cleanup_main_pointer_resources(void *context);
+uint64_t context_validator(void *context);
+uint64_t validate_utility_buffer_variables(void *context);
+void process_system_context(void *context1, void *context2);
+uint64_t utility_create_context(void *context1, void *context2, void *context3);
+uint64_t utility_process_resource(int64_t context, uint32_t param, uint8_t flag);
+void utility_setup_system_module(void *context);
+uint64_t utility_confirm_resource_connection(void *context);
+void clear_stack_handler(void *buffer);
+uint64_t process_stack_main(void *buffer);
+uint64_t utility_verify_resource_available(uint64_t handle);
+uint64_t stack_operation_secondary(int64_t counter);
+uint64_t pointer_operation_main(uint64_t context);
+uint64_t stack_operation_tertiary(int64_t counter);
+uint64_t utility_move_mask_pointer(uint64_t param1, uint64_t param2);
+float utility_float_calculator(int64_t param);
+void memory_copy_pointer(void *dest, void *src, int64_t size);
+uint64_t utility_execute_operation(void *context1, void *context2, uint32_t param1, void *context3);
+void utility_process_primary_resources(void *context1, void *context2);
+void utility_allocate_resource_memory(uint64_t handle, int64_t offset);
+void utility_free_resource_memory(uint64_t handle, int64_t offset);
+uint64_t utility_run_resource_command(void *context1, void *context2, uint32_t param, void *context3);
+uint64_t utility_process_resource_queue(uint64_t handle, uint32_t param, void *context1, void *context2, void *context3, void *context4);
+uint64_t utility_allocate_resource(int64_t offset, void *context);
+uint64_t utility_free_resource(int64_t offset, void *context);
+void utility_configure_resource_settings(int64_t offset, uint8_t param);
+uint64_t utility_validate_resource_queue(uint64_t handle, uint32_t param);
+void utility_process_system_event(uint64_t handle, uint32_t param);
+uint64_t utility_get_resource_iterator_data(void *context1, int *context2, int64_t offset, void *data, uint8_t flag);
+
 /** 处理线程本地存储
  * 
  * 该函数负责处理和管理线程的本地存储数据，包括资源句柄的创建、
@@ -511,7 +566,7 @@ uint64_t process_resource_pointer(int64_t context_pointer)
     uint8_t working_buffer[512];
     int64_t resource_handle_value;
     
-    status_code = UTILITY_STATUS_OPERATION_FAILED;
+    utility_status_code = UTILITY_STATUS_OPERATION_FAILED;
     
     status = handle_service_request(*(uint32_t *)(context_pointer + UTILITY_THREAD_HANDLE_OFFSET), &working_buffer);
     if ((int)status != UTILITY_STATUS_OPERATION_FAILED) {
@@ -530,12 +585,12 @@ uint64_t process_resource_pointer(int64_t context_pointer)
     
     if (*(int *)(resource_current_counter + UTILITY_MEMORY_STATUS_OFFSET) == -1) {
         resource_context_status = initialize_resource_context(resource_current_counter, temp_char_buffer);
-        if ((int)status != UTILITY_STATUS_OPERATION_FAILED) {
-            return status;
+        if ((int)resource_context_status != UTILITY_STATUS_OPERATION_FAILED) {
+            return resource_context_status;
         }
         resource_context_status = initialize_system_resource(resource_current_counter);
-        if ((int)status != UTILITY_STATUS_OPERATION_FAILED) {
-            return status;
+        if ((int)resource_context_status != UTILITY_STATUS_OPERATION_FAILED) {
+            return resource_context_status;
         }
     }
     

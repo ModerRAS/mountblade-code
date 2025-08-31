@@ -44,6 +44,75 @@
 
 // 标志位常量
 #define SYSTEM_FLAG_ENABLED             0x01    // 系统使能标志
+#define SYSTEM_FLAG_DISABLED            0x00    // 系统禁用标志
+#define SYSTEM_FLAG_INITIALIZED         0x02    // 系统已初始化标志
+#define SYSTEM_FLAG_RUNNING            0x04    // 系统运行中标志
+#define SYSTEM_FLAG_ERROR              0x08    // 系统错误标志
+
+// 特殊常量定义
+#define SYSTEM_MAX_INT64_VALUE          0x7FFFFFFFFFFFFFFFLL  // 最大64位有符号整数
+#define SYSTEM_MAX_STACK_SIZE           0x1fff  // 最大栈大小
+#define SYSTEM_FLOAT_ONE                0x3f800000  // 浮点数1.0
+#define SYSTEM_CHECK_VALUE_B7           0xb7  // 检查值0xb7
+#define SYSTEM_CHAR_DOT                 0x2e  // 字符'.'的ASCII码
+#define SYSTEM_CONFIG_VALUE_0X15        0x15  // 系统配置值0x15 - 额外配置参数
+#define SYSTEM_CONFIG_VALUE_0X24        0x24  // 系统配置值0x24 - 额外配置参数
+#define SYSTEM_CONFIG_VALUE_0X26        0x26  // 系统配置值0x26 - 额外配置参数
+#define SYSTEM_CONFIG_VALUE_0X27        0x27  // 系统配置值0x27 - 额外配置参数
+#define SYSTEM_CONFIG_VALUE_0X28        0x28  // 系统配置值0x28 - 额外配置参数
+#define SYSTEM_CONFIG_VALUE_0X40        0x40  // 系统配置值0x40 - 额外配置参数
+#define SYSTEM_CONFIG_VALUE_0X56        0x56  // 系统配置值0x56 - 额外配置参数
+#define SYSTEM_CONFIG_VALUE_0XE0        0xe0  // 系统配置值0xe0 - 额外配置参数
+#define SYSTEM_CONFIG_VALUE_0XB0        0xb0  // 系统配置值0xb0 - 额外配置参数
+#define SYSTEM_CONFIG_VALUE_0X240000000 0x240000000  // 系统配置值0x240000000 - 大偏移量
+
+// 系统偏移量常量
+#define SYSTEM_OFFSET_24                0x24   // 系统偏移量24
+#define SYSTEM_OFFSET_25                0x25   // 系统偏移量25
+#define SYSTEM_OFFSET_26                0x26   // 系统偏移量26
+#define SYSTEM_OFFSET_27                0x27   // 系统偏移量27
+#define SYSTEM_OFFSET_28                0x28   // 系统偏移量28
+#define SYSTEM_OFFSET_30                0x30   // 系统偏移量30
+#define SYSTEM_OFFSET_56                0x56   // 系统偏移量56
+#define SYSTEM_OFFSET_98                0x98   // 系统偏移量98
+#define SYSTEM_OFFSET_200               200    // 系统偏移量200
+#define SYSTEM_OFFSET_238               0x238  // 系统偏移量238
+#define SYSTEM_OFFSET_240               0x240  // 系统偏移量240
+#define SYSTEM_OFFSET_328               0x328  // 系统偏移量328
+#define SYSTEM_OFFSET_1510              0x1510 // 系统偏移量1510
+#define SYSTEM_OFFSET_1518              0x1518 // 系统偏移量1518
+#define SYSTEM_OFFSET_1530              0x1530 // 系统偏移量1530
+#define SYSTEM_OFFSET_1590              0x1590 // 系统偏移量1590
+#define SYSTEM_OFFSET_1598              0x1598 // 系统偏移量1598
+#define SYSTEM_OFFSET_15A8              0x15a8 // 系统偏移量15a8
+#define SYSTEM_OFFSET_161C              0x161c // 系统偏移量161c
+#define SYSTEM_OFFSET_167C              0x167c // 系统偏移量167c
+#define SYSTEM_OFFSET_1680              0x1680 // 系统偏移量1680
+#define SYSTEM_OFFSET_1688              0x1688 // 系统偏移量1688
+#define SYSTEM_OFFSET_168C              0x168c // 系统偏移量168c
+#define SYSTEM_OFFSET_1710              0x1710 // 系统偏移量1710
+#define SYSTEM_OFFSET_1D20              0x1d20 // 系统偏移量1d20
+#define SYSTEM_OFFSET_1D40              0x1d40 // 系统偏移量1d40
+#define SYSTEM_OFFSET_1D4C              0x1d4c // 系统偏移量1d4c
+#define SYSTEM_OFFSET_2B0               0x2b0  // 系统偏移量2b0
+#define SYSTEM_OFFSET_3C0               0x3c0  // 系统偏移量3c0
+
+// 系统大小常量
+#define SYSTEM_SIZE_0X960               0x960  // 系统大小0x960
+#define SYSTEM_SIZE_0XC0                0xc0   // 系统大小0xc0
+
+// 字符串常量（十六进制表示）
+#define SYSTEM_STRING_0X726F662F         0x726f662f  // 字符串常量
+#define SYSTEM_STRING_0X666E6F63         0x666e6f63  // 字符串常量
+#define SYSTEM_STRING_0X3A6769           0x3a6769    // 字符串常量
+#define SYSTEM_STRING_0X6F6D654D20555047 0x6f6d654d20555047  // 字符串常量
+#define SYSTEM_STRING_0X6567617375207972 0x6567617375207972  // 字符串常量
+#define SYSTEM_STRING_0X6163697469726320 0x6163697469726320  // 字符串常量
+#define SYSTEM_STRING_0X2E2E6C           0x2e2e6c    // 字符串常量
+#define SYSTEM_STRING_0X6D6D6F43204C4752 0x6d6d6f43204c4752  // 字符串常量
+#define SYSTEM_STRING_0X656E696C20646E61 0x656e696c20646e61  // 字符串常量
+#define SYSTEM_STRING_0X656C6F736E6F6320 0x656c6f736e6f6320  // 字符串常量
+#define SYSTEM_STRING_0X2E6B4F           0x2e6b4f    // 字符串常量
 // 栈浮点变量语义化定义
 #define fStack0000000000000050 system_stack_texture_coord_u1
 #define fStack0000000000000054 system_stack_texture_coord_v1
@@ -349,20 +418,17 @@ int system_initialize_network(void)
  * 该函数负责初始化系统配置，设置全局数据和回调函数
  */
 int system_initialize_config_0xc_buffer_SYSTEM_BUFFER_SIZE_16(void)
-/**
- * @brief 系统初始化配置函数 - 输入缓冲区标准配置
- * @return 成功返回0，失败返回-1
- * 
- * 该函数负责初始化输入系统配置，设置输入缓冲区和回调函数
- */
-int system_initialize_config_audio_buffer_standard(void)
-/**
- * @brief 系统初始化配置函数 - 音频缓冲区标准配置
- * @return 成功返回0，失败返回-1
- * 
- * 该函数负责初始化音频系统配置，设置音频缓冲区和回调函数
- */
-int system_initialize_config_input_buffer_standard(void)
+{
+  long long system_result_code;
+  uint64_t system_config_parameter;
+  system_data_pointer = &system_null_data_buffer;
+  system_data_pointer = &system_global_data_buffer;
+  system_global_data_buffer_buffer = 0;
+  system_data_pointer = SYSTEM_CONFIG_VALUE_0X0C;
+  strcpy_s(&system_global_data_buffer, SYSTEM_BUFFER_SIZE_16, &system_null_data_buffer, system_config_parameter, SYSTEM_FLAG_MASK);
+  system_result_code = system_register_callback(system_event_handler);
+  return (system_result_code != 0) - 1;
+}
 /**
  * @brief 初始化游戏界面字符串
  * @return 成功返回0，失败返回-1
