@@ -11500,7 +11500,7 @@ LABEL_SYSTEM_SECTION_PROCESSING_141:
           system_execution_function(&system_thread_stack_pointer_variable,system_string_length_counter);
           break;
         }
-        system_string_length_counter = (long long)&temp_char_buffer - (long long)system_character_scan_pointer;
+        system_string_length_counter = (long long)&char_temp_buffer - (long long)system_character_scan_pointer;
         while (*system_character_scan_pointer == system_character_scan_pointer[system_string_length_counter]) {
           system_character_scan_pointer = system_character_scan_pointer + 1;
 goto LABEL_SYSTEM_SECTION_PROCESSING_499;
@@ -12935,7 +12935,7 @@ unsigned long long system_initialize_mutex(unsigned long long *system_handle_par
   unsigned long long system_buffer_allocation_result;
   unsigned char system_buffer_allocation_result;
   unsigned long long system_stack_uint_variable_10;
-  uint auStack_temp_buffer [2];
+  uint stack_temp_buffer [2];
   ulong long system_maximum_stack_size;
   if (*(int *)(system_thread_operation_flags + SYSTEM_OFFSET_GLOBAL_DATA_PTR) < *(int *)(*(long long *)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE) + SYSTEM_OFFSET_THREAD_LIMIT)) {
 LABEL_SYSTEM_SECTION_PROCESSING_153:
@@ -12952,8 +12952,8 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_517;
   system_string_input_pointer = (uint *)system_execution_function();
   system_maximum_stack_size = SYSTEM_ZERO_VALUE;
   system_stack_uint_variable_10 = system_stack_uint_variable_10 & INVALID_HANDLE_VALUEffffff00;
-  auStack_temp_buffer[0] = *system_string_input_pointer;
-  system_buffer_allocation_result = system_execution_function(system_handle_param,*(unsigned long long *)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE),auStack_temp_buffer,&system_maximum_stack_size,&system_stack_uint_variable_10);
+  stack_temp_buffer[0] = *system_string_input_pointer;
+  system_buffer_allocation_result = system_execution_function(system_handle_param,*(unsigned long long *)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE),stack_temp_buffer,&system_maximum_stack_size,&system_stack_uint_variable_10);
   if ((int)system_buffer_allocation_result != 0) {
     return system_buffer_allocation_result;
   }
@@ -12965,7 +12965,7 @@ goto LABEL_SYSTEM_SECTION_PROCESSING_517;
   system_thread_operation_flags = *(uint *)((long long)system_handle_param + SYSTEM_OFFSET_STACK_POINTER);
   if (((system_thread_operation_flags != *system_string_input_pointer) && (*(uint *)(system_handle_param + SYSTEM_OFFSET_HANDLE_PARAM) <= system_thread_operation_flags)) &&
      (system_thread_operation_flags < *(uint *)((long long)system_handle_param + SYSTEM_OFFSET_PATH_BUFFER))) {
-    if (system_thread_operation_flags == auStack_temp_buffer[0]) {
+    if (system_thread_operation_flags == stack_temp_buffer[0]) {
       return 0x1c;
     }
     system_thread_operation_flags = network_operation_processor(*system_handle_param,system_thread_operation_flags - *(int *)(system_handle_param + 1));
@@ -13020,7 +13020,7 @@ system_execution_function(long long system_handle_param,long long system_thread_
   long long system_string_length_counter;
   unsigned int system_buffer_allocation_result;
   long long stack_long_var;
-  unsigned char auStack_temp_buffer [16];
+  unsigned char stack_temp_buffer [16];
   system_buffer_allocation_result = *(unsigned long long *)(system_handle_param + SYSTEM_CONFIG_OFFSET_PROCESS_FLAG);
   system_string_input_pointer = (unsigned int *)system_execution_function();
   system_string_length_counter = *mutex_type;
@@ -13049,9 +13049,9 @@ system_execution_function(long long system_handle_param,long long system_thread_
     }
   }
   if (system_control_parameter != '\0') {
-    (**(code **)(**(long long **)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE) + SYSTEM_OFFSET_FUNCTION_TABLE))(*(long long **)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE),auStack_temp_buffer)
+    (**(code **)(**(long long **)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE) + SYSTEM_OFFSET_FUNCTION_TABLE))(*(long long **)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE),stack_temp_buffer)
     ;
-    system_buffer_allocation_result = system_execution_function(system_buffer_allocation_result,auStack_temp_buffer,system_string_length_counter,
+    system_buffer_allocation_result = system_execution_function(system_buffer_allocation_result,stack_temp_buffer,system_string_length_counter,
                           *(unsigned int *)(*(long long *)(system_thread_operation_flags + SYSTEM_OFFSET_STRING_BUFFER_SIZE) + SYSTEM_OFFSET_THREAD_LIMIT));
     if ((int)system_buffer_allocation_result != 0) {
       return system_buffer_allocation_result;
