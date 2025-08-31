@@ -270,7 +270,6 @@ void* system_lifecycle_manager;
 void* system_persistent_data;
 
 // 函数: void MemoryManagerSetup;
-void* MemoryManagerSetup;
 void* system_memory_pool;
 
 // 函数: void InitializeThreadSystem;
@@ -330,7 +329,6 @@ void* system_network_receiving;
 void* system_graphics_device;
 
 // 函数: void InitializeGraphicsSystem;
-void* InitializeGraphicsSystem;
 
 // 函数: void InitializeAudioSystem;
 void* InitializeAudioSystem;

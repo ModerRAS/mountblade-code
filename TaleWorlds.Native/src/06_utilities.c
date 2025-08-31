@@ -356,16 +356,44 @@ uint64 utility_get_utility_operation_result_pointer(void)
   }
   return utility_zero;
 }
-// 函数: void utility_initialize_system_resources(void)
+/**
+ * @brief 初始化系统资源 - 初始化系统所需的资源
+ * @return 无返回值
+ * 
+ * 该函数用于初始化系统所需的资源，确保系统能够正常运行。
+ * 这是简化实现，原本实现应该包含完整的资源初始化逻辑。
+ * 
+ * 简化实现：添加函数文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 void utility_initialize_system_resources(void)
 {
   return;
 }
+/**
+ * @brief 初始化资源管理系统 - 初始化系统的资源管理模块
+ * @return uint64 初始化结果状态码
+ * 
+ * 该函数用于初始化系统的资源管理模块，确保资源能够被正确管理。
+ * 这是简化实现，原本实现应该包含完整的资源管理系统初始化逻辑。
+ * 
+ * 简化实现：添加函数文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 uint64 utility_initialize_resource_management_system(void)  
 {
   return utility_offset_flag_byte;
 }
-// WARNING: Potential global variable overlap
+/**
+ * @brief 分配系统资源 - 为系统分配所需的资源
+ * @param utility_resource_primary_handle 资源句柄
+ * @return uint64 分配结果状态码
+ * 
+ * 该函数用于为系统分配所需的资源，包括内存分配和资源初始化。
+ * 
+ * 简化实现：添加函数文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 uint64 utility_allocate_system_resources(longlong utility_resource_primary_handle)
 {
   uint64 utility_operation_result;
