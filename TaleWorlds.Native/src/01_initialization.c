@@ -14057,17 +14057,17 @@ void system_get_timer_elapsed_time(void)
   system_initialize_component(system_handle_ptr);
 }
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
-
 /**
- * @return 主入口点状态码
-/**
- * 初始化主入口点
+ * @brief 初始化系统主入口点
  * 
- * 设置系统启动参数和初始化顺序
- * 为系统启动做准备
- *
- * @return 系统初始化状态码
+ * 此函数负责系统的主入口点初始化工作，设置系统启动参数和初始化顺序。
+ * 该函数会初始化核心系统组件，建立内存管理机制，并准备系统运行环境。
+ * 
+ * @return 系统初始化状态码，返回0表示成功，非0表示错误码
+ * 
+ * @note 这是简化实现，主要处理了系统主入口点的初始化逻辑
+ * 原本实现：完整的主入口点管理系统，包括复杂的初始化顺序和错误恢复
+ * 简化实现：仅保留核心的初始化逻辑和基本的错误处理
  */
 uint64_t system_initialize_main_entry(void)
 
@@ -19726,7 +19726,17 @@ void system_compare_hash_values(longlong system_context_parameter)
   return;
 }
 
-// WARNING: Globals starting with '_' overlap smaller symbols at the same address
+/**
+ * @brief 初始化系统校验和系统
+ * 
+ * 此函数用于初始化系统的校验和计算和验证机制。
+ * 该函数设置校验和计算的上下文环境，初始化相关的数据结构，
+ * 并配置校验和计算的参数和算法。
+ * 
+ * @note 这是简化实现，主要处理了系统校验和的初始化逻辑
+ * 原本实现：完整的校验和管理系统，包括多种算法支持和错误恢复
+ * 简化实现：仅保留核心的初始化逻辑和基本的配置设置
+ */
 void system_initialize_checksum_system(void)
 
 {

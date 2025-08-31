@@ -1,6 +1,8 @@
 #ifndef DATA_DEFINITIONS_H
 #define DATA_DEFINITIONS_H
 
+#include <stddef.h>
+
 // 游戏引擎核心数据定义头文件
 // 简化实现：仅美化函数名和变量名，添加必要的注释，保持代码结构不变
 // 原本实现：完全重构所有命名体系，建立统一的语义化命名规范
