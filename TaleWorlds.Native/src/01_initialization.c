@@ -63981,7 +63981,7 @@ longlong *system_memory_pool_pointer;
 #define SYSTEM_INIT_OFFSET_STACK_9F8          0x9f8    // 栈偏移量9F8
 #define SYSTEM_INIT_OFFSET_STACK_A28          0xa28    // 栈偏移量A28
 #define SYSTEM_INIT_OFFSET_STACK_A0x100          0xa0100    // 栈偏移量A0x100
-#define SYSTEM_INIT_OFFSET_STACK_ASYSTEM_INIT_FLAG_INITIALIZED_OFFSET          0xa0108    // 栈偏移量ASYSTEM_INIT_FLAG_INITIALIZED_OFFSET
+#define SYSTEM_INIT_OFFSET_STACK_A108          0xa0108    // 栈偏移量A108
 #define SYSTEM_INIT_OFFSET_STACK_A90          0xa90    // 栈偏移量A90
 #define SYSTEM_INIT_OFFSET_STACK_56           0x56     // 栈偏移量56
 #define SYSTEM_INIT_OFFSET_STACK_A4           0xa4     // 栈偏移量A4
