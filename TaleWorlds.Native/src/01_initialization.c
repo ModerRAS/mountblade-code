@@ -21351,7 +21351,7 @@ system_initialize_service_registry(uint64_t system_context_parameter,uint64_t sy
   uint64_t *system_buffer_context;
   uint64_t *system_config_ptr;
   longlong system_long_status;
-  char *pcVar0x03;
+  char *string_compare_pointer;
   int *system_audio_loop_counter_ptr;
   ulonglong system_temp_value;
   uint64_t system_temp_value;
@@ -21431,9 +21431,9 @@ SYSTEM_VALIDATION_CHECK:
     system_temp_pointer = system_long_status - (longlong)string_compare_pointer;
     do {
       init_status = *string_compare_pointer;
-      system_char_data = pcVar0x03[system_temp_pointer];
+      system_char_data = string_compare_pointer[system_temp_pointer];
       if (init_status != system_char_data) break;
-      pcVar0x03 = pcVar0x03 + 1;
+      string_compare_pointer = string_compare_pointer + 1;
     } while (system_char_data != '\0');
     if (init_status == system_char_data) break;
     system_uint_pointer = system_uint_pointer + 1;

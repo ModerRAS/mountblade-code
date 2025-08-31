@@ -482,6 +482,7 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
         if (utility_operation_status == UTILITY_BOOLEAN_FALSE) {
             // 处理进程计数大于0的情况
             if (0 < utility_iteration_maximum_limit) {
+                do {
                     // 获取资源值
                     utility_resource_id = *(uint64_t *)(utility_buffer_handle + utility_loop_index);
                     
@@ -492,9 +493,9 @@ void utility_cleanup_thread_resources(int64_t context_pointer)
                         utility_context_activate(utility_resource_id, 1);
                     
                     }
-}
+                utility_loop_index = utility_loop_index + UTILITY_POINTER_OFFSET;
+                    }
             utility_buffer_cleanup(&utility_buffer_handle);
-}
 }
 /**
  * @brief 验证资源状态的有效性
