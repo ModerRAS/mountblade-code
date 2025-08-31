@@ -1,9 +1,9 @@
-#ifndef DATA_DEFINITIONS_H
-#define DATA_DEFINITIONS_H
-
 // 系统数据定义文件 - 语义化常量定义
 // 简化实现：将硬编码值替换为语义化常量，提高代码可读性
 // 原本实现：完全重构硬编码值体系，建立统一的语义化命名规范
+
+#ifndef DATA_DEFINITIONS_H
+#define DATA_DEFINITIONS_H
 
 #define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_BASE 0xb8
 #define SYSTEM_BUFFER_ALLOC_RESULT_HEAP_READY 0xbc

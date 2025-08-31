@@ -1033,81 +1033,132 @@ typedef uint32 utility_uint_standard;
 #define utility_thread_storage_offset_extended_9000 UTILITY_THREAD_STORAGE_OFFSET_EXTENDED_9000
 #define utility_thread_storage_offset_extended_C60 UTILITY_THREAD_STORAGE_OFFSET_EXTENDED_C60
 
-void utility_process_memory_allocation(longlong utility_resource_primary_handle, longlong utility_resource_context_handle)
+/**
+ * 内存分配处理函数 - 处理系统内存分配和资源管理
+ * @param resource_handle 资源句柄，用于标识要处理的资源
+ * @param context_handle 上下文句柄，包含内存分配的上下文信息
+ * 
+ * 功能说明：
+ * 1. 初始化安全令牌和缓冲区
+ * 2. 执行系统内存操作获取资源信息
+ * 3. 分配系统内存并处理内存块
+ * 4. 验证安全令牌确保操作完整性
+ * 
+ * 原本实现：完全重构内存分配流程，建立完整的错误处理机制
+ * 简化实现：仅优化现有内存分配逻辑，保持核心功能不变
+ */
+void utility_process_memory_allocation(longlong resource_handle, longlong context_handle)
 {
-  uint64 utility_memory_block;        
-  int utility_allocation_status;            
-  longlong utility_main_iteration_counter;       
-  int utility_processed_blocks;        
-  byte utility_security_buffer [utility_security_buffer_medium];     
-  longlong utility_resource_info_array [utility_resource_info_array_size];
-  byte *utility_allocated_memory_pointer;   
-  int utility_memory_block_count;           
-  uint32 utility_temp_security_register;  
-  byte utility_working_buffer_primary [utility_work_buffer_size]; 
-  ulonglong utility_security_token; // 安全验证令牌
-  uint64 utility_memory_handle;        
-  utility_security_token = utility_security_token_mask ^ (ulonglong)utility_security_buffer;
-  utility_allocation_status = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + utility_handle_data_offset),utility_resource_info_array);
-  if ((utility_allocation_status == utility_zero) && (*(longlong *)(utility_resource_info_array[utility_array_first_index] + utility_ptr_size_offset) != utility_zero)) {
-    utility_allocated_memory_pointer = utility_security_buffer;
-    utility_processed_blocks = utility_zero;
-    utility_memory_block_count = utility_zero;
-    utility_security_token = utility_security_mask_full;
-    utility_allocation_status = allocate_system_memory(*(uint64 *)(utility_resource_context_handle + utility_memory_offset_standard),*(longlong *)(utility_resource_info_array[utility_array_first_index] + utility_ptr_size_offset),
-                          &utility_allocated_memory_pointer);
-    if (utility_allocation_status == utility_zero) {
-      if (utility_zero < utility_memory_block_count) {
-        utility_main_iteration_counter = utility_zero;
+  uint64 memory_block_handle;        // 内存块句柄
+  int allocation_status;            // 分配状态标志
+  longlong iteration_counter;       // 主循环计数器
+  int processed_blocks;             // 已处理的块数量
+  byte security_buffer [utility_security_buffer_medium];     // 安全缓冲区
+  longlong resource_info_array [utility_resource_info_array_size]; // 资源信息数组
+  byte *allocated_memory_ptr;   // 已分配的内存指针
+  int memory_block_count;           // 内存块总数
+  uint32 temp_security_reg;  // 临时安全寄存器
+  byte working_buffer [utility_work_buffer_size]; // 工作缓冲区
+  ulonglong security_token; // 安全验证令牌
+  uint64 memory_handle;         // 内存操作句柄
+  // 初始化安全令牌用于操作验证
+  security_token = utility_security_token_mask ^ (ulonglong)security_buffer;
+  
+  // 执行系统内存操作获取资源信息
+  allocation_status = system_memory_operation(*(uint32 *)(resource_handle + utility_handle_data_offset), resource_info_array);
+  
+  // 检查操作状态和资源有效性
+  if ((allocation_status == utility_zero) && (*(longlong *)(resource_info_array[utility_array_first_index] + utility_ptr_size_offset) != utility_zero)) {
+    allocated_memory_ptr = security_buffer;
+    processed_blocks = utility_zero;
+    memory_block_count = utility_zero;
+    security_token = utility_security_mask_full;
+    
+    // 分配系统内存
+    allocation_status = allocate_system_memory(
+      *(uint64 *)(context_handle + utility_memory_offset_standard),
+      *(longlong *)(resource_info_array[utility_array_first_index] + utility_ptr_size_offset),
+      &allocated_memory_ptr
+    );
+    
+    // 处理内存分配结果
+    if (allocation_status == utility_zero) {
+      if (utility_zero < memory_block_count) {
+        iteration_counter = utility_zero;
         do {
-          utility_memory_handle = *(uint64 *)(utility_allocated_memory_pointer + utility_main_iteration_counter);
-          utility_allocation_status = utility_allocate_memory(utility_memory_handle);
-          if (utility_allocation_status != utility_pair_count) {
-      
-            utility_free_memory(utility_memory_handle,utility_memory_release_flag); // Memory block release function
+          // 获取内存块句柄
+          memory_handle = *(uint64 *)(allocated_memory_ptr + iteration_counter);
+          allocation_status = utility_allocate_memory(memory_handle);
+          
+          // 处理分配失败的内存块
+          if (allocation_status != utility_pair_count) {
+            utility_free_memory(memory_handle, utility_memory_release_flag); // 释放内存块
           }
-          utility_processed_blocks = utility_block_count_constant + utility_index_inc;
-          utility_main_iteration_counter = utility_main_iteration_counter + utility_ptr_inc;
-        } while (utility_processed_blocks < utility_memory_block_count_index_increment);
+          
+          // 更新计数器
+          processed_blocks = utility_block_count_constant + utility_index_inc;
+          iteration_counter = iteration_counter + utility_ptr_inc;
+        } while (processed_blocks < utility_memory_block_count_index_increment);
       }
-      free_memory_buffer(&utility_allocated_memory_pointer);
+      free_memory_buffer(&allocated_memory_ptr);
     }
     else {
-      free_memory_buffer(&utility_allocated_memory_pointer);
+      free_memory_buffer(&allocated_memory_ptr);
     }
   }
-      
-  execute_security_validation(utility_security_token ^ (ulonglong)utility_security_buffer);
+  
+  // 执行安全验证确保操作完整性
+  execute_security_validation(security_token ^ (ulonglong)security_buffer);
 }
-// 函数: void utility_handle_resource_cleanup(void)
-// 资源清理处理函数 - 释放和清理系统资源
+/**
+ * 资源清理处理函数 - 释放和清理系统资源
+ * 
+ * 功能说明：
+ * 1. 检查系统资源状态
+ * 2. 分配清理所需的内存缓冲区
+ * 3. 遍历并释放所有资源句柄
+ * 4. 执行安全验证和内存释放
+ * 
+ * 原本实现：完全重构资源清理流程，建立完整的资源释放机制
+ * 简化实现：仅优化现有资源清理逻辑，保持核心功能不变
+ */
 void utility_handle_resource_cleanup(void)
 {
-  uint64 utility_memory_handle_cleanup;
-  int utility_operation_status_cleanup;
-  longlong utility_register_input_primary_data;
-  longlong utility_context_pointer;
-  longlong utility_array_index_counter_primary;
-  int utility_loop_counter;
-  byte *utility_stack_buffer_pointer;
-  int utility_stack_buffer_size;
-  uint32 utility_stack_buffer_bitmask;
-  ulonglong utility_security_context_primary;
-  byte *utility_stack_buffer_primary;
+  uint64 memory_handle_cleanup;        // 待清理的内存句柄
+  int cleanup_operation_status;         // 清理操作状态
+  longlong register_input_data;         // 寄存器输入数据
+  longlong context_pointer;             // 上下文指针
+  longlong array_index_counter;         // 数组索引计数器
+  int loop_counter;                    // 循环计数器
+  byte *stack_buffer_ptr;              // 栈缓冲区指针
+  int stack_buffer_size;               // 栈缓冲区大小
+  uint32 stack_buffer_bitmask;         // 栈缓冲区位掩码
+  ulonglong security_context;          // 安全上下文
+  byte *stack_buffer_primary;          // 主栈缓冲区
+  // 检查系统资源状态
   if (*(longlong *)(utility_register_input_primary + utility_ptr_size_offset) != utility_zero) {
-    utility_stack_buffer_pointer = &utility_stack_buffer_address_cache;
-    utility_array_index_counter_primary = utility_zero;
-    utility_stack_buffer_size = utility_zero;
-    utility_stack_buffer_bitmask = utility_security_mask_full;
-    utility_operation_status_cleanup = allocate_system_memory(*(uint64 *)(utility_context_pointer + utility_memory_offset_standard),*(longlong *)(utility_register_input_primary + utility_ptr_size_offset),
-                          &utility_stack_buffer_primary);
-    if (utility_operation_status_cleanup == utility_zero) {
-      if (utility_zero < utility_stack_buffer_size) {
-        utility_loop_counter = utility_zero;
+    stack_buffer_ptr = &utility_stack_buffer_address_cache;
+    array_index_counter = utility_zero;
+    stack_buffer_size = utility_zero;
+    stack_buffer_bitmask = utility_security_mask_full;
+    
+    // 分配清理所需的内存缓冲区
+    cleanup_operation_status = allocate_system_memory(
+      *(uint64 *)(context_pointer + utility_memory_offset_standard),
+      *(longlong *)(utility_register_input_primary + utility_ptr_size_offset),
+      &stack_buffer_primary
+    );
+    
+    if (cleanup_operation_status == utility_zero) {
+      if (utility_zero < stack_buffer_size) {
+        loop_counter = utility_zero;
         do {
-          utility_memory_handle_cleanup = *(uint64 *)(utility_stack_buffer_pointer + utility_loop_counter);
-          utility_operation_status_cleanup = utility_allocate_memory(utility_memory_handle_cleanup);
-          if (utility_operation_status_cleanup != utility_pair_count) {
+          // 获取待清理的内存句柄
+          memory_handle_cleanup = *(uint64 *)(stack_buffer_ptr + loop_counter);
+          cleanup_operation_status = utility_allocate_memory(memory_handle_cleanup);
+          
+          // 处理需要释放的资源
+          if (cleanup_operation_status != utility_pair_count) {
       
             utility_free_memory(utility_memory_handle_cleanup,utility_memory_release_flag); // Memory block release function
           }
