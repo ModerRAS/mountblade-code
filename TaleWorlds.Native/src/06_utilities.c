@@ -570,6 +570,11 @@ utility_context_manager_activate();
 }
 return 0;
 }
+/**
+* @brief 初始化内存池
+* 创建并初始化系统内存池，用于管理动态内存分配
+* @return 无返回值
+*/
 void utility_initialize_memory_pool(void)
 {
 return;
@@ -612,6 +617,11 @@ utility_context_manager_activate(*(longlong *)(utility_iteration_count + 0x10),1
 * @brief 分配内存块
 * 负责从内存池中分配指定大小的内存块
 */
+/**
+* @brief 分配内存块
+* 从内存池中分配指定大小的内存块
+* @return 无返回值
+*/
 void utility_allocate_memory_block(void)
 {
 utility_context_manager_activate();
@@ -619,6 +629,11 @@ utility_context_manager_activate();
 /**
 * @brief 释放内存块
 * 负责释放之前分配的内存块，归还给内存池
+*/
+/**
+* @brief 释放内存块
+* 释放之前分配的内存块，归还给内存池
+* @return 无返回值
 */
 void utility_free_memory_block(void)
 {
@@ -661,6 +676,11 @@ utility_context_manager_activate(*(longlong *)(utility_iteration_count + 0x10),1
 /**
 * @brief 初始化线程本地存储
 * 负责初始化线程本地存储机制
+*/
+/**
+* @brief 初始化线程本地存储
+* 为当前线程初始化本地存储区域
+* @return 无返回值
 */
 void utility_initialize_thread_local(void)
 {
@@ -878,6 +898,11 @@ return 0;
 * @brief 创建临界区
 * 初始化一个临界区对象用于线程同步
 */
+/**
+* @brief 创建临界区
+* 初始化线程同步的临界区对象
+* @return 无返回值
+*/
 void utility_create_critical_section(void)
 {
 return;
@@ -1086,6 +1111,11 @@ utility_context_manager_activate(*(longlong *)(utility_iteration_count + 0x10),1
  * 简化实现：仅保留单个函数定义，删除重复声明
  * 原本实现：完全重构事件相关机制
  */
+/**
+* @brief 初始化事件对象
+* 创建并初始化系统事件对象，用于线程间同步
+* @return 无返回值
+*/
 void InitializeEvent(void)
 {
     utility_context_manager_activate();
@@ -1217,6 +1247,11 @@ void CloseEvent(void)
  * 简化实现：仅保留单个函数定义，删除重复声明
  * 原本实现：完全重构互斥体相关机制
  */
+/**
+* @brief 初始化互斥体
+* 创建并初始化互斥体对象，用于保护共享资源
+* @return 无返回值
+*/
 void InitializeMutex(void)
 {
     return;
@@ -1263,6 +1298,11 @@ utility_context_manager_activate(*(longlong *)(utility_iteration_count + 0x10),1
  * 简化实现：仅保留单个函数定义，删除重复声明
  * 原本实现：完全重构互斥体相关机制
  */
+/**
+* @brief 锁定互斥体
+* 获取互斥体的所有权，阻塞其他线程
+* @return 无返回值
+*/
 void LockMutex(void)
 {
     utility_context_manager_activate();
@@ -1275,6 +1315,11 @@ void LockMutex(void)
  * 简化实现：仅保留单个函数定义，删除重复声明
  * 原本实现：完全重构互斥体相关机制
  */
+/**
+* @brief 解锁互斥体
+* 释放互斥体的所有权，允许其他线程获取
+* @return 无返回值
+*/
 void UnlockMutex(void)
 {
     return;
@@ -1365,6 +1410,11 @@ utility_context_manager_activate(*(longlong *)(utility_stack_pointer + 0x10),1);
  * 简化实现：仅保留单个函数定义，删除重复声明
  * 原本实现：完全重构信号量相关机制
  */
+/**
+* @brief 初始化信号量
+* 创建并初始化信号量对象，用于控制资源访问
+* @return 无返回值
+*/
 void InitializeSemaphore(void)
 {
     utility_context_manager_activate();
@@ -1377,6 +1427,11 @@ void InitializeSemaphore(void)
  * 简化实现：仅保留单个函数定义，删除重复声明
  * 原本实现：完全重构信号量相关机制
  */
+/**
+* @brief 释放信号量
+* 增加信号量的计数，唤醒等待的线程
+* @return 无返回值
+*/
 void ReleaseSemaphore(void)
 {
     utility_context_manager_activate();
@@ -1432,12 +1487,32 @@ void CloseSemaphore(void)
 {
     utility_context_manager_activate();
 }
+/**
+* @brief 创建线程
+* 创建新的执行线程
+* @return 无返回值
+*/
 void CreateThread(void)
+/**
+* @brief 创建线程
+* 创建新的执行线程
+* @return 无返回值
+*/
 void CreateThread(void)
 {
 utility_context_manager_activate();
 }
+/**
+* @brief 退出线程
+* 终止当前线程的执行
+* @return 无返回值
+*/
 void ExitThread(void)
+/**
+* @brief 退出线程
+* 终止当前线程的执行
+* @return 无返回值
+*/
 void ExitThread(void)
 {
 return;
@@ -2276,7 +2351,17 @@ utility_update_context_resources(*(uint64_t *)(utility_parameter + 0x98),utility
 }
 return;
 }
+/**
+* @brief 初始化文件映射
+* 创建并初始化文件映射对象，用于内存映射文件
+* @return 无返回值
+*/
 void InitializeFileMap(void)
+/**
+* @brief 初始化文件映射
+* 创建并初始化文件映射对象，用于内存映射文件
+* @return 无返回值
+*/
 void InitializeFileMap(void)
 {
 int utility_result_code;;
@@ -2390,7 +2475,7 @@ uint64_t utility_resource_context_validator(longlong utility_parameter,longlong 
 longlong utility_iteration_count;
 int utility_result_code;;
 long long utility_resource_context;
-undefined *utility_parameter_ptr;
+void *utility_parameter_ptr;
 uint utility_resource_context;
 ulonglong utility_resource_context;
 longlong utility_iteration_count;
@@ -2450,7 +2535,7 @@ uint64_t utility_resource_context_cleaner_advanced(void)
 longlong utility_iteration_count;
 int utility_result_code;;
 long long utility_resource_context;
-undefined *utility_parameter_ptr;
+void *utility_parameter_ptr;
 uint utility_resource_context;
 ulonglong utility_resource_context;
 longlong utility_iteration_count;
@@ -2494,7 +2579,17 @@ utility_resource_context = utility_resource_context + 0x18;
 }
 return 0x4a;
 }
+/**
+* @brief 初始化共享内存
+* 创建并初始化共享内存区域，用于进程间通信
+* @return 无返回值
+*/
 void InitializeSharedMemory(void)
+/**
+* @brief 初始化共享内存
+* 创建并初始化共享内存区域，用于进程间通信
+* @return 无返回值
+*/
 void InitializeSharedMemory(void)
 {
 return;
@@ -5215,7 +5310,17 @@ goto LAB_18089555d;
 LAB_180895b69:
 utility_calculate_checksum(*(ulonglong *)(utility_register_rbp + 0x5f0) ^ (ulonglong)&utility_buffer);
 }
+/**
+* @brief 初始化套接字
+* 创建并初始化网络套接字，用于网络通信
+* @return 无返回值
+*/
 void InitializeSocket(void)
+/**
+* @brief 初始化套接字
+* 创建并初始化网络套接字，用于网络通信
+* @return 无返回值
+*/
 void InitializeSocket(void)
 {
 longlong utility_register_rbp;
@@ -5804,18 +5909,18 @@ long long utility_stack_uint_110;
 longlong *utility_pointer_108;
 ulonglong utility_stack_uint_100;
 int utility_stack_int_f8 [2];
-undefined *utility_stack_pointer_0;
+void *utility_stack_pointer_0;
 uint32_t utility_stack_uint_e8;
 uint32_t utility_stack_uint_e0;
-undefined *utility_stack_pointer_8;
+void *utility_stack_pointer_8;
 uint32_t utility_stack_uint_d0;
 uint32_t utility_stack_uint_c8;
 uint32_t utility_stack_uint_c0;
-undefined *utility_stack_pointer_8;
+void *utility_stack_pointer_8;
 uint32_t utility_stack_uint_b0;
 uint32_t utility_stack_uint_a8;
 uint utility_stack_uint_a0;
-undefined *utility_stack_pointer_98;
+void *utility_stack_pointer_98;
 uint32_t utility_stack_uint_90;
 uint32_t utility_stack_uint_88;
 int utility_stack_uint_80;
@@ -6246,12 +6351,12 @@ longlong utility_iteration_count;
 int utility_result_code;;
 int utility_result_code;;
 int utility_result_code;;
-undefined **utility_parameter;
+void **utility_parameter;
 int utility_result_code;;
 uint8_t utility_stack_buffer_328 [32];
 uint32_t utility_stack_uint_308;
 float utility_stack_array_304 [3];
-undefined *utility_stack_pointer_2f8;
+void *utility_stack_pointer_2f8;
 int stack_int_2f0;
 long long utility_stack_uint_2e8;
 ulonglong utility_stack_uint_2e0;
@@ -6924,7 +7029,7 @@ longlong utility_iteration_count;
 longlong utility_iteration_count;
 long long utility_resource_context;
 long long utility_resource_context;
-undefined *utility_parameter_ptr;
+void *utility_parameter_ptr;
 float utility_float_variable;
 longlong utility_iteration_count;
 float *utility_parameter;
@@ -7169,7 +7274,7 @@ uint64_t *utility_context_ptr;
 longlong utility_iteration_count;
 long long utility_resource_context;
 long long utility_resource_context;
-undefined *utility_parameter_ptr;
+void *utility_parameter_ptr;
 float utility_float_variable;
 ulonglong utility_resource_context;
 float *utility_parameter;
@@ -7424,7 +7529,7 @@ longlong utility_context_ptr;
 longlong utility_iteration_count;
 long long utility_resource_context;
 long long utility_resource_context;
-undefined *utility_parameter_ptr;
+void *utility_parameter_ptr;
 float utility_float_variable;
 ulonglong utility_resource_context;
 float *utility_parameter;
@@ -8004,7 +8109,7 @@ int utility_result_code;;
 ulonglong utility_resource_context;
 longlong *resource_manager;
 longlong utility_iteration_count;
-undefined *utility_parameter_ptr;
+void *utility_parameter_ptr;
 longlong *resource_manager;
 longlong *resource_manager;
 longlong utility_iteration_count;
@@ -13992,7 +14097,17 @@ void RevertToSelf(void)
 {
 return;
 }
+/**
+* @brief 初始化加密系统
+* 初始化系统加密功能模块
+* @return 无返回值
+*/
 void InitializeEncryption(void)
+/**
+* @brief 初始化加密系统
+* 初始化系统加密功能模块
+* @return 无返回值
+*/
 void InitializeEncryption(void)
 {
 return;
