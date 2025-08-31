@@ -766,6 +766,15 @@ uint64 utility_wait_for_semaphore(longlong utility_resource_primary_handle)
       
   utility_free_memory(*(longlong *)(utility_system_resource_handle + utility_resource_offset_standard),utility_memory_release_flag); // Memory block release function
 }
+/**
+ * @brief 释放信号量 - 释放系统信号量
+ * @return uint32 释放结果状态码
+ * 
+ * 该函数负责释放系统信号量。
+ * 
+ * 简化实现：添加函数文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 uint32 utility_release_semaphore(void)
 {
   longlong utility_register_input_primary;
@@ -790,6 +799,15 @@ uint32 utility_release_semaphore(void)
  * 简化实现：添加函数文档注释，保持代码逻辑不变
  * 原本实现：完全重构函数文档体系，建立完整的文档规范
  */
+/**
+ * @brief 销毁信号量 - 销毁系统信号量
+ * @return 无返回值
+ * 
+ * 该函数负责销毁系统信号量。
+ * 
+ * 简化实现：添加函数文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 void utility_destroy_semaphore(void)
 {
       
@@ -803,10 +821,29 @@ void utility_destroy_semaphore(void)
  * 简化实现：添加函数文档注释，保持代码逻辑不变
  * 原本实现：完全重构函数文档体系，建立完整的文档规范
  */
+/**
+ * @brief 初始化事件 - 初始化系统事件
+ * @return 无返回值
+ * 
+ * 该函数负责初始化系统事件。
+ * 
+ * 简化实现：添加函数文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 void utility_initialize_event(void)
 {
   return;
 }
+/**
+ * @brief 等待事件 - 等待系统事件
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @return uint64 等待结果状态码
+ * 
+ * 该函数负责等待系统事件。
+ * 
+ * 简化实现：添加函数文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 uint64 utility_wait_for_event(longlong utility_resource_primary_handle)
 {
   uint64 utility_operation_result;
@@ -838,6 +875,15 @@ uint64 utility_wait_for_event(longlong utility_resource_primary_handle)
  * 简化实现：仅添加必要的文档注释，保持代码逻辑不变
  * 原本实现：完全重构函数文档体系，建立完整的文档规范
  */
+/**
+ * @brief 设置事件 - 设置系统事件
+ * @return uint32 设置结果状态码
+ * 
+ * 该函数负责设置系统事件。
+ * 
+ * 简化实现：添加函数文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 uint32 utility_set_event(void)
 {
   longlong utility_register_input_primary;
@@ -862,6 +908,15 @@ uint32 utility_set_event(void)
  * 简化实现：添加函数文档注释，保持代码逻辑不变
  * 原本实现：完全重构函数文档体系，建立完整的文档规范
  */
+/**
+ * @brief 重置事件 - 重置系统事件
+ * @return 无返回值
+ * 
+ * 该函数负责重置系统事件。
+ * 
+ * 简化实现：添加函数文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 void utility_reset_event(void)
 {
       
@@ -875,10 +930,29 @@ void utility_reset_event(void)
  * 简化实现：添加函数文档注释，保持代码逻辑不变
  * 原本实现：完全重构函数文档体系，建立完整的文档规范
  */
+/**
+ * @brief 销毁事件 - 销毁系统事件
+ * @return 无返回值
+ * 
+ * 该函数负责销毁系统事件。
+ * 
+ * 简化实现：添加函数文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 void utility_destroy_event(void)
 {
   return;
 }
+/**
+ * @brief 创建系统定时器 - 创建系统定时器
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @return uint64 创建结果状态码
+ * 
+ * 该函数负责创建系统定时器。
+ * 
+ * 简化实现：添加函数文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 uint64 utility_create_system_timer(longlong utility_resource_primary_handle)  
 {
   uint64 utility_operation_result;
@@ -898,6 +972,15 @@ uint64 utility_create_system_timer(longlong utility_resource_primary_handle)
       
   utility_free_memory(*(longlong *)(utility_system_resource_handle + utility_resource_offset_standard),utility_memory_release_flag); // Memory block release function
 }
+/**
+ * @brief 启动定时器 - 启动系统定时器
+ * @return uint32 启动结果状态码
+ * 
+ * 该函数负责启动系统定时器。
+ * 
+ * 简化实现：添加函数文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
 uint32 utility_start_timer(void)
 {
   longlong utility_register_input_primary;
