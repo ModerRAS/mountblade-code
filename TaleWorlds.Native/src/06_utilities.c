@@ -1129,7 +1129,7 @@ uint64_t utility_initialize_event_system(void)
     uint32_t *utility_buffer;
     uint64_t utility_resource_context_value;
     int64_t utility_idx_source;
-    uint utility_temp_var;
+    uint utility_temp_variable;
     utility_status_code = UTILITY_FALSE;
     
     if (utility_context_main_data != UTILITY_FALSE) {
@@ -38945,25 +38945,25 @@ utility_system_initialization();
 }
 return;
 }
-void utility_destroy_mutex_in_situ(void)
-* 销毁互斥体函数
-* 功能：销毁系统互斥体，释放同步资源
-* 功能描述：就地销毁互斥体对象，清理同步资源
-*/
+/**
+ * @brief 销毁互斥体函数
+ * 功能：销毁系统互斥体，释放同步资源
+ * 功能描述：就地销毁互斥体对象，清理同步资源
+ */
 void utility_destroy_mutex_in_situ(void)
 {
-utility_system_reserved_memory = &utility_system_reserved_memory;
-return;
+    utility_system_reserved_memory = &utility_system_reserved_memory;
+    return;
 }
-void utility_initialize_global_pointer_(void)
-* 初始化全局指针函数
-* 功能：初始化系统全局指针，设置全局数据结构
-* 功能描述：设置系统全局指针，初始化全局数据结构
-*/
+/**
+ * @brief 初始化全局指针函数
+ * 功能：初始化系统全局指针，设置全局数据结构
+ * 功能描述：设置系统全局指针，初始化全局数据结构
+ */
 void utility_initialize_global_pointer_(void)
 {
-utility_system_reserved_memory = &utility_system_reserved_memory;
-return;
+    utility_system_reserved_memory = &utility_system_reserved_memory;
+    return;
 }
 {
 utility_system_reserved_memory = &utility_system_reserved_memory;
