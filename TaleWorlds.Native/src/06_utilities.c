@@ -45766,7 +45766,7 @@ if (utility_system_reserved_memory == UTILITY_FALSE) {
 }
 utility_create_resource();
 utility_iteration_index = utility_system_reserved_memory;
-for (utility_iteration_index = utility_system_reserved_memory; utility_iteration_index != utility_iteration_index; utility_iteration_index = utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET_PRIMARY) {
+for (utility_iteration_index = utility_system_reserved_memory; utility_iteration_index < utility_system_reserved_memory + 100; utility_iteration_index = utility_iteration_index + UTILITY_THREAD_HANDLE_OFFSET_PRIMARY) {
 utility_initialize_system(utility_iteration_index);
 }
 if (utility_system_reserved_memory == UTILITY_FALSE) {
