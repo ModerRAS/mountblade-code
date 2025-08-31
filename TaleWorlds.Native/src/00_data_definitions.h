@@ -46,29 +46,29 @@
 #define SYSTEM_CONFIG_OFFSET_STANDARD 0x18
 #define SYSTEM_CONFIG_OFFSET_ALTERNATE 0x28
 
-// 系统字符串长度常量
-#define SYSTEM_STRING_LENGTH_STANDARD 0x16
+// 系统字符串长度常量 - 用于字符串操作的长度限制
+#define SYSTEM_STRING_LENGTH_STANDARD 0x16              // 标准字符串长度
 
-// 系统字符串模式常量
-#define SYSTEM_STRING_PATTERN_ERROR_MESSAGE 0x3a726f72  // 错误消息模式
-#define SYSTEM_STRING_PATTERN_TERMINATOR_CHAR 0x2720   // 终止符模式
-#define SYSTEM_STRING_PATTERN_USER_MESSAGE 0x2220656d  // 用户消息模式
-#define SYSTEM_STRING_PATTERN_EXCLAMATION 0x21
+// 系统字符串模式常量 - 用于字符串识别和处理的模式值
+#define SYSTEM_STRING_PATTERN_ERROR_MESSAGE 0x3a726f72  // 错误消息模式 (':ror')
+#define SYSTEM_STRING_PATTERN_TERMINATOR_CHAR 0x2720   // 终止符模式 ('' ')
+#define SYSTEM_STRING_PATTERN_USER_MESSAGE 0x2220656d  // 用户消息模式 ('" em')
+#define SYSTEM_STRING_PATTERN_EXCLAMATION 0x21          // 感叹号模式
 
-// 系统缓冲区大小常量
-#define SYSTEM_BUFFER_SIZE_MINIMAL 0x13
-#define SYSTEM_BUFFER_SIZE_SMALL 0x14
-#define SYSTEM_BUFFER_SIZE_MEDIUM 0x15
-#define SYSTEM_BUFFER_SIZE_LARGE 0x22
+// 系统缓冲区大小常量 - 用于各种缓冲区分配的大小定义
+#define SYSTEM_BUFFER_SIZE_MINIMAL 0x13                 // 最小缓冲区大小
+#define SYSTEM_BUFFER_SIZE_SMALL 0x14                   // 小缓冲区大小
+#define SYSTEM_BUFFER_SIZE_MEDIUM 0x15                  // 中等缓冲区大小
+#define SYSTEM_BUFFER_SIZE_LARGE 0x22                    // 大缓冲区大小
 
-// 系统浮点数常量
-#define SYSTEM_FLOAT_MAX_SAFE_VALUE 0x7f7fffff3f800000
+// 系统浮点数常量 - 用于浮点数运算和比较
+#define SYSTEM_FLOAT_MAX_SAFE_VALUE 0x7f7fffff3f800000  // 最大安全浮点数值
 
-// 系统内存偏移量常量
-#define SYSTEM_MEMORY_OFFSET_C 0xc
-#define SYSTEM_MEMORY_OFFSET_D 0xd
-#define SYSTEM_MEMORY_OFFSET_E 0xe
-#define SYSTEM_MEMORY_OFFSET_RESERVED_PRIMARY 0x461  // 保留内存偏移量主
+// 系统内存偏移量常量 - 用于内存访问的偏移计算
+#define SYSTEM_MEMORY_OFFSET_C 0xc                     // 内存偏移量C
+#define SYSTEM_MEMORY_OFFSET_D 0xd                     // 内存偏移量D
+#define SYSTEM_MEMORY_OFFSET_E 0xe                     // 内存偏移量E
+#define SYSTEM_MEMORY_OFFSET_RESERVED_PRIMARY 0x461    // 保留内存偏移量主
 #define SYSTEM_MEMORY_OFFSET_RESERVED_SECONDARY 0xa3b  // 保留内存偏移量次
 
 // 系统指针偏移量常量

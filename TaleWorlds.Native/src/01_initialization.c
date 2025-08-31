@@ -491,6 +491,12 @@ char system_initialized;
  * 简化实现：保持原有功能逻辑，仅优化变量命名和添加文档注释
  * 原本实现：完全重构初始化流程，建立更清晰的初始化架构
  */
+/**
+ * @brief 系统核心基础初始化函数
+ * @details 这是简化实现，原本实现应该包含完整的初始化流程
+ * 负责初始化系统的核心组件，包括内存管理、线程调度等基础功能
+ * 通过验证和比较操作确保系统初始化的正确性
+ */
 void initialize_system_core_basic(void)
 
 {
@@ -540,7 +546,7 @@ void initialize_system_core_basic(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -589,7 +595,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -638,7 +644,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -687,7 +693,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -736,7 +742,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -785,7 +791,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -834,7 +840,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -883,7 +889,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -932,7 +938,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -982,7 +988,7 @@ void InitializeSystemCore(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -1000,7 +1006,7 @@ int InitializeSystemCore(void)
   system_global_initialized_flag = SYSTEM_INIT_VALUE_ZERO;
   system_global_initialized_flag = SYSTEM_INIT_VALUE_ZERO;
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -1048,7 +1054,7 @@ void InitializeSystemCore(void)
 
 
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -1060,7 +1066,7 @@ int InitializeSystemCore(void)
 
 
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -1074,7 +1080,7 @@ int InitializeSystemCore(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -1087,7 +1093,7 @@ int InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -1136,7 +1142,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -1199,7 +1205,7 @@ int InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t sy
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -1220,7 +1226,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -1269,7 +1275,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -1318,7 +1324,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -1367,7 +1373,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -1416,7 +1422,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -1465,7 +1471,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -1514,7 +1520,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -1563,7 +1569,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -1612,7 +1618,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -1661,7 +1667,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -1710,7 +1716,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -1759,7 +1765,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -1808,7 +1814,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -1857,7 +1863,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -1907,7 +1913,7 @@ void InitializeSystemCore(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -1916,7 +1922,7 @@ int InitializeSystemCore(void)
   system_global_initialized_flag = &system_global_contextsystem_global_context;
   system_global_initialized_flag = &system_initialized;
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -1937,7 +1943,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -1986,7 +1992,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -2035,7 +2041,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -2084,7 +2090,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -2133,7 +2139,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -2182,7 +2188,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -2231,7 +2237,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -2280,7 +2286,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -2329,7 +2335,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -2378,7 +2384,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -2427,7 +2433,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -2476,7 +2482,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -2525,7 +2531,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -2574,7 +2580,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -2623,7 +2629,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -2672,7 +2678,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -2721,7 +2727,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -2770,7 +2776,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -2819,7 +2825,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -2868,7 +2874,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -2917,7 +2923,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -2966,7 +2972,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -3015,7 +3021,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -3064,7 +3070,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -3113,7 +3119,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -3162,7 +3168,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -3211,7 +3217,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -3260,7 +3266,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -3309,7 +3315,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -3358,7 +3364,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -3407,7 +3413,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -3458,7 +3464,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -3480,7 +3486,7 @@ void InitializeSystemCore(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -3489,7 +3495,7 @@ int InitializeSystemCore(void)
   system_global_initialized_flag = &system_global_contextsystem_global_context;
   system_global_initialized_flag = &system_initialized;
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -3538,7 +3544,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -3587,7 +3593,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -3636,7 +3642,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -3685,7 +3691,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -3734,7 +3740,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -3783,7 +3789,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -3832,7 +3838,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -3881,7 +3887,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -3930,7 +3936,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -3979,7 +3985,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -4030,7 +4036,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -4051,7 +4057,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -4100,7 +4106,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -4149,7 +4155,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -4198,7 +4204,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -4247,7 +4253,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -4296,7 +4302,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -4345,7 +4351,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -4396,7 +4402,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -4418,7 +4424,7 @@ void InitializeSystemCore(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -4427,7 +4433,7 @@ int InitializeSystemCore(void)
   system_global_initialized_flag = &system_global_contextsystem_global_context;
   system_global_initialized_flag = &system_initialized;
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -4450,7 +4456,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -4473,7 +4479,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -4496,7 +4502,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -4519,7 +4525,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -4540,7 +4546,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -4589,7 +4595,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -4638,7 +4644,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -4687,7 +4693,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -4736,7 +4742,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -4785,7 +4791,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -4834,7 +4840,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -4883,7 +4889,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -4932,7 +4938,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -4981,7 +4987,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -5030,7 +5036,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -5079,7 +5085,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -5128,7 +5134,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -5177,7 +5183,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -5226,7 +5232,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -5275,7 +5281,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -5324,7 +5330,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   ulonglong system_loop_counter;
@@ -5380,7 +5386,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -5429,7 +5435,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -5478,7 +5484,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -5527,7 +5533,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -5576,7 +5582,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -5625,7 +5631,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -5674,7 +5680,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -5723,7 +5729,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -5772,7 +5778,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -5821,7 +5827,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -5870,7 +5876,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -5919,7 +5925,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -5968,7 +5974,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -6017,7 +6023,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -6066,7 +6072,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -6115,7 +6121,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -6164,7 +6170,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -6213,7 +6219,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -6262,7 +6268,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -6311,7 +6317,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -6360,7 +6366,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -6409,7 +6415,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -6458,7 +6464,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -6507,7 +6513,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -6556,7 +6562,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -6605,7 +6611,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -6654,7 +6660,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -6703,7 +6709,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -6752,7 +6758,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -6801,7 +6807,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -6850,7 +6856,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -6899,7 +6905,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -6950,7 +6956,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -6972,7 +6978,7 @@ void InitializeSystemCore(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -6981,7 +6987,7 @@ int InitializeSystemCore(void)
   system_global_initialized_flag = &system_global_contextsystem_global_context;
   system_global_initialized_flag = &system_initialized;
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -7004,7 +7010,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -7025,7 +7031,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -7074,7 +7080,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -7123,7 +7129,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -7172,7 +7178,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -7221,7 +7227,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -7270,7 +7276,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -7319,7 +7325,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -7368,7 +7374,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -7419,7 +7425,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -7440,7 +7446,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -7489,7 +7495,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -7538,7 +7544,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -7587,7 +7593,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -7636,7 +7642,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -7685,7 +7691,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -7734,7 +7740,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -7783,7 +7789,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -7832,7 +7838,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -7881,7 +7887,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -7930,7 +7936,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -7981,7 +7987,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -8004,7 +8010,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -8027,7 +8033,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -8050,7 +8056,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -8073,7 +8079,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -8096,7 +8102,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -8119,7 +8125,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -8142,7 +8148,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -8165,7 +8171,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -8186,7 +8192,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -8235,7 +8241,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -8284,7 +8290,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -8333,7 +8339,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -8382,7 +8388,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -8431,7 +8437,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -8480,7 +8486,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -8529,7 +8535,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -8578,7 +8584,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -8627,7 +8633,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -8676,7 +8682,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -8725,7 +8731,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -8774,7 +8780,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -8823,7 +8829,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -8872,7 +8878,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -8921,7 +8927,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -8970,7 +8976,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -9019,7 +9025,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -9068,7 +9074,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -9117,7 +9123,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -9166,7 +9172,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -9215,7 +9221,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -9264,7 +9270,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -9313,7 +9319,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -9362,7 +9368,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -9411,7 +9417,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -9460,7 +9466,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -9509,7 +9515,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -9558,7 +9564,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -9607,7 +9613,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -9656,7 +9662,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -9705,7 +9711,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -9754,7 +9760,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -9803,7 +9809,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -9852,7 +9858,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -9901,7 +9907,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -9950,7 +9956,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -9999,7 +10005,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -10050,7 +10056,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -10072,7 +10078,7 @@ void InitializeSystemCore(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -10081,7 +10087,7 @@ int InitializeSystemCore(void)
   system_global_initialized_flag = &system_global_contextsystem_global_context;
   system_global_initialized_flag = &system_initialized;
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -10130,7 +10136,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -10179,7 +10185,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -10228,7 +10234,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -10277,7 +10283,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -10326,7 +10332,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -10375,7 +10381,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -10424,7 +10430,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -10473,7 +10479,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -10522,7 +10528,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -10573,7 +10579,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -10596,7 +10602,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -10617,7 +10623,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -10666,7 +10672,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -10715,7 +10721,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -10764,7 +10770,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -10813,7 +10819,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -10862,7 +10868,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -10911,7 +10917,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -10961,7 +10967,7 @@ void InitializeSystemCore(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -10970,7 +10976,7 @@ int InitializeSystemCore(void)
   system_global_initialized_flag = &system_global_contextsystem_global_context;
   system_global_initialized_flag = &system_initialized;
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -11019,7 +11025,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -11068,7 +11074,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -11117,7 +11123,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -11166,7 +11172,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -11215,7 +11221,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -11264,7 +11270,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -11313,7 +11319,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -11362,7 +11368,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -11411,7 +11417,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -11460,7 +11466,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -11509,7 +11515,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -11558,7 +11564,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -11607,7 +11613,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -11656,7 +11662,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -11707,7 +11713,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -11727,7 +11733,7 @@ void InitializeSystemCore(void)
 
 
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -11739,7 +11745,7 @@ int InitializeSystemCore(void)
 
 
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -11753,7 +11759,7 @@ int InitializeSystemCore(void)
 
 
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -11767,7 +11773,7 @@ int InitializeSystemCore(void)
 
 
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -11778,7 +11784,7 @@ int InitializeSystemCore(void)
 
 
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -11791,7 +11797,7 @@ int InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -11840,7 +11846,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -11889,7 +11895,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -11938,7 +11944,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -11987,7 +11993,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -12036,7 +12042,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -12085,7 +12091,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -12134,7 +12140,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -12183,7 +12189,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -12232,7 +12238,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -12283,7 +12289,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -12306,7 +12312,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -12329,7 +12335,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -12352,7 +12358,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -12374,7 +12380,7 @@ void InitializeSystemCore(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -12383,7 +12389,7 @@ int InitializeSystemCore(void)
   system_global_initialized_flag = &system_global_contextsystem_global_context;
   system_global_initialized_flag = &system_initialized;
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -12432,7 +12438,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -12481,7 +12487,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -12530,7 +12536,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -12579,7 +12585,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -12628,7 +12634,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -12677,7 +12683,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -12726,7 +12732,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -12775,7 +12781,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -12824,7 +12830,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -12873,7 +12879,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -12922,7 +12928,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -12971,7 +12977,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -13020,7 +13026,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -13069,7 +13075,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -13118,7 +13124,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -13167,7 +13173,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -13216,7 +13222,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -13265,7 +13271,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -13314,7 +13320,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -13363,7 +13369,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -13412,7 +13418,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -13461,7 +13467,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -13510,7 +13516,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -13559,7 +13565,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -13608,7 +13614,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -13657,7 +13663,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -13706,7 +13712,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -13756,7 +13762,7 @@ void InitializeSystemCore(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -13786,7 +13792,7 @@ int InitializeSystemCore(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -13795,7 +13801,7 @@ int InitializeSystemCore(void)
   _system_gpu_usage = &system_global_contextsystem_global_context;
   _system_frame_rate = &system_physics_time;
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -13844,7 +13850,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -13893,7 +13899,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -13942,7 +13948,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -13993,7 +13999,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -14026,7 +14032,7 @@ int InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t sy
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -14075,7 +14081,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -14124,7 +14130,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -14173,7 +14179,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -14222,7 +14228,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -14271,7 +14277,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -14320,7 +14326,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -14369,7 +14375,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -14418,7 +14424,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -14467,7 +14473,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -14516,7 +14522,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -14565,7 +14571,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -14614,7 +14620,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -14663,7 +14669,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -14712,7 +14718,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -14761,7 +14767,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -14810,7 +14816,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -14859,7 +14865,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -14908,7 +14914,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -14957,7 +14963,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -15006,7 +15012,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -15057,7 +15063,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -15080,7 +15086,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   system_global_initialized_flag = GetCurrentProcess();
@@ -15089,7 +15095,7 @@ void InitializeSystemCore(void)
 
 
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -15127,7 +15133,7 @@ int InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t sy
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -15147,7 +15153,7 @@ int InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -15169,7 +15175,7 @@ void InitializeSystemCore(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-system_uint64_t InitializeSystemCore(void)
+system_uint64_t system_init_get_context(void)
 
 {
   longlong system_allocation_result;
@@ -15210,7 +15216,7 @@ system_init_label_main_entry:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -15233,7 +15239,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* register_r9_value;
@@ -15255,7 +15261,7 @@ void InitializeSystemCore(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -15274,7 +15280,7 @@ int InitializeSystemCore(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -15294,7 +15300,7 @@ int InitializeSystemCore(void)
 
 
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -15309,7 +15315,7 @@ int InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   int system_int_param;
@@ -15327,7 +15333,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   int system_int_param;
@@ -15350,7 +15356,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   int system_int_param;
@@ -15368,7 +15374,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   int system_int_param;
@@ -15386,7 +15392,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   int system_int_param;
@@ -15404,7 +15410,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   int system_int_param;
@@ -15422,7 +15428,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   int system_int_param;
@@ -15442,7 +15448,7 @@ void InitializeSystemCore(void)
 
 
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   system_uint64_t *system_context_pointer;
@@ -15465,7 +15471,7 @@ int InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   int system_int_param;
@@ -15483,7 +15489,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   int system_int_param;
@@ -15508,7 +15514,7 @@ void InitializeSystemCore(void)
 
 
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -15520,7 +15526,7 @@ int InitializeSystemCore(void)
 
 
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -15543,7 +15549,7 @@ int InitializeSystemCore(void)
  * 简化实现：保持原有功能逻辑，仅优化变量命名和添加文档注释
  * 原本实现：完全重构主函数流程，建立更清晰的初始化架构
  */
-void wots_main_sdll(system_uint64_t system_context_param)
+void system_wots_main_entry_sdll(system_uint64_t system_context_param)
 
 {
   system_uint64_t system_stack_initialization_count_array [SYSTEM_ARRAY_INDEX_THIRD];
@@ -15551,7 +15557,7 @@ void wots_main_sdll(system_uint64_t system_context_param)
                     // SYSTEM_INIT_FLAG_ACTIVE_CONFIG_PRIMARY  0x101  WotsMainSDLL
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong system_allocation_result;
@@ -15650,7 +15656,7 @@ InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_conf
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -15682,7 +15688,7 @@ void initialize_script_system(system_uint64_t *system_context_param)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   system_uint64_t *system_context_pointer;
@@ -15983,7 +15989,7 @@ system_init_label_resource_check:
   system_global_initialized_flag = SYSTEM_INIT_VALUE_ZERO;
   system_global_initialized_flag = system_performance_counter_long;
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   system_uint64_t system_loop_counter;
@@ -16017,7 +16023,7 @@ void InitializeSystemCore(void)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-system_uint0x102_t InitializeSystemCore(void)
+system_uint0x102_t system_init_get_special_context(void)
 
 {
   system_uint64_t *system_context_pointer;
@@ -16189,7 +16195,7 @@ system_uint0x102_t InitializeSystemCore(void)
  * 简化实现：保持原有功能逻辑，仅优化变量命名和添加文档注释
  * 原本实现：完全重构主函数流程，建立更清晰的初始化架构
  */
-void wots_main(system_uint64_t system_context_param)
+void system_wots_main_entry(system_uint64_t system_context_param)
 
 {
   system_uint64_t system_stack_initialization_count_array [SYSTEM_ARRAY_INDEX_THIRD];
@@ -16210,7 +16216,7 @@ void InitializeNetworkSystem(longlong *system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
-void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
+void system_init_with_context_config(longlong system_context_param,longlong system_config_param)
 
 {
   longlong system_allocation_result;
@@ -16241,7 +16247,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
-void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
+void system_init_with_context_config_memory(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
 
 {
   if (system_memory_param + 1 < SYSTEM_INIT_SIZE_COMPARE00) {
@@ -16256,7 +16262,7 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -16280,7 +16286,7 @@ void InitializeSystemCore(system_uint8_t *system_context_param)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -16323,7 +16329,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,uin
 
 
 
-void system_guard_icall_check(void)
+void system_guard_icall_validation(void)
 
 {
   return;
@@ -16346,7 +16352,7 @@ InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_conf
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
-void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
+void system_init_with_context_config(longlong system_context_param,longlong system_config_param)
 
 {
   longlong system_allocation_result;
@@ -16377,7 +16383,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
-void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
+void system_init_with_context_config_memory(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
 
 {
   if (system_memory_param + 1 < SYSTEM_INIT_SIZE_BUFFER_EXTRA_LARGE) {
@@ -16392,7 +16398,7 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -16492,7 +16498,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
 
 
 
-system_uint64_t InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+system_uint64_t system_init_full_params_long_context(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
   char validation_flag;
@@ -16560,7 +16566,7 @@ longlong InitializeSystemCore(system_uint0x102_t *system_context_param,system_ui
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint0x102_t system_config_param)
-void InitializeSystemCore(system_uint64_t system_context_param,system_uint0x102_t system_config_param)
+void system_init_with_context_special_config(system_uint64_t system_context_param,system_uint0x102_t system_config_param)
 
 {
   longlong system_allocation_result;
@@ -16603,7 +16609,7 @@ InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_conf
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
-void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
+void system_init_with_context_config(longlong system_context_param,longlong system_config_param)
 
 {
   longlong system_allocation_result;
@@ -16634,7 +16640,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
-void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
+void system_init_with_context_config_memory(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
 
 {
   if (system_memory_param + 1 < SYSTEM_INIT_OFFSET_STACK_PARAM) {
@@ -16649,7 +16655,7 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -16761,7 +16767,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   int system_int_param;
@@ -16901,7 +16907,7 @@ void InitializeResourceManager(ulonglong *system_context_param)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int InitializeSystemCore(longlong system_context_param,longlong system_config_param)
+int system_init_with_context_config_return_int(longlong system_context_param,longlong system_config_param)
 
 {
   system_uint64_t ***system_primary_pointer_stack;
@@ -17063,7 +17069,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t 
 
 
 
-ulonglong InitializeSystemCore(longlong system_context_param,longlong system_config_param)
+ulonglong system_init_with_context_config_return_ulong(longlong system_context_param,longlong system_config_param)
 
 {
   byte *system_byte_ptr_primary;
@@ -17190,7 +17196,7 @@ void InitializeSystemCore(longlong *system_context_param,system_uint64_t *system
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   system_uint64_t system_loop_counter;
@@ -17470,7 +17476,7 @@ InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t *syst
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   *(void* **)(system_context_param + SYSTEM_INIT_SIZE_COMPARE) = &system_global_contextsystem_global_context;
@@ -17494,7 +17500,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,longlong system_memory_param,system_uint64_t system_thread_param)
-void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,longlong system_memory_param,system_uint64_t system_thread_param)
+void system_init_with_context_config_memory_thread(system_uint64_t system_context_param,system_uint64_t system_config_param,longlong system_memory_param,system_uint64_t system_thread_param)
 
 {
   byte system_validation_flag_primary;
@@ -17580,7 +17586,7 @@ system_init_label_array_validation:
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+void system_init_with_full_params(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
   double system_double_primary;
@@ -17987,7 +17993,7 @@ void InitializeSystemCore(ulonglong *system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   if (system_context_param != 0) {
@@ -18006,7 +18012,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 
-longlong InitializeSystemCore(longlong system_context_param,longlong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+longlong system_init_full_params_return_long(longlong system_context_param,longlong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
   system_uint64_t *system_context_pointer;
@@ -18091,7 +18097,7 @@ longlong InitializeSystemCore(longlong system_context_param,longlong system_conf
 
 
 
-system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+system_uint64_t system_init_full_params_return_ulong(system_uint64_t system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
   system_uint64_t system_flags_mask;
@@ -18490,7 +18496,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
 
 
 
-system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,ulonglong system_config_param)
+system_uint64_t system_init_with_context_ulong_config(system_uint64_t system_context_param,ulonglong system_config_param)
 
 {
   InitializeSystemCore();
@@ -18563,7 +18569,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t *
 
 
 
-system_uint8_t InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+system_uint8_t system_init_full_params_return_byte(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
   system_uint8_t system_flags_mask;
@@ -18602,7 +18608,7 @@ system_uint8_t InitializeSystemCore(longlong system_context_param,system_uint64_
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   _Cnd_destroy_in_situ();
@@ -18612,7 +18618,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   _Cnd_destroy_in_situ();
@@ -18622,7 +18628,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -18632,7 +18638,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -18643,7 +18649,7 @@ void InitializeSystemCore(void)
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param)
-void InitializeSystemCore(system_uint64_t system_context_param)
+void system_init_with_context_ptr_64(system_uint64_t *system_context_param)
 
 {
   _Mtx_destroy_in_situ();
@@ -18692,7 +18698,7 @@ InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_conf
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
-void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
+void system_init_with_context_config_memory(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
 
 {
   if (system_memory_param + 1 < SYSTEM_INIT_SIZE_BUFFER_SMALL) {
@@ -18707,7 +18713,7 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -18828,7 +18834,7 @@ InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_conf
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
-void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
+void system_init_with_context_config(longlong system_context_param,longlong system_config_param)
 
 {
   longlong system_allocation_result;
@@ -18859,7 +18865,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
-void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
+void system_init_with_context_config_memory(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
 
 {
   if (system_memory_param + 1 < SYSTEM_INIT_OFFSET_HEADER) {
@@ -18874,7 +18880,7 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -19092,7 +19098,7 @@ void InitializeInputSystem(system_uint64_t *system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
-void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
+void system_init_with_context_config(longlong system_context_param,longlong system_config_param)
 
 {
   longlong system_allocation_result;
@@ -19122,7 +19128,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -19210,7 +19216,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
 
 
 
-system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,ulonglong system_config_param)
+system_uint64_t system_init_with_context_ulong_config(system_uint64_t system_context_param,ulonglong system_config_param)
 
 {
   InitializeSystemCore();
@@ -19252,7 +19258,7 @@ system_uint64_t InitializeSystemCore(longlong system_context_param,system_uint64
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
-void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
+void system_init_with_context_config(longlong system_context_param,longlong system_config_param)
 
 {
   longlong system_allocation_result;
@@ -19349,7 +19355,7 @@ bool InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -19424,7 +19430,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   system_uint64_t system_loop_counter;
@@ -19443,7 +19449,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   char validation_flag;
@@ -19512,7 +19518,7 @@ void InitializeSystemCore(void)
     *buffer_pointer = system_max_iterations;
     system_int_value = GetLastError();
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   longlong *system_primary_longptr;
@@ -19948,7 +19954,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t *
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param)
-void InitializeSystemCore(system_uint64_t system_context_param)
+void system_init_with_context_ptr_64(system_uint64_t *system_context_param)
 
 {
   system_uint64_t *system_register_rbx_input;
@@ -19961,7 +19967,7 @@ void InitializeSystemCore(system_uint64_t system_context_param)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   return;
@@ -20141,7 +20147,7 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   InitializeSystemCore(system_context_param + );
@@ -20152,7 +20158,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   InitializeSystemCore(system_context_param + );
@@ -20165,7 +20171,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+void system_init_with_full_params(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
   system_uint64_t *system_context_pointer;
@@ -20330,7 +20336,7 @@ void InitializeSystemCore(longlong *system_context_param,system_uint64_t system_
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   int system_int_param;
@@ -20401,7 +20407,7 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   int *system_int_ptr_main;
@@ -20533,7 +20539,7 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   int *system_int_ptr_main;
@@ -20588,7 +20594,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   void* *system_context_pointer;
@@ -20673,7 +20679,7 @@ void InitializeSystemCore(longlong *system_context_param,system_uint64_t system_
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   uint system_flags_mask;
@@ -20682,7 +20688,7 @@ void InitializeSystemCore(longlong system_context_param)
   if (system_context_param == 0) {
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   uint system_flags_mask;
@@ -20703,7 +20709,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   system_code *system_char_pointer_offset;
@@ -21070,7 +21076,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong system_allocation_result;
@@ -21489,7 +21495,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
         if (system_bool_secondary) {
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   int *system_int_ptr_main;
@@ -21553,7 +21559,7 @@ system_init_label_protocol_check:
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-system_uint0x102_t InitializeSystemCore(void)
+system_uint0x102_t system_init_get_special_context(void)
 
 {
   system_uint8_t system_primary_uint_array [16];
@@ -21709,7 +21715,7 @@ system_uint0x102_t InitializeSystemCore(void)
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+void system_init_with_full_params(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
   uint system_flags_mask;
@@ -21786,7 +21792,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   int system_int_param;
@@ -21943,7 +21949,7 @@ void InitializeSystemCore(void)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   int *system_int_ptr_main;
@@ -21998,7 +22004,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   int *system_int_ptr_main;
@@ -22054,7 +22060,7 @@ void InitializeSystemCore(longlong system_context_param)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   system_uint64_t *system_context_pointer;
@@ -22209,7 +22215,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   longlong *system_primary_longptr;
@@ -22334,7 +22340,7 @@ void InitializeSystemCore(void)
     }
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong *system_primary_longptr;
@@ -22453,7 +22459,7 @@ void InitializeSystemCore(longlong system_context_param)
     }
 
 // 函数: void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param)
-void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param)
+void system_init_with_context_config_ptrs(longlong *system_context_param,system_uint64_t *system_config_param)
 
 {
   longlong *system_primary_longptr;
@@ -22638,7 +22644,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,sys
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong system_allocation_result;
@@ -22706,7 +22712,7 @@ void InitializeSystemCore(longlong system_context_param)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   longlong system_allocation_result;
@@ -22741,7 +22747,7 @@ void InitializeSystemCore(void)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong system_allocation_result;
@@ -22779,7 +22785,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   return;
@@ -22886,7 +22892,7 @@ InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   system_uint64_t *system_context_pointer;
@@ -23605,7 +23611,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,longlong system_memory_param)
-void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,longlong system_memory_param)
+void system_init_with_context_config_ptrs_memory(system_uint64_t system_context_param,system_uint64_t *system_config_param,longlong *system_memory_param)
 
 {
   longlong system_allocation_result;
@@ -24092,7 +24098,7 @@ void InitializeSystemCore(longlong *system_context_param,longlong system_config_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   uint system_loop_counter;
@@ -24489,7 +24495,7 @@ system_init_label_operation_start:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   system_uint64_t *system_context_pointer;
@@ -24589,7 +24595,7 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong system_allocation_result;
@@ -24642,7 +24648,7 @@ longlong InitializeSystemCore(longlong system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   *(system_uint64_t *)(system_context_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) = &system_global_contextsystem_global_context;
@@ -24671,7 +24677,7 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong system_allocation_result;
@@ -24711,7 +24717,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint0x102_t system_config_param)
-void InitializeSystemCore(system_uint64_t system_context_param,system_uint0x102_t system_config_param)
+void system_init_with_context_special_config(system_uint64_t system_context_param,system_uint0x102_t system_config_param)
 
 {
   system_code *system_char_pointer_offset;
@@ -24731,7 +24737,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint0x102_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   system_uint64_t *system_context_pointer;
@@ -24784,7 +24790,7 @@ void InitializeSystemCore(void)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   char validation_flag;
@@ -25087,7 +25093,7 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 
-system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+system_uint64_t system_init_full_params_return_ulong(system_uint64_t system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
   system_uint64_t system_flags_mask;
@@ -25106,7 +25112,7 @@ system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,ulongl
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   uint system_flags_mask;
@@ -25245,7 +25251,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+void system_init_with_full_params(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
   longlong system_allocation_result;
@@ -25379,7 +25385,7 @@ system_uint64_t * InitializeThreadSystem(system_uint64_t *system_context_param)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   InitializeSystemCore();
@@ -25444,7 +25450,7 @@ longlong * InitializeSystemCore(longlong *system_context_param,longlong *system_
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
-void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
+void system_init_with_context_config(longlong system_context_param,longlong system_config_param)
 
 {
   longlong system_allocation_result;
@@ -25508,7 +25514,7 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong system_register_rsi_input;
@@ -25533,7 +25539,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   longlong system_register_rsi_input;
@@ -25673,7 +25679,7 @@ system_init_label_metrics_setup:
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   system_uint64_t *system_context_pointer;
@@ -25695,7 +25701,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   InitializeSystemCore();
@@ -25706,7 +25712,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   longlong system_register_rbx_input;
@@ -25845,7 +25851,7 @@ void InitializeSystemCore(longlong system_context_param,ulonglong system_config_
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   longlong system_register_rbx_input;
@@ -25931,7 +25937,7 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   int *system_int_ptr_main;
@@ -25986,7 +25992,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   int *system_int_ptr_main;
@@ -26040,7 +26046,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   int *system_int_ptr_main;
@@ -26092,7 +26098,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   int *system_int_ptr_main;
@@ -26132,7 +26138,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   int *system_int_ptr_main;
@@ -26205,7 +26211,7 @@ void InitializeSystemCore(longlong *system_context_param,system_uint64_t system_
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong system_allocation_result;
@@ -26264,7 +26270,7 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   int *system_int_ptr_main;
@@ -26319,7 +26325,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   int *system_int_ptr_main;
@@ -26373,7 +26379,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   int *system_int_ptr_main;
@@ -26425,7 +26431,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   int *system_int_ptr_main;
@@ -26465,7 +26471,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   int *system_int_ptr_main;
@@ -26528,7 +26534,7 @@ void InitializeSystemCore(longlong *system_context_param)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   int *system_int_ptr_main;
@@ -27320,7 +27326,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t *
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param)
-void InitializeSystemCore(system_uint64_t system_context_param)
+void system_init_with_context_ptr_64(system_uint64_t *system_context_param)
 
 {
   system_uint64_t *system_register_rbx_input;
@@ -27334,7 +27340,7 @@ void InitializeSystemCore(system_uint64_t system_context_param)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   return;
@@ -27442,7 +27448,7 @@ void InitializeSystemCore(longlong *system_context_param,longlong system_config_
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   system_uint64_t *system_context_pointer;
@@ -27490,7 +27496,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   system_uint64_t *system_context_pointer;
@@ -27530,7 +27536,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   longlong system_allocation_result;
@@ -27730,7 +27736,7 @@ void InitializeSystemCore(longlong *system_context_param,longlong system_config_
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
-void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
+void system_init_with_context_config(longlong system_context_param,longlong system_config_param)
 
 {
   system_uint64_t system_flags_mask;
@@ -27765,7 +27771,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   return;
@@ -27774,7 +27780,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   return;
@@ -27784,7 +27790,7 @@ void InitializeSystemCore(void)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   InitializeSystemCore();
@@ -28681,7 +28687,7 @@ longlong InitializeSystemCore(longlong system_context_param,system_uint64_t syst
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   return;
@@ -28890,7 +28896,7 @@ void LoadSystemModules(system_uint64_t *system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   if (*(longlong *)(system_context_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != 0) {
@@ -29007,7 +29013,7 @@ InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_conf
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
-void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
+void system_init_with_context_config(longlong system_context_param,longlong system_config_param)
 
 {
   longlong system_allocation_result;
@@ -29038,7 +29044,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
-void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
+void system_init_with_context_config_memory(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
 
 {
   if (system_memory_param + 1 < SYSTEM_INIT_SIZE_COMPARE) {
@@ -29053,7 +29059,7 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -29159,7 +29165,7 @@ void InitializePhysicsSystem(system_uint64_t *system_context_param)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   longlong system_allocation_result;
@@ -29401,7 +29407,7 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   system_uint64_t *system_register_rbx_input;
@@ -29417,7 +29423,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   int *system_int_ptr_main;
@@ -29567,7 +29573,7 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   int *system_int_ptr_main;
@@ -29605,7 +29611,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   ulonglong system_flags_mask;
@@ -29642,7 +29648,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   int *system_int_ptr_main;
@@ -29681,7 +29687,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   int *system_int_ptr_main;
@@ -29720,7 +29726,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   int *system_int_ptr_main;
@@ -29757,7 +29763,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 
-system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+system_uint64_t system_init_full_params_return_ulong(system_uint64_t system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
   system_uint64_t system_flags_mask;
@@ -29880,7 +29886,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,ulo
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+void system_init_with_full_params(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
   system_uint0x102_t system_flags_mask;
@@ -29911,7 +29917,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
 
 
 
-system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,ulonglong system_config_param)
+system_uint64_t system_init_with_context_ulong_config(system_uint64_t system_context_param,ulonglong system_config_param)
 
 {
   InitializeSystemCore();
@@ -30041,7 +30047,7 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+void system_init_with_full_params(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
   system_uint0x102_t system_flags_mask;
@@ -30075,7 +30081,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
 
 
 
-system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,ulonglong system_config_param)
+system_uint64_t system_init_with_context_ulong_config(system_uint64_t system_context_param,ulonglong system_config_param)
 
 {
   InitializeSystemCore();
@@ -30310,7 +30316,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t 
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+void system_init_with_full_params(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
   system_uint0x102_t system_flags_mask;
@@ -30461,7 +30467,7 @@ InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t *syst
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   *(system_uint64_t *)(system_context_param + SYSTEM_INIT_FLAG_OCTONARY_ENABLED) = &system_global_contextsystem_global_context;
@@ -30526,7 +30532,7 @@ longlong InitializeSystemCore(longlong system_context_param,uint system_config_p
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong system_allocation_result;
@@ -31057,7 +31063,7 @@ system_uint0x102_t InitializeSystemCore(longlong system_context_param)
 
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
-int InitializeSystemCore(void)
+int system_init_check_status(void)
 
 {
   longlong system_allocation_result;
@@ -31196,7 +31202,7 @@ void InitializeSystemCore(ulonglong system_context_param,longlong system_config_
 
 
 
-longlong InitializeSystemCore(longlong system_context_param,longlong system_config_param)
+longlong system_init_with_context_long_config(longlong system_context_param,longlong system_config_param)
 
 {
   if (*(longlong *)(system_context_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) != 0) {
@@ -31298,7 +31304,7 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+void system_init_with_full_params(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
   system_uint64_t system_flags_mask;
@@ -31840,7 +31846,7 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong system_allocation_result;
@@ -31866,7 +31872,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   longlong system_allocation_result;
@@ -31889,7 +31895,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   return;
@@ -31899,7 +31905,7 @@ void InitializeSystemCore(void)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong system_allocation_result;
@@ -31925,7 +31931,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   longlong system_allocation_result;
@@ -31948,7 +31954,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   return;
@@ -31959,7 +31965,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   longlong *system_primary_longptr;
@@ -32217,7 +32223,7 @@ void InitializeSystemCore(longlong system_context_param,longlong *system_config_
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
-void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
+void system_init_with_context_config_memory(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
 
 {
   uint system_flags_mask;
@@ -32480,7 +32486,7 @@ void InitializeSystemCore(longlong system_context_param,longlong *system_config_
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   longlong system_allocation_result;
@@ -32501,7 +32507,7 @@ void InitializeSystemCore(void)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   int system_int_param;
@@ -33538,7 +33544,7 @@ system_uint64_t * InitializeSystemCore(longlong system_context_param)
 
 
 
-system_uint64_t InitializeSystemCore(void)
+system_uint64_t system_init_get_context(void)
 
 {
   ulonglong system_flags_mask;
@@ -33591,7 +33597,7 @@ system_uint64_t InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   return;
@@ -34243,7 +34249,7 @@ ulonglong InitializeSystemCore(longlong system_context_param,longlong *system_co
 
 
 
-system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,ulonglong system_config_param)
+system_uint64_t system_init_with_context_ulong_config(system_uint64_t system_context_param,ulonglong system_config_param)
 
 {
   InitializeSystemCore();
@@ -34377,7 +34383,7 @@ code_rSYSTEM_INIT_VALUE_CHAR_NULL001800600x1027:
 
 
 
-system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,ulonglong system_config_param)
+system_uint64_t system_init_with_context_ulong_config(system_uint64_t system_context_param,ulonglong system_config_param)
 
 {
   InitializeSystemCore();
@@ -34548,7 +34554,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t 
 
 
 
-system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+system_uint64_t system_init_full_params_return_ulong(system_uint64_t system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
   system_uint64_t system_flags_mask;
@@ -34949,7 +34955,7 @@ system_uint64_t InitializeSystemCore(longlong system_context_param,system_uint64
 
 
 
-system_uint64_t InitializeSystemCore(void)
+system_uint64_t system_init_get_context(void)
 
 {
   ulonglong *system_context_pointer;
@@ -35512,7 +35518,7 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -35534,7 +35540,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+void system_init_with_full_params(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
   void* stack_memory_pointer;
@@ -35550,7 +35556,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+void system_init_with_full_params(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
   system_uint64_t system_stack_uint_20;
@@ -35563,7 +35569,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   InitializeSystemCore();
@@ -35573,7 +35579,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   InitializeSystemCore();
@@ -35628,7 +35634,7 @@ void InitializeSystemCore(longlong *system_context_param)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   system_uint8_t asystem_stack_uint_208 [48];
@@ -35820,7 +35826,7 @@ system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,system
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   uint system_flags_mask;
@@ -36049,7 +36055,7 @@ system_init_label_mode_switch:
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   InitializeSystemCore();
@@ -36156,7 +36162,7 @@ longlong InitializeInputSystem(longlong system_context_param)
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param)
-void InitializeSystemCore(system_uint64_t system_context_param)
+void system_init_with_context_ptr_64(system_uint64_t *system_context_param)
 
 {
   system_uint8_t asystem_stack_frame_secondary [96];
@@ -36224,7 +36230,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
     fwrite(&file_system_cache,,1,system_calculation_temp);
     fwrite(&system_initialized,system_temp_storage,1,system_calculation_temp);
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   void* *system_context_pointer;
@@ -36362,7 +36368,7 @@ system_init_label_phase_change:
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param)
-void InitializeSystemCore(system_uint64_t system_context_param)
+void system_init_with_context_ptr_64(system_uint64_t *system_context_param)
 
 {
   system_uint64_t *system_context_pointer;
@@ -36507,7 +36513,7 @@ void InitializeSystemCore(system_uint64_t system_context_param)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -36930,7 +36936,7 @@ system_init_label_subsystem_start:
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param)
-void InitializeSystemCore(system_uint64_t system_context_param)
+void system_init_with_context_ptr_64(system_uint64_t *system_context_param)
 
 {
   byte *system_byte_ptr_primary;
@@ -37468,7 +37474,7 @@ system_init_label_component_activate:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   system_uint8_t asystem_stack_initialization_flag_secondary [104];
@@ -38174,7 +38180,7 @@ longlong InitializeSystemCore(longlong system_context_param,ulonglong system_con
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   system_code *system_char_pointer_offset;
@@ -38218,7 +38224,7 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   InitializeSystemCore();
@@ -38228,7 +38234,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   system_code *system_char_pointer_offset;
@@ -38243,7 +38249,7 @@ void InitializeSystemCore(void)
 
 
 // 函数: void InitializeSystemCore(ulonglong system_context_param)
-void InitializeSystemCore(ulonglong system_context_param)
+void system_init_with_context_ptr_ulong(ulonglong *system_context_param)
 
 {
   system_code *system_char_pointer_offset;
@@ -38356,7 +38362,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t 
 
 
 // 函数: void InitializeSystemCore(ulonglong system_context_param)
-void InitializeSystemCore(ulonglong system_context_param)
+void system_init_with_context_ptr_ulong(ulonglong *system_context_param)
 
 {
   ulonglong system_flags_mask;
@@ -38381,7 +38387,7 @@ void InitializeSystemCore(ulonglong system_context_param)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   return;
@@ -38390,7 +38396,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -38400,7 +38406,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   system_code *system_char_pointer_offset;
@@ -38417,7 +38423,7 @@ void InitializeSystemCore(void)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong system_allocation_result;
@@ -38698,7 +38704,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -38708,7 +38714,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   _Mtx_destroy_in_situ();
@@ -38721,7 +38727,7 @@ void InitializeSystemCore(void)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
-void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
+void system_init_with_context_config(longlong system_context_param,longlong system_config_param)
 
 {
   int system_int_param;
@@ -38898,7 +38904,7 @@ system_uint64_t InitializeSystemCore(longlong system_context_param,longlong syst
 
 
 
-longlong InitializeSystemCore(longlong system_context_param,longlong system_config_param)
+longlong system_init_with_context_long_config(longlong system_context_param,longlong system_config_param)
 
 {
   longlong system_allocation_result;
@@ -38980,7 +38986,7 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t *system_
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong *system_primary_longptr;
@@ -39440,7 +39446,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
-void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
+void system_init_with_context_config(longlong system_context_param,longlong system_config_param)
 
 {
   system_code *system_char_pointer_offset;
@@ -39486,7 +39492,7 @@ InitializeSystemCore(system_uint64_t *system_context_param,ulonglong system_conf
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
-void InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
+void system_init_with_context_config_memory(longlong system_context_param,system_uint64_t system_config_param,int system_memory_param)
 
 {
   if (system_memory_param + 1 < SYSTEM_INIT_SIZE_COMPARE0) {
@@ -39501,7 +39507,7 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -39570,7 +39576,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
-void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
+void system_init_with_context_config(longlong system_context_param,longlong system_config_param)
 
 {
   longlong system_allocation_result;
@@ -39630,7 +39636,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param,system_uint64_t 
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   *(void* **)(system_context_param + SYSTEM_INIT_SIZE_MEMORY_CHUNK) = &system_global_contextsystem_global_context;
@@ -39666,7 +39672,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,ulo
 
 
 
-system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,ulonglong system_config_param)
+system_uint64_t system_init_with_context_ulong_config(system_uint64_t system_context_param,ulonglong system_config_param)
 
 {
   InitializeSystemCore();
@@ -40118,7 +40124,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t system_context_param,syst
 
 
 
-system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+system_uint64_t system_init_full_params_return_ulong(system_uint64_t system_context_param,ulonglong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
   system_uint64_t system_flags_mask;
@@ -40172,7 +40178,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,ulo
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong *system_primary_longptr;
@@ -40264,7 +40270,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   *(system_uint64_t *)(system_context_param + ) = &system_global_contextsystem_global_context;
@@ -40414,7 +40420,7 @@ void InitializeSystemCore(longlong system_context_param,system_uint0x102_t syste
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint0x102_t system_config_param)
-void InitializeSystemCore(system_uint64_t system_context_param,system_uint0x102_t system_config_param)
+void system_init_with_context_special_config(system_uint64_t system_context_param,system_uint0x102_t system_config_param)
 
 {
   longlong system_allocation_result;
@@ -40535,7 +40541,7 @@ void InitializeSystemCore(longlong *system_context_param,system_uint64_t system_
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   longlong *system_primary_longptr;
@@ -40547,7 +40553,7 @@ void InitializeSystemCore(void)
   }
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   *(system_uint64_t *)(system_context_param + SYSTEM_INIT_OFFSET_STACK_PARAM) = &system_global_contextsystem_global_context;
@@ -40656,7 +40662,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
 
 
 
-system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,ulonglong system_config_param)
+system_uint64_t system_init_with_context_ulong_config(system_uint64_t system_context_param,ulonglong system_config_param)
 
 {
   InitializeSystemCore();
@@ -40670,7 +40676,7 @@ system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,ulongl
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong system_allocation_result;
@@ -40706,7 +40712,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong system_allocation_result;
@@ -40859,7 +40865,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong *system_primary_longptr;
@@ -41321,7 +41327,7 @@ system_init_label_talent_awaken:
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong system_allocation_result;
@@ -41451,7 +41457,7 @@ system_init_label_potential_release:
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,longlong system_memory_param)
-void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,longlong system_memory_param)
+void system_init_with_context_config_ptrs_memory(system_uint64_t system_context_param,system_uint64_t *system_config_param,longlong *system_memory_param)
 
 {
   longlong system_allocation_result;
@@ -41505,7 +41511,7 @@ system_init_label_potential_release:
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
                     // WARNING: Subroutine does not return
@@ -41514,7 +41520,7 @@ void InitializeSystemCore(void)
 
 
 
-longlong InitializeSystemCore(longlong system_context_param,longlong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+longlong system_init_full_params_return_long(longlong system_context_param,longlong system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
   system_code *system_char_pointer_offset;
@@ -41866,7 +41872,7 @@ system_init_label_brilliance_shine:
 
 
 
-system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,ulonglong system_config_param)
+system_uint64_t system_init_with_context_ulong_config(system_uint64_t system_context_param,ulonglong system_config_param)
 
 {
   InitializeSystemCore();
@@ -41985,7 +41991,7 @@ system_init_label_optimize_start:
 
 
 
-system_uint64_t InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+system_uint64_t system_init_full_params_long_context(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
   ulonglong system_flags_mask;
@@ -42361,7 +42367,7 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 
-longlong InitializeSystemCore(longlong system_context_param,longlong system_config_param)
+longlong system_init_with_context_long_config(longlong system_context_param,longlong system_config_param)
 
 {
   longlong system_allocation_result;
@@ -42541,7 +42547,7 @@ longlong InitializeSystemCore(longlong system_context_param,ulonglong system_con
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   longlong system_allocation_result;
@@ -42795,7 +42801,7 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   system_uint64_t *system_register_rbx_input;
@@ -42811,7 +42817,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   int *system_int_ptr_main;
@@ -43122,7 +43128,7 @@ InitializeSystemCore(system_uint0x102_t *system_context_param,system_uint64_t sy
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   longlong system_allocation_result;
@@ -43185,7 +43191,7 @@ system_init_label_perfect_achieve:
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+void system_init_with_full_params(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
   longlong *system_primary_longptr;
@@ -43234,7 +43240,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
 
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+void system_init_with_full_params(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
   longlong system_allocation_result;
@@ -43467,7 +43473,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   longlong system_allocation_result;
@@ -43485,7 +43491,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   return;
@@ -43495,7 +43501,7 @@ void InitializeSystemCore(void)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   if (*(longlong **)(system_context_param + ) != (longlong *)SYSTEM_INIT_VALUE_CHAR_NULL) {
@@ -43508,7 +43514,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   if (*(longlong *)(system_context_param + SYSTEM_INIT_FLAG_INITIALIZED_TERTIARY8) != 0) {
@@ -45747,7 +45753,7 @@ system_init_label_path_choose:
       }
 
 // 函数: void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
-void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+void system_init_with_full_params(system_uint64_t system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
   longlong *system_primary_longptr;
@@ -46477,7 +46483,7 @@ void InitializeSystemCore(longlong system_context_param,longlong *system_config_
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   ushort system_flags_mask;
@@ -46888,7 +46894,7 @@ void InitializeSystemCore(system_uint0x102_t *system_context_param)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   ushort system_loop_counter;
@@ -46968,7 +46974,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   ushort system_loop_counter;
@@ -47369,7 +47375,7 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   int system_int_param;
@@ -47529,7 +47535,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   int system_int_param;
@@ -47610,7 +47616,7 @@ void InitializeSystemCore(longlong system_context_param)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   system_uint64_t system_loop_counter;
@@ -47656,7 +47662,7 @@ void InitializeSystemCore(void)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
-void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
+void system_init_with_context_config(longlong system_context_param,longlong system_config_param)
 
 {
   uint *system_context_pointer;
@@ -47776,7 +47782,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t system_context_param,long
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong system_allocation_result;
@@ -47832,7 +47838,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong *system_stack_buffer_temp;
@@ -48467,7 +48473,7 @@ system_uint64_t * InitializeSystemCore(system_uint64_t *system_context_param,cha
 
 
 
-system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,ulonglong system_config_param)
+system_uint64_t system_init_with_context_ulong_config(system_uint64_t system_context_param,ulonglong system_config_param)
 
 {
   InitializeSystemCore();
@@ -48479,7 +48485,7 @@ system_uint64_t InitializeSystemCore(system_uint64_t system_context_param,ulongl
 
 
 
-system_uint8_t InitializeSystemCore(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
+system_uint8_t system_init_full_params_return_byte(longlong system_context_param,system_uint64_t system_config_param,system_uint64_t system_memory_param,system_uint64_t system_thread_param)
 
 {
   system_uint8_t system_flags_mask;
@@ -49599,7 +49605,7 @@ void InitializeSystemCore(longlong system_context_param,longlong *system_config_
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   int system_int_param;
@@ -49620,7 +49626,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   char *system_char_pointer_offset;
@@ -50209,7 +50215,7 @@ system_uint64_t InitializeSystemCore(longlong system_context_param,longlong syst
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   int *system_int_ptr_main;
@@ -50644,7 +50650,7 @@ system_init_label_information_exchange:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   uint system_loop_counter;
@@ -50974,7 +50980,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   float system_coefficient_a;
@@ -51238,7 +51244,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   float system_coefficient_a;
@@ -51391,7 +51397,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   float system_coefficient_a;
@@ -51562,7 +51568,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   int system_int_param;
@@ -51855,7 +51861,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,system_uint64_t s
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   system_uint64_t *system_register_rdi_input;
@@ -51895,7 +51901,7 @@ void InitializeSystemCore(void)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong system_allocation_result;
@@ -51998,7 +52004,7 @@ system_init_label_talk_start:
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong system_allocation_result;
@@ -52203,7 +52209,7 @@ system_init_label_talk_start:
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong system_allocation_result;
@@ -52295,7 +52301,7 @@ system_init_label_talk_start:
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   system_uint64_t *system_context_pointer;
@@ -52746,7 +52752,7 @@ void InitializeSystemCore(system_uint64_t *system_context_param,longlong system_
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   float *system_coefficient_pointer_a;
@@ -53055,7 +53061,7 @@ void InitializeSystemCore(system_uint0x102_t *system_context_param,longlong *sys
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong system_allocation_result;
@@ -53085,7 +53091,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
-void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
+void system_init_with_context_config(longlong system_context_param,longlong system_config_param)
 
 {
   longlong *system_primary_longptr;
@@ -53395,7 +53401,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong *system_primary_longptr;
@@ -53706,7 +53712,7 @@ void InitializeSystemCore(longlong system_context_param)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   longlong *system_primary_longptr;
@@ -54287,7 +54293,7 @@ void InitializeSystemCore(longlong system_context_param,uint system_config_param
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   longlong *system_primary_longptr;
@@ -54513,7 +54519,7 @@ void* * InitializeSystemCore(longlong system_context_param,system_uint64_t syste
       system_global_initialized_flag = &system_initialized;
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong system_allocation_result;
@@ -54573,7 +54579,7 @@ system_uint8_t InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   return;
@@ -54875,7 +54881,7 @@ system_init_label_communication_init:
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   int *system_int_ptr_main;
@@ -56452,7 +56458,7 @@ void InitializeSystemCore(longlong *system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   if (*(longlong **)(system_context_param + SYSTEM_INIT_FLAG_OCTONARY_ENABLED) != (longlong *)SYSTEM_INIT_VALUE_CHAR_NULL) {
@@ -56470,7 +56476,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   system_uint64_t system_flags_mask;
@@ -58305,7 +58311,7 @@ void InitializeSystemCore(longlong system_context_param,char system_config_param
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   system_uint64_t system_flags_mask;
@@ -58322,7 +58328,7 @@ void InitializeSystemCore(longlong system_context_param)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   system_uint64_t system_loop_counter;
@@ -58335,7 +58341,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   return;
@@ -58540,7 +58546,7 @@ void InitializeSystemCore(longlong system_context_param,char system_config_param
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   int system_int_param;
@@ -58756,7 +58762,7 @@ void InitializeSystemCore(longlong system_context_param,int system_config_param,
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
-void InitializeSystemCore(longlong system_context_param,longlong system_config_param)
+void system_init_with_context_config(longlong system_context_param,longlong system_config_param)
 
 {
   uint system_flags_mask;
@@ -58821,7 +58827,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   return;
@@ -58830,7 +58836,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   return;
@@ -58840,7 +58846,7 @@ void InitializeSystemCore(void)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   *(system_uint0x102_t *)(system_context_param + SYSTEM_INIT_FLAG_QUATERNARY_ENABLED) = SYSTEM_INIT_VALUE_ZERO;
@@ -58929,7 +58935,7 @@ void InitializeSystemCore(longlong system_context_param,longlong system_config_p
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   int *system_int_ptr_main;
@@ -58996,7 +59002,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   int *system_int_ptr_main;
@@ -59040,7 +59046,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   longlong system_register_rbx_input;
@@ -59064,7 +59070,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   longlong system_register_rdi_input;
@@ -59242,7 +59248,7 @@ system_init_label_manifest_reveal:
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   InitializeSystemCore();
@@ -59362,7 +59368,7 @@ system_init_label_expose_uncover:
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   InitializeSystemCore();
@@ -59495,7 +59501,7 @@ system_uint8_t InitializeSystemCore(void)
 
 
 // 函数: void InitializeSystemCore(longlong system_context_param)
-void InitializeSystemCore(longlong system_context_param)
+void system_init_with_context(longlong system_context_param)
 
 {
   longlong *system_primary_longptr;
@@ -60104,7 +60110,7 @@ void InitializeSystemCore(system_uint64_t system_context_param,longlong system_c
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   longlong *system_primary_longptr;
@@ -60286,7 +60292,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   longlong *system_primary_longptr;
@@ -60469,7 +60475,7 @@ void InitializeSystemCore(void)
 // WARNING: Globals starting with '_' overlap smaller symbols at the same address
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   system_uint0x102_t system_loop_counter;
@@ -60560,7 +60566,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   system_uint0x102_t system_loop_counter;
@@ -60616,7 +60622,7 @@ void InitializeSystemCore(longlong system_context_param,system_uint64_t system_c
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   return;
@@ -60625,7 +60631,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   return;
@@ -60634,7 +60640,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   return;
@@ -60643,7 +60649,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   system_uint0x102_t system_loop_counter;
@@ -60671,7 +60677,7 @@ void InitializeSystemCore(void)
 
 
 
-void InitializeSystemCore(void)
+void system_init_empty(void)
 
 {
   longlong system_register_rdi_input;

@@ -55464,7 +55464,7 @@ void utility_unwind_final_function_zero_nine_echo_zero(uint64 utility_resource_p
   *(uint64 *)(utility_resource_context_handle  + utility_array_info_offset8) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_final_function_zero_alpha_zero_zero(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
+void utility_unwind_function_thread_local_storage_cleanup_zero(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
 {
   longlong utility_primary_resource_cache;
   utility_resource_context_handle = *(longlong *)(utility_resource_context_handle + utility_buffer_data_offset_standard);
@@ -55488,7 +55488,7 @@ void utility_unwind_final_function_zero_alpha_zero_zero(uint64 utility_resource_
   *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_11F8) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_final_function_zero_alpha_two_zero(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
+void utility_unwind_function_thread_local_storage_cleanup_two(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
 {
   longlong utility_primary_resource_cache;
   utility_resource_context_handle = *(longlong *)(utility_resource_context_handle + utility_buffer_data_offset_standard);
@@ -55512,7 +55512,7 @@ void utility_unwind_final_function_zero_alpha_two_zero(uint64 utility_resource_p
   *(uint64 *)(utility_resource_context_handle + utility_resource_primary_handle_status_offset_extended_extended_cleanup_flag68) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_final_function_zero_alpha_four_zero(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
+void utility_unwind_function_thread_local_storage_cleanup_four(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
 {
   longlong utility_primary_resource_cache;
   utility_resource_context_handle = *(longlong *)(utility_resource_context_handle + utility_buffer_data_offset_standard);
@@ -55537,7 +55537,7 @@ void utility_unwind_final_function_zero_alpha_four_zero(uint64 utility_resource_
   *(uint64 *)(utility_resource_context_handle + utility_resource_primary_handle_status_offset_extended_extended_cleanup_flagd8) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_final_function_zero_alpha_six_zero(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
+void utility_unwind_function_thread_local_storage_cleanup_six(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
 {
   longlong utility_primary_resource_cache;
   utility_resource_context_handle = *(longlong *)(utility_resource_context_handle + utility_buffer_data_offset_standard);
@@ -55562,7 +55562,7 @@ void utility_unwind_final_function_zero_alpha_six_zero(uint64 utility_resource_p
   *(uint64 *)(utility_resource_context_handle + utility_resource_config_offset_extended_alt48) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_final_function_zero_alpha_eight_zero(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
+void utility_unwind_function_thread_local_storage_cleanup_eight(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
 {
   longlong utility_primary_resource_cache;
   utility_resource_context_handle = *(longlong *)(utility_resource_context_handle + utility_buffer_data_offset_standard);
@@ -55587,7 +55587,24 @@ void utility_unwind_final_function_zero_alpha_eight_zero(uint64 utility_resource
   *(uint64 *)(utility_resource_context_handle + utility_resource_config_offset_extended_altb8) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_final_function_zero_alpha_alpha_zero(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
+/**
+ * @brief 线程本地存储清理函数 - Alpha版本
+ * 
+ * 该函数负责清理线程本地存储资源，包括：
+ * - 执行资源回调函数
+ * - 验证线程本地存储状态
+ * - 清理内存数据
+ * - 重置相关标志位
+ * 
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @param utility_primary_resource_cache 主要资源缓存
+ * @param utility_operation_flags 操作标志
+ * @param utility_resource_callback_handler 资源回调处理器
+ * 
+ * 简化实现：添加函数文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
+void utility_unwind_function_thread_local_storage_cleanup_alpha(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
 {
   longlong utility_primary_resource_cache;
   utility_resource_context_handle = *(longlong *)(utility_resource_context_handle + utility_buffer_data_offset_standard);
@@ -55612,7 +55629,24 @@ void utility_unwind_final_function_zero_alpha_alpha_zero(uint64 utility_resource
   *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_1428) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_final_function_zero_alpha_charlie_zero(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
+/**
+ * @brief 线程本地存储清理函数 - Charlie版本
+ * 
+ * 该函数负责清理线程本地存储资源，包括：
+ * - 执行资源回调函数
+ * - 验证线程本地存储状态
+ * - 清理内存数据
+ * - 重置相关标志位
+ * 
+ * @param utility_resource_primary_handle 主要资源句柄
+ * @param utility_primary_resource_cache 主要资源缓存
+ * @param utility_operation_flags 操作标志
+ * @param utility_resource_callback_handler 资源回调处理器
+ * 
+ * 简化实现：添加函数文档注释，保持代码逻辑不变
+ * 原本实现：完全重构函数文档体系，建立完整的文档规范
+ */
+void utility_unwind_function_thread_local_storage_cleanup_charlie(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
 {
   longlong utility_primary_resource_cache;
   utility_resource_context_handle = *(longlong *)(utility_resource_context_handle + utility_buffer_data_offset_standard);
@@ -55637,7 +55671,7 @@ void utility_unwind_final_function_zero_alpha_charlie_zero(uint64 utility_resour
   *(uint64 *)(utility_resource_context_handle + utility_thread_local_storage_offset_extended_extended_1498) = &utility_thread_local_storage_cleanup;
   return;
 }
-void utility_unwind_final_function_zero_alpha_echo_zero(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
+void utility_unwind_function_thread_local_storage_cleanup_echo(uint64 utility_resource_primary_handle,longlong utility_primary_resource_cache,uint64 utility_operation_flags,uint64 utility_resource_callback_handler)
 {
   longlong utility_primary_resource_cache;
   utility_resource_context_handle = *(longlong *)(utility_resource_context_handle + utility_buffer_data_offset_standard);
