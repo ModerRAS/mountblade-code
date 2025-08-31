@@ -1515,6 +1515,14 @@ void *system_initialize_graphics_system;
  *
  * @return void
  */
+/**
+ * @brief 初始化内存管理器
+ * 
+ * 设置和配置系统内存管理器，包括内存池分配、页面管理和内存映射。
+ * 这是系统启动过程中的关键步骤，确保后续操作有足够的内存资源。
+ * 
+ * @return void
+ */
 void system_initialize_memory_manager(void)
 
 {

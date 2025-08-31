@@ -548,7 +548,7 @@ uint64_t utility_process_resource_pointer(int64_t utility_context_input_data)
     char utility_character_buffer[16];
     uint8_t utility_buffer_workspace_array[512];
     int64_t utility_resource_ptr;
-    int utility_result;
+    int utility_status_code = UTILITY_FALSE;
     
     utility_status = utility_service_request_processor(*(uint32_t *)(utility_context_input_data + UTILITY_THREAD_HANDLE_OFFSET), &utility_buffer_workspace_array);
     if ((int)utility_status != UTILITY_FALSE) {
@@ -636,6 +636,7 @@ int utility_result;
 uint utility_resource_type;
 uint64_t utility_resource_result;
 int64_t utility_stack_ptr;
+int utility_status_code = UTILITY_FALSE;
 utility_status = utility_service_request_processor(*(uint32_t *)(utility_context_input_data + UTILITY_THREAD_CONTEXT_OFFSET),&utility_stack_ptr);
 utility_status_code = (int)utility_resource_context_value;
 if (utility_status_code == UTILITY_FALSE) {
