@@ -122,14 +122,14 @@ static uint32 UTILITY_RESOURCE_TABLE_OFFSET = 0;
 static longlong UTILITY_FRAME_PTR = 0;
 static longlong UTILITY_FILE_DATA_OFFSET = 0;
 static uint32 UTILITY_FILE_HANDLE_OFFSET = 0;
-static uint64 UTILITY_FILE_POSITION_OFFSET = 0;
+static uint64_t UTILITY_FILE_POSITION_OFFSET = 0;
 static float UTILITY_RESOURCE_DATA_BUFFER_POSITION = 0.0f;
 static longlong UTILITY_DATA_BUFFER_PRIMARY = 0;
 static uint32 UTILITY_LOCAL_INTEGER_VALUE = 0;
 static longlong UTILITY_BUFFER_POSITION = 0;
-static uint64 UTILITY_RESULT = 0;
+static uint64_t UTILITY_RESULT = 0;
 static uint32 UTILITY_THREAD_OFFSET = 0;
-static uint64 UTILITY_FILE_SIZE_PARAM = 0;
+static uint64_t UTILITY_FILE_SIZE_PARAM = 0;
 static ulonglong UTILITY_EXTENDED_DATA_PTR = 0;
 
 /**
@@ -202,16 +202,16 @@ void utility_memory_cleanup_handler(void)
 /**
  * @brief 处理资源数据
  * @param utility_resource_primary_handle 主要资源句柄
- * @return uint64 操作结果状态码
+ * @return uint64_t 操作结果状态码
  *
  * 该函数负责处理系统资源数据，包括：
  * - 执行系统内存操作
  * - 验证操作结果状态
  * - 返回处理结果
  */
-uint64 utility_process_resource_data(longlong utility_resource_primary_handle)
+uint64_t utility_process_resource_data(longlong utility_resource_primary_handle)
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
@@ -231,17 +231,17 @@ uint64 utility_process_resource_data(longlong utility_resource_primary_handle)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
  *
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
-uint64 utility_resource_data_processor(void)
+uint64_t_t utility_resource_data_processor(void)
 {
-  uint64 utility_result;
-  longlong utility_resource_primary_handle = 0; // 假设的默认值
+  uint64_t_t utility_result;
+  int64_t utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
     return utility_result;
@@ -273,13 +273,13 @@ uint32 utility_get_memory_usage(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
  * 简化实现：提供基本的上下文管理功能。
  */
-uint64 utility_context_manager(void)
+uint64_t utility_context_manager(void)
 {
   return UTILITY_ZERO;
 }
@@ -302,7 +302,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -310,7 +310,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -342,7 +342,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -370,7 +370,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -378,7 +378,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -410,7 +410,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -438,7 +438,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -446,7 +446,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -478,7 +478,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -506,7 +506,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -514,7 +514,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -546,7 +546,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -574,7 +574,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -582,7 +582,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -614,7 +614,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -642,7 +642,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -650,7 +650,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -682,7 +682,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -710,7 +710,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -718,7 +718,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -750,7 +750,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -778,7 +778,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -786,7 +786,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -818,7 +818,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -846,7 +846,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -854,7 +854,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -886,7 +886,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -914,7 +914,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -922,7 +922,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -954,7 +954,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -982,7 +982,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -990,7 +990,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -1022,7 +1022,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1050,7 +1050,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1058,7 +1058,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -1090,7 +1090,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1118,7 +1118,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1126,7 +1126,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -1158,7 +1158,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1186,7 +1186,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1194,7 +1194,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -1226,7 +1226,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1254,7 +1254,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1262,7 +1262,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -1294,7 +1294,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1322,7 +1322,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1330,7 +1330,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -1362,7 +1362,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1390,7 +1390,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1398,7 +1398,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -1430,7 +1430,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1458,7 +1458,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1466,7 +1466,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -1498,7 +1498,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1526,7 +1526,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1534,7 +1534,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -1566,7 +1566,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1594,7 +1594,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1602,7 +1602,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -1634,7 +1634,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1662,7 +1662,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1670,7 +1670,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -1702,7 +1702,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1730,7 +1730,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1738,7 +1738,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -1770,7 +1770,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1798,7 +1798,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1806,7 +1806,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -1838,7 +1838,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1866,7 +1866,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1874,7 +1874,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -1906,7 +1906,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -1934,7 +1934,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -1942,7 +1942,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -1974,7 +1974,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2002,7 +2002,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2010,7 +2010,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -2042,7 +2042,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2070,7 +2070,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2078,7 +2078,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -2110,7 +2110,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2138,7 +2138,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2146,7 +2146,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -2178,7 +2178,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2206,7 +2206,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2214,7 +2214,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -2246,7 +2246,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2274,7 +2274,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2282,7 +2282,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -2314,7 +2314,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2342,7 +2342,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2350,7 +2350,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -2382,7 +2382,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2410,7 +2410,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2418,7 +2418,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -2450,7 +2450,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2478,7 +2478,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2486,7 +2486,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -2518,7 +2518,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2546,7 +2546,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2554,7 +2554,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -2586,7 +2586,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2614,7 +2614,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2622,7 +2622,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -2654,7 +2654,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2682,7 +2682,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2690,7 +2690,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -2722,7 +2722,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2750,7 +2750,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2758,7 +2758,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -2790,7 +2790,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2818,7 +2818,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2826,7 +2826,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -2858,7 +2858,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2886,7 +2886,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2894,7 +2894,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -2926,7 +2926,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -2954,7 +2954,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -2962,7 +2962,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -2994,7 +2994,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3022,7 +3022,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3030,7 +3030,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -3062,7 +3062,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3090,7 +3090,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3098,7 +3098,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -3130,7 +3130,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3158,7 +3158,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3166,7 +3166,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -3198,7 +3198,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3226,7 +3226,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3234,7 +3234,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -3266,7 +3266,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3294,7 +3294,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3302,7 +3302,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -3334,7 +3334,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3362,7 +3362,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3370,7 +3370,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -3402,7 +3402,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3430,7 +3430,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3438,7 +3438,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -3470,7 +3470,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3498,7 +3498,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3506,7 +3506,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -3538,7 +3538,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3566,7 +3566,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3574,7 +3574,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -3606,7 +3606,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3634,7 +3634,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3642,7 +3642,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -3674,7 +3674,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3702,7 +3702,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3710,7 +3710,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -3742,7 +3742,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3770,7 +3770,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3778,7 +3778,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -3810,7 +3810,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3838,7 +3838,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3846,7 +3846,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -3878,7 +3878,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3906,7 +3906,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3914,7 +3914,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -3946,7 +3946,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -3974,7 +3974,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -3982,7 +3982,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -4014,7 +4014,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4042,7 +4042,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4050,7 +4050,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -4082,7 +4082,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4110,7 +4110,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4118,7 +4118,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -4150,7 +4150,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4178,7 +4178,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4186,7 +4186,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -4218,7 +4218,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4246,7 +4246,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4254,7 +4254,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -4286,7 +4286,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4314,7 +4314,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4322,7 +4322,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -4354,7 +4354,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4382,7 +4382,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4390,7 +4390,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -4422,7 +4422,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4450,7 +4450,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4458,7 +4458,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -4490,7 +4490,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4518,7 +4518,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4526,7 +4526,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -4558,7 +4558,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4586,7 +4586,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4594,7 +4594,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -4626,7 +4626,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4654,7 +4654,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4662,7 +4662,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -4694,7 +4694,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4722,7 +4722,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4730,7 +4730,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -4762,7 +4762,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4790,7 +4790,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4798,7 +4798,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -4830,7 +4830,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4858,7 +4858,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4866,7 +4866,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -4898,7 +4898,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4926,7 +4926,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -4934,7 +4934,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -4966,7 +4966,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -4994,7 +4994,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5002,7 +5002,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -5034,7 +5034,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5062,7 +5062,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5070,7 +5070,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -5102,7 +5102,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5130,7 +5130,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5138,7 +5138,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -5170,7 +5170,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5198,7 +5198,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5206,7 +5206,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -5238,7 +5238,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5266,7 +5266,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5274,7 +5274,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -5306,7 +5306,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5334,7 +5334,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5342,7 +5342,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -5374,7 +5374,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5402,7 +5402,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5410,7 +5410,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -5442,7 +5442,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5470,7 +5470,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5478,7 +5478,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -5510,7 +5510,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5538,7 +5538,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5546,7 +5546,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -5578,7 +5578,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5606,7 +5606,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5614,7 +5614,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -5646,7 +5646,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5674,7 +5674,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5682,7 +5682,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -5714,7 +5714,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5742,7 +5742,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5750,7 +5750,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -5782,7 +5782,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5810,7 +5810,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5818,7 +5818,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -5850,7 +5850,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5878,7 +5878,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5886,7 +5886,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -5918,7 +5918,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -5946,7 +5946,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -5954,7 +5954,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -5986,7 +5986,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6014,7 +6014,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6022,7 +6022,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -6054,7 +6054,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6082,7 +6082,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6090,7 +6090,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -6122,7 +6122,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6150,7 +6150,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6158,7 +6158,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -6190,7 +6190,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6218,7 +6218,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6226,7 +6226,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -6258,7 +6258,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6286,7 +6286,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6294,7 +6294,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -6326,7 +6326,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6354,7 +6354,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6362,7 +6362,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -6394,7 +6394,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6422,7 +6422,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6430,7 +6430,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -6462,7 +6462,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6490,7 +6490,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6498,7 +6498,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -6530,7 +6530,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6558,7 +6558,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6566,7 +6566,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -6598,7 +6598,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6626,7 +6626,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6634,7 +6634,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -6666,7 +6666,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6694,7 +6694,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6702,7 +6702,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -6734,7 +6734,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6762,7 +6762,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6770,7 +6770,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -6802,7 +6802,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6830,7 +6830,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6838,7 +6838,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -6870,7 +6870,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6898,7 +6898,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6906,7 +6906,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -6938,7 +6938,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -6966,7 +6966,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -6974,7 +6974,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -7006,7 +7006,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7034,7 +7034,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7042,7 +7042,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -7074,7 +7074,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7102,7 +7102,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7110,7 +7110,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -7142,7 +7142,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7170,7 +7170,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7178,7 +7178,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -7210,7 +7210,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7238,7 +7238,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7246,7 +7246,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -7278,7 +7278,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7306,7 +7306,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7314,7 +7314,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -7346,7 +7346,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7374,7 +7374,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7382,7 +7382,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -7414,7 +7414,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7442,7 +7442,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7450,7 +7450,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -7482,7 +7482,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7510,7 +7510,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7518,7 +7518,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -7550,7 +7550,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7578,7 +7578,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7586,7 +7586,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -7618,7 +7618,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7646,7 +7646,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7654,7 +7654,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -7686,7 +7686,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7714,7 +7714,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7722,7 +7722,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -7754,7 +7754,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7782,7 +7782,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7790,7 +7790,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -7822,7 +7822,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7850,7 +7850,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7858,7 +7858,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -7890,7 +7890,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7918,7 +7918,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7926,7 +7926,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -7958,7 +7958,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -7986,7 +7986,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -7994,7 +7994,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -8026,7 +8026,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8054,7 +8054,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8062,7 +8062,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -8094,7 +8094,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8122,7 +8122,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8130,7 +8130,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -8162,7 +8162,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8190,7 +8190,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8198,7 +8198,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -8230,7 +8230,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8258,7 +8258,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8266,7 +8266,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -8298,7 +8298,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8326,7 +8326,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8334,7 +8334,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -8366,7 +8366,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8394,7 +8394,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8402,7 +8402,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -8434,7 +8434,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8462,7 +8462,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8470,7 +8470,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -8502,7 +8502,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8530,7 +8530,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8538,7 +8538,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -8570,7 +8570,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8598,7 +8598,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8606,7 +8606,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -8638,7 +8638,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8666,7 +8666,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8674,7 +8674,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -8706,7 +8706,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8734,7 +8734,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8742,7 +8742,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -8774,7 +8774,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8802,7 +8802,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8810,7 +8810,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -8842,7 +8842,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8870,7 +8870,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8878,7 +8878,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -8910,7 +8910,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -8938,7 +8938,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -8946,7 +8946,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -8978,7 +8978,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9006,7 +9006,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9014,7 +9014,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -9046,7 +9046,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9074,7 +9074,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9082,7 +9082,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -9114,7 +9114,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9142,7 +9142,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9150,7 +9150,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -9182,7 +9182,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9210,7 +9210,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9218,7 +9218,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -9250,7 +9250,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9278,7 +9278,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9286,7 +9286,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -9318,7 +9318,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9346,7 +9346,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9354,7 +9354,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -9386,7 +9386,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9414,7 +9414,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9422,7 +9422,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -9454,7 +9454,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9482,7 +9482,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9490,7 +9490,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -9522,7 +9522,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9550,7 +9550,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9558,7 +9558,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -9590,7 +9590,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9618,7 +9618,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9626,7 +9626,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -9658,7 +9658,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9686,7 +9686,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9694,7 +9694,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -9726,7 +9726,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9754,7 +9754,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9762,7 +9762,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -9794,7 +9794,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9822,7 +9822,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9830,7 +9830,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -9862,7 +9862,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9890,7 +9890,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9898,7 +9898,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -9930,7 +9930,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -9958,7 +9958,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -9966,7 +9966,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -9998,7 +9998,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10026,7 +10026,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10034,7 +10034,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -10066,7 +10066,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10094,7 +10094,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10102,7 +10102,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -10134,7 +10134,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10162,7 +10162,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10170,7 +10170,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -10202,7 +10202,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10230,7 +10230,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10238,7 +10238,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -10270,7 +10270,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10298,7 +10298,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10306,7 +10306,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -10338,7 +10338,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10366,7 +10366,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10374,7 +10374,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -10406,7 +10406,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10434,7 +10434,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10442,7 +10442,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -10474,7 +10474,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10502,7 +10502,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10510,7 +10510,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -10542,7 +10542,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10570,7 +10570,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10578,7 +10578,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -10610,7 +10610,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10638,7 +10638,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10646,7 +10646,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -10678,7 +10678,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10706,7 +10706,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10714,7 +10714,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -10746,7 +10746,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10774,7 +10774,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10782,7 +10782,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -10814,7 +10814,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10842,7 +10842,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10850,7 +10850,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -10882,7 +10882,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10910,7 +10910,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10918,7 +10918,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -10950,7 +10950,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -10978,7 +10978,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -10986,7 +10986,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -11018,7 +11018,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11046,7 +11046,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11054,7 +11054,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -11086,7 +11086,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11114,7 +11114,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11122,7 +11122,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -11154,7 +11154,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11182,7 +11182,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11190,7 +11190,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -11222,7 +11222,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11250,7 +11250,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11258,7 +11258,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -11290,7 +11290,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11318,7 +11318,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11326,7 +11326,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -11358,7 +11358,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11386,7 +11386,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11394,7 +11394,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -11426,7 +11426,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11454,7 +11454,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11462,7 +11462,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -11494,7 +11494,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11522,7 +11522,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11530,7 +11530,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -11562,7 +11562,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11590,7 +11590,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11598,7 +11598,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -11630,7 +11630,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11658,7 +11658,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11666,7 +11666,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -11698,7 +11698,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11726,7 +11726,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11734,7 +11734,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -11766,7 +11766,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11794,7 +11794,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11802,7 +11802,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -11834,7 +11834,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11862,7 +11862,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11870,7 +11870,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -11902,7 +11902,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11930,7 +11930,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -11938,7 +11938,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -11970,7 +11970,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -11998,7 +11998,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12006,7 +12006,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -12038,7 +12038,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12066,7 +12066,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12074,7 +12074,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -12106,7 +12106,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12134,7 +12134,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12142,7 +12142,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -12174,7 +12174,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12202,7 +12202,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12210,7 +12210,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -12242,7 +12242,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12270,7 +12270,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12278,7 +12278,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -12310,7 +12310,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12338,7 +12338,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12346,7 +12346,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -12378,7 +12378,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12406,7 +12406,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12414,7 +12414,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -12446,7 +12446,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12474,7 +12474,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12482,7 +12482,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -12514,7 +12514,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12542,7 +12542,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12550,7 +12550,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -12582,7 +12582,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12610,7 +12610,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12618,7 +12618,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -12650,7 +12650,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12678,7 +12678,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12686,7 +12686,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -12718,7 +12718,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12746,7 +12746,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12754,7 +12754,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -12786,7 +12786,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12814,7 +12814,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12822,7 +12822,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -12854,7 +12854,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12882,7 +12882,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12890,7 +12890,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -12922,7 +12922,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -12950,7 +12950,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -12958,7 +12958,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -12990,7 +12990,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13018,7 +13018,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13026,7 +13026,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -13058,7 +13058,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13086,7 +13086,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13094,7 +13094,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -13126,7 +13126,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13154,7 +13154,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13162,7 +13162,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -13194,7 +13194,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13222,7 +13222,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13230,7 +13230,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -13262,7 +13262,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13290,7 +13290,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13298,7 +13298,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -13330,7 +13330,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13358,7 +13358,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13366,7 +13366,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -13398,7 +13398,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13426,7 +13426,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13434,7 +13434,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -13466,7 +13466,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13494,7 +13494,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13502,7 +13502,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -13534,7 +13534,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13562,7 +13562,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13570,7 +13570,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -13602,7 +13602,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13630,7 +13630,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13638,7 +13638,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -13670,7 +13670,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13698,7 +13698,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13706,7 +13706,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -13738,7 +13738,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13766,7 +13766,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13774,7 +13774,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -13806,7 +13806,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13834,7 +13834,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13842,7 +13842,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -13874,7 +13874,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13902,7 +13902,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13910,7 +13910,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -13942,7 +13942,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -13970,7 +13970,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -13978,7 +13978,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -14010,7 +14010,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14038,7 +14038,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14046,7 +14046,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -14078,7 +14078,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14106,7 +14106,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14114,7 +14114,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -14146,7 +14146,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14174,7 +14174,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14182,7 +14182,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -14214,7 +14214,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14242,7 +14242,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14250,7 +14250,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -14282,7 +14282,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14310,7 +14310,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14318,7 +14318,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -14350,7 +14350,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14378,7 +14378,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14386,7 +14386,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -14418,7 +14418,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14446,7 +14446,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14454,7 +14454,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -14486,7 +14486,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14514,7 +14514,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14522,7 +14522,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -14554,7 +14554,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14582,7 +14582,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14590,7 +14590,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -14622,7 +14622,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14650,7 +14650,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14658,7 +14658,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -14690,7 +14690,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14718,7 +14718,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14726,7 +14726,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -14758,7 +14758,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14786,7 +14786,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14794,7 +14794,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -14826,7 +14826,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14854,7 +14854,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14862,7 +14862,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -14894,7 +14894,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14922,7 +14922,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14930,7 +14930,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -14962,7 +14962,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -14990,7 +14990,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -14998,7 +14998,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -15030,7 +15030,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -15058,7 +15058,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -15066,7 +15066,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -15098,7 +15098,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -15126,7 +15126,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -15134,7 +15134,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -15166,7 +15166,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -15194,7 +15194,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -15202,7 +15202,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -15234,7 +15234,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -15262,7 +15262,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -15270,7 +15270,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -15302,7 +15302,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -15330,7 +15330,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -15338,7 +15338,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -15370,7 +15370,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -15398,7 +15398,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -15406,7 +15406,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -15438,7 +15438,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -15466,7 +15466,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -15474,7 +15474,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -15506,7 +15506,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -15534,7 +15534,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -15542,7 +15542,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -15574,7 +15574,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -15602,7 +15602,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -15610,7 +15610,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -15642,7 +15642,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -15670,7 +15670,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -15678,7 +15678,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -15710,7 +15710,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
@@ -15738,7 +15738,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 资源数据处理器 - 处理系统资源数据的辅助函数
- * @return uint64 处理结果状态码
+ * @return uint64_t 处理结果状态码
  *
  * 该函数作为资源数据处理的辅助函数，提供与主处理函数相同的功能。
  * 主要用于处理系统资源数据，包括内存操作和资源清理。
@@ -15746,7 +15746,7 @@ uint64 utility_context_manager(void)
  * 简化实现：与主处理函数共享相同的实现逻辑。
  */
 {
-  uint64 utility_result;
+  uint64_t utility_result;
   longlong utility_resource_primary_handle = 0; // 假设的默认值
   utility_result = system_memory_operation(*(uint32 *)(utility_resource_primary_handle + UTILITY_DATA_OFFSET), &UTILITY_SYSTEM_RESOURCE_HANDLE);
   if ((int)utility_result != UTILITY_ZERO) {
@@ -15778,7 +15778,7 @@ uint64 utility_context_manager(void)
 
 /**
  * @brief 上下文管理器 - 管理系统资源上下文
- * @return uint64 上下文管理结果状态码
+ * @return uint64_t 上下文管理结果状态码
  *
  * 该函数负责管理系统资源上下文，包括上下文初始化和清理操作。
  *
