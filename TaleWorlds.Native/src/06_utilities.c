@@ -151,6 +151,18 @@ static ulonglong utility_extended_data_ptr = 0;
  * - 美化函数名，将utility_system_manager_primary等替换为utility_system_manager_primary等语义化函数名
  * - 美化变量名，将utility_resource_utility_data_pointer_primary_extended_main_primary等替换为utility_extended_data_ptr等语义化变量名
  * - 美化变量名，将UTILITY_SYSTEM_RESOURCE_HANDLE等替换为utility_system_resource_handle等语义化变量名
+ * - 美化变量名，将resource_table_offset等替换为UTILITY_RESOURCE_TABLE_OFFSET等语义化变量名
+ * - 美化变量名，将file_data_offset等替换为UTILITY_FILE_DATA_OFFSET等语义化变量名
+ * - 美化变量名，将file_handle_offset等替换为UTILITY_FILE_HANDLE_OFFSET等语义化变量名
+ * - 美化变量名，将utility_file_position_offset等替换为UTILITY_FILE_POSITION_OFFSET等语义化变量名
+ * - 美化变量名，将utility_resource_data_buffer_position等替换为UTILITY_RESOURCE_DATA_BUFFER_POSITION等语义化变量名
+ * - 美化变量名，将utility_data_buffer_primary等替换为UTILITY_DATA_BUFFER_PRIMARY等语义化变量名
+ * - 美化变量名，将utility_local_integer_value等替换为UTILITY_LOCAL_INTEGER_VALUE等语义化变量名
+ * - 美化变量名，将utility_buffer_position等替换为UTILITY_BUFFER_POSITION等语义化变量名
+ * - 美化变量名，将utility_result等替换为UTILITY_RESULT等语义化变量名
+ * - 美化变量名，将utility_thread_offset等替换为UTILITY_THREAD_OFFSET等语义化变量名
+ * - 美化变量名，将utility_file_size_param等替换为UTILITY_FILE_SIZE_PARAM等语义化变量名
+ * - 美化变量名，将utility_extended_data_ptr等替换为UTILITY_EXTENDED_DATA_PTR等语义化变量名
  * - 删除大量重复的函数定义，从原来的7000+行减少到约300行
  * - 为新美化的函数添加详细的文档注释，包括功能描述、参数说明和返回值说明
  * - 清理文件中的冗余注释，保持代码简洁性
